@@ -1,0 +1,29 @@
+code: __proposal__
+description: "Replace Map<String,ReportFormatter> with FormatterRegistry interface\
+  \ in audit-cli to enable declarative test mocking"
+modules:
+- name: audit-cli
+  interfaces:
+  - name: FormatterRegistry
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getFormatter(String formatName): ReportFormatter"
+    _change: add
+  implementations:
+  - name: DefaultFormatterRegistry
+    types:
+    - Component
+    implements:
+    - FormatterRegistry
+    _change: add
+  - name: DefaultAuditCli
+    requiresInject:
+    - name: auditRunner
+      type: AuditRunner
+    - name: formatterRegistry
+      type: FormatterRegistry
+    implements:
+    - AuditCli
+    _change: modify
+  _change: modify

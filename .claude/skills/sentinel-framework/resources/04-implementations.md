@@ -187,6 +187,31 @@ public CachedNlpTokenizer(NlpTokenizer delegate) {
 
 **Framework types:** Component
 
+#### DefaultAuditRunner
+
+**Package:** `com.learney.contentaudit.auditapplication`
+
+**Implements:** AuditRunner
+
+**Framework types:** Service
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `courseRepository` | `CourseRepository` |
+| `courseToAuditableMapper` | `CourseToAuditableMapper` |
+| `contentAudit` | `ContentAudit` |
+
+**Generated constructor:**
+```java
+public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, ContentAudit contentAudit) {
+    this.courseRepository = courseRepository;
+    this.courseToAuditableMapper = courseToAuditableMapper;
+    this.contentAudit = contentAudit;
+}
+```
+
 ### Module: course-infrastructure
 
 #### FileSystemCourseRepository
@@ -240,4 +265,49 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 - Given a loaded course, when navigating from ROOT to milestones to topics to knowledges to quizzes, then each level is accessible and correctly ordered [F-COURSE]
 - Given a loaded course, when a knowledge label is modified and the course is saved and reloaded, then the change is reflected and unmodified data remains intact [F-COURSE]
 - Given a nonexistent path or missing descriptor or malformed JSON, when load is called, then a descriptive error is thrown and no partial course is returned [F-COURSE]
+
+### Module: audit-cli
+
+#### TextReportFormatter
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implements:** ReportFormatter
+
+#### JsonReportFormatter
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implements:** ReportFormatter
+
+#### DefaultAuditCli
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implements:** AuditCli
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `auditRunner` | `AuditRunner` |
+| `formatters` | `Map<String,ReportFormatter>` |
+| `formatterRegistry` | `FormatterRegistry` |
+
+**Generated constructor:**
+```java
+public DefaultAuditCli(AuditRunner auditRunner, Map<String,ReportFormatter> formatters, FormatterRegistry formatterRegistry) {
+    this.auditRunner = auditRunner;
+    this.formatters = formatters;
+    this.formatterRegistry = formatterRegistry;
+}
+```
+
+#### DefaultFormatterRegistry
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implements:** FormatterRegistry
+
+**Framework types:** Component
 

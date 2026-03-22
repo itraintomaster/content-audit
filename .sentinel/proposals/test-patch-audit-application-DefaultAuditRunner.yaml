@@ -1,0 +1,443 @@
+code: __proposal__
+description: Tests for DefaultAuditRunner - full orchestration chain coverage
+modules:
+- name: audit-application
+  implementations:
+  - name: DefaultAuditRunner
+    tests:
+    - name: "Given a valid course path, when runAudit is called, then returns the\
+        \ audit report from the full chain"
+      target: DefaultAuditRunner
+      mocks:
+      - dependency: courseRepository
+        method: load
+        thenReturn: ref:courseEntity
+        args:
+        - match: any
+      - dependency: courseToAuditableMapper
+        method: map
+        thenReturn: ref:auditableCourse
+        args:
+        - match: any
+      - dependency: contentAudit
+        method: audit
+        thenReturn: ref:auditReport
+        args:
+        - match: any
+      invoke:
+        method: runAudit
+        args:
+        - /path/to/course
+      fixtures:
+      - id: rootNode
+        type: RootNodeEntity
+        construct:
+          id: root-001
+          code: root
+          kind: ROOT
+          label: ""
+          children: "[]"
+          milestones: "[]"
+      - id: courseEntity
+        type: CourseEntity
+        construct:
+          id: course-001
+          title: english-course
+          knowledgeIds: "[]"
+          root: ref:rootNode
+          slug: english-course
+      - id: auditableCourse
+        type: AuditableCourse
+        construct:
+          milestones: "[]"
+      - id: nodeScores
+        type: NodeScores
+        construct:
+          scores: "{}"
+      - id: auditReport
+        type: AuditReport
+        construct:
+          overallScore: 0.85
+          scores: ref:nodeScores
+          milestones: "[]"
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R001
+        journey: F-CLI-J001
+      assert:
+        returns: ref:auditReport
+    - name: "Given a valid course path, when runAudit is called, then courseRepository\
+        \ load is invoked with the path"
+      target: DefaultAuditRunner
+      mocks:
+      - dependency: courseRepository
+        method: load
+        thenReturn: ref:courseEntity
+        args:
+        - match: any
+      - dependency: courseToAuditableMapper
+        method: map
+        thenReturn: ref:auditableCourse
+        args:
+        - match: any
+      - dependency: contentAudit
+        method: audit
+        thenReturn: ref:auditReport
+        args:
+        - match: any
+      invoke:
+        method: runAudit
+        args:
+        - /path/to/course
+      fixtures:
+      - id: rootNode
+        type: RootNodeEntity
+        construct:
+          id: root-001
+          code: root
+          kind: ROOT
+          label: ""
+          children: "[]"
+          milestones: "[]"
+      - id: courseEntity
+        type: CourseEntity
+        construct:
+          id: course-001
+          title: english-course
+          knowledgeIds: "[]"
+          root: ref:rootNode
+          slug: english-course
+      - id: auditableCourse
+        type: AuditableCourse
+        construct:
+          milestones: "[]"
+      - id: nodeScores
+        type: NodeScores
+        construct:
+          scores: "{}"
+      - id: auditReport
+        type: AuditReport
+        construct:
+          overallScore: 0.85
+          scores: ref:nodeScores
+          milestones: "[]"
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R001
+      assert:
+        returns: ref:auditReport
+        verifyCall:
+          dependency: courseRepository
+          method: load
+          times: 1
+    - name: "Given a valid course path, when runAudit is called, then courseToAuditableMapper\
+        \ map is invoked with the loaded entity"
+      target: DefaultAuditRunner
+      mocks:
+      - dependency: courseRepository
+        method: load
+        thenReturn: ref:courseEntity
+        args:
+        - match: any
+      - dependency: courseToAuditableMapper
+        method: map
+        thenReturn: ref:auditableCourse
+        args:
+        - match: any
+      - dependency: contentAudit
+        method: audit
+        thenReturn: ref:auditReport
+        args:
+        - match: any
+      invoke:
+        method: runAudit
+        args:
+        - /path/to/course
+      fixtures:
+      - id: rootNode
+        type: RootNodeEntity
+        construct:
+          id: root-001
+          code: root
+          kind: ROOT
+          label: ""
+          children: "[]"
+          milestones: "[]"
+      - id: courseEntity
+        type: CourseEntity
+        construct:
+          id: course-001
+          title: english-course
+          knowledgeIds: "[]"
+          root: ref:rootNode
+          slug: english-course
+      - id: auditableCourse
+        type: AuditableCourse
+        construct:
+          milestones: "[]"
+      - id: nodeScores
+        type: NodeScores
+        construct:
+          scores: "{}"
+      - id: auditReport
+        type: AuditReport
+        construct:
+          overallScore: 0.85
+          scores: ref:nodeScores
+          milestones: "[]"
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R001
+      assert:
+        returns: ref:auditReport
+        verifyCall:
+          dependency: courseToAuditableMapper
+          method: map
+          times: 1
+    - name: "Given a valid course path, when runAudit is called, then contentAudit\
+        \ audit is invoked with the mapped auditable course"
+      target: DefaultAuditRunner
+      mocks:
+      - dependency: courseRepository
+        method: load
+        thenReturn: ref:courseEntity
+        args:
+        - match: any
+      - dependency: courseToAuditableMapper
+        method: map
+        thenReturn: ref:auditableCourse
+        args:
+        - match: any
+      - dependency: contentAudit
+        method: audit
+        thenReturn: ref:auditReport
+        args:
+        - match: any
+      invoke:
+        method: runAudit
+        args:
+        - /path/to/course
+      fixtures:
+      - id: rootNode
+        type: RootNodeEntity
+        construct:
+          id: root-001
+          code: root
+          kind: ROOT
+          label: ""
+          children: "[]"
+          milestones: "[]"
+      - id: courseEntity
+        type: CourseEntity
+        construct:
+          id: course-001
+          title: english-course
+          knowledgeIds: "[]"
+          root: ref:rootNode
+          slug: english-course
+      - id: auditableCourse
+        type: AuditableCourse
+        construct:
+          milestones: "[]"
+      - id: nodeScores
+        type: NodeScores
+        construct:
+          scores: "{}"
+      - id: auditReport
+        type: AuditReport
+        construct:
+          overallScore: 0.85
+          scores: ref:nodeScores
+          milestones: "[]"
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R001
+      assert:
+        returns: ref:auditReport
+        verifyCall:
+          dependency: contentAudit
+          method: audit
+          times: 1
+    - name: "Given courseRepository throws an exception, when runAudit is called,\
+        \ then the exception propagates"
+      target: DefaultAuditRunner
+      mocks:
+      - dependency: courseRepository
+        method: load
+        args:
+        - match: any
+        thenThrow:
+          type: RuntimeException
+          message: Course directory not found
+      invoke:
+        method: runAudit
+        args:
+        - /invalid/path
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R001
+      assert:
+        assertThrows: RuntimeException
+    - name: "Given courseToAuditableMapper throws an exception, when runAudit is called,\
+        \ then the exception propagates"
+      target: DefaultAuditRunner
+      mocks:
+      - dependency: courseRepository
+        method: load
+        thenReturn: ref:courseEntity
+        args:
+        - match: any
+      - dependency: courseToAuditableMapper
+        method: map
+        args:
+        - match: any
+        thenThrow:
+          type: RuntimeException
+          message: Mapping failed
+      invoke:
+        method: runAudit
+        args:
+        - /path/to/course
+      fixtures:
+      - id: rootNode
+        type: RootNodeEntity
+        construct:
+          id: root-001
+          code: root
+          kind: ROOT
+          label: ""
+          children: "[]"
+          milestones: "[]"
+      - id: courseEntity
+        type: CourseEntity
+        construct:
+          id: course-001
+          title: english-course
+          knowledgeIds: "[]"
+          root: ref:rootNode
+          slug: english-course
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R001
+      assert:
+        assertThrows: RuntimeException
+    - name: "Given contentAudit throws an exception, when runAudit is called, then\
+        \ the exception propagates"
+      target: DefaultAuditRunner
+      mocks:
+      - dependency: courseRepository
+        method: load
+        thenReturn: ref:courseEntity
+        args:
+        - match: any
+      - dependency: courseToAuditableMapper
+        method: map
+        thenReturn: ref:auditableCourse
+        args:
+        - match: any
+      - dependency: contentAudit
+        method: audit
+        args:
+        - match: any
+        thenThrow:
+          type: RuntimeException
+          message: Audit engine failure
+      invoke:
+        method: runAudit
+        args:
+        - /path/to/course
+      fixtures:
+      - id: rootNode
+        type: RootNodeEntity
+        construct:
+          id: root-001
+          code: root
+          kind: ROOT
+          label: ""
+          children: "[]"
+          milestones: "[]"
+      - id: courseEntity
+        type: CourseEntity
+        construct:
+          id: course-001
+          title: english-course
+          knowledgeIds: "[]"
+          root: ref:rootNode
+          slug: english-course
+      - id: auditableCourse
+        type: AuditableCourse
+        construct:
+          milestones: "[]"
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R001
+      assert:
+        assertThrows: RuntimeException
+    - name: "Given a course with no milestones, when runAudit is called, then returns\
+        \ the report from contentAudit"
+      target: DefaultAuditRunner
+      mocks:
+      - dependency: courseRepository
+        method: load
+        thenReturn: ref:emptyCourse
+        args:
+        - match: any
+      - dependency: courseToAuditableMapper
+        method: map
+        thenReturn: ref:emptyAuditableCourse
+        args:
+        - match: any
+      - dependency: contentAudit
+        method: audit
+        thenReturn: ref:emptyReport
+        args:
+        - match: any
+      invoke:
+        method: runAudit
+        args:
+        - /path/to/empty-course
+      fixtures:
+      - id: rootNode
+        type: RootNodeEntity
+        construct:
+          id: root-002
+          code: root
+          kind: ROOT
+          label: ""
+          children: "[]"
+          milestones: "[]"
+      - id: emptyCourse
+        type: CourseEntity
+        construct:
+          id: course-002
+          title: empty-course
+          knowledgeIds: "[]"
+          root: ref:rootNode
+          slug: empty-course
+      - id: emptyAuditableCourse
+        type: AuditableCourse
+        construct:
+          milestones: "[]"
+      - id: emptyNodeScores
+        type: NodeScores
+        construct:
+          scores: "{}"
+      - id: emptyReport
+        type: AuditReport
+        construct:
+          overallScore: 0.0
+          scores: ref:emptyNodeScores
+          milestones: "[]"
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R001
+      assert:
+        returns: ref:emptyReport

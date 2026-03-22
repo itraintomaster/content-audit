@@ -133,3 +133,47 @@ Examples:
 |--------|--------|
 | `validate(CourseEntity course): void` | (none) |
 
+### Module: audit-application
+
+#### AuditRunner (service)
+
+**Package:** `com.learney.contentaudit.auditapplication`
+
+**Implemented by:** DefaultAuditRunner (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `runAudit(Path coursePath): AuditReport` | (none) |
+
+### Module: audit-cli
+
+#### ReportFormatter (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implemented by:** TextReportFormatter (audit-cli), JsonReportFormatter (audit-cli)
+
+| Method | Throws |
+|--------|--------|
+| `format(AuditReport report): String` | (none) |
+
+#### AuditCli [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implemented by:** DefaultAuditCli (audit-cli)
+
+| Method | Throws |
+|--------|--------|
+| `run(String[] args): int` | (none) |
+
+#### FormatterRegistry (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implemented by:** DefaultFormatterRegistry (audit-cli)
+
+| Method | Throws |
+|--------|--------|
+| `getFormatter(String formatName): ReportFormatter` | (none) |
+

@@ -44,8 +44,8 @@ public class FileSystemCourseRepositorySentinelTest {
       ) {
     SentencePartEntity sentencePart1 = new SentencePartEntity(SentencePartKind.TEXT, "She ", List.of());
     SentencePartEntity sentencePart2 = new SentencePartEntity(SentencePartKind.CLOZE, null, List.of("plays"));
-    FormEntity form1 = new FormEntity("CLOZE", 1, null, null, List.of(sentencePart1, sentencePart2));
-    QuizTemplateEntity quiz1 = new QuizTemplateEntity("aaa111bbb222ccc333ddd441", "aaa111bbb222ccc333ddd441", "CLOZE", "aaa111bbb222ccc333ddd440", "Affirmative sentences", "Escribe la forma afirmativa.", "Ella juega", "a1.01.Present_Simple", "Present Simple", form1, 0, 0, 0, null, null, null, "A1.01.01.01", null, null, null);
+    FormEntity form1 = new FormEntity("CLOZE", 1.0, null, null, List.of(sentencePart1, sentencePart2));
+    QuizTemplateEntity quiz1 = new QuizTemplateEntity("aaa111bbb222ccc333ddd441", "aaa111bbb222ccc333ddd441", "CLOZE", "aaa111bbb222ccc333ddd440", "Affirmative sentences", "Escribe la forma afirmativa.", "Ella juega", "a1.01.Present_Simple", "Present Simple", form1, 0.0, 0.0, 0.0, null, null, null, "A1.01.01.01", null, null, null);
     KnowledgeEntity knowledge1 = new KnowledgeEntity("aaa111bbb222ccc333ddd440", "aaa111bbb222ccc333ddd440", NodeKind.KNOWLEDGE, "Affirmative sentences", "11111111-1111-1111-1111-111111111111", "aaa111bbb222ccc333ddd430", true, "Escribe la forma afirmativa.", 1, "affirmative-sentences", List.of(quiz1));
     TopicEntity topic1 = new TopicEntity("aaa111bbb222ccc333ddd430", "aaa111bbb222ccc333ddd430", NodeKind.TOPIC, "Present Simple", "22222222-2222-2222-2222-222222222222", "aaa111bbb222ccc333ddd420", List.of(), List.of("aaa111bbb222ccc333ddd440"), 1, "present-simple", List.of(knowledge1));
     MilestoneEntity milestone1 = new MilestoneEntity("aaa111bbb222ccc333ddd420", "aaa111bbb222ccc333ddd420", NodeKind.MILESTONE, "A1", "33333333-3333-3333-3333-333333333333", "aaa111bbb222ccc333ddd410", List.of("aaa111bbb222ccc333ddd430"), 1, "a1", List.of(topic1));
@@ -74,8 +74,8 @@ public class FileSystemCourseRepositorySentinelTest {
   public void givenACourseEntityWithValidatorPassingWhenSaveIsCalledThenNoExceptionIsThrown() {
     SentencePartEntity sentencePart1 = new SentencePartEntity(SentencePartKind.TEXT, "He ", List.of());
     SentencePartEntity sentencePart2 = new SentencePartEntity(SentencePartKind.CLOZE, null, List.of("runs"));
-    FormEntity form1 = new FormEntity("CLOZE", 1, null, null, List.of(sentencePart1, sentencePart2));
-    QuizTemplateEntity quiz1 = new QuizTemplateEntity("bbb111ccc222ddd333eee441", "bbb111ccc222ddd333eee441", "CLOZE", "bbb111ccc222ddd333eee440", "Running verbs", "Completa la oracion.", "El corre", "a1.02.Verbs", "Verbs", form1, 0, 0, 0, null, null, null, "A1.02.01.01", null, null, null);
+    FormEntity form1 = new FormEntity("CLOZE", 1.0, null, null, List.of(sentencePart1, sentencePart2));
+    QuizTemplateEntity quiz1 = new QuizTemplateEntity("bbb111ccc222ddd333eee441", "bbb111ccc222ddd333eee441", "CLOZE", "bbb111ccc222ddd333eee440", "Running verbs", "Completa la oracion.", "El corre", "a1.02.Verbs", "Verbs", form1, 0.0, 0.0, 0.0, null, null, null, "A1.02.01.01", null, null, null);
     KnowledgeEntity knowledge1 = new KnowledgeEntity("bbb111ccc222ddd333eee440", "bbb111ccc222ddd333eee440", NodeKind.KNOWLEDGE, "Running verbs", "44444444-4444-4444-4444-444444444444", "bbb111ccc222ddd333eee430", true, "Completa la oracion.", 1, "running-verbs", List.of(quiz1));
     TopicEntity topic1 = new TopicEntity("bbb111ccc222ddd333eee430", "bbb111ccc222ddd333eee430", NodeKind.TOPIC, "Verbs", "55555555-5555-5555-5555-555555555555", "bbb111ccc222ddd333eee420", List.of(), List.of("bbb111ccc222ddd333eee440"), 1, "verbs", List.of(knowledge1));
     MilestoneEntity milestone1 = new MilestoneEntity("bbb111ccc222ddd333eee420", "bbb111ccc222ddd333eee420", NodeKind.MILESTONE, "A1", "66666666-6666-6666-6666-666666666666", "bbb111ccc222ddd333eee410", List.of("bbb111ccc222ddd333eee430"), 1, "a1", List.of(topic1));

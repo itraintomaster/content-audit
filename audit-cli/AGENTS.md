@@ -1,57 +1,67 @@
 <!-- SENTINEL MANAGED FILE - DO NOT EDIT -->
-# Module: audit-application (isolated)
+# Module: audit-cli (isolated)
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
+CLI entry point for running content audits from the command line
+
 ## Interfaces
+
+### ReportFormatter (port)
+
+Methods:
+
+- `format(AuditReport report): String`
+
+### AuditCli (port) [sealed]
+
+Methods:
+
+- `run(String[] args): int`
+
+### FormatterRegistry (port)
+
+Methods:
+
+- `getFormatter(String formatName): ReportFormatter`
+
+## Implementations
+
+### TextReportFormatter
+
+**Implements:** ReportFormatter
+
+### JsonReportFormatter
+
+**Implements:** ReportFormatter
+
+### DefaultAuditCli
+
+**Implements:** AuditCli
+
+**Dependencies (constructor injection):**
+
+- `auditRunner`: `AuditRunner`
+- `formatters`: `Map<String,ReportFormatter>`
+- `formatterRegistry`: `FormatterRegistry`
+
+### DefaultFormatterRegistry
+
+**Implements:** FormatterRegistry
+
+**Types:** Component
+
+## Dependency Contracts
+
+The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
+
+### From audit-application
 
 ### AuditRunner (service)
 
 Methods:
 
 - `runAudit(Path coursePath): AuditReport`
-
-## Implementations
-
-### CourseToAuditableMapper
-
-**Implements:** 
-
-**Types:** Component
-
-**Dependencies (constructor injection):**
-
-- `nlpTokenizer`: `NlpTokenizer`
-
-### CachedNlpTokenizer
-
-**Implements:** NlpTokenizer
-
-**Dependencies (constructor injection):**
-
-- `delegate`: `NlpTokenizer`
-
-### DefaultSentenceLengthConfig
-
-**Implements:** SentenceLengthConfig
-
-**Types:** Component
-
-### DefaultAuditRunner
-
-**Implements:** AuditRunner
-
-**Types:** Service
-
-**Dependencies (constructor injection):**
-
-- `courseRepository`: `CourseRepository`
-- `courseToAuditableMapper`: `CourseToAuditableMapper`
-- `contentAudit`: `ContentAudit`
-
-## Dependency Contracts
-
-The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
 
 ### From audit-domain
 

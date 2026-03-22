@@ -1,0 +1,74 @@
+code: __proposal__
+description: Add CLI audit runner module with AuditRunner interface in audit-application
+  and ReportFormatter strategy pattern in audit-cli; Add AuditCli public interface
+  and DefaultAuditCli implementation to audit-cli module
+modules:
+- name: audit-application
+  interfaces:
+  - name: AuditRunner
+    stereotype: service
+    sealed: false
+    exposes:
+    - signature: "runAudit(Path coursePath): AuditReport"
+    _change: add
+  implementations:
+  - name: DefaultAuditRunner
+    requiresInject:
+    - name: courseRepository
+      type: CourseRepository
+    - name: courseToAuditableMapper
+      type: CourseToAuditableMapper
+    - name: contentAudit
+      type: ContentAudit
+    types:
+    - Service
+    implements:
+    - AuditRunner
+    _change: add
+  _change: modify
+- name: audit-cli
+  description: CLI entry point for running content audits from the command line
+  dependsOn:
+  - audit-application
+  - audit-domain
+  - course-domain
+  - course-infrastructure
+  interfaces:
+  - name: ReportFormatter
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "format(AuditReport report): String"
+    _change: add
+  - name: AuditCli
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "run(String[] args): int"
+    _change: add
+  implementations:
+  - name: TextReportFormatter
+    implements:
+    - ReportFormatter
+    _change: add
+  - name: JsonReportFormatter
+    implements:
+    - ReportFormatter
+    _change: add
+  - name: DefaultAuditCli
+    requiresInject:
+    - name: auditRunner
+      type: AuditRunner
+    - name: formatters
+      type: "Map<String,ReportFormatter>"
+    implements:
+    - AuditCli
+    _change: add
+  patterns:
+  - type: Strategy
+    implementations:
+    - TextReportFormatter
+    - JsonReportFormatter
+    suppressed: false
+    interface: ReportFormatter
+  _change: modify

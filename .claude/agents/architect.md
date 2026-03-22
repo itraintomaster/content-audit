@@ -217,8 +217,9 @@ modules:
 | audit-domain | — | ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator | IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator | — |
 | course-domain | — | CourseRepository, CourseValidator | — | — |
 | refiner-domain | — | — | — | — |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure | — | CourseToAuditableMapper, CachedNlpTokenizer, DefaultSentenceLengthConfig | — |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure | AuditRunner | CourseToAuditableMapper, CachedNlpTokenizer, DefaultSentenceLengthConfig, DefaultAuditRunner | — |
 | course-infrastructure | course-domain | — | FileSystemCourseRepository | — |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure | ReportFormatter, AuditCli, FormatterRegistry | TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry | — |
 
 ### Boundaries
 
@@ -229,4 +230,5 @@ modules:
 | refiner-domain | (none) |
 | audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure |
 | course-infrastructure | course-domain |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure |
 

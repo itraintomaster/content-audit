@@ -33,6 +33,12 @@ Before writing any code, read `sentinel.yaml`. It defines the contracts, boundar
 
 **Never edit `sentinel.yaml` directly.** All architectural changes (adding modules, interfaces, models, implementations, changing dependencies) must go through the **architect agent** (`@architect`). The architect agent proposes changes as patches, validates them, and integrates them with the Architect Studio.
 
+## Rule B - Sealed Interfaces
+
+The following interfaces are `sealed`. Only the listed classes may implement them:
+
+- `AuditCli` permits: DefaultAuditCli
+
 ## Rule C - Dependency Injection
 
 Never use `new` to instantiate dependencies. Use constructor injection as declared in `requiresInject`.
@@ -109,7 +115,9 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 **Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure
 
-**Implementations:** CourseToAuditableMapper, CachedNlpTokenizer, DefaultSentenceLengthConfig
+**Interfaces:** AuditRunner
+
+**Implementations:** CourseToAuditableMapper, CachedNlpTokenizer, DefaultSentenceLengthConfig, DefaultAuditRunner
 
 ### course-infrastructure
 
@@ -118,6 +126,16 @@ Infrastructure module for course persistence. Contains the filesystem adapter th
 **Depends on:** course-domain
 
 **Implementations:** FileSystemCourseRepository
+
+### audit-cli
+
+CLI entry point for running content audits from the command line
+
+**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure
+
+**Interfaces:** ReportFormatter, AuditCli, FormatterRegistry
+
+**Implementations:** TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry
 
 ## Boundaries
 
@@ -128,4 +146,5 @@ Infrastructure module for course persistence. Contains the filesystem adapter th
 | refiner-domain | (none) |
 | audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure |
 | course-infrastructure | course-domain |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure |
 

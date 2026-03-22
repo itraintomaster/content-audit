@@ -1,6 +1,6 @@
 package com.learney.contentaudit.auditdomain;
-import java.util.List;
 
+import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -18,40 +18,33 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-
     @Override
     public Void onMilestone(AuditableMilestone milestone, AuditContext ctx) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
-
 
     @Override
     public Void onTopic(AuditableTopic topic, AuditContext ctx) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-
     @Override
     public Void onCourseComplete(AuditableCourse course, AuditContext ctx) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
-
 
     @Override
     public String getName() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-
     @Override
     public AuditTarget getTarget() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-
     @Override
     public List<ScoredItem> getResults() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
-
 }
