@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f56"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Certainty Adverb Placement",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You will eat pizza. (maybe)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Maybe you will eat pizza."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342f56",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "answerImageUrl": "",
+    "instructions": "Colocá el adverbio en el lugar correcto.",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b2"
+    },
+    "audioUrl": "",
+    "translation": "Tal vez comas pizza.",
+    "answerAudioUrl": "A2.12.08.01",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f57"
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.12.08.02",
+    "id": "67fab6d59930102295342f57",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b2"
+    },
+    "kind": "CLOZE",
+    "title": "Certainty Adverb Placement",
+    "instructions": "Colocá el adverbio en el lugar correcto.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She hates Mondays. (certainly)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She certainly hates Mondays."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "translation": "Ella ciertamente odia los lunes.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f58"
+    },
+    "translation": "Robert probablemente está en la escuela.",
+    "id": "67fab6d59930102295342f58",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b2"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Colocá el adverbio en el lugar correcto.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Robert is at school. (probably)",
+          "options": null
+        },
+        {
+          "options": [
+            "Robert is probably at school."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.12.08.03",
+    "code": "",
+    "title": "Certainty Adverb Placement",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f59"
+    },
+    "id": "67fab6d59930102295342f59",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Certainty Adverb Placement",
+    "instructions": "Colocá el adverbio en el lugar correcto.",
+    "theoryId": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b2"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I can call you tomorrow. (definitely)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I can definitely call you tomorrow."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.12.08.04",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Definitivamente puedo llamarte mañana.",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f5a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Colocá el adverbio en el lugar correcto.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.12.08.05",
+    "id": "67fab6d59930102295342f5a",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Certainty Adverb Placement",
+    "imageUrl": "",
+    "theoryId": "",
+    "translation": "Quizás él visite a su madre.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b2"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He will visit his mother. (perhaps)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Perhaps he will visit his mother."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f5b"
+    },
+    "code": "",
+    "translation": "Probablemente necesitan ropa nueva.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.12.08.06",
+    "id": "67fab6d59930102295342f5b",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Certainty Adverb Placement",
+    "theoryId": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "instructions": "Colocá el adverbio en el lugar correcto.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "They need some new clothes. (probably)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "They probably need some new clothes."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f5c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b2"
+    },
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Certainty Adverb Placement",
+    "theoryId": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "It's snowing. (maybe)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Maybe it's snowing."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Tal vez esté nevando.",
+    "answerAudioUrl": "A2.12.08.07",
+    "id": "67fab6d59930102295342f5c",
+    "instructions": "Colocá el adverbio en el lugar correcto.",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f5d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Colocá el adverbio en el lugar correcto.",
+    "miniTheory": "",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He will find a new job. (certainly)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He will certainly find a new job."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.12.08.08",
+    "id": "67fab6d59930102295342f5d",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "title": "Certainty Adverb Placement",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b2"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ciertamente encontrará un nuevo trabajo.",
+    "kind": "CLOZE",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f5e"
+    },
+    "answerAudioUrl": "A2.12.08.09",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Colocá el adverbio en el lugar correcto.",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She is tired. (definitely)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She is definitely tired."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "theoryId": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b2"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ella está definitivamente cansada.",
+    "id": "67fab6d59930102295342f5e",
+    "kind": "CLOZE",
+    "title": "Certainty Adverb Placement",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f5f"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b2"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He went to sleep. (perhaps)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Perhaps he went to sleep."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Quizás se fue a dormir.",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.12.08.10",
+    "id": "67fab6d59930102295342f5f",
+    "code": "",
+    "theoryId": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "instructions": "Colocá el adverbio en el lugar correcto.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Certainty Adverb Placement",
+    "topicName": "Adverbs"
+  }
+]

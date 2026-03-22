@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c54"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'nowhere' o 'anywhere'.",
+    "answerAudioUrl": "A2.08.12.01",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27d"
+    },
+    "title": "When to use 'Nowhere' and 'Anywhere'",
+    "translation": "No encuentro mis llaves por ningún lado.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342c54",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "imageUrl": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I can't find my keys"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "anywhere"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c55"
+    },
+    "title": "When to use 'Nowhere' and 'Anywhere'",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She saw"
+        },
+        {
+          "options": [
+            "nowhere"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "interesting on TV."
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "id": "67fab6d59930102295342c55",
+    "code": "",
+    "instructions": "Escribe 'nowhere' o 'anywhere'.",
+    "successMessage": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "No vio nada interesante en la televisión.",
+    "answerAudioUrl": "A2.08.12.02",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "imageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c56"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "title": "When to use 'Nowhere' and 'Anywhere'",
+    "translation": "No hay dónde aparcar el coche por aquí.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.12.03",
+    "id": "67fab6d59930102295342c56",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'nowhere' o 'anywhere'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nowhere"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to park the car around here.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c57"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342c57",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27d"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "When to use 'Nowhere' and 'Anywhere'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "They don't swim",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "anywhere"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "on Sundays.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "successMessage": "",
+    "instructions": "Escribe 'nowhere' o 'anywhere'.",
+    "translation": "No nadan en ningún sitio los domingos.",
+    "answerAudioUrl": "A2.08.12.04",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c58"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "When to use 'Nowhere' and 'Anywhere'",
+    "instructions": "Escribe 'nowhere' o 'anywhere'.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27d"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He will not run",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "anywhere"
+          ]
+        },
+        {
+          "text": "this morning.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.12.05",
+    "successMessage": "",
+    "id": "67fab6d59930102295342c58",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "No correrá a ningún lado esta mañana.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c59"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27d"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342c59",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "There is",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nowhere"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "he wants to travel.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "No hay ningún lugar al que quiera viajar.",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "When to use 'Nowhere' and 'Anywhere'",
+    "answerAudioUrl": "A2.08.12.06",
+    "code": "",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "instructions": "Escribe 'nowhere' o 'anywhere'.",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c5a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "When to use 'Nowhere' and 'Anywhere'",
+    "instructions": "Escribe 'nowhere' o 'anywhere'.",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.08.12.07",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27d"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you see",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "anywhere"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "that sells clothes?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Ves algún sitio que venda ropa?",
+    "imageUrl": "",
+    "id": "67fab6d59930102295342c5a",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c5b"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'nowhere' o 'anywhere'.",
+    "audioUrl": "",
+    "translation": "Los gatos no corren a ninguna parte después de cenar.",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.12.08",
+    "id": "67fab6d59930102295342c5b",
+    "code": "",
+    "title": "When to use 'Nowhere' and 'Anywhere'",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The cats run"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nowhere"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "after dinner.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27d"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c5c"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27d"
+    },
+    "title": "When to use 'Nowhere' and 'Anywhere'",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.08.12.09",
+    "code": "",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342c5c",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He didn't drink",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "anywhere"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "special."
+        }
+      ]
+    },
+    "successMessage": "",
+    "imageUrl": "",
+    "translation": "No bebió en ningún sitio especial.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'nowhere' o 'anywhere'.",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c5d"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "No hemos viajado a ningún sitio recientemente.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We traveled",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nowhere"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "recently.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "title": "When to use 'Nowhere' and 'Anywhere'",
+    "instructions": "Escribe 'nowhere' o 'anywhere'.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.12.10",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342c5d",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  }
+]

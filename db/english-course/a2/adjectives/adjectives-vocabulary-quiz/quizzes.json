@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342eca"
+    },
+    "id": "67fab6d59930102295342eca",
+    "translation": "Estaba extremadamente aburrido durante la conferencia.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.11.10.01",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a9"
+    },
+    "instructions": "Selecciona el adjetivo apropiado para completar cada oración.",
+    "theoryId": "a2.11.Bored_and_Boring",
+    "audioUrl": "",
+    "code": "",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adjectives Vocabulary Quiz",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He was extremely"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "bored"
+          ]
+        },
+        {
+          "text": "(bored / boring) during the lecture.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ecb"
+    },
+    "kind": "CLOZE",
+    "successMessage": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342ecb",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adjectives Vocabulary Quiz",
+    "instructions": "Selecciona el adjetivo apropiado para completar cada oración.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Are they",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "thrilled"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(thrilled / thrilling) for their wedding?",
+          "options": null
+        }
+      ]
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a9"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.11.10.02",
+    "code": "",
+    "theoryId": "a2.11.Bored_and_Boring",
+    "translation": "¿Están emocionados por su boda?",
+    "answerImageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ecc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "Is Mary",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "fascinated"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(fascinated / fascinating) by science?"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.11.Bored_and_Boring",
+    "id": "67fab6d59930102295342ecc",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a9"
+    },
+    "instructions": "Selecciona el adjetivo apropiado para completar cada oración.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.10.03",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adjectives Vocabulary Quiz",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Está Mary fascinada por la ciencia?",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ecd"
+    },
+    "miniTheory": "",
+    "instructions": "Selecciona el adjetivo apropiado para completar cada oración.",
+    "translation": "¡Es una aventura muy emocionante!",
+    "answerAudioUrl": "A2.11.10.04",
+    "code": "",
+    "theoryId": "a2.11.Bored_and_Boring",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adjectives Vocabulary Quiz",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's a very",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "thrilling"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(thrilled / thrilling) adventure!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342ecd",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a9"
+    },
+    "answerImageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ece"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295342ece",
+    "code": "",
+    "theoryId": "a2.11.Bored_and_Boring",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a9"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I became increasingly",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "annoyed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(annoyed / annoying) as the customer complained endlessly.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona el adjetivo apropiado para completar cada oración.",
+    "translation": "Me sentí cada vez más molesto mientras el cliente se quejaba sin cesar.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.11.10.05",
+    "kind": "CLOZE",
+    "title": "Adjectives Vocabulary Quiz",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ecf"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adjectives Vocabulary Quiz",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "That was a truly"
+        },
+        {
+          "options": [
+            "captivating"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "(captivated / captivating) story.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Esa fue una historia verdaderamente cautivadora.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.10.06",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a9"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342ecf",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona el adjetivo apropiado para completar cada oración.",
+    "theoryId": "a2.11.Bored_and_Boring",
+    "successMessage": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ed0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona el adjetivo apropiado para completar cada oración.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I am incredibly",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "delighted"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(delighted / delighting)! I received the best news today!",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a9"
+    },
+    "theoryId": "a2.11.Bored_and_Boring",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adjectives Vocabulary Quiz",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342ed0",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "¡Estoy increíblemente encantado! ¡Recibí las mejores noticias hoy!",
+    "answerAudioUrl": "A2.11.10.07",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ed1"
+    },
+    "id": "67fab6d59930102295342ed1",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¡Esta es una tarea muy tediosa! ¡No lo soporto!",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona el adjetivo apropiado para completar cada oración.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is such a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "tedious"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(tedious / tedded) task! I can't stand it!"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.11.10.08",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adjectives Vocabulary Quiz",
+    "theoryId": "a2.11.Bored_and_Boring",
+    "audioUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a9"
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ed2"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adjectives Vocabulary Quiz",
+    "theoryId": "a2.11.Bored_and_Boring",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a9"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona el adjetivo apropiado para completar cada oración.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "passionate"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(passionate / passioning) about music, so he dreams of becoming a musician.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.11.10.09",
+    "id": "67fab6d59930102295342ed2",
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Le apasiona la música, por lo que sueña con convertirse en músico.",
+    "answerImageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ed3"
+    },
+    "id": "67fab6d59930102295342ed3",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a9"
+    },
+    "title": "Adjectives Vocabulary Quiz",
+    "successMessage": "",
+    "answerAudioUrl": "A2.11.10.10",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.11.Bored_and_Boring",
+    "audioUrl": "",
+    "translation": "¡Nunca habían presenciado una actuación tan aburrida!",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They had never witnessed such a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "dull"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(dull / dulling) performance!",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "instructions": "Selecciona el adjetivo apropiado para completar cada oración.",
+    "topicName": "Adjectives"
+  }
+]

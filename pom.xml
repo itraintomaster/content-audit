@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>com.learney.contentaudit</groupId>
+  <artifactId>contentaudit</artifactId>
+  <version>0.0.1</version>
+  <packaging>pom</packaging>
+  
+  <modules>
+        <module>audit-domain</module>
+        <module>course-domain</module>
+        <module>refiner-domain</module>
+        <module>audit-application</module>
+        <module>course-infrastructure</module>
+
+  </modules>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <junit.version>5.10.2</junit.version>
+    <mockito.version>5.11.0</mockito.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+        <groupId>com.sentinel</groupId>
+        <artifactId>sentinel-annotations</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>${mockito.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-junit-jupiter</artifactId>
+        <version>${mockito.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.tngtech.archunit</groupId>
+        <artifactId>archunit-junit5</artifactId>
+        <version>1.2.1</version>
+        <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+        <configuration>
+          <argLine>
+            --add-opens java.base/java.lang=ALL-UNNAMED
+            --add-opens java.base/java.lang.reflect=ALL-UNNAMED
+            --add-opens java.base/java.lang.invoke=ALL-UNNAMED
+            --add-opens java.base/java.util=ALL-UNNAMED
+          </argLine>
+          <useManifestOnlyJar>false</useManifestOnlyJar>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <id>sentinel-generate</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>java</executable>
+              <arguments>
+                <argument>-jar</argument>
+                <argument>/Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar</argument>
+                <argument>generate</argument>
+                <argument>-i</argument>
+                <argument>sentinel.yaml</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!-- Common dependencies can go here or in modules -->
+</project>

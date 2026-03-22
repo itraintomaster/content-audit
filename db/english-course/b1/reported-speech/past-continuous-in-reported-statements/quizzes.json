@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436f9"
+    },
+    "id": "67fab6d599301022953436f9",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "title": "Past Continuous in Reported Statements",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.05.01",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I was swimming.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that he had been swimming."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Robert dijo que él había estado nadando.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436fa"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The teachers were preparing the exam.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "Robert said that the teachers had been preparing the exam."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Robert dijo que los profesores habían estado preparando el examen.",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953436fa",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "kind": "CLOZE",
+    "title": "Past Continuous in Reported Statements",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.05.02",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436fb"
+    },
+    "title": "Past Continuous in Reported Statements",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "translation": "Robert dijo que nadie había estado hablando.",
+    "answerAudioUrl": "B1.10.05.03",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Nobody was talking.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that nobody had been talking."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "miniTheory": "",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "id": "67fab6d599301022953436fb",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436fc"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "David was relaxing.",
+          "options": null
+        },
+        {
+          "options": [
+            "Robert said that David had been relaxing."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous in Reported Statements",
+    "answerAudioUrl": "B1.10.05.04",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "imageUrl": "",
+    "translation": "Robert dijo que David había estado relajándose.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953436fc",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436fd"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Laura was eating a sandwich.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that Laura had been eating a sandwich."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "translation": "Robert dijo que Laura había estado comiendo un sándwich.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953436fd",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous in Reported Statements",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.10.05.05",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436fe"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.05.06",
+    "id": "67fab6d599301022953436fe",
+    "title": "Past Continuous in Reported Statements",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "It was snowing.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that it had been snowing."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Robert dijo que había estado nevando.",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436ff"
+    },
+    "id": "67fab6d599301022953436ff",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "audioUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "title": "Past Continuous in Reported Statements",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The music was playing.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Robert said that the music had been playing."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "translation": "Robert dijo que la música había estado sonando.",
+    "answerAudioUrl": "B1.10.05.07",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343700"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343700",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Robert dijo que ellos habían estado cantando.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "title": "Past Continuous in Reported Statements",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They were singing.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that they had been singing."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "answerAudioUrl": "B1.10.05.08",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343701"
+    },
+    "id": "67fab6d59930102295343701",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous in Reported Statements",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She was cycling.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that she had been cycling."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.10.05.09",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Robert dijo que ella había estado montando en bicicleta.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343702"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The girls were baking a cake.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that the girls had been baking a cake."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous in Reported Statements",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "imageUrl": "",
+    "translation": "Robert dijo que las chicas habían estado horneando un pastel.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.05.10",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "id": "67fab6d59930102295343702",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343703"
+    },
+    "translation": "Robert dijo que él había estado viendo una película.",
+    "successMessage": "",
+    "id": "67fab6d59930102295343703",
+    "kind": "CLOZE",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "audioUrl": "",
+    "title": "Past Continuous in Reported Statements",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I was watching a film."
+        },
+        {
+          "options": [
+            "Robert said that he had been watching a film."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.05.11",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343704"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Robert dijo que Patrick había estado haciendo ejercicio en casa.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.05.12",
+    "id": "67fab6d59930102295343704",
+    "title": "Past Continuous in Reported Statements",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Patrick was exercising at home.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that Patrick had been exercising at home."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343705"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "translation": "Robert dijo que Sophie había estado ordenando su habitación.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.05.13",
+    "kind": "CLOZE",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous in Reported Statements",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Sophie was tidying her room.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Robert said that Sophie had been tidying her room."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343705",
+    "imageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343706"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343706",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "translation": "Robert dijo que él había estado haciendo turismo.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I was sightseeing.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Robert said that he had been sightseeing."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "title": "Past Continuous in Reported Statements",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "answerAudioUrl": "B1.10.05.14",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343707"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous in Reported Statements",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.05.15",
+    "id": "67fab6d59930102295343707",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Emily was drawing.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that Emily had been drawing."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "Robert dijo que Emily había estado dibujando.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343708"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous in Reported Statements",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.05.16",
+    "id": "67fab6d59930102295343708",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The employees were having a meeting in the office.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that the employees had been having a meeting in the office."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Robert dijo que los empleados habían estado teniendo una reunión en la oficina.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "audioUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343709"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous in Reported Statements",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She was reading a novel.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that she had been reading a novel."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295343709",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "translation": "Robert dijo que ella había estado leyendo una novela.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.05.17",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "audioUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534370a"
+    },
+    "audioUrl": "",
+    "translation": "Robert dijo que ellos habían estado participando en un concurso.",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534370a",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.05.18",
+    "title": "Past Continuous in Reported Statements",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They were participating in a contest.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that they had been participating in a contest."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534370b"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Robert dijo que el gato había estado maullando.",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534370b",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cat was meowing.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that the cat had been meowing."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.05.19",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous in Reported Statements",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534370c"
+    },
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534370c",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The bus was arriving."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that the bus had been arriving."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
+    "successMessage": "",
+    "audioUrl": "",
+    "translation": "Robert dijo que el autobús había estado llegando.",
+    "answerAudioUrl": "B1.10.05.20",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d321"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous in Reported Statements",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech"
+  }
+]

@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343695"
+    },
+    "id": "67fab6d59930102295343695",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone is going to paint the house.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The house is going to be painted."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "imageUrl": "",
+    "translation": "La casa va a ser pintada.",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "title": "Introduction to Passive Infinitive Constructions",
+    "successMessage": "",
+    "answerAudioUrl": "B1.09.10.01",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343696"
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Introduction to Passive Infinitive Constructions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "El ensayo va a ser escrito.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.09.10.02",
+    "code": "",
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "successMessage": "",
+    "id": "67fab6d59930102295343696",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Someone is going to write the essay.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The essay is going to be written."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343697"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone has to feed the cat in the morning.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The cat has to be fed in the morning."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.09.10.03",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "id": "67fab6d59930102295343697",
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "audioUrl": "",
+    "translation": "El gato tiene que ser alimentado por la mañana.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Introduction to Passive Infinitive Constructions",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343698"
+    },
+    "answerAudioUrl": "B1.09.10.04",
+    "id": "67fab6d59930102295343698",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone is going to wash the dishes.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The dishes are going to be washed."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Introduction to Passive Infinitive Constructions",
+    "imageUrl": "",
+    "translation": "Los platos van a ser lavados.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "successMessage": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343699"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Introduction to Passive Infinitive Constructions",
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "translation": "Los muebles tienen que ser desempolvados.",
+    "answerAudioUrl": "B1.09.10.05",
+    "code": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone has to dust the furniture.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The furniture has to be dusted."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343699",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534369a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Someone has to interview John.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "John has to be interviewed."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "John tiene que ser entrevistado.",
+    "answerAudioUrl": "B1.09.10.06",
+    "id": "67fab6d5993010229534369a",
+    "title": "Introduction to Passive Infinitive Constructions",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534369b"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone needs to support him.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "He needs to be supported."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d5993010229534369b",
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Introduction to Passive Infinitive Constructions",
+    "audioUrl": "",
+    "translation": "Él necesita ser apoyado.",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.09.10.07",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534369c"
+    },
+    "imageUrl": "",
+    "code": "",
+    "title": "Introduction to Passive Infinitive Constructions",
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone has to complete the task.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The task has to be completed."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.09.10.08",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534369c",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "La tarea tiene que ser completada.",
+    "miniTheory": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534369d"
+    },
+    "title": "Introduction to Passive Infinitive Constructions",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone needs to replace the tires.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The tires need to be replaced."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.09.10.09",
+    "id": "67fab6d5993010229534369d",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "miniTheory": "",
+    "translation": "Los neumáticos necesitan ser reemplazados.",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534369e"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534369e",
+    "code": "",
+    "translation": "Mary va a ser elegida.",
+    "answerAudioUrl": "B1.09.10.10",
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "audioUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone is going to elect Mary.",
+          "options": null
+        },
+        {
+          "options": [
+            "Mary is going to be elected."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Introduction to Passive Infinitive Constructions",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534369f"
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Introduction to Passive Infinitive Constructions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone needs to verify that.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That needs to be verified."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "translation": "Eso necesita ser verificado.",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534369f",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.09.10.11",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436a0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone needs to plan the holiday.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The holiday needs to be planned."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "successMessage": "",
+    "answerAudioUrl": "B1.09.10.12",
+    "id": "67fab6d599301022953436a0",
+    "code": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Las vacaciones necesitan ser planeadas.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "title": "Introduction to Passive Infinitive Constructions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436a1"
+    },
+    "id": "67fab6d599301022953436a1",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone is going to sweep the floor.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The floor is going to be swept."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "code": "",
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Introduction to Passive Infinitive Constructions",
+    "imageUrl": "",
+    "translation": "El piso va a ser barrido.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "answerAudioUrl": "B1.09.10.13",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436a2"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone is going to repair the bicycle.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The bicycle is going to be repaired."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "La bicicleta va a ser reparada.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.09.10.14",
+    "id": "67fab6d599301022953436a2",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Introduction to Passive Infinitive Constructions",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436a3"
+    },
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Someone has to prepare the dinner."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The dinner has to be prepared."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.09.10.15",
+    "title": "Introduction to Passive Infinitive Constructions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953436a3",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "translation": "La cena tiene que ser preparada.",
+    "kind": "CLOZE",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436a4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Peter necesita ser saludado.",
+    "id": "67fab6d599301022953436a4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "title": "Introduction to Passive Infinitive Constructions",
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.09.10.16",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone needs to greet Peter.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter needs to be greeted."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "miniTheory": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436a5"
+    },
+    "id": "67fab6d599301022953436a5",
+    "kind": "CLOZE",
+    "translation": "El bebé tiene que ser vestido.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Introduction to Passive Infinitive Constructions",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.09.10.17",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Someone has to dress the baby.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "The baby has to be dressed."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436a6"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "translation": "Las niñas necesitan ser llevadas a la escuela.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.09.10.18",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d599301022953436a6",
+    "kind": "CLOZE",
+    "title": "Introduction to Passive Infinitive Constructions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone needs to take the girls to school.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The girls need to be taken to school."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436a7"
+    },
+    "translation": "El té tiene que ser hecho.",
+    "answerImageUrl": "",
+    "title": "Introduction to Passive Infinitive Constructions",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953436a7",
+    "successMessage": "",
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone has to brew the tea.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The tea has to be made."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "answerAudioUrl": "B1.09.10.19",
+    "code": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436a8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
+    "id": "67fab6d599301022953436a8",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31b"
+    },
+    "answerAudioUrl": "B1.09.10.20",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.09.Passive_Infinitive_Introduction",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "El paquete va a ser enviado.",
+    "successMessage": "",
+    "title": "Introduction to Passive Infinitive Constructions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone is going to ship the package.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The package is going to be shipped."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "The passive"
+  }
+]

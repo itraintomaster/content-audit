@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448f0"
+    },
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.13.11.01",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "translation": "Él es muy bajo.",
+    "id": "67fab6d599301022953448f0",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Gradable vs. Ungradable Adjectives",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "very"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "short.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448f1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The performance was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "absolutely"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "awful."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "id": "67fab6d599301022953448f1",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Gradable vs. Ungradable Adjectives",
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.13.11.02",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "translation": "La actuación fue absolutamente horrible.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448f2"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I'm"
+        },
+        {
+          "options": [
+            "very"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "sleepy.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "id": "67fab6d599301022953448f2",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.11.03",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Gradable vs. Ungradable Adjectives",
+    "translation": "Tengo mucho sueño.",
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448f3"
+    },
+    "id": "67fab6d599301022953448f3",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.13.11.04",
+    "code": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The room was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "very"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bright.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "title": "Gradable vs. Ungradable Adjectives",
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "translation": "La habitación era muy luminosa.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448f4"
+    },
+    "translation": "Él es un hombre absolutamente increíble.",
+    "id": "67fab6d599301022953448f4",
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's an",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "absolutely"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "amazing man.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "title": "Gradable vs. Ungradable Adjectives",
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.13.11.05",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448f5"
+    },
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.13.11.06",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The film was",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "very"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "boring.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953448f5",
+    "title": "Gradable vs. Ungradable Adjectives",
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "La película fue muy aburrida.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448f6"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Gradable vs. Ungradable Adjectives",
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Everyone was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "absolutely"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "shocked when the shop closed.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d599301022953448f6",
+    "code": "",
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "translation": "Todo el mundo se sorprendió cuando la tienda cerró.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.13.11.07",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448f7"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.11.08",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "absolutely"
+          ]
+        },
+        {
+          "text": "shattered.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "imageUrl": "",
+    "id": "67fab6d599301022953448f7",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ella estaba absolutamente destrozada.",
+    "miniTheory": "",
+    "title": "Gradable vs. Ungradable Adjectives",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448f8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d599301022953448f8",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That house is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "absolutely"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "tiny.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.11.09",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "title": "Gradable vs. Ungradable Adjectives",
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "imageUrl": "",
+    "translation": "Esa casa es absolutamente diminuta.",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448f9"
+    },
+    "audioUrl": "",
+    "id": "67fab6d599301022953448f9",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "title": "Gradable vs. Ungradable Adjectives",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She felt"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "very"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "sick."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "answerAudioUrl": "B2.13.11.10",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Se sintió muy enferma.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448fa"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.13.11.11",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "translation": "El mar estaba absolutamente cálido.",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Gradable vs. Ungradable Adjectives",
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The sea was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "absolutely"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "warm.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "imageUrl": "",
+    "id": "67fab6d599301022953448fa",
+    "code": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448fb"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953448fb",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Gradable vs. Ungradable Adjectives",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This game is",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "very"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "fun.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Este juego es muy divertido.",
+    "answerAudioUrl": "B2.13.11.12",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448fc"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "imageUrl": "",
+    "translation": "Fue una experiencia absolutamente maravillosa.",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953448fc",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "title": "Gradable vs. Ungradable Adjectives",
+    "kind": "CLOZE",
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.11.13",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It was an",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "absolutely"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "wonderful experience.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448fd"
+    },
+    "translation": "El concierto fue muy ruidoso.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953448fd",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The concert was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "very"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "loud.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Gradable vs. Ungradable Adjectives",
+    "audioUrl": "",
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.13.11.14",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448fe"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B2.13.11.15",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Hace muchísimo frío afuera.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953448fe",
+    "title": "Gradable vs. Ungradable Adjectives",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "absolutely"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "cold outside.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448ff"
+    },
+    "id": "67fab6d599301022953448ff",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "This drink is",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "very"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "refreshing.",
+          "options": null
+        }
+      ]
+    },
+    "title": "Gradable vs. Ungradable Adjectives",
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "translation": "Esta bebida es muy refrescante.",
+    "answerAudioUrl": "B2.13.11.16",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344900"
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "His Spanish is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "very"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "good.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.11.17",
+    "id": "67fab6d59930102295344900",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "imageUrl": "",
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "translation": "Su español es muy bueno.",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Gradable vs. Ungradable Adjectives",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344901"
+    },
+    "imageUrl": "",
+    "translation": "Los estudiantes son muy inteligentes.",
+    "id": "67fab6d59930102295344901",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.11.18",
+    "kind": "CLOZE",
+    "title": "Gradable vs. Ungradable Adjectives",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The students are"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "very"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "clever.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "successMessage": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344902"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295344902",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "His food is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "absolutely"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "disgusting.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Su comida es absolutamente repugnante.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B2.13.11.19",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "title": "Gradable vs. Ungradable Adjectives",
+    "audioUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344903"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teacher was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "absolutely"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "delighted.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295344903",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d491"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'.",
+    "imageUrl": "",
+    "translation": "La maestra estaba absolutamente encantada.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Gradable vs. Ungradable Adjectives",
+    "successMessage": "",
+    "answerAudioUrl": "B2.13.11.20",
+    "topicName": "Adjectives"
+  }
+]

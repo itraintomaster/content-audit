@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d75"
+    },
+    "id": "67fab6d59930102295343d75",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.17.17.01",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What's the topic",
+          "options": null
+        },
+        {
+          "options": [
+            "of"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "the discussion?",
+          "options": null
+        }
+      ]
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "imageUrl": "",
+    "translation": "¿Cuál es el tema de la discusión?",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "successMessage": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d76"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.17.17.02",
+    "id": "67fab6d59930102295343d76",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There's going to be a lesson",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on|about"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the new grammar.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Va a haber una lección sobre la nueva gramática.",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d77"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She had a glass",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "juice.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerAudioUrl": "B1.17.17.03",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343d77",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "translation": "Ella tomó un vaso de jugo.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d78"
+    },
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.17.17.04",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you give me the password",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to|for"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the Wi-Fi network?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Podrías darme la contraseña de la red Wi-Fi?",
+    "id": "67fab6d59930102295343d78",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "miniTheory": "",
+    "code": "",
+    "imageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d79"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "answerAudioUrl": "B1.17.17.05",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343d79",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He gave me some information",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "on|about"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "investing money.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "translation": "Me dio información sobre cómo invertir dinero.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d7a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is the tale",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about|of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "a girl and her cat.",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295343d7a",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Esta es la historia de una niña y su gato.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.17.17.06",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "imageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d7b"
+    },
+    "id": "67fab6d59930102295343d7b",
+    "title": "Choosing the Right Preposition After Nouns",
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.17.17.07",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "It's a shame",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "your car.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Es una pena lo de tu coche.",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d7c"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "id": "67fab6d59930102295343d7c",
+    "miniTheory": "",
+    "audioUrl": "",
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We had a discussion",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "going to the beach.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Tuvimos una discusión sobre ir a la playa.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.17.17.08",
+    "code": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d7d"
+    },
+    "kind": "CLOZE",
+    "title": "Choosing the Right Preposition After Nouns",
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "translation": "Volvió a la escuela a la edad de 50 años.",
+    "successMessage": "",
+    "id": "67fab6d59930102295343d7d",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He went back to school at the age",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "50.",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.17.17.09",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d7e"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "translation": "Hacen un plan para el día cada mañana.",
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.17.10",
+    "id": "67fab6d59930102295343d7e",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "They make an arrangement",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "for"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the day every morning.",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d7f"
+    },
+    "id": "67fab6d59930102295343d7f",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.17.17.11",
+    "kind": "CLOZE",
+    "title": "Choosing the Right Preposition After Nouns",
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She bought a bunch",
+          "options": null
+        },
+        {
+          "options": [
+            "of"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "flowers.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Ella compró un ramo de flores.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d80"
+    },
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "imageUrl": "",
+    "translation": "Tuve una pesadilla sobre estar perdido en el bosque.",
+    "id": "67fab6d59930102295343d80",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "answerAudioUrl": "B1.17.17.12",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I had a nightmare",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "about"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "being lost in the forest.",
+          "options": null
+        }
+      ]
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "audioUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d81"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Richard had a talk",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "with|to"
+          ]
+        },
+        {
+          "text": "his boss.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "kind": "CLOZE",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "translation": "Richard tuvo una conversación con su jefe.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343d81",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.17.13",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d82"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "title": "Choosing the Right Preposition After Nouns",
+    "translation": "Ella propuso la idea de una visita a Italia.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She proposed the concept",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "a visit to Italy."
+        }
+      ]
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.17.17.14",
+    "id": "67fab6d59930102295343d82",
+    "code": "",
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d83"
+    },
+    "id": "67fab6d59930102295343d83",
+    "code": "",
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What's this promotion",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "for"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "¿Para qué es esta promoción?",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.17.17.15",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d84"
+    },
+    "code": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What are the details",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the event?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "translation": "¿Cuáles son los detalles del evento?",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343d84",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.17.17.16",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d85"
+    },
+    "answerAudioUrl": "B1.17.17.17",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What's the theme",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "of"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "the party?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "imageUrl": "",
+    "translation": "¿Cuál es el tema de la fiesta?",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343d85",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "successMessage": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d86"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He received a donation",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "of"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "money.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "miniTheory": "",
+    "code": "",
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "answerAudioUrl": "B1.17.17.18",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "translation": "Recibió una donación de dinero.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343d86",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d87"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you have a pair",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "shoes?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "translation": "¿Tienes un par de zapatos?",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343d87",
+    "code": "",
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "answerAudioUrl": "B1.17.17.19",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d88"
+    },
+    "id": "67fab6d59930102295343d88",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.17.Prepositions_After_Nouns",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d381"
+    },
+    "instructions": "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
+    "translation": "Escribió un informe sobre el cambio climático.",
+    "successMessage": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.17.17.20",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing the Right Preposition After Nouns",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He wrote a report",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about|on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "climate change.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "topicName": "Prepositions"
+  }
+]

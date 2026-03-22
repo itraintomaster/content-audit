@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dd0"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Requests: Using Can and Could",
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Polite request: I want a cookie.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could I have a cookie?"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342dd0",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.10.02.01",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "translation": "¿Podría comerme una galleta?",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dd1"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342dd1",
+    "title": "Reviewing Requests: Using Can and Could",
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "translation": "¿Puedo escuchar música?",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.02.02",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Normal request: I want to listen to music.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Can I listen to music?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dd2"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "miniTheory": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.02.03",
+    "id": "67fab6d59930102295342dd2",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "title": "Reviewing Requests: Using Can and Could",
+    "translation": "¿Puedes repetir eso?",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Normal request: I want you to repeat that once more.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Can you say that again?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dd3"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342dd3",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.02.04",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "imageUrl": "",
+    "miniTheory": "",
+    "title": "Reviewing Requests: Using Can and Could",
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "translation": "¿Puedes traer algo para cenar?",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Normal request: I want you to order pizza.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Can you get something for dinner?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dd4"
+    },
+    "kind": "CLOZE",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "translation": "¿Me prestas tu bolso?",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Normal request: I want to borrow your book."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Can I borrow your bag?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.10.02.05",
+    "id": "67fab6d59930102295342dd4",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "title": "Reviewing Requests: Using Can and Could",
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dd5"
+    },
+    "code": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342dd5",
+    "title": "Reviewing Requests: Using Can and Could",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Normal request: I want to sleep in your bedroom.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Can I sit in your car?"
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "translation": "¿Puedo sentarme en tu coche?",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.10.02.06",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "miniTheory": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dd6"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342dd6",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "title": "Reviewing Requests: Using Can and Could",
+    "audioUrl": "",
+    "translation": "¿Puedes subir el volumen?",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Normal request: I want you to lower the volume.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "Can you turn the volume up?"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.10.02.07",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dd7"
+    },
+    "title": "Reviewing Requests: Using Can and Could",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Polite request: I want you to assist me.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could you help me?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295342dd7",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "imageUrl": "",
+    "translation": "¿Podrías ayudarme?",
+    "answerAudioUrl": "A2.10.02.08",
+    "code": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dd8"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Normal request: I want you to close the windows.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Can you turn off the lights?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "¿Puedes apagar las luces?",
+    "answerAudioUrl": "A2.10.02.09",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Reviewing Requests: Using Can and Could",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342dd8",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dd9"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Polite request: I want to wait here.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could I sit here?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "translation": "¿Podría sentarme aquí?",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.02.10",
+    "id": "67fab6d59930102295342dd9",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Requests: Using Can and Could",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dda"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342dda",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Polite request: I want you to get me some tea."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could you bring me some water?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "successMessage": "",
+    "code": "",
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Requests: Using Can and Could",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.02.11",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Podrías traerme un poco de agua?",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ddb"
+    },
+    "answerAudioUrl": "A2.10.02.12",
+    "translation": "¿Podrías echarle un vistazo a mi tarea?",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Polite request: I want you to check my exam."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could you look at my homework?"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342ddb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Requests: Using Can and Could",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ddc"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Normal request: I want a glass of water.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Can I have a glass of juice?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "answerAudioUrl": "A2.10.02.13",
+    "id": "67fab6d59930102295342ddc",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Requests: Using Can and Could",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "translation": "¿Puedo tomar un vaso de jugo?",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ddd"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "audioUrl": "",
+    "code": "",
+    "title": "Reviewing Requests: Using Can and Could",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Normal request: I want to see your tablet.",
+          "options": null
+        },
+        {
+          "options": [
+            "Can I use your phone?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Puedo usar tu teléfono?",
+    "answerAudioUrl": "A2.10.02.14",
+    "id": "67fab6d59930102295342ddd",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dde"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "title": "Reviewing Requests: Using Can and Could",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Normal request: I want you to get some milk.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Can you buy some bread?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "translation": "¿Puedes comprar pan?",
+    "id": "67fab6d59930102295342dde",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.10.02.15",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ddf"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342ddf",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "title": "Reviewing Requests: Using Can and Could",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Polite request: I want to close this window.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could I open this window?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerAudioUrl": "A2.10.02.16",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "imageUrl": "",
+    "translation": "¿Podría abrir esta ventana?",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342de0"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.10.02.17",
+    "id": "67fab6d59930102295342de0",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Requests: Using Can and Could",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Polite request: I want to drink a glass of soda.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could I have a cup of coffee?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Podría tomar una taza de café?",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "audioUrl": "",
+    "successMessage": "",
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342de1"
+    },
+    "id": "67fab6d59930102295342de1",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Polite request: I want you to give me some money.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could you lend me some money?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.10.02.18",
+    "code": "",
+    "title": "Reviewing Requests: Using Can and Could",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "translation": "¿Podrías prestarme algo de dinero?",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342de2"
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Polite request: I want you to shut this.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could you open this?"
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "¿Podrías abrir esto?",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.02.19",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342de2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "title": "Reviewing Requests: Using Can and Could",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342de3"
+    },
+    "title": "Reviewing Requests: Using Can and Could",
+    "translation": "¿Podría tomar prestado tu bolígrafo?",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.10.02.20",
+    "id": "67fab6d59930102295342de3",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "instructions": "Transforma las oraciones para que incluyan 'could' o 'can'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d296"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Polite request: I want to borrow your rubber.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Could I borrow your pen?"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Modal Verbs"
+  }
+]

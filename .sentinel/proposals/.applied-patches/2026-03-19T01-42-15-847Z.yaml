@@ -1,0 +1,251 @@
+code: __proposal__
+description: "Add sentence-length analysis (FEAT-SLEN): composite result models, NLP/config\
+  \ ports, SentenceLengthAnalyzer strategy, ContentAnalyzer hierarchy hooks, ACL mapper,\
+  \ caching decorator, and default config in audit-application"
+modules:
+- name: audit-domain
+  models:
+  - name: AuditableMilestone
+    type: record
+    fields:
+    - name: topics
+      type: List<AuditableTopic>
+      _change: modify
+    _change: modify
+  - name: AuditableKnowledge
+    type: record
+    fields:
+    - name: isSentence
+      type: boolean
+      description: Flag indicating whether this knowledge contains sentence-type quizzes
+        eligible for length analysis
+      _change: add
+    _change: modify
+  - name: AuditableQuiz
+    type: record
+    fields:
+    - name: tokenCount
+      type: int
+      description: Pre-computed token count from NLP tokenizer for the quiz sentence
+      _change: add
+    _change: modify
+  - name: AuditReport
+    type: record
+    fields:
+    - name: results
+      type: List<AnalysisResult>
+      description: All analysis results including SentenceLengthResult
+      _change: add
+    _change: modify
+  - name: CefrLevel
+    type: enum
+    fields:
+    - name: A1
+    - name: A2
+    - name: B1
+    - name: B2
+    _change: add
+  - name: CoverageStatus
+    type: enum
+    fields:
+    - name: OPTIMAL
+    - name: DEFICIENT
+    - name: EXCESSIVE
+    - name: NOT_APPLICABLE
+    _change: add
+  - name: ProgressionStatus
+    type: enum
+    fields:
+    - name: POSITIVE
+    - name: REGRESSIVE
+    - name: STAGNANT
+    - name: INSUFFICIENT_DATA
+    _change: add
+  - name: TargetRange
+    type: record
+    fields:
+    - name: level
+      type: CefrLevel
+      description: The CEFR level this range applies to
+    - name: minTokens
+      type: int
+      description: Minimum expected token count for sentences at this level
+    - name: maxTokens
+      type: int
+      description: Maximum expected token count for sentences at this level
+    _change: add
+  - name: QuizScore
+    type: record
+    fields:
+    - name: quizId
+      type: String
+      description: Identifier of the scored quiz
+    - name: tokenCount
+      type: int
+      description: Actual token count of the quiz sentence
+    - name: score
+      type: double
+      description: Score 0.0-1.0 based on proximity to target range
+    _change: add
+  - name: KnowledgeScore
+    type: record
+    fields:
+    - name: knowledgeId
+      type: String
+      description: Identifier of the scored knowledge
+    - name: score
+      type: Optional<Double>
+      description: "Average of quiz scores, empty if no valid quizzes"
+    - name: validQuizCount
+      type: int
+      description: Number of sentence quizzes scored
+    - name: excludedQuizCount
+      type: int
+      description: Number of non-sentence quizzes excluded
+    - name: quizScores
+      type: List<QuizScore>
+      description: Individual quiz scores for drill-down
+    _change: add
+  - name: TopicScore
+    type: record
+    fields:
+    - name: topicId
+      type: String
+      description: Identifier of the scored topic
+    - name: score
+      type: Optional<Double>
+      description: "Average of knowledge scores, empty if no scored knowledges"
+    - name: knowledgeScores
+      type: List<KnowledgeScore>
+      description: Individual knowledge scores for drill-down
+    _change: add
+  - name: LevelMetrics
+    type: record
+    fields:
+    - name: level
+      type: CefrLevel
+      description: The CEFR level these metrics describe
+    - name: score
+      type: Optional<Double>
+      description: "Average of topic scores, empty if no scored topics"
+    - name: validQuizCount
+      type: int
+      description: Total sentence quizzes evaluated at this level
+    - name: excludedQuizCount
+      type: int
+      description: Total non-sentence quizzes excluded at this level
+    - name: totalTokens
+      type: long
+      description: Sum of token counts across all valid quizzes
+    - name: averageLength
+      type: double
+      description: Average token count per valid quiz (R006)
+    - name: targetRange
+      type: TargetRange
+      description: Configured target range for this level
+    - name: status
+      type: CoverageStatus
+      description: OPTIMAL/DEFICIENT/EXCESSIVE/NOT_APPLICABLE (R007)
+    - name: recommendation
+      type: String
+      description: Textual recommendation based on status (R014)
+    - name: topicCount
+      type: int
+      description: Number of topics with data at this level
+    - name: knowledgeCount
+      type: int
+      description: Number of knowledges with data at this level
+    - name: topicScores
+      type: List<TopicScore>
+      description: Individual topic scores for drill-down
+    _change: add
+  - name: SentenceLengthResult
+    type: record
+    fields:
+    - name: name
+      type: String
+      description: Analysis name identifier
+    - name: courseScore
+      type: double
+      description: Overall course score (R008)
+    - name: levelMetrics
+      type: List<LevelMetrics>
+      description: Per-level detailed metrics and scores
+    - name: progressionStatus
+      type: ProgressionStatus
+      description: Cross-level progression evaluation (R010)
+    _change: add
+  interfaces:
+  - name: ContentAnalyzer
+    sealed: false
+    exposes:
+    - signature: "onKnowledge(AuditableKnowledge knowledge, AuditContext ctx): Void"
+    - signature: "onQuiz(AuditableQuiz quiz, AuditContext ctx): Void"
+    - signature: "onMilestone(AuditableMilestone milestone, AuditContext ctx): Void"
+    - signature: "onTopic(AuditableTopic topic, AuditContext ctx): Void"
+    - signature: "onCourseComplete(AuditableCourse course, AuditContext ctx): Void"
+    - signature: "getResult(): AnalysisResult"
+    _change: modify
+  - name: NlpTokenizer
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "tokenize(String text): List<String>"
+    - signature: "countTokens(String text): int"
+    _change: add
+  - name: SentenceLengthConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getTargetRange(CefrLevel level): Optional<TargetRange>"
+    - signature: "getToleranceMargin(): int"
+    _change: add
+  implementations:
+  - name: SentenceLengthAnalyzer
+    requiresInject:
+    - name: nlpTokenizer
+      type: NlpTokenizer
+    - name: config
+      type: SentenceLengthConfig
+    implements:
+    - ContentAnalyzer
+    _change: add
+  patterns:
+  - type: Strategy
+    implementations:
+    - KnowledgeTitleLengthAnalyzer
+    - KnowledgeInstructionsLengthAnalyzer
+    - SentenceLengthAnalyzer
+    suppressed: false
+    interface: ContentAnalyzer
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: CourseToAuditableMapper
+    requiresInject:
+    - name: nlpTokenizer
+      type: NlpTokenizer
+    types:
+    - Component
+    _change: add
+  - name: CachedNlpTokenizer
+    requiresInject:
+    - name: delegate
+      type: NlpTokenizer
+    implements:
+    - NlpTokenizer
+    _change: add
+  - name: DefaultSentenceLengthConfig
+    types:
+    - Component
+    implements:
+    - SentenceLengthConfig
+    _change: add
+  patterns:
+  - type: Decorator
+    decorators:
+    - CachedNlpTokenizer
+    base: NlpTokenizer
+    suppressed: false
+    interface: NlpTokenizer
+  _change: modify

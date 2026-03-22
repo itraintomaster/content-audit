@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342565"
+    },
+    "title": "Good or Well?",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.03.01",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3eb"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter speaks",
+          "options": null
+        },
+        {
+          "options": [
+            "well"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(good / well) English.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342565",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre 'well' o 'good'.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.11.Well_or_Good_",
+    "translation": "Peter habla bien inglés.",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342566"
+    },
+    "imageUrl": "",
+    "translation": "Ella baila bien.",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Good or Well?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She dances",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "well"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(good / well).",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.11.Well_or_Good_",
+    "instructions": "Elige entre 'well' o 'good'.",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.11.03.02",
+    "id": "67fab6d59930102295342566",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3eb"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342567"
+    },
+    "theoryId": "a1.11.Well_or_Good_",
+    "id": "67fab6d59930102295342567",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.11.03.03",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3eb"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Good or Well?",
+    "instructions": "Elige entre 'well' o 'good'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My father makes",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "good"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(good / well) pasta.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Mi padre hace buena pasta.",
+    "code": "",
+    "successMessage": "",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342568"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.11.03.04",
+    "theoryId": "a1.11.Well_or_Good_",
+    "id": "67fab6d59930102295342568",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3eb"
+    },
+    "instructions": "Elige entre 'well' o 'good'.",
+    "translation": "Su alemán es muy bueno.",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Her German is very",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "good"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(good / well).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Good or Well?",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342569"
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342569",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary speaks Portuguese",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "well"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(good / well)."
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3eb"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "theoryId": "a1.11.Well_or_Good_",
+    "translation": "Mary habla bien portugués.",
+    "answerAudioUrl": "A1.11.03.05",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre 'well' o 'good'.",
+    "kind": "CLOZE",
+    "title": "Good or Well?",
+    "answerImageUrl": "",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534256a"
+    },
+    "code": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My brother is a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "good"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(good / well) driver.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Good or Well?",
+    "translation": "Mi hermano es un buen conductor.",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534256a",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre 'well' o 'good'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3eb"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.11.Well_or_Good_",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.03.06",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534256b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre 'well' o 'good'.",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Good or Well?",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She plays the guitar",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "well"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(good / well).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Ella toca bien la guitarra.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3eb"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.11.Well_or_Good_",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.11.03.07",
+    "id": "67fab6d5993010229534256b",
+    "successMessage": "",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534256c"
+    },
+    "kind": "CLOZE",
+    "theoryId": "a1.11.Well_or_Good_",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.11.03.08",
+    "code": "",
+    "instructions": "Elige entre 'well' o 'good'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "His presentation is very",
+          "options": null
+        },
+        {
+          "options": [
+            "good"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(good / well)."
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Su presentación es muy buena.",
+    "successMessage": "",
+    "id": "67fab6d5993010229534256c",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3eb"
+    },
+    "title": "Good or Well?",
+    "answerImageUrl": "",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534256d"
+    },
+    "imageUrl": "",
+    "translation": "Ella dibuja muy bien.",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre 'well' o 'good'.",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3eb"
+    },
+    "title": "Good or Well?",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She draws very"
+        },
+        {
+          "text": "",
+          "options": [
+            "well"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(good / well).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a1.11.Well_or_Good_",
+    "answerAudioUrl": "A1.11.03.09",
+    "id": "67fab6d5993010229534256d",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534256e"
+    },
+    "id": "67fab6d5993010229534256e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3eb"
+    },
+    "translation": "Los estudiantes se portan bien.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.11.03.10",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.11.Well_or_Good_",
+    "instructions": "Elige entre 'well' o 'good'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students behave",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "well"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(good / well).",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "title": "Good or Well?",
+    "audioUrl": "",
+    "topicName": "Adjetives and Adverbs"
+  }
+]

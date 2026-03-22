@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e0c"
+    },
+    "translation": "David debe llamar a su madre ahora.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29a"
+    },
+    "imageUrl": "",
+    "instructions": "Crea oraciones utilizando 'must', 'have to' o 'have got to'.",
+    "theoryId": "a2.10.Must_and_Have_Got_to_for_Obligation",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.06.01",
+    "id": "67fab6d59930102295342e0c",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "David",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "must"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "call his mother now. (must)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "code": "",
+    "title": "Expressing Obligation: Using 'Must' and 'Have (Got) To'",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e0d"
+    },
+    "theoryId": "a2.10.Must_and_Have_Got_to_for_Obligation",
+    "imageUrl": "",
+    "translation": "Los estudiantes tienen que leer el libro.",
+    "answerAudioUrl": "A2.10.06.02",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando 'must', 'have to' o 'have got to'.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342e0d",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "have to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "read the book. (have to)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Obligation: Using 'Must' and 'Have (Got) To'",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e0e"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "They",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "have got to"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "fix the car. It is broken! (have got to)",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342e0e",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Obligation: Using 'Must' and 'Have (Got) To'",
+    "code": "",
+    "theoryId": "a2.10.Must_and_Have_Got_to_for_Obligation",
+    "audioUrl": "",
+    "translation": "Tienen que arreglar el coche. ¡Está roto!",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando 'must', 'have to' o 'have got to'.",
+    "answerAudioUrl": "A2.10.06.03",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e0f"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "must"
+          ]
+        },
+        {
+          "text": "cook dinner tonight. (must)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342e0f",
+    "kind": "CLOZE",
+    "answerAudioUrl": "A2.10.06.04",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29a"
+    },
+    "title": "Expressing Obligation: Using 'Must' and 'Have (Got) To'",
+    "instructions": "Crea oraciones utilizando 'must', 'have to' o 'have got to'.",
+    "theoryId": "a2.10.Must_and_Have_Got_to_for_Obligation",
+    "translation": "Ella debe cocinar la cena esta noche.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e10"
+    },
+    "id": "67fab6d59930102295342e10",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "have to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "find new jobs. (have to)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Ellos tienen que encontrar nuevos trabajos.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.10.06.05",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29a"
+    },
+    "instructions": "Crea oraciones utilizando 'must', 'have to' o 'have got to'.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "title": "Expressing Obligation: Using 'Must' and 'Have (Got) To'",
+    "theoryId": "a2.10.Must_and_Have_Got_to_for_Obligation",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e11"
+    },
+    "instructions": "Crea oraciones utilizando 'must', 'have to' o 'have got to'.",
+    "title": "Expressing Obligation: Using 'Must' and 'Have (Got) To'",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.06.06",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s got to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "start learning French. (have got to)",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.10.Must_and_Have_Got_to_for_Obligation",
+    "audioUrl": "",
+    "translation": "Él tiene que empezar a aprender francés.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295342e11",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e12"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "Mary",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "work tomorrow. (have to)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "translation": "Mary tiene que trabajar mañana.",
+    "successMessage": "",
+    "id": "67fab6d59930102295342e12",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.06.07",
+    "title": "Expressing Obligation: Using 'Must' and 'Have (Got) To'",
+    "imageUrl": "",
+    "instructions": "Crea oraciones utilizando 'must', 'have to' o 'have got to'.",
+    "theoryId": "a2.10.Must_and_Have_Got_to_for_Obligation",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29a"
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e13"
+    },
+    "code": "",
+    "title": "Expressing Obligation: Using 'Must' and 'Have (Got) To'",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "You",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "must"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "eat less junk food. (must)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.06.08",
+    "id": "67fab6d59930102295342e13",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.10.Must_and_Have_Got_to_for_Obligation",
+    "translation": "Debes comer menos comida basura.",
+    "miniTheory": "",
+    "instructions": "Crea oraciones utilizando 'must', 'have to' o 'have got to'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e14"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando 'must', 'have to' o 'have got to'.",
+    "theoryId": "a2.10.Must_and_Have_Got_to_for_Obligation",
+    "successMessage": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "They",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "'ve got to"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "sell the house. (have got to)",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Ellos tienen que vender la casa.",
+    "answerAudioUrl": "A2.10.06.09",
+    "id": "67fab6d59930102295342e14",
+    "title": "Expressing Obligation: Using 'Must' and 'Have (Got) To'",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e15"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29a"
+    },
+    "title": "Expressing Obligation: Using 'Must' and 'Have (Got) To'",
+    "translation": "Ella tiene que empezar a trabajar tarde.",
+    "answerAudioUrl": "A2.10.06.10",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando 'must', 'have to' o 'have got to'.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "start work late. (have to)",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.10.Must_and_Have_Got_to_for_Obligation",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342e15",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Modal Verbs"
+  }
+]

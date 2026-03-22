@@ -1,0 +1,21 @@
+code: F-COURSE
+modules:
+  - name: audit-domain
+    models: []
+    interfaces: []
+    implementations:
+      - name: IAuditEngine
+        implements: []
+        tests:
+          - name: test_IAuditEngine_1
+            traceability:
+              feature: F-COURSE
+              rule: F-COURSE-R001
+          - name: test_IAuditEngine_2
+            traceability:
+              feature: F-COURSE
+              rule: F-COURSE-R004
+          - name: test_IAuditEngine_3
+            traceability:
+              feature: F-COURSE
+              rule: F-COURSE-R002

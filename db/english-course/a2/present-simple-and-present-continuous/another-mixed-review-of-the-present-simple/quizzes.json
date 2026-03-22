@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425ec"
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are the tickets"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the tickets / be)?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.01.04.01",
+    "kind": "CLOZE",
+    "title": "Another Mixed Review of the Present Simple",
+    "audioUrl": "",
+    "translation": "¿Cuándo son los boletos?",
+    "miniTheory": "",
+    "id": "67fab6d599301022953425ec",
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425ed"
+    },
+    "translation": "Estoy extremadamente feliz por la noticia.",
+    "successMessage": "",
+    "id": "67fab6d599301022953425ed",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "I",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'m"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) extremely happy about the news.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Another Mixed Review of the Present Simple",
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.01.04.02",
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425ee"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "translation": "A ella le gusta un vestido nuevo.",
+    "answerAudioUrl": "A2.01.04.03",
+    "id": "67fab6d599301022953425ee",
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Another Mixed Review of the Present Simple",
+    "answerImageUrl": "",
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "likes"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(like) a new dress.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425ef"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Another Mixed Review of the Present Simple",
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(be) very excited."
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953425ef",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "translation": "Estamos muy emocionados.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.01.04.04",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425f0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.01.04.05",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does she do"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(she / do) at home?"
+        }
+      ]
+    },
+    "translation": "¿Qué hace ella en casa?",
+    "imageUrl": "",
+    "title": "Another Mixed Review of the Present Simple",
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "audioUrl": "",
+    "id": "67fab6d599301022953425f0",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425f1"
+    },
+    "code": "",
+    "title": "Another Mixed Review of the Present Simple",
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.01.04.06",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953425f1",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "imageUrl": "",
+    "translation": "Tú prefieres la comida italiana.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "prefer"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(prefer) Italian food."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425f2"
+    },
+    "id": "67fab6d599301022953425f2",
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "title": "Another Mixed Review of the Present Simple",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / be) ready for the exam?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "¿Están listos para el examen?",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.01.04.07",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425f3"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953425f3",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Estoy en el edificio correcto?",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.01.04.08",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Another Mixed Review of the Present Simple",
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Am I"
+          ]
+        },
+        {
+          "text": "(I / be) in the correct building?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425f4"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Another Mixed Review of the Present Simple",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953425f4",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "answerAudioUrl": "A2.01.04.09",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Does it rain"
+          ]
+        },
+        {
+          "text": "(it / rain) often?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "audioUrl": "",
+    "translation": "¿Llueve a menudo?",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425f5"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The car",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) in the garage.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.01.04.10",
+    "id": "67fab6d599301022953425f5",
+    "code": "",
+    "title": "Another Mixed Review of the Present Simple",
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "translation": "El coche no está en el garaje.",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425f6"
+    },
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "translation": "Ellos no tocan bien el piano.",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "don't play"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(not / play) the piano well."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "title": "Another Mixed Review of the Present Simple",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953425f6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "answerAudioUrl": "A2.01.04.11",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425f7"
+    },
+    "id": "67fab6d599301022953425f7",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Él no está triste.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Another Mixed Review of the Present Simple",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "isn't"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) sad.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.01.04.12",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425f8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "translation": "¿Dónde trabajan ellos?",
+    "id": "67fab6d599301022953425f8",
+    "code": "",
+    "title": "Another Mixed Review of the Present Simple",
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Where"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do they work"
+          ]
+        },
+        {
+          "text": "(they / work)?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerAudioUrl": "A2.01.04.13",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425f9"
+    },
+    "id": "67fab6d599301022953425f9",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Another Mixed Review of the Present Simple",
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "translation": "¿Conduce él al trabajo?",
+    "answerImageUrl": "",
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.01.04.14",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Does he drive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / drive) to work?",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425fa"
+    },
+    "kind": "CLOZE",
+    "title": "Another Mixed Review of the Present Simple",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "don't want"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / want) any sugar.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "miniTheory": "",
+    "code": "",
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "translation": "No queremos azúcar.",
+    "answerAudioUrl": "A2.01.04.15",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d599301022953425fa",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425fb"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953425fb",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "imageUrl": "",
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "translation": "¿Qué quiere él para su cumpleaños?",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.01.04.16",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Another Mixed Review of the Present Simple",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does he want"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / want) for his birthday?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425fc"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Another Mixed Review of the Present Simple",
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.04.17",
+    "code": "",
+    "translation": "No tengo sed ahora mismo.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'m not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) thirsty right now.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953425fc",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425fd"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "Is Paris"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(Paris / be) beautiful all year round?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.01.04.18",
+    "id": "67fab6d599301022953425fd",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "translation": "¿Es París hermoso todo el año?",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "title": "Another Mixed Review of the Present Simple",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425fe"
+    },
+    "id": "67fab6d599301022953425fe",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "imageUrl": "",
+    "translation": "¿Qué son esas bolsas?",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are those bags"
+          ]
+        },
+        {
+          "text": "(those bags / be)?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.01.04.19",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "title": "Another Mixed Review of the Present Simple",
+    "successMessage": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425ff"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A2.01.04.20",
+    "id": "67fab6d599301022953425ff",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21d"
+    },
+    "instructions": "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Él es de Berlín.",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Another Mixed Review of the Present Simple",
+    "theoryId": "a2.01.Present_Simple_or_Present_Continuous_",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) from Berlin.",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Present simple and Present Continuous"
+  }
+]

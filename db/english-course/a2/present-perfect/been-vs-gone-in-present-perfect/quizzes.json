@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342904"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "¿Alguna vez has estado en Londres?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.04.12.01",
+    "id": "67fab6d59930102295342904",
+    "kind": "CLOZE",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Have you ever"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "been"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to London?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342905"
+    },
+    "audioUrl": "",
+    "translation": "Han ido al supermercado. Necesitamos huevos.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They have",
+          "options": null
+        },
+        {
+          "options": [
+            "gone"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "to the supermarket. We need eggs.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerAudioUrl": "A2.04.12.02",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "imageUrl": "",
+    "id": "67fab6d59930102295342905",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342906"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.04.12.03",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He has",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gone"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to school. He's at school now.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Él se ha ido a la escuela. Está en la escuela ahora.",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Been vs. Gone in Present Perfect",
+    "id": "67fab6d59930102295342906",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342907"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342907",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I've"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "been"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to Italy. I went last summer.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "He estado en Italia. Fui el verano pasado.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.04.12.04",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342908"
+    },
+    "code": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342908",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She has",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gone"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to Rome. She's visiting the museums there now.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Ella se ha ido a Roma. Está visitando los museos allí ahora.",
+    "answerAudioUrl": "A2.04.12.05",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342909"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "been"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "to the bakery. Here's the bread he bought."
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342909",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.04.12.06",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "translation": "Él ha estado en la panadería. Aquí está el pan que compró.",
+    "answerImageUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534290a"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "translation": "Susan se ha ido a dormir. Está muy cansada.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.04.12.07",
+    "id": "67fab6d5993010229534290a",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Susan has",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gone"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to sleep. She's very tired.",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "successMessage": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534290b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534290b",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.04.12.08",
+    "title": "Been vs. Gone in Present Perfect",
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you ever",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "been"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to China?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "translation": "¿Alguna vez has estado en China?",
+    "successMessage": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534290c"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "translation": "Hemos estado en Australia. Fue increíble.",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We've"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "been"
+          ]
+        },
+        {
+          "text": "to Australia. It was amazing.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.04.12.09",
+    "id": "67fab6d5993010229534290c",
+    "kind": "CLOZE",
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "imageUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534290d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "imageUrl": "",
+    "title": "Been vs. Gone in Present Perfect",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Has Peter",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "gone"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "to the gym? His water bottle isn't here.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A2.04.12.10",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "translation": "¿Peter se ha ido al gimnasio? Su botella de agua no está aquí.",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534290d",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534290e"
+    },
+    "answerAudioUrl": "A2.04.12.11",
+    "id": "67fab6d5993010229534290e",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gone"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to the concert? They're not here now.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "kind": "CLOZE",
+    "translation": "¿Se han ido al concierto? No están aquí ahora.",
+    "successMessage": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534290f"
+    },
+    "code": "",
+    "answerAudioUrl": "A2.04.12.12",
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "id": "67fab6d5993010229534290f",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Have you ever",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "been"
+          ]
+        },
+        {
+          "text": "to Ireland?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "translation": "¿Alguna vez has estado en Irlanda?",
+    "answerImageUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342910"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "La oficina está vacía. Los empleados se han ido.",
+    "answerAudioUrl": "A2.04.12.13",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The office is empty. The employees have",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gone"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342910",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342911"
+    },
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "¿Dónde está Mary? ¿Se ha ido a trabajar?",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where's Mary? Has she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gone"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to work?",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A2.04.12.14",
+    "id": "67fab6d59930102295342911",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342912"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Ella ha estado en el nuevo cine. Dijo que era increíble.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342912",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She's",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "been"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "to the new cinema. She said it was amazing.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "answerAudioUrl": "A2.04.12.15",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342913"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Tom isn't here. Where has he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gone"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Tom no está aquí. ¿A dónde se ha ido?",
+    "answerAudioUrl": "A2.04.12.16",
+    "id": "67fab6d59930102295342913",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "audioUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342914"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have the dogs",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gone"
+          ]
+        },
+        {
+          "text": "to the park? It's very quiet!",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342914",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.04.12.17",
+    "code": "",
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "translation": "¿Se han ido los perros al parque? ¡Está muy tranquilo!",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342915"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.04.12.18",
+    "id": "67fab6d59930102295342915",
+    "code": "",
+    "imageUrl": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They've",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "been"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to France. They enjoyed their trip.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "translation": "Han estado en Francia. Disfrutaron su viaje.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342916"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Been vs. Gone in Present Perfect",
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you ever",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "been"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to Mexico?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Alguna vez has estado en México?",
+    "successMessage": "",
+    "answerAudioUrl": "A2.04.12.19",
+    "id": "67fab6d59930102295342916",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342917"
+    },
+    "answerAudioUrl": "A2.04.12.20",
+    "title": "Been vs. Gone in Present Perfect",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you ever",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "been"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to Africa?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "¿Alguna vez has estado en África?",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342917",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d247"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre 'been' o 'gone'.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Present_Perfect_Use_Been_or_Gone_",
+    "topicName": "Present Perfect"
+  }
+]

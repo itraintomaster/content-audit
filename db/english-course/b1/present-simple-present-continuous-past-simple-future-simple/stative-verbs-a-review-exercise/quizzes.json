@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f92"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "imageUrl": "",
+    "miniTheory": "",
+    "translation": "¿Reconoces a la actriz?",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Do you recognise"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / recognise) the actress?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.01.01.01",
+    "id": "67fab6d59930102295342f92",
+    "code": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f93"
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "translation": "¿Está ella bebiendo?",
+    "answerAudioUrl": "B1.01.01.02",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is she drinking?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / drink)?",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295342f93",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f94"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't studying"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(not / study)."
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.01.01.03",
+    "translation": "Ella no está estudiando.",
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "id": "67fab6d59930102295342f94",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f95"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "translation": "Los gatos están jugando en el patio.",
+    "id": "67fab6d59930102295342f95",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The cats"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are playing"
+          ]
+        },
+        {
+          "text": "(play) in the yard.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.01.01.04",
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "answerImageUrl": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f96"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.01.01.05",
+    "id": "67fab6d59930102295342f96",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "translation": "Están comprando una casa nueva.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are buying"
+          ]
+        },
+        {
+          "text": "(buy) a new house.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f97"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The teachers",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "look"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(look) happy.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.01.01.06",
+    "id": "67fab6d59930102295342f97",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Los profesores parecen felices.",
+    "successMessage": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f98"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is reading"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(read) now.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "id": "67fab6d59930102295342f98",
+    "code": "",
+    "title": "Stative Verbs: A Review Exercise",
+    "translation": "Él está leyendo ahora.",
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.01.01.07",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f99"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342f99",
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.01.01.08",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "translation": "No volamos esta semana.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "aren't flying"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / fly) this week.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f9a"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Do you care"
+          ]
+        },
+        {
+          "text": "(you / care) about my opinion?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerAudioUrl": "B1.01.01.09",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "id": "67fab6d59930102295342f9a",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Te importa mi opinión?",
+    "successMessage": "",
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f9b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "concur"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(concur) with Jessica."
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.01.01.10",
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "audioUrl": "",
+    "title": "Stative Verbs: A Review Exercise",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342f9b",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Estamos de acuerdo con Jessica.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f9c"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "doesn't trust"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(not / trust) them."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerAudioUrl": "B1.01.01.11",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "audioUrl": "",
+    "translation": "Él no confía en ellos.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342f9c",
+    "code": "",
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "imageUrl": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f9d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The bike",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "pertains"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(pertain) to Peter.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.01.01.12",
+    "title": "Stative Verbs: A Review Exercise",
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "translation": "La bicicleta pertenece a Peter.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342f9d",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f9e"
+    },
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are walking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(walk) to the stadium.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Estamos caminando hacia el estadio.",
+    "answerAudioUrl": "B1.01.01.13",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342f9e",
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f9f"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "¿Estás buscando tus llaves?",
+    "successMessage": "",
+    "id": "67fab6d59930102295342f9f",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are you looking"
+          ]
+        },
+        {
+          "text": "(you / look) for your keys?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "audioUrl": "",
+    "title": "Stative Verbs: A Review Exercise",
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.01.01.14",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fa0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "'m speaking/ am speaking"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(speak) to Thomas.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.01.01.15",
+    "id": "67fab6d59930102295342fa0",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Estoy hablando con Thomas.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "successMessage": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fa1"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "imageUrl": "",
+    "translation": "No veo a nadie.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "options": [
+            "don't see"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "(not / see) anyone.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.01.01.16",
+    "id": "67fab6d59930102295342fa1",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fa2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s driving/ is driving"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drive) to school.",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.01.01.17",
+    "code": "",
+    "translation": "Él está conduciendo a la escuela.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342fa2",
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "audioUrl": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fa3"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342fa3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "relies"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(rely) on the weather.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Depende del clima.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.01.01.18",
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "imageUrl": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fa4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.01.01.19",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342fa4",
+    "kind": "CLOZE",
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "translation": "Ellos poseen su vehículo.",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "possess"
+          ]
+        },
+        {
+          "text": "(own) their vehicle.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fa5"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b7"
+    },
+    "title": "Stative Verbs: A Review Exercise",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "desires"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(desire) to eat at home.",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
+    "theoryId": "b1.01.Present_Simple_with_Do_for_Emphasis",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.01.01.20",
+    "kind": "CLOZE",
+    "code": "",
+    "translation": "Él desea comer en casa.",
+    "successMessage": "",
+    "id": "67fab6d59930102295342fa5",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  }
+]

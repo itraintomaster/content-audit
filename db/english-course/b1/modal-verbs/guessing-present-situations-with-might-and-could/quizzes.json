@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343811"
+    },
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "theoryId": "b1.11.Could_Might_etc",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295343811",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "He / be late.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He might be late.|He could be late."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "imageUrl": "",
+    "translation": "Él podría llegar tarde.",
+    "answerAudioUrl": "B1.11.06.01",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343812"
+    },
+    "kind": "CLOZE",
+    "successMessage": "",
+    "id": "67fab6d59930102295343812",
+    "miniTheory": "",
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "theoryId": "b1.11.Could_Might_etc",
+    "audioUrl": "",
+    "translation": "Mis padres podrían estar en casa.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.11.06.02",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My parents / be at home.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "My parents might be at home.|My parents could be at home."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "imageUrl": "",
+    "code": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343813"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "answerAudioUrl": "B1.11.06.03",
+    "id": "67fab6d59930102295343813",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Sarah podría sentirse feliz.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Sarah / feel happy.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Sarah might feel happy.|Sarah could feel happy."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.11.Could_Might_etc",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343814"
+    },
+    "id": "67fab6d59930102295343814",
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "miniTheory": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The birds / be flying.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The birds might be flying.|The birds could be flying."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.11.06.04",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Could_Might_etc",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "translation": "Los pájaros podrían estar volando.",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343815"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We / be wrong.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "We might be wrong.|We could be wrong."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295343815",
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "translation": "Podríamos estar equivocados.",
+    "answerAudioUrl": "B1.11.06.05",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "theoryId": "b1.11.Could_Might_etc",
+    "miniTheory": "",
+    "code": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343816"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343816",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Could_Might_etc",
+    "translation": "El museo podría estar lleno de gente.",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.11.06.06",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The museum / be crowded."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The museum might be crowded.|The museum could be crowded."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343817"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.11.06.07",
+    "translation": "Peter podría tener una llave.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter / have a key.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Peter might have a key.|Peter could have a key."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.11.Could_Might_etc",
+    "miniTheory": "",
+    "code": "",
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343817",
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343818"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.11.06.08",
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "theoryId": "b1.11.Could_Might_etc",
+    "audioUrl": "",
+    "translation": "Laura podría estar en la fiesta.",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Laura / be at the party.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Laura might be at the party.|Laura could be at the party."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295343818",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343819"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.11.06.09",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "translation": "Los estudiantes podrían estar en la biblioteca.",
+    "id": "67fab6d59930102295343819",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students / be in the library.",
+          "options": null
+        },
+        {
+          "options": [
+            "The students might be in the library.|The students could be in the library."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.11.Could_Might_etc",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534381a"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "theoryId": "b1.11.Could_Might_etc",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.11.06.10",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The bus / be delayed.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The bus might be delayed.|The bus could be delayed."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "El autobús podría estar retrasado.",
+    "id": "67fab6d5993010229534381a",
+    "code": "",
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534381b"
+    },
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.11.06.11",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Could_Might_etc",
+    "translation": "Podría haber una tormenta.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "There / be a thunderstorm."
+        },
+        {
+          "options": [
+            "There might be a thunderstorm.|There could be a thunderstorm."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "id": "67fab6d5993010229534381b",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534381c"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There / be a solution.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There might be a solution.|There could be a solution."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.11.Could_Might_etc",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "translation": "Podría haber una solución.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.11.06.12",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "id": "67fab6d5993010229534381c",
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534381d"
+    },
+    "id": "67fab6d5993010229534381d",
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "translation": "John podría estar en el gimnasio.",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "John / be at the gym.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John might be at the gym.|John could be at the gym."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Could_Might_etc",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.11.06.13",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534381e"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Él podría necesitar ayuda.",
+    "answerAudioUrl": "B1.11.06.14",
+    "id": "67fab6d5993010229534381e",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He / need some help.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He might need some help.|He could need some help."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.11.Could_Might_etc",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534381f"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.11.06.15",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "theoryId": "b1.11.Could_Might_etc",
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534381f",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "They / like chocolate.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They might like chocolate.|They could like chocolate."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "A ellos podría gustarles el chocolate.",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343820"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Could_Might_etc",
+    "translation": "Las puertas podrían estar abiertas.",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.11.06.16",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The doors / be unlocked.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The doors might be unlocked.|The doors could be unlocked."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "id": "67fab6d59930102295343820",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343821"
+    },
+    "theoryId": "b1.11.Could_Might_etc",
+    "answerAudioUrl": "B1.11.06.17",
+    "id": "67fab6d59930102295343821",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cat / be on the roof.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The cat might be on the roof.|The cat could be on the roof."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "translation": "El gato podría estar en el tejado.",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343822"
+    },
+    "successMessage": "",
+    "code": "",
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "theoryId": "b1.11.Could_Might_etc",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "La cafetería podría estar cerrada.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343822",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cafe / be closed.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The cafe might be closed.|The cafe could be closed."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.11.06.18",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343823"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Could_Might_etc",
+    "id": "67fab6d59930102295343823",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Her coffee / be hot.",
+          "options": null
+        },
+        {
+          "options": [
+            "Her coffee might be hot.|Her coffee could be hot."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "translation": "Su café podría estar caliente.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.11.06.19",
+    "code": "",
+    "audioUrl": "",
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343824"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+    "id": "67fab6d59930102295343824",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d330"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Could_Might_etc",
+    "audioUrl": "",
+    "translation": "Ellos podrían amarnos.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.11.06.20",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Guessing Present Situations with 'Might' and 'Could'",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They / love us.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They might love us.|They could love us."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Modal verbs"
+  }
+]

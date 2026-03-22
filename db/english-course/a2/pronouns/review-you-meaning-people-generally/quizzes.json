@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bf0"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d275"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342bf0",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "title": "Review: 'You' Meaning People Generally",
+    "instructions": "Cambia las oraciones para que incluyan 'you'. No cambies el significado.",
+    "theoryId": "a2.08.One_and_Ones",
+    "audioUrl": "",
+    "translation": "No deberías comer en la biblioteca.",
+    "answerAudioUrl": "A2.08.04.01",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "People shouldn't eat in the library.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You shouldn't eat in the library."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bf1"
+    },
+    "answerAudioUrl": "A2.08.04.02",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342bf1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d275"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Review: 'You' Meaning People Generally",
+    "instructions": "Cambia las oraciones para que incluyan 'you'. No cambies el significado.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Everyone can order drinks at the bar.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You can order drinks at the bar."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Puedes pedir bebidas en el bar.",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bf2"
+    },
+    "title": "Review: 'You' Meaning People Generally",
+    "translation": "No debes hacer ruido en el cine.",
+    "answerAudioUrl": "A2.08.04.03",
+    "id": "67fab6d59930102295342bf2",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia las oraciones para que incluyan 'you'. No cambies el significado.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "People in general mustn't make noise in the cinema.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You mustn't make noise in the cinema."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d275"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bf3"
+    },
+    "imageUrl": "",
+    "translation": "Tienes que mostrar tu identificación antes de entrar al club.",
+    "id": "67fab6d59930102295342bf3",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d275"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "All the people have to show their ID before entering the club.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You have to show your ID before entering the club."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "title": "Review: 'You' Meaning People Generally",
+    "instructions": "Cambia las oraciones para que incluyan 'you'. No cambies el significado.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.04.04",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bf4"
+    },
+    "title": "Review: 'You' Meaning People Generally",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "No puedes traer mascotas al restaurante.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d275"
+    },
+    "instructions": "Cambia las oraciones para que incluyan 'you'. No cambies el significado.",
+    "theoryId": "a2.08.One_and_Ones",
+    "id": "67fab6d59930102295342bf4",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "People can't bring pets to the restaurant.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You can't bring pets to the restaurant."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A2.08.04.05",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bf5"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Review: 'You' Meaning People Generally",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Everyone needs to close the window before leaving home.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You need to close the window before leaving home."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d275"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342bf5",
+    "instructions": "Cambia las oraciones para que incluyan 'you'. No cambies el significado.",
+    "theoryId": "a2.08.One_and_Ones",
+    "translation": "Necesitas cerrar la ventana antes de salir de casa.",
+    "answerAudioUrl": "A2.08.04.06",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bf6"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia las oraciones para que incluyan 'you'. No cambies el significado.",
+    "theoryId": "a2.08.One_and_Ones",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "No deberías beber alcohol mientras conduces.",
+    "id": "67fab6d59930102295342bf6",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.08.04.07",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d275"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "People in general shouldn't drink alcohol while driving.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You shouldn't drink alcohol while driving."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "title": "Review: 'You' Meaning People Generally",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bf7"
+    },
+    "id": "67fab6d59930102295342bf7",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d275"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "Everybody can travel to France.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "You can travel to France."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Puedes viajar a Francia.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Review: 'You' Meaning People Generally",
+    "instructions": "Cambia las oraciones para que incluyan 'you'. No cambies el significado.",
+    "answerAudioUrl": "A2.08.04.08",
+    "code": "",
+    "theoryId": "a2.08.One_and_Ones",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bf8"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d275"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "audioUrl": "",
+    "translation": "Puedes tomar fotos en el parque.",
+    "id": "67fab6d59930102295342bf8",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Review: 'You' Meaning People Generally",
+    "instructions": "Cambia las oraciones para que incluyan 'you'. No cambies el significado.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.04.09",
+    "kind": "CLOZE",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Everybody can take photos in the park.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "You can take photos in the park."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bf9"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d275"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.04.10",
+    "id": "67fab6d59930102295342bf9",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia las oraciones para que incluyan 'you'. No cambies el significado.",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Review: 'You' Meaning People Generally",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "People don't have to make a reservation to visit the zoo.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "You don't have to make a reservation to visit the zoo."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "translation": "No tienes que hacer una reserva para visitar el zoológico.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Pronouns"
+  }
+]

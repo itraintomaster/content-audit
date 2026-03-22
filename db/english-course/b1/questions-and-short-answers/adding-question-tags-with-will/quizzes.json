@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343308"
+    },
+    "code": "",
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adding Question Tags with 'will'",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "theoryId": "b1.05.Question_Tags",
+    "answerAudioUrl": "B1.05.07.01",
+    "successMessage": "",
+    "id": "67fab6d59930102295343308",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The children won't eat the cake,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "translation": "Los niños no se comerán el pastel, ¿verdad?",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343309"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You won't forget my name,",
+          "options": null
+        },
+        {
+          "options": [
+            "will you"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "No olvidarás mi nombre, ¿verdad?",
+    "successMessage": "",
+    "id": "67fab6d59930102295343309",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adding Question Tags with 'will'",
+    "answerAudioUrl": "B1.05.07.02",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534330a"
+    },
+    "title": "Adding Question Tags with 'will'",
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Irás a la playa, ¿no?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.07.03",
+    "id": "67fab6d5993010229534330a",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You'll go to the beach,",
+          "options": null
+        },
+        {
+          "options": [
+            "won't you"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534330b"
+    },
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She won't be angry,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "id": "67fab6d5993010229534330b",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Ella no estará enojada, ¿verdad?",
+    "answerAudioUrl": "B1.05.07.04",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "title": "Adding Question Tags with 'will'",
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534330c"
+    },
+    "code": "",
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "David will win the game,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "id": "67fab6d5993010229534330c",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adding Question Tags with 'will'",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "David ganará el juego, ¿no?",
+    "answerAudioUrl": "B1.05.07.05",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534330d"
+    },
+    "kind": "CLOZE",
+    "successMessage": "",
+    "id": "67fab6d5993010229534330d",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "translation": "Ellos no cantarán, ¿verdad?",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They won't sing,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adding Question Tags with 'will'",
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.07.06",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534330e"
+    },
+    "translation": "No viajaremos en autobús, ¿verdad?",
+    "answerAudioUrl": "B1.05.07.07",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "title": "Adding Question Tags with 'will'",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We won't travel by bus,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "will we"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "kind": "CLOZE",
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534330e",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534330f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "translation": "Él no se quejará, ¿verdad?",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.07.08",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "id": "67fab6d5993010229534330f",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "answerImageUrl": "",
+    "title": "Adding Question Tags with 'will'",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He won't complain,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343310"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.07.09",
+    "id": "67fab6d59930102295343310",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "title": "Adding Question Tags with 'will'",
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It will be sunny tomorrow,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't it"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Mañana estará soleado, ¿no?",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343311"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "title": "Adding Question Tags with 'will'",
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "miniTheory": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He'll accept the offer,"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295343311",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.07.10",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "translation": "Él aceptará la oferta, ¿no?",
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343312"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "theoryId": "b1.05.Question_Tags",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343312",
+    "code": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adding Question Tags with 'will'",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.07.11",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The printer won't stop,",
+          "options": null
+        },
+        {
+          "options": [
+            "will it"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "La impresora no se detendrá, ¿verdad?",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343313"
+    },
+    "audioUrl": "",
+    "translation": "Tú limpiarás, ¿no?",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.07.12",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adding Question Tags with 'will'",
+    "imageUrl": "",
+    "successMessage": "",
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "You'll clean,"
+        },
+        {
+          "options": [
+            "won't you"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "id": "67fab6d59930102295343313",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343314"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343314",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You won't swim,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.07.13",
+    "kind": "CLOZE",
+    "theoryId": "b1.05.Question_Tags",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adding Question Tags with 'will'",
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "translation": "Tú no nadarás, ¿verdad?",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343315"
+    },
+    "translation": "Los empleados no moverán los escritorios, ¿verdad?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "title": "Adding Question Tags with 'will'",
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The employees won't move the desks,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343315",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.05.07.14",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343316"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Él estará en la oficina esta mañana, ¿no?",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343316",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He'll be in the office this morning,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "audioUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adding Question Tags with 'will'",
+    "theoryId": "b1.05.Question_Tags",
+    "answerAudioUrl": "B1.05.07.15",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343317"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They'll be late,",
+          "options": null
+        },
+        {
+          "options": [
+            "won't they"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "title": "Adding Question Tags with 'will'",
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.07.16",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343317",
+    "code": "",
+    "translation": "Ellos llegarán tarde, ¿no?",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343318"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "theoryId": "b1.05.Question_Tags",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.07.17",
+    "id": "67fab6d59930102295343318",
+    "title": "Adding Question Tags with 'will'",
+    "translation": "Mary reparará la bicicleta, ¿no?",
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary will repair the bicycle,",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "won't she"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343319"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.05.07.18",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adding Question Tags with 'will'",
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343319",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teachers will arrive early,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't they"
+          ]
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "translation": "Los profesores llegarán temprano, ¿no?",
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534331a"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "title": "Adding Question Tags with 'will'",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534331a",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We'll share,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't we"
+          ]
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.07.19",
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "translation": "Compartiremos, ¿no?",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534331b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'question tags' a las oraciones.",
+    "translation": "No lloverá, ¿verdad?",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e8"
+    },
+    "title": "Adding Question Tags with 'will'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It won't rain,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will it"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.05.07.20",
+    "id": "67fab6d5993010229534331b",
+    "code": "",
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  }
+]

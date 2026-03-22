@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436bd"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.02.01",
+    "id": "67fab6d599301022953436bd",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My sister is flying to London.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that his sister was flying to London."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Robert dijo que su hermana estaba volando a Londres.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436be"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.02.02",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "code": "",
+    "answerImageUrl": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We are eating pizza.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that they were eating pizza."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Robert dijo que estaban comiendo pizza.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953436be",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436bf"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.10.02.03",
+    "id": "67fab6d599301022953436bf",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter isn't sleeping.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that Peter wasn't sleeping."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "translation": "Robert dijo que Peter no estaba durmiendo.",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436c0"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is driving to work.",
+          "options": null
+        },
+        {
+          "options": [
+            "Robert said that she was driving to work."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.10.02.04",
+    "id": "67fab6d599301022953436c0",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Robert dijo que ella estaba conduciendo al trabajo.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436c1"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is drinking juice with his father.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that he was drinking juice with his father."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "answerAudioUrl": "B1.10.02.05",
+    "id": "67fab6d599301022953436c1",
+    "code": "",
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "audioUrl": "",
+    "translation": "Robert dijo que estaba bebiendo jugo con su padre.",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436c2"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953436c2",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "answerAudioUrl": "B1.10.02.06",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs are chasing squirrels.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that the dogs were chasing squirrels."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "translation": "Robert dijo que los perros estaban persiguiendo ardillas.",
+    "answerImageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436c3"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953436c3",
+    "kind": "CLOZE",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Sarah is painting a portrait.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "Robert said that Sarah was painting a portrait."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "translation": "Robert dijo que Sarah estaba pintando un retrato.",
+    "answerAudioUrl": "B1.10.02.07",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436c4"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.02.08",
+    "kind": "CLOZE",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teachers aren't organising a trip.",
+          "options": null
+        },
+        {
+          "options": [
+            "Robert said that the teachers weren't organising a trip."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Robert dijo que los profesores no estaban organizando un viaje.",
+    "id": "67fab6d599301022953436c4",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436c5"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.02.09",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is phoning now.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that she was phoning now."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "id": "67fab6d599301022953436c5",
+    "code": "",
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Robert dijo que ella estaba llamando entonces.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436c6"
+    },
+    "id": "67fab6d599301022953436c6",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is preparing dinner.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that he was preparing dinner."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.02.10",
+    "imageUrl": "",
+    "translation": "Robert dijo que estaba preparando la cena.",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436c7"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.10.02.11",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953436c7",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "John isn't drinking coffee.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that John wasn't drinking coffee."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "translation": "Robert dijo que John no estaba bebiendo café.",
+    "code": "",
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "miniTheory": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436c8"
+    },
+    "id": "67fab6d599301022953436c8",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They are swimming in the sea."
+        },
+        {
+          "options": [
+            "Robert said that they were swimming in the sea."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.02.12",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Robert dijo que estaban nadando en el mar.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436c9"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953436c9",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.10.02.13",
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She isn't writing an email.",
+          "options": null
+        },
+        {
+          "options": [
+            "Robert said that she wasn't writing an email."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Robert dijo que ella no estaba escribiendo un correo electrónico.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436ca"
+    },
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d599301022953436ca",
+    "kind": "CLOZE",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "translation": "Robert dijo que estaba lavando el coche.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He is washing the car.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "Robert said that he was washing the car."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.10.02.14",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436cb"
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Isabella is calling her mum."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that Isabella was calling her mum."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Robert dijo que Isabella estaba llamando a su madre.",
+    "answerAudioUrl": "B1.10.02.15",
+    "id": "67fab6d599301022953436cb",
+    "code": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436cc"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.02.16",
+    "id": "67fab6d599301022953436cc",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The chefs aren't preparing food.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Robert said that the chefs weren't preparing food."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Robert dijo que los chefs no estaban preparando comida.",
+    "successMessage": "",
+    "miniTheory": "",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436cd"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.02.17",
+    "kind": "CLOZE",
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They are emptying the bins.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that they were emptying the bins."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953436cd",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "translation": "Robert dijo que estaban vaciando los cubos de basura.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436ce"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "answerAudioUrl": "B1.10.02.18",
+    "id": "67fab6d599301022953436ce",
+    "kind": "CLOZE",
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "translation": "Robert dijo que ella estaba reservando una mesa.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is reserving a table.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that she was reserving a table."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436cf"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Robert dijo que estaba recogiendo el paquete.",
+    "id": "67fab6d599301022953436cf",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is collecting the parcel.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that he was collecting the parcel."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.02.19",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "audioUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436d0"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is watching TV.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Robert said that she was watching TV."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Robert dijo que ella estaba viendo la televisión.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "title": "Transforming Direct Speech: Present Continuous in Reported Speech",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.02.20",
+    "id": "67fab6d599301022953436d0",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d31e"
+    },
+    "answerImageUrl": "",
+    "topicName": "Reported speech"
+  }
+]

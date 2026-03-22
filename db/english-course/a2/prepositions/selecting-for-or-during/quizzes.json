@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d1c"
+    },
+    "id": "67fab6d59930102295342d1c",
+    "title": "Selecting For or During",
+    "instructions": "Coloca 'for' o 'during'.",
+    "audioUrl": "",
+    "translation": "¿Puedo verte durante tu estancia en el hotel?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "answerAudioUrl": "A2.09.10.01",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Can I see you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "during"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "your stay at the hotel?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d1d"
+    },
+    "kind": "CLOZE",
+    "title": "Selecting For or During",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She saw Peter many times",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "during"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the Christmas period.",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A2.09.10.02",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca 'for' o 'during'.",
+    "translation": "Ella vio a Peter muchas veces durante el período navideño.",
+    "successMessage": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295342d1d",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28b"
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d1e"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca 'for' o 'during'.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "imageUrl": "",
+    "translation": "Estudié en Roma durante cinco años.",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342d1e",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Selecting For or During",
+    "answerAudioUrl": "A2.09.10.03",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28b"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I studied in Rome",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "for"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "five years.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d1f"
+    },
+    "id": "67fab6d59930102295342d1f",
+    "instructions": "Coloca 'for' o 'during'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "translation": "Viajó a Berlín durante un mes.",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Selecting For or During",
+    "answerAudioUrl": "A2.09.10.04",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He traveled to Berlin",
+          "options": null
+        },
+        {
+          "options": [
+            "for"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "a month.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d20"
+    },
+    "instructions": "Coloca 'for' o 'during'.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.09.10.05",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Hablé con Mary durante el concierto.",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I spoke to Mary",
+          "options": null
+        },
+        {
+          "options": [
+            "during"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "the concert.",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295342d20",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Selecting For or During",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d21"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca 'for' o 'during'.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "imageUrl": "",
+    "id": "67fab6d59930102295342d21",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Selecting For or During",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We hiked in the mountains",
+          "options": null
+        },
+        {
+          "options": [
+            "for"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "five days.",
+          "options": null
+        }
+      ]
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Hicimos senderismo en las montañas durante cinco días.",
+    "answerAudioUrl": "A2.09.10.06",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d22"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Selecting For or During",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28b"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They noticed movement",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "during"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the afternoon.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Notaron movimiento durante la tarde.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.09.10.07",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "instructions": "Coloca 'for' o 'during'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342d22",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d23"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28b"
+    },
+    "title": "Selecting For or During",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They went sailing",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "for"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "ten days.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca 'for' o 'during'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.10.08",
+    "id": "67fab6d59930102295342d23",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "translation": "Fueron a navegar durante diez días.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d24"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "audioUrl": "",
+    "translation": "Él almorzó durante el descanso.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28b"
+    },
+    "instructions": "Coloca 'for' o 'during'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He ate lunch",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "during"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "the break."
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342d24",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Selecting For or During",
+    "answerAudioUrl": "A2.09.10.09",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d25"
+    },
+    "kind": "CLOZE",
+    "instructions": "Coloca 'for' o 'during'.",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She's going to practice the piano",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "for"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "three hours.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "translation": "Ella va a practicar el piano durante tres horas.",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Selecting For or During",
+    "answerAudioUrl": "A2.09.10.10",
+    "id": "67fab6d59930102295342d25",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "imageUrl": "",
+    "topicName": "Prepositions"
+  }
+]

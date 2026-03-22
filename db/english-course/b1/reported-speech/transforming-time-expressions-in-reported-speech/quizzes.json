@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343799"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "translation": "John dijo que llamaría a Peter al día siguiente.",
+    "successMessage": "",
+    "id": "67fab6d59930102295343799",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I will call Peter tomorrow.",
+          "options": null
+        },
+        {
+          "options": [
+            "John said that he would call Peter the next day."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.10.13.01",
+    "kind": "CLOZE",
+    "title": "Transforming Time Expressions in Reported Speech",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534379a"
+    },
+    "kind": "CLOZE",
+    "title": "Transforming Time Expressions in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534379a",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "translation": "John dijo que ella había ido a París el día anterior.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She went to Paris yesterday.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that she went to Paris the day before.|John said that she had gone to Paris the day before."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.10.13.02",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534379b"
+    },
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "id": "67fab6d5993010229534379b",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming Time Expressions in Reported Speech",
+    "code": "",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "translation": "John dijo que había visto a Mary la noche anterior.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.13.03",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I saw Mary last night.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that he saw Mary the night before.|John said that he had seen Mary the night before."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534379c"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teachers were at the meeting last week.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that the teachers were at the meeting the week before.|John said that the teachers had been at the meeting the week before."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "John dijo que los profesores habían estado en la reunión la semana anterior.",
+    "id": "67fab6d5993010229534379c",
+    "title": "Transforming Time Expressions in Reported Speech",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.13.04",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534379d"
+    },
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "answerAudioUrl": "B1.10.13.05",
+    "id": "67fab6d5993010229534379d",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "title": "Transforming Time Expressions in Reported Speech",
+    "translation": "John dijo que Robert estaba en clase ese día.",
+    "miniTheory": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Robert is in class today."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that Robert was in class that day.|John said that Robert had been in class that day."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534379e"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "John dijo que su hermana estaba en el supermercado entonces.",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My sister is at the supermarket now.",
+          "options": null
+        },
+        {
+          "options": [
+            "John said that his sister was at the supermarket then.|John said that his sister had been at the supermarket then."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534379e",
+    "title": "Transforming Time Expressions in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.13.06",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534379f"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I can help you tomorrow.",
+          "options": null
+        },
+        {
+          "options": [
+            "John said that he could help me the next day."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "answerAudioUrl": "B1.10.13.07",
+    "id": "67fab6d5993010229534379f",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "John dijo que podría ayudarme al día siguiente.",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming Time Expressions in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953437a0"
+    },
+    "translation": "John dijo que habían ayudado a los niños la noche anterior.",
+    "successMessage": "",
+    "id": "67fab6d599301022953437a0",
+    "code": "",
+    "title": "Transforming Time Expressions in Reported Speech",
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.13.08",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They helped the children last night.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that they helped the children the night before.|John said that they had helped the children the night before."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953437a1"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She started her new course last week.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that she started her new course the week before.|John said that she had started her new course the week before."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953437a1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "John dijo que ella había comenzado su nuevo curso la semana anterior.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.10.13.09",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming Time Expressions in Reported Speech",
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953437a2"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "title": "Transforming Time Expressions in Reported Speech",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I travelled to Italy last year.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that he travelled to Italy the year before.|John said that he had travelled to Italy the year before."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "miniTheory": "",
+    "id": "67fab6d599301022953437a2",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.13.10",
+    "code": "",
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "audioUrl": "",
+    "translation": "John dijo que había viajado a Italia el año anterior.",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953437a3"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953437a3",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Susan will travel tomorrow.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that Susan would travel the next day."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "John dijo que Susan viajaría al día siguiente.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.10.13.11",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Transforming Time Expressions in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953437a4"
+    },
+    "title": "Transforming Time Expressions in Reported Speech",
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.13.12",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I was busy yesterday.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that he was busy the day before.|John said that he had been busy the day before."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "John dijo que había estado ocupado el día anterior.",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953437a4",
+    "code": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953437a5"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He stayed in last night.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that he stayed in the night before.|John said that he had stayed in the night before."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "imageUrl": "",
+    "id": "67fab6d599301022953437a5",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming Time Expressions in Reported Speech",
+    "translation": "John dijo que se había quedado la noche anterior.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.13.13",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953437a6"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students finished the tasks last week.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that the students finished the tasks last week.|John said that the students had finished the tasks last week."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d599301022953437a6",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "title": "Transforming Time Expressions in Reported Speech",
+    "translation": "John dijo que los estudiantes habían terminado las tareas la semana pasada.",
+    "answerAudioUrl": "B1.10.13.14",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953437a7"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming Time Expressions in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "imageUrl": "",
+    "translation": "John dijo que estaba estudiando ese día.",
+    "id": "67fab6d599301022953437a7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I'm studying today."
+        },
+        {
+          "text": "",
+          "options": [
+            "John said that he was studying that day."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.13.15",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953437a8"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "answerImageUrl": "",
+    "translation": "John dijo que ella estaba en la oficina entonces.",
+    "id": "67fab6d599301022953437a8",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming Time Expressions in Reported Speech",
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.13.16",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is in the office now.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that she was in the office then."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "miniTheory": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953437a9"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "translation": "John dijo que las chicas iban a jugar tenis al día siguiente.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.13.17",
+    "id": "67fab6d599301022953437a9",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming Time Expressions in Reported Speech",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The girls are going to play tennis tomorrow.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that the girls were going to play tennis the next day."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953437aa"
+    },
+    "answerAudioUrl": "B1.10.13.18",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "John dijo que habían cenado temprano la noche anterior.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953437aa",
+    "code": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "title": "Transforming Time Expressions in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They ate dinner early last night.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that they ate dinner early the night before.|John said that they had eaten dinner early the night before."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953437ab"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming Time Expressions in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I phoned my grandma last week.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "John said that he phoned his grandma the week before.|John said that he had phoned his grandma the week before."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "id": "67fab6d599301022953437ab",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.13.19",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "translation": "John dijo que había llamado a su abuela la semana anterior.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953437ac"
+    },
+    "id": "67fab6d599301022953437ac",
+    "code": "",
+    "imageUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d329"
+    },
+    "title": "Transforming Time Expressions in Reported Speech",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They climbed the mountain last year.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that they climbed the mountain the year before.|John said that they had climbed the mountain the year before."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
+    "theoryId": "b1.10.Time_E_xpressions_in_Reported_Speech",
+    "translation": "John dijo que habían escalado la montaña el año anterior.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.13.20",
+    "topicName": "Reported speech"
+  }
+]

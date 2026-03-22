@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c03"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ya no bebemos cerveza.",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We used to drink beer. (any longer)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We don't drink beer any longer."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "successMessage": "",
+    "answerAudioUrl": "B1.16.07.01",
+    "id": "67fab6d59930102295343c03",
+    "code": "",
+    "kind": "CLOZE",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c04"
+    },
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.16.07.02",
+    "id": "67fab6d59930102295343c04",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He used to study physics. (any more)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He doesn't study physics any more."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Ya no estudia física.",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "audioUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c05"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343c05",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We used to sing. (any more)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We don't sing any more."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "translation": "Ya no cantamos.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "answerAudioUrl": "B1.16.07.03",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c06"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343c06",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "translation": "Ya no tiene el pelo negro.",
+    "code": "",
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "answerAudioUrl": "B1.16.07.04",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She used to have black hair. (any more)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She doesn't have black hair any more."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "audioUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c07"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "id": "67fab6d59930102295343c07",
+    "code": "",
+    "kind": "CLOZE",
+    "translation": "Ya no juegan al fútbol.",
+    "miniTheory": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They used to play football. (any more)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They don't play football any more."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.16.07.05",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c08"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.16.07.06",
+    "code": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343c08",
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "translation": "Ya no lee libros.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She used to read books. (any more)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She doesn't read books any more."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c09"
+    },
+    "imageUrl": "",
+    "translation": "Ya no como pizza.",
+    "successMessage": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I used to eat pizza. (any longer)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I don't eat pizza any longer."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.16.07.07",
+    "id": "67fab6d59930102295343c09",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c0a"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.16.07.08",
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "translation": "Ya no como pescado.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I used to eat fish. (any more)",
+          "options": null
+        },
+        {
+          "options": [
+            "I don't eat fish any more."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "id": "67fab6d59930102295343c0a",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c0b"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She used to live there. (any more)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She doesn't live there any more."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Ya no vive allí.",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "imageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.16.07.09",
+    "kind": "CLOZE",
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343c0b",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c0c"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343c0c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We used to have a dog. (any longer)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We don't have a dog any longer."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.07.10",
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "translation": "Ya no tenemos perro.",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c0d"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "imageUrl": "",
+    "translation": "Ya no trabaja de noche.",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343c0d",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.16.07.11",
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He used to work at night, (any longer)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He doesn't work at night any longer."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c0e"
+    },
+    "code": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.16.07.12",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She used to drive her car. (any longer)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She doesn't drive her car any longer."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Ya no conduce su coche.",
+    "id": "67fab6d59930102295343c0e",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c0f"
+    },
+    "id": "67fab6d59930102295343c0f",
+    "code": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.16.07.13",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "translation": "Ya no alquilamos una casa.",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We used to rent a house. (any longer)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We don't rent a house any longer."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c10"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "translation": "Ya no trabajan en París.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.16.07.14",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295343c10",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "kind": "CLOZE",
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They used to work in Paris. (any more)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They don't work in Paris any more."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "miniTheory": "",
+    "code": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c11"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Ya no toman el autobús al trabajo.",
+    "successMessage": "",
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "They used to take the bus to work. (any longer)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "They don't take the bus to work any longer."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "answerAudioUrl": "B1.16.07.15",
+    "id": "67fab6d59930102295343c11",
+    "code": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c12"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He used to wear a hat. (any longer)"
+        },
+        {
+          "text": "",
+          "options": [
+            "He doesn't wear a hat any longer."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "audioUrl": "",
+    "translation": "Ya no usa sombrero.",
+    "id": "67fab6d59930102295343c12",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.07.16",
+    "code": "",
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "answerImageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c13"
+    },
+    "id": "67fab6d59930102295343c13",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "audioUrl": "",
+    "translation": "Ya no corre carreras de velocidad.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "imageUrl": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He used to run sprints. (any longer)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He doesn't run sprints any longer."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.16.07.17",
+    "code": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c14"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ya no están en Italia.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "successMessage": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343c14",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They used to be in Italy. (any longer)",
+          "options": null
+        },
+        {
+          "options": [
+            "They aren't in Italy any longer."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.16.07.18",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c15"
+    },
+    "id": "67fab6d59930102295343c15",
+    "code": "",
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.16.07.19",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Los niños ya no necesitan esos juegos.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The children used to need those games. (any more)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The children don't need those games any more."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c16"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36b"
+    },
+    "title": "Practice with 'Any More' / 'Any Longer'",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Crea oraciones con 'any more' o 'any longer' y el presente simple. Por ejemplo: 'I used to eat cakes (any more)' se convierte en 'I don't eat cakes any more'.",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343c16",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He used to fly. (any more)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He doesn't fly any more."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ya no vuela.",
+    "answerAudioUrl": "B1.16.07.20",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.16.Adverbs_of_Time_Any_More_Any_Longer",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Adverbs"
+  }
+]

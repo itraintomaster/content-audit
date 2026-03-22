@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a24"
+    },
+    "title": "Using A / An to Define Things",
+    "audioUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "table.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342a24",
+    "answerAudioUrl": "A2.06.07.01",
+    "translation": "Esa es una mesa.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a25"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An to Define Things",
+    "audioUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Este es un aparato para lavar la ropa.",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "text": "device for washing clothes.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.07.02",
+    "id": "67fab6d59930102295342a25",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "successMessage": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a26"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Those are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "glasses.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "Esos son vasos.",
+    "successMessage": "",
+    "id": "67fab6d59930102295342a26",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "answerAudioUrl": "A2.06.07.03",
+    "title": "Using A / An to Define Things",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a27"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342a27",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "answerImageUrl": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "These are"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "text": "biscuits.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "translation": "Estas son galletas.",
+    "answerAudioUrl": "A2.06.07.04",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An to Define Things",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a28"
+    },
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "code": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "vase for my flowers.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerAudioUrl": "A2.06.07.05",
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342a28",
+    "kind": "CLOZE",
+    "title": "Using A / An to Define Things",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ese es un jarrón para mis flores.",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a29"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "translation": "Ese es un correo electrónico del director.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "That's",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "an"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "email from the director.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342a29",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An to Define Things",
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.06.07.06",
+    "kind": "CLOZE",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a2a"
+    },
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.07.07",
+    "id": "67fab6d59930102295342a2a",
+    "translation": "Esos son libros para mi clase de inglés.",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An to Define Things",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Those are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "books for my English class.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a2b"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.06.07.08",
+    "id": "67fab6d59930102295342a2b",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "code": "",
+    "title": "Using A / An to Define Things",
+    "miniTheory": "",
+    "translation": "Estos son lápices.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "These are",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "pencils.",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a2c"
+    },
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.06.07.09",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An to Define Things",
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "translation": "Este es un sofá para mi sala de estar.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342a2c",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "sofa for my living room.",
+          "options": null
+        }
+      ]
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a2d"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "title": "Using A / An to Define Things",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "That is",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "box for the attic.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.06.07.10",
+    "id": "67fab6d59930102295342a2d",
+    "code": "",
+    "translation": "Esa es una caja para el ático.",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a2e"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342a2e",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Those are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bowls.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "translation": "Esos son cuencos.",
+    "successMessage": "",
+    "title": "Using A / An to Define Things",
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "answerAudioUrl": "A2.06.07.11",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a2f"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "title": "Using A / An to Define Things",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Those are",
+          "options": null
+        },
+        {
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "apples.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.06.07.12",
+    "id": "67fab6d59930102295342a2f",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "translation": "Esas son manzanas.",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a30"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "lock.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerAudioUrl": "A2.06.07.13",
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An to Define Things",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "translation": "Esta es una cerradura.",
+    "successMessage": "",
+    "id": "67fab6d59930102295342a30",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a31"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "blanket for the bed.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "imageUrl": "",
+    "translation": "Esa es una manta para la cama.",
+    "answerAudioUrl": "A2.06.07.14",
+    "id": "67fab6d59930102295342a31",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An to Define Things",
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a32"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An to Define Things",
+    "answerAudioUrl": "A2.06.07.15",
+    "code": "",
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is",
+          "options": null
+        },
+        {
+          "options": [
+            "a"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "scanner.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Este es un escáner.",
+    "id": "67fab6d59930102295342a32",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a33"
+    },
+    "translation": "Este es un recipiente para arroz.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342a33",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "This is",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "container for rice.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.06.07.16",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An to Define Things",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a34"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "title": "Using A / An to Define Things",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "These are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "spoons.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerAudioUrl": "A2.06.07.17",
+    "id": "67fab6d59930102295342a34",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Estas son cucharas.",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a35"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342a35",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "translation": "Esos son calcetines para el invierno.",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An to Define Things",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Those are",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "socks for the winter.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerAudioUrl": "A2.06.07.18",
+    "code": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a36"
+    },
+    "kind": "CLOZE",
+    "title": "Using A / An to Define Things",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Those are",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "cookies for tomorrow.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Esas son galletas para mañana.",
+    "answerAudioUrl": "A2.06.07.19",
+    "code": "",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342a36",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a37"
+    },
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+    "imageUrl": "",
+    "translation": "Estas son flores para el jardín.",
+    "successMessage": "",
+    "id": "67fab6d59930102295342a37",
+    "title": "Using A / An to Define Things",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.06.07.20",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25b"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "These are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "flowers for the garden.",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Nouns"
+  }
+]

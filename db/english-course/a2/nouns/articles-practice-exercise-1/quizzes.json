@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a9c"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "translation": "Hablé con el hombre que trabaja abajo.",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.13.01",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I spoke with",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "man who works downstairs (the listener knows which man).",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342a9c",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles Practice Exercise 1",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a9d"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.06.13.02",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We're passionate about"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "music (in general).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "title": "Articles Practice Exercise 1",
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "id": "67fab6d59930102295342a9d",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Somos apasionados por la música.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a9e"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The family had a bird and a hamster.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bird sang beautifully.",
+          "options": null
+        }
+      ]
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles Practice Exercise 1",
+    "answerAudioUrl": "A2.06.13.03",
+    "id": "67fab6d59930102295342a9e",
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "translation": "La familia tenía un pájaro y un hámster. El pájaro cantaba hermosamente.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "kind": "CLOZE",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a9f"
+    },
+    "id": "67fab6d59930102295342a9f",
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you ever travelled to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "UAE?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Alguna vez has viajado a los Emiratos Árabes Unidos?",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "title": "Articles Practice Exercise 1",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.13.04",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aa0"
+    },
+    "id": "67fab6d59930102295342aa0",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.13.05",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles Practice Exercise 1",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She comes from",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "Spain.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ella viene de España.",
+    "miniTheory": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aa1"
+    },
+    "kind": "CLOZE",
+    "title": "Articles Practice Exercise 1",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.13.06",
+    "id": "67fab6d59930102295342aa1",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He rarely drinks"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "milk (in general).",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "translation": "Él rara vez bebe leche.",
+    "miniTheory": "",
+    "code": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aa2"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She offered me",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "text": "pen and some paper. The pen wrote smoothly.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342aa2",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "translation": "Ella me ofreció un bolígrafo y papel. El bolígrafo escribía suavemente.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.13.07",
+    "code": "",
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles Practice Exercise 1",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aa3"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "They adore",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "pizza (in general)."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles Practice Exercise 1",
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342aa3",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "translation": "Adoran la pizza.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.13.08",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aa4"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She returned",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "text": "pencils on the desk (the listener knows which pencils).",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerAudioUrl": "A2.06.13.09",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342aa4",
+    "title": "Articles Practice Exercise 1",
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "translation": "Ella devolvió los lápices sobre el escritorio.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aa5"
+    },
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "answerAudioUrl": "A2.06.13.10",
+    "id": "67fab6d59930102295342aa5",
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you ever visited",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "Italy?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Alguna vez has visitado Italia?",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles Practice Exercise 1",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aa6"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342aa6",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We require",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "pepper (the listener doesn't know which pepper).",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "miniTheory": "",
+    "code": "",
+    "audioUrl": "",
+    "translation": "Necesitamos pimienta.",
+    "answerAudioUrl": "A2.06.13.11",
+    "title": "Articles Practice Exercise 1",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aa7"
+    },
+    "id": "67fab6d59930102295342aa7",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "translation": "La fruta es saludable para tu cuerpo.",
+    "title": "Articles Practice Exercise 1",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "fruit is healthy for your body (in general).",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.13.12",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aa8"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.06.13.13",
+    "id": "67fab6d59930102295342aa8",
+    "title": "Articles Practice Exercise 1",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I prefer",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "tea (in general).",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Prefiero el té.",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aa9"
+    },
+    "id": "67fab6d59930102295342aa9",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles Practice Exercise 1",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We explored",
+          "options": null
+        },
+        {
+          "options": [
+            "the"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "USA.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.06.13.14",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Exploramos los Estados Unidos.",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aaa"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "translation": "Visitaron Francia.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342aaa",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.06.13.15",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They visited",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "France.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Articles Practice Exercise 1",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aab"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "translation": "Compraron una casa.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles Practice Exercise 1",
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "id": "67fab6d59930102295342aab",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They purchased",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "house (the listener doesn't know which house).",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A2.06.13.16",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aac"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We appreciate",
+          "options": null
+        },
+        {
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "concerts (in general).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "translation": "Apreciamos los conciertos.",
+    "id": "67fab6d59930102295342aac",
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "code": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.06.13.17",
+    "title": "Articles Practice Exercise 1",
+    "successMessage": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aad"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Articles Practice Exercise 1",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "successMessage": "",
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "translation": "Ella preparó tostadas y mermelada. La mermelada estaba sabrosa.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342aad",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She prepared toast and jam.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "jam was tasty.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.06.13.18",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aae"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "successMessage": "",
+    "answerAudioUrl": "A2.06.13.19",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles Practice Exercise 1",
+    "id": "67fab6d59930102295342aae",
+    "code": "",
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "translation": "Me encontré con un hombre.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I encountered"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "man (the listener doesn't know which man).",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aaf"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d261"
+    },
+    "title": "Articles Practice Exercise 1",
+    "audioUrl": "",
+    "translation": "Ella voló a los Países Bajos.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342aaf",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She flew to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Netherlands.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.06.13.20",
+    "topicName": "Nouns"
+  }
+]

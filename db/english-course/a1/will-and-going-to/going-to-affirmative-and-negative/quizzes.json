@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534214d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.03.Going_to_Forms",
+    "imageUrl": "",
+    "id": "67fab6d5993010229534214d",
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.03.05.01",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "aren't going to paint|'re not going to paint|are not going to paint"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / paint) the house.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "title": "'Going to': Affirmative and Negative",
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "translation": "No vamos a pintar la casa.",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534214e"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "imageUrl": "",
+    "translation": "No voy a leer más libros este mes.",
+    "id": "67fab6d5993010229534214e",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A1.03.05.02",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'m not going to read|am not going to read"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / read) any more books this month.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "theoryId": "a1.03.Going_to_Forms",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534214f"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A1.03.05.03",
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "theoryId": "a1.03.Going_to_Forms",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534214f",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'m going to play|am going to play"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(play) videogames later.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "translation": "Voy a jugar videojuegos más tarde.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342150"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "You"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re going to travel|are going to travel"
+          ]
+        },
+        {
+          "text": "(travel) to Italy.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a1.03.Going_to_Forms",
+    "translation": "Vas a viajar a Italia.",
+    "id": "67fab6d59930102295342150",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.03.05.04",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342151"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.03.Going_to_Forms",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "imageUrl": "",
+    "translation": "Vamos a explorar la ciudad.",
+    "successMessage": "",
+    "answerAudioUrl": "A1.03.05.05",
+    "id": "67fab6d59930102295342151",
+    "code": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re going to explore|are going to explore"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(explore) the city.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342152"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342152",
+    "code": "",
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'m going to visit|am going to visit"
+          ]
+        },
+        {
+          "text": "(visit) my family tonight.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.03.Going_to_Forms",
+    "answerAudioUrl": "A1.03.05.06",
+    "kind": "CLOZE",
+    "title": "'Going to': Affirmative and Negative",
+    "translation": "Voy a visitar a mi familia esta noche.",
+    "answerImageUrl": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342153"
+    },
+    "translation": "Él va a llegar al mediodía.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.03.05.07",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s going to arrive|is going to arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) at noon.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.03.Going_to_Forms",
+    "id": "67fab6d59930102295342153",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342154"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Ella no va a bailar esta noche.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "options": [
+            "isn't going to dance|is not going to dance|'s not going to dance"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / dance) tonight.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A1.03.05.08",
+    "kind": "CLOZE",
+    "theoryId": "a1.03.Going_to_Forms",
+    "id": "67fab6d59930102295342154",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342155"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342155",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Ella va a pedir un vestido nuevo.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "answerAudioUrl": "A1.03.05.09",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s going to order|is going to order"
+          ]
+        },
+        {
+          "text": "(order) a new dress.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a1.03.Going_to_Forms",
+    "answerImageUrl": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342156"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "You"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re going to call|are going to call"
+          ]
+        },
+        {
+          "text": "(call) Peter later.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342156",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.03.Going_to_Forms",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "translation": "Vas a llamar a Peter más tarde.",
+    "answerAudioUrl": "A1.03.05.10",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342157"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.03.Going_to_Forms",
+    "id": "67fab6d59930102295342157",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "translation": "Ella no va a beber limonada.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.03.05.11",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s not going to drink|is not going to drink|isn't going to drink"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / drink) lemonade.",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342158"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342158",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "It"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't going to snow|is not going to snow|'s not going to snow"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / snow).",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.03.Going_to_Forms",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "title": "'Going to': Affirmative and Negative",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "translation": "No va a nevar.",
+    "answerAudioUrl": "A1.03.05.12",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342159"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "theoryId": "a1.03.Going_to_Forms",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.03.05.13",
+    "id": "67fab6d59930102295342159",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re going to buy|are going to buy"
+          ]
+        },
+        {
+          "text": "(buy) some fruits from the market.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "Ellos van a comprar algunas frutas en el mercado.",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534215a"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534215a",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "'re not going to clean|are not going to clean|aren't going to clean"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / clean) today.",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "theoryId": "a1.03.Going_to_Forms",
+    "audioUrl": "",
+    "translation": "No vas a limpiar hoy.",
+    "answerAudioUrl": "A1.03.05.14",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534215b"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "theoryId": "a1.03.Going_to_Forms",
+    "imageUrl": "",
+    "translation": "Ellos no van a correr en el parque.",
+    "id": "67fab6d5993010229534215b",
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "aren't going to run|are not going to run|'re not going to run"
+          ]
+        },
+        {
+          "text": "(not / run) in the park.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.03.05.15",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534215c"
+    },
+    "id": "67fab6d5993010229534215c",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "theoryId": "a1.03.Going_to_Forms",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s going to rain|is going to rain"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) soon.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "code": "",
+    "translation": "Va a llover pronto.",
+    "answerAudioUrl": "A1.03.05.16",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534215d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.03.05.17",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s going to date|is going to date"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(date) Mary.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "id": "67fab6d5993010229534215d",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "theoryId": "a1.03.Going_to_Forms",
+    "translation": "Él va a salir con Mary.",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534215e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s not going to work|is not going to work|isn't going to work"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / go) today.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.03.Going_to_Forms",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.03.05.18",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "translation": "Él no va a trabajar hoy.",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534215e",
+    "kind": "CLOZE",
+    "title": "'Going to': Affirmative and Negative",
+    "successMessage": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534215f"
+    },
+    "translation": "Ellos no van a cantar ninguna canción.",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "audioUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "They",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re not going to sing|are not going to sing|aren't going to sing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / take) any song.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "id": "67fab6d5993010229534215f",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.05.19",
+    "kind": "CLOZE",
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "theoryId": "a1.03.Going_to_Forms",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342160"
+    },
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re not going to watch|are not going to watch|aren't going to watch"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / take) TV.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.03.Going_to_Forms",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.05.20",
+    "id": "67fab6d59930102295342160",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ac"
+    },
+    "instructions": "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "translation": "No vamos a ver la televisión.",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to': Affirmative and Negative",
+    "topicName": "'Will' and 'Going to'"
+  }
+]

@@ -1,0 +1,444 @@
+---
+features:
+- id: "FEAT-COURSE"
+  name: "Modelo de Dominio y Persistencia de Estructura de Curso"
+  description: "Representar la estructura jerarquica completa de un curso de idiomas\
+    \ como modelo en memoria, con capacidad de lectura y escritura a archivos JSON\
+    \ en formato MongoDB Extended JSON, garantizando idempotencia semantica en el\
+    \ ciclo lectura-escritura."
+  code: "F-COURSE"
+  rules:
+  - id: "F-COURSE-R001"
+    name: "Jerarquia estricta de 5 niveles"
+    severity: "critical"
+    description: "La estructura del curso sigue una jerarquia fija e inmutable de\
+      \ exactamente 5 niveles: Course contiene un nodo ROOT, ROOT contiene Milestones,\
+      \ Milestone contiene Topics, Topic contiene Knowledges, Knowledge contiene Quiz\
+      \ Templates. No se permiten niveles intermedios adicionales ni omitir niveles.\
+      \ El nodo ROOT es unico por curso y actua como raiz del arbol de navegacion."
+    errorMessage: "Estructura jerarquica invalida: se esperaban exactamente 5 niveles\
+      \ (Course > ROOT > Milestone > Topic > Knowledge > Quiz Template)"
+    validation: "VALIDATED"
+    code: null
+    rationale: "El usuario confirmo la inclusion del nodo ROOT explicito para poder\
+      \ visualizar estadisticas del curso completo al navegar al nodo raiz."
+  - id: "F-COURSE-R002"
+    name: "Orden significativo de hijos"
+    severity: "critical"
+    description: "El orden de los elementos hijos en todas las listas es significativo\
+      \ y debe preservarse fielmente. Esto aplica a: children del ROOT (orden de Milestones),\
+      \ children de Milestone (orden de Topics), ruleIds de Topic (orden de Knowledges),\
+      \ knowledgeIds de Course (orden global de Knowledges), sentenceParts de Form\
+      \ (orden de la oracion), y el array de quiz templates dentro de quizzes.json."
+    errorMessage: "El orden de los elementos hijos fue alterado en {entidad} ({id})"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COURSE-R003"
+    name: "Idempotencia semantica lectura-escritura"
+    severity: "critical"
+    description: "Al leer la estructura de archivos, construir el modelo en memoria,\
+      \ y luego escribir de vuelta a archivos, el resultado debe ser semanticamente\
+      \ equivalente al original. Leer y escribir repetidamente no debe introducir\
+      \ cambios acumulativos. Esto incluye: preservar el formato MongoDB Extended\
+      \ JSON ($oid, $numberDouble, etc.), preservar los nombres de directorio exactos\
+      \ (slugs), preservar valores null vs ausencia de campo, preservar el orden de\
+      \ elementos en arrays, y preservar todos los campos presentes en el original\
+      \ incluso si estan vacios. El orden de campos (keys) dentro de cada objeto JSON\
+      \ no necesita preservarse."
+    errorMessage: "La operacion de lectura-escritura modifico el contenido del archivo\
+      \ {nombre}: diferencia semantica encontrada en {detalle}"
+    validation: "VALIDATED"
+    code: null
+    rationale: "El usuario confirmo que el orden de campos JSON no necesita preservarse\
+      \ (DOUBT-JSON-FIELD-ORDER, Opcion C), lo que redefine la idempotencia como semantica\
+      \ en lugar de byte-a-byte."
+  - id: "F-COURSE-R004"
+    name: "Cada knowledge debe tener quiz templates"
+    severity: "major"
+    description: "Todo knowledge debe tener al menos un quiz template asociado. En\
+      \ los datos actuales, cada knowledge tiene entre 9 y 30 quiz templates. Un directorio\
+      \ de knowledge sin archivo quizzes.json o con un array vacio se considera un\
+      \ error de datos."
+    errorMessage: "El knowledge '{label}' ({id}) no tiene quiz templates asociados"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COURSE-R005"
+    name: "Consistencia de IDs entre niveles"
+    severity: "critical"
+    description: "Los IDs referenciados en las listas de hijos deben coincidir con\
+      \ las entidades que efectivamente existen en los subdirectorios. Especificamente:\
+      \ los children del ROOT deben coincidir exactamente con los milestones existentes,\
+      \ los children del Milestone deben coincidir exactamente con los topics en sus\
+      \ subdirectorios, los ruleIds del Topic deben coincidir exactamente con los\
+      \ knowledges en sus subdirectorios, y los knowledgeIds del Course deben coincidir\
+      \ con el total de knowledges existentes en toda la estructura."
+    errorMessage: "Inconsistencia de IDs en {entidad} ({id}): la lista {campo} referencia\
+      \ IDs que no existen en la estructura: {ids_faltantes}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COURSE-R006"
+    name: "Identificadores unicos"
+    severity: "critical"
+    description: "Cada entidad tiene un identificador unico en formato ObjectId (24\
+      \ caracteres hexadecimales). No pueden existir dos entidades con el mismo ID\
+      \ en ningun nivel de la jerarquia."
+    errorMessage: "Identificador duplicado: el ID {id} aparece en {entidad_1} y en\
+      \ {entidad_2}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COURSE-R007"
+    name: "Correspondencia directorio-entidad"
+    severity: "major"
+    description: "Cada directorio en la estructura de archivos debe contener exactamente\
+      \ su archivo JSON descriptor: el directorio raiz contiene _course.json, cada\
+      \ directorio de milestone contiene _milestone.json, cada directorio de topic\
+      \ contiene _topic.json, cada directorio de knowledge contiene _knowledge.json\
+      \ y quizzes.json. No debe haber directorios sin su archivo descriptor ni archivos\
+      \ descriptor huerfanos. Archivos o directorios no reconocidos (como archivos\
+      \ del sistema operativo, archivos temporales, u otros archivos no pertenecientes\
+      \ al modelo) deben ser ignorados silenciosamente durante la lectura."
+    errorMessage: "El directorio '{ruta}' no contiene el archivo descriptor esperado\
+      \ '{archivo}'"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COURSE-R008"
+    name: "Integridad referencial parent-child"
+    severity: "critical"
+    description: "El parentId de cada entidad hija debe referenciar al ID de su entidad\
+      \ padre. Es decir: el parentId de cada Milestone referencia al nodo ROOT, el\
+      \ parentId de cada Topic referencia a su Milestone padre, el parentId de cada\
+      \ Knowledge referencia a su Topic padre, y el knowledgeId de cada Quiz Template\
+      \ referencia a su Knowledge padre."
+    errorMessage: "Integridad referencial rota: {entidad} ({id}) referencia al padre\
+      \ {parentId}, pero el padre esperado es {padre_real}"
+    validation: "VALIDATED"
+    code: null
+    rationale: "Validado con la decision de incluir el nodo ROOT explicito; los milestones\
+      \ referencian al ROOT como padre."
+  - id: "F-COURSE-R009"
+    name: "Campos obligatorios por entidad"
+    severity: "critical"
+    description: "Cada tipo de entidad tiene campos obligatorios con valor (no nulo\
+      \ ni vacio): Course (id, title, knowledgeIds), ROOT (id, code, kind, children),\
+      \ Milestone (id, code, kind, label, oldId, parentId, children), Topic (id, code,\
+      \ kind, label, oldId, parentId, ruleIds), Knowledge (id, code, kind, label,\
+      \ oldId, parentId, isRule), Quiz Template (id, _id, kind, knowledgeId, title,\
+      \ form, translation). Ademas, campos obligatorios sin restriccion de valor:\
+      \ Topic (children, actualmente null), Knowledge (instructions, ausente en casos\
+      \ excepcionales), Quiz Template (instructions, theoryId, topicName, difficulty,\
+      \ retries, noScoreRetries, answerAudioUrl, code, audioUrl, imageUrl, answerImageUrl,\
+      \ miniTheory, successMessage)."
+    errorMessage: "Campo obligatorio ausente: {entidad} ({id}) no tiene el campo '{campo}'"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COURSE-R010"
+    name: "Preservacion de campos vacios y valores por defecto"
+    severity: "major"
+    description: "Los campos que estan presentes en el JSON pero con valores vacios\
+      \ (\"\"), null, o 0.0 deben preservarse tal cual en la escritura. No deben omitirse\
+      \ campos vacios ni sustituirse por valores por defecto. Esto es esencial para\
+      \ la idempotencia (R003)."
+    errorMessage: "El campo '{campo}' en {entidad} ({id}) fue omitido o alterado durante\
+      \ la escritura; valor original: {valor_original}, valor escrito: {valor_escrito}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COURSE-R011"
+    name: "Doble ID en Quiz Templates"
+    severity: "major"
+    description: "Los quiz templates tienen dos campos de identificacion: _id (formato\
+      \ MongoDB Extended JSON con wrapper $oid) y id (string plano). Ambos contienen\
+      \ el mismo valor y ambos deben preservarse."
+    errorMessage: "Quiz template con IDs inconsistentes: _id={oid_value}, id={id_value}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COURSE-R012"
+    name: "Formato numerico MongoDB Extended JSON"
+    severity: "major"
+    description: "Los valores numericos en quiz templates (difficulty, retries, noScoreRetries,\
+      \ form.incidence) usan el formato $numberDouble en lugar de numeros JSON nativos.\
+      \ Este formato debe preservarse exactamente al escribir."
+    errorMessage: "Formato numerico incorrecto en {entidad} ({id}), campo '{campo}':\
+      \ se esperaba formato $numberDouble"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COURSE-R013"
+    name: "Orden jerarquico explicito"
+    severity: "critical"
+    description: "Cada entidad navegable (Milestone, Topic, Knowledge) debe tener\
+      \ un campo order que indica su posicion ordinal dentro de su padre. Este campo\
+      \ es numerico, comienza en 1, y es unico dentro de su nivel jerarquico. Los\
+      \ milestones se numeran 1..N dentro del curso (derivado de children del ROOT),\
+      \ los topics 1..N dentro de su milestone (derivado de children del milestone),\
+      \ los knowledges 1..N dentro de su topic (derivado de ruleIds del topic). Este\
+      \ campo order se calcula al cargar el curso y es derivado, no almacenado en\
+      \ los archivos JSON originales."
+    errorMessage: "Orden no asignado o duplicado: {entidad} ({id}) tiene order={order},\
+      \ pero ya existe otra entidad con el mismo orden en {padre}"
+    validation: "VALIDATED"
+    code: null
+    rationale: "El usuario solicito explicitamente agregar un campo order jerarquico\
+      \ a milestones, topics y knowledges para hacer explicito el orden de los elementos."
+  - id: "F-COURSE-R014"
+    name: "Comportamiento ante datos inconsistentes durante la carga"
+    severity: "critical"
+    description: "Cuando el sistema detecta una inconsistencia durante la carga de\
+      \ un curso (violacion de R005, R006, R008, o R009), la carga debe fallar completamente\
+      \ con un mensaje de error descriptivo. No se permiten cargas parciales ni estados\
+      \ intermedios. El mensaje de error debe indicar claramente cual regla se violo,\
+      \ en que entidad, y cual es la inconsistencia encontrada."
+    errorMessage: "Error al cargar el curso desde '{ruta}': {descripcion_de_la_inconsistencia}.\
+      \ La carga fue abortada."
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COURSE-R015"
+    name: "Cada milestone debe tener al menos un topic"
+    severity: "major"
+    description: "Todo milestone debe contener al menos un topic. Un milestone con\
+      \ lista de children vacia se considera un error de datos. Analogamente, todo\
+      \ topic debe contener al menos un knowledge (lista de ruleIds no vacia). Estas\
+      \ restricciones garantizan que la jerarquia no tenga ramas muertas sin contenido\
+      \ util."
+    errorMessage: "Estructura incompleta: {entidad} '{label}' ({id}) no tiene hijos"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COURSE-R016"
+    name: "Generacion determinista de slugs desde el label"
+    severity: "major"
+    description: "Los nombres de directorio (slugs) se generan automaticamente a partir\
+      \ del label de cada entidad usando un algoritmo determinista. El algoritmo debe\
+      \ convertir a minusculas, reemplazar espacios por guiones, eliminar signos de\
+      \ puntuacion, y preservar caracteres alfanumericos y guiones. Dado el mismo\
+      \ label, el algoritmo debe producir siempre el mismo slug. Al leer la estructura\
+      \ existente, se utilizan los nombres de directorio tal como estan en disco.\
+      \ Al escribir entidades nuevas, se genera el slug desde el label."
+    errorMessage: "No se pudo generar un slug valido para la entidad '{label}' ({id})"
+    validation: "VALIDATED"
+    code: null
+    rationale: "El usuario selecciono la generacion automatica de slugs desde el label."
+  journeys:
+  - id: "F-COURSE-J001"
+    name: "Cargar un curso completo desde archivos"
+    steps:
+    - "El usuario indica la ruta al directorio raiz del curso (ej: db/english-course/)"
+    - "El sistema verifica que el directorio existe y contiene _course.json"
+    - "El sistema lee _course.json del directorio raiz"
+    - "El sistema descubre los subdirectorios de milestones y lee cada _milestone.json"
+    - "Para cada milestone, el sistema descubre los subdirectorios de topics y lee\
+      \ cada _topic.json"
+    - "Para cada topic, el sistema descubre los subdirectorios de knowledges y lee\
+      \ cada _knowledge.json y quizzes.json"
+    - "El sistema construye la jerarquia completa en memoria con todas las relaciones\
+      \ padre-hijo resueltas, incluyendo el nodo ROOT"
+    - "El sistema calcula el campo order para cada milestone, topic y knowledge segun\
+      \ su posicion en la lista de hijos del padre (R013)"
+    - "El sistema valida la consistencia de IDs entre niveles (R005, R008) y la integridad\
+      \ de campos obligatorios (R009)"
+    - "Si alguna validacion falla, la carga se aborta completamente con un mensaje\
+      \ descriptivo (R014)"
+    - "El curso completo queda disponible para navegacion y consulta en memoria"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COURSE-J002"
+    name: "Escribir un curso completo a archivos"
+    steps:
+    - "El usuario tiene un curso cargado en memoria (posiblemente modificado)"
+    - "El usuario indica la ruta de destino donde escribir la estructura"
+    - "Si el directorio destino ya contiene una estructura de curso, el sistema la\
+      \ sobreescribe completamente: los archivos existentes se reemplazan por los\
+      \ nuevos"
+    - "El sistema crea la estructura de directorios necesaria (si no existe)"
+    - "El sistema escribe _course.json en el directorio raiz"
+    - "Para cada milestone, el sistema crea su directorio (usando el slug derivado\
+      \ del label o preservando el nombre original si se leyo desde disco) y escribe\
+      \ _milestone.json"
+    - "Para cada topic, el sistema crea su directorio y escribe _topic.json"
+    - "Para cada knowledge, el sistema crea su directorio, escribe _knowledge.json\
+      \ y quizzes.json"
+    - "Los archivos resultantes preservan el formato MongoDB Extended JSON y la equivalencia\
+      \ semantica con los datos en memoria"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COURSE-J003"
+    name: "Verificar idempotencia lectura-escritura"
+    steps:
+    - "El usuario carga un curso desde un directorio origen"
+    - "El usuario escribe el curso a un directorio destino (puede ser el mismo u otro)"
+    - "El usuario compara los archivos de origen y destino"
+    - "Todos los archivos JSON deben ser semanticamente equivalentes (mismos campos,\
+      \ mismos valores, mismo formato de tipos MongoDB). El orden de campos dentro\
+      \ de un objeto puede variar"
+    - "La estructura de directorios debe ser identica (mismos nombres, misma jerarquia)"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COURSE-J004"
+    name: "Navegar la estructura del curso en memoria"
+    steps:
+    - "El usuario carga el curso"
+    - "El usuario puede posicionarse en el nodo ROOT y obtener una vista global del\
+      \ curso (cantidad de milestones, topics, knowledges)"
+    - "El usuario puede obtener la lista de milestones del curso, ordenados segun\
+      \ su campo order"
+    - "Desde un milestone, el usuario puede obtener sus topics, ordenados segun su\
+      \ campo order"
+    - "Desde un topic, el usuario puede obtener sus knowledges, ordenados segun su\
+      \ campo order"
+    - "Desde un knowledge, el usuario puede obtener sus quiz templates"
+    - "El usuario puede navegar hacia arriba (de knowledge a topic, de topic a milestone,\
+      \ de milestone a ROOT)"
+    - "El usuario puede acceder a cualquier entidad por su ID directamente, sin importar\
+      \ su tipo o nivel en la jerarquia"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COURSE-J005"
+    name: "Modificar datos de contenido y persistir cambios"
+    steps:
+    - "El usuario carga el curso desde archivos"
+    - "El usuario modifica datos de contenido del curso en memoria (ej: cambiar el\
+      \ label de un knowledge, modificar la traduccion de un quiz template)"
+    - "El usuario escribe el curso modificado a archivos"
+    - "Al releer los archivos, los cambios se reflejan correctamente"
+    - "Los datos no modificados permanecen intactos (sin efectos colaterales)"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: "Este journey cubre modificaciones a datos de contenido de entidades\
+      \ existentes. Modificaciones estructurales (agregar/eliminar milestones, mover\
+      \ knowledges entre topics, etc.) estan fuera del alcance de esta feature."
+  - id: "F-COURSE-J006"
+    name: "Manejo de errores durante la carga"
+    steps:
+    - "El usuario indica una ruta a un directorio que no existe, o que no contiene\
+      \ _course.json"
+    - "El sistema informa que la ruta no es un directorio de curso valido"
+    - "Alternativamente, el usuario indica una ruta valida pero con datos inconsistentes\
+      \ (ej: un milestone referencia un topic que no existe)"
+    - "El sistema informa exactamente cual regla se violo y en que entidad, y aborta\
+      \ la carga"
+    - "El usuario no obtiene un curso parcial o corrupto en ningun caso"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  doubts:
+  - id: "DOUBT-SLUG-GENERATION"
+    question: "Como se generan los nombres de directorio (slugs)?"
+    options:
+    - label: "Opcion A: Generar slugs automaticamente desde el label con un algoritmo\
+        \ determinista"
+      description: null
+    - label: "Opcion B: Leer y preservar los nombres de directorio existentes, usandolos\
+        \ tal cual"
+      description: null
+    answer: "Se generan automaticamente desde el label. Para los datos existentes,\
+      \ al leerlos se usa el nombre de directorio que ya existe en disco. Al escribir\
+      \ entidades nuevas, se genera el slug desde el label. Capturado en R016."
+    status: "RESOLVED"
+    selectedOption: "A"
+  - id: "DOUBT-ROOT-NODE"
+    question: "Como tratar el nodo ROOT en la estructura jerarquica?"
+    options:
+    - label: "Opcion A: Incluir un nodo ROOT explicito que actue como intermediario\
+        \ entre Course y Milestones"
+      description: null
+    - label: "Opcion B: Los milestones cuelgan directamente del Course; el parentId\
+        \ de los milestones (que apunta al ROOT) se preserva como dato pero sin materializar\
+        \ el nodo ROOT"
+      description: null
+    answer: "Se incluye un nodo ROOT explicito. De este modo, cuando el usuario navega\
+      \ al nodo ROOT, puede ver las estadisticas del curso completo. Capturado en\
+      \ R001 y en la seccion de entidades del dominio."
+    status: "RESOLVED"
+    selectedOption: "A"
+  - id: "DOUBT-COURSE-MILESTONE-LINK"
+    question: "Como se relaciona el Course con sus Milestones?"
+    options:
+    - label: "Opcion A: Descubrir milestones por presencia de _milestone.json en subdirectorios"
+      description: null
+    - label: "Opcion B: Usar algun otro mecanismo"
+      description: null
+    answer: "Todos los milestones, topics y knowledges son documentos de la misma\
+      \ coleccion en la base de datos de origen, diferenciados por el campo KIND.\
+      \ Para la carga desde la estructura de directorios, se descubren los milestones\
+      \ por la presencia de _milestone.json en los subdirectorios. El orden se obtiene\
+      \ de la lista children del nodo ROOT."
+    status: "RESOLVED"
+    selectedOption: "A"
+  - id: "DOUBT-MILESTONE-ORDER"
+    question: "En que orden se procesan los milestones?"
+    options:
+    - label: "Opcion A: Orden alfabetico por nombre de directorio"
+      description: null
+    - label: "Opcion B: Usar el orden de children del nodo ROOT de la exportacion\
+        \ plana"
+      description: null
+    - label: "Opcion C: El orden no importa"
+      description: null
+    answer: "El orden se determina por la lista de children del nodo padre correspondiente.\
+      \ Ademas, se agrega un campo order jerarquico a cada entidad. Capturado en R013."
+    status: "RESOLVED"
+    selectedOption: "B"
+  - id: "DOUBT-CHILDREN-NULL"
+    question: "Que significa el campo children=null en Topics?"
+    options:
+    - label: "Opcion A: Preservar children: null exactamente como esta (necesario\
+        \ para idempotencia)"
+      description: null
+    - label: "Opcion B: Omitirlo en la escritura"
+      description: null
+    answer: "Para garantizar la idempotencia lectura-escritura, se debe preservar.\
+      \ Cubierto por R003 y R010."
+    status: "RESOLVED"
+    selectedOption: "A"
+  - id: "DOUBT-FLAT-FILES"
+    question: "El modulo debe soportar tambien la lectura de los archivos planos?"
+    options:
+    - label: "Opcion A: Solo formato jerarquico de directorios"
+      description: null
+    - label: "Opcion B: Solo formato plano de archivos"
+      description: null
+    - label: "Opcion C: Ambos formatos"
+      description: null
+    answer: "El modulo trabaja unicamente con el formato jerarquico de directorios.\
+      \ Los archivos planos quedan como respaldo externo al modulo."
+    status: "RESOLVED"
+    selectedOption: "A"
+  - id: "DOUBT-QUIZZES-USER-DATA"
+    question: "Se debe modelar el archivo quizzes.json (datos de usuario)?"
+    options:
+    - label: "Opcion A: Solo plantillas de quiz (quiz templates). Los datos de usuario\
+        \ estan fuera del alcance"
+      description: null
+    - label: "Opcion B: Tambien modelar los datos de usuario"
+      description: null
+    answer: "El modulo course modela la estructura del curso, no la actividad de los\
+      \ usuarios. Los datos de usuario pertenecen a otro dominio."
+    status: "RESOLVED"
+    selectedOption: "A"
+  - id: "DOUBT-JSON-FIELD-ORDER"
+    question: "Que tan estricta debe ser la preservacion del orden de campos JSON?"
+    options:
+    - label: "Opcion A: Preservar el orden original de campos de cada objeto (maximo\
+        \ fidelidad)"
+      description: null
+    - label: "Opcion B: Usar un orden canonico consistente para todos los objetos\
+        \ del mismo tipo"
+      description: null
+    - label: "Opcion C: No hay problema con el orden de los campos"
+      description: null
+    answer: "No se requiere preservar el orden de campos dentro de los objetos JSON.\
+      \ La idempotencia se define a nivel semantico. Reflejado en R003."
+    status: "RESOLVED"
+    selectedOption: "C"

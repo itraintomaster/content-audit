@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342703"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will you prepare"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(you / prepare) dinner?"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "imageUrl": "",
+    "translation": "¿Prepararás la cena?",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295342703",
+    "answerAudioUrl": "A2.02.04.01",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342704"
+    },
+    "translation": "¿Comprarás leche en la tienda?",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "id": "67fab6d59930102295342704",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will you buy"
+          ]
+        },
+        {
+          "text": "(you / buy) some milk at the store?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.04.02",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342705"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't give"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / give) you their house!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.02.04.03",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "translation": "¡Ellos no te darán su casa!",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342705",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342706"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) early.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "id": "67fab6d59930102295342706",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ellos llegarán temprano.",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.02.04.04",
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342707"
+    },
+    "id": "67fab6d59930102295342707",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't clean"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / clean) my car!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.04.05",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "imageUrl": "",
+    "audioUrl": "",
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "translation": "¡No limpiaré mi coche!",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342708"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll wash"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(wash) the dishes.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Lavaré los platos.",
+    "answerAudioUrl": "A2.02.04.06",
+    "id": "67fab6d59930102295342708",
+    "kind": "CLOZE",
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342709"
+    },
+    "kind": "CLOZE",
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "id": "67fab6d59930102295342709",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will you give"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / give) me your pen?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.02.04.07",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "translation": "¿Me darás tu bolígrafo?",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534270a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "translation": "Ellos comprarán ropa nueva.",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "options": [
+            "'ll buy"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(buy) new clothes."
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "id": "67fab6d5993010229534270a",
+    "imageUrl": "",
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.02.04.08",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534270b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "options": [
+            "won't read"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(not / read) my book!"
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "audioUrl": "",
+    "translation": "¡No leeré mi libro!",
+    "successMessage": "",
+    "answerAudioUrl": "A2.02.04.09",
+    "id": "67fab6d5993010229534270b",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "imageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534270c"
+    },
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Me pasarás ese plato, por favor?",
+    "kind": "CLOZE",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will you hand"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(you / hand) me that plate please?"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.02.04.10",
+    "id": "67fab6d5993010229534270c",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534270d"
+    },
+    "id": "67fab6d5993010229534270d",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.02.04.11",
+    "code": "",
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "successMessage": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "translation": "No dejaré de hacer un pastel.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't fail"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / fail) to make a cake.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534270e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll complete"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(complete) the tasks today."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.02.04.12",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "translation": "Completaré las tareas hoy.",
+    "answerImageUrl": "",
+    "code": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534270e",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534270f"
+    },
+    "kind": "CLOZE",
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "translation": "Ellos no regresarán tarde a casa.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.02.04.13",
+    "id": "67fab6d5993010229534270f",
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't return"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / return) to home late.",
+          "options": null
+        }
+      ]
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342710"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¡No viajaré con ellos!",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.04.14",
+    "id": "67fab6d59930102295342710",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "won't travel"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / travel) with them!",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342711"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.04.15",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll order"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(order) tea for everyone.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "translation": "Pediré té para todos.",
+    "successMessage": "",
+    "id": "67fab6d59930102295342711",
+    "kind": "CLOZE",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342712"
+    },
+    "id": "67fab6d59930102295342712",
+    "translation": "Ellos ordenarán el dormitorio.",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "audioUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "'ll tidy"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(tidy) the bedroom."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.02.04.16",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "imageUrl": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342713"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.02.04.17",
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "successMessage": "",
+    "id": "67fab6d59930102295342713",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll provide"
+          ]
+        },
+        {
+          "text": "(provide) you some food.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "Te proporcionaré algo de comida.",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342714"
+    },
+    "id": "67fab6d59930102295342714",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.02.04.18",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "audioUrl": "",
+    "translation": "Enviaré tu carta mañana.",
+    "successMessage": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "'ll send"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(send) your letter tomorrow.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342715"
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will you arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / arrive) soon and assist me?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.04.19",
+    "id": "67fab6d59930102295342715",
+    "imageUrl": "",
+    "translation": "¿Llegarás pronto y me ayudarás?",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342716"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342716",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22d"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "imageUrl": "",
+    "translation": "¡No ayudaré con el almuerzo!",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' for Offers, Requests, Refusals, and Promises",
+    "instructions": "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't assist"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / assist) with lunch!",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A2.02.04.20",
+    "topicName": "'Will' and 'Going To'"
+  }
+]

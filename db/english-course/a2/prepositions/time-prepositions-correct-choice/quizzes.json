@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c90"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Quiero quedarme de jueves a domingo.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.02.01",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I want to stay",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "from"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(from / to / before) Thursday to Sunday.",
+          "options": null
+        }
+      ]
+    },
+    "instructions": "Elige la preposición correcta.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "successMessage": "",
+    "id": "67fab6d59930102295342c90",
+    "title": "Time Prepositions: Correct Choice",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c91"
+    },
+    "answerAudioUrl": "A2.09.02.02",
+    "translation": "Están disponibles de domingo a miércoles.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Time Prepositions: Correct Choice",
+    "instructions": "Elige la preposición correcta.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They are available from Sunday",
+          "options": null
+        },
+        {
+          "options": [
+            "to"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(from / after / to) Wednesday.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "id": "67fab6d59930102295342c91",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c92"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "La película es de 7 a 9.",
+    "successMessage": "",
+    "id": "67fab6d59930102295342c92",
+    "title": "Time Prepositions: Correct Choice",
+    "instructions": "Elige la preposición correcta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The movie is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "from"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(to / after / from) 7 to 9.",
+          "options": null
+        }
+      ]
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "imageUrl": "",
+    "code": "",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.09.02.03",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c93"
+    },
+    "kind": "CLOZE",
+    "answerAudioUrl": "A2.09.02.04",
+    "id": "67fab6d59930102295342c93",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She texted me",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "before"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(before / to / from) arriving.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige la preposición correcta.",
+    "imageUrl": "",
+    "translation": "Ella me envió un mensaje de texto antes de llegar.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Time Prepositions: Correct Choice",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c94"
+    },
+    "title": "Time Prepositions: Correct Choice",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "translation": "Los estudiantes repasaron los apuntes antes del examen.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The students reviewed the notes"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "before"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(after / to / before) the test.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342c94",
+    "kind": "CLOZE",
+    "instructions": "Elige la preposición correcta.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A2.09.02.05",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c95"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.02.06",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Time Prepositions: Correct Choice",
+    "audioUrl": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He sleeps from 11 pm",
+          "options": null
+        },
+        {
+          "options": [
+            "to"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(before / from / to) 7 am.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342c95",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Él duerme de 11 pm a 7 am.",
+    "instructions": "Elige la preposición correcta.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c96"
+    },
+    "id": "67fab6d59930102295342c96",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He works there",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "from"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(to / after / from) May to November.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "audioUrl": "",
+    "translation": "Él trabaja allí de mayo a noviembre.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "title": "Time Prepositions: Correct Choice",
+    "instructions": "Elige la preposición correcta.",
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.09.02.07",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c97"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The doctor is at the hospital from 9",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "to"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(before / after / to) 5.",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A2.09.02.08",
+    "id": "67fab6d59930102295342c97",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "El médico está en el hospital de 9 a 5.",
+    "title": "Time Prepositions: Correct Choice",
+    "instructions": "Elige la preposición correcta.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c98"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "translation": "Después de estudiar, ¡deberías tomar una siesta!",
+    "answerAudioUrl": "A2.09.02.09",
+    "id": "67fab6d59930102295342c98",
+    "code": "",
+    "instructions": "Elige la preposición correcta.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "After"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(from / to / after) studying, you should take a nap!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Time Prepositions: Correct Choice",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c99"
+    },
+    "id": "67fab6d59930102295342c99",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige la preposición correcta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She relaxed"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "before"
+          ]
+        },
+        {
+          "text": "(from / before / to) beginning.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Time Prepositions: Correct Choice",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.09.02.10",
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Ella se relajó antes de comenzar.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c9a"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Time Prepositions: Correct Choice",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "After"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(after / from / to) traveling, he rested at the hotel.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "id": "67fab6d59930102295342c9a",
+    "audioUrl": "",
+    "translation": "Después de viajar, descansó en el hotel.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige la preposición correcta.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.09.02.11",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c9b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige la preposición correcta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I play"
+        },
+        {
+          "text": "",
+          "options": [
+            "from"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(before / to / from) 9 am to 7 pm."
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.09.02.12",
+    "id": "67fab6d59930102295342c9b",
+    "translation": "Juego de 9 am a 7 pm.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "title": "Time Prepositions: Correct Choice",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c9c"
+    },
+    "title": "Time Prepositions: Correct Choice",
+    "instructions": "Elige la preposición correcta.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I enjoy a piece of cake",
+          "options": null
+        },
+        {
+          "options": [
+            "after"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(before / after / from) finishing lunch."
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.09.02.13",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342c9c",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Disfruto de un trozo de pastel después de terminar el almuerzo.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c9d"
+    },
+    "code": "",
+    "instructions": "Elige la preposición correcta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We have classes from 2",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(from / after / to) 5 pm."
+        }
+      ]
+    },
+    "id": "67fab6d59930102295342c9d",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.09.02.14",
+    "title": "Time Prepositions: Correct Choice",
+    "translation": "Tenemos clases de 2 a 5 pm.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c9e"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Time Prepositions: Correct Choice",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "audioUrl": "",
+    "translation": "Se duchó después de entrenar.",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.02.15",
+    "instructions": "Elige la preposición correcta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He took a shower"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "after"
+          ]
+        },
+        {
+          "text": "(from / after / to) training.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342c9e",
+    "kind": "CLOZE",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c9f"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.09.02.16",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342c9f",
+    "translation": "Antes de viajar, debes empacar.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Time Prepositions: Correct Choice",
+    "instructions": "Elige la preposición correcta.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "Before"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(to / from / before) traveling, you should pack.",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ca0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Compré un bocadillo antes de empezar a trabajar.",
+    "miniTheory": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.09.02.17",
+    "id": "67fab6d59930102295342ca0",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Time Prepositions: Correct Choice",
+    "instructions": "Elige la preposición correcta.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I bought a snack",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "before"
+          ]
+        },
+        {
+          "text": "(before / to / from) starting work.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "audioUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ca1"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A2.09.02.18",
+    "translation": "La sala de conciertos está ocupada de 9 p. m. a 1 a. m.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The concert hall is occupied",
+          "options": null
+        },
+        {
+          "options": [
+            "from"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(to / from / after) 9pm to 1am.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Time Prepositions: Correct Choice",
+    "imageUrl": "",
+    "id": "67fab6d59930102295342ca1",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige la preposición correcta.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ca2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Entrenamos en Roma del 2000 al 2005.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.09.02.19",
+    "miniTheory": "",
+    "code": "",
+    "title": "Time Prepositions: Correct Choice",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We trained in Rome from 2000"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(to / from / after) 2005.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342ca2",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "instructions": "Elige la preposición correcta.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "imageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ca3"
+    },
+    "kind": "CLOZE",
+    "title": "Time Prepositions: Correct Choice",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342ca3",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "imageUrl": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Spread sauce on the pasta",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "before"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "(to / before / from) eating.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "answerAudioUrl": "A2.09.02.20",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d283"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige la preposición correcta.",
+    "audioUrl": "",
+    "translation": "Unta salsa sobre la pasta antes de comer.",
+    "topicName": "Prepositions"
+  }
+]

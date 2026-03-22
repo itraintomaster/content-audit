@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534318d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Iba a leer un libro pero me quedé dormido.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "read a book but I fell asleep instead."
+        }
+      ]
+    },
+    "id": "67fab6d5993010229534318d",
+    "code": "",
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.03.06.01",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534318e"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "prepare lunch but he did not have ingredients."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Él iba a preparar el almuerzo pero no tenía ingredientes.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "answerAudioUrl": "B1.03.06.02",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534318e",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534318f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My mother",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "visit the museum, but the car broke down.",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.03.06.03",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Mi madre iba a visitar el museo, pero el coche se averió.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534318f",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343190"
+    },
+    "id": "67fab6d59930102295343190",
+    "code": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The dogs"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were going to"
+          ]
+        },
+        {
+          "text": "play outside but the yard was too muddy.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.03.06.04",
+    "translation": "Los perros iban a jugar afuera, pero el patio estaba demasiado embarrado.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343191"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "text": "sell the bike but nobody offered enough money.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "id": "67fab6d59930102295343191",
+    "audioUrl": "",
+    "translation": "Ella iba a vender la bicicleta, pero nadie ofreció suficiente dinero.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.03.06.05",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "imageUrl": "",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343192"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "travel abroad, but we did not get the visas.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343192",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Íbamos a viajar al extranjero, pero no obtuvimos las visas.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.03.06.06",
+    "code": "",
+    "kind": "CLOZE",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343193"
+    },
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.03.06.07",
+    "id": "67fab6d59930102295343193",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Using 'was/were going to' to express future in the past",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Robert",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "was going to"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "join us at the cinema, but he felt sick.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "translation": "Robert iba a unirse a nosotros en el cine, pero se sintió enfermo.",
+    "successMessage": "",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343194"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "options": [
+            "was going to"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "say something but she remained quiet.",
+          "options": null
+        }
+      ]
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343194",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "imageUrl": "",
+    "translation": "Ella iba a decir algo pero se quedó callada.",
+    "answerAudioUrl": "B1.03.06.08",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343195"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teachers",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "protest this morning but the issue was resolved.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "translation": "Los profesores iban a protestar esta mañana, pero el problema se resolvió.",
+    "id": "67fab6d59930102295343195",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "answerAudioUrl": "B1.03.06.09",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343196"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My sister",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "was going to"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "sing a song at the concert, but she lost her voice.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Mi hermana iba a cantar una canción en el concierto, pero perdió la voz.",
+    "answerAudioUrl": "B1.03.06.10",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343196",
+    "kind": "CLOZE",
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343197"
+    },
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.03.06.11",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "id": "67fab6d59930102295343197",
+    "kind": "CLOZE",
+    "translation": "Ellos iban a ver ese programa de televisión ayer, pero Mike estaba ocupado.",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were going to"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "watch that TV show yesterday, but Mike was busy."
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343198"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.03.06.12",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343198",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "study French but I decided to watch a film.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Iba a estudiar francés, pero decidí ver una película.",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343199"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.03.06.13",
+    "id": "67fab6d59930102295343199",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Él iba a cenar cereal, pero no había leche.",
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "eat cereal for dinner but there was no milk.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534319a"
+    },
+    "answerAudioUrl": "B1.03.06.14",
+    "id": "67fab6d5993010229534319a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "travel to Italy but the train was delayed.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "translation": "Íbamos a viajar a Italia, pero el tren se retrasó.",
+    "title": "Using 'was/were going to' to express future in the past",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534319b"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "imageUrl": "",
+    "translation": "Ella iba a comprar una computadora, pero gastó todo su dinero.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "was going to"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "buy a computer but she spent all her money.",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.03.06.15",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "successMessage": "",
+    "id": "67fab6d5993010229534319b",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534319c"
+    },
+    "answerAudioUrl": "B1.03.06.16",
+    "id": "67fab6d5993010229534319c",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "options": [
+            "was going to"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "attend the history seminar, but it was cancelled.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "audioUrl": "",
+    "translation": "Iba a asistir al seminario de historia, pero fue cancelado.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534319d"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "successMessage": "",
+    "code": "",
+    "title": "Using 'was/were going to' to express future in the past",
+    "audioUrl": "",
+    "translation": "Ellos iban a conducir hasta la casa de mis padres, pero no tenían gasolina.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534319d",
+    "answerAudioUrl": "B1.03.06.17",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "options": [
+            "were going to"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "drive to my parent's house but they had no petrol.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534319e"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "open the window but then it started raining.",
+          "options": null
+        }
+      ]
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "translation": "Ella iba a abrir la ventana, pero entonces empezó a llover.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.03.06.18",
+    "id": "67fab6d5993010229534319e",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534319f"
+    },
+    "audioUrl": "",
+    "translation": "¡Te iba a enviar un mensaje de texto, pero me llamaste!",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "successMessage": "",
+    "answerAudioUrl": "B1.03.06.19",
+    "id": "67fab6d5993010229534319f",
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "text you but you phoned me!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431a0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The picture",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "break but she saved it.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.03.06.20",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d3"
+    },
+    "title": "Using 'was/were going to' to express future in the past",
+    "theoryId": "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+    "audioUrl": "",
+    "translation": "La pintura se iba a romper, pero ella la salvó.",
+    "successMessage": "",
+    "id": "67fab6d599301022953431a0",
+    "topicName": "Past Continuous and Future in the Past"
+  }
+]

@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343929"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343929",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d340"
+    },
+    "instructions": "Crea relative clauses con 'when'. Empieza con 'that was the …'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Ese fue el año en que me gradué de la escuela secundaria.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.12.When_in_Relative_Clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "year / I graduated high school",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "That was the year when I graduated high school."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Relative Clauses with 'When': Expressing Time",
+    "answerAudioUrl": "B1.12.09.01",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534392a"
+    },
+    "title": "Relative Clauses with 'When': Expressing Time",
+    "audioUrl": "",
+    "translation": "Ese fue el mes en que la empresa lanzó su producto.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d340"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.12.09.02",
+    "id": "67fab6d5993010229534392a",
+    "code": "",
+    "miniTheory": "",
+    "instructions": "Crea relative clauses con 'when'. Empieza con 'that was the …'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "month / the company launched its product",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the month when the company launched its product."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.12.When_in_Relative_Clauses",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534392b"
+    },
+    "theoryId": "b1.12.When_in_Relative_Clauses",
+    "imageUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d340"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clauses with 'When': Expressing Time",
+    "instructions": "Crea relative clauses con 'when'. Empieza con 'that was the …'.",
+    "audioUrl": "",
+    "id": "67fab6d5993010229534392b",
+    "answerAudioUrl": "B1.12.09.03",
+    "answerImageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "day / the concert took place",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the day when the concert took place."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ese fue el día en que se llevó a cabo el concierto.",
+    "kind": "CLOZE",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534392c"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.12.09.04",
+    "id": "67fab6d5993010229534392c",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d340"
+    },
+    "theoryId": "b1.12.When_in_Relative_Clauses",
+    "translation": "Esa fue la semana en que terminó su proyecto.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea relative clauses con 'when'. Empieza con 'that was the …'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "week / he finished his project",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the week when he finished his project."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "title": "Relative Clauses with 'When': Expressing Time",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534392d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ese fue el momento en que se fue la luz.",
+    "answerImageUrl": "",
+    "code": "",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clauses with 'When': Expressing Time",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "time / the power went out",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the time when the power went out."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "b1.12.When_in_Relative_Clauses",
+    "id": "67fab6d5993010229534392d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d340"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "instructions": "Crea relative clauses con 'when'. Empieza con 'that was the …'.",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.09.05",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534392e"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d340"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clauses with 'When': Expressing Time",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "moment / she understood",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the moment when she understood."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerAudioUrl": "B1.12.09.06",
+    "translation": "Ese fue el momento en que ella entendió.",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "theoryId": "b1.12.When_in_Relative_Clauses",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534392e",
+    "instructions": "Crea relative clauses con 'when'. Empieza con 'that was the …'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534392f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea relative clauses con 'when'. Empieza con 'that was the …'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "year / they bought their first car",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the year when they bought their first car."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.12.When_in_Relative_Clauses",
+    "imageUrl": "",
+    "translation": "Ese fue el año en que compraron su primer coche.",
+    "id": "67fab6d5993010229534392f",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d340"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.12.09.07",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clauses with 'When': Expressing Time",
+    "answerImageUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343930"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "instructions": "Crea relative clauses con 'when'. Empieza con 'that was the …'.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d340"
+    },
+    "title": "Relative Clauses with 'When': Expressing Time",
+    "translation": "Ese fue el mes en que florecieron las flores.",
+    "id": "67fab6d59930102295343930",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "month / the flowers bloomed"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the month when the flowers bloomed."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.12.When_in_Relative_Clauses",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.12.09.08",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343931"
+    },
+    "id": "67fab6d59930102295343931",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d340"
+    },
+    "title": "Relative Clauses with 'When': Expressing Time",
+    "instructions": "Crea relative clauses con 'when'. Empieza con 'that was the …'.",
+    "audioUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "day / he received the award",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the day when he received the award."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.12.When_in_Relative_Clauses",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.12.09.09",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ese fue el día en que recibió el premio.",
+    "miniTheory": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343932"
+    },
+    "theoryId": "b1.12.When_in_Relative_Clauses",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "instructions": "Crea relative clauses con 'when'. Empieza con 'that was the …'.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d340"
+    },
+    "translation": "Ese fue el momento en que el pájaro se fue volando.",
+    "id": "67fab6d59930102295343932",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clauses with 'When': Expressing Time",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "time / the bird flew away",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the time when the bird flew away."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.12.09.10",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Relative clauses"
+  }
+]

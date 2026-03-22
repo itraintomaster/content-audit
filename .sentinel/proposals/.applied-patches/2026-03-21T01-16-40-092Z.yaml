@@ -1,0 +1,21 @@
+code: __proposal__
+description: Remove pre-computed tokenCount from AuditableQuiz and NlpTokenizer dependency
+  from CourseToAuditableMapper. Token counting moves to analysis time in SentenceLengthAnalyzer.
+modules:
+- name: audit-domain
+  models:
+  - name: AuditableQuiz
+    type: record
+    fields:
+    - name: tokenCount
+      type: int
+      _change: delete
+    _change: modify
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: CourseToAuditableMapper
+    types:
+    - Component
+    _change: modify
+  _change: modify

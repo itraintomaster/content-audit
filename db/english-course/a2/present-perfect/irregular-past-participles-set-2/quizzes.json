@@ -1,0 +1,1394 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342864"
+    },
+    "id": "67fab6d59930102295342864",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.04.05.01",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "El coro ha tocado la música.",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The choir"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "have played"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(play) the music."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342865"
+    },
+    "code": "",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342865",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "Has Peter swum"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(Peter / swim) 20 laps?"
+        }
+      ]
+    },
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "answerAudioUrl": "A2.04.05.02",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "¿Ha nadado Peter 20 vueltas?",
+    "answerImageUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342866"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "translation": "La televisión ha fallado.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342866",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.04.05.03",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The TV",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has failed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(fail) .",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342867"
+    },
+    "kind": "CLOZE",
+    "title": "Irregular Past Participles Set 2",
+    "imageUrl": "",
+    "code": "",
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "successMessage": "",
+    "answerAudioUrl": "A2.04.05.04",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The glass",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has shattered"
+          ]
+        },
+        {
+          "text": "(shatter) into pieces.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "id": "67fab6d59930102295342867",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "El vaso se ha roto en pedazos.",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342868"
+    },
+    "translation": "¿Ha visto Mary un pájaro?",
+    "answerAudioUrl": "A2.04.05.05",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Has Mary seen"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(Mary / see) a bird?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342868",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342869"
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Se ha convertido en un piloto hábil.",
+    "successMessage": "",
+    "id": "67fab6d59930102295342869",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "answerImageUrl": "",
+    "code": "",
+    "title": "Irregular Past Participles Set 2",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has turned"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(turn) into a skillful pilot.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerAudioUrl": "A2.04.05.06",
+    "kind": "CLOZE",
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "miniTheory": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534286a"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Have they remembered"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(they / remember) about the meeting?"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "successMessage": "",
+    "answerAudioUrl": "A2.04.05.07",
+    "id": "67fab6d5993010229534286a",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "imageUrl": "",
+    "translation": "¿Se han acordado de la reunión?",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "miniTheory": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534286b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Ha tomado mucho tiempo.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "has taken"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(take) a lot of time.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534286b",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.04.05.08",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "miniTheory": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534286c"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "has not cut/hasn't cut"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(not / cut) himself."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Él no se ha cortado.",
+    "answerAudioUrl": "A2.04.05.09",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "id": "67fab6d5993010229534286c",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534286d"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The children",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "have not done/haven't done"
+          ]
+        },
+        {
+          "text": "(not / do) their homework.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "translation": "Los niños no han hecho sus deberes.",
+    "answerAudioUrl": "A2.04.05.10",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "successMessage": "",
+    "id": "67fab6d5993010229534286d",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534286e"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.04.05.11",
+    "translation": "No hemos dejado nuestras llaves.",
+    "miniTheory": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "imageUrl": "",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "successMessage": "",
+    "id": "67fab6d5993010229534286e",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "options": [
+            "have not left/haven't left"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / leave) our keys.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534286f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.04.05.12",
+    "id": "67fab6d5993010229534286f",
+    "answerImageUrl": "",
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has not known/hasn't known"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / know) anything.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Ella no ha sabido nada.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342870"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.04.05.13",
+    "id": "67fab6d59930102295342870",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ella no ha golpeado al perro.",
+    "code": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "options": [
+            "has not hit/hasn't hit"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / hit) the dog.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342871"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "translation": "¿Ha cenado él?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342871",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Has he eaten"
+          ]
+        },
+        {
+          "text": "(he / eat) dinner?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.04.05.14",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "audioUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342872"
+    },
+    "imageUrl": "",
+    "translation": "¿Ha atrapado ella la mariposa?",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "answerAudioUrl": "A2.04.05.15",
+    "code": "",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Has she caught"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(she / catch) the butterfly?"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342872",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342873"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.04.05.16",
+    "kind": "CLOZE",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has not written/hasn't written"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / write) the letter.",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295342873",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "translation": "Él no ha escrito la carta.",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342874"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "imageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "Have they eaten"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "(they / eat) yet?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.04.05.17",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342874",
+    "translation": "¿Ya han comido?",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342875"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295342875",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "audioUrl": "",
+    "translation": "¿Ha aprendido Richard historia?",
+    "answerAudioUrl": "A2.04.05.18",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Has Richard learnt"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(Richard / learn) history?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "title": "Irregular Past Participles Set 2",
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342876"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "answerAudioUrl": "A2.04.05.19",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Have we used"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we / use) your tablet?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Hemos usado tu tableta?",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342876",
+    "code": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342877"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.04.05.20",
+    "imageUrl": "",
+    "translation": "Ella se ha ido de casa.",
+    "successMessage": "",
+    "title": "Irregular Past Participles Set 2",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has left"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(leave) home.",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342877",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342878"
+    },
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "No he vendido mi coche.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.04.05.21",
+    "id": "67fab6d59930102295342878",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "have not sold/haven't sold"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / sell) my car.",
+          "options": null
+        }
+      ]
+    },
+    "title": "Irregular Past Participles Set 2",
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342879"
+    },
+    "translation": "Robert ha montado su moto.",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.04.05.22",
+    "id": "67fab6d59930102295342879",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Irregular Past Participles Set 2",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Robert",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "has ridden"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(ride) his motorbike.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "answerImageUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534287a"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has not sat/hasn't sat"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / sit) down.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Él no se ha sentado.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "id": "67fab6d5993010229534287a",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "title": "Irregular Past Participles Set 2",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.04.05.23",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534287b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d240"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "answerImageUrl": "",
+    "title": "Irregular Past Participles Set 2",
+    "translation": "Ellos no han oído nada.",
+    "successMessage": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "have not heard/haven't heard"
+          ]
+        },
+        {
+          "text": "(not / hear) anything.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.04.Past_Participle_With_Irregular_Verbs",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.04.05.24",
+    "id": "67fab6d5993010229534287b",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present Perfect"
+  }
+]

@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534256f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She does her homework after school. (always)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She always does her homework after school."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A1.11.04.01",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "imageUrl": "",
+    "translation": "Ella siempre hace sus deberes después de la escuela.",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534256f",
+    "code": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "title": "Using adverbs of frequency",
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342570"
+    },
+    "answerAudioUrl": "A1.11.04.02",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using adverbs of frequency",
+    "translation": "Él nunca está triste.",
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He is sad. (never)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He is never sad."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "id": "67fab6d59930102295342570",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342571"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using adverbs of frequency",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I watch TV in the evening. (sometimes)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I sometimes watch TV in the evening."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342571",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.04.03",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "audioUrl": "",
+    "translation": "A veces veo televisión por la noche.",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342572"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Normalmente comemos tostadas y mermelada para el desayuno.",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using adverbs of frequency",
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342572",
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We eat toast and jam for breakfast. (usually)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We usually eat toast and jam for breakfast."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerAudioUrl": "A1.11.04.04",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342573"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is very nice to them. (always)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She is always very nice to them."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342573",
+    "title": "Using adverbs of frequency",
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.11.04.05",
+    "translation": "Ella siempre es muy amable con ellos.",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "successMessage": "",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342574"
+    },
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "audioUrl": "",
+    "translation": "Nunca veo películas.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using adverbs of frequency",
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I watch films. (never)",
+          "options": null
+        },
+        {
+          "options": [
+            "I never watch films."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "answerAudioUrl": "A1.11.04.06",
+    "id": "67fab6d59930102295342574",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342575"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "answerAudioUrl": "A1.11.04.07",
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using adverbs of frequency",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "He drinks juice in the morning. (usually)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He usually drinks juice in the morning."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "id": "67fab6d59930102295342575",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "translation": "Normalmente bebe jugo por la mañana.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342576"
+    },
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "answerAudioUrl": "A1.11.04.08",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "translation": "Ella nunca come pescado.",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342576",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using adverbs of frequency",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She eats fish. (never)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She never eats fish."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "code": "",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342577"
+    },
+    "audioUrl": "",
+    "translation": "Ella a veces está aburrida.",
+    "answerAudioUrl": "A1.11.04.09",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using adverbs of frequency",
+    "imageUrl": "",
+    "id": "67fab6d59930102295342577",
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is bored. (sometimes)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She is sometimes bored."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "miniTheory": "",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342578"
+    },
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They take the bus to school. (usually)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They usually take the bus to school."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.11.04.10",
+    "id": "67fab6d59930102295342578",
+    "kind": "CLOZE",
+    "title": "Using adverbs of frequency",
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "translation": "Normalmente toman el autobús a la escuela.",
+    "miniTheory": "",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342579"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.11.04.11",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "translation": "Él siempre está emocionado.",
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is excited. (always)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He is always excited."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342579",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using adverbs of frequency",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534257a"
+    },
+    "translation": "Los adultos a veces están cansados.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.11.04.12",
+    "title": "Using adverbs of frequency",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The adults are tired. (sometimes)",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "The adults are sometimes tired."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534257a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534257b"
+    },
+    "title": "Using adverbs of frequency",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I go to bed late. (never)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I never go to bed late."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "imageUrl": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "translation": "Nunca me acuesto tarde.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "code": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.11.04.13",
+    "id": "67fab6d5993010229534257b",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534257c"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using adverbs of frequency",
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "id": "67fab6d5993010229534257c",
+    "code": "",
+    "imageUrl": "",
+    "translation": "Mary normalmente está en el gimnasio.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.11.04.14",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary is at the gym. (usually)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary is usually at the gym."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534257d"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.04.15",
+    "id": "67fab6d5993010229534257d",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "translation": "Siempre comemos cereal por la mañana.",
+    "miniTheory": "",
+    "code": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We eat cereal in the morning. (always)",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "We always eat cereal in the morning."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "title": "Using adverbs of frequency",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534257e"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Él nunca llega temprano.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "title": "Using adverbs of frequency",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is early. (never)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He is never early."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "successMessage": "",
+    "answerAudioUrl": "A1.11.04.16",
+    "id": "67fab6d5993010229534257e",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534257f"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "audioUrl": "",
+    "id": "67fab6d5993010229534257f",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They cycle to the park. (sometimes)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They sometimes cycle to the park."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "A veces van en bicicleta al parque.",
+    "successMessage": "",
+    "miniTheory": "",
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.04.17",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using adverbs of frequency",
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342580"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I am in the office. (usually)",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "I am usually in the office."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "translation": "Normalmente estoy en la oficina.",
+    "successMessage": "",
+    "id": "67fab6d59930102295342580",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using adverbs of frequency",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.11.04.18",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342581"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342581",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She goes to bed early. (always)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She always goes to bed early."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ella siempre se acuesta temprano.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using adverbs of frequency",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.11.04.19",
+    "topicName": "Adjetives and Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342582"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ec"
+    },
+    "audioUrl": "",
+    "theoryId": "a1.11.Adverbs_of_Frequency",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.11.04.20",
+    "id": "67fab6d59930102295342582",
+    "title": "Using adverbs of frequency",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I am hot in my room. (sometimes)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I am sometimes hot in my room."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "A veces tengo calor en mi habitación.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+    "topicName": "Adjetives and Adverbs"
+  }
+]

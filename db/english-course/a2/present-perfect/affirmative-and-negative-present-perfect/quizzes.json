@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342810"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "haven't received|have not received"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / receive) the package.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "translation": "No hemos recibido el paquete.",
+    "answerAudioUrl": "A2.04.01.01",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342810",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342811"
+    },
+    "answerAudioUrl": "A2.04.01.02",
+    "id": "67fab6d59930102295342811",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "title": "Affirmative and Negative Present Perfect",
+    "translation": "Ellos no me han enviado mensajes de texto.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "haven't texted|have not texted"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "(not / text) me.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342812"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "have cycled"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(cycle) to the shop.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "imageUrl": "",
+    "translation": "Tú has ido en bicicleta a la tienda.",
+    "answerAudioUrl": "A2.04.01.03",
+    "id": "67fab6d59930102295342812",
+    "code": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342813"
+    },
+    "id": "67fab6d59930102295342813",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "translation": "Hemos alquilado una película.",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "options": [
+            "have rented"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(rent) a movie.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.04.01.04",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342814"
+    },
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.04.01.05",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "kind": "CLOZE",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "hasn't painted|has not painted"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(not / paint) the wall."
+        }
+      ]
+    },
+    "translation": "Ella no ha pintado la pared.",
+    "successMessage": "",
+    "id": "67fab6d59930102295342814",
+    "answerImageUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342815"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hasn't rained|has not rained"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / rain).",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.04.01.06",
+    "id": "67fab6d59930102295342815",
+    "code": "",
+    "audioUrl": "",
+    "translation": "No ha llovido.",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342816"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "answerAudioUrl": "A2.04.01.07",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "miniTheory": "",
+    "translation": "Ella ha cerrado la puerta.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342816",
+    "kind": "CLOZE",
+    "title": "Affirmative and Negative Present Perfect",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has closed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(close) the door.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "imageUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342817"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "haven't started|have not started"
+          ]
+        },
+        {
+          "text": "(not / start).",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.04.01.08",
+    "id": "67fab6d59930102295342817",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "imageUrl": "",
+    "translation": "No he empezado.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342818"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "translation": "Ella no ha cogido el tren.",
+    "title": "Affirmative and Negative Present Perfect",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.04.01.09",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342818",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hasn't caught|has not caught"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / catch) the train.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342819"
+    },
+    "id": "67fab6d59930102295342819",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.04.01.10",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "audioUrl": "",
+    "translation": "Él no ha ordenado el dormitorio.",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hasn't tidied|has not tidied"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / tidy) the bedroom.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534281a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534281a",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.04.01.11",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "options": [
+            "have watched"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(watch) TV.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "imageUrl": "",
+    "translation": "He visto la televisión.",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534281b"
+    },
+    "translation": "Ha brillado.",
+    "id": "67fab6d5993010229534281b",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.04.01.12",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "has shone"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(shine).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "title": "Affirmative and Negative Present Perfect",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "audioUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534281c"
+    },
+    "id": "67fab6d5993010229534281c",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "translation": "Ellos han discutido.",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.04.01.13",
+    "code": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They"
+        },
+        {
+          "options": [
+            "have argued"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(argue).",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534281d"
+    },
+    "id": "67fab6d5993010229534281d",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hasn't studied|has not studied"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(not / study)."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Él no ha estudiado.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "imageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "answerAudioUrl": "A2.04.01.14",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534281e"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "imageUrl": "",
+    "translation": "No hemos olvidado.",
+    "answerAudioUrl": "A2.04.01.15",
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "haven't forgotten|have not forgotten"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / forget).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534281e",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534281f"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.04.01.16",
+    "id": "67fab6d5993010229534281f",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "have assisted"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(assist) a lot.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "Has ayudado mucho.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342820"
+    },
+    "imageUrl": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "have cried"
+          ]
+        },
+        {
+          "text": "(cry).",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342820",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "translation": "He llorado.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "answerAudioUrl": "A2.04.01.17",
+    "code": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342821"
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "imageUrl": "",
+    "translation": "Ellos no han leído el libro.",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.04.01.18",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342821",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "haven't read|have not read"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / read) the book.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342822"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342822",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "translation": "No has llamado a tu padre.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "haven't phoned|have not phoned"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / phone) your father.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.04.01.19",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Forma oraciones en Present Perfect.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Present Perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342823"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Él ha visto la televisión.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Affirmative and Negative Present Perfect",
+    "instructions": "Forma oraciones en Present Perfect.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "has watched"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(watch) TV.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.04.01.20",
+    "id": "67fab6d59930102295342823",
+    "audioUrl": "",
+    "theoryId": "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d23c"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "Present Perfect"
+  }
+]

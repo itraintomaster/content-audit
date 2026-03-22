@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343129"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "People",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "cooked"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(cook) their food on fires back then.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "translation": "La gente cocinaba su comida en el fuego en aquel entonces.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre past simple o present perfect.",
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.02.11.01",
+    "id": "67fab6d59930102295343129",
+    "kind": "CLOZE",
+    "title": "Choose: Present Perfect or Past Simple?",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534312a"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre past simple o present perfect.",
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "id": "67fab6d5993010229534312a",
+    "kind": "CLOZE",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did they arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / arrive)?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.02.11.02",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choose: Present Perfect or Past Simple?",
+    "translation": "¿Cuándo llegaron?",
+    "successMessage": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534312b"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "title": "Choose: Present Perfect or Past Simple?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534312b",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre past simple o present perfect.",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.02.11.03",
+    "audioUrl": "",
+    "translation": "¿Cuánto tiempo se han quedado aquí?",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How long",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "have they stayed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / stay) here? (They are here now.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "miniTheory": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534312c"
+    },
+    "kind": "CLOZE",
+    "translation": "¿A qué hora llegó él?",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534312c",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choose: Present Perfect or Past Simple?",
+    "imageUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre past simple o present perfect.",
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What time",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did he arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / arrive)?",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.02.11.04",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534312d"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "He odiado el deporte durante años.",
+    "code": "",
+    "title": "Choose: Present Perfect or Past Simple?",
+    "instructions": "Elige entre past simple o present perfect.",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve hated|have hated"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(hate) sport for ages. (I hate sport now.)",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.02.11.05",
+    "id": "67fab6d5993010229534312d",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534312e"
+    },
+    "id": "67fab6d5993010229534312e",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choose: Present Perfect or Past Simple?",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre past simple o present perfect.",
+    "answerImageUrl": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "lived"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(live) here when she was a child.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "Ella vivió aquí cuando era niña.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.02.11.06",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "imageUrl": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534312f"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d5993010229534312f",
+    "instructions": "Elige entre past simple o present perfect.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.02.11.07",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "translation": "¿Cuándo estudiaste alemán?",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choose: Present Perfect or Past Simple?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did you study"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / study) German?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343130"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "How long",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has he been"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / be) a doctor? (He is a doctor now.)",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.02.11.08",
+    "id": "67fab6d59930102295343130",
+    "title": "Choose: Present Perfect or Past Simple?",
+    "instructions": "Elige entre past simple o present perfect.",
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "audioUrl": "",
+    "translation": "¿Cuánto tiempo ha sido médico?",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343131"
+    },
+    "answerAudioUrl": "B1.02.11.09",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choose: Present Perfect or Past Simple?",
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "audioUrl": "",
+    "translation": "¿Cuánto tiempo has estudiado inglés?",
+    "id": "67fab6d59930102295343131",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Elige entre past simple o present perfect.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How long",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "have you studied"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / study) English? (You study English now.)",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343132"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The lesson",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) boring yesterday.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "La lección fue aburrida ayer.",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choose: Present Perfect or Past Simple?",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343132",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.02.11.10",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "instructions": "Elige entre past simple o present perfect.",
+    "answerImageUrl": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343133"
+    },
+    "id": "67fab6d59930102295343133",
+    "audioUrl": "",
+    "imageUrl": "",
+    "translation": "Han conducido ese coche durante años.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre past simple o present perfect.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "successMessage": "",
+    "answerAudioUrl": "B1.02.11.11",
+    "code": "",
+    "title": "Choose: Present Perfect or Past Simple?",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve driven|have driven"
+          ]
+        },
+        {
+          "text": "(drive) that car for years. (They own the car now.)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343134"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choose: Present Perfect or Past Simple?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "miniTheory": "",
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "imageUrl": "",
+    "translation": "Lo conocemos desde hace tres años.",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre past simple o present perfect.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "'ve known|have known"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "(know) him for three years. (We know him now.)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "id": "67fab6d59930102295343134",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.02.11.12",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343135"
+    },
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre past simple o present perfect.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.02.11.13",
+    "id": "67fab6d59930102295343135",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I"
+        },
+        {
+          "text": "",
+          "options": [
+            "visited"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(visit) London in 2010.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "imageUrl": "",
+    "translation": "Visité Londres en 2010.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choose: Present Perfect or Past Simple?",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343136"
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "¿Cuándo estuviste en Roma?",
+    "id": "67fab6d59930102295343136",
+    "code": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.02.11.14",
+    "title": "Choose: Present Perfect or Past Simple?",
+    "audioUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) you in Rome?",
+          "options": null
+        }
+      ]
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige entre past simple o present perfect.",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343137"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "instructions": "Elige entre past simple o present perfect.",
+    "id": "67fab6d59930102295343137",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choose: Present Perfect or Past Simple?",
+    "translation": "¿Cuánto tiempo has tenido ese perro?",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How long",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "have you had"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / have) that dog? (You have that dog now.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.02.11.15",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343138"
+    },
+    "instructions": "Elige entre past simple o present perfect.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What time",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) the meeting?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343138",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿A qué hora fue la reunión?",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.02.11.16",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "title": "Choose: Present Perfect or Past Simple?",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343139"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.02.11.17",
+    "instructions": "Elige entre past simple o present perfect.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How long",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has she felt"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / feel) bad? (She feels bad now.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343139",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choose: Present Perfect or Past Simple?",
+    "audioUrl": "",
+    "translation": "¿Cuánto tiempo se ha sentido mal?",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534313a"
+    },
+    "id": "67fab6d5993010229534313a",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "instructions": "Elige entre past simple o present perfect.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.02.11.18",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choose: Present Perfect or Past Simple?",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve been|have been"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) in the office since 2pm. (I'm in the office now.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "translation": "He estado en la oficina desde las 2 p.m.",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534313b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "smoked"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(smoke) a lot when I was younger.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Fumaba mucho cuando era más joven.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "kind": "CLOZE",
+    "instructions": "Elige entre past simple o present perfect.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534313b",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choose: Present Perfect or Past Simple?",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.02.11.19",
+    "code": "",
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534313c"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choose: Present Perfect or Past Simple?",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.02.11.20",
+    "id": "67fab6d5993010229534313c",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "instructions": "Elige entre past simple o present perfect.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s known|has known"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(know) him since 2012. (She knows him now.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.02.Present_Perfect_or_Past_Simple_",
+    "translation": "Ella lo conoce desde 2012.",
+    "topicName": "Present perfect"
+  }
+]

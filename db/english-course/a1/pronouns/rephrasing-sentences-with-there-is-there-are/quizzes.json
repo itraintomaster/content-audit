@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342407"
+    },
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A post office is near the school.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There is a post office near the school."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "translation": "Hay una oficina de correos cerca de la escuela.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.08.03.01",
+    "id": "67fab6d59930102295342407",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "answerImageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342408"
+    },
+    "id": "67fab6d59930102295342408",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.08.03.02",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A woman is inside.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "There is a woman inside."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "translation": "Hay una mujer dentro.",
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342409"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Two supermarkets are in my city.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There are two supermarkets in my city."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "translation": "Hay dos supermercados en mi ciudad.",
+    "code": "",
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.08.03.03",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "id": "67fab6d59930102295342409",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534240a"
+    },
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "id": "67fab6d5993010229534240a",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Some cookies are in the jar.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "There are some cookies in the jar."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A1.08.03.04",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Hay algunas galletas en el frasco.",
+    "answerImageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534240b"
+    },
+    "id": "67fab6d5993010229534240b",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A1.08.03.05",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "imageUrl": "",
+    "translation": "Hay tres vasos en el armario.",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Three glasses are in the cupboard.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There are three glasses in the cupboard."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534240c"
+    },
+    "translation": "Hay un restaurante de comida india para llevar cerca de aquí.",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "An Indian takeaway is near here.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There is an Indian takeaway near here."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "answerAudioUrl": "A1.08.03.06",
+    "id": "67fab6d5993010229534240c",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534240d"
+    },
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.08.03.07",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A fantastic bakery is around the corner.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There is a fantastic bakery around the corner."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "id": "67fab6d5993010229534240d",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "translation": "Hay una panadería fantástica a la vuelta de la esquina.",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534240e"
+    },
+    "translation": "¿Hay agua en la botella?",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Is any water in the bottle?",
+          "options": null
+        },
+        {
+          "options": [
+            "Is there any water in the bottle?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A1.08.03.08",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534240e",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "audioUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534240f"
+    },
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.08.03.09",
+    "id": "67fab6d5993010229534240f",
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "translation": "Hay dos perros en la casa.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Two dogs are in the house.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "There are two dogs in the house."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342410"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342410",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "translation": "Hay un coche grande en nuestra calle.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A big car is in our street.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There is a big car in our street."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A1.08.03.10",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "audioUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342411"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.08.03.11",
+    "translation": "¿Hay una tienda de comestibles cerca de aquí?",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Is a grocery store near here?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is there a grocery store near here?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "id": "67fab6d59930102295342411",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342412"
+    },
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "audioUrl": "",
+    "translation": "¿Hay pintura en la pared?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342412",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.08.03.12",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Is paint on the wall?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is there paint on the wall?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342413"
+    },
+    "answerImageUrl": "",
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Are bananas in your lunchbox?"
+        },
+        {
+          "text": "",
+          "options": [
+            "Are there bananas in your lunchbox?"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "¿Hay plátanos en tu lonchera?",
+    "miniTheory": "",
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "audioUrl": "",
+    "imageUrl": "",
+    "id": "67fab6d59930102295342413",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A1.08.03.13",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342414"
+    },
+    "id": "67fab6d59930102295342414",
+    "kind": "CLOZE",
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "audioUrl": "",
+    "translation": "¿Hay dulces en la sala de estar?",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Are any sweets in the living room?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are there any sweets in the living room?"
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "answerAudioUrl": "A1.08.03.14",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342415"
+    },
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "translation": "Hay té en la tetera.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.08.03.15",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Some tea is in the pot.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There is some tea in the pot."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342415",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342416"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A pen is in my pocket.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There is a pen in my pocket."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "translation": "Hay un bolígrafo en mi bolsillo.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342416",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A1.08.03.16",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342417"
+    },
+    "translation": "Hay una piscina cerca de mi piso.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342417",
+    "code": "",
+    "miniTheory": "",
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A pool is near my flat.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There is a pool near my flat."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.08.03.17",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342418"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.08.03.18",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342418",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A plate is on the counter.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There is a plate on the counter."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Hay un plato en la encimera.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342419"
+    },
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "translation": "Hay muchos museos en París.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A lot of museums are in Paris.",
+          "options": null
+        },
+        {
+          "options": [
+            "There are a lot of museums in Paris."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A1.08.03.19",
+    "id": "67fab6d59930102295342419",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534241a"
+    },
+    "id": "67fab6d5993010229534241a",
+    "instructions": "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A barber shop is near the market.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There is a barber shop near the market."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "imageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.08.5_There_is_and_there_are",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d4"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.08.03.20",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Rephrasing Sentences with 'There is / There are'",
+    "translation": "Hay una barbería cerca del mercado.",
+    "miniTheory": "",
+    "topicName": "Pronouns"
+  }
+]

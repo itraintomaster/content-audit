@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424cf"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953424cf",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "instructions": "Completa con la preposición correcta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Could you pay"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "for"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the lunch?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Podrías pagar el almuerzo?",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions",
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "successMessage": "",
+    "answerAudioUrl": "A1.09.11.01",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424d0"
+    },
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "title": "Verbs and Their Prepositions",
+    "instructions": "Completa con la preposición correcta.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We listened",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "to"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "a story all night.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "id": "67fab6d599301022953424d0",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Escuchamos una historia toda la noche.",
+    "answerAudioUrl": "A1.09.11.02",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424d1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "id": "67fab6d599301022953424d1",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please wait",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "for"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "us.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Por favor espéranos.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.09.11.03",
+    "code": "",
+    "instructions": "Completa con la preposición correcta.",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424d2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions",
+    "miniTheory": "",
+    "id": "67fab6d599301022953424d2",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We talked",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the solutions.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "translation": "Hablamos sobre las soluciones.",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con la preposición correcta.",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.09.11.04",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424d3"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "translation": "Ella siempre se preocupa por su hija.",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She always worries"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "her daughter.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A1.09.11.05",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con la preposición correcta.",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953424d3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "title": "Verbs and Their Prepositions",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424d4"
+    },
+    "answerAudioUrl": "A1.09.11.06",
+    "code": "",
+    "instructions": "Completa con la preposición correcta.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Let's wait",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "for"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "John.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Esperemos a John.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions",
+    "imageUrl": "",
+    "id": "67fab6d599301022953424d4",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424d5"
+    },
+    "id": "67fab6d599301022953424d5",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.09.11.07",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con la preposición correcta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Let's talk to mum",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "a new bike.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Hablemos con mamá sobre una bicicleta nueva.",
+    "successMessage": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424d6"
+    },
+    "id": "67fab6d599301022953424d6",
+    "code": "",
+    "title": "Verbs and Their Prepositions",
+    "instructions": "Completa con la preposición correcta.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He gave some flowers",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "to"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "his wife.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.09.11.08",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Él le dio unas flores a su esposa.",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424d7"
+    },
+    "code": "",
+    "instructions": "Completa con la preposición correcta.",
+    "successMessage": "",
+    "imageUrl": "",
+    "translation": "La casa pertenece a Peter.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953424d7",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The house belongs"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Peter."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.09.11.09",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424d8"
+    },
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.09.11.10",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "code": "",
+    "title": "Verbs and Their Prepositions",
+    "id": "67fab6d599301022953424d8",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con la preposición correcta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Who does this pen belong",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "¿A quién pertenece este bolígrafo?",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424d9"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions",
+    "answerAudioUrl": "A1.09.11.11",
+    "id": "67fab6d599301022953424d9",
+    "instructions": "Completa con la preposición correcta.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I like listening",
+          "options": null
+        },
+        {
+          "options": [
+            "to"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "the radio.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "translation": "Me gusta escuchar la radio.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424da"
+    },
+    "title": "Verbs and Their Prepositions",
+    "kind": "CLOZE",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you explain that",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "to"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "me?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A1.09.11.12",
+    "id": "67fab6d599301022953424da",
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "translation": "¿Podrías explicarme eso?",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con la preposición correcta.",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424db"
+    },
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.09.11.13",
+    "id": "67fab6d599301022953424db",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Depende de la situación.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It depends",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the situation.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions",
+    "instructions": "Completa con la preposición correcta.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424dc"
+    },
+    "title": "Verbs and Their Prepositions",
+    "answerAudioUrl": "A1.09.11.14",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "imageUrl": "",
+    "translation": "¡No te preocupes por él!",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con la preposición correcta.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Don't worry",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "him!",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d599301022953424dc",
+    "code": "",
+    "answerImageUrl": "",
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424dd"
+    },
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "imageUrl": "",
+    "translation": "Depende de los resultados de mi examen.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.09.11.15",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It depends",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "my test results.",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d599301022953424dd",
+    "successMessage": "",
+    "instructions": "Completa con la preposición correcta.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions",
+    "audioUrl": "",
+    "code": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424de"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She explained the math",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "the children."
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con la preposición correcta.",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953424de",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "translation": "Ella les explicó las matemáticas a los niños.",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.09.11.16",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions",
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424df"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We gave a gift",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the grandma.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions",
+    "answerAudioUrl": "A1.09.11.17",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "translation": "Le dimos un regalo a la abuela.",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d599301022953424df",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con la preposición correcta.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424e0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We paid the waiter",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "for"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "the meal."
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Le pagamos al camarero por la comida.",
+    "kind": "CLOZE",
+    "instructions": "Completa con la preposición correcta.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.09.11.18",
+    "id": "67fab6d599301022953424e0",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424e1"
+    },
+    "title": "Verbs and Their Prepositions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They looked",
+          "options": null
+        },
+        {
+          "options": [
+            "at"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "the birds.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953424e1",
+    "code": "",
+    "instructions": "Completa con la preposición correcta.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ellos miraron a los pájaros.",
+    "answerAudioUrl": "A1.09.11.19",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953424e2"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.09.Prepositions_After_Verbs",
+    "instructions": "Completa con la preposición correcta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Look",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "me, daddy!",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "¡Mírame, papi!",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.09.11.20",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953424e2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3e1"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  }
+]

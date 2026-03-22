@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cb8"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "There's a cat"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the window.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342cb8",
+    "answerImageUrl": "",
+    "code": "",
+    "translation": "Hay un gato en la ventana.",
+    "answerAudioUrl": "A2.09.04.01",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cb9"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295342cb9",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "translation": "Se relajaron en la playa.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.04.02",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They relaxed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the beach.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cba"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "translation": "Dejé mis llaves en la parte superior de las escaleras.",
+    "answerAudioUrl": "A2.09.04.03",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342cba",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I left my keys",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "at"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "the top of the stairs.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cbb"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342cbb",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.09.04.04",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I go to school",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "text": "the bus.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Voy a la escuela en el autobús.",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cbc"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I heard about it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "text": "a newspaper.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.09.04.05",
+    "id": "67fab6d59930102295342cbc",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Me enteré de eso en un periódico.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "audioUrl": "",
+    "code": "",
+    "theoryId": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cbd"
+    },
+    "translation": "Se bebió su café en la oficina.",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He drank his coffee"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the office.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.09.04.06",
+    "id": "67fab6d59930102295342cbd",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "theoryId": "",
+    "kind": "CLOZE",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cbe"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Would you like to live",
+          "options": null
+        },
+        {
+          "options": [
+            "in"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "a town?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Te gustaría vivir en un pueblo?",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.04.07",
+    "id": "67fab6d59930102295342cbe",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cbf"
+    },
+    "translation": "Olvidé mi billetera en el restaurante.",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I forgot my wallet",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "in"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "the restaurant.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342cbf",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.04.08",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cc0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We waited",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the station.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Esperamos en la estación.",
+    "title": "Location Prepositions: In, At, On",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.04.09",
+    "id": "67fab6d59930102295342cc0",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "theoryId": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cc1"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She has some paint",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "her trousers."
+        }
+      ]
+    },
+    "audioUrl": "",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.04.10",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "theoryId": "",
+    "id": "67fab6d59930102295342cc1",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "translation": "Ella tiene algo de pintura en sus pantalones.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cc2"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342cc2",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.09.04.11",
+    "title": "Location Prepositions: In, At, On",
+    "imageUrl": "",
+    "translation": "Bailaron en el escenario.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They danced",
+          "options": null
+        },
+        {
+          "options": [
+            "on"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "the stage.",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cc3"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "title": "Location Prepositions: In, At, On",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342cc3",
+    "translation": "Escribe tu dirección en la parte inferior de la página.",
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Write your address",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the bottom of the page.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.09.04.12",
+    "kind": "CLOZE",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cc4"
+    },
+    "id": "67fab6d59930102295342cc4",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "¿Están los gatos en la casa?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.09.04.13",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "theoryId": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Are the cats",
+          "options": null
+        },
+        {
+          "options": [
+            "in"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "the house?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cc5"
+    },
+    "id": "67fab6d59930102295342cc5",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please sit",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "that bench.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Por favor, siéntate en ese banco.",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.09.04.14",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "theoryId": "",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cc6"
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I hung the painting",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "on"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "the wall.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Colgué el cuadro en la pared.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.09.04.15",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342cc6",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cc7"
+    },
+    "theoryId": "",
+    "translation": "Tom está en la sala de estar.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Tom is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the living room.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342cc7",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.09.04.16",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cc8"
+    },
+    "answerAudioUrl": "A2.09.04.17",
+    "id": "67fab6d59930102295342cc8",
+    "code": "",
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please sit",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the desk. It's time for studying.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "translation": "Por favor, siéntate en el escritorio. Es hora de estudiar.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "theoryId": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cc9"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "theoryId": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He lied",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "the bed."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "id": "67fab6d59930102295342cc9",
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "translation": "Él se acostó en la cama.",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.04.18",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342cca"
+    },
+    "kind": "CLOZE",
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.09.04.19",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342cca",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Location Prepositions: In, At, On",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Liverpool is",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "in"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "the north of England."
+        }
+      ]
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "translation": "Liverpool está en el norte de Inglaterra.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ccb"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you study",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Oxford?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "answerAudioUrl": "A2.09.04.20",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d285"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'in', 'at' u 'on'.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342ccb",
+    "title": "Location Prepositions: In, At, On",
+    "translation": "¿Estudias en Oxford?",
+    "successMessage": "",
+    "code": "",
+    "topicName": "Prepositions"
+  }
+]

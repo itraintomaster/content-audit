@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436e5"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "audioUrl": "",
+    "id": "67fab6d599301022953436e5",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I have traveled to Ireland."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that he had traveled to Ireland."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Robert dijo que había viajado a Irlanda.",
+    "miniTheory": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.04.01",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "imageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436e6"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.04.02",
+    "id": "67fab6d599301022953436e6",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She has watched the play.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that she had watched the play."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Robert dijo que ella había visto la obra.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436e7"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "audioUrl": "",
+    "translation": "Robert dijo que los estudiantes habían hecho la tarea.",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953436e7",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students have done homework.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Robert said that the students had done homework."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.04.03",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436e8"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "imageUrl": "",
+    "translation": "Robert dijo que Tom había conducido hasta el aeropuerto.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "id": "67fab6d599301022953436e8",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Tom has driven to the airport.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that Tom had driven to the airport."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.04.04",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436e9"
+    },
+    "id": "67fab6d599301022953436e9",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Lisa has arrived.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that Lisa had arrived."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.10.04.05",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "imageUrl": "",
+    "translation": "Robert dijo que Lisa había llegado.",
+    "miniTheory": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436ea"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "translation": "Robert dijo que sus colegas habían salido a tomar café.",
+    "answerAudioUrl": "B1.10.04.06",
+    "id": "67fab6d599301022953436ea",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My colleagues have gone out for coffee.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Robert said that his colleagues had gone out for coffee."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436eb"
+    },
+    "imageUrl": "",
+    "translation": "Robert dijo que había enviado las cartas.",
+    "answerImageUrl": "",
+    "title": "Using the Present Perfect in Reported Speech",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I have sent the letters.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Robert said that he had sent the letters."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.04.07",
+    "id": "67fab6d599301022953436eb",
+    "kind": "CLOZE",
+    "code": "",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436ec"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She has failed the test.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Robert said that she had failed the test."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Robert dijo que ella había suspendido el examen.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.04.08",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953436ec",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436ed"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "answerAudioUrl": "B1.10.04.09",
+    "id": "67fab6d599301022953436ed",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "John has learned modal verbs.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that John had learned modal verbs."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Robert dijo que John había aprendido los verbos modales.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436ee"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953436ee",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.04.10",
+    "title": "Using the Present Perfect in Reported Speech",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The doctors have finished the surgery."
+        },
+        {
+          "options": [
+            "Robert said that the doctors had finished the surgery."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "translation": "Robert dijo que los médicos habían terminado la cirugía.",
+    "successMessage": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436ef"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.04.11",
+    "id": "67fab6d599301022953436ef",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I have vacuumed the living room.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that he had vacuumed the living room."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "translation": "Robert dijo que había aspirado la sala de estar.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436f0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.04.12",
+    "id": "67fab6d599301022953436f0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "translation": "Robert dijo que David había recibido una beca.",
+    "answerImageUrl": "",
+    "code": "",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "David has received a scholarship.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that David had received a scholarship."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436f1"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Robert dijo que las chicas habían bailado ballet.",
+    "successMessage": "",
+    "id": "67fab6d599301022953436f1",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The girls have danced ballet.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that the girls had danced ballet."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.04.13",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436f2"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Susan has prepared lunch.",
+          "options": null
+        },
+        {
+          "options": [
+            "Robert said that Susan had prepared lunch."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "translation": "Robert dijo que Susan había preparado el almuerzo.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "successMessage": "",
+    "id": "67fab6d599301022953436f2",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.10.04.14",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436f3"
+    },
+    "translation": "Robert dijo que había vendido su coche viejo.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953436f3",
+    "answerAudioUrl": "B1.10.04.15",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I have sold my old car.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that he had sold his old car."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "code": "",
+    "title": "Using the Present Perfect in Reported Speech",
+    "imageUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436f4"
+    },
+    "translation": "Robert dijo que Naomi había estado en Japón.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.04.16",
+    "title": "Using the Present Perfect in Reported Speech",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Naomi has been to Japan.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that Naomi had been to Japan."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "audioUrl": "",
+    "id": "67fab6d599301022953436f4",
+    "code": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436f5"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It has snowed.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that it had snowed."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Robert dijo que había nevado.",
+    "answerAudioUrl": "B1.10.04.17",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "successMessage": "",
+    "id": "67fab6d599301022953436f5",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436f6"
+    },
+    "answerAudioUrl": "B1.10.04.18",
+    "id": "67fab6d599301022953436f6",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dog has had puppies.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Robert said that the dog had had puppies."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Robert dijo que el perro había tenido cachorros.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436f7"
+    },
+    "id": "67fab6d599301022953436f7",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The bakery has opened.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that the bakery had opened."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "audioUrl": "",
+    "translation": "Robert dijo que la panadería había abierto.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.04.19",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953436f8"
+    },
+    "id": "67fab6d599301022953436f8",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The traffic has worsened.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert said that the weather had worsened."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Robert dijo que el tráfico había empeorado.",
+    "successMessage": "",
+    "code": "",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.04.20",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d320"
+    },
+    "title": "Using the Present Perfect in Reported Speech",
+    "miniTheory": "",
+    "topicName": "Reported speech"
+  }
+]

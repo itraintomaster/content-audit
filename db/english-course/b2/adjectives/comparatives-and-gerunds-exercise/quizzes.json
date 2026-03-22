@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344878"
+    },
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "El café es más estimulante que beber té.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.13.04.01",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "id": "67fab6d59930102295344878",
+    "kind": "CLOZE",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Coffee is",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "more stimulating than drinking"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(stimulating / drink) tea.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48a"
+    },
+    "title": "Comparatives and Gerunds Exercise",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344879"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This task is",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "more complex than doing"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(complex / do) homework.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "code": "",
+    "title": "Comparatives and Gerunds Exercise",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344879",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "translation": "Esta tarea es más compleja que hacer la tarea.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48a"
+    },
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.13.04.02",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534487a"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Comparatives and Gerunds Exercise",
+    "id": "67fab6d5993010229534487a",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Running is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "faster than walking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(fast / walk) slowly.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "miniTheory": "",
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.04.03",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Correr es más rápido que caminar lentamente.",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534487b"
+    },
+    "answerAudioUrl": "B2.13.04.04",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Comparatives and Gerunds Exercise",
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534487b",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A film on my TV is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nicer than visiting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(nice / visit) a theater.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Una película en mi televisor es mejor que visitar un cine.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48a"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534487c"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48a"
+    },
+    "title": "Comparatives and Gerunds Exercise",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Her cake is",
+          "options": null
+        },
+        {
+          "options": [
+            "better than buying"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "(good / buy) dessert.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "translation": "Su pastel es mejor que comprar postre.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "id": "67fab6d5993010229534487c",
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.13.04.05",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534487d"
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "id": "67fab6d5993010229534487d",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Comparatives and Gerunds Exercise",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48a"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Tea is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nicer than waking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(good / wake) up early!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "translation": "¡El té es mejor que despertarse temprano!",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.13.04.06",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534487e"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "id": "67fab6d5993010229534487e",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.04.07",
+    "kind": "CLOZE",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "An apple is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "healthier than eating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(healthy / eat) sweets.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Comparatives and Gerunds Exercise",
+    "imageUrl": "",
+    "translation": "Una manzana es más saludable que comer dulces.",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48a"
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534487f"
+    },
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Kittens are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "cuter than watching"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(cute / watch) TV.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "id": "67fab6d5993010229534487f",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Comparatives and Gerunds Exercise",
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Los gatitos son más lindos que mirar televisión.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.04.08",
+    "kind": "CLOZE",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344880"
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Comparatives and Gerunds Exercise",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295344880",
+    "imageUrl": "",
+    "translation": "Vivir en una ciudad es más ocupado que vivir en un pueblo.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.13.04.09",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Living in a city is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "busier than living"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(busy / live) in a town.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344881"
+    },
+    "title": "Comparatives and Gerunds Exercise",
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344881",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.04.10",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A concert is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "louder than sitting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(loud / sit) in silence.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.13.Gradable_and_Ungradable_Adjectives",
+    "translation": "Un concierto es más ruidoso que sentarse en silencio.",
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "topicName": "Adjectives"
+  }
+]

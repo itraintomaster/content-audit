@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342998"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295342998",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I went to Italy because I wanted to eat pizza.",
+          "options": null
+        },
+        {
+          "options": [
+            "I went to Italy to eat pizza."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.05.08.01",
+    "title": "Using Infinitives to Express Purpose",
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "imageUrl": "",
+    "translation": "Fui a Italia a comer pizza.",
+    "answerImageUrl": "",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342999"
+    },
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342999",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She went to the beach because she wanted to sunbathe.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She went to the beach to sunbathe."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Ella fue a la playa a tomar el sol.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "answerAudioUrl": "A2.05.08.02",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Infinitives to Express Purpose",
+    "answerImageUrl": "",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534299a"
+    },
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He studied a lot because he wanted to get good grades.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "He studied a lot to get good grades."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Él estudió mucho para sacar buenas notas.",
+    "id": "67fab6d5993010229534299a",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.05.08.03",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Using Infinitives to Express Purpose",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534299b"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Infinitives to Express Purpose",
+    "successMessage": "",
+    "id": "67fab6d5993010229534299b",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.05.08.04",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She eats a balanced diet because she wants to stay healthy.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "She eats a balanced diet to stay healthy."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "translation": "Ella come una dieta equilibrada para mantenerse sana.",
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534299c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He cycles every day because he wants to remain healthy.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He cycles every day to remain healthy."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Él monta en bicicleta todos los días para mantenerse sano.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.05.08.05",
+    "id": "67fab6d5993010229534299c",
+    "title": "Using Infinitives to Express Purpose",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534299d"
+    },
+    "successMessage": "",
+    "title": "Using Infinitives to Express Purpose",
+    "audioUrl": "",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.05.08.06",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We watch movies because we want to unwind.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We watch movies to unwind."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Vemos películas para relajarnos.",
+    "id": "67fab6d5993010229534299d",
+    "code": "",
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534299e"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Infinitives to Express Purpose",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They visited Brighton because they wanted to see the sea.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They visited Brighton to see the sea."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "translation": "Ellos visitaron Brighton para ver el mar.",
+    "successMessage": "",
+    "id": "67fab6d5993010229534299e",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.05.08.07",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534299f"
+    },
+    "audioUrl": "",
+    "imageUrl": "",
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.05.08.08",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Infinitives to Express Purpose",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We met at the library because we wanted to study.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We met at the library to study."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "Nos reunimos en la biblioteca para estudiar.",
+    "id": "67fab6d5993010229534299f",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953429a0"
+    },
+    "id": "67fab6d599301022953429a0",
+    "code": "",
+    "translation": "Ella viajó a España para aprender español.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She travelled to Spain because she wanted to learn Spanish.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She travelled to Spain to learn Spanish."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Infinitives to Express Purpose",
+    "answerAudioUrl": "A2.05.08.09",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953429a1"
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Infinitives to Express Purpose",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They texted their cousin because they wanted to wish them a happy birthday.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They texted their cousin to wish them a happy birthday."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.05.08.10",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953429a1",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ellos le enviaron un mensaje de texto a su primo para desearle un feliz cumpleaños.",
+    "successMessage": "",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953429a2"
+    },
+    "code": "",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "translation": "Ella bebe agua para mantenerse hidratada.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She drinks water because she wants to stay hydrated.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She drinks water to stay hydrated."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.05.08.11",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Infinitives to Express Purpose",
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "audioUrl": "",
+    "id": "67fab6d599301022953429a2",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953429a3"
+    },
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "imageUrl": "",
+    "translation": "Él vive en el campo para estar cerca de la naturaleza.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "title": "Using Infinitives to Express Purpose",
+    "miniTheory": "",
+    "id": "67fab6d599301022953429a3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.05.08.12",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He lives in the countryside because he wants to be near nature."
+        },
+        {
+          "text": "",
+          "options": [
+            "He lives in the countryside to be near nature."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953429a4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Infinitives to Express Purpose",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The children went outside because they wanted to play.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The children went outside to play."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "Los niños salieron a jugar.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953429a4",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "answerAudioUrl": "A2.05.08.13",
+    "code": "",
+    "audioUrl": "",
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "imageUrl": "",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953429a5"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.05.08.14",
+    "kind": "CLOZE",
+    "title": "Using Infinitives to Express Purpose",
+    "successMessage": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I emailed Maria because I wanted to ask for help.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "I emailed Maria to ask for help."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953429a5",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Le envié un correo electrónico a María para pedirle ayuda.",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953429a6"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "audioUrl": "",
+    "translation": "Él se unió a un club para hacer nuevos amigos.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "title": "Using Infinitives to Express Purpose",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He joined a club because he wanted to make new friends.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He joined a club to make new friends."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953429a6",
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.05.08.15",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953429a7"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They stayed indoors because they wanted to watch the football.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "They stayed indoors to watch the football."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Infinitives to Express Purpose",
+    "translation": "Se quedaron adentro para ver el fútbol.",
+    "id": "67fab6d599301022953429a7",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "successMessage": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.05.08.16",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953429a8"
+    },
+    "id": "67fab6d599301022953429a8",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Infinitives to Express Purpose",
+    "answerAudioUrl": "A2.05.08.17",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "successMessage": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "She called a mechanic because she wanted him to repair the car.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "She called a mechanic to repair the car."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Ella llamó a un mecánico para reparar el coche.",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953429a9"
+    },
+    "imageUrl": "",
+    "translation": "Compramos algunos globos para decorar la fiesta.",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We bought some balloons because we wanted to decorate the party.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We bought some balloons to decorate the party."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "id": "67fab6d599301022953429a9",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.05.08.18",
+    "kind": "CLOZE",
+    "title": "Using Infinitives to Express Purpose",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "miniTheory": "",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953429aa"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Infinitives to Express Purpose",
+    "miniTheory": "",
+    "id": "67fab6d599301022953429aa",
+    "successMessage": "",
+    "answerAudioUrl": "A2.05.08.19",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Luke revised thoroughly because he wanted to do well in the test.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Luke revised thoroughly to do well in the test."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "translation": "Luke repasó a fondo para que le fuera bien en el examen.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953429ab"
+    },
+    "code": "",
+    "title": "Using Infinitives to Express Purpose",
+    "theoryId": "a2.05.Verbs_Patterns_with_Infinitive_+_to",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953429ab",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d252"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.05.08.20",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She hurried because she wanted to catch the bus.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She hurried to catch the bus."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Ella se apresuró para tomar el autobús.",
+    "instructions": "Transforma la oración para que incluya un infinitivo de propósito.",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Verb Patterns"
+  }
+]

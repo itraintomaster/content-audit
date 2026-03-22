@@ -1,0 +1,1653 @@
+code: __proposal__
+description: Tests for SentenceLengthAnalyzer - fix Optional.of wrapping on getTargetRange
+  mocks
+modules:
+- name: audit-domain
+  implementations:
+  - name: SentenceLengthAnalyzer
+    tests:
+    - name: "Given a SentenceLengthAnalyzer instance, when getName is called, then\
+        \ returns sentence-length"
+      target: SentenceLengthAnalyzer
+      invoke:
+        method: getName
+      type: unit
+      assert:
+        returns: sentence-length
+    - name: "Given a SentenceLengthAnalyzer instance, when getTarget is called, then\
+        \ returns QUIZ"
+      target: SentenceLengthAnalyzer
+      invoke:
+        method: getTarget
+      type: unit
+      assert:
+        returns: QUIZ
+    - name: "Given a SentenceLengthAnalyzer, when onTopic is called, then it completes\
+        \ without error"
+      target: SentenceLengthAnalyzer
+      invoke:
+        method: onTopic
+        args:
+        - ref:topic
+        - ref:ctx
+      fixtures:
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge: "[]"
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: unit
+      assert:
+        doesNotThrow: true
+    - name: "Given a SentenceLengthAnalyzer, when onCourseComplete is called, then\
+        \ it completes without error"
+      target: SentenceLengthAnalyzer
+      invoke:
+        method: onCourseComplete
+        args:
+        - ref:course
+        - ref:ctx
+      fixtures:
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones: "[]"
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: unit
+      assert:
+        doesNotThrow: true
+    - name: "Given a null milestoneId, when onQuiz is called, then quiz is excluded\
+        \ and getResults is empty"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestoneNull
+        type: AuditContext
+        construct:
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: AuditContext
+        construct:
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: Hello world test
+          tokenCount: 3
+      - id: ctxQuiz
+        type: AuditContext
+        construct:
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestoneNull
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+    - name: "Given a non-numeric milestoneId, when onQuiz is called, then quiz is\
+        \ excluded and getResults is empty"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestoneAbc
+        type: AuditContext
+        construct:
+          milestoneId: abc
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: abc
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: Hello world test
+          tokenCount: 3
+      - id: ctxQuiz
+        type: AuditContext
+        construct:
+          milestoneId: abc
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestoneAbc
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+    - name: "Given no target range configured for level, when onQuiz is called, then\
+        \ quiz is excluded and getResults is empty"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She likes apples
+          tokenCount: 3
+      - id: ctxQuiz
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.empty()
+          args:
+          - match: any
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R012
+    - name: "Given a valid sentence quiz, when onQuiz is called, then nlpTokenizer\
+        \ countTokens is called with quiz sentence"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: The cat sat on the mat
+          tokenCount: 6
+      - id: ctxQuiz
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 6
+          args:
+          - match: eq
+            value: The cat sat on the mat
+        assert:
+          verifyCall:
+            dependency: nlpTokenizer
+            method: countTokens
+            times: 1
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R013
+    - name: "Given a knowledge with non-sentence quizzes, when onQuiz is called, then\
+        \ non-sentence quizzes are excluded from scoring"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Vocabulary
+          instructions: Match words
+          isSentence: false
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: apple
+          tokenCount: 1
+      - id: ctxQuiz
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+    - name: "Given a quiz within A1 range, when onQuiz is called and getResults checked,\
+        \ then score is 1.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She likes apples a lot
+          tokenCount: 5
+      - id: ctxQuiz
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1.0
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 5
+          args:
+          - match: eq
+            value: She likes apples a lot
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a quiz 1 token above A1 max, when scored, then score is 0.75"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She really likes green apples a lot today quickly
+          tokenCount: 9
+      - id: ctxQuiz
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0.75
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 9
+          args:
+          - match: eq
+            value: She really likes green apples a lot today quickly
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a quiz 3 tokens below A1 min, when scored, then score is 0.25"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: Go now
+          tokenCount: 2
+      - id: ctxQuiz
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0.25
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 2
+          args:
+          - match: eq
+            value: Go now
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a quiz exactly at A1 minimum boundary, when scored, then score\
+        \ is 1.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: I like big red cats
+          tokenCount: 5
+      - id: ctxQuiz
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1.0
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 5
+          args:
+          - match: eq
+            value: I like big red cats
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a quiz exactly at A1 maximum boundary, when scored, then score\
+        \ is 1.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: I like big red cats very much here now
+          tokenCount: 8
+      - id: ctxQuiz
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1.0
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 8
+          args:
+          - match: eq
+            value: I like big red cats very much here now
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a quiz 4 tokens above A1 max, when scored, then score is 0.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She really likes eating big green apples from the local market
+            every day
+          tokenCount: 12
+      - id: ctxQuiz
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0.0
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 12
+          args:
+          - match: eq
+            value: She really likes eating big green apples from the local market
+              every day
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R009
+    - name: "Given multiple quizzes across sentence and non-sentence knowledges, when\
+        \ processed, then only sentence quizzes are scored"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: nonSentenceKnowledge
+        type: AuditableKnowledge
+        construct:
+          title: Vocab
+          instructions: Match
+          isSentence: false
+          quizzes: "[]"
+      - id: ctxNonSentKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: nonSentQuiz
+        type: AuditableQuiz
+        construct:
+          sentence: apple
+          tokenCount: 1
+      - id: ctxNonSentQuiz
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: sentenceKnowledge
+        type: AuditableKnowledge
+        construct:
+          title: Sentences
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxSentKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k2
+          quizId: q2
+      - id: sentQuiz
+        type: AuditableQuiz
+        construct:
+          sentence: She likes red apples very much
+          tokenCount: 6
+      - id: ctxSentQuiz
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k2
+          quizId: q2
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1.0
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k2
+          quizId: q2
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:nonSentenceKnowledge
+          - ref:ctxNonSentKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:nonSentQuiz
+          - ref:ctxNonSentQuiz
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:sentenceKnowledge
+          - ref:ctxSentKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:sentQuiz
+          - ref:ctxSentQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 6
+          args:
+          - match: eq
+            value: She likes red apples very much
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+    - name: "Given a B2 level quiz within range, when scored, then score is 1.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: AuditContext
+        construct:
+          milestoneId: 3
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Advanced grammar
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: 3
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: The students should have been studying for their final exams much
+            more carefully this semester
+          tokenCount: 15
+      - id: ctxQuiz
+        type: AuditContext
+        construct:
+          milestoneId: 3
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeB2
+        type: TargetRange
+        construct:
+          level: B2
+          minTokens: 14
+          maxTokens: 17
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1.0
+          milestoneId: 3
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeB2)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 15
+          args:
+          - match: eq
+            value: The students should have been studying for their final exams much
+              more carefully this semester
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R012
+    - name: "Given a quiz exactly at tolerance boundary of 4 tokens, when scored,\
+        \ then score is 0.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: Go
+          tokenCount: 1
+      - id: ctxQuiz
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0.0
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 1
+          args:
+          - match: eq
+            value: Go
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R009
+    - name: "Given a quiz 2 tokens above A1 max, when scored, then score is 0.5"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She really likes eating big green apples from the garden
+          tokenCount: 10
+      - id: ctxQuiz
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0.5
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 10
+          args:
+          - match: eq
+            value: She really likes eating big green apples from the garden
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a full milestone-knowledge-quiz sequence, when processed end to\
+        \ end, then correct scores are produced"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Basic greetings
+          instructions: Complete the sentence
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: Hello how are you today friend
+          tokenCount: 6
+      - id: ctxQuiz1
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz2
+        type: AuditableQuiz
+        construct:
+          sentence: Good morning
+          tokenCount: 2
+      - id: ctxQuiz2
+        type: AuditContext
+        construct:
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q2
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore1
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1.0
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: expectedScore2
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0.25
+          milestoneId: 0
+          topicId: t1
+          knowledgeId: k1
+          quizId: q2
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctxQuiz1
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 6
+          args:
+          - match: eq
+            value: Hello how are you today friend
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz2
+          - ref:ctxQuiz2
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 2
+          args:
+          - match: eq
+            value: Good morning
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore1, ref:expectedScore2]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002

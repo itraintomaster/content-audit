@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432cc"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.04.01",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Continuous: Adding Question Tags",
+    "theoryId": "b1.05.Question_Tags",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "imageUrl": "",
+    "instructions": "Añade el 'question tag' a la oración.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You aren't eating pizza,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "No estás comiendo pizza, ¿verdad?",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953432cc",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432cd"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Continuous: Adding Question Tags",
+    "theoryId": "b1.05.Question_Tags",
+    "translation": "Nos vamos temprano, ¿no?",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.04.02",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We're leaving early,",
+          "options": null
+        },
+        {
+          "options": [
+            "aren't we"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "id": "67fab6d599301022953432cd",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade el 'question tag' a la oración.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432ce"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade el 'question tag' a la oración.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.04.03",
+    "code": "",
+    "theoryId": "b1.05.Question_Tags",
+    "id": "67fab6d599301022953432ce",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Continuous: Adding Question Tags",
+    "imageUrl": "",
+    "translation": "Está nevando, ¿no es así?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's snowing,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't it"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432cf"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Continuous: Adding Question Tags",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter isn't bringing a jacket,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Peter no trae una chaqueta, ¿verdad?",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953432cf",
+    "answerAudioUrl": "B1.05.04.04",
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "instructions": "Añade el 'question tag' a la oración.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432d0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.04.05",
+    "kind": "CLOZE",
+    "code": "",
+    "instructions": "Añade el 'question tag' a la oración.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She's arriving soon,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "id": "67fab6d599301022953432d0",
+    "title": "Present Continuous: Adding Question Tags",
+    "theoryId": "b1.05.Question_Tags",
+    "translation": "Ella llega pronto, ¿no?",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432d1"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The girls aren't eating sweets,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.04.06",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Las chicas no están comiendo dulces, ¿verdad?",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade el 'question tag' a la oración.",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953432d1",
+    "title": "Present Continuous: Adding Question Tags",
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432d2"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "answerAudioUrl": "B1.05.04.07",
+    "id": "67fab6d599301022953432d2",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She isn't playing basketball,",
+          "options": null
+        },
+        {
+          "options": [
+            "is she"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "instructions": "Añade el 'question tag' a la oración.",
+    "audioUrl": "",
+    "title": "Present Continuous: Adding Question Tags",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ella no está jugando baloncesto, ¿verdad?",
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432d3"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He's sleeping,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "audioUrl": "",
+    "id": "67fab6d599301022953432d3",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade el 'question tag' a la oración.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Continuous: Adding Question Tags",
+    "translation": "Él está durmiendo, ¿no?",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.04.08",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432d4"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You're listening,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "aren't you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "title": "Present Continuous: Adding Question Tags",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "translation": "Estás escuchando, ¿no es así?",
+    "answerAudioUrl": "B1.05.04.09",
+    "kind": "CLOZE",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d599301022953432d4",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade el 'question tag' a la oración.",
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432d5"
+    },
+    "id": "67fab6d599301022953432d5",
+    "code": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "We aren't having class,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "are we"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "translation": "No tenemos clase, ¿verdad?",
+    "answerAudioUrl": "B1.05.04.10",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade el 'question tag' a la oración.",
+    "audioUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Continuous: Adding Question Tags",
+    "theoryId": "b1.05.Question_Tags",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432d6"
+    },
+    "title": "Present Continuous: Adding Question Tags",
+    "instructions": "Añade el 'question tag' a la oración.",
+    "imageUrl": "",
+    "id": "67fab6d599301022953432d6",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm singing now,",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "aren't I"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Estoy cantando ahora, ¿no?",
+    "answerAudioUrl": "B1.05.04.11",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432d7"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "id": "67fab6d599301022953432d7",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade el 'question tag' a la oración.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm not dancing,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "am I"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "title": "Present Continuous: Adding Question Tags",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "No estoy bailando, ¿verdad?",
+    "answerAudioUrl": "B1.05.04.12",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432d8"
+    },
+    "title": "Present Continuous: Adding Question Tags",
+    "translation": "No te estás duchando, ¿verdad?",
+    "miniTheory": "",
+    "id": "67fab6d599301022953432d8",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You aren't taking a shower,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "instructions": "Añade el 'question tag' a la oración.",
+    "theoryId": "b1.05.Question_Tags",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.04.13",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432d9"
+    },
+    "translation": "Los perros están corriendo rápido, ¿no?",
+    "id": "67fab6d599301022953432d9",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.04.14",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Continuous: Adding Question Tags",
+    "instructions": "Añade el 'question tag' a la oración.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs are running fast,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "aren't they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432da"
+    },
+    "code": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.05.04.15",
+    "id": "67fab6d599301022953432da",
+    "instructions": "Añade el 'question tag' a la oración.",
+    "translation": "Te vas mañana, ¿no?",
+    "imageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Continuous: Adding Question Tags",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You're leaving tomorrow,",
+          "options": null
+        },
+        {
+          "options": [
+            "aren't you"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "?"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432db"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "instructions": "Añade el 'question tag' a la oración.",
+    "theoryId": "b1.05.Question_Tags",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d599301022953432db",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "La televisión no funciona, ¿verdad?",
+    "answerAudioUrl": "B1.05.04.16",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Continuous: Adding Question Tags",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The TV isn't working,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is it"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432dc"
+    },
+    "answerAudioUrl": "B1.05.04.17",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade el 'question tag' a la oración.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Sarah is smiling,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953432dc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "title": "Present Continuous: Adding Question Tags",
+    "translation": "Sarah está sonriendo, ¿no?",
+    "answerImageUrl": "",
+    "code": "",
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432dd"
+    },
+    "audioUrl": "",
+    "translation": "Él no está llamando a su padre, ¿verdad?",
+    "answerAudioUrl": "B1.05.04.18",
+    "title": "Present Continuous: Adding Question Tags",
+    "kind": "CLOZE",
+    "theoryId": "b1.05.Question_Tags",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He isn't calling his father,",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "is he"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "id": "67fab6d599301022953432dd",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade el 'question tag' a la oración.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432de"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Present Continuous: Adding Question Tags",
+    "instructions": "Añade el 'question tag' a la oración.",
+    "imageUrl": "",
+    "id": "67fab6d599301022953432de",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.05.04.19",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They're swimming now,",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "aren't they"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ellos están nadando ahora, ¿no?",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432df"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Ellos no están viendo televisión, ¿verdad?",
+    "successMessage": "",
+    "id": "67fab6d599301022953432df",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e5"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They aren't watching TV,",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "are they"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "title": "Present Continuous: Adding Question Tags",
+    "instructions": "Añade el 'question tag' a la oración.",
+    "theoryId": "b1.05.Question_Tags",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.04.20",
+    "topicName": "Questions and short answers"
+  }
+]

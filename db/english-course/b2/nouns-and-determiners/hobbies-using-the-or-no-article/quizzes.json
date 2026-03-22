@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534427f"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "answerAudioUrl": "B2.06.08.01",
+    "id": "67fab6d5993010229534427f",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I enjoy",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "playing guitar.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Disfruto tocar la guitarra.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "title": "Hobbies: Using 'The' or No Article",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344280"
+    },
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "translation": "Disfruto la música de guitarra que toca mi padre.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I enjoy",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "the"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "guitar music that my father plays.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344280",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.06.08.02",
+    "title": "Hobbies: Using 'The' or No Article",
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344281"
+    },
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Él colecciona los sellos del Reino Unido.",
+    "id": "67fab6d59930102295344281",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.08.03",
+    "code": "",
+    "title": "Hobbies: Using 'The' or No Article",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He collects",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "stamps of the United Kingdom.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344282"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He collects",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "British stamps."
+        }
+      ]
+    },
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hobbies: Using 'The' or No Article",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295344282",
+    "code": "",
+    "answerAudioUrl": "B2.06.08.04",
+    "translation": "Él colecciona sellos británicos.",
+    "successMessage": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344283"
+    },
+    "translation": "Ella adora las rosas.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "title": "Hobbies: Using 'The' or No Article",
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.06.08.05",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She adores",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "roses."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295344283",
+    "code": "",
+    "kind": "CLOZE",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344284"
+    },
+    "title": "Hobbies: Using 'The' or No Article",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.08.06",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "translation": "Ella adora las rosas que crecen allí.",
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She adores",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "roses that grow there.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "imageUrl": "",
+    "id": "67fab6d59930102295344284",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344285"
+    },
+    "answerAudioUrl": "B2.06.08.07",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Italian musicians who played last night were amazing.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Los músicos italianos que tocaron anoche fueron increíbles.",
+    "miniTheory": "",
+    "title": "Hobbies: Using 'The' or No Article",
+    "successMessage": "",
+    "id": "67fab6d59930102295344285",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344286"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Italian musicians are usually very skilled.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.08.08",
+    "id": "67fab6d59930102295344286",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Los músicos italianos suelen ser muy hábiles.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "title": "Hobbies: Using 'The' or No Article",
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344287"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He dislikes",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "difficult puzzles.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hobbies: Using 'The' or No Article",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.08.09",
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "id": "67fab6d59930102295344287",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "translation": "A él no le gustan los rompecabezas difíciles.",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344288"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "title": "Hobbies: Using 'The' or No Article",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He dislikes",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "complex puzzles that his sister creates.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "audioUrl": "",
+    "id": "67fab6d59930102295344288",
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "answerAudioUrl": "B2.06.08.10",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "A él no le gustan los rompecabezas complejos que crea su hermana.",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344289"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "silk scarves are elegant.",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Las bufandas de seda son elegantes.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hobbies: Using 'The' or No Article",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344289",
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.06.08.11",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534428a"
+    },
+    "miniTheory": "",
+    "id": "67fab6d5993010229534428a",
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "audioUrl": "",
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.06.08.12",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "silk scarves that they sell in that boutique are elegant.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Las bufandas de seda que venden en esa boutique son elegantes.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hobbies: Using 'The' or No Article",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534428b"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "code": "",
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hobbies: Using 'The' or No Article",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's passionate about",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "music of Spain.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "id": "67fab6d5993010229534428b",
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Le apasiona la música de España.",
+    "answerAudioUrl": "B2.06.08.13",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534428c"
+    },
+    "answerAudioUrl": "B2.06.08.14",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He's passionate about",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "Spanish music.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Le apasiona la música española.",
+    "successMessage": "",
+    "code": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534428c",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "audioUrl": "",
+    "title": "Hobbies: Using 'The' or No Article",
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534428d"
+    },
+    "miniTheory": "",
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "successMessage": "",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.08.15",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "title": "Hobbies: Using 'The' or No Article",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "fast cars are fun.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Los coches rápidos son divertidos.",
+    "id": "67fab6d5993010229534428d",
+    "code": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534428e"
+    },
+    "title": "Hobbies: Using 'The' or No Article",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "fast cars that my neighbor owns are fun.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "id": "67fab6d5993010229534428e",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "imageUrl": "",
+    "code": "",
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "translation": "Los coches rápidos que posee mi vecino son divertidos.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.08.16",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534428f"
+    },
+    "audioUrl": "",
+    "translation": "Ella a menudo bebe el té verde que compré en Japón.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "title": "Hobbies: Using 'The' or No Article",
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.08.17",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She often drinks",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "green tea that I bought from Japan.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534428f",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344290"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hobbies: Using 'The' or No Article",
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Ella a menudo bebe té verde.",
+    "id": "67fab6d59930102295344290",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.06.08.18",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She often drinks",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "green tea."
+        }
+      ]
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344291"
+    },
+    "id": "67fab6d59930102295344291",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I know a lot about",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "space exploration.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "successMessage": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B2.06.08.19",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hobbies: Using 'The' or No Article",
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "imageUrl": "",
+    "translation": "Sé mucho sobre la exploración espacial.",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344292"
+    },
+    "theoryId": "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
+    "translation": "Sé mucho sobre la exploración del espacio.",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d436"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I know a lot about",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "exploration of space.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B2.06.08.20",
+    "id": "67fab6d59930102295344292",
+    "kind": "CLOZE",
+    "instructions": "Escribe 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hobbies: Using 'The' or No Article",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns and determiners"
+  }
+]

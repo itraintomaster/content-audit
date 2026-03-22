@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423cb"
+    },
+    "code": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.07.05.01",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They don't require",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "resources.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953423cb",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Deciding When to Use Many or Many Of",
+    "translation": "No requieren muchos recursos.",
+    "kind": "CLOZE",
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423cc"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A1.07.05.02",
+    "id": "67fab6d599301022953423cc",
+    "title": "Deciding When to Use Many or Many Of",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "translation": "Poseemos muchos CDs.",
+    "successMessage": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We possess",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "many of"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "CDs.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423cd"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He likes watches and he collects",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "many"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": ".",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Le gustan los relojes y colecciona muchos.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953423cd",
+    "code": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.07.05.03",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Deciding When to Use Many or Many Of",
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423ce"
+    },
+    "audioUrl": "",
+    "translation": "Ella tiene muchas tareas.",
+    "answerImageUrl": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She has",
+          "options": null
+        },
+        {
+          "options": [
+            "many of"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "tasks.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.07.05.04",
+    "id": "67fab6d599301022953423ce",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Deciding When to Use Many or Many Of",
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423cf"
+    },
+    "translation": "¿Asistes a muchos conciertos?",
+    "answerAudioUrl": "A1.07.05.05",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Do you attend",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "concerts?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "imageUrl": "",
+    "title": "Deciding When to Use Many or Many Of",
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953423cf",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423d0"
+    },
+    "translation": "A: ¿Tienes galletas? B: Sí, muchas.",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.07.05.06",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "successMessage": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Do you have any cookies? B: Yes,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many"
+          ]
+        },
+        {
+          "text": ".",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "id": "67fab6d599301022953423d0",
+    "code": "",
+    "title": "Deciding When to Use Many or Many Of",
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423d1"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.07.05.07",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do the cats eat",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many of"
+          ]
+        },
+        {
+          "text": "fish?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "¿Los gatos comen muchos peces?",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "id": "67fab6d599301022953423d1",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "title": "Deciding When to Use Many or Many Of",
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423d2"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "title": "Deciding When to Use Many or Many Of",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "imageUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I love hats but I don't possess",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "id": "67fab6d599301022953423d2",
+    "translation": "Me encantan los sombreros, pero no poseo muchos.",
+    "answerAudioUrl": "A1.07.05.08",
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423d3"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Deciding When to Use Many or Many Of",
+    "code": "",
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.07.05.09",
+    "id": "67fab6d599301022953423d3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He consumes",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "eggs.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Él consume muchos huevos.",
+    "answerImageUrl": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423d4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We don't keep",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "many of"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "drinks at school.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953423d4",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A1.07.05.10",
+    "audioUrl": "",
+    "translation": "No tenemos muchas bebidas en la escuela.",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Deciding When to Use Many or Many Of",
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "successMessage": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423d5"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.05.11",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Tea? Yes, I drink",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953423d5",
+    "title": "Deciding When to Use Many or Many Of",
+    "audioUrl": "",
+    "translation": "¿Té? Sí, tomo mucho.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423d6"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "title": "Deciding When to Use Many or Many Of",
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "translation": "Tiene tres coches, ¡pero desea muchos!",
+    "successMessage": "",
+    "answerAudioUrl": "A1.07.05.12",
+    "id": "67fab6d599301022953423d6",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He has three cars but he desires",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423d7"
+    },
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I try to take plenty of rest. Do you get"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Intento descansar mucho. ¿Tú descansas mucho?",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Deciding When to Use Many or Many Of",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.07.05.13",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "id": "67fab6d599301022953423d7",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423d8"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You like films, don't you? Do you watch",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Te gustan las películas, ¿verdad? ¿Ves muchas?",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953423d8",
+    "answerAudioUrl": "A1.07.05.14",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Deciding When to Use Many or Many Of",
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "kind": "CLOZE",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423d9"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.07.05.15",
+    "title": "Deciding When to Use Many or Many Of",
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "successMessage": "",
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Do they have any dogs? B: Yes,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "A: ¿Tienen perros? B: Sí, muchos.",
+    "id": "67fab6d599301022953423d9",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423da"
+    },
+    "code": "",
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Deciding When to Use Many or Many Of",
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "answerAudioUrl": "A1.07.05.16",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "translation": "¿Conoces a mucha gente?",
+    "id": "67fab6d599301022953423da",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you know",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many of"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "people?"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423db"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She loves plants and she cultivates"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many"
+          ]
+        },
+        {
+          "text": ".",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "A ella le encantan las plantas y cultiva muchas.",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.07.05.17",
+    "title": "Deciding When to Use Many or Many Of",
+    "audioUrl": "",
+    "id": "67fab6d599301022953423db",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "successMessage": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423dc"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "translation": "Él disfruta de muchas películas.",
+    "successMessage": "",
+    "id": "67fab6d599301022953423dc",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Deciding When to Use Many or Many Of",
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He enjoys",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "movies.",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A1.07.05.18",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423dd"
+    },
+    "translation": "Les gustan los juguetes, pero no tienen muchos.",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d599301022953423dd",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.05.19",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "title": "Deciding When to Use Many or Many Of",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They enjoy toys but they don't keep"
+        },
+        {
+          "options": [
+            "many"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423de"
+    },
+    "theoryId": "a1.07.A_Lot_of_Lots_of",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953423de",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d0"
+    },
+    "translation": "No desperdicio muchas oportunidades.",
+    "answerAudioUrl": "A1.07.05.20",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Deciding When to Use Many or Many Of",
+    "instructions": "Completa los espacios en blanco con 'many' o 'many of'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I don't waste",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "many of"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "opportunities.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "Determiners"
+  }
+]

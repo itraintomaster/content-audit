@@ -1,0 +1,327 @@
+code: __proposal__
+description: "Design course-domain and course-infrastructure modules for the Course\
+  \ Structure feature (F-COURSE). Course-domain contains entity models (Java records),\
+  \ enums, exception, and two ports (CourseRepository, CourseValidator). Course-infrastructure\
+  \ contains the filesystem adapter."
+modules:
+- name: course-domain
+  description: "Domain module for course structure. Contains entity models representing\
+    \ the 5-level hierarchy (Course > ROOT > Milestone > Topic > Knowledge > QuizTemplate),\
+    \ ports for persistence and validation, and domain exceptions. All models are\
+    \ Java records with defensive copying. This module has no infrastructure dependencies."
+  models:
+  - name: NodeKind
+    type: enum
+    fields:
+    - name: ROOT
+    - name: MILESTONE
+    - name: TOPIC
+    - name: KNOWLEDGE
+    _change: add
+  - name: SentencePartKind
+    type: enum
+    fields:
+    - name: TEXT
+    - name: CLOZE
+    _change: add
+  - name: CourseEntity
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: MongoDB ObjectId as 24-char hex string
+    - name: title
+      type: String
+      description: "Course name, e.g. english-course"
+    - name: knowledgeIds
+      type: List<String>
+      description: Ordered list of all knowledge IDs in the course (R002)
+    - name: root
+      type: RootNodeEntity
+      description: Explicit ROOT node (R001)
+    - name: slug
+      type: String
+      description: "Directory name on disk, preserved for idempotency (R003/R016)"
+    _change: add
+  - name: RootNodeEntity
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: MongoDB ObjectId as 24-char hex string
+    - name: code
+      type: String
+      description: Always root
+    - name: kind
+      type: NodeKind
+      description: Always ROOT
+    - name: label
+      type: String
+      description: Always empty string
+    - name: children
+      type: List<String>
+      description: Ordered milestone IDs defining milestone order (R002/R013)
+    - name: milestones
+      type: List<MilestoneEntity>
+      description: Resolved milestone entities in order
+    _change: add
+  - name: MilestoneEntity
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: MongoDB ObjectId as 24-char hex string
+    - name: code
+      type: String
+      description: "Entity code, currently matches id"
+    - name: kind
+      type: NodeKind
+      description: Always MILESTONE
+    - name: label
+      type: String
+      description: "Visible name, e.g. A1, B2"
+    - name: oldId
+      type: String
+      description: Legacy UUID identifier
+    - name: parentId
+      type: String
+      description: References the ROOT node id (R008)
+    - name: children
+      type: List<String>
+      description: Ordered topic IDs defining topic order (R002/R013)
+    - name: order
+      type: int
+      description: "Ordinal position within course, 1-based, derived from ROOT children\
+        \ (R013)"
+    - name: slug
+      type: String
+      description: "Directory name on disk, preserved for idempotency (R003/R016)"
+    - name: topics
+      type: List<TopicEntity>
+      description: Resolved topic entities in order
+    _change: add
+  - name: TopicEntity
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: MongoDB ObjectId as 24-char hex string
+    - name: code
+      type: String
+      description: "Entity code, currently matches id"
+    - name: kind
+      type: NodeKind
+      description: Always TOPIC
+    - name: label
+      type: String
+      description: "Visible name, e.g. Present Simple"
+    - name: oldId
+      type: String
+      description: Legacy UUID identifier
+    - name: parentId
+      type: String
+      description: References the parent milestone id (R008)
+    - name: children
+      type: List<String>
+      description: "Always null in current data, preserved for idempotency (R010)"
+    - name: ruleIds
+      type: List<String>
+      description: Ordered knowledge IDs defining knowledge order (R002/R013)
+    - name: order
+      type: int
+      description: "Ordinal position within milestone, 1-based, derived from milestone\
+        \ children (R013)"
+    - name: slug
+      type: String
+      description: "Directory name on disk, preserved for idempotency (R003/R016)"
+    - name: knowledges
+      type: List<KnowledgeEntity>
+      description: Resolved knowledge entities in order
+    _change: add
+  - name: KnowledgeEntity
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: MongoDB ObjectId as 24-char hex string
+    - name: code
+      type: String
+      description: "Entity code, currently matches id"
+    - name: kind
+      type: NodeKind
+      description: Always KNOWLEDGE
+    - name: label
+      type: String
+      description: "Visible name, e.g. Affirmative sentences in the present simple"
+    - name: oldId
+      type: String
+      description: Legacy UUID identifier
+    - name: parentId
+      type: String
+      description: References the parent topic id (R008)
+    - name: isRule
+      type: boolean
+      description: Always true in current data
+    - name: instructions
+      type: String
+      description: "Exercise instructions in Spanish, may be null in exceptional cases\
+        \ (R009)"
+    - name: order
+      type: int
+      description: "Ordinal position within topic, 1-based, derived from topic ruleIds\
+        \ (R013)"
+    - name: slug
+      type: String
+      description: "Directory name on disk, preserved for idempotency (R003/R016)"
+    - name: quizTemplates
+      type: List<QuizTemplateEntity>
+      description: "Associated quiz templates, at least 1 required (R004)"
+    _change: add
+  - name: QuizTemplateEntity
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: Plain string ObjectId (R011)
+    - name: oidId
+      type: String
+      description: "Same value as id, serialized as $oid wrapper in JSON (R011)"
+    - name: kind
+      type: String
+      description: "Quiz type, currently always CLOZE"
+    - name: knowledgeId
+      type: String
+      description: References parent knowledge id (R008)
+    - name: title
+      type: String
+      description: "Quiz title, usually matches knowledge label"
+    - name: instructions
+      type: String
+      description: "Instructions in Spanish, may be empty"
+    - name: translation
+      type: String
+      description: Spanish translation of the sentence
+    - name: theoryId
+      type: String
+      description: Theory reference in format milestone.number.theory_name
+    - name: topicName
+      type: String
+      description: Redundant topic label
+    - name: form
+      type: FormEntity
+      description: Exercise form structure
+    - name: difficulty
+      type: double
+      description: "Difficulty level, currently always 0.0 (R012: stored as $numberDouble)"
+    - name: retries
+      type: double
+      description: "Allowed retries, currently always 0.0 (R012: stored as $numberDouble)"
+    - name: noScoreRetries
+      type: double
+      description: "No-score retries, currently always 0.0 (R012: stored as $numberDouble)"
+    - name: code
+      type: String
+      description: "Auxiliary code, currently always empty"
+    - name: audioUrl
+      type: String
+      description: "Exercise audio URL, currently always empty"
+    - name: imageUrl
+      type: String
+      description: "Exercise image URL, currently always empty"
+    - name: answerAudioUrl
+      type: String
+      description: Answer audio reference in format Milestone.section.subsection.number
+    - name: answerImageUrl
+      type: String
+      description: "Answer image URL, currently always empty"
+    - name: miniTheory
+      type: String
+      description: "Inline brief theory, currently always empty"
+    - name: successMessage
+      type: String
+      description: "Success message, currently always empty"
+    _change: add
+  - name: FormEntity
+    type: record
+    fields:
+    - name: kind
+      type: String
+      description: "Form type, currently always CLOZE"
+    - name: incidence
+      type: double
+      description: "Weight/frequency, currently always 1.0 (R012: stored as $numberDouble)"
+    - name: label
+      type: String
+      description: "Form label, currently always empty"
+    - name: name
+      type: String
+      description: "Form name, currently always empty"
+    - name: sentenceParts
+      type: List<SentencePartEntity>
+      description: Ordered sentence parts composing the exercise (R002)
+    _change: add
+  - name: SentencePartEntity
+    type: record
+    fields:
+    - name: kind
+      type: SentencePartKind
+      description: "TEXT for fixed text, CLOZE for fill-in-the-blank"
+    - name: text
+      type: String
+      description: "Visible text for TEXT parts, empty for CLOZE"
+    - name: options
+      type: List<String>
+      description: "Answer options for CLOZE parts, null for TEXT parts"
+    _change: add
+  - name: CourseValidationException
+    type: exception
+    fields:
+    - name: path
+      type: String
+    - name: detail
+      type: String
+    message: "Error al cargar el curso desde '%s': %s. La carga fue abortada."
+    _change: add
+    extends: RuntimeException
+  interfaces:
+  - name: CourseRepository
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "load(Path path): CourseEntity"
+    - signature: "save(CourseEntity course, Path path): void"
+    _change: add
+  - name: CourseValidator
+    stereotype: service
+    sealed: false
+    exposes:
+    - signature: "validate(CourseEntity course): void"
+    _change: add
+  scope: internal
+  _change: modify
+- name: course-infrastructure
+  description: "Infrastructure module for course persistence. Contains the filesystem\
+    \ adapter that reads/writes the hierarchical directory structure with MongoDB\
+    \ Extended JSON format. Handles directory traversal, JSON parsing/serialization,\
+    \ slug generation, and $oid/$numberDouble format preservation."
+  dependsOn:
+  - course-domain
+  implementations:
+  - name: FileSystemCourseRepository
+    requiresInject:
+    - name: courseValidator
+      type: CourseValidator
+    types:
+    - Repository
+    implements:
+    - CourseRepository
+    _change: add
+  scope: internal
+  _change: add
+- name: audit-application
+  dependsOn:
+  - audit-domain
+  - course-domain
+  - course-infrastructure
+  - refiner-domain
+  _change: modify

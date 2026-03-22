@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343358"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.11.01",
+    "id": "67fab6d59930102295343358",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "audioUrl": "",
+    "title": "Future Continuous: Exercise with Question Tags",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The girls will be dancing,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't they"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "?"
+        }
+      ]
+    },
+    "translation": "Las chicas estarán bailando, ¿no es así?",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343359"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.05.11.02",
+    "successMessage": "",
+    "id": "67fab6d59930102295343359",
+    "kind": "CLOZE",
+    "title": "Future Continuous: Exercise with Question Tags",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I won't be singing at the festival,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will I"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "?"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "translation": "No estaré cantando en el festival, ¿verdad?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534335a"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "theoryId": "b1.05.Question_Tags",
+    "translation": "Nos relajaremos pronto, ¿no?",
+    "id": "67fab6d5993010229534335a",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.11.03",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Future Continuous: Exercise with Question Tags",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We'll be relaxing soon,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't we"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534335b"
+    },
+    "translation": "Él estará corriendo a las 5 p.m., ¿no es así?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.11.04",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Future Continuous: Exercise with Question Tags",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He'll be running at 5pm,",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "won't he"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "id": "67fab6d5993010229534335b",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534335c"
+    },
+    "title": "Future Continuous: Exercise with Question Tags",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She'll be arriving early,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "id": "67fab6d5993010229534335c",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "translation": "Ella llegará temprano, ¿verdad?",
+    "answerAudioUrl": "B1.05.11.05",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534335d"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "title": "Future Continuous: Exercise with Question Tags",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We won't be flying by plane,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will we"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "No viajaremos en avión, ¿verdad?",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "answerAudioUrl": "B1.05.11.06",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "theoryId": "b1.05.Question_Tags",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534335d",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534335e"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ellos no estarán navegando, ¿verdad?",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.11.07",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "audioUrl": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534335e",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Future Continuous: Exercise with Question Tags",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They won't be sailing,",
+          "options": null
+        },
+        {
+          "options": [
+            "will they"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534335f"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534335f",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He won't be going to the concert,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Future Continuous: Exercise with Question Tags",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.05.11.08",
+    "code": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "translation": "Él no irá al concierto, ¿verdad?",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343360"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'll be ordering pizza for everyone,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't I"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "id": "67fab6d59930102295343360",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Future Continuous: Exercise with Question Tags",
+    "theoryId": "b1.05.Question_Tags",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "answerAudioUrl": "B1.05.11.09",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Pediré pizza para todos, ¿no?",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343361"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295343361",
+    "title": "Future Continuous: Exercise with Question Tags",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "No estaré ordenando, ¿verdad?",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.11.10",
+    "code": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I won't be tidying,"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will I"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343362"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343362",
+    "code": "",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "translation": "Los gatos no estarán durmiendo en el sofá, ¿verdad?",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cats won't be sleeping on the sofa,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "theoryId": "b1.05.Question_Tags",
+    "answerAudioUrl": "B1.05.11.11",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Future Continuous: Exercise with Question Tags",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343363"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.11.12",
+    "id": "67fab6d59930102295343363",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I'll be standing when you disembark,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't I"
+          ]
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "translation": "Estaré de pie cuando desembarques, ¿no?",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "title": "Future Continuous: Exercise with Question Tags",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343364"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Future Continuous: Exercise with Question Tags",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Carlos won't be working at the store,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343364",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Carlos no estará trabajando en la tienda, ¿verdad?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.11.13",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343365"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Future Continuous: Exercise with Question Tags",
+    "miniTheory": "",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343365",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The cats will be eating soon,"
+        },
+        {
+          "text": "",
+          "options": [
+            "won't they"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Los gatos comerán pronto, ¿no?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.11.14",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343366"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "theoryId": "b1.05.Question_Tags",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Future Continuous: Exercise with Question Tags",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She won't be studying there,",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "will she"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Ella no estará estudiando allí, ¿verdad?",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295343366",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.11.15",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343367"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "translation": "Él tocará la guitarra, ¿no?",
+    "answerAudioUrl": "B1.05.11.16",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Future Continuous: Exercise with Question Tags",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He'll be playing the guitar,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295343367",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343368"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "translation": "Ella no irá de compras con ellos, ¿verdad?",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "successMessage": "",
+    "id": "67fab6d59930102295343368",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She won't be shopping with them,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will she"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "?"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.11.17",
+    "title": "Future Continuous: Exercise with Question Tags",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343369"
+    },
+    "id": "67fab6d59930102295343369",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "theoryId": "b1.05.Question_Tags",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Susan will be walking to the gym,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't she"
+          ]
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.05.11.18",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "title": "Future Continuous: Exercise with Question Tags",
+    "translation": "Susan irá caminando al gimnasio, ¿no?",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534336a"
+    },
+    "id": "67fab6d5993010229534336a",
+    "title": "Future Continuous: Exercise with Question Tags",
+    "theoryId": "b1.05.Question_Tags",
+    "translation": "Saldremos a las 9 de la mañana, ¿no?",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We'll be departing at 9am,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't we"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.05.11.19",
+    "code": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534336b"
+    },
+    "id": "67fab6d5993010229534336b",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ec"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "theoryId": "b1.05.Question_Tags",
+    "audioUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Future Continuous: Exercise with Question Tags",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teachers won't be marking homework then,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Los profesores no estarán calificando tareas en ese momento, ¿verdad?",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.11.20",
+    "topicName": "Questions and short answers"
+  }
+]

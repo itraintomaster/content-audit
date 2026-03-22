@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c72"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342c72",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Distinguishing 'Somewhere' and 'Nowhere'",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "translation": "No fueron a ninguna parte la semana pasada. No tenían ganas de salir.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d280"
+    },
+    "instructions": "Escribe 'somewhere' o 'nowhere'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They went",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "nowhere"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "last week. They didn't feel like going out.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.08.15.01",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c73"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Distinguishing 'Somewhere' and 'Nowhere'",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She searched",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "everywhere"
+          ]
+        },
+        {
+          "text": "for her keys. She checked all her bags and pockets.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.15.02",
+    "id": "67fab6d59930102295342c73",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d280"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'somewhere' o 'nowhere'.",
+    "audioUrl": "",
+    "translation": "Buscó sus llaves por todas partes. Revisó todos sus bolsos y bolsillos.",
+    "answerImageUrl": "",
+    "code": "",
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c74"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342c74",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.08.15.03",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d280"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "Nowhere"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "in Spain is cold during summer. It's always hot!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "instructions": "Escribe 'somewhere' o 'nowhere'.",
+    "translation": "En ningún lugar de España hace frío durante el verano. ¡Siempre hace calor!",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Distinguishing 'Somewhere' and 'Nowhere'",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c75"
+    },
+    "instructions": "Escribe 'somewhere' o 'nowhere'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I'd love to travel",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "everywhere"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "in Asia. I love Asia.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d280"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "translation": "Me encantaría viajar por toda Asia. Amo Asia.",
+    "id": "67fab6d59930102295342c75",
+    "title": "Distinguishing 'Somewhere' and 'Nowhere'",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.08.15.04",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c76"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Distinguishing 'Somewhere' and 'Nowhere'",
+    "translation": "¡Ella ha estado en todas partes! ¡Ha visto todos los continentes!",
+    "answerAudioUrl": "A2.08.15.05",
+    "id": "67fab6d59930102295342c76",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d280"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She has been",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "everywhere"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "! She has seen all the continents!"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "instructions": "Escribe 'somewhere' o 'nowhere'.",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c77"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.08.15.06",
+    "instructions": "Escribe 'somewhere' o 'nowhere'.",
+    "audioUrl": "",
+    "translation": "No hay ningún lugar donde quiera estar más que contigo. ¡Estar contigo es lo mejor!",
+    "title": "Distinguishing 'Somewhere' and 'Nowhere'",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d280"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295342c77",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "imageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "There is"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nowhere"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "I want to be but with you. Being with you is the best!",
+          "options": null
+        }
+      ]
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c78"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Distinguishing 'Somewhere' and 'Nowhere'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d280"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The animals escaped to",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nowhere"
+          ]
+        },
+        {
+          "text": ". They are still being looked for.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.08.15.07",
+    "id": "67fab6d59930102295342c78",
+    "code": "",
+    "instructions": "Escribe 'somewhere' o 'nowhere'.",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "audioUrl": "",
+    "translation": "Los animales escaparon a ninguna parte. Todavía los están buscando.",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c79"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Distinguishing 'Somewhere' and 'Nowhere'",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There was food",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "everywhere"
+          ]
+        },
+        {
+          "text": "! The kitchen was a disaster!",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.08.15.08",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d280"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "audioUrl": "",
+    "code": "",
+    "imageUrl": "",
+    "translation": "¡Había comida por todas partes! ¡La cocina era un desastre!",
+    "id": "67fab6d59930102295342c79",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'somewhere' o 'nowhere'.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c7a"
+    },
+    "code": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d280"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "En todos los lugares que viajamos en Italia, la comida era deliciosa. ¡Nos encantó!",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Everywhere"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "we travelled in Italy, the food was delicious. We loved it!",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.08.15.09",
+    "id": "67fab6d59930102295342c7a",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Distinguishing 'Somewhere' and 'Nowhere'",
+    "instructions": "Escribe 'somewhere' o 'nowhere'.",
+    "imageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c7b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Distinguishing 'Somewhere' and 'Nowhere'",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.15.10",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d280"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'somewhere' o 'nowhere'.",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "translation": "¡Ningún lugar es tan divertido como este club! ¡Es el mejor club de todos!",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Nowhere"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "is as fun as this club! It's the best club ever!"
+        }
+      ]
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342c7b",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "topicName": "Pronouns"
+  }
+]

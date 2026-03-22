@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c22"
+    },
+    "translation": "Ella no comió nada en todo el día.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.07.01",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'something' o 'anything'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She didn't eat"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "anything"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "all day.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "successMessage": "",
+    "id": "67fab6d59930102295342c22",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d278"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing Between 'Something' and 'Anything'",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c23"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Tiene algo que declarar?",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Do you have"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "anything"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to declare?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.07.02",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d278"
+    },
+    "instructions": "Escribe 'something' o 'anything'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342c23",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing Between 'Something' and 'Anything'",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c24"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342c24",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d278"
+    },
+    "instructions": "Escribe 'something' o 'anything'.",
+    "translation": "Quiero algo de comer.",
+    "successMessage": "",
+    "code": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I want",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "something"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to eat.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.08.07.03",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing Between 'Something' and 'Anything'",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "audioUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c25"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "translation": "Debería encontrar algo para regalar.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d278"
+    },
+    "imageUrl": "",
+    "title": "Choosing Between 'Something' and 'Anything'",
+    "instructions": "Escribe 'something' o 'anything'.",
+    "id": "67fab6d59930102295342c25",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I should find",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "something"
+          ]
+        },
+        {
+          "text": "to give as a gift.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.08.07.04",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c26"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'something' o 'anything'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you heard",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "anything"
+          ]
+        },
+        {
+          "text": "about the weather?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.07.05",
+    "id": "67fab6d59930102295342c26",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d278"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "translation": "¿Has oído algo sobre el clima?",
+    "miniTheory": "",
+    "title": "Choosing Between 'Something' and 'Anything'",
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c27"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing Between 'Something' and 'Anything'",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Escribe 'something' o 'anything'.",
+    "miniTheory": "",
+    "translation": "Necesito ayuda con algo, gracias.",
+    "successMessage": "",
+    "id": "67fab6d59930102295342c27",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I require assistance with",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "something"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", thanks.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerAudioUrl": "A2.08.07.06",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d278"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "imageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c28"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing Between 'Something' and 'Anything'",
+    "translation": "¿Hay algo en la nevera?",
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342c28",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d278"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Is",
+          "options": null
+        },
+        {
+          "options": [
+            "anything"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "in the fridge?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "instructions": "Escribe 'something' o 'anything'.",
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "answerAudioUrl": "A2.08.07.07",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c29"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You lost",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "something"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "!"
+        }
+      ]
+    },
+    "translation": "¡Perdiste algo!",
+    "successMessage": "",
+    "id": "67fab6d59930102295342c29",
+    "title": "Choosing Between 'Something' and 'Anything'",
+    "instructions": "Escribe 'something' o 'anything'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.08.07.08",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d278"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c2a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "This is"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "something"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "for consideration.",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295342c2a",
+    "kind": "CLOZE",
+    "title": "Choosing Between 'Something' and 'Anything'",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.07.09",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d278"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "code": "",
+    "instructions": "Escribe 'something' o 'anything'.",
+    "audioUrl": "",
+    "translation": "Esto es algo para considerar.",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c2b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "No necesito nada por el momento.",
+    "answerAudioUrl": "A2.08.07.10",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d278"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing Between 'Something' and 'Anything'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I don't need",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "anything"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "at the moment.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342c2b",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Escribe 'something' o 'anything'.",
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "successMessage": "",
+    "topicName": "Pronouns"
+  }
+]

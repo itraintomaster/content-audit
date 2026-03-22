@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ded"
+    },
+    "id": "67fab6d59930102295343ded",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Los vikingos saquean las costas y se llevan muchos tesoros.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The Vikings raided the coasts and took a lot of treasure.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The Vikings raid the coasts and take a lot of treasure."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "audioUrl": "",
+    "code": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Historic Present Tense",
+    "answerAudioUrl": "B2.01.06.01",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dee"
+    },
+    "title": "Using the Historic Present Tense",
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343dee",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I entered the library and she was reading a book.",
+          "options": null
+        },
+        {
+          "options": [
+            "I enter the library and she's reading a book.|I enter the library and she is reading a book."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "imageUrl": "",
+    "translation": "Entro en la biblioteca y ella está leyendo un libro.",
+    "successMessage": "",
+    "answerAudioUrl": "B2.01.06.02",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343def"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Historic Present Tense",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "translation": "Él agarra su abrigo y sale de prisa.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343def",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He grabbed his coat and hurried out.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He grabs his coat and hurries out."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.01.06.03",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343df0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Adam met Eve and they started a family.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Adam meets Eve and they start a family."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "Adán conoce a Eva y comienzan una familia.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343df0",
+    "kind": "CLOZE",
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.06.04",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Historic Present Tense",
+    "audioUrl": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343df1"
+    },
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "successMessage": "",
+    "answerAudioUrl": "B2.01.06.05",
+    "id": "67fab6d59930102295343df1",
+    "title": "Using the Historic Present Tense",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "So, he told me that he loved me.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "So, he tells me that he loves me."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "translation": "Entonces, él me dice que me ama.",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343df2"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.01.06.06",
+    "id": "67fab6d59930102295343df2",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "translation": "Veo un gato y está durmiendo.",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "title": "Using the Historic Present Tense",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I spotted a cat and it was sleeping.",
+          "options": null
+        },
+        {
+          "options": [
+            "I spot a cat and it's sleeping.|I spot a cat and it is sleeping."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343df3"
+    },
+    "id": "67fab6d59930102295343df3",
+    "successMessage": "",
+    "answerAudioUrl": "B2.01.06.07",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Historic Present Tense",
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "translation": "Sherlock Holmes vive en Baker Street.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Sherlock Holmes lived at Baker Street.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Sherlock Holmes lives at Baker Street."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343df4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Historic Present Tense",
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Merchants traded along the Spice Route."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Merchants trade along the Spice Route."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "translation": "Los comerciantes comercian a lo largo de la Ruta de las Especias.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343df4",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.01.06.08",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343df5"
+    },
+    "code": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We saw the director and she was nice.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We see the director and she's nice.|We see the director and she is nice."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Vemos a la directora y es amable.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.01.06.09",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Historic Present Tense",
+    "successMessage": "",
+    "id": "67fab6d59930102295343df5",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343df6"
+    },
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "translation": "El Sr. Bingley admira a Jane Bennet inmediatamente.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Historic Present Tense",
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343df6",
+    "code": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.06.10",
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Mr. Bingley admired Jane Bennet immediately.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mr. Bingley admires Jane Bennet immediately."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343df7"
+    },
+    "id": "67fab6d59930102295343df7",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Historic Present Tense",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The French and the Germans fought during the world wars in the 1900s.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "The French and the Germans fight during the world wars in the 1900s."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "translation": "Los franceses y los alemanes luchan durante las guerras mundiales en la década de 1900.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.01.06.11",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343df8"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We visited Italy and ate a lot of delicious pasta.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We visit Italy and eat a lot of delicious pasta."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Historic Present Tense",
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343df8",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "successMessage": "",
+    "answerAudioUrl": "B2.01.06.12",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Visitamos Italia y comemos mucha pasta deliciosa.",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343df9"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "title": "Using the Historic Present Tense",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.01.06.13",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343df9",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ella sube al autobús y está lleno y toda la gente está hablando.",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She boarded the bus and it was crowded and all the people were talking.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "She boards the bus and it's crowded and all the people are talking.|She boards the bus and it is crowded and all the people are talking."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dfa"
+    },
+    "title": "Using the Historic Present Tense",
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.01.06.14",
+    "code": "",
+    "translation": "Llegan a la sala de conciertos y los músicos están ensayando.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They got to the concert hall and the musicians were rehearsing.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They get to the concert hall and the musicians are rehearsing."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343dfa",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dfb"
+    },
+    "translation": "Entro en la cocina y mi esposa está horneando un pastel y la habitación está muy caliente.",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Historic Present Tense",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I walked into the kitchen and my wife was baking a cake and the room was very hot.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "I go into the kitchen and my wife's baking a cake and the room is very hot.|I go into the kitchen and my wife is baking a cake and the room is very hot."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.06.15",
+    "id": "67fab6d59930102295343dfb",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "audioUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "answerImageUrl": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dfc"
+    },
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "successMessage": "",
+    "id": "67fab6d59930102295343dfc",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Frodo took the ring and had a dangerous quest.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Frodo takes the ring and has a dangerous quest."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B2.01.06.16",
+    "kind": "CLOZE",
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Frodo toma el anillo y tiene una peligrosa misión.",
+    "title": "Using the Historic Present Tense",
+    "answerImageUrl": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dfd"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She stepped up to the microphone and began an emotional song.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She steps up to the microphone and begins an emotional song."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "id": "67fab6d59930102295343dfd",
+    "translation": "Ella se acerca al micrófono y comienza una canción emotiva.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.06.17",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "title": "Using the Historic Present Tense",
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "audioUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dfe"
+    },
+    "translation": "Los egipcios desarrollan la escritura alrededor del 3200 a.C.",
+    "successMessage": "",
+    "answerAudioUrl": "B2.01.06.18",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The Egyptians developed writing around 3200 BC.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "The Egyptians develop writing around 3200 BC."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Historic Present Tense",
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343dfe",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dff"
+    },
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using the Historic Present Tense",
+    "audioUrl": "",
+    "translation": "Vamos a la playa y las olas están rompiendo.",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.06.19",
+    "id": "67fab6d59930102295343dff",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We went to the beach and the waves were crashing.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We go to the beach and the waves are crashing."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "answerImageUrl": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e00"
+    },
+    "id": "67fab6d59930102295343e00",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.06.20",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f6"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I boarded the train and there was a snake in my compartment!",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I get on the train and there's a snake in my compartment!|I get on the train and there is a snake in my compartment!"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "translation": "¡Subo al tren y hay una serpiente en mi compartimento!",
+    "successMessage": "",
+    "code": "",
+    "title": "Using the Historic Present Tense",
+    "instructions": "Transforma las oraciones en pasado al 'historic present'. Todas las oraciones hablan de algo en el pasado.",
+    "theoryId": "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  }
+]

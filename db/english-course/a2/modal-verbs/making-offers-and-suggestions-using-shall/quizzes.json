@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e34"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'shall'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Let's eat pizza tonight.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Shall we eat pizza tonight?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342e34",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Making Offers and Suggestions: Using 'Shall'",
+    "translation": "¿Comemos pizza esta noche?",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.10.09.01",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e35"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'shall'.",
+    "translation": "¿Abro la ventana?",
+    "id": "67fab6d59930102295342e35",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.09.02",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Making Offers and Suggestions: Using 'Shall'",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Would you like me to open the window?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Shall I open the window?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e36"
+    },
+    "answerAudioUrl": "A2.10.09.03",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "How about watching a film after dinner?"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Shall we watch a film after dinner?"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342e36",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Making Offers and Suggestions: Using 'Shall'",
+    "instructions": "Transforma las oraciones para que incluyan 'shall'.",
+    "theoryId": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29d"
+    },
+    "translation": "¿Vemos una película después de cenar?",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e37"
+    },
+    "title": "Making Offers and Suggestions: Using 'Shall'",
+    "instructions": "Transforma las oraciones para que incluyan 'shall'.",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.10.09.04",
+    "id": "67fab6d59930102295342e37",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Would you like me to make some tea?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Shall I make some tea?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "¿Preparo un poco de té?",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e38"
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29d"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'shall'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Let's take a taxi home.",
+          "options": null
+        },
+        {
+          "options": [
+            "Shall we take a taxi home?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.10.09.05",
+    "translation": "¿Tomamos un taxi a casa?",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342e38",
+    "kind": "CLOZE",
+    "title": "Making Offers and Suggestions: Using 'Shall'",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e39"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29d"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "How about having lunch at the park?"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Shall we have lunch at the park?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "translation": "¿Almorzamos en el parque?",
+    "miniTheory": "",
+    "code": "",
+    "instructions": "Transforma las oraciones para que incluyan 'shall'.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.10.09.06",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342e39",
+    "title": "Making Offers and Suggestions: Using 'Shall'",
+    "theoryId": "",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e3a"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Would you like me to drive you home?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Shall I drive you home?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "code": "",
+    "title": "Making Offers and Suggestions: Using 'Shall'",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342e3a",
+    "kind": "CLOZE",
+    "instructions": "Transforma las oraciones para que incluyan 'shall'.",
+    "theoryId": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Te llevo a casa?",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.09.07",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29d"
+    },
+    "audioUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e3b"
+    },
+    "answerAudioUrl": "A2.10.09.08",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "title": "Making Offers and Suggestions: Using 'Shall'",
+    "instructions": "Transforma las oraciones para que incluyan 'shall'.",
+    "translation": "¿Pedimos comida china?",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342e3b",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Let's order some Chinese food.",
+          "options": null
+        },
+        {
+          "options": [
+            "Shall we order some Chinese food?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e3c"
+    },
+    "id": "67fab6d59930102295342e3c",
+    "translation": "¿Lo llamo?",
+    "successMessage": "",
+    "code": "",
+    "title": "Making Offers and Suggestions: Using 'Shall'",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'shall'.",
+    "theoryId": "",
+    "answerAudioUrl": "A2.10.09.09",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Would you like me to call him?",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Shall I call him?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e3d"
+    },
+    "theoryId": "",
+    "translation": "¿Visitamos París en agosto?",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Making Offers and Suggestions: Using 'Shall'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "How about visiting Paris in August?",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Shall we visit Paris in August?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295342e3d",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.09.10",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'shall'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29d"
+    },
+    "imageUrl": "",
+    "topicName": "Modal Verbs"
+  }
+]

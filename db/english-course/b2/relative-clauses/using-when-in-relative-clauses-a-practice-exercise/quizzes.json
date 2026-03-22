@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344648"
+    },
+    "id": "67fab6d59930102295344648",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'when'.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That was the summer. I visited Rome that summer.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the summer when I visited Rome."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.10.07.01",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "translation": "Ese fue el verano cuando visité Roma.",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344649"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "successMessage": "",
+    "answerAudioUrl": "B2.10.07.02",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'when'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "audioUrl": "",
+    "translation": "1999 fue el año cuando mi hermana se graduó.",
+    "id": "67fab6d59930102295344649",
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "1999 was the year. My sister graduated that year.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "1999 was the year when my sister graduated."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534464a"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.10.07.03",
+    "id": "67fab6d5993010229534464a",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Last January was the month. They started building it in that month.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Last January was the month when they started building it."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "successMessage": "",
+    "instructions": "Crea oraciones con 'when'.",
+    "imageUrl": "",
+    "translation": "El pasado enero fue el mes cuando empezaron a construirlo.",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534464b"
+    },
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.10.07.04",
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'when'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That was the minute. I burned the pizza at that minute.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "That was the minute when I burned the pizza."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "successMessage": "",
+    "id": "67fab6d5993010229534464b",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ese fue el minuto cuando quemé la pizza.",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534464c"
+    },
+    "id": "67fab6d5993010229534464c",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "imageUrl": "",
+    "successMessage": "",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'when'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Wednesday was the day. I usually work from home that day.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Wednesday was the day when I usually work from home."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "kind": "CLOZE",
+    "translation": "El miércoles era el día cuando normalmente trabajo desde casa.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.10.07.05",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534464d"
+    },
+    "id": "67fab6d5993010229534464d",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "instructions": "Crea oraciones con 'when'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "That was the occasion. I laughed loudly at that occasion.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the occasion when I laughed loudly."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.10.07.06",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Esa fue la ocasión cuando me reí a carcajadas.",
+    "miniTheory": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534464e"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "translation": "Esa fue la lección cuando ella entendió el presente perfecto.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.10.07.07",
+    "code": "",
+    "instructions": "Crea oraciones con 'when'.",
+    "id": "67fab6d5993010229534464e",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "That was the lesson. She understood the present perfect in that lesson."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the lesson when she understood the present perfect."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534464f"
+    },
+    "answerAudioUrl": "B2.10.07.08",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "2020 fue el año cuando comenzó la pandemia.",
+    "successMessage": "",
+    "miniTheory": "",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'when'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "2020 was the year. The pandemic started that year.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "2020 was the year when the pandemic started."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "id": "67fab6d5993010229534464f",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344650"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'when'.",
+    "answerAudioUrl": "B2.10.07.09",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That was the moment. You went to sleep that moment.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the moment when you went to sleep."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344650",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Ese fue el momento cuando te fuiste a dormir.",
+    "successMessage": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344651"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'when'.",
+    "answerAudioUrl": "B2.10.07.10",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It was the second. She found her keys at that second.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "It was the second when she found her keys."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Fue el segundo cuando ella encontró sus llaves.",
+    "successMessage": "",
+    "id": "67fab6d59930102295344651",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344652"
+    },
+    "answerAudioUrl": "B2.10.07.11",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "answerImageUrl": "",
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That was the evening. She was really tired that evening.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the evening when she was really tired."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Esa fue la noche cuando ella estaba realmente cansada.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295344652",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'when'.",
+    "imageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344653"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "translation": "Diciembre es el mes cuando la nieve es más intensa.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'when'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "December is the month. The snow is heaviest that month.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "December is the month when the snow is heaviest."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.10.07.12",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295344653",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344654"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Saturday is the day. I go to the cinema that day.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Saturday is the day when I go to the cinema."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "El sábado es el día cuando voy al cine.",
+    "miniTheory": "",
+    "instructions": "Crea oraciones con 'when'.",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.10.07.13",
+    "id": "67fab6d59930102295344654",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "successMessage": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344655"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That was the evening. The president gave a speech that evening.",
+          "options": null
+        },
+        {
+          "options": [
+            "That was the evening when the president gave a speech."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Esa fue la noche cuando el presidente dio un discurso.",
+    "instructions": "Crea oraciones con 'when'.",
+    "code": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344655",
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.10.07.14",
+    "kind": "CLOZE",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344656"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'when'.",
+    "successMessage": "",
+    "translation": "1987 es el año cuando nació mi hermano.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.10.07.15",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "audioUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "1987 is the year. My brother was born that year.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "1987 is the year when my brother was born."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "id": "67fab6d59930102295344656",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344657"
+    },
+    "id": "67fab6d59930102295344657",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "audioUrl": "",
+    "code": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.07.16",
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "instructions": "Crea oraciones con 'when'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "That was the day. They stayed in bed all that day.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the day when they stayed in bed all day."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ese fue el día cuando se quedaron en cama todo el día.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344658"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.10.07.17",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That will be the decade. We visit Paris that decade.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That will be the decade when we visit Paris."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "instructions": "Crea oraciones con 'when'.",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "id": "67fab6d59930102295344658",
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Esa será la década cuando visitemos París.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344659"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "instructions": "Crea oraciones con 'when'.",
+    "audioUrl": "",
+    "translation": "Agosto es el mes cuando los turistas acuden en masa a las playas.",
+    "answerAudioUrl": "B2.10.07.18",
+    "id": "67fab6d59930102295344659",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "August is the month. Tourists flock to the beaches that month.",
+          "options": null
+        },
+        {
+          "options": [
+            "August is the month when tourists flock to the beaches."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534465a"
+    },
+    "instructions": "Crea oraciones con 'when'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Autumn is the season. The weather is at its best in that season.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Autumn is the season when the weather is at its best."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "El otoño es la estación cuando el clima es mejor.",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.10.07.19",
+    "id": "67fab6d5993010229534465a",
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "audioUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534465b"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.10.07.20",
+    "id": "67fab6d5993010229534465b",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46b"
+    },
+    "miniTheory": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That was the party. We danced all night that party.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was the party when we danced all night."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Esa fue la fiesta cuando bailamos toda la noche.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'when'.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'When' in Relative Clauses: A Practice Exercise",
+    "imageUrl": "",
+    "topicName": "Relative clauses"
+  }
+]

@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b8b"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d363"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295343b8b",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I have a"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "part-time"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "course. I only study twice per week.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Tengo un curso a tiempo parcial. Solo estudio dos veces por semana.",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Compound Adjectives: Complete the Sentences",
+    "instructions": "Elige un adjetivo compuesto de la lista para completar la oración. (English-speaking / well-known / well-educated / part-time / middle-aged / good-looking / last-minute / never-ending / slow-moving / old-fashioned)",
+    "theoryId": "b1.15.Compound_Adjectives",
+    "answerAudioUrl": "B1.15.13.01",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b8c"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This story is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "never-ending"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "! When will this end?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.15.Compound_Adjectives",
+    "answerAudioUrl": "B1.15.13.02",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Compound Adjectives: Complete the Sentences",
+    "audioUrl": "",
+    "translation": "¡Esta historia es interminable! ¿Cuándo terminará?",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige un adjetivo compuesto de la lista para completar la oración. (English-speaking / well-known / well-educated / part-time / middle-aged / good-looking / last-minute / never-ending / slow-moving / old-fashioned)",
+    "id": "67fab6d59930102295343b8c",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d363"
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b8d"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He has",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "old-fashioned"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "furniture in his house. It looks like it's from the 70s.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343b8d",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d363"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Compound Adjectives: Complete the Sentences",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.15.13.03",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "instructions": "Elige un adjetivo compuesto de la lista para completar la oración. (English-speaking / well-known / well-educated / part-time / middle-aged / good-looking / last-minute / never-ending / slow-moving / old-fashioned)",
+    "theoryId": "b1.15.Compound_Adjectives",
+    "translation": "Tiene muebles antiguos en su casa. Parece que son de los años 70.",
+    "successMessage": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b8e"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d363"
+    },
+    "title": "Compound Adjectives: Complete the Sentences",
+    "answerAudioUrl": "B1.15.13.04",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295343b8e",
+    "instructions": "Elige un adjetivo compuesto de la lista para completar la oración. (English-speaking / well-known / well-educated / part-time / middle-aged / good-looking / last-minute / never-ending / slow-moving / old-fashioned)",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "translation": "Canadá es un país de habla inglesa. También hablan francés.",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Canada is an",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "English-speaking"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "country. They also speak French.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.15.Compound_Adjectives",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b8f"
+    },
+    "id": "67fab6d59930102295343b8f",
+    "imageUrl": "",
+    "translation": "Mi vecina es una mujer atractiva. Es muy guapa.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.15.13.05",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Compound Adjectives: Complete the Sentences",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My neighbor is a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "good-looking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "woman. She is very attractive.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d363"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige un adjetivo compuesto de la lista para completar la oración. (English-speaking / well-known / well-educated / part-time / middle-aged / good-looking / last-minute / never-ending / slow-moving / old-fashioned)",
+    "theoryId": "b1.15.Compound_Adjectives",
+    "audioUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b90"
+    },
+    "title": "Compound Adjectives: Complete the Sentences",
+    "audioUrl": "",
+    "translation": "El tren se movía lentamente. Apenas avanzaba.",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige un adjetivo compuesto de la lista para completar la oración. (English-speaking / well-known / well-educated / part-time / middle-aged / good-looking / last-minute / never-ending / slow-moving / old-fashioned)",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.15.13.06",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d363"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The train was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "slow-moving"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ". It barely went forward.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.15.Compound_Adjectives",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343b90",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b91"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Todos los profesores están bien educados. Todos tienen doctorados.",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "All the teachers are",
+          "options": null
+        },
+        {
+          "options": [
+            "well-educated"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": ". They all hold doctorate degrees.",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295343b91",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Compound Adjectives: Complete the Sentences",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.15.13.07",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d363"
+    },
+    "instructions": "Elige un adjetivo compuesto de la lista para completar la oración. (English-speaking / well-known / well-educated / part-time / middle-aged / good-looking / last-minute / never-ending / slow-moving / old-fashioned)",
+    "theoryId": "b1.15.Compound_Adjectives",
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b92"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d363"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Compound Adjectives: Complete the Sentences",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Angelina Jolie is a"
+        },
+        {
+          "text": "",
+          "options": [
+            "well-known"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "actress. She is famous all over the world.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.15.Compound_Adjectives",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.15.13.08",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige un adjetivo compuesto de la lista para completar la oración. (English-speaking / well-known / well-educated / part-time / middle-aged / good-looking / last-minute / never-ending / slow-moving / old-fashioned)",
+    "id": "67fab6d59930102295343b92",
+    "translation": "Angelina Jolie es una actriz muy conocida. Es famosa en todo el mundo.",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b93"
+    },
+    "id": "67fab6d59930102295343b93",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d363"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Compound Adjectives: Complete the Sentences",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "theoryId": "b1.15.Compound_Adjectives",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.13.09",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He's not young, but he's not too old. He's"
+        },
+        {
+          "text": "",
+          "options": [
+            "middle-aged"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "No es joven, pero tampoco es demasiado viejo. Es de mediana edad.",
+    "instructions": "Elige un adjetivo compuesto de la lista para completar la oración. (English-speaking / well-known / well-educated / part-time / middle-aged / good-looking / last-minute / never-ending / slow-moving / old-fashioned)",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b94"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "instructions": "Elige un adjetivo compuesto de la lista para completar la oración. (English-speaking / well-known / well-educated / part-time / middle-aged / good-looking / last-minute / never-ending / slow-moving / old-fashioned)",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I did a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "last-minute"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "reservation for a hotel. Luckily they had one room available.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.15.Compound_Adjectives",
+    "successMessage": "",
+    "answerAudioUrl": "B1.15.13.10",
+    "id": "67fab6d59930102295343b94",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Compound Adjectives: Complete the Sentences",
+    "imageUrl": "",
+    "translation": "Hice una reserva de hotel de última hora. Afortunadamente tenían una habitación disponible.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d363"
+    },
+    "topicName": "Adjectives"
+  }
+]

@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344724"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295344724",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He wants some juice."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He wants some."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.11.07.01",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Determiner vs. Pronoun Exercise",
+    "instructions": "Cambia el determinante por un pronombre.",
+    "translation": "Él quiere un poco.",
+    "miniTheory": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344725"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "answerAudioUrl": "B2.11.07.02",
+    "id": "67fab6d59930102295344725",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She ate a few candies.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She ate a few."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Determiner vs. Pronoun Exercise",
+    "instructions": "Cambia el determinante por un pronombre.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Ella comió unos pocos.",
+    "answerImageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344726"
+    },
+    "translation": "No tuvimos ninguno.",
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We had no cars.",
+          "options": null
+        },
+        {
+          "options": [
+            "We had none."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia el determinante por un pronombre.",
+    "title": "Determiner vs. Pronoun Exercise",
+    "answerAudioUrl": "B2.11.07.03",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344726",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344727"
+    },
+    "instructions": "Cambia el determinante por un pronombre.",
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "id": "67fab6d59930102295344727",
+    "code": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you need any help?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Do you need any?"
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.11.07.04",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "successMessage": "",
+    "title": "Determiner vs. Pronoun Exercise",
+    "audioUrl": "",
+    "translation": "¿Necesitas alguno?",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344728"
+    },
+    "id": "67fab6d59930102295344728",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "instructions": "Cambia el determinante por un pronombre.",
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.11.07.05",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Determiner vs. Pronoun Exercise",
+    "translation": "A la mayoría le gusta leer.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "Most students like reading.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "Most like reading."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344729"
+    },
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.11.07.06",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "title": "Determiner vs. Pronoun Exercise",
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295344729",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia el determinante por un pronombre.",
+    "translation": "Me gustaría un poco, por favor.",
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'd like a little sugar, please.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I'd like a little, please."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534472a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "Some girls stayed late.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "Some stayed late."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "translation": "Algunos se quedaron hasta tarde.",
+    "code": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.11.07.07",
+    "audioUrl": "",
+    "miniTheory": "",
+    "instructions": "Cambia el determinante por un pronombre.",
+    "imageUrl": "",
+    "id": "67fab6d5993010229534472a",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "title": "Determiner vs. Pronoun Exercise",
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534472b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Ella necesita alguno?",
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia el determinante por un pronombre.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Does she need any pens?",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "Does she need any?"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "title": "Determiner vs. Pronoun Exercise",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.11.07.08",
+    "id": "67fab6d5993010229534472b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534472c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.11.07.09",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "title": "Determiner vs. Pronoun Exercise",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "There are no cats here.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "There are none here."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "imageUrl": "",
+    "translation": "No hay ninguno aquí.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "audioUrl": "",
+    "id": "67fab6d5993010229534472c",
+    "instructions": "Cambia el determinante por un pronombre.",
+    "answerImageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534472d"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could we have a few glasses?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could we have a few?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "successMessage": "",
+    "audioUrl": "",
+    "translation": "¿Podríamos tener unos pocos?",
+    "answerAudioUrl": "B2.11.07.10",
+    "id": "67fab6d5993010229534472d",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Determiner vs. Pronoun Exercise",
+    "instructions": "Cambia el determinante por un pronombre.",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534472e"
+    },
+    "translation": "Él no empacó ninguno.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He didn't pack any clothes.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He didn't pack any."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "title": "Determiner vs. Pronoun Exercise",
+    "instructions": "Cambia el determinante por un pronombre.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.07.11",
+    "id": "67fab6d5993010229534472e",
+    "code": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534472f"
+    },
+    "code": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'd like more space.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I'd like more."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "imageUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Me gustaría más.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Determiner vs. Pronoun Exercise",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534472f",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "instructions": "Cambia el determinante por un pronombre.",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.11.07.12",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344730"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "There's no milk left.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There's none left."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia el determinante por un pronombre.",
+    "answerAudioUrl": "B2.11.07.13",
+    "title": "Determiner vs. Pronoun Exercise",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344730",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "No queda ninguno.",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344731"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Determiner vs. Pronoun Exercise",
+    "imageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "audioUrl": "",
+    "translation": "Muchos tienen una camioneta.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.11.07.14",
+    "instructions": "Cambia el determinante por un pronombre.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Many drivers own a van.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Many own a van."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295344731",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344732"
+    },
+    "instructions": "Cambia el determinante por un pronombre.",
+    "audioUrl": "",
+    "translation": "No tengo mucho.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I don't have much space.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I don't have much."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "title": "Determiner vs. Pronoun Exercise",
+    "answerAudioUrl": "B2.11.07.15",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344732",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344733"
+    },
+    "id": "67fab6d59930102295344733",
+    "code": "",
+    "instructions": "Cambia el determinante por un pronombre.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She doesn't have many toys.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She doesn't have many."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Ella no tiene muchos.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Determiner vs. Pronoun Exercise",
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.11.07.16",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344734"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia el determinante por un pronombre.",
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "title": "Determiner vs. Pronoun Exercise",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.11.07.17",
+    "id": "67fab6d59930102295344734",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The little girl would like a few cookies.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The little girl would like a few."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "A la niña le gustaría unos pocos.",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344735"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.11.07.18",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Would you like some tea?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Would you like some?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "title": "Determiner vs. Pronoun Exercise",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295344735",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "instructions": "Cambia el determinante por un pronombre.",
+    "translation": "¿Te gustaría un poco?",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344736"
+    },
+    "id": "67fab6d59930102295344736",
+    "code": "",
+    "instructions": "Cambia el determinante por un pronombre.",
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I have no tea.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I have none."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Determiner vs. Pronoun Exercise",
+    "answerAudioUrl": "B2.11.07.19",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "translation": "No tengo ninguno.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344737"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295344737",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Determiner vs. Pronoun Exercise",
+    "audioUrl": "",
+    "translation": "Ella le dio un poco.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d477"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Cambia el determinante por un pronombre.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She gave him a little time.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She gave him a little."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.11.Pronoun_or_Determiner_",
+    "successMessage": "",
+    "answerAudioUrl": "B2.11.07.20",
+    "topicName": "Pronouns"
+  }
+]

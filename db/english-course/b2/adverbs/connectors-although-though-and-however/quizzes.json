@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534495e"
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Connectors: Although, Though and However",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We were tired"
+        },
+        {
+          "options": [
+            "though"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "we had slept a lot."
+        }
+      ]
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "translation": "Estábamos cansados aunque habíamos dormido mucho.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.14.05.01",
+    "id": "67fab6d5993010229534495e",
+    "code": "",
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534495f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.14.05.02",
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They have worked here for years.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "However"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", they don't know many colleagues.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534495f",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Sin embargo, no conocen a muchos colegas.",
+    "title": "Connectors: Although, Though and However",
+    "theoryId": "",
+    "successMessage": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344960"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Están planeando correr a casa aunque sea una larga distancia.",
+    "id": "67fab6d59930102295344960",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "theoryId": "",
+    "answerAudioUrl": "B2.14.05.03",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Connectors: Although, Though and However",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They are planning to run home",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "though"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "it's a long distance.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344961"
+    },
+    "answerAudioUrl": "B2.14.05.04",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "audioUrl": "",
+    "translation": "Aunque ama a los gatos, evitó a mi gato.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344961",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Connectors: Although, Though and However",
+    "kind": "CLOZE",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Though"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "he loves cats, he avoided my cat.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "theoryId": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344962"
+    },
+    "code": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He plays the guitar really well.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "However"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": ", he doesn't like playing in front of people.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "Sin embargo, no le gusta jugar delante de la gente.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344962",
+    "kind": "CLOZE",
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Connectors: Although, Though and However",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.05.05",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344963"
+    },
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295344963",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.14.05.06",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "title": "Connectors: Although, Though and However",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I relaxed all day.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "However"
+          ]
+        },
+        {
+          "text": ", I didn't feel rested.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Sin embargo, no me sentí descansado.",
+    "code": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344964"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She was thirsty",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "though"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "she had drunk a lot of water.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "audioUrl": "",
+    "translation": "Tenía sed aunque había bebido mucha agua.",
+    "successMessage": "",
+    "answerAudioUrl": "B2.14.05.07",
+    "id": "67fab6d59930102295344964",
+    "code": "",
+    "title": "Connectors: Although, Though and However",
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "imageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344965"
+    },
+    "audioUrl": "",
+    "translation": "Sin embargo, se quemó al día siguiente.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They sold their old house.",
+          "options": null
+        },
+        {
+          "options": [
+            "However"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": ", it burned down the next day.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295344965",
+    "code": "",
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "theoryId": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.14.05.08",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Connectors: Although, Though and However",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344966"
+    },
+    "answerAudioUrl": "B2.14.05.09",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295344966",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "translation": "Aunque hacía sol, nos quedamos adentro.",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Though"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "it was sunny, we still stayed inside.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Connectors: Although, Though and However",
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344967"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Connectors: Although, Though and However",
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "audioUrl": "",
+    "translation": "Sin embargo, todavía cometía errores.",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "answerAudioUrl": "B2.14.05.10",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She practiced hard for the concert.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "However"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", she still made mistakes.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344967",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344968"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Connectors: Although, Though and However",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344968",
+    "imageUrl": "",
+    "translation": "Ella seguía hablando aunque había terminado.",
+    "code": "",
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She was still speaking",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "though"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "it was over.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.14.05.11",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344969"
+    },
+    "id": "67fab6d59930102295344969",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "translation": "Sin embargo, nadie lo tocó.",
+    "answerAudioUrl": "B2.14.05.12",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Connectors: Although, Though and However",
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I prepared lunch."
+        },
+        {
+          "options": [
+            "However"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ", nobody touched it."
+        }
+      ]
+    },
+    "theoryId": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534496a"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.14.05.13",
+    "kind": "CLOZE",
+    "title": "Connectors: Although, Though and However",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He texted his family.",
+          "options": null
+        },
+        {
+          "options": [
+            "However"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": ", nobody replied.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "audioUrl": "",
+    "theoryId": "",
+    "translation": "Sin embargo, nadie respondió.",
+    "id": "67fab6d5993010229534496a",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534496b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.05.14",
+    "id": "67fab6d5993010229534496b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "audioUrl": "",
+    "code": "",
+    "title": "Connectors: Although, Though and However",
+    "theoryId": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I enjoy dancing",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "though"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "I'm not very skilled at it.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Disfruto bailar aunque no soy muy hábil en ello.",
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534496c"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He likes painting.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "However"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": ", he hates brushes.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.14.05.15",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Connectors: Although, Though and However",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Sin embargo, odia los cepillos.",
+    "id": "67fab6d5993010229534496c",
+    "theoryId": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534496d"
+    },
+    "id": "67fab6d5993010229534496d",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Connectors: Although, Though and However",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.14.05.16",
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "Though"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "she likes pop, she didn't listen to the song."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "Aunque le gusta el pop, no escuchó la canción.",
+    "successMessage": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534496e"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Connectors: Although, Though and However",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She went out for a run.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "However"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", she returned quickly.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "id": "67fab6d5993010229534496e",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Sin embargo, ella regresó rápidamente.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.14.05.17",
+    "code": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534496f"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Though"
+          ]
+        },
+        {
+          "text": "we tidied our garden, it still looked overgrown.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Aunque ordenamos nuestro jardín, todavía se veía descuidado.",
+    "answerAudioUrl": "B2.14.05.18",
+    "id": "67fab6d5993010229534496f",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Connectors: Although, Though and However",
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "theoryId": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344970"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Connectors: Although, Though and However",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Though"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "she didn't have much money, she was content.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Aunque no tenía mucho dinero, estaba contenta.",
+    "id": "67fab6d59930102295344970",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "answerAudioUrl": "B2.14.05.19",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344971"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Connectors: Although, Though and However",
+    "audioUrl": "",
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d498"
+    },
+    "instructions": "Agrega 'though' o 'however' a la oración.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.14.05.20",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The boys usually like pizza.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "However"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", today they didn't like it.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Sin embargo, hoy no les gustó.",
+    "successMessage": "",
+    "id": "67fab6d59930102295344971",
+    "theoryId": "",
+    "topicName": "Adverbs"
+  }
+]

@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c4a"
+    },
+    "id": "67fab6d59930102295342c4a",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.11.01",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Has",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "anybody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "seen my keys?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "¿Alguien ha visto mis llaves?",
+    "title": "Correct Usage of 'Somebody' and 'Anybody'",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27c"
+    },
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "audioUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c4b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Correct Usage of 'Somebody' and 'Anybody'",
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "code": "",
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "imageUrl": "",
+    "translation": "Nadie contestó el teléfono.",
+    "answerAudioUrl": "A2.08.11.02",
+    "id": "67fab6d59930102295342c4b",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Nobody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "answered the phone.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c4c"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I couldn't find",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "anybody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342c4c",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.08.11.03",
+    "kind": "CLOZE",
+    "title": "Correct Usage of 'Somebody' and 'Anybody'",
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "No pude encontrar a nadie.",
+    "miniTheory": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c4d"
+    },
+    "title": "Correct Usage of 'Somebody' and 'Anybody'",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.11.04",
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "successMessage": "",
+    "id": "67fab6d59930102295342c4d",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "There is",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nobody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "at the door.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "No hay nadie en la puerta.",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c4e"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "imageUrl": "",
+    "audioUrl": "",
+    "title": "Correct Usage of 'Somebody' and 'Anybody'",
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "There isn't"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "anybody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "in the garden this evening.",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.08.11.05",
+    "id": "67fab6d59930102295342c4e",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "No hay nadie en el jardín esta tarde.",
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c4f"
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Él no conoce a nadie.",
+    "successMessage": "",
+    "audioUrl": "",
+    "code": "",
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "imageUrl": "",
+    "title": "Correct Usage of 'Somebody' and 'Anybody'",
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "answerAudioUrl": "A2.08.11.06",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342c4f",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He knows",
+          "options": null
+        },
+        {
+          "options": [
+            "nobody"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c50"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342c50",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Nobody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "will understand.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "translation": "Nadie entenderá.",
+    "code": "",
+    "title": "Correct Usage of 'Somebody' and 'Anybody'",
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "answerAudioUrl": "A2.08.11.07",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c51"
+    },
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "title": "Correct Usage of 'Somebody' and 'Anybody'",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We phoned",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nobody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "translation": "No llamamos a nadie.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.11.08",
+    "id": "67fab6d59930102295342c51",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27c"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c52"
+    },
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.11.09",
+    "id": "67fab6d59930102295342c52",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Correct Usage of 'Somebody' and 'Anybody'",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She doesn't listen to",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "anybody"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Ella no escucha a nadie.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c53"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you talked to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "anybody"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "today?"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Correct Usage of 'Somebody' and 'Anybody'",
+    "translation": "¿Has hablado con alguien hoy?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342c53",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.08.11.10",
+    "topicName": "Pronouns"
+  }
+]

@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343290"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.01.01",
+    "translation": "¿Quién se comió la pizza?",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Exercise: Forming Subject and Object Questions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They ate the pizza. (they)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Who ate the pizza?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343290",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "imageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343291"
+    },
+    "title": "Exercise: Forming Subject and Object Questions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He drank water. (water)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "What did he drink?"
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "id": "67fab6d59930102295343291",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Qué bebió él?",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.01.02",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343292"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.01.03",
+    "id": "67fab6d59930102295343292",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "kind": "CLOZE",
+    "title": "Exercise: Forming Subject and Object Questions",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary enjoyed the concert. (the concert)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "What did Mary enjoy?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Qué disfrutó Mary?",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343293"
+    },
+    "translation": "¿Quién arregló el auto?",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter fixed the car. (Peter)",
+          "options": null
+        },
+        {
+          "options": [
+            "Who fixed the car?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "id": "67fab6d59930102295343293",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.05.01.04",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Exercise: Forming Subject and Object Questions",
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343294"
+    },
+    "id": "67fab6d59930102295343294",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Exercise: Forming Subject and Object Questions",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The rain damaged the crops. (the rain)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "What damaged the crops?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "translation": "¿Qué dañó los cultivos?",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.01.05",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343295"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "title": "Exercise: Forming Subject and Object Questions",
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.01.06",
+    "id": "67fab6d59930102295343295",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Sarah helped Michael. (Michael)",
+          "options": null
+        },
+        {
+          "options": [
+            "Who did Sarah help?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿A quién ayudó Sarah?",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343296"
+    },
+    "code": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "title": "Exercise: Forming Subject and Object Questions",
+    "translation": "¿Qué ardió ferozmente?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.01.07",
+    "id": "67fab6d59930102295343296",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The fire blazed fiercely. (the fire)",
+          "options": null
+        },
+        {
+          "options": [
+            "What blazed fiercely?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343297"
+    },
+    "translation": "¿Quién rompió el jarrón?",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.01.08",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "title": "Exercise: Forming Subject and Object Questions",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343297",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Tom broke the vase. (Tom)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Who broke the vase?"
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343298"
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They painted the kitchen. (the kitchen)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "What did they paint?"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295343298",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.01.09",
+    "title": "Exercise: Forming Subject and Object Questions",
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "translation": "¿Qué pintaron ellos?",
+    "miniTheory": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343299"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She thanked the staff. (the staff)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Who did she thank?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.01.10",
+    "id": "67fab6d59930102295343299",
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "title": "Exercise: Forming Subject and Object Questions",
+    "imageUrl": "",
+    "translation": "¿A quién le dio las gracias ella?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534329a"
+    },
+    "id": "67fab6d5993010229534329a",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "answerImageUrl": "",
+    "title": "Exercise: Forming Subject and Object Questions",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "¿Qué persiguió el perro?",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "code": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dog chased the squirrel. (the squirrel)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "What did the dog chase?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.01.11",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534329b"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d5993010229534329b",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "title": "Exercise: Forming Subject and Object Questions",
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.01.12",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The tree fell over. (the tree)",
+          "options": null
+        },
+        {
+          "options": [
+            "What fell over?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "translation": "¿Qué se cayó?",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534329c"
+    },
+    "code": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.01.13",
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "audioUrl": "",
+    "translation": "¿A quién examinaron los médicos?",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Exercise: Forming Subject and Object Questions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The doctors examined the patient. (the patient)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Who did the doctors examine?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "id": "67fab6d5993010229534329c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534329d"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The soup is boiling. (the soup)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "What is boiling?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "imageUrl": "",
+    "translation": "¿Qué está hirviendo?",
+    "answerAudioUrl": "B1.05.01.14",
+    "id": "67fab6d5993010229534329d",
+    "title": "Exercise: Forming Subject and Object Questions",
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534329e"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Exercise: Forming Subject and Object Questions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My sister phoned the doctor. (the doctor)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Who did my sister phone?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿A quién llamó mi hermana?",
+    "id": "67fab6d5993010229534329e",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.01.15",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "miniTheory": "",
+    "code": "",
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534329f"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Exercise: Forming Subject and Object Questions",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534329f",
+    "kind": "CLOZE",
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "translation": "¿Qué se averió?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The old bicycle broke down. (the old bicycle)",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "What broke down?"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.05.01.16",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432a0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They greeted the guests. (they)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Who greeted the guests?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "¿Quién saludó a los invitados?",
+    "kind": "CLOZE",
+    "title": "Exercise: Forming Subject and Object Questions",
+    "imageUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d599301022953432a0",
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.01.17",
+    "code": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432a1"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Exercise: Forming Subject and Object Questions",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "translation": "¿Qué estaba cremoso?",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The dessert was creamy. (the dessert)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "What was creamy?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.01.18",
+    "id": "67fab6d599301022953432a1",
+    "code": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432a2"
+    },
+    "kind": "CLOZE",
+    "title": "Exercise: Forming Subject and Object Questions",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Robert failed the test. (the test)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "What did Robert fail?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "imageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "translation": "¿Qué reprobó Robert?",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953432a2",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.01.19",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432a3"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Exercise: Forming Subject and Object Questions",
+    "instructions": "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She prepared the salad. (the salad)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "What did she prepare?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerAudioUrl": "B1.05.01.20",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "¿Qué preparó ella?",
+    "miniTheory": "",
+    "id": "67fab6d599301022953432a3",
+    "theoryId": "b1.05.Subject_and_Object_Questions",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e2"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  }
+]

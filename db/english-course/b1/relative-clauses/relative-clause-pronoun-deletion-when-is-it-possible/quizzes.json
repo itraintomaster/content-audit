@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438f7"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "translation": "Él es el hombre que conocí.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953438f7",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "answerAudioUrl": "B1.12.06.01",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's the man",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "I met.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438f8"
+    },
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There's the cake",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "we baked!",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.12.06.02",
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "imageUrl": "",
+    "translation": "¡Ahí está el pastel que horneamos!",
+    "successMessage": "",
+    "id": "67fab6d599301022953438f8",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "audioUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438f9"
+    },
+    "id": "67fab6d599301022953438f9",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I showed him all the photos",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "were on my phone."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "audioUrl": "",
+    "translation": "Le mostré todas las fotos que estaban en mi teléfono.",
+    "successMessage": "",
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "answerAudioUrl": "B1.12.06.03",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438fa"
+    },
+    "audioUrl": "",
+    "code": "",
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.12.06.04",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "successMessage": "",
+    "id": "67fab6d599301022953438fa",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Visitamos la iglesia que diseñó mi abuela.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We visited the church"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "my grandmother designed.",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438fb"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "answerAudioUrl": "B1.12.06.05",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs ate the meat",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "was in the kitchen.",
+          "options": null
+        }
+      ]
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Los perros se comieron la carne que estaba en la cocina.",
+    "id": "67fab6d599301022953438fb",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438fc"
+    },
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.12.06.06",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They drank the juice",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "he prepared.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Ellos bebieron el jugo que él preparó.",
+    "id": "67fab6d599301022953438fc",
+    "kind": "CLOZE",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438fd"
+    },
+    "id": "67fab6d599301022953438fd",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Ahí está el chico que estudia contigo.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There's the boy",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "studies with you."
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.12.06.07",
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438fe"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.12.06.08",
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is the chair",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "text": "is always broken.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "translation": "Esta es la silla que siempre está rota.",
+    "id": "67fab6d599301022953438fe",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438ff"
+    },
+    "id": "67fab6d599301022953438ff",
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.12.06.09",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She collected the stamps",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "she found."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "translation": "Ella coleccionó los sellos que encontró.",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343900"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Él alquiló el coche que estaba disponible.",
+    "miniTheory": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He rented the car",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "was available.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.06.10",
+    "id": "67fab6d59930102295343900",
+    "code": "",
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343901"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We interviewed the applicants",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "applied to the company.",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295343901",
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Entrevistamos a los solicitantes que se postularon a la empresa.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.12.06.11",
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343902"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "id": "67fab6d59930102295343902",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She listened to the song",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "she loves.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.12.06.12",
+    "kind": "CLOZE",
+    "translation": "Ella escuchó la canción que ama.",
+    "answerImageUrl": "",
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "successMessage": "",
+    "code": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343903"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.12.06.13",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He refused the soup",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "was hot."
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Él rechazó la sopa que estaba caliente.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343903",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "audioUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343904"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.12.06.14",
+    "id": "67fab6d59930102295343904",
+    "translation": "Vimos el pájaro que canta hermosamente.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We saw the bird",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "sings beautifully."
+        }
+      ]
+    },
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343905"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "translation": "Probé la sopa que él cocinó.",
+    "id": "67fab6d59930102295343905",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I tasted the soup",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "he cooked.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.06.15",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343906"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She forgot the keys"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "were on the table.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343906",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Ella olvidó las llaves que estaban sobre la mesa.",
+    "answerAudioUrl": "B1.12.06.16",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343907"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We visited the museum",
+          "options": null
+        },
+        {
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "you suggested.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343907",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "imageUrl": "",
+    "translation": "Visitamos el museo que sugeriste.",
+    "answerAudioUrl": "B1.12.06.17",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343908"
+    },
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "translation": "Él ama las flores que ella recogió.",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.12.06.18",
+    "id": "67fab6d59930102295343908",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He loves the flowers",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "text": "she picked.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343909"
+    },
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I selected the worker",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "came to the meeting.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "id": "67fab6d59930102295343909",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Seleccioné al trabajador que vino a la reunión.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "answerAudioUrl": "B1.12.06.19",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534390a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Relative Clause Pronoun Deletion: When Is It Possible?",
+    "instructions": "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'.",
+    "theoryId": "b1.12.Dropping_The_Relative_Pronoun",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Tomamos el autobús que él aconsejó.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.12.06.20",
+    "code": "",
+    "miniTheory": "",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33d"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We caught the bus",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "he advised.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534390a",
+    "topicName": "Relative clauses"
+  }
+]

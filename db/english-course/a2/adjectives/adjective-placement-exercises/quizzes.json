@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e48"
+    },
+    "instructions": "Coloca los adjetivos en la oración.",
+    "imageUrl": "",
+    "translation": "Un gran perro marrón ladró fuerte.",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342e48",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adjective Placement Exercises",
+    "theoryId": "a2.11.Adjectives_Structures",
+    "answerAudioUrl": "A2.11.01.01",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A",
+          "options": null
+        },
+        {
+          "options": [
+            "large brown"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "dog barked loudly. (brown / large)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e49"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.01.02",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adjective Placement Exercises",
+    "theoryId": "a2.11.Adjectives_Structures",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca los adjetivos en la oración.",
+    "translation": "La joven inteligente estaba leyendo un libro.",
+    "id": "67fab6d59930102295342e49",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "smart young"
+          ]
+        },
+        {
+          "text": "girl was reading a book. (smart / young)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e4a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca los adjetivos en la oración.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We found a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "fluffy white"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "rabbit. (white / fluffy)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342e4a",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Encontramos un conejo blanco esponjoso.",
+    "answerAudioUrl": "A2.11.01.03",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a0"
+    },
+    "title": "Adjective Placement Exercises",
+    "theoryId": "a2.11.Adjectives_Structures",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e4b"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca los adjetivos en la oración.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342e4b",
+    "code": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.01.04",
+    "translation": "Este es un té helado refrescante.",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "refreshing iced"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "tea. (iced / refreshing)",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.11.Adjectives_Structures",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adjective Placement Exercises",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e4c"
+    },
+    "title": "Adjective Placement Exercises",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Pidieron una sabrosa pizza picante.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca los adjetivos en la oración.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They ordered a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "tasty spicy"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "pizza. (spicy / tasty)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.01.05",
+    "code": "",
+    "theoryId": "a2.11.Adjectives_Structures",
+    "id": "67fab6d59930102295342e4c",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e4d"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "El cielo tranquilo y nublado se veía pacífico.",
+    "id": "67fab6d59930102295342e4d",
+    "instructions": "Coloca los adjetivos en la oración.",
+    "code": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.01.06",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a0"
+    },
+    "title": "Adjective Placement Exercises",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "calm cloudy"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "sky looked peaceful. (cloudy / calm)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.11.Adjectives_Structures",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e4e"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adjective Placement Exercises",
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a0"
+    },
+    "instructions": "Coloca los adjetivos en la oración.",
+    "translation": "Ella llevaba una falda roja corta.",
+    "successMessage": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.11.01.07",
+    "id": "67fab6d59930102295342e4e",
+    "theoryId": "a2.11.Adjectives_Structures",
+    "answerImageUrl": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "She wore a",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "short red"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "skirt. (red / short)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e4f"
+    },
+    "id": "67fab6d59930102295342e4f",
+    "kind": "CLOZE",
+    "title": "Adjective Placement Exercises",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We planted some",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "small red"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "roses. (small / red)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Plantamos unas pequeñas rosas rojas.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.11.Adjectives_Structures",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca los adjetivos en la oración.",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.11.01.08",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e50"
+    },
+    "code": "",
+    "translation": "Él recogió una fruta naranja madura.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.11.01.09",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adjective Placement Exercises",
+    "audioUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He picked a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "ripe orange"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "fruit. (orange / ripe)",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295342e50",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca los adjetivos en la oración.",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.11.Adjectives_Structures",
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e51"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adjective Placement Exercises",
+    "translation": "Esta es una película vieja y aburrida.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342e51",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca los adjetivos en la oración.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "This is a"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "boring old"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "movie. (old / boring)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a2.11.Adjectives_Structures",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.01.10",
+    "topicName": "Adjectives"
+  }
+]

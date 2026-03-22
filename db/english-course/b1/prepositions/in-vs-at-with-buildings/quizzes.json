@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d1b"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Let's go"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "the classroom, I want to sit by the window."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343d1b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'In' vs 'At' with Buildings",
+    "instructions": "Elegir 'in' si realmente queremos enfatizar el interior. De lo contrario, elegir 'at'.",
+    "audioUrl": "",
+    "theoryId": "b1.17.At_or_In_with_Buildings",
+    "translation": "Vamos al aula, quiero sentarme junto a la ventana.",
+    "answerImageUrl": "",
+    "code": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.17.12.01",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d1c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I will see you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "text": "the museum later.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "b1.17.At_or_In_with_Buildings",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.17.12.02",
+    "id": "67fab6d59930102295343d1c",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37c"
+    },
+    "title": "'In' vs 'At' with Buildings",
+    "instructions": "Elegir 'in' si realmente queremos enfatizar el interior. De lo contrario, elegir 'at'.",
+    "audioUrl": "",
+    "translation": "Te veré en el museo más tarde.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d1d"
+    },
+    "code": "",
+    "instructions": "Elegir 'in' si realmente queremos enfatizar el interior. De lo contrario, elegir 'at'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They were relaxing",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the hotel lobby, near the entrance.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.17.At_or_In_with_Buildings",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343d1d",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.12.03",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'In' vs 'At' with Buildings",
+    "translation": "Estaban relajándose en el vestíbulo del hotel, cerca de la entrada.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37c"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d1e"
+    },
+    "instructions": "Elegir 'in' si realmente queremos enfatizar el interior. De lo contrario, elegir 'at'.",
+    "theoryId": "b1.17.At_or_In_with_Buildings",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37c"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did you find him",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "text": "the shop? He was browsing near the register.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295343d1e",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.17.12.04",
+    "title": "'In' vs 'At' with Buildings",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "¿Lo encontraste en la tienda? Estaba mirando cerca de la caja registradora.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d1f"
+    },
+    "instructions": "Elegir 'in' si realmente queremos enfatizar el interior. De lo contrario, elegir 'at'.",
+    "theoryId": "b1.17.At_or_In_with_Buildings",
+    "successMessage": "",
+    "answerAudioUrl": "B1.17.12.05",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343d1f",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They encountered each other",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the station.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Se encontraron en la estación.",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'In' vs 'At' with Buildings",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d20"
+    },
+    "id": "67fab6d59930102295343d20",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'In' vs 'At' with Buildings",
+    "code": "",
+    "theoryId": "b1.17.At_or_In_with_Buildings",
+    "audioUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elegir 'in' si realmente queremos enfatizar el interior. De lo contrario, elegir 'at'.",
+    "imageUrl": "",
+    "translation": "Ella lo reconoció en la galería.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.17.12.06",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She recognised him",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the gallery.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d21"
+    },
+    "instructions": "Elegir 'in' si realmente queremos enfatizar el interior. De lo contrario, elegir 'at'.",
+    "id": "67fab6d59930102295343d21",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It felt quite stuffy",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the office even with the fan on.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.17.At_or_In_with_Buildings",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37c"
+    },
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Se sentía bastante cargado en la oficina, incluso con el ventilador encendido.",
+    "title": "'In' vs 'At' with Buildings",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.17.12.07",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d22"
+    },
+    "audioUrl": "",
+    "title": "'In' vs 'At' with Buildings",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elegir 'in' si realmente queremos enfatizar el interior. De lo contrario, elegir 'at'.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.17.12.08",
+    "id": "67fab6d59930102295343d22",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I thought it was great to spend time"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the local pub.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Pensé que era genial pasar tiempo en el pub local.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37c"
+    },
+    "theoryId": "b1.17.At_or_In_with_Buildings",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d23"
+    },
+    "id": "67fab6d59930102295343d23",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elegir 'in' si realmente queremos enfatizar el interior. De lo contrario, elegir 'at'.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37c"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There are lots of people outside - I'll see you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the school, by the main hall.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Hay mucha gente afuera. Te veré en la escuela, junto al salón principal.",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "title": "'In' vs 'At' with Buildings",
+    "theoryId": "b1.17.At_or_In_with_Buildings",
+    "answerAudioUrl": "B1.17.12.09",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d24"
+    },
+    "instructions": "Elegir 'in' si realmente queremos enfatizar el interior. De lo contrario, elegir 'at'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I waved to Mark",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the post office.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Saludé a Mark en la oficina de correos.",
+    "id": "67fab6d59930102295343d24",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.17.12.10",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'In' vs 'At' with Buildings",
+    "theoryId": "b1.17.At_or_In_with_Buildings",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  }
+]

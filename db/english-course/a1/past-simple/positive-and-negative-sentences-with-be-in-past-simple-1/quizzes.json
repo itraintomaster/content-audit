@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342193"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) at school.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342193",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "translation": "Él estaba en la escuela.",
+    "answerAudioUrl": "A1.04.01.01",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342194"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "translation": "Ella estaba feliz.",
+    "answerImageUrl": "",
+    "code": "",
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "imageUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) happy.",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A1.04.01.02",
+    "id": "67fab6d59930102295342194",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342195"
+    },
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.04.01.03",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "were not"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) at the park.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "translation": "Ellos no estaban en el parque.",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295342195",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342196"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) from Brazil.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "answerAudioUrl": "A1.04.01.04",
+    "id": "67fab6d59930102295342196",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "audioUrl": "",
+    "translation": "Ella no era de Brasil.",
+    "successMessage": "",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342197"
+    },
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "translation": "Ella era británica.",
+    "answerImageUrl": "",
+    "code": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.04.01.05",
+    "id": "67fab6d59930102295342197",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) British.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342198"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "imageUrl": "",
+    "miniTheory": "",
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "audioUrl": "",
+    "translation": "Él no era alemán.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) German.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342198",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A1.04.01.06",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342199"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.04.01.07",
+    "id": "67fab6d59930102295342199",
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "imageUrl": "",
+    "miniTheory": "",
+    "translation": "Ellos eran amigos.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "were"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) friends.",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534219a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) at work.",
+          "options": null
+        }
+      ]
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "translation": "Tú estabas en el trabajo.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.04.01.08",
+    "id": "67fab6d5993010229534219a",
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534219b"
+    },
+    "code": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.04.01.09",
+    "id": "67fab6d5993010229534219b",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "It"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) at the library.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "imageUrl": "",
+    "translation": "Eso no estaba en la biblioteca.",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534219c"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "was not"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) early.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "translation": "Ella no llegó temprano.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.04.01.10",
+    "id": "67fab6d5993010229534219c",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534219d"
+    },
+    "miniTheory": "",
+    "id": "67fab6d5993010229534219d",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.04.01.11",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) at the beach.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ellos estaban en la playa.",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534219e"
+    },
+    "answerAudioUrl": "A1.04.01.12",
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "code": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534219e",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "imageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "You",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "were"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) right.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Tú tenías razón.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534219f"
+    },
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "translation": "Tú no tenías sed.",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.04.01.13",
+    "id": "67fab6d5993010229534219f",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) thirsty.",
+          "options": null
+        }
+      ]
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "imageUrl": "",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421a0"
+    },
+    "id": "67fab6d599301022953421a0",
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "audioUrl": "",
+    "translation": "Él no estaba aburrido.",
+    "answerAudioUrl": "A1.04.01.14",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "He",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) bored.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421a1"
+    },
+    "code": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953421a1",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "translation": "Ella era enfermera.",
+    "answerAudioUrl": "A1.04.01.15",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "options": [
+            "was"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) a nurse.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421a2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d599301022953421a2",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) at the office.",
+          "options": null
+        }
+      ]
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Ellos estaban en la oficina.",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.04.01.16",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421a3"
+    },
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) sad.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Ellos no estaban tristes.",
+    "id": "67fab6d599301022953421a3",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.04.01.17",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421a4"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Tú no estabas en la oficina.",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "answerAudioUrl": "A1.04.01.18",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) at the office.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "id": "67fab6d599301022953421a4",
+    "code": "",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421a5"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "translation": "Ustedes no eran ingenieros.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953421a5",
+    "code": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) engineers.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.04.01.19",
+    "audioUrl": "",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421a6"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. No uses 'short forms'.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953421a6",
+    "title": "Positive and Negative Sentences with 'be' in Past Simple 1",
+    "successMessage": "",
+    "answerAudioUrl": "A1.04.01.20",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) at the shopping centre.",
+          "options": null
+        }
+      ]
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b1"
+    },
+    "theoryId": "a1.04.Past_Simple_with_Be",
+    "imageUrl": "",
+    "translation": "Tú estabas en el centro comercial.",
+    "code": "",
+    "topicName": "Past Simple"
+  }
+]

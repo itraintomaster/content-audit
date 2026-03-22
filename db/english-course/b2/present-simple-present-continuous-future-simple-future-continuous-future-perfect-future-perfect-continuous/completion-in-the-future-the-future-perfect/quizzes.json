@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e5b"
+    },
+    "id": "67fab6d59930102295343e5b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He / read the book before noon.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He'll read the book before noon.|He will read the book before noon."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Completion in the Future: The Future Perfect",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Él leerá el libro antes del mediodía.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B2.01.12.01",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e5c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He / read the book before noon. (Emphasise that it will be finished.)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He'll have read the book before noon.|He will have read the book before noon."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343e5c",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "answerAudioUrl": "B2.01.12.02",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Completion in the Future: The Future Perfect",
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "audioUrl": "",
+    "translation": "Él habrá leído el libro antes del mediodía.",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e5d"
+    },
+    "id": "67fab6d59930102295343e5d",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "translation": "Él se habrá ido al anochecer.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He / leave by sundown. (Emphasise that it will be finished.)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He'll have left by sundown.|He will have left by sundown."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Completion in the Future: The Future Perfect",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.12.03",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e5e"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.01.12.04",
+    "id": "67fab6d59930102295343e5e",
+    "kind": "CLOZE",
+    "title": "Completion in the Future: The Future Perfect",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He / leave by sundown.",
+          "options": null
+        },
+        {
+          "options": [
+            "He'll leave by sundown.|He will leave by sundown."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "imageUrl": "",
+    "translation": "Él se irá al anochecer.",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e5f"
+    },
+    "answerAudioUrl": "B2.01.12.05",
+    "kind": "CLOZE",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "translation": "Los constructores habrán terminado la casa para entonces.",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343e5f",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Completion in the Future: The Future Perfect",
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The builders / complete the house by then. (Emphasise that it will be finished.)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The builders will have completed the house by then."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e60"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295343e60",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The builders / complete the house by then.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The builders will complete the house by then."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "successMessage": "",
+    "answerAudioUrl": "B2.01.12.06",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Completion in the Future: The Future Perfect",
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "imageUrl": "",
+    "translation": "Los constructores terminarán la casa para entonces.",
+    "miniTheory": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e61"
+    },
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They / arrive at the station before the train leaves.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "They'll arrive at the station before the train leaves.|They will arrive at the station before the train leaves."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "title": "Completion in the Future: The Future Perfect",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.12.07",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ellos llegarán a la estación antes de que salga el tren.",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343e61",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e62"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "title": "Completion in the Future: The Future Perfect",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They / arrive at the station before the train leaves. (Emphasise that it will be finished.)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They'll have arrived at the station before the train leaves.|They will have arrived at the station before the train leaves."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ellos habrán llegado a la estación antes de que salga el tren.",
+    "answerAudioUrl": "B2.01.12.08",
+    "id": "67fab6d59930102295343e62",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e63"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295343e63",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary / clean the room by five.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary will clean the room by five."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Completion in the Future: The Future Perfect",
+    "translation": "Mary limpiará la habitación para las cinco.",
+    "answerAudioUrl": "B2.01.12.09",
+    "code": "",
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e64"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Completion in the Future: The Future Perfect",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "translation": "Mary habrá limpiado la habitación para las cinco.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Mary / clean the room by five. (Emphasise that it will be finished.)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary will have cleaned the room by five."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343e64",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.01.12.10",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e65"
+    },
+    "id": "67fab6d59930102295343e65",
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "title": "Completion in the Future: The Future Perfect",
+    "imageUrl": "",
+    "translation": "Ellos pintarán la pared antes de la fiesta.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They / paint the wall before the party.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They'll paint the wall before the party.|They will paint the wall before the party."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.12.11",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e66"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "title": "Completion in the Future: The Future Perfect",
+    "audioUrl": "",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "translation": "Ellos habrán pintado la pared antes de la fiesta.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They / paint the wall before the party. (Emphasise that it will be finished.)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They'll have painted the wall before the party.|They will have painted the wall before the party."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "id": "67fab6d59930102295343e66",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.12.12",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e67"
+    },
+    "id": "67fab6d59930102295343e67",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He / prepare dinner by nine. (Emphasise that it will be finished.)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He'll have prepared dinner by nine.|He will have prepared dinner by nine."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Completion in the Future: The Future Perfect",
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "answerAudioUrl": "B2.01.12.13",
+    "code": "",
+    "translation": "Él habrá preparado la cena para las nueve.",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e68"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Completion in the Future: The Future Perfect",
+    "answerAudioUrl": "B2.01.12.14",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He / prepare dinner by nine.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He'll prepare dinner by nine.|He will prepare dinner by nine."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Él preparará la cena para las nueve.",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343e68",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e69"
+    },
+    "id": "67fab6d59930102295343e69",
+    "code": "",
+    "title": "Completion in the Future: The Future Perfect",
+    "audioUrl": "",
+    "translation": "La banda tocará todas las canciones antes de la medianoche.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.01.12.15",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The band / play all the songs before midnight.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The band will play all the songs before midnight."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e6a"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.01.12.16",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The band / play all the songs before midnight. (Emphasise that it will be finished.)",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "The band will have played all the songs before midnight."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295343e6a",
+    "title": "Completion in the Future: The Future Perfect",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "translation": "La banda habrá tocado todas las canciones antes de la medianoche.",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e6b"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She / pack her bags by tomorrow morning.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She'll pack her bags by tomorrow morning.|She will pack her bags by tomorrow morning."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343e6b",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "title": "Completion in the Future: The Future Perfect",
+    "translation": "Ella empacará sus maletas para mañana por la mañana.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.12.17",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e6c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Completion in the Future: The Future Perfect",
+    "translation": "Ella habrá empacado sus maletas para mañana por la mañana.",
+    "answerAudioUrl": "B2.01.12.18",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She / pack her bags by tomorrow morning. (Emphasise that it will be finished.)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She'll have packed her bags by tomorrow morning.|She will have packed her bags by tomorrow morning."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343e6c",
+    "kind": "CLOZE",
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "successMessage": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e6d"
+    },
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Completion in the Future: The Future Perfect",
+    "translation": "Ellos comprarán los boletos antes de que comience el espectáculo.",
+    "id": "67fab6d59930102295343e6d",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They / buy the tickets before the show starts.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They'll buy the tickets before the show starts.|They will buy the tickets before the show starts."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B2.01.12.19",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e6e"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B2.01.12.20",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "They / buy the tickets before the show starts. (Emphasise that it will be finished.)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They'll have bought the tickets before the show starts.|They will have bought the tickets before the show starts."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "successMessage": "",
+    "id": "67fab6d59930102295343e6e",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fc"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Completion in the Future: The Future Perfect",
+    "instructions": "Elige el 'future perfect' (si quieres enfatizar que la cosa estará terminada) o el 'future simple' con 'will' si no quieres enfatizarlo.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Ellos habrán comprado los boletos antes de que comience el espectáculo.",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  }
+]

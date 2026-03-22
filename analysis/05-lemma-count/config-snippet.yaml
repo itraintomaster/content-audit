@@ -1,0 +1,11 @@
+# Configuracion de LemmaCountAnalyzer
+# Extraida de: src/main/resources/pipeline/vocabulary-analyzer/config.yaml
+# Seccion: targets.lemmaCount
+# NOTA: Este analyzer esta INACTIVO en el orquestador actual
+
+lemmaCount:
+  # Si un lema aparece menos de este valor -> sub-exposed
+  subExposed: 4
+
+  # Si un lema aparece mas de este valor -> over-exposed
+  overExposed: 15

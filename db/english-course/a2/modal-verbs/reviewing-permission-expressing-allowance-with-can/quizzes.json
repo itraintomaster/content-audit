@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342de4"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d297"
+    },
+    "answerAudioUrl": "A2.10.03.01",
+    "id": "67fab6d59930102295342de4",
+    "title": "Reviewing Permission: Expressing Allowance with Can",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "It's not okay to drink alcohol here.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You can't drink alcohol here."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "No se puede beber alcohol aquí.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "audioUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342de5"
+    },
+    "id": "67fab6d59930102295342de5",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d297"
+    },
+    "translation": "Se puede caminar sobre el césped.",
+    "answerAudioUrl": "A2.10.03.02",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Permission: Expressing Allowance with Can",
+    "instructions": "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "It's okay to walk on the grass."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You can walk on the grass."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "audioUrl": "",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "successMessage": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342de6"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d297"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.03.03",
+    "id": "67fab6d59930102295342de6",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Permission: Expressing Allowance with Can",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's okay to eat here.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "You can eat here."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "translation": "Se puede comer aquí.",
+    "miniTheory": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "audioUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342de7"
+    },
+    "id": "67fab6d59930102295342de7",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "It's not okay to vote if you're under sixteen."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You can't vote if you're under sixteen."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "translation": "No se puede votar si eres menor de dieciséis años.",
+    "miniTheory": "",
+    "title": "Reviewing Permission: Expressing Allowance with Can",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d297"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+    "answerAudioUrl": "A2.10.03.04",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342de8"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d297"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "No se pueden grabar videos en el museo.",
+    "miniTheory": "",
+    "title": "Reviewing Permission: Expressing Allowance with Can",
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342de8",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.03.05",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's not okay to record videos in the museum.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "You can't record videos in the museum."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342de9"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "imageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+    "id": "67fab6d59930102295342de9",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.03.06",
+    "title": "Reviewing Permission: Expressing Allowance with Can",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's okay to stay in the hotel.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You can stay in the hotel."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "Te puedes quedar en el hotel.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d297"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dea"
+    },
+    "id": "67fab6d59930102295342dea",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Permission: Expressing Allowance with Can",
+    "translation": "Puedes traer a tus mascotas al parque.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d297"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's okay to bring your pets into the park.",
+          "options": null
+        },
+        {
+          "options": [
+            "You can bring your pets into the park."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "instructions": "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.10.03.07",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342deb"
+    },
+    "title": "Reviewing Permission: Expressing Allowance with Can",
+    "instructions": "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "No se pueden traer bebidas al concierto.",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's not okay to bring drinks into the concert.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You can't bring drinks into the concert."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "id": "67fab6d59930102295342deb",
+    "successMessage": "",
+    "answerAudioUrl": "A2.10.03.08",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d297"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "imageUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dec"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342dec",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's not okay to play loud music in the library.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You can't play loud music in the library."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d297"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+    "translation": "No se puede poner música alta en la biblioteca.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.03.09",
+    "code": "",
+    "title": "Reviewing Permission: Expressing Allowance with Can",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ded"
+    },
+    "id": "67fab6d59930102295342ded",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "translation": "Se puede pedir comida en línea.",
+    "answerAudioUrl": "A2.10.03.10",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d297"
+    },
+    "title": "Reviewing Permission: Expressing Allowance with Can",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's okay to order food online.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "You can order food online."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "imageUrl": "",
+    "topicName": "Modal Verbs"
+  }
+]

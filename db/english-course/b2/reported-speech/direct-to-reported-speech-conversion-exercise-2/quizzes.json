@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443d3"
+    },
+    "id": "67fab6d599301022953443d3",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cats will be hungry.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that the cats would be hungry."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.08.02.01",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "John dijo que los gatos tendrían hambre.",
+    "successMessage": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443d4"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "answerAudioUrl": "B2.08.02.02",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I'm watching a movie.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that he was watching a movie."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "translation": "John dijo que estaba viendo una película.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953443d4",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443d5"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "My brother isn't doing his homework."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that his brother wasn't doing his homework."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "id": "67fab6d599301022953443d5",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "translation": "John dijo que su hermano no estaba haciendo su tarea.",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "successMessage": "",
+    "answerAudioUrl": "B2.08.02.03",
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443d6"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953443d6",
+    "code": "",
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "John dijo que ellos estaban cantando.",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.08.02.04",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They're singing.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "John said that they were singing."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443d7"
+    },
+    "translation": "John dijo que ella había roto la ventana.",
+    "answerImageUrl": "",
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.08.02.05",
+    "code": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She broke the window.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that she'd broken the window."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "successMessage": "",
+    "id": "67fab6d599301022953443d7",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443d8"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "translation": "John dijo que los pájaros no habían estado volando.",
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d599301022953443d8",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "answerAudioUrl": "B2.08.02.06",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The birds weren't flying.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that the birds hadn't been flying."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "successMessage": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443d9"
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.08.02.07",
+    "id": "67fab6d599301022953443d9",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "code": "",
+    "successMessage": "",
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The train will be delayed.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that the train would be delayed."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "John dijo que el tren se retrasaría.",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443da"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "translation": "John dijo que los profesores no iban a tener una reunión.",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teachers aren't going to have a meeting.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "John said that the teachers weren't going to have a meeting."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953443da",
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.08.02.08",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443db"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "id": "67fab6d599301022953443db",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.08.02.09",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They're going to arrive.",
+          "options": null
+        },
+        {
+          "options": [
+            "John said that they were going to arrive."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "John dijo que ellos iban a llegar.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443dc"
+    },
+    "id": "67fab6d599301022953443dc",
+    "kind": "CLOZE",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I was eating pizza.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that he had been eating pizza."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "John dijo que él había estado comiendo pizza.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.02.10",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443dd"
+    },
+    "answerAudioUrl": "B2.08.02.11",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "audioUrl": "",
+    "translation": "John dijo que las flores eran hermosas.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953443dd",
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The flowers are beautiful.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that the flowers were beautiful."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443de"
+    },
+    "id": "67fab6d599301022953443de",
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "David's working.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that David was working."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "code": "",
+    "translation": "John dijo que David estaba trabajando.",
+    "answerAudioUrl": "B2.08.02.12",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443df"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.08.02.13",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dog is tired.",
+          "options": null
+        },
+        {
+          "options": [
+            "John said that the dog was tired."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "John dijo que el perro estaba cansado.",
+    "id": "67fab6d599301022953443df",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443e0"
+    },
+    "imageUrl": "",
+    "translation": "John dijo que ella no cantaría.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.08.02.14",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She won't sing.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that she wouldn't sing."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d599301022953443e0",
+    "kind": "CLOZE",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443e1"
+    },
+    "translation": "John dijo que los hombres iban a construir una casa.",
+    "id": "67fab6d599301022953443e1",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The men are going to build a house.",
+          "options": null
+        },
+        {
+          "options": [
+            "John said that the men were going to build a house."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.08.02.15",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443e2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.08.02.16",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The ladies haven't dressed up.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that the ladies hadn't dressed up."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "translation": "John dijo que las señoras no se habían arreglado.",
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d599301022953443e2",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443e3"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "translation": "John dijo que ellos habían vendido su coche.",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.08.02.17",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They've sold their car.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that they'd sold their car."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d599301022953443e3",
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443e4"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "id": "67fab6d599301022953443e4",
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "audioUrl": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It wasn't snowing.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "John said that it hadn't been snowing."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "translation": "John dijo que no había estado nevando.",
+    "answerAudioUrl": "B2.08.02.18",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443e5"
+    },
+    "answerAudioUrl": "B2.08.02.19",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary changed job.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "John said that Mary had changed job."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "translation": "John dijo que Mary había cambiado de trabajo.",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953443e5",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "successMessage": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953443e6"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "John dijo que su mamá no estaba cocinando en la cocina.",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My mum isn't cooking in the kitchen.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that his mum wasn't cooking in the kitchen."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_Questions",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d599301022953443e6",
+    "code": "",
+    "title": "Direct to Reported Speech Conversion Exercise 2",
+    "instructions": "Transforma el 'direct speech' a 'reported speech'. Comienza siempre con 'John said that' y realiza el 'backshift' correspondiente.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d449"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.08.02.20",
+    "successMessage": "",
+    "topicName": "Reported speech"
+  }
+]

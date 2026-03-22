@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fc3"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "left"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(leave) the office at 5 pm. (At 5 exactly.)"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.03.04.01",
+    "id": "67fab6d59930102295343fc3",
+    "code": "",
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "audioUrl": "",
+    "translation": "Salió de la oficina a las 5 pm.",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fc4"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.03.04.02",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343fc4",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "options": [
+            "were you eating"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(you / eat) at 1 pm? (What was in progress at 1?)"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "¿Qué estabas comiendo a la 1 pm?",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fc5"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "At 2 o'clock, he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was watching"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(watch) TV. (He started before 2.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "translation": "A las 2 en punto, estaba viendo la televisión.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.03.04.03",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "successMessage": "",
+    "id": "67fab6d59930102295343fc5",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fc6"
+    },
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "didn't wake|did not wake"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / wake) up at 7:30. (At exactly 7:30.)",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.03.04.04",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "translation": "Ella no se despertó a las 7:30.",
+    "id": "67fab6d59930102295343fc6",
+    "code": "",
+    "kind": "CLOZE",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fc7"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343fc7",
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were playing"
+          ]
+        },
+        {
+          "text": "(play) cards at 10 pm. (They started playing before 10.)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "answerAudioUrl": "B2.03.04.05",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "translation": "Estaban jugando a las cartas a las 10 pm.",
+    "miniTheory": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fc8"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295343fc8",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "translation": "El concierto terminó a las 11.",
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.04.06",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The concert",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "finished"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(finish) at 11. (At 11 exactly.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fc9"
+    },
+    "code": "",
+    "audioUrl": "",
+    "translation": "No estaba viendo la televisión a las 6 am.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343fc9",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "options": [
+            "wasn't watching|was not watching"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / watch) TV at 6 am. (TV wasn't in progress at 6.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.03.04.07",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fca"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.03.04.08",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "id": "67fab6d59930102295343fca",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "At 5 o'clock she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was reading"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(read) a book in the garden. (She started reading before 5.)",
+          "options": null
+        }
+      ]
+    },
+    "translation": "A las 5 en punto, ella estaba leyendo un libro en el jardín.",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fcb"
+    },
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "translation": "Partimos a las 11:30.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.03.04.09",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "departed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(depart) at 11:30. (At 11:30 exactly.)",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295343fcb",
+    "code": "",
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fcc"
+    },
+    "id": "67fab6d59930102295343fcc",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.03.04.10",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "At 7 pm she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was cooking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(cook). (She started before 7 pm.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "A las 7 pm ella estaba cocinando.",
+    "successMessage": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fcd"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What time",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did you wake"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / wake) up?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "translation": "¿A qué hora te despertaste?",
+    "id": "67fab6d59930102295343fcd",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.03.04.11",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fce"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "started"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(start) cleaning at 9 o'clock. (At 9 exactly.)",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343fce",
+    "code": "",
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "translation": "Empezó a limpiar a las 9 en punto.",
+    "answerAudioUrl": "B2.03.04.12",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fcf"
+    },
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was listening"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(listen) to music at 5 pm. (He started listening before 5.)",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Estaba escuchando música a las 5 pm.",
+    "successMessage": "",
+    "id": "67fab6d59930102295343fcf",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.03.04.13",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "miniTheory": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fd0"
+    },
+    "id": "67fab6d59930102295343fd0",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "didn't catch|did not catch"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / catch) the bus at 5. (At 5 exactly.)",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "No tomé el autobús a las 5.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.03.04.14",
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fd1"
+    },
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "At 9 am they"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were drinking"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(drink) tea. (They started drinking before 9.)"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "A las 9 am estaban tomando té.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.03.04.15",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "id": "67fab6d59930102295343fd1",
+    "kind": "CLOZE",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fd2"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "At 1 am, he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "went"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(go) to bed. (At 1 exactly.)",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "translation": "A la 1 am, se fue a la cama.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343fd2",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "answerAudioUrl": "B2.03.04.16",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fd3"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.03.04.17",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "ate"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) dinner at 8. (I started at 8.)",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343fd3",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "audioUrl": "",
+    "translation": "Cenaron a las 8.",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fd4"
+    },
+    "translation": "Le envié un mensaje de texto a mi mamá a las 10 en punto.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "texted"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(text) my mom at 10 o'clock. (I started the text at 10.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "code": "",
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343fd4",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.03.04.18",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fd5"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "audioUrl": "",
+    "code": "",
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "options": [
+            "were driving"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(drive) home at 1 am. (We started driving before 1 am.)"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Estábamos conduciendo a casa a la 1 am.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.03.04.19",
+    "id": "67fab6d59930102295343fd5",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fd6"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295343fd6",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "They",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "weren't swimming|were not swimming"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(not / swim) at 3 pm. (They didn't start before 3.)"
+        }
+      ]
+    },
+    "translation": "No estaban nadando a las 3 pm.",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.03.Past_Simple_and_Past_Continuous_for_Politeness",
+    "answerAudioUrl": "B2.03.04.20",
+    "title": "Past Continuous vs. Past Simple: Time Focus",
+    "instructions": "¿Necesitamos el 'past simple' o el 'past continuous'?",
+    "audioUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d410"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Section 3"
+  }
+]

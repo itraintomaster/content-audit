@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422c7"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "How about reading a book?"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Let's read a book."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "title": "Sentences using Let's",
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "translation": "Leamos un libro.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.05.02.01",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953422c7",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422c8"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953422c8",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A1.05.02.02",
+    "kind": "CLOZE",
+    "title": "Sentences using Let's",
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "imageUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How about inviting Mary?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Let's invite Mary."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Invitemos a Mary.",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422c9"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953422c9",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Visitemos Italia el año que viene.",
+    "successMessage": "",
+    "miniTheory": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How about visiting Italy next year?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Let's visit Italy next year."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Sentences using Let's",
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.05.02.03",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422ca"
+    },
+    "title": "Sentences using Let's",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How about not staying at home today?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Let's not stay at home today."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "translation": "No nos quedemos en casa hoy.",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.05.02.04",
+    "id": "67fab6d599301022953422ca",
+    "kind": "CLOZE",
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "successMessage": "",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422cb"
+    },
+    "code": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "translation": "Vayamos al teatro esta noche.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "How about going to the theater tonight?"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Let's go to the theater tonight."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.05.02.05",
+    "id": "67fab6d599301022953422cb",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Sentences using Let's",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422cc"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "translation": "No vayamos a Tesco hoy.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.05.02.06",
+    "id": "67fab6d599301022953422cc",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Sentences using Let's",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How about not going to Tesco today?",
+          "options": null
+        },
+        {
+          "options": [
+            "Let's not go to Tesco today."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422cd"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Sentences using Let's",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.05.02.07",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "translation": "No vayamos a bailar.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953422cd",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "How about not going dancing?"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Let's not go dancing."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422ce"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Sentences using Let's",
+    "audioUrl": "",
+    "translation": "Vayámonos a la cama ahora.",
+    "successMessage": "",
+    "answerAudioUrl": "A1.05.02.08",
+    "id": "67fab6d599301022953422ce",
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How about going to bed now?",
+          "options": null
+        },
+        {
+          "options": [
+            "Let's go to bed now."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422cf"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.05.02.09",
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d599301022953422cf",
+    "code": "",
+    "title": "Sentences using Let's",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How about chatting later?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Let's chat later."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Hablemos más tarde.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422d0"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Sentences using Let's",
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "answerAudioUrl": "A1.05.02.10",
+    "id": "67fab6d599301022953422d0",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How about not going to the park tonight?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Let's not go to the park tonight."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "translation": "No vayamos al parque esta noche.",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422d1"
+    },
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Sentences using Let's",
+    "translation": "Almorcemos ahora.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "How about eating lunch now?"
+        },
+        {
+          "text": "",
+          "options": [
+            "Let's eat lunch now."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.05.02.11",
+    "id": "67fab6d599301022953422d1",
+    "code": "",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422d2"
+    },
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "successMessage": "",
+    "id": "67fab6d599301022953422d2",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "No lavemos el coche.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.05.02.12",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Sentences using Let's",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How about not washing the car?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Let's not wash the car."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422d3"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How about not eating lunch now?",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Let's not eat lunch now."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "No almorcemos ahora.",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953422d3",
+    "kind": "CLOZE",
+    "title": "Sentences using Let's",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.05.02.13",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422d4"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Sentences using Let's",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "How about not working now?",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Let's not work now."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "No trabajemos ahora.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.05.02.14",
+    "id": "67fab6d599301022953422d4",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422d5"
+    },
+    "id": "67fab6d599301022953422d5",
+    "code": "",
+    "audioUrl": "",
+    "translation": "No vayamos a esa fiesta.",
+    "successMessage": "",
+    "answerAudioUrl": "A1.05.02.15",
+    "kind": "CLOZE",
+    "title": "Sentences using Let's",
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How about not going to that party?",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Let's not go to that party."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422d6"
+    },
+    "id": "67fab6d599301022953422d6",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "How about not eating pizza tonight?",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Let's not eat pizza tonight."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Sentences using Let's",
+    "audioUrl": "",
+    "translation": "No comamos pizza esta noche.",
+    "answerAudioUrl": "A1.05.02.16",
+    "miniTheory": "",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422d7"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Sentences using Let's",
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "imageUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "How about going for a walk?",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Let's go for a walk."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953422d7",
+    "translation": "Vamos a dar un paseo.",
+    "answerAudioUrl": "A1.05.02.17",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422d8"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "title": "Sentences using Let's",
+    "miniTheory": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How about not going for a drive?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Let's not go for a drive."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "translation": "No vayamos a dar una vuelta en coche.",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953422d8",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.05.02.18",
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422d9"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How about drinking some tea?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Let's drink some tea."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "id": "67fab6d599301022953422d9",
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.05.02.19",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "translation": "Bebamos un poco de té.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Sentences using Let's",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "topicName": "Verb Patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422da"
+    },
+    "instructions": "Crea oraciones utilizando \"let's\".",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c1"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "theoryId": "a1.05.Verb_Patterns_with_Infinitives_Without_To",
+    "translation": "Comamos huevos para desayunar.",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.05.02.20",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Sentences using Let's",
+    "audioUrl": "",
+    "id": "67fab6d599301022953422da",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "How about having eggs for breakfast?",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Let's have eggs for breakfast."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "Verb Patterns"
+  }
+]

@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342353"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "answerAudioUrl": "A1.06.06.01",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "title": "Using A, An, or No Article",
+    "imageUrl": "",
+    "translation": "Ella es bombera.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342353",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "a"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "firefighter.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342354"
+    },
+    "code": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A, An, or No Article",
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "water.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A1.06.06.02",
+    "id": "67fab6d59930102295342354",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Esto es agua.",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342355"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "miniTheory": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "an"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "amazing mother.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "translation": "Ella es una madre increíble.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A, An, or No Article",
+    "answerAudioUrl": "A1.06.06.03",
+    "id": "67fab6d59930102295342355",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342356"
+    },
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A, An, or No Article",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "rice.",
+          "options": null
+        }
+      ]
+    },
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "answerAudioUrl": "A1.06.06.04",
+    "id": "67fab6d59930102295342356",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "audioUrl": "",
+    "translation": "Esto es arroz.",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342357"
+    },
+    "title": "Using A, An, or No Article",
+    "audioUrl": "",
+    "miniTheory": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Robert is",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "manager.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "successMessage": "",
+    "answerAudioUrl": "A1.06.06.05",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342357",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "imageUrl": "",
+    "translation": "Robert es gerente.",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342358"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That is",
+          "options": null
+        },
+        {
+          "options": [
+            "a"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "shirt.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A, An, or No Article",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342358",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Esa es una camisa.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.06.06.06",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342359"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "These people are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "text": "engineers.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "translation": "Estas personas son ingenieras.",
+    "id": "67fab6d59930102295342359",
+    "title": "Using A, An, or No Article",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.06.06.07",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534235a"
+    },
+    "code": "",
+    "title": "Using A, An, or No Article",
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "tasty pizza.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "translation": "Esa es una pizza sabrosa.",
+    "successMessage": "",
+    "id": "67fab6d5993010229534235a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.06.06.08",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534235b"
+    },
+    "answerAudioUrl": "A1.06.06.09",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter and Anne are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "nurses.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534235b",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A, An, or No Article",
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Peter y Anne son enfermeros.",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534235c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "audioUrl": "",
+    "translation": "Él es camarero.",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534235c",
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A, An, or No Article",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "text": "waiter.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerAudioUrl": "A1.06.06.10",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534235d"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A, An, or No Article",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Michael is",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "pharmacist.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534235d",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "translation": "Michael es farmacéutico.",
+    "answerAudioUrl": "A1.06.06.11",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534235e"
+    },
+    "kind": "CLOZE",
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "translation": "Eres un prodigio.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534235e",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A, An, or No Article",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "prodigy.",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A1.06.06.12",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534235f"
+    },
+    "translation": "Él es un soldado.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "title": "Using A, An, or No Article",
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534235f",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.06.06.13",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "soldier.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342360"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "text": "clever pupil.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342360",
+    "kind": "CLOZE",
+    "title": "Using A, An, or No Article",
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.06.06.14",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ella es una alumna inteligente.",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342361"
+    },
+    "title": "Using A, An, or No Article",
+    "translation": "Paul y Emily son arquitectos.",
+    "answerAudioUrl": "A1.06.06.15",
+    "id": "67fab6d59930102295342361",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Paul and Emily are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "architects.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342362"
+    },
+    "id": "67fab6d59930102295342362",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A, An, or No Article",
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "orange juice.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Esto es jugo de naranja.",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.06.06.16",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342363"
+    },
+    "id": "67fab6d59930102295342363",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.06.06.17",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "title": "Using A, An, or No Article",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That is",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "beer.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "audioUrl": "",
+    "translation": "Eso es cerveza.",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342364"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A, An, or No Article",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "vegetarians.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Ellos son vegetarianos.",
+    "id": "67fab6d59930102295342364",
+    "code": "",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.06.06.18",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342365"
+    },
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "title": "Using A, An, or No Article",
+    "imageUrl": "",
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "This is",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "an"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "orange.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Esto es una naranja.",
+    "answerAudioUrl": "A1.06.06.19",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342365",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342366"
+    },
+    "id": "67fab6d59930102295342366",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A, An, or No Article",
+    "successMessage": "",
+    "instructions": "Completa con 'a', 'an' o (-).",
+    "theoryId": "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+    "imageUrl": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "actors.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Ellos son actores.",
+    "answerAudioUrl": "A1.06.06.20",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c9"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "Nouns"
+  }
+]

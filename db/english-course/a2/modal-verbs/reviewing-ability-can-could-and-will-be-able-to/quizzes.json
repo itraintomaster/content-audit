@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dbc"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "could"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "solve math problems at the age of five.",
+          "options": null
+        }
+      ]
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Él podía resolver problemas de matemáticas a los cinco años.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.10.01.01",
+    "id": "67fab6d59930102295342dbc",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "kind": "CLOZE",
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "miniTheory": "",
+    "code": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dbd"
+    },
+    "id": "67fab6d59930102295342dbd",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "translation": "Ella podía montar a caballo cuando era más joven, pero ahora tiene miedo.",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.10.01.02",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "could"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "ride a horse when she was younger but she is afraid now.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dbe"
+    },
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342dbe",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "will be able to"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "play guitar next semester."
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "audioUrl": "",
+    "translation": "Podré tocar la guitarra el próximo semestre.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.10.01.03",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dbf"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "id": "67fab6d59930102295342dbf",
+    "imageUrl": "",
+    "translation": "Él podrá reparar el coche después de que lo guíes más tarde.",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "audioUrl": "",
+    "code": "",
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be able to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "repair the car after you guide him later.",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A2.10.01.04",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dc0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342dc0",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.10.01.05",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be able to"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "dance tango after the practice next week."
+        }
+      ]
+    },
+    "translation": "Ella podrá bailar tango después de la práctica de la semana que viene.",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dc1"
+    },
+    "id": "67fab6d59930102295342dc1",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "could"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "sing when she was a child.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Ella podía cantar cuando era niña.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.10.01.06",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dc2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.01.07",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342dc2",
+    "kind": "CLOZE",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "could"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "touch my toes when I was young, but I can't anymore.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "translation": "Podía tocarme los dedos de los pies cuando era joven, pero ya no puedo.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dc3"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.10.01.08",
+    "id": "67fab6d59930102295342dc3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "can"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "bake. She makes bread every week.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ella sabe hornear. Hace pan todas las semanas.",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dc4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "id": "67fab6d59930102295342dc4",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "translation": "Ellos pudieron escribir código eficientemente después del bootcamp del año pasado.",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "could"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "write code efficiently after the bootcamp last year.",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.10.01.09",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dc5"
+    },
+    "answerAudioUrl": "A2.10.01.10",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "imageUrl": "",
+    "id": "67fab6d59930102295342dc5",
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "could"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "sing when we went to school. Our father taught us.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "audioUrl": "",
+    "translation": "Podíamos cantar cuando íbamos a la escuela. Nuestro padre nos enseñó.",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dc6"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.10.01.11",
+    "kind": "CLOZE",
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "can"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "speak Spanish fluently. He lives in Madrid.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "imageUrl": "",
+    "translation": "Él habla español con fluidez. Vive en Madrid.",
+    "id": "67fab6d59930102295342dc6",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dc7"
+    },
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.10.01.12",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342dc7",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cats",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "can"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "open the door by themselves. They're smart!"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "¡Los gatos pueden abrir la puerta por sí mismos. Son inteligentes!",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dc8"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "translation": "David sabe tocar la guitarra. Toca de maravilla.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "David",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "can"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "play the guitar. He plays wonderfully.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342dc8",
+    "code": "",
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.10.01.13",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dc9"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.10.01.14",
+    "kind": "CLOZE",
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The trainees",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be able to"
+          ]
+        },
+        {
+          "text": "sail after the camp next month.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Los aprendices podrán navegar después del campamento del mes que viene.",
+    "code": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342dc9",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dca"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "could"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "draw a bird before she turned seven.",
+          "options": null
+        }
+      ]
+    },
+    "code": "",
+    "imageUrl": "",
+    "translation": "Ella podía dibujar un pájaro antes de cumplir los siete años.",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.10.01.15",
+    "id": "67fab6d59930102295342dca",
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dcb"
+    },
+    "miniTheory": "",
+    "imageUrl": "",
+    "translation": "¡Podré hornear mejores pasteles después de mi estancia en Francia el año que viene!",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "answerAudioUrl": "A2.10.01.16",
+    "id": "67fab6d59930102295342dcb",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be able to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bake better cakes after my stay in France next year!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dcc"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "My daughter"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be able to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "read before she is five next year.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342dcc",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "imageUrl": "",
+    "translation": "Mi hija podrá leer antes de cumplir los cinco años el año que viene.",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.01.17",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dcd"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.10.01.18",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342dcd",
+    "code": "",
+    "translation": "Los perros podrán saltar antes del próximo verano.",
+    "successMessage": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be able to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "jump before next summer.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dce"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "translation": "Puedo cantar, tengo un título de música.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.10.01.19",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342dce",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "can"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "sing – I have a music degree.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342dcf"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d295"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.01.20",
+    "id": "67fab6d59930102295342dcf",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Ability: Can, Could, and Will Be Able To",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.10.Would_for_Imaginary_Situations",
+    "translation": "Robert puede levantar 100 kg. ¡Es increíble!",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'can' / 'could' / 'will be able to' a las oraciones.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Robert",
+          "options": null
+        },
+        {
+          "options": [
+            "can"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "lift 100kg. It's incredible!",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "successMessage": "",
+    "topicName": "Modal Verbs"
+  }
+]

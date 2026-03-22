@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343acd"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "A car is"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "faster than"
+          ]
+        },
+        {
+          "text": "(fast / than) a bicycle.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.15.03.01",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343acd",
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Un coche es más rápido que una bicicleta.",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ace"
+    },
+    "id": "67fab6d59930102295343ace",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Su jardín es tan colorido como el mío.",
+    "answerAudioUrl": "B1.15.03.02",
+    "code": "",
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Her garden is",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "as colorful as"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(colorful / as) mine.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "answerImageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343acf"
+    },
+    "translation": "Ella es un poco más extrovertida que su hermana.",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a bit more outgoing than"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(a bit / outgoing / than) her sister."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.15.03.03",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343acf",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ad0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "as ready as"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(ready / as) they can be.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerAudioUrl": "B1.15.03.04",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343ad0",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "translation": "Están tan listos como pueden estar.",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ad1"
+    },
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "kind": "CLOZE",
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "audioUrl": "",
+    "imageUrl": "",
+    "translation": "Ese pastel es mucho más dulce que este.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343ad1",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "That cake is"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "much sweeter than"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(much / sweet / than) this one."
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.15.03.05",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ad2"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I am"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "as strong as"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(strong / as) he is.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "audioUrl": "",
+    "translation": "Soy tan fuerte como él.",
+    "code": "",
+    "kind": "CLOZE",
+    "answerAudioUrl": "B1.15.03.06",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343ad2",
+    "imageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ad3"
+    },
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Los niños son mucho más ruidosos que antes.",
+    "successMessage": "",
+    "id": "67fab6d59930102295343ad3",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.15.03.07",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The kids are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a lot louder than"
+          ]
+        },
+        {
+          "text": "(a lot / loud / than) they were earlier.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ad4"
+    },
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "translation": "El café es mucho más fuerte que el té.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The coffee is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "much stronger than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(much / strong / than) the tea.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.03.08",
+    "id": "67fab6d59930102295343ad4",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ad5"
+    },
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dog is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "as fluffy as"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(fluffy / as) a cloud."
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.15.03.09",
+    "id": "67fab6d59930102295343ad5",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "imageUrl": "",
+    "translation": "El perro es tan esponjoso como una nube.",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ad6"
+    },
+    "answerAudioUrl": "B1.15.03.10",
+    "id": "67fab6d59930102295343ad6",
+    "code": "",
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "translation": "Laura es más creativa que Anna.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Laura is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more creative than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(creative / than) Anna.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "imageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ad7"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "imageUrl": "",
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "translation": "Hoy la lección fue un poco más difícil que la anterior.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.15.03.11",
+    "id": "67fab6d59930102295343ad7",
+    "code": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "Today the lesson was",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little harder than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(a little / hard / than) the previous one.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ad8"
+    },
+    "id": "67fab6d59930102295343ad8",
+    "audioUrl": "",
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "answerAudioUrl": "B1.15.03.12",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "translation": "Mi teléfono es un poco más nuevo que el tuyo.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My phone is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a bit newer than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(a bit / new / than) yours.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ad9"
+    },
+    "id": "67fab6d59930102295343ad9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "A whale is"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a lot bigger than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(a lot / big / than) a shark.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "answerAudioUrl": "B1.15.03.13",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "translation": "Una ballena es mucho más grande que un tiburón.",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ada"
+    },
+    "answerAudioUrl": "B1.15.03.14",
+    "code": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343ada",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Este juego es más emocionante que el otro.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This game is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more exciting than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(exciting / than) the other one.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343adb"
+    },
+    "id": "67fab6d59930102295343adb",
+    "code": "",
+    "translation": "Estamos tan hambrientos como osos.",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.15.03.15",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "We are",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "as hungry as"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(hungry / as) bears.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343adc"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295343adc",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The exam was",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "as difficult as"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "(difficult / as) predicted.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "El examen fue tan difícil como se predijo.",
+    "answerAudioUrl": "B1.15.03.16",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343add"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The pizza is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "spicier than"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(spicy / than) the pasta."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "La pizza es más picante que la pasta.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343add",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.15.03.17",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ade"
+    },
+    "id": "67fab6d59930102295343ade",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "imageUrl": "",
+    "translation": "El clima está más frío que ayer.",
+    "answerAudioUrl": "B1.15.03.18",
+    "audioUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The weather is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "colder than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(cold / than) yesterday.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343adf"
+    },
+    "successMessage": "",
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My new job is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "better than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(good / than) my previous one.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.15.03.19",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "translation": "Mi nuevo trabajo es mejor que el anterior.",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343adf",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ae0"
+    },
+    "answerAudioUrl": "B1.15.03.20",
+    "id": "67fab6d59930102295343ae0",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d359"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "title": "Using 'than' and 'as...as' in Comparisons",
+    "instructions": "Crea oraciones comparativas usando 'than' o 'as...as'. Considera usar modificadores como 'a bit', 'a little', 'a lot' o 'much' cuando sea apropiado.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A horse is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "taller than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(tall / than) a dog.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "translation": "Un caballo es más alto que un perro.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.15.Comparatives_Using_a_Clause_After_Than",
+    "topicName": "Adjectives"
+  }
+]

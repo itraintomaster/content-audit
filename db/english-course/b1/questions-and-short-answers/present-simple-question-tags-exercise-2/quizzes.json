@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432b8"
+    },
+    "answerAudioUrl": "B1.05.03.01",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "theoryId": "b1.05.Question_Tags",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Te gusta el chocolate, ¿no es así?",
+    "code": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "You like chocolate,"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "don't you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "id": "67fab6d599301022953432b8",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple Question Tags: Exercise 2",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432b9"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.03.02",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "id": "67fab6d599301022953432b9",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple Question Tags: Exercise 2",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "My siblings aren't at home,"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Mis hermanos no están en casa, ¿verdad?",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432ba"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The printer is broken,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does it"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "translation": "La impresora está rota, ¿no?",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple Question Tags: Exercise 2",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.03.03",
+    "id": "67fab6d599301022953432ba",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432bb"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "imageUrl": "",
+    "translation": "Quieren un poco de agua, ¿no?",
+    "id": "67fab6d599301022953432bb",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "audioUrl": "",
+    "theoryId": "b1.05.Question_Tags",
+    "successMessage": "",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They want some water,",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "don't they"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple Question Tags: Exercise 2",
+    "answerAudioUrl": "B1.05.03.04",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432bc"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is here,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't he"
+          ]
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "id": "67fab6d599301022953432bc",
+    "code": "",
+    "translation": "Él está aquí, ¿no?",
+    "answerAudioUrl": "B1.05.03.05",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple Question Tags: Exercise 2",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432bd"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The teachers don't read newspapers,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "translation": "Los profesores no leen periódicos, ¿verdad?",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.03.06",
+    "id": "67fab6d599301022953432bd",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple Question Tags: Exercise 2",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432be"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "title": "Present Simple Question Tags: Exercise 2",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I don't have to go there,",
+          "options": null
+        },
+        {
+          "options": [
+            "do I"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "theoryId": "b1.05.Question_Tags",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953432be",
+    "imageUrl": "",
+    "translation": "No tengo que ir allí, ¿o sí?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.03.07",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432bf"
+    },
+    "kind": "CLOZE",
+    "title": "Present Simple Question Tags: Exercise 2",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "theoryId": "b1.05.Question_Tags",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953432bf",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.03.08",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "A él no le gusta el queso, ¿verdad?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He doesn't like cheese,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432c0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You aren't at school,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you"
+          ]
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "answerAudioUrl": "B1.05.03.09",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d599301022953432c0",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "No estás en la escuela, ¿verdad?",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple Question Tags: Exercise 2",
+    "imageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432c1"
+    },
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.03.10",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "theoryId": "b1.05.Question_Tags",
+    "translation": "Mary canta bien, ¿no?",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953432c1",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary sings well,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "doesn't she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple Question Tags: Exercise 2",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432c2"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953432c2",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He enjoys surfing,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "doesn't he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerAudioUrl": "B1.05.03.11",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Él disfruta surfear, ¿no?",
+    "miniTheory": "",
+    "code": "",
+    "title": "Present Simple Question Tags: Exercise 2",
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432c3"
+    },
+    "code": "",
+    "title": "Present Simple Question Tags: Exercise 2",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They are tired,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "aren't they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d599301022953432c3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "imageUrl": "",
+    "translation": "Están cansados, ¿no?",
+    "answerAudioUrl": "B1.05.03.12",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432c4"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter isn't sad,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953432c4",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Peter no está triste, ¿verdad?",
+    "answerAudioUrl": "B1.05.03.13",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "theoryId": "b1.05.Question_Tags",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple Question Tags: Exercise 2",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432c5"
+    },
+    "answerAudioUrl": "B1.05.03.14",
+    "id": "67fab6d599301022953432c5",
+    "code": "",
+    "title": "Present Simple Question Tags: Exercise 2",
+    "theoryId": "b1.05.Question_Tags",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm not too late,",
+          "options": null
+        },
+        {
+          "options": [
+            "am I"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "No llego demasiado tarde, ¿verdad?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432c6"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "You're good at swimming,"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "aren't you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Eres bueno nadando, ¿no?",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953432c6",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "title": "Present Simple Question Tags: Exercise 2",
+    "imageUrl": "",
+    "successMessage": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.03.15",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432c7"
+    },
+    "answerAudioUrl": "B1.05.03.16",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "kind": "CLOZE",
+    "translation": "A los camareros no les gusta esto, ¿verdad?",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple Question Tags: Exercise 2",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The waiters don't like this,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953432c7",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "audioUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432c8"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ella no está en la oficina, ¿verdad?",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple Question Tags: Exercise 2",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.03.17",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She isn't at the office,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "id": "67fab6d599301022953432c8",
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432c9"
+    },
+    "id": "67fab6d599301022953432c9",
+    "translation": "Los padres están en el parque, ¿no?",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.03.18",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The parents are at the park,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "aren't they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple Question Tags: Exercise 2",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432ca"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.03.19",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Louis es español, ¿no?",
+    "answerImageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Louis is Spanish,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't she"
+          ]
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "title": "Present Simple Question Tags: Exercise 2",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "id": "67fab6d599301022953432ca",
+    "code": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953432cb"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The boys like soccer,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "don't they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.05.03.20",
+    "id": "67fab6d599301022953432cb",
+    "code": "",
+    "theoryId": "b1.05.Question_Tags",
+    "translation": "A los chicos les gusta el fútbol, ¿no?",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e4"
+    },
+    "title": "Present Simple Question Tags: Exercise 2",
+    "topicName": "Questions and short answers"
+  }
+]

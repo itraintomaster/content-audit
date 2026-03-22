@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434ac"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I made my son a toy.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I made a toy for my son."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953434ac",
+    "successMessage": "",
+    "imageUrl": "",
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with verbs using two objects",
+    "audioUrl": "",
+    "translation": "Hice un juguete para mi hijo.",
+    "answerAudioUrl": "B1.06.07.01",
+    "code": "",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434ad"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She showed Paul the picture.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She showed the picture to Paul."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "id": "67fab6d599301022953434ad",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "translation": "Ella le mostró la foto a Paul.",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "title": "Practice with verbs using two objects",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.06.07.02",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434ae"
+    },
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please tell us a joke!",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Please tell a joke to us!"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "id": "67fab6d599301022953434ae",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¡Por favor, cuéntanos un chiste!",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "title": "Practice with verbs using two objects",
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.06.07.03",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434af"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He baked her cookies."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He baked cookies for her."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "answerAudioUrl": "B1.06.07.04",
+    "id": "67fab6d599301022953434af",
+    "title": "Practice with verbs using two objects",
+    "translation": "Él horneó galletas para ella.",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434b0"
+    },
+    "kind": "CLOZE",
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "id": "67fab6d599301022953434b0",
+    "imageUrl": "",
+    "translation": "Le compré un periódico a mi padre.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I bought my father a newspaper.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I bought a newspaper for my father."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with verbs using two objects",
+    "answerAudioUrl": "B1.06.07.05",
+    "code": "",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434b1"
+    },
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with verbs using two objects",
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you pass me the salt?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could you pass the salt to me?"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "translation": "¿Podrías pasarme la sal?",
+    "answerAudioUrl": "B1.06.07.06",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d599301022953434b1",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434b2"
+    },
+    "id": "67fab6d599301022953434b2",
+    "imageUrl": "",
+    "successMessage": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She located him a house."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She located a house for him."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "translation": "Ella le localizó una casa.",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.06.07.07",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with verbs using two objects",
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434b3"
+    },
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "audioUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "title": "Practice with verbs using two objects",
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She explained the tourists the rules.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She explained the rules to the tourists."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Ella les explicó las reglas a los turistas.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.06.07.08",
+    "id": "67fab6d599301022953434b3",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434b4"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I faxed Mary the document.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I faxed the document to Mary."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "id": "67fab6d599301022953434b4",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.06.07.09",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Le envié el documento por fax a Mary.",
+    "answerImageUrl": "",
+    "title": "Practice with verbs using two objects",
+    "audioUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434b5"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with verbs using two objects",
+    "answerAudioUrl": "B1.06.07.10",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Los alumnos diseñaron un regalo para su profesor.",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953434b5",
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The pupils designed their teacher a present.",
+          "options": null
+        },
+        {
+          "options": [
+            "The pupils designed a present for their teacher."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434b6"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Le dimos nuestras entradas a Simon.",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953434b6",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We gave Simon our tickets.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "We gave our tickets to Simon."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "answerImageUrl": "",
+    "title": "Practice with verbs using two objects",
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "answerAudioUrl": "B1.06.07.11",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434b7"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He presented her the gold watch.",
+          "options": null
+        },
+        {
+          "options": [
+            "He presented the gold watch to her."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Él le regaló el reloj de oro.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.06.07.12",
+    "id": "67fab6d599301022953434b7",
+    "code": "",
+    "title": "Practice with verbs using two objects",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434b8"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with verbs using two objects",
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "id": "67fab6d599301022953434b8",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Ella pidió un agua para mí.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.06.07.13",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She ordered me a water.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She ordered a water for me."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434b9"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with verbs using two objects",
+    "miniTheory": "",
+    "id": "67fab6d599301022953434b9",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "translation": "Nos anunciaron el ganador.",
+    "answerImageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They announced us the winner.",
+          "options": null
+        },
+        {
+          "options": [
+            "They announced the winner to us."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.06.07.14",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434ba"
+    },
+    "id": "67fab6d599301022953434ba",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you send the teacher the essays?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could you send the essays to the teacher?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Podrías enviar los ensayos al profesor?",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.06.07.15",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "title": "Practice with verbs using two objects",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434bb"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My brother us made breakfast.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "My brother made breakfast for us."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.06.07.16",
+    "id": "67fab6d599301022953434bb",
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with verbs using two objects",
+    "translation": "Mi hermano nos preparó el desayuno.",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434bc"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "title": "Practice with verbs using two objects",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953434bc",
+    "code": "",
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Quizás podrías describirnos el lugar?",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.06.07.17",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Maybe you could describe us the place?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Maybe you could describe the place for us?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "imageUrl": "",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434bd"
+    },
+    "title": "Practice with verbs using two objects",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.06.07.18",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He offered everyone drinks.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He offered drinks for everyone."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Ofreció bebidas para todos.",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "successMessage": "",
+    "id": "67fab6d599301022953434bd",
+    "code": "",
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434be"
+    },
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.06.07.19",
+    "id": "67fab6d599301022953434be",
+    "kind": "CLOZE",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I posted my girlfriend a letter.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I posted a letter to my girlfriend."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with verbs using two objects",
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "translation": "Le envié una carta a mi novia.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Verb patterns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434bf"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.06.Verbs_with_Two_Objects",
+    "imageUrl": "",
+    "translation": "Ella preparó una comida para su novio.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.06.07.20",
+    "id": "67fab6d599301022953434bf",
+    "code": "",
+    "title": "Practice with verbs using two objects",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She cooked her boyfriend a meal.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She cooked a meal for her boyfriend."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2fe"
+    },
+    "instructions": "¡Repasemos! Cambia la oración para que incluya 'to' o 'for'. Por ejemplo: I sent him a card → I sent a card to him.",
+    "topicName": "Verb patterns"
+  }
+]

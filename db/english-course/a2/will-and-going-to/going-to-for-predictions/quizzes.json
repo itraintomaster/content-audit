@@ -1,0 +1,524 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342717"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22e"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342717",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Van a arreglar el coche?",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.05.01",
+    "kind": "CLOZE",
+    "title": "'Going to' for Predictions",
+    "instructions": "Crea oraciones con 'going to' (estos son ejemplos de 'going to' para predicciones basadas en evidencia).",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What's that strange noise?",
+          "options": null
+        },
+        {
+          "options": [
+            "Are they going to fix"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "(they / fix) the car?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342718"
+    },
+    "id": "67fab6d59930102295342718",
+    "kind": "CLOZE",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's so hot that the ice cream",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "is going to melt|'s going to melt"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(melt).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22e"
+    },
+    "translation": "Hace tanto calor que el helado se va a derretir.",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.05.02",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to' for Predictions",
+    "instructions": "Crea oraciones con 'going to' (estos son ejemplos de 'going to' para predicciones basadas en evidencia).",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342719"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342719",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22e"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'going to' (estos son ejemplos de 'going to' para predicciones basadas en evidencia).",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s going to pass|is going to pass"
+          ]
+        },
+        {
+          "text": "(pass) the test. She has studied a lot.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "translation": "Ella va a aprobar el examen. Ha estudiado mucho.",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to' for Predictions",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.05.03",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534271a"
+    },
+    "code": "",
+    "translation": "¡Deja de correr tan rápido! Te vas a caer.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to' for Predictions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Stop running so quickly! You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re going to fall|are going to fall"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(fall) down.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22e"
+    },
+    "instructions": "Crea oraciones con 'going to' (estos son ejemplos de 'going to' para predicciones basadas en evidencia).",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "answerAudioUrl": "A2.02.05.04",
+    "id": "67fab6d5993010229534271a",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534271b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'going to' (estos son ejemplos de 'going to' para predicciones basadas en evidencia).",
+    "translation": "Parece que ese perro va a ladrar.",
+    "id": "67fab6d5993010229534271b",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22e"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to' for Predictions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It seems like that dog",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "is going to bark|'s going to bark"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(bark)."
+        }
+      ]
+    },
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "answerAudioUrl": "A2.02.05.05",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534271c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "That plane",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is going to crash|'s going to crash"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(crash)!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerAudioUrl": "A2.02.05.06",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "instructions": "Crea oraciones con 'going to' (estos son ejemplos de 'going to' para predicciones basadas en evidencia).",
+    "audioUrl": "",
+    "translation": "¡Ese avión se va a estrellar!",
+    "successMessage": "",
+    "id": "67fab6d5993010229534271c",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "'Going to' for Predictions",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534271d"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22e"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "audioUrl": "",
+    "translation": "¡Mira el sol! Va a brillar.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones con 'going to' (estos son ejemplos de 'going to' para predicciones basadas en evidencia).",
+    "imageUrl": "",
+    "id": "67fab6d5993010229534271d",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "'Going to' for Predictions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Look at the sun! It",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s going to shine|is going to shine"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(shine).",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.05.07",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534271e"
+    },
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "audioUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I believe that he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s going to lose|is going to lose"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(lose) the game."
+        }
+      ]
+    },
+    "code": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534271e",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to' for Predictions",
+    "instructions": "Crea oraciones con 'going to' (estos son ejemplos de 'going to' para predicciones basadas en evidencia).",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.05.08",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Creo que él va a perder el partido.",
+    "kind": "CLOZE",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534271f"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22e"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "It seems like the market",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is going to decline|'s going to decline"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(decline).",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534271f",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to' for Predictions",
+    "instructions": "Crea oraciones con 'going to' (estos son ejemplos de 'going to' para predicciones basadas en evidencia).",
+    "code": "",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "translation": "Parece que el mercado va a declinar.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.02.05.09",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "'Will' and 'Going To'"
+  }
+]

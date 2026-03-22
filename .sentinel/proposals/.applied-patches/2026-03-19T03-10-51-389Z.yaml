@@ -1,0 +1,23 @@
+code: __proposal__
+description: Add implements AnalysisResult to SentenceLengthResult so it satisfies
+  the ContentAnalyzer.getResult() return type
+modules:
+- name: audit-domain
+  models:
+  - name: SentenceLengthResult
+    type: record
+    fields:
+    - name: name
+      type: String
+      description: Analysis name identifier
+    - name: courseScore
+      type: double
+      description: Overall course score (R008)
+    - name: levelMetrics
+      type: List<LevelMetrics>
+      description: Per-level detailed metrics and scores
+    - name: progressionStatus
+      type: ProgressionStatus
+      description: Cross-level progression evaluation (R010)
+    _change: modify
+  _change: modify

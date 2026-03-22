@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434e8"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "title": "Using Zero Article: A General Review",
+    "translation": "Ella es mala en física.",
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.03.01",
+    "id": "67fab6d599301022953434e8",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She is bad at",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "physics.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434e9"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "elephants live in India."
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953434e9",
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "translation": "Los elefantes viven en la India.",
+    "answerAudioUrl": "B1.07.03.02",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Zero Article: A General Review",
+    "successMessage": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434ea"
+    },
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Zero Article: A General Review",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.07.03.03",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She doesn't drink",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "beer.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Ella no bebe cerveza.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953434ea",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434eb"
+    },
+    "code": "",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.07.03.04",
+    "id": "67fab6d599301022953434eb",
+    "kind": "CLOZE",
+    "title": "Using Zero Article: A General Review",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "translation": "Disfruto de los dulces.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I enjoy",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "sweets.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434ec"
+    },
+    "translation": "Realmente disfruté las galletas que horneaste.",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "miniTheory": "",
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I really enjoyed",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "the"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "cookies you baked.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.03.05",
+    "id": "67fab6d599301022953434ec",
+    "title": "Using Zero Article: A General Review",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434ed"
+    },
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Whose are",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "the"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "bikes in the garage?",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953434ed",
+    "title": "Using Zero Article: A General Review",
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿De quién son las bicicletas en el garaje?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.07.03.06",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434ee"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "translation": "El elefante del zoológico tiene poco espacio.",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "elephant at the zoo has little space.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953434ee",
+    "code": "",
+    "title": "Using Zero Article: A General Review",
+    "answerAudioUrl": "B1.07.03.07",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434ef"
+    },
+    "translation": "Los autobuses causan contaminación.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "buses cause pollution.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.07.03.08",
+    "id": "67fab6d599301022953434ef",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Zero Article: A General Review",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434f0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They enjoy"
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "ice cream.",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.07.03.09",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Zero Article: A General Review",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "imageUrl": "",
+    "translation": "Ellos disfrutan del helado.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953434f0",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434f1"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Zero Article: A General Review",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We fried",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "eggs that you bought.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "audioUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "translation": "Freímos los huevos que compraste.",
+    "id": "67fab6d599301022953434f1",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.03.10",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434f2"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "knowledge is power.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "answerAudioUrl": "B1.07.03.11",
+    "id": "67fab6d599301022953434f2",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Zero Article: A General Review",
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "El conocimiento es poder.",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434f3"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He hates",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "tomatoes.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "id": "67fab6d599301022953434f3",
+    "imageUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Zero Article: A General Review",
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "translation": "Él odia los tomates.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.07.03.12",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434f4"
+    },
+    "id": "67fab6d599301022953434f4",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Zero Article: A General Review",
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "imageUrl": "",
+    "translation": "Analicemos la estructura de las oraciones condicionales.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.07.03.13",
+    "code": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Let's analyze",
+          "options": null
+        },
+        {
+          "options": [
+            "the"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "structure of conditional sentences.",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434f5"
+    },
+    "title": "Using Zero Article: A General Review",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "successMessage": "",
+    "code": "",
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "miniTheory": "",
+    "audioUrl": "",
+    "translation": "La amistad es importante.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.07.03.14",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "friendship is important."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "id": "67fab6d599301022953434f5",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434f6"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.07.03.15",
+    "title": "Using Zero Article: A General Review",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "dogs are barking.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "translation": "Los perros están ladrando.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "id": "67fab6d599301022953434f6",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434f7"
+    },
+    "id": "67fab6d599301022953434f7",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "translation": "Ella ama a los perros.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "title": "Using Zero Article: A General Review",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She loves",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "dogs.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.07.03.16",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434f8"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.07.03.17",
+    "id": "67fab6d599301022953434f8",
+    "kind": "CLOZE",
+    "translation": "Vi la película que me sugeriste.",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I watched",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "the"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "movie that you suggested.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "code": "",
+    "title": "Using Zero Article: A General Review",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434f9"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Zero Article: A General Review",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "The"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "class finishes at 3 pm.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "id": "67fab6d599301022953434f9",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.07.03.18",
+    "code": "",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "audioUrl": "",
+    "translation": "La clase termina a las 3 pm.",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434fa"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "title": "Using Zero Article: A General Review",
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "translation": "Ella se comió los dulces del estante.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She ate",
+          "options": null
+        },
+        {
+          "options": [
+            "the"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "sweets on the shelf.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.07.03.19",
+    "id": "67fab6d599301022953434fa",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434fb"
+    },
+    "id": "67fab6d599301022953434fb",
+    "title": "Using Zero Article: A General Review",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I spilled",
+          "options": null
+        },
+        {
+          "options": [
+            "the"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "beer next to me.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "answerAudioUrl": "B1.07.03.20",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' o usa – si no necesitamos ningún artículo.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d302"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Derramé la cerveza a mi lado.",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Nouns"
+  }
+]

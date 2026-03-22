@@ -1,0 +1,146 @@
+# Configuracion de LemmaCocaBucketsDistribution
+# Extraida de: src/main/resources/pipeline/vocabulary-analyzer/config.yaml
+# Seccion: targets.cocaBucketsDistribution
+
+cocaBucketsDistribution:
+  course:
+    # Strategy: "levels" o "quarters"
+    # levels = analisis por nivel CEFR completo
+    # quarters = subdivide cada nivel en 4 trimestres con interpolacion lineal
+    strategy: quarters
+
+    # Rango de tolerancia para considerar OPTIMAL
+    optimalRange: 5   # |real - target| <= 5% -> OPTIMAL
+
+    # Rango de tolerancia para considerar ADEQUATE
+    # Si supera este rango -> DEFICIENT o EXCESSIVE
+    adequateRange: 10  # |real - target| <= 10% -> ADEQUATE
+
+    # Definicion de las bandas de frecuencia
+    buckets:
+      values:
+        - name: top1k
+          value: 1000     # Palabras con ranking 1-1000
+        - name: top2k
+          value: 2000     # Palabras con ranking 1001-2000
+        - name: top3k
+          value: 3000     # Palabras con ranking 2001-3000
+        - name: top4k
+          value: 4000     # Palabras con ranking 3001+ (bucket abierto)
+      open: true          # El ultimo bucket es abierto (incluye todo >= 3001)
+
+    # Progresion esperada por bucket entre niveles
+    progressionByBucket:
+      - bucketName: top1k
+        progression: DESCENDING   # Menos palabras frecuentes a medida que avanza el nivel
+      - bucketName: top4k
+        progression: ASCENDING    # Mas palabras raras a medida que avanza el nivel
+
+    # Targets por nivel CEFR
+    levels:
+      # ====================== A1 ======================
+      - name: A1
+        # Targets para el nivel completo
+        buckets:
+          - name: top1k
+            targetPercentage: 80
+            kind: atLeast         # Al menos 80% de top1k
+          - name: top4k
+            targetPercentage: 1
+            kind: atMost          # Como maximo 1% de top4k
+        # Targets para el primer trimestre (Q1)
+        initialQuarter:
+          buckets:
+            - name: top1k
+              targetPercentage: 90
+              kind: atLeast
+            - name: top4k
+              targetPercentage: 0
+              kind: atMost
+        # Targets para el ultimo trimestre (Q4)
+        lastQuarter:
+          buckets:
+            - name: top1k
+              targetPercentage: 75
+              kind: atLeast
+            - name: top4k
+              targetPercentage: 2
+              kind: atMost
+
+      # ====================== A2 ======================
+      - name: A2
+        buckets:
+          - name: top1k
+            targetPercentage: 70
+            kind: atMost
+          - name: top4k
+            targetPercentage: 10
+            kind: atMost
+        initialQuarter:
+          buckets:
+            - name: top1k
+              targetPercentage: 75
+              kind: atLeast
+            - name: top4k
+              targetPercentage: 2
+              kind: atMost
+        lastQuarter:
+          buckets:
+            - name: top1k
+              targetPercentage: 65
+              kind: atLeast
+            - name: top4k
+              targetPercentage: 15
+              kind: atMost
+
+      # ====================== B1 ======================
+      - name: B1
+        buckets:
+          - name: top1k
+            targetPercentage: 60
+            kind: atMost
+          - name: top4k
+            targetPercentage: 20
+            kind: atMost
+        initialQuarter:
+          buckets:
+            - name: top1k
+              targetPercentage: 65
+              kind: atLeast
+            - name: top4k
+              targetPercentage: 15
+              # Nota: falta "kind" en el original - posible bug
+        lastQuarter:
+          buckets:
+            - name: top1k
+              targetPercentage: 55
+              kind: atLeast
+            - name: top4k
+              targetPercentage: 25
+              kind: atMost
+
+      # ====================== B2 ======================
+      - name: B2
+        buckets:
+          - name: top1k
+            targetPercentage: 50
+            kind: atMost
+          - name: top4k
+            targetPercentage: 30
+            kind: atLeast
+        initialQuarter:
+          buckets:
+            - name: top1k
+              targetPercentage: 55
+              kind: atLeast
+            - name: top4k
+              targetPercentage: 25
+              # Nota: falta "kind" en el original
+        lastQuarter:
+          buckets:
+            - name: top1k
+              targetPercentage: 45
+              kind: atLeast
+            - name: top4k
+              targetPercentage: 35
+              kind: atMost

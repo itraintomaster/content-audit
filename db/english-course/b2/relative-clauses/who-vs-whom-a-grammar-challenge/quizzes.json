@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534462a"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "¿Puedes elegir entre 'who' y 'whom'?",
+    "audioUrl": "",
+    "id": "67fab6d5993010229534462a",
+    "title": "'Who' vs. 'Whom': A Grammar Challenge",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We saw the people",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "who"
+          ]
+        },
+        {
+          "text": "were at the park.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Vimos a las personas que estaban en el parque.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.10.05.01",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d469"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534462b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Puedes ver al hombre que está parado allí?",
+    "answerAudioUrl": "B2.10.05.02",
+    "id": "67fab6d5993010229534462b",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "instructions": "¿Puedes elegir entre 'who' y 'whom'?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Can you see the man",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "who"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "is standing there?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Who' vs. 'Whom': A Grammar Challenge",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d469"
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534462c"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.05.03",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d469"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Who' vs. 'Whom': A Grammar Challenge",
+    "instructions": "¿Puedes elegir entre 'who' y 'whom'?",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She interviewed the candidates"
+        },
+        {
+          "text": "",
+          "options": [
+            "who"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "applied for the job.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Ella entrevistó a los candidatos que solicitaron el trabajo.",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534462c",
+    "answerImageUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534462d"
+    },
+    "imageUrl": "",
+    "id": "67fab6d5993010229534462d",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He remembers the people",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "whom"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "we met."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerAudioUrl": "B2.10.05.04",
+    "instructions": "¿Puedes elegir entre 'who' y 'whom'?",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Who' vs. 'Whom': A Grammar Challenge",
+    "translation": "Él recuerda a las personas que conocimos.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d469"
+    },
+    "audioUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534462e"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.10.05.05",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d469"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "id": "67fab6d5993010229534462e",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Esa es la chica a la que vi.",
+    "answerImageUrl": "",
+    "instructions": "¿Puedes elegir entre 'who' y 'whom'?",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "That's the girl"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "whom"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "I saw.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Who' vs. 'Whom': A Grammar Challenge",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534462f"
+    },
+    "audioUrl": "",
+    "translation": "Le pregunté a la bibliotecaria que trabaja aquí.",
+    "successMessage": "",
+    "id": "67fab6d5993010229534462f",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.10.05.06",
+    "instructions": "¿Puedes elegir entre 'who' y 'whom'?",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d469"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Who' vs. 'Whom': A Grammar Challenge",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I asked the librarian",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "who"
+          ]
+        },
+        {
+          "text": "works here.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344630"
+    },
+    "kind": "CLOZE",
+    "instructions": "¿Puedes elegir entre 'who' y 'whom'?",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Is that the book",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "whom"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "you read?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "audioUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.10.05.07",
+    "successMessage": "",
+    "id": "67fab6d59930102295344630",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d469"
+    },
+    "title": "'Who' vs. 'Whom': A Grammar Challenge",
+    "imageUrl": "",
+    "translation": "¿Es ese el libro que leíste?",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344631"
+    },
+    "title": "'Who' vs. 'Whom': A Grammar Challenge",
+    "imageUrl": "",
+    "translation": "Visitaron al abogado que contrataste.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344631",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d469"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "instructions": "¿Puedes elegir entre 'who' y 'whom'?",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They visited the lawyer",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "whom"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "you hired.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B2.10.05.08",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344632"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "instructions": "¿Puedes elegir entre 'who' y 'whom'?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Is that the teacher",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "who"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "won the award?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "imageUrl": "",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Es ese el maestro que ganó el premio?",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.10.05.09",
+    "id": "67fab6d59930102295344632",
+    "title": "'Who' vs. 'Whom': A Grammar Challenge",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d469"
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344633"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.10.05.10",
+    "code": "",
+    "instructions": "¿Puedes elegir entre 'who' y 'whom'?",
+    "imageUrl": "",
+    "translation": "Ella saludó a los invitados que Peter invitó.",
+    "id": "67fab6d59930102295344633",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d469"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Who' vs. 'Whom': A Grammar Challenge",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She greeted the guests",
+          "options": null
+        },
+        {
+          "options": [
+            "whom"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "Peter invited.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Relative clauses"
+  }
+]

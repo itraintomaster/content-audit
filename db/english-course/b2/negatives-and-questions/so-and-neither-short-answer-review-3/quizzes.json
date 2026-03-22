@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344117"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B2.04.07.01",
+    "id": "67fab6d59930102295344117",
+    "kind": "CLOZE",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "audioUrl": "",
+    "translation": "Yo tampoco.",
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: I'm not intending to see the manager. B:",
+          "options": null
+        },
+        {
+          "options": [
+            "Neither am I."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "imageUrl": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344118"
+    },
+    "code": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "imageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "A: The pupils don't read often. B:",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither do the professors."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the professors)",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "translation": "Los profesores tampoco.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.04.07.02",
+    "id": "67fab6d59930102295344118",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344119"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "A: She hasn't visited Rome. B:",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "Neither have I."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.04.07.03",
+    "id": "67fab6d59930102295344119",
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "translation": "Yo tampoco.",
+    "successMessage": "",
+    "code": "",
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534411a"
+    },
+    "translation": "Tú tampoco.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: You aren't residing in Paris. B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither are you."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(you)"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerAudioUrl": "B2.04.07.04",
+    "id": "67fab6d5993010229534411a",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534411b"
+    },
+    "code": "",
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534411b",
+    "kind": "CLOZE",
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "answerAudioUrl": "B2.04.07.05",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: The cats haven't been eating properly. B:",
+          "options": null
+        },
+        {
+          "options": [
+            "Neither have we."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "translation": "Nosotros tampoco.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "audioUrl": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534411c"
+    },
+    "code": "",
+    "imageUrl": "",
+    "translation": "Los diseñadores también.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.04.07.06",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "A: The developers will be coding. B:"
+        },
+        {
+          "options": [
+            "So will the designers."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(the designers)"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "id": "67fab6d5993010229534411c",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534411d"
+    },
+    "id": "67fab6d5993010229534411d",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: You won't have been running. B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither will you."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you)",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Tú tampoco.",
+    "successMessage": "",
+    "code": "",
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.04.07.07",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534411e"
+    },
+    "id": "67fab6d5993010229534411e",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "A: You weren't reading. B:"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither were you."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you)",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Tú tampoco.",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.04.07.08",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534411f"
+    },
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.04.07.09",
+    "id": "67fab6d5993010229534411f",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "translation": "Jane también.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Mary had been at the gym. B:",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "So had Jane."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(Jane)",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344120"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: You haven't been trying enough. B:",
+          "options": null
+        },
+        {
+          "options": [
+            "Neither have you."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you)",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Tú tampoco.",
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.04.07.10",
+    "id": "67fab6d59930102295344120",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344121"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "kind": "CLOZE",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "successMessage": "",
+    "id": "67fab6d59930102295344121",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.04.07.11",
+    "code": "",
+    "imageUrl": "",
+    "translation": "Yo tampoco.",
+    "miniTheory": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "A: I won't have been cooking. B:",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither will I."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344122"
+    },
+    "id": "67fab6d59930102295344122",
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: We're recording a song. B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So are we."
+          ]
+        },
+        {
+          "text": "(we)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Nosotros también.",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "answerAudioUrl": "B2.04.07.12",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344123"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: I'll go to his party. B:",
+          "options": null
+        },
+        {
+          "options": [
+            "So will I."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I)",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "imageUrl": "",
+    "translation": "Yo también.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.04.07.13",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295344123",
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344124"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "imageUrl": "",
+    "translation": "Yo también.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "A: I've been writing. B:",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So have I."
+          ]
+        },
+        {
+          "text": "(I)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.04.07.14",
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295344124",
+    "code": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344125"
+    },
+    "id": "67fab6d59930102295344125",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: He won't have finished the homework by then. B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither will we."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.04.07.15",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "translation": "Nosotros tampoco.",
+    "miniTheory": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344126"
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.04.07.16",
+    "id": "67fab6d59930102295344126",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Ann's been dancing. B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So has David."
+          ]
+        },
+        {
+          "text": "(David)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "kind": "CLOZE",
+    "translation": "David también.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344127"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: The dogs weren't thirsty. B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither were we."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we)",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "translation": "Nosotros tampoco.",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.04.07.17",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295344127",
+    "imageUrl": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344128"
+    },
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "A: George won't have seen the movie before tonight. B:"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither will Peter."
+          ]
+        },
+        {
+          "text": "(Peter)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.04.07.18",
+    "id": "67fab6d59930102295344128",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "translation": "Peter tampoco.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344129"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.04.07.19",
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "translation": "Yo también.",
+    "id": "67fab6d59930102295344129",
+    "successMessage": "",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: He's going to buy some sweets. B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So am I."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534412a"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d422"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: I hadn't been swimming. B:",
+          "options": null
+        },
+        {
+          "options": [
+            "Neither had I."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I)",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B2.04.07.20",
+    "id": "67fab6d5993010229534412a",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "translation": "Yo tampoco.",
+    "answerImageUrl": "",
+    "code": "",
+    "title": "'So' and 'Neither' Short Answer Review 3",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "theoryId": "b2.04.Inversion_After_Negative_Adverbs",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Negatives and questions"
+  }
+]

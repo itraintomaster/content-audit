@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a10"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "title": "Using A / An with Job Titles",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "answerAudioUrl": "A2.06.06.01",
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "You're",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "engineers.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "translation": "Ustedes son ingenieros.",
+    "id": "67fab6d59930102295342a10",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a11"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An with Job Titles",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.06.06.02",
+    "id": "67fab6d59930102295342a11",
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "cleaner.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "audioUrl": "",
+    "translation": "Ella es limpiadora.",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a12"
+    },
+    "translation": "Eres carnicero.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342a12",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "imageUrl": "",
+    "title": "Using A / An with Job Titles",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You're",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "text": "butcher.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.06.06.03",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a13"
+    },
+    "code": "",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Soy dentista.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An with Job Titles",
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "kind": "CLOZE",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I'm"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "dentist.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342a13",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.06.04",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a14"
+    },
+    "id": "67fab6d59930102295342a14",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Él es cantante.",
+    "answerAudioUrl": "A2.06.06.05",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An with Job Titles",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He's",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "a"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "singer.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a15"
+    },
+    "translation": "Soy programador.",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An with Job Titles",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "programmer.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342a15",
+    "answerAudioUrl": "A2.06.06.06",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a16"
+    },
+    "id": "67fab6d59930102295342a16",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.06.06.07",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An with Job Titles",
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We're",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "chefs.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "translation": "Somos chefs.",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a17"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "text": "professor.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342a17",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.06.08",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "title": "Using A / An with Job Titles",
+    "translation": "Ella es profesora.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a18"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An with Job Titles",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We're"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "consultants."
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "translation": "Somos consultores.",
+    "answerAudioUrl": "A2.06.06.09",
+    "id": "67fab6d59930102295342a18",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a19"
+    },
+    "id": "67fab6d59930102295342a19",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "audioUrl": "",
+    "translation": "Ellos son constructores.",
+    "answerAudioUrl": "A2.06.06.10",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An with Job Titles",
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They're",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "builders.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a1a"
+    },
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "translation": "Somos diseñadores.",
+    "kind": "CLOZE",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We're"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "designers.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342a1a",
+    "answerImageUrl": "",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "miniTheory": "",
+    "title": "Using A / An with Job Titles",
+    "answerAudioUrl": "A2.06.06.11",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a1b"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An with Job Titles",
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342a1b",
+    "miniTheory": "",
+    "code": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We're",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "doctors.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "translation": "Somos médicos.",
+    "answerAudioUrl": "A2.06.06.12",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a1c"
+    },
+    "title": "Using A / An with Job Titles",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You're",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "policemen.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "audioUrl": "",
+    "translation": "Ustedes son policías.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342a1c",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.06.06.13",
+    "code": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a1d"
+    },
+    "id": "67fab6d59930102295342a1d",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Robert is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "text": "judge.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An with Job Titles",
+    "translation": "Robert es juez.",
+    "successMessage": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.06.14",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a1e"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342a1e",
+    "code": "",
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An with Job Titles",
+    "answerAudioUrl": "A2.06.06.15",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They're",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "dancers.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Ellos son bailarines.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a1f"
+    },
+    "kind": "CLOZE",
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342a1f",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "a"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "pilot.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "title": "Using A / An with Job Titles",
+    "audioUrl": "",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "translation": "Él es piloto.",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.06.06.16",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a20"
+    },
+    "answerAudioUrl": "A2.06.06.17",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They're",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "pharmacists.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "translation": "Ellos son farmacéuticos.",
+    "kind": "CLOZE",
+    "id": "67fab6d59930102295342a20",
+    "code": "",
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An with Job Titles",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a21"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342a21",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using A / An with Job Titles",
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You're",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "an"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "architect.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Eres arquitecto.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.06.06.18",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a22"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "imageUrl": "",
+    "translation": "Ellos son profesores.",
+    "id": "67fab6d59930102295342a22",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.06.06.19",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "title": "Using A / An with Job Titles",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They're",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "professors.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "code": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a23"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25a"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.06.20",
+    "id": "67fab6d59930102295342a23",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "instructions": "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "text": "mailman.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "a2.06.A_The_No_Article_for_Known_and_Unknown",
+    "translation": "Ella es cartera.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "title": "Using A / An with Job Titles",
+    "topicName": "Nouns"
+  }
+]

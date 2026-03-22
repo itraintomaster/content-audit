@@ -1,0 +1,282 @@
+targets:
+  sentenceLength:
+    targetsByLevel:
+      A1:
+        min: 5
+        max: 8
+      A2:
+        min: 8
+        max: 11
+      B1:
+        min: 11
+        max: 14
+      B2:
+        min: 14
+        max: 17
+  clauseDensity:
+    strategy: levels
+    levels:
+      - level: 1
+        min: 1.0
+        max: 1.1
+      - level: 2
+        min: 1.1
+        max: 1.2
+      - level: 3
+        min: 1.2
+        max: 1.3
+      - level: 4
+        min: 1.3
+        max: 1.4
+  noveltyFrequency:
+    strategy: levels
+    levels:
+      - level: 1
+        min: 500
+        max: 900
+      - level: 2
+        min: 900
+        max: 1500
+      - level: 3
+        min: 1500
+        max: 2500
+      - level: 4
+        min: 2500
+        max: 4000
+  coverateRatio:
+    strategy: levels
+    levels:
+      - level: 1
+        min: 120
+        max: 600
+      - level: 2
+        min: 1000
+        max: 1582
+      - level: 3
+        min: 2000
+        max: 3250
+      - level: 4
+        min: 3250
+        max: 4000
+  cocaBucketsDistribution:
+    course:
+      # Strategy levels or quarters.
+      # Levels means A1, A2, B1, B2
+      # Quarters subdivides the levels into quarters (e.g., A1.1, A1.2, etc.)
+      strategy: quarters
+      # if the difference between the expected and the actual is less than this value, it is considered optimal.
+      optimalRange: 5
+      # If the difference between the expected and the actual is less than this value, it is considered adequate.
+      # A greater difference than this one will be considered deficient (if less) or excessive (if more).
+      adequateRange: 10
+      buckets:
+        values:
+          - name: top1k
+            value: 1000
+          - name: top2k
+            value: 2000
+          - name: top3k
+            value: 3000
+          - name: top4k
+            value: 4000
+        # Means upper value includes all over the value. 4000 means 4000 and above.
+        open: true
+
+      # How do we expect the frequency to progress across the bands.
+      # If the progression is ascending, it means that we expect the frequency to increase while moving to next level / quarter.
+      progressionByBucket:
+        - bucketName: top1k
+          progression: DESCENDING
+        - bucketName: top4k
+          progression: ASCENDING
+      levels:
+        - name: A1
+          buckets:
+            - name: top1k
+              targetPercentage: 80
+              kind: atLeast
+            - name: top4k
+              targetPercentage: 1
+              kind: atMost
+          initialQuarter:
+            buckets:
+              - name: top1k
+                targetPercentage: 90
+                kind: atLeast
+              - name: top4k
+                targetPercentage: 0
+                kind: atMost
+          lastQuarter:
+            buckets:
+              - name: top1k
+                targetPercentage: 75
+                kind: atLeast
+              - name: top4k
+                targetPercentage: 2
+                kind: atMost
+        - name: A2
+          buckets:
+            - name: top1k
+              targetPercentage: 70
+              kind: atMost
+            - name: top4k
+              targetPercentage: 10
+              kind: atMost
+          initialQuarter:
+            buckets:
+              - name: top1k
+                targetPercentage: 75
+                kind: atLeast
+              - name: top4k
+                targetPercentage: 2
+                kind: atMost
+          lastQuarter:
+            buckets:
+              - name: top1k
+                targetPercentage: 65
+                kind: atLeast
+              - name: top4k
+                targetPercentage: 15
+                kind: atMost
+        - name: B1
+          buckets:
+            - name: top1k
+              targetPercentage: 60
+              kind: atMost
+            - name: top4k
+              targetPercentage: 20
+              kind: atMost
+          initialQuarter:
+            buckets:
+              - name: top1k
+                targetPercentage: 65
+                kind: atLeast
+              - name: top4k
+                targetPercentage: 15
+          lastQuarter:
+            buckets:
+              - name: top1k
+                targetPercentage: 55
+                kind: atLeast
+              - name: top4k
+                targetPercentage: 25
+                kind: atMost
+        - name: B2
+          buckets:
+            - name: top1k
+              targetPercentage: 50
+              kind: atMost
+            - name: top4k
+              targetPercentage: 30
+              kind: atLeast
+          initialQuarter:
+            buckets:
+              - name: top1k
+                targetPercentage: 55
+                kind: atLeast
+              - name: top4k
+                targetPercentage: 25
+          lastQuarter:
+            buckets:
+              - name: top1k
+                targetPercentage: 45
+                kind: atLeast
+              - name: top4k
+                targetPercentage: 35
+                kind: atMost
+    rampUp:
+      buckets:
+        values:
+          - 135
+          - 250
+          - 500
+          - 1000
+        open: true
+      unitTargets:
+        - unit: 1
+          buckets:
+            - bucket: 135
+              targetPercentage: 80
+              kind: atLeast
+            - bucket: 500
+              targetPercentage: 7
+              kind: atMost
+            - bucket: 1000
+              targetPercentage: 0
+              kind: atMost
+        - unit: 2
+          buckets:
+            - bucket: 135
+              targetPercentage: 75
+              kind: atLeast
+            - bucket: 500
+              targetPercentage: 10
+              kind: atMost
+            - bucket: 1000
+              targetPercentage: 3
+              kind: atMost
+        - unit: 3
+          buckets:
+            - bucket: 135
+              targetPercentage: 70
+              kind: atLeast
+            - bucket: 500
+              targetPercentage: 15
+              kind: atMost
+            - bucket: 1000
+              targetPercentage: 5
+              kind: atMost
+        - unit: 4
+          buckets:
+            - bucket: 135
+              targetPercentage: 65
+              kind: atLeast
+            - bucket: 500
+              targetPercentage: 20
+              kind: atMost
+            - bucket: 1000
+              targetPercentage: 10
+              kind: atMost
+  lemmaAbsence:
+    # The priority is true if the cocaRank is lower to the rank value.
+    # e.g: if cocaRank < 1000 then priority is HIGH
+    prioritiesByCocaRank: 
+      HIGH: 1000
+      MEDIUM: 2000
+      LOW: 3000
+    # Number of absent lemmas tolerated per level before raising a warning.
+    thresholds:
+      A1: 5
+      A2: 10
+      B1: 15
+      B2: 20
+  lemmaRecurrence:
+    top: 2000
+    subExposed: 1000
+    overExposed: 50
+  lemmaCount:
+    # subExposed: count is less than the indicated value
+    subExposed: 4
+    # overExposed: count is greater than the indicated value
+    overExposed: 15
+  knowledgeLengths:
+    labelMaxLength: 28
+    instructionsSoftMaxLength: 70
+    instructionsHardMaxLength: 100
+
+implementer:
+  prompt:
+    path: vocabulary/implementer/fix-sentence-prompt.md
+  # GenAI Configuration
+  genai:
+    provider: lm-studio # gemini
+    endpoint:
+      url: http://localhost:1234/v1/chat/completions
+    model: openai/gpt-oss-120b
+    max:
+      tokens: 16384
+    temperature: 0.3
+    top:
+      p: 0.95
+    timeout:
+      seconds: 90

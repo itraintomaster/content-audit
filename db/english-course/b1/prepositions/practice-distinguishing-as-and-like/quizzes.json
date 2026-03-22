@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343cdf"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343cdf",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.17.09.01",
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is quiet,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "like"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "her sister.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "translation": "Ella es callada, como su hermana.",
+    "successMessage": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ce0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.17.09.02",
+    "id": "67fab6d59930102295343ce0",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She behaves",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "like"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "her mother."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "kind": "CLOZE",
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "translation": "Ella se comporta como su madre.",
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "theoryId": "b1.17.As_and_Like",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ce1"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343ce1",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The fabric felt",
+          "options": null
+        },
+        {
+          "options": [
+            "like"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "cotton.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "La tela se sentía como algodón.",
+    "code": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.17.09.03",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ce2"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.17.09.04",
+    "id": "67fab6d59930102295343ce2",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They operated",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "as"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "nurses."
+        }
+      ]
+    },
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "imageUrl": "",
+    "translation": "Ellas trabajaron como enfermeras.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "theoryId": "b1.17.As_and_Like",
+    "audioUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ce3"
+    },
+    "code": "",
+    "theoryId": "b1.17.As_and_Like",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.17.09.05",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "translation": "¿Cómo suena él?",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343ce3",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What does he sound",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "like"
+          ]
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ce4"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.17.09.06",
+    "id": "67fab6d59930102295343ce4",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They will serve"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "as"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "soldiers.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Ellos servirán como soldados.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ce5"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Esto sabe a chocolate.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.17.09.07",
+    "id": "67fab6d59930102295343ce5",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This tastes",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "like"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "chocolate.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ce6"
+    },
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "His car is very fast,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "like"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "your car.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Su coche es muy rápido, como tu coche.",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.17.09.08",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343ce6",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ce7"
+    },
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We volunteer"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "as"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "librarians.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "imageUrl": "",
+    "translation": "Somos voluntarios como bibliotecarios.",
+    "id": "67fab6d59930102295343ce7",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.17.09.09",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ce8"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Solía desempeñarse como policía.",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He used to function",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "as"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "a policeman.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.17.09.10",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343ce8",
+    "code": "",
+    "theoryId": "b1.17.As_and_Like",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ce9"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They operate",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "as"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "lawyers.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Ellos operan como abogados.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.17.09.11",
+    "id": "67fab6d59930102295343ce9",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343cea"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Esto huele a rosas.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343cea",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "This smells",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "like"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "roses.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "answerAudioUrl": "B1.17.09.12",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ceb"
+    },
+    "imageUrl": "",
+    "translation": "Soy voluntario como supervisor de proyecto.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.17.09.13",
+    "id": "67fab6d59930102295343ceb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "theoryId": "b1.17.As_and_Like",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I volunteer",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "as"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "a project supervisor.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343cec"
+    },
+    "id": "67fab6d59930102295343cec",
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is famous,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "like"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Madonna.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Ella es famosa, como Madonna.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.17.09.14",
+    "code": "",
+    "theoryId": "b1.17.As_and_Like",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ced"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "translation": "Él actúa como empleado.",
+    "answerAudioUrl": "B1.17.09.15",
+    "id": "67fab6d59930102295343ced",
+    "theoryId": "b1.17.As_and_Like",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He acts",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "as"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "a clerk.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343cee"
+    },
+    "code": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.17.09.16",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "translation": "Hizo una pasantía como desarrollador.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343cee",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He interned",
+          "options": null
+        },
+        {
+          "options": [
+            "as"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "a developer.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343cef"
+    },
+    "id": "67fab6d59930102295343cef",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He volunteers",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "as"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "a tutor.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Él es voluntario como tutor.",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.17.09.17",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343cf0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "theoryId": "b1.17.As_and_Like",
+    "id": "67fab6d59930102295343cf0",
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "audioUrl": "",
+    "translation": "Parece como la luz del sol.",
+    "answerAudioUrl": "B1.17.09.18",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It seems",
+          "options": null
+        },
+        {
+          "options": [
+            "like"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "sunshine.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343cf1"
+    },
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.17.09.19",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295343cf1",
+    "translation": "Eso se siente como aire.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That feels",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "like"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "air.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343cf2"
+    },
+    "instructions": "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary collaborated with the company",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "as"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "a consultant.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "imageUrl": "",
+    "translation": "Mary colaboró con la empresa como consultora.",
+    "id": "67fab6d59930102295343cf2",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.17.09.20",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d379"
+    },
+    "title": "Practice Distinguishing 'As' and 'Like'",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "topicName": "Prepositions"
+  }
+]

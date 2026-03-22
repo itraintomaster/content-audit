@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e87"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "a pilot? (He)",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.01.03.01",
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "imageUrl": "",
+    "translation": "¿Él es piloto?",
+    "id": "67fab6d59930102295341e87",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e88"
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Somos amigos?",
+    "miniTheory": "",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "Are we"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "friends? (We)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295341e88",
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "successMessage": "",
+    "answerAudioUrl": "A1.01.03.02",
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e89"
+    },
+    "answerAudioUrl": "A1.01.03.03",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "Is it"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "hot today? (It)",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "translation": "¿Hace calor hoy?",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295341e89",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e8a"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "audioUrl": "",
+    "id": "67fab6d59930102295341e8a",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.01.03.04",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are we"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "at school? (We)",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "translation": "¿Estamos en la escuela?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e8b"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "Is she"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "a nurse? (She)",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A1.01.03.05",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "translation": "¿Ella es enfermera?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295341e8b",
+    "code": "",
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e8c"
+    },
+    "translation": "¿Son las cinco en punto?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.01.03.06",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is it"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "five o'clock? (It)",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "miniTheory": "",
+    "id": "67fab6d59930102295341e8c",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e8d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295341e8d",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "translation": "¿Estamos en el autobús?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.01.03.07",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are we"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "on the bus? (We)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e8e"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A1.01.03.08",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "¿Ella es actriz?",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "id": "67fab6d59930102295341e8e",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "Is she"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "an actress? (She)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e8f"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is it"
+          ]
+        },
+        {
+          "text": "on the table? (It)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.03.09",
+    "id": "67fab6d59930102295341e8f",
+    "code": "",
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "audioUrl": "",
+    "translation": "¿Está sobre la mesa?",
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e90"
+    },
+    "id": "67fab6d59930102295341e90",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "successMessage": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "Are you"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "at work? (You)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "translation": "¿Estás en el trabajo?",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.01.03.10",
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e91"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "imageUrl": "",
+    "translation": "¿Ella es de Alemania?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295341e91",
+    "kind": "CLOZE",
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "Is she"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "from Germany? (She)"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "code": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.01.03.11",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e92"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "at school? (She)",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Ella está en la escuela?",
+    "successMessage": "",
+    "miniTheory": "",
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.01.03.12",
+    "id": "67fab6d59930102295341e92",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e93"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295341e93",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A1.01.03.13",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "imageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Is he"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "your brother? (He)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "translation": "¿Él es tu hermano?",
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e94"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Eres vegano?",
+    "successMessage": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295341e94",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are you"
+          ]
+        },
+        {
+          "text": "vegan? (You)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.01.03.14",
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e95"
+    },
+    "answerAudioUrl": "A1.01.03.15",
+    "id": "67fab6d59930102295341e95",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Are we"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "in the correct room? (We)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "translation": "¿Estamos en la sala correcta?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e96"
+    },
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "imageUrl": "",
+    "translation": "¿Él está en el parque?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Is he"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "at the park? (He)",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A1.01.03.16",
+    "id": "67fab6d59930102295341e96",
+    "kind": "CLOZE",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "miniTheory": "",
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e97"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "id": "67fab6d59930102295341e97",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.01.03.17",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Am I"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "early? (I)",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "¿Llegué temprano?",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e98"
+    },
+    "answerAudioUrl": "A1.01.03.18",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "at the bank? (He)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295341e98",
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "translation": "¿Él está en el banco?",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e99"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295341e99",
+    "code": "",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.01.03.19",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Canadian? (You)",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "translation": "¿Eres canadiense?",
+    "successMessage": "",
+    "topicName": "Present Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e9a"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295341e9a",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.01.03.20",
+    "kind": "CLOZE",
+    "instructions": "Formula una pregunta 'yes / no' usando el verbo 'be'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are you"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "from London? (You)"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "translation": "¿Eres de Londres?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d386"
+    },
+    "title": "'Yes / No' questions using 'be' in the present simple",
+    "topicName": "Present Simple"
+  }
+]

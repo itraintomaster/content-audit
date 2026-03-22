@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342461"
+    },
+    "answerAudioUrl": "A1.09.04.01",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Cocinamos de 9 a 11 de la mañana.",
+    "successMessage": "",
+    "title": "Using From ... To / Until / Till",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342461",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones usando 'from' ... 'to / until / till'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We began cooking at 9am and we stopped at 11am.We cooked",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "from 9am to|until|till 11am"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3da"
+    },
+    "theoryId": "a1.09.Prepositions_of_Time_2_from_to_until_",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342462"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3da"
+    },
+    "instructions": "Crea oraciones usando 'from' ... 'to / until / till'.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using From ... To / Until / Till",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I woke up at 7 and slept until 11.I slept",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "from 7 to|until|till 11"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Dormí de 7 a 11.",
+    "id": "67fab6d59930102295342462",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.09.Prepositions_of_Time_2_from_to_until_",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.09.04.02",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342463"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I started playing guitar at age 12 and stopped at age 18.I played guitar",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "from age 12 to|until|till age 18"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342463",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using From ... To / Until / Till",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3da"
+    },
+    "theoryId": "a1.09.Prepositions_of_Time_2_from_to_until_",
+    "translation": "Toqué la guitarra desde los 12 hasta los 18 años.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.09.04.03",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones usando 'from' ... 'to / until / till'.",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342464"
+    },
+    "title": "Using From ... To / Until / Till",
+    "id": "67fab6d59930102295342464",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3da"
+    },
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He went to Italy on Friday and came back on Sunday.He was in Italy",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "from Friday to|until|till Sunday"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "theoryId": "a1.09.Prepositions_of_Time_2_from_to_until_",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.09.04.04",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones usando 'from' ... 'to / until / till'.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Estuvo en Italia de viernes a domingo.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342465"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3da"
+    },
+    "kind": "CLOZE",
+    "instructions": "Crea oraciones usando 'from' ... 'to / until / till'.",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "title": "Using From ... To / Until / Till",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "She began writing on Monday and finished on Saturday.She wrote",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "from Monday to|until|till Saturday"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a1.09.Prepositions_of_Time_2_from_to_until_",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Ella escribió de lunes a sábado.",
+    "answerAudioUrl": "A1.09.04.05",
+    "id": "67fab6d59930102295342465",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342466"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This film begins at 8 and ends at 10.This film goes",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "from 8 to|until|till 10"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.09.Prepositions_of_Time_2_from_to_until_",
+    "audioUrl": "",
+    "translation": "Esta película va de 8 a 10.",
+    "answerAudioUrl": "A1.09.04.06",
+    "id": "67fab6d59930102295342466",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using From ... To / Until / Till",
+    "instructions": "Crea oraciones usando 'from' ... 'to / until / till'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3da"
+    },
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342467"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "La fiesta es del 1 al 5.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones usando 'from' ... 'to / until / till'.",
+    "successMessage": "",
+    "answerAudioUrl": "A1.09.04.07",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The party begins on the 1st and finishes on the 5th.The party is",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "from the 1st to|until|till the 5th"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a1.09.Prepositions_of_Time_2_from_to_until_",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342467",
+    "code": "",
+    "title": "Using From ... To / Until / Till",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3da"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342468"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.09.Prepositions_of_Time_2_from_to_until_",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342468",
+    "instructions": "Crea oraciones usando 'from' ... 'to / until / till'.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.09.04.08",
+    "title": "Using From ... To / Until / Till",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We started working in London in 2010 and finished in 2015.We worked in London"
+        },
+        {
+          "options": [
+            "from 2010 to|until|till 2015"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Trabajamos en Londres de 2010 a 2015.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3da"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342469"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Sophie leyó de 2 a 5 de la tarde.",
+    "answerAudioUrl": "A1.09.04.09",
+    "id": "67fab6d59930102295342469",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Sophie started reading at 2pm and finished at 5pm.Sophie read",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "from 2pm to|until|till 5pm"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a1.09.Prepositions_of_Time_2_from_to_until_",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3da"
+    },
+    "title": "Using From ... To / Until / Till",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones usando 'from' ... 'to / until / till'.",
+    "imageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534246a"
+    },
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "They will study in March and leave in August.They will study",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "from March to|until|till August"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Ellos estudiarán de marzo a agosto.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3da"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.09.04.10",
+    "theoryId": "a1.09.Prepositions_of_Time_2_from_to_until_",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534246a",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using From ... To / Until / Till",
+    "instructions": "Crea oraciones usando 'from' ... 'to / until / till'.",
+    "topicName": "Prepositions"
+  }
+]

@@ -1,0 +1,921 @@
+code: __proposal__
+description: "Tests for SentenceLengthAnalyzer; Tests for SentenceLengthAnalyzer -\
+  \ corrected per reviewer feedback: fixed A1 range to [5,8], removed onMilestone\
+  \ steps, removed speculative tests, fixed token counts"
+modules:
+- name: audit-domain
+  implementations:
+  - name: SentenceLengthAnalyzer
+    tests:
+    - name: "Given SentenceLengthAnalyzer, when getName is called, then returns sentence-length"
+      target: SentenceLengthAnalyzer
+      invoke:
+        method: getName
+      assert:
+        returns: sentence-length
+    - name: "Given SentenceLengthAnalyzer, when getTarget is called, then returns\
+        \ QUIZ"
+      target: SentenceLengthAnalyzer
+      invoke:
+        method: getTarget
+      assert:
+        returns: QUIZ
+    - name: "Given no quizzes processed, when getResults is called, then returns empty\
+        \ list"
+      target: SentenceLengthAnalyzer
+      invoke:
+        method: getResults
+      assert:
+        returns: "[]"
+    - name: "Given a quiz with token count within range, when onQuiz is called, then\
+        \ score is 1.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays the piano every day
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: range
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        mocks:
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 6
+          args:
+          - match: eq
+            value: She plays the piano every day
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:range
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a quiz 1 token below range, when onQuiz is called, then score is\
+        \ 0.75"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays well today
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: range
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0.75
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        mocks:
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 4
+          args:
+          - match: eq
+            value: She plays well today
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:range
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a quiz 2 tokens above range, when onQuiz is called, then score\
+        \ is 0.5"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays the piano every single day at home really
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: range
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0.5
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        mocks:
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 10
+          args:
+          - match: eq
+            value: She plays the piano every single day at home really
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:range
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a quiz 3 tokens below range, when onQuiz is called, then score\
+        \ is 0.25"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: Go now
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: range
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0.25
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        mocks:
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 2
+          args:
+          - match: eq
+            value: Go now
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:range
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R009
+    - name: "Given a quiz 4 tokens above range, when onQuiz is called, then score\
+        \ is 0.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays the piano every single day at home really loudly and
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: range
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        mocks:
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 12
+          args:
+          - match: eq
+            value: She plays the piano every single day at home really loudly and
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:range
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R009
+    - name: "Given a quiz exactly at range minimum, when onQuiz is called, then score\
+        \ is 1.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays the piano today
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: range
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        mocks:
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 5
+          args:
+          - match: eq
+            value: She plays the piano today
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:range
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a quiz exactly at range maximum, when onQuiz is called, then score\
+        \ is 1.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She really plays the nice piano every day
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: range
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        mocks:
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 8
+          args:
+          - match: eq
+            value: She really plays the nice piano every day
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:range
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a knowledge marked as not a sentence, when onKnowledge is called\
+        \ and then onQuiz, then getResults returns empty list"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: apple
+      - id: knowledge1
+        type: AuditableKnowledge
+        construct:
+          quizzes: ref:quiz1
+          title: Vocabulary list
+          instructions: Match the words
+          isSentence: false
+      - id: knowledgeCtx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: quizCtx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge1
+          - ref:knowledgeCtx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:quizCtx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+    - name: "Given a knowledge marked as sentence, when onKnowledge and onQuiz are\
+        \ called, then getResults returns score"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays the piano every day
+      - id: knowledge1
+        type: AuditableKnowledge
+        construct:
+          quizzes: ref:quiz1
+          title: Present Simple
+          instructions: Complete the sentence
+          isSentence: true
+      - id: knowledgeCtx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: quizCtx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: range
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge1
+          - ref:knowledgeCtx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:quizCtx
+        mocks:
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 6
+          args:
+          - match: eq
+            value: She plays the piano every day
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:range
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+    - name: "Given a level with no configured range, when onQuiz is called, then getResults\
+        \ returns empty list"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays the piano
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        mocks:
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 4
+          args:
+          - match: eq
+            value: She plays the piano
+        - dependency: config
+          method: getTargetRange
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R012
+    - name: "Given a quiz sentence, when onQuiz is called, then nlpTokenizer countTokens\
+        \ is invoked"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: He does not like coffee
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: range
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: integration
+      steps:
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        mocks:
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 5
+          args:
+          - match: eq
+            value: He does not like coffee
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:range
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          verifyCall:
+            dependency: nlpTokenizer
+            method: countTokens
+            times: 1
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R013
+    - name: "Given two quizzes with different scores, when both processed, then getResults\
+        \ returns both scored items"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays the piano every day
+      - id: quiz2
+        type: AuditableQuiz
+        construct:
+          sentence: Go
+      - id: ctx1
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: ctx2
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q2
+      - id: range
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: score1
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: score2
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q2
+      type: integration
+      steps:
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx1
+        mocks:
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 6
+          args:
+          - match: eq
+            value: She plays the piano every day
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:range
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz2
+          - ref:ctx2
+        mocks:
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 1
+          args:
+          - match: eq
+            value: Go
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:range
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:score1, ref:score2]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a quiz in level B2 within range, when onQuiz is called, then score\
+        \ is 1.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: The students should have been studying more carefully for the
+            final examination this semester
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m4
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeB2
+        type: TargetRange
+        construct:
+          level: B2
+          minTokens: 14
+          maxTokens: 17
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1
+          milestoneId: m4
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        mocks:
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 15
+          args:
+          - match: any
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeB2
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R012
+    - name: "Given a quiz more than 4 tokens below range, when onQuiz is called, then\
+        \ score is 0.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: Go
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: range
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        mocks:
+        - dependency: nlpTokenizer
+          method: countTokens
+          thenReturn: 1
+          args:
+          - match: eq
+            value: Go
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:range
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R009

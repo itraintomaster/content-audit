@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ef2"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "theoryId": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He closed the door. (quiet)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He closed the door quietly."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A2.12.03.01",
+    "id": "67fab6d59930102295342ef2",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "translation": "Cerró la puerta silenciosamente.",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ef3"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "translation": "Ella escribió rápidamente.",
+    "answerAudioUrl": "A2.12.03.02",
+    "successMessage": "",
+    "id": "67fab6d59930102295342ef3",
+    "code": "",
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She wrote. (quick)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She wrote quickly."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ef4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "translation": "Los pájaros volaron alto.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The birds flew. (high)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The birds flew high."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A2.12.03.03",
+    "id": "67fab6d59930102295342ef4",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "audioUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ef5"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.12.03.04",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "My sister reads Spanish. (good)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "My sister reads Spanish well."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Mi hermana lee bien el español.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "id": "67fab6d59930102295342ef5",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ef6"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "translation": "Los músicos tocaron ruidosamente.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.12.03.05",
+    "id": "67fab6d59930102295342ef6",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The musicians played. (loud)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The musicians played loudly."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ef7"
+    },
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "theoryId": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs barked. (noisy)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The dogs barked noisily."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerAudioUrl": "A2.12.03.06",
+    "id": "67fab6d59930102295342ef7",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Los perros ladraron ruidosamente.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ef8"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295342ef8",
+    "code": "",
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He studied. (hard)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He studied hard."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Él estudió mucho.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "theoryId": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.12.03.07",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ef9"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.12.03.08",
+    "id": "67fab6d59930102295342ef9",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She solved the problem. (easy)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She solved the problem easily."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "translation": "Ella resolvió el problema fácilmente.",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342efa"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "answerAudioUrl": "A2.12.03.09",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "theoryId": "",
+    "miniTheory": "",
+    "audioUrl": "",
+    "translation": "Me desperté temprano.",
+    "id": "67fab6d59930102295342efa",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I woke up. (early)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I woke up early."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342efb"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She demonstrated. (clear)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She demonstrated clearly."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "theoryId": "",
+    "translation": "Ella demostró claramente.",
+    "id": "67fab6d59930102295342efb",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.12.03.10",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342efc"
+    },
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "answerAudioUrl": "A2.12.03.11",
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342efc",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He plays football. (good)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He plays football well."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Él juega bien al fútbol.",
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342efd"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342efd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.12.03.12",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The turtle crawled. (slow)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The turtle crawled slowly."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "successMessage": "",
+    "translation": "La tortuga se arrastró lentamente.",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "imageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342efe"
+    },
+    "successMessage": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He whispered. (soft)",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "He whispered softly."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342efe",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.12.03.13",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Él susurró suavemente.",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "theoryId": "",
+    "imageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342eff"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She dances. (bad)"
+        },
+        {
+          "options": [
+            "She dances badly."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "",
+    "translation": "Ella baila mal.",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.12.03.14",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "id": "67fab6d59930102295342eff",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f00"
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "translation": "Ellos escucharon atentamente.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.12.03.15",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They listened. (careful)",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "They listened carefully."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342f00",
+    "code": "",
+    "successMessage": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f01"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Él se sentó quieto pacientemente.",
+    "id": "67fab6d59930102295342f01",
+    "code": "",
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He sat still. (patient)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He sat still patiently."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.12.03.16",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f02"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She smiled. (happy)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She smiled happily."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "",
+    "translation": "Ella sonrió felizmente.",
+    "successMessage": "",
+    "id": "67fab6d59930102295342f02",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.12.03.17",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f03"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "audioUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "theoryId": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A2.12.03.18",
+    "id": "67fab6d59930102295342f03",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary draws portraits. (perfect)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary draws portraits perfectly."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Mary dibuja retratos perfectamente.",
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f04"
+    },
+    "id": "67fab6d59930102295342f04",
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "imageUrl": "",
+    "translation": "Ellos adivinaron correctamente.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.12.03.19",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They guessed. (right)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They guessed correctly."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f05"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342f05",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I coughed. (loud)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I coughed loudly."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.12.03.20",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Manner Adverbs: Transforming Adjectives",
+    "instructions": "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+    "theoryId": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ad"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Tosí fuertemente.",
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  }
+]

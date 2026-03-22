@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344153"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with Negative Questions 3",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised you don't live in London.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Don't you live in London?|Do you not live in London?"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas negativas.",
+    "answerAudioUrl": "B2.04.10.01",
+    "imageUrl": "",
+    "translation": "¿No vives en Londres?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344153",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "audioUrl": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344154"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that you aren't going to eat pizza.",
+          "options": null
+        },
+        {
+          "options": [
+            "Aren't you going to eat pizza?|Are you not going to eat pizza?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.04.10.02",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with Negative Questions 3",
+    "translation": "¿No vas a comer pizza?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "instructions": "Crea preguntas negativas.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295344154",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "miniTheory": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344155"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "imageUrl": "",
+    "translation": "¿No hemos escuchado esta canción antes?",
+    "code": "",
+    "title": "Practice with Negative Questions 3",
+    "instructions": "Crea preguntas negativas.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I'm surprised that we haven't listened to this song before.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Haven't we listened to this song before?|Have we not listened to this song before?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B2.04.10.03",
+    "audioUrl": "",
+    "id": "67fab6d59930102295344155",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344156"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with Negative Questions 3",
+    "instructions": "Crea preguntas negativas.",
+    "id": "67fab6d59930102295344156",
+    "theoryId": "b2.04.Negative_Questions",
+    "imageUrl": "",
+    "translation": "¿No habías estado haciendo suficiente ejercicio?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.04.10.04",
+    "code": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that you haven't been exercising enough.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Hadn't you been exercising enough?|Had you not been exercising enough?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344157"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that it isn't hot in Spain.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Isn't it hot in Spain?|Is it not hot in Spain?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295344157",
+    "kind": "CLOZE",
+    "theoryId": "b2.04.Negative_Questions",
+    "successMessage": "",
+    "answerAudioUrl": "B2.04.10.05",
+    "code": "",
+    "title": "Practice with Negative Questions 3",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas negativas.",
+    "translation": "¿No hace calor en España?",
+    "miniTheory": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344158"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that she hasn't left yet.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Hasn't she left yet?|Has she not left yet?"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "id": "67fab6d59930102295344158",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "instructions": "Crea preguntas negativas.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.04.10.06",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with Negative Questions 3",
+    "translation": "¿No se ha ido todavía?",
+    "successMessage": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344159"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that she isn't Italian.",
+          "options": null
+        },
+        {
+          "options": [
+            "Isn't she Italian?|Is she not Italian?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "¿No es italiana?",
+    "title": "Practice with Negative Questions 3",
+    "theoryId": "b2.04.Negative_Questions",
+    "successMessage": "",
+    "answerAudioUrl": "B2.04.10.07",
+    "id": "67fab6d59930102295344159",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas negativas.",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534415a"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas negativas.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that you won't have some tea.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Won't you have some tea?|Will you not have some tea?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "¿No tomarás un poco de té?",
+    "miniTheory": "",
+    "code": "",
+    "title": "Practice with Negative Questions 3",
+    "imageUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534415a",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "answerAudioUrl": "B2.04.10.08",
+    "kind": "CLOZE",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534415b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas negativas.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B2.04.10.09",
+    "translation": "¿No le gusta el arroz a Mary?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "title": "Practice with Negative Questions 3",
+    "theoryId": "b2.04.Negative_Questions",
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that Mary doesn't like rice.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Doesn't Mary like rice?|Does Mary not like rice?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534415b",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534415c"
+    },
+    "answerAudioUrl": "B2.04.10.10",
+    "instructions": "Crea preguntas negativas.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that it hasn't been snowing a lot.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Hasn't it been snowing a lot?|Has it not been snowing a lot?"
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "¿No ha estado nevando mucho?",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534415c",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with Negative Questions 3",
+    "theoryId": "b2.04.Negative_Questions",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534415d"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.04.10.11",
+    "kind": "CLOZE",
+    "title": "Practice with Negative Questions 3",
+    "instructions": "Crea preguntas negativas.",
+    "theoryId": "b2.04.Negative_Questions",
+    "imageUrl": "",
+    "audioUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that she hadn't been there for weeks.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Hadn't she been there for weeks?|Had she not been there for weeks?"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "translation": "¿No había estado ella allí durante semanas?",
+    "id": "67fab6d5993010229534415d",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534415e"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that he didn't win the prize.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Didn't he win the prize?|Did he not win the prize?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "instructions": "Crea preguntas negativas.",
+    "imageUrl": "",
+    "translation": "¿No ganó él el premio?",
+    "answerAudioUrl": "B2.04.10.12",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with Negative Questions 3",
+    "id": "67fab6d5993010229534415e",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534415f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.04.10.13",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "title": "Practice with Negative Questions 3",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534415f",
+    "theoryId": "b2.04.Negative_Questions",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas negativas.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that you won't have been studying.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Won't you have been studying?|Will you not have been studying?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "¿No habrás estado estudiando?",
+    "miniTheory": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344160"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "instructions": "Crea preguntas negativas.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.04.10.14",
+    "id": "67fab6d59930102295344160",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with Negative Questions 3",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that you don't have a dog.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Don't you have a dog?|Do you not have a dog?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿No tienes un perro?",
+    "successMessage": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344161"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.04.10.15",
+    "translation": "¿No llamaste a Susan?",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas negativas.",
+    "theoryId": "b2.04.Negative_Questions",
+    "audioUrl": "",
+    "id": "67fab6d59930102295344161",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with Negative Questions 3",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I'm surprised that you didn't call Susan.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Didn't you call Susan?|Did you not call Susan?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344162"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295344162",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Practice with Negative Questions 3",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas negativas.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that they hadn't been working there for months.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Hadn't they been working there for months?|Had they not been working there for months?"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "¿No habían estado trabajando allí durante meses?",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.04.10.16",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344163"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "translation": "¿No irá Helen con nosotros?",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that Helen won't go with us.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Won't Helen go with us?|Will Helen not go with us?"
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with Negative Questions 3",
+    "instructions": "Crea preguntas negativas.",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.04.10.17",
+    "id": "67fab6d59930102295344163",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344164"
+    },
+    "kind": "CLOZE",
+    "theoryId": "b2.04.Negative_Questions",
+    "answerAudioUrl": "B2.04.10.18",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that you won't have finished the report by tomorrow.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Won't you have finished the report by tomorrow?|Will you not have finished the report by tomorrow?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295344164",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with Negative Questions 3",
+    "instructions": "Crea preguntas negativas.",
+    "translation": "¿No habrás terminado el informe para mañana?",
+    "successMessage": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344165"
+    },
+    "instructions": "Crea preguntas negativas.",
+    "theoryId": "b2.04.Negative_Questions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm surprised that he won't take his umbrella with him.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Won't he take his umbrella with him?|Will he not take his umbrella with him?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "¿No se llevará su paraguas?",
+    "successMessage": "",
+    "answerAudioUrl": "B2.04.10.19",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344165",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Practice with Negative Questions 3",
+    "imageUrl": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344166"
+    },
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I'm surprised that you weren't at the party."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Weren't you at the party?|Were you not at the party?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d425"
+    },
+    "instructions": "Crea preguntas negativas.",
+    "id": "67fab6d59930102295344166",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with Negative Questions 3",
+    "theoryId": "b2.04.Negative_Questions",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿No estuviste en la fiesta?",
+    "answerAudioUrl": "B2.04.10.20",
+    "topicName": "Negatives and questions"
+  }
+]

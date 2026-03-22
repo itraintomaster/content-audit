@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c2c"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Hay alguien tocando la ventana.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Somebody' and 'Anybody'",
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d279"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There's",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "somebody"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "knocking the window.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerAudioUrl": "A2.08.08.01",
+    "id": "67fab6d59930102295342c2c",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c2d"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d279"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342c2d",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She didn't tell",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "anybody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the truth.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Ella no le dijo la verdad a nadie.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.08.08.02",
+    "title": "Using 'Somebody' and 'Anybody'",
+    "answerImageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c2e"
+    },
+    "id": "67fab6d59930102295342c2e",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d279"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "title": "Using 'Somebody' and 'Anybody'",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We noticed",
+          "options": null
+        },
+        {
+          "options": [
+            "somebody"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "walking too slow.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Notamos a alguien caminando muy lento.",
+    "answerAudioUrl": "A2.08.08.03",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c2f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm searching for",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "somebody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "that lives around.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d279"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.08.04",
+    "id": "67fab6d59930102295342c2f",
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "translation": "Estoy buscando a alguien que viva por aquí.",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Using 'Somebody' and 'Anybody'",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c30"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.08.08.05",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "imageUrl": "",
+    "title": "Using 'Somebody' and 'Anybody'",
+    "successMessage": "",
+    "id": "67fab6d59930102295342c30",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d279"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did",
+          "options": null
+        },
+        {
+          "options": [
+            "anybody"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "order some coffee?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "¿Alguien pidió café?",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c31"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "anybody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "present that knows about engineering?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.08.06",
+    "id": "67fab6d59930102295342c31",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "title": "Using 'Somebody' and 'Anybody'",
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "code": "",
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "translation": "¿Hay alguien presente que sepa de ingeniería?",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d279"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c32"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d279"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342c32",
+    "answerAudioUrl": "A2.08.08.07",
+    "audioUrl": "",
+    "title": "Using 'Somebody' and 'Anybody'",
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I haven't met",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "anybody"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "in this town."
+        }
+      ]
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "No he conocido a nadie en este pueblo.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c33"
+    },
+    "id": "67fab6d59930102295342c33",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d279"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Somebody' and 'Anybody'",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Might",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "anybody"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "need an umbrella?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "¿Alguien podría necesitar un paraguas?",
+    "miniTheory": "",
+    "code": "",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "successMessage": "",
+    "answerAudioUrl": "A2.08.08.08",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c34"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342c34",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d279"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "title": "Using 'Somebody' and 'Anybody'",
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Deberías preguntarle a alguien sobre tu dolor de cabeza.",
+    "answerAudioUrl": "A2.08.08.09",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You ought to ask",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "somebody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "about your headache.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c35"
+    },
+    "imageUrl": "",
+    "title": "Using 'Somebody' and 'Anybody'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "somebody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "at the main entrance!",
+          "options": null
+        }
+      ]
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'somebody' o 'anybody'.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342c35",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d279"
+    },
+    "translation": "¡Hay alguien en la entrada principal!",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.08.08.10",
+    "code": "",
+    "kind": "CLOZE",
+    "topicName": "Pronouns"
+  }
+]

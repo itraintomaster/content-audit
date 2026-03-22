@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b3c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295342b3c",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Could you offer me",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "assistance?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "¿Podrías ofrecerme un poco de ayuda?",
+    "kind": "CLOZE",
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.07.07.01",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b3d"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.07.07.02",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She only wasted",
+          "options": null
+        },
+        {
+          "options": [
+            "a little"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "energy.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "translation": "Ella solo gastó un poco de energía.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342b3d",
+    "code": "",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "successMessage": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b3e"
+    },
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He requires",
+          "options": null
+        },
+        {
+          "options": [
+            "a little"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "patience.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "translation": "Él requiere un poco de paciencia.",
+    "answerAudioUrl": "A2.07.07.03",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295342b3e",
+    "answerImageUrl": "",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b3f"
+    },
+    "translation": "¿Preferirías un poco de té?",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.07.07.04",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Would you prefer",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "tea?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342b3f",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "imageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b40"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.07.07.05",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the cake remaining.",
+          "options": null
+        }
+      ]
+    },
+    "code": "",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "translation": "Queda un poco del pastel.",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342b40",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "audioUrl": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b41"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.07.07.06",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342b41",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Can we taste",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "a little of"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "that?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "¿Podemos probar un poco de eso?",
+    "successMessage": "",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b42"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "translation": "¿Podrías pasarme un poco de esto?",
+    "id": "67fab6d59930102295342b42",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.07.07.07",
+    "code": "",
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you hand me",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "this?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b43"
+    },
+    "id": "67fab6d59930102295342b43",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She shared"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "her snack.",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A2.07.07.08",
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "translation": "Ella compartió un poco de su bocadillo.",
+    "answerImageUrl": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b44"
+    },
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "id": "67fab6d59930102295342b44",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.07.07.09",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There's",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "a little"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "soda in the can.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Hay un poco de refresco en la lata.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b45"
+    },
+    "id": "67fab6d59930102295342b45",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "kind": "CLOZE",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "audioUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "translation": "Él consumió un poco de lo de ellos.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He consumed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "theirs.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.07.10",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b46"
+    },
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We dropped",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "ink.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.07.07.11",
+    "id": "67fab6d59930102295342b46",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "successMessage": "",
+    "code": "",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Dejamos caer un poco de tinta.",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b47"
+    },
+    "id": "67fab6d59930102295342b47",
+    "code": "",
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "Could you add",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "a little"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "sugar in here?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.07.07.12",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "translation": "¿Podrías agregar un poco de azúcar aquí?",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b48"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He placed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "his on my desk.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342b48",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.07.07.13",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "translation": "Él colocó un poco de lo suyo en mi escritorio.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b49"
+    },
+    "id": "67fab6d59930102295342b49",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I offered the dogs",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "my food.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Les ofrecí a los perros un poco de mi comida.",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.07.07.14",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b4a"
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs ate",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "meat.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Los perros comieron un poco de carne.",
+    "kind": "CLOZE",
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342b4a",
+    "code": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.07.07.15",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b4b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "translation": "Por favor, ¿podría tomar un poco del jugo verde?",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.07.07.16",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please could I have",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little of"
+          ]
+        },
+        {
+          "text": "the green juice?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "id": "67fab6d59930102295342b4b",
+    "successMessage": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b4c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you give me",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "sugar?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342b4c",
+    "code": "",
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "translation": "¿Podrías darme un poco de azúcar?",
+    "answerAudioUrl": "A2.07.07.17",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b4d"
+    },
+    "id": "67fab6d59930102295342b4d",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "There's",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "your salt in the kitchen.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "imageUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Hay un poco de tu sal en la cocina.",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.07.07.18",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b4e"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "translation": "Necesitamos un poco de su esfuerzo.",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "id": "67fab6d59930102295342b4e",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We need",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "their effort.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A2.07.07.19",
+    "kind": "CLOZE",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342b4f"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'A Little' vs 'A Little Of': Usage",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342b4f",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'a little' o 'a little of'.",
+    "imageUrl": "",
+    "translation": "Necesitamos comprar un poco de combustible.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.07.07.20",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We need to purchase",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "fuel."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners"
+  }
+]

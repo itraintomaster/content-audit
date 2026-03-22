@@ -1,0 +1,19 @@
+# Configuracion de LemmaByLevelAbsence
+# Extraida de: src/main/resources/pipeline/vocabulary-analyzer/config.yaml
+# Seccion: targets.lemmaAbsence
+
+lemmaAbsence:
+  # Prioridad del lema ausente basada en su ranking de frecuencia COCA
+  # Si cocaRank < valor -> prioridad correspondiente
+  # Ejemplo: Si cocaRank = 800 -> HIGH (porque 800 < 1000)
+  prioritiesByCocaRank:
+    HIGH: 1000      # Palabras top 1000 mas frecuentes
+    MEDIUM: 2000    # Palabras top 2000
+    LOW: 3000       # Palabras top 3000
+
+  # Cantidad maxima de lemas ausentes tolerados por nivel antes de generar alerta
+  thresholds:
+    A1: 5
+    A2: 10
+    B1: 15
+    B2: 20

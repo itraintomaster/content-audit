@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534389d"
+    },
+    "answerAudioUrl": "B1.12.01.01",
+    "id": "67fab6d5993010229534389d",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "que provienen de viejas leyendas",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Identify the Relative Clause",
+    "instructions": "¿Cuál es la parte que corresponde a la relative clause?",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.12.Relative_Clauses_Introduction",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d338"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I enjoy the stories that originate from old legends.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that originate from old legends"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534389e"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d338"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The singer who performed on the stage was famous.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "who performed on the stage"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerAudioUrl": "B1.12.01.02",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Identify the Relative Clause",
+    "translation": "que actuó en el escenario",
+    "id": "67fab6d5993010229534389e",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "instructions": "¿Cuál es la parte que corresponde a la relative clause?",
+    "theoryId": "b1.12.Relative_Clauses_Introduction",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534389f"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did you greet the lady who directs her own movie?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "who directs her own movie"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "instructions": "¿Cuál es la parte que corresponde a la relative clause?",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d338"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.12.Relative_Clauses_Introduction",
+    "answerAudioUrl": "B1.12.01.03",
+    "id": "67fab6d5993010229534389f",
+    "title": "Identify the Relative Clause",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "que dirige su propia película",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438a0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Cuál es la parte que corresponde a la relative clause?",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d338"
+    },
+    "title": "Identify the Relative Clause",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The neighbors who reside downstairs are kind.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "who reside downstairs"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.12.Relative_Clauses_Introduction",
+    "translation": "que residen en la planta baja",
+    "miniTheory": "",
+    "id": "67fab6d599301022953438a0",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.12.01.04",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438a1"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dessert that remained in the oven smelled amazing.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that remained in the oven"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d338"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.12.Relative_Clauses_Introduction",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953438a1",
+    "kind": "CLOZE",
+    "title": "Identify the Relative Clause",
+    "instructions": "¿Cuál es la parte que corresponde a la relative clause?",
+    "translation": "que permaneció en el horno",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.12.01.05",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438a2"
+    },
+    "title": "Identify the Relative Clause",
+    "instructions": "¿Cuál es la parte que corresponde a la relative clause?",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.12.01.06",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d338"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953438a2",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He consulted a lawyer who comes from Spain.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "who comes from Spain"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.12.Relative_Clauses_Introduction",
+    "translation": "que viene de España",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438a3"
+    },
+    "answerAudioUrl": "B1.12.01.07",
+    "id": "67fab6d599301022953438a3",
+    "title": "Identify the Relative Clause",
+    "instructions": "¿Cuál es la parte que corresponde a la relative clause?",
+    "audioUrl": "",
+    "theoryId": "b1.12.Relative_Clauses_Introduction",
+    "successMessage": "",
+    "imageUrl": "",
+    "translation": "que estaba en la silla",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The bird touched the bread which was on the chair.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "which was on the chair"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d338"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438a4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students read the chapter which was in the book.",
+          "options": null
+        },
+        {
+          "options": [
+            "which was in the book"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d338"
+    },
+    "theoryId": "b1.12.Relative_Clauses_Introduction",
+    "imageUrl": "",
+    "translation": "que estaba en el libro",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "instructions": "¿Cuál es la parte que corresponde a la relative clause?",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.12.01.08",
+    "id": "67fab6d599301022953438a4",
+    "code": "",
+    "title": "Identify the Relative Clause",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438a5"
+    },
+    "id": "67fab6d599301022953438a5",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Cuál es la parte que corresponde a la relative clause?",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The players who are on the field are my friends.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "who are on the field"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.12.Relative_Clauses_Introduction",
+    "audioUrl": "",
+    "title": "Identify the Relative Clause",
+    "translation": "que están en el campo",
+    "answerAudioUrl": "B1.12.01.09",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d338"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438a6"
+    },
+    "kind": "CLOZE",
+    "translation": "que está en el armario",
+    "title": "Identify the Relative Clause",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That jacket which is in the closet belongs to Peter.",
+          "options": null
+        },
+        {
+          "options": [
+            "which is in the closet"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.12.01.10",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Cuál es la parte que corresponde a la relative clause?",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.12.Relative_Clauses_Introduction",
+    "miniTheory": "",
+    "id": "67fab6d599301022953438a6",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d338"
+    },
+    "topicName": "Relative clauses"
+  }
+]

@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534436f"
+    },
+    "code": "",
+    "translation": "Mi billetera fue encontrada.",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Somebody found my wallet."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "My wallet got found."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "imageUrl": "",
+    "id": "67fab6d5993010229534436f",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transformations to passive with 'get'",
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.07.06.01",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344370"
+    },
+    "title": "Transformations to passive with 'get'",
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "theoryId": "b2.07.The_Get_Passive",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Somebody is painting that wall!",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That wall is getting painted!"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B2.07.06.02",
+    "id": "67fab6d59930102295344370",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "translation": "¡Esa pared está siendo pintada!",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344371"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.07.06.03",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "imageUrl": "",
+    "translation": "La casa usualmente es limpiada.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Somebody usually cleans the house.",
+          "options": null
+        },
+        {
+          "options": [
+            "The house usually gets cleaned."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "id": "67fab6d59930102295344371",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transformations to passive with 'get'",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344372"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transformations to passive with 'get'",
+    "successMessage": "",
+    "id": "67fab6d59930102295344372",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.07.06.04",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Somebody pushed Mark.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mark got pushed."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "Mark fue empujado.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344373"
+    },
+    "code": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.07.06.05",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "audioUrl": "",
+    "translation": "La puerta fue arreglada.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transformations to passive with 'get'",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344373",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Somebody fixed the door.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The door got fixed."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344374"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "imageUrl": "",
+    "translation": "La mesa fue movida.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344374",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Somebody moved the table.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The table got moved."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B2.07.06.06",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "title": "Transformations to passive with 'get'",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344375"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Las llaves a menudo se extravían.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.07.06.07",
+    "id": "67fab6d59930102295344375",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "title": "Transformations to passive with 'get'",
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Somebody often misplaces the keys."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The keys often get misplaced."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344376"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.07.06.08",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "imageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transformations to passive with 'get'",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Somebody switched on the television.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The television got switched on."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344376",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "theoryId": "b2.07.The_Get_Passive",
+    "translation": "El televisor fue encendido.",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344377"
+    },
+    "id": "67fab6d59930102295344377",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Somebody played the song.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The song got played."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "successMessage": "",
+    "answerAudioUrl": "B2.07.06.09",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "title": "Transformations to passive with 'get'",
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "translation": "La canción fue reproducida.",
+    "miniTheory": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344378"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transformations to passive with 'get'",
+    "answerAudioUrl": "B2.07.06.10",
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "theoryId": "b2.07.The_Get_Passive",
+    "audioUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Somebody walks the cat.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The cat gets walked."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344378",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "El gato es paseado.",
+    "successMessage": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344379"
+    },
+    "translation": "Él fue llamado.",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transformations to passive with 'get'",
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295344379",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.07.06.11",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Somebody called him.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He got called."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534437a"
+    },
+    "translation": "Todo el jugo fue bebido.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.07.06.12",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transformations to passive with 'get'",
+    "theoryId": "b2.07.The_Get_Passive",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534437a",
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Somebody drank all of the juice.",
+          "options": null
+        },
+        {
+          "options": [
+            "The juice all got drunk.|All of the juice got drunk."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534437b"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Somebody included Mary too.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary got included too."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "title": "Transformations to passive with 'get'",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "theoryId": "b2.07.The_Get_Passive",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534437b",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Mary también fue incluida.",
+    "answerAudioUrl": "B2.07.06.13",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534437c"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Transformations to passive with 'get'",
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d5993010229534437c",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Somebody interviewed the candidates.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The candidates got interviewed."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Los candidatos fueron entrevistados.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.07.06.14",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534437d"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone is fixing the bicycle.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The bicycle is getting fixed."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534437d",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transformations to passive with 'get'",
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "La bicicleta está siendo arreglada.",
+    "answerAudioUrl": "B2.07.06.15",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534437e"
+    },
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Someone is stirring the soup."
+        },
+        {
+          "options": [
+            "The soup is getting stirred."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534437e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transformations to passive with 'get'",
+    "code": "",
+    "audioUrl": "",
+    "translation": "La sopa está siendo revuelta.",
+    "answerAudioUrl": "B2.07.06.16",
+    "theoryId": "b2.07.The_Get_Passive",
+    "answerImageUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534437f"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.07.06.17",
+    "id": "67fab6d5993010229534437f",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transformations to passive with 'get'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone scratched his phone.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "His phone got scratched."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Su teléfono se rayó.",
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344380"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B2.07.06.18",
+    "theoryId": "b2.07.The_Get_Passive",
+    "audioUrl": "",
+    "translation": "Él fue contratado.",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transformations to passive with 'get'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Someone hired him."
+        },
+        {
+          "options": [
+            "He got hired."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295344380",
+    "code": "",
+    "imageUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344381"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Nos gritan.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.07.06.19",
+    "id": "67fab6d59930102295344381",
+    "kind": "CLOZE",
+    "title": "Transformations to passive with 'get'",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Someone shouts at us.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We get shouted at."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344382"
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d443"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "translation": "Las mascotas fueron traídas adentro.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344382",
+    "code": "",
+    "title": "Transformations to passive with 'get'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone brought the pets inside.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The pets got brought inside."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.07.06.20",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones activas a pasivas usando 'get'. Omite 'by'.",
+    "successMessage": "",
+    "topicName": "The passive"
+  }
+]

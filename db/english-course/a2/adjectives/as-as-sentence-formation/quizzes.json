@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e8e"
+    },
+    "theoryId": "a2.11.Adjectives_Structures",
+    "translation": "Mary es tan lista como Peter.",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342e8e",
+    "title": "'as ... as' Sentence Formation",
+    "instructions": "Crea oraciones usando 'as ... as' o 'not as ... as'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "as clever as"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(clever) Peter.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.06.01",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a5"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e8f"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Esta sopa no es tan picante como aquella sopa.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a5"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'as ... as' Sentence Formation",
+    "theoryId": "a2.11.Adjectives_Structures",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342e8f",
+    "code": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.11.06.02",
+    "instructions": "Crea oraciones usando 'as ... as' o 'not as ... as'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "This soup is",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "not as spicy as"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / spicy) that soup.",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e90"
+    },
+    "instructions": "Crea oraciones usando 'as ... as' o 'not as ... as'.",
+    "title": "'as ... as' Sentence Formation",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Paris is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "as romantic as"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(romantic) Rome.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a5"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.06.03",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "París es tan romántico como Roma.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.11.Adjectives_Structures",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342e90",
+    "code": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e91"
+    },
+    "theoryId": "a2.11.Adjectives_Structures",
+    "imageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'as ... as' Sentence Formation",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Susan is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "not as friendly as"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / friendly) her sister.",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295342e91",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a5"
+    },
+    "translation": "Susan no es tan amigable como su hermana.",
+    "miniTheory": "",
+    "instructions": "Crea oraciones usando 'as ... as' o 'not as ... as'.",
+    "answerAudioUrl": "A2.11.06.04",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e92"
+    },
+    "answerAudioUrl": "A2.11.06.05",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones usando 'as ... as' o 'not as ... as'.",
+    "translation": "Ellos no fueron tan madrugadores como nosotros.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a5"
+    },
+    "title": "'as ... as' Sentence Formation",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They were",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "not as early as"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "(not / early) us.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342e92",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.11.Adjectives_Structures",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e93"
+    },
+    "id": "67fab6d59930102295342e93",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a5"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Inglaterra es tan neblinosa como Gales.",
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "successMessage": "",
+    "instructions": "Crea oraciones usando 'as ... as' o 'not as ... as'.",
+    "theoryId": "a2.11.Adjectives_Structures",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "England is",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "as foggy as"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(foggy) Wales.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.06.06",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'as ... as' Sentence Formation",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e94"
+    },
+    "code": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.11.06.07",
+    "kind": "CLOZE",
+    "title": "'as ... as' Sentence Formation",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Candy is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "not as nutritious as"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / nutritious) fruit.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.11.Adjectives_Structures",
+    "imageUrl": "",
+    "id": "67fab6d59930102295342e94",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a5"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones usando 'as ... as' o 'not as ... as'.",
+    "translation": "Los dulces no son tan nutritivos como la fruta.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e95"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'as ... as' Sentence Formation",
+    "theoryId": "a2.11.Adjectives_Structures",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342e95",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Canada is"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "not as warm as"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / warm) Mexico.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a5"
+    },
+    "instructions": "Crea oraciones usando 'as ... as' o 'not as ... as'.",
+    "translation": "Canadá no es tan cálido como México.",
+    "answerAudioUrl": "A2.11.06.08",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e96"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "instructions": "Crea oraciones usando 'as ... as' o 'not as ... as'.",
+    "theoryId": "a2.11.Adjectives_Structures",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a5"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "title": "'as ... as' Sentence Formation",
+    "imageUrl": "",
+    "translation": "La pizza es tan sabrosa como la pasta.",
+    "answerAudioUrl": "A2.11.06.09",
+    "id": "67fab6d59930102295342e96",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Pizza is",
+          "options": null
+        },
+        {
+          "options": [
+            "as tasty as"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(tasty) pasta.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e97"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.11.06.10",
+    "id": "67fab6d59930102295342e97",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a5"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Michael is",
+          "options": null
+        },
+        {
+          "options": [
+            "as strong as"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "(strong) his father.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "Michael es tan fuerte como su padre.",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'as ... as' Sentence Formation",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones usando 'as ... as' o 'not as ... as'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.11.Adjectives_Structures",
+    "topicName": "Adjectives"
+  }
+]

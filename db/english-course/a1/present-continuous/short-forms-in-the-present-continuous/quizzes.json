@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342053"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.02.08.01",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I am not running.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I'm not running."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "imageUrl": "",
+    "translation": "No estoy corriendo.",
+    "id": "67fab6d59930102295342053",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short forms in the present continuous",
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "miniTheory": "",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342054"
+    },
+    "title": "Short forms in the present continuous",
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "imageUrl": "",
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She is not playing soccer.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She isn't playing soccer.|She's not playing soccer."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "translation": "Ella no está jugando fútbol.",
+    "id": "67fab6d59930102295342054",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A1.02.08.02",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342055"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "title": "Short forms in the present continuous",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is not sleeping right now.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He isn't sleeping right now.|He's not sleeping right now."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "translation": "Él no está durmiendo ahora mismo.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342055",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A1.02.08.03",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342056"
+    },
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "translation": "Estamos bebiendo agua.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342056",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "code": "",
+    "successMessage": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.08.04",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short forms in the present continuous",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We are drinking water.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We're drinking water."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342057"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "answerAudioUrl": "A1.02.08.05",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "title": "Short forms in the present continuous",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "It is not snowing."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "It isn't snowing.|It's not snowing."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342057",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "translation": "No está nevando.",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342058"
+    },
+    "code": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.02.08.06",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short forms in the present continuous",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "imageUrl": "",
+    "translation": "Ella no está nadando.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342058",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is not swimming.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She isn't swimming.|She's not swimming."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342059"
+    },
+    "id": "67fab6d59930102295342059",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "translation": "Ellos están jugando en el parque.",
+    "answerAudioUrl": "A1.02.08.07",
+    "miniTheory": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short forms in the present continuous",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They are playing in the park.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They're playing in the park."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534205a"
+    },
+    "id": "67fab6d5993010229534205a",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I am walking to school.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "I'm walking to school."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A1.02.08.08",
+    "kind": "CLOZE",
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Estoy caminando a la escuela.",
+    "title": "Short forms in the present continuous",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534205b"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "translation": "Él está saliendo.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "audioUrl": "",
+    "id": "67fab6d5993010229534205b",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short forms in the present continuous",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is going outside.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He's going outside."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerAudioUrl": "A1.02.08.09",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534205c"
+    },
+    "title": "Short forms in the present continuous",
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "He is writing.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He's writing."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.02.08.10",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "code": "",
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "imageUrl": "",
+    "translation": "Él está escribiendo.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534205c",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534205d"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They are telling a lie.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They're telling a lie."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "audioUrl": "",
+    "translation": "Ellos están diciendo una mentira.",
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A1.02.08.11",
+    "id": "67fab6d5993010229534205d",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short forms in the present continuous",
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534205e"
+    },
+    "code": "",
+    "title": "Short forms in the present continuous",
+    "audioUrl": "",
+    "translation": "Peter no viene.",
+    "answerAudioUrl": "A1.02.08.12",
+    "id": "67fab6d5993010229534205e",
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter is not coming.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter isn't coming."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534205f"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We are not walking.",
+          "options": null
+        },
+        {
+          "options": [
+            "We aren't walking."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "No estamos caminando.",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534205f",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short forms in the present continuous",
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.02.08.13",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "answerImageUrl": "",
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342060"
+    },
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cats are not eating.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The cats aren't eating."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Los gatos no están comiendo.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342060",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "successMessage": "",
+    "code": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.02.08.14",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short forms in the present continuous",
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "imageUrl": "",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342061"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A1.02.08.15",
+    "kind": "CLOZE",
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I am meeting her tomorrow.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I'm meeting her tomorrow."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "title": "Short forms in the present continuous",
+    "translation": "Me reuniré con ella mañana.",
+    "id": "67fab6d59930102295342061",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "answerImageUrl": "",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342062"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short forms in the present continuous",
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342062",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She is listening to music."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She's listening to music."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Ella está escuchando música.",
+    "successMessage": "",
+    "answerAudioUrl": "A1.02.08.16",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342063"
+    },
+    "translation": "Ellos no vienen mañana.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.02.08.17",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342063",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "They are not coming tomorrow.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They aren't coming tomorrow."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short forms in the present continuous",
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342064"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342064",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Ella está almorzando.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is having lunch.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She's having lunch."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "title": "Short forms in the present continuous",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "answerAudioUrl": "A1.02.08.18",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342065"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short forms in the present continuous",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We are not eating.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We aren't eating.|We're not eating."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342065",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "translation": "No estamos comiendo.",
+    "successMessage": "",
+    "answerAudioUrl": "A1.02.08.19",
+    "code": "",
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342066"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short forms in the present continuous",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We are baking cookies.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We're baking cookies."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Estamos horneando galletas.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
+    "theoryId": "a1.02.Present_Continuous_Short_Forms",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39e"
+    },
+    "id": "67fab6d59930102295342066",
+    "answerAudioUrl": "A1.02.08.20",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "Present Continuous"
+  }
+]

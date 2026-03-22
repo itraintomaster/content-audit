@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f5f"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve been cleaning|have been cleaning"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(clean) the house (but it's still messy).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343f5f",
+    "kind": "CLOZE",
+    "title": "Present perfect continuous: Unfinished actions",
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "audioUrl": "",
+    "translation": "He estado limpiando la casa.",
+    "successMessage": "",
+    "code": "",
+    "answerAudioUrl": "B2.02.09.01",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f60"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present perfect continuous: Unfinished actions",
+    "translation": "He limpiado la casa.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.02.09.02",
+    "id": "67fab6d59930102295343f60",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I"
+        },
+        {
+          "text": "",
+          "options": [
+            "'ve cleaned|have cleaned"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(clean) the house (so it's tidy now).",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f61"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295343f61",
+    "title": "Present perfect continuous: Unfinished actions",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s been building|has been building"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(build) a treehouse but he still needs more wood.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Él ha estado construyendo una casa en el árbol, pero todavía necesita más madera.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.02.09.03",
+    "code": "",
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f62"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s built|has built"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(build) a treehouse! It looks awesome!"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "translation": "¡Él ha construido una casa en el árbol! ¡Se ve increíble!",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present perfect continuous: Unfinished actions",
+    "id": "67fab6d59930102295343f62",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.02.09.04",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f63"
+    },
+    "id": "67fab6d59930102295343f63",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present perfect continuous: Unfinished actions",
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "audioUrl": "",
+    "translation": "Ella ha estado corriendo. Todavía tiene una larga distancia por recorrer.",
+    "code": "",
+    "answerAudioUrl": "B2.02.09.05",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "options": [
+            "'s been running|has been running"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(run) (so she is feeling exhausted). She still has a long distance to go.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f64"
+    },
+    "answerAudioUrl": "B2.02.09.06",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s run|has run"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(run) a marathon (so she's at the finish line now)"
+        }
+      ]
+    },
+    "translation": "Ella ha corrido un maratón.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present perfect continuous: Unfinished actions",
+    "successMessage": "",
+    "id": "67fab6d59930102295343f64",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f65"
+    },
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve watched|have watched"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(watch) that film and we hated it.",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "title": "Present perfect continuous: Unfinished actions",
+    "successMessage": "",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Hemos visto esa película y la odiamos.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.02.09.07",
+    "id": "67fab6d59930102295343f65",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f66"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve been watching|have been watching"
+          ]
+        },
+        {
+          "text": "(watch) that film. We're only at the start.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "Hemos estado viendo esa película. Solo estamos al principio.",
+    "id": "67fab6d59930102295343f66",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present perfect continuous: Unfinished actions",
+    "audioUrl": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.02.09.08",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f67"
+    },
+    "translation": "¡Ella ha reparado la bicicleta! ¡Podemos salir a andar en bicicleta!",
+    "successMessage": "",
+    "title": "Present perfect continuous: Unfinished actions",
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s repaired|has repaired"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(repair) the bike! We can go out cycling!",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.02.09.09",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295343f67",
+    "kind": "CLOZE",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f68"
+    },
+    "title": "Present perfect continuous: Unfinished actions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "options": [
+            "'s been repairing|has been repairing"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(repair) the bike. She's covered in grease and the bike is still broken.",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B2.02.09.10",
+    "id": "67fab6d59930102295343f68",
+    "translation": "Ella ha estado reparando la bicicleta. Está cubierta de grasa y la bicicleta todavía está rota.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f69"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present perfect continuous: Unfinished actions",
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve been cooking|have been cooking"
+          ]
+        },
+        {
+          "text": "(cook) a meal. It's almost ready.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295343f69",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "He estado cocinando una comida. Está casi lista.",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "answerAudioUrl": "B2.02.09.11",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f6a"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.02.09.12",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295343f6a",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "translation": "¡He cocinado una comida! ¡Voy a servirla ahora!",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present perfect continuous: Unfinished actions",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve cooked|have cooked"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(cook) a meal! I'm going to serve it now!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f6b"
+    },
+    "id": "67fab6d59930102295343f6b",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "David ha estado bebiendo una taza de té. Su taza está medio llena.",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Present perfect continuous: Unfinished actions",
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "David"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has been drinking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drink) a cup of tea. His cup is half full.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.02.09.13",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "audioUrl": "",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f6c"
+    },
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "David",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has drunk"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drink) a cup of tea. His cup is empty.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343f6c",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "answerAudioUrl": "B2.02.09.14",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present perfect continuous: Unfinished actions",
+    "translation": "David ha bebido una taza de té. Su taza está vacía.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f6d"
+    },
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present perfect continuous: Unfinished actions",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve been playing|have been playing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(play) a video game. It's really fun and they want to reach the next level.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Ellos han estado jugando un videojuego. Es muy divertido y quieren alcanzar el siguiente nivel.",
+    "answerAudioUrl": "B2.02.09.15",
+    "kind": "CLOZE",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343f6d",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f6e"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve played|have played"
+          ]
+        },
+        {
+          "text": "(play) a video game. It was amazing and now they want to play another!",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295343f6e",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "miniTheory": "",
+    "title": "Present perfect continuous: Unfinished actions",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.02.09.16",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "¡Ellos han jugado un videojuego. Fue increíble y ahora quieren jugar otro!",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f6f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Ella ha respondido la pregunta. Puede ir a sentarse.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present perfect continuous: Unfinished actions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s answered|has answered"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(answer) the question. She can go sit down.",
+          "options": null
+        }
+      ]
+    },
+    "kind": "CLOZE",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "successMessage": "",
+    "id": "67fab6d59930102295343f6f",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.02.09.17",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f70"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343f70",
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s been answering|has been answering"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(answer) the question, but there are still some parts she has to do.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ella ha estado respondiendo la pregunta, pero todavía hay algunas partes que tiene que hacer.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "code": "",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "answerAudioUrl": "B2.02.09.18",
+    "imageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present perfect continuous: Unfinished actions",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f71"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "'ve been designing|have been designing"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(design) a poster. I think it needs another few adjustments.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.02.09.19",
+    "id": "67fab6d59930102295343f71",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "title": "Present perfect continuous: Unfinished actions",
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "translation": "He estado diseñando un póster. Creo que necesita algunos ajustes más.",
+    "miniTheory": "",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f72"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B2.02.09.20",
+    "instructions": "Si la oración habla de algo que se ha detenido pero no ha terminado, usa el 'present perfect continuous'. Si la oración habla de algo que está completamente terminado, usa el 'present perfect simple'.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "translation": "¡He diseñado un póster y se va a imprimir!",
+    "id": "67fab6d59930102295343f72",
+    "code": "",
+    "title": "Present perfect continuous: Unfinished actions",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve designed|have designed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(design) a poster and it's going to be printed!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d40a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous"
+  }
+]

@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534336c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.12.01",
+    "id": "67fab6d5993010229534336c",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He wasn't playing the piano,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "translation": "Él no estaba tocando el piano, ¿verdad?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "title": "Practice: Question Tags in the Past Continuous",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534336d"
+    },
+    "code": "",
+    "translation": "Los chicos no estaban nadando, ¿verdad?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The boys weren't swimming,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice: Question Tags in the Past Continuous",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.12.02",
+    "id": "67fab6d5993010229534336d",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534336e"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cat wasn't sleeping,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was it"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "?"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.12.03",
+    "id": "67fab6d5993010229534336e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "translation": "El gato no estaba durmiendo, ¿verdad?",
+    "code": "",
+    "title": "Practice: Question Tags in the Past Continuous",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534336f"
+    },
+    "id": "67fab6d5993010229534336f",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice: Question Tags in the Past Continuous",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "miniTheory": "",
+    "code": "",
+    "theoryId": "b1.05.Question_Tags",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.05.12.04",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We were driving to the airport,",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "weren't we"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Estábamos conduciendo al aeropuerto, ¿verdad?",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343370"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I was reading,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wasn't I"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Yo estaba leyendo, ¿verdad?",
+    "imageUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice: Question Tags in the Past Continuous",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "answerAudioUrl": "B1.05.12.05",
+    "id": "67fab6d59930102295343370",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343371"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "successMessage": "",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "The students were using computers,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "weren't they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Los estudiantes estaban usando computadoras, ¿verdad?",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice: Question Tags in the Past Continuous",
+    "theoryId": "b1.05.Question_Tags",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.12.06",
+    "id": "67fab6d59930102295343371",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343372"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "title": "Practice: Question Tags in the Past Continuous",
+    "theoryId": "b1.05.Question_Tags",
+    "id": "67fab6d59930102295343372",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ella no estaba cantando, ¿verdad?",
+    "answerAudioUrl": "B1.05.12.07",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She wasn't singing,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343373"
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "translation": "No estábamos conduciendo, ¿verdad?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We weren't driving,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were we"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295343373",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice: Question Tags in the Past Continuous",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.12.08",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343374"
+    },
+    "title": "Practice: Question Tags in the Past Continuous",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343374",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "translation": "Ellos no estaban escuchando, ¿verdad?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.12.09",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They weren't listening,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were they"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "?"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343375"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.12.10",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He wasn't eating,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "id": "67fab6d59930102295343375",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Él no estaba comiendo, ¿verdad?",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "title": "Practice: Question Tags in the Past Continuous",
+    "imageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343376"
+    },
+    "translation": "Ella no estaba sonriendo, ¿verdad?",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She wasn't smiling,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.05.12.11",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice: Question Tags in the Past Continuous",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "theoryId": "b1.05.Question_Tags",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343376",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343377"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "theoryId": "b1.05.Question_Tags",
+    "miniTheory": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They were resting,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "weren't they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Ellos estaban descansando, ¿verdad?",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.12.12",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343377",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice: Question Tags in the Past Continuous",
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343378"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Ella estaba llegando, ¿verdad?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.12.13",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She was arriving,",
+          "options": null
+        },
+        {
+          "options": [
+            "wasn't she"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343378",
+    "code": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice: Question Tags in the Past Continuous",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343379"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "theoryId": "b1.05.Question_Tags",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343379",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice: Question Tags in the Past Continuous",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The dogs were barking in the street,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "weren't they"
+          ]
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "Los perros estaban ladrando en la calle, ¿verdad?",
+    "answerAudioUrl": "B1.05.12.14",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534337a"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Los ingenieros no estaban reparando, ¿verdad?",
+    "id": "67fab6d5993010229534337a",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The engineers weren't repairing,"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "title": "Practice: Question Tags in the Past Continuous",
+    "theoryId": "b1.05.Question_Tags",
+    "answerAudioUrl": "B1.05.12.15",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534337b"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.12.16",
+    "id": "67fab6d5993010229534337b",
+    "title": "Practice: Question Tags in the Past Continuous",
+    "translation": "Él estaba caminando, ¿verdad?",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "theoryId": "b1.05.Question_Tags",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He was walking,"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wasn't he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534337c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I wasn't studying there,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was I"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Yo no estaba estudiando allí, ¿verdad?",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d5993010229534337c",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice: Question Tags in the Past Continuous",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "answerAudioUrl": "B1.05.12.17",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534337d"
+    },
+    "title": "Practice: Question Tags in the Past Continuous",
+    "theoryId": "b1.05.Question_Tags",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She was jumping,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wasn't she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Ella estaba saltando, ¿verdad?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.12.18",
+    "kind": "CLOZE",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d5993010229534337d",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534337e"
+    },
+    "id": "67fab6d5993010229534337e",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Question_Tags",
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.12.19",
+    "code": "",
+    "title": "Practice: Question Tags in the Past Continuous",
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The girls were playing a game,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "weren't they"
+          ]
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Las chicas estaban jugando un juego, ¿verdad?",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534337f"
+    },
+    "instructions": "Añade un 'question tag' a las oraciones.",
+    "theoryId": "b1.05.Question_Tags",
+    "audioUrl": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He was painting a picture,"
+        },
+        {
+          "text": "",
+          "options": [
+            "wasn't he"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534337f",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ed"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "translation": "Él estaba pintando un cuadro, ¿verdad?",
+    "answerAudioUrl": "B1.05.12.20",
+    "title": "Practice: Question Tags in the Past Continuous",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Questions and short answers"
+  }
+]

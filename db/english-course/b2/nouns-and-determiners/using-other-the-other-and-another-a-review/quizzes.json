@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534421b"
+    },
+    "id": "67fab6d5993010229534421b",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B2.06.03.01",
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "theoryId": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "They ate these cookies and we ate",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "the other"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "cookies. (Specific other cookies.)",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Ellos comieron estas galletas y nosotros comimos las otras galletas.",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534421c"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Do you have any",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "other"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "pets?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.03.02",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "id": "67fab6d5993010229534421c",
+    "theoryId": "",
+    "translation": "¿Tienes otras mascotas?",
+    "answerImageUrl": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534421d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "theoryId": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He held the book in his"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "other"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "hand.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Él sostuvo el libro en su otra mano.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "code": "",
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.06.03.03",
+    "id": "67fab6d5993010229534421d",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534421e"
+    },
+    "successMessage": "",
+    "id": "67fab6d5993010229534421e",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.06.03.04",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Some",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "other"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "birds were singing in the garden today.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "Algunos otros pájaros estaban cantando hoy en el jardín.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534421f"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Me gustó el otro sombrero.",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534421f",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "code": "",
+    "theoryId": "",
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I liked",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the other"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "hat. (There is only one other hat.)",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.06.03.05",
+    "kind": "CLOZE",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344220"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "successMessage": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could I see your",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "other"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "coat?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerAudioUrl": "B2.06.03.06",
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "¿Podría ver tu otro abrigo?",
+    "id": "67fab6d59930102295344220",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344221"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295344221",
+    "code": "",
+    "kind": "CLOZE",
+    "translation": "¿Podrías traerme otro?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you bring me",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "another"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "one? (There are many and I want one of them.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.03.07",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344222"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you have",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "another"
+          ]
+        },
+        {
+          "text": "pen? (Any pen.)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.06.03.08",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "theoryId": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "translation": "¿Tienes otro bolígrafo?",
+    "id": "67fab6d59930102295344222",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344223"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "answerAudioUrl": "B2.06.03.09",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "imageUrl": "",
+    "translation": "Me gustaría otro sándwich.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344223",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I'd like",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "another"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "sandwich. (There are lots of sandwiches.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344224"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344224",
+    "code": "",
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please pass me",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "another"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "apple. (Any apple.)"
+        }
+      ]
+    },
+    "theoryId": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "translation": "Por favor, pásame otra manzana.",
+    "answerAudioUrl": "B2.06.03.10",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344225"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.03.11",
+    "kind": "CLOZE",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "Other"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "teachers seem to be able to explain it! (Other teachers in general.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344225",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "theoryId": "",
+    "translation": "¡Otros profesores parecen ser capaces de explicarlo!",
+    "miniTheory": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344226"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "theoryId": "",
+    "answerAudioUrl": "B2.06.03.12",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The other"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "cats all ran away. (Specific other cats.)",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Los otros gatos huyeron.",
+    "kind": "CLOZE",
+    "id": "67fab6d59930102295344226",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344227"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B2.06.03.13",
+    "id": "67fab6d59930102295344227",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "translation": "Los otros jugadores ganaron el partido.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "The other"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "players won the game. (Specific players.)",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344228"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295344228",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "another"
+          ]
+        },
+        {
+          "text": "call on the phone. (I wasn't expecting it.)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "translation": "Hubo otra llamada en el teléfono.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.03.14",
+    "kind": "CLOZE",
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "theoryId": "",
+    "imageUrl": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344229"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He gave her",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "another"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "piece of cake. (Not a specific piece.)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.06.03.15",
+    "id": "67fab6d59930102295344229",
+    "kind": "CLOZE",
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "translation": "Él le dio otro pedazo de pastel.",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534422a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "theoryId": "",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534422a",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The other"
+          ]
+        },
+        {
+          "text": "girls could jump higher. (Specific other girls.)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "translation": "Las otras chicas podían saltar más alto.",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.03.16",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534422b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.03.17",
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you have",
+          "options": null
+        },
+        {
+          "options": [
+            "another"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "bike? (Not a specific bike.)",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "id": "67fab6d5993010229534422b",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "translation": "¿Tienes otra bicicleta?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534422c"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.06.03.18",
+    "id": "67fab6d5993010229534422c",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Let's close",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the other"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "door. (There is only one more door.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "",
+    "translation": "Cerremos la otra puerta.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534422d"
+    },
+    "id": "67fab6d5993010229534422d",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.06.03.19",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "audioUrl": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Other"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "cities are colder than here. (Other cities in general.)"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Otras ciudades son más frías que aquí.",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "theoryId": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534422e"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Would you prefer"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the other"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "cup? (There is only one other cup.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.06.03.20",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d431"
+    },
+    "audioUrl": "",
+    "translation": "¿Preferirías la otra taza?",
+    "kind": "CLOZE",
+    "title": "Using 'Other', 'The Other', and 'Another': A Review",
+    "instructions": "¿Necesitamos 'other', 'the other' o 'another'?",
+    "theoryId": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534422e",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns and determiners"
+  }
+]

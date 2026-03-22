@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440b3"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "id": "67fab6d599301022953440b3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.04.02.01",
+    "title": "Question Tags Practice 1",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We had been running fast,",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "hadn't we"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Habíamos estado corriendo rápido, ¿no es así?",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440b4"
+    },
+    "id": "67fab6d599301022953440b4",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.04.02.02",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "theoryId": "b2.04.Negative_Questions",
+    "translation": "Estábamos nadando, ¿no?",
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Question Tags Practice 1",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We were swimming,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "weren't we"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440b5"
+    },
+    "translation": "Daniel se cambió a un coche nuevo, ¿verdad?",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Question Tags Practice 1",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Daniel changed to a new car,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "didn't he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.04.02.03",
+    "id": "67fab6d599301022953440b5",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440b6"
+    },
+    "id": "67fab6d599301022953440b6",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Question Tags Practice 1",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "translation": "No había estado comiendo suficiente fruta, ¿verdad?",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He hadn't been eating enough fruit,",
+          "options": null
+        },
+        {
+          "options": [
+            "had he"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.04.02.04",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440b7"
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "title": "Question Tags Practice 1",
+    "theoryId": "b2.04.Negative_Questions",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "No entiendes, ¿verdad?",
+    "successMessage": "",
+    "id": "67fab6d599301022953440b7",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You don't understand,",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "do you"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerAudioUrl": "B2.04.02.05",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440b8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Question Tags Practice 1",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "theoryId": "b2.04.Negative_Questions",
+    "translation": "Ella estaba feliz ayer, ¿no?",
+    "code": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953440b8",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She was happy yesterday,",
+          "options": null
+        },
+        {
+          "options": [
+            "wasn't she"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.04.02.06",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440b9"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "theoryId": "b2.04.Negative_Questions",
+    "translation": "Él habrá llegado para entonces, ¿no?",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d599301022953440b9",
+    "title": "Question Tags Practice 1",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He'll have arrived by then,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.04.02.07",
+    "code": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440ba"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.04.02.08",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You hadn't been listening,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Question Tags Practice 1",
+    "theoryId": "b2.04.Negative_Questions",
+    "imageUrl": "",
+    "translation": "No habías estado escuchando, ¿verdad?",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953440ba",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440bb"
+    },
+    "id": "67fab6d599301022953440bb",
+    "title": "Question Tags Practice 1",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "theoryId": "b2.04.Negative_Questions",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "answerAudioUrl": "B2.04.02.09",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They weren't at the concert,"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Ellos no estaban en el concierto, ¿verdad?",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440bc"
+    },
+    "title": "Question Tags Practice 1",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She's baking a cake,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.04.02.10",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "imageUrl": "",
+    "translation": "Ella está horneando un pastel, ¿no?",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953440bc",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440bd"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Question Tags Practice 1",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He hasn't sold his house,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerAudioUrl": "B2.04.02.11",
+    "miniTheory": "",
+    "id": "67fab6d599301022953440bd",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "audioUrl": "",
+    "translation": "Él no ha vendido su casa, ¿verdad?",
+    "successMessage": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440be"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You haven't seen my keys,",
+          "options": null
+        },
+        {
+          "options": [
+            "have you"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.04.02.12",
+    "id": "67fab6d599301022953440be",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "theoryId": "b2.04.Negative_Questions",
+    "title": "Question Tags Practice 1",
+    "translation": "No has visto mis llaves, ¿verdad?",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440bf"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.04.02.13",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "You didn't call,"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Question Tags Practice 1",
+    "translation": "No llamaste, ¿verdad?",
+    "successMessage": "",
+    "id": "67fab6d599301022953440bf",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440c0"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Question Tags Practice 1",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's a rainy day,",
+          "options": null
+        },
+        {
+          "options": [
+            "isn't it"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.04.02.14",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Es un día lluvioso, ¿no?",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "id": "67fab6d599301022953440c0",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440c1"
+    },
+    "id": "67fab6d599301022953440c1",
+    "kind": "CLOZE",
+    "answerAudioUrl": "B2.04.02.15",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Laura doesn't live here,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "title": "Question Tags Practice 1",
+    "imageUrl": "",
+    "translation": "Laura no vive aquí, ¿verdad?",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440c2"
+    },
+    "answerAudioUrl": "B2.04.02.16",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "imageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He wasn't working then,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Él no estaba trabajando entonces, ¿verdad?",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953440c2",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Question Tags Practice 1",
+    "code": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440c3"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He didn't play tennis last week,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.04.02.17",
+    "id": "67fab6d599301022953440c3",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "translation": "Él no jugó al tenis la semana pasada, ¿verdad?",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.04.Negative_Questions",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Question Tags Practice 1",
+    "audioUrl": "",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440c4"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "instructions": "Añade un 'question tag' a la oración.",
+    "translation": "Él no ha estado durmiendo bien, ¿verdad?",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He hasn't been sleeping well,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "title": "Question Tags Practice 1",
+    "theoryId": "b2.04.Negative_Questions",
+    "answerAudioUrl": "B2.04.02.18",
+    "id": "67fab6d599301022953440c4",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440c5"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Question Tags Practice 1",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is from Spain,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "theoryId": "b2.04.Negative_Questions",
+    "answerImageUrl": "",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.04.02.19",
+    "id": "67fab6d599301022953440c5",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Ella es de España, ¿no?",
+    "topicName": "Negatives and questions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953440c6"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Question Tags Practice 1",
+    "theoryId": "b2.04.Negative_Questions",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d41d"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They texted earlier,",
+          "options": null
+        },
+        {
+          "options": [
+            "didn't they"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.04.02.20",
+    "id": "67fab6d599301022953440c6",
+    "instructions": "Añade un 'question tag' a la oración.",
+    "audioUrl": "",
+    "translation": "Ellos enviaron un mensaje de texto antes, ¿no?",
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Negatives and questions"
+  }
+]

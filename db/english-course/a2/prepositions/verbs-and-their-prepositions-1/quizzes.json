@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d6c"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "instructions": "Coloca las preposiciones correctas.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What do you know",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "about|of"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "the old singer?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342d6c",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "¿Qué sabes del viejo cantante?",
+    "successMessage": "",
+    "code": "",
+    "title": "Verbs and Their Prepositions 1",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.15.01",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d6d"
+    },
+    "id": "67fab6d59930102295342d6d",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca las preposiciones correctas.",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions 1",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We asked the coach",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "for"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "some ideas.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "successMessage": "",
+    "audioUrl": "",
+    "translation": "Le pedimos algunas ideas al entrenador.",
+    "answerAudioUrl": "A2.09.15.02",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d6e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They invited us",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "their engagement party.",
+          "options": null
+        }
+      ]
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "translation": "Nos invitaron a su fiesta de compromiso.",
+    "successMessage": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342d6e",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions 1",
+    "instructions": "Coloca las preposiciones correctas.",
+    "imageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.09.15.03",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d6f"
+    },
+    "audioUrl": "",
+    "translation": "Ella les mostró las fotos a los padres.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342d6f",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca las preposiciones correctas.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She showed the photos",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the parents.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "title": "Verbs and Their Prepositions 1",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.15.04",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d70"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Esta canción me recuerda a mi infancia.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342d70",
+    "title": "Verbs and Their Prepositions 1",
+    "instructions": "Coloca las preposiciones correctas.",
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "answerAudioUrl": "A2.09.15.05",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This song reminds me",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "of"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "my childhood.",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d71"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions 1",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Somebody has taken the keys",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "from"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "me!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "translation": "¡Alguien me ha quitado las llaves!",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342d71",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.09.15.06",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca las preposiciones correctas.",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d72"
+    },
+    "instructions": "Coloca las preposiciones correctas.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Could you dance",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "with"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "your little sister?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "¿Podrías bailar con tu hermana pequeña?",
+    "successMessage": "",
+    "answerAudioUrl": "A2.09.15.07",
+    "id": "67fab6d59930102295342d72",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions 1",
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d73"
+    },
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342d73",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.09.15.08",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca las preposiciones correctas.",
+    "miniTheory": "",
+    "title": "Verbs and Their Prepositions 1",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He gave the pen",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "David.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Le dio el bolígrafo a David.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d74"
+    },
+    "title": "Verbs and Their Prepositions 1",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Voy a discutir sobre el precio.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm going to argue",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the price.",
+          "options": null
+        }
+      ]
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "instructions": "Coloca las preposiciones correctas.",
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "answerAudioUrl": "A2.09.15.09",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342d74",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d75"
+    },
+    "title": "Verbs and Their Prepositions 1",
+    "imageUrl": "",
+    "translation": "Soñó con un coche rápido.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.09.15.10",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "He dreamt",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "for"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "a fast car."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342d75",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca las preposiciones correctas.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "miniTheory": "",
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d76"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca las preposiciones correctas.",
+    "translation": "Ella le contó a su familia sobre el nuevo trabajo.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342d76",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions 1",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She told her family",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "text": "the new job.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "answerAudioUrl": "A2.09.15.11",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d77"
+    },
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.15.12",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Robert teaches Maths",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "teenagers.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342d77",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions 1",
+    "instructions": "Coloca las preposiciones correctas.",
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "imageUrl": "",
+    "code": "",
+    "translation": "Robert enseña matemáticas a adolescentes.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d78"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342d78",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "El perro corrió de su dueño.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions 1",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The dog ran"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "from"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "his owner.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "instructions": "Coloca las preposiciones correctas.",
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.15.13",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d79"
+    },
+    "id": "67fab6d59930102295342d79",
+    "code": "",
+    "title": "Verbs and Their Prepositions 1",
+    "imageUrl": "",
+    "translation": "Él va a alquilar una habitación a su tío.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca las preposiciones correctas.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is going to rent a room",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "from"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "his uncle."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.15.14",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d7a"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions 1",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She sent a letter",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "her aunt."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "translation": "Ella le envió una carta a su tía.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342d7a",
+    "code": "",
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca las preposiciones correctas.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.15.15",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d7b"
+    },
+    "translation": "Él está entrenando para el juego.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342d7b",
+    "code": "",
+    "title": "Verbs and Their Prepositions 1",
+    "instructions": "Coloca las preposiciones correctas.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's training",
+          "options": null
+        },
+        {
+          "options": [
+            "for"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "the game.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.09.15.16",
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d7c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "title": "Verbs and Their Prepositions 1",
+    "translation": "Tomó prestado un bolígrafo de su compañero de clase.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.09.15.17",
+    "id": "67fab6d59930102295342d7c",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca las preposiciones correctas.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He borrowed a pen",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "from"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "his classmate.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d7d"
+    },
+    "id": "67fab6d59930102295342d7d",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is waiting",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "for"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "a great opportunity.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.09.15.18",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions 1",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca las preposiciones correctas.",
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "imageUrl": "",
+    "translation": "Está esperando una gran oportunidad.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d7e"
+    },
+    "kind": "CLOZE",
+    "title": "Verbs and Their Prepositions 1",
+    "audioUrl": "",
+    "translation": "Me decidí por la camisa azul.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I decided",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the blue shirt.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.09.15.19",
+    "id": "67fab6d59930102295342d7e",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca las preposiciones correctas.",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d7f"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A2.09.15.20",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Ella siempre saluda a los extraños.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342d7f",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Verbs and Their Prepositions 1",
+    "instructions": "Coloca las preposiciones correctas.",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She always waves",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "strangers.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.09.Prepositions_After_Verbs",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d290"
+    },
+    "topicName": "Prepositions"
+  }
+]

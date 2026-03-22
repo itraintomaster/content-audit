@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430cf"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They've",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "been"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to the park. (Now they're in a restaurant.)",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d599301022953430cf",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.02.06.01",
+    "code": "",
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "answerImageUrl": "",
+    "translation": "Han estado en el parque.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430d0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "imageUrl": "",
+    "code": "",
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I've",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "been"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to the supermarket this week. (Now I'm at the office.)",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.02.06.02",
+    "id": "67fab6d599301022953430d0",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "translation": "He estado en el supermercado esta semana.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430d1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.02.06.03",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "imageUrl": "",
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953430d1",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She's",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "gone"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "to Italy. (She's in Italy now.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Ella se ha ido a Italia.",
+    "code": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430d2"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He has never",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "been"
+          ]
+        },
+        {
+          "text": "to Canada. (He lives in Brazil.)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "translation": "Él nunca ha estado en Canadá.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.02.06.04",
+    "id": "67fab6d599301022953430d2",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430d3"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They've",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "gone"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "to Paris. (They're in Paris now.)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.02.06.05",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "audioUrl": "",
+    "translation": "Se han ido a París.",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953430d3",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430d4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d599301022953430d4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "answerAudioUrl": "B1.02.06.06",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Ella ha estado en China.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She's",
+          "options": null
+        },
+        {
+          "options": [
+            "been"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "to China. (Now she's in England.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "audioUrl": "",
+    "code": "",
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430d5"
+    },
+    "id": "67fab6d599301022953430d5",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you ever",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "been"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "to Argentina? (Now you're in Uruguay.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "audioUrl": "",
+    "translation": "¿Alguna vez has estado en Argentina?",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.02.06.07",
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430d6"
+    },
+    "imageUrl": "",
+    "translation": "Los profesores se han ido a la sala de profesores.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.02.06.08",
+    "id": "67fab6d599301022953430d6",
+    "code": "",
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teachers have",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gone"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to the staff room. (They're in the staff room now.)",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430d7"
+    },
+    "answerAudioUrl": "B1.02.06.09",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Has estado en Alemania?",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "imageUrl": "",
+    "id": "67fab6d599301022953430d7",
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "been"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "to Germany? (Now you're in Spain.)",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "audioUrl": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430d8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "imageUrl": "",
+    "translation": "Él se ha ido a dormir.",
+    "id": "67fab6d599301022953430d8",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.02.06.10",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "gone"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "to sleep. (He's sleeping now.)",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430d9"
+    },
+    "kind": "CLOZE",
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.02.06.11",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953430d9",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They've",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gone"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to the shop. (They're at the shop now.)",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Se han ido a la tienda.",
+    "successMessage": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430da"
+    },
+    "id": "67fab6d599301022953430da",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "audioUrl": "",
+    "translation": "Mary se ha ido a la oficina.",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "answerAudioUrl": "B1.02.06.12",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary has",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "gone"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "to the office. (She's at work now.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "miniTheory": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430db"
+    },
+    "answerAudioUrl": "B1.02.06.13",
+    "kind": "CLOZE",
+    "translation": "He estado en Brasil.",
+    "answerImageUrl": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I've",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "been"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to Brazil. (Now I'm in Canada.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "audioUrl": "",
+    "id": "67fab6d599301022953430db",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430dc"
+    },
+    "translation": "Han estado en Roma.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.02.06.14",
+    "id": "67fab6d599301022953430dc",
+    "code": "",
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They've",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "been"
+          ]
+        },
+        {
+          "text": "to Rome. (Now they're in Berlin.)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "imageUrl": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430dd"
+    },
+    "kind": "CLOZE",
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "id": "67fab6d599301022953430dd",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gone"
+          ]
+        },
+        {
+          "text": "to the swimming pool. (He's at the swimming pool now.)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.02.06.15",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Él se ha ido a la piscina.",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430de"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He's never",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "been"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "to Russia. (Now he's in Japan.)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerAudioUrl": "B1.02.06.16",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "translation": "Él nunca ha estado en Rusia.",
+    "successMessage": "",
+    "id": "67fab6d599301022953430de",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430df"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "been"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "to the theatre. (Now he's at work.)",
+          "options": null
+        }
+      ]
+    },
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.02.06.17",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "audioUrl": "",
+    "id": "67fab6d599301022953430df",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Él ha estado en el teatro.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430e0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "audioUrl": "",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "translation": "Los gatos se han ido al jardín.",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cats have",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gone"
+          ]
+        },
+        {
+          "text": "to the garden. (They're at the garden now.)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "answerAudioUrl": "B1.02.06.18",
+    "id": "67fab6d599301022953430e0",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430e1"
+    },
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Louis has",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gone"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to the stadium. (He's in the stadium now.)",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "miniTheory": "",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "id": "67fab6d599301022953430e1",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Louis se ha ido al estadio.",
+    "answerAudioUrl": "B1.02.06.19",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953430e2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c7"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona la opción correcta, 'been' o 'gone'.",
+    "audioUrl": "",
+    "title": "'Been' or 'Gone' in Present Perfect: Practice",
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She's"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gone"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to Berlin. (She's in Berlin now.)",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ella se ha ido a Berlín.",
+    "answerAudioUrl": "B1.02.06.20",
+    "id": "67fab6d599301022953430e2",
+    "code": "",
+    "topicName": "Present perfect"
+  }
+]

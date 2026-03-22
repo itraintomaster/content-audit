@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a94"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We had a discussion",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "grammar rules.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "translation": "Tuvimos una discusión sobre las reglas gramaticales.",
+    "answerAudioUrl": "B2.15.09.01",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295344a94",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "title": "Noun + Preposition: Review",
+    "instructions": "Escribe la preposición correcta.",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a95"
+    },
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.15.09.02",
+    "id": "67fab6d59930102295344a95",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la preposición correcta.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He returned to his apartment for a fresh pair",
+          "options": null
+        },
+        {
+          "options": [
+            "of"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "shoes.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "translation": "Regresó a su apartamento por un par de zapatos nuevos.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Noun + Preposition: Review",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a96"
+    },
+    "id": "67fab6d59930102295344a96",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "translation": "¿Cuál es el precio de todos los artículos?",
+    "answerAudioUrl": "B2.15.09.03",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "What's the price",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "text": "all the items?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Noun + Preposition: Review",
+    "instructions": "Escribe la preposición correcta.",
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "successMessage": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a97"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Noun + Preposition: Review",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.15.09.04",
+    "kind": "CLOZE",
+    "instructions": "Escribe la preposición correcta.",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "¿Leíste ese informe sobre la contaminación en Beijing?",
+    "id": "67fab6d59930102295344a97",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did you read that report",
+          "options": null
+        },
+        {
+          "options": [
+            "about"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "pollution in Beijing?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "code": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a98"
+    },
+    "id": "67fab6d59930102295344a98",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Noun + Preposition: Review",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la preposición correcta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The athletes paused for a bottle",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "text": "juice.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Los atletas hicieron una pausa para tomar una botella de jugo.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.15.09.05",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a99"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "instructions": "Escribe la preposición correcta.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "title": "Noun + Preposition: Review",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I can't find the password",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "to"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "my account.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "No encuentro la contraseña de mi cuenta.",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "answerAudioUrl": "B2.15.09.06",
+    "id": "67fab6d59930102295344a99",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a9a"
+    },
+    "id": "67fab6d59930102295344a9a",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Es una pena lo del concierto cancelado.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's a shame",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the cancelled concert.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.15.09.07",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Noun + Preposition: Review",
+    "kind": "CLOZE",
+    "instructions": "Escribe la preposición correcta.",
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "audioUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a9b"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Esta es una historia sobre una princesa.",
+    "id": "67fab6d59930102295344a9b",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Noun + Preposition: Review",
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la preposición correcta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "This is a tale",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "text": "a princess.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.15.09.08",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a9c"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "id": "67fab6d59930102295344a9c",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "instructions": "Escribe la preposición correcta.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He requires some guidance",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "his college application.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Necesita orientación sobre su solicitud de ingreso a la universidad.",
+    "successMessage": "",
+    "answerAudioUrl": "B2.15.09.09",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Noun + Preposition: Review",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a9d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.15.09.10",
+    "kind": "CLOZE",
+    "title": "Noun + Preposition: Review",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did you have a debate",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "politics?"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "¿Tuvieron un debate sobre política?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la preposición correcta.",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295344a9d",
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a9e"
+    },
+    "title": "Noun + Preposition: Review",
+    "instructions": "Escribe la preposición correcta.",
+    "translation": "A ella le apasiona el tema del seminario.",
+    "successMessage": "",
+    "id": "67fab6d59930102295344a9e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.15.09.11",
+    "code": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She's passionate about the topic",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the seminar.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a9f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.15.09.12",
+    "id": "67fab6d59930102295344a9f",
+    "code": "",
+    "translation": "¿Cuál es el mes de tu graduación?",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Noun + Preposition: Review",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What's the month",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "text": "your graduation?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la preposición correcta.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344aa0"
+    },
+    "audioUrl": "",
+    "translation": "Tuvo una pesadilla sobre arañas.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Noun + Preposition: Review",
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "id": "67fab6d59930102295344aa0",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He experienced a nightmare",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "spiders."
+        }
+      ]
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la preposición correcta.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B2.15.09.13",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344aa1"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295344aa1",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "imageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la preposición correcta.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's a part",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "growing up that everyone makes mistakes!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "¡Es parte del crecimiento que todos cometan errores!",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.15.09.14",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Noun + Preposition: Review",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344aa2"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They developed a scheme",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "for"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the holidays.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "audioUrl": "",
+    "translation": "Desarrollaron un plan para las vacaciones.",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Noun + Preposition: Review",
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.15.09.15",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Escribe la preposición correcta.",
+    "id": "67fab6d59930102295344aa2",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344aa3"
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Ella concibió la idea de abrir una panadería.",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Noun + Preposition: Review",
+    "answerImageUrl": "",
+    "instructions": "Escribe la preposición correcta.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She conceived the notion"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "opening a bakery."
+        }
+      ]
+    },
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "answerAudioUrl": "B2.15.09.16",
+    "id": "67fab6d59930102295344aa3",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344aa4"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295344aa4",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la preposición correcta.",
+    "imageUrl": "",
+    "translation": "No aprendió a nadar hasta los 40 años.",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "title": "Noun + Preposition: Review",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He didn't learn to swim until the year",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "40.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.15.09.17",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344aa5"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295344aa5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Noun + Preposition: Review",
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "translation": "Ella entabló una conversación con su colega.",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la preposición correcta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She engaged in a talk",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "with"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "her colleague.",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.15.09.18",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344aa6"
+    },
+    "title": "Noun + Preposition: Review",
+    "id": "67fab6d59930102295344aa6",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la preposición correcta.",
+    "translation": "Este es un regalo para ti de parte de Sarah.",
+    "answerAudioUrl": "B2.15.09.19",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is a present for you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "from"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Sarah.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344aa7"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4aa"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295344aa7",
+    "code": "",
+    "title": "Noun + Preposition: Review",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.15.09.20",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la preposición correcta.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Is that commercial",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "for"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "a car?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.15.Nouns_and_Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Ese comercial es para un coche?",
+    "successMessage": "",
+    "topicName": "Prepositions"
+  }
+]

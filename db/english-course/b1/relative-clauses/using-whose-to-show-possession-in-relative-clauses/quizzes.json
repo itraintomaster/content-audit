@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534391f"
+    },
+    "instructions": "Crea una oración que incluya 'whose'.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "That's the girl. I borrowed the girl's scarf.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That's the girl whose scarf I borrowed."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.12.Whose_in_Relative_Clauses",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.12.08.01",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Whose' to Show Possession in Relative Clauses",
+    "translation": "Esa es la chica a la que le pedí prestada la bufanda.",
+    "id": "67fab6d5993010229534391f",
+    "code": "",
+    "imageUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343920"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The engineer is nearby. We greeted the engineer's wife.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "The engineer whose wife we greeted is nearby."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Whose' to Show Possession in Relative Clauses",
+    "instructions": "Crea una oración que incluya 'whose'.",
+    "translation": "El ingeniero cuya esposa saludamos está cerca.",
+    "answerAudioUrl": "B1.12.08.02",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.12.Whose_in_Relative_Clauses",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343920",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33f"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "successMessage": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343921"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Whose' to Show Possession in Relative Clauses",
+    "imageUrl": "",
+    "translation": "Saludé al profesor a cuya conferencia asistí ayer.",
+    "answerAudioUrl": "B1.12.08.03",
+    "id": "67fab6d59930102295343921",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33f"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una oración que incluya 'whose'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I greeted the professor. I attended the professor's lecture yesterday.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I greeted the professor whose lecture I attended yesterday."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.12.Whose_in_Relative_Clauses",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343922"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.12.08.04",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "El bebé cuyo sonajero se rompió se echó a reír.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343922",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.12.Whose_in_Relative_Clauses",
+    "audioUrl": "",
+    "title": "Using 'Whose' to Show Possession in Relative Clauses",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The baby began laughing. The baby's rattle broke.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The baby whose rattle broke began laughing."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una oración que incluya 'whose'.",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343923"
+    },
+    "id": "67fab6d59930102295343923",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.12.Whose_in_Relative_Clauses",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Whose' to Show Possession in Relative Clauses",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una oración que incluya 'whose'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She greeted the athletes. The athletes' races were completed.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She greeted the athletes whose races were completed."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ella saludó a los atletas cuyas carreras habían terminado.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.12.08.05",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343924"
+    },
+    "id": "67fab6d59930102295343924",
+    "title": "Using 'Whose' to Show Possession in Relative Clauses",
+    "theoryId": "b1.12.Whose_in_Relative_Clauses",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "El artista cuyas pinturas admiro dio un discurso.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.12.08.06",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una oración que incluya 'whose'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The artist gave a speech. I admire the artist's paintings.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The artist whose paintings I admire gave a speech."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343925"
+    },
+    "theoryId": "b1.12.Whose_in_Relative_Clauses",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.12.08.07",
+    "id": "67fab6d59930102295343925",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Whose' to Show Possession in Relative Clauses",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He comforted the cat. The cat's paw was injured."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He comforted the cat whose paw was injured."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Consoló al gato cuya pata estaba herida.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33f"
+    },
+    "instructions": "Crea una oración que incluya 'whose'.",
+    "imageUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343926"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.12.08.08",
+    "code": "",
+    "title": "Using 'Whose' to Show Possession in Relative Clauses",
+    "theoryId": "b1.12.Whose_in_Relative_Clauses",
+    "successMessage": "",
+    "translation": "Los pájaros cuya madre vi están cantando fuerte.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343926",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea una oración que incluya 'whose'.",
+    "imageUrl": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "The birds are singing loudly. I saw the birds' mother.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The birds whose mother I saw are singing loudly."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343927"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "La señora cuyo bolso descubrimos trabaja en la oficina.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33f"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295343927",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "b1.12.Whose_in_Relative_Clauses",
+    "successMessage": "",
+    "answerAudioUrl": "B1.12.08.09",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Whose' to Show Possession in Relative Clauses",
+    "instructions": "Crea una oración que incluya 'whose'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The lady works at the office. We discovered the lady's purse.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The lady whose purse we discovered works at the office."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343928"
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She thanked the doctor. We trust the doctor's son."
+        },
+        {
+          "text": "",
+          "options": [
+            "She thanked the doctor whose son we trust."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ella agradeció al doctor en cuyo hijo confiamos.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "theoryId": "b1.12.Whose_in_Relative_Clauses",
+    "id": "67fab6d59930102295343928",
+    "title": "Using 'Whose' to Show Possession in Relative Clauses",
+    "instructions": "Crea una oración que incluya 'whose'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.12.08.10",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "Relative clauses"
+  }
+]

@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534370d"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.06.01",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I will dance.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Mary said that she would dance."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d5993010229534370d",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "translation": "Mary dijo que bailaría.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534370e"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "translation": "Mary dijo que iría al estadio.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.06.02",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She will go to the stadium.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary said that she would go to the stadium."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "audioUrl": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534370e",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534370f"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534370f",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.10.06.03",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs will be thirsty.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary said that the dogs would be thirsty."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "translation": "Mary dijo que los perros tendrían sed.",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "successMessage": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343710"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "It will be sunny.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "Mary said that it would be sunny."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.10.06.04",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "imageUrl": "",
+    "translation": "Mary dijo que haría sol.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343710",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343711"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343711",
+    "answerAudioUrl": "B1.10.06.05",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Mary dijo que compraría pan.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She will buy some bread.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary said that she would buy some bread."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "code": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343712"
+    },
+    "imageUrl": "",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.06.06",
+    "id": "67fab6d59930102295343712",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The wine will be sweet.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Mary said that the wine would be sweet."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Mary dijo que el vino estaría dulce.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "code": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343713"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "id": "67fab6d59930102295343713",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Mary dijo que Peter llegaría tarde.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.06.07",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter will be late.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary said that Peter would be late."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343714"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.06.08",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I will read something.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary said that she would read something."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "translation": "Mary dijo que leería algo.",
+    "id": "67fab6d59930102295343714",
+    "kind": "CLOZE",
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "imageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343715"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Anne will be at the airport.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Mary said that Anne would be at the airport."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "translation": "Mary dijo que Anne estaría en el aeropuerto.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295343715",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.06.09",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343716"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She will choose a drink.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary said that she would choose a drink."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.06.10",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "translation": "Mary dijo que elegiría una bebida.",
+    "id": "67fab6d59930102295343716",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343717"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They will be at home.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Mary said that they would be at home."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.06.11",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Mary dijo que estarían en casa.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343717",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343718"
+    },
+    "translation": "Mary dijo que las chicas estarían en la escuela.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.06.12",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343718",
+    "audioUrl": "",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The girls will be at the school.",
+          "options": null
+        },
+        {
+          "options": [
+            "Mary said that the girls would be at the school."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343719"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I will practise yoga.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Mary said that she would practise yoga."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "translation": "Mary dijo que practicaría yoga.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343719",
+    "answerAudioUrl": "B1.10.06.13",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "miniTheory": "",
+    "code": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534371a"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "successMessage": "",
+    "id": "67fab6d5993010229534371a",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "answerAudioUrl": "B1.10.06.14",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They will make tea.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary said that they would make tea."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "translation": "Mary dijo que prepararían té.",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534371b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d5993010229534371b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Mary dijo que los profesores enseñarían francés.",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.06.15",
+    "code": "",
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teachers will teach French.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary said that the teachers would teach French."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534371c"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The flowers will bloom.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary said that the flowers would bloom."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "miniTheory": "",
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.06.16",
+    "id": "67fab6d5993010229534371c",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Mary dijo que las flores florecerían.",
+    "code": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534371d"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The house will be cool.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary said that the house would be cool."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534371d",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Mary dijo que la casa estaría fresca.",
+    "answerAudioUrl": "B1.10.06.17",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "code": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534371e"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I will catch the train.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary said that she would catch the train."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "imageUrl": "",
+    "translation": "Mary dijo que tomaría el tren.",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534371e",
+    "code": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.06.18",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534371f"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.06.19",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "audioUrl": "",
+    "translation": "Mary dijo que Laura traería fruta.",
+    "id": "67fab6d5993010229534371f",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Laura will bring some fruit.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary said that Laura would bring some fruit."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343720"
+    },
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.06.20",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Mary dijo que el equipo estaría contento.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343720",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Mary said that'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The team will be happy."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary said that the team would be happy."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "title": "Reporting the Future: Using 'will' in Reported Speech",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d322"
+    },
+    "topicName": "Reported speech"
+  }
+]

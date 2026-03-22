@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421f7"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d599301022953421f7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did it start"
+          ]
+        },
+        {
+          "text": "(it / start)?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.04.06.01",
+    "title": "Past Simple Questions with Regular Verbs",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "¿Cuándo comenzó?",
+    "miniTheory": "",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421f8"
+    },
+    "imageUrl": "",
+    "id": "67fab6d599301022953421f8",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "title": "Past Simple Questions with Regular Verbs",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "¿Qué horneaste?",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "What",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did you bake"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / bake)?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.04.06.02",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "audioUrl": "",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421f9"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "did she watch"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / watch) TV?",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953421f9",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "¿Por qué vio la televisión?",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Simple Questions with Regular Verbs",
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.06.03",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421fa"
+    },
+    "translation": "¿Cogimos el tren?",
+    "answerAudioUrl": "A1.04.06.04",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Did we catch"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we / catch) the train?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953421fa",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Simple Questions with Regular Verbs",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421fb"
+    },
+    "code": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.04.06.05",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "Did they cycle"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "(they / cycle) to school?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "audioUrl": "",
+    "translation": "¿Fueron en bicicleta a la escuela?",
+    "imageUrl": "",
+    "id": "67fab6d599301022953421fb",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Simple Questions with Regular Verbs",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421fc"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Did she look"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / look) happy?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "¿Parecía feliz?",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.04.06.06",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Simple Questions with Regular Verbs",
+    "successMessage": "",
+    "id": "67fab6d599301022953421fc",
+    "code": "",
+    "imageUrl": "",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421fd"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did they arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / arrive)?",
+          "options": null
+        }
+      ]
+    },
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Simple Questions with Regular Verbs",
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "translation": "¿Cómo llegaron?",
+    "successMessage": "",
+    "answerAudioUrl": "A1.04.06.07",
+    "id": "67fab6d599301022953421fd",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421fe"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.04.06.08",
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "Did I look"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(I / look) nervous?"
+        }
+      ]
+    },
+    "id": "67fab6d599301022953421fe",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "imageUrl": "",
+    "translation": "¿Parecía nervioso?",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "title": "Past Simple Questions with Regular Verbs",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953421ff"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did they listen to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / listen to)?",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A1.04.06.09",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "¿Qué escucharon?",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953421ff",
+    "title": "Past Simple Questions with Regular Verbs",
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "miniTheory": "",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342200"
+    },
+    "answerAudioUrl": "A1.04.06.10",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Simple Questions with Regular Verbs",
+    "translation": "¿Viste la televisión ayer?",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342200",
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Did you watch"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / watch) TV yesterday?",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342201"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "miniTheory": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342201",
+    "code": "",
+    "audioUrl": "",
+    "translation": "¿Te envié un mensaje de texto anoche?",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "title": "Past Simple Questions with Regular Verbs",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Did I text"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I / text) you last night?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "answerAudioUrl": "A1.04.06.11",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342202"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Did we order"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we / order) enough pizza?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Pedimos suficiente pizza?",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Simple Questions with Regular Verbs",
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "id": "67fab6d59930102295342202",
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A1.04.06.12",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342203"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342203",
+    "title": "Past Simple Questions with Regular Verbs",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Did you speak"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / speak) to him?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Hablaste con él?",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.04.06.13",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342204"
+    },
+    "id": "67fab6d59930102295342204",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "title": "Past Simple Questions with Regular Verbs",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "did the adults need"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the adults / need)?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Qué necesitaban los adultos?",
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.04.06.14",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "successMessage": "",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342205"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "Why",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did he cry"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / cry)?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.04.06.15",
+    "id": "67fab6d59930102295342205",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Simple Questions with Regular Verbs",
+    "translation": "¿Por qué lloró?",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342206"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Did it snow"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(it / snow)?"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.04.06.16",
+    "id": "67fab6d59930102295342206",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Simple Questions with Regular Verbs",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Nevó?",
+    "miniTheory": "",
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "answerImageUrl": "",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342207"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342207",
+    "title": "Past Simple Questions with Regular Verbs",
+    "successMessage": "",
+    "answerAudioUrl": "A1.04.06.17",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did the bus leave"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the bus / leave)?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "¿Por qué se fue el autobús?",
+    "answerImageUrl": "",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342208"
+    },
+    "code": "",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "title": "Past Simple Questions with Regular Verbs",
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.04.06.18",
+    "id": "67fab6d59930102295342208",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Who",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did she visit"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / visit)?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿A quién visitó?",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342209"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Did he need"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / need) new shoes?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "title": "Past Simple Questions with Regular Verbs",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "¿Necesitaba zapatos nuevos?",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.04.06.19",
+    "id": "67fab6d59930102295342209",
+    "topicName": "Past Simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534220a"
+    },
+    "answerAudioUrl": "A1.04.06.20",
+    "id": "67fab6d5993010229534220a",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3b6"
+    },
+    "miniTheory": "",
+    "theoryId": "a1.04.Past_Simple_Form_with_Regular_Verbs",
+    "translation": "¿Cuándo terminó su tarea?",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Past Simple Questions with Regular Verbs",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "When",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did he finish"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(he / finish) his homework?"
+        }
+      ]
+    },
+    "topicName": "Past Simple"
+  }
+]

@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343659"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone had built it.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "It had been built."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "title": "Passive Voice: Past Perfect Application",
+    "answerAudioUrl": "B1.09.07.01",
+    "id": "67fab6d59930102295343659",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Había sido construido.",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534365a"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Las paredes habían sido pintadas.",
+    "id": "67fab6d5993010229534365a",
+    "code": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.09.07.02",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Passive Voice: Past Perfect Application",
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They had painted the walls.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The walls had been painted."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "imageUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534365b"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He had trained the dogs.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The dogs had been trained."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Passive Voice: Past Perfect Application",
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "audioUrl": "",
+    "translation": "Los perros habían sido entrenados.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d5993010229534365b",
+    "kind": "CLOZE",
+    "answerAudioUrl": "B1.09.07.03",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534365c"
+    },
+    "translation": "Ellos habían sido dejados.",
+    "successMessage": "",
+    "id": "67fab6d5993010229534365c",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Passive Voice: Past Perfect Application",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.09.07.04",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "miniTheory": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The bus driver dropped them off.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They had been dropped off."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534365d"
+    },
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.09.07.05",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Passive Voice: Past Perfect Application",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534365d",
+    "code": "",
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dentist had checked him.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He had been checked."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Él había sido revisado.",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534365e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She had closed the shop.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The shop had been closed."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534365e",
+    "kind": "CLOZE",
+    "code": "",
+    "title": "Passive Voice: Past Perfect Application",
+    "translation": "La tienda había sido cerrada.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.09.07.06",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534365f"
+    },
+    "translation": "El juego había sido cancelado.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534365f",
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The rain canceled the game.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "The game had been canceled."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerAudioUrl": "B1.09.07.07",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Passive Voice: Past Perfect Application",
+    "audioUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343660"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "title": "Passive Voice: Past Perfect Application",
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343660",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "translation": "Ella había sido llamada.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.09.07.08",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone had called her.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She had been called."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343661"
+    },
+    "id": "67fab6d59930102295343661",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.09.07.09",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Passive Voice: Past Perfect Application",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They had tidied the room.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "The room had been tidied."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "La habitación había sido ordenada.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343662"
+    },
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "answerAudioUrl": "B1.09.07.10",
+    "id": "67fab6d59930102295343662",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Passive Voice: Past Perfect Application",
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She had signed the papers.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The papers had been signed."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Los papeles habían sido firmados.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343663"
+    },
+    "translation": "Mi billetera había sido encontrada.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Passive Voice: Past Perfect Application",
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Someone had found my wallet.",
+          "options": null
+        },
+        {
+          "options": [
+            "My wallet had been found."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.09.07.11",
+    "id": "67fab6d59930102295343663",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343664"
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "answerAudioUrl": "B1.09.07.12",
+    "id": "67fab6d59930102295343664",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "title": "Passive Voice: Past Perfect Application",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Los informes habían sido impresos.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He had printed the reports.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The reports had been printed."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343665"
+    },
+    "title": "Passive Voice: Past Perfect Application",
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They had seen her.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She had been seen."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Ella había sido vista.",
+    "id": "67fab6d59930102295343665",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.09.07.13",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343666"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He had followed them.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They had been followed."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295343666",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ellos habían sido seguidos.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.09.07.14",
+    "code": "",
+    "title": "Passive Voice: Past Perfect Application",
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "imageUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343667"
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Passive Voice: Past Perfect Application",
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343667",
+    "kind": "CLOZE",
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "translation": "El libro había sido leído.",
+    "miniTheory": "",
+    "code": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She had read the book.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The book had been read."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.09.07.15",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343668"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We had finished the project."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The project had been finished."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "id": "67fab6d59930102295343668",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "audioUrl": "",
+    "translation": "El proyecto había sido terminado.",
+    "title": "Passive Voice: Past Perfect Application",
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.09.07.16",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343669"
+    },
+    "answerAudioUrl": "B1.09.07.17",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Passive Voice: Past Perfect Application",
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343669",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They had trusted him.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "He had been trusted."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Se había confiado en él.",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534366a"
+    },
+    "id": "67fab6d5993010229534366a",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.09.07.18",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She had lost the keys.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "The keys had been lost."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "translation": "Las llaves se habían perdido.",
+    "successMessage": "",
+    "code": "",
+    "title": "Passive Voice: Past Perfect Application",
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534366b"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "answerAudioUrl": "B1.09.07.19",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534366b",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Passive Voice: Past Perfect Application",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They had fed the cats.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The cats had been fed."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "translation": "Los gatos habían sido alimentados.",
+    "answerImageUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534366c"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She had planned the party.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The party had been planned."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "La fiesta había sido planeada.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534366c",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d318"
+    },
+    "instructions": "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.09.07.20",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.09.How_to_Make_the_Passive",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Passive Voice: Past Perfect Application",
+    "miniTheory": "",
+    "topicName": "The passive"
+  }
+]

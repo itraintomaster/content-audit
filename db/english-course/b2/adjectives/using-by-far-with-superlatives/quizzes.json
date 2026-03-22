@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448d2"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea un adjetivo superlativo y pon 'by far' antes de él.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That is / modern building in the city.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That is by far the most modern building in the city."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.13.09.01",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953448d2",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Using 'By Far' with Superlatives",
+    "theoryId": "b2.13.Superlatives_with_by_far_",
+    "translation": "Ese es, por mucho, el edificio más moderno de la ciudad.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448d3"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They are / fast runners!",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They are by far the fastest runners!"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea un adjetivo superlativo y pon 'by far' antes de él.",
+    "kind": "CLOZE",
+    "title": "Using 'By Far' with Superlatives",
+    "imageUrl": "",
+    "translation": "¡Ellos son, por mucho, los corredores más rápidos!",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.09.02",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.13.Superlatives_with_by_far_",
+    "audioUrl": "",
+    "id": "67fab6d599301022953448d3",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48f"
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448d4"
+    },
+    "id": "67fab6d599301022953448d4",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ella es, por mucho, la estudiante más inteligente que he conocido.",
+    "miniTheory": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48f"
+    },
+    "instructions": "Crea un adjetivo superlativo y pon 'by far' antes de él.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'By Far' with Superlatives",
+    "theoryId": "b2.13.Superlatives_with_by_far_",
+    "answerAudioUrl": "B2.13.09.03",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is / intelligent student I have met.",
+          "options": null
+        },
+        {
+          "options": [
+            "She is by far the most intelligent student I have met."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448d5"
+    },
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "theoryId": "b2.13.Superlatives_with_by_far_",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953448d5",
+    "title": "Using 'By Far' with Superlatives",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is / short boy in the group.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He is by far the shortest boy in the group."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea un adjetivo superlativo y pon 'by far' antes de él.",
+    "audioUrl": "",
+    "translation": "Él es, por mucho, el chico más bajo del grupo.",
+    "answerAudioUrl": "B2.13.09.04",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48f"
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448d6"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Esa fue, por mucho, la peor experiencia que he tenido.",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'By Far' with Superlatives",
+    "theoryId": "b2.13.Superlatives_with_by_far_",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.09.05",
+    "id": "67fab6d599301022953448d6",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "instructions": "Crea un adjetivo superlativo y pon 'by far' antes de él.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That was / bad experience I've ever had.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That was by far the worst experience I've ever had."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448d7"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She sings / beautiful song.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She sings by far the most beautiful song."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerAudioUrl": "B2.13.09.06",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea un adjetivo superlativo y pon 'by far' antes de él.",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'By Far' with Superlatives",
+    "translation": "Ella canta, por mucho, la canción más hermosa.",
+    "successMessage": "",
+    "code": "",
+    "theoryId": "b2.13.Superlatives_with_by_far_",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953448d7",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48f"
+    },
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448d8"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Paris is / romantic city in Europe."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Paris is by far the most romantic city in Europe."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.13.Superlatives_with_by_far_",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "id": "67fab6d599301022953448d8",
+    "title": "Using 'By Far' with Superlatives",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea un adjetivo superlativo y pon 'by far' antes de él.",
+    "translation": "París es, por mucho, la ciudad más romántica de Europa.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.09.07",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448d9"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953448d9",
+    "successMessage": "",
+    "answerAudioUrl": "B2.13.09.08",
+    "title": "Using 'By Far' with Superlatives",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48f"
+    },
+    "instructions": "Crea un adjetivo superlativo y pon 'by far' antes de él.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Catherine is / kind person we know.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Catherine is by far the kindest person we know."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b2.13.Superlatives_with_by_far_",
+    "translation": "Catherine es, por mucho, la persona más amable que conocemos.",
+    "miniTheory": "",
+    "code": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448da"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'By Far' with Superlatives",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.13.Superlatives_with_by_far_",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Este es, por mucho, el peor té que he probado.",
+    "id": "67fab6d599301022953448da",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is / awful tea that I've ever tasted.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "This is by far the worst tea that I've ever tasted."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.09.09",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48f"
+    },
+    "instructions": "Crea un adjetivo superlativo y pon 'by far' antes de él.",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448db"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea un adjetivo superlativo y pon 'by far' antes de él.",
+    "theoryId": "b2.13.Superlatives_with_by_far_",
+    "audioUrl": "",
+    "code": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Those were / sour lemons that he had ever tried.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Those were by far the sourest lemons that he had ever tried."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "translation": "Esos fueron, por mucho, los limones más agrios que él había probado.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.09.10",
+    "id": "67fab6d599301022953448db",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48f"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'By Far' with Superlatives",
+    "topicName": "Adjectives"
+  }
+]

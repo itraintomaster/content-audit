@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953435d8"
+    },
+    "title": "Using 'Both ... and'",
+    "instructions": "Añade 'both' a las oraciones.",
+    "answerAudioUrl": "B1.08.06.01",
+    "id": "67fab6d599301022953435d8",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "David and Emily enjoy the seaside.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Both David and Emily enjoy the seaside."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Tanto a David como a Emily les gusta la costa.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d310"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.08.Both…_And…",
+    "audioUrl": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953435d9"
+    },
+    "id": "67fab6d599301022953435d9",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.08.06.02",
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d310"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'both' a las oraciones.",
+    "theoryId": "b1.08.Both…_And…",
+    "imageUrl": "",
+    "title": "Using 'Both ... and'",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He has visited Italy and Spain.",
+          "options": null
+        },
+        {
+          "options": [
+            "He has visited both Italy and Spain."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Ha visitado tanto Italia como España.",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953435da"
+    },
+    "title": "Using 'Both ... and'",
+    "instructions": "Añade 'both' a las oraciones.",
+    "translation": "Ella disfruta tanto de las películas de acción como de las comedias.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.08.06.03",
+    "id": "67fab6d599301022953435da",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d310"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.08.Both…_And…",
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She enjoys action movies and comedy films.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "She enjoys both action movies and comedy films."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953435db"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d310"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "title": "Using 'Both ... and'",
+    "theoryId": "b1.08.Both…_And…",
+    "id": "67fab6d599301022953435db",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'both' a las oraciones.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "France and Germany have accepted the deal.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Both France and Germany have accepted the deal."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Tanto Francia como Alemania han aceptado el acuerdo.",
+    "answerAudioUrl": "B1.08.06.04",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953435dc"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.08.06.05",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d310"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Lions and tigers live in these jungles.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Both lions and tigers live in these jungles."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "title": "Using 'Both ... and'",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953435dc",
+    "kind": "CLOZE",
+    "translation": "Tanto los leones como los tigres viven en estas selvas.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'both' a las oraciones.",
+    "theoryId": "b1.08.Both…_And…",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953435dd"
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d310"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'both' a las oraciones.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.08.06.06",
+    "id": "67fab6d599301022953435dd",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "theoryId": "b1.08.Both…_And…",
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The shows are on Friday and Saturday.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The shows are on both Friday and Saturday."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Los espectáculos son tanto el viernes como el sábado.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Both ... and'",
+    "imageUrl": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953435de"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Esta tienda está abierta tanto por la mañana como por la tarde.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.08.06.07",
+    "code": "",
+    "instructions": "Añade 'both' a las oraciones.",
+    "theoryId": "b1.08.Both…_And…",
+    "title": "Using 'Both ... and'",
+    "miniTheory": "",
+    "id": "67fab6d599301022953435de",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This shop is open in the morning and the evening.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "This shop is open in both the morning and the evening."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d310"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953435df"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.08.06.08",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d310"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'both' a las oraciones.",
+    "translation": "Tanto los árboles como las flores crecen bien aquí.",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953435df",
+    "code": "",
+    "title": "Using 'Both ... and'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Trees and flowers grow well here.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Both trees and flowers grow well here."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.08.Both…_And…",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953435e0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Él disfruta tanto de la cerveza como del vino.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d310"
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.08.Both…_And…",
+    "id": "67fab6d599301022953435e0",
+    "title": "Using 'Both ... and'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He enjoys beer and wine.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He enjoys both beer and wine."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.08.06.09",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Añade 'both' a las oraciones.",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953435e1"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d310"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "translation": "Tanto Roma como Berlín son ciudades realmente emocionantes.",
+    "answerAudioUrl": "B1.08.06.10",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "instructions": "Añade 'both' a las oraciones.",
+    "id": "67fab6d599301022953435e1",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Both ... and'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Rome and Berlin are really exciting cities.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Both Rome and Berlin are really exciting cities."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.08.Both…_And…",
+    "topicName": "Determiners"
+  }
+]

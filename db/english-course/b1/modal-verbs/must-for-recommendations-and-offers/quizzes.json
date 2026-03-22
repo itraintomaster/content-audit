@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343825"
+    },
+    "answerAudioUrl": "B1.11.07.01",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Must' for Recommendations and Offers",
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "translation": "Debes probar ese auto.",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295343825",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I advise testing that car.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must test that car."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343826"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please do eat some more salad.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must eat some more salad."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.11.07.02",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343826",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "title": "'Must' for Recommendations and Offers",
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "translation": "Debes comer un poco más de ensalada.",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343827"
+    },
+    "code": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.11.07.03",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Must' for Recommendations and Offers",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I think you should watch that movie."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must watch that movie."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "translation": "Debes ver esa película.",
+    "successMessage": "",
+    "id": "67fab6d59930102295343827",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343828"
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295343828",
+    "translation": "Debes vivir conmigo cuando estés en París.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How about living with me when you're in Paris.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must live with me when you're in Paris."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.11.07.04",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "title": "'Must' for Recommendations and Offers",
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343829"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do drink some more juice.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must drink some more juice."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343829",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.11.07.05",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Must' for Recommendations and Offers",
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "translation": "Debes beber un poco más de jugo.",
+    "miniTheory": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534382a"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "translation": "Debes comerte uno de los caramelos.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.11.07.06",
+    "id": "67fab6d5993010229534382a",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Must' for Recommendations and Offers",
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why don't you eat one of the candies?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must eat one of the candies."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534382b"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please eat another cookie.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must eat another cookie."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "translation": "Debes comerte otra galleta.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.11.07.07",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Must' for Recommendations and Offers",
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "id": "67fab6d5993010229534382b",
+    "imageUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534382c"
+    },
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I recommend visiting that park.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must visit that park."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "miniTheory": "",
+    "id": "67fab6d5993010229534382c",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.11.07.08",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Debes visitar ese parque.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "title": "'Must' for Recommendations and Offers",
+    "successMessage": "",
+    "code": "",
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534382d"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Would you like to drink some more water?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must drink some more water."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "imageUrl": "",
+    "translation": "Debes beber un poco más de agua.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.11.07.09",
+    "id": "67fab6d5993010229534382d",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "title": "'Must' for Recommendations and Offers",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534382e"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534382e",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Must' for Recommendations and Offers",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do use one of my shirts.",
+          "options": null
+        },
+        {
+          "options": [
+            "You must use one of my shirts."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Debes usar una de mis camisas.",
+    "answerAudioUrl": "B1.11.07.10",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534382f"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I suggest running in the park.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must go for a walk along the river."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Debes dar un paseo por la orilla del río.",
+    "id": "67fab6d5993010229534382f",
+    "successMessage": "",
+    "answerAudioUrl": "B1.11.07.11",
+    "title": "'Must' for Recommendations and Offers",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "imageUrl": "",
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343830"
+    },
+    "id": "67fab6d59930102295343830",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "'Must' for Recommendations and Offers",
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "answerAudioUrl": "B1.11.07.12",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How about grabbing this coat?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must take this umbrella."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "translation": "Debes llevarte este paraguas.",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343831"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Please assist to the concert.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "You must come to the party."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "successMessage": "",
+    "id": "67fab6d59930102295343831",
+    "code": "",
+    "title": "'Must' for Recommendations and Offers",
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "translation": "Debes venir a la fiesta.",
+    "answerAudioUrl": "B1.11.07.13",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343832"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Debes venir a cenar con nosotros.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do visit and eat lunch with us.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must come and have dinner with us."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295343832",
+    "title": "'Must' for Recommendations and Offers",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.11.07.14",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343833"
+    },
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.11.07.15",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "imageUrl": "",
+    "title": "'Must' for Recommendations and Offers",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I recommend exploring that cathedral.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must visit that museum."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Debes visitar ese museo.",
+    "id": "67fab6d59930102295343833",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343834"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295343834",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Must' for Recommendations and Offers",
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.11.07.16",
+    "translation": "Debes llevarte mi auto.",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please ride my bike.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must take my car."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343835"
+    },
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Debes probar el nuevo restaurante argentino.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Maybe you should taste the new Peruvian dish.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must try the new Argentinian restaurant."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Must' for Recommendations and Offers",
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "id": "67fab6d59930102295343835",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.11.07.17",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343836"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I recommend seeing the new play.",
+          "options": null
+        },
+        {
+          "options": [
+            "You must go to the new show."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Debes ir al nuevo espectáculo.",
+    "answerAudioUrl": "B1.11.07.18",
+    "id": "67fab6d59930102295343836",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "title": "'Must' for Recommendations and Offers",
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "answerImageUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343837"
+    },
+    "id": "67fab6d59930102295343837",
+    "kind": "CLOZE",
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "answerAudioUrl": "B1.11.07.19",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "imageUrl": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Must' for Recommendations and Offers",
+    "audioUrl": "",
+    "translation": "Debes ir a Roma.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I think you should travel to Venice.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must go to Rome."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343838"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d331"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's a good idea to assist to the conference at the Town Hall.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You must see the exhibition at the Royal Academy."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Debes ver la exposición en la Real Academia.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343838",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Must' for Recommendations and Offers",
+    "audioUrl": "",
+    "instructions": "Transforma las oraciones para que incluyan la palabra 'must'.",
+    "theoryId": "b1.11.Must_for_Recommendations_and_Offers",
+    "successMessage": "",
+    "answerAudioUrl": "B1.11.07.20",
+    "topicName": "Modal verbs"
+  }
+]

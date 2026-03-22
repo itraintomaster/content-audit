@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d12"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.09.01",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28a"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He'll remain in the office",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "until"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "6 pm, then he'll depart.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342d12",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'by' o 'until'.",
+    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
+    "translation": "Él permanecerá en la oficina hasta las 6 pm, luego se marchará.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing Between By and Until",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d13"
+    },
+    "instructions": "Elige 'by' o 'until'.",
+    "translation": "Ella regresará para el 15.",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.09.09.02",
+    "id": "67fab6d59930102295342d13",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "title": "Choosing Between By and Until",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She'll return",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "by"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "the 15th."
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d14"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing Between By and Until",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'll be expecting you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "until"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "noon.",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295342d14",
+    "instructions": "Elige 'by' o 'until'.",
+    "imageUrl": "",
+    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
+    "translation": "Te estaré esperando hasta el mediodía.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.09.09.03",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d15"
+    },
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They resided in France",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "until"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "2003, then they relocated to Germany.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Residieron en Francia hasta 2003, luego se mudaron a Alemania.",
+    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342d15",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.09.09.04",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing Between By and Until",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28a"
+    },
+    "instructions": "Elige 'by' o 'until'.",
+    "audioUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d16"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Aterrizaremos en Londres para agosto.",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28a"
+    },
+    "title": "Choosing Between By and Until",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We'll land in London",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "by"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "August.",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A2.09.09.05",
+    "successMessage": "",
+    "id": "67fab6d59930102295342d16",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'by' o 'until'.",
+    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d17"
+    },
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.09.09.06",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28a"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We will have it ready"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "by"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Monday morning.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
+    "translation": "Lo tendremos listo para el lunes por la mañana.",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing Between By and Until",
+    "successMessage": "",
+    "id": "67fab6d59930102295342d17",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'by' o 'until'.",
+    "imageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d18"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342d18",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28a"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He is lodging there",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "until"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Tuesday.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
+    "imageUrl": "",
+    "translation": "Él se aloja allí hasta el martes.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.09.09.07",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing Between By and Until",
+    "instructions": "Elige 'by' o 'until'.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d19"
+    },
+    "code": "",
+    "title": "Choosing Between By and Until",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342d19",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I will study"
+        },
+        {
+          "options": [
+            "until"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "8 pm, then I'll take a break.",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "translation": "Estudiaré hasta las 8 pm, luego tomaré un descanso.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'by' o 'until'.",
+    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.09.09.08",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d1a"
+    },
+    "translation": "Ella llamará para las 2 pm para que podamos discutir el plan a las 2:30.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She will call",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "by"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "2 pm so we can all discuss the plan at 2:30.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342d1a",
+    "title": "Choosing Between By and Until",
+    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
+    "code": "",
+    "instructions": "Elige 'by' o 'until'.",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.09.09.09",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d1b"
+    },
+    "id": "67fab6d59930102295342d1b",
+    "code": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Choosing Between By and Until",
+    "instructions": "Elige 'by' o 'until'.",
+    "theoryId": "a2.09.Prepositions_of_Time_1_Until_By_",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Los invitados deben llegar para las 7 pm. La recepción comienza a las 7.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The guests need to arrive",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "by"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "7 pm. The reception starts at 7.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.09.09.10",
+    "topicName": "Prepositions"
+  }
+]

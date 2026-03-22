@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b95"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Me gusta mucho la pizza.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I like pizza. (very much)",
+          "options": null
+        },
+        {
+          "options": [
+            "I like pizza very much."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "answerAudioUrl": "B1.16.01.01",
+    "id": "67fab6d59930102295343b95",
+    "title": "Adverb Placement Review",
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b96"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343b96",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.16.01.02",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "successMessage": "",
+    "code": "",
+    "title": "Adverb Placement Review",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She travels to Italy. (every summer)",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "She travels to Italy every summer."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "imageUrl": "",
+    "translation": "Ella viaja a Italia cada verano.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b97"
+    },
+    "code": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.16.01.03",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "translation": "Finalmente llevaste los libros a la escuela.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343b97",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverb Placement Review",
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You took the books to school. (eventually)",
+          "options": null
+        },
+        {
+          "options": [
+            "You eventually took the books to school."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b98"
+    },
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He plays tennis. (twice a week)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He plays tennis twice a week."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Él juega al tenis dos veces por semana.",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.16.01.04",
+    "id": "67fab6d59930102295343b98",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverb Placement Review",
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b99"
+    },
+    "kind": "CLOZE",
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "successMessage": "",
+    "answerAudioUrl": "B1.16.01.05",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I don't understand quantum physics. (really)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I don't really understand quantum physics."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Realmente no entiendo la física cuántica.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343b99",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverb Placement Review",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b9a"
+    },
+    "id": "67fab6d59930102295343b9a",
+    "code": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.16.01.06",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "translation": "Ella resolvió el rompecabezas rápidamente.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverb Placement Review",
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She solved the puzzle. (quickly)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She solved the puzzle quickly."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b9b"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.16.01.07",
+    "code": "",
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We could order takeout. (perhaps)",
+          "options": null
+        },
+        {
+          "options": [
+            "We could perhaps order takeout."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverb Placement Review",
+    "imageUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "translation": "Quizás podríamos pedir comida para llevar.",
+    "id": "67fab6d59930102295343b9b",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b9c"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "translation": "A ella le gusta mucho ver películas.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.16.01.08",
+    "id": "67fab6d59930102295343b9c",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverb Placement Review",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She enjoys watching movies. (very)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She very much enjoys watching movies."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "imageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b9d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.16.01.09",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We eat out at restaurants. (frequently)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We frequently eat out at restaurants."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "id": "67fab6d59930102295343b9d",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverb Placement Review",
+    "audioUrl": "",
+    "translation": "Con frecuencia comemos fuera en restaurantes.",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b9e"
+    },
+    "id": "67fab6d59930102295343b9e",
+    "title": "Adverb Placement Review",
+    "audioUrl": "",
+    "translation": "Ellos visitan a sus abuelos dos veces al año.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.16.01.10",
+    "code": "",
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They visit their grandparents twice a year",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They visit their grandparents twice a year."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b9f"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I liked the performance. (very much)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I liked the performance very much."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343b9f",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverb Placement Review",
+    "translation": "Me gustó mucho la actuación.",
+    "answerAudioUrl": "B1.16.01.11",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ba0"
+    },
+    "id": "67fab6d59930102295343ba0",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "miniTheory": "",
+    "code": "",
+    "title": "Adverb Placement Review",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "imageUrl": "",
+    "translation": "Normalmente bebemos té.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We drink tea. (usually)",
+          "options": null
+        },
+        {
+          "options": [
+            "We usually drink tea."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.16.01.12",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ba1"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverb Placement Review",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He dances. (gracefully)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He dances gracefully."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "Él baila con gracia.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "answerAudioUrl": "B1.16.01.13",
+    "id": "67fab6d59930102295343ba1",
+    "code": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ba2"
+    },
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343ba2",
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "translation": "Ella va a nadar tres veces al mes.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She goes swimming. (three times a month)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She goes swimming three times a month."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.16.01.14",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverb Placement Review",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ba3"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "audioUrl": "",
+    "translation": "No suelo comer comida picante.",
+    "successMessage": "",
+    "id": "67fab6d59930102295343ba3",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.16.01.15",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I don't eat spicy food. (often)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I don't often eat spicy food."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverb Placement Review",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ba4"
+    },
+    "answerAudioUrl": "B1.16.01.16",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343ba4",
+    "kind": "CLOZE",
+    "title": "Adverb Placement Review",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She takes a break. (every morning)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She takes a break every morning."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "successMessage": "",
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "audioUrl": "",
+    "imageUrl": "",
+    "translation": "Ella toma un descanso cada mañana.",
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ba5"
+    },
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343ba5",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverb Placement Review",
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They go to the beach. (once a year)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They go to the beach once a year."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.16.01.17",
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "translation": "Ellos van a la playa una vez al año.",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ba6"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295343ba6",
+    "imageUrl": "",
+    "audioUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He often plays video games. (often)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He often plays video games."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "translation": "Él juega a menudo a videojuegos.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.16.01.18",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverb Placement Review",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ba7"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She will be on time. (definitely)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She will definitely be on time."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "audioUrl": "",
+    "translation": "Ella definitivamente llegará a tiempo.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343ba7",
+    "title": "Adverb Placement Review",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.16.01.19",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ba8"
+    },
+    "id": "67fab6d59930102295343ba8",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d365"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.16.01.20",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverb Placement Review",
+    "theoryId": "b1.16.Adverbs_of_Focus_Even",
+    "instructions": "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She sings songs. (loudly)",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "She sings songs loudly."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Ella canta canciones en voz alta.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Adverbs"
+  }
+]

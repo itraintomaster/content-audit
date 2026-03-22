@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f06"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He has lunch. (every day)",
+          "options": null
+        },
+        {
+          "options": [
+            "He has lunch every day."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342f06",
+    "title": "Frequency Adverb Placement Practice",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "theoryId": "",
+    "translation": "Él almuerza todos los días.",
+    "answerAudioUrl": "A2.12.04.01",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f07"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Frequency Adverb Placement Practice",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342f07",
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "theoryId": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I sleep badly. (every afternoon)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I sleep badly every afternoon."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Duermo mal todas las tardes.",
+    "answerAudioUrl": "A2.12.04.02",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f08"
+    },
+    "id": "67fab6d59930102295342f08",
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Frequency Adverb Placement Practice",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs go running. (three times a week)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The dogs go running three times a week."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.12.04.03",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "miniTheory": "",
+    "code": "",
+    "imageUrl": "",
+    "translation": "Los perros salen a correr tres veces por semana.",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f09"
+    },
+    "title": "Frequency Adverb Placement Practice",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "imageUrl": "",
+    "translation": "Ellos a veces llegan temprano.",
+    "answerAudioUrl": "A2.12.04.04",
+    "id": "67fab6d59930102295342f09",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They are early. (sometimes)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They are sometimes early."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f0a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Él siempre bebe té por la noche.",
+    "successMessage": "",
+    "id": "67fab6d59930102295342f0a",
+    "code": "",
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "theoryId": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.12.04.05",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Frequency Adverb Placement Practice",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He drinks tea in the evening. (always)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He always drinks tea in the evening."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f0b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We go to the cinema. (every Saturday)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We go to the cinema every Saturday."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "translation": "Vamos al cine todos los sábados.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "code": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342f0b",
+    "title": "Frequency Adverb Placement Practice",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.12.04.06",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f0c"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342f0c",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We call Peter. (twice a month)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We call Peter twice a month."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Llamamos a Peter dos veces al mes.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "theoryId": "",
+    "answerAudioUrl": "A2.12.04.07",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Frequency Adverb Placement Practice",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f0d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They travel (once a month)",
+          "options": null
+        },
+        {
+          "options": [
+            "They travel once a month."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Frequency Adverb Placement Practice",
+    "theoryId": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "answerAudioUrl": "A2.12.04.08",
+    "kind": "CLOZE",
+    "translation": "Ellos viajan una vez al mes.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342f0d",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f0e"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ella visita a su padre todas las semanas.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.12.04.09",
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Frequency Adverb Placement Practice",
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "theoryId": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She visits her father (every week)",
+          "options": null
+        },
+        {
+          "options": [
+            "She visits her father every week."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342f0e",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f0f"
+    },
+    "translation": "Ella nunca está aburrida.",
+    "miniTheory": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.12.04.10",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Frequency Adverb Placement Practice",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is bored. (never)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She is never bored."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "id": "67fab6d59930102295342f0f",
+    "kind": "CLOZE",
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "answerImageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f10"
+    },
+    "title": "Frequency Adverb Placement Practice",
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.12.04.11",
+    "translation": "Ellos usualmente están tristes.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "id": "67fab6d59930102295342f10",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They are sad. (usually)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They are usually sad."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f11"
+    },
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We eat pizza. (often)",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "We often eat pizza."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "A menudo comemos pizza.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Frequency Adverb Placement Practice",
+    "theoryId": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A2.12.04.12",
+    "id": "67fab6d59930102295342f11",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f12"
+    },
+    "imageUrl": "",
+    "translation": "Ordenamos la cocina una vez a la semana.",
+    "answerAudioUrl": "A2.12.04.13",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "theoryId": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342f12",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We tidy the kitchen. (once a year)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We tidy the kitchen once a week."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Frequency Adverb Placement Practice",
+    "audioUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f13"
+    },
+    "id": "67fab6d59930102295342f13",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cats visit me. (once a week)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The cats visit me once a month."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A2.12.04.14",
+    "kind": "CLOZE",
+    "title": "Frequency Adverb Placement Practice",
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "theoryId": "",
+    "imageUrl": "",
+    "translation": "Los gatos me visitan una vez al mes.",
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f14"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.12.04.15",
+    "title": "Frequency Adverb Placement Practice",
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We arrived late. (usually)"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We usually arrived late."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "translation": "Normalmente llegábamos tarde.",
+    "id": "67fab6d59930102295342f14",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f15"
+    },
+    "imageUrl": "",
+    "translation": "Él a menudo estaba en el trabajo.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342f15",
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "theoryId": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Frequency Adverb Placement Practice",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "He was at work. (often)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "He was often at work."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "answerAudioUrl": "A2.12.04.16",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f16"
+    },
+    "id": "67fab6d59930102295342f16",
+    "code": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She goes to bed early. (never)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She never goes to bed early."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.12.04.17",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Frequency Adverb Placement Practice",
+    "translation": "Ella nunca se acuesta temprano.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "theoryId": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f17"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.12.04.18",
+    "id": "67fab6d59930102295342f17",
+    "code": "",
+    "theoryId": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Frequency Adverb Placement Practice",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The girls are thirsty. (always)",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "The girls are always thirsty."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Las chicas siempre tienen sed.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f18"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He sends messages to his sister. (twice a year)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He sends messages to his sister twice a month."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295342f18",
+    "title": "Frequency Adverb Placement Practice",
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "translation": "Él envía mensajes a su hermana dos veces al mes.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.12.04.19",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342f19"
+    },
+    "instructions": "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
+    "imageUrl": "",
+    "translation": "Ellos a veces van a bailar.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ae"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Frequency Adverb Placement Practice",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.12.04.20",
+    "id": "67fab6d59930102295342f19",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They go dancing. (sometimes)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They sometimes go dancing."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  }
+]

@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e83"
+    },
+    "id": "67fab6d59930102295343e83",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We / eat enough vegetables?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will we have been eating enough vegetables?"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.14.01",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "¿Habremos estado comiendo suficientes verduras?",
+    "miniTheory": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e84"
+    },
+    "code": "",
+    "translation": "¿Habrás estado descansando?",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "answerAudioUrl": "B2.01.14.02",
+    "id": "67fab6d59930102295343e84",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "You / rest?",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "Will you have been resting?"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e85"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How long / Michael / sing songs?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "How long will Michael have been singing songs?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343e85",
+    "answerAudioUrl": "B2.01.14.03",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "translation": "¿Cuánto tiempo habrá estado Michael cantando canciones?",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "successMessage": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e86"
+    },
+    "translation": "¿Cuánto tiempo habrás estado tocando el piano?",
+    "id": "67fab6d59930102295343e86",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "How long / you / play the piano?"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "How long will you have been playing the piano?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "answerAudioUrl": "B2.01.14.04",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e87"
+    },
+    "audioUrl": "",
+    "translation": "¿Cuánto tiempo habrá estado ella leyendo español?",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.14.05",
+    "id": "67fab6d59930102295343e87",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How long / she / read Spanish?",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "How long will she have been reading Spanish?"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "code": "",
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "miniTheory": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e88"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295343e88",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "audioUrl": "",
+    "translation": "¿Cuánto tiempo habrá estado ella parada aquí?",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "How long / she / stand here?"
+        },
+        {
+          "text": "",
+          "options": [
+            "How long will she have been standing here?"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.14.06",
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "imageUrl": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e89"
+    },
+    "id": "67fab6d59930102295343e89",
+    "translation": "¿Cuánto tiempo habrá estado Peter quejándose?",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How long / Peter / complain?",
+          "options": null
+        },
+        {
+          "options": [
+            "How long will Peter have been complaining?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.14.07",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e8a"
+    },
+    "answerImageUrl": "",
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "¿Habrá estado David leyendo toda la mañana?",
+    "successMessage": "",
+    "answerAudioUrl": "B2.01.14.08",
+    "id": "67fab6d59930102295343e8a",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "David / read all morning?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will David have been reading all morning?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e8b"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How long / he / cycle?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "How long will he have been cycling?"
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "imageUrl": "",
+    "translation": "¿Cuánto tiempo habrá estado él montando en bicicleta?",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.01.14.09",
+    "id": "67fab6d59930102295343e8b",
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "audioUrl": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e8c"
+    },
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How long / you / learn German?",
+          "options": null
+        },
+        {
+          "options": [
+            "How long will you have been learning German?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "translation": "¿Cuánto tiempo habrás estado aprendiendo alemán?",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.14.10",
+    "id": "67fab6d59930102295343e8c",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e8d"
+    },
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The doctor / check the patients?",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Will the doctor have been checking the patients?"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.14.11",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "translation": "¿Habrá estado el médico revisando a los pacientes?",
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343e8d",
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e8e"
+    },
+    "kind": "CLOZE",
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "translation": "¿Habrán estado los animales corriendo?",
+    "miniTheory": "",
+    "code": "",
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The animals / run around?",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will the animals have been running around?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerAudioUrl": "B2.01.14.12",
+    "id": "67fab6d59930102295343e8e",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e8f"
+    },
+    "answerAudioUrl": "B2.01.14.13",
+    "id": "67fab6d59930102295343e8f",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We / walk for days?"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will we have been walking for days?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "translation": "¿Habremos estado caminando durante días?",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "imageUrl": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e90"
+    },
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Habrá estado ella pintando durante meses?",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She / paint for months?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will she have been painting for months?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.01.14.14",
+    "id": "67fab6d59930102295343e90",
+    "kind": "CLOZE",
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e91"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.14.15",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "audioUrl": "",
+    "translation": "¿Habrá estado Daisy quedándose allí?",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343e91",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Daisy / stay there?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will Daisy have been staying there?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e92"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She / teach here for long?",
+          "options": null
+        },
+        {
+          "options": [
+            "Will she have been teaching here for long?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.01.14.16",
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "translation": "¿Habrá estado ella enseñando aquí por mucho tiempo?",
+    "id": "67fab6d59930102295343e92",
+    "kind": "CLOZE",
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e93"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "translation": "¿Cuánto tiempo habrás estado comiendo cereal?",
+    "successMessage": "",
+    "id": "67fab6d59930102295343e93",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.01.14.17",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How long / you / eat cereal?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "How long will you have been eating cereal?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e94"
+    },
+    "code": "",
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.01.14.18",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "audioUrl": "",
+    "translation": "¿Cuánto tiempo habrán estado los gatos ronroneando?",
+    "id": "67fab6d59930102295343e94",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How long / the cats / purr?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "How long will the cats have been purring?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e95"
+    },
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "How long / she / debug software?"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "How long will she have been debugging software?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.14.19",
+    "id": "67fab6d59930102295343e95",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "translation": "¿Cuánto tiempo habrá estado ella depurando software?",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343e96"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Asking 'How Long': Future Perfect Continuous Questions",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They / revise for days?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will they have been revising for days?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b2.01.Future_Perfect_Continuous_Form",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343e96",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones en 'future perfect continuous'.",
+    "translation": "¿Habrán estado repasando durante días?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3fe"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.01.14.20",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous"
+  }
+]

@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442bb"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She is a student at"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Eton College.",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Locations: 'The' or No Article?",
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "imageUrl": "",
+    "translation": "Ella es estudiante en el Eton College.",
+    "id": "67fab6d599301022953442bb",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.06.11.01",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442bc"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "id": "67fab6d599301022953442bc",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Locations: 'The' or No Article?",
+    "translation": "Ellos visitaron el Museo Británico.",
+    "successMessage": "",
+    "code": "",
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They visited",
+          "options": null
+        },
+        {
+          "options": [
+            "the"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "British Museum."
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.06.11.02",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442bd"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She lives in",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Park Lane."
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "translation": "Ella vive en Park Lane.",
+    "answerAudioUrl": "B2.06.11.03",
+    "id": "67fab6d599301022953442bd",
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "imageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Locations: 'The' or No Article?",
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "kind": "CLOZE",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442be"
+    },
+    "audioUrl": "",
+    "id": "67fab6d599301022953442be",
+    "title": "Locations: 'The' or No Article?",
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "translation": "¿Alguna vez has comprado en Marks and Spencer?",
+    "successMessage": "",
+    "answerAudioUrl": "B2.06.11.04",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Have you ever shopped at",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Marks and Spencer?",
+          "options": null
+        }
+      ]
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442bf"
+    },
+    "id": "67fab6d599301022953442bf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "translation": "Asistimos a un concierto en el Royal Albert Hall.",
+    "answerAudioUrl": "B2.06.11.05",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "title": "Locations: 'The' or No Article?",
+    "audioUrl": "",
+    "successMessage": "",
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We attended a concert at",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Royal Albert Hall."
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442c0"
+    },
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "audioUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They are landing at"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Heathrow Airport.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953442c0",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "title": "Locations: 'The' or No Article?",
+    "translation": "Están aterrizando en el aeropuerto de Heathrow.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "successMessage": "",
+    "answerAudioUrl": "B2.06.11.06",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442c1"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "answerAudioUrl": "B2.06.11.07",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953442c1",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Locations: 'The' or No Article?",
+    "imageUrl": "",
+    "translation": "Él disfruta de la National Portrait Gallery.",
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He enjoys",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "National Portrait Gallery.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442c2"
+    },
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "imageUrl": "",
+    "translation": "Se alojaron en el Ritz.",
+    "answerAudioUrl": "B2.06.11.08",
+    "id": "67fab6d599301022953442c2",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Locations: 'The' or No Article?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They lodged at",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Ritz (a hotel).",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442c3"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953442c3",
+    "code": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "imageUrl": "",
+    "translation": "¿Has visitado alguna vez el Museo de Ciencia e Industria?",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Have you ever visited",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "the"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "Science and Industry Museum?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B2.06.11.09",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Locations: 'The' or No Article?",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442c4"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "audioUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.11.10",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "title": "Locations: 'The' or No Article?",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We gathered at"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Paddington Station.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Nos reunimos en la estación de Paddington.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953442c4",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442c5"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.06.11.11",
+    "id": "67fab6d599301022953442c5",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He watched a performance at",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Globe Theatre.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Locations: 'The' or No Article?",
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Él vio una función en el Globe Theatre.",
+    "answerImageUrl": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442c6"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "answerImageUrl": "",
+    "title": "Locations: 'The' or No Article?",
+    "imageUrl": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She has a diploma from",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "University of Cambridge.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B2.06.11.12",
+    "id": "67fab6d599301022953442c6",
+    "kind": "CLOZE",
+    "translation": "Ella tiene un diploma de la Universidad de Cambridge.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442c7"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We strolled through",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Notting Hill (an area in London).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953442c7",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "title": "Locations: 'The' or No Article?",
+    "translation": "Paseamos por Notting Hill.",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.06.11.13",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442c8"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953442c8",
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Locations: 'The' or No Article?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Fancy a drink at",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Red Lion (a pub)?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Te apetece una copa en el Red Lion?",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "successMessage": "",
+    "answerAudioUrl": "B2.06.11.14",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442c9"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "successMessage": "",
+    "title": "Locations: 'The' or No Article?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They reserved"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Dorchester Hotel.",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953442c9",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Reservaron el Hotel Dorchester.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.06.11.15",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442ca"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "title": "Locations: 'The' or No Article?",
+    "successMessage": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.06.11.16",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "translation": "Ella se especializó en la Universidad de St Andrews.",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She majored at",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "University of St Andrews.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "id": "67fab6d599301022953442ca",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442cb"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Vamos a visitar Regent's Park.",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953442cb",
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "title": "Locations: 'The' or No Article?",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.06.11.17",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Let's visit",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Regent's Park.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442cc"
+    },
+    "id": "67fab6d599301022953442cc",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They wandered around",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Greenwich Village (an area in New York)."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "audioUrl": "",
+    "translation": "Ellos deambularon por Greenwich Village.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.11.18",
+    "kind": "CLOZE",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Locations: 'The' or No Article?",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442cd"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Locations: 'The' or No Article?",
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.11.19",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They drove over",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Tower Bridge.",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d599301022953442cd",
+    "audioUrl": "",
+    "translation": "Condujeron por el Tower Bridge.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442ce"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is enrolled at",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Harvard University.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "translation": "Él está matriculado en la Universidad de Harvard.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953442ce",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Locations: 'The' or No Article?",
+    "instructions": "Inserta 'the' o – si no se requiere ningún artículo.",
+    "theoryId": "b2.06.The_and_No_Article_for_Places_in_a_City",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.06.11.20",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d439"
+    },
+    "successMessage": "",
+    "topicName": "Nouns and determiners"
+  }
+]

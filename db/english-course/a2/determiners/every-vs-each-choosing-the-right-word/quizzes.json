@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ba0"
+    },
+    "translation": "Espero que cada intento tenga éxito.",
+    "id": "67fab6d59930102295342ba0",
+    "theoryId": "a2.07.Every_Each_and_All",
+    "instructions": "Si es posible, completa con 'every'. Si no, completa con 'each'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Every' vs 'Each': Choosing the Right Word",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.07.12.01",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I hope",
+          "options": null
+        },
+        {
+          "options": [
+            "every"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "attempt is successful."
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26f"
+    },
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ba1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Inspeccionó cada uno de los pasteles que vendía el panadero.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.07.12.02",
+    "code": "",
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He inspected",
+          "options": null
+        },
+        {
+          "options": [
+            "each"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "of the pastries that the baker sold.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342ba1",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26f"
+    },
+    "title": "'Every' vs 'Each': Choosing the Right Word",
+    "instructions": "Si es posible, completa con 'every'. Si no, completa con 'each'.",
+    "theoryId": "a2.07.Every_Each_and_All",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ba2"
+    },
+    "kind": "CLOZE",
+    "title": "'Every' vs 'Each': Choosing the Right Word",
+    "theoryId": "a2.07.Every_Each_and_All",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "instructions": "Si es posible, completa con 'every'. Si no, completa con 'each'.",
+    "audioUrl": "",
+    "translation": "Todo ciudadano tiene derecho a votar.",
+    "miniTheory": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Every"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "citizen has the right to vote.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerAudioUrl": "A2.07.12.03",
+    "id": "67fab6d59930102295342ba2",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ba3"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'd like to close",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "every"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "door.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.07.12.04",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26f"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Me gustaría cerrar todas las puertas.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342ba3",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, completa con 'every'. Si no, completa con 'each'.",
+    "kind": "CLOZE",
+    "title": "'Every' vs 'Each': Choosing the Right Word",
+    "theoryId": "a2.07.Every_Each_and_All",
+    "audioUrl": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ba4"
+    },
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.07.12.05",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She collected the toys and put",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "each"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "of them into the toybox.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342ba4",
+    "title": "'Every' vs 'Each': Choosing the Right Word",
+    "instructions": "Si es posible, completa con 'every'. Si no, completa con 'each'.",
+    "translation": "Recogió los juguetes y puso cada uno de ellos en la caja de juguetes.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.07.Every_Each_and_All",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ba5"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.07.Every_Each_and_All",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Every' vs 'Each': Choosing the Right Word",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We need to check oil in",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "each"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "of the motorcycles.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Necesitamos revisar el aceite en cada una de las motocicletas.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26f"
+    },
+    "instructions": "Si es posible, completa con 'every'. Si no, completa con 'each'.",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342ba5",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.07.12.06",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ba6"
+    },
+    "title": "'Every' vs 'Each': Choosing the Right Word",
+    "instructions": "Si es posible, completa con 'every'. Si no, completa con 'each'.",
+    "translation": "¿Podrías darnos un caramelo a cada uno de nosotros?",
+    "code": "",
+    "theoryId": "a2.07.Every_Each_and_All",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.07.12.07",
+    "id": "67fab6d59930102295342ba6",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you give a piece of candy to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "each"
+          ]
+        },
+        {
+          "text": "of us?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ba7"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342ba7",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.07.Every_Each_and_All",
+    "audioUrl": "",
+    "instructions": "Si es posible, completa con 'every'. Si no, completa con 'each'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She kissed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "each"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "of her daughters before bedtime.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "translation": "Besó a cada una de sus hijas antes de acostarse.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Every' vs 'Each': Choosing the Right Word",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.07.12.08",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ba8"
+    },
+    "id": "67fab6d59930102295342ba8",
+    "title": "'Every' vs 'Each': Choosing the Right Word",
+    "instructions": "Si es posible, completa con 'every'. Si no, completa con 'each'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.07.Every_Each_and_All",
+    "translation": "Contó cada moneda antes de guardarla.",
+    "answerAudioUrl": "A2.07.12.09",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26f"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She counted",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "every"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "coin before she saved it.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ba9"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A2.07.12.10",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Every' vs 'Each': Choosing the Right Word",
+    "instructions": "Si es posible, completa con 'every'. Si no, completa con 'each'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d26f"
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342ba9",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Not",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "every"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "animal is domesticated.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.07.Every_Each_and_All",
+    "translation": "No todos los animales están domesticados.",
+    "answerImageUrl": "",
+    "topicName": "Determiners"
+  }
+]

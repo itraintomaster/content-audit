@@ -1,0 +1,4413 @@
+code: __proposal__
+description: "Tests for SentenceLengthAnalyzer - 32 tests covering all 16 business\
+  \ rules, 5 journeys, and additional edge cases"
+modules:
+- name: audit-domain
+  implementations:
+  - name: SentenceLengthAnalyzer
+    tests:
+    - name: "Given a knowledge with non-sentence quizzes, when onKnowledge is called,\
+        \ then non-sentence quizzes are excluded from scoring"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: sentenceQuiz
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis
+          tokenCount: 3
+      - id: nonSentenceQuiz
+        type: AuditableQuiz
+        construct:
+          sentence: vocabulary list
+          tokenCount: 2
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:sentenceQuiz
+          - ref:nonSentenceQuiz
+          title: Basic sentences
+          instructions: Complete the sentence
+          isSentence: false
+      - id: sentenceKnowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:sentenceQuiz
+          title: Sentence knowledge
+          instructions: Write the sentence
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+          - ref:sentenceKnowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:sentenceKnowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+    - name: "Given a knowledge where all quizzes are non-sentences, when processed,\
+        \ then knowledge score is not available"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: nonSentenceQuiz1
+        type: AuditableQuiz
+        construct:
+          sentence: word list
+          tokenCount: 2
+      - id: nonSentenceQuiz2
+        type: AuditableQuiz
+        construct:
+          sentence: another label
+          tokenCount: 2
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:nonSentenceQuiz1
+          - ref:nonSentenceQuiz2
+          title: Non-sentence knowledge
+          instructions: Labels only
+          isSentence: false
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+    - name: "Given a quiz with token count within A1 range, when scored, then quiz\
+        \ score is 1.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis every day
+          tokenCount: 6
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: Present simple
+          instructions: Complete
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a quiz 1 token below A1 range minimum, when scored, then quiz score\
+        \ is 0.75"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis well
+          tokenCount: 4
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: Short sentence
+          instructions: Complete
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a quiz 2 tokens above A1 range maximum, when scored, then quiz\
+        \ score is 0.5"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis every single day at the park
+          tokenCount: 10
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: Long sentence
+          instructions: Complete
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a quiz 4 or more tokens outside range, when scored, then quiz score\
+        \ is 0.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: I
+          tokenCount: 1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: Very short
+          instructions: Complete
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a quiz at exact range boundary minimum, when scored, then quiz\
+        \ score is 1.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She plays well today here
+          tokenCount: 5
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: Boundary min
+          instructions: Complete
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a quiz at exact range boundary maximum, when scored, then quiz\
+        \ score is 1.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis every day at home now
+          tokenCount: 8
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: Boundary max
+          instructions: Complete
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: "Given a knowledge with multiple valid quizzes, when processed, then knowledge\
+        \ score is average of quiz scores"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis every day
+          tokenCount: 6
+      - id: quiz2
+        type: AuditableQuiz
+        construct:
+          sentence: He runs fast
+          tokenCount: 3
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz1
+          - ref:quiz2
+          title: Mixed scores
+          instructions: Complete
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R003
+    - name: "Given a topic with multiple knowledges, when processed, then topic score\
+        \ is average of knowledge scores"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis
+          tokenCount: 6
+      - id: quiz2
+        type: AuditableQuiz
+        construct:
+          sentence: He runs
+          tokenCount: 8
+      - id: knowledge1
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz1
+          title: Knowledge one
+          instructions: Complete
+          isSentence: true
+      - id: knowledge2
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz2
+          title: Knowledge two
+          instructions: Complete
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge1
+          - ref:knowledge2
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R004
+    - name: "Given a topic where no knowledge has a score, when processed, then topic\
+        \ score is not available"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: nonSentenceQuiz
+        type: AuditableQuiz
+        construct:
+          sentence: label
+          tokenCount: 1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:nonSentenceQuiz
+          title: No score knowledge
+          instructions: N/A
+          isSentence: false
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R004
+    - name: "Given a level with multiple topics with scores, when processed, then\
+        \ level score is average of topic scores"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis
+          tokenCount: 5
+      - id: quiz2
+        type: AuditableQuiz
+        construct:
+          sentence: He runs fast every day at home
+          tokenCount: 8
+      - id: knowledge1
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz1
+          title: K1
+          instructions: Complete
+          isSentence: true
+      - id: knowledge2
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz2
+          title: K2
+          instructions: Complete
+          isSentence: true
+      - id: topic1
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge1
+      - id: topic2
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge2
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic1
+          - ref:topic2
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R005
+    - name: "Given a level with valid quizzes, when processed, then average length\
+        \ equals total tokens divided by quiz count"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis
+          tokenCount: 6
+      - id: quiz2
+        type: AuditableQuiz
+        construct:
+          sentence: He runs fast every day
+          tokenCount: 8
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz1
+          - ref:quiz2
+          title: Average test
+          instructions: Complete
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R006
+    - name: "Given a level with average within range, when evaluated, then status\
+        \ is OPTIMAL"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis every day well
+          tokenCount: 6
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: Optimal
+          instructions: Complete
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R007
+    - name: "Given a level with average below minimum, when evaluated, then status\
+        \ is DEFICIENT"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: Run
+          tokenCount: 3
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: Deficient
+          instructions: Complete
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R007
+    - name: "Given a level with average above maximum, when evaluated, then status\
+        \ is EXCESSIVE"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis every single day at the park near the river bank
+          tokenCount: 12
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: Excessive
+          instructions: Complete
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R007
+    - name: "Given a level with no valid quizzes, when evaluated, then status is NOT_APPLICABLE"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: nonSentenceQuiz
+        type: AuditableQuiz
+        construct:
+          sentence: vocab
+          tokenCount: 1
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:nonSentenceQuiz
+          title: No sentences
+          instructions: N/A
+          isSentence: false
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R007
+    - name: "Given a course with multiple levels with scores, when processed, then\
+        \ course score is average of level scores"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quizA1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays well
+          tokenCount: 6
+      - id: quizA2
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis every day at school
+          tokenCount: 9
+      - id: knowledgeA1
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizA1
+          title: A1 knowledge
+          instructions: Complete
+          isSentence: true
+      - id: knowledgeA2
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizA2
+          title: A2 knowledge
+          instructions: Complete
+          isSentence: true
+      - id: topicA1
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeA1
+      - id: topicA2
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeA2
+      - id: milestoneA1
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicA1
+      - id: milestoneA2
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicA2
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestoneA1
+          - ref:milestoneA2
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: rangeA2
+        type: TargetRange
+        construct:
+          level: A2
+          minTokens: 8
+          maxTokens: 11
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneA1
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: eq
+            value: A1
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA2
+          args:
+          - match: eq
+            value: A2
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R008
+    - name: "Given tolerance margin of 4, when quiz is 3 tokens below minimum, then\
+        \ score is 0.25"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: Go run
+          tokenCount: 2
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: Tolerance test
+          instructions: Complete
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R009
+    - name: "Given four levels with increasing average lengths, when processed, then\
+        \ progression is POSITIVE"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quizA1
+        type: AuditableQuiz
+        construct:
+          sentence: She runs fast
+          tokenCount: 6
+      - id: quizA2
+        type: AuditableQuiz
+        construct:
+          sentence: She runs fast every morning
+          tokenCount: 10
+      - id: quizB1
+        type: AuditableQuiz
+        construct:
+          sentence: She has been running fast every morning
+          tokenCount: 13
+      - id: quizB2
+        type: AuditableQuiz
+        construct:
+          sentence: She has been running extremely fast every single morning now
+          tokenCount: 16
+      - id: knowledgeA1
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizA1
+          title: A1K
+          instructions: C
+          isSentence: true
+      - id: knowledgeA2
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizA2
+          title: A2K
+          instructions: C
+          isSentence: true
+      - id: knowledgeB1
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizB1
+          title: B1K
+          instructions: C
+          isSentence: true
+      - id: knowledgeB2
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizB2
+          title: B2K
+          instructions: C
+          isSentence: true
+      - id: topicA1
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeA1
+      - id: topicA2
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeA2
+      - id: topicB1
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeB1
+      - id: topicB2
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeB2
+      - id: milestoneA1
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicA1
+      - id: milestoneA2
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicA2
+      - id: milestoneB1
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicB1
+      - id: milestoneB2
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicB2
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestoneA1
+          - ref:milestoneA2
+          - ref:milestoneB1
+          - ref:milestoneB2
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: rangeA2
+        type: TargetRange
+        construct:
+          level: A2
+          minTokens: 8
+          maxTokens: 11
+      - id: rangeB1
+        type: TargetRange
+        construct:
+          level: B1
+          minTokens: 11
+          maxTokens: 14
+      - id: rangeB2
+        type: TargetRange
+        construct:
+          level: B2
+          minTokens: 14
+          maxTokens: 17
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneA1
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: eq
+            value: A1
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA2
+          args:
+          - match: eq
+            value: A2
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeB1
+          args:
+          - match: eq
+            value: B1
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeB2
+          args:
+          - match: eq
+            value: B2
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneB1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicB1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeB1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizB1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneB2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicB2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeB2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizB2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R010
+    - name: "Given four levels with decreasing average lengths, when processed, then\
+        \ progression is REGRESSIVE"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quizA1
+        type: AuditableQuiz
+        construct:
+          sentence: She has been running extremely fast every single morning
+          tokenCount: 16
+      - id: quizA2
+        type: AuditableQuiz
+        construct:
+          sentence: She has been running fast
+          tokenCount: 13
+      - id: quizB1
+        type: AuditableQuiz
+        construct:
+          sentence: She runs fast every morning
+          tokenCount: 10
+      - id: quizB2
+        type: AuditableQuiz
+        construct:
+          sentence: She runs fast
+          tokenCount: 6
+      - id: knowledgeA1
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizA1
+          title: A1K
+          instructions: C
+          isSentence: true
+      - id: knowledgeA2
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizA2
+          title: A2K
+          instructions: C
+          isSentence: true
+      - id: knowledgeB1
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizB1
+          title: B1K
+          instructions: C
+          isSentence: true
+      - id: knowledgeB2
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizB2
+          title: B2K
+          instructions: C
+          isSentence: true
+      - id: topicA1
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeA1
+      - id: topicA2
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeA2
+      - id: topicB1
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeB1
+      - id: topicB2
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeB2
+      - id: milestoneA1
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicA1
+      - id: milestoneA2
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicA2
+      - id: milestoneB1
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicB1
+      - id: milestoneB2
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicB2
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestoneA1
+          - ref:milestoneA2
+          - ref:milestoneB1
+          - ref:milestoneB2
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: rangeA2
+        type: TargetRange
+        construct:
+          level: A2
+          minTokens: 8
+          maxTokens: 11
+      - id: rangeB1
+        type: TargetRange
+        construct:
+          level: B1
+          minTokens: 11
+          maxTokens: 14
+      - id: rangeB2
+        type: TargetRange
+        construct:
+          level: B2
+          minTokens: 14
+          maxTokens: 17
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneA1
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: eq
+            value: A1
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA2
+          args:
+          - match: eq
+            value: A2
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeB1
+          args:
+          - match: eq
+            value: B1
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeB2
+          args:
+          - match: eq
+            value: B2
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneB1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicB1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeB1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizB1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneB2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicB2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeB2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizB2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R010
+    - name: "Given levels with mixed increasing and decreasing averages, when processed,\
+        \ then progression is STAGNANT"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quizA1
+        type: AuditableQuiz
+        construct:
+          sentence: She runs fast
+          tokenCount: 6
+      - id: quizA2
+        type: AuditableQuiz
+        construct:
+          sentence: She runs fast every morning
+          tokenCount: 10
+      - id: quizB1
+        type: AuditableQuiz
+        construct:
+          sentence: She runs
+          tokenCount: 7
+      - id: quizB2
+        type: AuditableQuiz
+        construct:
+          sentence: She has been running extremely fast
+          tokenCount: 16
+      - id: knowledgeA1
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizA1
+          title: A1K
+          instructions: C
+          isSentence: true
+      - id: knowledgeA2
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizA2
+          title: A2K
+          instructions: C
+          isSentence: true
+      - id: knowledgeB1
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizB1
+          title: B1K
+          instructions: C
+          isSentence: true
+      - id: knowledgeB2
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizB2
+          title: B2K
+          instructions: C
+          isSentence: true
+      - id: topicA1
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeA1
+      - id: topicA2
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeA2
+      - id: topicB1
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeB1
+      - id: topicB2
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeB2
+      - id: milestoneA1
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicA1
+      - id: milestoneA2
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicA2
+      - id: milestoneB1
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicB1
+      - id: milestoneB2
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicB2
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestoneA1
+          - ref:milestoneA2
+          - ref:milestoneB1
+          - ref:milestoneB2
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: rangeA2
+        type: TargetRange
+        construct:
+          level: A2
+          minTokens: 8
+          maxTokens: 11
+      - id: rangeB1
+        type: TargetRange
+        construct:
+          level: B1
+          minTokens: 11
+          maxTokens: 14
+      - id: rangeB2
+        type: TargetRange
+        construct:
+          level: B2
+          minTokens: 14
+          maxTokens: 17
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneA1
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: eq
+            value: A1
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA2
+          args:
+          - match: eq
+            value: A2
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeB1
+          args:
+          - match: eq
+            value: B1
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeB2
+          args:
+          - match: eq
+            value: B2
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneB1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicB1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeB1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizB1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneB2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicB2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeB2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizB2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R010
+    - name: "Given only one level with data, when processed, then progression is INSUFFICIENT_DATA"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis
+          tokenCount: 6
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: K1
+          instructions: C
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R011
+    - name: "Given custom configured ranges different from defaults, when processed,\
+        \ then scoring uses the configured ranges"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis every day
+          tokenCount: 10
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: K1
+          instructions: C
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: customRange
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 8
+          maxTokens: 12
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:customRange
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R012
+    - name: "Given a quiz with pre-computed token count, when scored, then the tokenCount\
+        \ field is used for scoring"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: I am going to go
+          tokenCount: 5
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: Token test
+          instructions: C
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R013
+    - name: "Given a level with DEFICIENT status, when result is generated, then a\
+        \ recommendation is included"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: Run
+          tokenCount: 2
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: Short
+          instructions: C
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R014
+    - name: "Given a level with mixed valid and excluded quizzes, when processed,\
+        \ then statistics include counts for both"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: validQuiz
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis
+          tokenCount: 6
+      - id: excludedQuiz
+        type: AuditableQuiz
+        construct:
+          sentence: vocab
+          tokenCount: 1
+      - id: sentenceKnowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:validQuiz
+          title: Sentences
+          instructions: C
+          isSentence: true
+      - id: nonSentenceKnowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:excludedQuiz
+          title: Labels
+          instructions: N/A
+          isSentence: false
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:sentenceKnowledge
+          - ref:nonSentenceKnowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:sentenceKnowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:validQuiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:nonSentenceKnowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R015
+    - name: "Given a full course hierarchy, when processed, then result contains scores\
+        \ at quiz knowledge topic and level granularity"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays
+          tokenCount: 5
+      - id: quiz2
+        type: AuditableQuiz
+        construct:
+          sentence: He runs fast today
+          tokenCount: 7
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz1
+          - ref:quiz2
+          title: Hierarchy test
+          instructions: C
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R016
+    - name: "Given a full four-level course, when auditing sentence length end to\
+        \ end, then result contains scores for all levels with correct aggregation"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quizA1_1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis
+          tokenCount: 6
+      - id: quizA1_2
+        type: AuditableQuiz
+        construct:
+          sentence: He runs every day
+          tokenCount: 7
+      - id: quizA2_1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis every day at school
+          tokenCount: 9
+      - id: quizB1_1
+        type: AuditableQuiz
+        construct:
+          sentence: She has been playing tennis every day at school
+          tokenCount: 12
+      - id: quizB2_1
+        type: AuditableQuiz
+        construct:
+          sentence: She has been playing tennis every single day at school this year
+          tokenCount: 15
+      - id: nonSentenceQuiz
+        type: AuditableQuiz
+        construct:
+          sentence: vocabulary
+          tokenCount: 1
+      - id: knowledgeA1
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizA1_1
+          - ref:quizA1_2
+          title: A1K
+          instructions: C
+          isSentence: true
+      - id: knowledgeA2
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizA2_1
+          title: A2K
+          instructions: C
+          isSentence: true
+      - id: nonSentenceKnowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:nonSentenceQuiz
+          title: Vocab
+          instructions: N/A
+          isSentence: false
+      - id: knowledgeB1
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizB1_1
+          title: B1K
+          instructions: C
+          isSentence: true
+      - id: knowledgeB2
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizB2_1
+          title: B2K
+          instructions: C
+          isSentence: true
+      - id: topicA1
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeA1
+      - id: topicA2
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeA2
+          - ref:nonSentenceKnowledge
+      - id: topicB1
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeB1
+      - id: topicB2
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeB2
+      - id: milestoneA1
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicA1
+      - id: milestoneA2
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicA2
+      - id: milestoneB1
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicB1
+      - id: milestoneB2
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicB2
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestoneA1
+          - ref:milestoneA2
+          - ref:milestoneB1
+          - ref:milestoneB2
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: rangeA2
+        type: TargetRange
+        construct:
+          level: A2
+          minTokens: 8
+          maxTokens: 11
+      - id: rangeB1
+        type: TargetRange
+        construct:
+          level: B1
+          minTokens: 11
+          maxTokens: 14
+      - id: rangeB2
+        type: TargetRange
+        construct:
+          level: B2
+          minTokens: 14
+          maxTokens: 17
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneA1
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: eq
+            value: A1
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA2
+          args:
+          - match: eq
+            value: A2
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeB1
+          args:
+          - match: eq
+            value: B1
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeB2
+          args:
+          - match: eq
+            value: B2
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizA1_1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizA1_2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizA2_1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:nonSentenceKnowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneB1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicB1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeB1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizB1_1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneB2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicB2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeB2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizB2_1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        journey: F-SLEN-J001
+    - name: "Given a completed audit, when inspecting a specific level, then detailed\
+        \ statistics are available including topic scores"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis
+          tokenCount: 6
+      - id: quiz2
+        type: AuditableQuiz
+        construct:
+          sentence: He runs fast every day
+          tokenCount: 8
+      - id: knowledge1
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz1
+          title: K1
+          instructions: C
+          isSentence: true
+      - id: knowledge2
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz2
+          title: K2
+          instructions: C
+          isSentence: true
+      - id: topic1
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge1
+      - id: topic2
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge2
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic1
+          - ref:topic2
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        journey: F-SLEN-J002
+    - name: "Given a course with regressive length pattern, when audited, then progression\
+        \ status reveals the regression and levels show where it occurs"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quizA1
+        type: AuditableQuiz
+        construct:
+          sentence: She has been playing tennis every morning
+          tokenCount: 12
+      - id: quizA2
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis every day
+          tokenCount: 9
+      - id: knowledgeA1
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizA1
+          title: A1K
+          instructions: C
+          isSentence: true
+      - id: knowledgeA2
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quizA2
+          title: A2K
+          instructions: C
+          isSentence: true
+      - id: topicA1
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeA1
+      - id: topicA2
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledgeA2
+      - id: milestoneA1
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicA1
+      - id: milestoneA2
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topicA2
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestoneA1
+          - ref:milestoneA2
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: rangeA2
+        type: TargetRange
+        construct:
+          level: A2
+          minTokens: 8
+          maxTokens: 11
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneA1
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: eq
+            value: A1
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA2
+          args:
+          - match: eq
+            value: A2
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizA1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestoneA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topicA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledgeA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quizA2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        journey: F-SLEN-J003
+    - name: "Given a course with a low-scoring topic, when navigating the hierarchy,\
+        \ then the problematic knowledge and quizzes are identifiable"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: goodQuiz
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis
+          tokenCount: 6
+      - id: badQuiz1
+        type: AuditableQuiz
+        construct:
+          sentence: She has been playing tennis every single day at the park near
+            her home this year
+          tokenCount: 18
+      - id: badQuiz2
+        type: AuditableQuiz
+        construct:
+          sentence: He has been running extremely fast every morning at the local
+            gym this week
+          tokenCount: 17
+      - id: goodKnowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:goodQuiz
+          title: Good knowledge
+          instructions: C
+          isSentence: true
+      - id: badKnowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:badQuiz1
+          - ref:badQuiz2
+          title: Bad knowledge
+          instructions: C
+          isSentence: true
+      - id: goodTopic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:goodKnowledge
+      - id: badTopic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:badKnowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:goodTopic
+          - ref:badTopic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:goodTopic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:goodKnowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:goodQuiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:badTopic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:badKnowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:badQuiz1
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:badQuiz2
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        journey: F-SLEN-J004
+    - name: "Given a course audited with custom ranges, when ranges are changed and\
+        \ re-audited, then scores reflect the new ranges"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis every day
+          tokenCount: 10
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: K
+          instructions: C
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: widerRange
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 3
+          maxTokens: 12
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:widerRange
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+      traceability:
+        feature: F-SLEN
+        journey: F-SLEN-J005
+    - name: "Given a course with no milestones, when processed, then result has zero\
+        \ course score and INSUFFICIENT_DATA progression"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: course
+        type: AuditableCourse
+      - id: ctx
+        type: AuditContext
+      type: unit
+      steps:
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+    - name: "Given a knowledge with empty quizzes list, when processed, then knowledge\
+        \ has no score and does not affect topic"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Empty
+          instructions: N/A
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones:
+          - ref:milestone
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onCourseComplete
+          args:
+          - ref:course
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true
+    - name: "Given getResult called before onCourseComplete, when invoked, then returns\
+        \ a valid result without error"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: She plays tennis
+          tokenCount: 6
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes:
+          - ref:quiz
+          title: K
+          instructions: C
+          isSentence: true
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge:
+          - ref:knowledge
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics:
+          - ref:topic
+      - id: ctx
+        type: AuditContext
+      - id: rangeA1
+        type: TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      type: unit
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: ref:rangeA1
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResult
+        assert:
+          doesNotThrow: true

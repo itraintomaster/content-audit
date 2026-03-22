@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534445f"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "answerAudioUrl": "B2.08.09.01",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "id": "67fab6d5993010229534445f",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "“The coffee is strong” (he mentioned)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He mentioned that the coffee was strong."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Mencionó que el café estaba fuerte.",
+    "miniTheory": "",
+    "code": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344460"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "imageUrl": "",
+    "id": "67fab6d59930102295344460",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "translation": "El pronóstico predijo que el tiempo mejoraría.",
+    "answerAudioUrl": "B2.08.09.02",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "“The weather will improve” (the forecast predicted)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The forecast predicted that the weather would improve."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344461"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "“We won't go out” (they decided)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They decided that they wouldn't go out."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295344461",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "translation": "Decidieron que no saldrían.",
+    "answerAudioUrl": "B2.08.09.03",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344462"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.08.09.04",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "“He wants to start the work sooner” (the manager indicated)",
+          "options": null
+        },
+        {
+          "options": [
+            "The manager indicated that he wanted to start the work sooner."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "translation": "El gerente indicó que quería empezar el trabajo antes.",
+    "id": "67fab6d59930102295344462",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "imageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344463"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "“It's a great idea” (she believed)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She believed that it was a great idea."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295344463",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "translation": "Ella creía que era una gran idea.",
+    "answerAudioUrl": "B2.08.09.05",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344464"
+    },
+    "id": "67fab6d59930102295344464",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "translation": "Mary supuso que no asistiría a la fiesta.",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "“I won't attend the party” (Mary supposed)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary supposed that she would not attend the party."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.09.06",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344465"
+    },
+    "code": "",
+    "successMessage": "",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "translation": "El médico sugirió que el abuelo descansara.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.08.09.07",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "\"The grandfather should rest” (suggested the doctor)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The doctor suggested that the grandfather should rest."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295344465",
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344466"
+    },
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.08.09.08",
+    "translation": "Notamos que Lisa estudiaba aquí.",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "“Lisa studies here” (we noticed)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We noticed that Lisa studied here."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "audioUrl": "",
+    "id": "67fab6d59930102295344466",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344467"
+    },
+    "code": "",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "translation": "Ella confirmó que ya había cenado.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.08.09.09",
+    "id": "67fab6d59930102295344467",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "“I already ate dinner” (she confirmed)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She confirmed that she had already eaten dinner."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "successMessage": "",
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344468"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295344468",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "audioUrl": "",
+    "translation": "Él anticipó que Lisa llegaría.",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "“Lisa will arrive” (he anticipated)",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "He anticipated that Lisa would arrive."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.08.09.10",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344469"
+    },
+    "id": "67fab6d59930102295344469",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "“I don't understand the lesson” (he whispered)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He whispered that he didn't understand the lesson."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Susurró que no entendía la lección.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B2.08.09.11",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534446a"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "answerAudioUrl": "B2.08.09.12",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534446a",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "“I didn't see the accident” (she claimed)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She claimed that she hadn't seen the accident."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "imageUrl": "",
+    "translation": "Afirmó que no había visto el accidente.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534446b"
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "answerAudioUrl": "B2.08.09.13",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "“We will be happy” (he assured)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He assured that we would be happy."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "id": "67fab6d5993010229534446b",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "audioUrl": "",
+    "translation": "Aseguró que seríamos felices.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534446c"
+    },
+    "id": "67fab6d5993010229534446c",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "translation": "Ella comentó que hoy hacía sol.",
+    "answerAudioUrl": "B2.08.09.14",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "“It is sunny today\" (she observed)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She commented that it was sunny today."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "code": "",
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534446d"
+    },
+    "id": "67fab6d5993010229534446d",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "“I won't dance” (she laughed)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She laughed that she wouldn't dance."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.08.09.15",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "translation": "Se rió de que no bailaría.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534446e"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "translation": "El profesor sugirió que los estudiantes leyeran el libro.",
+    "answerAudioUrl": "B2.08.09.16",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "id": "67fab6d5993010229534446e",
+    "kind": "CLOZE",
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "“The students should read the book” (the lecturer suggested)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The lecturer suggested that the students should read the book."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534446f"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "translation": "La niña se jactó de que había hecho todo sola.",
+    "answerAudioUrl": "B2.08.09.17",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "“I did everything by myself” (the girl bragged)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The girl bragged that she had done everything by herself."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "imageUrl": "",
+    "id": "67fab6d5993010229534446f",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344470"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "answerAudioUrl": "B2.08.09.18",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "answerImageUrl": "",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "translation": "Ella asumió que el evento sería interesante.",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "“The event will be interesting” (she assumed)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "She assumed that the event would be interesting."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295344470",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344471"
+    },
+    "answerAudioUrl": "B2.08.09.19",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "“They should all help do the tasks” (he remarked)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "He remarked that they should all help do the tasks."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344471",
+    "audioUrl": "",
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "translation": "Él comentó que todos deberían ayudar a hacer las tareas.",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344472"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d450"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "“I can try” (she replied)",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "She replied that she could try."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Ella respondió que podía intentarlo.",
+    "answerAudioUrl": "B2.08.09.20",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344472",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'That' Clauses in Reported Speech: Exercise 1",
+    "instructions": "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+    "topicName": "Reported speech"
+  }
+]

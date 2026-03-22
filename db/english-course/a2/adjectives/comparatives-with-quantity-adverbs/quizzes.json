@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e84"
+    },
+    "id": "67fab6d59930102295342e84",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.11.05.01",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a4"
+    },
+    "instructions": "Crea oraciones usando 'much / a lot / a little / a bit' y un comparativo.",
+    "translation": "Francia es mucho más grande que Bélgica.",
+    "theoryId": "a2.11.Use_the_Comparative",
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Comparatives with Quantity Adverbs",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "France is"
+        },
+        {
+          "text": "",
+          "options": [
+            "much larger"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "than Belgium. (much / large)",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e85"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Italia es un poco más cálida que Inglaterra.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.11.05.02",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a4"
+    },
+    "instructions": "Crea oraciones usando 'much / a lot / a little / a bit' y un comparativo.",
+    "theoryId": "a2.11.Use_the_Comparative",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Comparatives with Quantity Adverbs",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342e85",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Italy is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little warmer"
+          ]
+        },
+        {
+          "text": "than England. (a little / warm)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e86"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones usando 'much / a lot / a little / a bit' y un comparativo.",
+    "theoryId": "a2.11.Use_the_Comparative",
+    "successMessage": "",
+    "answerAudioUrl": "A2.11.05.03",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "translation": "Michael es mucho más fuerte que su hermano.",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Michael is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a lot stronger"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "than his brother. (a lot / strong)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342e86",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Comparatives with Quantity Adverbs",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e87"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Salad is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a bit tastier"
+          ]
+        },
+        {
+          "text": "than pasta. (a bit / tasty)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "La ensalada es un poco más sabrosa que la pasta.",
+    "answerAudioUrl": "A2.11.05.04",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "instructions": "Crea oraciones usando 'much / a lot / a little / a bit' y un comparativo.",
+    "id": "67fab6d59930102295342e87",
+    "code": "",
+    "title": "Comparatives with Quantity Adverbs",
+    "theoryId": "a2.11.Use_the_Comparative",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e88"
+    },
+    "id": "67fab6d59930102295342e88",
+    "kind": "CLOZE",
+    "title": "Comparatives with Quantity Adverbs",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.11.Use_the_Comparative",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a4"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Oxford is",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "much quieter"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "than Manchester. (much / quiet)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Oxford es mucho más tranquilo que Manchester.",
+    "answerAudioUrl": "A2.11.05.05",
+    "instructions": "Crea oraciones usando 'much / a lot / a little / a bit' y un comparativo.",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e89"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My grandpa is",
+          "options": null
+        },
+        {
+          "options": [
+            "a lot wiser"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "than his grandsons. (a lot / wise)",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.11.05.06",
+    "id": "67fab6d59930102295342e89",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Comparatives with Quantity Adverbs",
+    "instructions": "Crea oraciones usando 'much / a lot / a little / a bit' y un comparativo.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a4"
+    },
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.11.Use_the_Comparative",
+    "miniTheory": "",
+    "imageUrl": "",
+    "translation": "Mi abuelo es mucho más sabio que sus nietos.",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e8a"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Comparatives with Quantity Adverbs",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.05.07",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones usando 'much / a lot / a little / a bit' y un comparativo.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Madrid is",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little hotter"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "than Berlin. (a little / hot)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.11.Use_the_Comparative",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342e8a",
+    "translation": "Madrid es un poco más caluroso que Berlín.",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e8b"
+    },
+    "id": "67fab6d59930102295342e8b",
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.11.Use_the_Comparative",
+    "answerAudioUrl": "A2.11.05.08",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They are",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "much luckier"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "than us. (much / lucky)",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "title": "Comparatives with Quantity Adverbs",
+    "instructions": "Crea oraciones usando 'much / a lot / a little / a bit' y un comparativo.",
+    "translation": "Ellos son mucho más afortunados que nosotros.",
+    "answerImageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e8c"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cat is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a bit quicker"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "than the dog. (a bit / quick)",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a4"
+    },
+    "instructions": "Crea oraciones usando 'much / a lot / a little / a bit' y un comparativo.",
+    "theoryId": "a2.11.Use_the_Comparative",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.05.09",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Comparatives with Quantity Adverbs",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342e8c",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "El gato es un poco más rápido que el perro.",
+    "code": "",
+    "kind": "CLOZE",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e8d"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Fruits are",
+          "options": null
+        },
+        {
+          "options": [
+            "a little sweeter"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "than vegetables. (a little / sweet)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.05.10",
+    "audioUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones usando 'much / a lot / a little / a bit' y un comparativo.",
+    "theoryId": "a2.11.Use_the_Comparative",
+    "translation": "Las frutas son un poco más dulces que las verduras.",
+    "id": "67fab6d59930102295342e8d",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a4"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Comparatives with Quantity Adverbs",
+    "topicName": "Adjectives"
+  }
+]

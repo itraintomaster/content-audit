@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c49"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Nos conocemos desde 2010.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343c49",
+    "theoryId": "b1.17.As_and_Like",
+    "imageUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We have known each other",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "since"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "2010.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerAudioUrl": "B1.17.01.01",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d371"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Since' and 'For'",
+    "instructions": "Elegir entre 'since' o 'for'.",
+    "kind": "CLOZE",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c4a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Since' and 'For'",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d371"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "They have been living here",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "for"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "five years."
+        }
+      ]
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "answerAudioUrl": "B1.17.01.02",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elegir entre 'since' o 'for'.",
+    "translation": "Ellos han estado viviendo aquí por cinco años.",
+    "id": "67fab6d59930102295343c4a",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c4b"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d371"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Since' and 'For'",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.17.01.03",
+    "id": "67fab6d59930102295343c4b",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The store has been closed",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "since"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "yesterday.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "imageUrl": "",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "La tienda ha estado cerrada desde ayer.",
+    "instructions": "Elegir entre 'since' o 'for'.",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c4c"
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "id": "67fab6d59930102295343c4c",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d371"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Since' and 'For'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I have been studying English",
+          "options": null
+        },
+        {
+          "options": [
+            "for"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "six months.",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.17.01.04",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Elegir entre 'since' o 'for'.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "He estado estudiando inglés por seis meses.",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c4d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Since' and 'For'",
+    "instructions": "Elegir entre 'since' o 'for'.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.17.01.05",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343c4d",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d371"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She has been waiting",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "since"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "noon.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "translation": "Ella ha estado esperando desde el mediodía.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c4e"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "translation": "Él ha estado trabajando en esa compañía por mucho tiempo.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343c4e",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elegir entre 'since' o 'for'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He has been working at that company",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "for"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "a long time.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.17.01.06",
+    "kind": "CLOZE",
+    "title": "Practice with 'Since' and 'For'",
+    "theoryId": "b1.17.As_and_Like",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d371"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c4f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "No lo he visto desde la semana pasada.",
+    "answerAudioUrl": "B1.17.01.07",
+    "id": "67fab6d59930102295343c4f",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I have not seen him",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "since"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "last week."
+        }
+      ]
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d371"
+    },
+    "title": "Practice with 'Since' and 'For'",
+    "theoryId": "b1.17.As_and_Like",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elegir entre 'since' o 'for'.",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c50"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.17.01.08",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d371"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Has estado tocando el piano por muchos años?",
+    "successMessage": "",
+    "id": "67fab6d59930102295343c50",
+    "title": "Practice with 'Since' and 'For'",
+    "instructions": "Elegir entre 'since' o 'for'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you been playing the piano",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "for"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "many years?",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c51"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.17.01.09",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d371"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "translation": "Ella ha estado practicando desde esta mañana.",
+    "id": "67fab6d59930102295343c51",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elegir entre 'since' o 'for'.",
+    "theoryId": "b1.17.As_and_Like",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Since' and 'For'",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She has been practicing",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "since"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "this morning."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c52"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He has been feeling unwell"
+        },
+        {
+          "text": "",
+          "options": [
+            "since"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "Tuesday, and he is still sick.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.17.As_and_Like",
+    "imageUrl": "",
+    "translation": "Él se ha estado sintiendo mal desde el martes, y todavía está enfermo.",
+    "id": "67fab6d59930102295343c52",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d371"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Practice with 'Since' and 'For'",
+    "answerAudioUrl": "B1.17.01.10",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elegir entre 'since' o 'for'.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  }
+]

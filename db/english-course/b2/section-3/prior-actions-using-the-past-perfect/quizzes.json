@@ -1,0 +1,1402 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344027"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "answerAudioUrl": "B2.03.09.01",
+    "id": "67fab6d59930102295344027",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "By the time she",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "called"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(call), they",
+          "options": null
+        },
+        {
+          "options": [
+            "'d left|had left"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(leave) the party.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Para cuando ella llamó, ellos se habían ido de la fiesta.",
+    "successMessage": "",
+    "miniTheory": "",
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344028"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "audioUrl": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ella había leído el libro cuando se unió al club de lectura.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.03.09.02",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "'d read|had read"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(read) the book when she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "joined"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(join) the book club."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295344028",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344029"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344029",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "answerAudioUrl": "B2.03.09.03",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d visited|had visited"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(visit) Paris when they"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "flew"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(fly) to London.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ellos habían visitado París cuando volaron a Londres.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534402a"
+    },
+    "kind": "CLOZE",
+    "title": "Prior Actions: Using the Past Perfect",
+    "translation": "El perro había ladrado para cuando el cartero tocó la puerta.",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534402a",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dog",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had barked"
+          ]
+        },
+        {
+          "text": "(bark) by the time the postman",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "knocked"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "(knock) on the door.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.03.09.04",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534402b"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "successMessage": "",
+    "answerAudioUrl": "B2.03.09.05",
+    "code": "",
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "texted"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(text) me, I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d already eaten|had already eaten"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(already / eat).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "translation": "Cuando me envió un mensaje de texto, ya había comido.",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534402b",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534402c"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "code": "",
+    "audioUrl": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "By the time the players",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "entered"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(enter), the coach",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "had planned"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(plan) the training.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "translation": "Para cuando los jugadores entraron, el entrenador había planeado el entrenamiento.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.03.09.06",
+    "id": "67fab6d5993010229534402c",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534402d"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B2.03.09.07",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d baked|had baked"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(bake) a cake by the time they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "reached"
+          ]
+        },
+        {
+          "text": "(reach) the house.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "imageUrl": "",
+    "translation": "Ella había horneado un pastel para cuando llegaron a la casa.",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534402d",
+    "code": "",
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "answerImageUrl": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534402e"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d5993010229534402e",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d laughed|had laughed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(laugh) by the time she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "described"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(describe) the situation.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Nos habíamos reído para cuando ella describió la situación.",
+    "successMessage": "",
+    "answerAudioUrl": "B2.03.09.08",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534402f"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "successMessage": "",
+    "answerAudioUrl": "B2.03.09.09",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534402f",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Cuando ella entró en la tienda, habían cerrado.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "entered"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(enter) the store, they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d closed|had closed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(close).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344030"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "'d found|had found"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(find) my keys when I",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "boarded"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(board) the bus.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "translation": "Había encontrado mis llaves cuando subí al autobús.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295344030",
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "successMessage": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.09.10",
+    "code": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344031"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Prior Actions: Using the Past Perfect",
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "id": "67fab6d59930102295344031",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.03.09.11",
+    "translation": "Para cuando contrataron a un fontanero, yo había arreglado la tubería.",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "By the time they"
+        },
+        {
+          "options": [
+            "engaged"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(engage) a plumber, I"
+        },
+        {
+          "options": [
+            "'d fixed|had fixed"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(fix) the pipe.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344032"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "translation": "Para cuando te fuiste a dormir, habíamos visto la película.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344032",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.03.09.12",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "By the time you",
+          "options": null
+        },
+        {
+          "options": [
+            "went"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(go) to sleep, we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d watched|had watched"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(watch) the movie.",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344033"
+    },
+    "id": "67fab6d59930102295344033",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d solved|had solved"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(solve) the puzzle when I"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "entered"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(enter) the room.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B2.03.09.13",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "imageUrl": "",
+    "translation": "Había resuelto el rompecabezas cuando entré en la habitación.",
+    "answerImageUrl": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344034"
+    },
+    "answerImageUrl": "",
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Para cuando llegó el tren, los pasajeros habían dormido bien.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "answerAudioUrl": "B2.03.09.14",
+    "id": "67fab6d59930102295344034",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "By the time the train",
+          "options": null
+        },
+        {
+          "options": [
+            "arrived"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive), the passengers",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had slept"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(sleep) well.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344035"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "When she"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "opened"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(open) her eyes, everyone",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had started"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(start) singing.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Cuando ella abrió los ojos, todos habían empezado a cantar.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344035",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "successMessage": "",
+    "answerAudioUrl": "B2.03.09.15",
+    "kind": "CLOZE",
+    "title": "Prior Actions: Using the Past Perfect",
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "audioUrl": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344036"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "You"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d picked|had picked"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(pick) the movie by the time we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "arrived"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive).",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295344036",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "code": "",
+    "title": "Prior Actions: Using the Past Perfect",
+    "answerImageUrl": "",
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "audioUrl": "",
+    "translation": "Habías elegido la película para cuando llegamos.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.03.09.16",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344037"
+    },
+    "audioUrl": "",
+    "translation": "Cuando él contestó el teléfono, ya había sonado.",
+    "code": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "When he",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "answered"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(answer) the phone, it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had buzzed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(buzz) already.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "imageUrl": "",
+    "id": "67fab6d59930102295344037",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.03.09.17",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344038"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "miniTheory": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.03.09.18",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Cuando llegamos al estadio, el partido había comenzado.",
+    "imageUrl": "",
+    "id": "67fab6d59930102295344038",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "When we"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "arrived"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) at the stadium, the match",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had begun"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(begin).",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344039"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.03.09.19",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d listened|had listened"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(listen) to music when I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "saw"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(see) the bird.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "translation": "Había escuchado música cuando vi el pájaro.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295344039",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "topicName": "Section 3"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534403a"
+    },
+    "answerAudioUrl": "B2.03.09.20",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d rested|had rested"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(rest) when you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "called"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(call).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d415"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Prior Actions: Using the Past Perfect",
+    "instructions": "Conjuga un verbo en 'past simple' y otro en 'past perfect'. La acción en 'past perfect' terminó antes de que sucediera la acción en 'past simple'.",
+    "miniTheory": "",
+    "translation": "Había descansado cuando llamaste.",
+    "successMessage": "",
+    "id": "67fab6d5993010229534403a",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "topicName": "Section 3"
+  }
+]

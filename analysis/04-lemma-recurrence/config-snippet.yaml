@@ -1,0 +1,25 @@
+# Configuracion de LemmaRecurrence
+# Extraida de: src/main/resources/pipeline/vocabulary-analyzer/config.yaml
+# Seccion: targets.lemmaRecurrence
+
+lemmaRecurrence:
+  # Cantidad de lemas mas frecuentes a analizar
+  top: 2000
+
+  # Umbral de sub-exposicion: si el intervalo medio entre apariciones
+  # es MAYOR a este valor (en posiciones de palabras), el lema esta sub-expuesto
+  subExposed: 1000
+
+  # Umbral de sobre-exposicion: si el intervalo medio entre apariciones
+  # es MENOR O IGUAL a este valor, el lema esta sobre-expuesto
+  overExposed: 50
+
+# Nota sobre los nombres:
+# - "subExposed" no es el threshold para marcar algo como sub-exposed,
+#   sino el VALOR MAXIMO del intervalo para ser "normal".
+#   Si meanInterval > subExposed -> el lema esta sub-exposed.
+# - "overExposed" es el VALOR MINIMO del intervalo para ser "normal".
+#   Si meanInterval <= overExposed -> el lema esta over-exposed.
+#
+# Rango "normal": overExposed < meanInterval <= subExposed
+#                  50 < meanInterval <= 1000

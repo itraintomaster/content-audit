@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342720"
+    },
+    "code": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Refusal: She"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't eat|will not eat"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / eat) the vegetables.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "audioUrl": "",
+    "translation": "Ella no se comerá las verduras.",
+    "answerAudioUrl": "A2.02.06.01",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342720",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342721"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "answerAudioUrl": "A2.02.06.02",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "Refusal: He",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't say|will not say"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(not / say) sorry to you."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "translation": "Él no te pedirá perdón.",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342721",
+    "kind": "CLOZE",
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342722"
+    },
+    "id": "67fab6d59930102295342722",
+    "kind": "CLOZE",
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.02.06.03",
+    "translation": "Compraré un vestido nuevo para la fiesta.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Promise: I",
+          "options": null
+        },
+        {
+          "options": [
+            "'ll buy|will buy"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(buy) a new dress for the party.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "audioUrl": "",
+    "code": "",
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342723"
+    },
+    "answerAudioUrl": "A2.02.06.04",
+    "id": "67fab6d59930102295342723",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Prediction: The concert",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "is going to be"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) amazing.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "audioUrl": "",
+    "translation": "El concierto va a ser increíble.",
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342724"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "imageUrl": "",
+    "id": "67fab6d59930102295342724",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Prediction: They",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re going to enjoy|are going to enjoy"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(enjoy) the trip.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ellos van a disfrutar el viaje.",
+    "miniTheory": "",
+    "code": "",
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.02.06.05",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342725"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Offer: I",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll wash|will wash"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(wash) the dishes for you."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "audioUrl": "",
+    "translation": "Lavaré los platos por ti.",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.06.06",
+    "id": "67fab6d59930102295342725",
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342726"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Prediction: The water",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is going to boil"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(boil) soon.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "translation": "El agua va a hervir pronto.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342726",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.02.06.07",
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342727"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.02.06.08",
+    "id": "67fab6d59930102295342727",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Prediction: She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s going to burn|is going to burn"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(burn) the cake.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ella va a quemar el pastel.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342728"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Promise: I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll remember|will remember"
+          ]
+        },
+        {
+          "text": "(remember) to feed the cat.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "answerAudioUrl": "A2.02.06.09",
+    "id": "67fab6d59930102295342728",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "translation": "Recordaré alimentar al gato.",
+    "miniTheory": "",
+    "code": "",
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342729"
+    },
+    "id": "67fab6d59930102295342729",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Request:"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will you open"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / open) the window, please?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "translation": "¿Puedes abrir la ventana, por favor?",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.02.06.10",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534272a"
+    },
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Prediction: The movie"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is going to be"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) interesting.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534272a",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "imageUrl": "",
+    "translation": "La película va a ser interesante.",
+    "answerAudioUrl": "A2.02.06.11",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534272b"
+    },
+    "code": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Offer: We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll send|will send"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(send) grandma some flowers.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerImageUrl": "",
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "audioUrl": "",
+    "translation": "Le enviaremos flores a la abuela.",
+    "answerAudioUrl": "A2.02.06.12",
+    "id": "67fab6d5993010229534272b",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534272c"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Prediction: The trip",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is going to be"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) exciting.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "id": "67fab6d5993010229534272c",
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.02.06.13",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "El viaje va a ser emocionante.",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534272d"
+    },
+    "kind": "CLOZE",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534272d",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Prediction: That glass",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is going to break"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(break).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Ese vaso se va a romper.",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.06.14",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534272e"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.02.06.15",
+    "id": "67fab6d5993010229534272e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "translation": "Te prestaré mi paraguas.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Offer: I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll lend|will lend"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(lend) you my umbrella.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534272f"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Prediction: The sun",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s going to shine|is going to shine"
+          ]
+        },
+        {
+          "text": "(shine).",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "answerAudioUrl": "A2.02.06.16",
+    "id": "67fab6d5993010229534272f",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "translation": "El sol va a brillar.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342730"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342730",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "code": "",
+    "translation": "¿Me traes el periódico, por favor?",
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Request:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will you bring"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / bring) me the newspaper, please?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.06.17",
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342731"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "kind": "CLOZE",
+    "id": "67fab6d59930102295342731",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Prediction: I",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "'m going to feel|am going to feel"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(feel) sick after all this food.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.02.06.18",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Me voy a sentir mal después de toda esta comida.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342732"
+    },
+    "audioUrl": "",
+    "translation": "Los gatos van a querer salir pronto.",
+    "kind": "CLOZE",
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Prediction: The cats",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are going to want"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(want) to go outside soon.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.02.06.19",
+    "id": "67fab6d59930102295342732",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342733"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295342733",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22f"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Refusal: I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't clean|will not clean"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / clean) your room.",
+          "options": null
+        }
+      ]
+    },
+    "title": "'Will' vs. 'Going to': Choosing the Right Future Tense",
+    "audioUrl": "",
+    "translation": "No limpiaré tu habitación.",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
+    "successMessage": "",
+    "code": "",
+    "instructions": "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.06.20",
+    "topicName": "'Will' and 'Going To'"
+  }
+]

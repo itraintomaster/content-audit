@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534384d"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.11.09.01",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Be_Supposed_To",
+    "translation": "Se supone que no debemos comer en la biblioteca, pero normalmente lo hago.",
+    "code": "",
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We shouldn't eat in the library, but I usually do.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We're not supposed to eat in the library but I usually do."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d5993010229534384d",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534384e"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "theoryId": "b1.11.Be_Supposed_To",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534384e",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What time should she call?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "What time is she supposed to call?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "translation": "¿A qué hora se supone que debe llamar?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.11.09.02",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534384f"
+    },
+    "theoryId": "b1.11.Be_Supposed_To",
+    "imageUrl": "",
+    "successMessage": "",
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The train was scheduled to arrive at noon but it didn't arrive until one.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The train was supposed to arrive at noon but it didn't arrive until one."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.11.09.03",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Se suponía que el tren llegaría al mediodía, pero no llegó hasta la una.",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534384f",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343850"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343850",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He plans to wake up early and study, but I don't think he will.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He is supposed to wake up early and study, but I don't think he will."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "translation": "Se supone que debe despertarse temprano y estudiar, pero no creo que lo haga.",
+    "answerAudioUrl": "B1.11.09.04",
+    "code": "",
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "miniTheory": "",
+    "theoryId": "b1.11.Be_Supposed_To",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343851"
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We should bring our books every Tuesday.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We are supposed to bring our books every Tuesday."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.11.09.05",
+    "id": "67fab6d59930102295343851",
+    "translation": "Se supone que debemos traer nuestros libros todos los martes.",
+    "miniTheory": "",
+    "theoryId": "b1.11.Be_Supposed_To",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343852"
+    },
+    "theoryId": "b1.11.Be_Supposed_To",
+    "translation": "Se supone que los perros deben quedarse adentro por la noche.",
+    "answerAudioUrl": "B1.11.09.06",
+    "id": "67fab6d59930102295343852",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs should stay inside at night.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The dogs are supposed to stay inside at night."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343853"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343853",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Se supone que no debes conducir sin licencia.",
+    "miniTheory": "",
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "imageUrl": "",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You shouldn't drive without a license.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You are not supposed to drive without a license."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.11.Be_Supposed_To",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "answerAudioUrl": "B1.11.09.07",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343854"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "translation": "Se suponía que la función comenzaría a las ocho, pero en realidad comenzó a las nueve.",
+    "answerAudioUrl": "B1.11.09.08",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343854",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The performance was expected to begin at eight, but it actually started at nine.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The performance was supposed to begin at eight, but it actually started at nine."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.11.Be_Supposed_To",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343855"
+    },
+    "theoryId": "b1.11.Be_Supposed_To",
+    "translation": "¿Se supone que debes usar casco cuando andas en bicicleta?",
+    "id": "67fab6d59930102295343855",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Should you wear a helmet when cycling?",
+          "options": null
+        },
+        {
+          "options": [
+            "Are you supposed to wear a helmet when cycling?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.11.09.09",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343856"
+    },
+    "id": "67fab6d59930102295343856",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "translation": "Se supone que debo meditar todas las mañanas, pero a veces me quedo dormido.",
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I plan to meditate every morning, but I sometimes sleep in.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "I am supposed to meditate every morning, but I sometimes sleep in."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "theoryId": "b1.11.Be_Supposed_To",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.11.09.10",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "audioUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343857"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We planned to visit the museum yesterday but we didn't.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We were supposed to visit the museum yesterday but we didn't."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.11.Be_Supposed_To",
+    "translation": "Se suponía que íbamos a visitar el museo ayer, pero no lo hicimos.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.11.09.11",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343857",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343858"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.11.09.12",
+    "id": "67fab6d59930102295343858",
+    "theoryId": "b1.11.Be_Supposed_To",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "successMessage": "",
+    "translation": "Se suponía que los gatos debían mantenerse fuera de la mesa en la cena.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cats needed to stay off the table at dinner.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The cats were supposed to stay off the table at dinner."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343859"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.11.09.13",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You needed to call your mother!",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You were supposed to call your mother!"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.11.Be_Supposed_To",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343859",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "translation": "¡Se suponía que debías llamar a tu madre!",
+    "successMessage": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534385a"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He plans to come over and fix it but I think he's too tired.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He is supposed to come over and fix it but I think he's too tired."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Se supone que debe venir y arreglarlo, pero creo que está demasiado cansado.",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.11.09.14",
+    "theoryId": "b1.11.Be_Supposed_To",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "id": "67fab6d5993010229534385a",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534385b"
+    },
+    "successMessage": "",
+    "id": "67fab6d5993010229534385b",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Se supone que la lavadora debe dejar todo limpio. ¿Por qué esto sigue sucio?",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The washing machine should get everything clean. Why is this still dirty?",
+          "options": null
+        },
+        {
+          "options": [
+            "The washing machine is supposed to get everything clean. Why is this still dirty?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.11.Be_Supposed_To",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "answerAudioUrl": "B1.11.09.15",
+    "answerImageUrl": "",
+    "code": "",
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534385c"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.11.09.16",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It should snow tomorrow.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "It's supposed to snow tomorrow."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Se supone que mañana nevará.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "theoryId": "b1.11.Be_Supposed_To",
+    "id": "67fab6d5993010229534385c",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534385d"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The party should start at 9, but it often starts late.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The party is supposed to start at 9, but it often starts late."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerAudioUrl": "B1.11.09.17",
+    "translation": "Se supone que la fiesta comienza a las 9, pero a menudo comienza tarde.",
+    "successMessage": "",
+    "code": "",
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "theoryId": "b1.11.Be_Supposed_To",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d5993010229534385d",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534385e"
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She planned to bake cookies for everyone but she forgot.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She was supposed to bake cookies for everyone but she forgot."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.11.09.18",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Se suponía que debía hornear galletas para todos, pero se olvidó.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534385e",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Be_Supposed_To",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534385f"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "translation": "Se suponía que iba a hacer calor el verano pasado, pero hacía mucho frío.",
+    "theoryId": "b1.11.Be_Supposed_To",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "It should have been warm last summer, but it was freezing."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "It was supposed to be warm last summer, but it was freezing."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.11.09.19",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534385f",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343860"
+    },
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "translation": "Se supone que debo enviar todas estas cartas hoy.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.11.09.20",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.11.Be_Supposed_To",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343860",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d333"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'be supposed to'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I should send all these letters today.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I am supposed to send all these letters today."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "code": "",
+    "title": "Expressing Expectations with 'Be Supposed To'",
+    "answerImageUrl": "",
+    "topicName": "Modal verbs"
+  }
+]

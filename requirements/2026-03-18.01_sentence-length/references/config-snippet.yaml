@@ -1,0 +1,22 @@
+# Configuracion de SentenceLengthAnalyzer
+# Extraida de: src/main/resources/pipeline/vocabulary-analyzer/config.yaml
+# Seccion: targets.sentenceLength
+
+sentenceLength:
+  targetsByLevel:
+    A1:
+      min: 5   # Minimo de palabras por oracion en A1
+      max: 8   # Maximo de palabras por oracion en A1
+    A2:
+      min: 8
+      max: 11
+    B1:
+      min: 11
+      max: 14
+    B2:
+      min: 14
+      max: 17
+
+# Nota: Estos valores se cargan en TargetsConfig.SentenceLength
+# que contiene un Map<String, TargetRange> targetsByLevel
+# donde TargetRange es un record(int min, int max)

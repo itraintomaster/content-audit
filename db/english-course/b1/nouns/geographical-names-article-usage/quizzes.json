@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343556"
+    },
+    "id": "67fab6d59930102295343556",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Geographical Names: Article Usage",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.07.09.01",
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She scaled",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "Mount Kilimanjaro.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "audioUrl": "",
+    "translation": "Ella escaló el Monte Kilimanjaro.",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343557"
+    },
+    "id": "67fab6d59930102295343557",
+    "code": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Would you like to go hiking in",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Himalayas?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "translation": "¿Te gustaría hacer senderismo en el Himalaya?",
+    "answerAudioUrl": "B1.07.09.02",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Geographical Names: Article Usage",
+    "imageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343558"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343558",
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Matterhorn is a famous mountain in Switzerland.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "title": "Geographical Names: Article Usage",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "translation": "El Cervino es una montaña famosa en Suiza.",
+    "answerAudioUrl": "B1.07.09.03",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343559"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He trekked in"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Pyrenees.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "id": "67fab6d59930102295343559",
+    "title": "Geographical Names: Article Usage",
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "translation": "Él caminó por los Pirineos.",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.07.09.04",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534355a"
+    },
+    "translation": "Ellos navegaron a través del Pacífico.",
+    "answerImageUrl": "",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "audioUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "title": "Geographical Names: Article Usage",
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They sailed across",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Pacific."
+        }
+      ]
+    },
+    "id": "67fab6d5993010229534355a",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.07.09.05",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534355b"
+    },
+    "code": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.09.06",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534355b",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "title": "Geographical Names: Article Usage",
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They explored",
+          "options": null
+        },
+        {
+          "options": [
+            "the"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Nile."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Ellos exploraron el Nilo.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534355c"
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534355c",
+    "code": "",
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Nosotros vivimos en Asia.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Geographical Names: Article Usage",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We live in",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Asia.",
+          "options": null
+        }
+      ]
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.07.09.07",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534355d"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.07.09.08",
+    "translation": "Sevilla está en Andalucía.",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Geographical Names: Article Usage",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Seville is in",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Andalusia.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "id": "67fab6d5993010229534355d",
+    "imageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534355e"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "¿Alguna vez has estado en Roma?",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you ever been to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "text": "Rome?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534355e",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Geographical Names: Article Usage",
+    "successMessage": "",
+    "answerAudioUrl": "B1.07.09.09",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534355f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Geographical Names: Article Usage",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She journeyed to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Lake Baikal.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534355f",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "translation": "Ella viajó al lago Baikal.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.07.09.10",
+    "code": "",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "imageUrl": "",
+    "successMessage": "",
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343560"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.07.09.11",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343560",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "title": "Geographical Names: Article Usage",
+    "translation": "¿Has visto alguna vez una foto del desierto del Sahara?",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you ever seen a picture of",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "text": "Sahara Desert?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343561"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "translation": "La Toscana está en Italia.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343561",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "Tuscany is in Italy.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.07.09.12",
+    "title": "Geographical Names: Article Usage",
+    "successMessage": "",
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343562"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "Lake Ontario is in Canada.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "translation": "El lago Ontario está en Canadá.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Geographical Names: Article Usage",
+    "id": "67fab6d59930102295343562",
+    "code": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.09.13",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343563"
+    },
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "id": "67fab6d59930102295343563",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "translation": "Hicimos un crucero por el Rin.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.07.09.14",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "title": "Geographical Names: Article Usage",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We took a cruise along",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Rhine.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343564"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343564",
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He lives near",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Caribbean.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Geographical Names: Article Usage",
+    "answerAudioUrl": "B1.07.09.15",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "translation": "Él vive cerca del Caribe.",
+    "successMessage": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343565"
+    },
+    "title": "Geographical Names: Article Usage",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "audioUrl": "",
+    "translation": "Vi una película sobre el desierto de Atacama.",
+    "answerAudioUrl": "B1.07.09.16",
+    "id": "67fab6d59930102295343565",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I watched a film about",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Atacama Desert.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "answerImageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343566"
+    },
+    "id": "67fab6d59930102295343566",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "successMessage": "",
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Geographical Names: Article Usage",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He comes from",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "text": "North America.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "translation": "Él viene de América del Norte.",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.07.09.17",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343567"
+    },
+    "translation": "Ellos han pasado mucho tiempo en París.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.07.09.18",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "imageUrl": "",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They have spent a lot of time in",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Paris.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "title": "Geographical Names: Article Usage",
+    "successMessage": "",
+    "id": "67fab6d59930102295343567",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343568"
+    },
+    "title": "Geographical Names: Article Usage",
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "translation": "Hay pingüinos cerca del Polo Sur.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There are penguins near",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "South Pole.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "answerAudioUrl": "B1.07.09.19",
+    "id": "67fab6d59930102295343568",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343569"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Geographical Names: Article Usage",
+    "instructions": "Escribe 'the' o usa – si necesitamos 'no article'.",
+    "theoryId": "b1.07.The_and_No_Article_with_Geographical_Names",
+    "imageUrl": "",
+    "translation": "El Círculo Polar Ártico pasa por Rusia y Alaska.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Arctic Circle passes through Russia and Alaska.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.07.09.20",
+    "id": "67fab6d59930102295343569",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d308"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Nouns"
+  }
+]

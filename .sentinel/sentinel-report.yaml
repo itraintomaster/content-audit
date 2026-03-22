@@ -1,0 +1,1006 @@
+generatedAt: 2026-03-16T13:57:05.393567Z
+system: ContentAudit
+version: 0.0.1
+features:
+- id: FEAT-COURSE
+  state: IMPLEMENTED
+  requirementFile: requirements/2026-03-15.01_course-structure/requirement.yaml
+  rulesCoverage:
+  - ruleId: F-COURSE-R001
+    state: PASSING
+    tests:
+    - name: "Given a valid course directory, when load is called, then returns CourseEntity\
+        \ with 5-level hierarchy including ROOT node"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - ruleId: F-COURSE-R002
+    state: PASSING
+    tests:
+    - name: "Given a course with ordered milestones and topics, when load is called,\
+        \ then child order matches parent children lists"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - ruleId: F-COURSE-R003
+    state: PASSING
+    tests:
+    - name: "Given a loaded course, when saved and reloaded, then the result is semantically\
+        \ equivalent to the original"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - ruleId: F-COURSE-R004
+    state: PASSING
+    tests:
+    - name: "Given a course directory with quiz templates, when load is called, then\
+        \ every knowledge has at least one quiz template"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - ruleId: F-COURSE-R005
+    state: PASSING
+    tests:
+    - name: "Given a course directory with consistent IDs, when load is called, then\
+        \ all child ID references resolve to existing entities"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - ruleId: F-COURSE-R006
+    state: PASSING
+    tests:
+    - name: "Given validator rejects course with duplicate IDs, when save is called,\
+        \ then CourseValidationException propagates"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+    - name: "Given a course directory with unique IDs, when load is called, then no\
+        \ duplicate IDs exist across any hierarchy level"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - ruleId: F-COURSE-R007
+    state: PASSING
+    tests:
+    - name: "Given a valid directory structure, when load is called, then each directory\
+        \ level contains its expected descriptor file"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - ruleId: F-COURSE-R008
+    state: PASSING
+    tests:
+    - name: "Given validator rejects course with broken parent references, when save\
+        \ is called, then CourseValidationException propagates"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+    - name: "Given a loaded course, when inspecting parent references, then each child\
+        \ parentId matches its actual parent id"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - ruleId: F-COURSE-R009
+    state: PASSING
+    tests:
+    - name: "Given a null course entity, when save is called, then an exception is\
+        \ thrown"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+    - name: "Given a course with all required fields populated, when load is called,\
+        \ then all mandatory fields are non-null"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - ruleId: F-COURSE-R010
+    state: PASSING
+    tests:
+    - name: "Given a course with empty string and null field values, when saved and\
+        \ reloaded, then empty and null values are preserved exactly"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - ruleId: F-COURSE-R011
+    state: PASSING
+    tests:
+    - name: "Given quiz templates with dual id and oidId fields, when load is called,\
+        \ then both fields contain the same value"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - ruleId: F-COURSE-R012
+    state: PASSING
+    tests:
+    - name: "Given quiz templates with numberDouble format values, when saved to JSON,\
+        \ then numeric fields preserve MongoDB Extended JSON format"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - ruleId: F-COURSE-R013
+    state: PASSING
+    tests:
+    - name: "Given a loaded course, when inspecting order fields, then milestones\
+        \ topics and knowledges have sequential 1-based order within their parent"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - ruleId: F-COURSE-R014
+    state: PASSING
+    tests:
+    - name: "Given a valid course entity, when save is called, then validator is invoked\
+        \ and no exception is thrown"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+    - name: "Given an invalid course entity, when save is called, then validator throws\
+        \ CourseValidationException"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - ruleId: F-COURSE-R015
+    state: PASSING
+    tests:
+    - name: "Given validator rejects milestone with no topics, when save is called,\
+        \ then CourseValidationException propagates"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+    - name: "Given a milestone with empty children list, when load is called, then\
+        \ validation rejects the course with a descriptive error"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - ruleId: F-COURSE-R016
+    state: PASSING
+    tests:
+    - name: "Given entities with labels, when saved to disk, then directory names\
+        \ are deterministic slugs derived from the labels"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  journeysCoverage:
+  - journeyId: F-COURSE-J001
+    state: PASSING
+    tests:
+    - name: "Given a course directory with full hierarchy, when loading step by step,\
+        \ then all levels are resolved with correct hierarchy order and validation"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - journeyId: F-COURSE-J002
+    state: PASSING
+    tests:
+    - name: "Given a course entity with validator passing, when save is called, then\
+        \ no exception is thrown"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+    - name: "Given a course in memory, when saving to a target directory, then the\
+        \ directory structure and JSON files are written correctly"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - journeyId: F-COURSE-J003
+    state: PASSING
+    tests:
+    - name: "Given a course loaded from files, when saved to a new directory and reloaded,\
+        \ then the reloaded course equals the original"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - journeyId: F-COURSE-J004
+    state: PASSING
+    tests:
+    - name: "Given a loaded course, when navigating from ROOT to milestones to topics\
+        \ to knowledges to quizzes, then each level is accessible and correctly ordered"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - journeyId: F-COURSE-J005
+    state: PASSING
+    tests:
+    - name: "Given a loaded course, when a knowledge label is modified and the course\
+        \ is saved and reloaded, then the change is reflected and unmodified data\
+        \ remains intact"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+  - journeyId: F-COURSE-J006
+    state: PASSING
+    tests:
+    - name: "Given a nonexistent path or missing descriptor or malformed JSON, when\
+        \ load is called, then a descriptive error is thrown and no partial course\
+        \ is returned"
+      implemented: true
+      passing: true
+      module: course-infrastructure
+      implementation: FileSystemCourseRepository
+elements:
+- module: audit-domain
+  status: EXISTS
+  models:
+  - name: AuditReport
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditReport.java
+    fields:
+    - name: score
+      status: EXISTS
+  - name: AuditableCourse
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditableCourse.java
+    fields:
+    - name: milestones
+      status: EXISTS
+  - name: AuditContext
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditContext.java
+  - name: AuditableKnowledge
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditableKnowledge.java
+    fields:
+    - name: quizzes
+      status: EXISTS
+    - name: title
+      status: EXISTS
+    - name: instructions
+      status: EXISTS
+  - name: AuditableTopic
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditableTopic.java
+    fields:
+    - name: knowledge
+      status: EXISTS
+  - name: AuditableMilestone
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditableMilestone.java
+    fields:
+    - name: topics
+      status: EXISTS
+  - name: AuditableQuiz
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditableQuiz.java
+  interfaces:
+  - name: ContentAudit
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/ContentAudit.java
+    methods:
+    - signature: "audit(AuditableCourse): AuditReport"
+      status: EXISTS
+  - name: AuditEngine
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditEngine.java
+    methods:
+    - signature: "runAudit(AuditableCourse): AuditReport"
+      status: EXISTS
+  - name: ContentAnalyzer
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/ContentAnalyzer.java
+    methods:
+    - signature: "onKnowledge(AuditableKnowledge knowledge, AuditContext ctx): Void"
+      status: EXISTS
+    - signature: getResult():AnalysisResult
+      status: EXISTS
+  - name: AnalysisResult
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AnalysisResult.java
+    methods:
+    - signature: "getName(): String"
+      status: EXISTS
+    - signature: "getScore(): Double"
+      status: EXISTS
+  implementations:
+  - name: IAuditEngine
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/IAuditEngine.java
+  - name: KnowledgeTitleLengthAnalyzer
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzer.java
+  - name: KnowledgeInstructionsLengthAnalyzer
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzer.java
+  - name: IContentAudit
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/IContentAudit.java
+- module: course-domain
+  status: EXISTS
+  models:
+  - name: NodeKind
+    status: EXISTS
+    filePath: course-domain/src/main/java/com/learney/contentaudit/coursedomain/NodeKind.java
+    fields:
+    - name: ROOT
+      status: EXISTS
+    - name: MILESTONE
+      status: EXISTS
+    - name: TOPIC
+      status: EXISTS
+    - name: KNOWLEDGE
+      status: EXISTS
+  - name: SentencePartKind
+    status: EXISTS
+    filePath: course-domain/src/main/java/com/learney/contentaudit/coursedomain/SentencePartKind.java
+    fields:
+    - name: TEXT
+      status: EXISTS
+    - name: CLOZE
+      status: EXISTS
+  - name: CourseEntity
+    status: EXISTS
+    filePath: course-domain/src/main/java/com/learney/contentaudit/coursedomain/CourseEntity.java
+    fields:
+    - name: id
+      status: EXISTS
+    - name: title
+      status: EXISTS
+    - name: knowledgeIds
+      status: EXISTS
+    - name: root
+      status: EXISTS
+    - name: slug
+      status: EXISTS
+  - name: RootNodeEntity
+    status: EXISTS
+    filePath: course-domain/src/main/java/com/learney/contentaudit/coursedomain/RootNodeEntity.java
+    fields:
+    - name: id
+      status: EXISTS
+    - name: code
+      status: EXISTS
+    - name: kind
+      status: EXISTS
+    - name: label
+      status: EXISTS
+    - name: children
+      status: EXISTS
+    - name: milestones
+      status: EXISTS
+  - name: MilestoneEntity
+    status: EXISTS
+    filePath: course-domain/src/main/java/com/learney/contentaudit/coursedomain/MilestoneEntity.java
+    fields:
+    - name: id
+      status: EXISTS
+    - name: code
+      status: EXISTS
+    - name: kind
+      status: EXISTS
+    - name: label
+      status: EXISTS
+    - name: oldId
+      status: EXISTS
+    - name: parentId
+      status: EXISTS
+    - name: children
+      status: EXISTS
+    - name: order
+      status: EXISTS
+    - name: slug
+      status: EXISTS
+    - name: topics
+      status: EXISTS
+  - name: TopicEntity
+    status: EXISTS
+    filePath: course-domain/src/main/java/com/learney/contentaudit/coursedomain/TopicEntity.java
+    fields:
+    - name: id
+      status: EXISTS
+    - name: code
+      status: EXISTS
+    - name: kind
+      status: EXISTS
+    - name: label
+      status: EXISTS
+    - name: oldId
+      status: EXISTS
+    - name: parentId
+      status: EXISTS
+    - name: children
+      status: EXISTS
+    - name: ruleIds
+      status: EXISTS
+    - name: order
+      status: EXISTS
+    - name: slug
+      status: EXISTS
+    - name: knowledges
+      status: EXISTS
+  - name: KnowledgeEntity
+    status: EXISTS
+    filePath: course-domain/src/main/java/com/learney/contentaudit/coursedomain/KnowledgeEntity.java
+    fields:
+    - name: id
+      status: EXISTS
+    - name: code
+      status: EXISTS
+    - name: kind
+      status: EXISTS
+    - name: label
+      status: EXISTS
+    - name: oldId
+      status: EXISTS
+    - name: parentId
+      status: EXISTS
+    - name: isRule
+      status: EXISTS
+    - name: instructions
+      status: EXISTS
+    - name: order
+      status: EXISTS
+    - name: slug
+      status: EXISTS
+    - name: quizTemplates
+      status: EXISTS
+  - name: QuizTemplateEntity
+    status: EXISTS
+    filePath: course-domain/src/main/java/com/learney/contentaudit/coursedomain/QuizTemplateEntity.java
+    fields:
+    - name: id
+      status: EXISTS
+    - name: oidId
+      status: EXISTS
+    - name: kind
+      status: EXISTS
+    - name: knowledgeId
+      status: EXISTS
+    - name: title
+      status: EXISTS
+    - name: instructions
+      status: EXISTS
+    - name: translation
+      status: EXISTS
+    - name: theoryId
+      status: EXISTS
+    - name: topicName
+      status: EXISTS
+    - name: form
+      status: EXISTS
+    - name: difficulty
+      status: EXISTS
+    - name: retries
+      status: EXISTS
+    - name: noScoreRetries
+      status: EXISTS
+    - name: code
+      status: EXISTS
+    - name: audioUrl
+      status: EXISTS
+    - name: imageUrl
+      status: EXISTS
+    - name: answerAudioUrl
+      status: EXISTS
+    - name: answerImageUrl
+      status: EXISTS
+    - name: miniTheory
+      status: EXISTS
+    - name: successMessage
+      status: EXISTS
+  - name: FormEntity
+    status: EXISTS
+    filePath: course-domain/src/main/java/com/learney/contentaudit/coursedomain/FormEntity.java
+    fields:
+    - name: kind
+      status: EXISTS
+    - name: incidence
+      status: EXISTS
+    - name: label
+      status: EXISTS
+    - name: name
+      status: EXISTS
+    - name: sentenceParts
+      status: EXISTS
+  - name: SentencePartEntity
+    status: EXISTS
+    filePath: course-domain/src/main/java/com/learney/contentaudit/coursedomain/SentencePartEntity.java
+    fields:
+    - name: kind
+      status: EXISTS
+    - name: text
+      status: EXISTS
+    - name: options
+      status: EXISTS
+  - name: CourseValidationException
+    status: EXISTS
+    filePath: course-domain/src/main/java/com/learney/contentaudit/coursedomain/CourseValidationException.java
+    fields:
+    - name: path
+      status: EXISTS
+    - name: detail
+      status: EXISTS
+  interfaces:
+  - name: CourseRepository
+    status: EXISTS
+    filePath: course-domain/src/main/java/com/learney/contentaudit/coursedomain/CourseRepository.java
+    methods:
+    - signature: "load(Path path): CourseEntity"
+      status: EXISTS
+    - signature: "save(CourseEntity course, Path path): void"
+      status: EXISTS
+  - name: CourseValidator
+    status: EXISTS
+    filePath: course-domain/src/main/java/com/learney/contentaudit/coursedomain/CourseValidator.java
+    methods:
+    - signature: "validate(CourseEntity course): void"
+      status: EXISTS
+- module: refiner-domain
+  status: EXISTS
+- module: audit-application
+  status: EXISTS
+- module: course-infrastructure
+  status: EXISTS
+  implementations:
+  - name: FileSystemCourseRepository
+    status: EXISTS
+    filePath: course-infrastructure/src/main/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepository.java
+    tests:
+    - name: "Given a valid course entity, when save is called, then validator is invoked\
+        \ and no exception is thrown"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given an invalid course entity, when save is called, then validator throws\
+        \ CourseValidationException"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a course entity with validator passing, when save is called, then\
+        \ no exception is thrown"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a null course entity, when save is called, then an exception is\
+        \ thrown"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given validator rejects course with duplicate IDs, when save is called,\
+        \ then CourseValidationException propagates"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given validator rejects course with broken parent references, when save\
+        \ is called, then CourseValidationException propagates"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given validator rejects milestone with no topics, when save is called,\
+        \ then CourseValidationException propagates"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a valid course directory, when load is called, then returns CourseEntity\
+        \ with 5-level hierarchy including ROOT node"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a course with ordered milestones and topics, when load is called,\
+        \ then child order matches parent children lists"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a loaded course, when saved and reloaded, then the result is semantically\
+        \ equivalent to the original"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a course directory with quiz templates, when load is called, then\
+        \ every knowledge has at least one quiz template"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a course directory with consistent IDs, when load is called, then\
+        \ all child ID references resolve to existing entities"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a course directory with unique IDs, when load is called, then no\
+        \ duplicate IDs exist across any hierarchy level"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a valid directory structure, when load is called, then each directory\
+        \ level contains its expected descriptor file"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a loaded course, when inspecting parent references, then each child\
+        \ parentId matches its actual parent id"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a course with all required fields populated, when load is called,\
+        \ then all mandatory fields are non-null"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a course with empty string and null field values, when saved and\
+        \ reloaded, then empty and null values are preserved exactly"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given quiz templates with dual id and oidId fields, when load is called,\
+        \ then both fields contain the same value"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given quiz templates with numberDouble format values, when saved to JSON,\
+        \ then numeric fields preserve MongoDB Extended JSON format"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a loaded course, when inspecting order fields, then milestones\
+        \ topics and knowledges have sequential 1-based order within their parent"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a milestone with empty children list, when load is called, then\
+        \ validation rejects the course with a descriptive error"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given entities with labels, when saved to disk, then directory names\
+        \ are deterministic slugs derived from the labels"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a course directory with full hierarchy, when loading step by step,\
+        \ then all levels are resolved with correct hierarchy order and validation"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a course in memory, when saving to a target directory, then the\
+        \ directory structure and JSON files are written correctly"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a course loaded from files, when saved to a new directory and reloaded,\
+        \ then the reloaded course equals the original"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a loaded course, when navigating from ROOT to milestones to topics\
+        \ to knowledges to quizzes, then each level is accessible and correctly ordered"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a loaded course, when a knowledge label is modified and the course\
+        \ is saved and reloaded, then the change is reflected and unmodified data\
+        \ remains intact"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    - name: "Given a nonexistent path or missing descriptor or malformed JSON, when\
+        \ load is called, then a descriptive error is thrown and no partial course\
+        \ is returned"
+      status: EXISTS
+      testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+testSummary:
+  total: 28
+  passing: 28
+  failing: 0
+  notImplemented: 0
+patterns:
+- id: declared-1
+  pattern: Strategy
+  category: gof
+  source: declared
+  severity: info
+  description: Declared Strategy pattern in audit-domain
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: ContentAnalyzer
+    nodeId: interface-audit-domain-ContentAnalyzer
+  confidence: 1.0
+- id: stereo-2
+  pattern: Service
+  category: architectural
+  source: detected
+  severity: info
+  description: ContentAudit is a service
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: ContentAudit
+    nodeId: interface-audit-domain-ContentAudit
+  confidence: 0.9
+- id: stereo-3
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: AuditEngine is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: AuditEngine
+    nodeId: interface-audit-domain-AuditEngine
+  confidence: 0.9
+- id: stereo-4
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: ContentAnalyzer is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: ContentAnalyzer
+    nodeId: interface-audit-domain-ContentAnalyzer
+  confidence: 0.9
+- id: stereo-5
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: AnalysisResult is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: AnalysisResult
+    nodeId: interface-audit-domain-AnalysisResult
+  confidence: 0.9
+- id: stereo-6
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: AuditReport is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: AuditReport
+    nodeId: model-audit-domain-AuditReport
+  confidence: 0.75
+- id: stereo-7
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: AuditableCourse is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: AuditableCourse
+    nodeId: model-audit-domain-AuditableCourse
+  confidence: 0.75
+- id: stereo-8
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: AuditContext is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: AuditContext
+    nodeId: model-audit-domain-AuditContext
+  confidence: 0.75
+- id: stereo-9
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: AuditableKnowledge is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: AuditableKnowledge
+    nodeId: model-audit-domain-AuditableKnowledge
+  confidence: 0.75
+- id: stereo-10
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: AuditableTopic is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: AuditableTopic
+    nodeId: model-audit-domain-AuditableTopic
+  confidence: 0.75
+- id: stereo-11
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: AuditableMilestone is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: AuditableMilestone
+    nodeId: model-audit-domain-AuditableMilestone
+  confidence: 0.75
+- id: stereo-12
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: AuditableQuiz is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: AuditableQuiz
+    nodeId: model-audit-domain-AuditableQuiz
+  confidence: 0.75
+- id: stereo-13
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: CourseRepository is a port
+  involvedElements:
+  - type: interface
+    moduleName: course-domain
+    elementName: CourseRepository
+    nodeId: interface-course-domain-CourseRepository
+  confidence: 0.9
+- id: stereo-14
+  pattern: Service
+  category: architectural
+  source: detected
+  severity: info
+  description: CourseValidator is a service
+  involvedElements:
+  - type: interface
+    moduleName: course-domain
+    elementName: CourseValidator
+    nodeId: interface-course-domain-CourseValidator
+  confidence: 0.9
+- id: stereo-15
+  pattern: Enum
+  category: architectural
+  source: detected
+  severity: info
+  description: NodeKind is an enum
+  involvedElements:
+  - type: model
+    moduleName: course-domain
+    elementName: NodeKind
+    nodeId: model-course-domain-NodeKind
+  confidence: 0.95
+- id: stereo-16
+  pattern: Enum
+  category: architectural
+  source: detected
+  severity: info
+  description: SentencePartKind is an enum
+  involvedElements:
+  - type: model
+    moduleName: course-domain
+    elementName: SentencePartKind
+    nodeId: model-course-domain-SentencePartKind
+  confidence: 0.95
+- id: stereo-17
+  pattern: Entity
+  category: architectural
+  source: detected
+  severity: info
+  description: CourseEntity has an id field (entity)
+  involvedElements:
+  - type: model
+    moduleName: course-domain
+    elementName: CourseEntity
+    nodeId: model-course-domain-CourseEntity
+  confidence: 0.8
+- id: stereo-18
+  pattern: Entity
+  category: architectural
+  source: detected
+  severity: info
+  description: RootNodeEntity has an id field (entity)
+  involvedElements:
+  - type: model
+    moduleName: course-domain
+    elementName: RootNodeEntity
+    nodeId: model-course-domain-RootNodeEntity
+  confidence: 0.8
+- id: stereo-19
+  pattern: Entity
+  category: architectural
+  source: detected
+  severity: info
+  description: MilestoneEntity has an id field (entity)
+  involvedElements:
+  - type: model
+    moduleName: course-domain
+    elementName: MilestoneEntity
+    nodeId: model-course-domain-MilestoneEntity
+  confidence: 0.8
+- id: stereo-20
+  pattern: Entity
+  category: architectural
+  source: detected
+  severity: info
+  description: TopicEntity has an id field (entity)
+  involvedElements:
+  - type: model
+    moduleName: course-domain
+    elementName: TopicEntity
+    nodeId: model-course-domain-TopicEntity
+  confidence: 0.8
+- id: stereo-21
+  pattern: Entity
+  category: architectural
+  source: detected
+  severity: info
+  description: KnowledgeEntity has an id field (entity)
+  involvedElements:
+  - type: model
+    moduleName: course-domain
+    elementName: KnowledgeEntity
+    nodeId: model-course-domain-KnowledgeEntity
+  confidence: 0.8
+- id: stereo-22
+  pattern: Entity
+  category: architectural
+  source: detected
+  severity: info
+  description: QuizTemplateEntity has an id field (entity)
+  involvedElements:
+  - type: model
+    moduleName: course-domain
+    elementName: QuizTemplateEntity
+    nodeId: model-course-domain-QuizTemplateEntity
+  confidence: 0.8
+- id: stereo-23
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: FormEntity is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: course-domain
+    elementName: FormEntity
+    nodeId: model-course-domain-FormEntity
+  confidence: 0.75
+- id: stereo-24
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: SentencePartEntity is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: course-domain
+    elementName: SentencePartEntity
+    nodeId: model-course-domain-SentencePartEntity
+  confidence: 0.75
+- id: anti-25
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: AnalysisResult has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: AnalysisResult
+    nodeId: interface-audit-domain-AnalysisResult
+  confidence: 0.9
+- id: anti-26
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: CourseValidator has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: course-domain
+    elementName: CourseValidator
+    nodeId: interface-course-domain-CourseValidator
+  confidence: 0.9
+- id: anti-27
+  pattern: God Module
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: "course-domain is too large: 11 models"
+  involvedElements:
+  - type: module
+    moduleName: course-domain
+    elementName: course-domain
+    nodeId: module-course-domain
+  confidence: 0.85

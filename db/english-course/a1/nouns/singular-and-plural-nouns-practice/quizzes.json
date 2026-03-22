@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422ef"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Can you see those",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "skyscrapers"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(skyscraper)?"
+        }
+      ]
+    },
+    "translation": "¿Puedes ver esos rascacielos?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe los sustantivos en plural.",
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "id": "67fab6d599301022953422ef",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.06.01.01",
+    "code": "",
+    "successMessage": "",
+    "title": "Singular and Plural Nouns Practice",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422f0"
+    },
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I found five",
+          "options": null
+        },
+        {
+          "options": [
+            "combs"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(comb) in her bag.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "title": "Singular and Plural Nouns Practice",
+    "instructions": "Escribe los sustantivos en plural.",
+    "id": "67fab6d599301022953422f0",
+    "miniTheory": "",
+    "translation": "Encontré cinco peines en su bolso.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.06.01.02",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422f1"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What about those",
+          "options": null
+        },
+        {
+          "options": [
+            "purses"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(purse)?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe los sustantivos en plural.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "title": "Singular and Plural Nouns Practice",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953422f1",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "translation": "¿Qué hay de esos bolsos?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.06.01.03",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422f2"
+    },
+    "miniTheory": "",
+    "id": "67fab6d599301022953422f2",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The forest is full of",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wolves"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(wolf).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe los sustantivos en plural.",
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "answerAudioUrl": "A1.06.01.04",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Singular and Plural Nouns Practice",
+    "translation": "El bosque está lleno de lobos.",
+    "successMessage": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422f3"
+    },
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "successMessage": "",
+    "id": "67fab6d599301022953422f3",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "instructions": "Escribe los sustantivos en plural.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Those",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "men"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(man) went to play football.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Esos hombres fueron a jugar al fútbol.",
+    "kind": "CLOZE",
+    "title": "Singular and Plural Nouns Practice",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.06.01.05",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422f4"
+    },
+    "id": "67fab6d599301022953422f4",
+    "code": "",
+    "title": "Singular and Plural Nouns Practice",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She loves European",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "countries"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(country).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.06.01.06",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe los sustantivos en plural.",
+    "translation": "A ella le encantan los países europeos.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422f5"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "How many"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "weeks"
+          ]
+        },
+        {
+          "text": "(week) will it take?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.06.01.07",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "audioUrl": "",
+    "id": "67fab6d599301022953422f5",
+    "title": "Singular and Plural Nouns Practice",
+    "translation": "¿Cuántas semanas tomará?",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe los sustantivos en plural.",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422f6"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "instructions": "Escribe los sustantivos en plural.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He put two",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "plates"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(plate) on the sideboard."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "translation": "Puso dos platos en el aparador.",
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "id": "67fab6d599301022953422f6",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Singular and Plural Nouns Practice",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.06.01.08",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422f7"
+    },
+    "id": "67fab6d599301022953422f7",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A1.06.01.09",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The garden was full of",
+          "options": null
+        },
+        {
+          "options": [
+            "butterflies"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(butterfly)!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "¡El jardín estaba lleno de mariposas!",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Singular and Plural Nouns Practice",
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "instructions": "Escribe los sustantivos en plural.",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422f8"
+    },
+    "answerAudioUrl": "A1.06.01.10",
+    "id": "67fab6d599301022953422f8",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "audioUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Singular and Plural Nouns Practice",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We saved our",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "photos"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(photo) on a USB."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "instructions": "Escribe los sustantivos en plural.",
+    "translation": "Guardamos nuestras fotos en un USB.",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422f9"
+    },
+    "instructions": "Escribe los sustantivos en plural.",
+    "answerAudioUrl": "A1.06.01.11",
+    "id": "67fab6d599301022953422f9",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "translation": "¿Cuántas bicicletas tienen?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "How many"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "bikes"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(bike) do they own?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "title": "Singular and Plural Nouns Practice",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422fa"
+    },
+    "id": "67fab6d599301022953422fa",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "instructions": "Escribe los sustantivos en plural.",
+    "title": "Singular and Plural Nouns Practice",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.06.01.12",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I kept two of the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "letters"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(letter).",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Me quedé con dos de las cartas.",
+    "successMessage": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422fb"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Are these your",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "feet"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(foot)?",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A1.06.01.13",
+    "title": "Singular and Plural Nouns Practice",
+    "instructions": "Escribe los sustantivos en plural.",
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "audioUrl": "",
+    "id": "67fab6d599301022953422fb",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Estos son tus pies?",
+    "successMessage": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422fc"
+    },
+    "instructions": "Escribe los sustantivos en plural.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Hay algunos ratones en la cocina.",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.06.01.14",
+    "id": "67fab6d599301022953422fc",
+    "title": "Singular and Plural Nouns Practice",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "There are some",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "mice"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(mouse) in the kitchen.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422fd"
+    },
+    "id": "67fab6d599301022953422fd",
+    "title": "Singular and Plural Nouns Practice",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There are five",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "mosques"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(mosque) in the city.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "instructions": "Escribe los sustantivos en plural.",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.06.01.15",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Hay cinco mezquitas en la ciudad.",
+    "answerImageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422fe"
+    },
+    "id": "67fab6d599301022953422fe",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe los sustantivos en plural.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.06.01.16",
+    "audioUrl": "",
+    "translation": "Escribió dos historias para el periódico.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He wrote two",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "stories"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(story) to the newspaper.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Singular and Plural Nouns Practice",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422ff"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "instructions": "Escribe los sustantivos en plural.",
+    "imageUrl": "",
+    "translation": "Ella necesita algunos paquetes.",
+    "answerAudioUrl": "A1.06.01.17",
+    "id": "67fab6d599301022953422ff",
+    "title": "Singular and Plural Nouns Practice",
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She needs some",
+          "options": null
+        },
+        {
+          "options": [
+            "packages"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(package).",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342300"
+    },
+    "id": "67fab6d59930102295342300",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "title": "Singular and Plural Nouns Practice",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe los sustantivos en plural.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Give me those",
+          "options": null
+        },
+        {
+          "options": [
+            "glasses"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(glass).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Dame esas gafas.",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.06.01.18",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342301"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe los sustantivos en plural.",
+    "translation": "¿Quieres fresas?",
+    "successMessage": "",
+    "id": "67fab6d59930102295342301",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Singular and Plural Nouns Practice",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you want",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "strawberries"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(strawberry)?"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "answerAudioUrl": "A1.06.01.19",
+    "code": "",
+    "audioUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342302"
+    },
+    "theoryId": "a1.06.Singular_and_Plural_Nouns",
+    "translation": "La oficina tenía muchas computadoras.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The office had lots of"
+        },
+        {
+          "text": "",
+          "options": [
+            "computers"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(computer).",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.06.01.20",
+    "kind": "CLOZE",
+    "title": "Singular and Plural Nouns Practice",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342302",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3c4"
+    },
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe los sustantivos en plural.",
+    "topicName": "Nouns"
+  }
+]

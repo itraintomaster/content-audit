@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423df"
+    },
+    "id": "67fab6d599301022953423df",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She / her",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "needs a new car.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.08.01.01",
+    "translation": "Ella necesita un coche nuevo.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona el pronombre correcto.",
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423e0"
+    },
+    "id": "67fab6d599301022953423e0",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.08.01.02",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "instructions": "Selecciona el pronombre correcto.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs barked at he / him",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "him"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Los perros le ladraron.",
+    "answerImageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423e1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona el pronombre correcto.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We / us",
+          "options": null
+        },
+        {
+          "options": [
+            "We"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "stayed late.",
+          "options": null
+        }
+      ]
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "translation": "Nos quedamos hasta tarde.",
+    "successMessage": "",
+    "audioUrl": "",
+    "id": "67fab6d599301022953423e1",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.08.01.03",
+    "answerImageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423e2"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953423e2",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Does Mary remember she / her",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "her"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "¿María se acuerda de ella?",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona el pronombre correcto.",
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "answerAudioUrl": "A1.08.01.04",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423e3"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "instructions": "Selecciona el pronombre correcto.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.08.01.05",
+    "id": "67fab6d599301022953423e3",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Would you like to call he / him"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "him"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "tomorrow?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "¿Te gustaría llamarlo mañana?",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "imageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423e4"
+    },
+    "imageUrl": "",
+    "translation": "Puede que pidan pasta esta noche.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.08.01.06",
+    "id": "67fab6d599301022953423e4",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "title": "Pronoun Selection: Subject vs. Object",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They / them",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "may order pasta tonight.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "instructions": "Selecciona el pronombre correcto.",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423e5"
+    },
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "instructions": "Selecciona el pronombre correcto.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "id": "67fab6d599301022953423e5",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A1.08.01.07",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She / her",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She"
+          ]
+        },
+        {
+          "text": "watches TV every Wednesday.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "Ella ve la televisión todos los miércoles.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423e6"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "translation": "Él disfruta del té.",
+    "answerAudioUrl": "A1.08.01.08",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona el pronombre correcto.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He / him",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "He"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "enjoys tea.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "id": "67fab6d599301022953423e6",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423e7"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "instructions": "Selecciona el pronombre correcto.",
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d599301022953423e7",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you visit he / him",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "him"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A1.08.01.09",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "¿Lo visitas?",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423e8"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona el pronombre correcto.",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "title": "Pronoun Selection: Subject vs. Object",
+    "id": "67fab6d599301022953423e8",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He / him",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "lives in Paris.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Él vive en París.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.08.01.10",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423e9"
+    },
+    "translation": "Ella debería haberse quedado en casa.",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "title": "Pronoun Selection: Subject vs. Object",
+    "instructions": "Selecciona el pronombre correcto.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She / her",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "She"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "should have stayed home.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "id": "67fab6d599301022953423e9",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A1.08.01.11",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423ea"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953423ea",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They / them",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "are arriving at nine.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "translation": "Llegan a las nueve.",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.08.01.12",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "instructions": "Selecciona el pronombre correcto.",
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423eb"
+    },
+    "id": "67fab6d599301022953423eb",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "instructions": "Selecciona el pronombre correcto.",
+    "translation": "¿Podrías ayudarla?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.08.01.13",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you assist she / her",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "her"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423ec"
+    },
+    "translation": "Disfrutamos del chocolate.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We / us"
+        },
+        {
+          "text": "",
+          "options": [
+            "We"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "enjoy chocolate.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.08.01.14",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "title": "Pronoun Selection: Subject vs. Object",
+    "instructions": "Selecciona el pronombre correcto.",
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953423ec",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423ed"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The teacher praised she / her",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "her"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "translation": "La maestra la elogió.",
+    "answerAudioUrl": "A1.08.01.15",
+    "id": "67fab6d599301022953423ed",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "instructions": "Selecciona el pronombre correcto.",
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423ee"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "instructions": "Selecciona el pronombre correcto.",
+    "translation": "Ella va al parque.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She / her",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "is going to the park.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A1.08.01.16",
+    "id": "67fab6d599301022953423ee",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423ef"
+    },
+    "answerAudioUrl": "A1.08.01.17",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "miniTheory": "",
+    "instructions": "Selecciona el pronombre correcto.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I phoned he / him"
+        },
+        {
+          "options": [
+            "him"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "today.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "translation": "Lo llamé hoy.",
+    "id": "67fab6d599301022953423ef",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423f0"
+    },
+    "translation": "No creo que le agrademos.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.08.01.18",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "imageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d599301022953423f0",
+    "kind": "CLOZE",
+    "instructions": "Selecciona el pronombre correcto.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I don't believe he likes we / us",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "us"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "miniTheory": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423f1"
+    },
+    "id": "67fab6d599301022953423f1",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A1.08.01.19",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "audioUrl": "",
+    "translation": "La llamé esta mañana.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Selecciona el pronombre correcto.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I called she / her",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "her"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "this morning.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423f2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953423f2",
+    "kind": "CLOZE",
+    "instructions": "Selecciona el pronombre correcto.",
+    "answerAudioUrl": "A1.08.01.20",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We didn't visit he / him",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "him"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "today.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3d2"
+    },
+    "title": "Pronoun Selection: Subject vs. Object",
+    "theoryId": "a1.08.1_Subject_and_object_pronouns",
+    "audioUrl": "",
+    "translation": "No lo visitamos hoy.",
+    "topicName": "Pronouns"
+  }
+]

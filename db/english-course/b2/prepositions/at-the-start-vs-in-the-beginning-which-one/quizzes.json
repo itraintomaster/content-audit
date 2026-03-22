@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a58"
+    },
+    "id": "67fab6d59930102295344a58",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'in' o 'at'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The actors rehearsed the play a lot but,",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "in"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "the beginning, they made some errors.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.15.06.01",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Los actores ensayaron mucho la obra pero, al principio, cometieron algunos errores.",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a59"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'in' o 'at'.",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.15.06.02",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        },
+        {
+          "options": [
+            "At"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "the start of the movie, he arrives in the city.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "imageUrl": "",
+    "translation": "Al comienzo de la película, él llega a la ciudad.",
+    "id": "67fab6d59930102295344a59",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a5a"
+    },
+    "translation": "¿Qué pensaste al principio?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.15.06.03",
+    "id": "67fab6d59930102295344a5a",
+    "code": "",
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "instructions": "Completa con 'in' o 'at'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What did you think",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the beginning?",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a5b"
+    },
+    "id": "67fab6d59930102295344a5b",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Estaba nervioso al comienzo de la reunión.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I was nervous",
+          "options": null
+        },
+        {
+          "options": [
+            "at"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "the start of the meeting.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "instructions": "Completa con 'in' o 'at'.",
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "answerAudioUrl": "B2.15.06.04",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a5c"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.15.06.05",
+    "kind": "CLOZE",
+    "instructions": "Completa con 'in' o 'at'.",
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344a5c",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "In"
+          ]
+        },
+        {
+          "text": "the beginning, I wanted to buy a new car.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Al principio, quería comprar un coche nuevo.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a5d"
+    },
+    "id": "67fab6d59930102295344a5d",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Al comienzo de la carrera, se sintió fuerte.",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.15.06.06",
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'in' o 'at'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "At"
+          ]
+        },
+        {
+          "text": "the start of the race, he felt strong.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a5e"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "answerAudioUrl": "B2.15.06.07",
+    "id": "67fab6d59930102295344a5e",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "imageUrl": "",
+    "translation": "Estoy feliz al final del día.",
+    "answerImageUrl": "",
+    "code": "",
+    "instructions": "Completa con 'in' o 'at'.",
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm happy",
+          "options": null
+        },
+        {
+          "options": [
+            "at"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "the end of the day.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a5f"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295344a5f",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "At"
+          ]
+        },
+        {
+          "text": "the start of the lesson, the professor asked some questions.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "translation": "Al comienzo de la lección, el profesor hizo algunas preguntas.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "instructions": "Completa con 'in' o 'at'.",
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "answerAudioUrl": "B2.15.06.08",
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a60"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The bus was so full that,",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "text": "the beginning, I waited for the next one.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "answerAudioUrl": "B2.15.06.09",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'in' o 'at'.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344a60",
+    "code": "",
+    "imageUrl": "",
+    "translation": "El autobús estaba tan lleno que, al principio, esperé al siguiente.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a61"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He tried very hard and,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the beginning, he didn't get the solution.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295344a61",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.15.06.10",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Se esforzó mucho y, al principio, no obtuvo la solución.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Completa con 'in' o 'at'.",
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "miniTheory": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a62"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.15.06.11",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "instructions": "Completa con 'in' o 'at'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He gave his opinion",
+          "options": null
+        },
+        {
+          "options": [
+            "at"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "the end of the message.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "translation": "Dio su opinión al final del mensaje.",
+    "successMessage": "",
+    "id": "67fab6d59930102295344a62",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a63"
+    },
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.15.06.12",
+    "id": "67fab6d59930102295344a63",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They spent a lot of time thinking but,"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the beginning, they ordered Chinese takeout.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'in' o 'at'.",
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Pasaron mucho tiempo pensando pero, al principio, pidieron comida china para llevar.",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a64"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "imageUrl": "",
+    "translation": "Hubo mucha emoción al comienzo del espectáculo.",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There was a lot of excitement",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the start of the show.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.15.06.13",
+    "id": "67fab6d59930102295344a64",
+    "instructions": "Completa con 'in' o 'at'.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a65"
+    },
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'in' o 'at'.",
+    "answerAudioUrl": "B2.15.06.14",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They become friends",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the end of the episode.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "id": "67fab6d59930102295344a65",
+    "translation": "Se hacen amigos al final del episodio.",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a66"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Los cantantes no querían parar al final de la actuación.",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B2.15.06.15",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "instructions": "Completa con 'in' o 'at'.",
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "id": "67fab6d59930102295344a66",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The singers did not want to stop",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the end of the performance.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a67"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "In"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the beginning, the babies cried a lot at night.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.15.06.16",
+    "kind": "CLOZE",
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Al principio, los bebés lloraban mucho por la noche.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344a67",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "instructions": "Completa con 'in' o 'at'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a68"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "instructions": "Completa con 'in' o 'at'.",
+    "audioUrl": "",
+    "translation": "Buscó sus llaves toda la mañana y, al principio, eligió tomar el autobús al trabajo.",
+    "id": "67fab6d59930102295344a68",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She searched for her keys all morning and,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the beginning, she chose to take the bus to work.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.15.06.17",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a69"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.15.06.18",
+    "id": "67fab6d59930102295344a69",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I ordered pasta but,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the beginning, I ate bread.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "translation": "Pedí pasta pero, al principio, comí pan.",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "instructions": "Completa con 'in' o 'at'.",
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "code": "",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a6a"
+    },
+    "id": "67fab6d59930102295344a6a",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She improved",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the end of the semester.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.15.06.19",
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "translation": "Ella mejoró al final del semestre.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "instructions": "Completa con 'in' o 'at'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "topicName": "Prepositions"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344a6b"
+    },
+    "id": "67fab6d59930102295344a6b",
+    "imageUrl": "",
+    "translation": "Al principio, queríamos comer pizza.",
+    "title": "'At the start' vs 'in the beginning': Which one?",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'in' o 'at'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.15.06.20",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4a7"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "In"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the beginning, we wanted to eat pizza.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b2.15.Adjectives_and_Prepositions",
+    "topicName": "Prepositions"
+  }
+]

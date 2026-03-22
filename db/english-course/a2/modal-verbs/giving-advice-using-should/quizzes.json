@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e3e"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342e3e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29e"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I think it's a good idea for you to go to bed earlier.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You should go to bed earlier."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.10.10.01",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Giving Advice: Using 'Should'",
+    "instructions": "Crea oraciones que incluyan 'should' o 'shouldn't'.",
+    "theoryId": "a2.10.Should_for_Advice",
+    "translation": "Deberías acostarte más temprano.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e3f"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342e3f",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I don't think it's a good idea for you to eat fast food.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "You shouldn't eat fast food."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.10.Should_for_Advice",
+    "answerAudioUrl": "A2.10.10.02",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Giving Advice: Using 'Should'",
+    "instructions": "Crea oraciones que incluyan 'should' o 'shouldn't'.",
+    "imageUrl": "",
+    "translation": "No deberías comer comida rápida.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29e"
+    },
+    "miniTheory": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e40"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342e40",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Giving Advice: Using 'Should'",
+    "theoryId": "a2.10.Should_for_Advice",
+    "audioUrl": "",
+    "translation": "Peter debería llamar a su madre.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.10.10.03",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones que incluyan 'should' o 'shouldn't'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "I think it's a good idea for Peter to call his mother.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter should call his mother."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e41"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29e"
+    },
+    "title": "Giving Advice: Using 'Should'",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I think it's a good idea for the employees to arrive on time.",
+          "options": null
+        },
+        {
+          "options": [
+            "The employees should arrive on time."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerAudioUrl": "A2.10.10.04",
+    "kind": "CLOZE",
+    "instructions": "Crea oraciones que incluyan 'should' o 'shouldn't'.",
+    "theoryId": "a2.10.Should_for_Advice",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "imageUrl": "",
+    "translation": "Los empleados deberían llegar a tiempo.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342e41",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e42"
+    },
+    "id": "67fab6d59930102295342e42",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29e"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones que incluyan 'should' o 'shouldn't'.",
+    "theoryId": "a2.10.Should_for_Advice",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.10.05",
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I don't think it's a good idea for you to spend so much money.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You shouldn't spend so much money."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Giving Advice: Using 'Should'",
+    "translation": "No deberías gastar tanto dinero.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e43"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones que incluyan 'should' o 'shouldn't'.",
+    "translation": "Ella debería hacer más ejercicio.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.10.10.06",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I think it's a good idea for her to do more exercise."
+        },
+        {
+          "text": "",
+          "options": [
+            "She should do more exercise."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342e43",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Giving Advice: Using 'Should'",
+    "theoryId": "a2.10.Should_for_Advice",
+    "audioUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e44"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.10.Should_for_Advice",
+    "imageUrl": "",
+    "title": "Giving Advice: Using 'Should'",
+    "instructions": "Crea oraciones que incluyan 'should' o 'shouldn't'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I don't think it's a good idea for Mary to worry so much.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary shouldn't worry so much."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Mary no debería preocuparse tanto.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d59930102295342e44",
+    "code": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.10.10.07",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e45"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29e"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342e45",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I don't think it's a good idea for me to watch so much TV.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I shouldn't watch so much TV."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A2.10.10.08",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones que incluyan 'should' o 'shouldn't'.",
+    "theoryId": "a2.10.Should_for_Advice",
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Giving Advice: Using 'Should'",
+    "translation": "No debería ver tanta televisión.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e46"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29e"
+    },
+    "imageUrl": "",
+    "translation": "Los gatos deberían dormir adentro.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.10.09",
+    "kind": "CLOZE",
+    "instructions": "Crea oraciones que incluyan 'should' o 'shouldn't'.",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Giving Advice: Using 'Should'",
+    "theoryId": "a2.10.Should_for_Advice",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342e46",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I think it's a good idea for the cats to sleep inside.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The cats should sleep inside."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e47"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342e47",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29e"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "translation": "Los adolescentes no deberían quedarse fuera hasta tan tarde.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I don't think it's a good idea for teenagers to stay out so late.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Teenagers shouldn't stay out so late."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "instructions": "Crea oraciones que incluyan 'should' o 'shouldn't'.",
+    "theoryId": "a2.10.Should_for_Advice",
+    "successMessage": "",
+    "answerAudioUrl": "A2.10.10.10",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Giving Advice: Using 'Should'",
+    "topicName": "Modal Verbs"
+  }
+]

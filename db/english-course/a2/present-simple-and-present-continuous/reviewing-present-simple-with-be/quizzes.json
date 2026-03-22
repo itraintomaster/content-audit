@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425ab"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "Is he"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / be) from Canada?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.01.01.01",
+    "id": "67fab6d599301022953425ab",
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "title": "Reviewing Present Simple with 'be'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.01.Stative_Verbs",
+    "audioUrl": "",
+    "translation": "¿Es él de Canadá?\n",
+    "successMessage": "",
+    "code": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425ac"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d599301022953425ac",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "theoryId": "a2.01.Stative_Verbs",
+    "audioUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) from Ireland.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "No son de Irlanda.\n",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.01.01.02",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425ad"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.01.01.03",
+    "id": "67fab6d599301022953425ad",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "theoryId": "a2.01.Stative_Verbs",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ella está en la tienda.\n",
+    "answerImageUrl": "",
+    "code": "",
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) at the store.",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425ae"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A2.01.01.04",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "code": "",
+    "title": "Reviewing Present Simple with 'be'",
+    "translation": "Él no está en la sala.\n",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "isn't"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) in the living-room.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d599301022953425ae",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.01.Stative_Verbs",
+    "answerImageUrl": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425af"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d599301022953425af",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.01.01.05",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Who"
+        },
+        {
+          "text": "",
+          "options": [
+            "are they"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / be)?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.01.Stative_Verbs",
+    "translation": "¿Quiénes son?\n",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425b0"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "imageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) British.",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A2.01.01.06",
+    "id": "67fab6d599301022953425b0",
+    "translation": "Ella no es británica.\n",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425b1"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "options": [
+            "is my wallet"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(my wallet / be)?"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.01.Stative_Verbs",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Reviewing Present Simple with 'be'",
+    "imageUrl": "",
+    "translation": "¿Dónde está mi billetera?\n",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953425b1",
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.01.01.07",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425b2"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¡Ella llegó temprano hoy!\n",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.01.01.08",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) early today!",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.01.Stative_Verbs",
+    "id": "67fab6d599301022953425b2",
+    "code": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425b3"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.01.01.09",
+    "successMessage": "",
+    "id": "67fab6d599301022953425b3",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "audioUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "translation": "¿Es John profesor?\n",
+    "kind": "CLOZE",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is John"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(John / be) a teacher?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.01.Stative_Verbs",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425b4"
+    },
+    "kind": "CLOZE",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / be) so late?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "¿Por qué llega tan tarde?\n",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.01.01.10",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "theoryId": "a2.01.Stative_Verbs",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d599301022953425b4",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425b5"
+    },
+    "translation": "¿Dónde está él ahora?\n",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "successMessage": "",
+    "answerAudioUrl": "A2.01.01.11",
+    "id": "67fab6d599301022953425b5",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / be) now?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a2.01.Stative_Verbs",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425b6"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953425b6",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) always happy.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Siempre está feliz.\n",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.01.01.12",
+    "code": "",
+    "theoryId": "a2.01.Stative_Verbs",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425b7"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "theoryId": "a2.01.Stative_Verbs",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953425b7",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.01.01.13",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) tired.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Estamos cansados.\n",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425b8"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "imageUrl": "",
+    "translation": "Los profesores no están en el trabajo hoy.\n",
+    "answerAudioUrl": "A2.01.01.14",
+    "id": "67fab6d599301022953425b8",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.01.Stative_Verbs",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The teachers",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "aren't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) at work today.",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425b9"
+    },
+    "answerAudioUrl": "A2.01.01.15",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Están en el parque hoy.\n",
+    "theoryId": "a2.01.Stative_Verbs",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re"
+          ]
+        },
+        {
+          "text": "(be) at the park today.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953425b9",
+    "successMessage": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425ba"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "theoryId": "a2.01.Stative_Verbs",
+    "translation": "¿Qué eres?\n",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "answerAudioUrl": "A2.01.01.16",
+    "id": "67fab6d599301022953425ba",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / be)?",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425bb"
+    },
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "successMessage": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "answerAudioUrl": "A2.01.01.17",
+    "id": "67fab6d599301022953425bb",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "¿Tienes sueño?\n",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / be) sleepy?",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425bc"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.01.01.18",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953425bc",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "theoryId": "a2.01.Stative_Verbs",
+    "translation": "¿Está ella en casa?\n",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / be) at home?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425bd"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Am I"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(I / be) wrong?"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a2.01.Stative_Verbs",
+    "translation": "¿Estoy equivocado/a?\n",
+    "miniTheory": "",
+    "id": "67fab6d599301022953425bd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.01.01.19",
+    "code": "",
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "topicName": "Present simple and Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425be"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d21a"
+    },
+    "theoryId": "a2.01.Stative_Verbs",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953425be",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Reviewing Present Simple with 'be'",
+    "instructions": "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.01.01.20",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "aren't"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) awake.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "translation": "No estamos despiertos.\n",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Present simple and Present Continuous"
+  }
+]

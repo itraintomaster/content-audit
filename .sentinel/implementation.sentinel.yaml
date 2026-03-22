@@ -1,0 +1,825 @@
+analyzedAt: 2026-03-19T02:23:00.667454Z
+system: ContentAudit
+modules:
+- name: course-domain
+  source: sentinel
+  models:
+  - name: SentencePartEntity
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: kind
+      type: SentencePartKind
+    - name: text
+      type: String
+    - name: options
+      type: List<String>
+  - name: SentencePartKind
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: TEXT
+      type: constant
+    - name: CLOZE
+      type: constant
+  - name: QuizTemplateEntity
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: id
+      type: String
+    - name: oidId
+      type: String
+    - name: kind
+      type: String
+    - name: knowledgeId
+      type: String
+    - name: title
+      type: String
+    - name: instructions
+      type: String
+    - name: translation
+      type: String
+    - name: theoryId
+      type: String
+    - name: topicName
+      type: String
+    - name: form
+      type: FormEntity
+    - name: difficulty
+      type: double
+    - name: retries
+      type: double
+    - name: noScoreRetries
+      type: double
+    - name: code
+      type: String
+    - name: audioUrl
+      type: String
+    - name: imageUrl
+      type: String
+    - name: answerAudioUrl
+      type: String
+    - name: answerImageUrl
+      type: String
+    - name: miniTheory
+      type: String
+    - name: successMessage
+      type: String
+  - name: CourseValidationException
+    source: sentinel
+    type: exception
+    visibility: public
+    fields:
+    - name: path
+      type: String
+    - name: detail
+      type: String
+    extendsType: RuntimeException
+  - name: CourseEntity
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: id
+      type: String
+    - name: title
+      type: String
+    - name: knowledgeIds
+      type: List<String>
+    - name: root
+      type: RootNodeEntity
+    - name: slug
+      type: String
+  - name: FormEntity
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: kind
+      type: String
+    - name: incidence
+      type: double
+    - name: label
+      type: String
+    - name: name
+      type: String
+    - name: sentenceParts
+      type: List<SentencePartEntity>
+  - name: MilestoneEntity
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: id
+      type: String
+    - name: code
+      type: String
+    - name: kind
+      type: NodeKind
+    - name: label
+      type: String
+    - name: oldId
+      type: String
+    - name: parentId
+      type: String
+    - name: children
+      type: List<String>
+    - name: order
+      type: int
+    - name: slug
+      type: String
+    - name: topics
+      type: List<TopicEntity>
+  - name: NodeKind
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: ROOT
+      type: constant
+    - name: MILESTONE
+      type: constant
+    - name: TOPIC
+      type: constant
+    - name: KNOWLEDGE
+      type: constant
+  - name: KnowledgeEntity
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: id
+      type: String
+    - name: code
+      type: String
+    - name: kind
+      type: NodeKind
+    - name: label
+      type: String
+    - name: oldId
+      type: String
+    - name: parentId
+      type: String
+    - name: isRule
+      type: boolean
+    - name: instructions
+      type: String
+    - name: order
+      type: int
+    - name: slug
+      type: String
+    - name: quizTemplates
+      type: List<QuizTemplateEntity>
+  - name: RootNodeEntity
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: id
+      type: String
+    - name: code
+      type: String
+    - name: kind
+      type: NodeKind
+    - name: label
+      type: String
+    - name: children
+      type: List<String>
+    - name: milestones
+      type: List<MilestoneEntity>
+  - name: TopicEntity
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: id
+      type: String
+    - name: code
+      type: String
+    - name: kind
+      type: NodeKind
+    - name: label
+      type: String
+    - name: oldId
+      type: String
+    - name: parentId
+      type: String
+    - name: children
+      type: List<String>
+    - name: ruleIds
+      type: List<String>
+    - name: order
+      type: int
+    - name: slug
+      type: String
+    - name: knowledges
+      type: List<KnowledgeEntity>
+  interfaces:
+  - name: CourseRepository
+    source: sentinel
+    visibility: public
+    stereotype: repository
+    sealed: false
+    exposes:
+    - signature: "load(Path path): CourseEntity"
+    - signature: "save(CourseEntity course, Path path): void"
+  - name: CourseValidator
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "validate(CourseEntity course): void"
+- name: audit-application
+  source: sentinel
+  implementations:
+  - name: CachedNlpTokenizer
+    source: sentinel
+    visibility: public
+    sentinelStatus: differs
+    implements:
+    - NlpTokenizer
+  - name: DefaultSentenceLengthConfig
+    source: sentinel
+    visibility: public
+    implements:
+    - SentenceLengthConfig
+  - name: CourseToAuditableMapper
+    source: sentinel
+    visibility: public
+    sentinelStatus: differs
+- name: audit-domain
+  source: sentinel
+  models:
+  - name: AuditContext
+    source: sentinel
+    type: class
+    visibility: public
+  - name: TopicScore
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: topicId
+      type: String
+    - name: score
+      type: Optional<Double>
+    - name: knowledgeScores
+      type: List<KnowledgeScore>
+  - name: QuizScore
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: quizId
+      type: String
+    - name: tokenCount
+      type: int
+    - name: score
+      type: double
+  - name: CoverageStatus
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: OPTIMAL
+      type: constant
+    - name: DEFICIENT
+      type: constant
+    - name: EXCESSIVE
+      type: constant
+    - name: NOT_APPLICABLE
+      type: constant
+  - name: AuditableKnowledge
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: quizzes
+      type: List<AuditableQuiz>
+    - name: title
+      type: String
+    - name: instructions
+      type: String
+    - name: isSentence
+      type: boolean
+  - name: SentenceLengthResult
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: name
+      type: String
+    - name: courseScore
+      type: double
+    - name: levelMetrics
+      type: List<LevelMetrics>
+    - name: progressionStatus
+      type: ProgressionStatus
+  - name: KnowledgeScore
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: knowledgeId
+      type: String
+    - name: score
+      type: Optional<Double>
+    - name: validQuizCount
+      type: int
+    - name: excludedQuizCount
+      type: int
+    - name: quizScores
+      type: List<QuizScore>
+  - name: LevelMetrics
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: level
+      type: CefrLevel
+    - name: score
+      type: Optional<Double>
+    - name: validQuizCount
+      type: int
+    - name: excludedQuizCount
+      type: int
+    - name: totalTokens
+      type: long
+    - name: averageLength
+      type: double
+    - name: targetRange
+      type: TargetRange
+    - name: status
+      type: CoverageStatus
+    - name: recommendation
+      type: String
+    - name: topicCount
+      type: int
+    - name: knowledgeCount
+      type: int
+    - name: topicScores
+      type: List<TopicScore>
+  - name: AuditableQuiz
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: sentence
+      type: String
+    - name: tokenCount
+      type: int
+  - name: AuditReport
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: score
+      type: double
+    - name: results
+      type: List<AnalysisResult>
+  - name: AuditableCourse
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: milestones
+      type: List<AuditableMilestone>
+  - name: TargetRange
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: level
+      type: CefrLevel
+    - name: minTokens
+      type: int
+    - name: maxTokens
+      type: int
+  - name: AuditableMilestone
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: topics
+      type: List<AuditableTopic>
+  - name: AuditableTopic
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: knowledge
+      type: List<AuditableKnowledge>
+  - name: ProgressionStatus
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: POSITIVE
+      type: constant
+    - name: REGRESSIVE
+      type: constant
+    - name: STAGNANT
+      type: constant
+    - name: INSUFFICIENT_DATA
+      type: constant
+  - name: CefrLevel
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: A1
+      type: constant
+    - name: A2
+      type: constant
+    - name: B1
+      type: constant
+    - name: B2
+      type: constant
+  interfaces:
+  - name: ContentAudit
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "audit(AuditableCourse auditableCourse): AuditReport"
+  - name: AnalysisResult
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "getName(): String"
+    - signature: "getScore(): double"
+  - name: ContentAnalyzer
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "onKnowledge(AuditableKnowledge knowledge, AuditContext ctx): Void"
+    - signature: "getResult(): AnalysisResult"
+    - signature: "onQuiz(AuditableQuiz quiz, AuditContext ctx): Void"
+    - signature: "onMilestone(AuditableMilestone milestone, AuditContext ctx): Void"
+    - signature: "onTopic(AuditableTopic topic, AuditContext ctx): Void"
+    - signature: "onCourseComplete(AuditableCourse course, AuditContext ctx): Void"
+  - name: AuditEngine
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "runAudit(AuditableCourse auditableCourse): AuditReport"
+  - name: SentenceLengthConfig
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "getTargetRange(CefrLevel level): Optional<TargetRange>"
+    - signature: "getToleranceMargin(): int"
+  - name: NlpTokenizer
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "tokenize(String text): List<String>"
+    - signature: "countTokens(String text): int"
+  implementations:
+  - name: IAuditEngine
+    source: sentinel
+    visibility: public
+    sentinelStatus: differs
+    implements:
+    - AuditEngine
+  - name: SentenceLengthAnalyzer
+    source: sentinel
+    visibility: public
+    sentinelStatus: differs
+    implements:
+    - ContentAnalyzer
+  - name: KnowledgeTitleLengthAnalyzer
+    source: sentinel
+    visibility: public
+    implements:
+    - ContentAnalyzer
+  - name: IContentAudit
+    source: sentinel
+    visibility: public
+    sentinelStatus: differs
+    implements:
+    - ContentAudit
+  - name: KnowledgeInstructionsLengthAnalyzer
+    source: sentinel
+    visibility: public
+    implements:
+    - ContentAnalyzer
+- name: refiner-domain
+  source: sentinel
+- name: course-infrastructure
+  source: sentinel
+  implementations:
+  - name: CourseValidatorImpl
+    source: implementation
+    visibility: public
+    implements:
+    - CourseValidator
+  - name: FileSystemCourseRepository
+    source: mixed
+    visibility: public
+    requiresInject:
+    - name: courseValidator
+      type: CourseValidator
+    implements:
+    - CourseRepository
+dependencies:
+  discovered:
+  - from: course-domain
+    to: javax.annotation.processing
+    imports:
+    - javax.annotation.processing.Generated
+  - from: audit-application
+    to: javax.annotation.processing
+    imports:
+    - javax.annotation.processing.Generated
+  - from: audit-domain
+    to: javax.annotation.processing
+    imports:
+    - javax.annotation.processing.Generated
+  - from: course-infrastructure
+    to: com.fasterxml.jackson.databind
+    imports:
+    - com.fasterxml.jackson.databind.ObjectMapper
+graph:
+  edges:
+  - from: course-domain.SentencePartEntity
+    to: course-domain.SentencePartKind
+    relation: references
+  - from: course-domain.CourseRepository
+    to: course-domain.CourseEntity
+    relation: references
+  - from: course-domain.QuizTemplateEntity
+    to: course-domain.FormEntity
+    relation: references
+  - from: course-domain.CourseEntity
+    to: course-domain.RootNodeEntity
+    relation: references
+  - from: course-domain.FormEntity
+    to: course-domain.SentencePartEntity
+    relation: references
+  - from: course-domain.CourseValidator
+    to: course-domain.CourseEntity
+    relation: references
+  - from: course-domain.MilestoneEntity
+    to: course-domain.NodeKind
+    relation: references
+  - from: course-domain.MilestoneEntity
+    to: course-domain.TopicEntity
+    relation: references
+  - from: course-domain.KnowledgeEntity
+    to: course-domain.NodeKind
+    relation: references
+  - from: course-domain.KnowledgeEntity
+    to: course-domain.QuizTemplateEntity
+    relation: references
+  - from: course-domain.RootNodeEntity
+    to: course-domain.NodeKind
+    relation: references
+  - from: course-domain.RootNodeEntity
+    to: course-domain.MilestoneEntity
+    relation: references
+  - from: course-domain.TopicEntity
+    to: course-domain.NodeKind
+    relation: references
+  - from: course-domain.TopicEntity
+    to: course-domain.KnowledgeEntity
+    relation: references
+  - from: audit-application.CachedNlpTokenizer
+    to: audit-domain.NlpTokenizer
+    relation: references
+  - from: audit-application.DefaultSentenceLengthConfig
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-application.DefaultSentenceLengthConfig
+    to: audit-domain.TargetRange
+    relation: references
+  - from: audit-application.DefaultSentenceLengthConfig
+    to: audit-domain.SentenceLengthConfig
+    relation: references
+  - from: audit-domain.ContentAudit
+    to: audit-domain.AuditableCourse
+    relation: references
+  - from: audit-domain.ContentAudit
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-domain.TopicScore
+    to: audit-domain.KnowledgeScore
+    relation: references
+  - from: audit-domain.IAuditEngine
+    to: audit-domain.AuditableCourse
+    relation: references
+  - from: audit-domain.IAuditEngine
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-domain.IAuditEngine
+    to: audit-domain.AuditEngine
+    relation: references
+  - from: audit-domain.ContentAnalyzer
+    to: audit-domain.AuditableTopic
+    relation: references
+  - from: audit-domain.ContentAnalyzer
+    to: audit-domain.AuditableCourse
+    relation: references
+  - from: audit-domain.ContentAnalyzer
+    to: audit-domain.AuditableQuiz
+    relation: references
+  - from: audit-domain.ContentAnalyzer
+    to: audit-domain.AuditableMilestone
+    relation: references
+  - from: audit-domain.ContentAnalyzer
+    to: audit-domain.AuditableKnowledge
+    relation: references
+  - from: audit-domain.ContentAnalyzer
+    to: audit-domain.AuditContext
+    relation: references
+  - from: audit-domain.ContentAnalyzer
+    to: audit-domain.AnalysisResult
+    relation: references
+  - from: audit-domain.AuditEngine
+    to: audit-domain.AuditableCourse
+    relation: references
+  - from: audit-domain.AuditEngine
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-domain.AuditableKnowledge
+    to: audit-domain.AuditableQuiz
+    relation: references
+  - from: audit-domain.SentenceLengthResult
+    to: audit-domain.ProgressionStatus
+    relation: references
+  - from: audit-domain.SentenceLengthResult
+    to: audit-domain.LevelMetrics
+    relation: references
+  - from: audit-domain.SentenceLengthAnalyzer
+    to: audit-domain.AuditableTopic
+    relation: references
+  - from: audit-domain.SentenceLengthAnalyzer
+    to: audit-domain.AuditableCourse
+    relation: references
+  - from: audit-domain.SentenceLengthAnalyzer
+    to: audit-domain.ContentAnalyzer
+    relation: references
+  - from: audit-domain.SentenceLengthAnalyzer
+    to: audit-domain.AuditableQuiz
+    relation: references
+  - from: audit-domain.SentenceLengthAnalyzer
+    to: audit-domain.AuditableMilestone
+    relation: references
+  - from: audit-domain.SentenceLengthAnalyzer
+    to: audit-domain.AuditableKnowledge
+    relation: references
+  - from: audit-domain.SentenceLengthAnalyzer
+    to: audit-domain.AuditContext
+    relation: references
+  - from: audit-domain.SentenceLengthAnalyzer
+    to: audit-domain.AnalysisResult
+    relation: references
+  - from: audit-domain.KnowledgeScore
+    to: audit-domain.QuizScore
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.AuditableTopic
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.AuditableCourse
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.ContentAnalyzer
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.AuditableQuiz
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.AuditableMilestone
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.AuditableKnowledge
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.AuditContext
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.AnalysisResult
+    relation: references
+  - from: audit-domain.LevelMetrics
+    to: audit-domain.CoverageStatus
+    relation: references
+  - from: audit-domain.LevelMetrics
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.LevelMetrics
+    to: audit-domain.TopicScore
+    relation: references
+  - from: audit-domain.LevelMetrics
+    to: audit-domain.TargetRange
+    relation: references
+  - from: audit-domain.SentenceLengthConfig
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.SentenceLengthConfig
+    to: audit-domain.TargetRange
+    relation: references
+  - from: audit-domain.IContentAudit
+    to: audit-domain.AuditableCourse
+    relation: references
+  - from: audit-domain.IContentAudit
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-domain.IContentAudit
+    to: audit-domain.ContentAudit
+    relation: references
+  - from: audit-domain.AuditReport
+    to: audit-domain.AnalysisResult
+    relation: references
+  - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
+    to: audit-domain.AuditableTopic
+    relation: references
+  - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
+    to: audit-domain.AuditableCourse
+    relation: references
+  - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
+    to: audit-domain.ContentAnalyzer
+    relation: references
+  - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
+    to: audit-domain.AuditableQuiz
+    relation: references
+  - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
+    to: audit-domain.AuditableMilestone
+    relation: references
+  - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
+    to: audit-domain.AuditableKnowledge
+    relation: references
+  - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
+    to: audit-domain.AuditContext
+    relation: references
+  - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
+    to: audit-domain.AnalysisResult
+    relation: references
+  - from: audit-domain.AuditableCourse
+    to: audit-domain.AuditableMilestone
+    relation: references
+  - from: audit-domain.TargetRange
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.AuditableMilestone
+    to: audit-domain.AuditableTopic
+    relation: references
+  - from: audit-domain.AuditableTopic
+    to: audit-domain.AuditableKnowledge
+    relation: references
+  - from: course-infrastructure.CourseValidatorImpl
+    to: course-domain.CourseValidator
+    relation: references
+  - from: course-infrastructure.CourseValidatorImpl
+    to: course-domain.TopicEntity
+    relation: references
+  - from: course-infrastructure.CourseValidatorImpl
+    to: course-domain.KnowledgeEntity
+    relation: references
+  - from: course-infrastructure.CourseValidatorImpl
+    to: course-domain.CourseEntity
+    relation: references
+  - from: course-infrastructure.CourseValidatorImpl
+    to: course-domain.MilestoneEntity
+    relation: references
+  - from: course-infrastructure.FileSystemCourseRepository
+    to: course-domain.CourseValidator
+    relation: references
+  - from: course-infrastructure.FileSystemCourseRepository
+    to: course-domain.CourseRepository
+    relation: references
+  - from: course-infrastructure.FileSystemCourseRepository
+    to: course-domain.TopicEntity
+    relation: references
+  - from: course-infrastructure.FileSystemCourseRepository
+    to: course-domain.CourseEntity
+    relation: references
+  - from: course-infrastructure.FileSystemCourseRepository
+    to: course-domain.MilestoneEntity
+    relation: references
+  - from: course-infrastructure.FileSystemCourseRepository
+    to: course-domain.QuizTemplateEntity
+    relation: references
+  - from: course-infrastructure.FileSystemCourseRepository
+    to: course-domain.FormEntity
+    relation: references
+  - from: course-infrastructure.FileSystemCourseRepository
+    to: course-domain.KnowledgeEntity
+    relation: references
+  - from: course-infrastructure.FileSystemCourseRepository
+    to: course-domain.SentencePartEntity
+    relation: references
+  distances:
+  - component: course-infrastructure.FileSystemCourseRepository
+    distance: 1
+  - component: course-infrastructure.CourseValidatorImpl
+    distance: 1

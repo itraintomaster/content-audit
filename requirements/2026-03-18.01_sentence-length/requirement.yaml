@@ -1,0 +1,307 @@
+---
+features:
+- id: "FEAT-SLEN"
+  name: "Analisis de Longitud de Oraciones por Nivel CEFR"
+  description: "Evaluar si la longitud promedio de las oraciones en cada nivel de\
+    \ proficiencia (CEFR) del curso es apropiada para el nivel de dificultad esperado,\
+    \ generando puntuaciones, recomendaciones y un analisis de progresion entre niveles."
+  code: "F-SLEN"
+  rules:
+  - id: "F-SLEN-R001"
+    name: "Exclusion de ejercicios que no son oraciones"
+    severity: "critical"
+    description: "Los ejercicios marcados como \"no oracion\" deben excluirse del\
+      \ calculo de longitud promedio. Estas exclusiones deben registrarse en las estadisticas\
+      \ del nivel correspondiente como \"no oraciones\" para trazabilidad. Incluir\
+      \ ejercicios que no son oraciones en el calculo distorsionaria los promedios\
+      \ y generaria recomendaciones incorrectas."
+    errorMessage: "Se incluyo un ejercicio no-oracion en el calculo de longitud del\
+      \ nivel {nivel}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-SLEN-R002"
+    name: "Calculo del promedio de longitud por nivel"
+    severity: "critical"
+    description: "Para cada nivel CEFR, el promedio de longitud se calcula como: total\
+      \ de palabras (tokens) de todas las oraciones validas del nivel dividido por\
+      \ la cantidad de oraciones validas del nivel. Solo se consideran las oraciones\
+      \ que pasan el filtro de la regla R001. Si un nivel no tiene oraciones validas,\
+      \ el promedio es cero."
+    errorMessage: "Error al calcular el promedio de longitud para el nivel {nivel}:\
+      \ {detalle}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-SLEN-R003"
+    name: "Evaluacion de estado por nivel"
+    severity: "critical"
+    description: "El promedio de longitud de cada nivel se compara contra sus rangos\
+      \ objetivo (minimo y maximo) para determinar un estado: | Estado | Condicion\
+      \ | |--------|-----------| | OPTIMO | El promedio esta dentro del rango (>=\
+      \ minimo Y <= maximo) | | DEFICIENTE | El promedio esta por debajo del minimo\
+      \ | | EXCESIVO | El promedio esta por encima del maximo | | NO APLICA | No hay\
+      \ rango configurado para el nivel, o el promedio es cero |"
+    errorMessage: "Estado indeterminado para el nivel {nivel}: no se pudo evaluar\
+      \ el promedio {promedio} contra los rangos [{min}, {max}]"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-SLEN-R004"
+    name: "Puntuacion por oracion individual"
+    severity: "major"
+    description: "Cada oracion individual recibe una puntuacion entre 0.0 y 1.0 que\
+      \ refleja que tan adecuada es su longitud para el nivel al que pertenece: -\
+      \ Si la longitud esta dentro del rango objetivo [minimo, maximo], la puntuacion\
+      \ es 1.0 (perfecta). - Si la longitud esta fuera del rango, la puntuacion disminuye\
+      \ linealmente segun la distancia al borde mas cercano del rango. - La distancia\
+      \ se mide en tokens hacia el borde mas cercano (minimo o maximo). - Existe un\
+      \ margen de tolerancia de 4 tokens: a 4 o mas tokens de distancia del rango,\
+      \ la puntuacion es 0.0. - Dentro del margen, la puntuacion se calcula como:\
+      \ 1.0 menos (distancia dividida por 4.0). Ejemplo para el nivel A1 (rango 5-8\
+      \ palabras): | Longitud | 1   | 2    | 3   | 4    | 5   | 6   | 7   | 8   |\
+      \ 9    | 10  | 11   | 12  | |----------|-----|------|-----|------|-----|-----|-----|-----|------|-----|------|-----|\
+      \ | Puntuacion | 0.0 | 0.25 | 0.5 | 0.75 | 1.0 | 1.0 | 1.0 | 1.0 | 0.75 | 0.5\
+      \ | 0.25 | 0.0 |"
+    errorMessage: "Puntuacion fuera de rango [0.0, 1.0] calculada para la oracion\
+      \ ({id}) en el nivel {nivel}: {puntuacion}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-SLEN-R005"
+    name: "Margen de tolerancia fijo de 4 tokens"
+    severity: "minor"
+    description: "El margen de tolerancia utilizado en la puntuacion por oracion es\
+      \ de 4 tokens. Este valor esta fijo y no es configurable por el usuario. Una\
+      \ oracion que esta exactamente 1 token fuera del rango recibe 0.75, a 2 tokens\
+      \ recibe 0.50, a 3 tokens recibe 0.25, y a 4 o mas tokens recibe 0.0. [ASSUMPTION]\
+      \ El margen de 4 tokens es un valor razonable para cursos de ingles para adultos.\
+      \ Si en el futuro se requiere ajustar este valor para otros tipos de cursos,\
+      \ deberia considerarse hacerlo configurable. Se mantiene fijo por simplicidad,\
+      \ alineado con el comportamiento actual del sistema."
+    errorMessage: null
+    validation: "ASSUMPTION"
+    code: null
+    rationale: null
+  - id: "F-SLEN-R006"
+    name: "Evaluacion de progresion entre niveles"
+    severity: "major"
+    description: "El sistema evalua si la longitud promedio de las oraciones progresa\
+      \ adecuadamente de un nivel al siguiente (A1 hacia A2 hacia B1 hacia B2). El\
+      \ resultado es un estado de progresion: | Estado | Significado | |--------|-------------|\
+      \ | POSITIVA | La longitud promedio crece consistentemente de un nivel al siguiente\
+      \ | | REGRESIVA | La longitud promedio decrece consistentemente de un nivel\
+      \ al siguiente | | ESTANCADA | La longitud promedio sube y baja sin patron consistente\
+      \ (o se mantiene plana) | | DATOS INSUFICIENTES | Menos de 2 niveles tienen\
+      \ oraciones para comparar | La evaluacion examina cada par de niveles consecutivos\
+      \ (A1-A2, A2-B1, B1-B2). Si todos los pares muestran crecimiento, la progresion\
+      \ es POSITIVA. Si todos muestran decrecimiento, es REGRESIVA. Cualquier mezcla\
+      \ de crecimiento y decrecimiento resulta en ESTANCADA."
+    errorMessage: "No se pudo evaluar la progresion: {detalle}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-SLEN-R007"
+    name: "Progresion evalua solo niveles con datos"
+    severity: "major"
+    description: "La evaluacion de progresion solo considera los niveles CEFR que\
+      \ tienen al menos una oracion valida. Si un curso no tiene contenido en un nivel\
+      \ intermedio (por ejemplo, no tiene oraciones en B1), la progresion se evalua\
+      \ entre los niveles que si tienen datos (A1 hacia A2 hacia B2 directamente).\
+      \ Esto puede producir resultados enganosos si hay saltos grandes entre niveles\
+      \ no consecutivos."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-SLEN-R008"
+    name: "Puntuacion general del curso"
+    severity: "critical"
+    description: "La puntuacion general del analisis de longitud de oraciones es el\
+      \ promedio de las puntuaciones de todos los niveles CEFR que tienen al menos\
+      \ una oracion valida. Los niveles sin oraciones no participan en el calculo.\
+      \ Si ningun nivel tiene oraciones, la puntuacion general es cero. La puntuacion\
+      \ de cada nivel, a su vez, es el promedio de las puntuaciones individuales de\
+      \ todas sus oraciones validas (segun R004)."
+    errorMessage: "Error al calcular la puntuacion general: {detalle}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-SLEN-R009"
+    name: "Rangos objetivo configurables por nivel"
+    severity: "major"
+    description: "Los rangos objetivo de longitud (minimo y maximo de palabras por\
+      \ oracion) se definen por nivel CEFR a traves de configuracion externa. El sistema\
+      \ debe utilizar estos rangos para todas las evaluaciones (estado, puntuacion,\
+      \ progresion). Si un nivel no tiene rango configurado, se le asigna el estado\
+      \ NO APLICA y no participa en la puntuacion general. Los rangos actuales son:\
+      \ - A1: 5 a 8 palabras - A2: 8 a 11 palabras - B1: 11 a 14 palabras - B2: 14\
+      \ a 17 palabras"
+    errorMessage: "Configuracion de rangos invalida para el nivel {nivel}: el minimo\
+      \ ({min}) debe ser menor o igual al maximo ({max})"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-SLEN-R010"
+    name: "La longitud se mide en tokens linguisticos"
+    severity: "critical"
+    description: "La longitud de una oracion se mide en tokens linguisticos provenientes\
+      \ de un procesamiento de lenguaje natural previo, no en palabras separadas por\
+      \ espacios. Esto es fundamental porque la segmentacion linguistica puede diferir\
+      \ del conteo por espacios (por ejemplo, contracciones, posesivos, o guiones\
+      \ pueden segmentarse de forma distinta). Utilizar un metodo de conteo diferente\
+      \ produciria promedios incorrectos y evaluaciones erroneas."
+    errorMessage: "La longitud de la oracion no se obtuvo de tokens linguisticos:\
+      \ fuente inesperada de datos"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-SLEN-R011"
+    name: "Generacion de recomendaciones por nivel"
+    severity: "minor"
+    description: "Para cada nivel CEFR evaluado, el sistema genera una recomendacion\
+      \ textual basada en el estado resultante. La recomendacion proporciona retroalimentacion\
+      \ al creador de contenido sobre la adecuacion de las oraciones en ese nivel.\
+      \ [ASSUMPTION] Se asume que las recomendaciones son mensajes descriptivos generados\
+      \ automaticamente a partir del estado (OPTIMO, DEFICIENTE, EXCESIVO, NO APLICA).\
+      \ El contenido exacto de las recomendaciones puede refinarse segun las necesidades\
+      \ del equipo de contenido."
+    errorMessage: null
+    validation: "ASSUMPTION"
+    code: null
+    rationale: null
+  - id: "F-SLEN-R012"
+    name: "Registro de estadisticas por nivel"
+    severity: "major"
+    description: "Para cada nivel CEFR, el resultado del analisis debe incluir las\
+      \ siguientes estadisticas: - Cantidad de oraciones validas evaluadas - Total\
+      \ de palabras (tokens) en las oraciones validas - Promedio de longitud (total\
+      \ de palabras / cantidad de oraciones) - Rango objetivo utilizado (minimo y\
+      \ maximo) - Estado resultante (OPTIMO, DEFICIENTE, EXCESIVO, NO APLICA) - Recomendacion\
+      \ textual Estas estadisticas permiten al creador de contenido entender no solo\
+      \ el resultado sino tambien los datos que lo sustentan."
+    errorMessage: "Estadisticas incompletas para el nivel {nivel}: falta el campo\
+      \ {campo}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  journeys:
+  - id: "F-SLEN-J001"
+    name: "Auditar la longitud de oraciones de un curso completo"
+    steps:
+    - "El usuario inicia una auditoria de un curso previamente cargado en el sistema"
+    - "El sistema obtiene todas las oraciones del curso agrupadas por nivel CEFR"
+    - "Para cada nivel, el sistema identifica y excluye los ejercicios que no son\
+      \ oraciones, registrandolos como \"no oraciones\" en las estadisticas"
+    - "Para cada nivel, el sistema cuenta los tokens de cada oracion valida y calcula\
+      \ el promedio de longitud"
+    - "El sistema compara el promedio de cada nivel contra sus rangos objetivo configurados\
+      \ y determina el estado (OPTIMO, DEFICIENTE, EXCESIVO, NO APLICA)"
+    - "El sistema calcula la puntuacion individual de cada oracion segun su distancia\
+      \ al rango objetivo"
+    - "El sistema calcula la puntuacion por nivel como promedio de las puntuaciones\
+      \ individuales"
+    - "El sistema evalua la progresion entre niveles (POSITIVA, REGRESIVA, ESTANCADA,\
+      \ DATOS INSUFICIENTES)"
+    - "El sistema calcula la puntuacion general como promedio de las puntuaciones\
+      \ de los niveles con datos"
+    - "El usuario recibe un informe con las estadisticas por nivel, la puntuacion\
+      \ general, y el estado de progresion"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-SLEN-J002"
+    name: "Consultar el detalle de un nivel especifico"
+    steps:
+    - "El usuario ha ejecutado la auditoria de longitud de oraciones (J001)"
+    - "El usuario selecciona un nivel CEFR especifico (por ejemplo, A2)"
+    - "El sistema muestra las estadisticas detalladas del nivel: cantidad de oraciones,\
+      \ total de palabras, promedio de longitud, rango objetivo, estado y recomendacion"
+    - "El usuario puede identificar si el nivel esta dentro de los parametros esperados\
+      \ o si requiere ajustes en el contenido"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-SLEN-J003"
+    name: "Identificar problemas de progresion entre niveles"
+    steps:
+    - "El usuario ha ejecutado la auditoria de longitud de oraciones (J001)"
+    - "El usuario consulta el estado de progresion del curso"
+    - "Si la progresion es POSITIVA, el usuario confirma que la dificultad escala\
+      \ correctamente"
+    - "Si la progresion es REGRESIVA o ESTANCADA, el usuario identifica que hay niveles\
+      \ donde las oraciones no aumentan de longitud como se espera pedagogicamente"
+    - "El usuario revisa los promedios por nivel para localizar en que transicion\
+      \ (por ejemplo, A2 a B1) se rompe la progresion"
+    - "El usuario puede tomar acciones correctivas sobre el contenido de los niveles\
+      \ afectados"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-SLEN-J004"
+    name: "Evaluar la puntuacion de oraciones individuales"
+    steps:
+    - "El usuario ha ejecutado la auditoria de longitud de oraciones (J001)"
+    - "El usuario consulta las puntuaciones de las oraciones de un nivel o ejercicio\
+      \ especifico"
+    - "El sistema muestra la puntuacion de cada oracion (0.0 a 1.0) junto con su longitud\
+      \ en tokens y el rango objetivo del nivel"
+    - "El usuario identifica las oraciones con puntuacion baja (por ejemplo, oraciones\
+      \ demasiado cortas en B2 o demasiado largas en A1)"
+    - "El usuario puede priorizar la revision de oraciones con puntuacion mas baja"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-SLEN-J005"
+    name: "Ajustar rangos objetivo para un curso distinto"
+    steps:
+    - "El usuario tiene un curso con caracteristicas diferentes al curso estandar\
+      \ (por ejemplo, un curso para ninos o un curso intensivo)"
+    - "El usuario modifica los rangos objetivo de longitud por nivel en la configuracion\
+      \ del sistema"
+    - "El usuario ejecuta la auditoria con los nuevos rangos"
+    - "Los resultados reflejan los rangos actualizados: los estados, puntuaciones\
+      \ y recomendaciones se calculan con los nuevos valores"
+    - "El usuario valida que los rangos ajustados se alinean con las expectativas\
+      \ pedagogicas del nuevo curso"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  doubts:
+  - id: "DOUBT-MARGIN-CONFIG"
+    question: "Deberia el margen de tolerancia de 4 tokens ser configurable?"
+    options:
+    - label: "Opcion A: Mantener fijo en 4 tokens (simplicidad, alineado con el sistema\
+        \ actual)"
+      description: null
+    - label: "Opcion B: Hacerlo configurable en la configuracion del sistema junto\
+        \ con los rangos"
+      description: null
+    answer: null
+  - id: "DOUBT-PROGRESSION-GAPS"
+    question: "Como tratar la progresion cuando faltan niveles intermedios?"
+    options:
+    - label: "Opcion A: Evaluar solo los niveles presentes (comportamiento actual,\
+        \ simple)"
+      description: null
+    - label: "Opcion B: Reportar una advertencia cuando hay saltos de niveles en la\
+        \ progresion"
+      description: null
+    - label: "Opcion C: Considerar los niveles faltantes como un problema que afecta\
+        \ el estado de progresion"
+      description: null
+    answer: null
+  - id: "DOUBT-EQUAL-AVERAGES"
+    question: "Que estado de progresion corresponde cuando dos niveles consecutivos\
+      \ tienen el mismo promedio?"
+    options:
+    - label: "Opcion A: Promedios iguales se tratan como \"sin crecimiento\" (contribuyen\
+        \ a ESTANCADA)"
+      description: null
+    - label: "Opcion B: Promedios iguales se tratan como \"no decrecimiento\" (no\
+        \ afectan negativamente la progresion)"
+      description: null
+    - label: "Opcion C: Se debe definir un umbral minimo de diferencia para considerar\
+        \ crecimiento real"
+      description: null
+    answer: null

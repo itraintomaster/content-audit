@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c17"
+    },
+    "code": "",
+    "title": "'Although', 'Though', 'However' Usage",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I ate lots of cake",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "though"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "I knew it was unhealthy.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.16.08.01",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando 'though' o 'however'.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "theoryId": "b1.16.Adverbs_for_Linking_Although_Though_However",
+    "imageUrl": "",
+    "translation": "Comí mucho pastel aunque sabía que no era saludable.",
+    "id": "67fab6d59930102295343c17",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c18"
+    },
+    "audioUrl": "",
+    "translation": "Buscó sus gafas durante mucho tiempo. Sin embargo, no pudo localizarlas.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Although', 'Though', 'However' Usage",
+    "instructions": "Crea oraciones utilizando 'though' o 'however'.",
+    "imageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She searched for her glasses for ages.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "However"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", she couldn't locate them.",
+          "options": null
+        }
+      ]
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.16.Adverbs_for_Linking_Although_Though_However",
+    "id": "67fab6d59930102295343c18",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.16.08.02",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c19"
+    },
+    "instructions": "Crea oraciones utilizando 'though' o 'however'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.16.08.03",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Although', 'Though', 'However' Usage",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Though"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "he was thirsty, he refused to drink juice.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "theoryId": "b1.16.Adverbs_for_Linking_Although_Though_However",
+    "audioUrl": "",
+    "translation": "Aunque tenía sed, se negó a beber jugo.",
+    "id": "67fab6d59930102295343c19",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c1a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343c1a",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando 'though' o 'however'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She aced the test",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "though"
+          ]
+        },
+        {
+          "text": "she hadn't studied.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Aprobó el examen aunque no había estudiado.",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Although', 'Though', 'However' Usage",
+    "theoryId": "b1.16.Adverbs_for_Linking_Although_Though_However",
+    "answerAudioUrl": "B1.16.08.04",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c1b"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He was early.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "However"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", he waited outside.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "instructions": "Crea oraciones utilizando 'though' o 'however'.",
+    "answerAudioUrl": "B1.16.08.05",
+    "id": "67fab6d59930102295343c1b",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Although', 'Though', 'However' Usage",
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36c"
+    },
+    "theoryId": "b1.16.Adverbs_for_Linking_Although_Though_However",
+    "translation": "Llegó temprano. Sin embargo, esperó afuera.",
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c1c"
+    },
+    "theoryId": "b1.16.Adverbs_for_Linking_Although_Though_However",
+    "imageUrl": "",
+    "translation": "Aunque los gatos estaban activos, no atraparon nada.",
+    "id": "67fab6d59930102295343c1c",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Although', 'Though', 'However' Usage",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Though"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the cats were active, they didn't catch anything.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.16.08.06",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando 'though' o 'however'.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36c"
+    },
+    "audioUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c1d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Although', 'Though', 'However' Usage",
+    "audioUrl": "",
+    "translation": "Aunque entrenó todos los días, todavía no pudo ganar.",
+    "answerAudioUrl": "B1.16.08.07",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Crea oraciones utilizando 'though' o 'however'.",
+    "theoryId": "b1.16.Adverbs_for_Linking_Although_Though_However",
+    "id": "67fab6d59930102295343c1d",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Though"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "he trained every day, he still couldn't win."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c1e"
+    },
+    "id": "67fab6d59930102295343c1e",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Although', 'Though', 'However' Usage",
+    "instructions": "Crea oraciones utilizando 'though' o 'however'.",
+    "answerAudioUrl": "B1.16.08.08",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She read the book.",
+          "options": null
+        },
+        {
+          "options": [
+            "However"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": ", she didn't understand the plot.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.16.Adverbs_for_Linking_Although_Though_However",
+    "translation": "Ella leyó el libro. Sin embargo, no entendió la trama.",
+    "answerImageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c1f"
+    },
+    "id": "67fab6d59930102295343c1f",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The gardener worked all week.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "However"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", the garden still looked messy.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.16.Adverbs_for_Linking_Although_Though_However",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Although', 'Though', 'However' Usage",
+    "instructions": "Crea oraciones utilizando 'though' o 'however'.",
+    "imageUrl": "",
+    "translation": "El jardinero trabajó toda la semana. Sin embargo, el jardín todavía se veía desordenado.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36c"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.16.08.09",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c20"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He tried to call his sister.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "However"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", she didn't answer.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Intentó llamar a su hermana. Sin embargo, ella no respondió.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343c20",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea oraciones utilizando 'though' o 'however'.",
+    "title": "'Although', 'Though', 'However' Usage",
+    "answerAudioUrl": "B1.16.08.10",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "imageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.16.Adverbs_for_Linking_Although_Though_However",
+    "topicName": "Adverbs"
+  }
+]

@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442cf"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "audioUrl": "",
+    "id": "67fab6d599301022953442cf",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.12.01",
+    "translation": "La tienda está a la vuelta de la esquina.",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "shop is around the corner.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "title": "Articles with Institutions: A Practice Exercise",
+    "successMessage": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442d0"
+    },
+    "answerAudioUrl": "B2.06.12.02",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My brother learns maths at",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "college.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953442d0",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles with Institutions: A Practice Exercise",
+    "translation": "Mi hermano estudia matemáticas en la universidad.",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442d1"
+    },
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "translation": "Ellos residen cerca del teatro.",
+    "successMessage": "",
+    "answerAudioUrl": "B2.06.12.03",
+    "title": "Articles with Institutions: A Practice Exercise",
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953442d1",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They reside close to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "theatre."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442d2"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles with Institutions: A Practice Exercise",
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "id": "67fab6d599301022953442d2",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The thief was delivered to",
+          "options": null
+        },
+        {
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "prison.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "El ladrón fue entregado a prisión.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.12.04",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442d3"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.12.05",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953442d3",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "translation": "Ella estudió Historia Antigua en la universidad.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She read Ancient History at"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "college.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "code": "",
+    "title": "Articles with Institutions: A Practice Exercise",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442d4"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles with Institutions: A Practice Exercise",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Is Mary still in",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "prison, or has she been released?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "¿Sigue María en prisión, o ha sido liberada?",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953442d4",
+    "code": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B2.06.12.06",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442d5"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "miniTheory": "",
+    "title": "Articles with Institutions: A Practice Exercise",
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Did you cycle past",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "theatre on your journey?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.12.07",
+    "id": "67fab6d599301022953442d5",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Pasaste en bicicleta por delante del teatro en tu viaje?",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442d6"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "title": "Articles with Institutions: A Practice Exercise",
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He buys flowers close to",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "market.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d599301022953442d6",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.06.12.08",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "translation": "Él compra flores cerca del mercado.",
+    "successMessage": "",
+    "code": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442d7"
+    },
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "audioUrl": "",
+    "id": "67fab6d599301022953442d7",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The swimming pool belongs to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "text": "college.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "La piscina pertenece a la universidad.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles with Institutions: A Practice Exercise",
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.12.09",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442d8"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "When do youngsters begin",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "college in your country?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "id": "67fab6d599301022953442d8",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "¿Cuándo empiezan los jóvenes la universidad en tu país?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.06.12.10",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "kind": "CLOZE",
+    "title": "Articles with Institutions: A Practice Exercise",
+    "code": "",
+    "miniTheory": "",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442d9"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "answerAudioUrl": "B2.06.12.11",
+    "title": "Articles with Institutions: A Practice Exercise",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We gathered outside",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "market.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "id": "67fab6d599301022953442d9",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Nos reunimos fuera del mercado.",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442da"
+    },
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "title": "Articles with Institutions: A Practice Exercise",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I've never stepped inside",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "library."
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "translation": "Nunca he entrado en la biblioteca.",
+    "answerAudioUrl": "B2.06.12.12",
+    "id": "67fab6d599301022953442da",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442db"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953442db",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles with Institutions: A Practice Exercise",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.06.12.13",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did she have to present herself in",
+          "options": null
+        },
+        {
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "library?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "¿Tuvo ella que presentarse en la biblioteca?",
+    "miniTheory": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442dc"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles with Institutions: A Practice Exercise",
+    "answerAudioUrl": "B2.06.12.14",
+    "id": "67fab6d599301022953442dc",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "imageUrl": "",
+    "translation": "¿Vas a veces al mercado?",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you sometimes attend",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "market?"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442dd"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles with Institutions: A Practice Exercise",
+    "answerAudioUrl": "B2.06.12.15",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953442dd",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "translation": "Sophie puede observar el mercado desde su balcón.",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Sophie can observe",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "market from her balcony.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "audioUrl": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442de"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953442de",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles with Institutions: A Practice Exercise",
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Sadly, she's in",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "prison.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerAudioUrl": "B2.06.12.16",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "imageUrl": "",
+    "translation": "Lamentablemente, ella está en prisión.",
+    "successMessage": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442df"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles with Institutions: A Practice Exercise",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953442df",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Is Thomas at",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "university this term?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "translation": "¿Está Thomas en la universidad este trimestre?",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.06.12.17",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442e0"
+    },
+    "title": "Articles with Institutions: A Practice Exercise",
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "imageUrl": "",
+    "translation": "Él desea estudiar ingeniería en la universidad.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He wishes to study engineering at",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "college.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953442e0",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.06.12.18",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442e1"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953442e1",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "imageUrl": "",
+    "translation": "Reunámonos cerca de la biblioteca.",
+    "answerAudioUrl": "B2.06.12.19",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles with Institutions: A Practice Exercise",
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Let's gather near",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "library.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "topicName": "Nouns and determiners"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442e2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953442e2",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "translation": "Él está empleado en el teatro al lado de mi oficina.",
+    "answerAudioUrl": "B2.06.12.20",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is employed in",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "text": "theatre beside my office.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43a"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Articles with Institutions: A Practice Exercise",
+    "instructions": "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "Nouns and determiners"
+  }
+]

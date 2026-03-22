@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448aa"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "title": "Hyphenated Compound Adjectives",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.07.01",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "translation": "El río fluía rápido porque había llovido mucho.",
+    "id": "67fab6d599301022953448aa",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The river was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "fast flowing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(fast flowing / fast-flowing) because it had rained a lot.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448ab"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "title": "Hyphenated Compound Adjectives",
+    "miniTheory": "",
+    "translation": "Su puesto es de tiempo completo. Trabaja todos los días de lunes a viernes.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.07.02",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Her role is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "full time"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(full time / full-time). She works every day from Monday to Friday.",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d599301022953448ab",
+    "imageUrl": "",
+    "audioUrl": "",
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448ac"
+    },
+    "imageUrl": "",
+    "translation": "Consideraba que la decoración era un poco moderna.",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hyphenated Compound Adjectives",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.13.07.03",
+    "id": "67fab6d599301022953448ac",
+    "kind": "CLOZE",
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She considered the decor a bit",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "new fashioned"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(new fashioned / new-fashioned)."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448ad"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "title": "Hyphenated Compound Adjectives",
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He wants to live somewhere",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "German speaking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(German speaking / German-speaking).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "translation": "Quiere vivir en algún lugar de habla alemana.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.07.04",
+    "id": "67fab6d599301022953448ad",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448ae"
+    },
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d599301022953448ae",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The trip was",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "early morning"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(early morning / early-morning) but really wonderful.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "El viaje fue temprano en la mañana, pero realmente maravilloso.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.07.05",
+    "kind": "CLOZE",
+    "title": "Hyphenated Compound Adjectives",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448af"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Suiza es un país de habla alemana. La gente habla alemán allí.",
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.07.06",
+    "id": "67fab6d599301022953448af",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hyphenated Compound Adjectives",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Switzerland is a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "German-speaking"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(German speaking / German-speaking) country. People speak German there."
+        }
+      ]
+    },
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448b0"
+    },
+    "id": "67fab6d599301022953448b0",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There was a lot of",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "fast-flowing"
+          ]
+        },
+        {
+          "text": "(fast flowing / fast-flowing) water in the pool. We couldn't swim well because it had been raining.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "translation": "Había mucha agua que fluía rápidamente en la piscina. No pudimos nadar bien porque había estado lloviendo.",
+    "answerAudioUrl": "B2.13.07.07",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hyphenated Compound Adjectives",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "audioUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448b1"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "She has a"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "full-time"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(full time / full-time) job. She works every day.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ella tiene un trabajo de tiempo completo. Trabaja todos los días.",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hyphenated Compound Adjectives",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d599301022953448b1",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.07.08",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448b2"
+    },
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The actress is very",
+          "options": null
+        },
+        {
+          "options": [
+            "badly behaved"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(badly behaved / badly-behaved).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "id": "67fab6d599301022953448b2",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hyphenated Compound Adjectives",
+    "translation": "La actriz se comporta muy mal.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.07.09",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448b3"
+    },
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953448b3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "imageUrl": "",
+    "translation": "Mi abuelo es una persona un poco moderna. Le gustan las cosas modernas.",
+    "successMessage": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hyphenated Compound Adjectives",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "My grandad is a bit of an",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "new-fashioned"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(new fashioned / new-fashioned) person. He likes modern things.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.13.07.10",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448b4"
+    },
+    "id": "67fab6d599301022953448b4",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hyphenated Compound Adjectives",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.07.11",
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "translation": "Las personas jóvenes deberían jugar al fútbol. Como somos jóvenes, es importante divertirse.",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Young-aged"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(young aged / young-aged) people should play football. As we are young, it's important to have fun."
+        }
+      ]
+    },
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448b5"
+    },
+    "kind": "CLOZE",
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hyphenated Compound Adjectives",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's a very",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "badly-behaved"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(badly behaved / badly-behaved) boy. He has problems at school."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "answerAudioUrl": "B2.13.07.12",
+    "imageUrl": "",
+    "id": "67fab6d599301022953448b5",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Es un chico muy mal educado. Tiene problemas en la escuela.",
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448b6"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "miniTheory": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hyphenated Compound Adjectives",
+    "imageUrl": "",
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It feels like this summer is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "slow burning"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(slow burning / slow-burning)! When is it going to be autumn?",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.07.13",
+    "id": "67fab6d599301022953448b6",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¡Parece que este verano está ardiendo lentamente! ¿Cuándo va a ser otoño?",
+    "successMessage": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448b7"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.07.14",
+    "title": "Hyphenated Compound Adjectives",
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It was a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "slow-burning"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(slow burning / slow-burning) candle! It was so long!",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "audioUrl": "",
+    "translation": "¡Era una vela de combustión lenta! ¡Era tan larga!",
+    "id": "67fab6d599301022953448b7",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448b8"
+    },
+    "id": "67fab6d599301022953448b8",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "title": "Hyphenated Compound Adjectives",
+    "translation": "Mi papá es joven ahora.",
+    "answerAudioUrl": "B2.13.07.15",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My dad is",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "young aged"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(young aged / young aged) now.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448b9"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's such a",
+          "options": null
+        },
+        {
+          "options": [
+            "free-thinking"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(free thinking / free-thinking) man! Everyone thinks he's intelligent.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.13.07.16",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "title": "Hyphenated Compound Adjectives",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "successMessage": "",
+    "id": "67fab6d599301022953448b9",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "imageUrl": "",
+    "translation": "¡Es un hombre de pensamiento tan libre! Todos piensan que es inteligente.",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448ba"
+    },
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "imageUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.13.07.17",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I bought a"
+        },
+        {
+          "options": [
+            "early-morning"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(early morning / early-morning) coffee in Italy! I went yesterday!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "translation": "¡Compré un café temprano en la mañana en Italia! ¡Fui ayer!",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hyphenated Compound Adjectives",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953448ba",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448bb"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.07.18",
+    "code": "",
+    "audioUrl": "",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We went to a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "badly-run"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(badly run / badly-run) store. It's awful in our city."
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hyphenated Compound Adjectives",
+    "translation": "Fuimos a una tienda mal administrada. Es horrible en nuestra ciudad.",
+    "id": "67fab6d599301022953448bb",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448bc"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "All the kids are very",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "free thinking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(free thinking / free-thinking)!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "audioUrl": "",
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.13.07.19",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¡Todos los niños son muy libres de pensamiento!",
+    "miniTheory": "",
+    "id": "67fab6d599301022953448bc",
+    "kind": "CLOZE",
+    "title": "Hyphenated Compound Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448bd"
+    },
+    "miniTheory": "",
+    "id": "67fab6d599301022953448bd",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Todos en su clase se portan mal.",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Hyphenated Compound Adjectives",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Everyone in his class is",
+          "options": null
+        },
+        {
+          "options": [
+            "badly behaved"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(badly behaved / badly-behaved).",
+          "options": null
+        }
+      ]
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
+    "answerAudioUrl": "B2.13.07.20",
+    "kind": "CLOZE",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Adjectives"
+  }
+]

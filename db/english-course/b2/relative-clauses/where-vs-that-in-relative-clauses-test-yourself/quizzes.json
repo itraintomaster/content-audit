@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534465c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "successMessage": "",
+    "miniTheory": "",
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "instructions": "Inserta 'where' o 'that'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534465c",
+    "kind": "CLOZE",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She went to the stadium",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "where"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "the team trains.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Ella fue al estadio donde entrena el equipo.",
+    "answerAudioUrl": "B2.10.08.01",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534465d"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "answerAudioUrl": "B2.10.08.02",
+    "id": "67fab6d5993010229534465d",
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "translation": "¿Ese es el museo donde trabajaste como voluntario?",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'where' o 'that'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Is that the museum",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "where"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "you volunteered?",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534465e"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "translation": "Ese es el bosque en el que le gusta caminar.",
+    "successMessage": "",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534465e",
+    "kind": "CLOZE",
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'where' o 'that'.",
+    "answerAudioUrl": "B2.10.08.03",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That's the forest",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "he enjoys hiking in.",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534465f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Aquí está el coche en el que viajamos.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "id": "67fab6d5993010229534465f",
+    "instructions": "Inserta 'where' o 'that'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Here's the car",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "we drove in.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.10.08.04",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344660"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Let's go to the cinema"
+        },
+        {
+          "text": "",
+          "options": [
+            "that"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "Mary watches movies in.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "instructions": "Inserta 'where' o 'that'.",
+    "answerAudioUrl": "B2.10.08.05",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Vamos al cine en el que Mary ve películas.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344660",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344661"
+    },
+    "answerAudioUrl": "B2.10.08.06",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Is this the kitchen",
+          "options": null
+        },
+        {
+          "options": [
+            "that"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "you cook in?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "id": "67fab6d59930102295344661",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "instructions": "Inserta 'where' o 'that'.",
+    "imageUrl": "",
+    "translation": "¿Es esta la cocina en la que cocinas?",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344662"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344662",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I saw the boat",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "text": "he sails in.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.08.07",
+    "code": "",
+    "instructions": "Inserta 'where' o 'that'.",
+    "audioUrl": "",
+    "translation": "Vi el barco en el que navega.",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344663"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.10.08.08",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "audioUrl": "",
+    "id": "67fab6d59930102295344663",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "instructions": "Inserta 'where' o 'that'.",
+    "code": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "translation": "Encontrémonos en el bar donde cantas.",
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Let's meet at the bar",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "where"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "you sing.",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344664"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'where' o 'that'.",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That's the bench",
+          "options": null
+        },
+        {
+          "options": [
+            "where"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "I rest.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344664",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B2.10.08.09",
+    "translation": "Ese es el banco donde descanso.",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344665"
+    },
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We drove to the town",
+          "options": null
+        },
+        {
+          "options": [
+            "that"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "she lives in.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "translation": "Condujimos hasta el pueblo en el que ella vive.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.10.08.10",
+    "id": "67fab6d59930102295344665",
+    "code": "",
+    "instructions": "Inserta 'where' o 'that'.",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344666"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is the shop",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "where"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "we shopped.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Esta es la tienda donde compramos.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "answerAudioUrl": "B2.10.08.11",
+    "id": "67fab6d59930102295344666",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Inserta 'where' o 'that'.",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344667"
+    },
+    "id": "67fab6d59930102295344667",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "translation": "Ahí está la caja en la que están todas mis herramientas.",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'where' o 'that'.",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "imageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There's the box",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "all my tools are in.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.10.08.12",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344668"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "instructions": "Inserta 'where' o 'that'.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344668",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He cycled to the beach",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "where"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "he plays soccer.",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.10.08.13",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Él fue en bicicleta a la playa donde juega al fútbol.",
+    "successMessage": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344669"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "instructions": "Inserta 'where' o 'that'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where's the school",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "you teach in?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "¿Dónde está la escuela en la que enseñas?",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.10.08.14",
+    "id": "67fab6d59930102295344669",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534466a"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "This is the bedroom"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "where"
+          ]
+        },
+        {
+          "text": "my parents sleep.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "Este es el dormitorio donde duermen mis padres.",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "instructions": "Inserta 'where' o 'that'.",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534466a",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.10.08.15",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534466b"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534466b",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "translation": "Ellos lavaron la alfombra sobre la que juegan los perros.",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They washed the rug",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the dogs play on.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.10.08.16",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'where' o 'that'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534466c"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "id": "67fab6d5993010229534466c",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where's the classroom",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "you read in?"
+        }
+      ]
+    },
+    "translation": "¿Dónde está el aula en la que lees?",
+    "successMessage": "",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.10.08.17",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "instructions": "Inserta 'where' o 'that'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534466d"
+    },
+    "id": "67fab6d5993010229534466d",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "imageUrl": "",
+    "translation": "¿Dónde está el apartamento donde se aloja?",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "instructions": "Inserta 'where' o 'that'.",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where's the apartment",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "where"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "he stays?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "successMessage": "",
+    "answerAudioUrl": "B2.10.08.18",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534466e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We explored the island"
+        },
+        {
+          "text": "",
+          "options": [
+            "where"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I was raised."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Exploramos la isla donde me crié.",
+    "id": "67fab6d5993010229534466e",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'where' o 'that'.",
+    "audioUrl": "",
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.10.08.19",
+    "topicName": "Relative clauses"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534466f"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46c"
+    },
+    "title": "'Where' vs 'That' in Relative Clauses: Test Yourself",
+    "theoryId": "b2.10.Prepositions_in_Relative_Clauses",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.10.08.20",
+    "instructions": "Inserta 'where' o 'that'.",
+    "imageUrl": "",
+    "translation": "Pasé por el gimnasio donde me gusta hacer ejercicio.",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534466f",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I passed the gym",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "where"
+          ]
+        },
+        {
+          "text": "I like to exercise.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "successMessage": "",
+    "topicName": "Relative clauses"
+  }
+]

@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534311f"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cb"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The student has just read the book / The student's just read the book"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the student / read / the book).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "El estudiante acaba de leer el libro.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones usando 'just'.",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534311f",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Just' with the Present Perfect",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.02.10.01",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343120"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cb"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The cats have just eaten their food"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the cats / eat / their food).",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295343120",
+    "title": "Using 'Just' with the Present Perfect",
+    "instructions": "Escribe oraciones usando 'just'.",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.02.10.02",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Los gatos acaban de comer su comida.",
+    "kind": "CLOZE",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343121"
+    },
+    "code": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He has just arrived / He's just arrived"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / arrive).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "translation": "Él acaba de llegar.",
+    "id": "67fab6d59930102295343121",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cb"
+    },
+    "instructions": "Escribe oraciones usando 'just'.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.02.10.03",
+    "title": "Using 'Just' with the Present Perfect",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343122"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Just' with the Present Perfect",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.02.10.04",
+    "id": "67fab6d59930102295343122",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "audioUrl": "",
+    "translation": "Acabas de volver a casa.",
+    "instructions": "Escribe oraciones usando 'just'.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cb"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You have just come back home / You've just come back home"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / come / back home).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343123"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Just' with the Present Perfect",
+    "instructions": "Escribe oraciones usando 'just'.",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "code": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "He has just started / He's just started"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / start).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cb"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.02.10.05",
+    "id": "67fab6d59930102295343123",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Él acaba de empezar.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343124"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cb"
+    },
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "imageUrl": "",
+    "code": "",
+    "title": "Using 'Just' with the Present Perfect",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        },
+        {
+          "text": "",
+          "options": [
+            "They have just fallen asleep / They've just fallen asleep"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / fall asleep).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.02.10.06",
+    "id": "67fab6d59930102295343124",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones usando 'just'.",
+    "translation": "Ellos acaban de quedarse dormidos.",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343125"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I have just drunk water / I've just drunk water"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I / drink water).",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343125",
+    "title": "Using 'Just' with the Present Perfect",
+    "translation": "Acabo de beber agua.",
+    "kind": "CLOZE",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones usando 'just'.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cb"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.02.10.07",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343126"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cb"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Just' with the Present Perfect",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She has just met Tom / She's just met Tom"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(She / meet / Tom).",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343126",
+    "answerImageUrl": "",
+    "instructions": "Escribe oraciones usando 'just'.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.02.10.08",
+    "code": "",
+    "translation": "Ella acaba de conocer a Tom.",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343127"
+    },
+    "audioUrl": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "My brother has just bought a new car / My brother's just bought a new car"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(My brother / buy / a new car)."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "imageUrl": "",
+    "translation": "Mi hermano acaba de comprar un coche nuevo.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.02.10.09",
+    "kind": "CLOZE",
+    "title": "Using 'Just' with the Present Perfect",
+    "id": "67fab6d59930102295343127",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cb"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones usando 'just'.",
+    "successMessage": "",
+    "code": "",
+    "topicName": "Present perfect"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343128"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'Just' with the Present Perfect",
+    "theoryId": "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343128",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They have just started / They've just started"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(They / start).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2cb"
+    },
+    "instructions": "Escribe oraciones usando 'just'.",
+    "translation": "Ellos acaban de empezar.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.02.10.10",
+    "code": "",
+    "imageUrl": "",
+    "topicName": "Present perfect"
+  }
+]

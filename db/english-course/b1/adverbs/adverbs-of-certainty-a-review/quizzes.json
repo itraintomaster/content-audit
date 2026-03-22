@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bbd"
+    },
+    "id": "67fab6d59930102295343bbd",
+    "kind": "CLOZE",
+    "theoryId": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.16.03.01",
+    "code": "",
+    "instructions": "Coloca 'definitely', 'certainly' y 'probably' en la posición 'mid' y coloca 'maybe' y 'perhaps' en la posición 'front'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'll call you tomorrow. (probably)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I'll probably call you tomorrow."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Probablemente te llame mañana.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d367"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverbs of Certainty: A Review",
+    "audioUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bbe"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It will be sunny. (perhaps)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Perhaps it will be sunny."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d367"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "translation": "Quizás esté soleado.",
+    "id": "67fab6d59930102295343bbe",
+    "code": "",
+    "title": "Adverbs of Certainty: A Review",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca 'definitely', 'certainly' y 'probably' en la posición 'mid' y coloca 'maybe' y 'perhaps' en la posición 'front'.",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.16.03.02",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bbf"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverbs of Certainty: A Review",
+    "instructions": "Coloca 'definitely', 'certainly' y 'probably' en la posición 'mid' y coloca 'maybe' y 'perhaps' en la posición 'front'.",
+    "theoryId": "",
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d367"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.16.03.03",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¡Definitivamente quiero una pizza!",
+    "successMessage": "",
+    "id": "67fab6d59930102295343bbf",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I want a pizza! (definitely)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I definitely want a pizza!"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bc0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverbs of Certainty: A Review",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She will sell her house. (maybe)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Maybe she will sell her house."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerAudioUrl": "B1.16.03.04",
+    "id": "67fab6d59930102295343bc0",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d367"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Tal vez ella venda su casa.",
+    "successMessage": "",
+    "miniTheory": "",
+    "instructions": "Coloca 'definitely', 'certainly' y 'probably' en la posición 'mid' y coloca 'maybe' y 'perhaps' en la posición 'front'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "answerImageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bc1"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343bc1",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverbs of Certainty: A Review",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d367"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Tal vez nos quedemos en casa esta noche.",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca 'definitely', 'certainly' y 'probably' en la posición 'mid' y coloca 'maybe' y 'perhaps' en la posición 'front'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We will stay at home tonight. (maybe)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Maybe we will stay at home tonight."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.16.03.05",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bc2"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverbs of Certainty: A Review",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "",
+    "translation": "Probablemente tengan un perro.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343bc2",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d367"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.16.03.06",
+    "instructions": "Coloca 'definitely', 'certainly' y 'probably' en la posición 'mid' y coloca 'maybe' y 'perhaps' en la posición 'front'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They own a dog. (probably)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They probably own a dog."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bc3"
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.16.03.07",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca 'definitely', 'certainly' y 'probably' en la posición 'mid' y coloca 'maybe' y 'perhaps' en la posición 'front'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We are arriving tomorrow. (definitely)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We are definitely arriving tomorrow."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d367"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverbs of Certainty: A Review",
+    "translation": "Definitivamente llegaremos mañana.",
+    "successMessage": "",
+    "id": "67fab6d59930102295343bc3",
+    "code": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bc4"
+    },
+    "answerAudioUrl": "B1.16.03.08",
+    "id": "67fab6d59930102295343bc4",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He likes spicy food! (certainly)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He certainly likes spicy food."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d367"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "title": "Adverbs of Certainty: A Review",
+    "instructions": "Coloca 'definitely', 'certainly' y 'probably' en la posición 'mid' y coloca 'maybe' y 'perhaps' en la posición 'front'.",
+    "theoryId": "",
+    "code": "",
+    "translation": "Ciertamente le gusta la comida picante.",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bc5"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d367"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Coloca 'definitely', 'certainly' y 'probably' en la posición 'mid' y coloca 'maybe' y 'perhaps' en la posición 'front'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He will eat with us. (perhaps)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Perhaps he will eat with us."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Quizás él coma con nosotros.",
+    "theoryId": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.16.03.09",
+    "id": "67fab6d59930102295343bc5",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverbs of Certainty: A Review",
+    "imageUrl": "",
+    "topicName": "Adverbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bc6"
+    },
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d367"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Adverbs of Certainty: A Review",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He will need some water. (certainly)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He will certainly need some water."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343bc6",
+    "instructions": "Coloca 'definitely', 'certainly' y 'probably' en la posición 'mid' y coloca 'maybe' y 'perhaps' en la posición 'front'.",
+    "audioUrl": "",
+    "translation": "Ciertamente necesitará algo de agua.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.16.03.10",
+    "topicName": "Adverbs"
+  }
+]

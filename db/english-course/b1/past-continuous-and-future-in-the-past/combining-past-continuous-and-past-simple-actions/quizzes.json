@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534316f"
+    },
+    "kind": "CLOZE",
+    "translation": "No estábamos jugando fútbol cuando empezó a llover.",
+    "miniTheory": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534316f",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were not playing/weren't playing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / play) soccer when the rain started.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "theoryId": "b1.03.Past_Continuous_Use_Interrupted_Actions_with_The_Past_Simple",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Combining past continuous and past simple actions",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.03.04.01",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343170"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Combining past continuous and past simple actions",
+    "theoryId": "b1.03.Past_Continuous_Use_Interrupted_Actions_with_The_Past_Simple",
+    "translation": "Ella estaba cocinando cuando él entró a la cocina.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343170",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was cooking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(cook) when he entered the kitchen.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerAudioUrl": "B1.03.04.02",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d1"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343171"
+    },
+    "audioUrl": "",
+    "translation": "Cuando la vi, ella estaba mirando por la ventana.",
+    "id": "67fab6d59930102295343171",
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "answerAudioUrl": "B1.03.04.03",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d1"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "When I saw her, she",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was looking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(look) at the window.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Combining past continuous and past simple actions",
+    "theoryId": "b1.03.Past_Continuous_Use_Interrupted_Actions_with_The_Past_Simple",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343172"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d1"
+    },
+    "miniTheory": "",
+    "code": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were you saying"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / say) when Mary interrupted you?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.03.Past_Continuous_Use_Interrupted_Actions_with_The_Past_Simple",
+    "audioUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Combining past continuous and past simple actions",
+    "answerAudioUrl": "B1.03.04.04",
+    "id": "67fab6d59930102295343172",
+    "imageUrl": "",
+    "translation": "¿Qué estabas diciendo cuando Mary te interrumpió?",
+    "answerImageUrl": "",
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343173"
+    },
+    "title": "Combining past continuous and past simple actions",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Tom",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was sleeping"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(sleep) when Emily called.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "translation": "Tom estaba durmiendo cuando Emily llamó.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.03.04.05",
+    "code": "",
+    "theoryId": "b1.03.Past_Continuous_Use_Interrupted_Actions_with_The_Past_Simple",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343173",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d1"
+    },
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343174"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343174",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was not cleaning/wasn't cleaning"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / clean) the house when her mom arrived.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d1"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.03.04.06",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Combining past continuous and past simple actions",
+    "translation": "Ella no estaba limpiando la casa cuando llegó su mamá.",
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "theoryId": "b1.03.Past_Continuous_Use_Interrupted_Actions_with_The_Past_Simple",
+    "audioUrl": "",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343175"
+    },
+    "id": "67fab6d59930102295343175",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "When the phone rang, we"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were watching"
+          ]
+        },
+        {
+          "text": "(watch) TV.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.03.Past_Continuous_Use_Interrupted_Actions_with_The_Past_Simple",
+    "translation": "Cuando sonó el teléfono, estábamos viendo la televisión.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "title": "Combining past continuous and past simple actions",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.03.04.07",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d1"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343176"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Combining past continuous and past simple actions",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were not barking/weren't barking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / bark) when the man walked by.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.03.04.08",
+    "kind": "CLOZE",
+    "theoryId": "b1.03.Past_Continuous_Use_Interrupted_Actions_with_The_Past_Simple",
+    "translation": "Los perros no estaban ladrando cuando el hombre pasó.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343176",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d1"
+    },
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "imageUrl": "",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343177"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "were writing"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(write) when the teacher gave the instructions.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.03.Past_Continuous_Use_Interrupted_Actions_with_The_Past_Simple",
+    "id": "67fab6d59930102295343177",
+    "title": "Combining past continuous and past simple actions",
+    "translation": "Los estudiantes estaban escribiendo cuando el profesor dio las instrucciones.",
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "answerAudioUrl": "B1.03.04.09",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d1"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343178"
+    },
+    "audioUrl": "",
+    "title": "Combining past continuous and past simple actions",
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.03.04.10",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d1"
+    },
+    "imageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was he driving"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / drive) the car when the accident happened?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.03.Past_Continuous_Use_Interrupted_Actions_with_The_Past_Simple",
+    "translation": "¿Cómo estaba conduciendo el coche cuando ocurrió el accidente?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343178",
+    "topicName": "Past Continuous and Future in the Past"
+  }
+]

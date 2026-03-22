@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e2a"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29c"
+    },
+    "imageUrl": "",
+    "translation": "Puede que nieve mañana.",
+    "id": "67fab6d59930102295342e2a",
+    "instructions": "Transforma las oraciones para que incluyan 'might' en lugar de 'maybe'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Maybe it will snow tomorrow.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "It might snow tomorrow."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Weak Possibility: Using 'Might'",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.10.08.01",
+    "code": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e2b"
+    },
+    "title": "Expressing Weak Possibility: Using 'Might'",
+    "instructions": "Transforma las oraciones para que incluyan 'might' en lugar de 'maybe'.",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Maybe she will dance at the disco.",
+          "options": null
+        },
+        {
+          "options": [
+            "She might dance at the disco."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342e2b",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.08.02",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ella podría bailar en la discoteca.",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e2c"
+    },
+    "answerAudioUrl": "A2.10.08.03",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'might' en lugar de 'maybe'.",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342e2c",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Maybe Peter will find a new house.",
+          "options": null
+        },
+        {
+          "options": [
+            "Peter might find a new house."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "title": "Expressing Weak Possibility: Using 'Might'",
+    "translation": "Peter podría encontrar una nueva casa.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29c"
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e2d"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'might' en lugar de 'maybe'.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.08.04",
+    "kind": "CLOZE",
+    "theoryId": "",
+    "translation": "Los estudiantes podrían estar aburridos.",
+    "id": "67fab6d59930102295342e2d",
+    "title": "Expressing Weak Possibility: Using 'Might'",
+    "audioUrl": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Maybe the students will be bored.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The students might be bored."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e2e"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Podría vender mi auto viejo.",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.10.08.05",
+    "id": "67fab6d59930102295342e2e",
+    "code": "",
+    "theoryId": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29c"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Maybe I will sell my old car.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "I might sell my old car."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "title": "Expressing Weak Possibility: Using 'Might'",
+    "instructions": "Transforma las oraciones para que incluyan 'might' en lugar de 'maybe'.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e2f"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'might' en lugar de 'maybe'.",
+    "theoryId": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29c"
+    },
+    "title": "Expressing Weak Possibility: Using 'Might'",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Maybe Robert will bake some biscuits."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Robert might bake some biscuits."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Robert podría hornear algunas galletas.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342e2f",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.08.06",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e30"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Maybe the doctor will be late.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The doctor might be late."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "El doctor podría llegar tarde.",
+    "answerAudioUrl": "A2.10.08.07",
+    "code": "",
+    "instructions": "Transforma las oraciones para que incluyan 'might' en lugar de 'maybe'.",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Expressing Weak Possibility: Using 'Might'",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342e30",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "theoryId": "",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e31"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342e31",
+    "title": "Expressing Weak Possibility: Using 'Might'",
+    "instructions": "Transforma las oraciones para que incluyan 'might' en lugar de 'maybe'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.10.08.08",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29c"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Maybe she will see us there.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She might see us there."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Ella podría vernos allí.",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e32"
+    },
+    "id": "67fab6d59930102295342e32",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "translation": "Podríamos perder el juego.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.08.09",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29c"
+    },
+    "title": "Expressing Weak Possibility: Using 'Might'",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Maybe we lose the game.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We might lose the game."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma las oraciones para que incluyan 'might' en lugar de 'maybe'.",
+    "topicName": "Modal Verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e33"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29c"
+    },
+    "title": "Expressing Weak Possibility: Using 'Might'",
+    "instructions": "Transforma las oraciones para que incluyan 'might' en lugar de 'maybe'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Maybe I will stay home tonight.",
+          "options": null
+        },
+        {
+          "options": [
+            "I might stay home tonight."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Podría quedarme en casa esta noche.",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.10.08.10",
+    "id": "67fab6d59930102295342e33",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "Modal Verbs"
+  }
+]

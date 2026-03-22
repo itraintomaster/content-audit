@@ -1,0 +1,157 @@
+# Configuration: sentinel.yaml DSL Specification
+
+The `sentinel.yaml` file is the **single source of truth** for the entire system.
+It declares modules, models, interfaces, implementations, tests, and features.
+
+## Root Structure
+
+```yaml
+system: "SystemName"          # Unique system identifier
+version: "1.0.0"              # Semantic version
+architecture: "hexagonal"      # hexagonal | layered | modular
+packagePrefix: "com.example"   # Base Java package for all modules
+
+language:                        # Target language for code generation
+  name: java                     # Language name (default: java)
+  version: "17"                 # Language version (default: 17)
+
+definitions:                    # Requirement files — one per feature folder
+  - requirements/2026-02-19.01_my-feature/requirement.yaml
+
+modules: [...]                  # Module definitions
+features: [...]                 # Business features (or from definitions)
+```
+
+## Module Schema
+
+```yaml
+modules:
+  - name: "module-name"         # Maven module + package name
+    description: "..."           # Human-readable description
+    dependsOn: ["other-module"]  # Allowed imports (enforced by ArchUnit)
+    allowedClients: ["client"]   # Who can import this (enforced by ArchUnit + JPMS)
+    scope: "public"              # public | internal
+    models: [...]                # Domain model definitions
+    interfaces: [...]            # Port/contract definitions
+    implementations: [...]       # Adapter definitions with tests
+    packages: [...]              # Organizational groupings with visibility control
+```
+
+## Package Schema
+
+Packages organize components within a module into sub-packages with visibility control.
+
+```yaml
+packages:
+  - name: "analyzers"            # Lowercase Java identifier
+    description: "..."           # What this package contains
+    visibility: "internal"       # public | internal (default) | private
+    models: [...]                # Models in this sub-package
+    interfaces: [...]            # Interfaces in this sub-package
+    implementations: [...]       # Implementations in this sub-package
+```
+
+Visibility: `public` = any module, `internal` = same module only, `private` = same package only.
+Java mapping: module `domain` + package `analyzers` → `com.example.domain.analyzers`.
+
+## Model Schema
+
+```yaml
+models:
+  - name: "ModelName"           # Class name (PascalCase)
+    type: record                 # record | enum | exception
+    extends: "RuntimeException"  # Optional supertype (exception only, default: RuntimeException)
+    message: "Not found: %s"     # Optional message template (exception only, %s from fields)
+    fields:
+      - name: "fieldName"        # Field name (camelCase)
+        type: "String"           # Java type
+```
+
+## Interface Schema
+
+```yaml
+interfaces:
+  - name: "InterfaceName"       # Interface name (PascalCase)
+    stereotype: "OutboundPort"   # InboundPort | OutboundPort | (custom)
+    sealed: true                  # sealed interface ... permits ...
+    exposes:
+      - signature: "method(Type param): ReturnType"
+        throws: ["ExceptionType"] # Optional checked exceptions
+```
+
+## Implementation Schema
+
+```yaml
+implementations:
+  - name: "ClassName"            # Implementation class name
+    implements: ["Interface"]     # Interfaces to implement
+    types: ["Repository"]         # Framework annotations to apply
+    requiresInject:               # Constructor dependencies
+      - name: "depName"
+        type: "DepType"
+    tests: [...]                  # Declarative test definitions
+```
+
+## Test Schema
+
+```yaml
+tests:
+  - name: "Test description"     # Human-readable test name
+    target: "ClassName"           # Class under test (optional, inferred)
+    type: unit                     # unit | integration
+    traceability:                  # Link to feature/rule/journey
+      feature: "FEAT-001"
+      rule: "RULE-001"
+      journey: "JOURNEY-001"
+    fixtures: [...]                # Test objects
+    mocks: [...]                   # Mock behavior
+    invoke:                        # Method to call
+      method: "methodName"
+      args: ["fixture-ref", "literal"]
+    assert:                        # Verification
+      doesNotThrow: true
+      returns: "value"
+      assertThrows: "ExceptionType"
+      verifyCall:
+        dependency: "depName"
+        method: "method"
+        times: 1
+        message: "Verification message"
+    steps: [...]                   # For integration tests only
+```
+
+## Feature Schema
+
+```yaml
+features:
+  - id: "FEAT-001"               # Unique feature identifier
+    name: "Feature Name"
+    description: "..."
+    code: "F-FN"                    # Auto-generated feature code
+    rules:
+      - id: "RULE-001"
+        name: "Rule Name"
+        severity: high
+        description: "..."
+        errorMessage: "..."
+    journeys:
+      - id: "JOURNEY-001"
+        name: "Journey Name"
+        steps:
+          - "Step 1 description"
+          - "Step 2 description"
+```
+
+## External Definitions
+
+Each requirement lives in its own dated folder. `sentinel.yaml` references them individually:
+
+```yaml
+# sentinel.yaml
+definitions:
+  - requirements/2026-02-19.01_user-registration/requirement.yaml
+  - requirements/2026-02-19.02_payment-processing/requirement.yaml
+```
+
+Each `requirement.yaml` contains a `features:` list. The engine merges them into the main definition.
+See `11-requirements.md` for the full convention including architecture patches.

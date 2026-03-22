@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534453b"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Clean your room! (would / mind)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Would you mind cleaning your room?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534453b",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Politeness Practice: Using Modal Verbs",
+    "translation": "¿Te importaría limpiar tu habitación?",
+    "answerAudioUrl": "B2.09.08.01",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534453c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "¿Te importaría dejar de hacer ruido?",
+    "answerAudioUrl": "B2.09.08.02",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Stop making noise! (would / mind)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Would you mind stopping making noise?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "code": "",
+    "title": "Politeness Practice: Using Modal Verbs",
+    "successMessage": "",
+    "id": "67fab6d5993010229534453c",
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "theoryId": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534453d"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Podrías llevar esta caja?",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.09.08.03",
+    "id": "67fab6d5993010229534453d",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Carry this box! (could)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could you carry this box?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "successMessage": "",
+    "audioUrl": "",
+    "code": "",
+    "title": "Politeness Practice: Using Modal Verbs",
+    "theoryId": "",
+    "imageUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534453e"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Politeness Practice: Using Modal Verbs",
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "successMessage": "",
+    "id": "67fab6d5993010229534453e",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "code": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Wash the dishes! (would / mind)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Would you mind washing the dishes?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "translation": "¿Te importaría lavar los platos?",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.09.08.04",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534453f"
+    },
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "audioUrl": "",
+    "translation": "¿Podrías hacerme un poco de té?",
+    "answerImageUrl": "",
+    "theoryId": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Politeness Practice: Using Modal Verbs",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Make me some tea! (could)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could you make me some tea?"
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "successMessage": "",
+    "id": "67fab6d5993010229534453f",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.08.05",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344540"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B2.09.08.06",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "theoryId": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "title": "Politeness Practice: Using Modal Verbs",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Show me that picture! (would)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Would you show me that picture?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "kind": "CLOZE",
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "audioUrl": "",
+    "translation": "¿Me mostrarías esa foto?",
+    "successMessage": "",
+    "id": "67fab6d59930102295344540",
+    "code": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344541"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Buy something to drink! (could)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "Could you buy something to drink?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295344541",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Politeness Practice: Using Modal Verbs",
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.09.08.07",
+    "theoryId": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "translation": "¿Podrías comprar algo de beber?",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344542"
+    },
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Politeness Practice: Using Modal Verbs",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "Collect the papers! (would)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Would you collect the papers?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "translation": "¿Podrías recoger los papeles?",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "id": "67fab6d59930102295344542",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.08.08",
+    "code": "",
+    "theoryId": "",
+    "answerImageUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344543"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Step to the side! (would / mind)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Would you mind stepping to the side?"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "answerAudioUrl": "B2.09.08.09",
+    "id": "67fab6d59930102295344543",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "translation": "¿Te importaría hacerte a un lado?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Politeness Practice: Using Modal Verbs",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344544"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "title": "Politeness Practice: Using Modal Verbs",
+    "theoryId": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "¿Te importaría llevar esa maleta?",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Carry that suitcase! (would / mind)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Would you mind carrying that suitcase?"
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344544",
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "answerAudioUrl": "B2.09.08.10",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344545"
+    },
+    "id": "67fab6d59930102295344545",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "",
+    "translation": "¿Podrías llevarme al aeropuerto?",
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Give me a ride to the airport! (could)",
+          "options": null
+        },
+        {
+          "options": [
+            "Could you give me a ride to the airport?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.09.08.11",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Politeness Practice: Using Modal Verbs",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344546"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Politeness Practice: Using Modal Verbs",
+    "successMessage": "",
+    "answerAudioUrl": "B2.09.08.12",
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "theoryId": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Reserve the tickets! (could)",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "Could you reserve the tickets?"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295344546",
+    "imageUrl": "",
+    "translation": "¿Podrías reservar los boletos?",
+    "miniTheory": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344547"
+    },
+    "title": "Politeness Practice: Using Modal Verbs",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "translation": "¿Me servirías un poco de jugo?",
+    "theoryId": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.09.08.13",
+    "id": "67fab6d59930102295344547",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Pour me some juice! (would)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Would you pour me some juice?"
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344548"
+    },
+    "answerImageUrl": "",
+    "title": "Politeness Practice: Using Modal Verbs",
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Turn on the TV! (would / mind)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Would you mind turning on the TV?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B2.09.08.14",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "miniTheory": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295344548",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Te importaría encender la televisión?",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344549"
+    },
+    "id": "67fab6d59930102295344549",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "Close the door! (would / mind)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Would you mind closing the door?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "translation": "¿Te importaría cerrar la puerta?",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Politeness Practice: Using Modal Verbs",
+    "answerAudioUrl": "B2.09.08.15",
+    "code": "",
+    "theoryId": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534454a"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "translation": "¿Podrías llegar un poco más temprano?",
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Arrive a little earlier! (would)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Would you arrive a little earlier?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.09.08.16",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Politeness Practice: Using Modal Verbs",
+    "id": "67fab6d5993010229534454a",
+    "code": "",
+    "successMessage": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534454b"
+    },
+    "id": "67fab6d5993010229534454b",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Politeness Practice: Using Modal Verbs",
+    "translation": "¿Me ayudarías a mover esta mesa?",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "theoryId": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Help me move this table! (would)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Would you help me move this table?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B2.09.08.17",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534454c"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "translation": "¿Me prestarías algo de dinero?",
+    "answerAudioUrl": "B2.09.08.18",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Loan me some money! (would)"
+        },
+        {
+          "options": [
+            "Would you loan me some money?"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d5993010229534454c",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Politeness Practice: Using Modal Verbs",
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "successMessage": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534454d"
+    },
+    "id": "67fab6d5993010229534454d",
+    "theoryId": "",
+    "answerAudioUrl": "B2.09.08.19",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Read this report! (could)",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could you read this report?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "¿Podrías leer este informe?",
+    "miniTheory": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Politeness Practice: Using Modal Verbs",
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "Modal verbs"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534454e"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Haz que las oraciones sean más educadas usando 'you' y la palabra entre paréntesis.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Give me the sugar! (could)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Could you give me the sugar?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "code": "",
+    "title": "Politeness Practice: Using Modal Verbs",
+    "theoryId": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534454e",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "translation": "¿Podrías pasarme el azúcar?",
+    "answerAudioUrl": "B2.09.08.20",
+    "topicName": "Modal verbs"
+  }
+]

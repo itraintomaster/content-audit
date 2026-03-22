@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343771"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Indirect Requests using 'Ask'",
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Would you mind arriving on time?"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to arrive on time."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "imageUrl": "",
+    "translation": "Me pidió que llegara a tiempo.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343771",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.11.01",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343772"
+    },
+    "id": "67fab6d59930102295343772",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "answerAudioUrl": "B1.10.11.02",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you please assist me?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to assist me."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Indirect Requests using 'Ask'",
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "audioUrl": "",
+    "translation": "Me pidió que me ayudara.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343773"
+    },
+    "answerAudioUrl": "B1.10.11.03",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Me pidió que cerrara las cortinas.",
+    "miniTheory": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "title": "Indirect Requests using 'Ask'",
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343773",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please close the curtains.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to close the curtains."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343774"
+    },
+    "id": "67fab6d59930102295343774",
+    "translation": "Me pidió que llevara esta bolsa.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.11.04",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Would you mind taking this bag?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to take this bag."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Indirect Requests using 'Ask'",
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343775"
+    },
+    "code": "",
+    "title": "Indirect Requests using 'Ask'",
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please remain silent.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to remain silent."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295343775",
+    "kind": "CLOZE",
+    "translation": "Me pidió que permaneciera en silencio.",
+    "answerAudioUrl": "B1.10.11.05",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343776"
+    },
+    "audioUrl": "",
+    "translation": "Me pidió que le sirviera un poco de jugo.",
+    "successMessage": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Could you please pour me some juice?",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "She asked me to pour her some juice."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "answerAudioUrl": "B1.10.11.06",
+    "id": "67fab6d59930102295343776",
+    "kind": "CLOZE",
+    "title": "Indirect Requests using 'Ask'",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343777"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Would you mind borrowing me your car?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to borrow her car."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "code": "",
+    "translation": "Me pidió que le pidiera prestado su coche.",
+    "answerAudioUrl": "B1.10.11.07",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Indirect Requests using 'Ask'",
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343777",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343778"
+    },
+    "title": "Indirect Requests using 'Ask'",
+    "audioUrl": "",
+    "translation": "Me pidió que recogiera el paquete.",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343778",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.10.11.08",
+    "kind": "CLOZE",
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you possibly collect the parcel?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to collect the parcel."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343779"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Would you please prepare some eggs?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to prepare some eggs."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.11.09",
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "title": "Indirect Requests using 'Ask'",
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343779",
+    "code": "",
+    "translation": "Me pidió que preparara unos huevos.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534377a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Me pidió que bailara.",
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534377a",
+    "kind": "CLOZE",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Would you mind dancing?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to dance."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Indirect Requests using 'Ask'",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.11.10",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534377b"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.11.11",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Indirect Requests using 'Ask'",
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "translation": "Me pidió que le pasara ese libro.",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please hand me that book.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to hand her that book."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534377b",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534377c"
+    },
+    "title": "Indirect Requests using 'Ask'",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534377c",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you get some bread?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to get some bread."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "translation": "Me pidió que comprara un poco de pan.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.11.12",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "audioUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534377d"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Would you mind opening the window?",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "She asked me to open the door."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Me pidió que abriera la ventana.",
+    "successMessage": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534377d",
+    "kind": "CLOZE",
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "title": "Indirect Requests using 'Ask'",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.10.11.13",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534377e"
+    },
+    "title": "Indirect Requests using 'Ask'",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.10.11.14",
+    "id": "67fab6d5993010229534377e",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Please fetch me a glass of water."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to fetch her a glass of water."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "translation": "Me pidió que le trajera un vaso de agua.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534377f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Indirect Requests using 'Ask'",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.11.15",
+    "id": "67fab6d5993010229534377f",
+    "translation": "Me pidió que cocinara el arroz.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you cook the rice?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to cook the rice."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343780"
+    },
+    "id": "67fab6d59930102295343780",
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "title": "Indirect Requests using 'Ask'",
+    "translation": "Me pidió que buscara unos vasos.",
+    "answerImageUrl": "",
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.10.11.16",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Would you mind finding some glasses?",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to find some glasses."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343781"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "Could you possibly inform Mary?",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to inform Mary."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.10.11.17",
+    "translation": "Me pidió que informara a Mary.",
+    "title": "Indirect Requests using 'Ask'",
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343781",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343782"
+    },
+    "answerAudioUrl": "B1.10.11.18",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "successMessage": "",
+    "title": "Indirect Requests using 'Ask'",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "id": "67fab6d59930102295343782",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please turn off the lights.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to turn off the lights."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Me pidió que apagara las luces.",
+    "answerImageUrl": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343783"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.10.11.19",
+    "translation": "Me pidió que me levantara.",
+    "id": "67fab6d59930102295343783",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please stand up.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "She asked me to stand up."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Indirect Requests using 'Ask'",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Reported speech"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343784"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d327"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Would you mind reserving the room?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She asked me to reserve the room."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "id": "67fab6d59930102295343784",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Indirect Requests using 'Ask'",
+    "instructions": "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
+    "theoryId": "b1.10.Reported_Requests_with_Ask",
+    "translation": "Me pidió que reservara la habitación.",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "B1.10.11.20",
+    "topicName": "Reported speech"
+  }
+]

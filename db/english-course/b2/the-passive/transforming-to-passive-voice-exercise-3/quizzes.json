@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344333"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "translation": "El libro ha sido leído por mí.",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "theoryId": "b2.07.The_Get_Passive",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.07.03.01",
+    "successMessage": "",
+    "id": "67fab6d59930102295344333",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I have read the book."
+        },
+        {
+          "text": "",
+          "options": [
+            "The book has been read by me."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344334"
+    },
+    "answerAudioUrl": "B2.07.03.02",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "theoryId": "b2.07.The_Get_Passive",
+    "translation": "Las canciones son cantadas por Mary.",
+    "id": "67fab6d59930102295344334",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary sings the songs.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The songs are sung by Mary."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344335"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.07.03.03",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "translation": "Los coches son vendidos por él.",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "theoryId": "b2.07.The_Get_Passive",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295344335",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "He sells the cars."
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The cars are sold by him."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344336"
+    },
+    "id": "67fab6d59930102295344336",
+    "code": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They drink beer.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Beer is drunk by them."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "audioUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "La cerveza es bebida por ellos.",
+    "answerAudioUrl": "B2.07.03.04",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "imageUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344337"
+    },
+    "id": "67fab6d59930102295344337",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Peter fue besado por Emily.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "successMessage": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Emily kissed Peter.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "Peter was kissed by Emily."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.07.03.05",
+    "code": "",
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "imageUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344338"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "theoryId": "b2.07.The_Get_Passive",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.07.03.06",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344338",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter ate an apple.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "An apple was eaten by Peter."
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "Una manzana fue comida por Peter.",
+    "miniTheory": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344339"
+    },
+    "translation": "Los libros son leídos por él.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He reads books.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Books are read by him."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.07.03.07",
+    "id": "67fab6d59930102295344339",
+    "code": "",
+    "theoryId": "b2.07.The_Get_Passive",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534433a"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.07.03.08",
+    "id": "67fab6d5993010229534433a",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She had eaten the cake.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The cake had been eaten by her."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "translation": "El pastel había sido comido por ella.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534433b"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "theoryId": "b2.07.The_Get_Passive",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.07.03.09",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "kind": "CLOZE",
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is fixing the bike.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The bike is being fixed by him."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "translation": "La bicicleta está siendo arreglada por él.",
+    "id": "67fab6d5993010229534433b",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534433c"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.07.03.10",
+    "id": "67fab6d5993010229534433c",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Robert is kicking the football.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The football is being kicked by Robert."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "El balón de fútbol está siendo pateado por Robert.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "theoryId": "b2.07.The_Get_Passive",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534433d"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "imageUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "translation": "La música estaba siendo escuchada por ellos.",
+    "answerAudioUrl": "B2.07.03.11",
+    "kind": "CLOZE",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534433d",
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They were hearing the music.",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "The music was being heard by them."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534433e"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He was signing the letters.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The letters were being signed by him."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534433e",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "translation": "Las cartas estaban siendo firmadas por él.",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "theoryId": "b2.07.The_Get_Passive",
+    "answerAudioUrl": "B2.07.03.12",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534433f"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I will deliver the parcel.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The parcel will be delivered by me."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534433f",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "translation": "El paquete será entregado por mí.",
+    "answerAudioUrl": "B2.07.03.13",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344340"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.07.03.14",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "translation": "Las paredes son pintadas por ellos.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They paint the walls.",
+          "options": null
+        },
+        {
+          "options": [
+            "The walls are painted by them."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344340",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344341"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "audioUrl": "",
+    "answerAudioUrl": "B2.07.03.15",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295344341",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He has fixed the computers.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The computers have been fixed by him."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "translation": "Las computadoras han sido arregladas por él.",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344342"
+    },
+    "id": "67fab6d59930102295344342",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He will organize the party.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The party will be organized by him."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.07.03.16",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "translation": "La fiesta será organizada por él.",
+    "successMessage": "",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344343"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He has loaded the trucks.",
+          "options": null
+        },
+        {
+          "options": [
+            "The trucks have been loaded by him."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.07.03.17",
+    "code": "",
+    "translation": "Los camiones han sido cargados por él.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295344343",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344344"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "audioUrl": "",
+    "id": "67fab6d59930102295344344",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.07.03.18",
+    "theoryId": "b2.07.The_Get_Passive",
+    "translation": "La ropa será diseñada por ella.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She will design the clothes.",
+          "options": null
+        },
+        {
+          "options": [
+            "The clothes will be designed by her."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344345"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "theoryId": "b2.07.The_Get_Passive",
+    "successMessage": "",
+    "id": "67fab6d59930102295344345",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Charles was recording the song.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The song was being recorded by Charles."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "La canción estaba siendo grabada por Charles.",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.07.03.19",
+    "topicName": "The passive"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344346"
+    },
+    "theoryId": "b2.07.The_Get_Passive",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295344346",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d440"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They informed the police.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The police was informed by them."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "translation": "La policía fue informada por ellos.",
+    "title": "Transforming to Passive Voice: Exercise 3",
+    "instructions": "Transforma la oración activa a pasiva incluyendo 'by'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B2.07.03.20",
+    "topicName": "The passive"
+  }
+]

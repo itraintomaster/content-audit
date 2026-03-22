@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342161"
+    },
+    "successMessage": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to' for Future Plans: Questions",
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "¿Te vas a quedar en el hotel?",
+    "id": "67fab6d59930102295342161",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.03.06.01",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are you going to stay"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(you / stay) at the hotel?"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342162"
+    },
+    "theoryId": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are you going to sleep"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / sleep) well tonight?",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "kind": "CLOZE",
+    "successMessage": "",
+    "id": "67fab6d59930102295342162",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to' for Future Plans: Questions",
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "translation": "¿Vas a dormir bien esta noche?",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.03.06.02",
+    "code": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342163"
+    },
+    "id": "67fab6d59930102295342163",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "When",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "are you going to call"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / call) Sarah?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "code": "",
+    "theoryId": "",
+    "answerAudioUrl": "A1.03.06.03",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to' for Future Plans: Questions",
+    "translation": "¿Cuándo vas a llamar a Sarah?",
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342164"
+    },
+    "id": "67fab6d59930102295342164",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "title": "'Going to' for Future Plans: Questions",
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.03.06.04",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "How often"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "am I going to visit"
+          ]
+        },
+        {
+          "text": "(I / visit) my parents?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "¿Con qué frecuencia voy a visitar a mis padres?",
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342165"
+    },
+    "title": "'Going to' for Future Plans: Questions",
+    "theoryId": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Va a llover más tarde?",
+    "answerAudioUrl": "A1.03.06.05",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342165",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is it going to rain"
+          ]
+        },
+        {
+          "text": "(it / rain) later?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342166"
+    },
+    "title": "'Going to' for Future Plans: Questions",
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "imageUrl": "",
+    "id": "67fab6d59930102295342166",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "answerAudioUrl": "A1.03.06.06",
+    "theoryId": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "What"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he going to cook"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / cook)?",
+          "options": null
+        }
+      ]
+    },
+    "translation": "¿Qué va a cocinar él?",
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342167"
+    },
+    "id": "67fab6d59930102295342167",
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "translation": "¿A qué hora va a empezar?",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to' for Future Plans: Questions",
+    "theoryId": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What time",
+          "options": null
+        },
+        {
+          "options": [
+            "is it going to start"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(it / start)?",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A1.03.06.07",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342168"
+    },
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "Are they going to watch"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / watch) the movie?",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342168",
+    "title": "'Going to' for Future Plans: Questions",
+    "answerAudioUrl": "A1.03.06.08",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "imageUrl": "",
+    "translation": "¿Van a ver la película?",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342169"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Am I going to win"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I / win)?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.03.06.09",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "theoryId": "",
+    "audioUrl": "",
+    "translation": "¿Voy a ganar?",
+    "id": "67fab6d59930102295342169",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to' for Future Plans: Questions",
+    "imageUrl": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534216a"
+    },
+    "audioUrl": "",
+    "translation": "¿A quién vamos a invitar?",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to' for Future Plans: Questions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Who",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "are we going to invite"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we / invite)?",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534216a",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A1.03.06.10",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534216b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.03.06.11",
+    "id": "67fab6d5993010229534216b",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "translation": "¿Cuánta azúcar va a usar ella?",
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to' for Future Plans: Questions",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How much sugar",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is she going to use"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / use)?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534216c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.03.06.12",
+    "code": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "title": "'Going to' for Future Plans: Questions",
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "options": [
+            "Are we going to finish"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "(we / finish) this task?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "",
+    "successMessage": "",
+    "id": "67fab6d5993010229534216c",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Vamos a terminar esta tarea?",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534216d"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "miniTheory": "",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is she going to find"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / find) a new apartment?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "¿Va a encontrar ella un nuevo apartamento?",
+    "successMessage": "",
+    "answerAudioUrl": "A1.03.06.13",
+    "id": "67fab6d5993010229534216d",
+    "title": "'Going to' for Future Plans: Questions",
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "imageUrl": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534216e"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "translation": "¿A dónde va a viajar ella?",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to' for Future Plans: Questions",
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d5993010229534216e",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.03.06.14",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Where"
+        },
+        {
+          "options": [
+            "is she going to travel"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / travel)?",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534216f"
+    },
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "theoryId": "",
+    "translation": "¿Cuándo se va a ir él?",
+    "code": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he going to leave"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / leave)?",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A1.03.06.15",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Going to' for Future Plans: Questions",
+    "id": "67fab6d5993010229534216f",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342170"
+    },
+    "title": "'Going to' for Future Plans: Questions",
+    "theoryId": "",
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342170",
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "translation": "¿Por qué va a costar tanto?",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Why",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is it going to cost"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(it / cost) so much?",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A1.03.06.16",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342171"
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342171",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are they going to order"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(they / order) pizza?"
+        }
+      ]
+    },
+    "title": "'Going to' for Future Plans: Questions",
+    "translation": "¿Van a pedir pizza?",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.03.06.17",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342172"
+    },
+    "theoryId": "",
+    "translation": "¿Va a necesitar ayuda él?",
+    "id": "67fab6d59930102295342172",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "title": "'Going to' for Future Plans: Questions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is he going to need"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / need) help?",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.03.06.18",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342173"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are we going to play"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we / play) video games?",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "A1.03.06.19",
+    "id": "67fab6d59930102295342173",
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "title": "'Going to' for Future Plans: Questions",
+    "theoryId": "",
+    "translation": "¿Vamos a jugar videojuegos?",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "'Will' and 'Going to'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342174"
+    },
+    "code": "",
+    "title": "'Going to' for Future Plans: Questions",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "What",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are they going to wear"
+          ]
+        },
+        {
+          "text": "(they / wear)?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "¿Qué se van a poner ellos?",
+    "id": "67fab6d59930102295342174",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ad"
+    },
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
+    "theoryId": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.06.20",
+    "topicName": "'Will' and 'Going to'"
+  }
+]

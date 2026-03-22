@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446ac"
+    },
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They cooked lunch for",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "each other"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ". (Amanda cooked lunch for Luke and Luke cooked lunch for Amanda.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "translation": "Se prepararon el almuerzo el uno al otro.",
+    "successMessage": "",
+    "id": "67fab6d599301022953446ac",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Each Other: A Review Exercise",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.11.01.01",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446ad"
+    },
+    "translation": "¿Se sirvieron jugo?",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did you pour",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "yourselves"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "some juice? (Did James pour juice for James and Lucy pour juice for Lucy?)",
+          "options": null
+        }
+      ]
+    },
+    "title": "Each Other: A Review Exercise",
+    "audioUrl": "",
+    "successMessage": "",
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.11.01.02",
+    "id": "67fab6d599301022953446ad",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446ae"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We visit",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "each other"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "often. (I visit you and you visit me.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.01.03",
+    "code": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "translation": "Nos visitamos a menudo.",
+    "id": "67fab6d599301022953446ae",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Each Other: A Review Exercise",
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "audioUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446af"
+    },
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "id": "67fab6d599301022953446af",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Nos dibujamos retratos.",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Each Other: A Review Exercise",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We drew portraits of",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "ourselves"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ". (The portraits were self-portraits.)",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.11.01.04",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446b0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Se prepararon el almuerzo el uno al otro.",
+    "miniTheory": "",
+    "answerAudioUrl": "B2.11.01.05",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Each Other: A Review Exercise",
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d599301022953446b0",
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They prepared lunch for",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "each other"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ". (Julie prepared lunch for David and David prepared lunch for Julie.)",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446b1"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Each Other: A Review Exercise",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you send emails to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "each other"
+          ]
+        },
+        {
+          "text": "? (Chris sends emails to Jill and Jill sends emails to Chris.)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "translation": "¿Se envían correos electrónicos el uno al otro?",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953446b1",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.01.06",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446b2"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Each Other: A Review Exercise",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d599301022953446b2",
+    "code": "",
+    "miniTheory": "",
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "translation": "Pedimos pizza el uno para el otro.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We ordered pizza for",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "each other"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ". (I ordered pizza for you and you ordered pizza for me.)"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "answerAudioUrl": "B2.11.01.07",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446b3"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "imageUrl": "",
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "translation": "Pedimos pizza para nosotros mismos.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953446b3",
+    "kind": "CLOZE",
+    "title": "Each Other: A Review Exercise",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "We ordered pizza for"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "ourselves"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ". (I ordered pizza for me and you ordered pizza for you.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B2.11.01.08",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446b4"
+    },
+    "title": "Each Other: A Review Exercise",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.01.09",
+    "id": "67fab6d599301022953446b4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They wrapped gifts for"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "each other"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ". (Julie wrapped a gift for Lizzie and Lizzie wrapped a gift for Julie.)"
+        }
+      ]
+    },
+    "translation": "Envolvieron regalos el uno para el otro.",
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446b5"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953446b5",
+    "code": "",
+    "translation": "Nos dibujamos retratos el uno al otro. Yo te dibujé un retrato a ti y tú me dibujaste un retrato a mí.",
+    "successMessage": "",
+    "answerAudioUrl": "B2.11.01.10",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "title": "Each Other: A Review Exercise",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We drew portraits of",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "each other"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ". I drew a portrait of you and you drew a portrait of me.)"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "imageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446b6"
+    },
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They saw",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "themselves"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "in the reflection. (John saw John and William saw William.)"
+        }
+      ]
+    },
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.01.11",
+    "id": "67fab6d599301022953446b6",
+    "code": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Each Other: A Review Exercise",
+    "translation": "Se vieron a sí mismos en el reflejo.",
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446b7"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Each Other: A Review Exercise",
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They greeted"
+        },
+        {
+          "options": [
+            "each other"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ". (Katie greeted Matthew and Matthew greeted Katie.)"
+        }
+      ]
+    },
+    "answerAudioUrl": "B2.11.01.12",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "id": "67fab6d599301022953446b7",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "translation": "Se saludaron el uno al otro.",
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446b8"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953446b8",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Los estudiantes hablaron sobre sí mismos.",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "title": "Each Other: A Review Exercise",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "The students spoke about",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "themselves"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ". (Student 1 spoke about student 1 and student 2 spoke about student 2.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "answerAudioUrl": "B2.11.01.13",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446b9"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Los niños se saludaron con la mano.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953446b9",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Each Other: A Review Exercise",
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The children waved at",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "each other"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ". (Ana waved at Marie and Marie waved at Ana).",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "answerAudioUrl": "B2.11.01.14",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446ba"
+    },
+    "title": "Each Other: A Review Exercise",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "You fed",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "yourselves"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "when you were toddlers. (David fed David and Lizzie fed Lizzie.)"
+        }
+      ]
+    },
+    "translation": "Ustedes se alimentaban solos cuando eran pequeños.",
+    "id": "67fab6d599301022953446ba",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.11.01.15",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "imageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446bb"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Se apoyan el uno al otro.",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d599301022953446bb",
+    "title": "Each Other: A Review Exercise",
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.11.01.16",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They support",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "each other"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ". (She supports him and he supports her.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "audioUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446bc"
+    },
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Each Other: A Review Exercise",
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did you telephone",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "each other"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "last night? (Did James telephone Lucy and Lucy telephone James?)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "¿Se llamaron por teléfono anoche?",
+    "answerAudioUrl": "B2.11.01.17",
+    "id": "67fab6d599301022953446bc",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446bd"
+    },
+    "id": "67fab6d599301022953446bd",
+    "code": "",
+    "title": "Each Other: A Review Exercise",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We bought toys for",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "ourselves"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ". (I bought a toy for me and you bought a toy for you.)",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "imageUrl": "",
+    "translation": "Nos compramos juguetes.",
+    "answerAudioUrl": "B2.11.01.18",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446be"
+    },
+    "translation": "Nos grabamos en cámara.",
+    "id": "67fab6d599301022953446be",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We filmed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "ourselves"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "on camera. (I filmed me and you filmed you.)"
+        }
+      ]
+    },
+    "successMessage": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B2.11.01.19",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "title": "Each Other: A Review Exercise",
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "audioUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446bf"
+    },
+    "answerAudioUrl": "B2.11.01.20",
+    "id": "67fab6d599301022953446bf",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They scratched",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "themselves"
+          ]
+        },
+        {
+          "text": ". (Amanda scratched Amanda and Luke scratched Luke.)",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "translation": "Se rascaron.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d471"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b2.11.Reflexive_Pronouns_for_Emphasis",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Each Other: A Review Exercise",
+    "instructions": "Completa con 'each other' o 'ourselves / yourselves / themselves'. Cuando escriba 'you', me refiero a más de una persona.",
+    "audioUrl": "",
+    "topicName": "Pronouns"
+  }
+]

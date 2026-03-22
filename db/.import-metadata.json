@@ -1,0 +1,34 @@
+{
+  "collections": [
+    {
+      "name": "courses",
+      "bsonSource": "courses.bson",
+      "documentCount": 1,
+      "fileSizeBytes": 36611,
+      "sha256": "f98774def7c18fc4dd982064e589715690ee0f08539c52099174bd83b10a648a"
+    },
+    {
+      "name": "knowledges",
+      "bsonSource": "knowledges.bson",
+      "documentCount": 668,
+      "fileSizeBytes": 316433,
+      "sha256": "72df9a1b73dbd0593b35bd7a386a54fbc8a664a13044d36ea5c4be177818fe91"
+    },
+    {
+      "name": "quiz-templates",
+      "bsonSource": "quizTemplates.bson",
+      "documentCount": 11487,
+      "fileSizeBytes": 15880326,
+      "sha256": "a52defa94c6289ce01478ea4eaf6c9a71b2b372096624609b358858f6567f3d4"
+    },
+    {
+      "name": "quizzes",
+      "bsonSource": "quizzes.bson",
+      "documentCount": 866,
+      "fileSizeBytes": 1821926,
+      "sha256": "237db6853389a7a29618b93b8c22d4bd7808b134a4c21b5a8f1c84a68dbb1832"
+    }
+  ],
+  "importedAt": "2026-02-14T04:34:14Z",
+  "dumpPath": "/Users/josecullen/projects/learney/mongo-buckups/2025-05-24/learney"
+}

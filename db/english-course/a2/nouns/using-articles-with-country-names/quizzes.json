@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a88"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "title": "Using Articles with Country Names",
+    "imageUrl": "",
+    "miniTheory": "",
+    "theoryId": "a2.06.Article_with_Countries",
+    "translation": "¿Alguna vez has visitado la República Checa?",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "id": "67fab6d59930102295342a88",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you ever visited",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Czech Republic?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.06.12.01",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a89"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Viajé a Noruega por primera vez el año pasado.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "answerAudioUrl": "A2.06.12.02",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "title": "Using Articles with Country Names",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I journeyed to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "text": "Norway for the first time last year.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a2.06.Article_with_Countries",
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342a89",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a8a"
+    },
+    "theoryId": "a2.06.Article_with_Countries",
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you ever travelled to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Algeria?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "translation": "¿Alguna vez has viajado a Argelia?",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Articles with Country Names",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.06.12.03",
+    "id": "67fab6d59930102295342a8a",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a8b"
+    },
+    "answerAudioUrl": "A2.06.12.04",
+    "kind": "CLOZE",
+    "theoryId": "a2.06.Article_with_Countries",
+    "miniTheory": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342a8b",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "translation": "Edimburgo está situado en Escocia.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Articles with Country Names",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Edinburgh is situated in",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Scotland.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a8c"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342a8c",
+    "imageUrl": "",
+    "translation": "¿Alguna vez has vacacionado en Dinamarca?",
+    "theoryId": "a2.06.Article_with_Countries",
+    "title": "Using Articles with Country Names",
+    "audioUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you ever vacationed in",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Denmark?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.06.12.05",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a8d"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Articles with Country Names",
+    "theoryId": "a2.06.Article_with_Countries",
+    "id": "67fab6d59930102295342a8d",
+    "code": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We toured around",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Austria.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "translation": "Hicimos un recorrido por Austria.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.12.06",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a8e"
+    },
+    "id": "67fab6d59930102295342a8e",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They originate from Madrid in",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Spain.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Ellos son originarios de Madrid, en España.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.12.07",
+    "kind": "CLOZE",
+    "title": "Using Articles with Country Names",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "theoryId": "a2.06.Article_with_Countries",
+    "successMessage": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a8f"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "La gente habla flamenco en Bélgica.",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "a2.06.Article_with_Countries",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.12.08",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Articles with Country Names",
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "People speak Flemish in",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "the"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "Belgium.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "id": "67fab6d59930102295342a8f",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a90"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342a90",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Articles with Country Names",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I've never travelled to",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "Korea.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "translation": "Nunca he viajado a Corea.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.12.09",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.06.Article_with_Countries",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a91"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295342a91",
+    "title": "Using Articles with Country Names",
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "theoryId": "a2.06.Article_with_Countries",
+    "audioUrl": "",
+    "answerAudioUrl": "A2.06.12.10",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is from",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Greece.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Ella es de Grecia.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a92"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "translation": "Ellos recorrieron Argentina.",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.06.12.11",
+    "id": "67fab6d59930102295342a92",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "theoryId": "a2.06.Article_with_Countries",
+    "audioUrl": "",
+    "successMessage": "",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Articles with Country Names",
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They toured around",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Argentina.",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a93"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342a93",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She comes from",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Maldives.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Articles with Country Names",
+    "theoryId": "a2.06.Article_with_Countries",
+    "translation": "Ella viene de las Maldivas.",
+    "answerAudioUrl": "A2.06.12.12",
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a94"
+    },
+    "kind": "CLOZE",
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We travelled to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Brazil.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Viajamos a Brasil.",
+    "id": "67fab6d59930102295342a94",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.06.Article_with_Countries",
+    "miniTheory": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Articles with Country Names",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.12.13",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a95"
+    },
+    "translation": "A él le encanta residir en Vietnam.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.06.12.14",
+    "title": "Using Articles with Country Names",
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He loves residing in",
+          "options": null
+        },
+        {
+          "options": [
+            "-"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Vietnam."
+        }
+      ]
+    },
+    "theoryId": "a2.06.Article_with_Countries",
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "id": "67fab6d59930102295342a95",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a96"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "translation": "Texas está ubicado en los Emiratos Árabes Unidos.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342a96",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Articles with Country Names",
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "theoryId": "a2.06.Article_with_Countries",
+    "answerAudioUrl": "A2.06.12.15",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Texas is located in",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "text": "United Arab Emirates.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "code": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a97"
+    },
+    "kind": "CLOZE",
+    "miniTheory": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342a97",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Me gustaría viajar a Ucrania.",
+    "imageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "title": "Using Articles with Country Names",
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.12.16",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "I would like to travel to",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Ukraine.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.06.Article_with_Countries",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a98"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "theoryId": "a2.06.Article_with_Countries",
+    "answerAudioUrl": "A2.06.12.17",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He studied for a year in",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Korea.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Él estudió durante un año en Corea.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342a98",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "title": "Using Articles with Country Names",
+    "imageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a99"
+    },
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "title": "Using Articles with Country Names",
+    "theoryId": "a2.06.Article_with_Countries",
+    "imageUrl": "",
+    "id": "67fab6d59930102295342a99",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "translation": "Ella es de Hungría.",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is from",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Hungary.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.06.12.18",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a9a"
+    },
+    "id": "67fab6d59930102295342a9a",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "theoryId": "a2.06.Article_with_Countries",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He desires to go to",
+          "options": null
+        },
+        {
+          "options": [
+            "the"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "British Islands.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Él desea ir a las Islas Británicas.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.06.12.19",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Articles with Country Names",
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a9b"
+    },
+    "code": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.06.12.20",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using Articles with Country Names",
+    "imageUrl": "",
+    "translation": "¿Alguna vez has visitado Australia?",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Have you ever visited"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Australia?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342a9b",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d260"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Inserta 'the' si es necesario; de lo contrario, usa '-'.",
+    "theoryId": "a2.06.Article_with_Countries",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Nouns"
+  }
+]

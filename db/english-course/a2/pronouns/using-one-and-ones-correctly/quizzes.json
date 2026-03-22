@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c0e"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.08.06.01",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Sí, me encantaría uno.",
+    "id": "67fab6d59930102295342c0e",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Would you like a cup of tea? B: Yes, I'd love",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "one"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "title": "Using 'One' and 'Ones' Correctly",
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "theoryId": "a2.08.One_and_Ones",
+    "imageUrl": "",
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c0f"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342c0f",
+    "imageUrl": "",
+    "translation": "¿Tienes uno?",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.08.06.02",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'One' and 'Ones' Correctly",
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "theoryId": "a2.08.One_and_Ones",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I don't have a five euro note. Do you have",
+          "options": null
+        },
+        {
+          "options": [
+            "one"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c10"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "answerImageUrl": "",
+    "title": "Using 'One' and 'Ones' Correctly",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I wanted some blue shirts but I could only find those",
+          "options": null
+        },
+        {
+          "options": [
+            "green ones"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(green).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Quería unas camisas azules, pero solo pude encontrar esas verdes.",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342c10",
+    "answerAudioUrl": "A2.08.06.03",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c11"
+    },
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you have a rubber? I need",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "one"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "theoryId": "a2.08.One_and_Ones",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Necesito uno.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.06.04",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'One' and 'Ones' Correctly",
+    "imageUrl": "",
+    "id": "67fab6d59930102295342c11",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c12"
+    },
+    "id": "67fab6d59930102295342c12",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "imageUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "translation": "Los marrones.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "title": "Using 'One' and 'Ones' Correctly",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Which shoes would you like? B: The",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "brown ones"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(brown).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "answerAudioUrl": "A2.08.06.05",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c13"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342c13",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where's my hat? It's",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "a blue one"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(blue).",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Es uno azul.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.06.06",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'One' and 'Ones' Correctly",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c14"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342c14",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where are the rulers? She needs",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a long one"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(long).",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "title": "Using 'One' and 'Ones' Correctly",
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.06.07",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Ella necesita uno largo.",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c15"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.06.08",
+    "id": "67fab6d59930102295342c15",
+    "title": "Using 'One' and 'Ones' Correctly",
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "theoryId": "a2.08.One_and_Ones",
+    "imageUrl": "",
+    "translation": "¿Podrías pasarme uno pequeño?",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "There are some oranges over there. Could you pass me"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a small one"
+          ]
+        },
+        {
+          "text": "(small)?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "code": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c16"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He's talking about buying a new car but he already has",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "one"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.08.06.09",
+    "id": "67fab6d59930102295342c16",
+    "title": "Using 'One' and 'Ones' Correctly",
+    "successMessage": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "translation": "Él ya tiene uno.",
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c17"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "imageUrl": "",
+    "translation": "¿Podrías pasarle uno?",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'One' and 'Ones' Correctly",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He needs a sheet of paper. Could you pass him",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "one"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "?",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.06.10",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342c17",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "miniTheory": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c18"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She asked me for a plate and so I gave her",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "one"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342c18",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Me pidió un plato y le di uno.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.08.06.11",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'One' and 'Ones' Correctly",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c19"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "imageUrl": "",
+    "translation": "Los rojos.",
+    "code": "",
+    "title": "Using 'One' and 'Ones' Correctly",
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "answerAudioUrl": "A2.08.06.12",
+    "id": "67fab6d59930102295342c19",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Which skirts do you want? B: The",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "red ones"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(red)."
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "miniTheory": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c1a"
+    },
+    "kind": "CLOZE",
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: What colour jumper would you like? B: I'd like",
+          "options": null
+        },
+        {
+          "options": [
+            "a grey one"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(grey).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342c1a",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'One' and 'Ones' Correctly",
+    "theoryId": "a2.08.One_and_Ones",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.06.13",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Me gustaría uno gris.",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c1b"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Would you like a biscuit? B: Yes, I'd love",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "one"
+          ]
+        },
+        {
+          "text": ".",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342c1b",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'One' and 'Ones' Correctly",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "translation": "Sí, me encantaría uno.",
+    "answerAudioUrl": "A2.08.06.14",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c1c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A2.08.06.15",
+    "id": "67fab6d59930102295342c1c",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Which do you want? B: Could I have those large",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "round ones"
+          ]
+        },
+        {
+          "text": "(round)?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "imageUrl": "",
+    "translation": "¿Podría tomar esos grandes redondos?",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "title": "Using 'One' and 'Ones' Correctly",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c1d"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "audioUrl": "",
+    "translation": "Quisiera cinco de esos amarillos, por favor.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.06.16",
+    "title": "Using 'One' and 'Ones' Correctly",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'd like five of those",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "yellow ones"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(yellow), please."
+        }
+      ]
+    },
+    "id": "67fab6d59930102295342c1d",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c1e"
+    },
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "imageUrl": "",
+    "translation": "Tenía algunos paquetes extra de patatas fritas, así que le di dos salados a mi amigo.",
+    "id": "67fab6d59930102295342c1e",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "title": "Using 'One' and 'Ones' Correctly",
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "answerAudioUrl": "A2.08.06.17",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I had some extra packs of crisps, so I gave",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "two salty ones"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(two salty) to my friend.",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c1f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I asked her for a pen and she gave me",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "one"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "."
+        }
+      ]
+    },
+    "translation": "Le pedí un bolígrafo y me dio uno.",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342c1f",
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "answerAudioUrl": "A2.08.06.18",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'One' and 'Ones' Correctly",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c20"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "imageUrl": "",
+    "translation": "De chocolate, por favor.",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'One' and 'Ones' Correctly",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "A: What kind of ice creams do you want? B:",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Chocolate ones"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(chocolate) please.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.08.06.19",
+    "id": "67fab6d59930102295342c20",
+    "topicName": "Pronouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c21"
+    },
+    "id": "67fab6d59930102295342c21",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why is he talking about buying a house? He lives in",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "a big one"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "(big).",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "a2.08.One_and_Ones",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A2.08.06.20",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d277"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Using 'One' and 'Ones' Correctly",
+    "translation": "Él vive en uno grande.",
+    "code": "",
+    "instructions": "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
+    "answerImageUrl": "",
+    "topicName": "Pronouns"
+  }
+]

@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a19"
+    },
+    "answerAudioUrl": "B1.14.04.01",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "You should wear a coat"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "if"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "it's cold.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'if' o 'unless'.",
+    "theoryId": "b1.14.Unless",
+    "audioUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343a19",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "title": "'If' versus 'Unless'",
+    "imageUrl": "",
+    "translation": "Deberías usar un abrigo si hace frío.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a1a"
+    },
+    "instructions": "Completa con 'if' o 'unless'.",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I will arrive early",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "unless"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "there is heavy traffic.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.14.Unless",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295343a1a",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Llegaré temprano a menos que haya mucho tráfico.",
+    "answerAudioUrl": "B1.14.04.02",
+    "code": "",
+    "title": "'If' versus 'Unless'",
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a1b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.14.Unless",
+    "translation": "Los perros ladran mucho si alguien está en la puerta.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.14.04.03",
+    "id": "67fab6d59930102295343a1b",
+    "code": "",
+    "title": "'If' versus 'Unless'",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs bark a lot",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "if"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "someone is at the door."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "instructions": "Completa con 'if' o 'unless'.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a1c"
+    },
+    "translation": "Los jugadores ganarán el partido si entrenan bien.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343a1c",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The players will win the game",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "if"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "they train well.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.14.04.04",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.14.Unless",
+    "title": "'If' versus 'Unless'",
+    "instructions": "Completa con 'if' o 'unless'.",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a1d"
+    },
+    "code": "",
+    "answerImageUrl": "",
+    "theoryId": "b1.14.Unless",
+    "answerAudioUrl": "B1.14.04.05",
+    "title": "'If' versus 'Unless'",
+    "instructions": "Completa con 'if' o 'unless'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We will walk to the shop today",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "unless"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Mary drives us in her car.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295343a1d",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Caminaremos a la tienda hoy a menos que Mary nos lleve en su coche.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a1e"
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "theoryId": "b1.14.Unless",
+    "instructions": "Completa con 'if' o 'unless'.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.14.04.06",
+    "id": "67fab6d59930102295343a1e",
+    "title": "'If' versus 'Unless'",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "Sarah disfruta del té si tiene miel.",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Sarah enjoys tea",
+          "options": null
+        },
+        {
+          "options": [
+            "if"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "it has honey in it (she loves honey).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a1f"
+    },
+    "id": "67fab6d59930102295343a1f",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'if' o 'unless'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.14.Unless",
+    "successMessage": "",
+    "answerAudioUrl": "B1.14.04.07",
+    "title": "'If' versus 'Unless'",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "David can play guitar really well",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "unless"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "he's unwell.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "imageUrl": "",
+    "translation": "David puede tocar la guitarra muy bien a menos que no se encuentre bien.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a20"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'If' versus 'Unless'",
+    "theoryId": "b1.14.Unless",
+    "audioUrl": "",
+    "translation": "Se siente muy cansado si no toma café.",
+    "id": "67fab6d59930102295343a20",
+    "code": "",
+    "kind": "CLOZE",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He feels really tired",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "if"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "he doesn't drink coffee.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "instructions": "Completa con 'if' o 'unless'.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.14.04.08",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a21"
+    },
+    "title": "'If' versus 'Unless'",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.14.04.09",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'if' o 'unless'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Paris is a wonderful city"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "unless"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "it's summer! The summer is too hot.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "¡París es una ciudad maravillosa a menos que sea verano! El verano es demasiado caluroso.",
+    "successMessage": "",
+    "id": "67fab6d59930102295343a21",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.14.Unless",
+    "audioUrl": "",
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a22"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'If' versus 'Unless'",
+    "theoryId": "b1.14.Unless",
+    "successMessage": "",
+    "translation": "Me gusta el helado a menos que sea de vainilla.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.14.04.10",
+    "id": "67fab6d59930102295343a22",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "instructions": "Completa con 'if' o 'unless'.",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I like ice cream",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "unless"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "it's vanilla (I hate vanilla).",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a23"
+    },
+    "id": "67fab6d59930102295343a23",
+    "code": "",
+    "title": "'If' versus 'Unless'",
+    "instructions": "Completa con 'if' o 'unless'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "theoryId": "b1.14.Unless",
+    "translation": "Te llamaré más tarde a menos que mi teléfono esté roto.",
+    "answerAudioUrl": "B1.14.04.11",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "I'll call you later",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "unless"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "my phone is broken.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a24"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She can sing beautifully",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "unless"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "people are listening. Then she gets shy.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "b1.14.Unless",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "answerImageUrl": "",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'If' versus 'Unless'",
+    "translation": "Ella puede cantar hermosamente a menos que haya gente escuchando. Entonces se pone tímida.",
+    "answerAudioUrl": "B1.14.04.12",
+    "id": "67fab6d59930102295343a24",
+    "instructions": "Completa con 'if' o 'unless'.",
+    "kind": "CLOZE",
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a25"
+    },
+    "id": "67fab6d59930102295343a25",
+    "instructions": "Completa con 'if' o 'unless'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.14.Unless",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "title": "'If' versus 'Unless'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "I'll make some sandwiches"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "if"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "you are hungry.",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.14.04.13",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Haré unos sándwiches si tienes hambre.",
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a26"
+    },
+    "kind": "CLOZE",
+    "title": "'If' versus 'Unless'",
+    "translation": "Ella bebe mucho si tiene sed.",
+    "answerAudioUrl": "B1.14.04.14",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She drinks a lot",
+          "options": null
+        },
+        {
+          "options": [
+            "if"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "she's thirsty.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'if' o 'unless'.",
+    "id": "67fab6d59930102295343a26",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.14.Unless",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a27"
+    },
+    "instructions": "Completa con 'if' o 'unless'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.14.Unless",
+    "translation": "Las flores florecen hermosamente si reciben suficiente luz solar.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The flowers bloom beautifully",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "if"
+          ]
+        },
+        {
+          "text": "it gets enough sunlight.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.14.04.15",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'If' versus 'Unless'",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295343a27",
+    "code": "",
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a28"
+    },
+    "code": "",
+    "theoryId": "b1.14.Unless",
+    "successMessage": "",
+    "id": "67fab6d59930102295343a28",
+    "title": "'If' versus 'Unless'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He always texts me in the morning",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "unless"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "he's busy.",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Él siempre me envía mensajes de texto por la mañana a menos que esté ocupado.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.14.04.16",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'if' o 'unless'.",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a29"
+    },
+    "instructions": "Completa con 'if' o 'unless'.",
+    "imageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'If' versus 'Unless'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'll assist you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "if"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "you require assistance.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.14.Unless",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.14.04.17",
+    "id": "67fab6d59930102295343a29",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Te ayudaré si necesitas ayuda.",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a2a"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'If' versus 'Unless'",
+    "instructions": "Completa con 'if' o 'unless'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's usually calm",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "unless"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "he's stressed. He gets angry when stressed!",
+          "options": null
+        }
+      ]
+    },
+    "id": "67fab6d59930102295343a2a",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Normalmente está tranquilo a menos que esté estresado. ¡Se enoja cuando está estresado!",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.14.04.18",
+    "kind": "CLOZE",
+    "theoryId": "b1.14.Unless",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a2b"
+    },
+    "id": "67fab6d59930102295343a2b",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We'll meet at the park",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "unless"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "you suggest another place.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "code": "",
+    "title": "'If' versus 'Unless'",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Completa con 'if' o 'unless'.",
+    "imageUrl": "",
+    "translation": "Nos encontraremos en el parque a menos que sugieras otro lugar.",
+    "answerAudioUrl": "B1.14.04.19",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.14.Unless",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Conditionals"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a2c"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "The teachers will go home early"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "if"
+          ]
+        },
+        {
+          "text": "the day is finished.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "b1.14.Unless",
+    "answerAudioUrl": "B1.14.04.20",
+    "kind": "CLOZE",
+    "instructions": "Completa con 'if' o 'unless'.",
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d34f"
+    },
+    "imageUrl": "",
+    "id": "67fab6d59930102295343a2c",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'If' versus 'Unless'",
+    "translation": "Los profesores se irán a casa temprano si el día ha terminado.",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Conditionals"
+  }
+]

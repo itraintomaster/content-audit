@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420b7"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "title": "Stative verbs: simple or continuous?",
+    "imageUrl": "",
+    "successMessage": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "He",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "likes"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(like) the new car.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "id": "67fab6d599301022953420b7",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "A él le gusta el coche nuevo.",
+    "answerAudioUrl": "A1.02.13.01",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.02.Stative_Verbs",
+    "miniTheory": "",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420b8"
+    },
+    "id": "67fab6d599301022953420b8",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.02.Stative_Verbs",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "title": "Stative verbs: simple or continuous?",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is playing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(play) football.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Él está jugando al fútbol.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.02.13.02",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420b9"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "answerAudioUrl": "A1.02.13.03",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are walking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(walk).",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "Ellos están caminando.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative verbs: simple or continuous?",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "theoryId": "a1.02.Stative_Verbs",
+    "miniTheory": "",
+    "id": "67fab6d599301022953420b9",
+    "kind": "CLOZE",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420ba"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Ella quiere un poco de agua.",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "wants"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(want) some water.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a1.02.Stative_Verbs",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953420ba",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative verbs: simple or continuous?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "answerAudioUrl": "A1.02.13.04",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420bb"
+    },
+    "title": "Stative verbs: simple or continuous?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.02.Stative_Verbs",
+    "audioUrl": "",
+    "translation": "¡Me encantan tus zapatos!",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "answerAudioUrl": "A1.02.13.05",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "options": [
+            "love"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(love) your shoes!",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "successMessage": "",
+    "id": "67fab6d599301022953420bb",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420bc"
+    },
+    "answerAudioUrl": "A1.02.13.06",
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are listening"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(listen).",
+          "options": null
+        }
+      ]
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "Los estudiantes están escuchando.",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "title": "Stative verbs: simple or continuous?",
+    "theoryId": "a1.02.Stative_Verbs",
+    "audioUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953420bc",
+    "successMessage": "",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420bd"
+    },
+    "title": "Stative verbs: simple or continuous?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) at home.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.02.Stative_Verbs",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A1.02.13.07",
+    "id": "67fab6d599301022953420bd",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Él está en casa.",
+    "answerImageUrl": "",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420be"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A1.02.13.08",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "We",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "are leaving"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "text": "(leave) now.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953420be",
+    "title": "Stative verbs: simple or continuous?",
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "theoryId": "a1.02.Stative_Verbs",
+    "audioUrl": "",
+    "translation": "Nos vamos ahora.",
+    "successMessage": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420bf"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "options": [
+            "is cleaning"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(clean).",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ella está limpiando.",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.13.09",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative verbs: simple or continuous?",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "theoryId": "a1.02.Stative_Verbs",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953420bf",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420c0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "They"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "require"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(need) a bus now.",
+          "options": null
+        }
+      ]
+    },
+    "translation": "Ellos necesitan un autobús ahora.",
+    "successMessage": "",
+    "id": "67fab6d599301022953420c0",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.02.13.10",
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "title": "Stative verbs: simple or continuous?",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.02.Stative_Verbs",
+    "code": "",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420c1"
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative verbs: simple or continuous?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "is writing"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(write).",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a1.02.Stative_Verbs",
+    "translation": "Ella está escribiendo.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.02.13.11",
+    "id": "67fab6d599301022953420c1",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420c2"
+    },
+    "title": "Stative verbs: simple or continuous?",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.02.13.12",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is having"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(have) dinner.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "theoryId": "a1.02.Stative_Verbs",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "id": "67fab6d599301022953420c2",
+    "translation": "Peter está cenando.",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420c3"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.02.13.13",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative verbs: simple or continuous?",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "options": [
+            "believes"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(believe) the story.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "translation": "Él cree la historia.",
+    "id": "67fab6d599301022953420c3",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "theoryId": "a1.02.Stative_Verbs",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420c4"
+    },
+    "translation": "Ella está corriendo.",
+    "kind": "CLOZE",
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "theoryId": "a1.02.Stative_Verbs",
+    "imageUrl": "",
+    "code": "",
+    "title": "Stative verbs: simple or continuous?",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.02.13.14",
+    "id": "67fab6d599301022953420c4",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "text": "",
+          "options": [
+            "is running"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(run).",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420c5"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a1.02.Stative_Verbs",
+    "imageUrl": "",
+    "translation": "Ella desprecia a todos hoy.",
+    "id": "67fab6d599301022953420c5",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "despises"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(hate) everyone today.",
+          "options": null
+        }
+      ]
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A1.02.13.15",
+    "kind": "CLOZE",
+    "title": "Stative verbs: simple or continuous?",
+    "successMessage": "",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420c6"
+    },
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A1.02.13.16",
+    "id": "67fab6d599301022953420c6",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative verbs: simple or continuous?",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "is dreaming"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(dream)."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a1.02.Stative_Verbs",
+    "imageUrl": "",
+    "translation": "Mary está soñando.",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420c7"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "answerAudioUrl": "A1.02.13.17",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "title": "Stative verbs: simple or continuous?",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "This sentence",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "implies"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(mean) 'hope'.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953420c7",
+    "code": "",
+    "theoryId": "a1.02.Stative_Verbs",
+    "translation": "Esta oración implica 'esperanza'.",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420c8"
+    },
+    "code": "",
+    "translation": "Ella entiende el tema.",
+    "id": "67fab6d599301022953420c8",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gets"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(understand) the topic.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A1.02.13.18",
+    "title": "Stative verbs: simple or continuous?",
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "theoryId": "a1.02.Stative_Verbs",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420c9"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "A1.02.13.19",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "possesses"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(have) two cats."
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953420c9",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Stative verbs: simple or continuous?",
+    "kind": "CLOZE",
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "theoryId": "a1.02.Stative_Verbs",
+    "translation": "Ella posee dos gatos.",
+    "topicName": "Present Continuous"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420ca"
+    },
+    "title": "Stative verbs: simple or continuous?",
+    "instructions": "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
+    "theoryId": "a1.02.Stative_Verbs",
+    "imageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is pouring"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drink) juice.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerAudioUrl": "A1.02.13.20",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "translation": "Él está sirviendo jugo.",
+    "miniTheory": "",
+    "id": "67fab6d599301022953420ca",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a3"
+    },
+    "topicName": "Present Continuous"
+  }
+]

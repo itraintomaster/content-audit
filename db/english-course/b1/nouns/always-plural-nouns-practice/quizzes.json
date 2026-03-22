@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343510"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295343510",
+    "kind": "CLOZE",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My tights are in my drawer.",
+          "options": null
+        },
+        {
+          "options": [
+            "correct"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "translation": "Mis medias están en mi cajón.",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'correct' o 'not correct'.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "answerAudioUrl": "B1.07.05.01",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d304"
+    },
+    "title": "Always Plural Nouns: Practice",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343511"
+    },
+    "audioUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Always Plural Nouns: Practice",
+    "translation": "Él tiene tres pares de calcetines.",
+    "miniTheory": "",
+    "id": "67fab6d59930102295343511",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d304"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'correct' o 'not correct'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He owns three pairs of socks.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "correct"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.07.05.02",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343512"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Where is the pliers?",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "not correct"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "title": "Always Plural Nouns: Practice",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.07.05.03",
+    "id": "67fab6d59930102295343512",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "¿Dónde está el alicate?",
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d304"
+    },
+    "instructions": "Escribe 'correct' o 'not correct'.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343513"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'correct' o 'not correct'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d304"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.07.05.04",
+    "code": "",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "audioUrl": "",
+    "translation": "Sus lentes de contacto están en el estuche.",
+    "id": "67fab6d59930102295343513",
+    "title": "Always Plural Nouns: Practice",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Her contact lenses are in the case.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "correct"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343514"
+    },
+    "translation": "Tus leggings están en la lavadora.",
+    "answerImageUrl": "",
+    "title": "Always Plural Nouns: Practice",
+    "instructions": "Escribe 'correct' o 'not correct'.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343514",
+    "answerAudioUrl": "B1.07.05.05",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Your leggings is in the washing machine.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "not correct"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d304"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343515"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "translation": "Ella tiene tres pantalones de montar.",
+    "answerAudioUrl": "B1.07.05.06",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343515",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "successMessage": "",
+    "instructions": "Escribe 'correct' o 'not correct'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She owns three breeches.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "not correct"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d304"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Always Plural Nouns: Practice",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343516"
+    },
+    "id": "67fab6d59930102295343516",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Always Plural Nouns: Practice",
+    "instructions": "Escribe 'correct' o 'not correct'.",
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d304"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.07.05.07",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where are his formal clothes?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "correct"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "translation": "¿Dónde está su ropa formal?",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343517"
+    },
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Always Plural Nouns: Practice",
+    "miniTheory": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.07.05.08",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'correct' o 'not correct'.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "imageUrl": "",
+    "translation": "Estos pantalones son para mi hijo.",
+    "id": "67fab6d59930102295343517",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d304"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "These pants are for my son.",
+          "options": null
+        },
+        {
+          "options": [
+            "correct"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343518"
+    },
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe 'correct' o 'not correct'.",
+    "translation": "Necesito unas gafas.",
+    "id": "67fab6d59930102295343518",
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "I need an eyeglasses.",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "not correct"
+          ]
+        },
+        {
+          "text": "",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.07.05.09",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d304"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Always Plural Nouns: Practice",
+    "imageUrl": "",
+    "topicName": "Nouns"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343519"
+    },
+    "imageUrl": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d304"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.07.05.10",
+    "id": "67fab6d59930102295343519",
+    "title": "Always Plural Nouns: Practice",
+    "instructions": "Escribe 'correct' o 'not correct'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you like these earrings?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "correct"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "translation": "¿Te gustan estos aretes?",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Nouns"
+  }
+]

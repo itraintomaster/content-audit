@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343380"
+    },
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Yo también.",
+    "answerAudioUrl": "B1.05.13.01",
+    "id": "67fab6d59930102295343380",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "A: We are at the beach. (I) B:",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So am I."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343381"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "successMessage": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Nosotros tampoco.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343381",
+    "code": "",
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: We don't like to sing. (We) B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither do we."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.05.13.02",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343382"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343382",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: He is ready. (She) B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So is she."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "translation": "Ella también.",
+    "answerAudioUrl": "B1.05.13.03",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343383"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "answerAudioUrl": "B1.05.13.04",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343383",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "A: John works in the factory. (We) B:",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So do we."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Nosotros también.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343384"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "translation": "Yo tampoco.",
+    "successMessage": "",
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.13.05",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: I'm not excited about the holiday. (I) B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither am I."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "miniTheory": "",
+    "id": "67fab6d59930102295343384",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343385"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: They don't often eat fish. (You) B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither do you."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "translation": "Tú tampoco.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.13.06",
+    "id": "67fab6d59930102295343385",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343386"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.13.07",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "imageUrl": "",
+    "successMessage": "",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "audioUrl": "",
+    "id": "67fab6d59930102295343386",
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: The dogs need a bath. (I) B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So do I."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Yo también.",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343387"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "audioUrl": "",
+    "translation": "Nosotros tampoco.",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.13.08",
+    "id": "67fab6d59930102295343387",
+    "code": "",
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: He isn't at school today. (We) B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither are we."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343388"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "miniTheory": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: I don't drink coffee. (I) B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither do I."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "Yo tampoco.",
+    "successMessage": "",
+    "id": "67fab6d59930102295343388",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.13.09",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343389"
+    },
+    "id": "67fab6d59930102295343389",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "translation": "Mi hermano también.",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.13.10",
+    "code": "",
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "imageUrl": "",
+    "audioUrl": "",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: My sister usually gets good marks. (My brother) B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So does my brother."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534338a"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "miniTheory": "",
+    "id": "67fab6d5993010229534338a",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: I play videogames. (I) B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So do I."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Yo también.",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.13.11",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534338b"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "successMessage": "",
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "id": "67fab6d5993010229534338b",
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "answerAudioUrl": "B1.05.13.12",
+    "code": "",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "A: I don't work there. (he) B:",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither does he."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "translation": "Él tampoco.",
+    "answerImageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534338c"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534338c",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.13.13",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Nosotros también.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "A: She teaches English. (we) B:",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "So do we."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534338d"
+    },
+    "id": "67fab6d5993010229534338d",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.13.14",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "translation": "Yo también.",
+    "answerImageUrl": "",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: I am bored. (I) B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So am I."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534338e"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: We need a new sofa. (my dad)\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So does my dad."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d5993010229534338e",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.05.13.15",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "translation": "Mi papá también.",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534338f"
+    },
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Nosotros tampoco.",
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d5993010229534338f",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "B1.05.13.16",
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: She isn't at the library. (we) B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither are we."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "imageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343390"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: My brother doesn't like ice cream. (I) B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither do I."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295343390",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Yo tampoco.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.05.13.17",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343391"
+    },
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "translation": "Mi papá también.",
+    "id": "67fab6d59930102295343391",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.13.18",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: My mom is inside. (My dad) B:",
+          "options": null
+        },
+        {
+          "options": [
+            "So is my dad."
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "imageUrl": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343392"
+    },
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343392",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Tú tampoco.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "A: They aren't available yet. (you) B:"
+        },
+        {
+          "text": "",
+          "options": [
+            "Neither are you."
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.05.13.19",
+    "kind": "CLOZE",
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "Questions and short answers"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343393"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Present Simple: 'So' and 'Neither' Short Answers",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "audioUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ee"
+    },
+    "instructions": "Crea respuestas cortas usando 'so' o 'neither'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: I hope to win. (I) B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So do I."
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": ""
+        }
+      ]
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.05.13.20",
+    "id": "67fab6d59930102295343393",
+    "translation": "Yo también.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "topicName": "Questions and short answers"
+  }
+]

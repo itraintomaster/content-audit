@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426db"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "No, no es .",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953426db",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "A: Is the dog going to bite? B: No, it",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.02.02.01",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "instructions": "Escribe la respuesta corta.",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426dc"
+    },
+    "translation": "Sí, lo son .",
+    "successMessage": "",
+    "id": "67fab6d599301022953426dc",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "imageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Are the birds going to fly away? B: Yes, they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.02.02",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la respuesta corta.",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426dd"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.02.02.03",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "translation": "Sí, lo somos .",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Are we going to watch the film? B: Yes, we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "."
+        }
+      ]
+    },
+    "id": "67fab6d599301022953426dd",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "instructions": "Escribe la respuesta corta.",
+    "audioUrl": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426de"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d599301022953426de",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "code": "",
+    "kind": "CLOZE",
+    "instructions": "Escribe la respuesta corta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Will they eat pizza here? B: Yes, they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "translation": "Sí, lo harán .",
+    "answerImageUrl": "",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.02.04",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426df"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "translation": "Sí, lo es .",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "instructions": "Escribe la respuesta corta.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Is it going to snow? B: Yes, it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerAudioUrl": "A2.02.02.05",
+    "id": "67fab6d599301022953426df",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "answerImageUrl": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426e0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la respuesta corta.",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "translation": "Sí, él es .",
+    "successMessage": "",
+    "answerAudioUrl": "A2.02.02.06",
+    "id": "67fab6d599301022953426e0",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Is he going to buy the house? B: Yes, he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426e1"
+    },
+    "code": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Will the plants grow? B: No, they",
+          "options": null
+        },
+        {
+          "options": [
+            "won't"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "answerImageUrl": "",
+    "instructions": "Escribe la respuesta corta.",
+    "answerAudioUrl": "A2.02.02.07",
+    "id": "67fab6d599301022953426e1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "audioUrl": "",
+    "translation": "No, no lo harán .",
+    "imageUrl": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426e2"
+    },
+    "kind": "CLOZE",
+    "instructions": "Escribe la respuesta corta.",
+    "audioUrl": "",
+    "translation": "Sí, él lo hará .",
+    "answerAudioUrl": "A2.02.02.08",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "answerImageUrl": "",
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "imageUrl": "",
+    "miniTheory": "",
+    "id": "67fab6d599301022953426e2",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Will he bring his wallet? B: Yes, he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426e3"
+    },
+    "id": "67fab6d599301022953426e3",
+    "imageUrl": "",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "A: Will the door open? B: Yes, it"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "."
+        }
+      ]
+    },
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "instructions": "Escribe la respuesta corta.",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "translation": "Sí, lo hará .",
+    "answerAudioUrl": "A2.02.02.09",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426e4"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "imageUrl": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.02.02.10",
+    "miniTheory": "",
+    "code": "",
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "instructions": "Escribe la respuesta corta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "A: Are they going to visit the museum? B: No, they"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "aren't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "translation": "No, no lo son .",
+    "successMessage": "",
+    "id": "67fab6d599301022953426e4",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426e5"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Sí, lo haré .",
+    "answerImageUrl": "",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.02.11",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "successMessage": "",
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d599301022953426e5",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la respuesta corta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Will you drive me? B: Yes, I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426e6"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "A: Will the employees be early? B: Yes, they"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "A2.02.02.12",
+    "id": "67fab6d599301022953426e6",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "instructions": "Escribe la respuesta corta.",
+    "imageUrl": "",
+    "translation": "Sí, lo harán .",
+    "kind": "CLOZE",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426e7"
+    },
+    "id": "67fab6d599301022953426e7",
+    "kind": "CLOZE",
+    "instructions": "Escribe la respuesta corta.",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "answerAudioUrl": "A2.02.02.13",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Will the water boil? B: No, it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "."
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "No, no lo hará .",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426e8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la respuesta corta.",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "code": "",
+    "answerAudioUrl": "A2.02.02.14",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "kind": "CLOZE",
+    "translation": "Sí, lo soy .",
+    "answerImageUrl": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Are you going to see Mary today? B: Yes, I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "am"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "."
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "audioUrl": "",
+    "id": "67fab6d599301022953426e8",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426e9"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.02.02.15",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Are we going to drink some juice? B: No, we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "aren't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "translation": "No, no lo somos .",
+    "instructions": "Escribe la respuesta corta.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "id": "67fab6d599301022953426e9",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426ea"
+    },
+    "instructions": "Escribe la respuesta corta.",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Is she going to order a burger? B: No, she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't"
+          ]
+        },
+        {
+          "text": ".",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d599301022953426ea",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "No, ella no es .",
+    "successMessage": "",
+    "answerAudioUrl": "A2.02.02.16",
+    "code": "",
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426eb"
+    },
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la respuesta corta.",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.02.17",
+    "id": "67fab6d599301022953426eb",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "translation": "No, no lo haré .",
+    "answerImageUrl": "",
+    "code": "",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Will you wait for him? B: No, I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426ec"
+    },
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "instructions": "Escribe la respuesta corta.",
+    "translation": "No, él no lo hará .",
+    "successMessage": "",
+    "id": "67fab6d599301022953426ec",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Will he train enough? B: No, he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "code": "",
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.02.18",
+    "audioUrl": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426ed"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "answerImageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "translation": "No, no lo soy .",
+    "miniTheory": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Are you going to read your book tonight? B: No, I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'m not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "A2.02.02.19",
+    "id": "67fab6d599301022953426ed",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe la respuesta corta.",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "'Will' and 'Going To'"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426ee"
+    },
+    "successMessage": "",
+    "id": "67fab6d599301022953426ee",
+    "theoryId": "a2.02.Going_to_Use_Prediction",
+    "miniTheory": "",
+    "answerAudioUrl": "A2.02.02.20",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Short Answer Review: 'Will' vs. 'Going to'",
+    "instructions": "Escribe la respuesta corta.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: Will the chefs taste the soups today? No, they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "No, no lo harán .",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d22b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "topicName": "'Will' and 'Going To'"
+  }
+]

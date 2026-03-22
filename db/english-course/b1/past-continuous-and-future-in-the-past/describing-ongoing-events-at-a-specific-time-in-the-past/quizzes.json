@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343165"
+    },
+    "id": "67fab6d59930102295343165",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d0"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "At 10:30, they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were not playing/weren't playing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / play) videogames.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "miniTheory": "",
+    "code": "",
+    "title": "Describing ongoing events at a specific time in the past",
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "imageUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.03.03.01",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.03.Past_Continuous_Use_Events_at_a_Point_in_Time",
+    "translation": "A las 10:30, ellos no estaban jugando videojuegos.",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343166"
+    },
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "text": "Why",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "options": [
+            "was he cooking"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / cook) at 1 am?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d0"
+    },
+    "answerAudioUrl": "B1.03.03.02",
+    "translation": "¿Por qué estaba él cocinando a la 1 am?",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Describing ongoing events at a specific time in the past",
+    "theoryId": "b1.03.Past_Continuous_Use_Events_at_a_Point_in_Time",
+    "imageUrl": "",
+    "id": "67fab6d59930102295343166",
+    "kind": "CLOZE",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343167"
+    },
+    "id": "67fab6d59930102295343167",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Describing ongoing events at a specific time in the past",
+    "answerAudioUrl": "B1.03.03.03",
+    "code": "",
+    "imageUrl": "",
+    "translation": "Ellos estaban cantando a las 8:15.",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "were singing"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(sing) at 8:15.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.03.Past_Continuous_Use_Events_at_a_Point_in_Time",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "audioUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343168"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "A las 9:30, él estaba preparando la cena.",
+    "answerImageUrl": "",
+    "title": "Describing ongoing events at a specific time in the past",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "At 9:30, he"
+        },
+        {
+          "text": "",
+          "options": [
+            "was preparing"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(prepare) dinner.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d0"
+    },
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "theoryId": "b1.03.Past_Continuous_Use_Events_at_a_Point_in_Time",
+    "audioUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295343168",
+    "code": "",
+    "kind": "CLOZE",
+    "answerAudioUrl": "B1.03.03.04",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343169"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "She",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was not studying/wasn't studying"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / study) at 2 am.",
+          "options": null
+        }
+      ]
+    },
+    "answerAudioUrl": "B1.03.03.05",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d0"
+    },
+    "theoryId": "b1.03.Past_Continuous_Use_Events_at_a_Point_in_Time",
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295343169",
+    "miniTheory": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Describing ongoing events at a specific time in the past",
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "translation": "Ella no estaba estudiando a las 2 am.",
+    "successMessage": "",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534316a"
+    },
+    "id": "67fab6d5993010229534316a",
+    "imageUrl": "",
+    "successMessage": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "At 1:30, she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was having"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(have) a snack.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.03.Past_Continuous_Use_Events_at_a_Point_in_Time",
+    "audioUrl": "",
+    "translation": "A la 1:30, ella estaba tomando un refrigerio.",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "miniTheory": "",
+    "answerAudioUrl": "B1.03.03.06",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Describing ongoing events at a specific time in the past",
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534316b"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534316b",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Describing ongoing events at a specific time in the past",
+    "translation": "¿Qué estaban comiendo los perros a las 6 pm?",
+    "answerAudioUrl": "B1.03.03.07",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "were the dogs eating"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the dogs / eat) at 6pm?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "b1.03.Past_Continuous_Use_Events_at_a_Point_in_Time",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534316c"
+    },
+    "imageUrl": "",
+    "translation": "A las ocho de la mañana, él estaba corriendo rápido.",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "At eight in the morning, he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was running"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(run) fast.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "b1.03.Past_Continuous_Use_Events_at_a_Point_in_Time",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.03.03.08",
+    "id": "67fab6d5993010229534316c",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "title": "Describing ongoing events at a specific time in the past",
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534316d"
+    },
+    "code": "",
+    "kind": "CLOZE",
+    "audioUrl": "",
+    "id": "67fab6d5993010229534316d",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Describing ongoing events at a specific time in the past",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.03.03.09",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "b1.03.Past_Continuous_Use_Events_at_a_Point_in_Time",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d0"
+    },
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "options": [
+            "was he driving"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / drive) at 4 am?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "translation": "¿Dónde estaba él conduciendo a las 4 am?",
+    "successMessage": "",
+    "topicName": "Past Continuous and Future in the Past"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534316e"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "Describing ongoing events at a specific time in the past",
+    "instructions": "Escribe oraciones en *past continuous*.",
+    "answerImageUrl": "",
+    "id": "67fab6d5993010229534316e",
+    "kind": "CLOZE",
+    "translation": "Ella estaba nadando a las 6 pm.",
+    "successMessage": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was swimming"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(swim) at 6 pm.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "answerAudioUrl": "B1.03.03.10",
+    "theoryId": "b1.03.Past_Continuous_Use_Events_at_a_Point_in_Time",
+    "miniTheory": "",
+    "topicName": "Past Continuous and Future in the Past"
+  }
+]

@@ -1,0 +1,1162 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fce"
+    },
+    "id": "67fab6d59930102295342fce",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.04.01",
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Prediction: These glasses",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are going to break"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(break).",
+          "options": null
+        }
+      ]
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "theoryId": "",
+    "miniTheory": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "translation": "Estos vasos se van a romper.",
+    "answerImageUrl": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fcf"
+    },
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "imageUrl": "",
+    "successMessage": "",
+    "id": "67fab6d59930102295342fcf",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Offer: We",
+          "options": null
+        },
+        {
+          "options": [
+            "'ll drive|will drive"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "text": "(drive) you home.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Te llevaremos a casa.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.01.04.02",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fd0"
+    },
+    "theoryId": "",
+    "translation": "El taxi va a llegar pronto.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.01.04.03",
+    "id": "67fab6d59930102295342fd0",
+    "imageUrl": "",
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Prediction: The taxi",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is going to arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) soon.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "audioUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "kind": "CLOZE",
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fd1"
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342fd1",
+    "code": "",
+    "theoryId": "",
+    "answerImageUrl": "",
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "audioUrl": "",
+    "translation": "El equipo de baloncesto va a perder.",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "answerAudioUrl": "B1.01.04.04",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Prediction: The basketball team",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is going to lose"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(lose).",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fd2"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.01.04.05",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "miniTheory": "",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Refusal: I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't eat|will not eat"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "(not / eat) that!"
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "¡No me comeré eso!",
+    "id": "67fab6d59930102295342fd2",
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fd3"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "audioUrl": "",
+    "id": "67fab6d59930102295342fd3",
+    "kind": "CLOZE",
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.04.06",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Te visitaré mañana.",
+    "miniTheory": "",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Promise: I",
+          "options": null
+        },
+        {
+          "options": [
+            "'ll visit|will visit"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "(visit) you tomorrow.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fd4"
+    },
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Prediction: She",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s going to arrive|is going to arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) early.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "audioUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "theoryId": "",
+    "imageUrl": "",
+    "successMessage": "",
+    "miniTheory": "",
+    "id": "67fab6d59930102295342fd4",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Ella va a llegar temprano.",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.01.04.07",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fd5"
+    },
+    "answerAudioUrl": "B1.01.04.08",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Offer: I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll wash|will wash"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(wash) the dishes.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "",
+    "answerImageUrl": "",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "id": "67fab6d59930102295342fd5",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "translation": "Lavaré los platos.",
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fd6"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Prediction: We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re going to fail|are going to fail"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(fail) the test.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "translation": "Vamos a suspender el examen.",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "theoryId": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.01.04.09",
+    "id": "67fab6d59930102295342fd6",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fd7"
+    },
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "id": "67fab6d59930102295342fd7",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Offer: I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll email|will email"
+          ]
+        },
+        {
+          "text": "(email) the boss.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "audioUrl": "",
+    "translation": "Le enviaré un correo electrónico al jefe.",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "theoryId": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.04.10",
+    "code": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fd8"
+    },
+    "id": "67fab6d59930102295342fd8",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Prediction: You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re going to be|are going to be"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) sick after eating all that!",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "theoryId": "",
+    "successMessage": "",
+    "code": "",
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "imageUrl": "",
+    "miniTheory": "",
+    "translation": "¡Te vas a enfermar después de comer todo eso!",
+    "answerAudioUrl": "B1.01.04.11",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fd9"
+    },
+    "audioUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.01.04.12",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "imageUrl": "",
+    "kind": "CLOZE",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Prediction: The students",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "are going to be"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) happy.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "successMessage": "",
+    "id": "67fab6d59930102295342fd9",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Los estudiantes van a estar felices.",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "theoryId": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fda"
+    },
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "successMessage": "",
+    "answerAudioUrl": "B1.01.04.13",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Promise: I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll arrive|will arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) here.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE"
+    },
+    "theoryId": "",
+    "translation": "Llegaré aquí.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342fda",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "audioUrl": "",
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "imageUrl": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fdb"
+    },
+    "audioUrl": "",
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "form": {
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Request:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will you buy"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / buy) me a tea?",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": ""
+    },
+    "id": "67fab6d59930102295342fdb",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "translation": "¿Me comprarás un té?",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "B1.01.04.14",
+    "code": "",
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "theoryId": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fdc"
+    },
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "answerAudioUrl": "B1.01.04.15",
+    "code": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Request:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will you lend"
+          ]
+        },
+        {
+          "text": "(you / lend) us some money?",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "",
+    "translation": "¿Nos prestarás algo de dinero?",
+    "id": "67fab6d59930102295342fdc",
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fdd"
+    },
+    "id": "67fab6d59930102295342fdd",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Prediction: He",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "'s going to get|is going to get"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(get) fired.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "translation": "Lo van a despedir.",
+    "miniTheory": "",
+    "answerAudioUrl": "B1.01.04.16",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fde"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342fde",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "audioUrl": "",
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "Promise: I",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll arrive|will arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) there soon.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "",
+    "imageUrl": "",
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "translation": "Llegaré allí pronto.",
+    "answerAudioUrl": "B1.01.04.17",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fdf"
+    },
+    "id": "67fab6d59930102295342fdf",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "Va a nevar.",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "successMessage": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Prediction: It",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s going to snow|is going to snow"
+          ]
+        },
+        {
+          "text": "(snow).",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ]
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.01.04.18",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fe0"
+    },
+    "id": "67fab6d59930102295342fe0",
+    "kind": "CLOZE",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "Refusal: I"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won't tidy|will not tidy"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / tidy) my desk!",
+          "options": null
+        }
+      ]
+    },
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "theoryId": "",
+    "miniTheory": "",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "translation": "¡No ordenaré mi escritorio!",
+    "answerImageUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "audioUrl": "",
+    "answerAudioUrl": "B1.01.04.19",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fe1"
+    },
+    "code": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Escoge '_be going to_' para predicciones o '_will_' para ofertas, peticiones, rechazos y promesas.",
+    "theoryId": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2ba"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'Will' vs. 'Be Going To': A Grammar Review",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Prediction: The company",
+          "options": null
+        },
+        {
+          "text": "",
+          "options": [
+            "is going to succeed"
+          ],
+          "kind": "CLOZE"
+        },
+        {
+          "kind": "TEXT",
+          "text": "(succeed) this year.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "La empresa va a tener éxito este año.",
+    "audioUrl": "",
+    "successMessage": "",
+    "answerAudioUrl": "B1.01.04.20",
+    "id": "67fab6d59930102295342fe1",
+    "kind": "CLOZE",
+    "topicName": "Present simple / present continuous / past simple / future simple"
+  }
+]

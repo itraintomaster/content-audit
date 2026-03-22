@@ -1,0 +1,202 @@
+code: __proposal__
+description: "Redesign audit scoring architecture: separate scoring from aggregation\
+  \ with ScoredItem universal output, ScoreAggregator for roll-up, tree-structured\
+  \ AuditReport, and AuditContext breadcrumbs"
+modules:
+- name: audit-domain
+  models:
+  - name: AuditTarget
+    type: enum
+    fields:
+    - name: QUIZ
+    - name: KNOWLEDGE
+    - name: TOPIC
+    - name: MILESTONE
+    - name: COURSE
+    _change: add
+  - name: ScoredItem
+    type: record
+    fields:
+    - name: analyzerName
+      type: String
+      description: Name of the analyzer that produced this score
+    - name: target
+      type: AuditTarget
+      description: The level this score was computed at
+    - name: score
+      type: double
+      description: Score value 0.0-1.0
+    - name: milestoneId
+      type: String
+      description: Milestone this score belongs to (always present)
+    - name: topicId
+      type: String
+      description: Topic this score belongs to (null if target is MILESTONE or COURSE)
+    - name: knowledgeId
+      type: String
+      description: "Knowledge this score belongs to (null if target is MILESTONE,\
+        \ TOPIC, or COURSE)"
+    - name: quizId
+      type: String
+      description: Quiz this score belongs to (only present if target is QUIZ)
+    _change: add
+  - name: NodeScores
+    type: record
+    fields:
+    - name: scores
+      type: "Map<String,Double>"
+      description: Map of analyzerName to score at this node level
+    _change: add
+  - name: QuizNode
+    type: record
+    fields:
+    - name: quizId
+      type: String
+    - name: scores
+      type: NodeScores
+    _change: add
+  - name: KnowledgeNode
+    type: record
+    fields:
+    - name: knowledgeId
+      type: String
+    - name: scores
+      type: NodeScores
+    - name: quizzes
+      type: List<QuizNode>
+    _change: add
+  - name: TopicNode
+    type: record
+    fields:
+    - name: topicId
+      type: String
+    - name: scores
+      type: NodeScores
+    - name: knowledges
+      type: List<KnowledgeNode>
+    _change: add
+  - name: MilestoneNode
+    type: record
+    fields:
+    - name: milestoneId
+      type: String
+    - name: scores
+      type: NodeScores
+    - name: topics
+      type: List<TopicNode>
+    _change: add
+  - name: AuditContext
+    type: record
+    fields:
+    - name: milestoneId
+      type: String
+      description: Current milestone identifier in traversal
+      _change: add
+    - name: topicId
+      type: String
+      description: Current topic identifier in traversal
+      _change: add
+    - name: knowledgeId
+      type: String
+      description: Current knowledge identifier in traversal
+      _change: add
+    - name: quizId
+      type: String
+      description: Current quiz identifier in traversal
+      _change: add
+    _change: modify
+  - name: AuditReport
+    type: record
+    fields:
+    - name: score
+      type: double
+      _change: delete
+    - name: results
+      type: List<AnalysisResult>
+      _change: delete
+    - name: overallScore
+      type: double
+      description: Average of all analyzer course-level scores
+      _change: add
+    - name: scores
+      type: NodeScores
+      description: Course-level scores per analyzer
+      _change: add
+    - name: milestones
+      type: List<MilestoneNode>
+      description: Milestone-level breakdown
+      _change: add
+    _change: modify
+  - name: SentenceLengthResult
+    type: record
+    _change: delete
+  - name: QuizScore
+    type: record
+    _change: delete
+  - name: KnowledgeScore
+    type: record
+    _change: delete
+  - name: TopicScore
+    type: record
+    _change: delete
+  - name: LevelMetrics
+    type: record
+    _change: delete
+  - name: CoverageStatus
+    type: record
+    _change: delete
+  - name: ProgressionStatus
+    type: record
+    _change: delete
+  interfaces:
+  - name: ContentAnalyzer
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getName(): String"
+    - signature: "getTarget(): AuditTarget"
+    - signature: "onKnowledge(AuditableKnowledge knowledge,AuditContext ctx): Void"
+    - signature: "onQuiz(AuditableQuiz quiz,AuditContext ctx): Void"
+    - signature: "onMilestone(AuditableMilestone milestone,AuditContext ctx): Void"
+    - signature: "onTopic(AuditableTopic topic,AuditContext ctx): Void"
+    - signature: "onCourseComplete(AuditableCourse course,AuditContext ctx): Void"
+    - signature: "getResults(): List<ScoredItem>"
+    _change: modify
+  - name: AnalysisResult
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getName(): String"
+    - signature: "getScore(): double"
+    - signature: "getTarget(): AuditTarget"
+    _change: modify
+  - name: ScoreAggregator
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "aggregate(List<ScoredItem> scores): AuditReport"
+    _change: add
+  implementations:
+  - name: IAuditEngine
+    requiresInject:
+    - name: contentAnalyzers
+      type: List<ContentAnalyzer>
+    - name: scoreAggregator
+      type: ScoreAggregator
+    implements:
+    - AuditEngine
+    _change: modify
+  - name: SentenceLengthAnalyzer
+    requiresInject:
+    - name: nlpTokenizer
+      type: NlpTokenizer
+    - name: config
+      type: SentenceLengthConfig
+    implements:
+    - ContentAnalyzer
+    _change: modify
+  - name: IScoreAggregator
+    implements:
+    - ScoreAggregator
+    _change: add
+  _change: modify

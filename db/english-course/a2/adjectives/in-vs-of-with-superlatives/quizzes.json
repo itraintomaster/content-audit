@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ec0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.09.01",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'in' o 'of'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Este es el peor hotel de París.",
+    "id": "67fab6d59930102295342ec0",
+    "code": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a8"
+    },
+    "successMessage": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'in' vs 'of' with Superlatives",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is the worst hotel",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "Paris.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "theoryId": "a2.11.Use_the_Superlative",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ec1"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'in' vs 'of' with Superlatives",
+    "instructions": "Elige 'in' o 'of'.",
+    "miniTheory": "",
+    "translation": "Esta película es la más corta de todas.",
+    "successMessage": "",
+    "id": "67fab6d59930102295342ec1",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a8"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This movie is the shortest",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "all.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "theoryId": "a2.11.Use_the_Superlative",
+    "audioUrl": "",
+    "answerImageUrl": "",
+    "code": "",
+    "kind": "CLOZE",
+    "answerAudioUrl": "A2.11.09.02",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ec2"
+    },
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a8"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary is the youngest",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "us.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.11.Use_the_Superlative",
+    "answerAudioUrl": "A2.11.09.03",
+    "id": "67fab6d59930102295342ec2",
+    "code": "",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'in' o 'of'.",
+    "imageUrl": "",
+    "audioUrl": "",
+    "translation": "Mary es la más joven de nosotros.",
+    "successMessage": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'in' vs 'of' with Superlatives",
+    "answerImageUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ec3"
+    },
+    "kind": "CLOZE",
+    "title": "'in' vs 'of' with Superlatives",
+    "translation": "Él es el chico más bajo de la clase.",
+    "successMessage": "",
+    "answerAudioUrl": "A2.11.09.04",
+    "id": "67fab6d59930102295342ec3",
+    "code": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's the shortest boy",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the class.",
+          "options": null
+        }
+      ]
+    },
+    "theoryId": "a2.11.Use_the_Superlative",
+    "audioUrl": "",
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'in' o 'of'.",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ec4"
+    },
+    "form": {
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The garden is the smallest part",
+          "options": null
+        },
+        {
+          "options": [
+            "in"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "the yard.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      }
+    },
+    "theoryId": "a2.11.Use_the_Superlative",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "translation": "El jardín es la parte más pequeña del patio.",
+    "code": "",
+    "title": "'in' vs 'of' with Superlatives",
+    "instructions": "Elige 'in' o 'of'.",
+    "audioUrl": "",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a8"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "successMessage": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.09.05",
+    "id": "67fab6d59930102295342ec4",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ec5"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Tom was the tallest",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the children.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "code": "",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a8"
+    },
+    "instructions": "Elige 'in' o 'of'.",
+    "imageUrl": "",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'in' vs 'of' with Superlatives",
+    "translation": "Tom era el más alto de los niños.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "answerAudioUrl": "A2.11.09.06",
+    "id": "67fab6d59930102295342ec5",
+    "theoryId": "a2.11.Use_the_Superlative",
+    "audioUrl": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ec6"
+    },
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a8"
+    },
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'in' vs 'of' with Superlatives",
+    "theoryId": "a2.11.Use_the_Superlative",
+    "audioUrl": "",
+    "translation": "Es el valle más bajo de Gales.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342ec6",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'in' o 'of'.",
+    "imageUrl": "",
+    "miniTheory": "",
+    "kind": "CLOZE",
+    "answerAudioUrl": "A2.11.09.07",
+    "code": "",
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's the lowest valley",
+          "options": null
+        },
+        {
+          "options": [
+            "in"
+          ],
+          "kind": "CLOZE",
+          "text": ""
+        },
+        {
+          "kind": "TEXT",
+          "text": "Wales.",
+          "options": null
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "successMessage": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ec7"
+    },
+    "theoryId": "a2.11.Use_the_Superlative",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'in' vs 'of' with Superlatives",
+    "instructions": "Elige 'in' o 'of'.",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a8"
+    },
+    "audioUrl": "",
+    "successMessage": "",
+    "imageUrl": "",
+    "translation": "Vivimos en la ciudad más moderna de Irlanda.",
+    "miniTheory": "",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342ec7",
+    "kind": "CLOZE",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "form": {
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We live in the most modern town",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "text": "Ireland.",
+          "options": null,
+          "kind": "TEXT"
+        }
+      ],
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": ""
+    },
+    "code": "",
+    "answerAudioUrl": "A2.11.09.08",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ec8"
+    },
+    "code": "",
+    "theoryId": "a2.11.Use_the_Superlative",
+    "successMessage": "",
+    "answerAudioUrl": "A2.11.09.09",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a8"
+    },
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The ice cream was the least sweet item",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the menu.",
+          "options": null
+        }
+      ]
+    },
+    "imageUrl": "",
+    "translation": "El helado era el artículo menos dulce del menú.",
+    "answerImageUrl": "",
+    "id": "67fab6d59930102295342ec8",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'in' o 'of'.",
+    "audioUrl": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "title": "'in' vs 'of' with Superlatives",
+    "miniTheory": "",
+    "topicName": "Adjectives"
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ec9"
+    },
+    "id": "67fab6d59930102295342ec9",
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "answerImageUrl": "",
+    "title": "'in' vs 'of' with Superlatives",
+    "theoryId": "a2.11.Use_the_Superlative",
+    "answerAudioUrl": "A2.11.09.10",
+    "code": "",
+    "kind": "CLOZE",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "imageUrl": "",
+    "audioUrl": "",
+    "miniTheory": "",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a8"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "instructions": "Elige 'in' o 'of'.",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "text": "He is the laziest",
+          "options": null,
+          "kind": "TEXT"
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "options": null,
+          "kind": "TEXT",
+          "text": "the workers."
+        }
+      ]
+    },
+    "translation": "Él es el más perezoso de los trabajadores.",
+    "successMessage": "",
+    "topicName": "Adjectives"
+  }
+]
