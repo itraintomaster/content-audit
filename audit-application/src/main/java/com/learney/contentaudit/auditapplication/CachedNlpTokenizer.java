@@ -1,7 +1,9 @@
 package com.learney.contentaudit.auditapplication;
 
 import com.learney.contentaudit.auditdomain.NlpTokenizer;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -10,6 +12,8 @@ import javax.annotation.processing.Generated;
 )
 public class CachedNlpTokenizer implements NlpTokenizer {
     private final NlpTokenizer delegate;
+    private final Map<String, List<String>> tokenCache = new HashMap<>();
+    private final Map<String, Integer> countCache = new HashMap<>();
 
     public CachedNlpTokenizer(NlpTokenizer delegate) {
         this.delegate = delegate;
@@ -17,11 +21,11 @@ public class CachedNlpTokenizer implements NlpTokenizer {
 
     @Override
     public List<String> tokenize(String text) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return tokenCache.computeIfAbsent(text, delegate::tokenize);
     }
 
     @Override
     public int countTokens(String text) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return countCache.computeIfAbsent(text, delegate::countTokens);
     }
 }

@@ -70,6 +70,7 @@
             --add-opens java.base/java.lang.reflect=ALL-UNNAMED
             --add-opens java.base/java.lang.invoke=ALL-UNNAMED
             --add-opens java.base/java.util=ALL-UNNAMED
+            -Dnet.bytebuddy.experimental=true
           </argLine>
           <useManifestOnlyJar>false</useManifestOnlyJar>
         </configuration>

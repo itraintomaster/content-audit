@@ -1,6 +1,21 @@
 package com.learney.contentaudit.auditapplication;
 
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
 import com.learney.contentaudit.auditdomain.NlpTokenizer;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.KnowledgeEntity;
+import com.learney.contentaudit.coursedomain.MilestoneEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.TopicEntity;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -12,5 +27,92 @@ public class CourseToAuditableMapper {
 
     public CourseToAuditableMapper(NlpTokenizer nlpTokenizer) {
         this.nlpTokenizer = nlpTokenizer;
+    }
+
+    public AuditableCourse map(CourseEntity course) {
+        List<MilestoneEntity> milestoneEntities = course.getRoot() != null
+                ? course.getRoot().getMilestones()
+                : List.of();
+        if (milestoneEntities == null) {
+            milestoneEntities = List.of();
+        }
+
+        List<AuditableMilestone> milestones = new ArrayList<>();
+        for (MilestoneEntity me : milestoneEntities) {
+            milestones.add(mapMilestone(me));
+        }
+        return new AuditableCourse(milestones);
+    }
+
+    private AuditableMilestone mapMilestone(MilestoneEntity me) {
+        List<TopicEntity> topicEntities = me.getTopics() != null ? me.getTopics() : List.of();
+        List<AuditableTopic> topics = new ArrayList<>();
+        for (TopicEntity te : topicEntities) {
+            topics.add(mapTopic(te));
+        }
+        return new AuditableMilestone(topics);
+    }
+
+    private AuditableTopic mapTopic(TopicEntity te) {
+        List<KnowledgeEntity> knowledgeEntities = te.getKnowledges() != null
+                ? te.getKnowledges()
+                : List.of();
+        List<AuditableKnowledge> knowledges = new ArrayList<>();
+        for (KnowledgeEntity ke : knowledgeEntities) {
+            knowledges.add(mapKnowledge(ke));
+        }
+        return new AuditableTopic(knowledges);
+    }
+
+    private AuditableKnowledge mapKnowledge(KnowledgeEntity ke) {
+        List<QuizTemplateEntity> quizTemplates = ke.getQuizTemplates() != null
+                ? ke.getQuizTemplates()
+                : List.of();
+
+        boolean isSentence = quizTemplates.stream().anyMatch(this::hasSentenceParts);
+
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        for (QuizTemplateEntity qt : quizTemplates) {
+            quizzes.add(mapQuiz(qt));
+        }
+
+        return new AuditableKnowledge(
+                quizzes,
+                ke.getLabel() != null ? ke.getLabel() : "",
+                ke.getInstructions() != null ? ke.getInstructions() : "",
+                isSentence
+        );
+    }
+
+    private AuditableQuiz mapQuiz(QuizTemplateEntity qt) {
+        String sentence = buildSentence(qt);
+        int tokenCount = sentence.isEmpty() ? 0 : nlpTokenizer.countTokens(sentence);
+        return new AuditableQuiz(sentence, tokenCount);
+    }
+
+    private String buildSentence(QuizTemplateEntity qt) {
+        FormEntity form = qt.getForm();
+        if (form == null || form.getSentenceParts() == null || form.getSentenceParts().isEmpty()) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (SentencePartEntity part : form.getSentenceParts()) {
+            if (part.getKind() == SentencePartKind.CLOZE) {
+                if (part.getOptions() != null && !part.getOptions().isEmpty()) {
+                    sb.append(part.getOptions().get(0));
+                }
+            } else {
+                if (part.getText() != null) {
+                    sb.append(part.getText());
+                }
+            }
+        }
+        return sb.toString();
+    }
+
+    private boolean hasSentenceParts(QuizTemplateEntity qt) {
+        return qt.getForm() != null
+                && qt.getForm().getSentenceParts() != null
+                && !qt.getForm().getSentenceParts().isEmpty();
     }
 }

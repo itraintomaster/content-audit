@@ -49,6 +49,17 @@ Methods:
 - `courseToAuditableMapper`: `CourseToAuditableMapper`
 - `contentAudit`: `ContentAudit`
 
+**Tests that must pass:**
+
+- Given a valid course path, when runAudit is called, then returns the audit report from the full chain → F-CLI/F-CLI-R001
+- Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path → F-CLI/F-CLI-R001
+- Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity → F-CLI/F-CLI-R001
+- Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course → F-CLI/F-CLI-R001
+- Given courseRepository throws an exception, when runAudit is called, then the exception propagates → F-CLI/F-CLI-R001
+- Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates → F-CLI/F-CLI-R001
+- Given contentAudit throws an exception, when runAudit is called, then the exception propagates → F-CLI/F-CLI-R001
+- Given a course with no milestones, when runAudit is called, then returns the report from contentAudit → F-CLI/F-CLI-R001
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.

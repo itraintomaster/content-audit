@@ -15,6 +15,6 @@ public class IContentAudit implements ContentAudit {
 
     @Override
     public AuditReport audit(AuditableCourse auditableCourse) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return auditEngine.runAudit(auditableCourse);
     }
 }

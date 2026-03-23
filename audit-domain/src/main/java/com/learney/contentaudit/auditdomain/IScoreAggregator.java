@@ -1,6 +1,9 @@
 package com.learney.contentaudit.auditdomain;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -10,6 +13,57 @@ import javax.annotation.processing.Generated;
 public class IScoreAggregator implements ScoreAggregator {
     @Override
     public AuditReport aggregate(List<ScoredItem> scores) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (scores == null || scores.isEmpty()) {
+            return new AuditReport(0.0, new NodeScores(Map.of()), List.of());
+        }
+
+        // Group scores by milestone
+        Map<String, List<ScoredItem>> byMilestone = new LinkedHashMap<>();
+        for (ScoredItem item : scores) {
+            String mid = item.getMilestoneId() != null ? item.getMilestoneId() : "unknown";
+            byMilestone.computeIfAbsent(mid, k -> new ArrayList<>()).add(item);
+        }
+
+        double totalScore = 0.0;
+        int totalCount = 0;
+        List<MilestoneNode> milestones = new ArrayList<>();
+
+        for (Map.Entry<String, List<ScoredItem>> entry : byMilestone.entrySet()) {
+            List<ScoredItem> milestoneScores = entry.getValue();
+            Map<String, Double> analyzerScores = new LinkedHashMap<>();
+
+            // Average score per analyzer within this milestone
+            Map<String, List<Double>> byAnalyzer = new LinkedHashMap<>();
+            for (ScoredItem item : milestoneScores) {
+                byAnalyzer.computeIfAbsent(item.getAnalyzerName(), k -> new ArrayList<>())
+                        .add(item.getScore());
+            }
+            for (Map.Entry<String, List<Double>> ae : byAnalyzer.entrySet()) {
+                double avg = ae.getValue().stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
+                analyzerScores.put(ae.getKey(), avg);
+            }
+
+            for (ScoredItem item : milestoneScores) {
+                totalScore += item.getScore();
+                totalCount++;
+            }
+
+            milestones.add(new MilestoneNode(entry.getKey(), new NodeScores(analyzerScores), List.of()));
+        }
+
+        double overallScore = totalCount > 0 ? totalScore / totalCount : 0.0;
+
+        // Course-level scores per analyzer
+        Map<String, List<Double>> courseByAnalyzer = new LinkedHashMap<>();
+        for (ScoredItem item : scores) {
+            courseByAnalyzer.computeIfAbsent(item.getAnalyzerName(), k -> new ArrayList<>())
+                    .add(item.getScore());
+        }
+        Map<String, Double> courseScores = new LinkedHashMap<>();
+        for (Map.Entry<String, List<Double>> e : courseByAnalyzer.entrySet()) {
+            courseScores.put(e.getKey(), e.getValue().stream().mapToDouble(Double::doubleValue).average().orElse(0.0));
+        }
+
+        return new AuditReport(overallScore, new NodeScores(courseScores), milestones);
     }
 }

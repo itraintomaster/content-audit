@@ -1,7 +1,9 @@
 package com.learney.contentaudit.auditapplication;
 
 import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.ContentAudit;
+import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import java.nio.file.Path;
 import javax.annotation.processing.Generated;
@@ -26,6 +28,8 @@ public class DefaultAuditRunner implements AuditRunner {
 
     @Override
     public AuditReport runAudit(Path coursePath) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        CourseEntity courseEntity = courseRepository.load(coursePath);
+        AuditableCourse auditableCourse = courseToAuditableMapper.map(courseEntity);
+        return contentAudit.audit(auditableCourse);
     }
 }

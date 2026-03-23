@@ -1,4 +1,4 @@
-generatedAt: 2026-03-22T03:02:21.113273Z
+generatedAt: 2026-03-23T00:22:22.546979Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -249,115 +249,115 @@ features:
   requirementFile: requirements/2026-03-18.01_sentence-length/requirement.yaml
   rulesCoverage:
   - ruleId: F-SLEN-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a null milestoneId, when onQuiz is called, then quiz is excluded\
         \ and getResults is empty"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
     - name: "Given a non-numeric milestoneId, when onQuiz is called, then quiz is\
         \ excluded and getResults is empty"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
     - name: "Given multiple quizzes across sentence and non-sentence knowledges, when\
         \ processed, then only sentence quizzes are scored"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
     - name: "Given a non-sentence knowledge, when onQuiz is called, then quiz is excluded\
         \ and getResults is empty"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
     - name: "Given a knowledge with non-sentence quizzes, when onQuiz is called, then\
         \ non-sentence quizzes are excluded from scoring"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
   - ruleId: F-SLEN-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a quiz within A1 range, when onQuiz is called and getResults checked,\
         \ then score is 1.0"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
     - name: "Given a quiz 1 token above A1 max, when scored, then score is 0.75"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
     - name: "Given a quiz 3 tokens below A1 min, when scored, then score is 0.25"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
     - name: "Given a quiz exactly at A1 minimum boundary, when scored, then score\
         \ is 1.0"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
     - name: "Given a quiz exactly at A1 maximum boundary, when scored, then score\
         \ is 1.0"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
     - name: "Given a quiz 2 tokens above A1 max, when scored, then score is 0.5"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
     - name: "Given a full milestone-knowledge-quiz sequence, when processed end to\
         \ end, then correct scores are produced"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
   - ruleId: F-SLEN-R009
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a quiz 4 tokens above A1 max, when scored, then score is 0.0"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
     - name: "Given a quiz exactly at tolerance boundary of 4 tokens, when scored,\
         \ then score is 0.0"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
   - ruleId: F-SLEN-R012
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given no target range configured for level, when onQuiz is called, then\
         \ quiz is excluded and getResults is empty"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
     - name: "Given a B2 level quiz within range, when scored, then score is 1.0"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
   - ruleId: F-SLEN-R013
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a valid sentence quiz, when onQuiz is called, then nlpTokenizer\
         \ countTokens is called with quiz sentence"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
   - ruleId: F-SLEN-R003
@@ -971,6 +971,39 @@ elements:
   - name: DefaultAuditRunner
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultAuditRunner.java
+    tests:
+    - name: "Given a valid course path, when runAudit is called, then returns the\
+        \ audit report from the full chain"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
+    - name: "Given a valid course path, when runAudit is called, then courseRepository\
+        \ load is invoked with the path"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
+    - name: "Given a valid course path, when runAudit is called, then courseToAuditableMapper\
+        \ map is invoked with the loaded entity"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
+    - name: "Given a valid course path, when runAudit is called, then contentAudit\
+        \ audit is invoked with the mapped auditable course"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
+    - name: "Given courseRepository throws an exception, when runAudit is called,\
+        \ then the exception propagates"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
+    - name: "Given courseToAuditableMapper throws an exception, when runAudit is called,\
+        \ then the exception propagates"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
+    - name: "Given contentAudit throws an exception, when runAudit is called, then\
+        \ the exception propagates"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
+    - name: "Given a course with no milestones, when runAudit is called, then returns\
+        \ the report from contentAudit"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
 - module: course-infrastructure
   status: EXISTS
   implementations:
@@ -1107,6 +1140,12 @@ elements:
     methods:
     - signature: "run(String[] args): int"
       status: EXISTS
+  - name: FormatterRegistry
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/FormatterRegistry.java
+    methods:
+    - signature: "getFormatter(String formatName): ReportFormatter"
+      status: EXISTS
   implementations:
   - name: TextReportFormatter
     status: EXISTS
@@ -1117,9 +1156,45 @@ elements:
   - name: DefaultAuditCli
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultAuditCli.java
+    tests:
+    - name: "Given valid args with course path, when run is called, then returns exit\
+        \ code 0"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+    - name: "Given no args provided, when run is called, then returns non-zero exit\
+        \ code"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+    - name: "Given auditRunner throws RuntimeException, when run is called, then returns\
+        \ non-zero exit code"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+    - name: "Given valid args with --format json, when run is called, then json formatter\
+        \ is looked up and returns 0"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+    - name: "Given valid args without --format, when run is called, then text formatter\
+        \ is used by default and returns 0"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+    - name: "Given valid args, when run is called, then auditRunner runAudit is invoked\
+        \ with course path"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+    - name: "Given an unsupported format value, when run is called, then returns non-zero\
+        \ exit code"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+    - name: "Given valid args and low audit scores, when run is called, then returns\
+        \ 0 regardless of score values"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+  - name: DefaultFormatterRegistry
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultFormatterRegistry.java
 testSummary:
-  total: 51
-  passing: 51
+  total: 67
+  passing: 67
   failing: 0
   notImplemented: 0
 patterns:
@@ -1639,7 +1714,19 @@ patterns:
     elementName: AuditCli
     nodeId: interface-audit-cli-AuditCli
   confidence: 0.9
-- id: anti-42
+- id: stereo-42
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: FormatterRegistry is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: FormatterRegistry
+    nodeId: interface-audit-cli-FormatterRegistry
+  confidence: 0.9
+- id: anti-43
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -1651,7 +1738,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-43
+- id: anti-44
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -1663,7 +1750,7 @@ patterns:
     elementName: audit-domain
     nodeId: module-audit-domain
   confidence: 0.85
-- id: anti-44
+- id: anti-45
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -1675,7 +1762,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.8
-- id: anti-45
+- id: anti-46
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -1687,7 +1774,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-46
+- id: anti-47
   pattern: God Module
   category: anti-pattern
   source: detected

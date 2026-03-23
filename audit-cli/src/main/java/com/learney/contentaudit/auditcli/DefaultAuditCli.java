@@ -1,6 +1,8 @@
 package com.learney.contentaudit.auditcli;
 
 import com.learney.contentaudit.auditapplication.AuditRunner;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import java.nio.file.Path;
 import java.util.Map;
 import javax.annotation.processing.Generated;
 
@@ -23,7 +25,37 @@ public final class DefaultAuditCli implements AuditCli {
     }
 
     @Override
-    public int run(String[] args) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public int run(String... args) {
+        if (args == null || args.length == 0) {
+            System.err.println("Uso: audit-cli <ruta-al-directorio-del-curso>");
+            return 1;
+        }
+
+        String coursePath = args[0];
+        String formatName = "text";
+
+        for (int i = 1; i < args.length - 1; i++) {
+            if ("--format".equals(args[i])) {
+                formatName = args[i + 1];
+                break;
+            }
+        }
+
+        try {
+            AuditReport report = auditRunner.runAudit(Path.of(coursePath));
+
+            ReportFormatter formatter = formatterRegistry.getFormatter(formatName);
+            if (formatter == null) {
+                System.err.println("Formato no soportado: " + formatName);
+                return 1;
+            }
+
+            System.out.println(formatter.format(report));
+            return 0;
+        } catch (RuntimeException e) {
+            System.err.println("No se pudo ejecutar la auditoria para el curso en la ruta "
+                    + coursePath + ": " + e.getMessage());
+            return 1;
+        }
     }
 }

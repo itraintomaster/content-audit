@@ -45,6 +45,17 @@ Methods:
 - `formatters`: `Map<String,ReportFormatter>`
 - `formatterRegistry`: `FormatterRegistry`
 
+**Tests that must pass:**
+
+- Given valid args with course path, when run is called, then returns exit code 0 → F-CLI/F-CLI-R004
+- Given no args provided, when run is called, then returns non-zero exit code → F-CLI/F-CLI-R002
+- Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code → F-CLI/F-CLI-R004
+- Given valid args with --format json, when run is called, then json formatter is looked up and returns 0 → F-CLI/F-CLI-R003
+- Given valid args without --format, when run is called, then text formatter is used by default and returns 0 → F-CLI/F-CLI-R003
+- Given valid args, when run is called, then auditRunner runAudit is invoked with course path → F-CLI/F-CLI-R001
+- Given an unsupported format value, when run is called, then returns non-zero exit code → F-CLI/F-CLI-R003
+- Given valid args and low audit scores, when run is called, then returns 0 regardless of score values → F-CLI/F-CLI-R004
+
 ### DefaultFormatterRegistry
 
 **Implements:** FormatterRegistry

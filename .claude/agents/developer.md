@@ -318,6 +318,7 @@ Domain module for course structure. Contains entity models representing the 5-le
 - `DefaultSentenceLengthConfig` implements SentenceLengthConfig [Component]
 - `DefaultAuditRunner` implements AuditRunner [Service]
   Inject: courseRepository: CourseRepository, courseToAuditableMapper: CourseToAuditableMapper, contentAudit: ContentAudit
+  Tests: Given a valid course path, when runAudit is called, then returns the audit report from the full chain, Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path, Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity, Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course, Given courseRepository throws an exception, when runAudit is called, then the exception propagates, Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates, Given contentAudit throws an exception, when runAudit is called, then the exception propagates, Given a course with no milestones, when runAudit is called, then returns the report from contentAudit
 
 #### course-infrastructure
 
@@ -352,6 +353,7 @@ CLI entry point for running content audits from the command line
 - `JsonReportFormatter` implements ReportFormatter
 - `DefaultAuditCli` implements AuditCli
   Inject: auditRunner: AuditRunner, formatters: Map<String,ReportFormatter>, formatterRegistry: FormatterRegistry
+  Tests: Given valid args with course path, when run is called, then returns exit code 0, Given no args provided, when run is called, then returns non-zero exit code, Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code, Given valid args with --format json, when run is called, then json formatter is looked up and returns 0, Given valid args without --format, when run is called, then text formatter is used by default and returns 0, Given valid args, when run is called, then auditRunner runAudit is invoked with course path, Given an unsupported format value, when run is called, then returns non-zero exit code, Given valid args and low audit scores, when run is called, then returns 0 regardless of score values
 - `DefaultFormatterRegistry` implements FormatterRegistry [Component]
 
 ### Boundaries
