@@ -293,6 +293,81 @@ public class MyAdapterSentinelTest {
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R001
 - **Steps:** 4 integration steps
 
+### DefaultAuditRunner (audit-application)
+
+**Test class:** `DefaultAuditRunnerSentinelTest`
+
+#### Given a valid course path, when runAudit is called, then returns the audit report from the full chain
+
+- **Type:** unit
+- **Fixtures:** rootNode, courseEntity, auditableCourse, nodeScores, auditReport
+- **Mocks:** courseRepository.load, courseToAuditableMapper.map, contentAudit.audit
+- **Invokes:** `runAudit(/path/to/course)`
+- **Asserts:** returns=ref:auditReport
+- **Traceability:** feature=F-CLI, rule=F-CLI-R001, journey=F-CLI-J001
+
+#### Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path
+
+- **Type:** unit
+- **Fixtures:** rootNode, courseEntity, auditableCourse, nodeScores, auditReport
+- **Mocks:** courseRepository.load, courseToAuditableMapper.map, contentAudit.audit
+- **Invokes:** `runAudit(/path/to/course)`
+- **Asserts:** returns=ref:auditReport, verifyCall
+- **Traceability:** feature=F-CLI, rule=F-CLI-R001
+
+#### Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity
+
+- **Type:** unit
+- **Fixtures:** rootNode, courseEntity, auditableCourse, nodeScores, auditReport
+- **Mocks:** courseRepository.load, courseToAuditableMapper.map, contentAudit.audit
+- **Invokes:** `runAudit(/path/to/course)`
+- **Asserts:** returns=ref:auditReport, verifyCall
+- **Traceability:** feature=F-CLI, rule=F-CLI-R001
+
+#### Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course
+
+- **Type:** unit
+- **Fixtures:** rootNode, courseEntity, auditableCourse, nodeScores, auditReport
+- **Mocks:** courseRepository.load, courseToAuditableMapper.map, contentAudit.audit
+- **Invokes:** `runAudit(/path/to/course)`
+- **Asserts:** returns=ref:auditReport, verifyCall
+- **Traceability:** feature=F-CLI, rule=F-CLI-R001
+
+#### Given courseRepository throws an exception, when runAudit is called, then the exception propagates
+
+- **Type:** unit
+- **Mocks:** courseRepository.load
+- **Invokes:** `runAudit(/invalid/path)`
+- **Asserts:** assertThrows=RuntimeException
+- **Traceability:** feature=F-CLI, rule=F-CLI-R001
+
+#### Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates
+
+- **Type:** unit
+- **Fixtures:** rootNode, courseEntity
+- **Mocks:** courseRepository.load, courseToAuditableMapper.map
+- **Invokes:** `runAudit(/path/to/course)`
+- **Asserts:** assertThrows=RuntimeException
+- **Traceability:** feature=F-CLI, rule=F-CLI-R001
+
+#### Given contentAudit throws an exception, when runAudit is called, then the exception propagates
+
+- **Type:** unit
+- **Fixtures:** rootNode, courseEntity, auditableCourse
+- **Mocks:** courseRepository.load, courseToAuditableMapper.map, contentAudit.audit
+- **Invokes:** `runAudit(/path/to/course)`
+- **Asserts:** assertThrows=RuntimeException
+- **Traceability:** feature=F-CLI, rule=F-CLI-R001
+
+#### Given a course with no milestones, when runAudit is called, then returns the report from contentAudit
+
+- **Type:** unit
+- **Fixtures:** rootNode, emptyCourse, emptyAuditableCourse, emptyNodeScores, emptyReport
+- **Mocks:** courseRepository.load, courseToAuditableMapper.map, contentAudit.audit
+- **Invokes:** `runAudit(/path/to/empty-course)`
+- **Asserts:** returns=ref:emptyReport
+- **Traceability:** feature=F-CLI, rule=F-CLI-R001
+
 ### FileSystemCourseRepository (course-infrastructure)
 
 **Test class:** `FileSystemCourseRepositorySentinelTest`
@@ -462,4 +537,78 @@ public class MyAdapterSentinelTest {
 
 - **Type:** integration
 - **Traceability:** feature=F-COURSE, journey=F-COURSE-J006
+
+### DefaultAuditCli (audit-cli)
+
+**Test class:** `DefaultAuditCliSentinelTest`
+
+#### Given valid args with course path, when run is called, then returns exit code 0
+
+- **Type:** unit
+- **Fixtures:** emptyScores, report, formatter
+- **Mocks:** auditRunner.runAudit, formatterRegistry.getFormatter
+- **Invokes:** `run(/path/to/course)`
+- **Asserts:** returns=0
+- **Traceability:** feature=F-CLI, rule=F-CLI-R004
+
+#### Given no args provided, when run is called, then returns non-zero exit code
+
+- **Type:** unit
+- **Invokes:** `run()`
+- **Asserts:** returns=1
+- **Traceability:** feature=F-CLI, rule=F-CLI-R002
+
+#### Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code
+
+- **Type:** unit
+- **Fixtures:** formatter
+- **Mocks:** auditRunner.runAudit, formatterRegistry.getFormatter
+- **Invokes:** `run(/path/to/course)`
+- **Asserts:** returns=1
+- **Traceability:** feature=F-CLI, rule=F-CLI-R004
+
+#### Given valid args with --format json, when run is called, then json formatter is looked up and returns 0
+
+- **Type:** unit
+- **Fixtures:** emptyScores, report, jsonFormatter
+- **Mocks:** auditRunner.runAudit, formatterRegistry.getFormatter
+- **Invokes:** `run(/path/to/course, --format, json)`
+- **Asserts:** returns=0, verifyCall
+- **Traceability:** feature=F-CLI, rule=F-CLI-R003
+
+#### Given valid args without --format, when run is called, then text formatter is used by default and returns 0
+
+- **Type:** unit
+- **Fixtures:** emptyScores, report, textFormatter
+- **Mocks:** auditRunner.runAudit, formatterRegistry.getFormatter
+- **Invokes:** `run(/path/to/course)`
+- **Asserts:** returns=0, verifyCall
+- **Traceability:** feature=F-CLI, rule=F-CLI-R003
+
+#### Given valid args, when run is called, then auditRunner runAudit is invoked with course path
+
+- **Type:** unit
+- **Fixtures:** emptyScores, report, formatter
+- **Mocks:** auditRunner.runAudit, formatterRegistry.getFormatter
+- **Invokes:** `run(/path/to/course)`
+- **Asserts:** returns=0, verifyCall
+- **Traceability:** feature=F-CLI, rule=F-CLI-R001
+
+#### Given an unsupported format value, when run is called, then returns non-zero exit code
+
+- **Type:** unit
+- **Fixtures:** emptyScores, report
+- **Mocks:** auditRunner.runAudit, formatterRegistry.getFormatter
+- **Invokes:** `run(/path/to/course, --format, xml)`
+- **Asserts:** returns=1
+- **Traceability:** feature=F-CLI, rule=F-CLI-R003
+
+#### Given valid args and low audit scores, when run is called, then returns 0 regardless of score values
+
+- **Type:** unit
+- **Fixtures:** emptyScores, lowScoreReport, formatter
+- **Mocks:** auditRunner.runAudit, formatterRegistry.getFormatter
+- **Invokes:** `run(/path/to/course)`
+- **Asserts:** returns=0
+- **Traceability:** feature=F-CLI, rule=F-CLI-R004
 

@@ -531,6 +531,11 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 ### audit-application
 
+**Interfaces:**
+
+- `AuditRunner`
+  - `runAudit(Path coursePath): AuditReport`
+
 **Implementations:**
 
 - `CourseToAuditableMapper` [Component]
@@ -540,6 +545,9 @@ Domain module for course structure. Contains entity models representing the 5-le
   **NO TESTS** — all 2 methods uncovered
 - `DefaultSentenceLengthConfig` implements SentenceLengthConfig [Component]
   **NO TESTS** — all 2 methods uncovered
+- `DefaultAuditRunner` implements AuditRunner [Service]
+  Inject: courseRepository: CourseRepository, courseToAuditableMapper: CourseToAuditableMapper, contentAudit: ContentAudit
+  Declarative tests (8): Given a valid course path, when runAudit is called, then returns the audit report from the full chain, Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path, Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity, Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course, Given courseRepository throws an exception, when runAudit is called, then the exception propagates, Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates, Given contentAudit throws an exception, when runAudit is called, then the exception propagates, Given a course with no milestones, when runAudit is called, then returns the report from contentAudit
 
 ### course-infrastructure
 
@@ -551,4 +559,29 @@ Infrastructure module for course persistence. Contains the filesystem adapter th
   Inject: courseValidator: CourseValidator
   Declarative tests (28): Given a valid course entity, when save is called, then validator is invoked and no exception is thrown, Given an invalid course entity, when save is called, then validator throws CourseValidationException, Given a course entity with validator passing, when save is called, then no exception is thrown, Given a null course entity, when save is called, then an exception is thrown, Given validator rejects course with duplicate IDs, when save is called, then CourseValidationException propagates, Given validator rejects course with broken parent references, when save is called, then CourseValidationException propagates, Given validator rejects milestone with no topics, when save is called, then CourseValidationException propagates, Given a valid course directory, when load is called, then returns CourseEntity with 5-level hierarchy including ROOT node, Given a course with ordered milestones and topics, when load is called, then child order matches parent children lists, Given a loaded course, when saved and reloaded, then the result is semantically equivalent to the original, Given a course directory with quiz templates, when load is called, then every knowledge has at least one quiz template, Given a course directory with consistent IDs, when load is called, then all child ID references resolve to existing entities, Given a course directory with unique IDs, when load is called, then no duplicate IDs exist across any hierarchy level, Given a valid directory structure, when load is called, then each directory level contains its expected descriptor file, Given a loaded course, when inspecting parent references, then each child parentId matches its actual parent id, Given a course with all required fields populated, when load is called, then all mandatory fields are non-null, Given a course with empty string and null field values, when saved and reloaded, then empty and null values are preserved exactly, Given quiz templates with dual id and oidId fields, when load is called, then both fields contain the same value, Given quiz templates with numberDouble format values, when saved to JSON, then numeric fields preserve MongoDB Extended JSON format, Given a loaded course, when inspecting order fields, then milestones topics and knowledges have sequential 1-based order within their parent, Given a milestone with empty children list, when load is called, then validation rejects the course with a descriptive error, Given entities with labels, when saved to disk, then directory names are deterministic slugs derived from the labels, Given a course directory with full hierarchy, when loading step by step, then all levels are resolved with correct hierarchy order and validation, Given a course in memory, when saving to a target directory, then the directory structure and JSON files are written correctly, Given a course loaded from files, when saved to a new directory and reloaded, then the reloaded course equals the original, Given a loaded course, when navigating from ROOT to milestones to topics to knowledges to quizzes, then each level is accessible and correctly ordered, Given a loaded course, when a knowledge label is modified and the course is saved and reloaded, then the change is reflected and unmodified data remains intact, Given a nonexistent path or missing descriptor or malformed JSON, when load is called, then a descriptive error is thrown and no partial course is returned
   **Untested methods:** load
+
+### audit-cli
+
+CLI entry point for running content audits from the command line
+
+**Interfaces:**
+
+- `ReportFormatter`
+  - `format(AuditReport report): String`
+- `AuditCli` [sealed]
+  - `run(String[] args): int`
+- `FormatterRegistry`
+  - `getFormatter(String formatName): ReportFormatter`
+
+**Implementations:**
+
+- `TextReportFormatter` implements ReportFormatter
+  **NO TESTS** — all 1 methods uncovered
+- `JsonReportFormatter` implements ReportFormatter
+  **NO TESTS** — all 1 methods uncovered
+- `DefaultAuditCli` implements AuditCli
+  Inject: auditRunner: AuditRunner, formatters: Map<String,ReportFormatter>, formatterRegistry: FormatterRegistry
+  Declarative tests (8): Given valid args with course path, when run is called, then returns exit code 0, Given no args provided, when run is called, then returns non-zero exit code, Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code, Given valid args with --format json, when run is called, then json formatter is looked up and returns 0, Given valid args without --format, when run is called, then text formatter is used by default and returns 0, Given valid args, when run is called, then auditRunner runAudit is invoked with course path, Given an unsupported format value, when run is called, then returns non-zero exit code, Given valid args and low audit scores, when run is called, then returns 0 regardless of score values
+- `DefaultFormatterRegistry` implements FormatterRegistry [Component]
+  **NO TESTS** — all 1 methods uncovered
 

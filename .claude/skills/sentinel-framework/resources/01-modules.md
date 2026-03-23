@@ -37,6 +37,10 @@ project-root/
 │   ├── pom.xml            # Module POM (generated)
 │   ├── src/main/java/     # Production code
 │   └── src/test/java/     # Test code
+├── audit-cli/
+│   ├── pom.xml            # Module POM (generated)
+│   ├── src/main/java/     # Production code
+│   └── src/test/java/     # Test code
 ```
 
 ## Declared Modules
@@ -91,8 +95,8 @@ project-root/
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 0 |
-| Interfaces | 0 |
-| Implementations | 3 (CourseToAuditableMapper, CachedNlpTokenizer, DefaultSentenceLengthConfig) |
+| Interfaces | 1 (AuditRunner) |
+| Implementations | 4 (CourseToAuditableMapper, CachedNlpTokenizer, DefaultSentenceLengthConfig, DefaultAuditRunner) |
 | Packages | 0 |
 
 ### course-infrastructure
@@ -110,6 +114,21 @@ project-root/
 | Implementations | 1 (FileSystemCourseRepository) |
 | Packages | 0 |
 
+### audit-cli
+
+> CLI entry point for running content audits from the command line
+
+| Property | Value |
+|----------|-------|
+| Package | `com.learney.contentaudit.auditcli` |
+| Depends On | audit-application, audit-domain, course-domain, course-infrastructure |
+| Allowed Clients | (unrestricted) |
+| Scope | public |
+| Models | 0 |
+| Interfaces | 3 (ReportFormatter, AuditCli, FormatterRegistry) |
+| Implementations | 4 (TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry) |
+| Packages | 0 |
+
 ## Dependency Graph
 
 ```
@@ -121,6 +140,10 @@ audit-application ──depends──> course-domain
 audit-application ──depends──> refiner-domain
 audit-application ──depends──> course-infrastructure
 course-infrastructure ──depends──> course-domain
+audit-cli ──depends──> audit-application
+audit-cli ──depends──> audit-domain
+audit-cli ──depends──> course-domain
+audit-cli ──depends──> course-infrastructure
 ```
 
 ## Access Control Matrix
@@ -132,6 +155,7 @@ course-infrastructure ──depends──> course-domain
 | refiner-domain | (none) | (any) |
 | audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure | (any) |
 | course-infrastructure | course-domain | (any) |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure | (any) |
 
 ## Enforcement Mechanisms
 

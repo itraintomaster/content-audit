@@ -37,6 +37,11 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceAllDeclaredClassesExist() {
     try {
+      Class.forName("com.learney.contentaudit.auditapplication.AuditRunner");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AuditRunner - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditapplication.CourseToAuditableMapper");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: CourseToAuditableMapper - " + e.getMessage());
@@ -50,6 +55,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditapplication.DefaultSentenceLengthConfig");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultSentenceLengthConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.DefaultAuditRunner");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultAuditRunner - " + e.getMessage());
     }
   }
 }

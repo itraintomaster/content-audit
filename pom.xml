@@ -13,6 +13,7 @@
         <module>refiner-domain</module>
         <module>audit-application</module>
         <module>course-infrastructure</module>
+        <module>audit-cli</module>
 
   </modules>
 
@@ -69,6 +70,7 @@
             --add-opens java.base/java.lang.reflect=ALL-UNNAMED
             --add-opens java.base/java.lang.invoke=ALL-UNNAMED
             --add-opens java.base/java.util=ALL-UNNAMED
+            -Dnet.bytebuddy.experimental=true
           </argLine>
           <useManifestOnlyJar>false</useManifestOnlyJar>
         </configuration>
@@ -80,8 +82,8 @@
         <inherited>false</inherited>
         <executions>
           <execution>
-            <id>sentinel-generate</id>
-            <phase>generate-sources</phase>
+            <id>sentinel-verify</id>
+            <phase>validate</phase>
             <goals>
               <goal>exec</goal>
             </goals>
@@ -90,7 +92,7 @@
               <arguments>
                 <argument>-jar</argument>
                 <argument>/Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar</argument>
-                <argument>generate</argument>
+                <argument>verify</argument>
                 <argument>-i</argument>
                 <argument>sentinel.yaml</argument>
               </arguments>

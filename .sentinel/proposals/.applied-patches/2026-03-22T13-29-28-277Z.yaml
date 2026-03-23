@@ -1,0 +1,289 @@
+code: __proposal__
+description: Tests for DefaultAuditCli - CLI entry point for audit execution
+modules:
+- name: audit-cli
+  implementations:
+  - name: DefaultAuditCli
+    tests:
+    - name: "Given valid args with course path, when run is called, then returns exit\
+        \ code 0"
+      target: DefaultAuditCli
+      mocks:
+      - dependency: auditRunner
+        method: runAudit
+        thenReturn: ref:report
+        args:
+        - match: any
+      - dependency: formatterRegistry
+        method: getFormatter
+        thenReturn: ref:formatter
+        args:
+        - match: eq
+          value: text
+      invoke:
+        method: run
+        args:
+        - /path/to/course
+      fixtures:
+      - id: emptyScores
+        type: NodeScores
+        construct:
+          scores: "{}"
+      - id: report
+        type: AuditReport
+        construct:
+          overallScore: 0.85
+          scores: ref:emptyScores
+          milestones: "[]"
+      - id: formatter
+        type: ReportFormatter
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R004
+      assert:
+        returns: 0
+    - name: "Given no args provided, when run is called, then returns non-zero exit\
+        \ code"
+      target: DefaultAuditCli
+      invoke:
+        method: run
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R002
+      assert:
+        returns: 1
+    - name: "Given auditRunner throws RuntimeException, when run is called, then returns\
+        \ non-zero exit code"
+      target: DefaultAuditCli
+      mocks:
+      - dependency: auditRunner
+        method: runAudit
+        args:
+        - match: any
+        thenThrow:
+          type: RuntimeException
+          message: Failed to load course
+      - dependency: formatterRegistry
+        method: getFormatter
+        thenReturn: ref:formatter
+        args:
+        - match: eq
+          value: text
+      invoke:
+        method: run
+        args:
+        - /path/to/course
+      fixtures:
+      - id: formatter
+        type: ReportFormatter
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R004
+      assert:
+        returns: 1
+    - name: "Given valid args with --format json, when run is called, then json formatter\
+        \ is looked up and returns 0"
+      target: DefaultAuditCli
+      mocks:
+      - dependency: auditRunner
+        method: runAudit
+        thenReturn: ref:report
+        args:
+        - match: any
+      - dependency: formatterRegistry
+        method: getFormatter
+        thenReturn: ref:jsonFormatter
+        args:
+        - match: eq
+          value: json
+      invoke:
+        method: run
+        args:
+        - /path/to/course
+        - --format
+        - json
+      fixtures:
+      - id: emptyScores
+        type: NodeScores
+        construct:
+          scores: "{}"
+      - id: report
+        type: AuditReport
+        construct:
+          overallScore: 0.75
+          scores: ref:emptyScores
+          milestones: "[]"
+      - id: jsonFormatter
+        type: ReportFormatter
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R003
+      assert:
+        returns: 0
+        verifyCall:
+          dependency: formatterRegistry
+          method: getFormatter
+          times: 1
+    - name: "Given valid args without --format, when run is called, then text formatter\
+        \ is used by default and returns 0"
+      target: DefaultAuditCli
+      mocks:
+      - dependency: auditRunner
+        method: runAudit
+        thenReturn: ref:report
+        args:
+        - match: any
+      - dependency: formatterRegistry
+        method: getFormatter
+        thenReturn: ref:textFormatter
+        args:
+        - match: eq
+          value: text
+      invoke:
+        method: run
+        args:
+        - /path/to/course
+      fixtures:
+      - id: emptyScores
+        type: NodeScores
+        construct:
+          scores: "{}"
+      - id: report
+        type: AuditReport
+        construct:
+          overallScore: 0.9
+          scores: ref:emptyScores
+          milestones: "[]"
+      - id: textFormatter
+        type: ReportFormatter
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R003
+      assert:
+        returns: 0
+        verifyCall:
+          dependency: formatterRegistry
+          method: getFormatter
+          times: 1
+    - name: "Given valid args, when run is called, then auditRunner runAudit is invoked\
+        \ with course path"
+      target: DefaultAuditCli
+      mocks:
+      - dependency: auditRunner
+        method: runAudit
+        thenReturn: ref:report
+        args:
+        - match: any
+      - dependency: formatterRegistry
+        method: getFormatter
+        thenReturn: ref:formatter
+        args:
+        - match: eq
+          value: text
+      invoke:
+        method: run
+        args:
+        - /path/to/course
+      fixtures:
+      - id: emptyScores
+        type: NodeScores
+        construct:
+          scores: "{}"
+      - id: report
+        type: AuditReport
+        construct:
+          overallScore: 0.5
+          scores: ref:emptyScores
+          milestones: "[]"
+      - id: formatter
+        type: ReportFormatter
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R001
+      assert:
+        returns: 0
+        verifyCall:
+          dependency: auditRunner
+          method: runAudit
+          times: 1
+    - name: "Given an unsupported format value, when run is called, then returns non-zero\
+        \ exit code"
+      target: DefaultAuditCli
+      mocks:
+      - dependency: auditRunner
+        method: runAudit
+        thenReturn: ref:report
+        args:
+        - match: any
+      - dependency: formatterRegistry
+        method: getFormatter
+        args:
+        - match: eq
+          value: xml
+      invoke:
+        method: run
+        args:
+        - /path/to/course
+        - --format
+        - xml
+      fixtures:
+      - id: emptyScores
+        type: NodeScores
+        construct:
+          scores: "{}"
+      - id: report
+        type: AuditReport
+        construct:
+          overallScore: 0.7
+          scores: ref:emptyScores
+          milestones: "[]"
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R003
+      assert:
+        returns: 1
+    - name: "Given valid args and low audit scores, when run is called, then returns\
+        \ 0 regardless of score values"
+      target: DefaultAuditCli
+      mocks:
+      - dependency: auditRunner
+        method: runAudit
+        thenReturn: ref:lowScoreReport
+        args:
+        - match: any
+      - dependency: formatterRegistry
+        method: getFormatter
+        thenReturn: ref:formatter
+        args:
+        - match: eq
+          value: text
+      invoke:
+        method: run
+        args:
+        - /path/to/course
+      fixtures:
+      - id: emptyScores
+        type: NodeScores
+        construct:
+          scores: "{}"
+      - id: lowScoreReport
+        type: AuditReport
+        construct:
+          overallScore: 0.1
+          scores: ref:emptyScores
+          milestones: "[]"
+      - id: formatter
+        type: ReportFormatter
+      type: unit
+      traceability:
+        feature: F-CLI
+        rule: F-CLI-R004
+      assert:
+        returns: 0

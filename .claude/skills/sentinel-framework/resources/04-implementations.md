@@ -187,6 +187,42 @@ public CachedNlpTokenizer(NlpTokenizer delegate) {
 
 **Framework types:** Component
 
+#### DefaultAuditRunner
+
+**Package:** `com.learney.contentaudit.auditapplication`
+
+**Implements:** AuditRunner
+
+**Framework types:** Service
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `courseRepository` | `CourseRepository` |
+| `courseToAuditableMapper` | `CourseToAuditableMapper` |
+| `contentAudit` | `ContentAudit` |
+
+**Generated constructor:**
+```java
+public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, ContentAudit contentAudit) {
+    this.courseRepository = courseRepository;
+    this.courseToAuditableMapper = courseToAuditableMapper;
+    this.contentAudit = contentAudit;
+}
+```
+
+**Tests that must pass:** 8
+
+- Given a valid course path, when runAudit is called, then returns the audit report from the full chain [F-CLI/F-CLI-R001]
+- Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path [F-CLI/F-CLI-R001]
+- Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity [F-CLI/F-CLI-R001]
+- Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course [F-CLI/F-CLI-R001]
+- Given courseRepository throws an exception, when runAudit is called, then the exception propagates [F-CLI/F-CLI-R001]
+- Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates [F-CLI/F-CLI-R001]
+- Given contentAudit throws an exception, when runAudit is called, then the exception propagates [F-CLI/F-CLI-R001]
+- Given a course with no milestones, when runAudit is called, then returns the report from contentAudit [F-CLI/F-CLI-R001]
+
 ### Module: course-infrastructure
 
 #### FileSystemCourseRepository
@@ -240,4 +276,60 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 - Given a loaded course, when navigating from ROOT to milestones to topics to knowledges to quizzes, then each level is accessible and correctly ordered [F-COURSE]
 - Given a loaded course, when a knowledge label is modified and the course is saved and reloaded, then the change is reflected and unmodified data remains intact [F-COURSE]
 - Given a nonexistent path or missing descriptor or malformed JSON, when load is called, then a descriptive error is thrown and no partial course is returned [F-COURSE]
+
+### Module: audit-cli
+
+#### TextReportFormatter
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implements:** ReportFormatter
+
+#### JsonReportFormatter
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implements:** ReportFormatter
+
+#### DefaultAuditCli
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implements:** AuditCli
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `auditRunner` | `AuditRunner` |
+| `formatters` | `Map<String,ReportFormatter>` |
+| `formatterRegistry` | `FormatterRegistry` |
+
+**Generated constructor:**
+```java
+public DefaultAuditCli(AuditRunner auditRunner, Map<String,ReportFormatter> formatters, FormatterRegistry formatterRegistry) {
+    this.auditRunner = auditRunner;
+    this.formatters = formatters;
+    this.formatterRegistry = formatterRegistry;
+}
+```
+
+**Tests that must pass:** 8
+
+- Given valid args with course path, when run is called, then returns exit code 0 [F-CLI/F-CLI-R004]
+- Given no args provided, when run is called, then returns non-zero exit code [F-CLI/F-CLI-R002]
+- Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code [F-CLI/F-CLI-R004]
+- Given valid args with --format json, when run is called, then json formatter is looked up and returns 0 [F-CLI/F-CLI-R003]
+- Given valid args without --format, when run is called, then text formatter is used by default and returns 0 [F-CLI/F-CLI-R003]
+- Given valid args, when run is called, then auditRunner runAudit is invoked with course path [F-CLI/F-CLI-R001]
+- Given an unsupported format value, when run is called, then returns non-zero exit code [F-CLI/F-CLI-R003]
+- Given valid args and low audit scores, when run is called, then returns 0 regardless of score values [F-CLI/F-CLI-R004]
+
+#### DefaultFormatterRegistry
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implements:** FormatterRegistry
+
+**Framework types:** Component
 

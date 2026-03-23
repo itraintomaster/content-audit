@@ -1,10 +1,11 @@
-generatedAt: 2026-03-16T13:57:05.393567Z
+generatedAt: 2026-03-23T00:22:22.546979Z
 system: ContentAudit
 version: 0.0.1
 features:
 - id: FEAT-COURSE
   state: IMPLEMENTED
   requirementFile: requirements/2026-03-15.01_course-structure/requirement.yaml
+  patchFile: requirements/2026-03-15.01_course-structure/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-COURSE-R001
     state: PASSING
@@ -243,6 +244,155 @@ features:
       passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
+- id: FEAT-SLEN
+  state: IMPLEMENTING
+  requirementFile: requirements/2026-03-18.01_sentence-length/requirement.yaml
+  rulesCoverage:
+  - ruleId: F-SLEN-R001
+    state: PASSING
+    tests:
+    - name: "Given a null milestoneId, when onQuiz is called, then quiz is excluded\
+        \ and getResults is empty"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+    - name: "Given a non-numeric milestoneId, when onQuiz is called, then quiz is\
+        \ excluded and getResults is empty"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+    - name: "Given multiple quizzes across sentence and non-sentence knowledges, when\
+        \ processed, then only sentence quizzes are scored"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+    - name: "Given a non-sentence knowledge, when onQuiz is called, then quiz is excluded\
+        \ and getResults is empty"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+    - name: "Given a knowledge with non-sentence quizzes, when onQuiz is called, then\
+        \ non-sentence quizzes are excluded from scoring"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+  - ruleId: F-SLEN-R002
+    state: PASSING
+    tests:
+    - name: "Given a quiz within A1 range, when onQuiz is called and getResults checked,\
+        \ then score is 1.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+    - name: "Given a quiz 1 token above A1 max, when scored, then score is 0.75"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+    - name: "Given a quiz 3 tokens below A1 min, when scored, then score is 0.25"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+    - name: "Given a quiz exactly at A1 minimum boundary, when scored, then score\
+        \ is 1.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+    - name: "Given a quiz exactly at A1 maximum boundary, when scored, then score\
+        \ is 1.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+    - name: "Given a quiz 2 tokens above A1 max, when scored, then score is 0.5"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+    - name: "Given a full milestone-knowledge-quiz sequence, when processed end to\
+        \ end, then correct scores are produced"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+  - ruleId: F-SLEN-R009
+    state: PASSING
+    tests:
+    - name: "Given a quiz 4 tokens above A1 max, when scored, then score is 0.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+    - name: "Given a quiz exactly at tolerance boundary of 4 tokens, when scored,\
+        \ then score is 0.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+  - ruleId: F-SLEN-R012
+    state: PASSING
+    tests:
+    - name: "Given no target range configured for level, when onQuiz is called, then\
+        \ quiz is excluded and getResults is empty"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+    - name: "Given a B2 level quiz within range, when scored, then score is 1.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+  - ruleId: F-SLEN-R013
+    state: PASSING
+    tests:
+    - name: "Given a valid sentence quiz, when onQuiz is called, then nlpTokenizer\
+        \ countTokens is called with quiz sentence"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+  - ruleId: F-SLEN-R003
+    state: NO_TESTS
+  - ruleId: F-SLEN-R004
+    state: NO_TESTS
+  - ruleId: F-SLEN-R005
+    state: NO_TESTS
+  - ruleId: F-SLEN-R008
+    state: NO_TESTS
+  - ruleId: F-SLEN-R016
+    state: NO_TESTS
+  - ruleId: F-SLEN-R006
+    state: NO_TESTS
+  - ruleId: F-SLEN-R007
+    state: NO_TESTS
+  - ruleId: F-SLEN-R010
+    state: NO_TESTS
+  - ruleId: F-SLEN-R011
+    state: NO_TESTS
+  - ruleId: F-SLEN-R014
+    state: NO_TESTS
+  - ruleId: F-SLEN-R015
+    state: NO_TESTS
+  journeysCoverage:
+  - journeyId: F-SLEN-J001
+    state: NO_TESTS
+  - journeyId: F-SLEN-J002
+    state: NO_TESTS
+  - journeyId: F-SLEN-J003
+    state: NO_TESTS
+  - journeyId: F-SLEN-J004
+    state: NO_TESTS
+  - journeyId: F-SLEN-J005
+    state: NO_TESTS
 elements:
 - module: audit-domain
   status: EXISTS
@@ -251,7 +401,11 @@ elements:
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditReport.java
     fields:
-    - name: score
+    - name: overallScore
+      status: EXISTS
+    - name: scores
+      status: EXISTS
+    - name: milestones
       status: EXISTS
   - name: AuditableCourse
     status: EXISTS
@@ -262,6 +416,15 @@ elements:
   - name: AuditContext
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditContext.java
+    fields:
+    - name: milestoneId
+      status: EXISTS
+    - name: topicId
+      status: EXISTS
+    - name: knowledgeId
+      status: EXISTS
+    - name: quizId
+      status: EXISTS
   - name: AuditableKnowledge
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditableKnowledge.java
@@ -271,6 +434,8 @@ elements:
     - name: title
       status: EXISTS
     - name: instructions
+      status: EXISTS
+    - name: isSentence
       status: EXISTS
   - name: AuditableTopic
     status: EXISTS
@@ -287,6 +452,109 @@ elements:
   - name: AuditableQuiz
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditableQuiz.java
+    fields:
+    - name: sentence
+      status: EXISTS
+    - name: tokenCount
+      status: EXISTS
+  - name: CefrLevel
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/CefrLevel.java
+    fields:
+    - name: A1
+      status: EXISTS
+    - name: A2
+      status: EXISTS
+    - name: B1
+      status: EXISTS
+    - name: B2
+      status: EXISTS
+  - name: TargetRange
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/TargetRange.java
+    fields:
+    - name: level
+      status: EXISTS
+    - name: minTokens
+      status: EXISTS
+    - name: maxTokens
+      status: EXISTS
+  - name: AuditTarget
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditTarget.java
+    fields:
+    - name: QUIZ
+      status: EXISTS
+    - name: KNOWLEDGE
+      status: EXISTS
+    - name: TOPIC
+      status: EXISTS
+    - name: MILESTONE
+      status: EXISTS
+    - name: COURSE
+      status: EXISTS
+  - name: ScoredItem
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/ScoredItem.java
+    fields:
+    - name: analyzerName
+      status: EXISTS
+    - name: target
+      status: EXISTS
+    - name: score
+      status: EXISTS
+    - name: milestoneId
+      status: EXISTS
+    - name: topicId
+      status: EXISTS
+    - name: knowledgeId
+      status: EXISTS
+    - name: quizId
+      status: EXISTS
+  - name: NodeScores
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/NodeScores.java
+    fields:
+    - name: scores
+      status: EXISTS
+  - name: QuizNode
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/QuizNode.java
+    fields:
+    - name: quizId
+      status: EXISTS
+    - name: scores
+      status: EXISTS
+  - name: KnowledgeNode
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/KnowledgeNode.java
+    fields:
+    - name: knowledgeId
+      status: EXISTS
+    - name: scores
+      status: EXISTS
+    - name: quizzes
+      status: EXISTS
+  - name: TopicNode
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/TopicNode.java
+    fields:
+    - name: topicId
+      status: EXISTS
+    - name: scores
+      status: EXISTS
+    - name: knowledges
+      status: EXISTS
+  - name: MilestoneNode
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/MilestoneNode.java
+    fields:
+    - name: milestoneId
+      status: EXISTS
+    - name: scores
+      status: EXISTS
+    - name: topics
+      status: EXISTS
   interfaces:
   - name: ContentAudit
     status: EXISTS
@@ -304,9 +572,21 @@ elements:
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/ContentAnalyzer.java
     methods:
-    - signature: "onKnowledge(AuditableKnowledge knowledge, AuditContext ctx): Void"
+    - signature: "onKnowledge(AuditableKnowledge knowledge,AuditContext ctx): Void"
       status: EXISTS
-    - signature: getResult():AnalysisResult
+    - signature: "onQuiz(AuditableQuiz quiz,AuditContext ctx): Void"
+      status: EXISTS
+    - signature: "onMilestone(AuditableMilestone milestone,AuditContext ctx): Void"
+      status: EXISTS
+    - signature: "onTopic(AuditableTopic topic,AuditContext ctx): Void"
+      status: EXISTS
+    - signature: "onCourseComplete(AuditableCourse course,AuditContext ctx): Void"
+      status: EXISTS
+    - signature: "getName(): String"
+      status: EXISTS
+    - signature: "getTarget(): AuditTarget"
+      status: EXISTS
+    - signature: "getResults(): List<ScoredItem>"
       status: EXISTS
   - name: AnalysisResult
     status: EXISTS
@@ -314,7 +594,31 @@ elements:
     methods:
     - signature: "getName(): String"
       status: EXISTS
-    - signature: "getScore(): Double"
+    - signature: "getScore(): double"
+      status: EXISTS
+    - signature: "getTarget(): AuditTarget"
+      status: EXISTS
+  - name: NlpTokenizer
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/NlpTokenizer.java
+    methods:
+    - signature: "tokenize(String text): List<String>"
+      status: EXISTS
+    - signature: "countTokens(String text): int"
+      status: EXISTS
+  - name: SentenceLengthConfig
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/SentenceLengthConfig.java
+    methods:
+    - signature: "getTargetRange(CefrLevel level): Optional<TargetRange>"
+      status: EXISTS
+    - signature: "getToleranceMargin(): int"
+      status: EXISTS
+  - name: ScoreAggregator
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/ScoreAggregator.java
+    methods:
+    - signature: "aggregate(List<ScoredItem> scores): AuditReport"
       status: EXISTS
   implementations:
   - name: IAuditEngine
@@ -329,6 +633,100 @@ elements:
   - name: IContentAudit
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/IContentAudit.java
+  - name: SentenceLengthAnalyzer
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzer.java
+    tests:
+    - name: "Given a null milestoneId, when onQuiz is called, then quiz is excluded\
+        \ and getResults is empty"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a non-numeric milestoneId, when onQuiz is called, then quiz is\
+        \ excluded and getResults is empty"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given no target range configured for level, when onQuiz is called, then\
+        \ quiz is excluded and getResults is empty"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a valid sentence quiz, when onQuiz is called, then nlpTokenizer\
+        \ countTokens is called with quiz sentence"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given multiple quizzes across sentence and non-sentence knowledges, when\
+        \ processed, then only sentence quizzes are scored"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a SentenceLengthAnalyzer, when getName is called, then returns\
+        \ sentence-length"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a SentenceLengthAnalyzer, when getTarget is called, then returns\
+        \ QUIZ"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a quiz within A1 range, when onQuiz is called and getResults checked,\
+        \ then score is 1.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a quiz 1 token above A1 max, when scored, then score is 0.75"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a quiz 3 tokens below A1 min, when scored, then score is 0.25"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a quiz exactly at A1 minimum boundary, when scored, then score\
+        \ is 1.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a quiz exactly at A1 maximum boundary, when scored, then score\
+        \ is 1.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a quiz 4 tokens above A1 max, when scored, then score is 0.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a non-sentence knowledge, when onQuiz is called, then quiz is excluded\
+        \ and getResults is empty"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a B2 level quiz within range, when scored, then score is 1.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a quiz exactly at tolerance boundary of 4 tokens, when scored,\
+        \ then score is 0.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a quiz 2 tokens above A1 max, when scored, then score is 0.5"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a SentenceLengthAnalyzer, when onTopic is called, then it completes\
+        \ without error"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a SentenceLengthAnalyzer, when onCourseComplete is called, then\
+        \ it completes without error"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a full milestone-knowledge-quiz sequence, when processed end to\
+        \ end, then correct scores are produced"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a SentenceLengthAnalyzer instance, when getName is called, then\
+        \ returns sentence-length"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a SentenceLengthAnalyzer instance, when getTarget is called, then\
+        \ returns QUIZ"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with non-sentence quizzes, when onQuiz is called, then\
+        \ non-sentence quizzes are excluded from scoring"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+  - name: IScoreAggregator
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/IScoreAggregator.java
 - module: course-domain
   status: EXISTS
   models:
@@ -553,6 +951,59 @@ elements:
   status: EXISTS
 - module: audit-application
   status: EXISTS
+  interfaces:
+  - name: AuditRunner
+    status: EXISTS
+    filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/AuditRunner.java
+    methods:
+    - signature: "runAudit(Path coursePath): AuditReport"
+      status: EXISTS
+  implementations:
+  - name: CourseToAuditableMapper
+    status: EXISTS
+    filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/CourseToAuditableMapper.java
+  - name: CachedNlpTokenizer
+    status: EXISTS
+    filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/CachedNlpTokenizer.java
+  - name: DefaultSentenceLengthConfig
+    status: EXISTS
+    filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultSentenceLengthConfig.java
+  - name: DefaultAuditRunner
+    status: EXISTS
+    filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultAuditRunner.java
+    tests:
+    - name: "Given a valid course path, when runAudit is called, then returns the\
+        \ audit report from the full chain"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
+    - name: "Given a valid course path, when runAudit is called, then courseRepository\
+        \ load is invoked with the path"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
+    - name: "Given a valid course path, when runAudit is called, then courseToAuditableMapper\
+        \ map is invoked with the loaded entity"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
+    - name: "Given a valid course path, when runAudit is called, then contentAudit\
+        \ audit is invoked with the mapped auditable course"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
+    - name: "Given courseRepository throws an exception, when runAudit is called,\
+        \ then the exception propagates"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
+    - name: "Given courseToAuditableMapper throws an exception, when runAudit is called,\
+        \ then the exception propagates"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
+    - name: "Given contentAudit throws an exception, when runAudit is called, then\
+        \ the exception propagates"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
+    - name: "Given a course with no milestones, when runAudit is called, then returns\
+        \ the report from contentAudit"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
 - module: course-infrastructure
   status: EXISTS
   implementations:
@@ -674,9 +1125,76 @@ elements:
         \ is returned"
       status: EXISTS
       testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+- module: audit-cli
+  status: EXISTS
+  interfaces:
+  - name: ReportFormatter
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ReportFormatter.java
+    methods:
+    - signature: "format(AuditReport report): String"
+      status: EXISTS
+  - name: AuditCli
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AuditCli.java
+    methods:
+    - signature: "run(String[] args): int"
+      status: EXISTS
+  - name: FormatterRegistry
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/FormatterRegistry.java
+    methods:
+    - signature: "getFormatter(String formatName): ReportFormatter"
+      status: EXISTS
+  implementations:
+  - name: TextReportFormatter
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/TextReportFormatter.java
+  - name: JsonReportFormatter
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/JsonReportFormatter.java
+  - name: DefaultAuditCli
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultAuditCli.java
+    tests:
+    - name: "Given valid args with course path, when run is called, then returns exit\
+        \ code 0"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+    - name: "Given no args provided, when run is called, then returns non-zero exit\
+        \ code"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+    - name: "Given auditRunner throws RuntimeException, when run is called, then returns\
+        \ non-zero exit code"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+    - name: "Given valid args with --format json, when run is called, then json formatter\
+        \ is looked up and returns 0"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+    - name: "Given valid args without --format, when run is called, then text formatter\
+        \ is used by default and returns 0"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+    - name: "Given valid args, when run is called, then auditRunner runAudit is invoked\
+        \ with course path"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+    - name: "Given an unsupported format value, when run is called, then returns non-zero\
+        \ exit code"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+    - name: "Given valid args and low audit scores, when run is called, then returns\
+        \ 0 regardless of score values"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+  - name: DefaultFormatterRegistry
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultFormatterRegistry.java
 testSummary:
-  total: 28
-  passing: 28
+  total: 67
+  passing: 67
   failing: 0
   notImplemented: 0
 patterns:
@@ -691,8 +1209,56 @@ patterns:
     moduleName: audit-domain
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
+  - type: implementation
+    moduleName: audit-domain
+    elementName: KnowledgeTitleLengthAnalyzer
+    nodeId: impl-audit-domain-KnowledgeTitleLengthAnalyzer
+  - type: implementation
+    moduleName: audit-domain
+    elementName: KnowledgeInstructionsLengthAnalyzer
+    nodeId: impl-audit-domain-KnowledgeInstructionsLengthAnalyzer
+  - type: implementation
+    moduleName: audit-domain
+    elementName: SentenceLengthAnalyzer
+    nodeId: impl-audit-domain-SentenceLengthAnalyzer
   confidence: 1.0
-- id: stereo-2
+- id: declared-2
+  pattern: Decorator
+  category: gof
+  source: declared
+  severity: info
+  description: Declared Decorator pattern in audit-application
+  involvedElements:
+  - type: interface
+    moduleName: audit-application
+    elementName: NlpTokenizer
+    nodeId: interface-audit-application-NlpTokenizer
+  - type: implementation
+    moduleName: audit-application
+    elementName: CachedNlpTokenizer
+    nodeId: impl-audit-application-CachedNlpTokenizer
+  confidence: 1.0
+- id: declared-3
+  pattern: Strategy
+  category: gof
+  source: declared
+  severity: info
+  description: Declared Strategy pattern in audit-cli
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: ReportFormatter
+    nodeId: interface-audit-cli-ReportFormatter
+  - type: implementation
+    moduleName: audit-cli
+    elementName: TextReportFormatter
+    nodeId: impl-audit-cli-TextReportFormatter
+  - type: implementation
+    moduleName: audit-cli
+    elementName: JsonReportFormatter
+    nodeId: impl-audit-cli-JsonReportFormatter
+  confidence: 1.0
+- id: stereo-4
   pattern: Service
   category: architectural
   source: detected
@@ -704,7 +1270,7 @@ patterns:
     elementName: ContentAudit
     nodeId: interface-audit-domain-ContentAudit
   confidence: 0.9
-- id: stereo-3
+- id: stereo-5
   pattern: Port
   category: architectural
   source: detected
@@ -716,7 +1282,7 @@ patterns:
     elementName: AuditEngine
     nodeId: interface-audit-domain-AuditEngine
   confidence: 0.9
-- id: stereo-4
+- id: stereo-6
   pattern: Port
   category: architectural
   source: detected
@@ -728,7 +1294,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.9
-- id: stereo-5
+- id: stereo-7
   pattern: Port
   category: architectural
   source: detected
@@ -740,7 +1306,43 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: stereo-6
+- id: stereo-8
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: NlpTokenizer is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: NlpTokenizer
+    nodeId: interface-audit-domain-NlpTokenizer
+  confidence: 0.9
+- id: stereo-9
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: SentenceLengthConfig is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: SentenceLengthConfig
+    nodeId: interface-audit-domain-SentenceLengthConfig
+  confidence: 0.9
+- id: stereo-10
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: ScoreAggregator is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: ScoreAggregator
+    nodeId: interface-audit-domain-ScoreAggregator
+  confidence: 0.9
+- id: stereo-11
   pattern: Value Object
   category: architectural
   source: detected
@@ -752,7 +1354,7 @@ patterns:
     elementName: AuditReport
     nodeId: model-audit-domain-AuditReport
   confidence: 0.75
-- id: stereo-7
+- id: stereo-12
   pattern: Value Object
   category: architectural
   source: detected
@@ -764,7 +1366,7 @@ patterns:
     elementName: AuditableCourse
     nodeId: model-audit-domain-AuditableCourse
   confidence: 0.75
-- id: stereo-8
+- id: stereo-13
   pattern: Value Object
   category: architectural
   source: detected
@@ -776,7 +1378,7 @@ patterns:
     elementName: AuditContext
     nodeId: model-audit-domain-AuditContext
   confidence: 0.75
-- id: stereo-9
+- id: stereo-14
   pattern: Value Object
   category: architectural
   source: detected
@@ -788,7 +1390,7 @@ patterns:
     elementName: AuditableKnowledge
     nodeId: model-audit-domain-AuditableKnowledge
   confidence: 0.75
-- id: stereo-10
+- id: stereo-15
   pattern: Value Object
   category: architectural
   source: detected
@@ -800,7 +1402,7 @@ patterns:
     elementName: AuditableTopic
     nodeId: model-audit-domain-AuditableTopic
   confidence: 0.75
-- id: stereo-11
+- id: stereo-16
   pattern: Value Object
   category: architectural
   source: detected
@@ -812,7 +1414,7 @@ patterns:
     elementName: AuditableMilestone
     nodeId: model-audit-domain-AuditableMilestone
   confidence: 0.75
-- id: stereo-12
+- id: stereo-17
   pattern: Value Object
   category: architectural
   source: detected
@@ -824,7 +1426,115 @@ patterns:
     elementName: AuditableQuiz
     nodeId: model-audit-domain-AuditableQuiz
   confidence: 0.75
-- id: stereo-13
+- id: stereo-18
+  pattern: Enum
+  category: architectural
+  source: detected
+  severity: info
+  description: CefrLevel is an enum
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: CefrLevel
+    nodeId: model-audit-domain-CefrLevel
+  confidence: 0.95
+- id: stereo-19
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: TargetRange is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: TargetRange
+    nodeId: model-audit-domain-TargetRange
+  confidence: 0.75
+- id: stereo-20
+  pattern: Enum
+  category: architectural
+  source: detected
+  severity: info
+  description: AuditTarget is an enum
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: AuditTarget
+    nodeId: model-audit-domain-AuditTarget
+  confidence: 0.95
+- id: stereo-21
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: ScoredItem is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: ScoredItem
+    nodeId: model-audit-domain-ScoredItem
+  confidence: 0.75
+- id: stereo-22
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: NodeScores is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: NodeScores
+    nodeId: model-audit-domain-NodeScores
+  confidence: 0.75
+- id: stereo-23
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: QuizNode is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: QuizNode
+    nodeId: model-audit-domain-QuizNode
+  confidence: 0.75
+- id: stereo-24
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: KnowledgeNode is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: KnowledgeNode
+    nodeId: model-audit-domain-KnowledgeNode
+  confidence: 0.75
+- id: stereo-25
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: TopicNode is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: TopicNode
+    nodeId: model-audit-domain-TopicNode
+  confidence: 0.75
+- id: stereo-26
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: MilestoneNode is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: MilestoneNode
+    nodeId: model-audit-domain-MilestoneNode
+  confidence: 0.75
+- id: stereo-27
   pattern: Port
   category: architectural
   source: detected
@@ -836,7 +1546,7 @@ patterns:
     elementName: CourseRepository
     nodeId: interface-course-domain-CourseRepository
   confidence: 0.9
-- id: stereo-14
+- id: stereo-28
   pattern: Service
   category: architectural
   source: detected
@@ -848,7 +1558,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: stereo-15
+- id: stereo-29
   pattern: Enum
   category: architectural
   source: detected
@@ -860,7 +1570,7 @@ patterns:
     elementName: NodeKind
     nodeId: model-course-domain-NodeKind
   confidence: 0.95
-- id: stereo-16
+- id: stereo-30
   pattern: Enum
   category: architectural
   source: detected
@@ -872,7 +1582,7 @@ patterns:
     elementName: SentencePartKind
     nodeId: model-course-domain-SentencePartKind
   confidence: 0.95
-- id: stereo-17
+- id: stereo-31
   pattern: Entity
   category: architectural
   source: detected
@@ -884,7 +1594,7 @@ patterns:
     elementName: CourseEntity
     nodeId: model-course-domain-CourseEntity
   confidence: 0.8
-- id: stereo-18
+- id: stereo-32
   pattern: Entity
   category: architectural
   source: detected
@@ -896,7 +1606,7 @@ patterns:
     elementName: RootNodeEntity
     nodeId: model-course-domain-RootNodeEntity
   confidence: 0.8
-- id: stereo-19
+- id: stereo-33
   pattern: Entity
   category: architectural
   source: detected
@@ -908,7 +1618,7 @@ patterns:
     elementName: MilestoneEntity
     nodeId: model-course-domain-MilestoneEntity
   confidence: 0.8
-- id: stereo-20
+- id: stereo-34
   pattern: Entity
   category: architectural
   source: detected
@@ -920,7 +1630,7 @@ patterns:
     elementName: TopicEntity
     nodeId: model-course-domain-TopicEntity
   confidence: 0.8
-- id: stereo-21
+- id: stereo-35
   pattern: Entity
   category: architectural
   source: detected
@@ -932,7 +1642,7 @@ patterns:
     elementName: KnowledgeEntity
     nodeId: model-course-domain-KnowledgeEntity
   confidence: 0.8
-- id: stereo-22
+- id: stereo-36
   pattern: Entity
   category: architectural
   source: detected
@@ -944,7 +1654,7 @@ patterns:
     elementName: QuizTemplateEntity
     nodeId: model-course-domain-QuizTemplateEntity
   confidence: 0.8
-- id: stereo-23
+- id: stereo-37
   pattern: Value Object
   category: architectural
   source: detected
@@ -956,7 +1666,7 @@ patterns:
     elementName: FormEntity
     nodeId: model-course-domain-FormEntity
   confidence: 0.75
-- id: stereo-24
+- id: stereo-38
   pattern: Value Object
   category: architectural
   source: detected
@@ -968,7 +1678,55 @@ patterns:
     elementName: SentencePartEntity
     nodeId: model-course-domain-SentencePartEntity
   confidence: 0.75
-- id: anti-25
+- id: stereo-39
+  pattern: Service
+  category: architectural
+  source: detected
+  severity: info
+  description: AuditRunner is a service
+  involvedElements:
+  - type: interface
+    moduleName: audit-application
+    elementName: AuditRunner
+    nodeId: interface-audit-application-AuditRunner
+  confidence: 0.9
+- id: stereo-40
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: ReportFormatter is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: ReportFormatter
+    nodeId: interface-audit-cli-ReportFormatter
+  confidence: 0.9
+- id: stereo-41
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: AuditCli is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: AuditCli
+    nodeId: interface-audit-cli-AuditCli
+  confidence: 0.9
+- id: stereo-42
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: FormatterRegistry is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: FormatterRegistry
+    nodeId: interface-audit-cli-FormatterRegistry
+  confidence: 0.9
+- id: anti-43
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -980,7 +1738,31 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-26
+- id: anti-44
+  pattern: God Module
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: "audit-domain is too large: 16 models, 7 interfaces, 6 implementations"
+  involvedElements:
+  - type: module
+    moduleName: audit-domain
+    elementName: audit-domain
+    nodeId: module-audit-domain
+  confidence: 0.85
+- id: anti-45
+  pattern: Fat Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: ContentAnalyzer has 8 methods (consider ISP)
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: ContentAnalyzer
+    nodeId: interface-audit-domain-ContentAnalyzer
+  confidence: 0.8
+- id: anti-46
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -992,7 +1774,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-27
+- id: anti-47
   pattern: God Module
   category: anti-pattern
   source: detected
