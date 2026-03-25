@@ -11,12 +11,9 @@ import javax.annotation.processing.Generated;
 public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
 
     private static final String ANALYZER_NAME = "knowledge-title-length";
-    private static final int MIN_TITLE_LENGTH = 3;
-    private static final int MAX_TITLE_LENGTH = 80;
+    private static final double MAX_WEIGHTED_LENGTH = 28.0;
 
     private final List<ScoredItem> results = new ArrayList<>();
-    private String currentMilestoneId;
-    private String currentTopicId;
 
     @Override
     public String getName() { return ANALYZER_NAME; }
@@ -26,31 +23,57 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
 
     @Override
     public Void onMilestone(AuditableMilestone milestone, AuditContext ctx) {
-        currentMilestoneId = ctx.getMilestoneId();
         return null;
     }
 
     @Override
     public Void onTopic(AuditableTopic topic, AuditContext ctx) {
-        currentTopicId = ctx.getTopicId();
         return null;
     }
 
     @Override
     public Void onKnowledge(AuditableKnowledge knowledge, AuditContext ctx) {
-        String title = knowledge.getTitle() != null ? knowledge.getTitle() : "";
-        int len = title.length();
+        String title = knowledge.getTitle();
         double score;
-        if (len >= MIN_TITLE_LENGTH && len <= MAX_TITLE_LENGTH) {
-            score = 1.0;
-        } else if (len == 0) {
+        if (title == null || title.isEmpty()) {
             score = 0.0;
         } else {
-            score = Math.max(0.0, 1.0 - (double) Math.abs(len - MAX_TITLE_LENGTH) / MAX_TITLE_LENGTH);
+            double weightedLength = computeWeightedLength(title);
+            if (weightedLength <= MAX_WEIGHTED_LENGTH) {
+                score = 1.0;
+            } else {
+                score = Math.max(0.0, 1.0 - (weightedLength - MAX_WEIGHTED_LENGTH) / MAX_WEIGHTED_LENGTH);
+            }
         }
         results.add(new ScoredItem(ANALYZER_NAME, AuditTarget.KNOWLEDGE, score,
-                currentMilestoneId, currentTopicId, ctx.getKnowledgeId(), null));
+                ctx.getMilestoneId(), ctx.getTopicId(), ctx.getKnowledgeId(), null));
         return null;
+    }
+
+    private double computeWeightedLength(String text) {
+        double total = 0.0;
+        for (int i = 0; i < text.length(); i++) {
+            total += charWeight(text.charAt(i));
+        }
+        return total;
+    }
+
+    private double charWeight(char c) {
+        switch (c) {
+            case '$':
+            case '*':
+                return 0.0;
+            case 'i':
+            case ',':
+            case '.':
+                return 0.5;
+            case 'f':
+            case 't':
+            case '"':
+                return 0.7;
+            default:
+                return 1.0;
+        }
     }
 
     @Override

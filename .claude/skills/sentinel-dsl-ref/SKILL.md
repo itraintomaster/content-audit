@@ -102,12 +102,16 @@ interfaces:
 implementations:
   - name: string              # PascalCase (e.g., "PostgresOrderAdapter")
     implements: [string]       # Interfaces this class implements (always an array)
+    externalImplements:        # External framework/library interfaces (FQN with generics)
+      - string                 # e.g., "java.util.concurrent.Callable<Integer>"
     requiresInject:            # Constructor-injected dependencies
       - name: string           # camelCase dependency name
         type: string           # Interface or class type being injected
     types: [string]            # Framework annotations: Component, Service, Repository,
                                #   RestController, UseCase, Adapter
 ```
+
+**`externalImplements`** — Use when the implementation class must implement an interface from an external framework or the JDK (e.g., picocli's `Callable<Integer>`, Spring's `InitializingBean`, Jackson's `Serializer<T>`). These are NOT validated against sentinel interfaces and are passed through to the generated class declaration as-is. Always use the fully-qualified name.
 
 ## External Dependencies (root-level)
 

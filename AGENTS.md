@@ -115,7 +115,7 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 **Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure
 
-**Interfaces:** AuditRunner
+**Interfaces:** AuditRunner, CourseMapper
 
 **Implementations:** CourseToAuditableMapper, CachedNlpTokenizer, DefaultSentenceLengthConfig, DefaultAuditRunner
 

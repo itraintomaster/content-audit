@@ -736,11 +736,11 @@ modules:
         - ref:ctx
       fixtures:
       - id: milestone
-        type: AuditableMilestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
         construct:
           topics: "[]"
       - id: ctx
-        type: AuditContext
+        type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
           milestoneId: m1
           topicId: t1
@@ -748,7 +748,6 @@ modules:
       type: unit
       traceability:
         feature: F-KTLEN
-        rule: F-KTLEN-R008
       assert:
         doesNotThrow: true
     - name: "Given a KnowledgeTitleLengthAnalyzer, when onTopic is called, then it\
@@ -761,11 +760,11 @@ modules:
         - ref:ctx
       fixtures:
       - id: topic
-        type: AuditableTopic
+        type: com.learney.contentaudit.audit-domain.AuditableTopic
         construct:
           knowledge: "[]"
       - id: ctx
-        type: AuditContext
+        type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
           milestoneId: m1
           topicId: t1
@@ -773,7 +772,6 @@ modules:
       type: unit
       traceability:
         feature: F-KTLEN
-        rule: F-KTLEN-R008
       assert:
         doesNotThrow: true
     - name: "Given a KnowledgeTitleLengthAnalyzer, when onCourseComplete is called,\
@@ -786,11 +784,11 @@ modules:
         - ref:ctx
       fixtures:
       - id: course
-        type: AuditableCourse
+        type: com.learney.contentaudit.audit-domain.AuditableCourse
         construct:
           milestones: "[]"
       - id: ctx
-        type: AuditContext
+        type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
           milestoneId: m1
           topicId: t1
@@ -798,7 +796,6 @@ modules:
       type: unit
       traceability:
         feature: F-KTLEN
-        rule: F-KTLEN-R008
       assert:
         doesNotThrow: true
     - name: "Given two knowledges with different title lengths, when both are processed\
@@ -1296,18 +1293,20 @@ modules:
         - ref:ctx
       fixtures:
       - id: quiz
-        type: AuditableQuiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
-          sentence: A test sentence
-          tokenCount: 3
+          sentence: Hello world
+          tokenCount: 2
       - id: ctx
-        type: AuditContext
+        type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
           milestoneId: m1
           topicId: t1
           knowledgeId: k1
           quizId: q1
       type: unit
+      traceability:
+        feature: F-KTLEN
       assert:
         doesNotThrow: true
     - name: "Given a KnowledgeInstructionsLengthAnalyzer, when onMilestone is called,\
@@ -1320,17 +1319,18 @@ modules:
         - ref:ctx
       fixtures:
       - id: milestone
-        type: AuditableMilestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
         construct:
           topics: "[]"
       - id: ctx
-        type: AuditContext
+        type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
           milestoneId: m1
           topicId: t1
           knowledgeId: k1
-          quizId: q1
       type: unit
+      traceability:
+        feature: F-KTLEN
       assert:
         doesNotThrow: true
     - name: "Given a KnowledgeInstructionsLengthAnalyzer, when onTopic is called,\
@@ -1343,17 +1343,18 @@ modules:
         - ref:ctx
       fixtures:
       - id: topic
-        type: AuditableTopic
+        type: com.learney.contentaudit.audit-domain.AuditableTopic
         construct:
           knowledge: "[]"
       - id: ctx
-        type: AuditContext
+        type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
           milestoneId: m1
           topicId: t1
           knowledgeId: k1
-          quizId: q1
       type: unit
+      traceability:
+        feature: F-KTLEN
       assert:
         doesNotThrow: true
     - name: "Given a KnowledgeInstructionsLengthAnalyzer, when onCourseComplete is\
@@ -1366,17 +1367,18 @@ modules:
         - ref:ctx
       fixtures:
       - id: course
-        type: AuditableCourse
+        type: com.learney.contentaudit.audit-domain.AuditableCourse
         construct:
           milestones: "[]"
       - id: ctx
-        type: AuditContext
+        type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
           milestoneId: m1
           topicId: t1
           knowledgeId: k1
-          quizId: q1
       type: unit
+      traceability:
+        feature: F-KTLEN
       assert:
         doesNotThrow: true
     - name: "Given a fresh KnowledgeInstructionsLengthAnalyzer, when getResults is\
@@ -3540,6 +3542,11 @@ modules:
     sealed: false
     exposes:
     - signature: "runAudit(Path coursePath): AuditReport"
+  - name: CourseMapper
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "map(CourseEntity course): AuditableCourse"
   implementations:
   - name: CourseToAuditableMapper
     requiresInject:
@@ -3547,6 +3554,8 @@ modules:
       type: NlpTokenizer
     types:
     - Component
+    implements:
+    - CourseMapper
   - name: CachedNlpTokenizer
     requiresInject:
     - name: delegate
@@ -3566,6 +3575,8 @@ modules:
       type: CourseToAuditableMapper
     - name: contentAudit
       type: ContentAudit
+    - name: courseMapper
+      type: CourseMapper
     types:
     - Service
     tests:
@@ -4588,6 +4599,7 @@ modules:
     sealed: true
     exposes:
     - signature: "run(String[] args): int"
+    - signature: "call(): Integer"
   - name: FormatterRegistry
     stereotype: port
     sealed: false
@@ -4655,7 +4667,7 @@ modules:
         feature: F-CLI
         rule: F-CLI-R002
       assert:
-        returns: 1
+        returns: 2
     - name: "Given auditRunner throws RuntimeException, when run is called, then returns\
         \ non-zero exit code"
       target: DefaultAuditCli
@@ -4889,6 +4901,8 @@ modules:
         rule: F-CLI-R004
       assert:
         returns: 0
+    externalImplements:
+    - java.util.concurrent.Callable<Integer>
     implements:
     - AuditCli
   - name: DefaultFormatterRegistry

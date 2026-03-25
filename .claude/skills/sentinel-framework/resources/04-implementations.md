@@ -59,11 +59,53 @@ public IAuditEngine(List<ContentAnalyzer> contentAnalyzers, ScoreAggregator scor
 
 **Implements:** ContentAnalyzer
 
+**Tests that must pass:** 19
+
+- Given a KnowledgeTitleLengthAnalyzer, when getName is called, then returns knowledge-title-length [F-KTLEN/F-KTLEN-R008]
+- Given a KnowledgeTitleLengthAnalyzer, when getTarget is called, then returns KNOWLEDGE [F-KTLEN/F-KTLEN-R008]
+- Given a knowledge with null title, when onKnowledge is called and getResults checked, then score is 0.0 [F-KTLEN/F-KTLEN-R003]
+- Given a knowledge with empty title, when onKnowledge is called and getResults checked, then score is 0.0 [F-KTLEN/F-KTLEN-R003]
+- Given a knowledge with title within limit, when onKnowledge is called and getResults checked, then score is 1.0 [F-KTLEN/F-KTLEN-R003]
+- Given a knowledge with title at exactly 28 weighted chars, when onKnowledge is called and getResults checked, then score is 1.0 [F-KTLEN/F-KTLEN-R001]
+- Given a knowledge with title 'fitting' (weighted 5.1), when onKnowledge is called and getResults checked, then score is 1.0 [F-KTLEN/F-KTLEN-R002]
+- Given a knowledge with zero-weight title '$$$***', when onKnowledge is called and getResults checked, then score is 1.0 [F-KTLEN/F-KTLEN-R002]
+- Given a knowledge with mixed-weight title '$if,a' (weighted 2.7), when onKnowledge is called and getResults checked, then score is 1.0 [F-KTLEN/F-KTLEN-R002]
+- Given a knowledge with title of weighted length 35, when onKnowledge is called and getResults checked, then score is 0.75 [F-KTLEN/F-KTLEN-R003]
+- Given a knowledge with title of weighted length 42, when onKnowledge is called and getResults checked, then score is 0.5 [F-KTLEN/F-KTLEN-R003]
+- Given a knowledge with title of weighted length 56, when onKnowledge is called and getResults checked, then score is 0.0 [F-KTLEN/F-KTLEN-R003]
+- Given a knowledge with title of weighted length 70, when onKnowledge is called and getResults checked, then score is 0.0 [F-KTLEN/F-KTLEN-R003]
+- Given a KnowledgeTitleLengthAnalyzer, when onQuiz is called, then it completes without error [F-KTLEN/F-KTLEN-R008]
+- Given a KnowledgeTitleLengthAnalyzer, when onMilestone is called, then it completes without error [F-KTLEN]
+- Given a KnowledgeTitleLengthAnalyzer, when onTopic is called, then it completes without error [F-KTLEN]
+- Given a KnowledgeTitleLengthAnalyzer, when onCourseComplete is called, then it completes without error [F-KTLEN]
+- Given two knowledges with different title lengths, when both are processed and getResults checked, then returns two correctly scored items [F-KTLEN/F-KTLEN-R003]
+- Given no knowledges have been processed, when getResults is called, then returns empty list [F-KTLEN/F-KTLEN-R003]
+
 #### KnowledgeInstructionsLengthAnalyzer
 
 **Package:** `com.learney.contentaudit.auditdomain`
 
 **Implements:** ContentAnalyzer
+
+**Tests that must pass:** 17
+
+- Given a KnowledgeInstructionsLengthAnalyzer, when getName is called, then returns knowledge-instructions-length [F-KTLEN/F-KTLEN-R008]
+- Given a KnowledgeInstructionsLengthAnalyzer, when getTarget is called, then returns KNOWLEDGE [F-KTLEN/F-KTLEN-R008]
+- Given a knowledge with null instructions, when onKnowledge is called and getResults checked, then score is 1.0 [F-KTLEN/F-KTLEN-R006]
+- Given a knowledge with empty instructions, when onKnowledge is called and getResults checked, then score is 1.0 [F-KTLEN/F-KTLEN-R006]
+- Given a knowledge with instructions exactly at soft limit of 70 chars, when onKnowledge is called and getResults checked, then score is 1.0 [F-KTLEN/F-KTLEN-R005]
+- Given a knowledge with instructions of 30 chars within soft limit, when onKnowledge is called and getResults checked, then score is 1.0 [F-KTLEN/F-KTLEN-R006]
+- Given a knowledge with instructions of 71 chars just above soft limit, when onKnowledge is called and getResults checked, then score is 0.5 [F-KTLEN/F-KTLEN-R005]
+- Given a knowledge with instructions exactly at hard limit of 100 chars, when onKnowledge is called and getResults checked, then score is 0.5 [F-KTLEN/F-KTLEN-R005]
+- Given a knowledge with instructions of 85 chars between soft and hard limits, when onKnowledge is called and getResults checked, then score is 0.5 [F-KTLEN/F-KTLEN-R006]
+- Given a knowledge with instructions of 101 chars just above hard limit, when onKnowledge is called and getResults checked, then score is 0.0 [F-KTLEN/F-KTLEN-R005]
+- Given a knowledge with instructions of 200 chars well above hard limit, when onKnowledge is called and getResults checked, then score is 0.0 [F-KTLEN/F-KTLEN-R006]
+- Given a KnowledgeInstructionsLengthAnalyzer, when onQuiz is called, then it completes without error [F-KTLEN]
+- Given a KnowledgeInstructionsLengthAnalyzer, when onMilestone is called, then it completes without error [F-KTLEN]
+- Given a KnowledgeInstructionsLengthAnalyzer, when onTopic is called, then it completes without error [F-KTLEN]
+- Given a KnowledgeInstructionsLengthAnalyzer, when onCourseComplete is called, then it completes without error [F-KTLEN]
+- Given a fresh KnowledgeInstructionsLengthAnalyzer, when getResults is called without prior processing, then returns empty list
+- Given three knowledges with different instruction lengths, when all are processed and getResults checked, then correct scores are produced for each [F-KTLEN/F-KTLEN-R006]
 
 #### IContentAudit
 
@@ -143,7 +185,7 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 
 **Package:** `com.learney.contentaudit.auditapplication`
 
-**Implements:** 
+**Implements:** CourseMapper
 
 **Framework types:** Component
 
@@ -202,13 +244,15 @@ public CachedNlpTokenizer(NlpTokenizer delegate) {
 | `courseRepository` | `CourseRepository` |
 | `courseToAuditableMapper` | `CourseToAuditableMapper` |
 | `contentAudit` | `ContentAudit` |
+| `courseMapper` | `CourseMapper` |
 
 **Generated constructor:**
 ```java
-public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, ContentAudit contentAudit) {
+public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, ContentAudit contentAudit, CourseMapper courseMapper) {
     this.courseRepository = courseRepository;
     this.courseToAuditableMapper = courseToAuditableMapper;
     this.contentAudit = contentAudit;
+    this.courseMapper = courseMapper;
 }
 ```
 
@@ -302,14 +346,12 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | Name | Type |
 |------|------|
 | `auditRunner` | `AuditRunner` |
-| `formatters` | `Map<String,ReportFormatter>` |
 | `formatterRegistry` | `FormatterRegistry` |
 
 **Generated constructor:**
 ```java
-public DefaultAuditCli(AuditRunner auditRunner, Map<String,ReportFormatter> formatters, FormatterRegistry formatterRegistry) {
+public DefaultAuditCli(AuditRunner auditRunner, FormatterRegistry formatterRegistry) {
     this.auditRunner = auditRunner;
-    this.formatters = formatters;
     this.formatterRegistry = formatterRegistry;
 }
 ```

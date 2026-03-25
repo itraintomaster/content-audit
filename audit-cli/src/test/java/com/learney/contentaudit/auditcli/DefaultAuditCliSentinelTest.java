@@ -4,7 +4,6 @@ import com.learney.contentaudit.auditapplication.AuditRunner;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.NodeScores;
 import java.lang.RuntimeException;
-import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.processing.Generated;
@@ -26,9 +25,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 public class DefaultAuditCliSentinelTest {
   @Mock
   private AuditRunner auditRunner;
-
-  @Mock
-  private Map<String, ReportFormatter> formatters;
 
   @Mock
   private FormatterRegistry formatterRegistry;
@@ -54,7 +50,7 @@ public class DefaultAuditCliSentinelTest {
   @Tag("F-CLI")
   public void givenNoArgsProvidedWhenRunIsCalledThenReturnsNonzeroExitCode() {
     int result = sut.run();
-    Assertions.assertEquals(1, result);
+    Assertions.assertEquals(2, result);
   }
 
   @Test

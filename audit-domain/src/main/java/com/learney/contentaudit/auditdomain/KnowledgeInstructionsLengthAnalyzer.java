@@ -11,11 +11,10 @@ import javax.annotation.processing.Generated;
 public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
 
     private static final String ANALYZER_NAME = "knowledge-instructions-length";
-    private static final int MAX_INSTRUCTIONS_LENGTH = 300;
+    private static final int SOFT_LIMIT = 70;
+    private static final int HARD_LIMIT = 100;
 
     private final List<ScoredItem> results = new ArrayList<>();
-    private String currentMilestoneId;
-    private String currentTopicId;
 
     @Override
     public String getName() { return ANALYZER_NAME; }
@@ -24,25 +23,29 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
     public AuditTarget getTarget() { return AuditTarget.KNOWLEDGE; }
 
     @Override
-    public Void onMilestone(AuditableMilestone milestone, AuditContext ctx) {
-        currentMilestoneId = ctx.getMilestoneId();
-        return null;
-    }
+    public Void onMilestone(AuditableMilestone milestone, AuditContext ctx) { return null; }
 
     @Override
-    public Void onTopic(AuditableTopic topic, AuditContext ctx) {
-        currentTopicId = ctx.getTopicId();
-        return null;
-    }
+    public Void onTopic(AuditableTopic topic, AuditContext ctx) { return null; }
 
     @Override
     public Void onKnowledge(AuditableKnowledge knowledge, AuditContext ctx) {
-        String instructions = knowledge.getInstructions() != null ? knowledge.getInstructions() : "";
-        int len = instructions.length();
-        double score = len <= MAX_INSTRUCTIONS_LENGTH ? 1.0
-                : Math.max(0.0, 1.0 - (double) (len - MAX_INSTRUCTIONS_LENGTH) / MAX_INSTRUCTIONS_LENGTH);
+        String instructions = knowledge.getInstructions();
+        double score;
+        if (instructions == null || instructions.isEmpty()) {
+            score = 1.0;
+        } else {
+            int len = instructions.length();
+            if (len <= SOFT_LIMIT) {
+                score = 1.0;
+            } else if (len <= HARD_LIMIT) {
+                score = 0.5;
+            } else {
+                score = 0.0;
+            }
+        }
         results.add(new ScoredItem(ANALYZER_NAME, AuditTarget.KNOWLEDGE, score,
-                currentMilestoneId, currentTopicId, ctx.getKnowledgeId(), null));
+                ctx.getMilestoneId(), ctx.getTopicId(), ctx.getKnowledgeId(), null));
         return null;
     }
 
