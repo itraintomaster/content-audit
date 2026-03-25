@@ -1,0 +1,612 @@
+code: __proposal__
+description: "Tests for KnowledgeInstructionsLengthAnalyzer — instructions length\
+  \ scoring (R005, R006, R008)"
+modules:
+- name: audit-domain
+  implementations:
+  - name: KnowledgeInstructionsLengthAnalyzer
+    tests:
+    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when getName is called,\
+        \ then returns knowledge-instructions-length"
+      target: KnowledgeInstructionsLengthAnalyzer
+      invoke:
+        method: getName
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R008
+      assert:
+        returns: knowledge-instructions-length
+    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when getTarget is called,\
+        \ then returns KNOWLEDGE"
+      target: KnowledgeInstructionsLengthAnalyzer
+      invoke:
+        method: getTarget
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R008
+      assert:
+        returns: KNOWLEDGE
+    - name: "Given a knowledge with null instructions, when onKnowledge is called\
+        \ and getResults checked, then score is 1.0"
+      target: KnowledgeInstructionsLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes: "[]"
+          title: Some Title
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-instructions-length
+          target: KNOWLEDGE
+          score: 1.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R006
+    - name: "Given a knowledge with empty instructions, when onKnowledge is called\
+        \ and getResults checked, then score is 1.0"
+      target: KnowledgeInstructionsLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes: "[]"
+          title: Some Title
+          instructions: ""
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-instructions-length
+          target: KNOWLEDGE
+          score: 1.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R006
+    - name: "Given a knowledge with instructions exactly at soft limit of 70 chars,\
+        \ when onKnowledge is called and getResults checked, then score is 1.0"
+      target: KnowledgeInstructionsLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes: "[]"
+          title: Some Title
+          instructions: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-instructions-length
+          target: KNOWLEDGE
+          score: 1.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R005
+    - name: "Given a knowledge with instructions of 30 chars within soft limit, when\
+        \ onKnowledge is called and getResults checked, then score is 1.0"
+      target: KnowledgeInstructionsLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes: "[]"
+          title: Some Title
+          instructions: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-instructions-length
+          target: KNOWLEDGE
+          score: 1.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R006
+    - name: "Given a knowledge with instructions of 71 chars just above soft limit,\
+        \ when onKnowledge is called and getResults checked, then score is 0.5"
+      target: KnowledgeInstructionsLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes: "[]"
+          title: Some Title
+          instructions: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-instructions-length
+          target: KNOWLEDGE
+          score: 0.5
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R005
+    - name: "Given a knowledge with instructions exactly at hard limit of 100 chars,\
+        \ when onKnowledge is called and getResults checked, then score is 0.5"
+      target: KnowledgeInstructionsLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes: "[]"
+          title: Some Title
+          instructions: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-instructions-length
+          target: KNOWLEDGE
+          score: 0.5
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R005
+    - name: "Given a knowledge with instructions of 85 chars between soft and hard\
+        \ limits, when onKnowledge is called and getResults checked, then score is\
+        \ 0.5"
+      target: KnowledgeInstructionsLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes: "[]"
+          title: Some Title
+          instructions: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-instructions-length
+          target: KNOWLEDGE
+          score: 0.5
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R006
+    - name: "Given a knowledge with instructions of 101 chars just above hard limit,\
+        \ when onKnowledge is called and getResults checked, then score is 0.0"
+      target: KnowledgeInstructionsLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes: "[]"
+          title: Some Title
+          instructions: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-instructions-length
+          target: KNOWLEDGE
+          score: 0.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R005
+    - name: "Given a knowledge with instructions of 200 chars well above hard limit,\
+        \ when onKnowledge is called and getResults checked, then score is 0.0"
+      target: KnowledgeInstructionsLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes: "[]"
+          title: Some Title
+          instructions: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-instructions-length
+          target: KNOWLEDGE
+          score: 0.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R006
+    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when onQuiz is called, then\
+        \ it completes without error"
+      target: KnowledgeInstructionsLengthAnalyzer
+      invoke:
+        method: onQuiz
+        args:
+        - ref:quiz
+        - ref:ctx
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: A test sentence
+          tokenCount: 3
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: unit
+      assert:
+        doesNotThrow: true
+    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when onMilestone is called,\
+        \ then it completes without error"
+      target: KnowledgeInstructionsLengthAnalyzer
+      invoke:
+        method: onMilestone
+        args:
+        - ref:milestone
+        - ref:ctx
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: unit
+      assert:
+        doesNotThrow: true
+    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when onTopic is called,\
+        \ then it completes without error"
+      target: KnowledgeInstructionsLengthAnalyzer
+      invoke:
+        method: onTopic
+        args:
+        - ref:topic
+        - ref:ctx
+      fixtures:
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge: "[]"
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: unit
+      assert:
+        doesNotThrow: true
+    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when onCourseComplete is\
+        \ called, then it completes without error"
+      target: KnowledgeInstructionsLengthAnalyzer
+      invoke:
+        method: onCourseComplete
+        args:
+        - ref:course
+        - ref:ctx
+      fixtures:
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones: "[]"
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: unit
+      assert:
+        doesNotThrow: true
+    - name: "Given a fresh KnowledgeInstructionsLengthAnalyzer, when getResults is\
+        \ called without prior processing, then returns empty list"
+      target: KnowledgeInstructionsLengthAnalyzer
+      invoke:
+        method: getResults
+      type: unit
+      assert:
+        returns: "[]"
+    - name: "Given three knowledges with different instruction lengths, when all are\
+        \ processed and getResults checked, then correct scores are produced for each"
+      target: KnowledgeInstructionsLengthAnalyzer
+      fixtures:
+      - id: shortKnowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes: "[]"
+          title: Short Instructions
+          instructions: Do this exercise
+          isSentence: false
+      - id: mediumKnowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes: "[]"
+          title: Medium Instructions
+          instructions: Complete the following exercise by filling in the blanks with
+            the correct verb forms
+          isSentence: false
+      - id: longKnowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes: "[]"
+          title: Long Instructions
+          instructions: Read the following passage carefully and then answer each
+            of the questions below by selecting the most appropriate option from the
+            choices given
+          isSentence: false
+      - id: ctx1
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: ctx2
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k2
+      - id: ctx3
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k3
+      - id: expectedShort
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-instructions-length
+          target: KNOWLEDGE
+          score: 1.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedMedium
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-instructions-length
+          target: KNOWLEDGE
+          score: 0.5
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k2
+      - id: expectedLong
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-instructions-length
+          target: KNOWLEDGE
+          score: 0.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k3
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:shortKnowledge
+          - ref:ctx1
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:mediumKnowledge
+          - ref:ctx2
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:longKnowledge
+          - ref:ctx3
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedShort, ref:expectedMedium, ref:expectedLong]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R006

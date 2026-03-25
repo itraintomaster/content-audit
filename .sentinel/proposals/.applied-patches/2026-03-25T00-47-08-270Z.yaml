@@ -1,0 +1,674 @@
+code: __proposal__
+description: Tests for KnowledgeTitleLengthAnalyzer — knowledge title weighted-length
+  scoring
+modules:
+- name: audit-domain
+  implementations:
+  - name: KnowledgeTitleLengthAnalyzer
+    tests:
+    - name: "Given a KnowledgeTitleLengthAnalyzer, when getName is called, then returns\
+        \ knowledge-title-length"
+      target: KnowledgeTitleLengthAnalyzer
+      invoke:
+        method: getName
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R008
+      assert:
+        returns: knowledge-title-length
+    - name: "Given a KnowledgeTitleLengthAnalyzer, when getTarget is called, then\
+        \ returns KNOWLEDGE"
+      target: KnowledgeTitleLengthAnalyzer
+      invoke:
+        method: getTarget
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R008
+      assert:
+        returns: KNOWLEDGE
+    - name: "Given a knowledge with null title, when onKnowledge is called and getResults\
+        \ checked, then score is 0.0"
+      target: KnowledgeTitleLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes: "[]"
+          instructions: some instructions
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-title-length
+          target: KNOWLEDGE
+          score: 0.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: "Given a knowledge with empty title, when onKnowledge is called and getResults\
+        \ checked, then score is 0.0"
+      target: KnowledgeTitleLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          quizzes: "[]"
+          title: ""
+          instructions: some instructions
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-title-length
+          target: KNOWLEDGE
+          score: 0.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: "Given a knowledge with title within limit, when onKnowledge is called\
+        \ and getResults checked, then score is 1.0"
+      target: KnowledgeTitleLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: Short
+          quizzes: "[]"
+          instructions: some instructions
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-title-length
+          target: KNOWLEDGE
+          score: 1.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: "Given a knowledge with title at exactly 28 weighted chars, when onKnowledge\
+        \ is called and getResults checked, then score is 1.0"
+      target: KnowledgeTitleLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: aaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          quizzes: "[]"
+          instructions: some instructions
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-title-length
+          target: KNOWLEDGE
+          score: 1.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R001
+    - name: "Given a knowledge with title 'fitting' (weighted 5.1), when onKnowledge\
+        \ is called and getResults checked, then score is 1.0"
+      target: KnowledgeTitleLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: fitting
+          quizzes: "[]"
+          instructions: some instructions
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-title-length
+          target: KNOWLEDGE
+          score: 1.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R002
+    - name: "Given a knowledge with zero-weight title '$$$***', when onKnowledge is\
+        \ called and getResults checked, then score is 1.0"
+      target: KnowledgeTitleLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: $$$***
+          quizzes: "[]"
+          instructions: some instructions
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-title-length
+          target: KNOWLEDGE
+          score: 1.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R002
+    - name: "Given a knowledge with mixed-weight title '$if,a' (weighted 2.7), when\
+        \ onKnowledge is called and getResults checked, then score is 1.0"
+      target: KnowledgeTitleLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: "$if,a"
+          quizzes: "[]"
+          instructions: some instructions
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-title-length
+          target: KNOWLEDGE
+          score: 1.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R002
+    - name: "Given a knowledge with title of weighted length 35, when onKnowledge\
+        \ is called and getResults checked, then score is 0.75"
+      target: KnowledgeTitleLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          quizzes: "[]"
+          instructions: some instructions
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-title-length
+          target: KNOWLEDGE
+          score: 0.75
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: "Given a knowledge with title of weighted length 42, when onKnowledge\
+        \ is called and getResults checked, then score is 0.5"
+      target: KnowledgeTitleLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          quizzes: "[]"
+          instructions: some instructions
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-title-length
+          target: KNOWLEDGE
+          score: 0.5
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: "Given a knowledge with title of weighted length 56, when onKnowledge\
+        \ is called and getResults checked, then score is 0.0"
+      target: KnowledgeTitleLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          quizzes: "[]"
+          instructions: some instructions
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-title-length
+          target: KNOWLEDGE
+          score: 0.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: "Given a knowledge with title of weighted length 70, when onKnowledge\
+        \ is called and getResults checked, then score is 0.0"
+      target: KnowledgeTitleLengthAnalyzer
+      fixtures:
+      - id: knowledge
+        type: AuditableKnowledge
+        construct:
+          title: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          quizzes: "[]"
+          instructions: some instructions
+          isSentence: false
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expectedScore
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-title-length
+          target: KNOWLEDGE
+          score: 0.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: "Given a KnowledgeTitleLengthAnalyzer, when onQuiz is called, then it\
+        \ completes without error"
+      target: KnowledgeTitleLengthAnalyzer
+      invoke:
+        method: onQuiz
+        args:
+        - ref:quiz
+        - ref:ctx
+      fixtures:
+      - id: quiz
+        type: AuditableQuiz
+        construct:
+          sentence: some sentence
+          tokenCount: 3
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R008
+      assert:
+        doesNotThrow: true
+    - name: "Given a KnowledgeTitleLengthAnalyzer, when onMilestone is called, then\
+        \ it completes without error"
+      target: KnowledgeTitleLengthAnalyzer
+      invoke:
+        method: onMilestone
+        args:
+        - ref:milestone
+        - ref:ctx
+      fixtures:
+      - id: milestone
+        type: AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R008
+      assert:
+        doesNotThrow: true
+    - name: "Given a KnowledgeTitleLengthAnalyzer, when onTopic is called, then it\
+        \ completes without error"
+      target: KnowledgeTitleLengthAnalyzer
+      invoke:
+        method: onTopic
+        args:
+        - ref:topic
+        - ref:ctx
+      fixtures:
+      - id: topic
+        type: AuditableTopic
+        construct:
+          knowledge: "[]"
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R008
+      assert:
+        doesNotThrow: true
+    - name: "Given a KnowledgeTitleLengthAnalyzer, when onCourseComplete is called,\
+        \ then it completes without error"
+      target: KnowledgeTitleLengthAnalyzer
+      invoke:
+        method: onCourseComplete
+        args:
+        - ref:course
+        - ref:ctx
+      fixtures:
+      - id: course
+        type: AuditableCourse
+        construct:
+          milestones: "[]"
+      - id: ctx
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R008
+      assert:
+        doesNotThrow: true
+    - name: "Given two knowledges with different title lengths, when both are processed\
+        \ and getResults checked, then returns two correctly scored items"
+      target: KnowledgeTitleLengthAnalyzer
+      fixtures:
+      - id: knowledge1
+        type: AuditableKnowledge
+        construct:
+          title: Short
+          quizzes: "[]"
+          instructions: some instructions
+          isSentence: false
+      - id: knowledge2
+        type: AuditableKnowledge
+        construct:
+          title: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          quizzes: "[]"
+          instructions: some instructions
+          isSentence: false
+      - id: ctx1
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: ctx2
+        type: AuditContext
+        construct:
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k2
+      - id: expected1
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-title-length
+          target: KNOWLEDGE
+          score: 1.0
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k1
+      - id: expected2
+        type: ScoredItem
+        construct:
+          analyzerName: knowledge-title-length
+          target: KNOWLEDGE
+          score: 0.75
+          milestoneId: m1
+          topicId: t1
+          knowledgeId: k2
+      type: integration
+      steps:
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge1
+          - ref:ctx1
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge2
+          - ref:ctx2
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expected1, ref:expected2]"
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: "Given no knowledges have been processed, when getResults is called, then\
+        \ returns empty list"
+      target: KnowledgeTitleLengthAnalyzer
+      invoke:
+        method: getResults
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+      assert:
+        returns: "[]"
