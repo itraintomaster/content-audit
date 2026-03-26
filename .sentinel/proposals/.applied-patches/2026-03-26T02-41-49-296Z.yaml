@@ -1,0 +1,156 @@
+code: __proposal__
+description: "Evolve NlpTokenizer to produce rich NlpToken objects with linguistic\
+  \ data (lemma, POS tag, COCA frequency, stop/punct indicators). Introduce nlp-infrastructure\
+  \ module with SpaCy-backed implementation behind a factory. Move caching from audit-application\
+  \ to nlp-infrastructure. Update AuditableQuiz to carry full token list instead of\
+  \ count. Remove NlpTokenizer injection from SentenceLengthAnalyzer since tokens\
+  \ are now pre-computed during mapping."
+modules:
+- name: audit-domain
+  models:
+  - name: NlpToken
+    type: record
+    fields:
+    - name: text
+      type: String
+      description: Original text of the token
+    - name: lemma
+      type: String
+      description: Lemmatized form of the token
+    - name: posTag
+      type: String
+      description: "Universal Dependencies POS tag (NOUN, VERB, ADJ, etc.)"
+    - name: frequencyRank
+      type: Integer
+      description: COCA frequency ranking (nullable if not found)
+    - name: isStop
+      type: boolean
+      description: Whether this token is a stop word
+    - name: isPunct
+      type: boolean
+      description: Whether this token is punctuation
+    _change: add
+  - name: AuditableQuiz
+    type: record
+    fields:
+    - name: tokenCount
+      type: int
+      _change: delete
+    - name: tokens
+      type: List<NlpToken>
+      description: Pre-computed enriched NLP tokens for the quiz sentence
+      _change: add
+    _change: modify
+  interfaces:
+  - name: NlpTokenizer
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "analyzeTokens(String text): List<NlpToken>"
+    - signature: "analyzeTokensBatch(List<String> sentences): Map<String,List<NlpToken>>"
+    _change: modify
+  implementations:
+  - name: SentenceLengthAnalyzer
+    requiresInject:
+    - name: config
+      type: SentenceLengthConfig
+    implements:
+    - ContentAnalyzer
+    _change: modify
+  _change: modify
+- name: nlp-infrastructure
+  description: "Infrastructure module for NLP processing. Provides SpaCy-backed tokenization\
+    \ behind a factory, with internal caching. Only the factory and configuration\
+    \ model are public; all processing internals are package-private."
+  dependsOn:
+  - audit-domain
+  models:
+  - name: NlpTokenizerConfig
+    type: record
+    fields:
+    - name: pythonScriptPath
+      type: String
+      description: Path to the SpaCy Python processing script
+    - name: cocaDataPath
+      type: String
+      description: Path to the COCA frequency data file
+    - name: timeoutSeconds
+      type: int
+      description: Maximum seconds to wait for SpaCy process completion
+    _change: add
+  interfaces:
+  - name: NlpTokenizerFactory
+    stereotype: factory
+    sealed: true
+    exposes:
+    - signature: "create(NlpTokenizerConfig config): NlpTokenizer"
+    _change: add
+  implementations:
+  - name: DefaultNlpTokenizerFactory
+    types:
+    - Component
+    implements:
+    - NlpTokenizerFactory
+    _change: add
+  - name: SpacyNlpTokenizer
+    requiresInject:
+    - name: processRunner
+      type: SpacyProcessRunner
+    - name: resultParser
+      type: SpacyResultParser
+    implements:
+    - NlpTokenizer
+    _change: add
+  - name: SpacyProcessRunner
+    requiresInject:
+    - name: config
+      type: NlpTokenizerConfig
+    _change: add
+  - name: SpacyResultParser
+    _change: add
+  - name: CachedNlpTokenizer
+    requiresInject:
+    - name: delegate
+      type: NlpTokenizer
+    implements:
+    - NlpTokenizer
+    _change: add
+  patterns:
+  - type: Decorator
+    decorators:
+    - CachedNlpTokenizer
+    base: SpacyNlpTokenizer
+    suppressed: false
+    interface: NlpTokenizer
+  - type: Factory
+    implementations:
+    - DefaultNlpTokenizerFactory
+    suppressed: false
+    interface: NlpTokenizerFactory
+  _change: add
+- name: audit-application
+  dependsOn:
+  - audit-domain
+  - course-domain
+  - refiner-domain
+  - course-infrastructure
+  - nlp-infrastructure
+  implementations:
+  - name: CachedNlpTokenizer
+    _change: delete
+  patterns:
+  - type: Decorator
+    decorators:
+    - CachedNlpTokenizer
+    base: NlpTokenizer
+    suppressed: true
+    interface: NlpTokenizer
+  _change: modify
+- name: audit-cli
+  dependsOn:
+  - audit-application
+  - audit-domain
+  - course-domain
+  - course-infrastructure
+  - nlp-infrastructure
+  _change: modify

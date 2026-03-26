@@ -65,9 +65,9 @@ modules:
     fields:
     - name: sentence
       type: String
-    - name: tokenCount
-      type: int
-      description: Pre-computed token count from NLP tokenizer for the quiz sentence
+    - name: tokens
+      type: List<NlpToken>
+      description: Pre-computed enriched NLP tokens for the quiz sentence
   - name: CefrLevel
     type: enum
     fields:
@@ -160,6 +160,27 @@ modules:
       type: NodeScores
     - name: topics
       type: List<TopicNode>
+  - name: NlpToken
+    type: record
+    fields:
+    - name: text
+      type: String
+      description: Original text of the token
+    - name: lemma
+      type: String
+      description: Lemmatized form of the token
+    - name: posTag
+      type: String
+      description: "Universal Dependencies POS tag (NOUN, VERB, ADJ, etc.)"
+    - name: frequencyRank
+      type: Integer
+      description: COCA frequency ranking (nullable if not found)
+    - name: isStop
+      type: boolean
+      description: Whether this token is a stop word
+    - name: isPunct
+      type: boolean
+      description: Whether this token is punctuation
   interfaces:
   - name: ContentAudit
     stereotype: service
@@ -196,6 +217,8 @@ modules:
     exposes:
     - signature: "tokenize(String text): List<String>"
     - signature: "countTokens(String text): int"
+    - signature: "analyzeTokens(String text): List<NlpToken>"
+    - signature: "analyzeTokensBatch(List<String> sentences): Map<String,List<NlpToken>>"
   - name: SentenceLengthConfig
     stereotype: port
     sealed: false
@@ -3536,6 +3559,7 @@ modules:
   - course-domain
   - refiner-domain
   - course-infrastructure
+  - nlp-infrastructure
   interfaces:
   - name: AuditRunner
     stereotype: service
@@ -3556,12 +3580,6 @@ modules:
     - Component
     implements:
     - CourseMapper
-  - name: CachedNlpTokenizer
-    requiresInject:
-    - name: delegate
-      type: NlpTokenizer
-    implements:
-    - NlpTokenizer
   - name: DefaultSentenceLengthConfig
     types:
     - Component
@@ -4016,7 +4034,7 @@ modules:
     decorators:
     - CachedNlpTokenizer
     base: NlpTokenizer
-    suppressed: false
+    suppressed: true
     interface: NlpTokenizer
   scope: public
 - name: course-infrastructure
@@ -4588,6 +4606,7 @@ modules:
   - audit-domain
   - course-domain
   - course-infrastructure
+  - nlp-infrastructure
   interfaces:
   - name: ReportFormatter
     stereotype: port
@@ -4918,6 +4937,72 @@ modules:
     suppressed: false
     interface: ReportFormatter
   scope: public
+- name: nlp-infrastructure
+  description: "Infrastructure module for NLP processing. Provides SpaCy-backed tokenization\
+    \ behind a factory, with internal caching. Only the factory and configuration\
+    \ model are public; all processing internals are package-private."
+  dependsOn:
+  - audit-domain
+  patterns:
+  - type: Factory
+    implementations:
+    - SpacyNlpTokenizerFactory
+    suppressed: false
+    interface: NlpTokenizerFactory
+  packages:
+  - name: api
+    description: Public API surface for NLP tokenization. Exposes factory and configuration
+      to dependent modules.
+    visibility: internal
+    models:
+    - name: NlpTokenizerConfig
+      type: record
+      fields:
+      - name: pythonScriptPath
+        type: String
+        description: Path to the SpaCy Python processing script
+      - name: cocaDataPath
+        type: String
+        description: Path to the COCA frequency data file
+      - name: timeoutSeconds
+        type: int
+        description: Maximum seconds to wait for SpaCy process completion
+    interfaces:
+    - name: NlpTokenizerFactory
+      stereotype: factory
+      sealed: true
+      exposes:
+      - signature: "create(NlpTokenizerConfig config): NlpTokenizer"
+    implementations:
+    - name: SpacyNlpTokenizerFactory
+      types:
+      - Component
+      implements:
+      - NlpTokenizerFactory
+  - name: spacy
+    description: Internal SpaCy-backed tokenization implementation. Not visible outside
+      this package.
+    visibility: private
+    implementations:
+    - name: SpacyNlpTokenizer
+      requiresInject:
+      - name: processRunner
+        type: SpacyProcessRunner
+      - name: resultParser
+        type: SpacyResultParser
+      implements:
+      - NlpTokenizer
+    - name: SpacyProcessRunner
+      requiresInject:
+      - name: config
+        type: NlpTokenizerConfig
+    - name: SpacyResultParser
+    - name: CachedNlpTokenizer
+      requiresInject:
+      - name: delegate
+        type: NlpTokenizer
+      implements:
+      - NlpTokenizer
 language:
   name: java
   version: 17

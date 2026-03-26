@@ -1,0 +1,25 @@
+code: __proposal__
+description: Rename DefaultNlpTokenizerFactory to SpacyNlpTokenizerFactory to reflect
+  its SpaCy-specific nature
+modules:
+- name: nlp-infrastructure
+  patterns:
+  - type: Factory
+    implementations:
+    - SpacyNlpTokenizerFactory
+    suppressed: false
+    interface: NlpTokenizerFactory
+  packages:
+  - name: api
+    visibility: internal
+    implementations:
+    - name: DefaultNlpTokenizerFactory
+      _change: delete
+    - name: SpacyNlpTokenizerFactory
+      types:
+      - Component
+      implements:
+      - NlpTokenizerFactory
+      _change: add
+    _change: modify
+  _change: modify
