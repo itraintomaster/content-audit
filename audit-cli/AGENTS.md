@@ -18,6 +18,7 @@ Methods:
 Methods:
 
 - `run(String[] args): int`
+- `call(): Integer`
 
 ### FormatterRegistry (port)
 
@@ -42,7 +43,6 @@ Methods:
 **Dependencies (constructor injection):**
 
 - `auditRunner`: `AuditRunner`
-- `formatters`: `Map<String,ReportFormatter>`
 - `formatterRegistry`: `FormatterRegistry`
 
 **Tests that must pass:**
@@ -73,6 +73,12 @@ The following models and interfaces are available from dependencies. You can use
 Methods:
 
 - `runAudit(Path coursePath): AuditReport`
+
+### CourseMapper (port)
+
+Methods:
+
+- `map(CourseEntity course): AuditableCourse`
 
 ### From audit-domain
 

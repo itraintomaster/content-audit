@@ -32,6 +32,7 @@ If you encounter ANY of these situations, **STOP implementation of that componen
 2. A generated test expects access to types that are not in your boundary
 3. A method signature requires types from packages you are not allowed to access
 4. You need to modify a generated contract to satisfy a requirement
+5. An implementation class needs to implement an interface that is NOT listed in its `implements:` field in `sentinel.yaml`. This applies to **any** interface added directly in Java source — whether from the JDK (`Callable<Integer>`, `Runnable`), a third-party library, or another sentinel module — if it is not already present in the `implements:` list. The list must be complete: `sentinel generate` uses it to decide whether to preserve your code. If you add `implements` in Java but not in the YAML, the next regeneration will strip it.
 
 Do NOT attempt to continue with workarounds. Return the ESCALATION and let the architect resolve the architecture problem.
 
@@ -110,7 +111,7 @@ mvn compile -pl <module-name> -Dexec.skip=true
 mvn test -pl <module-name> -Dexec.skip=true
 ```
 
-The `-Dexec.skip=true` flag is required because the generated `pom.xml` includes a Sentinel plugin that runs during the generate-sources phase.
+The `-Dexec.skip=true` flag is required because the generated `pom.xml` includes a Sentinel plugin that runs during the validate phase.
 
 Fix any compilation errors or test failures before reporting completion.
 
@@ -124,6 +125,18 @@ ESCALATION:
   element: <InterfaceName.methodName() or ModelName.fieldName or Module.Class>
   reason: <why you need this to satisfy the business rules>
 ```
+
+For **missing interfaces**, use this format:
+
+```
+ESCALATION:
+  type: missing_interface
+  element: <ImplementationName>
+  interface: <fully qualified or simple interface name>
+  reason: <why this implementation needs this interface — e.g., picocli requires Callable<Integer>>
+```
+
+The architect will add the interface to `sentinel.yaml`. For sentinel-defined interfaces, it goes in `implements:`. For external framework/library interfaces (e.g., `Callable<Integer>`, `InitializingBean`), it goes in `externalImplements:` with the fully-qualified name.
 
 For **boundary violations**, use this expanded format:
 
@@ -262,7 +275,9 @@ public class MyAdapter implements MyPort {
 - `IAuditEngine` implements AuditEngine
   Inject: contentAnalyzers: List<ContentAnalyzer>, scoreAggregator: ScoreAggregator
 - `KnowledgeTitleLengthAnalyzer` implements ContentAnalyzer
+  Tests: Given a KnowledgeTitleLengthAnalyzer, when getName is called, then returns knowledge-title-length, Given a KnowledgeTitleLengthAnalyzer, when getTarget is called, then returns KNOWLEDGE, Given a knowledge with null title, when onKnowledge is called and getResults checked, then score is 0.0, Given a knowledge with empty title, when onKnowledge is called and getResults checked, then score is 0.0, Given a knowledge with title within limit, when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with title at exactly 28 weighted chars, when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with title 'fitting' (weighted 5.1), when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with zero-weight title '$$$***', when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with mixed-weight title '$if,a' (weighted 2.7), when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with title of weighted length 35, when onKnowledge is called and getResults checked, then score is 0.75, Given a knowledge with title of weighted length 42, when onKnowledge is called and getResults checked, then score is 0.5, Given a knowledge with title of weighted length 56, when onKnowledge is called and getResults checked, then score is 0.0, Given a knowledge with title of weighted length 70, when onKnowledge is called and getResults checked, then score is 0.0, Given a KnowledgeTitleLengthAnalyzer, when onQuiz is called, then it completes without error, Given a KnowledgeTitleLengthAnalyzer, when onMilestone is called, then it completes without error, Given a KnowledgeTitleLengthAnalyzer, when onTopic is called, then it completes without error, Given a KnowledgeTitleLengthAnalyzer, when onCourseComplete is called, then it completes without error, Given two knowledges with different title lengths, when both are processed and getResults checked, then returns two correctly scored items, Given no knowledges have been processed, when getResults is called, then returns empty list
 - `KnowledgeInstructionsLengthAnalyzer` implements ContentAnalyzer
+  Tests: Given a KnowledgeInstructionsLengthAnalyzer, when getName is called, then returns knowledge-instructions-length, Given a KnowledgeInstructionsLengthAnalyzer, when getTarget is called, then returns KNOWLEDGE, Given a knowledge with null instructions, when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with empty instructions, when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with instructions exactly at soft limit of 70 chars, when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with instructions of 30 chars within soft limit, when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with instructions of 71 chars just above soft limit, when onKnowledge is called and getResults checked, then score is 0.5, Given a knowledge with instructions exactly at hard limit of 100 chars, when onKnowledge is called and getResults checked, then score is 0.5, Given a knowledge with instructions of 85 chars between soft and hard limits, when onKnowledge is called and getResults checked, then score is 0.5, Given a knowledge with instructions of 101 chars just above hard limit, when onKnowledge is called and getResults checked, then score is 0.0, Given a knowledge with instructions of 200 chars well above hard limit, when onKnowledge is called and getResults checked, then score is 0.0, Given a KnowledgeInstructionsLengthAnalyzer, when onQuiz is called, then it completes without error, Given a KnowledgeInstructionsLengthAnalyzer, when onMilestone is called, then it completes without error, Given a KnowledgeInstructionsLengthAnalyzer, when onTopic is called, then it completes without error, Given a KnowledgeInstructionsLengthAnalyzer, when onCourseComplete is called, then it completes without error, Given a fresh KnowledgeInstructionsLengthAnalyzer, when getResults is called without prior processing, then returns empty list, Given three knowledges with different instruction lengths, when all are processed and getResults checked, then correct scores are produced for each
 - `IContentAudit` implements ContentAudit
   Inject: auditEngine: AuditEngine
 - `SentenceLengthAnalyzer` implements ContentAnalyzer
@@ -308,16 +323,18 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 - `AuditRunner`
   - `runAudit(Path coursePath): AuditReport`
+- `CourseMapper`
+  - `map(CourseEntity course): AuditableCourse`
 
 **Implementations (your work):**
 
-- `CourseToAuditableMapper` implements  [Component]
+- `CourseToAuditableMapper` implements CourseMapper [Component]
   Inject: nlpTokenizer: NlpTokenizer
 - `CachedNlpTokenizer` implements NlpTokenizer
   Inject: delegate: NlpTokenizer
 - `DefaultSentenceLengthConfig` implements SentenceLengthConfig [Component]
 - `DefaultAuditRunner` implements AuditRunner [Service]
-  Inject: courseRepository: CourseRepository, courseToAuditableMapper: CourseToAuditableMapper, contentAudit: ContentAudit
+  Inject: courseRepository: CourseRepository, courseToAuditableMapper: CourseToAuditableMapper, contentAudit: ContentAudit, courseMapper: CourseMapper
   Tests: Given a valid course path, when runAudit is called, then returns the audit report from the full chain, Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path, Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity, Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course, Given courseRepository throws an exception, when runAudit is called, then the exception propagates, Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates, Given contentAudit throws an exception, when runAudit is called, then the exception propagates, Given a course with no milestones, when runAudit is called, then returns the report from contentAudit
 
 #### course-infrastructure
@@ -344,6 +361,7 @@ CLI entry point for running content audits from the command line
   - `format(AuditReport report): String`
 - `AuditCli` [sealed]
   - `run(String[] args): int`
+  - `call(): Integer`
 - `FormatterRegistry`
   - `getFormatter(String formatName): ReportFormatter`
 
@@ -352,7 +370,7 @@ CLI entry point for running content audits from the command line
 - `TextReportFormatter` implements ReportFormatter
 - `JsonReportFormatter` implements ReportFormatter
 - `DefaultAuditCli` implements AuditCli
-  Inject: auditRunner: AuditRunner, formatters: Map<String,ReportFormatter>, formatterRegistry: FormatterRegistry
+  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry
   Tests: Given valid args with course path, when run is called, then returns exit code 0, Given no args provided, when run is called, then returns non-zero exit code, Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code, Given valid args with --format json, when run is called, then json formatter is looked up and returns 0, Given valid args without --format, when run is called, then text formatter is used by default and returns 0, Given valid args, when run is called, then auditRunner runAudit is invoked with course path, Given an unsupported format value, when run is called, then returns non-zero exit code, Given valid args and low audit scores, when run is called, then returns 0 regardless of score values
 - `DefaultFormatterRegistry` implements FormatterRegistry [Component]
 

@@ -95,7 +95,7 @@ project-root/
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 0 |
-| Interfaces | 1 (AuditRunner) |
+| Interfaces | 2 (AuditRunner, CourseMapper) |
 | Implementations | 4 (CourseToAuditableMapper, CachedNlpTokenizer, DefaultSentenceLengthConfig, DefaultAuditRunner) |
 | Packages | 0 |
 

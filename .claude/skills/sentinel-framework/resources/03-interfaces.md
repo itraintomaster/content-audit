@@ -145,6 +145,16 @@ Examples:
 |--------|--------|
 | `runAudit(Path coursePath): AuditReport` | (none) |
 
+#### CourseMapper (port)
+
+**Package:** `com.learney.contentaudit.auditapplication`
+
+**Implemented by:** CourseToAuditableMapper (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `map(CourseEntity course): AuditableCourse` | (none) |
+
 ### Module: audit-cli
 
 #### ReportFormatter (port)
@@ -166,6 +176,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `run(String[] args): int` | (none) |
+| `call(): Integer` | (none) |
 
 #### FormatterRegistry (port)
 

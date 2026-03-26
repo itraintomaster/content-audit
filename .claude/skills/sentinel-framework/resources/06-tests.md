@@ -132,6 +132,273 @@ public class MyAdapterSentinelTest {
 
 ## Tests in This System
 
+### KnowledgeTitleLengthAnalyzer (audit-domain)
+
+**Test class:** `KnowledgeTitleLengthAnalyzerSentinelTest`
+
+#### Given a KnowledgeTitleLengthAnalyzer, when getName is called, then returns knowledge-title-length
+
+- **Type:** unit
+- **Invokes:** `getName()`
+- **Asserts:** returns=knowledge-title-length
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R008
+
+#### Given a KnowledgeTitleLengthAnalyzer, when getTarget is called, then returns KNOWLEDGE
+
+- **Type:** unit
+- **Invokes:** `getTarget()`
+- **Asserts:** returns=KNOWLEDGE
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R008
+
+#### Given a knowledge with null title, when onKnowledge is called and getResults checked, then score is 0.0
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R003
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with empty title, when onKnowledge is called and getResults checked, then score is 0.0
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R003
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with title within limit, when onKnowledge is called and getResults checked, then score is 1.0
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R003
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with title at exactly 28 weighted chars, when onKnowledge is called and getResults checked, then score is 1.0
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R001
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with title 'fitting' (weighted 5.1), when onKnowledge is called and getResults checked, then score is 1.0
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R002
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with zero-weight title '$$$***', when onKnowledge is called and getResults checked, then score is 1.0
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R002
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with mixed-weight title '$if,a' (weighted 2.7), when onKnowledge is called and getResults checked, then score is 1.0
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R002
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with title of weighted length 35, when onKnowledge is called and getResults checked, then score is 0.75
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R003
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with title of weighted length 42, when onKnowledge is called and getResults checked, then score is 0.5
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R003
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with title of weighted length 56, when onKnowledge is called and getResults checked, then score is 0.0
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R003
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with title of weighted length 70, when onKnowledge is called and getResults checked, then score is 0.0
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R003
+- **Steps:** 2 integration steps
+
+#### Given a KnowledgeTitleLengthAnalyzer, when onQuiz is called, then it completes without error
+
+- **Type:** unit
+- **Fixtures:** quiz, ctx
+- **Invokes:** `onQuiz(ref:quiz, ref:ctx)`
+- **Asserts:** doesNotThrow
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R008
+
+#### Given a KnowledgeTitleLengthAnalyzer, when onMilestone is called, then it completes without error
+
+- **Type:** unit
+- **Fixtures:** milestone, ctx
+- **Invokes:** `onMilestone(ref:milestone, ref:ctx)`
+- **Asserts:** doesNotThrow
+- **Traceability:** feature=F-KTLEN
+
+#### Given a KnowledgeTitleLengthAnalyzer, when onTopic is called, then it completes without error
+
+- **Type:** unit
+- **Fixtures:** topic, ctx
+- **Invokes:** `onTopic(ref:topic, ref:ctx)`
+- **Asserts:** doesNotThrow
+- **Traceability:** feature=F-KTLEN
+
+#### Given a KnowledgeTitleLengthAnalyzer, when onCourseComplete is called, then it completes without error
+
+- **Type:** unit
+- **Fixtures:** course, ctx
+- **Invokes:** `onCourseComplete(ref:course, ref:ctx)`
+- **Asserts:** doesNotThrow
+- **Traceability:** feature=F-KTLEN
+
+#### Given two knowledges with different title lengths, when both are processed and getResults checked, then returns two correctly scored items
+
+- **Type:** integration
+- **Fixtures:** knowledge1, knowledge2, ctx1, ctx2, expected1, expected2
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R003
+- **Steps:** 3 integration steps
+
+#### Given no knowledges have been processed, when getResults is called, then returns empty list
+
+- **Type:** unit
+- **Invokes:** `getResults()`
+- **Asserts:** returns=[]
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R003
+
+### KnowledgeInstructionsLengthAnalyzer (audit-domain)
+
+**Test class:** `KnowledgeInstructionsLengthAnalyzerSentinelTest`
+
+#### Given a KnowledgeInstructionsLengthAnalyzer, when getName is called, then returns knowledge-instructions-length
+
+- **Type:** unit
+- **Invokes:** `getName()`
+- **Asserts:** returns=knowledge-instructions-length
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R008
+
+#### Given a KnowledgeInstructionsLengthAnalyzer, when getTarget is called, then returns KNOWLEDGE
+
+- **Type:** unit
+- **Invokes:** `getTarget()`
+- **Asserts:** returns=KNOWLEDGE
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R008
+
+#### Given a knowledge with null instructions, when onKnowledge is called and getResults checked, then score is 1.0
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R006
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with empty instructions, when onKnowledge is called and getResults checked, then score is 1.0
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R006
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with instructions exactly at soft limit of 70 chars, when onKnowledge is called and getResults checked, then score is 1.0
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R005
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with instructions of 30 chars within soft limit, when onKnowledge is called and getResults checked, then score is 1.0
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R006
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with instructions of 71 chars just above soft limit, when onKnowledge is called and getResults checked, then score is 0.5
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R005
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with instructions exactly at hard limit of 100 chars, when onKnowledge is called and getResults checked, then score is 0.5
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R005
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with instructions of 85 chars between soft and hard limits, when onKnowledge is called and getResults checked, then score is 0.5
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R006
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with instructions of 101 chars just above hard limit, when onKnowledge is called and getResults checked, then score is 0.0
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R005
+- **Steps:** 2 integration steps
+
+#### Given a knowledge with instructions of 200 chars well above hard limit, when onKnowledge is called and getResults checked, then score is 0.0
+
+- **Type:** integration
+- **Fixtures:** knowledge, ctx, expectedScore
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R006
+- **Steps:** 2 integration steps
+
+#### Given a KnowledgeInstructionsLengthAnalyzer, when onQuiz is called, then it completes without error
+
+- **Type:** unit
+- **Fixtures:** quiz, ctx
+- **Invokes:** `onQuiz(ref:quiz, ref:ctx)`
+- **Asserts:** doesNotThrow
+- **Traceability:** feature=F-KTLEN
+
+#### Given a KnowledgeInstructionsLengthAnalyzer, when onMilestone is called, then it completes without error
+
+- **Type:** unit
+- **Fixtures:** milestone, ctx
+- **Invokes:** `onMilestone(ref:milestone, ref:ctx)`
+- **Asserts:** doesNotThrow
+- **Traceability:** feature=F-KTLEN
+
+#### Given a KnowledgeInstructionsLengthAnalyzer, when onTopic is called, then it completes without error
+
+- **Type:** unit
+- **Fixtures:** topic, ctx
+- **Invokes:** `onTopic(ref:topic, ref:ctx)`
+- **Asserts:** doesNotThrow
+- **Traceability:** feature=F-KTLEN
+
+#### Given a KnowledgeInstructionsLengthAnalyzer, when onCourseComplete is called, then it completes without error
+
+- **Type:** unit
+- **Fixtures:** course, ctx
+- **Invokes:** `onCourseComplete(ref:course, ref:ctx)`
+- **Asserts:** doesNotThrow
+- **Traceability:** feature=F-KTLEN
+
+#### Given a fresh KnowledgeInstructionsLengthAnalyzer, when getResults is called without prior processing, then returns empty list
+
+- **Type:** unit
+- **Invokes:** `getResults()`
+- **Asserts:** returns=[]
+
+#### Given three knowledges with different instruction lengths, when all are processed and getResults checked, then correct scores are produced for each
+
+- **Type:** integration
+- **Fixtures:** shortKnowledge, mediumKnowledge, longKnowledge, ctx1, ctx2, ctx3, expectedShort, expectedMedium, expectedLong
+- **Traceability:** feature=F-KTLEN, rule=F-KTLEN-R006
+- **Steps:** 4 integration steps
+
 ### SentenceLengthAnalyzer (audit-domain)
 
 **Test class:** `SentenceLengthAnalyzerSentinelTest`
@@ -555,7 +822,7 @@ public class MyAdapterSentinelTest {
 
 - **Type:** unit
 - **Invokes:** `run()`
-- **Asserts:** returns=1
+- **Asserts:** returns=2
 - **Traceability:** feature=F-CLI, rule=F-CLI-R002
 
 #### Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code

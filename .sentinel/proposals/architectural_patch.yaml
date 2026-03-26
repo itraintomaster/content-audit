@@ -1,0 +1,41 @@
+code: __proposal__
+description: "Introduce CourseMapper interface for dependency inversion in audit-application,\
+  \ and add call() method to AuditCli interface in audit-cli; Add externalImplements\
+  \ Callable<Integer> to DefaultAuditCli for picocli runtime compatibility"
+modules:
+- name: audit-application
+  interfaces:
+  - name: CourseMapper
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "map(CourseEntity course): AuditableCourse"
+    _change: add
+  implementations:
+  - name: CourseToAuditableMapper
+    implements:
+    - CourseMapper
+    _change: modify
+  - name: DefaultAuditRunner
+    requiresInject:
+    - name: courseRepository
+      type: CourseRepository
+    - name: courseMapper
+      type: CourseMapper
+    - name: contentAudit
+      type: ContentAudit
+    _change: modify
+  _change: modify
+- name: audit-cli
+  interfaces:
+  - name: AuditCli
+    sealed: false
+    exposes:
+    - signature: "call(): Integer"
+    _change: modify
+  implementations:
+  - name: DefaultAuditCli
+    externalImplements:
+    - java.util.concurrent.Callable<Integer>
+    _change: modify
+  _change: modify

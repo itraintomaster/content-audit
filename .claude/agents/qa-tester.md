@@ -502,9 +502,11 @@ To create a handwritten test:
   Inject: contentAnalyzers: List<ContentAnalyzer>, scoreAggregator: ScoreAggregator
   **NO TESTS** — all 1 methods uncovered
 - `KnowledgeTitleLengthAnalyzer` implements ContentAnalyzer
-  **NO TESTS** — all 8 methods uncovered
+  Declarative tests (19): Given a KnowledgeTitleLengthAnalyzer, when getName is called, then returns knowledge-title-length, Given a KnowledgeTitleLengthAnalyzer, when getTarget is called, then returns KNOWLEDGE, Given a knowledge with null title, when onKnowledge is called and getResults checked, then score is 0.0, Given a knowledge with empty title, when onKnowledge is called and getResults checked, then score is 0.0, Given a knowledge with title within limit, when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with title at exactly 28 weighted chars, when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with title 'fitting' (weighted 5.1), when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with zero-weight title '$$$***', when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with mixed-weight title '$if,a' (weighted 2.7), when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with title of weighted length 35, when onKnowledge is called and getResults checked, then score is 0.75, Given a knowledge with title of weighted length 42, when onKnowledge is called and getResults checked, then score is 0.5, Given a knowledge with title of weighted length 56, when onKnowledge is called and getResults checked, then score is 0.0, Given a knowledge with title of weighted length 70, when onKnowledge is called and getResults checked, then score is 0.0, Given a KnowledgeTitleLengthAnalyzer, when onQuiz is called, then it completes without error, Given a KnowledgeTitleLengthAnalyzer, when onMilestone is called, then it completes without error, Given a KnowledgeTitleLengthAnalyzer, when onTopic is called, then it completes without error, Given a KnowledgeTitleLengthAnalyzer, when onCourseComplete is called, then it completes without error, Given two knowledges with different title lengths, when both are processed and getResults checked, then returns two correctly scored items, Given no knowledges have been processed, when getResults is called, then returns empty list
+  **Untested methods:** onKnowledge
 - `KnowledgeInstructionsLengthAnalyzer` implements ContentAnalyzer
-  **NO TESTS** — all 8 methods uncovered
+  Declarative tests (17): Given a KnowledgeInstructionsLengthAnalyzer, when getName is called, then returns knowledge-instructions-length, Given a KnowledgeInstructionsLengthAnalyzer, when getTarget is called, then returns KNOWLEDGE, Given a knowledge with null instructions, when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with empty instructions, when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with instructions exactly at soft limit of 70 chars, when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with instructions of 30 chars within soft limit, when onKnowledge is called and getResults checked, then score is 1.0, Given a knowledge with instructions of 71 chars just above soft limit, when onKnowledge is called and getResults checked, then score is 0.5, Given a knowledge with instructions exactly at hard limit of 100 chars, when onKnowledge is called and getResults checked, then score is 0.5, Given a knowledge with instructions of 85 chars between soft and hard limits, when onKnowledge is called and getResults checked, then score is 0.5, Given a knowledge with instructions of 101 chars just above hard limit, when onKnowledge is called and getResults checked, then score is 0.0, Given a knowledge with instructions of 200 chars well above hard limit, when onKnowledge is called and getResults checked, then score is 0.0, Given a KnowledgeInstructionsLengthAnalyzer, when onQuiz is called, then it completes without error, Given a KnowledgeInstructionsLengthAnalyzer, when onMilestone is called, then it completes without error, Given a KnowledgeInstructionsLengthAnalyzer, when onTopic is called, then it completes without error, Given a KnowledgeInstructionsLengthAnalyzer, when onCourseComplete is called, then it completes without error, Given a fresh KnowledgeInstructionsLengthAnalyzer, when getResults is called without prior processing, then returns empty list, Given three knowledges with different instruction lengths, when all are processed and getResults checked, then correct scores are produced for each
+  **Untested methods:** onKnowledge
 - `IContentAudit` implements ContentAudit
   Inject: auditEngine: AuditEngine
   **NO TESTS** — all 1 methods uncovered
@@ -535,18 +537,21 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 - `AuditRunner`
   - `runAudit(Path coursePath): AuditReport`
+- `CourseMapper`
+  - `map(CourseEntity course): AuditableCourse`
 
 **Implementations:**
 
-- `CourseToAuditableMapper` [Component]
+- `CourseToAuditableMapper` implements CourseMapper [Component]
   Inject: nlpTokenizer: NlpTokenizer
+  **NO TESTS** — all 1 methods uncovered
 - `CachedNlpTokenizer` implements NlpTokenizer
   Inject: delegate: NlpTokenizer
   **NO TESTS** — all 2 methods uncovered
 - `DefaultSentenceLengthConfig` implements SentenceLengthConfig [Component]
   **NO TESTS** — all 2 methods uncovered
 - `DefaultAuditRunner` implements AuditRunner [Service]
-  Inject: courseRepository: CourseRepository, courseToAuditableMapper: CourseToAuditableMapper, contentAudit: ContentAudit
+  Inject: courseRepository: CourseRepository, courseToAuditableMapper: CourseToAuditableMapper, contentAudit: ContentAudit, courseMapper: CourseMapper
   Declarative tests (8): Given a valid course path, when runAudit is called, then returns the audit report from the full chain, Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path, Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity, Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course, Given courseRepository throws an exception, when runAudit is called, then the exception propagates, Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates, Given contentAudit throws an exception, when runAudit is called, then the exception propagates, Given a course with no milestones, when runAudit is called, then returns the report from contentAudit
 
 ### course-infrastructure
@@ -570,6 +575,7 @@ CLI entry point for running content audits from the command line
   - `format(AuditReport report): String`
 - `AuditCli` [sealed]
   - `run(String[] args): int`
+  - `call(): Integer`
 - `FormatterRegistry`
   - `getFormatter(String formatName): ReportFormatter`
 
@@ -580,8 +586,9 @@ CLI entry point for running content audits from the command line
 - `JsonReportFormatter` implements ReportFormatter
   **NO TESTS** — all 1 methods uncovered
 - `DefaultAuditCli` implements AuditCli
-  Inject: auditRunner: AuditRunner, formatters: Map<String,ReportFormatter>, formatterRegistry: FormatterRegistry
+  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry
   Declarative tests (8): Given valid args with course path, when run is called, then returns exit code 0, Given no args provided, when run is called, then returns non-zero exit code, Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code, Given valid args with --format json, when run is called, then json formatter is looked up and returns 0, Given valid args without --format, when run is called, then text formatter is used by default and returns 0, Given valid args, when run is called, then auditRunner runAudit is invoked with course path, Given an unsupported format value, when run is called, then returns non-zero exit code, Given valid args and low audit scores, when run is called, then returns 0 regardless of score values
+  **Untested methods:** call
 - `DefaultFormatterRegistry` implements FormatterRegistry [Component]
   **NO TESTS** — all 1 methods uncovered
 

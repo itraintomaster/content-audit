@@ -22,7 +22,7 @@
     <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>5.10.2</junit.version>
-    <mockito.version>5.11.0</mockito.version>
+    <mockito.version>5.23.0</mockito.version>
   </properties>
 
   <dependencies>
@@ -70,7 +70,6 @@
             --add-opens java.base/java.lang.reflect=ALL-UNNAMED
             --add-opens java.base/java.lang.invoke=ALL-UNNAMED
             --add-opens java.base/java.util=ALL-UNNAMED
-            -Dnet.bytebuddy.experimental=true
           </argLine>
           <useManifestOnlyJar>false</useManifestOnlyJar>
         </configuration>

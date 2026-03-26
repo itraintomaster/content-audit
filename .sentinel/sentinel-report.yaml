@@ -1,4 +1,4 @@
-generatedAt: 2026-03-23T00:22:22.546979Z
+generatedAt: 2026-03-25T02:32:09.322574Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -244,6 +244,210 @@ features:
       passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
+- id: FEAT-KTLEN
+  state: IMPLEMENTING
+  requirementFile: requirements/2026-03-22.01_knowledge-titles-length/requirement.yaml
+  rulesCoverage:
+  - ruleId: F-KTLEN-R001
+    state: PASSING
+    tests:
+    - name: "Given a knowledge with title at exactly 28 weighted chars, when onKnowledge\
+        \ is called and getResults checked, then score is 1.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+  - ruleId: F-KTLEN-R002
+    state: PASSING
+    tests:
+    - name: "Given a knowledge with title 'fitting' (weighted 5.1), when onKnowledge\
+        \ is called and getResults checked, then score is 1.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+    - name: "Given a knowledge with zero-weight title '$$$***', when onKnowledge is\
+        \ called and getResults checked, then score is 1.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+    - name: "Given a knowledge with mixed-weight title '$if,a' (weighted 2.7), when\
+        \ onKnowledge is called and getResults checked, then score is 1.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+  - ruleId: F-KTLEN-R003
+    state: PASSING
+    tests:
+    - name: "Given a knowledge with null title, when onKnowledge is called and getResults\
+        \ checked, then score is 0.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+    - name: "Given a knowledge with empty title, when onKnowledge is called and getResults\
+        \ checked, then score is 0.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+    - name: "Given a knowledge with title within limit, when onKnowledge is called\
+        \ and getResults checked, then score is 1.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+    - name: "Given a knowledge with title of weighted length 35, when onKnowledge\
+        \ is called and getResults checked, then score is 0.75"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+    - name: "Given a knowledge with title of weighted length 42, when onKnowledge\
+        \ is called and getResults checked, then score is 0.5"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+    - name: "Given a knowledge with title of weighted length 56, when onKnowledge\
+        \ is called and getResults checked, then score is 0.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+    - name: "Given a knowledge with title of weighted length 70, when onKnowledge\
+        \ is called and getResults checked, then score is 0.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+    - name: "Given two knowledges with different title lengths, when both are processed\
+        \ and getResults checked, then returns two correctly scored items"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+    - name: "Given no knowledges have been processed, when getResults is called, then\
+        \ returns empty list"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+  - ruleId: F-KTLEN-R004
+    state: NO_TESTS
+  - ruleId: F-KTLEN-R005
+    state: PASSING
+    tests:
+    - name: "Given a knowledge with instructions exactly at soft limit of 70 chars,\
+        \ when onKnowledge is called and getResults checked, then score is 1.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: "Given a knowledge with instructions of 71 chars just above soft limit,\
+        \ when onKnowledge is called and getResults checked, then score is 0.5"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: "Given a knowledge with instructions exactly at hard limit of 100 chars,\
+        \ when onKnowledge is called and getResults checked, then score is 0.5"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: "Given a knowledge with instructions of 101 chars just above hard limit,\
+        \ when onKnowledge is called and getResults checked, then score is 0.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+  - ruleId: F-KTLEN-R006
+    state: PASSING
+    tests:
+    - name: "Given a knowledge with null instructions, when onKnowledge is called\
+        \ and getResults checked, then score is 1.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: "Given a knowledge with empty instructions, when onKnowledge is called\
+        \ and getResults checked, then score is 1.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: "Given a knowledge with instructions of 30 chars within soft limit, when\
+        \ onKnowledge is called and getResults checked, then score is 1.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: "Given a knowledge with instructions of 85 chars between soft and hard\
+        \ limits, when onKnowledge is called and getResults checked, then score is\
+        \ 0.5"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: "Given a knowledge with instructions of 200 chars well above hard limit,\
+        \ when onKnowledge is called and getResults checked, then score is 0.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: "Given three knowledges with different instruction lengths, when all are\
+        \ processed and getResults checked, then correct scores are produced for each"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+  - ruleId: F-KTLEN-R007
+    state: NO_TESTS
+  - ruleId: F-KTLEN-R008
+    state: PASSING
+    tests:
+    - name: "Given a KnowledgeTitleLengthAnalyzer, when getName is called, then returns\
+        \ knowledge-title-length"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+    - name: "Given a KnowledgeTitleLengthAnalyzer, when getTarget is called, then\
+        \ returns KNOWLEDGE"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+    - name: "Given a KnowledgeTitleLengthAnalyzer, when onQuiz is called, then it\
+        \ completes without error"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when getName is called,\
+        \ then returns knowledge-instructions-length"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when getTarget is called,\
+        \ then returns KNOWLEDGE"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+  journeysCoverage:
+  - journeyId: F-KTLEN-J001
+    state: NO_TESTS
+  - journeyId: F-KTLEN-J002
+    state: NO_TESTS
+  - journeyId: F-KTLEN-J003
+    state: NO_TESTS
+  - journeyId: F-KTLEN-J004
+    state: NO_TESTS
 - id: FEAT-SLEN
   state: IMPLEMENTING
   requirementFile: requirements/2026-03-18.01_sentence-length/requirement.yaml
@@ -627,9 +831,156 @@ elements:
   - name: KnowledgeTitleLengthAnalyzer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzer.java
+    tests:
+    - name: "Given a KnowledgeTitleLengthAnalyzer, when getName is called, then returns\
+        \ knowledge-title-length"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a KnowledgeTitleLengthAnalyzer, when getTarget is called, then\
+        \ returns KNOWLEDGE"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with null title, when onKnowledge is called and getResults\
+        \ checked, then score is 0.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with empty title, when onKnowledge is called and getResults\
+        \ checked, then score is 0.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with title within limit, when onKnowledge is called\
+        \ and getResults checked, then score is 1.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with title at exactly 28 weighted chars, when onKnowledge\
+        \ is called and getResults checked, then score is 1.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with title 'fitting' (weighted 5.1), when onKnowledge\
+        \ is called and getResults checked, then score is 1.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with zero-weight title '$$$***', when onKnowledge is\
+        \ called and getResults checked, then score is 1.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with mixed-weight title '$if,a' (weighted 2.7), when\
+        \ onKnowledge is called and getResults checked, then score is 1.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with title of weighted length 35, when onKnowledge\
+        \ is called and getResults checked, then score is 0.75"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with title of weighted length 42, when onKnowledge\
+        \ is called and getResults checked, then score is 0.5"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with title of weighted length 56, when onKnowledge\
+        \ is called and getResults checked, then score is 0.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with title of weighted length 70, when onKnowledge\
+        \ is called and getResults checked, then score is 0.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a KnowledgeTitleLengthAnalyzer, when onQuiz is called, then it\
+        \ completes without error"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a KnowledgeTitleLengthAnalyzer, when onMilestone is called, then\
+        \ it completes without error"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a KnowledgeTitleLengthAnalyzer, when onTopic is called, then it\
+        \ completes without error"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given a KnowledgeTitleLengthAnalyzer, when onCourseComplete is called,\
+        \ then it completes without error"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given two knowledges with different title lengths, when both are processed\
+        \ and getResults checked, then returns two correctly scored items"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: "Given no knowledges have been processed, when getResults is called, then\
+        \ returns empty list"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
   - name: KnowledgeInstructionsLengthAnalyzer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzer.java
+    tests:
+    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when getName is called,\
+        \ then returns knowledge-instructions-length"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when getTarget is called,\
+        \ then returns KNOWLEDGE"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with null instructions, when onKnowledge is called\
+        \ and getResults checked, then score is 1.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with empty instructions, when onKnowledge is called\
+        \ and getResults checked, then score is 1.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with instructions exactly at soft limit of 70 chars,\
+        \ when onKnowledge is called and getResults checked, then score is 1.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with instructions of 30 chars within soft limit, when\
+        \ onKnowledge is called and getResults checked, then score is 1.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with instructions of 71 chars just above soft limit,\
+        \ when onKnowledge is called and getResults checked, then score is 0.5"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with instructions exactly at hard limit of 100 chars,\
+        \ when onKnowledge is called and getResults checked, then score is 0.5"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with instructions of 85 chars between soft and hard\
+        \ limits, when onKnowledge is called and getResults checked, then score is\
+        \ 0.5"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with instructions of 101 chars just above hard limit,\
+        \ when onKnowledge is called and getResults checked, then score is 0.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given a knowledge with instructions of 200 chars well above hard limit,\
+        \ when onKnowledge is called and getResults checked, then score is 0.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when onQuiz is called, then\
+        \ it completes without error"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when onMilestone is called,\
+        \ then it completes without error"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when onTopic is called,\
+        \ then it completes without error"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when onCourseComplete is\
+        \ called, then it completes without error"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given a fresh KnowledgeInstructionsLengthAnalyzer, when getResults is\
+        \ called without prior processing, then returns empty list"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: "Given three knowledges with different instruction lengths, when all are\
+        \ processed and getResults checked, then correct scores are produced for each"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
   - name: IContentAudit
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/IContentAudit.java
@@ -1193,8 +1544,8 @@ elements:
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultFormatterRegistry.java
 testSummary:
-  total: 67
-  passing: 67
+  total: 103
+  passing: 103
   failing: 0
   notImplemented: 0
 patterns:

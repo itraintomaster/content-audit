@@ -11,11 +11,17 @@ Methods:
 
 - `runAudit(Path coursePath): AuditReport`
 
+### CourseMapper (port)
+
+Methods:
+
+- `map(CourseEntity course): AuditableCourse`
+
 ## Implementations
 
 ### CourseToAuditableMapper
 
-**Implements:** 
+**Implements:** CourseMapper
 
 **Types:** Component
 
@@ -48,6 +54,7 @@ Methods:
 - `courseRepository`: `CourseRepository`
 - `courseToAuditableMapper`: `CourseToAuditableMapper`
 - `contentAudit`: `ContentAudit`
+- `courseMapper`: `CourseMapper`
 
 **Tests that must pass:**
 

@@ -38,6 +38,9 @@ public class DefaultAuditRunnerSentinelTest {
   @Mock
   private ContentAudit contentAudit;
 
+  @Mock
+  private CourseMapper courseMapper;
+
   @InjectMocks
   private DefaultAuditRunner sut;
 
