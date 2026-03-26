@@ -5,6 +5,7 @@ import com.learney.contentaudit.auditdomain.AuditableKnowledge;
 import com.learney.contentaudit.auditdomain.AuditableMilestone;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.NlpToken;
 import com.learney.contentaudit.auditdomain.NlpTokenizer;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.FormEntity;
@@ -14,7 +15,9 @@ import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.coursedomain.TopicEntity;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.annotation.processing.Generated;
 
@@ -24,6 +27,7 @@ import javax.annotation.processing.Generated;
 )
 public class CourseToAuditableMapper implements CourseMapper {
     private final NlpTokenizer nlpTokenizer;
+    private Map<String, List<NlpToken>> tokenCache = Map.of();
 
     public CourseToAuditableMapper(NlpTokenizer nlpTokenizer) {
         this.nlpTokenizer = nlpTokenizer;
@@ -31,7 +35,14 @@ public class CourseToAuditableMapper implements CourseMapper {
 
     @Override
     public AuditableCourse map(CourseEntity course) {
-        if (course == null || course.getRoot() == null) {
+        if (course == null) {
+            return new AuditableCourse(List.of());
+        }
+
+        List<String> allSentences = collectAllSentences(course);
+        tokenCache = nlpTokenizer.analyzeTokensBatch(allSentences);
+
+        if (course.getRoot() == null) {
             return new AuditableCourse(List.of());
         }
         List<MilestoneEntity> milestones = course.getRoot().getMilestones();
@@ -89,8 +100,44 @@ public class CourseToAuditableMapper implements CourseMapper {
 
     private AuditableQuiz mapQuiz(QuizTemplateEntity qt) {
         String sentence = buildSentence(qt);
-        int tokenCount = sentence.isEmpty() ? 0 : nlpTokenizer.countTokens(sentence);
-        return new AuditableQuiz(sentence, tokenCount);
+        List<NlpToken> tokens = tokenCache.getOrDefault(sentence, List.of());
+        return new AuditableQuiz(sentence, tokens);
+    }
+
+    private List<String> collectAllSentences(CourseEntity course) {
+        List<String> sentences = new ArrayList<>();
+        if (course.getRoot() == null) {
+            return sentences;
+        }
+        List<MilestoneEntity> milestones = course.getRoot().getMilestones();
+        if (milestones == null) {
+            return sentences;
+        }
+        for (MilestoneEntity milestone : milestones) {
+            List<TopicEntity> topics = milestone.getTopics();
+            if (topics == null) {
+                continue;
+            }
+            for (TopicEntity topic : topics) {
+                List<KnowledgeEntity> knowledges = topic.getKnowledges();
+                if (knowledges == null) {
+                    continue;
+                }
+                for (KnowledgeEntity knowledge : knowledges) {
+                    List<QuizTemplateEntity> quizTemplates = knowledge.getQuizTemplates();
+                    if (quizTemplates == null) {
+                        continue;
+                    }
+                    for (QuizTemplateEntity qt : quizTemplates) {
+                        String sentence = buildSentence(qt);
+                        if (!sentence.isEmpty()) {
+                            sentences.add(sentence);
+                        }
+                    }
+                }
+            }
+        }
+        return sentences;
     }
 
     private String buildSentence(QuizTemplateEntity qt) {

@@ -95,7 +95,7 @@ If the user requests work that **skips a phase**, do NOT proceed silently. Inste
 
 ### audit-domain
 
-**Models:** AuditReport, AuditableCourse, AuditContext, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, ScoredItem, NodeScores, QuizNode, KnowledgeNode, TopicNode, MilestoneNode
+**Models:** AuditReport, AuditableCourse, AuditContext, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, ScoredItem, NodeScores, QuizNode, KnowledgeNode, TopicNode, MilestoneNode, NlpToken
 
 **Interfaces:** ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator
 
@@ -113,11 +113,11 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 ### audit-application
 
-**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure
+**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure
 
 **Interfaces:** AuditRunner, CourseMapper
 
-**Implementations:** CourseToAuditableMapper, CachedNlpTokenizer, DefaultSentenceLengthConfig, DefaultAuditRunner
+**Implementations:** CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner
 
 ### course-infrastructure
 
@@ -131,11 +131,21 @@ Infrastructure module for course persistence. Contains the filesystem adapter th
 
 CLI entry point for running content audits from the command line
 
-**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure
+**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure
 
 **Interfaces:** ReportFormatter, AuditCli, FormatterRegistry
 
 **Implementations:** TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry
+
+### nlp-infrastructure
+
+Infrastructure module for NLP processing. Provides SpaCy-backed tokenization behind a factory, with internal caching. Only the factory and configuration model are public; all processing internals are package-private.
+
+**Depends on:** audit-domain
+
+**Models:** NlpTokenizerConfig
+
+**Interfaces:** NlpTokenizerFactory
 
 ## Boundaries
 
@@ -144,7 +154,8 @@ CLI entry point for running content audits from the command line
 | audit-domain | (none) |
 | course-domain | (none) |
 | refiner-domain | (none) |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure |
 | course-infrastructure | course-domain |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure |
+| nlp-infrastructure | audit-domain |
 

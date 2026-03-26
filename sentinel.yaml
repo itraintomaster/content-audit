@@ -1557,11 +1557,20 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: quiz
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: Hello world test
-          tokenCount: 3
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken]"
       - id: ctxQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -1598,6 +1607,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R001
+      _change: modify
     - name: "Given a non-numeric milestoneId, when onQuiz is called, then quiz is\
         \ excluded and getResults is empty"
       target: SentenceLengthAnalyzer
@@ -1627,11 +1637,20 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: quiz
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: Hello world test
-          tokenCount: 3
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken]"
       - id: ctxQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -1669,6 +1688,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R001
+      _change: modify
     - name: "Given no target range configured for level, when onQuiz is called, then\
         \ quiz is excluded and getResults is empty"
       target: SentenceLengthAnalyzer
@@ -1698,11 +1718,20 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: quiz
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: She likes apples
-          tokenCount: 3
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken]"
       - id: ctxQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -1746,97 +1775,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R012
-    - name: "Given a valid sentence quiz, when onQuiz is called, then nlpTokenizer\
-        \ countTokens is called with quiz sentence"
-      target: SentenceLengthAnalyzer
-      fixtures:
-      - id: milestone
-        type: com.learney.contentaudit.audit-domain.AuditableMilestone
-        construct:
-          topics: "[]"
-      - id: ctxMilestone
-        type: com.learney.contentaudit.audit-domain.AuditContext
-        construct:
-          milestoneId: 0
-          topicId: t1
-          knowledgeId: k1
-          quizId: q1
-      - id: knowledge
-        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
-        construct:
-          title: Greetings
-          instructions: Complete
-          isSentence: true
-          quizzes: "[]"
-      - id: ctxKnowledge
-        type: com.learney.contentaudit.audit-domain.AuditContext
-        construct:
-          milestoneId: 0
-          topicId: t1
-          knowledgeId: k1
-          quizId: q1
-      - id: quiz
-        type: com.learney.contentaudit.audit-domain.AuditableQuiz
-        construct:
-          sentence: The cat sat on the mat
-          tokenCount: 6
-      - id: ctxQuiz
-        type: com.learney.contentaudit.audit-domain.AuditContext
-        construct:
-          milestoneId: 0
-          topicId: t1
-          knowledgeId: k1
-          quizId: q1
-      - id: rangeA1
-        type: com.learney.contentaudit.audit-domain.TargetRange
-        construct:
-          level: A1
-          minTokens: 5
-          maxTokens: 8
-      type: integration
-      steps:
-      - invoke:
-          method: onMilestone
-          args:
-          - ref:milestone
-          - ref:ctxMilestone
-        assert:
-          doesNotThrow: true
-      - invoke:
-          method: onKnowledge
-          args:
-          - ref:knowledge
-          - ref:ctxKnowledge
-        assert:
-          doesNotThrow: true
-      - invoke:
-          method: onQuiz
-          args:
-          - ref:quiz
-          - ref:ctxQuiz
-        mocks:
-        - dependency: config
-          method: getTargetRange
-          thenReturn: Optional.of(ref:rangeA1)
-          args:
-          - match: any
-        - dependency: config
-          method: getToleranceMargin
-          thenReturn: 4
-        - dependency: nlpTokenizer
-          method: countTokens
-          thenReturn: 6
-          args:
-          - match: eq
-            value: The cat sat on the mat
-        assert:
-          verifyCall:
-            dependency: nlpTokenizer
-            method: countTokens
-            times: 1
-      traceability:
-        feature: F-SLEN
-        rule: F-SLEN-R013
+      _change: modify
     - name: "Given multiple quizzes across sentence and non-sentence knowledges, when\
         \ processed, then only sentence quizzes are scored"
       target: SentenceLengthAnalyzer
@@ -1866,11 +1805,20 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: nonSentQuiz
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: apple
-          tokenCount: 1
+          tokens: "[ref:dummyToken]"
       - id: ctxNonSentQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -1896,7 +1844,8 @@ modules:
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: She likes red apples very much
-          tokenCount: 6
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken]"
       - id: ctxSentQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -1964,12 +1913,6 @@ modules:
         - dependency: config
           method: getToleranceMargin
           thenReturn: 4
-        - dependency: nlpTokenizer
-          method: countTokens
-          thenReturn: 6
-          args:
-          - match: eq
-            value: She likes red apples very much
         assert:
           doesNotThrow: true
       - invoke:
@@ -1979,6 +1922,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R001
+      _change: modify
     - name: "Given a SentenceLengthAnalyzer, when getName is called, then returns\
         \ sentence-length"
       target: SentenceLengthAnalyzer
@@ -2022,11 +1966,21 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: quiz
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: She likes apples a lot
-          tokenCount: 5
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken]"
       - id: ctxQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -2080,12 +2034,6 @@ modules:
         - dependency: config
           method: getToleranceMargin
           thenReturn: 4
-        - dependency: nlpTokenizer
-          method: countTokens
-          thenReturn: 5
-          args:
-          - match: eq
-            value: She likes apples a lot
         assert:
           doesNotThrow: true
       - invoke:
@@ -2095,6 +2043,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R002
+      _change: modify
     - name: "Given a quiz 1 token above A1 max, when scored, then score is 0.75"
       target: SentenceLengthAnalyzer
       fixtures:
@@ -2123,11 +2072,21 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: quiz
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: She really likes green apples a lot today quickly
-          tokenCount: 9
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken]"
       - id: ctxQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -2181,12 +2140,6 @@ modules:
         - dependency: config
           method: getToleranceMargin
           thenReturn: 4
-        - dependency: nlpTokenizer
-          method: countTokens
-          thenReturn: 9
-          args:
-          - match: eq
-            value: She really likes green apples a lot today quickly
         assert:
           doesNotThrow: true
       - invoke:
@@ -2196,6 +2149,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R002
+      _change: modify
     - name: "Given a quiz 3 tokens below A1 min, when scored, then score is 0.25"
       target: SentenceLengthAnalyzer
       fixtures:
@@ -2224,11 +2178,20 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: quiz
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: Go now
-          tokenCount: 2
+          tokens: "[ref:dummyToken, ref:dummyToken]"
       - id: ctxQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -2282,12 +2245,6 @@ modules:
         - dependency: config
           method: getToleranceMargin
           thenReturn: 4
-        - dependency: nlpTokenizer
-          method: countTokens
-          thenReturn: 2
-          args:
-          - match: eq
-            value: Go now
         assert:
           doesNotThrow: true
       - invoke:
@@ -2297,6 +2254,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R002
+      _change: modify
     - name: "Given a quiz exactly at A1 minimum boundary, when scored, then score\
         \ is 1.0"
       target: SentenceLengthAnalyzer
@@ -2326,11 +2284,21 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: quiz
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: I like big red cats
-          tokenCount: 5
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken]"
       - id: ctxQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -2384,12 +2352,6 @@ modules:
         - dependency: config
           method: getToleranceMargin
           thenReturn: 4
-        - dependency: nlpTokenizer
-          method: countTokens
-          thenReturn: 5
-          args:
-          - match: eq
-            value: I like big red cats
         assert:
           doesNotThrow: true
       - invoke:
@@ -2399,6 +2361,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R002
+      _change: modify
     - name: "Given a quiz exactly at A1 maximum boundary, when scored, then score\
         \ is 1.0"
       target: SentenceLengthAnalyzer
@@ -2428,11 +2391,21 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: quiz
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: I like big red cats very much here now
-          tokenCount: 8
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken]"
       - id: ctxQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -2486,12 +2459,6 @@ modules:
         - dependency: config
           method: getToleranceMargin
           thenReturn: 4
-        - dependency: nlpTokenizer
-          method: countTokens
-          thenReturn: 8
-          args:
-          - match: eq
-            value: I like big red cats very much here now
         assert:
           doesNotThrow: true
       - invoke:
@@ -2501,6 +2468,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R002
+      _change: modify
     - name: "Given a quiz 4 tokens above A1 max, when scored, then score is 0.0"
       target: SentenceLengthAnalyzer
       fixtures:
@@ -2529,12 +2497,23 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: quiz
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: She really likes eating big green apples from the local market
             every day
-          tokenCount: 12
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken, ref:dummyToken]"
       - id: ctxQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -2588,13 +2567,6 @@ modules:
         - dependency: config
           method: getToleranceMargin
           thenReturn: 4
-        - dependency: nlpTokenizer
-          method: countTokens
-          thenReturn: 12
-          args:
-          - match: eq
-            value: She really likes eating big green apples from the local market
-              every day
         assert:
           doesNotThrow: true
       - invoke:
@@ -2604,6 +2576,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R009
+      _change: modify
     - name: "Given a non-sentence knowledge, when onQuiz is called, then quiz is excluded\
         \ and getResults is empty"
       target: SentenceLengthAnalyzer
@@ -2633,11 +2606,20 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: quiz
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: apple
-          tokenCount: 1
+          tokens: "[ref:dummyToken]"
       - id: ctxQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -2675,6 +2657,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R001
+      _change: modify
     - name: "Given a B2 level quiz within range, when scored, then score is 1.0"
       target: SentenceLengthAnalyzer
       fixtures:
@@ -2703,12 +2686,24 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: quiz
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: The students should have been studying for their final exams much
             more carefully this semester
-          tokenCount: 15
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken]"
       - id: ctxQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -2762,13 +2757,6 @@ modules:
         - dependency: config
           method: getToleranceMargin
           thenReturn: 4
-        - dependency: nlpTokenizer
-          method: countTokens
-          thenReturn: 15
-          args:
-          - match: eq
-            value: The students should have been studying for their final exams much
-              more carefully this semester
         assert:
           doesNotThrow: true
       - invoke:
@@ -2778,6 +2766,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R012
+      _change: modify
     - name: "Given a quiz exactly at tolerance boundary of 4 tokens, when scored,\
         \ then score is 0.0"
       target: SentenceLengthAnalyzer
@@ -2807,11 +2796,20 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: quiz
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: Go
-          tokenCount: 1
+          tokens: "[ref:dummyToken]"
       - id: ctxQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -2865,12 +2863,6 @@ modules:
         - dependency: config
           method: getToleranceMargin
           thenReturn: 4
-        - dependency: nlpTokenizer
-          method: countTokens
-          thenReturn: 1
-          args:
-          - match: eq
-            value: Go
         assert:
           doesNotThrow: true
       - invoke:
@@ -2880,6 +2872,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R009
+      _change: modify
     - name: "Given a quiz 2 tokens above A1 max, when scored, then score is 0.5"
       target: SentenceLengthAnalyzer
       fixtures:
@@ -2908,11 +2901,22 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: quiz
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: She really likes eating big green apples from the garden
-          tokenCount: 10
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken]"
       - id: ctxQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -2966,12 +2970,6 @@ modules:
         - dependency: config
           method: getToleranceMargin
           thenReturn: 4
-        - dependency: nlpTokenizer
-          method: countTokens
-          thenReturn: 10
-          args:
-          - match: eq
-            value: She really likes eating big green apples from the garden
         assert:
           doesNotThrow: true
       - invoke:
@@ -2981,6 +2979,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R002
+      _change: modify
     - name: "Given a SentenceLengthAnalyzer, when onTopic is called, then it completes\
         \ without error"
       target: SentenceLengthAnalyzer
@@ -3054,11 +3053,21 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: quiz1
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: Hello how are you today friend
-          tokenCount: 6
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken]"
       - id: ctxQuiz1
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -3070,7 +3079,7 @@ modules:
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: Good morning
-          tokenCount: 2
+          tokens: "[ref:dummyToken, ref:dummyToken]"
       - id: ctxQuiz2
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -3134,12 +3143,6 @@ modules:
         - dependency: config
           method: getToleranceMargin
           thenReturn: 4
-        - dependency: nlpTokenizer
-          method: countTokens
-          thenReturn: 6
-          args:
-          - match: eq
-            value: Hello how are you today friend
         assert:
           doesNotThrow: true
       - invoke:
@@ -3156,12 +3159,6 @@ modules:
         - dependency: config
           method: getToleranceMargin
           thenReturn: 4
-        - dependency: nlpTokenizer
-          method: countTokens
-          thenReturn: 2
-          args:
-          - match: eq
-            value: Good morning
         assert:
           doesNotThrow: true
       - invoke:
@@ -3171,6 +3168,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R002
+      _change: modify
     - name: "Given a SentenceLengthAnalyzer instance, when getName is called, then\
         \ returns sentence-length"
       target: SentenceLengthAnalyzer
@@ -3214,11 +3212,20 @@ modules:
           topicId: t1
           knowledgeId: k1
           quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
       - id: quiz
         type: com.learney.contentaudit.audit-domain.AuditableQuiz
         construct:
           sentence: apple
-          tokenCount: 1
+          tokens: "[ref:dummyToken]"
       - id: ctxQuiz
         type: com.learney.contentaudit.audit-domain.AuditContext
         construct:
@@ -3256,6 +3263,7 @@ modules:
       traceability:
         feature: F-SLEN
         rule: F-SLEN-R001
+      _change: modify
     implements:
     - ContentAnalyzer
   - name: IScoreAggregator
@@ -3578,6 +3586,97 @@ modules:
       type: NlpTokenizer
     types:
     - Component
+    tests:
+    - name: "Given a course with quizzes, when map is called, then analyzeTokensBatch\
+        \ is invoked and returns an AuditableCourse"
+      target: CourseToAuditableMapper
+      mocks:
+      - dependency: nlpTokenizer
+        method: analyzeTokensBatch
+        thenReturn: ref:batchResult
+        args:
+        - match: any
+      invoke:
+        method: map
+        args:
+        - ref:course
+      fixtures:
+      - id: course
+        type: CourseEntity
+        construct:
+          id: 507f1f77bcf86cd799439011
+          title: English Course
+          knowledgeIds:
+          - k1
+          slug: english-course
+      - id: batchResult
+        type: "Map<String,List<NlpToken>>"
+      type: unit
+      traceability:
+        feature: F-NLP
+        rule: F-NLP-R010
+      assert:
+        verifyCall:
+          dependency: nlpTokenizer
+          method: analyzeTokensBatch
+          times: 1
+    - name: "Given a course with no milestones, when map is called, then returns an\
+        \ AuditableCourse without error"
+      target: CourseToAuditableMapper
+      invoke:
+        method: map
+        args:
+        - ref:emptyCourse
+      fixtures:
+      - id: emptyRoot
+        type: RootNodeEntity
+        construct:
+          id: 507f1f77bcf86cd799439099
+          code: root
+          kind: ROOT
+      - id: emptyCourse
+        type: CourseEntity
+        construct:
+          id: 507f1f77bcf86cd799439012
+          title: Empty Course
+          slug: empty-course
+          root: ref:emptyRoot
+      type: unit
+      traceability:
+        feature: F-NLP
+        rule: F-NLP-R010
+      assert:
+        doesNotThrow: true
+    - name: "Given nlpTokenizer throws exception during batch processing, when map\
+        \ is called, then exception propagates"
+      target: CourseToAuditableMapper
+      mocks:
+      - dependency: nlpTokenizer
+        method: analyzeTokensBatch
+        args:
+        - match: any
+        thenThrow:
+          type: RuntimeException
+          message: NLP processing failed
+      invoke:
+        method: map
+        args:
+        - ref:course
+      fixtures:
+      - id: course
+        type: CourseEntity
+        construct:
+          id: 507f1f77bcf86cd799439013
+          title: Problem Course
+          knowledgeIds:
+          - k1
+          slug: problem-course
+      type: unit
+      traceability:
+        feature: F-NLP
+        rule: F-NLP-R008
+      assert:
+        assertThrows: RuntimeException
     implements:
     - CourseMapper
   - name: DefaultSentenceLengthConfig
@@ -4943,6 +5042,25 @@ modules:
     \ model are public; all processing internals are package-private."
   dependsOn:
   - audit-domain
+  models:
+  - name: NlpTokenizerConfig
+    type: record
+    fields:
+    - name: pythonScriptPath
+      type: String
+      description: Path to the SpaCy Python processing script
+    - name: cocaDataPath
+      type: String
+      description: Path to the COCA frequency data file
+    - name: timeoutSeconds
+      type: int
+      description: Maximum seconds to wait for SpaCy process completion
+  interfaces:
+  - name: NlpTokenizerFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(NlpTokenizerConfig config): NlpTokenizer"
   patterns:
   - type: Factory
     implementations:
@@ -4950,57 +5068,38 @@ modules:
     suppressed: false
     interface: NlpTokenizerFactory
   packages:
-  - name: api
-    description: Public API surface for NLP tokenization. Exposes factory and configuration
-      to dependent modules.
-    visibility: internal
-    models:
-    - name: NlpTokenizerConfig
-      type: record
-      fields:
-      - name: pythonScriptPath
-        type: String
-        description: Path to the SpaCy Python processing script
-      - name: cocaDataPath
-        type: String
-        description: Path to the COCA frequency data file
-      - name: timeoutSeconds
-        type: int
-        description: Maximum seconds to wait for SpaCy process completion
-    interfaces:
-    - name: NlpTokenizerFactory
-      stereotype: factory
-      sealed: true
-      exposes:
-      - signature: "create(NlpTokenizerConfig config): NlpTokenizer"
+  - name: spacy
+    description: SpaCy-backed NLP tokenization internals. Only the factory is public;
+      all processing classes are package-private.
+    visibility: public
     implementations:
     - name: SpacyNlpTokenizerFactory
       types:
       - Component
+      visibility: public
       implements:
       - NlpTokenizerFactory
-  - name: spacy
-    description: Internal SpaCy-backed tokenization implementation. Not visible outside
-      this package.
-    visibility: private
-    implementations:
     - name: SpacyNlpTokenizer
       requiresInject:
       - name: processRunner
         type: SpacyProcessRunner
       - name: resultParser
         type: SpacyResultParser
+      visibility: package-private
       implements:
       - NlpTokenizer
     - name: SpacyProcessRunner
       requiresInject:
       - name: config
         type: NlpTokenizerConfig
+      visibility: package-private
     - name: SpacyResultParser
+      visibility: package-private
     - name: CachedNlpTokenizer
       requiresInject:
       - name: delegate
         type: NlpTokenizer
+      visibility: package-private
       implements:
       - NlpTokenizer
 language:

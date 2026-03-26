@@ -129,11 +129,11 @@ new AuditableMilestone(List<AuditableTopic> topics)
 | Field | Type | Notes |
 |-------|------|-------|
 | `sentence` | `String` |  |
-| `tokenCount` | `int` |  |
+| `tokens` | `List<NlpToken>` | Import `java.util.List` |
 
 **Generated constructor:**
 ```java
-new AuditableQuiz(String sentence, int tokenCount)
+new AuditableQuiz(String sentence, List<NlpToken> tokens)
 ```
 
 #### CefrLevel
@@ -282,6 +282,25 @@ new TopicNode(String topicId, NodeScores scores, List<KnowledgeNode> knowledges)
 **Generated constructor:**
 ```java
 new MilestoneNode(String milestoneId, NodeScores scores, List<TopicNode> topics)
+```
+
+#### NlpToken
+
+**Package:** `com.learney.contentaudit.auditdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `text` | `String` |  |
+| `lemma` | `String` |  |
+| `posTag` | `String` |  |
+| `frequencyRank` | `Integer` |  |
+| `isStop` | `boolean` |  |
+| `isPunct` | `boolean` |  |
+
+**Generated constructor:**
+```java
+new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, boolean isStop, boolean isPunct)
 ```
 
 ### Module: course-domain
@@ -508,5 +527,23 @@ new SentencePartEntity(SentencePartKind kind, String text, List<String> options)
 **Generated class** extends `RuntimeException` with constructor:
 ```java
 new CourseValidationException(String path, String detail)
+```
+
+### Module: nlp-infrastructure
+
+#### NlpTokenizerConfig
+
+**Package:** `com.learney.contentaudit.nlpinfrastructure`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `pythonScriptPath` | `String` |  |
+| `cocaDataPath` | `String` |  |
+| `timeoutSeconds` | `int` |  |
+
+**Generated constructor:**
+```java
+new NlpTokenizerConfig(String pythonScriptPath, String cocaDataPath, int timeoutSeconds)
 ```
 

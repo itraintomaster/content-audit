@@ -29,13 +29,11 @@ Methods:
 
 - `nlpTokenizer`: `NlpTokenizer`
 
-### CachedNlpTokenizer
+**Tests that must pass:**
 
-**Implements:** NlpTokenizer
-
-**Dependencies (constructor injection):**
-
-- `delegate`: `NlpTokenizer`
+- Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse → F-NLP/F-NLP-R010
+- Given a course with no milestones, when map is called, then returns an AuditableCourse without error → F-NLP/F-NLP-R010
+- Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates → F-NLP/F-NLP-R008
 
 ### DefaultSentenceLengthConfig
 
@@ -124,7 +122,7 @@ The following models and interfaces are available from dependencies. You can use
 | Field | Type |
 |-------|------|
 | sentence | `String` |
-| tokenCount | `int` |
+| tokens | `List<NlpToken>` |
 
 ### CefrLevel (`enum`)
 
@@ -202,6 +200,17 @@ The following models and interfaces are available from dependencies. You can use
 | scores | `NodeScores` |
 | topics | `List<TopicNode>` |
 
+### NlpToken (`record`)
+
+| Field | Type |
+|-------|------|
+| text | `String` |
+| lemma | `String` |
+| posTag | `String` |
+| frequencyRank | `Integer` |
+| isStop | `boolean` |
+| isPunct | `boolean` |
+
 ### ContentAudit (service)
 
 Methods:
@@ -241,6 +250,8 @@ Methods:
 
 - `tokenize(String text): List<String>`
 - `countTokens(String text): int`
+- `analyzeTokens(String text): List<NlpToken>`
+- `analyzeTokensBatch(List<String> sentences): Map<String,List<NlpToken>>`
 
 ### SentenceLengthConfig (port)
 
@@ -409,4 +420,22 @@ Methods:
 Methods:
 
 - `validate(CourseEntity course): void`
+
+### From nlp-infrastructure
+
+## Models
+
+### NlpTokenizerConfig (`record`)
+
+| Field | Type |
+|-------|------|
+| pythonScriptPath | `String` |
+| cocaDataPath | `String` |
+| timeoutSeconds | `int` |
+
+### NlpTokenizerFactory (factory)
+
+Methods:
+
+- `create(NlpTokenizerConfig config): NlpTokenizer`
 

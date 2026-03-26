@@ -206,7 +206,7 @@ public class KnowledgeTitleLengthAnalyzerSentinelTest {
   @DisplayName("Given a KnowledgeTitleLengthAnalyzer, when onQuiz is called, then it completes without error")
   @Tag("F-KTLEN")
   public void givenAKnowledgeTitleLengthAnalyzerWhenOnQuizIsCalledThenItCompletesWithoutError() {
-    AuditableQuiz quiz = new AuditableQuiz("some sentence", 3);
+    AuditableQuiz quiz = new AuditableQuiz("some sentence", List.of());
     AuditContext ctx = new AuditContext("m1", "t1", "k1", null);
     Assertions.assertDoesNotThrow(() -> sut.onQuiz(quiz, ctx));
   }

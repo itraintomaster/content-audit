@@ -5,6 +5,7 @@ Processes sample words and generates enriched JSON output with CEFR and word fre
 """
 
 import json
+import os
 import sys
 import spacy
 import traceback
@@ -23,7 +24,7 @@ def load_frequency_data():
     if FREQUENCY_DATA is not None:
         return FREQUENCY_DATA, FREQUENCY_LOOKUP
     
-    frequency_file = "/app/data/lemmas_20k_words.txt"
+    frequency_file = os.environ.get("COCA_DATA_PATH", "/app/data/lemmas_20k_words.txt")
     frequency_data = []
     frequency_lookup = {}
     

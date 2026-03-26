@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain;
 
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -10,14 +11,14 @@ import javax.annotation.processing.Generated;
 public class AuditableQuiz {
     private String sentence;
 
-    private int tokenCount;
+    private List<NlpToken> tokens;
 
     public AuditableQuiz() {
     }
 
-    public AuditableQuiz(String sentence, int tokenCount) {
+    public AuditableQuiz(String sentence, List<NlpToken> tokens) {
         this.sentence = sentence;
-        this.tokenCount = tokenCount;
+        this.tokens = tokens;
     }
 
     public String getSentence() {
@@ -28,12 +29,12 @@ public class AuditableQuiz {
         this.sentence = sentence;
     }
 
-    public int getTokenCount() {
-        return this.tokenCount;
+    public List<NlpToken> getTokens() {
+        return this.tokens;
     }
 
-    public void setTokenCount(int tokenCount) {
-        this.tokenCount = tokenCount;
+    public void setTokens(List<NlpToken> tokens) {
+        this.tokens = tokens;
     }
 
     @Override
@@ -42,11 +43,11 @@ public class AuditableQuiz {
         if (o == null || getClass() != o.getClass()) return false;
         AuditableQuiz that = (AuditableQuiz) o;
         return Objects.equals(this.sentence, that.sentence)
-                    && Objects.equals(this.tokenCount, that.tokenCount);
+                    && Objects.equals(this.tokens, that.tokens);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sentence, tokenCount);
+        return Objects.hash(sentence, tokens);
     }
 }

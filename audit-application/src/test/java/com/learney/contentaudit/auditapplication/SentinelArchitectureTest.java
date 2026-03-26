@@ -31,7 +31,7 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceModuleBoundaries() {
     JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.classes().that().resideInAPackage("..auditapplication..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditapplication..", "..auditdomain..", "..coursedomain..", "..refinerdomain..", "..courseinfrastructure..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+    ArchRuleDefinition.classes().that().resideInAPackage("..auditapplication..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditapplication..", "..auditdomain..", "..coursedomain..", "..refinerdomain..", "..courseinfrastructure..", "..nlpinfrastructure..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
   }
 
   @Test
@@ -50,11 +50,6 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditapplication.CourseToAuditableMapper");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: CourseToAuditableMapper - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditapplication.CachedNlpTokenizer");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: CachedNlpTokenizer - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditapplication.DefaultSentenceLengthConfig");

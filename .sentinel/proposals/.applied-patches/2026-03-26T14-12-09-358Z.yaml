@@ -1,0 +1,64 @@
+code: __proposal__
+description: Merge nlp-infrastructure api and spacy packages into module root to resolve
+  ArchUnit visibility conflict between factory (api) and implementation classes (spacy/private)
+modules:
+- name: nlp-infrastructure
+  models:
+  - name: NlpTokenizerConfig
+    type: record
+    fields:
+    - name: pythonScriptPath
+      type: String
+      description: Path to the SpaCy Python processing script
+    - name: cocaDataPath
+      type: String
+      description: Path to the COCA frequency data file
+    - name: timeoutSeconds
+      type: int
+      description: Maximum seconds to wait for SpaCy process completion
+    _change: add
+  interfaces:
+  - name: NlpTokenizerFactory
+    stereotype: factory
+    sealed: true
+    exposes:
+    - signature: "create(NlpTokenizerConfig config): NlpTokenizer"
+    _change: add
+  implementations:
+  - name: SpacyNlpTokenizerFactory
+    types:
+    - Component
+    implements:
+    - NlpTokenizerFactory
+    _change: add
+  - name: SpacyNlpTokenizer
+    requiresInject:
+    - name: processRunner
+      type: SpacyProcessRunner
+    - name: resultParser
+      type: SpacyResultParser
+    implements:
+    - NlpTokenizer
+    _change: add
+  - name: SpacyProcessRunner
+    requiresInject:
+    - name: config
+      type: NlpTokenizerConfig
+    _change: add
+  - name: SpacyResultParser
+    _change: add
+  - name: CachedNlpTokenizer
+    requiresInject:
+    - name: delegate
+      type: NlpTokenizer
+    implements:
+    - NlpTokenizer
+    _change: add
+  packages:
+  - name: api
+    visibility: internal
+    _change: delete
+  - name: spacy
+    visibility: internal
+    _change: delete
+  _change: modify

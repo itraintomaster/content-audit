@@ -231,7 +231,7 @@ public class MyAdapter implements MyPort {
 - `AuditableKnowledge` — quizzes: List<AuditableQuiz>, title: String, instructions: String, isSentence: boolean
 - `AuditableTopic` — knowledge: List<AuditableKnowledge>
 - `AuditableMilestone` — topics: List<AuditableTopic>
-- `AuditableQuiz` — sentence: String, tokenCount: int
+- `AuditableQuiz` — sentence: String, tokens: List<NlpToken>
 - `CefrLevel` [enum] — A1: null, A2: null, B1: null, B2: null
 - `TargetRange` — level: CefrLevel, minTokens: int, maxTokens: int
 - `AuditTarget` [enum] — QUIZ: null, KNOWLEDGE: null, TOPIC: null, MILESTONE: null, COURSE: null
@@ -241,6 +241,7 @@ public class MyAdapter implements MyPort {
 - `KnowledgeNode` — knowledgeId: String, scores: NodeScores, quizzes: List<QuizNode>
 - `TopicNode` — topicId: String, scores: NodeScores, knowledges: List<KnowledgeNode>
 - `MilestoneNode` — milestoneId: String, scores: NodeScores, topics: List<TopicNode>
+- `NlpToken` — text: String, lemma: String, posTag: String, frequencyRank: Integer, isStop: boolean, isPunct: boolean
 
 **Interfaces (contracts):**
 
@@ -264,6 +265,8 @@ public class MyAdapter implements MyPort {
 - `NlpTokenizer`
   - `tokenize(String text): List<String>`
   - `countTokens(String text): int`
+  - `analyzeTokens(String text): List<NlpToken>`
+  - `analyzeTokensBatch(List<String> sentences): Map<String,List<NlpToken>>`
 - `SentenceLengthConfig`
   - `getTargetRange(CefrLevel level): Optional<TargetRange>`
   - `getToleranceMargin(): int`
@@ -282,7 +285,7 @@ public class MyAdapter implements MyPort {
   Inject: auditEngine: AuditEngine
 - `SentenceLengthAnalyzer` implements ContentAnalyzer
   Inject: nlpTokenizer: NlpTokenizer, config: SentenceLengthConfig
-  Tests: Given a null milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty, Given a non-numeric milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty, Given no target range configured for level, when onQuiz is called, then quiz is excluded and getResults is empty, Given a valid sentence quiz, when onQuiz is called, then nlpTokenizer countTokens is called with quiz sentence, Given multiple quizzes across sentence and non-sentence knowledges, when processed, then only sentence quizzes are scored, Given a SentenceLengthAnalyzer, when getName is called, then returns sentence-length, Given a SentenceLengthAnalyzer, when getTarget is called, then returns QUIZ, Given a quiz within A1 range, when onQuiz is called and getResults checked, then score is 1.0, Given a quiz 1 token above A1 max, when scored, then score is 0.75, Given a quiz 3 tokens below A1 min, when scored, then score is 0.25, Given a quiz exactly at A1 minimum boundary, when scored, then score is 1.0, Given a quiz exactly at A1 maximum boundary, when scored, then score is 1.0, Given a quiz 4 tokens above A1 max, when scored, then score is 0.0, Given a non-sentence knowledge, when onQuiz is called, then quiz is excluded and getResults is empty, Given a B2 level quiz within range, when scored, then score is 1.0, Given a quiz exactly at tolerance boundary of 4 tokens, when scored, then score is 0.0, Given a quiz 2 tokens above A1 max, when scored, then score is 0.5, Given a SentenceLengthAnalyzer, when onTopic is called, then it completes without error, Given a SentenceLengthAnalyzer, when onCourseComplete is called, then it completes without error, Given a full milestone-knowledge-quiz sequence, when processed end to end, then correct scores are produced, Given a SentenceLengthAnalyzer instance, when getName is called, then returns sentence-length, Given a SentenceLengthAnalyzer instance, when getTarget is called, then returns QUIZ, Given a knowledge with non-sentence quizzes, when onQuiz is called, then non-sentence quizzes are excluded from scoring
+  Tests: Given a null milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty, Given a non-numeric milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty, Given no target range configured for level, when onQuiz is called, then quiz is excluded and getResults is empty, Given multiple quizzes across sentence and non-sentence knowledges, when processed, then only sentence quizzes are scored, Given a SentenceLengthAnalyzer, when getName is called, then returns sentence-length, Given a SentenceLengthAnalyzer, when getTarget is called, then returns QUIZ, Given a quiz within A1 range, when onQuiz is called and getResults checked, then score is 1.0, Given a quiz 1 token above A1 max, when scored, then score is 0.75, Given a quiz 3 tokens below A1 min, when scored, then score is 0.25, Given a quiz exactly at A1 minimum boundary, when scored, then score is 1.0, Given a quiz exactly at A1 maximum boundary, when scored, then score is 1.0, Given a quiz 4 tokens above A1 max, when scored, then score is 0.0, Given a non-sentence knowledge, when onQuiz is called, then quiz is excluded and getResults is empty, Given a B2 level quiz within range, when scored, then score is 1.0, Given a quiz exactly at tolerance boundary of 4 tokens, when scored, then score is 0.0, Given a quiz 2 tokens above A1 max, when scored, then score is 0.5, Given a SentenceLengthAnalyzer, when onTopic is called, then it completes without error, Given a SentenceLengthAnalyzer, when onCourseComplete is called, then it completes without error, Given a full milestone-knowledge-quiz sequence, when processed end to end, then correct scores are produced, Given a SentenceLengthAnalyzer instance, when getName is called, then returns sentence-length, Given a SentenceLengthAnalyzer instance, when getTarget is called, then returns QUIZ, Given a knowledge with non-sentence quizzes, when onQuiz is called, then non-sentence quizzes are excluded from scoring
 - `IScoreAggregator` implements ScoreAggregator
 
 #### course-domain
@@ -317,7 +320,7 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 #### audit-application
 
-**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure
+**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure
 
 **Interfaces (contracts):**
 
@@ -330,8 +333,7 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 - `CourseToAuditableMapper` implements CourseMapper [Component]
   Inject: nlpTokenizer: NlpTokenizer
-- `CachedNlpTokenizer` implements NlpTokenizer
-  Inject: delegate: NlpTokenizer
+  Tests: Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse, Given a course with no milestones, when map is called, then returns an AuditableCourse without error, Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates
 - `DefaultSentenceLengthConfig` implements SentenceLengthConfig [Component]
 - `DefaultAuditRunner` implements AuditRunner [Service]
   Inject: courseRepository: CourseRepository, courseToAuditableMapper: CourseToAuditableMapper, contentAudit: ContentAudit, courseMapper: CourseMapper
@@ -353,7 +355,7 @@ Infrastructure module for course persistence. Contains the filesystem adapter th
 
 CLI entry point for running content audits from the command line
 
-**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure
+**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure
 
 **Interfaces (contracts):**
 
@@ -374,6 +376,26 @@ CLI entry point for running content audits from the command line
   Tests: Given valid args with course path, when run is called, then returns exit code 0, Given no args provided, when run is called, then returns non-zero exit code, Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code, Given valid args with --format json, when run is called, then json formatter is looked up and returns 0, Given valid args without --format, when run is called, then text formatter is used by default and returns 0, Given valid args, when run is called, then auditRunner runAudit is invoked with course path, Given an unsupported format value, when run is called, then returns non-zero exit code, Given valid args and low audit scores, when run is called, then returns 0 regardless of score values
 - `DefaultFormatterRegistry` implements FormatterRegistry [Component]
 
+#### nlp-infrastructure
+
+Infrastructure module for NLP processing. Provides SpaCy-backed tokenization behind a factory, with internal caching. Only the factory and configuration model are public; all processing internals are package-private.
+
+**Depends on:** audit-domain
+
+**Packages:**
+
+- `spacy` [public] — SpaCy-backed NLP tokenization internals. Only the factory is public; all processing classes are package-private.
+  Implementations: SpacyNlpTokenizerFactory, SpacyNlpTokenizer, SpacyProcessRunner, SpacyResultParser, CachedNlpTokenizer
+
+**Models:**
+
+- `NlpTokenizerConfig` — pythonScriptPath: String, cocaDataPath: String, timeoutSeconds: int
+
+**Interfaces (contracts):**
+
+- `NlpTokenizerFactory`
+  - `create(NlpTokenizerConfig config): NlpTokenizer`
+
 ### Boundaries
 
 | Module | Can Import From |
@@ -381,7 +403,8 @@ CLI entry point for running content audits from the command line
 | audit-domain | (none — leaf module) |
 | course-domain | (none — leaf module) |
 | refiner-domain | (none — leaf module) |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure |
 | course-infrastructure | course-domain |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure |
+| nlp-infrastructure | audit-domain |
 

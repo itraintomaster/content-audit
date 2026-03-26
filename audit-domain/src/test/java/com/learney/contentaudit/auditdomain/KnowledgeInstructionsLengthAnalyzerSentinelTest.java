@@ -177,7 +177,7 @@ public class KnowledgeInstructionsLengthAnalyzerSentinelTest {
   @Tag("F-KTLEN")
   public void givenAKnowledgeInstructionsLengthAnalyzerWhenOnQuizIsCalledThenItCompletesWithoutError(
       ) {
-    AuditableQuiz quiz = new AuditableQuiz("Hello world", 2);
+    AuditableQuiz quiz = new AuditableQuiz("Hello world", List.of());
     AuditContext ctx = new AuditContext("m1", "t1", "k1", "q1");
     Assertions.assertDoesNotThrow(() -> sut.onQuiz(quiz, ctx));
   }

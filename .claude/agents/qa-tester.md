@@ -490,6 +490,8 @@ To create a handwritten test:
 - `NlpTokenizer`
   - `tokenize(String text): List<String>`
   - `countTokens(String text): int`
+  - `analyzeTokens(String text): List<NlpToken>`
+  - `analyzeTokensBatch(List<String> sentences): Map<String,List<NlpToken>>`
 - `SentenceLengthConfig`
   - `getTargetRange(CefrLevel level): Optional<TargetRange>`
   - `getToleranceMargin(): int`
@@ -512,7 +514,7 @@ To create a handwritten test:
   **NO TESTS** — all 1 methods uncovered
 - `SentenceLengthAnalyzer` implements ContentAnalyzer
   Inject: nlpTokenizer: NlpTokenizer, config: SentenceLengthConfig
-  Declarative tests (23): Given a null milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty, Given a non-numeric milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty, Given no target range configured for level, when onQuiz is called, then quiz is excluded and getResults is empty, Given a valid sentence quiz, when onQuiz is called, then nlpTokenizer countTokens is called with quiz sentence, Given multiple quizzes across sentence and non-sentence knowledges, when processed, then only sentence quizzes are scored, Given a SentenceLengthAnalyzer, when getName is called, then returns sentence-length, Given a SentenceLengthAnalyzer, when getTarget is called, then returns QUIZ, Given a quiz within A1 range, when onQuiz is called and getResults checked, then score is 1.0, Given a quiz 1 token above A1 max, when scored, then score is 0.75, Given a quiz 3 tokens below A1 min, when scored, then score is 0.25, Given a quiz exactly at A1 minimum boundary, when scored, then score is 1.0, Given a quiz exactly at A1 maximum boundary, when scored, then score is 1.0, Given a quiz 4 tokens above A1 max, when scored, then score is 0.0, Given a non-sentence knowledge, when onQuiz is called, then quiz is excluded and getResults is empty, Given a B2 level quiz within range, when scored, then score is 1.0, Given a quiz exactly at tolerance boundary of 4 tokens, when scored, then score is 0.0, Given a quiz 2 tokens above A1 max, when scored, then score is 0.5, Given a SentenceLengthAnalyzer, when onTopic is called, then it completes without error, Given a SentenceLengthAnalyzer, when onCourseComplete is called, then it completes without error, Given a full milestone-knowledge-quiz sequence, when processed end to end, then correct scores are produced, Given a SentenceLengthAnalyzer instance, when getName is called, then returns sentence-length, Given a SentenceLengthAnalyzer instance, when getTarget is called, then returns QUIZ, Given a knowledge with non-sentence quizzes, when onQuiz is called, then non-sentence quizzes are excluded from scoring
+  Declarative tests (22): Given a null milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty, Given a non-numeric milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty, Given no target range configured for level, when onQuiz is called, then quiz is excluded and getResults is empty, Given multiple quizzes across sentence and non-sentence knowledges, when processed, then only sentence quizzes are scored, Given a SentenceLengthAnalyzer, when getName is called, then returns sentence-length, Given a SentenceLengthAnalyzer, when getTarget is called, then returns QUIZ, Given a quiz within A1 range, when onQuiz is called and getResults checked, then score is 1.0, Given a quiz 1 token above A1 max, when scored, then score is 0.75, Given a quiz 3 tokens below A1 min, when scored, then score is 0.25, Given a quiz exactly at A1 minimum boundary, when scored, then score is 1.0, Given a quiz exactly at A1 maximum boundary, when scored, then score is 1.0, Given a quiz 4 tokens above A1 max, when scored, then score is 0.0, Given a non-sentence knowledge, when onQuiz is called, then quiz is excluded and getResults is empty, Given a B2 level quiz within range, when scored, then score is 1.0, Given a quiz exactly at tolerance boundary of 4 tokens, when scored, then score is 0.0, Given a quiz 2 tokens above A1 max, when scored, then score is 0.5, Given a SentenceLengthAnalyzer, when onTopic is called, then it completes without error, Given a SentenceLengthAnalyzer, when onCourseComplete is called, then it completes without error, Given a full milestone-knowledge-quiz sequence, when processed end to end, then correct scores are produced, Given a SentenceLengthAnalyzer instance, when getName is called, then returns sentence-length, Given a SentenceLengthAnalyzer instance, when getTarget is called, then returns QUIZ, Given a knowledge with non-sentence quizzes, when onQuiz is called, then non-sentence quizzes are excluded from scoring
   **Untested methods:** onKnowledge, getResults, onQuiz, onMilestone
 - `IScoreAggregator` implements ScoreAggregator
   **NO TESTS** — all 1 methods uncovered
@@ -544,10 +546,7 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 - `CourseToAuditableMapper` implements CourseMapper [Component]
   Inject: nlpTokenizer: NlpTokenizer
-  **NO TESTS** — all 1 methods uncovered
-- `CachedNlpTokenizer` implements NlpTokenizer
-  Inject: delegate: NlpTokenizer
-  **NO TESTS** — all 2 methods uncovered
+  Declarative tests (3): Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse, Given a course with no milestones, when map is called, then returns an AuditableCourse without error, Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates
 - `DefaultSentenceLengthConfig` implements SentenceLengthConfig [Component]
   **NO TESTS** — all 2 methods uncovered
 - `DefaultAuditRunner` implements AuditRunner [Service]
@@ -591,4 +590,17 @@ CLI entry point for running content audits from the command line
   **Untested methods:** call
 - `DefaultFormatterRegistry` implements FormatterRegistry [Component]
   **NO TESTS** — all 1 methods uncovered
+
+### nlp-infrastructure
+
+Infrastructure module for NLP processing. Provides SpaCy-backed tokenization behind a factory, with internal caching. Only the factory and configuration model are public; all processing internals are package-private.
+
+**Packages:**
+
+- `spacy` [public] — SpaCy-backed NLP tokenization internals. Only the factory is public; all processing classes are package-private.
+
+**Interfaces:**
+
+- `NlpTokenizerFactory`
+  - `create(NlpTokenizerConfig config): NlpTokenizer`
 

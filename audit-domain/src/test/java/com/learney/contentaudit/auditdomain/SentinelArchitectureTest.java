@@ -117,6 +117,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: MilestoneNode - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.NlpToken");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: NlpToken - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.ContentAudit");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ContentAudit - " + e.getMessage());

@@ -1,0 +1,63 @@
+code: __proposal__
+description: "Reorganize nlp-infrastructure with a 'spacy' package. Move all SpaCy\
+  \ implementations into the spacy package with component-level visibility: SpacyNlpTokenizerFactory\
+  \ is public (accessible from external modules for wiring), while SpacyNlpTokenizer,\
+  \ SpacyProcessRunner, SpacyResultParser, and CachedNlpTokenizer are package-private\
+  \ (hidden from all code outside the spacy Java package). The module root retains\
+  \ only the public contract: NlpTokenizerFactory interface and NlpTokenizerConfig\
+  \ model."
+modules:
+- name: nlp-infrastructure
+  implementations:
+  - name: SpacyNlpTokenizerFactory
+    _change: delete
+  - name: SpacyNlpTokenizer
+    _change: delete
+  - name: SpacyProcessRunner
+    _change: delete
+  - name: SpacyResultParser
+    _change: delete
+  - name: CachedNlpTokenizer
+    _change: delete
+  packages:
+  - name: spacy
+    description: SpaCy-backed NLP tokenization internals. Only the factory is public;
+      all processing classes are package-private.
+    visibility: public
+    implementations:
+    - name: SpacyNlpTokenizerFactory
+      types:
+      - Component
+      visibility: public
+      implements:
+      - NlpTokenizerFactory
+      _change: add
+    - name: SpacyNlpTokenizer
+      requiresInject:
+      - name: processRunner
+        type: SpacyProcessRunner
+      - name: resultParser
+        type: SpacyResultParser
+      visibility: package-private
+      implements:
+      - NlpTokenizer
+      _change: add
+    - name: SpacyProcessRunner
+      requiresInject:
+      - name: config
+        type: NlpTokenizerConfig
+      visibility: package-private
+      _change: add
+    - name: SpacyResultParser
+      visibility: package-private
+      _change: add
+    - name: CachedNlpTokenizer
+      requiresInject:
+      - name: delegate
+        type: NlpTokenizer
+      visibility: package-private
+      implements:
+      - NlpTokenizer
+      _change: add
+    _change: add
+  _change: modify

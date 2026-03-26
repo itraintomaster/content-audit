@@ -1,0 +1,99 @@
+code: __proposal__
+description: Tests for CourseToAuditableMapper - maps CourseEntity to AuditableCourse
+  using enriched tokenization
+modules:
+- name: audit-application
+  implementations:
+  - name: CourseToAuditableMapper
+    tests:
+    - name: "Given a course with quizzes, when map is called, then analyzeTokensBatch\
+        \ is invoked and returns an AuditableCourse"
+      target: CourseToAuditableMapper
+      mocks:
+      - dependency: nlpTokenizer
+        method: analyzeTokensBatch
+        thenReturn: ref:batchResult
+        args:
+        - match: any
+      invoke:
+        method: map
+        args:
+        - ref:course
+      fixtures:
+      - id: course
+        type: CourseEntity
+        construct:
+          id: 507f1f77bcf86cd799439011
+          title: English Course
+          knowledgeIds:
+          - k1
+          slug: english-course
+      - id: batchResult
+        type: "Map<String,List<NlpToken>>"
+      type: unit
+      traceability:
+        feature: F-NLP
+        rule: F-NLP-R010
+      assert:
+        verifyCall:
+          dependency: nlpTokenizer
+          method: analyzeTokensBatch
+          times: 1
+    - name: "Given a course with no milestones, when map is called, then returns an\
+        \ AuditableCourse without error"
+      target: CourseToAuditableMapper
+      invoke:
+        method: map
+        args:
+        - ref:emptyCourse
+      fixtures:
+      - id: emptyRoot
+        type: RootNodeEntity
+        construct:
+          id: 507f1f77bcf86cd799439099
+          code: root
+          kind: ROOT
+          label: ""
+      - id: emptyCourse
+        type: CourseEntity
+        construct:
+          id: 507f1f77bcf86cd799439012
+          title: Empty Course
+          slug: empty-course
+          root: ref:emptyRoot
+      type: unit
+      traceability:
+        feature: F-NLP
+        rule: F-NLP-R010
+      assert:
+        doesNotThrow: true
+    - name: "Given nlpTokenizer throws exception during batch processing, when map\
+        \ is called, then exception propagates"
+      target: CourseToAuditableMapper
+      mocks:
+      - dependency: nlpTokenizer
+        method: analyzeTokensBatch
+        args:
+        - match: any
+        thenThrow:
+          type: RuntimeException
+          message: NLP processing failed
+      invoke:
+        method: map
+        args:
+        - ref:course
+      fixtures:
+      - id: course
+        type: CourseEntity
+        construct:
+          id: 507f1f77bcf86cd799439013
+          title: Problem Course
+          knowledgeIds:
+          - k1
+          slug: problem-course
+      type: unit
+      traceability:
+        feature: F-NLP
+        rule: F-NLP-R008
+      assert:
+        assertThrows: RuntimeException

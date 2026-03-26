@@ -84,12 +84,12 @@ Examples:
 
 **Package:** `com.learney.contentaudit.auditdomain`
 
-**Implemented by:** CachedNlpTokenizer (audit-application)
-
 | Method | Throws |
 |--------|--------|
 | `tokenize(String text): List<String>` | (none) |
 | `countTokens(String text): int` | (none) |
+| `analyzeTokens(String text): List<NlpToken>` | (none) |
+| `analyzeTokensBatch(List<String> sentences): Map<String,List<NlpToken>>` | (none) |
 
 #### SentenceLengthConfig (port)
 
@@ -187,4 +187,14 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `getFormatter(String formatName): ReportFormatter` | (none) |
+
+### Module: nlp-infrastructure
+
+#### NlpTokenizerFactory (factory)
+
+**Package:** `com.learney.contentaudit.nlpinfrastructure`
+
+| Method | Throws |
+|--------|--------|
+| `create(NlpTokenizerConfig config): NlpTokenizer` | (none) |
 

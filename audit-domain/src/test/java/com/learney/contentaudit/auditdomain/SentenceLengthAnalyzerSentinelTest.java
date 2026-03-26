@@ -37,7 +37,8 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestoneNull = new AuditContext(null, "t1", "k1", "q1");
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
     AuditContext ctxKnowledge = new AuditContext(null, "t1", "k1", "q1");
-    AuditableQuiz quiz = new AuditableQuiz("Hello world test", 3);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz quiz = new AuditableQuiz("Hello world test", List.of(dummyToken, dummyToken, dummyToken));
     AuditContext ctxQuiz = new AuditContext(null, "t1", "k1", "q1");
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestoneNull));
@@ -59,7 +60,8 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestoneAbc = new AuditContext("abc", "t1", "k1", "q1");
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
     AuditContext ctxKnowledge = new AuditContext("abc", "t1", "k1", "q1");
-    AuditableQuiz quiz = new AuditableQuiz("Hello world test", 3);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz quiz = new AuditableQuiz("Hello world test", List.of(dummyToken, dummyToken, dummyToken));
     AuditContext ctxQuiz = new AuditContext("abc", "t1", "k1", "q1");
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestoneAbc));
@@ -81,7 +83,8 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
     AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz quiz = new AuditableQuiz("She likes apples", 3);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz quiz = new AuditableQuiz("She likes apples", List.of(dummyToken, dummyToken, dummyToken));
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
@@ -96,30 +99,6 @@ public class SentenceLengthAnalyzerSentinelTest {
   }
 
   @Test
-  @DisplayName("Given a valid sentence quiz, when onQuiz is called, then nlpTokenizer countTokens is called with quiz sentence")
-  @Tag("F-SLEN")
-  public void givenAValidSentenceQuizWhenOnQuizIsCalledThenNlpTokenizerCountTokensIsCalledWithQuizSentence(
-      ) {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
-    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz quiz = new AuditableQuiz("The cat sat on the mat", 6);
-    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
-    TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    // Step 1
-    Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
-    // Step 2
-    Assertions.assertDoesNotThrow(() -> sut.onKnowledge(knowledge, ctxKnowledge));
-    // Step 3
-    Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeA1));
-    Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
-    Mockito.lenient().when(nlpTokenizer.countTokens(Mockito.eq("The cat sat on the mat"))).thenReturn(6);
-    sut.onQuiz(quiz, ctxQuiz);
-    Mockito.verify(nlpTokenizer, Mockito.times(1)).countTokens(Mockito.any());
-  }
-
-  @Test
   @DisplayName("Given multiple quizzes across sentence and non-sentence knowledges, when processed, then only sentence quizzes are scored")
   @Tag("F-SLEN")
   public void givenMultipleQuizzesAcrossSentenceAndNonsentenceKnowledgesWhenProcessedThenOnlySentenceQuizzesAreScored(
@@ -128,11 +107,12 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
     AuditableKnowledge nonSentenceKnowledge = new AuditableKnowledge(List.of(), "Vocab", "Match", false);
     AuditContext ctxNonSentKnowledge = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz nonSentQuiz = new AuditableQuiz("apple", 1);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz nonSentQuiz = new AuditableQuiz("apple", List.of(dummyToken));
     AuditContext ctxNonSentQuiz = new AuditContext("0", "t1", "k1", "q1");
     AuditableKnowledge sentenceKnowledge = new AuditableKnowledge(List.of(), "Sentences", "Complete", true);
     AuditContext ctxSentKnowledge = new AuditContext("0", "t1", "k2", "q2");
-    AuditableQuiz sentQuiz = new AuditableQuiz("She likes red apples very much", 6);
+    AuditableQuiz sentQuiz = new AuditableQuiz("She likes red apples very much", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
     AuditContext ctxSentQuiz = new AuditContext("0", "t1", "k2", "q2");
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
     ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k2", "q2");
@@ -147,7 +127,6 @@ public class SentenceLengthAnalyzerSentinelTest {
     // Step 5
     Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeA1));
     Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
-    Mockito.lenient().when(nlpTokenizer.countTokens(Mockito.eq("She likes red apples very much"))).thenReturn(6);
     Assertions.assertDoesNotThrow(() -> sut.onQuiz(sentQuiz, ctxSentQuiz));
     // Step 6
     List<ScoredItem> result = sut.getResults();
@@ -176,7 +155,8 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
     AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz quiz = new AuditableQuiz("She likes apples a lot", 5);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz quiz = new AuditableQuiz("She likes apples a lot", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
     ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1");
@@ -187,7 +167,6 @@ public class SentenceLengthAnalyzerSentinelTest {
     // Step 3
     Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeA1));
     Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
-    Mockito.lenient().when(nlpTokenizer.countTokens(Mockito.eq("She likes apples a lot"))).thenReturn(5);
     Assertions.assertDoesNotThrow(() -> sut.onQuiz(quiz, ctxQuiz));
     // Step 4
     List<ScoredItem> result = sut.getResults();
@@ -202,7 +181,8 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
     AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz quiz = new AuditableQuiz("She really likes green apples a lot today quickly", 9);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz quiz = new AuditableQuiz("She really likes green apples a lot today quickly", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
     ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.75, "0", "t1", "k1", "q1");
@@ -213,7 +193,6 @@ public class SentenceLengthAnalyzerSentinelTest {
     // Step 3
     Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeA1));
     Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
-    Mockito.lenient().when(nlpTokenizer.countTokens(Mockito.eq("She really likes green apples a lot today quickly"))).thenReturn(9);
     Assertions.assertDoesNotThrow(() -> sut.onQuiz(quiz, ctxQuiz));
     // Step 4
     List<ScoredItem> result = sut.getResults();
@@ -228,7 +207,8 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
     AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz quiz = new AuditableQuiz("Go now", 2);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz quiz = new AuditableQuiz("Go now", List.of(dummyToken, dummyToken));
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
     ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.25, "0", "t1", "k1", "q1");
@@ -239,7 +219,6 @@ public class SentenceLengthAnalyzerSentinelTest {
     // Step 3
     Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeA1));
     Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
-    Mockito.lenient().when(nlpTokenizer.countTokens(Mockito.eq("Go now"))).thenReturn(2);
     Assertions.assertDoesNotThrow(() -> sut.onQuiz(quiz, ctxQuiz));
     // Step 4
     List<ScoredItem> result = sut.getResults();
@@ -254,7 +233,8 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
     AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz quiz = new AuditableQuiz("I like big red cats", 5);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz quiz = new AuditableQuiz("I like big red cats", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
     ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1");
@@ -265,7 +245,6 @@ public class SentenceLengthAnalyzerSentinelTest {
     // Step 3
     Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeA1));
     Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
-    Mockito.lenient().when(nlpTokenizer.countTokens(Mockito.eq("I like big red cats"))).thenReturn(5);
     Assertions.assertDoesNotThrow(() -> sut.onQuiz(quiz, ctxQuiz));
     // Step 4
     List<ScoredItem> result = sut.getResults();
@@ -280,7 +259,8 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
     AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz quiz = new AuditableQuiz("I like big red cats very much here now", 8);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz quiz = new AuditableQuiz("I like big red cats very much here now", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
     ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1");
@@ -291,7 +271,6 @@ public class SentenceLengthAnalyzerSentinelTest {
     // Step 3
     Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeA1));
     Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
-    Mockito.lenient().when(nlpTokenizer.countTokens(Mockito.eq("I like big red cats very much here now"))).thenReturn(8);
     Assertions.assertDoesNotThrow(() -> sut.onQuiz(quiz, ctxQuiz));
     // Step 4
     List<ScoredItem> result = sut.getResults();
@@ -306,7 +285,8 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
     AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the local market every day", 12);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the local market every day", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
     ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.0, "0", "t1", "k1", "q1");
@@ -317,7 +297,6 @@ public class SentenceLengthAnalyzerSentinelTest {
     // Step 3
     Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeA1));
     Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
-    Mockito.lenient().when(nlpTokenizer.countTokens(Mockito.eq("She really likes eating big green apples from the local market every day"))).thenReturn(12);
     Assertions.assertDoesNotThrow(() -> sut.onQuiz(quiz, ctxQuiz));
     // Step 4
     List<ScoredItem> result = sut.getResults();
@@ -332,7 +311,8 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Vocabulary", "Match words", false);
     AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz quiz = new AuditableQuiz("apple", 1);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz quiz = new AuditableQuiz("apple", List.of(dummyToken));
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
@@ -353,7 +333,8 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestone = new AuditContext("3", "t1", "k1", "q1");
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Advanced grammar", "Complete", true);
     AuditContext ctxKnowledge = new AuditContext("3", "t1", "k1", "q1");
-    AuditableQuiz quiz = new AuditableQuiz("The students should have been studying for their final exams much more carefully this semester", 15);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz quiz = new AuditableQuiz("The students should have been studying for their final exams much more carefully this semester", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
     AuditContext ctxQuiz = new AuditContext("3", "t1", "k1", "q1");
     TargetRange rangeB2 = new TargetRange(CefrLevel.B2, 14, 17);
     ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "3", "t1", "k1", "q1");
@@ -364,7 +345,6 @@ public class SentenceLengthAnalyzerSentinelTest {
     // Step 3
     Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeB2));
     Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
-    Mockito.lenient().when(nlpTokenizer.countTokens(Mockito.eq("The students should have been studying for their final exams much more carefully this semester"))).thenReturn(15);
     Assertions.assertDoesNotThrow(() -> sut.onQuiz(quiz, ctxQuiz));
     // Step 4
     List<ScoredItem> result = sut.getResults();
@@ -379,7 +359,8 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
     AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz quiz = new AuditableQuiz("Go", 1);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz quiz = new AuditableQuiz("Go", List.of(dummyToken));
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
     ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.0, "0", "t1", "k1", "q1");
@@ -390,7 +371,6 @@ public class SentenceLengthAnalyzerSentinelTest {
     // Step 3
     Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeA1));
     Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
-    Mockito.lenient().when(nlpTokenizer.countTokens(Mockito.eq("Go"))).thenReturn(1);
     Assertions.assertDoesNotThrow(() -> sut.onQuiz(quiz, ctxQuiz));
     // Step 4
     List<ScoredItem> result = sut.getResults();
@@ -405,7 +385,8 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
     AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the garden", 10);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the garden", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
     ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.5, "0", "t1", "k1", "q1");
@@ -416,7 +397,6 @@ public class SentenceLengthAnalyzerSentinelTest {
     // Step 3
     Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeA1));
     Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
-    Mockito.lenient().when(nlpTokenizer.countTokens(Mockito.eq("She really likes eating big green apples from the garden"))).thenReturn(10);
     Assertions.assertDoesNotThrow(() -> sut.onQuiz(quiz, ctxQuiz));
     // Step 4
     List<ScoredItem> result = sut.getResults();
@@ -449,9 +429,10 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Basic greetings", "Complete the sentence", true);
     AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz quiz1 = new AuditableQuiz("Hello how are you today friend", 6);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz quiz1 = new AuditableQuiz("Hello how are you today friend", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
     AuditContext ctxQuiz1 = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz quiz2 = new AuditableQuiz("Good morning", 2);
+    AuditableQuiz quiz2 = new AuditableQuiz("Good morning", List.of(dummyToken, dummyToken));
     AuditContext ctxQuiz2 = new AuditContext("0", "t1", "k1", "q2");
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
     ScoredItem expectedScore1 = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1");
@@ -463,12 +444,10 @@ public class SentenceLengthAnalyzerSentinelTest {
     // Step 3
     Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeA1));
     Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
-    Mockito.lenient().when(nlpTokenizer.countTokens(Mockito.eq("Hello how are you today friend"))).thenReturn(6);
     Assertions.assertDoesNotThrow(() -> sut.onQuiz(quiz1, ctxQuiz1));
     // Step 4
     Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeA1));
     Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
-    Mockito.lenient().when(nlpTokenizer.countTokens(Mockito.eq("Good morning"))).thenReturn(2);
     Assertions.assertDoesNotThrow(() -> sut.onQuiz(quiz2, ctxQuiz2));
     // Step 5
     List<ScoredItem> result = sut.getResults();
@@ -498,7 +477,8 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Vocabulary", "Match words", false);
     AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz quiz = new AuditableQuiz("apple", 1);
+    NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
+    AuditableQuiz quiz = new AuditableQuiz("apple", List.of(dummyToken));
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));

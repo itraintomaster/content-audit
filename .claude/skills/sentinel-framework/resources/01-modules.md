@@ -41,6 +41,10 @@ project-root/
 │   ├── pom.xml            # Module POM (generated)
 │   ├── src/main/java/     # Production code
 │   └── src/test/java/     # Test code
+├── nlp-infrastructure/
+│   ├── pom.xml            # Module POM (generated)
+│   ├── src/main/java/     # Production code
+│   └── src/test/java/     # Test code
 ```
 
 ## Declared Modules
@@ -53,7 +57,7 @@ project-root/
 | Depends On | (none — leaf module) |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 16 (AuditReport, AuditableCourse, AuditContext, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, ScoredItem, NodeScores, QuizNode, KnowledgeNode, TopicNode, MilestoneNode) |
+| Models | 17 (AuditReport, AuditableCourse, AuditContext, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, ScoredItem, NodeScores, QuizNode, KnowledgeNode, TopicNode, MilestoneNode, NlpToken) |
 | Interfaces | 7 (ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator) |
 | Implementations | 6 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator) |
 | Packages | 0 |
@@ -91,12 +95,12 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditapplication` |
-| Depends On | audit-domain, course-domain, refiner-domain, course-infrastructure |
+| Depends On | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 0 |
 | Interfaces | 2 (AuditRunner, CourseMapper) |
-| Implementations | 4 (CourseToAuditableMapper, CachedNlpTokenizer, DefaultSentenceLengthConfig, DefaultAuditRunner) |
+| Implementations | 3 (CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner) |
 | Packages | 0 |
 
 ### course-infrastructure
@@ -121,13 +125,28 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditcli` |
-| Depends On | audit-application, audit-domain, course-domain, course-infrastructure |
+| Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 0 |
 | Interfaces | 3 (ReportFormatter, AuditCli, FormatterRegistry) |
 | Implementations | 4 (TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry) |
 | Packages | 0 |
+
+### nlp-infrastructure
+
+> Infrastructure module for NLP processing. Provides SpaCy-backed tokenization behind a factory, with internal caching. Only the factory and configuration model are public; all processing internals are package-private.
+
+| Property | Value |
+|----------|-------|
+| Package | `com.learney.contentaudit.nlpinfrastructure` |
+| Depends On | audit-domain |
+| Allowed Clients | (unrestricted) |
+| Scope | public |
+| Models | 1 (NlpTokenizerConfig) |
+| Interfaces | 1 (NlpTokenizerFactory) |
+| Implementations | 0 |
+| Packages | 1 (spacy [public]) |
 
 ## Dependency Graph
 
@@ -139,11 +158,14 @@ audit-application ──depends──> audit-domain
 audit-application ──depends──> course-domain
 audit-application ──depends──> refiner-domain
 audit-application ──depends──> course-infrastructure
+audit-application ──depends──> nlp-infrastructure
 course-infrastructure ──depends──> course-domain
 audit-cli ──depends──> audit-application
 audit-cli ──depends──> audit-domain
 audit-cli ──depends──> course-domain
 audit-cli ──depends──> course-infrastructure
+audit-cli ──depends──> nlp-infrastructure
+nlp-infrastructure ──depends──> audit-domain
 ```
 
 ## Access Control Matrix
@@ -153,9 +175,10 @@ audit-cli ──depends──> course-infrastructure
 | audit-domain | (none) | (any) |
 | course-domain | (none) | (any) |
 | refiner-domain | (none) | (any) |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure | (any) |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure | (any) |
 | course-infrastructure | course-domain | (any) |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure | (any) |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure | (any) |
+| nlp-infrastructure | audit-domain | (any) |
 
 ## Enforcement Mechanisms
 

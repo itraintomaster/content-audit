@@ -54,7 +54,7 @@
 | Field | Type |
 |-------|------|
 | sentence | `String` |
-| tokenCount | `int` |
+| tokens | `List<NlpToken>` |
 
 ### CefrLevel (`enum`)
 
@@ -132,6 +132,17 @@
 | scores | `NodeScores` |
 | topics | `List<TopicNode>` |
 
+### NlpToken (`record`)
+
+| Field | Type |
+|-------|------|
+| text | `String` |
+| lemma | `String` |
+| posTag | `String` |
+| frequencyRank | `Integer` |
+| isStop | `boolean` |
+| isPunct | `boolean` |
+
 ## Interfaces
 
 ### ContentAudit (service)
@@ -173,6 +184,8 @@ Methods:
 
 - `tokenize(String text): List<String>`
 - `countTokens(String text): int`
+- `analyzeTokens(String text): List<NlpToken>`
+- `analyzeTokensBatch(List<String> sentences): Map<String,List<NlpToken>>`
 
 ### SentenceLengthConfig (port)
 
@@ -270,7 +283,6 @@ Methods:
 - Given a null milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty → F-SLEN/F-SLEN-R001
 - Given a non-numeric milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty → F-SLEN/F-SLEN-R001
 - Given no target range configured for level, when onQuiz is called, then quiz is excluded and getResults is empty → F-SLEN/F-SLEN-R012
-- Given a valid sentence quiz, when onQuiz is called, then nlpTokenizer countTokens is called with quiz sentence → F-SLEN/F-SLEN-R013
 - Given multiple quizzes across sentence and non-sentence knowledges, when processed, then only sentence quizzes are scored → F-SLEN/F-SLEN-R001
 - Given a SentenceLengthAnalyzer, when getName is called, then returns sentence-length
 - Given a SentenceLengthAnalyzer, when getTarget is called, then returns QUIZ

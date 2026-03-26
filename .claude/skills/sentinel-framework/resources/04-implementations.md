@@ -147,12 +147,11 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 }
 ```
 
-**Tests that must pass:** 23
+**Tests that must pass:** 22
 
 - Given a null milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty [F-SLEN/F-SLEN-R001]
 - Given a non-numeric milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty [F-SLEN/F-SLEN-R001]
 - Given no target range configured for level, when onQuiz is called, then quiz is excluded and getResults is empty [F-SLEN/F-SLEN-R012]
-- Given a valid sentence quiz, when onQuiz is called, then nlpTokenizer countTokens is called with quiz sentence [F-SLEN/F-SLEN-R013]
 - Given multiple quizzes across sentence and non-sentence knowledges, when processed, then only sentence quizzes are scored [F-SLEN/F-SLEN-R001]
 - Given a SentenceLengthAnalyzer, when getName is called, then returns sentence-length
 - Given a SentenceLengthAnalyzer, when getTarget is called, then returns QUIZ
@@ -202,24 +201,11 @@ public CourseToAuditableMapper(NlpTokenizer nlpTokenizer) {
 }
 ```
 
-#### CachedNlpTokenizer
+**Tests that must pass:** 3
 
-**Package:** `com.learney.contentaudit.auditapplication`
-
-**Implements:** NlpTokenizer
-
-**Constructor dependencies (requiresInject):**
-
-| Name | Type |
-|------|------|
-| `delegate` | `NlpTokenizer` |
-
-**Generated constructor:**
-```java
-public CachedNlpTokenizer(NlpTokenizer delegate) {
-    this.delegate = delegate;
-}
-```
+- Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse [F-NLP/F-NLP-R010]
+- Given a course with no milestones, when map is called, then returns an AuditableCourse without error [F-NLP/F-NLP-R010]
+- Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates [F-NLP/F-NLP-R008]
 
 #### DefaultSentenceLengthConfig
 
@@ -374,4 +360,55 @@ public DefaultAuditCli(AuditRunner auditRunner, FormatterRegistry formatterRegis
 **Implements:** FormatterRegistry
 
 **Framework types:** Component
+
+### Module: nlp-infrastructure
+
+#### SpacyNlpTokenizerFactory (package: spacy)
+
+**Package:** `com.learney.contentaudit.nlpinfrastructure.spacy`
+**Visibility:** public
+**Implements:** NlpTokenizerFactory
+
+#### SpacyNlpTokenizer (package: spacy)
+
+**Package:** `com.learney.contentaudit.nlpinfrastructure.spacy`
+**Visibility:** public
+**Implements:** NlpTokenizer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `processRunner` | `SpacyProcessRunner` |
+| `resultParser` | `SpacyResultParser` |
+
+#### SpacyProcessRunner (package: spacy)
+
+**Package:** `com.learney.contentaudit.nlpinfrastructure.spacy`
+**Visibility:** public
+**Implements:** 
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `config` | `NlpTokenizerConfig` |
+
+#### SpacyResultParser (package: spacy)
+
+**Package:** `com.learney.contentaudit.nlpinfrastructure.spacy`
+**Visibility:** public
+**Implements:** 
+
+#### CachedNlpTokenizer (package: spacy)
+
+**Package:** `com.learney.contentaudit.nlpinfrastructure.spacy`
+**Visibility:** public
+**Implements:** NlpTokenizer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `delegate` | `NlpTokenizer` |
 

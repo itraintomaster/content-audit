@@ -1,0 +1,1681 @@
+code: __proposal__
+description: "Remove nlpTokenizer from SentenceLengthAnalyzer requiresInject, replace\
+  \ tokenCount with tokens in all AuditableQuiz test fixtures, remove nlpTokenizer\
+  \ mocks, and delete the verifyCall test"
+modules:
+- name: audit-domain
+  implementations:
+  - name: SentenceLengthAnalyzer
+    requiresInject:
+    - name: config
+      type: SentenceLengthConfig
+    tests:
+    - name: "Given a null milestoneId, when onQuiz is called, then quiz is excluded\
+        \ and getResults is empty"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestoneNull
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: quiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: Hello world test
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken]"
+      - id: ctxQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestoneNull
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+      _change: modify
+    - name: "Given a non-numeric milestoneId, when onQuiz is called, then quiz is\
+        \ excluded and getResults is empty"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestoneAbc
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: abc
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: abc
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: quiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: Hello world test
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken]"
+      - id: ctxQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: abc
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestoneAbc
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+      _change: modify
+    - name: "Given no target range configured for level, when onQuiz is called, then\
+        \ quiz is excluded and getResults is empty"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: quiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: She likes apples
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken]"
+      - id: ctxQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.empty()
+          args:
+          - match: any
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R012
+      _change: modify
+    - name: "Given a valid sentence quiz, when onQuiz is called, then nlpTokenizer\
+        \ countTokens is called with quiz sentence"
+      _change: delete
+    - name: "Given multiple quizzes across sentence and non-sentence knowledges, when\
+        \ processed, then only sentence quizzes are scored"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: nonSentenceKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Vocab
+          instructions: Match
+          isSentence: false
+          quizzes: "[]"
+      - id: ctxNonSentKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: nonSentQuiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: apple
+          tokens: "[ref:dummyToken]"
+      - id: ctxNonSentQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: sentenceKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Sentences
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxSentKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k2
+          quizId: q2
+      - id: sentQuiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: She likes red apples very much
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken]"
+      - id: ctxSentQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k2
+          quizId: q2
+      - id: rangeA1
+        type: com.learney.contentaudit.audit-domain.TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: com.learney.contentaudit.audit-domain.ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k2
+          quizId: q2
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:nonSentenceKnowledge
+          - ref:ctxNonSentKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:nonSentQuiz
+          - ref:ctxNonSentQuiz
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:sentenceKnowledge
+          - ref:ctxSentKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:sentQuiz
+          - ref:ctxSentQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+      _change: modify
+    - name: "Given a quiz within A1 range, when onQuiz is called and getResults checked,\
+        \ then score is 1.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: quiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: She likes apples a lot
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken]"
+      - id: ctxQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: com.learney.contentaudit.audit-domain.TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: com.learney.contentaudit.audit-domain.ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+      _change: modify
+    - name: "Given a quiz 1 token above A1 max, when scored, then score is 0.75"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: quiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: She really likes green apples a lot today quickly
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken]"
+      - id: ctxQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: com.learney.contentaudit.audit-domain.TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: com.learney.contentaudit.audit-domain.ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0.75
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+      _change: modify
+    - name: "Given a quiz 3 tokens below A1 min, when scored, then score is 0.25"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: quiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: Go now
+          tokens: "[ref:dummyToken, ref:dummyToken]"
+      - id: ctxQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: com.learney.contentaudit.audit-domain.TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: com.learney.contentaudit.audit-domain.ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0.25
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+      _change: modify
+    - name: "Given a quiz exactly at A1 minimum boundary, when scored, then score\
+        \ is 1.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: quiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: I like big red cats
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken]"
+      - id: ctxQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: com.learney.contentaudit.audit-domain.TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: com.learney.contentaudit.audit-domain.ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+      _change: modify
+    - name: "Given a quiz exactly at A1 maximum boundary, when scored, then score\
+        \ is 1.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: quiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: I like big red cats very much here now
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken]"
+      - id: ctxQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: com.learney.contentaudit.audit-domain.TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: com.learney.contentaudit.audit-domain.ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+      _change: modify
+    - name: "Given a quiz 4 tokens above A1 max, when scored, then score is 0.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: quiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: She really likes eating big green apples from the local market
+            every day
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken, ref:dummyToken]"
+      - id: ctxQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: com.learney.contentaudit.audit-domain.TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: com.learney.contentaudit.audit-domain.ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R009
+      _change: modify
+    - name: "Given a non-sentence knowledge, when onQuiz is called, then quiz is excluded\
+        \ and getResults is empty"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Vocabulary
+          instructions: Match words
+          isSentence: false
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: quiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: apple
+          tokens: "[ref:dummyToken]"
+      - id: ctxQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+      _change: modify
+    - name: "Given a B2 level quiz within range, when scored, then score is 1.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "3"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Advanced grammar
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "3"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: quiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: The students should have been studying for their final exams much
+            more carefully this semester
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken]"
+      - id: ctxQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "3"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeB2
+        type: com.learney.contentaudit.audit-domain.TargetRange
+        construct:
+          level: B2
+          minTokens: 14
+          maxTokens: 17
+      - id: expectedScore
+        type: com.learney.contentaudit.audit-domain.ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1
+          milestoneId: "3"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeB2)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R012
+      _change: modify
+    - name: "Given a quiz exactly at tolerance boundary of 4 tokens, when scored,\
+        \ then score is 0.0"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: quiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: Go
+          tokens: "[ref:dummyToken]"
+      - id: ctxQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: com.learney.contentaudit.audit-domain.TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: com.learney.contentaudit.audit-domain.ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R009
+      _change: modify
+    - name: "Given a quiz 2 tokens above A1 max, when scored, then score is 0.5"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Greetings
+          instructions: Complete
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: quiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: She really likes eating big green apples from the garden
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken]"
+      - id: ctxQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: rangeA1
+        type: com.learney.contentaudit.audit-domain.TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore
+        type: com.learney.contentaudit.audit-domain.ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0.5
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+      _change: modify
+    - name: "Given a full milestone-knowledge-quiz sequence, when processed end to\
+        \ end, then correct scores are produced"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Basic greetings
+          instructions: Complete the sentence
+          isSentence: true
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: quiz1
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: Hello how are you today friend
+          tokens: "[ref:dummyToken, ref:dummyToken, ref:dummyToken, ref:dummyToken,\
+            \ ref:dummyToken, ref:dummyToken]"
+      - id: ctxQuiz1
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: quiz2
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: Good morning
+          tokens: "[ref:dummyToken, ref:dummyToken]"
+      - id: ctxQuiz2
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q2
+      - id: rangeA1
+        type: com.learney.contentaudit.audit-domain.TargetRange
+        construct:
+          level: A1
+          minTokens: 5
+          maxTokens: 8
+      - id: expectedScore1
+        type: com.learney.contentaudit.audit-domain.ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 1
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: expectedScore2
+        type: com.learney.contentaudit.audit-domain.ScoredItem
+        construct:
+          analyzerName: sentence-length
+          target: QUIZ
+          score: 0.25
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q2
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz1
+          - ref:ctxQuiz1
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz2
+          - ref:ctxQuiz2
+        mocks:
+        - dependency: config
+          method: getTargetRange
+          thenReturn: Optional.of(ref:rangeA1)
+          args:
+          - match: any
+        - dependency: config
+          method: getToleranceMargin
+          thenReturn: 4
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[ref:expectedScore1, ref:expectedScore2]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+      _change: modify
+    - name: "Given a knowledge with non-sentence quizzes, when onQuiz is called, then\
+        \ non-sentence quizzes are excluded from scoring"
+      target: SentenceLengthAnalyzer
+      fixtures:
+      - id: milestone
+        type: com.learney.contentaudit.audit-domain.AuditableMilestone
+        construct:
+          topics: "[]"
+      - id: ctxMilestone
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: knowledge
+        type: com.learney.contentaudit.audit-domain.AuditableKnowledge
+        construct:
+          title: Vocabulary
+          instructions: Match words
+          isSentence: false
+          quizzes: "[]"
+      - id: ctxKnowledge
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      - id: dummyToken
+        type: com.learney.contentaudit.audit-domain.NlpToken
+        construct:
+          text: w
+          lemma: w
+          posTag: NOUN
+          frequencyRank: 1
+          isStop: false
+          isPunct: false
+      - id: quiz
+        type: com.learney.contentaudit.audit-domain.AuditableQuiz
+        construct:
+          sentence: apple
+          tokens: "[ref:dummyToken]"
+      - id: ctxQuiz
+        type: com.learney.contentaudit.audit-domain.AuditContext
+        construct:
+          milestoneId: "0"
+          topicId: t1
+          knowledgeId: k1
+          quizId: q1
+      type: integration
+      steps:
+      - invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctxMilestone
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctxKnowledge
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: onQuiz
+          args:
+          - ref:quiz
+          - ref:ctxQuiz
+        assert:
+          doesNotThrow: true
+      - invoke:
+          method: getResults
+        assert:
+          returns: "[]"
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+      _change: modify
+    implements:
+    - ContentAnalyzer
+    _change: modify
+  _change: modify

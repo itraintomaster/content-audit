@@ -62,6 +62,7 @@ Only fall back to `Read sentinel.yaml` if you need the complete raw definition.
 - What are the main domain concepts? (nouns that become models, their key fields and types)
 - Are there scalability or deployment constraints that affect module boundaries?
 - What quality attributes matter most? (maintainability, performance, extensibility)
+- Do any modules contain sub-domains that should be encapsulated with packages? (e.g., expose a public interface/model but hide the implementation in a private package)
 
 **STOP here.** Wait for the user to answer before continuing.
 
@@ -71,6 +72,7 @@ If `sentinel.yaml` is empty or a template, this is a **new architecture design**
 
 Based on the user's answers, present 2–3 architectural options. For each:
 - Name the modules, interfaces, and implementations involved
+- For modules with many components, propose package organization with visibility levels (see "Packages vs Sub-Modules" in DSL reference)
 - State the architectural rationale and applicable patterns (see Patterns Catalog)
 - Call out trade-offs: coupling, complexity, testability, extensibility
 - Recommend one option and explain why
@@ -144,7 +146,7 @@ modules:                 # List of affected modules
 ```
 
 Rules:
-1. **Every changed element needs `_change`** — `"add"`, `"modify"`, or `"delete"`. This applies to modules, models, fields, interfaces, and implementations
+1. **Every changed element needs `_change`** — `"add"`, `"modify"`, or `"delete"`. This applies to modules, packages, models, fields, interfaces, and implementations
 2. **Context modules** — When modifying elements inside an existing module, include the module with `_change: "modify"` (or omit `_change` on the module)
 3. **References must resolve** — `dependsOn` → known module, `implements` → known interface
 4. **`implements` is always an array** — `implements: ["InterfaceName"]`, never a bare string
@@ -217,9 +219,10 @@ modules:
 | audit-domain | — | ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator | IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator | — |
 | course-domain | — | CourseRepository, CourseValidator | — | — |
 | refiner-domain | — | — | — | — |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure | AuditRunner, CourseMapper | CourseToAuditableMapper, CachedNlpTokenizer, DefaultSentenceLengthConfig, DefaultAuditRunner | — |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure | AuditRunner, CourseMapper | CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner | — |
 | course-infrastructure | course-domain | — | FileSystemCourseRepository | — |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure | ReportFormatter, AuditCli, FormatterRegistry | TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry | — |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure | ReportFormatter, AuditCli, FormatterRegistry | TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry | — |
+| nlp-infrastructure | audit-domain | NlpTokenizerFactory | — | spacy [public] |
 
 ### Boundaries
 
@@ -228,7 +231,8 @@ modules:
 | audit-domain | (none) |
 | course-domain | (none) |
 | refiner-domain | (none) |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure |
 | course-infrastructure | course-domain |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure |
+| nlp-infrastructure | audit-domain |
 

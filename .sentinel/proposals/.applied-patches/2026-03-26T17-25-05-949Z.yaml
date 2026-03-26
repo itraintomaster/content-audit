@@ -1,0 +1,15 @@
+code: __proposal__
+description: "Unseal NlpTokenizerFactory — sealed interfaces in unnamed Java modules\
+  \ require permitted classes in the same package, but SpacyNlpTokenizerFactory is\
+  \ in a different sub-package (spacy). Changing to unsealed fixes the compilation\
+  \ error."
+modules:
+- name: nlp-infrastructure
+  interfaces:
+  - name: NlpTokenizerFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(NlpTokenizerConfig config): NlpTokenizer"
+    _change: modify
+  _change: modify

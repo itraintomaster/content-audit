@@ -1,0 +1,31 @@
+code: __proposal__
+description: Tests for SpacyNlpTokenizerFactory - factory that creates NlpTokenizer
+  instances
+modules:
+- name: nlp-infrastructure
+  packages:
+  - name: api
+    visibility: internal
+    implementations:
+    - name: SpacyNlpTokenizerFactory
+      tests:
+      - name: "Given a valid NlpTokenizerConfig, when create is called, then returns\
+          \ a non-null NlpTokenizer without error"
+        target: SpacyNlpTokenizerFactory
+        invoke:
+          method: create
+          args:
+          - ref:config
+        fixtures:
+        - id: config
+          type: NlpTokenizerConfig
+          construct:
+            pythonScriptPath: /usr/local/bin/sample_processor.py
+            cocaDataPath: /data/lemmas_20k_words.txt
+            timeoutSeconds: 300
+        type: unit
+        traceability:
+          feature: F-NLP
+          rule: F-NLP-R021
+        assert:
+          doesNotThrow: true

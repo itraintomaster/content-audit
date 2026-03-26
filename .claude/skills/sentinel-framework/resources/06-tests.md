@@ -406,35 +406,28 @@ public class MyAdapterSentinelTest {
 #### Given a null milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestoneNull, knowledge, ctxKnowledge, quiz, ctxQuiz
+- **Fixtures:** milestone, ctxMilestoneNull, knowledge, ctxKnowledge, dummyToken, quiz, ctxQuiz
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R001
 - **Steps:** 4 integration steps
 
 #### Given a non-numeric milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestoneAbc, knowledge, ctxKnowledge, quiz, ctxQuiz
+- **Fixtures:** milestone, ctxMilestoneAbc, knowledge, ctxKnowledge, dummyToken, quiz, ctxQuiz
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R001
 - **Steps:** 4 integration steps
 
 #### Given no target range configured for level, when onQuiz is called, then quiz is excluded and getResults is empty
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, quiz, ctxQuiz
+- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, dummyToken, quiz, ctxQuiz
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R012
 - **Steps:** 4 integration steps
-
-#### Given a valid sentence quiz, when onQuiz is called, then nlpTokenizer countTokens is called with quiz sentence
-
-- **Type:** integration
-- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, quiz, ctxQuiz, rangeA1
-- **Traceability:** feature=F-SLEN, rule=F-SLEN-R013
-- **Steps:** 3 integration steps
 
 #### Given multiple quizzes across sentence and non-sentence knowledges, when processed, then only sentence quizzes are scored
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestone, nonSentenceKnowledge, ctxNonSentKnowledge, nonSentQuiz, ctxNonSentQuiz, sentenceKnowledge, ctxSentKnowledge, sentQuiz, ctxSentQuiz, rangeA1, expectedScore
+- **Fixtures:** milestone, ctxMilestone, nonSentenceKnowledge, ctxNonSentKnowledge, dummyToken, nonSentQuiz, ctxNonSentQuiz, sentenceKnowledge, ctxSentKnowledge, sentQuiz, ctxSentQuiz, rangeA1, expectedScore
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R001
 - **Steps:** 6 integration steps
 
@@ -453,70 +446,70 @@ public class MyAdapterSentinelTest {
 #### Given a quiz within A1 range, when onQuiz is called and getResults checked, then score is 1.0
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, quiz, ctxQuiz, rangeA1, expectedScore
+- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, dummyToken, quiz, ctxQuiz, rangeA1, expectedScore
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R002
 - **Steps:** 4 integration steps
 
 #### Given a quiz 1 token above A1 max, when scored, then score is 0.75
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, quiz, ctxQuiz, rangeA1, expectedScore
+- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, dummyToken, quiz, ctxQuiz, rangeA1, expectedScore
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R002
 - **Steps:** 4 integration steps
 
 #### Given a quiz 3 tokens below A1 min, when scored, then score is 0.25
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, quiz, ctxQuiz, rangeA1, expectedScore
+- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, dummyToken, quiz, ctxQuiz, rangeA1, expectedScore
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R002
 - **Steps:** 4 integration steps
 
 #### Given a quiz exactly at A1 minimum boundary, when scored, then score is 1.0
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, quiz, ctxQuiz, rangeA1, expectedScore
+- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, dummyToken, quiz, ctxQuiz, rangeA1, expectedScore
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R002
 - **Steps:** 4 integration steps
 
 #### Given a quiz exactly at A1 maximum boundary, when scored, then score is 1.0
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, quiz, ctxQuiz, rangeA1, expectedScore
+- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, dummyToken, quiz, ctxQuiz, rangeA1, expectedScore
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R002
 - **Steps:** 4 integration steps
 
 #### Given a quiz 4 tokens above A1 max, when scored, then score is 0.0
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, quiz, ctxQuiz, rangeA1, expectedScore
+- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, dummyToken, quiz, ctxQuiz, rangeA1, expectedScore
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R009
 - **Steps:** 4 integration steps
 
 #### Given a non-sentence knowledge, when onQuiz is called, then quiz is excluded and getResults is empty
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, quiz, ctxQuiz
+- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, dummyToken, quiz, ctxQuiz
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R001
 - **Steps:** 4 integration steps
 
 #### Given a B2 level quiz within range, when scored, then score is 1.0
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, quiz, ctxQuiz, rangeB2, expectedScore
+- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, dummyToken, quiz, ctxQuiz, rangeB2, expectedScore
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R012
 - **Steps:** 4 integration steps
 
 #### Given a quiz exactly at tolerance boundary of 4 tokens, when scored, then score is 0.0
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, quiz, ctxQuiz, rangeA1, expectedScore
+- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, dummyToken, quiz, ctxQuiz, rangeA1, expectedScore
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R009
 - **Steps:** 4 integration steps
 
 #### Given a quiz 2 tokens above A1 max, when scored, then score is 0.5
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, quiz, ctxQuiz, rangeA1, expectedScore
+- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, dummyToken, quiz, ctxQuiz, rangeA1, expectedScore
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R002
 - **Steps:** 4 integration steps
 
@@ -537,7 +530,7 @@ public class MyAdapterSentinelTest {
 #### Given a full milestone-knowledge-quiz sequence, when processed end to end, then correct scores are produced
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, quiz1, ctxQuiz1, quiz2, ctxQuiz2, rangeA1, expectedScore1, expectedScore2
+- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, dummyToken, quiz1, ctxQuiz1, quiz2, ctxQuiz2, rangeA1, expectedScore1, expectedScore2
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R002
 - **Steps:** 5 integration steps
 
@@ -556,9 +549,39 @@ public class MyAdapterSentinelTest {
 #### Given a knowledge with non-sentence quizzes, when onQuiz is called, then non-sentence quizzes are excluded from scoring
 
 - **Type:** integration
-- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, quiz, ctxQuiz
+- **Fixtures:** milestone, ctxMilestone, knowledge, ctxKnowledge, dummyToken, quiz, ctxQuiz
 - **Traceability:** feature=F-SLEN, rule=F-SLEN-R001
 - **Steps:** 4 integration steps
+
+### CourseToAuditableMapper (audit-application)
+
+**Test class:** `CourseToAuditableMapperSentinelTest`
+
+#### Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse
+
+- **Type:** unit
+- **Fixtures:** course, batchResult
+- **Mocks:** nlpTokenizer.analyzeTokensBatch
+- **Invokes:** `map(ref:course)`
+- **Asserts:** verifyCall
+- **Traceability:** feature=F-NLP, rule=F-NLP-R010
+
+#### Given a course with no milestones, when map is called, then returns an AuditableCourse without error
+
+- **Type:** unit
+- **Fixtures:** emptyRoot, emptyCourse
+- **Invokes:** `map(ref:emptyCourse)`
+- **Asserts:** doesNotThrow
+- **Traceability:** feature=F-NLP, rule=F-NLP-R010
+
+#### Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates
+
+- **Type:** unit
+- **Fixtures:** course
+- **Mocks:** nlpTokenizer.analyzeTokensBatch
+- **Invokes:** `map(ref:course)`
+- **Asserts:** assertThrows=RuntimeException
+- **Traceability:** feature=F-NLP, rule=F-NLP-R008
 
 ### DefaultAuditRunner (audit-application)
 

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain;
 
 import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -11,4 +12,8 @@ public interface NlpTokenizer {
     List<String> tokenize(String text);
 
     int countTokens(String text);
+
+    List<NlpToken> analyzeTokens(String text);
+
+    Map<String, List<NlpToken>> analyzeTokensBatch(List<String> sentences);
 }

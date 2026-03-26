@@ -52,6 +52,32 @@ packages:
 
 **ArchUnit enforcement:** Generated rules prevent external access to `internal` and `private` packages.
 
+**Sub-domain encapsulation pattern:** Use packages to model sub-domains that expose a public interface and/or model but hide their internal implementation. Place the contract (interface + shared models) in a `public` package and the implementations in an `internal` or `private` sibling package. This enforces that consumers depend on the contract, never on the implementation details.
+
+Example — a `pricing` sub-domain inside an `orders` module:
+```yaml
+packages:
+  - name: "pricing"
+    visibility: "public"          # Exposed contract
+    interfaces:
+      - name: "PricingEngine"
+        exposes:
+          - signature: "calculate(Order order): PriceBreakdown"
+    models:
+      - name: "PriceBreakdown"
+        fields:
+          - { name: "subtotal", type: "BigDecimal" }
+          - { name: "tax", type: "BigDecimal" }
+          - { name: "total", type: "BigDecimal" }
+  - name: "pricinginternal"
+    visibility: "private"          # Hidden implementation
+    implementations:
+      - name: "TieredPricingEngine"
+        implements: ["PricingEngine"]
+        requiresInject:
+          - { name: "discountRepository", type: "DiscountRepository" }
+```
+
 ## Model
 
 ```yaml
@@ -180,4 +206,5 @@ patterns:
 - Start without packages — only add them when a module grows complex
 - Use `internal` (default) for most packages — only expose `public` for the module's API surface
 - Use `private` for implementation details that even sibling packages shouldn't access
+- **Prefer packages for sub-domains** — when a module contains a cohesive sub-domain (e.g., pricing, scheduling, notifications), encapsulate it: expose the contract in a `public` package and hide the implementation in a `private` package. This is lighter than a full sub-module
 - Package names must be valid Java identifiers (lowercase, no hyphens)

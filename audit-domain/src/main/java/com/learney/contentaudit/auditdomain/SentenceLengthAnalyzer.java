@@ -13,7 +13,6 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
 
     private static final String ANALYZER_NAME = "sentence-length";
 
-    private final NlpTokenizer nlpTokenizer;
     private final SentenceLengthConfig config;
 
     private final List<ScoredItem> results = new ArrayList<>();
@@ -21,8 +20,7 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
     private boolean currentKnowledgeIsSentence = false;
     private CefrLevel currentLevel = null;
 
-    public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig config) {
-        this.nlpTokenizer = nlpTokenizer;
+    public SentenceLengthAnalyzer(SentenceLengthConfig config) {
         this.config = config;
     }
 
@@ -69,7 +67,7 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
             return null;
         }
 
-        int tokens = nlpTokenizer.countTokens(quiz.getSentence());
+        int tokens = quiz.getTokens() != null ? quiz.getTokens().size() : 0;
         double score = scoreQuiz(tokens, rangeOpt.get());
 
         results.add(new ScoredItem(

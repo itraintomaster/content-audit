@@ -133,7 +133,7 @@ Methods:
 | Field | Type |
 |-------|------|
 | sentence | `String` |
-| tokenCount | `int` |
+| tokens | `List<NlpToken>` |
 
 ### CefrLevel (`enum`)
 
@@ -211,6 +211,17 @@ Methods:
 | scores | `NodeScores` |
 | topics | `List<TopicNode>` |
 
+### NlpToken (`record`)
+
+| Field | Type |
+|-------|------|
+| text | `String` |
+| lemma | `String` |
+| posTag | `String` |
+| frequencyRank | `Integer` |
+| isStop | `boolean` |
+| isPunct | `boolean` |
+
 ### ContentAudit (service)
 
 Methods:
@@ -250,6 +261,8 @@ Methods:
 
 - `tokenize(String text): List<String>`
 - `countTokens(String text): int`
+- `analyzeTokens(String text): List<NlpToken>`
+- `analyzeTokensBatch(List<String> sentences): Map<String,List<NlpToken>>`
 
 ### SentenceLengthConfig (port)
 
@@ -418,4 +431,22 @@ Methods:
 Methods:
 
 - `validate(CourseEntity course): void`
+
+### From nlp-infrastructure
+
+## Models
+
+### NlpTokenizerConfig (`record`)
+
+| Field | Type |
+|-------|------|
+| pythonScriptPath | `String` |
+| cocaDataPath | `String` |
+| timeoutSeconds | `int` |
+
+### NlpTokenizerFactory (factory)
+
+Methods:
+
+- `create(NlpTokenizerConfig config): NlpTokenizer`
 
