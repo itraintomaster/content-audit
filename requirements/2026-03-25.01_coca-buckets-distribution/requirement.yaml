@@ -1,0 +1,783 @@
+---
+features:
+- id: "FEAT-COCA"
+  name: "Analisis de Distribucion de Vocabulario por Frecuencia COCA"
+  description: "Evaluar si la distribucion de vocabulario a lo largo del curso es\
+    \ apropiada para cada nivel de dificultad esperado (CEFR), clasificando los tokens\
+    \ del curso en bandas de frecuencia basadas en el corpus COCA (Corpus of Contemporary\
+    \ American English) y comparando la distribucion real contra objetivos pedagogicos\
+    \ configurables. Las puntuaciones individuales se agregan a traves de la jerarquia\
+    \ del curso (knowledge, topic, nivel, curso) mediante el motor de agregacion generico\
+    \ de la plataforma ContentAudit. Adicionalmente, se evalua la progresion de la\
+    \ distribucion de vocabulario entre niveles y se generan directivas de mejora\
+    \ para el creador de contenido."
+  code: "F-COCA"
+  rules:
+  - id: "F-COCA-R001"
+    name: "Clasificacion de tokens en bandas de frecuencia"
+    severity: "critical"
+    description: "Cada token de cada oracion del curso tiene asociado un `frequencyRank`\
+      \ (posicion en la lista de frecuencia COCA). El analizador clasifica cada token\
+      \ en la banda de frecuencia correspondiente segun su ranking: - Un token con\
+      \ ranking entre 1 y 1000 se clasifica en la banda **top1k**. - Un token con\
+      \ ranking entre 1001 y 2000 se clasifica en la banda **top2k**. - Un token con\
+      \ ranking entre 2001 y 3000 se clasifica en la banda **top3k**. - Un token con\
+      \ ranking de 3001 en adelante se clasifica en la banda **top4k**. La clasificacion\
+      \ es excluyente: cada token pertenece a exactamente una banda. El criterio es\
+      \ que un token pertenece a la banda cuyo valor limite superior es el menor que\
+      \ es mayor o igual al ranking del token, excepto en la banda abierta que captura\
+      \ todo lo que excede el penultimo limite."
+    errorMessage: "Token con frequencyRank invalido ({rank}) en el quiz {quizId} del\
+      \ knowledge {knowledgeId}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R002"
+    name: "Banda abierta (top4k)"
+    severity: "major"
+    description: "La ultima banda de frecuencia (top4k) es una banda **abierta**:\
+      \ no tiene limite superior. Esto significa que cualquier token con ranking de\
+      \ 3001 en adelante se agrupa en esta banda, independientemente de cuan alto\
+      \ sea su ranking. Un token con ranking 3500 y un token con ranking 15000 se\
+      \ tratan de la misma manera. Este comportamiento es configurable a traves del\
+      \ indicador `open` en la definicion de bandas. Cuando `open` es verdadero, la\
+      \ ultima banda de la lista actua como banda abierta. La banda abierta es adecuada\
+      \ para los niveles A1-B2 actuales, pero implica que no se distingue entre vocabulario\
+      \ de frecuencia media-baja (ranking 3001-5000) y vocabulario muy infrecuente\
+      \ (ranking 10000+). Esta distincion podria ser relevante para niveles C1/C2."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R003"
+    name: "Configuracion de bandas de frecuencia"
+    severity: "major"
+    description: "Las bandas de frecuencia se definen en la configuracion del sistema.\
+      \ Cada banda tiene un nombre identificador y un valor limite. Las bandas se\
+      \ ordenan de menor a mayor valor. La configuracion actual define cuatro bandas:\
+      \ | Banda | Valor limite | Rango de ranking capturado | |-------|-------------|---------------------------|\
+      \ | top1k | 1000 | 1 - 1000 | | top2k | 2000 | 1001 - 2000 | | top3k | 3000\
+      \ | 2001 - 3000 | | top4k | 4000 | 3001 en adelante (abierta) | Las bandas son\
+      \ configurables: se pueden agregar, eliminar o modificar bandas segun las necesidades\
+      \ del curso. Sin embargo, los objetivos por nivel deben estar alineados con\
+      \ las bandas definidas."
+    errorMessage: "Configuracion de bandas invalida: los valores deben ser positivos\
+      \ y estar en orden ascendente"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R004"
+    name: "Tokens sin ranking de frecuencia"
+    severity: "major"
+    description: "Los tokens que no tienen un `frequencyRank` asociado (por ejemplo,\
+      \ nombres propios, numeros, o palabras no encontradas en el corpus COCA) deben\
+      \ ser tratados de manera definida. Se asume que estos tokens se excluyen del\
+      \ conteo de distribucion y no participan en el calculo de porcentajes. [ASSUMPTION]\
+      \ Se asume que los tokens sin ranking de frecuencia se excluyen del analisis.\
+      \ Esto es razonable porque incluirlos en alguna banda distorsionaria la distribucion.\
+      \ Sin embargo, si la proporcion de tokens excluidos es muy alta, los resultados\
+      \ podrian no ser representativos. El sistema deberia reportar la cantidad de\
+      \ tokens excluidos para visibilidad."
+    errorMessage: "Proporcion alta de tokens sin ranking de frecuencia en el nivel\
+      \ {nivel}: {porcentaje}% de tokens excluidos del analisis"
+    validation: "ASSUMPTION"
+    code: null
+    rationale: null
+  - id: "F-COCA-R005"
+    name: "Calculo de distribucion porcentual"
+    severity: "critical"
+    description: "Para cada nivel CEFR (o trimestre, si se usa la estrategia quarters),\
+      \ se calcula el porcentaje de tokens en cada banda de frecuencia respecto al\
+      \ total de tokens clasificados en ese nivel/trimestre. La formula es: porcentaje\
+      \ de la banda = (cantidad de tokens en la banda / total de tokens clasificados)\
+      \ * 100 Ejemplo: si en A1 hay 1000 tokens clasificados y 820 estan en la banda\
+      \ top1k, el porcentaje de top1k es 82.0%. Los tokens se acumulan a traves de\
+      \ toda la cadena jerarquica: todos los tokens de todos los quizzes de todos\
+      \ los knowledges de todos los topics del nivel (o trimestre) se contabilizan\
+      \ juntos."
+    errorMessage: "Error al calcular la distribucion porcentual para el nivel {nivel}:\
+      \ total de tokens clasificados es cero"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R006"
+    name: "Los datos de frecuencia provienen de procesamiento linguistico previo"
+    severity: "critical"
+    description: "El ranking de frecuencia de cada token proviene de un procesamiento\
+      \ linguistico previo (lematizacion). El analizador utiliza el `frequencyRank`\
+      \ ya asociado a cada token; no consulta directamente el corpus COCA ni realiza\
+      \ busquedas de frecuencia. Esto es fundamental porque la frecuencia se basa\
+      \ en la forma **lematizada** de la palabra (su forma base), no en la forma flexionada\
+      \ que aparece en la oracion. Por ejemplo, las formas \"running\", \"ran\", \"\
+      runs\" se lematizan a \"run\", y es el ranking de frecuencia de \"run\" el que\
+      \ se utiliza para la clasificacion."
+    errorMessage: "Token sin datos de frecuencia en el quiz {quizId}: el procesamiento\
+      \ linguistico previo no asocio frequencyRank"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R007"
+    name: "Evaluacion de estado por banda (assessment)"
+    severity: "critical"
+    description: "Para cada banda de frecuencia en cada nivel (o trimestre), se compara\
+      \ el porcentaje real contra el objetivo configurado. La evaluacion produce uno\
+      \ de cuatro estados: | Estado | Condicion | |--------|-----------| | OPTIMO\
+      \ | La diferencia entre el porcentaje real y el objetivo esta dentro del rango\
+      \ optimo (5 puntos porcentuales) | | ADECUADO | La diferencia esta fuera del\
+      \ rango optimo pero dentro del rango adecuado (10 puntos porcentuales) | | DEFICIENTE\
+      \ | El porcentaje real esta por debajo de lo esperado, fuera del rango adecuado\
+      \ | | EXCESIVO | El porcentaje real esta por encima de lo esperado, fuera del\
+      \ rango adecuado | La determinacion de DEFICIENTE vs EXCESIVO depende de la\
+      \ direccionalidad del objetivo (kind), como se describe en R008."
+    errorMessage: "Estado indeterminado para la banda {banda} en el nivel {nivel}:\
+      \ porcentaje real {real}%, objetivo {target}%"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R008"
+    name: "Semantica de la direccionalidad (atLeast / atMost)"
+    severity: "critical"
+    description: "La direccionalidad del objetivo (kind) determina como se interpreta\
+      \ la desviacion: **Cuando kind = atLeast** (\"al menos\"): - OPTIMO: el porcentaje\
+      \ real es mayor o igual a (objetivo - optimalRange) - ADECUADO: el porcentaje\
+      \ real es mayor o igual a (objetivo - adequateRange) pero menor que (objetivo\
+      \ - optimalRange) - DEFICIENTE: el porcentaje real es menor que (objetivo -\
+      \ adequateRange) - No se produce estado EXCESIVO: superar un objetivo \"al menos\"\
+      \ no es un problema **Cuando kind = atMost** (\"como maximo\"): - OPTIMO: el\
+      \ porcentaje real es menor o igual a (objetivo + optimalRange) - ADECUADO: el\
+      \ porcentaje real es menor o igual a (objetivo + adequateRange) pero mayor que\
+      \ (objetivo + optimalRange) - EXCESIVO: el porcentaje real es mayor que (objetivo\
+      \ + adequateRange) - No se produce estado DEFICIENTE: estar por debajo de un\
+      \ objetivo \"como maximo\" no es un problema Ejemplo para A1 top1k (objetivo\
+      \ 80%, kind atLeast, optimalRange 5, adequateRange 10): - 85% o mas: OPTIMO\
+      \ (>= 80 - 5 = 75%) - 72%: ADECUADO (>= 80 - 10 = 70%, pero < 75%) - 65%: DEFICIENTE\
+      \ (< 70%) Ejemplo para A1 top4k (objetivo 1%, kind atMost, optimalRange 5, adequateRange\
+      \ 10): - 4%: OPTIMO (<= 1 + 5 = 6%) - 9%: ADECUADO (<= 1 + 10 = 11%, pero >\
+      \ 6%) - 15%: EXCESIVO (> 11%)"
+    errorMessage: "Kind desconocido '{kind}' para la banda {banda} en el nivel {nivel}:\
+      \ debe ser 'atLeast' o 'atMost'"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R009"
+    name: "Tolerancias optimalRange y adequateRange"
+    severity: "major"
+    description: "Las tolerancias son valores configurables globales que se aplican\
+      \ uniformemente a todas las bandas y todos los niveles: - **optimalRange** (actualmente\
+      \ 5): define el margen en puntos porcentuales para que una evaluacion sea OPTIMO.\
+      \ Si la desviacion del objetivo es menor o igual a este valor, el resultado\
+      \ es OPTIMO. - **adequateRange** (actualmente 10): define el margen en puntos\
+      \ porcentuales para que una evaluacion sea ADECUADO. Si la desviacion excede\
+      \ el optimalRange pero no excede el adequateRange, el resultado es ADECUADO.\
+      \ El adequateRange debe ser mayor que el optimalRange. Ambos valores deben ser\
+      \ positivos."
+    errorMessage: "Configuracion de tolerancias invalida: optimalRange ({optimal})\
+      \ debe ser menor que adequateRange ({adequate}) y ambos deben ser positivos"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R010"
+    name: "Puntuacion por banda individual (bucket score)"
+    severity: "critical"
+    description: "Cada banda en cada nivel/trimestre recibe una puntuacion entre 0.0\
+      \ y 1.0 basada en su estado de evaluacion: | Estado | Puntuacion | |--------|-----------|\
+      \ | OPTIMO | 1.0 | | ADECUADO | 0.8 | | DEFICIENTE | max(0.0, 0.8 - (distancia\
+      \ - adequateRange) * 0.04) | | EXCESIVO | max(0.0, 0.8 - (distancia - adequateRange)\
+      \ * 0.04) | Donde \"distancia\" es el valor absoluto de la diferencia entre\
+      \ el porcentaje real y el objetivo. Para los estados DEFICIENTE y EXCESIVO,\
+      \ la puntuacion parte de 0.8 y se degrada 0.04 por cada punto porcentual adicional\
+      \ de distancia mas alla del adequateRange. Esto significa que a 20 puntos porcentuales\
+      \ de distancia mas alla del rango adecuado, la puntuacion llega a 0.0. Ejemplo:\
+      \ si el objetivo es 80% (atLeast), adequateRange es 10, y el porcentaje real\
+      \ es 60%: - Distancia = |60 - 80| = 20 - Estado = DEFICIENTE (60 < 80 - 10 =\
+      \ 70) - Puntuacion = max(0.0, 0.8 - (20 - 10) * 0.04) = max(0.0, 0.8 - 0.4)\
+      \ = 0.4"
+    errorMessage: "Puntuacion fuera de rango [0.0, 1.0] calculada para la banda {banda}\
+      \ en el nivel {nivel}: {puntuacion}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R011"
+    name: "Puntuacion por trimestre (quarter score)"
+    severity: "critical"
+    description: "La puntuacion de un trimestre es el **promedio de las puntuaciones\
+      \ de todas sus bandas** que tienen objetivo definido en ese trimestre. No todas\
+      \ las bandas necesariamente tienen objetivo en cada trimestre; solo participan\
+      \ en el promedio aquellas que lo tienen. Ejemplo: si en A1 Q1 solo top1k y top4k\
+      \ tienen objetivos, la puntuacion del trimestre es el promedio de las puntuaciones\
+      \ de top1k y top4k."
+    errorMessage: "Error al calcular la puntuacion del trimestre Q{n} del nivel {nivel}:\
+      \ ninguna banda tiene objetivo definido"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R012"
+    name: "Puntuacion por nivel"
+    severity: "critical"
+    description: "La puntuacion de un nivel depende de la estrategia utilizada: -\
+      \ **Estrategia LEVELS**: la puntuacion del nivel es el promedio de las puntuaciones\
+      \ de las bandas que tienen objetivo definido a nivel de nivel. - **Estrategia\
+      \ QUARTERS**: la puntuacion del nivel es un promedio ponderado que combina las\
+      \ puntuaciones de las bandas del nivel, las puntuaciones de los trimestres,\
+      \ y las puntuaciones de los topics dentro del nivel. La combinacion exacta para\
+      \ la estrategia quarters implica considerar tanto la evaluacion a nivel global\
+      \ del nivel como la evaluacion granular por trimestre."
+    errorMessage: "Error al calcular la puntuacion del nivel {nivel}: {detalle}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R013"
+    name: "Puntuacion general del curso (overall score)"
+    severity: "critical"
+    description: "La puntuacion general del analisis de distribucion COCA es el **promedio\
+      \ de las puntuaciones de todos los niveles** CEFR evaluados. Si un nivel no\
+      \ tiene datos (no hay tokens clasificados), no participa en el promedio."
+    errorMessage: "Error al calcular la puntuacion general: {detalle}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R014"
+    name: "Dos estrategias de analisis"
+    severity: "major"
+    description: "El analizador soporta dos estrategias de analisis configurables:\
+      \ - **LEVELS**: Evalua la distribucion de vocabulario por nivel CEFR completo.\
+      \ Cada nivel tiene un unico conjunto de objetivos por banda. - **QUARTERS**:\
+      \ Subdivide cada nivel en 4 trimestres y define objetivos por trimestre, permitiendo\
+      \ evaluar la progresion de vocabulario dentro de cada nivel. La estrategia se\
+      \ define en la configuracion y aplica a todos los niveles del curso por igual.\
+      \ La configuracion actual usa la estrategia **quarters**. Ambas estrategias\
+      \ comparten la misma logica de clasificacion de tokens (Grupo A) y evaluacion\
+      \ contra objetivos (Grupo B). La diferencia radica en la granularidad: quarters\
+      \ permite detectar problemas que la estrategia levels podria enmascarar al promediar\
+      \ un nivel completo."
+    errorMessage: "Estrategia de analisis desconocida: '{estrategia}'. Las estrategias\
+      \ validas son: LEVELS, QUARTERS"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R015"
+    name: "Interpolacion lineal de trimestres intermedios"
+    severity: "critical"
+    description: "Cuando se usa la estrategia quarters, la configuracion define objetivos\
+      \ solo para el trimestre inicial (Q1) y el trimestre final (Q4) de cada nivel.\
+      \ Los trimestres intermedios (Q2, Q3) se calculan por interpolacion lineal:\
+      \ Para cada banda en un nivel dado: - objetivo_Q1 = objetivo del trimestre inicial\
+      \ (configurado explicitamente) - objetivo_Q2 = objetivo_Q1 + (objetivo_Q4 -\
+      \ objetivo_Q1) * (1/3) - objetivo_Q3 = objetivo_Q1 + (objetivo_Q4 - objetivo_Q1)\
+      \ * (2/3) - objetivo_Q4 = objetivo del trimestre final (configurado explicitamente)\
+      \ La interpolacion se aplica de manera independiente para cada banda de frecuencia.\
+      \ Esto produce una transicion suave y lineal de los objetivos a lo largo del\
+      \ nivel. Ejemplo completo para A1: - top1k: Q1=90%, Q2=85.0%, Q3=80.0%, Q4=75%\
+      \ - top4k: Q1=0%, Q2=0.67%, Q3=1.33%, Q4=2%"
+    errorMessage: "Error al interpolar trimestres para el nivel {nivel}: faltan datos\
+      \ de trimestre inicial o final"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R016"
+    name: "Herencia de direccionalidad en trimestres interpolados"
+    severity: "major"
+    description: "Los trimestres intermedios (Q2, Q3) calculados por interpolacion\
+      \ heredan la **direccionalidad** (kind: atLeast/atMost) del trimestre inicial\
+      \ (Q1), no del trimestre final (Q4). Esto significa que si Q1 tiene kind \"\
+      atLeast\" para una banda, Q2 y Q3 tambien tendran kind \"atLeast\" para esa\
+      \ banda, independientemente de lo que defina Q4. Ejemplo: si en A1 el trimestre\
+      \ inicial define top1k con kind \"atLeast\" y el trimestre final define top1k\
+      \ con kind \"atLeast\", los trimestres Q2 y Q3 heredan \"atLeast\". Si hubiera\
+      \ una discrepancia entre Q1 y Q4 (lo cual seria una inconsistencia de configuracion),\
+      \ prevalece Q1."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R017"
+    name: "Asignacion de contenido a trimestres"
+    severity: "major"
+    description: "Cuando se usa la estrategia quarters, las oraciones (y sus tokens)\
+      \ deben asignarse a uno de los cuatro trimestres de su nivel. La asignacion\
+      \ se basa en la **posicion ordinal de los topics** dentro del nivel: los topics\
+      \ se dividen equitativamente en 4 grupos, cada grupo correspondiendo a un trimestre.\
+      \ [ASSUMPTION] Se asume que los topics se dividen de manera secuencial y equitativa\
+      \ en 4 trimestres. Si un nivel tiene 12 topics, se asignan 3 topics por trimestre.\
+      \ Si el numero de topics no es divisible por 4, los primeros trimestres reciben\
+      \ un topic adicional (distribucion por redondeo). Este mecanismo de asignacion\
+      \ necesita confirmacion, ya que la documentacion de analisis no detalla el algoritmo\
+      \ exacto de particion."
+    errorMessage: "Error al asignar topics a trimestres para el nivel {nivel}: el\
+      \ nivel no tiene topics"
+    validation: "ASSUMPTION"
+    code: null
+    rationale: null
+  - id: "F-COCA-R018"
+    name: "Configuracion de objetivos por trimestre"
+    severity: "critical"
+    description: "Cada nivel CEFR debe tener configurados los objetivos para el trimestre\
+      \ inicial y el trimestre final cuando se usa la estrategia quarters. Cada objetivo\
+      \ de trimestre especifica, para cada banda: - El nombre de la banda - El porcentaje\
+      \ objetivo - La direccionalidad (kind: atLeast o atMost) Si falta la configuracion\
+      \ de trimestre inicial o final para un nivel, el sistema no puede calcular los\
+      \ trimestres interpolados y por lo tanto no puede evaluar ese nivel con la estrategia\
+      \ quarters. Los objetivos por trimestre actuales son (ver seccion Contexto para\
+      \ la tabla completa): - A1: Q1 top1k 90% atLeast, top4k 0% atMost / Q4 top1k\
+      \ 75% atLeast, top4k 2% atMost - A2: Q1 top1k 75% atLeast, top4k 2% atMost /\
+      \ Q4 top1k 65% atLeast, top4k 15% atMost - B1: Q1 top1k 65% atLeast, top4k 15%\
+      \ [kind por definir] / Q4 top1k 55% atLeast, top4k 25% atMost - B2: Q1 top1k\
+      \ 55% atLeast, top4k 25% [kind por definir] / Q4 top1k 45% atLeast, top4k 35%\
+      \ atMost Nota: Los niveles B1 y B2 tienen campos \"kind\" faltantes en el trimestre\
+      \ inicial para la banda top4k. Ver Doubt[DOUBT-MISSING-KIND]."
+    errorMessage: "Configuracion incompleta para el trimestre {trimestre} del nivel\
+      \ {nivel}: falta la banda {banda}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R019"
+    name: "Estrategia levels usa objetivos de nivel directamente"
+    severity: "major"
+    description: "Cuando se usa la estrategia LEVELS, los objetivos se evaluan directamente\
+      \ a nivel CEFR completo, sin subdivision en trimestres. Cada nivel tiene un\
+      \ conjunto de objetivos por banda: - A1: top1k 80% atLeast, top4k 1% atMost\
+      \ - A2: top1k 70% atMost, top4k 10% atMost - B1: top1k 60% atMost, top4k 20%\
+      \ atMost - B2: top1k 50% atMost, top4k 30% atLeast Todos los tokens del nivel\
+      \ se acumulan en una sola distribucion y se evaluan contra estos objetivos unicos."
+    errorMessage: "Configuracion de objetivos no encontrada para el nivel {nivel}\
+      \ con estrategia LEVELS"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R020"
+    name: "Progresion esperada por banda de frecuencia"
+    severity: "major"
+    description: "El sistema define una progresion esperada para ciertas bandas de\
+      \ frecuencia entre niveles CEFR. La progresion esperada indica como deberia\
+      \ evolucionar el porcentaje de tokens en esa banda al avanzar de un nivel al\
+      \ siguiente: | Banda | Progresion esperada | Significado | |-------|--------------------|-----------|\
+      \ | top1k | DESCENDENTE | El porcentaje de palabras muy frecuentes debe disminuir\
+      \ de A1 a B2 | | top4k | ASCENDENTE | El porcentaje de palabras poco frecuentes\
+      \ debe aumentar de A1 a B2 | No todas las bandas tienen progresion esperada\
+      \ configurada. Las bandas intermedias (top2k, top3k) no tienen progresion definida\
+      \ en la configuracion actual, lo que implica que su comportamiento entre niveles\
+      \ no se evalua explicitamente."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R021"
+    name: "Algoritmo de evaluacion de progresion real"
+    severity: "critical"
+    description: "Para cada banda que tiene progresion esperada configurada, el sistema\
+      \ evalua la progresion real comparando los porcentajes entre niveles consecutivos.\
+      \ El algoritmo es: 1. Se toman los porcentajes reales de la banda en cada nivel\
+      \ CEFR (A1, A2, B1, B2) 2. Si hay menos de 2 niveles con datos, la progresion\
+      \ se considera ESTATICA 3. Para cada par de niveles consecutivos, se determina\
+      \ si el porcentaje sube, baja o se mantiene (considerando un margen) 4. Se contabilizan\
+      \ los incrementos y decrementos 5. Se determina el estado de progresion: | Estado\
+      \ | Condicion | |--------|-----------| | ASCENDENTE | Solo hay incrementos (el\
+      \ porcentaje sube consistentemente) | | DESCENDENTE | Solo hay decrementos (el\
+      \ porcentaje baja consistentemente) | | ESTATICA | No hay cambios significativos\
+      \ (ni incrementos ni decrementos) | | IRREGULAR | Hay tanto incrementos como\
+      \ decrementos (el porcentaje sube y baja sin patron claro) | La progresion real\
+      \ se compara contra la progresion esperada (R020) para determinar si la distribucion\
+      \ de vocabulario evoluciona correctamente a lo largo del curso."
+    errorMessage: "No se pudo evaluar la progresion de la banda {banda}: {detalle}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R022"
+    name: "Progresion evalua solo niveles con datos"
+    severity: "major"
+    description: "La evaluacion de progresion solo considera los niveles CEFR que\
+      \ tienen tokens clasificados. Si un nivel no tiene datos (por ejemplo, no hay\
+      \ quizzes con tokens en B1), se omite de la evaluacion de progresion. La progresion\
+      \ se evalua entre los niveles restantes en su orden natural (A1, A2, B2). Si\
+      \ menos de 2 niveles tienen datos, la progresion no puede evaluarse y se reporta\
+      \ como ESTATICA."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R023"
+    name: "Margen de cambio significativo en progresion"
+    severity: "minor"
+    description: "Al evaluar si el porcentaje de una banda sube o baja entre dos niveles\
+      \ consecutivos, se utiliza un margen para evitar que fluctuaciones insignificantes\
+      \ se interpreten como cambios reales. Solo los cambios que superan este margen\
+      \ se contabilizan como incrementos o decrementos. [ASSUMPTION] Se asume que\
+      \ existe un margen de cambio significativo, aunque la documentacion de analisis\
+      \ no especifica su valor exacto. Este margen evita que diferencias de decimas\
+      \ de punto porcentual afecten la evaluacion de progresion. El valor exacto del\
+      \ margen requiere confirmacion."
+    errorMessage: null
+    validation: "ASSUMPTION"
+    code: null
+    rationale: null
+  - id: "F-COCA-R024"
+    name: "Resultado de la evaluacion de progresion"
+    severity: "major"
+    description: "El resultado de la evaluacion de progresion incluye, para cada banda\
+      \ con progresion configurada: - Nombre de la banda - Progresion esperada (ASCENDENTE\
+      \ o DESCENDENTE, segun configuracion) - Progresion real (ASCENDENTE, DESCENDENTE,\
+      \ ESTATICA o IRREGULAR, segun evaluacion) - Indicador de si la progresion real\
+      \ coincide con la esperada Este resultado permite al creador de contenido identificar\
+      \ si la distribucion de vocabulario evoluciona correctamente a lo largo del\
+      \ curso. Por ejemplo, si top1k deberia ser DESCENDENTE pero la progresion real\
+      \ es IRREGULAR, indica que hay niveles donde se introdujo demasiado vocabulario\
+      \ frecuente cuando deberia haberse reducido."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R025"
+    name: "Resultados jerarquicos por nivel"
+    severity: "critical"
+    description: "El resultado del analisis de distribucion COCA se estructura de\
+      \ manera jerarquica: para cada nivel CEFR, se presenta la distribucion de bandas,\
+      \ las puntuaciones, y los nodos hijos (topics). Cada topic a su vez contiene\
+      \ la distribucion de bandas de sus tokens y sus nodos hijos (knowledges). Esta\
+      \ jerarquia permite al usuario navegar desde el nivel general hacia los detalles\
+      \ mas finos. La estructura jerarquica es: **Nivel -> (Trimestres, si aplica)\
+      \ -> Topic -> Knowledge -> (Bandas de frecuencia)**."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R026"
+    name: "Puntuacion por topic (agregacion de la plataforma)"
+    severity: "critical"
+    description: "La puntuacion de distribucion COCA de un topic se calcula a partir\
+      \ de las puntuaciones de sus knowledges. La plataforma agrega las puntuaciones\
+      \ a traves de la jerarquia utilizando el mecanismo generico de agregacion. Los\
+      \ topics sin knowledges con datos no participan en la agregacion del nivel padre."
+    errorMessage: "Error al calcular la puntuacion del topic {topicId}: {detalle}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R027"
+    name: "Distribucion de bandas por nodo de la jerarquia"
+    severity: "major"
+    description: "Cada nodo de la jerarquia (nivel, topic, knowledge) tiene asociada\
+      \ su propia distribucion de bandas de frecuencia, calculada a partir de los\
+      \ tokens de todos los quizzes que pertenecen a ese nodo. Esto permite al usuario\
+      \ ver no solo la puntuacion agregada sino tambien la distribucion real de vocabulario\
+      \ en cada segmento del curso. Por ejemplo, un topic especifico podria tener\
+      \ 70% de tokens en top1k y 15% en top4k, mientras que otro topic del mismo nivel\
+      \ podria tener 85% en top1k y 2% en top4k. Esta informacion es valiosa para\
+      \ localizar donde se concentran los problemas de distribucion."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R028"
+    name: "Informacion por banda en cada nodo"
+    severity: "major"
+    description: "Para cada banda de frecuencia en cada nodo de la jerarquia, el resultado\
+      \ incluye: - Nombre de la banda - Cantidad de tokens en la banda - Porcentaje\
+      \ respecto al total de tokens clasificados del nodo - Porcentaje objetivo (si\
+      \ aplica al nivel del nodo) - Puntuacion de la banda (si aplica) - Estado de\
+      \ evaluacion (OPTIMO, ADECUADO, DEFICIENTE, EXCESIVO, si aplica) Los campos\
+      \ de objetivo, puntuacion y estado solo aplican a los nodos que tienen objetivos\
+      \ definidos (generalmente niveles y trimestres). Los topics y knowledges tienen\
+      \ la distribucion y el conteo pero no necesariamente una evaluacion contra objetivos\
+      \ propios."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R029"
+    name: "Puntuaciones disponibles en cada nivel de la jerarquia"
+    severity: "major"
+    description: "El resultado del analisis debe hacer disponible la puntuacion de\
+      \ distribucion COCA en cada nivel de la jerarquia del curso. La plataforma construye\
+      \ un arbol de resultados donde cada nodo tiene asociada la puntuacion de cada\
+      \ analizador ejecutado. Esto permite al creador de contenido navegar la jerarquia\
+      \ y localizar exactamente donde se concentran los problemas de distribucion\
+      \ de vocabulario."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R030"
+    name: "Generacion de directivas de mejora"
+    severity: "major"
+    description: "Para cada nivel (o trimestre, segun la estrategia) donde la distribucion\
+      \ no alcanza los objetivos, el sistema genera directivas de mejora que indican\
+      \ al creador de contenido que acciones tomar. Las directivas se dividen en dos\
+      \ categorias: - **bucketsToEnrich**: Bandas donde faltan tokens. Indica que\
+      \ el nivel/trimestre necesita **mas** palabras de esa frecuencia. - **bucketsToReduce**:\
+      \ Bandas donde sobran tokens. Indica que el nivel/trimestre necesita **menos**\
+      \ palabras de esa frecuencia. Cada directiva incluye la banda afectada y el\
+      \ rango de frecuencia correspondiente para facilitar la busqueda de palabras\
+      \ de reemplazo."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R031"
+    name: "Rango de frecuencia en directivas"
+    severity: "major"
+    description: "Cada directiva de mejora incluye el rango de frecuencia (from/to)\
+      \ de la banda afectada, para que el creador de contenido sepa en que franja\
+      \ de frecuencia buscar palabras: - Si la directiva dice \"enriquecer top2k\"\
+      , incluye el rango 1001-2000 para que el creador sepa que debe buscar palabras\
+      \ con ranking entre 1001 y 2000. - Si la directiva dice \"reducir top4k\", incluye\
+      \ el rango 3001+ (o 3001-4000) para que el creador sepa que palabras de esa\
+      \ franja estan sobrando. Para la banda abierta (top4k), el rango superior se\
+      \ indica como abierto o se utiliza el valor limite de la banda como referencia."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R032"
+    name: "Directivas se generan solo para bandas fuera de rango"
+    severity: "major"
+    description: "Las directivas de mejora se generan unicamente para las bandas que\
+      \ tienen estado DEFICIENTE o EXCESIVO. Las bandas con estado OPTIMO o ADECUADO\
+      \ no generan directivas. Esto evita sobrecargar al creador de contenido con\
+      \ sugerencias innecesarias cuando la distribucion ya es aceptable. - Una banda\
+      \ DEFICIENTE genera una directiva de tipo **bucketsToEnrich** (necesita mas\
+      \ palabras). - Una banda EXCESIVA genera una directiva de tipo **bucketsToReduce**\
+      \ (necesita menos palabras)."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-R033"
+    name: "Directivas a nivel de trimestre (estrategia quarters)"
+    severity: "minor"
+    description: "Cuando se usa la estrategia quarters, las directivas de mejora se\
+      \ generan por trimestre, no solo por nivel. Esto permite al creador de contenido\
+      \ saber no solo que un nivel tiene problemas, sino en que segmento especifico\
+      \ del nivel debe actuar. [ASSUMPTION] Se asume que las directivas se generan\
+      \ tanto a nivel de nivel como de trimestre cuando se usa la estrategia quarters.\
+      \ Esto es consistente con la granularidad del analisis por trimestres. Si las\
+      \ directivas solo se generan a nivel de nivel, la informacion por trimestre\
+      \ se pierde y el creador de contenido tendria menos precision para localizar\
+      \ los problemas."
+    errorMessage: null
+    validation: "ASSUMPTION"
+    code: null
+    rationale: null
+  - id: "F-COCA-R034"
+    name: "Contenido de las directivas de mejora"
+    severity: "minor"
+    description: "Cada directiva de mejora contiene la siguiente informacion: - Tipo\
+      \ de accion (enriquecer o reducir) - Banda de frecuencia afectada (nombre y\
+      \ rango) - Porcentaje real de la banda - Porcentaje objetivo de la banda - Diferencia\
+      \ entre real y objetivo [ASSUMPTION] Se asume que las directivas contienen suficiente\
+      \ informacion para que el creador de contenido pueda actuar sin necesidad de\
+      \ consultar otros datos del analisis. El contenido exacto y formato de las directivas\
+      \ puede refinarse segun las necesidades del equipo de contenido."
+    errorMessage: null
+    validation: "ASSUMPTION"
+    code: null
+    rationale: null
+  journeys:
+  - id: "F-COCA-J001"
+    name: "Auditar la distribucion de vocabulario de un curso completo"
+    steps:
+    - "El usuario inicia una auditoria de un curso previamente cargado en el sistema\
+      \ ContentAudit"
+    - "El sistema recorre la jerarquia del curso: para cada nivel (milestone), sus\
+      \ topics, sus knowledges, y los quizzes de cada knowledge"
+    - "Para cada quiz, el analizador obtiene los tokens con su `frequencyRank` (proveniente\
+      \ del procesamiento linguistico previo)"
+    - "El analizador clasifica cada token en su banda de frecuencia correspondiente\
+      \ (top1k, top2k, top3k, top4k) segun R001"
+    - "Para cada nivel (o trimestre si se usa la estrategia quarters), el analizador\
+      \ calcula la distribucion porcentual de tokens por banda (R005)"
+    - "El analizador compara la distribucion real contra los objetivos configurados\
+      \ para cada banda y genera puntuaciones (R007, R010)"
+    - "Si se usa la estrategia quarters, los objetivos de los trimestres intermedios\
+      \ se calculan por interpolacion lineal (R015)"
+    - "La plataforma agrega las puntuaciones a traves de la jerarquia del curso, construyendo\
+      \ el arbol de resultados con distribucion de bandas en cada nodo (R025-R029)"
+    - "El sistema evalua la progresion por banda de frecuencia entre niveles (R021)"
+    - "El sistema genera directivas de mejora para los niveles/trimestres que no alcanzan\
+      \ sus objetivos (R030)"
+    - "El usuario recibe un informe con la puntuacion general, la puntuacion y distribucion\
+      \ por nivel, el estado de progresion por banda, y las directivas de mejora"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-J002"
+    name: "Consultar la distribucion de vocabulario de un nivel especifico"
+    steps:
+    - "El usuario ha ejecutado la auditoria de distribucion COCA (J001)"
+    - "El usuario selecciona un nivel CEFR especifico (por ejemplo, A2)"
+    - "El sistema muestra para el nivel seleccionado:"
+    - "El sistema muestra la lista de topics del nivel con su distribucion de bandas,\
+      \ permitiendo identificar que topics tienen distribucion problematica"
+    - "El usuario puede profundizar en topics y knowledges para localizar donde se\
+      \ concentran las palabras de frecuencia inadecuada"
+    - "Si hay directivas de mejora para este nivel, el sistema las muestra indicando\
+      \ que bandas necesitan mas o menos palabras"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-J003"
+    name: "Evaluar la progresion de vocabulario entre niveles"
+    steps:
+    - "El usuario ha ejecutado la auditoria de distribucion COCA (J001)"
+    - "El usuario consulta el estado de progresion por banda de frecuencia"
+    - "Para la banda top1k, el usuario verifica si la progresion es DESCENDENTE (lo\
+      \ esperado): que el porcentaje de palabras de alta frecuencia disminuya al avanzar\
+      \ de A1 a B2"
+    - "Para la banda top4k, el usuario verifica si la progresion es ASCENDENTE (lo\
+      \ esperado): que el porcentaje de palabras de baja frecuencia aumente al avanzar\
+      \ de A1 a B2"
+    - "Si la progresion de alguna banda es IRREGULAR o ESTATICA, el usuario identifica\
+      \ en que transicion entre niveles se rompe el patron esperado"
+    - "El usuario revisa los porcentajes reales por nivel para localizar donde el\
+      \ vocabulario no evoluciona como se espera pedagogicamente"
+    - "El usuario puede tomar acciones correctivas sobre el contenido de los niveles\
+      \ afectados, guiado por las directivas de mejora (J004)"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-J004"
+    name: "Usar las directivas de mejora para corregir el contenido"
+    steps:
+    - "El usuario ha ejecutado la auditoria y encontrado que un nivel/trimestre tiene\
+      \ bandas con estado DEFICIENTE o EXCESIVO"
+    - "El usuario consulta las directivas de mejora generadas para ese nivel/trimestre"
+    - "Para cada directiva de tipo \"enriquecer\" (bucketsToEnrich), el usuario identifica\
+      \ que debe agregar mas palabras de la franja de frecuencia indicada. Por ejemplo:\
+      \ \"Enriquecer top2k: agregar palabras con ranking 1001-2000\""
+    - "Para cada directiva de tipo \"reducir\" (bucketsToReduce), el usuario identifica\
+      \ que debe reemplazar palabras de la franja de frecuencia indicada por palabras\
+      \ de otras franjas. Por ejemplo: \"Reducir top4k: reemplazar palabras con ranking\
+      \ 3001+ por palabras mas frecuentes\""
+    - "El usuario localiza los quizzes afectados navegando la jerarquia (nivel ->\
+      \ topic -> knowledge -> quiz)"
+    - "El usuario modifica el contenido de los quizzes segun las directivas"
+    - "El usuario re-ejecuta la auditoria para verificar que los cambios mejoraron\
+      \ la distribucion"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-J005"
+    name: "Navegar la jerarquia para localizar problemas de vocabulario"
+    steps:
+    - "El usuario ha ejecutado la auditoria de distribucion COCA (J001)"
+    - "El usuario observa que el nivel B1 tiene una puntuacion baja (por ejemplo,\
+      \ 0.6)"
+    - "El usuario profundiza en los trimestres de B1 (si se usa la estrategia quarters)\
+      \ y encuentra que Q3 tiene la puntuacion mas baja (0.4)"
+    - "El usuario profundiza en los topics del Q3 de B1 y encuentra que el topic \"\
+      Travel Vocabulary\" tiene 40% de tokens en top4k (cuando el objetivo es 21.67%\
+      \ atMost)"
+    - "El usuario profundiza en los knowledges de \"Travel Vocabulary\" y encuentra\
+      \ que el knowledge \"Airport Procedures\" tiene una concentracion inusual de\
+      \ vocabulario tecnico de baja frecuencia"
+    - "El usuario identifica que varias oraciones de \"Airport Procedures\" usan vocabulario\
+      \ especializado (boarding, customs, luggage carousel) que infla la banda top4k"
+    - "El usuario decide si simplificar el vocabulario o aceptar la desviacion como\
+      \ apropiada para el contexto tematico"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-COCA-J006"
+    name: "Comparar resultados entre estrategia levels y quarters"
+    steps:
+    - "El usuario ejecuta la auditoria con la estrategia LEVELS"
+    - "El usuario observa que el nivel A2 tiene estado OPTIMO con puntuacion 0.95"
+    - "El usuario cambia la configuracion a la estrategia QUARTERS y re-ejecuta la\
+      \ auditoria"
+    - "El usuario descubre que si bien A2 en promedio es adecuado, Q1 de A2 tiene\
+      \ exceso de vocabulario frecuente (top1k al 85% cuando el objetivo Q1 es 75%\
+      \ atLeast) y Q4 tiene deficit de vocabulario variado (top4k al 5% cuando el\
+      \ objetivo Q4 es 15% atMost)"
+    - "El usuario concluye que la estrategia quarters proporciona informacion mas\
+      \ granular y util para mejorar el contenido dentro de cada nivel"
+    validation: "ASSUMPTION"
+    code: null
+    rationale: null
+  doubts:
+  - id: "DOUBT-OPEN-BUCKET"
+    question: "Deberia la banda abierta top4k subdividirse para futuros niveles C1/C2?"
+    options:
+    - label: "Opcion A: Mantener top4k como banda abierta (suficiente para A1-B2,\
+        \ simplicidad)"
+      description: null
+    - label: "Opcion B: Subdividir ahora en top4k, top6k, top10k para preparar futuros\
+        \ niveles"
+      description: null
+    - label: "Opcion C: Dejar como esta pero documentar la necesidad de subdivision\
+        \ futura como deuda conocida"
+      description: null
+    answer: null
+  - id: "DOUBT-MISSING-KIND"
+    question: "Campos \"kind\" faltantes en la configuracion de B1 y B2"
+    options:
+    - label: "Opcion A: Es un error, deberia ser \"atMost\" (consistente con el patron\
+        \ de las otras bandas top4k en trimestres intermedios)"
+      description: null
+    - label: "Opcion B: Es un error, deberia ser \"atLeast\" (consistente con B2 nivel\
+        \ que tiene top4k \"atLeast\")"
+      description: null
+    - label: "Opcion C: No es un error, hay un valor por defecto implicito"
+      description: null
+    answer: null
+  - id: "DOUBT-RAMPUP"
+    question: "La configuracion ramp-up es parte de esta funcionalidad o deberia ser\
+      \ una funcionalidad separada?"
+    options:
+    - label: "Opcion A: Incluirla como una variante de esta funcionalidad (misma logica,\
+        \ diferente configuracion)"
+      description: null
+    - label: "Opcion B: Crearla como funcionalidad separada (FEAT-COCA-RAMPUP) con\
+        \ sus propias reglas"
+      description: null
+    - label: "Opcion C: Excluirla del alcance actual (no se implementa hasta que se\
+        \ confirme su uso)"
+      description: null
+    answer: null
+  - id: "DOUBT-KIND-INCONSISTENCY"
+    question: "Inconsistencia de direccionalidad entre A1 y A2+ para top1k"
+    options:
+    - label: "Opcion A: Es intencional, refleja correctamente la transicion pedagogica\
+        \ de A1 a A2"
+      description: null
+    - label: "Opcion B: Deberia unificarse a \"atMost\" en todos los niveles para\
+        \ consistencia"
+      description: null
+    - label: "Opcion C: Se necesita una semantica mas matizada (por ejemplo, un rango\
+        \ min-max en lugar de atLeast/atMost)"
+      description: null
+    answer: null
+  - id: "DOUBT-KIND-INHERITANCE"
+    question: "Los trimestres intermedios deberian heredar kind del trimestre inicial?"
+    options:
+    - label: "Opcion A: Heredar del trimestre inicial es correcto (es el comportamiento\
+        \ actual y la configuracion no tiene conflictos de kind entre Q1 y Q4)"
+      description: null
+    - label: "Opcion B: Deberia heredarse del trimestre final, ya que Q2 y Q3 estan\
+        \ \"en transicion\" hacia Q4"
+      description: null
+    - label: "Opcion C: Deberia definirse kind explicitamente para Q2 y Q3 en la configuracion,\
+        \ sin interpolacion"
+      description: null
+    answer: null
+  - id: "DOUBT-PERFORMANCE"
+    question: "Consideraciones de rendimiento para cursos grandes"
+    options:
+    - label: "Opcion A: El volumen actual es manejable, no se necesitan optimizaciones"
+      description: null
+    - label: "Opcion B: Se necesita procesamiento incremental (solo re-analizar lo\
+        \ que cambio)"
+      description: null
+    - label: "Opcion C: Se necesitan limites o muestreo para cursos muy grandes"
+      description: null
+    answer: null
+  - id: "DOUBT-HIERARCHY-DEPTH"
+    question: "Se necesita la jerarquia completa Level -> Quarter -> Topic -> Knowledge?"
+    options:
+    - label: "Opcion A: Se necesita la jerarquia completa para permitir drill-down\
+        \ hasta el knowledge"
+      description: null
+    - label: "Opcion B: Es suficiente con Nivel -> Topic (sin trimestres ni knowledges\
+        \ individuales)"
+      description: null
+    - label: "Opcion C: La jerarquia completa es necesaria pero los detalles de knowledge\
+        \ pueden ser opcionales (lazy loading)"
+      description: null
+    answer: null
