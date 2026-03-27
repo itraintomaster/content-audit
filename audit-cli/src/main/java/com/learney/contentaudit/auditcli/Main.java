@@ -68,12 +68,10 @@ public class Main {
                 courseRepository, courseToAuditableMapper, contentAudit);
 
         // CLI layer: formatters and registry
-        TextReportFormatter textFormatter = new TextReportFormatter();
-        JsonReportFormatter jsonFormatter = new JsonReportFormatter();
-
         Map<String, ReportFormatter> formatters = new HashMap<>();
-        formatters.put("text", textFormatter);
-        formatters.put("json", jsonFormatter);
+        formatters.put("text", new TextReportFormatter());
+        formatters.put("json", new JsonReportFormatter());
+        formatters.put("table", new TableReportFormatter());
 
         DefaultFormatterRegistry formatterRegistry = new DefaultFormatterRegistry(formatters);
         DefaultAuditCli auditCli = new DefaultAuditCli(auditRunner, formatters, formatterRegistry);

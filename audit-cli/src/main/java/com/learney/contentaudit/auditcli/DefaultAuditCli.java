@@ -31,7 +31,7 @@ public final class DefaultAuditCli implements AuditCli, Callable<Integer> {
     @Parameters(index = "0", description = "Ruta al directorio del curso", arity = "1")
     private String coursePath;
 
-    @Option(names = {"-f", "--format"}, description = "Formato de salida: ${COMPLETION-CANDIDATES} (default: ${DEFAULT-VALUE})",
+    @Option(names = {"-f", "--format"}, description = "Formato de salida: text, json, table (default: ${DEFAULT-VALUE})",
             defaultValue = "text")
     private String formatName;
 

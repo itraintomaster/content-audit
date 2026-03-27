@@ -5,8 +5,11 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.learney.contentaudit.nlpinfrastructure.NlpTokenizerConfig;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.security.MessageDigest;
+import java.util.HexFormat;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.processing.Generated;
@@ -18,12 +21,39 @@ import javax.annotation.processing.Generated;
 class SpacyProcessRunner {
     private final NlpTokenizerConfig config;
     private final ObjectMapper objectMapper = new ObjectMapper();
+    private static final Path CACHE_DIR = Path.of(System.getProperty("user.dir"), ".cache", "spacy-nlp");
 
     public SpacyProcessRunner(NlpTokenizerConfig config) {
         this.config = config;
     }
 
     public String run(List<String> sentences) {
+        String cacheKey = computeCacheKey(sentences);
+        Path cacheFile = CACHE_DIR.resolve(cacheKey + ".json");
+
+        // Check disk cache
+        if (Files.exists(cacheFile)) {
+            try {
+                return Files.readString(cacheFile);
+            } catch (IOException e) {
+                // Cache read failed, fall through to processing
+            }
+        }
+
+        String result = invokeSpacy(sentences);
+
+        // Write to disk cache
+        try {
+            Files.createDirectories(CACHE_DIR);
+            Files.writeString(cacheFile, result);
+        } catch (IOException e) {
+            // Cache write failed, not critical
+        }
+
+        return result;
+    }
+
+    private String invokeSpacy(List<String> sentences) {
         Path tempDir = null;
         try {
             tempDir = Files.createTempDirectory("spacy-nlp-");
@@ -72,6 +102,20 @@ class SpacyProcessRunner {
             throw new RuntimeException("SpaCy processing failed: " + e.getMessage(), e);
         } finally {
             cleanupTempDir(tempDir);
+        }
+    }
+
+    private String computeCacheKey(List<String> sentences) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            for (String s : sentences) {
+                digest.update(s.getBytes(StandardCharsets.UTF_8));
+                digest.update((byte) 0);
+            }
+            return HexFormat.of().formatHex(digest.digest());
+        } catch (Exception e) {
+            // Fallback: use hashCode (less collision-resistant but functional)
+            return "hash-" + sentences.hashCode();
         }
     }
 
