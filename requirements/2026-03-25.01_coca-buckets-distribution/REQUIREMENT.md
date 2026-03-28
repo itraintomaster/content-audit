@@ -8,7 +8,7 @@ feature:
 
 # Analisis de Distribucion de Vocabulario por Frecuencia COCA
 
-Evaluar si la distribucion de vocabulario a lo largo del curso es apropiada para cada nivel de dificultad esperado (CEFR), clasificando los tokens del curso en bandas de frecuencia basadas en el corpus COCA (Corpus of Contemporary American English) y comparando la distribucion real contra objetivos pedagogicos configurables. Las puntuaciones individuales se agregan a traves de la jerarquia del curso (knowledge, topic, nivel, curso) mediante el motor de agregacion generico de la plataforma ContentAudit. Adicionalmente, se evalua la progresion de la distribucion de vocabulario entre niveles y se generan directivas de mejora para el creador de contenido.
+Evaluar si la distribucion de vocabulario a lo largo del curso es apropiada para cada nivel de dificultad esperado (CEFR), clasificando los tokens del curso en bandas de frecuencia basadas en el corpus COCA (Corpus of Contemporary American English) y comparando la distribucion real contra objetivos pedagogicos configurables. Los conteos de tokens se acumulan a traves de la jerarquia del curso (knowledge, topic, nivel, curso) mediante una estrategia de agregacion propia de esta funcionalidad, ya que la naturaleza de los datos (conteos de tokens por banda, no scores individuales) requiere acumulacion en lugar de promediado. Adicionalmente, se evalua la progresion de la distribucion de vocabulario entre niveles y se generan directivas de mejora para el creador de contenido.
 
 ## Contexto
 
@@ -22,15 +22,15 @@ Este es el analizador **mas complejo** del sistema ContentAudit. A diferencia de
 
 El curso tiene una estructura jerarquica fija (definida en FEAT-COURSE): **Curso -> Nivel (Milestone) -> Topic -> Knowledge -> Quiz**. Los **quizzes** contienen las oraciones evaluables, y cada oracion esta compuesta por tokens procesados linguisticamente. Cada token tiene asociado un `frequencyRank` que proviene de un procesamiento previo. El analizador clasifica estos tokens en bandas de frecuencia y calcula la distribucion resultante.
 
-### Separacion entre analisis y agregacion
+### Separacion entre analisis, agregacion y post-procesamiento
 
 Esta funcionalidad involucra tres fases claramente diferenciadas:
 
 1. **Fase de analisis (especifica de esta funcionalidad)**: El analizador de distribucion COCA clasifica los tokens de cada oracion en bandas de frecuencia, calcula la distribucion porcentual por nivel (o por trimestre si se usa la estrategia de quarters), compara contra los objetivos configurados y genera puntuaciones. Opera a nivel de **nivel/quarter** como unidad natural de evaluacion, aunque los datos se recogen desde los tokens individuales de cada quiz.
 
-2. **Fase de agregacion (generica de la plataforma)**: Las puntuaciones por nivel son parte del arbol de resultados que la plataforma ContentAudit construye. El motor de agregacion permite navegar la jerarquia (Curso -> Nivel -> Topic -> Knowledge) con puntuaciones en cada nodo. Esta agregacion es identica para todos los analizadores del sistema.
+2. **Fase de agregacion (especifica de esta funcionalidad)**: A diferencia de otros analizadores donde la agregacion es un promedio simple de scores hacia arriba en la jerarquia, esta funcionalidad requiere una estrategia de agregacion propia. El motivo es que el dato fundamental no es un "score por quiz" sino un **conteo de tokens por banda de frecuencia**: los tokens se acumulan (suman) al subir por la jerarquia (quiz -> knowledge -> topic -> nivel), y recien a nivel de nivel/quarter se calcula la distribucion porcentual y se genera un score comparando contra targets. Un quiz individual con 8 tokens no tiene una distribucion porcentual significativa. La plataforma ContentAudit debe soportar que cada analizador pueda definir su propia estrategia de agregacion (polimorfismo), con el promedio simple de scores como estrategia por defecto para analizadores mas simples.
 
-3. **Fase de analisis de nivel (especifica de esta funcionalidad)**: Ademas de las puntuaciones, esta funcionalidad requiere evaluaciones especificas que van mas alla de la agregacion: evaluacion de progresion por banda de frecuencia entre niveles, y generacion de directivas de mejora (planner) que indican que bandas necesitan mas o menos palabras.
+3. **Fase de post-procesamiento (especifica de esta funcionalidad)**: Una vez que los datos estan agregados y los niveles tienen sus scores, esta funcionalidad requiere evaluaciones adicionales que operan sobre los resultados ya calculados: evaluacion de progresion por banda de frecuencia entre niveles, y generacion de directivas de mejora (planner) que indican que bandas necesitan mas o menos palabras.
 
 ### Bandas de frecuencia COCA (Buckets)
 
@@ -148,7 +148,7 @@ Las reglas se organizan en seis grupos segun la fase y el tema al que pertenecen
 - **Grupo B - Evaluacion contra objetivos (R007-R013)**: reglas que describen como se compara la distribucion real contra los objetivos y como se calcula la puntuacion.
 - **Grupo C - Estrategia de quarters e interpolacion (R014-R019)**: reglas que describen la subdivision en trimestres, la interpolacion lineal y la asignacion de contenido a trimestres.
 - **Grupo D - Evaluacion de progresion (R020-R024)**: reglas que describen la evaluacion de progresion por banda de frecuencia entre niveles.
-- **Grupo E - Agregacion (R025-R029)**: reglas que describen como las puntuaciones se agregan a traves de la jerarquia. Provistas por la plataforma.
+- **Grupo E - Agregacion especifica por acumulacion de tokens (R025-R029)**: reglas que describen como los conteos de tokens por banda se acumulan a traves de la jerarquia y como se generan scores y distribuciones en cada nodo. Esta agregacion es especifica de esta funcionalidad y difiere del promedio simple de scores usado por otros analizadores.
 - **Grupo F - Planner de directivas de mejora (R030-R034)**: reglas que describen la generacion de directivas de mejora para el creador de contenido.
 
 ---
@@ -501,56 +501,71 @@ Este resultado permite al creador de contenido identificar si la distribucion de
 
 ---
 
-### Grupo E - Agregacion de puntuaciones (provista por la plataforma)
+### Grupo E - Agregacion especifica por acumulacion de tokens
 
-> **Nota**: Las reglas de este grupo describen el comportamiento esperado del motor de agregacion generico de ContentAudit. No son implementadas por el analizador de distribucion COCA, sino por la plataforma. Se documentan aqui porque el usuario percibe el resultado final como parte de esta funcionalidad y necesita entender como se construye la jerarquia de resultados. Estas mismas reglas de agregacion aplican de manera identica a cualquier otro analizador del sistema.
+> **Nota**: A diferencia de otros analizadores del sistema (como sentence-length) donde la agregacion es un promedio simple de scores desde los nodos hoja hacia la raiz, la distribucion COCA requiere una estrategia de agregacion propia. El motivo fundamental es que el dato que fluye por la jerarquia no es un "score" sino un **conteo de tokens por banda de frecuencia**. Un quiz individual con 8 tokens no tiene una distribucion porcentual significativa; el score solo cobra sentido al nivel de nivel/quarter donde se acumulan suficientes tokens y existen targets definidos. Esto implica que la plataforma ContentAudit debe soportar agregacion polimorfica: cada analizador puede definir como se propagan sus datos a traves de la jerarquia, con el promedio simple como estrategia por defecto.
 
-### Rule[F-COCA-R025] - Resultados jerarquicos por nivel
+### Rule[F-COCA-R025] - Acumulacion de conteos de tokens por banda
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-El resultado del analisis de distribucion COCA se estructura de manera jerarquica: para cada nivel CEFR, se presenta la distribucion de bandas, las puntuaciones, y los nodos hijos (topics). Cada topic a su vez contiene la distribucion de bandas de sus tokens y sus nodos hijos (knowledges). Esta jerarquia permite al usuario navegar desde el nivel general hacia los detalles mas finos.
+Los conteos de tokens por banda de frecuencia se **acumulan (suman)** al subir por la jerarquia del curso. Cada nodo de la jerarquia (knowledge, topic, nivel) tiene asociados los conteos totales de tokens en cada banda, calculados como la suma de los conteos de sus nodos hijos:
 
-La estructura jerarquica es: **Nivel -> (Trimestres, si aplica) -> Topic -> Knowledge -> (Bandas de frecuencia)**.
+- **Knowledge**: suma los conteos de tokens por banda de todos sus quizzes.
+- **Topic**: suma los conteos de tokens por banda de todos sus knowledges.
+- **Nivel**: suma los conteos de tokens por banda de todos sus topics (o de los topics asignados a cada trimestre, si se usa la estrategia quarters).
 
-**Error**: N/A (esta regla describe la estructura del resultado)
+Esta acumulacion es fundamentalmente distinta de un promedio de scores: si un knowledge tiene 50 tokens en top1k y otro tiene 100, el topic padre tiene 150 tokens en top1k, no un promedio de "scores" de ambos knowledges.
 
-### Rule[F-COCA-R026] - Puntuacion por topic (agregacion de la plataforma)
+La estructura jerarquica resultante es: **Nivel -> (Trimestres, si aplica) -> Topic -> Knowledge -> (Conteos por banda)**.
+
+**Error**: N/A (esta regla describe el mecanismo de acumulacion)
+
+### Rule[F-COCA-R026] - Distribucion porcentual por nodo de la jerarquia
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-La puntuacion de distribucion COCA de un topic se calcula a partir de las puntuaciones de sus knowledges. La plataforma agrega las puntuaciones a traves de la jerarquia utilizando el mecanismo generico de agregacion. Los topics sin knowledges con datos no participan en la agregacion del nivel padre.
+A partir de los conteos acumulados en cada nodo, se calcula la distribucion porcentual de tokens por banda. La formula es la misma que en R005, aplicada a los conteos del nodo:
 
-**Error**: "Error al calcular la puntuacion del topic {topicId}: {detalle}"
+porcentaje de la banda en el nodo = (conteo de tokens en la banda del nodo / total de tokens clasificados del nodo) * 100
 
-### Rule[F-COCA-R027] - Distribucion de bandas por nodo de la jerarquia
-**Severity**: major | **Validation**: AUTO_VALIDATED
+Cada nodo de la jerarquia (knowledge, topic, nivel) tiene su propia distribucion porcentual. Esto permite al usuario ver la distribucion real de vocabulario en cada segmento del curso. Por ejemplo, un topic especifico podria tener 70% de tokens en top1k y 15% en top4k, mientras que otro topic del mismo nivel podria tener 85% en top1k y 2% en top4k. Esta informacion es valiosa para localizar donde se concentran los problemas de distribucion.
 
-Cada nodo de la jerarquia (nivel, topic, knowledge) tiene asociada su propia distribucion de bandas de frecuencia, calculada a partir de los tokens de todos los quizzes que pertenecen a ese nodo. Esto permite al usuario ver no solo la puntuacion agregada sino tambien la distribucion real de vocabulario en cada segmento del curso.
+**Error**: "Error al calcular la distribucion porcentual del nodo {nodoId}: total de tokens clasificados es cero"
 
-Por ejemplo, un topic especifico podria tener 70% de tokens en top1k y 15% en top4k, mientras que otro topic del mismo nivel podria tener 85% en top1k y 2% en top4k. Esta informacion es valiosa para localizar donde se concentran los problemas de distribucion.
+### Rule[F-COCA-R027] - Score solo donde existen targets definidos
+**Severity**: critical | **Validation**: AUTO_VALIDATED
 
-**Error**: N/A (esta regla describe la disponibilidad de datos)
+La evaluacion contra targets y la generacion de scores (segun las reglas del Grupo B) se realiza **unicamente en los nodos que tienen targets definidos**: niveles y trimestres. Los nodos inferiores (topics y knowledges) tienen conteos acumulados y distribucion porcentual pero **no tienen score propio** basado en la comparacion contra targets, ya que no hay targets definidos a ese nivel de granularidad.
+
+Esto refleja la realidad del dominio: un knowledge individual con pocos tokens no tiene una distribucion representativa como para evaluarla contra los targets del nivel. El score cobra sentido solo cuando se acumulan suficientes tokens (a nivel de trimestre o nivel).
+
+Los topics y knowledges participan en la agregacion proporcionando sus conteos de tokens, no sus "scores". Su utilidad es de **drill-down**: permiten al creador de contenido localizar donde se concentran los problemas de distribucion que se detectaron a nivel de nivel/quarter.
+
+**Error**: N/A (esta regla describe la estrategia de evaluacion)
 
 ### Rule[F-COCA-R028] - Informacion por banda en cada nodo
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
 Para cada banda de frecuencia en cada nodo de la jerarquia, el resultado incluye:
 - Nombre de la banda
-- Cantidad de tokens en la banda
+- Cantidad de tokens en la banda (conteo acumulado)
 - Porcentaje respecto al total de tokens clasificados del nodo
-- Porcentaje objetivo (si aplica al nivel del nodo)
-- Puntuacion de la banda (si aplica)
-- Estado de evaluacion (OPTIMO, ADECUADO, DEFICIENTE, EXCESIVO, si aplica)
 
-Los campos de objetivo, puntuacion y estado solo aplican a los nodos que tienen objetivos definidos (generalmente niveles y trimestres). Los topics y knowledges tienen la distribucion y el conteo pero no necesariamente una evaluacion contra objetivos propios.
+Adicionalmente, **solo para nodos con targets definidos** (niveles y trimestres):
+- Porcentaje objetivo de la banda
+- Direccionalidad del objetivo (kind: atLeast/atMost)
+- Puntuacion de la banda (segun R010)
+- Estado de evaluacion (OPTIMO, ADECUADO, DEFICIENTE, EXCESIVO, segun R007)
 
 **Error**: N/A (esta regla describe la estructura de datos)
 
-### Rule[F-COCA-R029] - Puntuaciones disponibles en cada nivel de la jerarquia
+### Rule[F-COCA-R029] - Contrato de agregacion polimorfica
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
-El resultado del analisis debe hacer disponible la puntuacion de distribucion COCA en cada nivel de la jerarquia del curso. La plataforma construye un arbol de resultados donde cada nodo tiene asociada la puntuacion de cada analizador ejecutado. Esto permite al creador de contenido navegar la jerarquia y localizar exactamente donde se concentran los problemas de distribucion de vocabulario.
+La plataforma ContentAudit debe soportar que cada analizador defina su propia estrategia de agregacion. El contrato de agregacion define como los datos de un analizador se propagan a traves de la jerarquia del curso. El analizador de distribucion COCA implementa una estrategia de **acumulacion de conteos** (segun R025-R028), mientras que otros analizadores (como sentence-length) pueden usar la estrategia por defecto de **promedio simple de scores**.
 
-**Error**: N/A (esta regla describe la disponibilidad de datos)
+La estrategia por defecto (promedio de scores) sigue siendo el comportamiento estandar para analizadores que producen un score individual por quiz. La estrategia de acumulacion es necesaria para analizadores cuyos datos solo cobran sentido estadistico al agregarse.
+
+**Error**: N/A (esta regla describe un contrato arquitectonico)
 
 ---
 
@@ -627,7 +642,7 @@ Cada directiva de mejora contiene la siguiente informacion:
 5. Para cada nivel (o trimestre si se usa la estrategia quarters), el analizador calcula la distribucion porcentual de tokens por banda (R005)
 6. El analizador compara la distribucion real contra los objetivos configurados para cada banda y genera puntuaciones (R007, R010)
 7. Si se usa la estrategia quarters, los objetivos de los trimestres intermedios se calculan por interpolacion lineal (R015)
-8. La plataforma agrega las puntuaciones a traves de la jerarquia del curso, construyendo el arbol de resultados con distribucion de bandas en cada nodo (R025-R029)
+8. Los conteos de tokens por banda se acumulan a traves de la jerarquia del curso (quiz -> knowledge -> topic -> nivel), y en cada nodo se calcula la distribucion porcentual. Los scores se generan solo a nivel de nivel/quarter donde existen targets definidos (R025-R029)
 9. El sistema evalua la progresion por banda de frecuencia entre niveles (R021)
 10. El sistema genera directivas de mejora para los niveles/trimestres que no alcanzan sus objetivos (R030)
 11. El usuario recibe un informe con la puntuacion general, la puntuacion y distribucion por nivel, el estado de progresion por banda, y las directivas de mejora
