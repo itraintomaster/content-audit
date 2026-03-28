@@ -216,10 +216,10 @@ modules:
 
 | Module | Dependencies | Interfaces | Implementations | Packages |
 |--------|-------------|------------|------------------|----------|
-| audit-domain | — | ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator | IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator | — |
+| audit-domain | — | ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig | IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator | coca [public] |
 | course-domain | — | CourseRepository, CourseValidator | — | — |
 | refiner-domain | — | — | — | — |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure | AuditRunner, CourseMapper | CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner | — |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure | AuditRunner, CourseMapper | CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig | — |
 | course-infrastructure | course-domain | — | FileSystemCourseRepository | — |
 | audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure | ReportFormatter, AuditCli, FormatterRegistry | TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry | — |
 | nlp-infrastructure | audit-domain | NlpTokenizerFactory | — | spacy [public] |

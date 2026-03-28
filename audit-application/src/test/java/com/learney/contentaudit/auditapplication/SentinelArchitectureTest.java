@@ -61,5 +61,10 @@ public class SentinelArchitectureTest {
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultAuditRunner - " + e.getMessage());
     }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.DefaultCocaBucketsConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultCocaBucketsConfig - " + e.getMessage());
+    }
   }
 }

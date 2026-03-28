@@ -224,3 +224,14 @@ Methods:
 
 - `aggregate(List<ScoredItem> scores): AuditReport`
 
+### CocaBucketsConfig (port)
+
+Methods:
+
+- `getBandConfiguration(): BandConfiguration`
+- `getTargetsForLevel(String levelName): List<BucketTarget>`
+- `getQuarterTargetsForLevel(String levelName): List<QuarterBucketTargets>`
+- `getToleranceMargin(): double`
+- `getAnalysisStrategy(): AnalysisStrategy`
+- `getProgressionExpectations(): List<ProgressionExpectation>`
+

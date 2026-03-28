@@ -178,6 +178,46 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 
 **Implements:** ScoreAggregator
 
+#### CocaBucketsAnalyzer (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Implements:** ContentAnalyzer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `nlpTokenizer` | `NlpTokenizer` |
+| `cocaBucketsConfig` | `CocaBucketsConfig` |
+| `tokenClassifier` | `TokenClassifier` |
+| `progressionEvaluator` | `ProgressionEvaluator` |
+| `improvementPlanner` | `ImprovementPlanner` |
+
+#### CocaTokenAccumulationAggregator (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Implements:** ScoreAggregator
+
+#### DefaultTokenClassifier (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Implements:** TokenClassifier
+
+#### DefaultProgressionEvaluator (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Implements:** ProgressionEvaluator
+
+#### DefaultImprovementPlanner (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Implements:** ImprovementPlanner
+
 ### Module: audit-application
 
 #### CourseToAuditableMapper
@@ -252,6 +292,14 @@ public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMa
 - Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates [F-CLI/F-CLI-R001]
 - Given contentAudit throws an exception, when runAudit is called, then the exception propagates [F-CLI/F-CLI-R001]
 - Given a course with no milestones, when runAudit is called, then returns the report from contentAudit [F-CLI/F-CLI-R001]
+
+#### DefaultCocaBucketsConfig
+
+**Package:** `com.learney.contentaudit.auditapplication`
+
+**Implements:** CocaBucketsConfig
+
+**Framework types:** Component
 
 ### Module: course-infrastructure
 

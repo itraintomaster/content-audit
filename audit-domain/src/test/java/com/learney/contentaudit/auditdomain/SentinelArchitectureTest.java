@@ -157,6 +157,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: ScoreAggregator - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.CocaBucketsConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CocaBucketsConfig - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.IAuditEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: IAuditEngine - " + e.getMessage());
@@ -185,6 +190,131 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.IScoreAggregator");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: IScoreAggregator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.FrequencyBand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FrequencyBand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.BandConfiguration");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: BandConfiguration - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.AssessmentState");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AssessmentState - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.TargetKind");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TargetKind - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.BucketTarget");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: BucketTarget - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.BucketResult");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: BucketResult - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.QuarterBucketTargets");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuarterBucketTargets - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.QuarterResult");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuarterResult - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.LevelBucketDistribution");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LevelBucketDistribution - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.TopicBucketDistribution");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TopicBucketDistribution - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.ProgressionState");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ProgressionState - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.ProgressionExpectation");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ProgressionExpectation - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.ProgressionAssessment");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ProgressionAssessment - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.ImprovementDirectiveType");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ImprovementDirectiveType - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.ImprovementDirective");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ImprovementDirective - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.CocaBucketsDistributionResult");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CocaBucketsDistributionResult - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.AnalysisStrategy");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnalysisStrategy - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.TokenClassifier");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TokenClassifier - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.ProgressionEvaluator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ProgressionEvaluator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.ImprovementPlanner");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ImprovementPlanner - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CocaBucketsAnalyzer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.CocaTokenAccumulationAggregator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CocaTokenAccumulationAggregator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.DefaultTokenClassifier");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultTokenClassifier - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.DefaultProgressionEvaluator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultProgressionEvaluator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.DefaultImprovementPlanner");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultImprovementPlanner - " + e.getMessage());
     }
   }
 }

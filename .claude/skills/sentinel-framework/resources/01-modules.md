@@ -58,9 +58,9 @@ project-root/
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
 | Models | 17 (AuditReport, AuditableCourse, AuditContext, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, ScoredItem, NodeScores, QuizNode, KnowledgeNode, TopicNode, MilestoneNode, NlpToken) |
-| Interfaces | 7 (ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator) |
+| Interfaces | 8 (ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig) |
 | Implementations | 6 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator) |
-| Packages | 0 |
+| Packages | 1 (coca [public]) |
 
 ### course-domain
 
@@ -100,7 +100,7 @@ project-root/
 | Scope | public |
 | Models | 0 |
 | Interfaces | 2 (AuditRunner, CourseMapper) |
-| Implementations | 3 (CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner) |
+| Implementations | 4 (CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig) |
 | Packages | 0 |
 
 ### course-infrastructure

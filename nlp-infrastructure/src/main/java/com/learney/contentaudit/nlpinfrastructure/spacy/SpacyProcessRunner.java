@@ -1,17 +1,6 @@
 package com.learney.contentaudit.nlpinfrastructure.spacy;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.learney.contentaudit.nlpinfrastructure.NlpTokenizerConfig;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.security.MessageDigest;
-import java.util.HexFormat;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -20,121 +9,8 @@ import javax.annotation.processing.Generated;
 )
 class SpacyProcessRunner {
     private final NlpTokenizerConfig config;
-    private final ObjectMapper objectMapper = new ObjectMapper();
-    private static final Path CACHE_DIR = Path.of(System.getProperty("user.dir"), ".cache", "spacy-nlp");
 
     public SpacyProcessRunner(NlpTokenizerConfig config) {
         this.config = config;
-    }
-
-    public String run(List<String> sentences) {
-        String cacheKey = computeCacheKey(sentences);
-        Path cacheFile = CACHE_DIR.resolve(cacheKey + ".json");
-
-        // Check disk cache
-        if (Files.exists(cacheFile)) {
-            try {
-                return Files.readString(cacheFile);
-            } catch (IOException e) {
-                // Cache read failed, fall through to processing
-            }
-        }
-
-        String result = invokeSpacy(sentences);
-
-        // Write to disk cache
-        try {
-            Files.createDirectories(CACHE_DIR);
-            Files.writeString(cacheFile, result);
-        } catch (IOException e) {
-            // Cache write failed, not critical
-        }
-
-        return result;
-    }
-
-    private String invokeSpacy(List<String> sentences) {
-        Path tempDir = null;
-        try {
-            tempDir = Files.createTempDirectory("spacy-nlp-");
-            Path inputFile = tempDir.resolve("input.json");
-            Path outputFile = tempDir.resolve("output.json");
-
-            writeInputJson(sentences, inputFile);
-
-            ProcessBuilder pb = new ProcessBuilder(
-                    "python3",
-                    config.getPythonScriptPath(),
-                    inputFile.toString(),
-                    outputFile.toString()
-            );
-            pb.environment().put("COCA_DATA_PATH", config.getCocaDataPath());
-
-            Process process;
-            try {
-                process = pb.start();
-            } catch (IOException e) {
-                throw new RuntimeException(
-                        "Failed to start Python process. Ensure Python 3.11+, SpaCy, and en_core_web_sm are installed. " +
-                        "Script path: " + config.getPythonScriptPath(), e);
-            }
-
-            boolean finished = process.waitFor(config.getTimeoutSeconds(), TimeUnit.SECONDS);
-            if (!finished) {
-                process.destroyForcibly();
-                throw new RuntimeException(
-                        "SpaCy processing exceeded timeout of " + config.getTimeoutSeconds() +
-                        " seconds. Consider increasing the timeout.");
-            }
-
-            int exitCode = process.exitValue();
-            if (exitCode != 0) {
-                String stderr = new String(process.getErrorStream().readAllBytes());
-                throw new RuntimeException(
-                        "SpaCy processing failed with exit code " + exitCode + ": " + stderr);
-            }
-
-            return Files.readString(outputFile);
-
-        } catch (RuntimeException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new RuntimeException("SpaCy processing failed: " + e.getMessage(), e);
-        } finally {
-            cleanupTempDir(tempDir);
-        }
-    }
-
-    private String computeCacheKey(List<String> sentences) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            for (String s : sentences) {
-                digest.update(s.getBytes(StandardCharsets.UTF_8));
-                digest.update((byte) 0);
-            }
-            return HexFormat.of().formatHex(digest.digest());
-        } catch (Exception e) {
-            // Fallback: use hashCode (less collision-resistant but functional)
-            return "hash-" + sentences.hashCode();
-        }
-    }
-
-    private void writeInputJson(List<String> sentences, Path inputFile) throws IOException {
-        ObjectNode root = objectMapper.createObjectNode();
-        ArrayNode arr = root.putArray("sentences");
-        for (String s : sentences) {
-            arr.add(s);
-        }
-        objectMapper.writeValue(inputFile.toFile(), root);
-    }
-
-    private void cleanupTempDir(Path tempDir) {
-        if (tempDir == null) return;
-        try {
-            Files.list(tempDir).forEach(p -> {
-                try { Files.deleteIfExists(p); } catch (IOException ignored) {}
-            });
-            Files.deleteIfExists(tempDir);
-        } catch (IOException ignored) {}
     }
 }

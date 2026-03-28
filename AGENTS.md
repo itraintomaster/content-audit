@@ -97,7 +97,7 @@ If the user requests work that **skips a phase**, do NOT proceed silently. Inste
 
 **Models:** AuditReport, AuditableCourse, AuditContext, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, ScoredItem, NodeScores, QuizNode, KnowledgeNode, TopicNode, MilestoneNode, NlpToken
 
-**Interfaces:** ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator
+**Interfaces:** ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig
 
 **Implementations:** IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator
 
@@ -117,7 +117,7 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 **Interfaces:** AuditRunner, CourseMapper
 
-**Implementations:** CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner
+**Implementations:** CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig
 
 ### course-infrastructure
 

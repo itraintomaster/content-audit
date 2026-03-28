@@ -112,6 +112,48 @@ Examples:
 |--------|--------|
 | `aggregate(List<ScoredItem> scores): AuditReport` | (none) |
 
+#### CocaBucketsConfig (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** DefaultCocaBucketsConfig (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `getBandConfiguration(): BandConfiguration` | (none) |
+| `getTargetsForLevel(String levelName): List<BucketTarget>` | (none) |
+| `getQuarterTargetsForLevel(String levelName): List<QuarterBucketTargets>` | (none) |
+| `getToleranceMargin(): double` | (none) |
+| `getAnalysisStrategy(): AnalysisStrategy` | (none) |
+| `getProgressionExpectations(): List<ProgressionExpectation>` | (none) |
+
+#### TokenClassifier (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `classify(int frequencyRank,BandConfiguration bandConfig): FrequencyBand` | (none) |
+
+#### ProgressionEvaluator (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `evaluate(List<LevelBucketDistribution> levels,List<ProgressionExpectation> expectations): List<ProgressionAssessment>` | (none) |
+
+#### ImprovementPlanner (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `plan(List<LevelBucketDistribution> levels,BandConfiguration bandConfig,CocaBucketsConfig config): List<ImprovementDirective>` | (none) |
+
 ### Module: course-domain
 
 #### CourseRepository (port)

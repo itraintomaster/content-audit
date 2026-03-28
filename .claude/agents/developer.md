@@ -223,6 +223,13 @@ public class MyAdapter implements MyPort {
 #### audit-domain
 
 
+**Packages:**
+
+- `coca` [public] — COCA frequency bucket distribution analysis. Classifies NLP tokens into frequency bands (K1-K5+), evaluates distribution against configurable targets per CEFR level, assesses progression across levels, and generates improvement directives.
+  Models: FrequencyBand, BandConfiguration, AssessmentState, TargetKind, BucketTarget, BucketResult, QuarterBucketTargets, QuarterResult, LevelBucketDistribution, TopicBucketDistribution, ProgressionState, ProgressionExpectation, ProgressionAssessment, ImprovementDirectiveType, ImprovementDirective, CocaBucketsDistributionResult, AnalysisStrategy
+  Interfaces: TokenClassifier, ProgressionEvaluator, ImprovementPlanner
+  Implementations: CocaBucketsAnalyzer, CocaTokenAccumulationAggregator, DefaultTokenClassifier, DefaultProgressionEvaluator, DefaultImprovementPlanner
+
 **Models:**
 
 - `AuditReport` — overallScore: double, scores: NodeScores, milestones: List<MilestoneNode>
@@ -272,6 +279,13 @@ public class MyAdapter implements MyPort {
   - `getToleranceMargin(): int`
 - `ScoreAggregator`
   - `aggregate(List<ScoredItem> scores): AuditReport`
+- `CocaBucketsConfig`
+  - `getBandConfiguration(): BandConfiguration`
+  - `getTargetsForLevel(String levelName): List<BucketTarget>`
+  - `getQuarterTargetsForLevel(String levelName): List<QuarterBucketTargets>`
+  - `getToleranceMargin(): double`
+  - `getAnalysisStrategy(): AnalysisStrategy`
+  - `getProgressionExpectations(): List<ProgressionExpectation>`
 
 **Implementations (your work):**
 
@@ -338,6 +352,7 @@ Domain module for course structure. Contains entity models representing the 5-le
 - `DefaultAuditRunner` implements AuditRunner [Service]
   Inject: courseRepository: CourseRepository, courseToAuditableMapper: CourseToAuditableMapper, contentAudit: ContentAudit, courseMapper: CourseMapper
   Tests: Given a valid course path, when runAudit is called, then returns the audit report from the full chain, Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path, Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity, Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course, Given courseRepository throws an exception, when runAudit is called, then the exception propagates, Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates, Given contentAudit throws an exception, when runAudit is called, then the exception propagates, Given a course with no milestones, when runAudit is called, then returns the report from contentAudit
+- `DefaultCocaBucketsConfig` implements CocaBucketsConfig [Component]
 
 #### course-infrastructure
 

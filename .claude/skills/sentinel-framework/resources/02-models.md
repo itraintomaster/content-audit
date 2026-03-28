@@ -303,6 +303,216 @@ new MilestoneNode(String milestoneId, NodeScores scores, List<TopicNode> topics)
 new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, boolean isStop, boolean isPunct)
 ```
 
+#### FrequencyBand (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `name` | `String` |
+| `lowerBound` | `int` |
+| `upperBound` | `int` |
+
+#### BandConfiguration (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `bands` | `List<FrequencyBand>` |
+| `openEnded` | `boolean` |
+
+#### AssessmentState (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `OPTIMAL` | `null` |
+| `ADEQUATE` | `null` |
+| `DEFICIENT` | `null` |
+| `EXCESSIVE` | `null` |
+
+#### TargetKind (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `AT_LEAST` | `null` |
+| `AT_MOST` | `null` |
+
+#### BucketTarget (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `bandName` | `String` |
+| `targetPercentage` | `double` |
+| `kind` | `TargetKind` |
+
+#### BucketResult (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `bandName` | `String` |
+| `count` | `int` |
+| `percentage` | `double` |
+| `targetPercentage` | `double` |
+| `score` | `double` |
+| `assessment` | `AssessmentState` |
+
+#### QuarterBucketTargets (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `targets` | `List<BucketTarget>` |
+
+#### QuarterResult (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `index` | `int` |
+| `bucketResults` | `List<BucketResult>` |
+| `score` | `double` |
+
+#### LevelBucketDistribution (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `levelName` | `String` |
+| `score` | `double` |
+| `bucketResults` | `List<BucketResult>` |
+| `quarterResults` | `List<QuarterResult>` |
+| `topicDistributions` | `List<TopicBucketDistribution>` |
+
+#### TopicBucketDistribution (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `topicId` | `String` |
+| `score` | `double` |
+| `bucketResults` | `List<BucketResult>` |
+
+#### ProgressionState (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `ASCENDING` | `null` |
+| `DESCENDING` | `null` |
+| `STATIC` | `null` |
+| `IRREGULAR` | `null` |
+
+#### ProgressionExpectation (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `bandName` | `String` |
+| `expectedProgression` | `ProgressionState` |
+
+#### ProgressionAssessment (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `bandName` | `String` |
+| `actualProgression` | `ProgressionState` |
+| `expectedProgression` | `ProgressionState` |
+| `matches` | `boolean` |
+
+#### ImprovementDirectiveType (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `ENRICH` | `null` |
+| `REDUCE` | `null` |
+
+#### ImprovementDirective (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `type` | `ImprovementDirectiveType` |
+| `bandName` | `String` |
+| `levelName` | `String` |
+| `frequencyRangeFrom` | `int` |
+| `frequencyRangeTo` | `int` |
+| `actualPercentage` | `double` |
+| `targetPercentage` | `double` |
+
+#### CocaBucketsDistributionResult (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `levels` | `List<LevelBucketDistribution>` |
+| `progressionAssessments` | `List<ProgressionAssessment>` |
+| `overallScore` | `double` |
+| `improvementDirectives` | `List<ImprovementDirective>` |
+
+#### AnalysisStrategy (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `LEVELS` | `null` |
+| `QUARTERS` | `null` |
+
 ### Module: course-domain
 
 #### NodeKind

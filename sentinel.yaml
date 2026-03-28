@@ -230,6 +230,16 @@ modules:
     sealed: false
     exposes:
     - signature: "aggregate(List<ScoredItem> scores): AuditReport"
+  - name: CocaBucketsConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getBandConfiguration(): BandConfiguration"
+    - signature: "getTargetsForLevel(String levelName): List<BucketTarget>"
+    - signature: "getQuarterTargetsForLevel(String levelName): List<QuarterBucketTargets>"
+    - signature: "getToleranceMargin(): double"
+    - signature: "getAnalysisStrategy(): AnalysisStrategy"
+    - signature: "getProgressionExpectations(): List<ProgressionExpectation>"
   implementations:
   - name: IAuditEngine
     requiresInject:
@@ -3272,12 +3282,258 @@ modules:
   patterns:
   - type: Strategy
     implementations:
-    - KnowledgeTitleLengthAnalyzer
-    - KnowledgeInstructionsLengthAnalyzer
-    - SentenceLengthAnalyzer
+    - IScoreAggregator
+    - CocaTokenAccumulationAggregator
     suppressed: false
-    interface: ContentAnalyzer
+    interface: ScoreAggregator
   scope: internal
+  packages:
+  - name: coca
+    description: "COCA frequency bucket distribution analysis. Classifies NLP tokens\
+      \ into frequency bands (K1-K5+), evaluates distribution against configurable\
+      \ targets per CEFR level, assesses progression across levels, and generates\
+      \ improvement directives."
+    visibility: public
+    models:
+    - name: FrequencyBand
+      type: record
+      fields:
+      - name: name
+        type: String
+        description: "Band identifier (e.g. K1, K2, K3, K4, K5_PLUS)"
+      - name: lowerBound
+        type: int
+        description: Inclusive lower frequency rank bound
+      - name: upperBound
+        type: int
+        description: Inclusive upper frequency rank bound (Integer.MAX_VALUE for open-ended)
+    - name: BandConfiguration
+      type: record
+      fields:
+      - name: bands
+        type: List<FrequencyBand>
+        description: Ordered list of frequency bands from most common to least common
+      - name: openEnded
+        type: boolean
+        description: "If true, the last band captures all ranks above its lower bound"
+    - name: AssessmentState
+      type: enum
+      fields:
+      - name: OPTIMAL
+      - name: ADEQUATE
+      - name: DEFICIENT
+      - name: EXCESSIVE
+    - name: TargetKind
+      type: enum
+      fields:
+      - name: AT_LEAST
+      - name: AT_MOST
+    - name: BucketTarget
+      type: record
+      fields:
+      - name: bandName
+        type: String
+        description: Name of the frequency band this target applies to
+      - name: targetPercentage
+        type: double
+        description: Expected percentage of tokens in this band (0.0-1.0)
+      - name: kind
+        type: TargetKind
+        description: Whether the target is a minimum or maximum threshold
+    - name: BucketResult
+      type: record
+      fields:
+      - name: bandName
+        type: String
+        description: Name of the frequency band
+      - name: count
+        type: int
+        description: Number of tokens classified into this band
+      - name: percentage
+        type: double
+        description: Actual percentage of tokens in this band (0.0-1.0)
+      - name: targetPercentage
+        type: double
+        description: Expected percentage for this band (0.0-1.0)
+      - name: score
+        type: double
+        description: Score for this bucket (0.0-1.0) based on proximity to target
+      - name: assessment
+        type: AssessmentState
+        description: Qualitative assessment of this bucket result
+    - name: QuarterBucketTargets
+      type: record
+      fields:
+      - name: targets
+        type: List<BucketTarget>
+        description: Bucket targets for a specific quarter of a level
+    - name: QuarterResult
+      type: record
+      fields:
+      - name: index
+        type: int
+        description: Quarter index (0-based) within the level
+      - name: bucketResults
+        type: List<BucketResult>
+        description: Distribution results per band for this quarter
+      - name: score
+        type: double
+        description: Aggregated score for this quarter (0.0-1.0)
+    - name: LevelBucketDistribution
+      type: record
+      fields:
+      - name: levelName
+        type: String
+        description: "CEFR level name (e.g. A1, A2, B1, B2)"
+      - name: score
+        type: double
+        description: Aggregated score for this level (0.0-1.0)
+      - name: bucketResults
+        type: List<BucketResult>
+        description: Overall distribution results per band for this level
+      - name: quarterResults
+        type: List<QuarterResult>
+        description: Quarter-by-quarter breakdown within this level
+      - name: topicDistributions
+        type: List<TopicBucketDistribution>
+        description: Per-topic breakdown within this level
+    - name: TopicBucketDistribution
+      type: record
+      fields:
+      - name: topicId
+        type: String
+        description: Topic identifier
+      - name: score
+        type: double
+        description: Aggregated score for this topic (0.0-1.0)
+      - name: bucketResults
+        type: List<BucketResult>
+        description: Distribution results per band for this topic
+    - name: ProgressionState
+      type: enum
+      fields:
+      - name: ASCENDING
+      - name: DESCENDING
+      - name: STATIC
+      - name: IRREGULAR
+    - name: ProgressionExpectation
+      type: record
+      fields:
+      - name: bandName
+        type: String
+        description: The frequency band whose progression is being specified
+      - name: expectedProgression
+        type: ProgressionState
+        description: Expected progression pattern across levels for this band
+    - name: ProgressionAssessment
+      type: record
+      fields:
+      - name: bandName
+        type: String
+        description: The frequency band assessed
+      - name: actualProgression
+        type: ProgressionState
+        description: Observed progression pattern across levels
+      - name: expectedProgression
+        type: ProgressionState
+        description: Expected progression pattern from configuration
+      - name: matches
+        type: boolean
+        description: Whether actual matches expected progression
+    - name: ImprovementDirectiveType
+      type: enum
+      fields:
+      - name: ENRICH
+      - name: REDUCE
+    - name: ImprovementDirective
+      type: record
+      fields:
+      - name: type
+        type: ImprovementDirectiveType
+        description: Whether to enrich or reduce tokens in the target range
+      - name: bandName
+        type: String
+        description: The frequency band this directive targets
+      - name: levelName
+        type: String
+        description: The CEFR level this directive applies to
+      - name: frequencyRangeFrom
+        type: int
+        description: Lower bound of the COCA frequency range
+      - name: frequencyRangeTo
+        type: int
+        description: Upper bound of the COCA frequency range
+      - name: actualPercentage
+        type: double
+        description: Current percentage of tokens in this band (0.0-1.0)
+      - name: targetPercentage
+        type: double
+        description: Desired percentage of tokens in this band (0.0-1.0)
+    - name: CocaBucketsDistributionResult
+      type: record
+      fields:
+      - name: levels
+        type: List<LevelBucketDistribution>
+        description: Per-level distribution results
+      - name: progressionAssessments
+        type: List<ProgressionAssessment>
+        description: Progression assessments across levels for each band
+      - name: overallScore
+        type: double
+        description: Weighted overall score across all levels (0.0-1.0)
+      - name: improvementDirectives
+        type: List<ImprovementDirective>
+        description: Actionable improvement directives for levels not meeting targets
+    - name: AnalysisStrategy
+      type: enum
+      fields:
+      - name: LEVELS
+      - name: QUARTERS
+    interfaces:
+    - name: TokenClassifier
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "classify(int frequencyRank,BandConfiguration bandConfig): FrequencyBand"
+    - name: ProgressionEvaluator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "evaluate(List<LevelBucketDistribution> levels,List<ProgressionExpectation>\
+          \ expectations): List<ProgressionAssessment>"
+    - name: ImprovementPlanner
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "plan(List<LevelBucketDistribution> levels,BandConfiguration bandConfig,CocaBucketsConfig\
+          \ config): List<ImprovementDirective>"
+    implementations:
+    - name: CocaBucketsAnalyzer
+      requiresInject:
+      - name: nlpTokenizer
+        type: NlpTokenizer
+      - name: cocaBucketsConfig
+        type: CocaBucketsConfig
+      - name: tokenClassifier
+        type: TokenClassifier
+      - name: progressionEvaluator
+        type: ProgressionEvaluator
+      - name: improvementPlanner
+        type: ImprovementPlanner
+      implements:
+      - ContentAnalyzer
+    - name: CocaTokenAccumulationAggregator
+      implements:
+      - ScoreAggregator
+    - name: DefaultTokenClassifier
+      implements:
+      - TokenClassifier
+    - name: DefaultProgressionEvaluator
+      implements:
+      - ProgressionEvaluator
+    - name: DefaultImprovementPlanner
+      implements:
+      - ImprovementPlanner
 - name: course-domain
   description: "Domain module for course structure. Contains entity models representing\
     \ the 5-level hierarchy (Course > ROOT > Milestone > Topic > Knowledge > QuizTemplate),\
@@ -4128,6 +4384,11 @@ modules:
         returns: ref:emptyReport
     implements:
     - AuditRunner
+  - name: DefaultCocaBucketsConfig
+    types:
+    - Component
+    implements:
+    - CocaBucketsConfig
   patterns:
   - type: Decorator
     decorators:

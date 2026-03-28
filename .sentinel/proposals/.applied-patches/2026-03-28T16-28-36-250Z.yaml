@@ -1,0 +1,308 @@
+code: __proposal__
+description: "Add COCA frequency bucket analysis subsystem as a package within audit-domain,\
+  \ with Strategy pattern on ScoreAggregator and configuration port implemented in\
+  \ audit-application"
+modules:
+- name: audit-domain
+  interfaces:
+  - name: CocaBucketsConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getBandConfiguration(): BandConfiguration"
+    - signature: "getTargetsForLevel(String levelName): List<BucketTarget>"
+    - signature: "getQuarterTargetsForLevel(String levelName): List<QuarterBucketTargets>"
+    - signature: "getToleranceMargin(): double"
+    - signature: "getAnalysisStrategy(): AnalysisStrategy"
+    - signature: "getProgressionExpectations(): List<ProgressionExpectation>"
+    _change: add
+  patterns:
+  - type: Strategy
+    implementations:
+    - IScoreAggregator
+    - CocaTokenAccumulationAggregator
+    suppressed: false
+    interface: ScoreAggregator
+  packages:
+  - name: coca
+    description: "COCA frequency bucket distribution analysis. Classifies NLP tokens\
+      \ into frequency bands (K1-K5+), evaluates distribution against configurable\
+      \ targets per CEFR level, assesses progression across levels, and generates\
+      \ improvement directives."
+    visibility: public
+    models:
+    - name: FrequencyBand
+      type: record
+      fields:
+      - name: name
+        type: String
+        description: "Band identifier (e.g. K1, K2, K3, K4, K5_PLUS)"
+      - name: lowerBound
+        type: int
+        description: Inclusive lower frequency rank bound
+      - name: upperBound
+        type: int
+        description: Inclusive upper frequency rank bound (Integer.MAX_VALUE for open-ended)
+      _change: add
+    - name: BandConfiguration
+      type: record
+      fields:
+      - name: bands
+        type: List<FrequencyBand>
+        description: Ordered list of frequency bands from most common to least common
+      - name: openEnded
+        type: boolean
+        description: "If true, the last band captures all ranks above its lower bound"
+      _change: add
+    - name: AssessmentState
+      type: enum
+      fields:
+      - name: OPTIMAL
+      - name: ADEQUATE
+      - name: DEFICIENT
+      - name: EXCESSIVE
+      _change: add
+    - name: TargetKind
+      type: enum
+      fields:
+      - name: AT_LEAST
+      - name: AT_MOST
+      _change: add
+    - name: BucketTarget
+      type: record
+      fields:
+      - name: bandName
+        type: String
+        description: Name of the frequency band this target applies to
+      - name: targetPercentage
+        type: double
+        description: Expected percentage of tokens in this band (0.0-1.0)
+      - name: kind
+        type: TargetKind
+        description: Whether the target is a minimum or maximum threshold
+      _change: add
+    - name: BucketResult
+      type: record
+      fields:
+      - name: bandName
+        type: String
+        description: Name of the frequency band
+      - name: count
+        type: int
+        description: Number of tokens classified into this band
+      - name: percentage
+        type: double
+        description: Actual percentage of tokens in this band (0.0-1.0)
+      - name: targetPercentage
+        type: double
+        description: Expected percentage for this band (0.0-1.0)
+      - name: score
+        type: double
+        description: Score for this bucket (0.0-1.0) based on proximity to target
+      - name: assessment
+        type: AssessmentState
+        description: Qualitative assessment of this bucket result
+      _change: add
+    - name: QuarterBucketTargets
+      type: record
+      fields:
+      - name: targets
+        type: List<BucketTarget>
+        description: Bucket targets for a specific quarter of a level
+      _change: add
+    - name: QuarterResult
+      type: record
+      fields:
+      - name: index
+        type: int
+        description: Quarter index (0-based) within the level
+      - name: bucketResults
+        type: List<BucketResult>
+        description: Distribution results per band for this quarter
+      - name: score
+        type: double
+        description: Aggregated score for this quarter (0.0-1.0)
+      _change: add
+    - name: LevelBucketDistribution
+      type: record
+      fields:
+      - name: levelName
+        type: String
+        description: "CEFR level name (e.g. A1, A2, B1, B2)"
+      - name: score
+        type: double
+        description: Aggregated score for this level (0.0-1.0)
+      - name: bucketResults
+        type: List<BucketResult>
+        description: Overall distribution results per band for this level
+      - name: quarterResults
+        type: List<QuarterResult>
+        description: Quarter-by-quarter breakdown within this level
+      - name: topicDistributions
+        type: List<TopicBucketDistribution>
+        description: Per-topic breakdown within this level
+      _change: add
+    - name: TopicBucketDistribution
+      type: record
+      fields:
+      - name: topicId
+        type: String
+        description: Topic identifier
+      - name: score
+        type: double
+        description: Aggregated score for this topic (0.0-1.0)
+      - name: bucketResults
+        type: List<BucketResult>
+        description: Distribution results per band for this topic
+      _change: add
+    - name: ProgressionState
+      type: enum
+      fields:
+      - name: ASCENDING
+      - name: DESCENDING
+      - name: STATIC
+      - name: IRREGULAR
+      _change: add
+    - name: ProgressionExpectation
+      type: record
+      fields:
+      - name: bandName
+        type: String
+        description: The frequency band whose progression is being specified
+      - name: expectedProgression
+        type: ProgressionState
+        description: Expected progression pattern across levels for this band
+      _change: add
+    - name: ProgressionAssessment
+      type: record
+      fields:
+      - name: bandName
+        type: String
+        description: The frequency band assessed
+      - name: actualProgression
+        type: ProgressionState
+        description: Observed progression pattern across levels
+      - name: expectedProgression
+        type: ProgressionState
+        description: Expected progression pattern from configuration
+      - name: matches
+        type: boolean
+        description: Whether actual matches expected progression
+      _change: add
+    - name: ImprovementDirectiveType
+      type: enum
+      fields:
+      - name: ENRICH
+      - name: REDUCE
+      _change: add
+    - name: ImprovementDirective
+      type: record
+      fields:
+      - name: type
+        type: ImprovementDirectiveType
+        description: Whether to enrich or reduce tokens in the target range
+      - name: bandName
+        type: String
+        description: The frequency band this directive targets
+      - name: levelName
+        type: String
+        description: The CEFR level this directive applies to
+      - name: frequencyRangeFrom
+        type: int
+        description: Lower bound of the COCA frequency range
+      - name: frequencyRangeTo
+        type: int
+        description: Upper bound of the COCA frequency range
+      - name: actualPercentage
+        type: double
+        description: Current percentage of tokens in this band (0.0-1.0)
+      - name: targetPercentage
+        type: double
+        description: Desired percentage of tokens in this band (0.0-1.0)
+      _change: add
+    - name: CocaBucketsDistributionResult
+      type: record
+      fields:
+      - name: levels
+        type: List<LevelBucketDistribution>
+        description: Per-level distribution results
+      - name: progressionAssessments
+        type: List<ProgressionAssessment>
+        description: Progression assessments across levels for each band
+      - name: overallScore
+        type: double
+        description: Weighted overall score across all levels (0.0-1.0)
+      - name: improvementDirectives
+        type: List<ImprovementDirective>
+        description: Actionable improvement directives for levels not meeting targets
+      _change: add
+    - name: AnalysisStrategy
+      type: enum
+      fields:
+      - name: LEVELS
+      - name: QUARTERS
+      _change: add
+    interfaces:
+    - name: TokenClassifier
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "classify(int frequencyRank,BandConfiguration bandConfig): FrequencyBand"
+      _change: add
+    - name: ProgressionEvaluator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "evaluate(List<LevelBucketDistribution> levels,List<ProgressionExpectation>\
+          \ expectations): List<ProgressionAssessment>"
+      _change: add
+    - name: ImprovementPlanner
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "plan(List<LevelBucketDistribution> levels,BandConfiguration bandConfig,CocaBucketsConfig\
+          \ config): List<ImprovementDirective>"
+      _change: add
+    implementations:
+    - name: CocaBucketsAnalyzer
+      requiresInject:
+      - name: nlpTokenizer
+        type: NlpTokenizer
+      - name: cocaBucketsConfig
+        type: CocaBucketsConfig
+      - name: tokenClassifier
+        type: TokenClassifier
+      - name: progressionEvaluator
+        type: ProgressionEvaluator
+      - name: improvementPlanner
+        type: ImprovementPlanner
+      implements:
+      - ContentAnalyzer
+      _change: add
+    - name: CocaTokenAccumulationAggregator
+      implements:
+      - ScoreAggregator
+      _change: add
+    - name: DefaultTokenClassifier
+      implements:
+      - TokenClassifier
+      _change: add
+    - name: DefaultProgressionEvaluator
+      implements:
+      - ProgressionEvaluator
+      _change: add
+    - name: DefaultImprovementPlanner
+      implements:
+      - ImprovementPlanner
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: DefaultCocaBucketsConfig
+    types:
+    - Component
+    implements:
+    - CocaBucketsConfig
+    _change: add
+  _change: modify

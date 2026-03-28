@@ -65,6 +65,12 @@ Methods:
 - Given contentAudit throws an exception, when runAudit is called, then the exception propagates → F-CLI/F-CLI-R001
 - Given a course with no milestones, when runAudit is called, then returns the report from contentAudit → F-CLI/F-CLI-R001
 
+### DefaultCocaBucketsConfig
+
+**Implements:** CocaBucketsConfig
+
+**Types:** Component
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
@@ -265,6 +271,17 @@ Methods:
 Methods:
 
 - `aggregate(List<ScoredItem> scores): AuditReport`
+
+### CocaBucketsConfig (port)
+
+Methods:
+
+- `getBandConfiguration(): BandConfiguration`
+- `getTargetsForLevel(String levelName): List<BucketTarget>`
+- `getQuarterTargetsForLevel(String levelName): List<QuarterBucketTargets>`
+- `getToleranceMargin(): double`
+- `getAnalysisStrategy(): AnalysisStrategy`
+- `getProgressionExpectations(): List<ProgressionExpectation>`
 
 ### From course-domain
 
