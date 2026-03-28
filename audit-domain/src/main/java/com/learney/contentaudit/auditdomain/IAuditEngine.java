@@ -23,7 +23,8 @@ public class IAuditEngine implements AuditEngine {
         for (ContentAnalyzer analyzer : contentAnalyzers) {
             for (int mi = 0; mi < auditableCourse.getMilestones().size(); mi++) {
                 AuditableMilestone milestone = auditableCourse.getMilestones().get(mi);
-                String milestoneId = String.valueOf(mi);
+                CefrLevel[] levels = CefrLevel.values();
+                String milestoneId = mi < levels.length ? levels[mi].name() : String.valueOf(mi);
                 AuditContext milestoneCtx = new AuditContext(milestoneId, null, null, null);
                 analyzer.onMilestone(milestone, milestoneCtx);
 

@@ -13,6 +13,12 @@ import com.learney.contentaudit.auditdomain.NlpTokenizer;
 import com.learney.contentaudit.auditdomain.ScoreAggregator;
 import com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer;
 import com.learney.contentaudit.auditdomain.SentenceLengthConfig;
+import com.learney.contentaudit.auditdomain.CocaBucketsConfig;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer;
+import com.learney.contentaudit.auditdomain.coca.DefaultTokenClassifier;
+import com.learney.contentaudit.auditdomain.coca.DefaultProgressionEvaluator;
+import com.learney.contentaudit.auditdomain.coca.DefaultImprovementPlanner;
+import com.learney.contentaudit.auditapplication.DefaultCocaBucketsConfig;
 import com.learney.contentaudit.nlpinfrastructure.NlpTokenizerConfig;
 import com.learney.contentaudit.nlpinfrastructure.spacy.SpacyNlpTokenizerFactory;
 import com.learney.contentaudit.coursedomain.CourseValidator;
@@ -52,10 +58,21 @@ public class Main {
         KnowledgeInstructionsLengthAnalyzer knowledgeInstructionsLengthAnalyzer =
                 new KnowledgeInstructionsLengthAnalyzer();
 
+        // COCA Buckets Distribution analyzer
+        CocaBucketsConfig cocaBucketsConfig = new DefaultCocaBucketsConfig();
+        CocaBucketsAnalyzer cocaBucketsAnalyzer = new CocaBucketsAnalyzer(
+                nlpTokenizer,
+                cocaBucketsConfig,
+                new DefaultTokenClassifier(),
+                new DefaultProgressionEvaluator(),
+                new DefaultImprovementPlanner()
+        );
+
         List<ContentAnalyzer> contentAnalyzers = List.of(
                 sentenceLengthAnalyzer,
                 knowledgeTitleLengthAnalyzer,
-                knowledgeInstructionsLengthAnalyzer
+                knowledgeInstructionsLengthAnalyzer,
+                cocaBucketsAnalyzer
         );
 
         // Domain: aggregator and engine

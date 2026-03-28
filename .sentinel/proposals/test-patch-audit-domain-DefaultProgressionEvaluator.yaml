@@ -1,0 +1,443 @@
+code: __proposal__
+description: Tests for DefaultProgressionEvaluator - evaluates vocabulary distribution
+  progression across CEFR levels
+modules:
+- name: audit-domain
+  packages:
+  - name: coca
+    visibility: public
+    implementations:
+    - name: DefaultProgressionEvaluator
+      tests:
+      - name: "Given two levels with descending top1k percentages, when evaluate is\
+          \ called, then returns DESCENDING progression"
+        target: DefaultProgressionEvaluator
+        invoke:
+          method: evaluate
+          args:
+          - "[ref:levelA1, ref:levelA2]"
+          - "[ref:expectTop1k]"
+        fixtures:
+        - id: brA1top1k
+          type: BucketResult
+          construct:
+            bandName: top1k
+            count: 900
+            percentage: 0.9
+            targetPercentage: 0.8
+            score: 1.0
+            assessment: OPTIMAL
+        - id: brA2top1k
+          type: BucketResult
+          construct:
+            bandName: top1k
+            count: 700
+            percentage: 0.7
+            targetPercentage: 0.7
+            score: 1.0
+            assessment: OPTIMAL
+        - id: levelA1
+          type: LevelBucketDistribution
+          construct:
+            levelName: A1
+            score: 0.9
+            bucketResults: "[ref:brA1top1k]"
+            quarterResults: "[]"
+            topicDistributions: "[]"
+        - id: levelA2
+          type: LevelBucketDistribution
+          construct:
+            levelName: A2
+            score: 0.7
+            bucketResults: "[ref:brA2top1k]"
+            quarterResults: "[]"
+            topicDistributions: "[]"
+        - id: expectTop1k
+          type: ProgressionExpectation
+          construct:
+            bandName: top1k
+            expectedProgression: DESCENDING
+        - id: expectedAssessment
+          type: ProgressionAssessment
+          construct:
+            bandName: top1k
+            actualProgression: DESCENDING
+            expectedProgression: DESCENDING
+            matches: true
+        type: unit
+        traceability:
+          feature: F-COCA
+          rule: F-COCA-R021
+        assert:
+          returns: "[ref:expectedAssessment]"
+      - name: "Given two levels with ascending top4k percentages, when evaluate is\
+          \ called, then returns ASCENDING progression"
+        target: DefaultProgressionEvaluator
+        invoke:
+          method: evaluate
+          args:
+          - "[ref:levelA1, ref:levelA2]"
+          - "[ref:expectTop4k]"
+        fixtures:
+        - id: brA1top4k
+          type: BucketResult
+          construct:
+            bandName: top4k
+            count: 20
+            percentage: 0.02
+            targetPercentage: 0.01
+            score: 0.8
+            assessment: ADEQUATE
+        - id: brA2top4k
+          type: BucketResult
+          construct:
+            bandName: top4k
+            count: 100
+            percentage: 0.1
+            targetPercentage: 0.1
+            score: 1.0
+            assessment: OPTIMAL
+        - id: levelA1
+          type: LevelBucketDistribution
+          construct:
+            levelName: A1
+            score: 0.9
+            bucketResults: "[ref:brA1top4k]"
+            quarterResults: "[]"
+            topicDistributions: "[]"
+        - id: levelA2
+          type: LevelBucketDistribution
+          construct:
+            levelName: A2
+            score: 0.7
+            bucketResults: "[ref:brA2top4k]"
+            quarterResults: "[]"
+            topicDistributions: "[]"
+        - id: expectTop4k
+          type: ProgressionExpectation
+          construct:
+            bandName: top4k
+            expectedProgression: ASCENDING
+        - id: expectedAssessment
+          type: ProgressionAssessment
+          construct:
+            bandName: top4k
+            actualProgression: ASCENDING
+            expectedProgression: ASCENDING
+            matches: true
+        type: unit
+        traceability:
+          feature: F-COCA
+          rule: F-COCA-R021
+        assert:
+          returns: "[ref:expectedAssessment]"
+      - name: "Given three levels where top1k goes down then up, when evaluate is\
+          \ called, then returns IRREGULAR progression"
+        target: DefaultProgressionEvaluator
+        invoke:
+          method: evaluate
+          args:
+          - "[ref:levelA1, ref:levelA2, ref:levelB1]"
+          - "[ref:expectTop1k]"
+        fixtures:
+        - id: brA1top1k
+          type: BucketResult
+          construct:
+            bandName: top1k
+            count: 900
+            percentage: 0.9
+            targetPercentage: 0.8
+            score: 1.0
+            assessment: OPTIMAL
+        - id: brA2top1k
+          type: BucketResult
+          construct:
+            bandName: top1k
+            count: 600
+            percentage: 0.6
+            targetPercentage: 0.7
+            score: 0.8
+            assessment: ADEQUATE
+        - id: brB1top1k
+          type: BucketResult
+          construct:
+            bandName: top1k
+            count: 800
+            percentage: 0.8
+            targetPercentage: 0.6
+            score: 1.0
+            assessment: OPTIMAL
+        - id: levelA1
+          type: LevelBucketDistribution
+          construct:
+            levelName: A1
+            score: 0.9
+            bucketResults: "[ref:brA1top1k]"
+            quarterResults: "[]"
+            topicDistributions: "[]"
+        - id: levelA2
+          type: LevelBucketDistribution
+          construct:
+            levelName: A2
+            score: 0.7
+            bucketResults: "[ref:brA2top1k]"
+            quarterResults: "[]"
+            topicDistributions: "[]"
+        - id: levelB1
+          type: LevelBucketDistribution
+          construct:
+            levelName: B1
+            score: 0.8
+            bucketResults: "[ref:brB1top1k]"
+            quarterResults: "[]"
+            topicDistributions: "[]"
+        - id: expectTop1k
+          type: ProgressionExpectation
+          construct:
+            bandName: top1k
+            expectedProgression: DESCENDING
+        - id: expectedAssessment
+          type: ProgressionAssessment
+          construct:
+            bandName: top1k
+            actualProgression: IRREGULAR
+            expectedProgression: DESCENDING
+            matches: false
+        type: unit
+        traceability:
+          feature: F-COCA
+          rule: F-COCA-R021
+        assert:
+          returns: "[ref:expectedAssessment]"
+      - name: "Given three levels with no significant change in top1k, when evaluate\
+          \ is called, then returns STATIC progression"
+        target: DefaultProgressionEvaluator
+        invoke:
+          method: evaluate
+          args:
+          - "[ref:levelA1, ref:levelA2, ref:levelB1]"
+          - "[ref:expectTop1k]"
+        fixtures:
+        - id: brA1top1k
+          type: BucketResult
+          construct:
+            bandName: top1k
+            count: 700
+            percentage: 0.7
+            targetPercentage: 0.7
+            score: 1.0
+            assessment: OPTIMAL
+        - id: brA2top1k
+          type: BucketResult
+          construct:
+            bandName: top1k
+            count: 700
+            percentage: 0.7
+            targetPercentage: 0.7
+            score: 1.0
+            assessment: OPTIMAL
+        - id: brB1top1k
+          type: BucketResult
+          construct:
+            bandName: top1k
+            count: 700
+            percentage: 0.7
+            targetPercentage: 0.7
+            score: 1.0
+            assessment: OPTIMAL
+        - id: levelA1
+          type: LevelBucketDistribution
+          construct:
+            levelName: A1
+            score: 0.8
+            bucketResults: "[ref:brA1top1k]"
+            quarterResults: "[]"
+            topicDistributions: "[]"
+        - id: levelA2
+          type: LevelBucketDistribution
+          construct:
+            levelName: A2
+            score: 0.8
+            bucketResults: "[ref:brA2top1k]"
+            quarterResults: "[]"
+            topicDistributions: "[]"
+        - id: levelB1
+          type: LevelBucketDistribution
+          construct:
+            levelName: B1
+            score: 0.8
+            bucketResults: "[ref:brB1top1k]"
+            quarterResults: "[]"
+            topicDistributions: "[]"
+        - id: expectTop1k
+          type: ProgressionExpectation
+          construct:
+            bandName: top1k
+            expectedProgression: DESCENDING
+        - id: expectedAssessment
+          type: ProgressionAssessment
+          construct:
+            bandName: top1k
+            actualProgression: STATIC
+            expectedProgression: DESCENDING
+            matches: false
+        type: unit
+        traceability:
+          feature: F-COCA
+          rule: F-COCA-R021
+        assert:
+          returns: "[ref:expectedAssessment]"
+      - name: "Given a single level, when evaluate is called, then returns STATIC\
+          \ due to insufficient data"
+        target: DefaultProgressionEvaluator
+        invoke:
+          method: evaluate
+          args:
+          - "[ref:levelA1]"
+          - "[ref:expectTop1k]"
+        fixtures:
+        - id: levelA1
+          type: LevelBucketDistribution
+          construct:
+            levelName: A1
+            score: 0.9
+            bucketResults: "[]"
+            quarterResults: "[]"
+            topicDistributions: "[]"
+        - id: expectTop1k
+          type: ProgressionExpectation
+          construct:
+            bandName: top1k
+            expectedProgression: DESCENDING
+        - id: expectedAssessment
+          type: ProgressionAssessment
+          construct:
+            bandName: top1k
+            actualProgression: STATIC
+            expectedProgression: DESCENDING
+            matches: false
+        type: unit
+        traceability:
+          feature: F-COCA
+          rule: F-COCA-R022
+        assert:
+          returns: "[ref:expectedAssessment]"
+      - name: "Given zero levels with a non-empty expectation, when evaluate is called,\
+          \ then returns STATIC per R022 insufficient data rule"
+        target: DefaultProgressionEvaluator
+        invoke:
+          method: evaluate
+          args:
+          - "[]"
+          - "[ref:expectTop1k]"
+        fixtures:
+        - id: expectTop1k
+          type: ProgressionExpectation
+          construct:
+            bandName: top1k
+            expectedProgression: DESCENDING
+        - id: expectedAssessment
+          type: ProgressionAssessment
+          construct:
+            bandName: top1k
+            actualProgression: STATIC
+            expectedProgression: DESCENDING
+            matches: false
+        type: unit
+        traceability:
+          feature: F-COCA
+          rule: F-COCA-R022
+        assert:
+          returns: "[ref:expectedAssessment]"
+      - name: "Given multiple levels with empty expectations, when evaluate is called,\
+          \ then returns empty list"
+        target: DefaultProgressionEvaluator
+        invoke:
+          method: evaluate
+          args:
+          - "[ref:levelA1, ref:levelA2]"
+          - "[]"
+        fixtures:
+        - id: levelA1
+          type: LevelBucketDistribution
+          construct:
+            levelName: A1
+            score: 0.9
+            bucketResults: "[]"
+            quarterResults: "[]"
+            topicDistributions: "[]"
+        - id: levelA2
+          type: LevelBucketDistribution
+          construct:
+            levelName: A2
+            score: 0.7
+            bucketResults: "[]"
+            quarterResults: "[]"
+            topicDistributions: "[]"
+        type: unit
+        traceability:
+          feature: F-COCA
+          rule: F-COCA-R024
+        assert:
+          returns: "[]"
+      - name: "Given two levels with identical top1k percentage, when evaluate is\
+          \ called, then returns STATIC progression"
+        target: DefaultProgressionEvaluator
+        invoke:
+          method: evaluate
+          args:
+          - "[ref:levelA1, ref:levelA2]"
+          - "[ref:expectTop1k]"
+        fixtures:
+        - id: brA1top1k
+          type: BucketResult
+          construct:
+            bandName: top1k
+            count: 700
+            percentage: 0.7
+            targetPercentage: 0.7
+            score: 1.0
+            assessment: OPTIMAL
+        - id: brA2top1k
+          type: BucketResult
+          construct:
+            bandName: top1k
+            count: 700
+            percentage: 0.7
+            targetPercentage: 0.7
+            score: 1.0
+            assessment: OPTIMAL
+        - id: levelA1
+          type: LevelBucketDistribution
+          construct:
+            levelName: A1
+            score: 0.7
+            bucketResults: "[ref:brA1top1k]"
+            quarterResults: "[]"
+            topicDistributions: "[]"
+        - id: levelA2
+          type: LevelBucketDistribution
+          construct:
+            levelName: A2
+            score: 0.7
+            bucketResults: "[ref:brA2top1k]"
+            quarterResults: "[]"
+            topicDistributions: "[]"
+        - id: expectTop1k
+          type: ProgressionExpectation
+          construct:
+            bandName: top1k
+            expectedProgression: DESCENDING
+        - id: expectedAssessment
+          type: ProgressionAssessment
+          construct:
+            bandName: top1k
+            actualProgression: STATIC
+            expectedProgression: DESCENDING
+            matches: false
+        type: unit
+        traceability:
+          feature: F-COCA
+          rule: F-COCA-R021
+        assert:
+          returns: "[ref:expectedAssessment]"

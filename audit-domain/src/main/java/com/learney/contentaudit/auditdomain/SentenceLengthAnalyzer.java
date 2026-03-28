@@ -119,6 +119,12 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
         if (milestoneId == null) {
             return -1;
         }
+        CefrLevel[] levels = CefrLevel.values();
+        for (int i = 0; i < levels.length; i++) {
+            if (levels[i].name().equals(milestoneId)) {
+                return i;
+            }
+        }
         try {
             return Integer.parseInt(milestoneId);
         } catch (NumberFormatException e) {
