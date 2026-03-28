@@ -8,6 +8,7 @@ description: >
 model: opus
 color: blue
 tools: [Read, Write, Edit, Glob, Grep, Bash]
+skills: [sentinel-flow-journey]
 ---
 
 <!-- SENTINEL MANAGED FILE - DO NOT EDIT -->
@@ -71,13 +72,50 @@ Description of the rule...
 
 ## User Journeys
 
-### Journey[F-CART-J001] - Add item to cart
+**IMPORTANT: Use `flow` (graph) as the DEFAULT format for ALL journeys.** Most real-world journeys have at least one decision point, error path, or alternative outcome. The `flow` format makes these visible.
+
+Only use linear `steps` as a **fallback** for trivially simple journeys with no decisions whatsoever (e.g., a single CRUD operation with no validation).
+
+### Flow journey (DEFAULT — use this):
+
+```yaml
+journeys:
+  - id: F-CART-J001
+    name: Add item to cart
+    flow:
+      - id: browse
+        action: "User browses product catalog"
+        then: add_to_cart
+      - id: add_to_cart
+        action: "User clicks Add to Cart"
+        then: validate_qty
+      - id: validate_qty
+        action: "System validates quantity"
+        gate: [RULE-MIN-QTY]
+        outcomes:
+          - when: "Quantity is valid"
+            then: update_cart
+          - when: "Quantity is invalid"
+            then: reject_qty
+      - id: update_cart
+        action: "System updates cart total"
+        result: success
+      - id: reject_qty
+        action: "System shows validation error"
+        result: failure
+```
+
+Refer to the **sentinel-flow-journey** skill for the complete DSL reference, node types, gate semantics, and path enumeration details.
+
+### Linear journey (FALLBACK — only for trivially simple flows):
+
+```markdown
+### Journey[F-CART-J002] - View cart contents
 **Validation**: VALIDATED
 
-1. User browses product catalog
-2. User clicks "Add to Cart"
-3. System validates quantity
-4. System updates cart total
+1. User opens cart page
+2. System displays items with totals
+```
 
 ## Open Questions
 
