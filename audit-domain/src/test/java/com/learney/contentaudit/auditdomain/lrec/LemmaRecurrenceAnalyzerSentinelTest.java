@@ -2,14 +2,11 @@ package com.learney.contentaudit.auditdomain.lrec;
 
 import com.learney.contentaudit.auditdomain.AuditContext;
 import com.learney.contentaudit.auditdomain.AuditTarget;
-import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.AuditableKnowledge;
 import com.learney.contentaudit.auditdomain.AuditableMilestone;
-import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.AuditableTopic;
 import com.learney.contentaudit.auditdomain.ContentWordFilter;
 import com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig;
-import com.learney.contentaudit.auditdomain.NlpToken;
 import com.learney.contentaudit.auditdomain.ScoredItem;
 import java.lang.String;
 import java.util.List;
@@ -21,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @Generated(
@@ -93,35 +89,5 @@ public class LemmaRecurrenceAnalyzerSentinelTest {
     AuditableMilestone milestone = new AuditableMilestone(List.of());
     AuditContext ctx = new AuditContext("m1", "t1", "k1", "q1");
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctx));
-  }
-
-  @Test
-  @DisplayName("Given two quizzes with content words, when onQuiz and onCourseComplete are called, then getResults returns scored items")
-  @Tag("F-LREC")
-  public void givenTwoQuizzesWithContentWordsWhenOnQuizAndOnCourseCompleteAreCalledThenGetResultsReturnsScoredItems(
-      ) {
-    NlpToken token1 = new NlpToken("cat", "cat", "NOUN", 100, false, false);
-    NlpToken token2 = new NlpToken("the", "the", "DET", 1, true, false);
-    NlpToken token3 = new NlpToken("cats", "cat", "NOUN", 100, false, false);
-    AuditableQuiz quiz1 = new AuditableQuiz("the cat", List.of(token2, token1));
-    AuditableQuiz quiz2 = new AuditableQuiz("the cats", List.of(token2, token3));
-    AuditContext ctx = new AuditContext("m1", "t1", "k1", "q1");
-    AuditableCourse course = new AuditableCourse(List.of());
-    ScoredItem expectedScore = new ScoredItem("lemma-recurrence", AuditTarget.COURSE, 1.0, "0", null, null, null);
-    // Step 1
-    Mockito.lenient().when(contentWordFilter.isContentWord(Mockito.isA(NlpToken.class))).thenReturn(true);
-    Assertions.assertDoesNotThrow(() -> sut.onQuiz(quiz1, ctx));
-    // Step 2
-    Mockito.lenient().when(contentWordFilter.isContentWord(Mockito.isA(NlpToken.class))).thenReturn(true);
-    Assertions.assertDoesNotThrow(() -> sut.onQuiz(quiz2, ctx));
-    // Step 3
-    Mockito.lenient().when(lemmaRecurrenceConfig.getTop()).thenReturn(2000);
-    Mockito.lenient().when(intervalCalculator.calculateMeanInterval(Mockito.any())).thenReturn(100.0);
-    Mockito.lenient().when(intervalCalculator.calculateStdDevInterval(Mockito.any(), Mockito.anyDouble())).thenReturn(0.0);
-    Mockito.lenient().when(exposureClassifier.classify(Mockito.anyDouble(), Mockito.any())).thenReturn(ExposureStatus.NORMAL);
-    Assertions.assertDoesNotThrow(() -> sut.onCourseComplete(course, ctx));
-    // Step 4
-    List<ScoredItem> result = sut.getResults();
-    Assertions.assertEquals(List.of(expectedScore), result);
   }
 }

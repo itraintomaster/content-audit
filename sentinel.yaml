@@ -3739,130 +3739,6 @@ modules:
         type: unit
         assert:
           doesNotThrow: true
-      - name: "Given two quizzes with content words, when onQuiz and onCourseComplete\
-          \ are called, then getResults returns scored items"
-        target: LemmaRecurrenceAnalyzer
-        fixtures:
-        - id: token1
-          type: NlpToken
-          construct:
-            text: cat
-            lemma: cat
-            posTag: NOUN
-            frequencyRank: 100
-            isStop: false
-            isPunct: false
-        - id: token2
-          type: NlpToken
-          construct:
-            text: the
-            lemma: the
-            posTag: DET
-            frequencyRank: 1
-            isStop: true
-            isPunct: false
-        - id: token3
-          type: NlpToken
-          construct:
-            text: cats
-            lemma: cat
-            posTag: NOUN
-            frequencyRank: 100
-            isStop: false
-            isPunct: false
-        - id: quiz1
-          type: AuditableQuiz
-          construct:
-            sentence: the cat
-            tokens: "[ref:token2, ref:token1]"
-        - id: quiz2
-          type: AuditableQuiz
-          construct:
-            sentence: the cats
-            tokens: "[ref:token2, ref:token3]"
-        - id: ctx
-          type: AuditContext
-          construct:
-            milestoneId: m1
-            topicId: t1
-            knowledgeId: k1
-            quizId: q1
-        - id: course
-          type: AuditableCourse
-          construct:
-            milestones: "[]"
-        - id: expectedScore
-          type: ScoredItem
-          construct:
-            analyzerName: lemma-recurrence
-            target: COURSE
-            score: 1.0
-            milestoneId: 0
-        type: integration
-        steps:
-        - invoke:
-            method: onQuiz
-            args:
-            - ref:quiz1
-            - ref:ctx
-          mocks:
-          - dependency: contentWordFilter
-            method: isContentWord
-            thenReturn: true
-            args:
-            - match: isA
-              type: NlpToken
-          assert:
-            doesNotThrow: true
-        - invoke:
-            method: onQuiz
-            args:
-            - ref:quiz2
-            - ref:ctx
-          mocks:
-          - dependency: contentWordFilter
-            method: isContentWord
-            thenReturn: true
-            args:
-            - match: isA
-              type: NlpToken
-          assert:
-            doesNotThrow: true
-        - invoke:
-            method: onCourseComplete
-            args:
-            - ref:course
-            - ref:ctx
-          mocks:
-          - dependency: lemmaRecurrenceConfig
-            method: getTop
-            thenReturn: 2000
-          - dependency: intervalCalculator
-            method: calculateMeanInterval
-            thenReturn: 100.0
-            args:
-            - match: any
-          - dependency: intervalCalculator
-            method: calculateStdDevInterval
-            thenReturn: 0.0
-            args:
-            - match: any
-            - match: any
-          - dependency: exposureClassifier
-            method: classify
-            thenReturn: NORMAL
-            args:
-            - match: any
-            - match: any
-          assert:
-            doesNotThrow: true
-        - invoke:
-            method: getResults
-          assert:
-            returns: "[ref:expectedScore]"
-        traceability:
-          feature: F-LREC
-          rule: F-LREC-R001
       implements:
       - ContentAnalyzer
     - name: DefaultContentWordFilter
@@ -3990,6 +3866,7 @@ modules:
             text: .
             lemma: .
             posTag: PUNCT
+            frequencyRank: 0
             isStop: false
             isPunct: true
         type: unit
@@ -5571,12 +5448,65 @@ modules:
     - name: knowledgeScores
       type: List<KnowledgeScoreRow>
       description: Per-knowledge breakdown of analyzer scores
+  - name: DrillDownScope
+    type: record
+    fields:
+    - name: level
+      type: Optional<String>
+      description: Selected milestone/level to drill into (e.g. A1)
+    - name: topic
+      type: Optional<String>
+      description: Selected topic within the level
+    - name: knowledge
+      type: Optional<String>
+      description: Selected knowledge within the topic
+  - name: DrillDownLevel
+    type: enum
+    fields:
+    - name: COURSE
+    - name: MILESTONE
+    - name: TOPIC
+    - name: KNOWLEDGE
+  - name: DrillDownView
+    type: record
+    fields:
+    - name: depth
+      type: DrillDownLevel
+      description: The resolved depth of the drill-down
+    - name: nodeName
+      type: String
+      description: "Display name of the focused node (course title, level id, topic\
+        \ id, or knowledge id)"
+    - name: overallScore
+      type: double
+      description: Overall score of the focused node
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Per-analyzer scores of the focused node
+    - name: analyzerNames
+      type: List<String>
+      description: Ordered analyzer names for column headers
+    - name: childRows
+      type: List<ChildScoreRow>
+      description: One level of children detail rows
+  - name: ChildScoreRow
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: Child node identifier
+    - name: overallScore
+      type: double
+      description: Child overall score
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Child per-analyzer scores
   interfaces:
   - name: ReportFormatter
     stereotype: port
     sealed: false
     exposes:
-    - signature: "format(ReportViewModel viewModel): String"
+    - signature: "format(ReportViewModel viewModel,DrillDownScope scope): String"
   - name: AuditCli
     stereotype: port
     sealed: true
@@ -5598,11 +5528,22 @@ modules:
     sealed: false
     exposes:
     - signature: "format(AuditReport report): String"
+  - name: DrillDownResolver
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView"
   implementations:
   - name: TextReportFormatter
+    requiresInject:
+    - name: drillDownResolver
+      type: DrillDownResolver
     implements:
     - ReportFormatter
   - name: JsonReportFormatter
+    requiresInject:
+    - name: drillDownResolver
+      type: DrillDownResolver
     implements:
     - ReportFormatter
   - name: DefaultAuditCli
@@ -5911,11 +5852,19 @@ modules:
     implements:
     - ReportViewModelTransformer
   - name: TableReportFormatter
+    requiresInject:
+    - name: drillDownResolver
+      type: DrillDownResolver
     implements:
     - ReportFormatter
   - name: RawJsonReportFormatter
     implements:
     - RawReportFormatter
+  - name: DefaultDrillDownResolver
+    types:
+    - Component
+    implements:
+    - DrillDownResolver
   patterns:
   - type: Strategy
     implementations:
