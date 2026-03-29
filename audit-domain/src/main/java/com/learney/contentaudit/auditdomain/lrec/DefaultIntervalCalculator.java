@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain.lrec;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
@@ -10,11 +11,66 @@ import javax.annotation.processing.Generated;
 class DefaultIntervalCalculator implements IntervalCalculator {
     @Override
     public double calculateMeanInterval(List<Integer> positions) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (positions == null || positions.size() < 2) {
+            return 0.0;
+        }
+        double sum = 0.0;
+        int intervalCount = positions.size() - 1;
+        for (int i = 0; i < intervalCount; i++) {
+            sum += (positions.get(i + 1) - positions.get(i));
+        }
+        return sum / intervalCount;
+    }
+
+    /**
+     * Overload that accepts a string representation of a list (e.g. "[10, 110]").
+     * This supports test cases where positions are expressed as a serialized list.
+     */
+    public double calculateMeanInterval(String positionsStr) {
+        return calculateMeanInterval(parsePositions(positionsStr));
     }
 
     @Override
     public double calculateStdDevInterval(List<Integer> positions, double meanInterval) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (positions == null || positions.size() < 2) {
+            return 0.0;
+        }
+        int intervalCount = positions.size() - 1;
+        double sumSquaredDiffs = 0.0;
+        for (int i = 0; i < intervalCount; i++) {
+            double interval = positions.get(i + 1) - positions.get(i);
+            double diff = interval - meanInterval;
+            sumSquaredDiffs += diff * diff;
+        }
+        return Math.sqrt(sumSquaredDiffs / intervalCount);
+    }
+
+    /**
+     * Overload that accepts a string representation of a list (e.g. "[10, 110]").
+     * This supports test cases where positions are expressed as a serialized list.
+     */
+    public double calculateStdDevInterval(String positionsStr, double meanInterval) {
+        return calculateStdDevInterval(parsePositions(positionsStr), meanInterval);
+    }
+
+    private List<Integer> parsePositions(String positionsStr) {
+        if (positionsStr == null || positionsStr.isBlank()) {
+            return List.of();
+        }
+        String trimmed = positionsStr.trim();
+        if (trimmed.startsWith("[")) {
+            trimmed = trimmed.substring(1);
+        }
+        if (trimmed.endsWith("]")) {
+            trimmed = trimmed.substring(0, trimmed.length() - 1);
+        }
+        List<Integer> result = new ArrayList<>();
+        for (String part : trimmed.split(",")) {
+            String num = part.trim();
+            if (!num.isEmpty()) {
+                result.add(Integer.parseInt(num));
+            }
+        }
+        return result;
     }
 }

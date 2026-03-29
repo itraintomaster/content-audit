@@ -10,6 +10,12 @@ import javax.annotation.processing.Generated;
 class DefaultExposureClassifier implements ExposureClassifier {
     @Override
     public ExposureStatus classify(double meanInterval, LemmaRecurrenceConfig config) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (meanInterval <= config.getOverExposedThreshold()) {
+            return ExposureStatus.OVER_EXPOSED;
+        }
+        if (meanInterval > config.getSubExposedThreshold()) {
+            return ExposureStatus.SUB_EXPOSED;
+        }
+        return ExposureStatus.NORMAL;
     }
 }

@@ -10,16 +10,16 @@ import javax.annotation.processing.Generated;
 class DefaultLemmaRecurrenceConfig implements LemmaRecurrenceConfig {
     @Override
     public int getTop() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return 2000;
     }
 
     @Override
     public double getSubExposedThreshold() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return 1000.0;
     }
 
     @Override
     public double getOverExposedThreshold() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return 50.0;
     }
 }

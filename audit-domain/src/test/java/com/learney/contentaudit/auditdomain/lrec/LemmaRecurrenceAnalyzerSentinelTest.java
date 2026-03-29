@@ -117,8 +117,8 @@ public class LemmaRecurrenceAnalyzerSentinelTest {
     // Step 3
     Mockito.lenient().when(lemmaRecurrenceConfig.getTop()).thenReturn(2000);
     Mockito.lenient().when(intervalCalculator.calculateMeanInterval(Mockito.any())).thenReturn(100.0);
-    Mockito.lenient().when(intervalCalculator.calculateStdDevInterval(Mockito.any(), Mockito.any())).thenReturn(0.0);
-    Mockito.lenient().when(exposureClassifier.classify(Mockito.any(), Mockito.any())).thenReturn("NORMAL");
+    Mockito.lenient().when(intervalCalculator.calculateStdDevInterval(Mockito.any(), Mockito.anyDouble())).thenReturn(0.0);
+    Mockito.lenient().when(exposureClassifier.classify(Mockito.anyDouble(), Mockito.any())).thenReturn(ExposureStatus.NORMAL);
     Assertions.assertDoesNotThrow(() -> sut.onCourseComplete(course, ctx));
     // Step 4
     List<ScoredItem> result = sut.getResults();

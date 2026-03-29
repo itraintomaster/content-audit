@@ -11,6 +11,11 @@ import javax.annotation.processing.Generated;
 class DefaultContentWordFilter implements ContentWordFilter {
     @Override
     public boolean isContentWord(NlpToken token) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (token == null || token.getPosTag() == null) {
+            return false;
+        }
+        String posTag = token.getPosTag();
+        return "NOUN".equals(posTag) || "VERB".equals(posTag)
+                || "ADJ".equals(posTag) || "ADV".equals(posTag);
     }
 }
