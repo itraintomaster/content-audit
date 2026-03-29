@@ -68,7 +68,7 @@ public class DefaultContentWordFilterSentinelTest {
   @DisplayName("Given a PUNCT token, when isContentWord is called, then returns false")
   @Tag("F-LREC")
   public void givenAPUNCTTokenWhenIsContentWordIsCalledThenReturnsFalse() {
-    NlpToken punctToken = new NlpToken(".", ".", "PUNCT", null, false, true);
+    NlpToken punctToken = new NlpToken(".", ".", "PUNCT", 0, false, true);
     boolean result = sut.isContentWord(punctToken);
     Assertions.assertEquals(false, result);
   }
