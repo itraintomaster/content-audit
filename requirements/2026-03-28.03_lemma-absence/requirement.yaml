@@ -1,0 +1,600 @@
+---
+features:
+- id: "FEAT-LABS"
+  name: "Analisis de Ausencia de Lemas por Nivel CEFR"
+  description: "Detectar y clasificar los lemas (formas base de palabras) que deberian\
+    \ estar presentes en un nivel CEFR pero estan ausentes del curso, utilizando el\
+    \ catalogo EVP (English Vocabulary Profile) como referencia de vocabulario esperado\
+    \ por nivel. El analizador identifica que lemas faltan, clasifica el tipo de ausencia\
+    \ (completamente ausente, aparece demasiado temprano, aparece demasiado tarde,\
+    \ ubicacion dispersa), asigna prioridad basada en frecuencia COCA, y genera\
+    \ recomendaciones accionables para corregir las brechas de vocabulario."
+  code: "F-LABS"
+  rules:
+  - id: "F-LABS-R001"
+    name: "Obtencion de lemas esperados por nivel"
+    severity: "critical"
+    description: "Para cada nivel CEFR (A1, A2, B1, B2), se obtienen los lemas esperados\
+      \ del catalogo EVP. El conjunto se filtra aplicando dos criterios: (1) solo lemas\
+      \ individuales (se excluyen frases multipalabra), (2) solo palabras de contenido\
+      \ (se excluyen palabras funcionales, excepto lemas funcionales criticos segun\
+      \ R016). Cada lema esperado se identifica por el par lema + parte de la oracion\
+      \ (LemmaAndPos)."
+    errorMessage: "No se pudieron obtener los lemas esperados para el nivel {nivel}:\
+      \ el catalogo EVP no contiene entradas para este nivel"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R002"
+    name: "Obtencion de lemas presentes por nivel"
+    severity: "critical"
+    description: "Para cada nivel CEFR, se obtienen los lemas presentes en las oraciones\
+      \ del curso correspondientes a ese nivel. Los lemas presentes provienen del\
+      \ procesamiento linguistico previo (FEAT-NLP). Se representan como pares lema\
+      \ + parte de la oracion (LemmaAndPos). Un lema se considera presente en un\
+      \ nivel si aparece al menos una vez en cualquier oracion de ese nivel."
+    errorMessage: "No se pudieron obtener los lemas presentes para el nivel {nivel}:\
+      \ no hay oraciones procesadas en este nivel"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R003"
+    name: "Calculo de lemas ausentes por nivel"
+    severity: "critical"
+    description: "Para cada nivel CEFR, los lemas ausentes son la diferencia entre\
+      \ los lemas esperados y los lemas presentes. La comparacion se realiza por el\
+      \ par LemmaAndPos: un lema se considera ausente si no existe ninguna ocurrencia\
+      \ con el mismo lema y la misma parte de la oracion en el nivel correspondiente."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R004"
+    name: "Busqueda de lemas ausentes en otros niveles"
+    severity: "critical"
+    description: "Para cada lema identificado como ausente en su nivel esperado, el\
+      \ sistema busca si ese lema (con su misma parte de la oracion) aparece en otros\
+      \ niveles del curso. El resultado es una lista de niveles donde el lema esta\
+      \ presente, esencial para la clasificacion del tipo de ausencia."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R005"
+    name: "Exclusion de frases multipalabra del EVP"
+    severity: "major"
+    description: "Solo los lemas individuales participan en el analisis de ausencia.\
+      \ Las frases multipalabra del catalogo EVP se excluyen porque su deteccion\
+      \ requiere analisis de secuencias de tokens, lo cual excede el alcance de este\
+      \ analizador."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R006"
+    name: "Tipos de ausencia"
+    severity: "critical"
+    description: "Cada lema ausente se clasifica en uno de cuatro tipos: COMPLETELY_ABSENT\
+      \ (no aparece en ningun nivel), APPEARS_TOO_LATE (solo en niveles posteriores),\
+      \ APPEARS_TOO_EARLY (solo en niveles anteriores), SCATTERED_PLACEMENT (en niveles\
+      \ mixtos sin patron claro)."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R007"
+    name: "Algoritmo de clasificacion de ausencia"
+    severity: "critical"
+    description: "Algoritmo: si el lema no aparece en ningun nivel -> COMPLETELY_ABSENT.\
+      \ Si aparece solo en niveles con orden menor al esperado -> APPEARS_TOO_EARLY.\
+      \ Si aparece solo en niveles con orden mayor -> APPEARS_TOO_LATE. En cualquier\
+      \ otro caso -> SCATTERED_PLACEMENT. Orden CEFR: A1=1, A2=2, B1=3, B2=4."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R008"
+    name: "Puntuacion de impacto por tipo de ausencia"
+    severity: "major"
+    description: "Cada tipo de ausencia tiene una puntuacion de impacto: COMPLETELY_ABSENT=1.0,\
+      \ APPEARS_TOO_LATE=0.8, APPEARS_TOO_EARLY=0.6, SCATTERED_PLACEMENT=0.4. La\
+      \ puntuacion pondera la importancia de cada lema ausente en el calculo de metricas."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R009"
+    name: "APPEARS_TOO_LATE es mas grave que APPEARS_TOO_EARLY"
+    severity: "major"
+    description: "APPEARS_TOO_LATE tiene mayor impacto (0.8) que APPEARS_TOO_EARLY\
+      \ (0.6) porque el estudiante no tuvo acceso al vocabulario cuando lo necesitaba,\
+      \ generando una laguna acumulativa. APPEARS_TOO_EARLY es menos grave porque\
+      \ el vocabulario al menos esta presente en el curso."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R010"
+    name: "Un lema presente en su nivel esperado no es ausente"
+    severity: "critical"
+    description: "Si un lema aparece en su nivel esperado, no se considera ausente\
+      \ en ese nivel, independientemente de que tambien aparezca en otros niveles.\
+      \ La clasificacion de ausencia solo aplica cuando el lema no esta presente en\
+      \ el nivel donde el EVP indica que deberia estar."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R011"
+    name: "Asignacion de prioridad por frecuencia COCA"
+    severity: "critical"
+    description: "Cada lema ausente recibe prioridad basada en su ranking COCA: HIGH\
+      \ (1-1000), MEDIUM (1001-3000), LOW (3001-5000). Lemas con ranking superior\
+      \ a 5000 no se incluyen en el analisis priorizado."
+    errorMessage: "No se pudo determinar la prioridad del lema '{lema}': ranking COCA\
+      \ no disponible"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R012"
+    name: "Enriquecimiento de informacion de lemas ausentes"
+    severity: "major"
+    description: "Cada lema ausente se enriquece con: ranking COCA, categoria semantica,\
+      \ nivel de prioridad, frecuencia total y parte de la oracion. La informacion\
+      \ enriquecida permite entender por que importa cada lema ausente."
+    errorMessage: "No se pudo enriquecer la informacion del lema '{lema}': {detalle\
+      \ del error}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R013"
+    name: "Lemas sin ranking COCA disponible"
+    severity: "major"
+    description: "Lemas del EVP sin ranking COCA reciben prioridad LOW por defecto.\
+      \ [ASSUMPTION] La ausencia de ranking COCA sugiere que no son palabras de uso\
+      \ frecuente, aunque existe riesgo de subestimar lemas frecuentes en ingles\
+      \ britanico no presentes en el corpus americano COCA."
+    errorMessage: "Lema '{lema}' sin ranking COCA disponible: se asigna prioridad\
+      \ LOW por defecto"
+    validation: "ASSUMPTION"
+    code: null
+    rationale: "La ausencia de ranking COCA sugiere que no son palabras de uso frecuente,\
+      \ aunque existe riesgo de subestimar lemas frecuentes en ingles britanico."
+  - id: "F-LABS-R014"
+    name: "Umbrales de alerta por prioridad"
+    severity: "major"
+    description: "Umbrales de alerta por prioridad: HIGH=0 (cero tolerancia), MEDIUM=3,\
+      \ LOW=10. Estos umbrales se aplican por nivel CEFR."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R015"
+    name: "Consistencia de etiquetas POS entre EVP y procesamiento linguistico"
+    severity: "major"
+    description: "Las etiquetas POS del catalogo EVP deben ser compatibles con las\
+      \ del procesamiento linguistico. [ASSUMPTION] Se asume que el catalogo enriquecido\
+      \ ya tiene POS normalizados. Persiste el riesgo de inconsistencias contextuales."
+    errorMessage: "Inconsistencia de POS detectada para el lema '{lema}': EVP indica\
+      \ '{posEVP}' pero el procesamiento linguistico asigna '{posNLP}'"
+    validation: "ASSUMPTION"
+    code: null
+    rationale: "El catalogo enriquecido normaliza POS pero persisten riesgos de\
+      \ inconsistencias contextuales entre EVP y procesamiento linguistico."
+  - id: "F-LABS-R016"
+    name: "Lemas funcionales criticos"
+    severity: "major"
+    description: "Conjunto de lemas funcionales que reciben tratamiento especial y\
+      \ siempre tienen prioridad HIGH: pronombres (I, you, he, she, it, we, they),\
+      \ auxiliares (be, have, do, will, would, can, could, should, might, must),\
+      \ preposiciones (in, on, at, for, with, by, from, to, of, about), conectores\
+      \ (and, but, or, so, because, when, if, while, since)."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R017"
+    name: "Identificacion de lemas mal ubicados en una oracion"
+    severity: "major"
+    description: "Para cada oracion del curso, se identifican los lemas cuyo nivel\
+      \ esperado (segun EVP) difiere del nivel al que pertenece la oracion. Solo\
+      \ los lemas del catalogo EVP participan en esta evaluacion."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R018"
+    name: "Descuento por distancia de nivel"
+    severity: "major"
+    description: "Para cada lema mal ubicado: descuento = 0.1 * distancia de niveles.\
+      \ La distancia es la diferencia absoluta en orden CEFR (A1=1, A2=2, B1=3, B2=4).\
+      \ [ASSUMPTION] El factor 0.1 es un valor fijo no configurable."
+    errorMessage: null
+    validation: "ASSUMPTION"
+    code: null
+    rationale: "El factor de descuento 0.1 por nivel de distancia es un valor hardcodeado\
+      \ razonable. 10% de penalizacion por nivel de separacion es facil de interpretar."
+  - id: "F-LABS-R019"
+    name: "Calculo de score por oracion"
+    severity: "critical"
+    description: "Score de la oracion = 1.0 - maximo descuento entre todos los lemas\
+      \ mal ubicados. Se toma el maximo descuento (no la suma) porque un solo lema\
+      \ severamente mal ubicado es suficiente para penalizar la oracion. Score minimo\
+      \ posible: 0.7."
+    errorMessage: "Score calculado fuera de rango [0.0, 1.0] para la oracion {sentenceId}:\
+      \ {score}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R020"
+    name: "Oraciones sin lemas mal ubicados"
+    severity: "minor"
+    description: "Las oraciones sin lemas mal ubicados reciben puntuacion 1.0 (maxima).\
+      \ No contribuyen negativamente al score del nivel."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R021"
+    name: "Umbrales de tolerancia por nivel CEFR"
+    severity: "critical"
+    description: "Umbrales por nivel: A1 (0 lemas, 0%), A2 (2 lemas, 5%), B1 (5\
+      \ lemas, 10%), B2 (8 lemas, 15%). Un nivel excede su umbral si supera cualquiera\
+      \ de los dos limites. [ASSUMPTION] Se adoptan los umbrales estrictos por nivel\
+      \ en lugar de los permisivos de config.yaml."
+    errorMessage: "Configuracion de umbrales invalida para el nivel {nivel}: los\
+      \ valores deben ser no negativos"
+    validation: "ASSUMPTION"
+    code: null
+    rationale: "Los umbrales por nivel (0,2,5,8) son mas coherentes con la importancia\
+      \ pedagogica de cada nivel y proporcionan control porcentual adicional."
+  - id: "F-LABS-R022"
+    name: "Categorias de assessment global"
+    severity: "critical"
+    description: "OPTIMAL: todos los niveles dentro de sus umbrales. ACCEPTABLE:\
+      \ algunos niveles exceden pero ningun nivel critico (A1/A2) los excede.\
+      \ NEEDS_IMPROVEMENT: al menos un nivel critico excede su umbral."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R023"
+    name: "Metricas por nivel"
+    severity: "critical"
+    description: "Para cada nivel: total de lemas esperados, total de lemas ausentes,\
+      \ porcentaje de ausencia, y desglose de lemas ausentes por tipo de ausencia\
+      \ con informacion enriquecida."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R024"
+    name: "Puntuacion global del analisis"
+    severity: "critical"
+    description: "Puntuacion entre 0.0 y 1.0 calculada como promedio ponderado de\
+      \ las puntuaciones por nivel. Pesos: A1=2.0, A2=2.0, B1=1.0, B2=1.0.\
+      \ [ASSUMPTION] Niveles criticos tienen peso doble."
+    errorMessage: "Error al calcular la puntuacion global: {detalle}"
+    validation: "ASSUMPTION"
+    code: null
+    rationale: "A1 y A2 tienen peso doble reflejando su criticidad pedagogica,\
+      \ consistente con el enfasis del analisis original."
+  - id: "F-LABS-R025"
+    name: "Umbrales de assessment global"
+    severity: "major"
+    description: "Umbrales numericos adicionales: critico=10, aceptable=5, optimo=0.\
+      \ Se aplican sobre la suma total de lemas ausentes de alta prioridad."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R026"
+    name: "Limites de reporte por prioridad"
+    severity: "minor"
+    description: "Maximos de lemas reportados: HIGH=20, MEDIUM=30, LOW=50. Si hay\
+      \ mas lemas ausentes que el limite, se reportan los de mayor impacto."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R027"
+    name: "Generacion de recomendaciones por nivel"
+    severity: "major"
+    description: "Para cada nivel que excede su umbral se generan recomendaciones\
+      \ con: accion, descripcion, prioridad, lemas afectados, nivel de esfuerzo\
+      \ e impacto esperado."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R028"
+    name: "Tipos de accion en recomendaciones"
+    severity: "major"
+    description: "Acciones por tipo de ausencia: COMPLETELY_ABSENT -> agregar oraciones,\
+      \ APPEARS_TOO_LATE -> introducir en niveles anteriores, APPEARS_TOO_EARLY ->\
+      \ reforzar en nivel esperado, SCATTERED_PLACEMENT -> consolidar distribucion."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R029"
+    name: "Prioridad de las recomendaciones"
+    severity: "major"
+    description: "Prioridad combina nivel afectado y prioridad de lemas: A1/A2\
+      \ siempre HIGH, B1/B2 con lemas HIGH -> MEDIUM, B1/B2 con lemas MEDIUM ->\
+      \ MEDIUM, B1/B2 con lemas LOW -> LOW."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LABS-R030"
+    name: "Nivel de esfuerzo estimado"
+    severity: "minor"
+    description: "Esfuerzo estimado por cantidad de lemas afectados: 1-5 -> LOW,\
+      \ 6-15 -> MEDIUM, 16+ -> HIGH. [ASSUMPTION] La cantidad de lemas es un proxy\
+      \ razonable para el esfuerzo del creador de contenido."
+    errorMessage: null
+    validation: "ASSUMPTION"
+    code: null
+    rationale: "La cantidad de lemas afectados es una primera aproximacion util\
+      \ del esfuerzo, aunque en la practica depende de otros factores."
+  - id: "F-LABS-R031"
+    name: "Nombre del analizador en el informe"
+    severity: "major"
+    description: "El analizador se identifica como 'lemma-absence' en el informe\
+      \ de auditoria."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  journeys:
+  - id: "F-LABS-J001"
+    name: "Auditar la ausencia de vocabulario de un curso completo"
+    flow:
+    - id: "iniciar_auditoria"
+      action: "El usuario inicia una auditoria de ausencia de lemas de un curso previamente\
+        \ cargado en ContentAudit"
+      then: "ejecutar_analisis"
+    - id: "ejecutar_analisis"
+      action: "ContentAudit analiza el curso y presenta los resultados de ausencia\
+        \ de vocabulario"
+      gate:
+      - "F-LABS-R001"
+      - "F-LABS-R002"
+      - "F-LABS-R003"
+      - "F-LABS-R005"
+      - "F-LABS-R010"
+      outcomes:
+      - when: "El analisis se completa exitosamente"
+        then: "revisar_resumen"
+      - when: "No se dispone del catalogo de vocabulario esperado para los niveles\
+          \ del curso"
+        then: "error_sin_catalogo"
+      - when: "El curso no contiene oraciones procesadas linguisticamente"
+        then: "error_sin_oraciones"
+    - id: "revisar_resumen"
+      action: "El usuario revisa el resumen general: assessment global (OPTIMAL, ACCEPTABLE,\
+        \ NEEDS_IMPROVEMENT), puntuacion global, y cantidad de lemas ausentes por nivel"
+      gate:
+      - "F-LABS-R022"
+      - "F-LABS-R023"
+      - "F-LABS-R024"
+      outcomes:
+      - when: "El assessment es OPTIMAL y todos los niveles estan dentro de los umbrales"
+        then: "confirmar_cobertura"
+      - when: "Hay niveles que exceden los umbrales de lemas ausentes"
+        then: "explorar_detalle_nivel"
+    - id: "explorar_detalle_nivel"
+      action: "El usuario selecciona un nivel para ver el detalle: lemas ausentes clasificados\
+        \ por tipo de ausencia (completamente ausente, aparece tarde, aparece temprano,\
+        \ disperso) y priorizados por frecuencia COCA"
+      gate:
+      - "F-LABS-R006"
+      - "F-LABS-R007"
+      - "F-LABS-R008"
+      - "F-LABS-R009"
+      - "F-LABS-R011"
+      - "F-LABS-R012"
+      then: "revisar_recomendaciones"
+    - id: "revisar_recomendaciones"
+      action: "El usuario revisa las recomendaciones accionables generadas para corregir\
+        \ las brechas de vocabulario del nivel"
+      gate:
+      - "F-LABS-R027"
+      - "F-LABS-R028"
+      - "F-LABS-R029"
+      - "F-LABS-R030"
+      - "F-LABS-R031"
+      result: "success"
+    - id: "confirmar_cobertura"
+      action: "El usuario confirma que la cobertura de vocabulario del curso es adecuada\
+        \ y no requiere ajustes"
+      result: "success"
+    - id: "error_sin_catalogo"
+      action: "ContentAudit informa que no se dispone del catalogo de vocabulario esperado\
+        \ y el analisis no puede ejecutarse"
+      result: "failure"
+    - id: "error_sin_oraciones"
+      action: "ContentAudit informa que el curso no contiene oraciones procesadas y\
+        \ el analisis no puede ejecutarse"
+      result: "failure"
+    validation: "AUTO_VALIDATED"
+  - id: "F-LABS-J002"
+    name: "Investigar lemas completamente ausentes de alta prioridad"
+    flow:
+    - id: "revisar_assessment"
+      action: "El usuario revisa el resultado de la auditoria y observa que el assessment\
+        \ es NEEDS_IMPROVEMENT"
+      then: "consultar_nivel_critico"
+    - id: "consultar_nivel_critico"
+      action: "El usuario consulta el detalle de un nivel critico (por ejemplo A1)\
+        \ y observa lemas ausentes de prioridad HIGH"
+      outcomes:
+      - when: "Hay lemas que no aparecen en ningun nivel del curso"
+        then: "revisar_completamente_ausentes"
+      - when: "Los lemas ausentes aparecen en otros niveles pero no en el esperado"
+        then: "revisar_mal_ubicados"
+    - id: "revisar_completamente_ausentes"
+      action: "El usuario examina la lista de lemas completamente ausentes, con su\
+        \ ranking COCA, categoria semantica y parte de la oracion"
+      then: "decidir_accion"
+    - id: "revisar_mal_ubicados"
+      action: "El usuario examina los lemas que aparecen en otros niveles, verificando\
+        \ donde se encuentran y la distancia al nivel esperado"
+      then: "decidir_accion"
+    - id: "decidir_accion"
+      action: "El usuario evalua el impacto comunicativo de cada lema ausente"
+      outcomes:
+      - when: "Los lemas ausentes son criticos para la comunicacion basica del nivel"
+        then: "agregar_contenido"
+      - when: "Los lemas ausentes son relevantes pero no urgentes"
+        then: "priorizar_para_despues"
+    - id: "agregar_contenido"
+      action: "El usuario decide agregar oraciones con los lemas ausentes criticos\
+        \ en el nivel correspondiente"
+      result: "success"
+    - id: "priorizar_para_despues"
+      action: "El usuario agrega los lemas a una lista de correcciones pendientes,\
+        \ priorizadas por impacto"
+      result: "success"
+    validation: "AUTO_VALIDATED"
+  - id: "F-LABS-J003"
+    name: "Corregir lemas que aparecen demasiado tarde"
+    flow:
+    - id: "filtrar_too_late"
+      action: "El usuario filtra los lemas ausentes por tipo APPEARS_TOO_LATE para\
+        \ un nivel especifico (por ejemplo, A2)"
+      then: "revisar_ubicacion"
+    - id: "revisar_ubicacion"
+      action: "El usuario revisa en que niveles posteriores aparecen estos lemas y\
+        \ la distancia al nivel esperado"
+      outcomes:
+      - when: "El lema aparece un solo nivel despues del esperado (por ejemplo, A2\
+          \ esperado, aparece en B1)"
+        then: "reforzar_nivel"
+      - when: "El lema aparece dos o mas niveles despues del esperado (por ejemplo,\
+          \ A1 esperado, aparece en B2)"
+        then: "introducir_progresion"
+    - id: "reforzar_nivel"
+      action: "El usuario agrega el lema en su nivel esperado, manteniendo las apariciones\
+        \ posteriores como refuerzo"
+      result: "success"
+    - id: "introducir_progresion"
+      action: "El usuario introduce el lema en su nivel esperado y en niveles intermedios\
+        \ para construir una progresion adecuada"
+      result: "success"
+    validation: "AUTO_VALIDATED"
+  - id: "F-LABS-J004"
+    name: "Revisar el impacto por oracion de los lemas mal ubicados"
+    flow:
+    - id: "consultar_scores"
+      action: "El usuario consulta los scores por oracion del analisis de ausencia"
+      gate:
+      - "F-LABS-R017"
+      - "F-LABS-R019"
+      - "F-LABS-R020"
+      then: "identificar_oraciones_bajas"
+    - id: "identificar_oraciones_bajas"
+      action: "El usuario identifica las oraciones con scores mas bajos, que contienen\
+        \ lemas significativamente desplazados de su nivel esperado"
+      outcomes:
+      - when: "Hay oraciones con scores por debajo de 0.8"
+        then: "examinar_detalle"
+      - when: "Todas las oraciones tienen scores aceptables (0.8 o superior)"
+        then: "confirmar_sin_problemas"
+    - id: "examinar_detalle"
+      action: "El usuario examina que lemas estan desplazados en las oraciones de score\
+        \ bajo y la distancia al nivel esperado"
+      gate:
+      - "F-LABS-R018"
+      outcomes:
+      - when: "Los lemas desplazados son de niveles muy distantes (por ejemplo, lemas\
+          \ A1 en oraciones B2)"
+        then: "decidir_reubicacion"
+      - when: "Los lemas desplazados estan a un solo nivel de distancia"
+        then: "aceptar_desviacion"
+    - id: "decidir_reubicacion"
+      action: "El usuario decide si agregar el lema en un nivel mas cercano al esperado,\
+        \ o si la presencia en el nivel actual se justifica por el contexto tematico"
+      result: "success"
+    - id: "aceptar_desviacion"
+      action: "El usuario acepta que la desviacion de un solo nivel es tolerable y\
+        \ no requiere accion"
+      result: "success"
+    - id: "confirmar_sin_problemas"
+      action: "El usuario confirma que los scores de oraciones son satisfactorios"
+      result: "success"
+    validation: "AUTO_VALIDATED"
+  - id: "F-LABS-J005"
+    name: "Planificar mejoras de contenido a partir de las recomendaciones"
+    flow:
+    - id: "revisar_recomendaciones"
+      action: "El usuario revisa la lista de recomendaciones generadas por el analisis\
+        \ de ausencia"
+      gate:
+      - "F-LABS-R027"
+      - "F-LABS-R028"
+      then: "filtrar_por_prioridad"
+    - id: "filtrar_por_prioridad"
+      action: "El usuario filtra las recomendaciones por prioridad para abordar primero\
+        \ las mas criticas"
+      outcomes:
+      - when: "Hay recomendaciones de prioridad HIGH"
+        then: "revisar_detalle_critico"
+      - when: "Solo hay recomendaciones de prioridad MEDIUM o LOW"
+        then: "revisar_prioridades_menores"
+    - id: "revisar_detalle_critico"
+      action: "El usuario revisa los lemas afectados, el nivel de esfuerzo estimado\
+        \ y el impacto esperado de cada recomendacion HIGH"
+      gate:
+      - "F-LABS-R029"
+      - "F-LABS-R030"
+      then: "estimar_volumen"
+    - id: "revisar_prioridades_menores"
+      action: "El usuario revisa las recomendaciones de prioridad MEDIUM y LOW, decidiendo\
+        \ cuales abordar"
+      then: "estimar_volumen"
+    - id: "estimar_volumen"
+      action: "El usuario estima el volumen total de trabajo basandose en la cantidad\
+        \ de lemas afectados y los niveles de esfuerzo"
+      outcomes:
+      - when: "El volumen es manejable"
+        then: "implementar_directamente"
+      - when: "El volumen es alto"
+        then: "crear_plan_iterativo"
+    - id: "implementar_directamente"
+      action: "El usuario implementa las correcciones y re-ejecuta la auditoria para\
+        \ verificar la mejora"
+      result: "success"
+    - id: "crear_plan_iterativo"
+      action: "El usuario crea un plan de mejora iterativo, priorizando las recomendaciones\
+        \ de mayor impacto para abordarlas en multiples ciclos"
+      result: "success"
+    validation: "AUTO_VALIDATED"
+  doubts:
+  - id: "DOUBT-DUAL-THRESHOLDS"
+    text: "El sistema original tiene dos conjuntos de umbrales de tolerancia inconsistentes:\
+      \ config.yaml (5,10,15,20) vs configuracion por nivel (0,2,5,8). Propuesta:\
+      \ adoptar los umbrales por nivel que son mas estrictos y especificos."
+    answer: null
+  - id: "DOUBT-PRIORITY-BANDS"
+    text: "El sistema original tiene bandas de prioridad COCA inconsistentes: config.yaml\
+      \ (1000,2000,3000) vs configuraciones de nivel (1000,3000,5000). Propuesta:\
+      \ adoptar rangos amplios (1000,3000,5000)."
+    answer: null
+  - id: "DOUBT-POS-CONSISTENCY"
+    text: "La comparacion por LemmaAndPos puede generar falsos positivos si las etiquetas\
+      \ POS no son consistentes entre EVP y procesamiento linguistico. Como manejar\
+      \ entradas del EVP con POS vacio o ambiguo?"
+    answer: null
+  - id: "DOUBT-DISCOUNT-FACTOR"
+    text: "El factor de descuento por distancia de nivel (0.1) esta hardcodeado.\
+      \ Deberia hacerse configurable?"
+    answer: null
+  - id: "DOUBT-FUNCTIONAL-SCOPE"
+    text: "Los lemas funcionales criticos se evaluan solo en A1/A2 o en todos los\
+      \ niveles?"
+    answer: null
+  - id: "DOUBT-COURSE-SCOPE"
+    text: "Como se comporta el analisis para cursos que no tienen niveles A1 o A2?"
+    answer: null
