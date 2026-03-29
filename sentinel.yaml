@@ -240,6 +240,18 @@ modules:
     - signature: "getToleranceMargin(): double"
     - signature: "getAnalysisStrategy(): AnalysisStrategy"
     - signature: "getProgressionExpectations(): List<ProgressionExpectation>"
+  - name: ContentWordFilter
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "isContentWord(NlpToken token): boolean"
+  - name: LemmaRecurrenceConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getTop(): int"
+    - signature: "getSubExposedThreshold(): double"
+    - signature: "getOverExposedThreshold(): double"
   implementations:
   - name: IAuditEngine
     requiresInject:
@@ -3534,6 +3546,105 @@ modules:
     - name: DefaultImprovementPlanner
       implements:
       - ImprovementPlanner
+  - name: lrec
+    description: "Lemma recurrence analysis by spaced repetition. Tracks global word\
+      \ positions across the course, calculates mean intervals between consecutive\
+      \ lemma occurrences, classifies exposure status (normal, sub-exposed, over-exposed),\
+      \ and produces a course-level recurrence score."
+    visibility: public
+    models:
+    - name: ExposureStatus
+      type: enum
+      fields:
+      - name: NORMAL
+        type: String
+      - name: SUB_EXPOSED
+        type: String
+      - name: OVER_EXPOSED
+        type: String
+    - name: LemmaStats
+      type: record
+      fields:
+      - name: lemma
+        type: String
+        description: Lemmatized form of the word
+      - name: pos
+        type: String
+        description: "Predominant POS tag (NOUN, VERB, ADJ, ADV)"
+      - name: count
+        type: int
+        description: Total number of occurrences in the course
+      - name: meanInterval
+        type: double
+        description: Mean interval between consecutive occurrences (in global positions)
+      - name: stdDevInterval
+        type: double
+        description: Population standard deviation of intervals
+      - name: exposureStatus
+        type: ExposureStatus
+        description: "Exposure classification: NORMAL, SUB_EXPOSED, or OVER_EXPOSED"
+      - name: occurrencePositions
+        type: List<Integer>
+        description: All global positions where this lemma appears
+    - name: ExposureSummary
+      type: record
+      fields:
+      - name: normalCount
+        type: int
+        description: Count of lemmas with NORMAL exposure
+      - name: subExposedCount
+        type: int
+        description: Count of lemmas with SUB_EXPOSED exposure
+      - name: overExposedCount
+        type: int
+        description: Count of lemmas with OVER_EXPOSED exposure
+    - name: LemmaRecurrenceResult
+      type: record
+      fields:
+      - name: lemmaStats
+        type: List<LemmaStats>
+        description: "Per-lemma statistics, ordered by count descending"
+      - name: exposureSummary
+        type: ExposureSummary
+        description: Aggregate counts by exposure status
+      - name: overallScore
+        type: double
+        description: Proportion of lemmas with NORMAL exposure (0.0 to 1.0)
+    interfaces:
+    - name: IntervalCalculator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "calculateMeanInterval(List<Integer> positions): double"
+      - signature: "calculateStdDevInterval(List<Integer> positions,double meanInterval):\
+          \ double"
+    - name: ExposureClassifier
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "classify(double meanInterval,LemmaRecurrenceConfig config): ExposureStatus"
+    implementations:
+    - name: LemmaRecurrenceAnalyzer
+      requiresInject:
+      - name: contentWordFilter
+        type: ContentWordFilter
+      - name: lemmaRecurrenceConfig
+        type: LemmaRecurrenceConfig
+      - name: intervalCalculator
+        type: IntervalCalculator
+      - name: exposureClassifier
+        type: ExposureClassifier
+      implements:
+      - ContentAnalyzer
+    - name: DefaultContentWordFilter
+      implements:
+      - ContentWordFilter
+    - name: DefaultIntervalCalculator
+      implements:
+      - IntervalCalculator
+    - name: DefaultExposureClassifier
+      implements:
+      - ExposureClassifier
 - name: course-domain
   description: "Domain module for course structure. Contains entity models representing\
     \ the 5-level hierarchy (Course > ROOT > Milestone > Topic > Knowledge > QuizTemplate),\
@@ -4389,6 +4500,11 @@ modules:
     - Component
     implements:
     - CocaBucketsConfig
+  - name: DefaultLemmaRecurrenceConfig
+    types:
+    - Component
+    implements:
+    - LemmaRecurrenceConfig
   patterns:
   - type: Decorator
     decorators:
@@ -4967,12 +5083,36 @@ modules:
   - course-domain
   - course-infrastructure
   - nlp-infrastructure
+  models:
+  - name: ReportViewModel
+    type: record
+    fields:
+    - name: overallScore
+      type: double
+      description: Course-level overall score
+    - name: analyzerNames
+      type: List<String>
+      description: Ordered list of all analyzer names present in the report
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Course-level score per analyzer
+    - name: milestoneScores
+      type: List<MilestoneScoreRow>
+      description: Per-milestone breakdown of analyzer scores
+  - name: MilestoneScoreRow
+    type: record
+    fields:
+    - name: milestoneId
+      type: String
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Score per analyzer for this milestone
   interfaces:
   - name: ReportFormatter
     stereotype: port
     sealed: false
     exposes:
-    - signature: "format(AuditReport report): String"
+    - signature: "format(ReportViewModel viewModel): String"
   - name: AuditCli
     stereotype: port
     sealed: true
@@ -4984,6 +5124,16 @@ modules:
     sealed: false
     exposes:
     - signature: "getFormatter(String formatName): ReportFormatter"
+  - name: ReportViewModelTransformer
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "transform(AuditReport report): ReportViewModel"
+  - name: RawReportFormatter
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "format(AuditReport report): String"
   implementations:
   - name: TextReportFormatter
     implements:
@@ -4997,6 +5147,10 @@ modules:
       type: AuditRunner
     - name: formatterRegistry
       type: FormatterRegistry
+    - name: viewModelTransformer
+      type: ReportViewModelTransformer
+    - name: rawReportFormatter
+      type: RawReportFormatter
     tests:
     - name: "Given valid args with course path, when run is called, then returns exit\
         \ code 0"
@@ -5289,11 +5443,21 @@ modules:
     - Component
     implements:
     - FormatterRegistry
+  - name: DefaultReportViewModelTransformer
+    implements:
+    - ReportViewModelTransformer
+  - name: TableReportFormatter
+    implements:
+    - ReportFormatter
+  - name: RawJsonReportFormatter
+    implements:
+    - RawReportFormatter
   patterns:
   - type: Strategy
     implementations:
     - TextReportFormatter
     - JsonReportFormatter
+    - TableReportFormatter
     suppressed: false
     interface: ReportFormatter
   scope: public

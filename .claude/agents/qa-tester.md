@@ -237,7 +237,7 @@ A `DeclarativeTest` has **exactly** these top-level fields (use ONLY these names
 
 ### Sub-record Field Names (EXACT)
 
-**Traceability** — `{ feature, rule?, journey? }` (all optional for QA Agent)
+**Traceability** — `{ feature, rule?, journey?, path? }` (all optional for QA Agent)
 
 **FixtureDef** — `{ id, type, construct }`
 - `id`: string (reference name, e.g. "order1")
@@ -471,6 +471,7 @@ To create a handwritten test:
 **Packages:**
 
 - `coca` [public] — COCA frequency bucket distribution analysis. Classifies NLP tokens into frequency bands (K1-K5+), evaluates distribution against configurable targets per CEFR level, assesses progression across levels, and generates improvement directives.
+- `lrec` [public] — Lemma recurrence analysis by spaced repetition. Tracks global word positions across the course, calculates mean intervals between consecutive lemma occurrences, classifies exposure status (normal, sub-exposed, over-exposed), and produces a course-level recurrence score.
 
 **Interfaces:**
 
@@ -508,6 +509,12 @@ To create a handwritten test:
   - `getToleranceMargin(): double`
   - `getAnalysisStrategy(): AnalysisStrategy`
   - `getProgressionExpectations(): List<ProgressionExpectation>`
+- `ContentWordFilter`
+  - `isContentWord(NlpToken token): boolean`
+- `LemmaRecurrenceConfig`
+  - `getTop(): int`
+  - `getSubExposedThreshold(): double`
+  - `getOverExposedThreshold(): double`
 
 **Implementations:**
 
@@ -565,6 +572,8 @@ Domain module for course structure. Contains entity models representing the 5-le
   Declarative tests (8): Given a valid course path, when runAudit is called, then returns the audit report from the full chain, Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path, Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity, Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course, Given courseRepository throws an exception, when runAudit is called, then the exception propagates, Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates, Given contentAudit throws an exception, when runAudit is called, then the exception propagates, Given a course with no milestones, when runAudit is called, then returns the report from contentAudit
 - `DefaultCocaBucketsConfig` implements CocaBucketsConfig [Component]
   **NO TESTS** — all 6 methods uncovered
+- `DefaultLemmaRecurrenceConfig` implements LemmaRecurrenceConfig [Component]
+  **NO TESTS** — all 3 methods uncovered
 
 ### course-infrastructure
 
@@ -584,12 +593,16 @@ CLI entry point for running content audits from the command line
 **Interfaces:**
 
 - `ReportFormatter`
-  - `format(AuditReport report): String`
+  - `format(ReportViewModel viewModel): String`
 - `AuditCli` [sealed]
   - `run(String[] args): int`
   - `call(): Integer`
 - `FormatterRegistry`
   - `getFormatter(String formatName): ReportFormatter`
+- `ReportViewModelTransformer`
+  - `transform(AuditReport report): ReportViewModel`
+- `RawReportFormatter`
+  - `format(AuditReport report): String`
 
 **Implementations:**
 
@@ -598,10 +611,16 @@ CLI entry point for running content audits from the command line
 - `JsonReportFormatter` implements ReportFormatter
   **NO TESTS** — all 1 methods uncovered
 - `DefaultAuditCli` implements AuditCli
-  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry
+  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry, viewModelTransformer: ReportViewModelTransformer, rawReportFormatter: RawReportFormatter
   Declarative tests (8): Given valid args with course path, when run is called, then returns exit code 0, Given no args provided, when run is called, then returns non-zero exit code, Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code, Given valid args with --format json, when run is called, then json formatter is looked up and returns 0, Given valid args without --format, when run is called, then text formatter is used by default and returns 0, Given valid args, when run is called, then auditRunner runAudit is invoked with course path, Given an unsupported format value, when run is called, then returns non-zero exit code, Given valid args and low audit scores, when run is called, then returns 0 regardless of score values
   **Untested methods:** call
 - `DefaultFormatterRegistry` implements FormatterRegistry [Component]
+  **NO TESTS** — all 1 methods uncovered
+- `DefaultReportViewModelTransformer` implements ReportViewModelTransformer
+  **NO TESTS** — all 1 methods uncovered
+- `TableReportFormatter` implements ReportFormatter
+  **NO TESTS** — all 1 methods uncovered
+- `RawJsonReportFormatter` implements RawReportFormatter
   **NO TESTS** — all 1 methods uncovered
 
 ### nlp-infrastructure

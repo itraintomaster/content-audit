@@ -127,6 +127,26 @@ Examples:
 | `getAnalysisStrategy(): AnalysisStrategy` | (none) |
 | `getProgressionExpectations(): List<ProgressionExpectation>` | (none) |
 
+#### ContentWordFilter (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `isContentWord(NlpToken token): boolean` | (none) |
+
+#### LemmaRecurrenceConfig (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** DefaultLemmaRecurrenceConfig (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `getTop(): int` | (none) |
+| `getSubExposedThreshold(): double` | (none) |
+| `getOverExposedThreshold(): double` | (none) |
+
 #### TokenClassifier (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
@@ -153,6 +173,25 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `plan(List<LevelBucketDistribution> levels,BandConfiguration bandConfig,CocaBucketsConfig config): List<ImprovementDirective>` | (none) |
+
+#### IntervalCalculator (package: lrec)
+
+**Package:** `com.learney.contentaudit.auditdomain.lrec`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `calculateMeanInterval(List<Integer> positions): double` | (none) |
+| `calculateStdDevInterval(List<Integer> positions,double meanInterval): double` | (none) |
+
+#### ExposureClassifier (package: lrec)
+
+**Package:** `com.learney.contentaudit.auditdomain.lrec`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `classify(double meanInterval,LemmaRecurrenceConfig config): ExposureStatus` | (none) |
 
 ### Module: course-domain
 
@@ -203,11 +242,11 @@ Examples:
 
 **Package:** `com.learney.contentaudit.auditcli`
 
-**Implemented by:** TextReportFormatter (audit-cli), JsonReportFormatter (audit-cli)
+**Implemented by:** TextReportFormatter (audit-cli), JsonReportFormatter (audit-cli), TableReportFormatter (audit-cli)
 
 | Method | Throws |
 |--------|--------|
-| `format(AuditReport report): String` | (none) |
+| `format(ReportViewModel viewModel): String` | (none) |
 
 #### AuditCli [SEALED] (port)
 
@@ -229,6 +268,26 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `getFormatter(String formatName): ReportFormatter` | (none) |
+
+#### ReportViewModelTransformer (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implemented by:** DefaultReportViewModelTransformer (audit-cli)
+
+| Method | Throws |
+|--------|--------|
+| `transform(AuditReport report): ReportViewModel` | (none) |
+
+#### RawReportFormatter (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implemented by:** RawJsonReportFormatter (audit-cli)
+
+| Method | Throws |
+|--------|--------|
+| `format(AuditReport report): String` | (none) |
 
 ### Module: nlp-infrastructure
 

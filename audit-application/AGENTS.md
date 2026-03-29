@@ -71,6 +71,12 @@ Methods:
 
 **Types:** Component
 
+### DefaultLemmaRecurrenceConfig
+
+**Implements:** LemmaRecurrenceConfig
+
+**Types:** Component
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
@@ -282,6 +288,20 @@ Methods:
 - `getToleranceMargin(): double`
 - `getAnalysisStrategy(): AnalysisStrategy`
 - `getProgressionExpectations(): List<ProgressionExpectation>`
+
+### ContentWordFilter (port)
+
+Methods:
+
+- `isContentWord(NlpToken token): boolean`
+
+### LemmaRecurrenceConfig (port)
+
+Methods:
+
+- `getTop(): int`
+- `getSubExposedThreshold(): double`
+- `getOverExposedThreshold(): double`
 
 ### From course-domain
 

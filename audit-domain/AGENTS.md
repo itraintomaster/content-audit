@@ -211,6 +211,20 @@ Methods:
 - `getAnalysisStrategy(): AnalysisStrategy`
 - `getProgressionExpectations(): List<ProgressionExpectation>`
 
+### ContentWordFilter (port)
+
+Methods:
+
+- `isContentWord(NlpToken token): boolean`
+
+### LemmaRecurrenceConfig (port)
+
+Methods:
+
+- `getTop(): int`
+- `getSubExposedThreshold(): double`
+- `getOverExposedThreshold(): double`
+
 ## Implementations
 
 ### IAuditEngine

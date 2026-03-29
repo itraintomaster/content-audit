@@ -58,9 +58,9 @@ project-root/
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
 | Models | 17 (AuditReport, AuditableCourse, AuditContext, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, ScoredItem, NodeScores, QuizNode, KnowledgeNode, TopicNode, MilestoneNode, NlpToken) |
-| Interfaces | 8 (ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig) |
+| Interfaces | 10 (ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig) |
 | Implementations | 6 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator) |
-| Packages | 1 (coca [public]) |
+| Packages | 2 (coca [public], lrec [public]) |
 
 ### course-domain
 
@@ -100,7 +100,7 @@ project-root/
 | Scope | public |
 | Models | 0 |
 | Interfaces | 2 (AuditRunner, CourseMapper) |
-| Implementations | 4 (CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig) |
+| Implementations | 5 (CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig) |
 | Packages | 0 |
 
 ### course-infrastructure
@@ -128,9 +128,9 @@ project-root/
 | Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 0 |
-| Interfaces | 3 (ReportFormatter, AuditCli, FormatterRegistry) |
-| Implementations | 4 (TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry) |
+| Models | 2 (ReportViewModel, MilestoneScoreRow) |
+| Interfaces | 5 (ReportFormatter, AuditCli, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter) |
+| Implementations | 7 (TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry, DefaultReportViewModelTransformer, TableReportFormatter, RawJsonReportFormatter) |
 | Packages | 0 |
 
 ### nlp-infrastructure

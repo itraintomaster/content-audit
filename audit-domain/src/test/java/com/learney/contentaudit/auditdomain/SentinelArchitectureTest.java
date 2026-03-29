@@ -162,6 +162,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: CocaBucketsConfig - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.ContentWordFilter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ContentWordFilter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaRecurrenceConfig - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.IAuditEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: IAuditEngine - " + e.getMessage());
@@ -315,6 +325,56 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.coca.DefaultImprovementPlanner");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultImprovementPlanner - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lrec.ExposureStatus");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ExposureStatus - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lrec.LemmaStats");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaStats - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lrec.ExposureSummary");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ExposureSummary - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceResult");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaRecurrenceResult - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lrec.IntervalCalculator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: IntervalCalculator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lrec.ExposureClassifier");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ExposureClassifier - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaRecurrenceAnalyzer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultContentWordFilter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lrec.DefaultIntervalCalculator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultIntervalCalculator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lrec.DefaultExposureClassifier");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultExposureClassifier - " + e.getMessage());
     }
   }
 }

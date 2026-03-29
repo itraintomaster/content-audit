@@ -97,7 +97,7 @@ If the user requests work that **skips a phase**, do NOT proceed silently. Inste
 
 **Models:** AuditReport, AuditableCourse, AuditContext, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, ScoredItem, NodeScores, QuizNode, KnowledgeNode, TopicNode, MilestoneNode, NlpToken
 
-**Interfaces:** ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig
+**Interfaces:** ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig
 
 **Implementations:** IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator
 
@@ -117,7 +117,7 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 **Interfaces:** AuditRunner, CourseMapper
 
-**Implementations:** CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig
+**Implementations:** CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig
 
 ### course-infrastructure
 
@@ -133,9 +133,11 @@ CLI entry point for running content audits from the command line
 
 **Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure
 
-**Interfaces:** ReportFormatter, AuditCli, FormatterRegistry
+**Models:** ReportViewModel, MilestoneScoreRow
 
-**Implementations:** TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry
+**Interfaces:** ReportFormatter, AuditCli, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter
+
+**Implementations:** TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry, DefaultReportViewModelTransformer, TableReportFormatter, RawJsonReportFormatter
 
 ### nlp-infrastructure
 

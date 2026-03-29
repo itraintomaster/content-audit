@@ -5,13 +5,31 @@
 
 CLI entry point for running content audits from the command line
 
+## Models
+
+### ReportViewModel (`record`)
+
+| Field | Type |
+|-------|------|
+| overallScore | `double` |
+| analyzerNames | `List<String>` |
+| analyzerScores | `Map<String,Double>` |
+| milestoneScores | `List<MilestoneScoreRow>` |
+
+### MilestoneScoreRow (`record`)
+
+| Field | Type |
+|-------|------|
+| milestoneId | `String` |
+| analyzerScores | `Map<String,Double>` |
+
 ## Interfaces
 
 ### ReportFormatter (port)
 
 Methods:
 
-- `format(AuditReport report): String`
+- `format(ReportViewModel viewModel): String`
 
 ### AuditCli (port) [sealed]
 
@@ -25,6 +43,18 @@ Methods:
 Methods:
 
 - `getFormatter(String formatName): ReportFormatter`
+
+### ReportViewModelTransformer (port)
+
+Methods:
+
+- `transform(AuditReport report): ReportViewModel`
+
+### RawReportFormatter (port)
+
+Methods:
+
+- `format(AuditReport report): String`
 
 ## Implementations
 
@@ -44,6 +74,8 @@ Methods:
 
 - `auditRunner`: `AuditRunner`
 - `formatterRegistry`: `FormatterRegistry`
+- `viewModelTransformer`: `ReportViewModelTransformer`
+- `rawReportFormatter`: `RawReportFormatter`
 
 **Tests that must pass:**
 
@@ -61,6 +93,18 @@ Methods:
 **Implements:** FormatterRegistry
 
 **Types:** Component
+
+### DefaultReportViewModelTransformer
+
+**Implements:** ReportViewModelTransformer
+
+### TableReportFormatter
+
+**Implements:** ReportFormatter
+
+### RawJsonReportFormatter
+
+**Implements:** RawReportFormatter
 
 ## Dependency Contracts
 
@@ -287,6 +331,20 @@ Methods:
 - `getToleranceMargin(): double`
 - `getAnalysisStrategy(): AnalysisStrategy`
 - `getProgressionExpectations(): List<ProgressionExpectation>`
+
+### ContentWordFilter (port)
+
+Methods:
+
+- `isContentWord(NlpToken token): boolean`
+
+### LemmaRecurrenceConfig (port)
+
+Methods:
+
+- `getTop(): int`
+- `getSubExposedThreshold(): double`
+- `getOverExposedThreshold(): double`
 
 ### From course-domain
 

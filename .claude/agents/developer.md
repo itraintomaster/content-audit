@@ -229,6 +229,10 @@ public class MyAdapter implements MyPort {
   Models: FrequencyBand, BandConfiguration, AssessmentState, TargetKind, BucketTarget, BucketResult, QuarterBucketTargets, QuarterResult, LevelBucketDistribution, TopicBucketDistribution, ProgressionState, ProgressionExpectation, ProgressionAssessment, ImprovementDirectiveType, ImprovementDirective, CocaBucketsDistributionResult, AnalysisStrategy
   Interfaces: TokenClassifier, ProgressionEvaluator, ImprovementPlanner
   Implementations: CocaBucketsAnalyzer, CocaTokenAccumulationAggregator, DefaultTokenClassifier, DefaultProgressionEvaluator, DefaultImprovementPlanner
+- `lrec` [public] — Lemma recurrence analysis by spaced repetition. Tracks global word positions across the course, calculates mean intervals between consecutive lemma occurrences, classifies exposure status (normal, sub-exposed, over-exposed), and produces a course-level recurrence score.
+  Models: ExposureStatus, LemmaStats, ExposureSummary, LemmaRecurrenceResult
+  Interfaces: IntervalCalculator, ExposureClassifier
+  Implementations: LemmaRecurrenceAnalyzer, DefaultContentWordFilter, DefaultIntervalCalculator, DefaultExposureClassifier
 
 **Models:**
 
@@ -286,6 +290,12 @@ public class MyAdapter implements MyPort {
   - `getToleranceMargin(): double`
   - `getAnalysisStrategy(): AnalysisStrategy`
   - `getProgressionExpectations(): List<ProgressionExpectation>`
+- `ContentWordFilter`
+  - `isContentWord(NlpToken token): boolean`
+- `LemmaRecurrenceConfig`
+  - `getTop(): int`
+  - `getSubExposedThreshold(): double`
+  - `getOverExposedThreshold(): double`
 
 **Implementations (your work):**
 
@@ -353,6 +363,7 @@ Domain module for course structure. Contains entity models representing the 5-le
   Inject: courseRepository: CourseRepository, courseToAuditableMapper: CourseToAuditableMapper, contentAudit: ContentAudit, courseMapper: CourseMapper
   Tests: Given a valid course path, when runAudit is called, then returns the audit report from the full chain, Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path, Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity, Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course, Given courseRepository throws an exception, when runAudit is called, then the exception propagates, Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates, Given contentAudit throws an exception, when runAudit is called, then the exception propagates, Given a course with no milestones, when runAudit is called, then returns the report from contentAudit
 - `DefaultCocaBucketsConfig` implements CocaBucketsConfig [Component]
+- `DefaultLemmaRecurrenceConfig` implements LemmaRecurrenceConfig [Component]
 
 #### course-infrastructure
 
@@ -372,24 +383,36 @@ CLI entry point for running content audits from the command line
 
 **Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure
 
+**Models:**
+
+- `ReportViewModel` — overallScore: double, analyzerNames: List<String>, analyzerScores: Map<String,Double>, milestoneScores: List<MilestoneScoreRow>
+- `MilestoneScoreRow` — milestoneId: String, analyzerScores: Map<String,Double>
+
 **Interfaces (contracts):**
 
 - `ReportFormatter`
-  - `format(AuditReport report): String`
+  - `format(ReportViewModel viewModel): String`
 - `AuditCli` [sealed]
   - `run(String[] args): int`
   - `call(): Integer`
 - `FormatterRegistry`
   - `getFormatter(String formatName): ReportFormatter`
+- `ReportViewModelTransformer`
+  - `transform(AuditReport report): ReportViewModel`
+- `RawReportFormatter`
+  - `format(AuditReport report): String`
 
 **Implementations (your work):**
 
 - `TextReportFormatter` implements ReportFormatter
 - `JsonReportFormatter` implements ReportFormatter
 - `DefaultAuditCli` implements AuditCli
-  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry
+  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry, viewModelTransformer: ReportViewModelTransformer, rawReportFormatter: RawReportFormatter
   Tests: Given valid args with course path, when run is called, then returns exit code 0, Given no args provided, when run is called, then returns non-zero exit code, Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code, Given valid args with --format json, when run is called, then json formatter is looked up and returns 0, Given valid args without --format, when run is called, then text formatter is used by default and returns 0, Given valid args, when run is called, then auditRunner runAudit is invoked with course path, Given an unsupported format value, when run is called, then returns non-zero exit code, Given valid args and low audit scores, when run is called, then returns 0 regardless of score values
 - `DefaultFormatterRegistry` implements FormatterRegistry [Component]
+- `DefaultReportViewModelTransformer` implements ReportViewModelTransformer
+- `TableReportFormatter` implements ReportFormatter
+- `RawJsonReportFormatter` implements RawReportFormatter
 
 #### nlp-infrastructure
 

@@ -37,6 +37,16 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceAllDeclaredClassesExist() {
     try {
+      Class.forName("com.learney.contentaudit.auditcli.ReportViewModel");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ReportViewModel - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.MilestoneScoreRow");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MilestoneScoreRow - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.ReportFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ReportFormatter - " + e.getMessage());
@@ -50,6 +60,16 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.FormatterRegistry");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: FormatterRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.ReportViewModelTransformer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ReportViewModelTransformer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.RawReportFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RawReportFormatter - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.TextReportFormatter");
@@ -70,6 +90,21 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.DefaultFormatterRegistry");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultFormatterRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.DefaultReportViewModelTransformer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultReportViewModelTransformer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.TableReportFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TableReportFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.RawJsonReportFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RawJsonReportFormatter - " + e.getMessage());
     }
   }
 }

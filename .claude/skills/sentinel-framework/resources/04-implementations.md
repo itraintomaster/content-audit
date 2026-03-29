@@ -218,6 +218,39 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 **Visibility:** public
 **Implements:** ImprovementPlanner
 
+#### LemmaRecurrenceAnalyzer (package: lrec)
+
+**Package:** `com.learney.contentaudit.auditdomain.lrec`
+**Visibility:** public
+**Implements:** ContentAnalyzer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `contentWordFilter` | `ContentWordFilter` |
+| `lemmaRecurrenceConfig` | `LemmaRecurrenceConfig` |
+| `intervalCalculator` | `IntervalCalculator` |
+| `exposureClassifier` | `ExposureClassifier` |
+
+#### DefaultContentWordFilter (package: lrec)
+
+**Package:** `com.learney.contentaudit.auditdomain.lrec`
+**Visibility:** public
+**Implements:** ContentWordFilter
+
+#### DefaultIntervalCalculator (package: lrec)
+
+**Package:** `com.learney.contentaudit.auditdomain.lrec`
+**Visibility:** public
+**Implements:** IntervalCalculator
+
+#### DefaultExposureClassifier (package: lrec)
+
+**Package:** `com.learney.contentaudit.auditdomain.lrec`
+**Visibility:** public
+**Implements:** ExposureClassifier
+
 ### Module: audit-application
 
 #### CourseToAuditableMapper
@@ -301,6 +334,14 @@ public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMa
 
 **Framework types:** Component
 
+#### DefaultLemmaRecurrenceConfig
+
+**Package:** `com.learney.contentaudit.auditapplication`
+
+**Implements:** LemmaRecurrenceConfig
+
+**Framework types:** Component
+
 ### Module: course-infrastructure
 
 #### FileSystemCourseRepository
@@ -381,12 +422,16 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 |------|------|
 | `auditRunner` | `AuditRunner` |
 | `formatterRegistry` | `FormatterRegistry` |
+| `viewModelTransformer` | `ReportViewModelTransformer` |
+| `rawReportFormatter` | `RawReportFormatter` |
 
 **Generated constructor:**
 ```java
-public DefaultAuditCli(AuditRunner auditRunner, FormatterRegistry formatterRegistry) {
+public DefaultAuditCli(AuditRunner auditRunner, FormatterRegistry formatterRegistry, ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter) {
     this.auditRunner = auditRunner;
     this.formatterRegistry = formatterRegistry;
+    this.viewModelTransformer = viewModelTransformer;
+    this.rawReportFormatter = rawReportFormatter;
 }
 ```
 
@@ -408,6 +453,24 @@ public DefaultAuditCli(AuditRunner auditRunner, FormatterRegistry formatterRegis
 **Implements:** FormatterRegistry
 
 **Framework types:** Component
+
+#### DefaultReportViewModelTransformer
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implements:** ReportViewModelTransformer
+
+#### TableReportFormatter
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implements:** ReportFormatter
+
+#### RawJsonReportFormatter
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implements:** RawReportFormatter
 
 ### Module: nlp-infrastructure
 

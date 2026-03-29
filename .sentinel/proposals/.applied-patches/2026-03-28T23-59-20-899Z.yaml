@@ -1,0 +1,143 @@
+code: __proposal__
+description: "Add Lemma Recurrence Analysis (FEAT-LREC) architecture: lrec package\
+  \ in audit-domain with models, collaborator interfaces, and implementations following\
+  \ the COCA analyzer pattern. ContentWordFilter and LemmaRecurrenceConfig as reusable\
+  \ ports at audit-domain root. DefaultLemmaRecurrenceConfig in audit-application."
+modules:
+- name: audit-domain
+  interfaces:
+  - name: ContentWordFilter
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "isContentWord(NlpToken token): boolean"
+    _change: add
+  - name: LemmaRecurrenceConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getTop(): int"
+    - signature: "getSubExposedThreshold(): double"
+    - signature: "getOverExposedThreshold(): double"
+    _change: add
+  packages:
+  - name: lrec
+    description: "Lemma recurrence analysis by spaced repetition. Tracks global word\
+      \ positions across the course, calculates mean intervals between consecutive\
+      \ lemma occurrences, classifies exposure status (normal, sub-exposed, over-exposed),\
+      \ and produces a course-level recurrence score."
+    visibility: public
+    models:
+    - name: ExposureStatus
+      type: enum
+      fields:
+      - name: NORMAL
+        type: String
+      - name: SUB_EXPOSED
+        type: String
+      - name: OVER_EXPOSED
+        type: String
+      _change: add
+    - name: LemmaStats
+      type: record
+      fields:
+      - name: lemma
+        type: String
+        description: Lemmatized form of the word
+      - name: pos
+        type: String
+        description: "Predominant POS tag (NOUN, VERB, ADJ, ADV)"
+      - name: count
+        type: int
+        description: Total number of occurrences in the course
+      - name: meanInterval
+        type: double
+        description: Mean interval between consecutive occurrences (in global positions)
+      - name: stdDevInterval
+        type: double
+        description: Population standard deviation of intervals
+      - name: exposureStatus
+        type: ExposureStatus
+        description: "Exposure classification: NORMAL, SUB_EXPOSED, or OVER_EXPOSED"
+      - name: occurrencePositions
+        type: List<Integer>
+        description: All global positions where this lemma appears
+      _change: add
+    - name: ExposureSummary
+      type: record
+      fields:
+      - name: normalCount
+        type: int
+        description: Count of lemmas with NORMAL exposure
+      - name: subExposedCount
+        type: int
+        description: Count of lemmas with SUB_EXPOSED exposure
+      - name: overExposedCount
+        type: int
+        description: Count of lemmas with OVER_EXPOSED exposure
+      _change: add
+    - name: LemmaRecurrenceResult
+      type: record
+      fields:
+      - name: lemmaStats
+        type: List<LemmaStats>
+        description: "Per-lemma statistics, ordered by count descending"
+      - name: exposureSummary
+        type: ExposureSummary
+        description: Aggregate counts by exposure status
+      - name: overallScore
+        type: double
+        description: Proportion of lemmas with NORMAL exposure (0.0 to 1.0)
+      _change: add
+    interfaces:
+    - name: IntervalCalculator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "calculateMeanInterval(List<Integer> positions): double"
+      - signature: "calculateStdDevInterval(List<Integer> positions,double meanInterval):\
+          \ double"
+      _change: add
+    - name: ExposureClassifier
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "classify(double meanInterval,LemmaRecurrenceConfig config): ExposureStatus"
+      _change: add
+    implementations:
+    - name: LemmaRecurrenceAnalyzer
+      requiresInject:
+      - name: contentWordFilter
+        type: ContentWordFilter
+      - name: lemmaRecurrenceConfig
+        type: LemmaRecurrenceConfig
+      - name: intervalCalculator
+        type: IntervalCalculator
+      - name: exposureClassifier
+        type: ExposureClassifier
+      implements:
+      - ContentAnalyzer
+      _change: add
+    - name: DefaultContentWordFilter
+      implements:
+      - ContentWordFilter
+      _change: add
+    - name: DefaultIntervalCalculator
+      implements:
+      - IntervalCalculator
+      _change: add
+    - name: DefaultExposureClassifier
+      implements:
+      - ExposureClassifier
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: DefaultLemmaRecurrenceConfig
+    types:
+    - Component
+    implements:
+    - LemmaRecurrenceConfig
+    _change: add
+  _change: modify

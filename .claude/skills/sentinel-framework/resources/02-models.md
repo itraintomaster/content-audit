@@ -513,6 +513,58 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 | `LEVELS` | `null` |
 | `QUARTERS` | `null` |
 
+#### ExposureStatus (package: lrec)
+
+**Package:** `com.learney.contentaudit.auditdomain.lrec`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `NORMAL` | `String` |
+| `SUB_EXPOSED` | `String` |
+| `OVER_EXPOSED` | `String` |
+
+#### LemmaStats (package: lrec)
+
+**Package:** `com.learney.contentaudit.auditdomain.lrec`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `lemma` | `String` |
+| `pos` | `String` |
+| `count` | `int` |
+| `meanInterval` | `double` |
+| `stdDevInterval` | `double` |
+| `exposureStatus` | `ExposureStatus` |
+| `occurrencePositions` | `List<Integer>` |
+
+#### ExposureSummary (package: lrec)
+
+**Package:** `com.learney.contentaudit.auditdomain.lrec`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `normalCount` | `int` |
+| `subExposedCount` | `int` |
+| `overExposedCount` | `int` |
+
+#### LemmaRecurrenceResult (package: lrec)
+
+**Package:** `com.learney.contentaudit.auditdomain.lrec`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `lemmaStats` | `List<LemmaStats>` |
+| `exposureSummary` | `ExposureSummary` |
+| `overallScore` | `double` |
+
 ### Module: course-domain
 
 #### NodeKind
@@ -737,6 +789,40 @@ new SentencePartEntity(SentencePartKind kind, String text, List<String> options)
 **Generated class** extends `RuntimeException` with constructor:
 ```java
 new CourseValidationException(String path, String detail)
+```
+
+### Module: audit-cli
+
+#### ReportViewModel
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `overallScore` | `double` |  |
+| `analyzerNames` | `List<String>` | Import `java.util.List` |
+| `analyzerScores` | `Map<String,Double>` |  |
+| `milestoneScores` | `List<MilestoneScoreRow>` | Import `java.util.List` |
+
+**Generated constructor:**
+```java
+new ReportViewModel(double overallScore, List<String> analyzerNames, Map<String,Double> analyzerScores, List<MilestoneScoreRow> milestoneScores)
+```
+
+#### MilestoneScoreRow
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `milestoneId` | `String` |  |
+| `analyzerScores` | `Map<String,Double>` |  |
+
+**Generated constructor:**
+```java
+new MilestoneScoreRow(String milestoneId, Map<String,Double> analyzerScores)
 ```
 
 ### Module: nlp-infrastructure

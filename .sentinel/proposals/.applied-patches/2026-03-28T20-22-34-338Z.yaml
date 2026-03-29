@@ -1,0 +1,102 @@
+code: __proposal__
+description: "Presentation layer refactor: introduce ReportViewModel pattern, change\
+  \ ReportFormatter to receive view model, add RawJsonReportFormatter for direct AuditReport\
+  \ serialization, add missing TableReportFormatter"
+modules:
+- name: audit-cli
+  models:
+  - name: ReportViewModel
+    type: record
+    fields:
+    - name: overallScore
+      type: double
+      description: Course-level overall score
+      _change: add
+    - name: analyzerNames
+      type: List<String>
+      description: Ordered list of all analyzer names present in the report
+      _change: add
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Course-level score per analyzer
+      _change: add
+    - name: milestoneScores
+      type: List<MilestoneScoreRow>
+      description: Per-milestone breakdown of analyzer scores
+      _change: add
+    _change: add
+  - name: MilestoneScoreRow
+    type: record
+    fields:
+    - name: milestoneId
+      type: String
+      _change: add
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Score per analyzer for this milestone
+      _change: add
+    _change: add
+  interfaces:
+  - name: ReportViewModelTransformer
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "transform(AuditReport report): ReportViewModel"
+    _change: add
+  - name: ReportFormatter
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "format(ReportViewModel viewModel): String"
+    _change: modify
+  - name: RawReportFormatter
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "format(AuditReport report): String"
+    _change: add
+  implementations:
+  - name: DefaultReportViewModelTransformer
+    implements:
+    - ReportViewModelTransformer
+    _change: add
+  - name: TextReportFormatter
+    implements:
+    - ReportFormatter
+    _change: modify
+  - name: JsonReportFormatter
+    implements:
+    - ReportFormatter
+    _change: modify
+  - name: TableReportFormatter
+    implements:
+    - ReportFormatter
+    _change: add
+  - name: RawJsonReportFormatter
+    implements:
+    - RawReportFormatter
+    _change: add
+  - name: DefaultAuditCli
+    requiresInject:
+    - name: auditRunner
+      type: AuditRunner
+    - name: formatterRegistry
+      type: FormatterRegistry
+    - name: viewModelTransformer
+      type: ReportViewModelTransformer
+    - name: rawReportFormatter
+      type: RawReportFormatter
+    externalImplements:
+    - java.util.concurrent.Callable<Integer>
+    implements:
+    - AuditCli
+    _change: modify
+  patterns:
+  - type: Strategy
+    implementations:
+    - TextReportFormatter
+    - JsonReportFormatter
+    - TableReportFormatter
+    suppressed: false
+    interface: ReportFormatter
+  _change: modify

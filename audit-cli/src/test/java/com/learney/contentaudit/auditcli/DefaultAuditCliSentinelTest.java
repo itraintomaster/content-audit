@@ -29,6 +29,12 @@ public class DefaultAuditCliSentinelTest {
   @Mock
   private FormatterRegistry formatterRegistry;
 
+  @Mock
+  private ReportViewModelTransformer viewModelTransformer;
+
+  @Mock
+  private RawReportFormatter rawReportFormatter;
+
   @InjectMocks
   private DefaultAuditCli sut;
 
