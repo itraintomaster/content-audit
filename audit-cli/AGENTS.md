@@ -22,6 +22,34 @@ CLI entry point for running content audits from the command line
 |-------|------|
 | milestoneId | `String` |
 | analyzerScores | `Map<String,Double>` |
+| overallScore | `double` |
+| topicScores | `List<TopicScoreRow>` |
+
+### QuizScoreRow (`record`)
+
+| Field | Type |
+|-------|------|
+| quizId | `String` |
+| overallScore | `double` |
+| analyzerScores | `Map<String,Double>` |
+
+### KnowledgeScoreRow (`record`)
+
+| Field | Type |
+|-------|------|
+| knowledgeId | `String` |
+| overallScore | `double` |
+| analyzerScores | `Map<String,Double>` |
+| quizScores | `List<QuizScoreRow>` |
+
+### TopicScoreRow (`record`)
+
+| Field | Type |
+|-------|------|
+| topicId | `String` |
+| overallScore | `double` |
+| analyzerScores | `Map<String,Double>` |
+| knowledgeScores | `List<KnowledgeScoreRow>` |
 
 ## Interfaces
 

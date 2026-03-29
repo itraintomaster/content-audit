@@ -35,6 +35,12 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackageLrecVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..auditdomain..", "java..").should().dependOnClassesThat().resideInAPackage("..auditdomain.lrec..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.auditdomain.AuditReport");

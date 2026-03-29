@@ -177,7 +177,7 @@ Examples:
 #### IntervalCalculator (package: lrec)
 
 **Package:** `com.learney.contentaudit.auditdomain.lrec`
-**Visibility:** public
+**Visibility:** internal
 
 | Method | Throws |
 |--------|--------|
@@ -187,7 +187,7 @@ Examples:
 #### ExposureClassifier (package: lrec)
 
 **Package:** `com.learney.contentaudit.auditdomain.lrec`
-**Visibility:** public
+**Visibility:** internal
 
 | Method | Throws |
 |--------|--------|

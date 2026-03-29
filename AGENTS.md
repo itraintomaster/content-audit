@@ -133,7 +133,7 @@ CLI entry point for running content audits from the command line
 
 **Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure
 
-**Models:** ReportViewModel, MilestoneScoreRow
+**Models:** ReportViewModel, MilestoneScoreRow, QuizScoreRow, KnowledgeScoreRow, TopicScoreRow
 
 **Interfaces:** ReportFormatter, AuditCli, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter
 

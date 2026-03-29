@@ -471,7 +471,7 @@ To create a handwritten test:
 **Packages:**
 
 - `coca` [public] — COCA frequency bucket distribution analysis. Classifies NLP tokens into frequency bands (K1-K5+), evaluates distribution against configurable targets per CEFR level, assesses progression across levels, and generates improvement directives.
-- `lrec` [public] — Lemma recurrence analysis by spaced repetition. Tracks global word positions across the course, calculates mean intervals between consecutive lemma occurrences, classifies exposure status (normal, sub-exposed, over-exposed), and produces a course-level recurrence score.
+- `lrec` [internal] — Lemma recurrence analysis by spaced repetition. Tracks global word positions across the course, calculates mean intervals between consecutive lemma occurrences, classifies exposure status (normal, sub-exposed, over-exposed), and produces a course-level recurrence score.
 
 **Interfaces:**
 

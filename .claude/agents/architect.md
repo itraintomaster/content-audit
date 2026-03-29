@@ -216,7 +216,7 @@ modules:
 
 | Module | Dependencies | Interfaces | Implementations | Packages |
 |--------|-------------|------------|------------------|----------|
-| audit-domain | — | ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig | IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator | coca [public], lrec [public] |
+| audit-domain | — | ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig | IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator | coca [public], lrec [internal] |
 | course-domain | — | CourseRepository, CourseValidator | — | — |
 | refiner-domain | — | — | — | — |
 | audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure | AuditRunner, CourseMapper | CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig | — |

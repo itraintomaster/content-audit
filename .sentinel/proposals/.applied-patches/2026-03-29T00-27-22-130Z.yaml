@@ -1,0 +1,65 @@
+code: __proposal__
+description: Tests for DefaultIntervalCalculator - mean interval and standard deviation
+  calculations
+modules:
+- name: audit-domain
+  packages:
+  - name: lrec
+    visibility: internal
+    implementations:
+    - name: DefaultIntervalCalculator
+      tests:
+      - name: "Given positions [10, 110], when calculateMeanInterval is called, then\
+          \ returns 100.0"
+        target: DefaultIntervalCalculator
+        invoke:
+          method: calculateMeanInterval
+          args:
+          - "[10, 110]"
+        type: unit
+        traceability:
+          feature: F-LREC
+          rule: F-LREC-R007
+        assert:
+          returns: 100.0
+      - name: "Given positions [0, 100, 200, 300], when calculateMeanInterval is called,\
+          \ then returns 100.0"
+        target: DefaultIntervalCalculator
+        invoke:
+          method: calculateMeanInterval
+          args:
+          - "[0, 100, 200, 300]"
+        type: unit
+        traceability:
+          feature: F-LREC
+          rule: F-LREC-R007
+        assert:
+          returns: 100.0
+      - name: "Given positions [10, 110] and mean 100.0, when calculateStdDevInterval\
+          \ is called, then returns 0.0"
+        target: DefaultIntervalCalculator
+        invoke:
+          method: calculateStdDevInterval
+          args:
+          - "[10, 110]"
+          - 100.0
+        type: unit
+        traceability:
+          feature: F-LREC
+          rule: F-LREC-R007
+        assert:
+          returns: 0.0
+      - name: "Given positions [0, 100, 200, 300] and mean 100.0, when calculateStdDevInterval\
+          \ is called, then returns 0.0"
+        target: DefaultIntervalCalculator
+        invoke:
+          method: calculateStdDevInterval
+          args:
+          - "[0, 100, 200, 300]"
+          - 100.0
+        type: unit
+        traceability:
+          feature: F-LREC
+          rule: F-LREC-R007
+        assert:
+          returns: 0.0

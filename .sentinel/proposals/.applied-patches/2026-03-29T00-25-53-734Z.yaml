@@ -1,0 +1,141 @@
+code: __proposal__
+description: Tests for DefaultContentWordFilter - content word filtering by POS tag
+modules:
+- name: audit-domain
+  packages:
+  - name: lrec
+    visibility: internal
+    implementations:
+    - name: DefaultContentWordFilter
+      tests:
+      - name: "Given a NOUN token, when isContentWord is called, then returns true"
+        target: DefaultContentWordFilter
+        invoke:
+          method: isContentWord
+          args:
+          - ref:nounToken
+        fixtures:
+        - id: nounToken
+          type: NlpToken
+          construct:
+            text: cat
+            lemma: cat
+            posTag: NOUN
+            frequencyRank: 100
+            isStop: false
+            isPunct: false
+        type: unit
+        traceability:
+          feature: F-LREC
+          rule: F-LREC-R003
+        assert:
+          returns: true
+      - name: "Given a VERB token, when isContentWord is called, then returns true"
+        target: DefaultContentWordFilter
+        invoke:
+          method: isContentWord
+          args:
+          - ref:verbToken
+        fixtures:
+        - id: verbToken
+          type: NlpToken
+          construct:
+            text: running
+            lemma: run
+            posTag: VERB
+            frequencyRank: 50
+            isStop: false
+            isPunct: false
+        type: unit
+        traceability:
+          feature: F-LREC
+          rule: F-LREC-R003
+        assert:
+          returns: true
+      - name: "Given an ADJ token, when isContentWord is called, then returns true"
+        target: DefaultContentWordFilter
+        invoke:
+          method: isContentWord
+          args:
+          - ref:adjToken
+        fixtures:
+        - id: adjToken
+          type: NlpToken
+          construct:
+            text: big
+            lemma: big
+            posTag: ADJ
+            frequencyRank: 200
+            isStop: false
+            isPunct: false
+        type: unit
+        traceability:
+          feature: F-LREC
+          rule: F-LREC-R003
+        assert:
+          returns: true
+      - name: "Given an ADV token, when isContentWord is called, then returns true"
+        target: DefaultContentWordFilter
+        invoke:
+          method: isContentWord
+          args:
+          - ref:advToken
+        fixtures:
+        - id: advToken
+          type: NlpToken
+          construct:
+            text: quickly
+            lemma: quickly
+            posTag: ADV
+            frequencyRank: 300
+            isStop: false
+            isPunct: false
+        type: unit
+        traceability:
+          feature: F-LREC
+          rule: F-LREC-R003
+        assert:
+          returns: true
+      - name: "Given a DET token, when isContentWord is called, then returns false"
+        target: DefaultContentWordFilter
+        invoke:
+          method: isContentWord
+          args:
+          - ref:detToken
+        fixtures:
+        - id: detToken
+          type: NlpToken
+          construct:
+            text: the
+            lemma: the
+            posTag: DET
+            frequencyRank: 1
+            isStop: true
+            isPunct: false
+        type: unit
+        traceability:
+          feature: F-LREC
+          rule: F-LREC-R003
+        assert:
+          returns: false
+      - name: "Given a PUNCT token, when isContentWord is called, then returns false"
+        target: DefaultContentWordFilter
+        invoke:
+          method: isContentWord
+          args:
+          - ref:punctToken
+        fixtures:
+        - id: punctToken
+          type: NlpToken
+          construct:
+            text: .
+            lemma: .
+            posTag: PUNCT
+            isStop: false
+            isPunct: true
+        type: unit
+        traceability:
+          feature: F-LREC
+          rule: F-LREC-R003
+        assert:
+          returns: false

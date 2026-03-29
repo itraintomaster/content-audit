@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-                                                                                                                                                                                                  
+                                                                                                                                                                                                              
+    
+    
+    
     
     
     
@@ -48,8 +51,11 @@
     
     
     <modelVersion>4.0.0</modelVersion>
-                                                                                                                                                                                                  
+                                                                                                                                                                                                              
   
+    
+    
+    
     
     
     
@@ -98,7 +104,10 @@
     
     
     <parent>
-                                                                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                                                                            
+        
+        
+        
         
         
         
@@ -147,7 +156,10 @@
         
         
         <groupId>com.learney.contentaudit</groupId>
-                                                                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                                                                            
+        
+        
+        
         
         
         
@@ -196,7 +208,10 @@
         
         
         <artifactId>contentaudit</artifactId>
-                                                                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                                                                            
+        
+        
+        
         
         
         
@@ -245,7 +260,10 @@
         
         
         <version>0.0.1</version>
-                                                                                                                                                                                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                                                                                                                                                          
+    
+    
+    
     
     
     
@@ -294,8 +312,11 @@
     
     
     </parent>
-                                                                                                                                                                                                  
+                                                                                                                                                                                                              
   
+    
+    
+    
     
     
     
@@ -344,7 +365,7 @@
     
     
     <artifactId>audit-cli</artifactId>
-                                                                                                                                                                                                  
+                                                                                                                                                                                                              
   
     
     
@@ -393,8 +414,14 @@
     
     
     
+    
+    
+    
     <dependencies>
-                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                
+        
+        
+        
         
         
         
@@ -425,7 +452,10 @@
         
         
         <dependency>
-                                                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                                                                        
+            
+            
+            
             
             
             
@@ -456,7 +486,10 @@
             
             
             <groupId>info.picocli</groupId>
-                                                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                                                                        
+            
+            
+            
             
             
             
@@ -487,7 +520,10 @@
             
             
             <artifactId>picocli</artifactId>
-                                                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                                                                        
+            
+            
+            
             
             
             
@@ -518,7 +554,10 @@
             
             
             <version>4.7.6</version>
-                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                    
+        
+        
+        
         
         
         
@@ -549,7 +588,10 @@
         
         
         </dependency>
-                                                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        
+        
+        
         
         
         
@@ -598,7 +640,10 @@
         
         
         <dependency>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+            
+            
+            
             
             
             
@@ -647,7 +692,10 @@
             
             
             <groupId>com.learney.contentaudit</groupId>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+            
+            
+            
             
             
             
@@ -696,7 +744,10 @@
             
             
             <artifactId>audit-application</artifactId>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+            
+            
+            
             
             
             
@@ -745,7 +796,10 @@
             
             
             <version>0.0.1</version>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+        
+        
+        
         
         
         
@@ -794,7 +848,10 @@
         
         
         </dependency>
-                                                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        
+        
+        
         
         
         
@@ -843,7 +900,10 @@
         
         
         <dependency>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+            
+            
+            
             
             
             
@@ -892,7 +952,10 @@
             
             
             <groupId>com.learney.contentaudit</groupId>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+            
+            
+            
             
             
             
@@ -941,7 +1004,10 @@
             
             
             <artifactId>audit-domain</artifactId>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+            
+            
+            
             
             
             
@@ -990,7 +1056,10 @@
             
             
             <version>0.0.1</version>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+        
+        
+        
         
         
         
@@ -1039,7 +1108,10 @@
         
         
         </dependency>
-                                                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        
+        
+        
         
         
         
@@ -1088,7 +1160,10 @@
         
         
         <dependency>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+            
+            
+            
             
             
             
@@ -1137,7 +1212,10 @@
             
             
             <groupId>com.learney.contentaudit</groupId>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+            
+            
+            
             
             
             
@@ -1186,7 +1264,10 @@
             
             
             <artifactId>course-domain</artifactId>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+            
+            
+            
             
             
             
@@ -1235,7 +1316,10 @@
             
             
             <version>0.0.1</version>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+        
+        
+        
         
         
         
@@ -1284,7 +1368,10 @@
         
         
         </dependency>
-                                                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        
+        
+        
         
         
         
@@ -1333,7 +1420,10 @@
         
         
         <dependency>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+            
+            
+            
             
             
             
@@ -1382,7 +1472,10 @@
             
             
             <groupId>com.learney.contentaudit</groupId>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+            
+            
+            
             
             
             
@@ -1431,7 +1524,10 @@
             
             
             <artifactId>course-infrastructure</artifactId>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+            
+            
+            
             
             
             
@@ -1480,7 +1576,10 @@
             
             
             <version>0.0.1</version>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+        
+        
+        
         
         
         
@@ -1529,7 +1628,7 @@
         
         
         </dependency>
-                                                                                                                                                                                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                                                                                                                                                          
     
     
     
@@ -1559,6 +1658,9 @@
     
     
     
+        
+        
+        
         
         
         
@@ -1578,7 +1680,10 @@
         
         
         <dependency>
-                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                        
+            
+            
+            
             
             
             
@@ -1597,7 +1702,10 @@
             
             
             <groupId>com.learney.contentaudit</groupId>
-                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                        
+            
+            
+            
             
             
             
@@ -1616,7 +1724,10 @@
             
             
             <artifactId>nlp-infrastructure</artifactId>
-                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                        
+            
+            
+            
             
             
             
@@ -1635,7 +1746,10 @@
             
             
             <version>0.0.1</version>
-                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                    
+        
+        
+        
         
         
         
@@ -1654,7 +1768,10 @@
         
         
         </dependency>
-                                                                                                                                                    
+                                                                                                                                                                            
+    
+    
+    
     
     
     
@@ -1673,7 +1790,10 @@
     
     
     </dependencies>
-                                                                                                                                                                                                
+                                                                                                                                                                                                            
+
+
+
 
 
 

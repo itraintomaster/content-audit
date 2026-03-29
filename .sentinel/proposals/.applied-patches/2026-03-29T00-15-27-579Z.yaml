@@ -1,0 +1,67 @@
+code: __proposal__
+description: "Add hierarchical score aggregation: new presentation models (TopicScoreRow,\
+  \ KnowledgeScoreRow, QuizScoreRow) in audit-cli with nested containment, and add\
+  \ overallScore to MilestoneScoreRow. The domain layer tree models already exist\
+  \ and require no structural changes -- only IScoreAggregator behavior must populate\
+  \ the full tree."
+modules:
+- name: audit-cli
+  models:
+  - name: QuizScoreRow
+    type: record
+    fields:
+    - name: quizId
+      type: String
+      description: Quiz identifier
+    - name: overallScore
+      type: double
+      description: Average score across all analyzers at quiz level
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Score per analyzer for this quiz
+    _change: add
+  - name: KnowledgeScoreRow
+    type: record
+    fields:
+    - name: knowledgeId
+      type: String
+      description: Knowledge identifier
+    - name: overallScore
+      type: double
+      description: Average score across all analyzers at knowledge level
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Score per analyzer for this knowledge
+    - name: quizScores
+      type: List<QuizScoreRow>
+      description: Per-quiz breakdown of analyzer scores
+    _change: add
+  - name: TopicScoreRow
+    type: record
+    fields:
+    - name: topicId
+      type: String
+      description: Topic identifier
+    - name: overallScore
+      type: double
+      description: Average score across all analyzers at topic level
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Score per analyzer for this topic
+    - name: knowledgeScores
+      type: List<KnowledgeScoreRow>
+      description: Per-knowledge breakdown of analyzer scores
+    _change: add
+  - name: MilestoneScoreRow
+    type: record
+    fields:
+    - name: overallScore
+      type: double
+      description: Average score across all analyzers at milestone level
+      _change: add
+    - name: topicScores
+      type: List<TopicScoreRow>
+      description: Per-topic breakdown of analyzer scores
+      _change: add
+    _change: modify
+  _change: modify

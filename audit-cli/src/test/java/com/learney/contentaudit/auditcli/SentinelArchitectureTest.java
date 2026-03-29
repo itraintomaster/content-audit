@@ -47,6 +47,21 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: MilestoneScoreRow - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.QuizScoreRow");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizScoreRow - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.KnowledgeScoreRow");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeScoreRow - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.TopicScoreRow");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TopicScoreRow - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.ReportFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ReportFormatter - " + e.getMessage());

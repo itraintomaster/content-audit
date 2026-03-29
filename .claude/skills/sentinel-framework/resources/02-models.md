@@ -516,7 +516,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### ExposureStatus (package: lrec)
 
 **Package:** `com.learney.contentaudit.auditdomain.lrec`
-**Visibility:** public
+**Visibility:** internal
 **Type:** enum
 
 | Field | Type |
@@ -528,7 +528,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### LemmaStats (package: lrec)
 
 **Package:** `com.learney.contentaudit.auditdomain.lrec`
-**Visibility:** public
+**Visibility:** internal
 **Type:** record
 
 | Field | Type |
@@ -544,7 +544,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### ExposureSummary (package: lrec)
 
 **Package:** `com.learney.contentaudit.auditdomain.lrec`
-**Visibility:** public
+**Visibility:** internal
 **Type:** record
 
 | Field | Type |
@@ -556,7 +556,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### LemmaRecurrenceResult (package: lrec)
 
 **Package:** `com.learney.contentaudit.auditdomain.lrec`
-**Visibility:** public
+**Visibility:** internal
 **Type:** record
 
 | Field | Type |
@@ -819,10 +819,62 @@ new ReportViewModel(double overallScore, List<String> analyzerNames, Map<String,
 |-------|------|-------|
 | `milestoneId` | `String` |  |
 | `analyzerScores` | `Map<String,Double>` |  |
+| `overallScore` | `double` |  |
+| `topicScores` | `List<TopicScoreRow>` | Import `java.util.List` |
 
 **Generated constructor:**
 ```java
-new MilestoneScoreRow(String milestoneId, Map<String,Double> analyzerScores)
+new MilestoneScoreRow(String milestoneId, Map<String,Double> analyzerScores, double overallScore, List<TopicScoreRow> topicScores)
+```
+
+#### QuizScoreRow
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `quizId` | `String` |  |
+| `overallScore` | `double` |  |
+| `analyzerScores` | `Map<String,Double>` |  |
+
+**Generated constructor:**
+```java
+new QuizScoreRow(String quizId, double overallScore, Map<String,Double> analyzerScores)
+```
+
+#### KnowledgeScoreRow
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `knowledgeId` | `String` |  |
+| `overallScore` | `double` |  |
+| `analyzerScores` | `Map<String,Double>` |  |
+| `quizScores` | `List<QuizScoreRow>` | Import `java.util.List` |
+
+**Generated constructor:**
+```java
+new KnowledgeScoreRow(String knowledgeId, double overallScore, Map<String,Double> analyzerScores, List<QuizScoreRow> quizScores)
+```
+
+#### TopicScoreRow
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `topicId` | `String` |  |
+| `overallScore` | `double` |  |
+| `analyzerScores` | `Map<String,Double>` |  |
+| `knowledgeScores` | `List<KnowledgeScoreRow>` | Import `java.util.List` |
+
+**Generated constructor:**
+```java
+new TopicScoreRow(String topicId, double overallScore, Map<String,Double> analyzerScores, List<KnowledgeScoreRow> knowledgeScores)
 ```
 
 ### Module: nlp-infrastructure

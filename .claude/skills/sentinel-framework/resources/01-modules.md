@@ -60,7 +60,7 @@ project-root/
 | Models | 17 (AuditReport, AuditableCourse, AuditContext, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, ScoredItem, NodeScores, QuizNode, KnowledgeNode, TopicNode, MilestoneNode, NlpToken) |
 | Interfaces | 10 (ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig) |
 | Implementations | 6 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator) |
-| Packages | 2 (coca [public], lrec [public]) |
+| Packages | 2 (coca [public], lrec [internal]) |
 
 ### course-domain
 
@@ -128,7 +128,7 @@ project-root/
 | Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 2 (ReportViewModel, MilestoneScoreRow) |
+| Models | 5 (ReportViewModel, MilestoneScoreRow, QuizScoreRow, KnowledgeScoreRow, TopicScoreRow) |
 | Interfaces | 5 (ReportFormatter, AuditCli, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter) |
 | Implementations | 7 (TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry, DefaultReportViewModelTransformer, TableReportFormatter, RawJsonReportFormatter) |
 | Packages | 0 |

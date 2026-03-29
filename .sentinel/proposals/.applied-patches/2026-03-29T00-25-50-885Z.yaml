@@ -1,0 +1,239 @@
+code: __proposal__
+description: Tests for LemmaRecurrenceAnalyzer - lemma recurrence analysis for spaced
+  repetition
+modules:
+- name: audit-domain
+  packages:
+  - name: lrec
+    visibility: internal
+    implementations:
+    - name: LemmaRecurrenceAnalyzer
+      tests:
+      - name: "Given a LemmaRecurrenceAnalyzer, when getName is called, then returns\
+          \ lemma-recurrence"
+        target: LemmaRecurrenceAnalyzer
+        invoke:
+          method: getName
+        type: unit
+        traceability:
+          feature: F-LREC
+          rule: F-LREC-R015
+        assert:
+          returns: lemma-recurrence
+      - name: "Given a LemmaRecurrenceAnalyzer, when getTarget is called, then returns\
+          \ COURSE"
+        target: LemmaRecurrenceAnalyzer
+        invoke:
+          method: getTarget
+        type: unit
+        traceability:
+          feature: F-LREC
+          rule: F-LREC-R013
+        assert:
+          returns: COURSE
+      - name: "Given no quizzes have been processed, when getResults is called, then\
+          \ returns empty list"
+        target: LemmaRecurrenceAnalyzer
+        invoke:
+          method: getResults
+        type: unit
+        traceability:
+          feature: F-LREC
+        assert:
+          returns: "[]"
+      - name: "Given an AuditableKnowledge and AuditContext, when onKnowledge is called,\
+          \ then completes without error"
+        target: LemmaRecurrenceAnalyzer
+        invoke:
+          method: onKnowledge
+          args:
+          - ref:knowledge
+          - ref:ctx
+        fixtures:
+        - id: knowledge
+          type: AuditableKnowledge
+          construct:
+            quizzes: "[]"
+            title: Test Knowledge
+            instructions: Test instructions
+            isSentence: true
+        - id: ctx
+          type: AuditContext
+          construct:
+            milestoneId: m1
+            topicId: t1
+            knowledgeId: k1
+            quizId: q1
+        type: unit
+        assert:
+          doesNotThrow: true
+      - name: "Given an AuditableTopic and AuditContext, when onTopic is called, then\
+          \ completes without error"
+        target: LemmaRecurrenceAnalyzer
+        invoke:
+          method: onTopic
+          args:
+          - ref:topic
+          - ref:ctx
+        fixtures:
+        - id: topic
+          type: AuditableTopic
+          construct:
+            knowledge: "[]"
+        - id: ctx
+          type: AuditContext
+          construct:
+            milestoneId: m1
+            topicId: t1
+            knowledgeId: k1
+            quizId: q1
+        type: unit
+        assert:
+          doesNotThrow: true
+      - name: "Given an AuditableMilestone and AuditContext, when onMilestone is called,\
+          \ then completes without error"
+        target: LemmaRecurrenceAnalyzer
+        invoke:
+          method: onMilestone
+          args:
+          - ref:milestone
+          - ref:ctx
+        fixtures:
+        - id: milestone
+          type: AuditableMilestone
+          construct:
+            topics: "[]"
+        - id: ctx
+          type: AuditContext
+          construct:
+            milestoneId: m1
+            topicId: t1
+            knowledgeId: k1
+            quizId: q1
+        type: unit
+        assert:
+          doesNotThrow: true
+      - name: "Given two quizzes with content words, when onQuiz and onCourseComplete\
+          \ are called, then getResults returns scored items"
+        target: LemmaRecurrenceAnalyzer
+        fixtures:
+        - id: token1
+          type: NlpToken
+          construct:
+            text: cat
+            lemma: cat
+            posTag: NOUN
+            frequencyRank: 100
+            isStop: false
+            isPunct: false
+        - id: token2
+          type: NlpToken
+          construct:
+            text: the
+            lemma: the
+            posTag: DET
+            frequencyRank: 1
+            isStop: true
+            isPunct: false
+        - id: token3
+          type: NlpToken
+          construct:
+            text: cats
+            lemma: cat
+            posTag: NOUN
+            frequencyRank: 100
+            isStop: false
+            isPunct: false
+        - id: quiz1
+          type: AuditableQuiz
+          construct:
+            sentence: the cat
+            tokens: "[ref:token2, ref:token1]"
+        - id: quiz2
+          type: AuditableQuiz
+          construct:
+            sentence: the cats
+            tokens: "[ref:token2, ref:token3]"
+        - id: ctx
+          type: AuditContext
+          construct:
+            milestoneId: m1
+            topicId: t1
+            knowledgeId: k1
+            quizId: q1
+        - id: course
+          type: AuditableCourse
+          construct:
+            milestones: "[]"
+        - id: expectedScore
+          type: ScoredItem
+          construct:
+            analyzerName: lemma-recurrence
+            target: COURSE
+            score: 1.0
+            milestoneId: "0"
+        type: integration
+        steps:
+        - invoke:
+            method: onQuiz
+            args:
+            - ref:quiz1
+            - ref:ctx
+          mocks:
+          - dependency: contentWordFilter
+            method: isContentWord
+            thenReturn: true
+            args:
+            - match: isA
+              type: NlpToken
+          assert:
+            doesNotThrow: true
+        - invoke:
+            method: onQuiz
+            args:
+            - ref:quiz2
+            - ref:ctx
+          mocks:
+          - dependency: contentWordFilter
+            method: isContentWord
+            thenReturn: true
+            args:
+            - match: isA
+              type: NlpToken
+          assert:
+            doesNotThrow: true
+        - invoke:
+            method: onCourseComplete
+            args:
+            - ref:course
+            - ref:ctx
+          mocks:
+          - dependency: lemmaRecurrenceConfig
+            method: getTop
+            thenReturn: 2000
+          - dependency: intervalCalculator
+            method: calculateMeanInterval
+            thenReturn: 100.0
+            args:
+            - match: any
+          - dependency: intervalCalculator
+            method: calculateStdDevInterval
+            thenReturn: 0.0
+            args:
+            - match: any
+            - match: any
+          - dependency: exposureClassifier
+            method: classify
+            thenReturn: NORMAL
+            args:
+            - match: any
+            - match: any
+          assert:
+            doesNotThrow: true
+        - invoke:
+            method: getResults
+          assert:
+            returns: "[ref:expectedScore]"
+        traceability:
+          feature: F-LREC
+          rule: F-LREC-R001

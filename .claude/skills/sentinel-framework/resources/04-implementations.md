@@ -221,7 +221,7 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 #### LemmaRecurrenceAnalyzer (package: lrec)
 
 **Package:** `com.learney.contentaudit.auditdomain.lrec`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** ContentAnalyzer
 
 **Constructor dependencies:**
@@ -233,22 +233,28 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 | `intervalCalculator` | `IntervalCalculator` |
 | `exposureClassifier` | `ExposureClassifier` |
 
+**Tests:** 7
+
 #### DefaultContentWordFilter (package: lrec)
 
 **Package:** `com.learney.contentaudit.auditdomain.lrec`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** ContentWordFilter
+
+**Tests:** 6
 
 #### DefaultIntervalCalculator (package: lrec)
 
 **Package:** `com.learney.contentaudit.auditdomain.lrec`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** IntervalCalculator
+
+**Tests:** 4
 
 #### DefaultExposureClassifier (package: lrec)
 
 **Package:** `com.learney.contentaudit.auditdomain.lrec`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** ExposureClassifier
 
 ### Module: audit-application

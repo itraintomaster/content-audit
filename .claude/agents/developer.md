@@ -229,7 +229,7 @@ public class MyAdapter implements MyPort {
   Models: FrequencyBand, BandConfiguration, AssessmentState, TargetKind, BucketTarget, BucketResult, QuarterBucketTargets, QuarterResult, LevelBucketDistribution, TopicBucketDistribution, ProgressionState, ProgressionExpectation, ProgressionAssessment, ImprovementDirectiveType, ImprovementDirective, CocaBucketsDistributionResult, AnalysisStrategy
   Interfaces: TokenClassifier, ProgressionEvaluator, ImprovementPlanner
   Implementations: CocaBucketsAnalyzer, CocaTokenAccumulationAggregator, DefaultTokenClassifier, DefaultProgressionEvaluator, DefaultImprovementPlanner
-- `lrec` [public] — Lemma recurrence analysis by spaced repetition. Tracks global word positions across the course, calculates mean intervals between consecutive lemma occurrences, classifies exposure status (normal, sub-exposed, over-exposed), and produces a course-level recurrence score.
+- `lrec` [internal] — Lemma recurrence analysis by spaced repetition. Tracks global word positions across the course, calculates mean intervals between consecutive lemma occurrences, classifies exposure status (normal, sub-exposed, over-exposed), and produces a course-level recurrence score.
   Models: ExposureStatus, LemmaStats, ExposureSummary, LemmaRecurrenceResult
   Interfaces: IntervalCalculator, ExposureClassifier
   Implementations: LemmaRecurrenceAnalyzer, DefaultContentWordFilter, DefaultIntervalCalculator, DefaultExposureClassifier
@@ -386,7 +386,10 @@ CLI entry point for running content audits from the command line
 **Models:**
 
 - `ReportViewModel` — overallScore: double, analyzerNames: List<String>, analyzerScores: Map<String,Double>, milestoneScores: List<MilestoneScoreRow>
-- `MilestoneScoreRow` — milestoneId: String, analyzerScores: Map<String,Double>
+- `MilestoneScoreRow` — milestoneId: String, analyzerScores: Map<String,Double>, overallScore: double, topicScores: List<TopicScoreRow>
+- `QuizScoreRow` — quizId: String, overallScore: double, analyzerScores: Map<String,Double>
+- `KnowledgeScoreRow` — knowledgeId: String, overallScore: double, analyzerScores: Map<String,Double>, quizScores: List<QuizScoreRow>
+- `TopicScoreRow` — topicId: String, overallScore: double, analyzerScores: Map<String,Double>, knowledgeScores: List<KnowledgeScoreRow>
 
 **Interfaces (contracts):**
 
