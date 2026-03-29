@@ -4,62 +4,60 @@ import java.util.List;
 import java.util.Map;
 
 public class TableReportFormatter implements ReportFormatter {
+    private final DrillDownResolver resolver;
+
+    public TableReportFormatter(DrillDownResolver resolver) {
+        this.resolver = resolver;
+    }
 
     @Override
-    public String format(ReportViewModel viewModel) {
+    public String format(ReportViewModel viewModel, DrillDownScope scope) {
+        DrillDownView view = resolver.resolve(viewModel, scope);
         StringBuilder sb = new StringBuilder();
 
-        List<String> analyzers = viewModel.getAnalyzerNames() != null ? viewModel.getAnalyzerNames() : List.of();
-        List<MilestoneScoreRow> milestoneScores = viewModel.getMilestoneScores() != null
-                ? viewModel.getMilestoneScores() : List.of();
-
-        // Build level column names: one per milestone (A1, A2, B1, B2 or L0, L1, ...)
-        int levelCount = milestoneScores.size();
-        String[] defaultNames = {"A1", "A2", "B1", "B2"};
-        String[] levelNames = new String[levelCount];
-        for (int i = 0; i < levelCount; i++) {
-            levelNames[i] = i < defaultNames.length ? defaultNames[i] : "L" + i;
-        }
+        List<String> analyzers = view.getAnalyzerNames() != null ? view.getAnalyzerNames() : List.of();
+        List<ChildScoreRow> children = view.getChildRows() != null ? view.getChildRows() : List.of();
 
         // Column widths
         int analyzerCol = analyzers.stream().mapToInt(String::length).max().orElse(8);
         analyzerCol = Math.max(analyzerCol, 8);
         int scoreCol = 10;
+        int colCount = children.size() + 1; // children + parent total
 
-        // Header
+        // Header: child ids as columns, plus parent node name
         sb.append(String.format("%-" + analyzerCol + "s", "Analyzer"));
-        for (String level : levelNames) {
-            sb.append(String.format("  %" + scoreCol + "s", level));
+        for (ChildScoreRow child : children) {
+            String label = truncate(child.getId(), scoreCol);
+            sb.append(String.format("  %" + scoreCol + "s", label));
         }
-        sb.append(String.format("  %" + scoreCol + "s", "COURSE"));
+        sb.append(String.format("  %" + scoreCol + "s", view.getNodeName()));
         sb.append("\n");
-        sb.append("-".repeat(analyzerCol + (levelCount + 1) * (scoreCol + 2))).append("\n");
-
-        // Course-level per-analyzer scores
-        Map<String, Double> courseScores = viewModel.getAnalyzerScores() != null
-                ? viewModel.getAnalyzerScores() : Map.of();
+        sb.append("-".repeat(analyzerCol + colCount * (scoreCol + 2))).append("\n");
 
         // One row per analyzer
+        Map<String, Double> parentScores = view.getAnalyzerScores() != null
+                ? view.getAnalyzerScores() : Map.of();
+
         for (String analyzer : analyzers) {
             sb.append(String.format("%-" + analyzerCol + "s", analyzer));
-            for (int i = 0; i < levelCount; i++) {
-                Map<String, Double> scores = milestoneScores.get(i).getAnalyzerScores() != null
-                        ? milestoneScores.get(i).getAnalyzerScores() : Map.of();
+            for (ChildScoreRow child : children) {
+                Map<String, Double> scores = child.getAnalyzerScores() != null
+                        ? child.getAnalyzerScores() : Map.of();
                 Double score = scores.get(analyzer);
                 sb.append(String.format("  %" + scoreCol + "s", score != null ? formatScore(score) : "-"));
             }
-            Double courseScore = courseScores.get(analyzer);
-            sb.append(String.format("  %" + scoreCol + "s", courseScore != null ? formatScore(courseScore) : "-"));
+            Double parentScore = parentScores.get(analyzer);
+            sb.append(String.format("  %" + scoreCol + "s", parentScore != null ? formatScore(parentScore) : "-"));
             sb.append("\n");
         }
 
         // Footer: OVERALL row
-        sb.append("-".repeat(analyzerCol + (levelCount + 1) * (scoreCol + 2))).append("\n");
+        sb.append("-".repeat(analyzerCol + colCount * (scoreCol + 2))).append("\n");
         sb.append(String.format("%-" + analyzerCol + "s", "OVERALL"));
-        for (int i = 0; i < levelCount; i++) {
-            sb.append(String.format("  %" + scoreCol + "s", formatScore(milestoneScores.get(i).getOverallScore())));
+        for (ChildScoreRow child : children) {
+            sb.append(String.format("  %" + scoreCol + "s", formatScore(child.getOverallScore())));
         }
-        sb.append(String.format("  %" + scoreCol + "s", formatScore(viewModel.getOverallScore())));
+        sb.append(String.format("  %" + scoreCol + "s", formatScore(view.getOverallScore())));
         sb.append("\n");
 
         return sb.toString();
@@ -67,5 +65,10 @@ public class TableReportFormatter implements ReportFormatter {
 
     private String formatScore(double score) {
         return String.format("%.1f%%", score * 100);
+    }
+
+    private String truncate(String s, int maxLen) {
+        if (s == null) return "?";
+        return s.length() <= maxLen ? s : s.substring(0, maxLen - 1) + "~";
     }
 }

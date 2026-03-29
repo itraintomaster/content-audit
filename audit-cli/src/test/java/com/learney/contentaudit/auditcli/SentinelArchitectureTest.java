@@ -62,6 +62,26 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: TopicScoreRow - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.DrillDownScope");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DrillDownScope - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.DrillDownLevel");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DrillDownLevel - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.DrillDownView");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DrillDownView - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.ChildScoreRow");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ChildScoreRow - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.ReportFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ReportFormatter - " + e.getMessage());
@@ -85,6 +105,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.RawReportFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RawReportFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.DrillDownResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DrillDownResolver - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.TextReportFormatter");
@@ -120,6 +145,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.RawJsonReportFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RawJsonReportFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.DefaultDrillDownResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultDrillDownResolver - " + e.getMessage());
     }
   }
 }

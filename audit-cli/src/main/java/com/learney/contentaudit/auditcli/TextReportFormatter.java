@@ -4,26 +4,52 @@ import java.util.List;
 import java.util.Map;
 
 public class TextReportFormatter implements ReportFormatter {
+    private final DrillDownResolver resolver;
+
+    public TextReportFormatter(DrillDownResolver resolver) {
+        this.resolver = resolver;
+    }
+
     @Override
-    public String format(ReportViewModel viewModel) {
+    public String format(ReportViewModel viewModel, DrillDownScope scope) {
+        DrillDownView view = resolver.resolve(viewModel, scope);
         StringBuilder sb = new StringBuilder();
-        sb.append("=== Audit Report ===\n");
-        sb.append(String.format("Overall Score: %.1f%%\n", viewModel.getOverallScore() * 100));
 
-        List<MilestoneScoreRow> milestoneScores = viewModel.getMilestoneScores();
-        if (milestoneScores == null || milestoneScores.isEmpty()) {
-            sb.append("\nNo milestones found.\n");
-        } else {
-            for (MilestoneScoreRow row : milestoneScores) {
-                String id = row.getMilestoneId() != null ? row.getMilestoneId() : "?";
-                Map<String, Double> scores = row.getAnalyzerScores() != null ? row.getAnalyzerScores() : Map.of();
+        // Header: focused node
+        sb.append(String.format("=== %s === Score: %.1f%%\n",
+                view.getNodeName(), view.getOverallScore() * 100));
 
-                sb.append(String.format("\n--- %s --- Score: %.1f%%\n", id, row.getOverallScore() * 100));
-                for (Map.Entry<String, Double> entry : scores.entrySet()) {
-                    sb.append(String.format("  %-35s %.1f%%\n", entry.getKey(), entry.getValue() * 100));
+        // Focused node's analyzer scores
+        Map<String, Double> scores = view.getAnalyzerScores() != null ? view.getAnalyzerScores() : Map.of();
+        for (Map.Entry<String, Double> entry : scores.entrySet()) {
+            sb.append(String.format("  %-35s %.1f%%\n", entry.getKey(), entry.getValue() * 100));
+        }
+
+        // Children
+        List<ChildScoreRow> children = view.getChildRows();
+        if (children != null && !children.isEmpty()) {
+            String childLabel = childLabel(view.getDepth());
+            sb.append(String.format("\n%ss:\n", childLabel));
+            for (ChildScoreRow child : children) {
+                sb.append(String.format("\n  --- %s --- Score: %.1f%%\n",
+                        child.getId(), child.getOverallScore() * 100));
+                Map<String, Double> childScores = child.getAnalyzerScores() != null
+                        ? child.getAnalyzerScores() : Map.of();
+                for (Map.Entry<String, Double> entry : childScores.entrySet()) {
+                    sb.append(String.format("    %-33s %.1f%%\n", entry.getKey(), entry.getValue() * 100));
                 }
             }
         }
+
         return sb.toString();
+    }
+
+    private String childLabel(DrillDownLevel depth) {
+        return switch (depth) {
+            case COURSE -> "Level";
+            case MILESTONE -> "Topic";
+            case TOPIC -> "Knowledge";
+            case KNOWLEDGE -> "Quiz";
+        };
     }
 }

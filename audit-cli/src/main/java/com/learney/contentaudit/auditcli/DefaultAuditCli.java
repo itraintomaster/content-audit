@@ -3,6 +3,7 @@ package com.learney.contentaudit.auditcli;
 import com.learney.contentaudit.auditapplication.AuditRunner;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 import javax.annotation.processing.Generated;
 import picocli.CommandLine;
@@ -16,9 +17,31 @@ import picocli.CommandLine.Parameters;
 )
 @Command(
         name = "audit-cli",
-        description = "Ejecuta una auditoría de contenido sobre un curso.",
+        description = "Ejecuta una auditoría de contenido sobre un curso.%n"
+                + "Permite explorar resultados progresivamente usando --level, --topic y --knowledge.",
         mixinStandardHelpOptions = true,
-        version = "audit-cli 0.0.1"
+        version = "audit-cli 0.0.1",
+        footer = {
+                "",
+                "Examples:",
+                "  # Course overview with per-level scores",
+                "  ./audit-cli.sh db/english-course",
+                "",
+                "  # Drill into level A1 to see its topics",
+                "  ./audit-cli.sh db/english-course --level A1",
+                "",
+                "  # Drill into a specific topic within A1",
+                "  ./audit-cli.sh db/english-course --level A1 --topic \"Present Simple\"",
+                "",
+                "  # Drill into a specific knowledge within a topic",
+                "  ./audit-cli.sh db/english-course --level A1 --topic \"Present Simple\" --knowledge \"Affirmative\"",
+                "",
+                "  # Use table format for a compact view",
+                "  ./audit-cli.sh db/english-course --level A1 -f table",
+                "",
+                "  # Export full raw audit data as JSON",
+                "  ./audit-cli.sh db/english-course -f raw",
+        }
 )
 public final class DefaultAuditCli implements AuditCli, Callable<Integer> {
     private final AuditRunner auditRunner;
@@ -29,12 +52,25 @@ public final class DefaultAuditCli implements AuditCli, Callable<Integer> {
 
     private final RawReportFormatter rawReportFormatter;
 
-    @Parameters(index = "0", description = "Ruta al directorio del curso", arity = "1")
+    @Parameters(index = "0", description = "Path to the course directory", arity = "1")
     private String coursePath;
 
-    @Option(names = {"-f", "--format"}, description = "Formato de salida: text, json, table, raw (default: ${DEFAULT-VALUE})",
+    @Option(names = {"-f", "--format"},
+            description = "Output format: text, json, table, raw (default: ${DEFAULT-VALUE})",
             defaultValue = "text")
     private String formatName;
+
+    @Option(names = {"-l", "--level"},
+            description = "Drill into a CEFR level (e.g. A1, A2, B1, B2). Shows the level's scores and its topics.")
+    private String level;
+
+    @Option(names = {"-t", "--topic"},
+            description = "Drill into a topic within the selected level. Requires --level.")
+    private String topic;
+
+    @Option(names = {"-k", "--knowledge"},
+            description = "Drill into a knowledge item within the selected topic. Requires --level and --topic.")
+    private String knowledge;
 
     public DefaultAuditCli(AuditRunner auditRunner, FormatterRegistry formatterRegistry,
             ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter) {
@@ -52,6 +88,15 @@ public final class DefaultAuditCli implements AuditCli, Callable<Integer> {
     @Override
     public Integer call() {
         try {
+            if (topic != null && level == null) {
+                System.err.println("Error: --topic requires --level");
+                return 1;
+            }
+            if (knowledge != null && topic == null) {
+                System.err.println("Error: --knowledge requires --level and --topic");
+                return 1;
+            }
+
             AuditReport report = auditRunner.runAudit(Path.of(coursePath));
 
             if ("raw".equals(formatName)) {
@@ -66,8 +111,16 @@ public final class DefaultAuditCli implements AuditCli, Callable<Integer> {
             }
 
             ReportViewModel viewModel = viewModelTransformer.transform(report);
-            System.out.println(formatter.format(viewModel));
+            DrillDownScope scope = new DrillDownScope(
+                    Optional.ofNullable(level),
+                    Optional.ofNullable(topic),
+                    Optional.ofNullable(knowledge)
+            );
+            System.out.println(formatter.format(viewModel, scope));
             return 0;
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
+            return 1;
         } catch (RuntimeException e) {
             System.err.println("No se pudo ejecutar la auditoria para el curso en la ruta "
                     + coursePath + ": " + e.getMessage());

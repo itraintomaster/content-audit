@@ -51,13 +51,49 @@ CLI entry point for running content audits from the command line
 | analyzerScores | `Map<String,Double>` |
 | knowledgeScores | `List<KnowledgeScoreRow>` |
 
+### DrillDownScope (`record`)
+
+| Field | Type |
+|-------|------|
+| level | `Optional<String>` |
+| topic | `Optional<String>` |
+| knowledge | `Optional<String>` |
+
+### DrillDownLevel (`enum`)
+
+| Field | Type |
+|-------|------|
+| COURSE | `null` |
+| MILESTONE | `null` |
+| TOPIC | `null` |
+| KNOWLEDGE | `null` |
+
+### DrillDownView (`record`)
+
+| Field | Type |
+|-------|------|
+| depth | `DrillDownLevel` |
+| nodeName | `String` |
+| overallScore | `double` |
+| analyzerScores | `Map<String,Double>` |
+| analyzerNames | `List<String>` |
+| childRows | `List<ChildScoreRow>` |
+
+### ChildScoreRow (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| overallScore | `double` |
+| analyzerScores | `Map<String,Double>` |
+
 ## Interfaces
 
 ### ReportFormatter (port)
 
 Methods:
 
-- `format(ReportViewModel viewModel): String`
+- `format(ReportViewModel viewModel,DrillDownScope scope): String`
 
 ### AuditCli (port) [sealed]
 
@@ -84,15 +120,29 @@ Methods:
 
 - `format(AuditReport report): String`
 
+### DrillDownResolver (port) [sealed]
+
+Methods:
+
+- `resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView`
+
 ## Implementations
 
 ### TextReportFormatter
 
 **Implements:** ReportFormatter
 
+**Dependencies (constructor injection):**
+
+- `drillDownResolver`: `DrillDownResolver`
+
 ### JsonReportFormatter
 
 **Implements:** ReportFormatter
+
+**Dependencies (constructor injection):**
+
+- `drillDownResolver`: `DrillDownResolver`
 
 ### DefaultAuditCli
 
@@ -130,9 +180,19 @@ Methods:
 
 **Implements:** ReportFormatter
 
+**Dependencies (constructor injection):**
+
+- `drillDownResolver`: `DrillDownResolver`
+
 ### RawJsonReportFormatter
 
 **Implements:** RawReportFormatter
+
+### DefaultDrillDownResolver
+
+**Implements:** DrillDownResolver
+
+**Types:** Component
 
 ## Dependency Contracts
 
