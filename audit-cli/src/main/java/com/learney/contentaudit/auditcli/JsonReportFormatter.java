@@ -1,8 +1,5 @@
 package com.learney.contentaudit.auditcli;
 
-import com.learney.contentaudit.auditdomain.AuditReport;
-import com.learney.contentaudit.auditdomain.MilestoneNode;
-import java.util.List;
 import java.util.Map;
 import javax.annotation.processing.Generated;
 
@@ -12,34 +9,32 @@ import javax.annotation.processing.Generated;
 )
 public class JsonReportFormatter implements ReportFormatter {
     @Override
-    public String format(AuditReport report) {
+    public String format(ReportViewModel viewModel) {
         StringBuilder sb = new StringBuilder();
         sb.append("{\n");
-        sb.append("  \"overallScore\": ").append(report.getOverallScore());
+        sb.append("  \"overallScore\": ").append(viewModel.getOverallScore());
 
-        List<MilestoneNode> milestones = report.getMilestones();
         sb.append(",\n  \"milestones\": [");
-        if (milestones != null && !milestones.isEmpty()) {
+        if (viewModel.getMilestoneScores() != null && !viewModel.getMilestoneScores().isEmpty()) {
             sb.append("\n");
-            for (int i = 0; i < milestones.size(); i++) {
-                MilestoneNode m = milestones.get(i);
+            for (int i = 0; i < viewModel.getMilestoneScores().size(); i++) {
+                MilestoneScoreRow row = viewModel.getMilestoneScores().get(i);
                 sb.append("    {\n");
                 sb.append("      \"milestoneId\": \"")
-                        .append(escapeJson(m.getMilestoneId())).append("\"");
-                if (m.getScores() != null && m.getScores().getScores() != null) {
-                    sb.append(",\n      \"scores\": {");
-                    Map<String, Double> scores = m.getScores().getScores();
-                    int j = 0;
-                    for (Map.Entry<String, Double> entry : scores.entrySet()) {
-                        if (j > 0) sb.append(",");
-                        sb.append("\n        \"").append(escapeJson(entry.getKey()))
-                                .append("\": ").append(entry.getValue());
-                        j++;
-                    }
-                    sb.append("\n      }");
+                        .append(escapeJson(row.getMilestoneId())).append("\"");
+                Map<String, Double> scores = row.getAnalyzerScores() != null ? row.getAnalyzerScores() : Map.of();
+                sb.append(",\n      \"overallScore\": ").append(row.getOverallScore());
+                sb.append(",\n      \"scores\": {");
+                int j = 0;
+                for (Map.Entry<String, Double> entry : scores.entrySet()) {
+                    if (j > 0) sb.append(",");
+                    sb.append("\n        \"").append(escapeJson(entry.getKey()))
+                            .append("\": ").append(entry.getValue());
+                    j++;
                 }
+                sb.append("\n      }");
                 sb.append("\n    }");
-                if (i < milestones.size() - 1) sb.append(",");
+                if (i < viewModel.getMilestoneScores().size() - 1) sb.append(",");
                 sb.append("\n");
             }
             sb.append("  ");

@@ -84,14 +84,18 @@ public class Main {
         DefaultAuditRunner auditRunner = new DefaultAuditRunner(
                 courseRepository, courseToAuditableMapper, contentAudit);
 
-        // CLI layer: formatters and registry
+        // CLI layer: formatters, transformer, and registry
         Map<String, ReportFormatter> formatters = new HashMap<>();
         formatters.put("text", new TextReportFormatter());
         formatters.put("json", new JsonReportFormatter());
         formatters.put("table", new TableReportFormatter());
 
         DefaultFormatterRegistry formatterRegistry = new DefaultFormatterRegistry(formatters);
-        DefaultAuditCli auditCli = new DefaultAuditCli(auditRunner, formatters, formatterRegistry);
+        ReportViewModelTransformer viewModelTransformer = new DefaultReportViewModelTransformer();
+        RawReportFormatter rawReportFormatter = new RawJsonReportFormatter();
+
+        DefaultAuditCli auditCli = new DefaultAuditCli(
+                auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter);
 
         int exitCode = auditCli.run(args);
         System.exit(exitCode);

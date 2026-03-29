@@ -29,41 +29,92 @@ public class IScoreAggregator implements ScoreAggregator {
         List<MilestoneNode> milestones = new ArrayList<>();
 
         for (Map.Entry<String, List<ScoredItem>> entry : byMilestone.entrySet()) {
-            List<ScoredItem> milestoneScores = entry.getValue();
-            Map<String, Double> analyzerScores = new LinkedHashMap<>();
+            List<ScoredItem> milestoneItems = entry.getValue();
 
-            // Average score per analyzer within this milestone
-            Map<String, List<Double>> byAnalyzer = new LinkedHashMap<>();
-            for (ScoredItem item : milestoneScores) {
-                byAnalyzer.computeIfAbsent(item.getAnalyzerName(), k -> new ArrayList<>())
-                        .add(item.getScore());
-            }
-            for (Map.Entry<String, List<Double>> ae : byAnalyzer.entrySet()) {
-                double avg = ae.getValue().stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
-                analyzerScores.put(ae.getKey(), avg);
-            }
+            // Build topic → knowledge → quiz tree
+            List<TopicNode> topics = buildTopicNodes(milestoneItems);
 
-            for (ScoredItem item : milestoneScores) {
+            // Milestone-level analyzer averages
+            Map<String, Double> analyzerScores = averageByAnalyzer(milestoneItems);
+
+            for (ScoredItem item : milestoneItems) {
                 totalScore += item.getScore();
                 totalCount++;
             }
 
-            milestones.add(new MilestoneNode(entry.getKey(), new NodeScores(analyzerScores), List.of()));
+            milestones.add(new MilestoneNode(entry.getKey(), new NodeScores(analyzerScores), topics));
         }
 
         double overallScore = totalCount > 0 ? totalScore / totalCount : 0.0;
 
         // Course-level scores per analyzer
-        Map<String, List<Double>> courseByAnalyzer = new LinkedHashMap<>();
-        for (ScoredItem item : scores) {
-            courseByAnalyzer.computeIfAbsent(item.getAnalyzerName(), k -> new ArrayList<>())
-                    .add(item.getScore());
-        }
-        Map<String, Double> courseScores = new LinkedHashMap<>();
-        for (Map.Entry<String, List<Double>> e : courseByAnalyzer.entrySet()) {
-            courseScores.put(e.getKey(), e.getValue().stream().mapToDouble(Double::doubleValue).average().orElse(0.0));
-        }
+        Map<String, Double> courseScores = averageByAnalyzer(scores);
 
         return new AuditReport(overallScore, new NodeScores(courseScores), milestones);
+    }
+
+    private List<TopicNode> buildTopicNodes(List<ScoredItem> milestoneItems) {
+        Map<String, List<ScoredItem>> byTopic = new LinkedHashMap<>();
+        for (ScoredItem item : milestoneItems) {
+            String tid = item.getTopicId();
+            if (tid != null) {
+                byTopic.computeIfAbsent(tid, k -> new ArrayList<>()).add(item);
+            }
+        }
+
+        List<TopicNode> topics = new ArrayList<>();
+        for (Map.Entry<String, List<ScoredItem>> entry : byTopic.entrySet()) {
+            List<ScoredItem> topicItems = entry.getValue();
+            List<KnowledgeNode> knowledges = buildKnowledgeNodes(topicItems);
+            topics.add(new TopicNode(entry.getKey(), new NodeScores(averageByAnalyzer(topicItems)), knowledges));
+        }
+        return topics;
+    }
+
+    private List<KnowledgeNode> buildKnowledgeNodes(List<ScoredItem> topicItems) {
+        Map<String, List<ScoredItem>> byKnowledge = new LinkedHashMap<>();
+        for (ScoredItem item : topicItems) {
+            String kid = item.getKnowledgeId();
+            if (kid != null) {
+                byKnowledge.computeIfAbsent(kid, k -> new ArrayList<>()).add(item);
+            }
+        }
+
+        List<KnowledgeNode> knowledges = new ArrayList<>();
+        for (Map.Entry<String, List<ScoredItem>> entry : byKnowledge.entrySet()) {
+            List<ScoredItem> knowledgeItems = entry.getValue();
+            List<QuizNode> quizzes = buildQuizNodes(knowledgeItems);
+            knowledges.add(new KnowledgeNode(entry.getKey(), new NodeScores(averageByAnalyzer(knowledgeItems)), quizzes));
+        }
+        return knowledges;
+    }
+
+    private List<QuizNode> buildQuizNodes(List<ScoredItem> knowledgeItems) {
+        Map<String, List<ScoredItem>> byQuiz = new LinkedHashMap<>();
+        for (ScoredItem item : knowledgeItems) {
+            String qid = item.getQuizId();
+            if (qid != null) {
+                byQuiz.computeIfAbsent(qid, k -> new ArrayList<>()).add(item);
+            }
+        }
+
+        List<QuizNode> quizzes = new ArrayList<>();
+        for (Map.Entry<String, List<ScoredItem>> entry : byQuiz.entrySet()) {
+            quizzes.add(new QuizNode(entry.getKey(), new NodeScores(averageByAnalyzer(entry.getValue()))));
+        }
+        return quizzes;
+    }
+
+    private Map<String, Double> averageByAnalyzer(List<ScoredItem> items) {
+        Map<String, List<Double>> byAnalyzer = new LinkedHashMap<>();
+        for (ScoredItem item : items) {
+            byAnalyzer.computeIfAbsent(item.getAnalyzerName(), k -> new ArrayList<>())
+                    .add(item.getScore());
+        }
+        Map<String, Double> result = new LinkedHashMap<>();
+        for (Map.Entry<String, List<Double>> e : byAnalyzer.entrySet()) {
+            result.put(e.getKey(), e.getValue().stream().mapToDouble(Double::doubleValue).average().orElse(0.0));
+        }
+        return result;
     }
 }

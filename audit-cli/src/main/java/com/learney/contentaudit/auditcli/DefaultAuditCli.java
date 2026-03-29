@@ -3,7 +3,6 @@ package com.learney.contentaudit.auditcli;
 import com.learney.contentaudit.auditapplication.AuditRunner;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import java.nio.file.Path;
-import java.util.Map;
 import java.util.concurrent.Callable;
 import javax.annotation.processing.Generated;
 import picocli.CommandLine;
@@ -24,22 +23,25 @@ import picocli.CommandLine.Parameters;
 public final class DefaultAuditCli implements AuditCli, Callable<Integer> {
     private final AuditRunner auditRunner;
 
-    private final Map<String, ReportFormatter> formatters;
-
     private final FormatterRegistry formatterRegistry;
+
+    private final ReportViewModelTransformer viewModelTransformer;
+
+    private final RawReportFormatter rawReportFormatter;
 
     @Parameters(index = "0", description = "Ruta al directorio del curso", arity = "1")
     private String coursePath;
 
-    @Option(names = {"-f", "--format"}, description = "Formato de salida: text, json, table (default: ${DEFAULT-VALUE})",
+    @Option(names = {"-f", "--format"}, description = "Formato de salida: text, json, table, raw (default: ${DEFAULT-VALUE})",
             defaultValue = "text")
     private String formatName;
 
-    public DefaultAuditCli(AuditRunner auditRunner, Map<String, ReportFormatter> formatters,
-            FormatterRegistry formatterRegistry) {
+    public DefaultAuditCli(AuditRunner auditRunner, FormatterRegistry formatterRegistry,
+            ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter) {
         this.auditRunner = auditRunner;
-        this.formatters = formatters;
         this.formatterRegistry = formatterRegistry;
+        this.viewModelTransformer = viewModelTransformer;
+        this.rawReportFormatter = rawReportFormatter;
     }
 
     @Override
@@ -52,13 +54,19 @@ public final class DefaultAuditCli implements AuditCli, Callable<Integer> {
         try {
             AuditReport report = auditRunner.runAudit(Path.of(coursePath));
 
+            if ("raw".equals(formatName)) {
+                System.out.println(rawReportFormatter.format(report));
+                return 0;
+            }
+
             ReportFormatter formatter = formatterRegistry.getFormatter(formatName);
             if (formatter == null) {
                 System.err.println("Formato no soportado: " + formatName);
                 return 1;
             }
 
-            System.out.println(formatter.format(report));
+            ReportViewModel viewModel = viewModelTransformer.transform(report);
+            System.out.println(formatter.format(viewModel));
             return 0;
         } catch (RuntimeException e) {
             System.err.println("No se pudo ejecutar la auditoria para el curso en la ruta "
