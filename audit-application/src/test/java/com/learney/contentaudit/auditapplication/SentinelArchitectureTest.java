@@ -31,7 +31,13 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceModuleBoundaries() {
     JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.classes().that().resideInAPackage("..auditapplication..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditapplication..", "..auditdomain..", "..coursedomain..", "..refinerdomain..", "..courseinfrastructure..", "..nlpinfrastructure..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+    ArchRuleDefinition.classes().that().resideInAPackage("..auditapplication..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditapplication..", "..auditdomain..", "..coursedomain..", "..refinerdomain..", "..courseinfrastructure..", "..nlpinfrastructure..", "..vocabularyinfrastructure..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+  }
+
+  @Test
+  public void enforceLemmaAbsenceConfigSealedImplementation() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.classes().that().implement(com.learney.contentaudit.auditdomain.LemmaAbsenceConfig.class).should().haveSimpleName("DefaultLemmaAbsenceConfig").allowEmptyShould(true).check(classes);
   }
 
   @Test
@@ -70,6 +76,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditapplication.DefaultLemmaRecurrenceConfig");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultLemmaRecurrenceConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultLemmaAbsenceConfig - " + e.getMessage());
     }
   }
 }

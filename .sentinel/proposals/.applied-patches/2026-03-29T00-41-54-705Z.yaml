@@ -1,0 +1,108 @@
+code: __proposal__
+description: "Add drill-down navigation to the audit CLI. Introduces a DrillDownScope\
+  \ value object for CLI options (--level, --topic, --knowledge), a DrillDownView/ChildScoreRow\
+  \ for the pre-sliced data, a DrillDownResolver to centralize hierarchy slicing,\
+  \ and modifies ReportFormatter to accept the scope. All three formatters receive\
+  \ the resolver via injection."
+modules:
+- name: audit-cli
+  models:
+  - name: DrillDownScope
+    type: record
+    fields:
+    - name: level
+      type: Optional<String>
+      description: Selected milestone/level to drill into (e.g. A1)
+    - name: topic
+      type: Optional<String>
+      description: Selected topic within the level
+    - name: knowledge
+      type: Optional<String>
+      description: Selected knowledge within the topic
+    _change: add
+  - name: DrillDownLevel
+    type: enum
+    fields:
+    - name: COURSE
+    - name: MILESTONE
+    - name: TOPIC
+    - name: KNOWLEDGE
+    _change: add
+  - name: DrillDownView
+    type: record
+    fields:
+    - name: depth
+      type: DrillDownLevel
+      description: The resolved depth of the drill-down
+    - name: nodeName
+      type: String
+      description: "Display name of the focused node (course title, level id, topic\
+        \ id, or knowledge id)"
+    - name: overallScore
+      type: double
+      description: Overall score of the focused node
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Per-analyzer scores of the focused node
+    - name: analyzerNames
+      type: List<String>
+      description: Ordered analyzer names for column headers
+    - name: childRows
+      type: List<ChildScoreRow>
+      description: One level of children detail rows
+    _change: add
+  - name: ChildScoreRow
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: Child node identifier
+    - name: overallScore
+      type: double
+      description: Child overall score
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Child per-analyzer scores
+    _change: add
+  interfaces:
+  - name: ReportFormatter
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "format(ReportViewModel viewModel,DrillDownScope scope): String"
+    _change: modify
+  - name: DrillDownResolver
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView"
+    _change: add
+  implementations:
+  - name: DefaultDrillDownResolver
+    types:
+    - Component
+    implements:
+    - DrillDownResolver
+    _change: add
+  - name: TextReportFormatter
+    requiresInject:
+    - name: drillDownResolver
+      type: DrillDownResolver
+    implements:
+    - ReportFormatter
+    _change: modify
+  - name: JsonReportFormatter
+    requiresInject:
+    - name: drillDownResolver
+      type: DrillDownResolver
+    implements:
+    - ReportFormatter
+    _change: modify
+  - name: TableReportFormatter
+    requiresInject:
+    - name: drillDownResolver
+      type: DrillDownResolver
+    implements:
+    - ReportFormatter
+    _change: modify
+  _change: modify

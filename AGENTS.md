@@ -13,13 +13,12 @@ This project has specialized AI agents. **Delegate to them instead of doing thei
 |-------|--------|---------|
 | **Architect** | `@architect` | Design and evolve architecture. Proposes validated patches to `sentinel.yaml` via CLI. Only agent that can change the architecture. |
 | **Developer** | `@developer` | Implement code within a module. Reads generated contracts, writes implementation code, respects module boundaries, and escalates missing contracts. |
-| **QA Tester** | `@qa-tester` | Design and propose declarative tests for implementations. Analyzes contracts, dependencies, and requirements to generate test coverage. Produces validated test patches via Sentinel CLI. |
-| **Test Reviewer** | `@test-reviewer` | Verify qa-tester proposals for correctness. Cross-references fixture types, mock dependencies, assertions, and requirement traceability against sentinel.yaml and REQUIREMENT.md. |
+| **QA Tester** | `@qa-tester` | Design test coverage for implementations. Analyzes contracts, dependencies, and requirements to propose test names with traceability. Tests are added as `handwrittenTests` in sentinel.yaml. |
 
 **When to delegate:**
 - Architecture changes (new module, new interface, change dependencies) → `@architect`
 - Implementation work (write adapter, satisfy interface, pass tests) → `@developer`
-- Test design (create declarative tests for an implementation) → `@qa-tester` (via `/sentinel-test-loop` skill for automated review)
+- Test design (propose test names for an implementation) → `@qa-tester`
 - You should NOT do architecture, implementation, or test design work yourself — use the agents.
 
 ## Rule 0 - Generated Files
@@ -37,7 +36,9 @@ Before writing any code, read `sentinel.yaml`. It defines the contracts, boundar
 
 The following interfaces are `sealed`. Only the listed classes may implement them:
 
+- `LemmaAbsenceConfig` permits: DefaultLemmaAbsenceConfig
 - `AuditCli` permits: DefaultAuditCli
+- `DrillDownResolver` permits: DefaultDrillDownResolver
 
 ## Rule C - Dependency Injection
 
@@ -64,17 +65,17 @@ All architectural changes must go through the **architect agent** (`@architect`)
 The correct development workflow follows these phases **in strict order**:
 
 ```
-Requirement → Architecture → [accept & sentinel generate] → Testing Design → [accept & sentinel generate] → Development
+Requirement → Architecture → [accept & sentinel generate] → Test Design → [sentinel generate] → Development
 ```
 
 ### Phases
 
 1. **Requirement** — Define or refine features, business rules, user journeys, and doubts in `REQUIREMENT.md`.
 2. **Architecture** — Design the solution in `sentinel.yaml`: modules, models, interfaces, implementations, dependencies.
-3. **Accept & Generate (Architecture)** — User accepts the architecture. Run `sentinel generate` to produce contracts.
-4. **Testing Design** — Define declarative tests in YAML covering the new contracts.
-5. **Accept & Generate (Testing)** — User accepts the test design. Run `sentinel generate` to produce test scaffolds.
-6. **Development** — Implement the contracts. Only now should production code be written.
+3. **Accept & Generate (Architecture)** — User accepts the architecture. Run `sentinel generate` to produce contracts and implementation stubs.
+4. **Test Design** — Define test names under `handwrittenTests` in `sentinel.yaml`. Use `@qa-tester` to propose test coverage with traceability.
+5. **Generate Test Stubs** — Run `sentinel generate` to produce JUnit stub classes.
+6. **Development** — Implement the contracts and the test stubs. Only now should production code be written.
 
 ### Enforcement
 
@@ -97,7 +98,7 @@ If the user requests work that **skips a phase**, do NOT proceed silently. Inste
 
 **Models:** AuditReport, AuditableCourse, AuditContext, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, ScoredItem, NodeScores, QuizNode, KnowledgeNode, TopicNode, MilestoneNode, NlpToken
 
-**Interfaces:** ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig
+**Interfaces:** ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity
 
 **Implementations:** IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator
 
@@ -113,11 +114,11 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 ### audit-application
 
-**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure
+**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure
 
 **Interfaces:** AuditRunner, CourseMapper
 
-**Implementations:** CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig
+**Implementations:** CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig
 
 ### course-infrastructure
 
@@ -131,13 +132,13 @@ Infrastructure module for course persistence. Contains the filesystem adapter th
 
 CLI entry point for running content audits from the command line
 
-**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure
+**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure
 
-**Models:** ReportViewModel, MilestoneScoreRow, QuizScoreRow, KnowledgeScoreRow, TopicScoreRow
+**Models:** ReportViewModel, MilestoneScoreRow, QuizScoreRow, KnowledgeScoreRow, TopicScoreRow, DrillDownScope, DrillDownLevel, DrillDownView, ChildScoreRow
 
-**Interfaces:** ReportFormatter, AuditCli, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter
+**Interfaces:** ReportFormatter, AuditCli, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter, DrillDownResolver
 
-**Implementations:** TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry, DefaultReportViewModelTransformer, TableReportFormatter, RawJsonReportFormatter
+**Implementations:** TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry, DefaultReportViewModelTransformer, TableReportFormatter, RawJsonReportFormatter, DefaultDrillDownResolver
 
 ### nlp-infrastructure
 
@@ -149,6 +150,12 @@ Infrastructure module for NLP processing. Provides SpaCy-backed tokenization beh
 
 **Interfaces:** NlpTokenizerFactory
 
+### vocabulary-infrastructure
+
+Infrastructure module for linguistic reference catalogs (EVP vocabulary profiles, COCA frequency data). Provides static lookup data for vocabulary analysis. Separate from NLP processing (which handles runtime tokenization).
+
+**Depends on:** audit-domain
+
 ## Boundaries
 
 | Module | Can Access |
@@ -156,8 +163,9 @@ Infrastructure module for NLP processing. Provides SpaCy-backed tokenization beh
 | audit-domain | (none) |
 | course-domain | (none) |
 | refiner-domain | (none) |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
 | course-infrastructure | course-domain |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
 | nlp-infrastructure | audit-domain |
+| vocabulary-infrastructure | audit-domain |
 

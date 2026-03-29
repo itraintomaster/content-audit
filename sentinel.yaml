@@ -37,6 +37,15 @@ modules:
     - name: quizId
       type: String
       description: Current quiz identifier in traversal
+    - name: topicLabel
+      type: String
+      description: Human-readable label of the current topic in traversal
+    - name: knowledgeLabel
+      type: String
+      description: Human-readable label of the current knowledge in traversal
+    - name: quizLabel
+      type: String
+      description: Human-readable title of the current quiz in traversal
   - name: AuditableKnowledge
     type: record
     fields:
@@ -50,16 +59,46 @@ modules:
       type: boolean
       description: Flag indicating whether this knowledge contains sentence-type quizzes
         eligible for length analysis
+    - name: id
+      type: String
+      description: Knowledge identifier
+    - name: label
+      type: String
+      description: Human-readable knowledge label (same as title)
+    - name: code
+      type: String
+      description: Knowledge short code
+    extends: AuditableEntity
   - name: AuditableTopic
     type: record
     fields:
     - name: knowledge
       type: List<AuditableKnowledge>
+    - name: id
+      type: String
+      description: Topic identifier
+    - name: label
+      type: String
+      description: Human-readable topic label
+    - name: code
+      type: String
+      description: Topic short code
+    extends: AuditableEntity
   - name: AuditableMilestone
     type: record
     fields:
     - name: topics
       type: List<AuditableTopic>
+    - name: id
+      type: String
+      description: Milestone identifier
+    - name: label
+      type: String
+      description: Human-readable milestone label
+    - name: code
+      type: String
+      description: Milestone short code
+    extends: AuditableEntity
   - name: AuditableQuiz
     type: record
     fields:
@@ -68,6 +107,16 @@ modules:
     - name: tokens
       type: List<NlpToken>
       description: Pre-computed enriched NLP tokens for the quiz sentence
+    - name: id
+      type: String
+      description: Quiz identifier
+    - name: label
+      type: String
+      description: Human-readable quiz label
+    - name: code
+      type: String
+      description: Quiz short code
+    extends: AuditableEntity
   - name: CefrLevel
     type: enum
     fields:
@@ -120,6 +169,9 @@ modules:
     - name: quizId
       type: String
       description: Quiz this score belongs to (only present if target is QUIZ)
+    - name: source
+      type: AuditableEntity
+      description: Reference to the auditable entity that generated this score
   - name: NodeScores
     type: record
     fields:
@@ -133,6 +185,12 @@ modules:
       type: String
     - name: scores
       type: NodeScores
+    - name: label
+      type: String
+      description: Human-readable quiz label
+    - name: code
+      type: String
+      description: Quiz short code
   - name: KnowledgeNode
     type: record
     fields:
@@ -142,6 +200,12 @@ modules:
       type: NodeScores
     - name: quizzes
       type: List<QuizNode>
+    - name: label
+      type: String
+      description: Human-readable knowledge label
+    - name: code
+      type: String
+      description: Knowledge short code
   - name: TopicNode
     type: record
     fields:
@@ -151,6 +215,12 @@ modules:
       type: NodeScores
     - name: knowledges
       type: List<KnowledgeNode>
+    - name: label
+      type: String
+      description: Human-readable topic label
+    - name: code
+      type: String
+      description: Topic short code
   - name: MilestoneNode
     type: record
     fields:
@@ -160,6 +230,12 @@ modules:
       type: NodeScores
     - name: topics
       type: List<TopicNode>
+    - name: label
+      type: String
+      description: Human-readable milestone label
+    - name: code
+      type: String
+      description: Milestone short code
   - name: NlpToken
     type: record
     fields:
@@ -252,6 +328,40 @@ modules:
     - signature: "getTop(): int"
     - signature: "getSubExposedThreshold(): double"
     - signature: "getOverExposedThreshold(): double"
+  - name: LemmaAbsenceConfig
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "getAbsoluteThreshold(CefrLevel level): int"
+    - signature: "getPercentageThreshold(CefrLevel level): double"
+    - signature: "getLevelWeight(CefrLevel level): double"
+    - signature: "getHighPriorityBound(): int"
+    - signature: "getMediumPriorityBound(): int"
+    - signature: "getLowPriorityBound(): int"
+    - signature: "getHighPriorityAlertThreshold(): int"
+    - signature: "getMediumPriorityAlertThreshold(): int"
+    - signature: "getLowPriorityAlertThreshold(): int"
+    - signature: "getCriticalAbsenceThreshold(): int"
+    - signature: "getAcceptableAbsenceThreshold(): int"
+    - signature: "getHighReportLimit(): int"
+    - signature: "getMediumReportLimit(): int"
+    - signature: "getLowReportLimit(): int"
+    - signature: "getDiscountPerLevel(): double"
+  - name: EvpCatalogPort
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getExpectedLemmas(CefrLevel level): Set<LemmaAndPos>"
+    - signature: "isPhrase(String lemma): boolean"
+    - signature: "getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>"
+    - signature: "getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>"
+  - name: AuditableEntity
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getId(): String"
+    - signature: "getLabel(): String"
+    - signature: "getCode(): String"
   implementations:
   - name: IAuditEngine
     requiresInject:
@@ -3305,7 +3415,7 @@ modules:
       \ into frequency bands (K1-K5+), evaluates distribution against configurable\
       \ targets per CEFR level, assesses progression across levels, and generates\
       \ improvement directives."
-    visibility: public
+    visibility: internal
     models:
     - name: FrequencyBand
       type: record
@@ -3421,6 +3531,9 @@ modules:
       - name: bucketResults
         type: List<BucketResult>
         description: Distribution results per band for this topic
+      - name: topicLabel
+        type: String
+        description: Human-readable topic name for COCA distribution reports
     - name: ProgressionState
       type: enum
       fields:
@@ -3938,6 +4051,892 @@ modules:
     - name: DefaultExposureClassifier
       implements:
       - ExposureClassifier
+  - name: labs
+    description: "Lemma absence analysis by CEFR level. Compares course vocabulary\
+      \ against the EVP catalog to detect absent, misplaced, or scattered lemmas.\
+      \ Classifies absence type, assigns priority by COCA frequency, computes per-level\
+      \ metrics, and generates actionable recommendations."
+    visibility: internal
+    models:
+    - name: AbsenceType
+      type: enum
+      fields:
+      - name: COMPLETELY_ABSENT
+        type: double
+        description: Lemma not found in any level — impact 1.0
+      - name: APPEARS_TOO_LATE
+        type: double
+        description: Lemma only in levels after expected — impact 0.8
+      - name: APPEARS_TOO_EARLY
+        type: double
+        description: Lemma only in levels before expected — impact 0.6
+      - name: SCATTERED_PLACEMENT
+        type: double
+        description: Lemma in levels both before and after expected — impact 0.4
+    - name: PriorityLevel
+      type: enum
+      fields:
+      - name: HIGH
+      - name: MEDIUM
+      - name: LOW
+    - name: LemmaAndPos
+      type: record
+      fields:
+      - name: lemma
+        type: String
+        description: Base form of the word
+      - name: pos
+        type: String
+        description: Part-of-speech tag
+    - name: AbsentLemma
+      type: record
+      fields:
+      - name: lemmaAndPos
+        type: LemmaAndPos
+        description: The absent lemma-POS pair
+      - name: expectedLevel
+        type: CefrLevel
+        description: CEFR level where the lemma is expected per EVP
+      - name: absenceType
+        type: AbsenceType
+        description: Classification of the absence
+      - name: presentInLevels
+        type: List<CefrLevel>
+        description: Levels where the lemma does appear (may be empty)
+      - name: priorityLevel
+        type: PriorityLevel
+        description: Priority based on COCA frequency rank
+      - name: cocaRank
+        type: Integer
+        description: COCA frequency ranking (null if unavailable)
+      - name: semanticCategory
+        type: String
+        description: Semantic topic from EVP catalog (nullable)
+    - name: AbsenceAssessment
+      type: enum
+      fields:
+      - name: OPTIMAL
+        description: All levels within tolerance thresholds
+      - name: ACCEPTABLE
+        description: Some levels exceed thresholds but no critical level (A1/A2) exceeds
+      - name: NEEDS_IMPROVEMENT
+        description: At least one critical level (A1/A2) exceeds its threshold
+    - name: LevelAbsenceMetrics
+      type: record
+      fields:
+      - name: level
+        type: CefrLevel
+        description: CEFR level being measured
+      - name: totalExpected
+        type: int
+        description: Number of EVP lemmas expected for this level
+      - name: totalAbsent
+        type: int
+        description: Number of expected lemmas not found in this level
+      - name: absencePercentage
+        type: double
+        description: "Percentage of absence: (absent/expected)*100"
+      - name: absentLemmas
+        type: List<AbsentLemma>
+        description: Detailed list of absent lemmas with enrichment
+      - name: score
+        type: double
+        description: "Level score: 1.0 - (absencePercentage/100) weighted by impact"
+    - name: RecommendationAction
+      type: enum
+      fields:
+      - name: ADD_VOCABULARY
+        description: Add sentences containing completely absent lemmas
+      - name: INTRODUCE_EARLIER
+        description: Introduce lemmas in earlier levels where they are expected
+      - name: REINFORCE_AT_LEVEL
+        description: Reinforce lemmas at their expected level
+      - name: CONSOLIDATE_PLACEMENT
+        description: Consolidate lemma placement across levels
+    - name: EffortLevel
+      type: enum
+      fields:
+      - name: LOW
+        description: 1-5 affected lemmas
+      - name: MEDIUM
+        description: 6-15 affected lemmas
+      - name: HIGH
+        description: 16+ affected lemmas
+    - name: AbsenceRecommendation
+      type: record
+      fields:
+      - name: action
+        type: RecommendationAction
+        description: Type of corrective action
+      - name: description
+        type: String
+        description: Human-readable explanation of the problem and proposed fix
+      - name: priority
+        type: PriorityLevel
+        description: "Recommendation priority (HIGH for A1/A2, varies for B1/B2)"
+      - name: affectedLemmas
+        type: List<AbsentLemma>
+        description: Lemmas this recommendation addresses
+      - name: effortLevel
+        type: EffortLevel
+        description: Estimated effort to implement
+      - name: expectedImpact
+        type: double
+        description: Estimated score improvement if implemented
+      - name: targetLevel
+        type: CefrLevel
+        description: CEFR level this recommendation targets
+    implementations:
+    - name: LemmaByLevelAbsenceAnalyzer
+      requiresInject:
+      - name: evpCatalogPort
+        type: EvpCatalogPort
+      - name: contentWordFilter
+        type: ContentWordFilter
+      - name: lemmaAbsenceConfig
+        type: LemmaAbsenceConfig
+      tests:
+      - name: "Given a LemmaByLevelAbsenceAnalyzer, when getName is called, then returns\
+          \ lemma-absence"
+        target: LemmaByLevelAbsenceAnalyzer
+        invoke:
+          method: getName
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+        assert:
+          returns: lemma-absence
+      - name: "Given a LemmaByLevelAbsenceAnalyzer, when getTarget is called, then\
+          \ returns COURSE"
+        target: LemmaByLevelAbsenceAnalyzer
+        invoke:
+          method: getTarget
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+        assert:
+          returns: COURSE
+      - name: "Given no data has been processed, when getResults is called, then returns\
+          \ empty list"
+        target: LemmaByLevelAbsenceAnalyzer
+        invoke:
+          method: getResults
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+        assert:
+          returns: "[]"
+      - name: "Given EVP expects lemma cat-NOUN in A1 and course has cat-NOUN in A1,\
+          \ when onCourseComplete is called, then cat-NOUN is not marked as absent"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R010
+      - name: "Given EVP expects lemma cat-NOUN in A1 and course does not have cat-NOUN\
+          \ anywhere, when onCourseComplete is called, then cat-NOUN is marked as\
+          \ absent in A1"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R003
+      - name: "Given EVP expects run-VERB and run-NOUN in A2 and course only has run-NOUN\
+          \ in A2, when onCourseComplete is called, then run-VERB is absent but run-NOUN\
+          \ is not"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R003
+      - name: "Given EVP contains a multiword phrase look-for, when expected lemmas\
+          \ are obtained, then the phrase is excluded from analysis"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R005
+      - name: "Given EVP expects lemmas and contentWordFilter rejects functional words,\
+          \ when expected lemmas are obtained, then functional words are excluded"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R001
+      - name: "Given a course with quizzes containing content-word tokens in A1, when\
+          \ onCourseComplete is called, then present lemmas are collected from all\
+          \ quiz tokens in A1"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R002
+      - name: "Given EVP expects lemma dog-NOUN in A2 and course has dog-NOUN only\
+          \ in B1, when onCourseComplete is called, then dog-NOUN is marked as absent\
+          \ in A2 with presentInLevels containing B1"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R004
+      - name: "Given a lemma expected in A2 that does not appear in any level, when\
+          \ classified, then absence type is COMPLETELY_ABSENT"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R007
+      - name: "Given a lemma expected in A2 that only appears in B1 and B2, when classified,\
+          \ then absence type is APPEARS_TOO_LATE"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R007
+      - name: "Given a lemma expected in B1 that only appears in A1, when classified,\
+          \ then absence type is APPEARS_TOO_EARLY"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R007
+      - name: "Given a lemma expected in A2 that appears in A1 and B2, when classified,\
+          \ then absence type is SCATTERED_PLACEMENT"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R007
+      - name: "Given a lemma expected in A2 that appears in A2 and also in B1, when\
+          \ onCourseComplete is called, then lemma is not marked as absent"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R010
+      - name: "Given COMPLETELY_ABSENT type, when impact score is checked, then it\
+          \ is 1.0"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R008
+      - name: "Given APPEARS_TOO_LATE type, when impact score is checked, then it\
+          \ is 0.8"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R008
+      - name: "Given APPEARS_TOO_EARLY type, when impact score is checked, then it\
+          \ is 0.6"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R008
+      - name: "Given SCATTERED_PLACEMENT type, when impact score is checked, then\
+          \ it is 0.4"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R008
+      - name: "Given APPEARS_TOO_LATE and APPEARS_TOO_EARLY impacts, when compared,\
+          \ then TOO_LATE impact 0.8 is greater than TOO_EARLY impact 0.6"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R009
+      - name: "Given an absent lemma with COCA rank 500, when priority is assigned,\
+          \ then priority is HIGH"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: "Given an absent lemma with COCA rank 1000, when priority is assigned,\
+          \ then priority is HIGH"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: "Given an absent lemma with COCA rank 1500, when priority is assigned,\
+          \ then priority is MEDIUM"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: "Given an absent lemma with COCA rank 3000, when priority is assigned,\
+          \ then priority is MEDIUM"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: "Given an absent lemma with COCA rank 4000, when priority is assigned,\
+          \ then priority is LOW"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: "Given an absent lemma with COCA rank 5000, when priority is assigned,\
+          \ then priority is LOW"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: "Given an absent lemma with no COCA rank available, when priority is\
+          \ assigned, then priority defaults to LOW"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R013
+      - name: "Given an absent lemma, when enrichment is performed, then result contains\
+          \ COCA rank and semantic category and priority level"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R012
+      - name: "Given 2 absent lemmas of HIGH priority in A2 exceeding alert threshold\
+          \ of 0, when analysis completes, then an alert is triggered for A2"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R014
+      - name: "Given a B1 sentence containing lemma cat-NOUN expected in A1, when\
+          \ sentence is scored, then discount is 0.2 and score is 0.8"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R018
+      - name: "Given an A2 sentence containing lemma cat-NOUN expected in A1, when\
+          \ sentence is scored, then discount is 0.1 and score is 0.9"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R018
+      - name: "Given a B2 sentence containing lemma cat-NOUN expected in A1, when\
+          \ sentence is scored, then discount is 0.3 and score is 0.7"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R018
+      - name: "Given a sentence with two misplaced lemmas at distances 1 and 3, when\
+          \ sentence is scored, then score uses max discount of 0.3 resulting in 0.7"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R019
+      - name: "Given a sentence with no misplaced lemmas, when sentence is scored,\
+          \ then score is 1.0"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R020
+      - name: "Given a sentence containing only non-EVP lemmas, when sentence is scored,\
+          \ then score is 1.0"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R020
+      - name: "Given a sentence with a lemma correctly placed at its expected level,\
+          \ when sentence is scored, then that lemma contributes no discount"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R017
+      - name: "Given all levels within their absolute and percentage thresholds, when\
+          \ assessment is computed, then result is OPTIMAL"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R022
+      - name: "Given B1 exceeds its threshold but A1 and A2 are within thresholds,\
+          \ when assessment is computed, then result is ACCEPTABLE"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R022
+      - name: "Given A1 exceeds its zero-tolerance threshold, when assessment is computed,\
+          \ then result is NEEDS_IMPROVEMENT"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R022
+      - name: "Given A2 exceeds its threshold, when assessment is computed, then result\
+          \ is NEEDS_IMPROVEMENT regardless of B1 B2 status"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R022
+      - name: "Given A2 has 1 absent lemma but it represents 6 percent of expected,\
+          \ when threshold is checked, then A2 exceeds the percentage threshold even\
+          \ if absolute is within limit"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R021
+      - name: "Given A1 has zero tolerance threshold, when any lemma is absent in\
+          \ A1, then A1 exceeds its threshold"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R021
+      - name: "Given level metrics for A1, when computed, then result includes totalExpected\
+          \ and totalAbsent and absencePercentage and absentLemmasByType"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R023
+      - name: "Given A1 and A2 have weight 2.0 and B1 and B2 have weight 1.0, when\
+          \ global score is computed, then it is the weighted average of per-level\
+          \ scores"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R024
+      - name: "Given a course with perfect coverage in all levels, when global score\
+          \ is computed, then score is 1.0"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R024
+      - name: "Given more than 20 HIGH priority absent lemmas, when results are reported,\
+          \ then at most 20 HIGH priority lemmas are included in report"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R026
+      - name: "Given more than 30 MEDIUM priority absent lemmas, when results are\
+          \ reported, then at most 30 MEDIUM priority lemmas are included in report"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R026
+      - name: "Given total HIGH priority absent lemmas exceeds critical threshold,\
+          \ when assessment is computed, then result cannot be OPTIMAL"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R025
+      - name: "Given A1 exceeds its threshold with COMPLETELY_ABSENT lemmas, when\
+          \ recommendations are generated, then an ADD_VOCABULARY recommendation is\
+          \ produced for A1"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R028
+      - name: "Given B1 has APPEARS_TOO_LATE lemmas exceeding threshold, when recommendations\
+          \ are generated, then an INTRODUCE_EARLIER recommendation is produced"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R028
+      - name: "Given A2 has APPEARS_TOO_EARLY lemmas exceeding threshold, when recommendations\
+          \ are generated, then a REINFORCE_AT_LEVEL recommendation is produced"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R028
+      - name: "Given B2 has SCATTERED_PLACEMENT lemmas exceeding threshold, when recommendations\
+          \ are generated, then a CONSOLIDATE_PLACEMENT recommendation is produced"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R028
+      - name: "Given a recommendation for A1 with any lemma priority, when recommendation\
+          \ priority is computed, then it is HIGH"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: "Given a recommendation for A2 with LOW priority lemmas, when recommendation\
+          \ priority is computed, then it is still HIGH because A2 is a critical level"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: "Given a recommendation for B1 with HIGH priority lemmas, when recommendation\
+          \ priority is computed, then it is MEDIUM"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: "Given a recommendation for B2 with LOW priority lemmas, when recommendation\
+          \ priority is computed, then it is LOW"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: "Given a recommendation affecting 3 lemmas, when effort level is estimated,\
+          \ then it is LOW"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: "Given a recommendation affecting 10 lemmas, when effort level is estimated,\
+          \ then it is MEDIUM"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: "Given a recommendation affecting 20 lemmas, when effort level is estimated,\
+          \ then it is HIGH"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: "Given a level within its threshold, when recommendations are checked,\
+          \ then no recommendation is generated for that level"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R027
+      - name: "Given a LemmaByLevelAbsenceAnalyzer, when onTopic is called, then it\
+          \ completes without error"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+      - name: "Given a LemmaByLevelAbsenceAnalyzer, when onKnowledge is called, then\
+          \ it completes without error"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+      - name: "Given a course with full vocabulary coverage across all levels, when\
+          \ full audit lifecycle is executed, then assessment is OPTIMAL and score\
+          \ is 1.0 and no recommendations are generated"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J001
+      - name: "Given a course where A1 has completely absent HIGH priority lemmas,\
+          \ when full audit lifecycle is executed, then assessment is NEEDS_IMPROVEMENT\
+          \ and recommendations include ADD_VOCABULARY for A1"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J002
+      - name: "Given a course where lemmas expected in A2 only appear in B1, when\
+          \ full audit lifecycle is executed, then those lemmas are classified as\
+          \ APPEARS_TOO_LATE and recommendation is INTRODUCE_EARLIER"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J003
+      - name: "Given a course with misplaced lemmas in sentences, when full audit\
+          \ lifecycle is executed, then sentence scores reflect level distance discounts"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J004
+      - name: "Given a course with multiple levels exceeding thresholds, when full\
+          \ audit lifecycle is executed, then recommendations are generated per level\
+          \ ordered by priority"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J005
+      - name: "Given EVP has expected lemmas for A1 A2 B1 B2, when onCourseComplete\
+          \ is called, then expected lemmas are obtained for each level independently"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R001
+      - name: "Given a course with quizzes across A1 and A2, when onCourseComplete\
+          \ is called, then present lemmas are collected separately per level"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R002
+      - name: "Given a course where the same lemma appears in multiple topics within\
+          \ A1, when onCourseComplete is called, then the lemma is counted as present\
+          \ only once for A1"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R002
+      - name: "Given the four absence types, when their values are enumerated, then\
+          \ they are COMPLETELY_ABSENT and APPEARS_TOO_LATE and APPEARS_TOO_EARLY\
+          \ and SCATTERED_PLACEMENT"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R006
+      - name: "Given 4 absent lemmas of MEDIUM priority in B1 exceeding alert threshold\
+          \ of 3, when analysis completes, then an alert is triggered for MEDIUM priority\
+          \ in B1"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R014
+      - name: "Given 11 absent lemmas of LOW priority in B2 exceeding alert threshold\
+          \ of 10, when analysis completes, then an alert is triggered for LOW priority\
+          \ in B2"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R014
+      - name: "Given 3 absent lemmas of MEDIUM priority in A2 exactly at alert threshold\
+          \ of 3, when analysis completes, then no alert is triggered for MEDIUM priority"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R014
+      - name: "Given EVP expects run-VERB in A2 and course has run-NOUN in A2 but\
+          \ not run-VERB, when onCourseComplete is called, then run-VERB is marked\
+          \ absent despite run-NOUN being present"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R015
+      - name: "Given the pronoun I is expected in A1 by EVP and is absent from A1,\
+          \ when onCourseComplete is called, then I is marked as absent with priority\
+          \ HIGH despite being a functional word"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R016
+      - name: "Given the auxiliary be is expected in A1 and absent from A1, when onCourseComplete\
+          \ is called, then be is marked as absent with priority HIGH"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R016
+      - name: "Given a critical functional lemma is absent in B1, when onCourseComplete\
+          \ is called, then it is not treated as a critical functional lemma because\
+          \ only A1 and A2 are critical scope"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R016
+      - name: "Given an absent lemma with no semantic category available from EVP,\
+          \ when enrichment is performed, then semantic category is null and other\
+          \ fields are still populated"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R012
+      - name: "Given a sentence containing a lemma that does not exist in the EVP\
+          \ catalog, when sentence is scored, then that lemma is not considered misplaced"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R017
+      - name: "Given a sentence with a lemma at maximum distance of 3 levels A1 expected\
+          \ in B2 sentence, when sentence is scored, then score is 0.7 which is the\
+          \ minimum possible"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R019
+      - name: "Given B1 has 6 absent lemmas exceeding both the absolute threshold\
+          \ of 5 and the percentage threshold of 10 percent, when threshold is checked,\
+          \ then B1 exceeds its threshold"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R021
+      - name: "Given B2 has 7 absent lemmas within the absolute threshold of 8 but\
+          \ exceeding the percentage threshold of 15 percent, when threshold is checked,\
+          \ then B2 exceeds via percentage"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R021
+      - name: "Given A2 has absent lemmas of types COMPLETELY_ABSENT and APPEARS_TOO_LATE,\
+          \ when metrics are computed, then absentLemmasByType groups them correctly\
+          \ by type"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R023
+      - name: "Given A1 score is 0.5 and A2 score is 1.0 and B1 score is 1.0 and B2\
+          \ score is 1.0, when global score is computed, then weighted average reflects\
+          \ A1 and A2 double weight"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R024
+      - name: "Given total HIGH priority absent lemmas is between acceptable threshold\
+          \ 5 and critical threshold 10, when assessment is computed, then result\
+          \ is ACCEPTABLE if no critical level exceeds its threshold"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R025
+      - name: "Given zero HIGH priority absent lemmas and all levels within thresholds,\
+          \ when assessment is computed, then result is OPTIMAL"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R025
+      - name: "Given more than 50 LOW priority absent lemmas, when results are reported,\
+          \ then at most 50 LOW priority lemmas are included in report"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R026
+      - name: "Given a recommendation for B1 with MEDIUM priority lemmas, when recommendation\
+          \ priority is computed, then it is MEDIUM"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: "Given a recommendation for B2 with MEDIUM priority lemmas, when recommendation\
+          \ priority is computed, then it is MEDIUM"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: "Given a recommendation affecting 1 lemma, when effort level is estimated,\
+          \ then it is LOW"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: "Given a recommendation affecting 5 lemmas, when effort level is estimated,\
+          \ then it is LOW"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: "Given a recommendation affecting 6 lemmas, when effort level is estimated,\
+          \ then it is MEDIUM"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: "Given a recommendation affecting 15 lemmas, when effort level is estimated,\
+          \ then it is MEDIUM"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: "Given a recommendation affecting 16 lemmas, when effort level is estimated,\
+          \ then it is HIGH"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: "Given a LemmaByLevelAbsenceAnalyzer, when onQuiz is called, then it\
+          \ completes without error"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+      - name: "Given a LemmaByLevelAbsenceAnalyzer, when onMilestone is called, then\
+          \ it completes without error"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+      - name: "Given EVP catalog returns empty set for all levels, when full audit\
+          \ lifecycle is executed, then analysis completes with 100 percent absence\
+          \ and assessment is NEEDS_IMPROVEMENT"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J001
+      - name: "Given a course with no quizzes in any level, when full audit lifecycle\
+          \ is executed, then present lemmas are empty and all expected lemmas are\
+          \ marked absent"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J001
+      - name: "Given a course where all sentences have scores above 0.8, when sentence\
+          \ scores are retrieved, then no sentence is flagged as problematic"
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J004
+      implements:
+      - ContentAnalyzer
 - name: course-domain
   description: "Domain module for course structure. Contains entity models representing\
     \ the 5-level hierarchy (Course > ROOT > Milestone > Topic > Knowledge > QuizTemplate),\
@@ -4228,6 +5227,7 @@ modules:
   - refiner-domain
   - course-infrastructure
   - nlp-infrastructure
+  - vocabulary-infrastructure
   interfaces:
   - name: AuditRunner
     stereotype: service
@@ -4798,6 +5798,378 @@ modules:
     - Component
     implements:
     - LemmaRecurrenceConfig
+  - name: DefaultLemmaAbsenceConfig
+    types:
+    - Component
+    tests:
+    - name: should return absolute threshold 0 for A1
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getAbsoluteThreshold
+        args:
+        - A1
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+      assert:
+        returns: 0
+    - name: should return absolute threshold 2 for A2
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getAbsoluteThreshold
+        args:
+        - A2
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+      assert:
+        returns: 2
+    - name: should return absolute threshold 5 for B1
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getAbsoluteThreshold
+        args:
+        - B1
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+      assert:
+        returns: 5
+    - name: should return absolute threshold 8 for B2
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getAbsoluteThreshold
+        args:
+        - B2
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+      assert:
+        returns: 8
+    - name: should return percentage threshold 0.0 for A1
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getPercentageThreshold
+        args:
+        - A1
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+      assert:
+        returns: 0.0
+    - name: should return percentage threshold 5.0 for A2
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getPercentageThreshold
+        args:
+        - A2
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+      assert:
+        returns: 5.0
+    - name: should return percentage threshold 10.0 for B1
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getPercentageThreshold
+        args:
+        - B1
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+      assert:
+        returns: 10.0
+    - name: should return percentage threshold 15.0 for B2
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getPercentageThreshold
+        args:
+        - B2
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+      assert:
+        returns: 15.0
+    - name: should return level weight 2.0 for A1
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getLevelWeight
+        args:
+        - A1
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R024
+      assert:
+        returns: 2.0
+    - name: should return level weight 2.0 for A2
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getLevelWeight
+        args:
+        - A2
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R024
+      assert:
+        returns: 2.0
+    - name: should return level weight 1.0 for B1
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getLevelWeight
+        args:
+        - B1
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R024
+      assert:
+        returns: 1.0
+    - name: should return level weight 1.0 for B2
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getLevelWeight
+        args:
+        - B2
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R024
+      assert:
+        returns: 1.0
+    - name: should return high priority bound of 1000
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getHighPriorityBound
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R011
+      assert:
+        returns: 1000
+    - name: should return medium priority bound of 3000
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getMediumPriorityBound
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R011
+      assert:
+        returns: 3000
+    - name: should return low priority bound of 5000
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getLowPriorityBound
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R011
+      assert:
+        returns: 5000
+    - name: should return high priority alert threshold of 0
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getHighPriorityAlertThreshold
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R014
+      assert:
+        returns: 0
+    - name: should return medium priority alert threshold of 3
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getMediumPriorityAlertThreshold
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R014
+      assert:
+        returns: 3
+    - name: should return low priority alert threshold of 10
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getLowPriorityAlertThreshold
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R014
+      assert:
+        returns: 10
+    - name: should return critical absence threshold of 10
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getCriticalAbsenceThreshold
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R025
+      assert:
+        returns: 10
+    - name: should return acceptable absence threshold of 5
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getAcceptableAbsenceThreshold
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R025
+      assert:
+        returns: 5
+    - name: should return high report limit of 20
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getHighReportLimit
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R026
+      assert:
+        returns: 20
+    - name: should return medium report limit of 30
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getMediumReportLimit
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R026
+      assert:
+        returns: 30
+    - name: should return low report limit of 50
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getLowReportLimit
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R026
+      assert:
+        returns: 50
+    - name: should return discount per level of 0.1
+      target: DefaultLemmaAbsenceConfig
+      invoke:
+        method: getDiscountPerLevel
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R018
+      assert:
+        returns: 0.1
+    - name: should have absolute thresholds increasing from A1 to B2
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+    - name: should have percentage thresholds increasing from A1 to B2
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+    - name: should have priority bounds ordered high less than medium less than low
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R011
+    - name: should weight critical levels A1 and A2 higher than B1 and B2
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R024
+    - name: should have report limits increasing from high to low priority
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R026
+    - name: should have critical absence threshold greater than acceptable absence
+        threshold
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R025
+    - name: should have alert thresholds non-decreasing from high to low priority
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R014
+      _change: add
+    - name: should enforce zero tolerance for high priority alert threshold
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R014
+      _change: add
+    - name: should enforce A1 zero tolerance with both absolute and percentage thresholds
+        at zero
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+      _change: add
+    - name: should have discount per level that limits max penalty to 0.3 for three-level
+        distance
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R018
+      _change: add
+    - name: should return non-negative values for all thresholds and bounds
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+      _change: add
+    - name: should return positive report limits for all priority levels
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R026
+      _change: add
+    - name: should return percentage thresholds between 0 and 100 for all levels
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+      _change: add
+    - name: should return positive level weights for all CEFR levels
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R024
+      _change: add
+    - name: should return discount per level between 0 exclusive and 1 exclusive
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R018
+      _change: add
+    implements:
+    - LemmaAbsenceConfig
   patterns:
   - type: Decorator
     decorators:
@@ -5376,6 +6748,7 @@ modules:
   - course-domain
   - course-infrastructure
   - nlp-infrastructure
+  - vocabulary-infrastructure
   models:
   - name: ReportViewModel
     type: record
@@ -5406,6 +6779,12 @@ modules:
     - name: topicScores
       type: List<TopicScoreRow>
       description: Per-topic breakdown of analyzer scores
+    - name: label
+      type: String
+      description: Human-readable milestone label
+    - name: code
+      type: String
+      description: Milestone short code
   - name: QuizScoreRow
     type: record
     fields:
@@ -5418,6 +6797,12 @@ modules:
     - name: analyzerScores
       type: "Map<String,Double>"
       description: Score per analyzer for this quiz
+    - name: label
+      type: String
+      description: Human-readable quiz label
+    - name: code
+      type: String
+      description: Quiz short code
   - name: KnowledgeScoreRow
     type: record
     fields:
@@ -5433,6 +6818,12 @@ modules:
     - name: quizScores
       type: List<QuizScoreRow>
       description: Per-quiz breakdown of analyzer scores
+    - name: label
+      type: String
+      description: Human-readable knowledge label
+    - name: code
+      type: String
+      description: Knowledge short code
   - name: TopicScoreRow
     type: record
     fields:
@@ -5448,6 +6839,12 @@ modules:
     - name: knowledgeScores
       type: List<KnowledgeScoreRow>
       description: Per-knowledge breakdown of analyzer scores
+    - name: label
+      type: String
+      description: Human-readable topic label
+    - name: code
+      type: String
+      description: Topic short code
   - name: DrillDownScope
     type: record
     fields:
@@ -5501,6 +6898,12 @@ modules:
     - name: analyzerScores
       type: "Map<String,Double>"
       description: Child per-analyzer scores
+    - name: label
+      type: String
+      description: Human-readable child node label
+    - name: code
+      type: String
+      description: Child node short code
   interfaces:
   - name: ReportFormatter
     stereotype: port
@@ -5940,6 +7343,23 @@ modules:
       visibility: package-private
       implements:
       - NlpTokenizer
+- name: vocabulary-infrastructure
+  description: "Infrastructure module for linguistic reference catalogs (EVP vocabulary\
+    \ profiles, COCA frequency data). Provides static lookup data for vocabulary analysis.\
+    \ Separate from NLP processing (which handles runtime tokenization)."
+  dependsOn:
+  - audit-domain
+  packages:
+  - name: evp
+    description: "EVP catalog access — expected lemmas by CEFR level, semantic categories"
+    visibility: internal
+    implementations:
+    - name: FileSystemEvpCatalog
+      implements:
+      - EvpCatalogPort
+  - name: coca
+    description: COCA frequency ranking lookups
+    visibility: internal
 language:
   name: java
   version: 17

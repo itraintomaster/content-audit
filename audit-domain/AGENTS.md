@@ -27,6 +27,9 @@
 | topicId | `String` |
 | knowledgeId | `String` |
 | quizId | `String` |
+| topicLabel | `String` |
+| knowledgeLabel | `String` |
+| quizLabel | `String` |
 
 ### AuditableKnowledge (`record`)
 
@@ -36,18 +39,27 @@
 | title | `String` |
 | instructions | `String` |
 | isSentence | `boolean` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
 
 ### AuditableTopic (`record`)
 
 | Field | Type |
 |-------|------|
 | knowledge | `List<AuditableKnowledge>` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
 
 ### AuditableMilestone (`record`)
 
 | Field | Type |
 |-------|------|
 | topics | `List<AuditableTopic>` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
 
 ### AuditableQuiz (`record`)
 
@@ -55,6 +67,9 @@
 |-------|------|
 | sentence | `String` |
 | tokens | `List<NlpToken>` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
 
 ### CefrLevel (`enum`)
 
@@ -94,6 +109,7 @@
 | topicId | `String` |
 | knowledgeId | `String` |
 | quizId | `String` |
+| source | `AuditableEntity` |
 
 ### NodeScores (`record`)
 
@@ -107,6 +123,8 @@
 |-------|------|
 | quizId | `String` |
 | scores | `NodeScores` |
+| label | `String` |
+| code | `String` |
 
 ### KnowledgeNode (`record`)
 
@@ -115,6 +133,8 @@
 | knowledgeId | `String` |
 | scores | `NodeScores` |
 | quizzes | `List<QuizNode>` |
+| label | `String` |
+| code | `String` |
 
 ### TopicNode (`record`)
 
@@ -123,6 +143,8 @@
 | topicId | `String` |
 | scores | `NodeScores` |
 | knowledges | `List<KnowledgeNode>` |
+| label | `String` |
+| code | `String` |
 
 ### MilestoneNode (`record`)
 
@@ -131,6 +153,8 @@
 | milestoneId | `String` |
 | scores | `NodeScores` |
 | topics | `List<TopicNode>` |
+| label | `String` |
+| code | `String` |
 
 ### NlpToken (`record`)
 
@@ -224,6 +248,43 @@ Methods:
 - `getTop(): int`
 - `getSubExposedThreshold(): double`
 - `getOverExposedThreshold(): double`
+
+### LemmaAbsenceConfig (port) [sealed]
+
+Methods:
+
+- `getAbsoluteThreshold(CefrLevel level): int`
+- `getPercentageThreshold(CefrLevel level): double`
+- `getLevelWeight(CefrLevel level): double`
+- `getHighPriorityBound(): int`
+- `getMediumPriorityBound(): int`
+- `getLowPriorityBound(): int`
+- `getHighPriorityAlertThreshold(): int`
+- `getMediumPriorityAlertThreshold(): int`
+- `getLowPriorityAlertThreshold(): int`
+- `getCriticalAbsenceThreshold(): int`
+- `getAcceptableAbsenceThreshold(): int`
+- `getHighReportLimit(): int`
+- `getMediumReportLimit(): int`
+- `getLowReportLimit(): int`
+- `getDiscountPerLevel(): double`
+
+### EvpCatalogPort (port)
+
+Methods:
+
+- `getExpectedLemmas(CefrLevel level): Set<LemmaAndPos>`
+- `isPhrase(String lemma): boolean`
+- `getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>`
+- `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
+
+### AuditableEntity (port)
+
+Methods:
+
+- `getId(): String`
+- `getLabel(): String`
+- `getCode(): String`
 
 ## Implementations
 

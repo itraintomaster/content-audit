@@ -1,0 +1,74 @@
+code: __proposal__
+description: "Add invariant and constraint tests for DefaultLemmaAbsenceConfig — alert threshold ordering, A1 zero-tolerance consistency, discount range validation, non-negative bounds, percentage range validation, and positive report limits"
+modules:
+- name: audit-application
+  implementations:
+  - name: DefaultLemmaAbsenceConfig
+    implements:
+    - LemmaAbsenceConfig
+    tests:
+    - name: should have alert thresholds non-decreasing from high to low priority
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R014
+      _change: add
+    - name: should enforce zero tolerance for high priority alert threshold
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R014
+      _change: add
+    - name: should enforce A1 zero tolerance with both absolute and percentage thresholds at zero
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+      _change: add
+    - name: should have discount per level that limits max penalty to 0.3 for three-level distance
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R018
+      _change: add
+    - name: should return non-negative values for all thresholds and bounds
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+      _change: add
+    - name: should return positive report limits for all priority levels
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R026
+      _change: add
+    - name: should return percentage thresholds between 0 and 100 for all levels
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R021
+      _change: add
+    - name: should return positive level weights for all CEFR levels
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R024
+      _change: add
+    - name: should return discount per level between 0 exclusive and 1 exclusive
+      target: DefaultLemmaAbsenceConfig
+      type: unit
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R018
+      _change: add
+    _change: modify
+  _change: modify

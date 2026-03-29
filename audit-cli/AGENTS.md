@@ -24,6 +24,8 @@ CLI entry point for running content audits from the command line
 | analyzerScores | `Map<String,Double>` |
 | overallScore | `double` |
 | topicScores | `List<TopicScoreRow>` |
+| label | `String` |
+| code | `String` |
 
 ### QuizScoreRow (`record`)
 
@@ -32,6 +34,8 @@ CLI entry point for running content audits from the command line
 | quizId | `String` |
 | overallScore | `double` |
 | analyzerScores | `Map<String,Double>` |
+| label | `String` |
+| code | `String` |
 
 ### KnowledgeScoreRow (`record`)
 
@@ -41,6 +45,8 @@ CLI entry point for running content audits from the command line
 | overallScore | `double` |
 | analyzerScores | `Map<String,Double>` |
 | quizScores | `List<QuizScoreRow>` |
+| label | `String` |
+| code | `String` |
 
 ### TopicScoreRow (`record`)
 
@@ -50,6 +56,8 @@ CLI entry point for running content audits from the command line
 | overallScore | `double` |
 | analyzerScores | `Map<String,Double>` |
 | knowledgeScores | `List<KnowledgeScoreRow>` |
+| label | `String` |
+| code | `String` |
 
 ### DrillDownScope (`record`)
 
@@ -86,6 +94,8 @@ CLI entry point for running content audits from the command line
 | id | `String` |
 | overallScore | `double` |
 | analyzerScores | `Map<String,Double>` |
+| label | `String` |
+| code | `String` |
 
 ## Interfaces
 
@@ -238,6 +248,9 @@ Methods:
 | topicId | `String` |
 | knowledgeId | `String` |
 | quizId | `String` |
+| topicLabel | `String` |
+| knowledgeLabel | `String` |
+| quizLabel | `String` |
 
 ### AuditableKnowledge (`record`)
 
@@ -247,18 +260,27 @@ Methods:
 | title | `String` |
 | instructions | `String` |
 | isSentence | `boolean` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
 
 ### AuditableTopic (`record`)
 
 | Field | Type |
 |-------|------|
 | knowledge | `List<AuditableKnowledge>` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
 
 ### AuditableMilestone (`record`)
 
 | Field | Type |
 |-------|------|
 | topics | `List<AuditableTopic>` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
 
 ### AuditableQuiz (`record`)
 
@@ -266,6 +288,9 @@ Methods:
 |-------|------|
 | sentence | `String` |
 | tokens | `List<NlpToken>` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
 
 ### CefrLevel (`enum`)
 
@@ -305,6 +330,7 @@ Methods:
 | topicId | `String` |
 | knowledgeId | `String` |
 | quizId | `String` |
+| source | `AuditableEntity` |
 
 ### NodeScores (`record`)
 
@@ -318,6 +344,8 @@ Methods:
 |-------|------|
 | quizId | `String` |
 | scores | `NodeScores` |
+| label | `String` |
+| code | `String` |
 
 ### KnowledgeNode (`record`)
 
@@ -326,6 +354,8 @@ Methods:
 | knowledgeId | `String` |
 | scores | `NodeScores` |
 | quizzes | `List<QuizNode>` |
+| label | `String` |
+| code | `String` |
 
 ### TopicNode (`record`)
 
@@ -334,6 +364,8 @@ Methods:
 | topicId | `String` |
 | scores | `NodeScores` |
 | knowledges | `List<KnowledgeNode>` |
+| label | `String` |
+| code | `String` |
 
 ### MilestoneNode (`record`)
 
@@ -342,6 +374,8 @@ Methods:
 | milestoneId | `String` |
 | scores | `NodeScores` |
 | topics | `List<TopicNode>` |
+| label | `String` |
+| code | `String` |
 
 ### NlpToken (`record`)
 
@@ -433,6 +467,43 @@ Methods:
 - `getTop(): int`
 - `getSubExposedThreshold(): double`
 - `getOverExposedThreshold(): double`
+
+### LemmaAbsenceConfig (port) [sealed]
+
+Methods:
+
+- `getAbsoluteThreshold(CefrLevel level): int`
+- `getPercentageThreshold(CefrLevel level): double`
+- `getLevelWeight(CefrLevel level): double`
+- `getHighPriorityBound(): int`
+- `getMediumPriorityBound(): int`
+- `getLowPriorityBound(): int`
+- `getHighPriorityAlertThreshold(): int`
+- `getMediumPriorityAlertThreshold(): int`
+- `getLowPriorityAlertThreshold(): int`
+- `getCriticalAbsenceThreshold(): int`
+- `getAcceptableAbsenceThreshold(): int`
+- `getHighReportLimit(): int`
+- `getMediumReportLimit(): int`
+- `getLowReportLimit(): int`
+- `getDiscountPerLevel(): double`
+
+### EvpCatalogPort (port)
+
+Methods:
+
+- `getExpectedLemmas(CefrLevel level): Set<LemmaAndPos>`
+- `isPhrase(String lemma): boolean`
+- `getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>`
+- `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
+
+### AuditableEntity (port)
+
+Methods:
+
+- `getId(): String`
+- `getLabel(): String`
+- `getCode(): String`
 
 ### From course-domain
 

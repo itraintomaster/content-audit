@@ -15,6 +15,7 @@
         <module>course-infrastructure</module>
         <module>audit-cli</module>
         <module>nlp-infrastructure</module>
+        <module>vocabulary-infrastructure</module>
 
   </modules>
 
@@ -93,6 +94,24 @@
                 <argument>-jar</argument>
                 <argument>/Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar</argument>
                 <argument>verify</argument>
+                <argument>-i</argument>
+                <argument>sentinel.yaml</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>sentinel-report</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>java</executable>
+              <arguments>
+                <argument>-jar</argument>
+                <argument>/Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar</argument>
+                <argument>report</argument>
+                <argument>generate</argument>
                 <argument>-i</argument>
                 <argument>sentinel.yaml</argument>
               </arguments>

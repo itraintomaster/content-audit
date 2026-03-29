@@ -8,8 +8,7 @@ workflow phases, and agent instructions are defined in `AGENTS.md`.
 
 ## Test Creation
 
-When creating tests for any implementation, use the `sentinel-test-loop` skill.
-This skill orchestrates a quality-controlled loop: the qa-tester proposes tests,
-the test-reviewer verifies them against sentinel.yaml and REQUIREMENT.md, and
-corrections are applied before generating the final patch. Never invoke qa-tester
-alone — always go through the loop.
+When designing tests for an implementation, invoke the `@qa-tester` agent.
+It analyzes contracts and requirements to propose test names with traceability.
+Tests are declared as `handwrittenTests` in sentinel.yaml, and `sentinel generate`
+creates JUnit stub classes that developers implement by hand.

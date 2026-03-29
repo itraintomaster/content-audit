@@ -1,27 +1,9 @@
 <!-- SENTINEL MANAGED FILE - DO NOT EDIT -->
-# Module: nlp-infrastructure (isolated)
+# Module: vocabulary-infrastructure (isolated)
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
-Infrastructure module for NLP processing. Provides SpaCy-backed tokenization behind a factory, with internal caching. Only the factory and configuration model are public; all processing internals are package-private.
-
-## Models
-
-### NlpTokenizerConfig (`record`)
-
-| Field | Type |
-|-------|------|
-| pythonScriptPath | `String` |
-| cocaDataPath | `String` |
-| timeoutSeconds | `int` |
-
-## Interfaces
-
-### NlpTokenizerFactory (factory)
-
-Methods:
-
-- `create(NlpTokenizerConfig config): NlpTokenizer`
+Infrastructure module for linguistic reference catalogs (EVP vocabulary profiles, COCA frequency data). Provides static lookup data for vocabulary analysis. Separate from NLP processing (which handles runtime tokenization).
 
 ## Dependency Contracts
 

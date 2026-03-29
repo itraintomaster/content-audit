@@ -1,0 +1,248 @@
+code: __proposal__
+description: "Propagate human-readable labels alongside synthetic IDs through the\
+  \ audit pipeline. Adds label fields to auditable models, audit context, scored items,\
+  \ report nodes, and presentation view models so that reports display meaningful\
+  \ names (e.g. 'Present Simple') instead of positional IDs (e.g. 'A1-0').; Add AuditableEntity\
+  \ interface for unified identity across auditable objects, enrich tree nodes and\
+  \ score rows with label and code fields, and add source traceability to ScoredItem"
+modules:
+- name: audit-domain
+  models:
+  - name: AuditableTopic
+    type: record
+    extends: AuditableEntity
+    fields:
+    - name: id
+      type: String
+      description: Topic identifier
+      _change: add
+    - name: label
+      type: String
+      description: Human-readable topic label
+      _change: add
+    - name: code
+      type: String
+      description: Topic short code
+      _change: add
+    _change: modify
+  - name: AuditableQuiz
+    type: record
+    extends: AuditableEntity
+    fields:
+    - name: id
+      type: String
+      description: Quiz identifier
+      _change: add
+    - name: label
+      type: String
+      description: Human-readable quiz label
+      _change: add
+    - name: code
+      type: String
+      description: Quiz short code
+      _change: add
+    _change: modify
+  - name: AuditContext
+    type: record
+    fields:
+    - name: topicLabel
+      type: String
+      description: Human-readable label of the current topic in traversal
+      _change: add
+    - name: knowledgeLabel
+      type: String
+      description: Human-readable label of the current knowledge in traversal
+      _change: add
+    - name: quizLabel
+      type: String
+      description: Human-readable title of the current quiz in traversal
+      _change: add
+    _change: modify
+  - name: ScoredItem
+    type: record
+    fields:
+    - name: source
+      type: AuditableEntity
+      description: Reference to the auditable entity that generated this score
+      _change: add
+    _change: modify
+  - name: TopicNode
+    type: record
+    fields:
+    - name: label
+      type: String
+      description: Human-readable topic label
+      _change: add
+    - name: code
+      type: String
+      description: Topic short code
+      _change: add
+    _change: modify
+  - name: KnowledgeNode
+    type: record
+    fields:
+    - name: label
+      type: String
+      description: Human-readable knowledge label
+      _change: add
+    - name: code
+      type: String
+      description: Knowledge short code
+      _change: add
+    _change: modify
+  - name: QuizNode
+    type: record
+    fields:
+    - name: label
+      type: String
+      description: Human-readable quiz label
+      _change: add
+    - name: code
+      type: String
+      description: Quiz short code
+      _change: add
+    _change: modify
+  - name: AuditableMilestone
+    type: record
+    extends: AuditableEntity
+    fields:
+    - name: id
+      type: String
+      description: Milestone identifier
+      _change: add
+    - name: label
+      type: String
+      description: Human-readable milestone label
+      _change: add
+    - name: code
+      type: String
+      description: Milestone short code
+      _change: add
+    _change: modify
+  - name: AuditableKnowledge
+    type: record
+    extends: AuditableEntity
+    fields:
+    - name: id
+      type: String
+      description: Knowledge identifier
+      _change: add
+    - name: label
+      type: String
+      description: Human-readable knowledge label (same as title)
+      _change: add
+    - name: code
+      type: String
+      description: Knowledge short code
+      _change: add
+    _change: modify
+  - name: MilestoneNode
+    type: record
+    fields:
+    - name: label
+      type: String
+      description: Human-readable milestone label
+      _change: add
+    - name: code
+      type: String
+      description: Milestone short code
+      _change: add
+    _change: modify
+  interfaces:
+  - name: AuditableEntity
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getId(): String"
+    - signature: "getLabel(): String"
+    - signature: "getCode(): String"
+    _change: add
+  implementations:
+  - name: IScoreAggregator
+    implements:
+    - ScoreAggregator
+    _change: modify
+  packages:
+  - name: coca
+    visibility: internal
+    models:
+    - name: TopicBucketDistribution
+      type: record
+      fields:
+      - name: topicLabel
+        type: String
+        description: Human-readable topic name for COCA distribution reports
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  models:
+  - name: TopicScoreRow
+    type: record
+    fields:
+    - name: label
+      type: String
+      description: Human-readable topic label
+      _change: add
+    - name: code
+      type: String
+      description: Topic short code
+      _change: add
+    _change: modify
+  - name: KnowledgeScoreRow
+    type: record
+    fields:
+    - name: label
+      type: String
+      description: Human-readable knowledge label
+      _change: add
+    - name: code
+      type: String
+      description: Knowledge short code
+      _change: add
+    _change: modify
+  - name: QuizScoreRow
+    type: record
+    fields:
+    - name: label
+      type: String
+      description: Human-readable quiz label
+      _change: add
+    - name: code
+      type: String
+      description: Quiz short code
+      _change: add
+    _change: modify
+  - name: ChildScoreRow
+    type: record
+    fields:
+    - name: label
+      type: String
+      description: Human-readable child node label
+      _change: add
+    - name: code
+      type: String
+      description: Child node short code
+      _change: add
+    _change: modify
+  - name: MilestoneScoreRow
+    type: record
+    fields:
+    - name: label
+      type: String
+      description: Human-readable milestone label
+      _change: add
+    - name: code
+      type: String
+      description: Milestone short code
+      _change: add
+    _change: modify
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: CourseToAuditableMapper
+    implements:
+    - CourseMapper
+    _change: modify
+  _change: modify

@@ -1,0 +1,243 @@
+code: __proposal__
+description: "Add lemma absence analysis by CEFR level — labs package in audit-domain\
+  \ with EVP catalog port, absence classification, level metrics, recommendations,\
+  \ and configurable thresholds; FEAT-LABS: Lemma absence analysis — move EvpCatalogPort\
+  \ to audit-domain root, add vocabulary-infrastructure module with EVP catalog adapter,\
+  \ update dependency graph"
+modules:
+- name: audit-domain
+  interfaces:
+  - name: LemmaAbsenceConfig
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "getAbsoluteThreshold(CefrLevel level): int"
+    - signature: "getPercentageThreshold(CefrLevel level): double"
+    - signature: "getLevelWeight(CefrLevel level): double"
+    - signature: "getHighPriorityBound(): int"
+    - signature: "getMediumPriorityBound(): int"
+    - signature: "getLowPriorityBound(): int"
+    - signature: "getHighPriorityAlertThreshold(): int"
+    - signature: "getMediumPriorityAlertThreshold(): int"
+    - signature: "getLowPriorityAlertThreshold(): int"
+    - signature: "getCriticalAbsenceThreshold(): int"
+    - signature: "getAcceptableAbsenceThreshold(): int"
+    - signature: "getHighReportLimit(): int"
+    - signature: "getMediumReportLimit(): int"
+    - signature: "getLowReportLimit(): int"
+    - signature: "getDiscountPerLevel(): double"
+    _change: add
+  - name: EvpCatalogPort
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getExpectedLemmas(CefrLevel level): Set<LemmaAndPos>"
+    - signature: "isPhrase(String lemma): boolean"
+    - signature: "getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>"
+    - signature: "getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>"
+    _change: add
+  packages:
+  - name: labs
+    description: "Lemma absence analysis by CEFR level. Compares course vocabulary\
+      \ against the EVP catalog to detect absent, misplaced, or scattered lemmas.\
+      \ Classifies absence type, assigns priority by COCA frequency, computes per-level\
+      \ metrics, and generates actionable recommendations."
+    visibility: internal
+    models:
+    - name: AbsenceType
+      type: enum
+      fields:
+      - name: COMPLETELY_ABSENT
+        type: double
+        description: Lemma not found in any level — impact 1.0
+      - name: APPEARS_TOO_LATE
+        type: double
+        description: Lemma only in levels after expected — impact 0.8
+      - name: APPEARS_TOO_EARLY
+        type: double
+        description: Lemma only in levels before expected — impact 0.6
+      - name: SCATTERED_PLACEMENT
+        type: double
+        description: Lemma in levels both before and after expected — impact 0.4
+      _change: add
+    - name: PriorityLevel
+      type: enum
+      fields:
+      - name: HIGH
+      - name: MEDIUM
+      - name: LOW
+      _change: add
+    - name: LemmaAndPos
+      type: record
+      fields:
+      - name: lemma
+        type: String
+        description: Base form of the word
+      - name: pos
+        type: String
+        description: Part-of-speech tag
+      _change: add
+    - name: AbsentLemma
+      type: record
+      fields:
+      - name: lemmaAndPos
+        type: LemmaAndPos
+        description: The absent lemma-POS pair
+      - name: expectedLevel
+        type: CefrLevel
+        description: CEFR level where the lemma is expected per EVP
+      - name: absenceType
+        type: AbsenceType
+        description: Classification of the absence
+      - name: presentInLevels
+        type: List<CefrLevel>
+        description: Levels where the lemma does appear (may be empty)
+      - name: priorityLevel
+        type: PriorityLevel
+        description: Priority based on COCA frequency rank
+      - name: cocaRank
+        type: Integer
+        description: COCA frequency ranking (null if unavailable)
+      - name: semanticCategory
+        type: String
+        description: Semantic topic from EVP catalog (nullable)
+      _change: add
+    - name: AbsenceAssessment
+      type: enum
+      fields:
+      - name: OPTIMAL
+        description: All levels within tolerance thresholds
+      - name: ACCEPTABLE
+        description: Some levels exceed thresholds but no critical level (A1/A2) exceeds
+      - name: NEEDS_IMPROVEMENT
+        description: At least one critical level (A1/A2) exceeds its threshold
+      _change: add
+    - name: LevelAbsenceMetrics
+      type: record
+      fields:
+      - name: level
+        type: CefrLevel
+        description: CEFR level being measured
+      - name: totalExpected
+        type: int
+        description: Number of EVP lemmas expected for this level
+      - name: totalAbsent
+        type: int
+        description: Number of expected lemmas not found in this level
+      - name: absencePercentage
+        type: double
+        description: "Percentage of absence: (absent/expected)*100"
+      - name: absentLemmas
+        type: List<AbsentLemma>
+        description: Detailed list of absent lemmas with enrichment
+      - name: score
+        type: double
+        description: "Level score: 1.0 - (absencePercentage/100) weighted by impact"
+      _change: add
+    - name: RecommendationAction
+      type: enum
+      fields:
+      - name: ADD_VOCABULARY
+        description: Add sentences containing completely absent lemmas
+      - name: INTRODUCE_EARLIER
+        description: Introduce lemmas in earlier levels where they are expected
+      - name: REINFORCE_AT_LEVEL
+        description: Reinforce lemmas at their expected level
+      - name: CONSOLIDATE_PLACEMENT
+        description: Consolidate lemma placement across levels
+      _change: add
+    - name: EffortLevel
+      type: enum
+      fields:
+      - name: LOW
+        description: 1-5 affected lemmas
+      - name: MEDIUM
+        description: 6-15 affected lemmas
+      - name: HIGH
+        description: 16+ affected lemmas
+      _change: add
+    - name: AbsenceRecommendation
+      type: record
+      fields:
+      - name: action
+        type: RecommendationAction
+        description: Type of corrective action
+      - name: description
+        type: String
+        description: Human-readable explanation of the problem and proposed fix
+      - name: priority
+        type: PriorityLevel
+        description: "Recommendation priority (HIGH for A1/A2, varies for B1/B2)"
+      - name: affectedLemmas
+        type: List<AbsentLemma>
+        description: Lemmas this recommendation addresses
+      - name: effortLevel
+        type: EffortLevel
+        description: Estimated effort to implement
+      - name: expectedImpact
+        type: double
+        description: Estimated score improvement if implemented
+      - name: targetLevel
+        type: CefrLevel
+        description: CEFR level this recommendation targets
+      _change: add
+    implementations:
+    - name: LemmaByLevelAbsenceAnalyzer
+      requiresInject:
+      - name: evpCatalogPort
+        type: EvpCatalogPort
+      - name: contentWordFilter
+        type: ContentWordFilter
+      - name: lemmaAbsenceConfig
+        type: LemmaAbsenceConfig
+      implements:
+      - ContentAnalyzer
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-application
+  dependsOn:
+  - audit-domain
+  - course-domain
+  - refiner-domain
+  - course-infrastructure
+  - nlp-infrastructure
+  - vocabulary-infrastructure
+  implementations:
+  - name: DefaultLemmaAbsenceConfig
+    types:
+    - Component
+    implements:
+    - LemmaAbsenceConfig
+    _change: add
+  _change: modify
+- name: vocabulary-infrastructure
+  description: "Infrastructure module for linguistic reference catalogs (EVP vocabulary\
+    \ profiles, COCA frequency data). Provides static lookup data for vocabulary analysis.\
+    \ Separate from NLP processing (which handles runtime tokenization)."
+  dependsOn:
+  - audit-domain
+  packages:
+  - name: evp
+    description: "EVP catalog access — expected lemmas by CEFR level, semantic categories"
+    visibility: internal
+    implementations:
+    - name: FileSystemEvpCatalog
+      implements:
+      - EvpCatalogPort
+      _change: add
+    _change: add
+  - name: coca
+    description: COCA frequency ranking lookups
+    visibility: internal
+    _change: add
+  _change: add
+- name: audit-cli
+  dependsOn:
+  - audit-application
+  - audit-domain
+  - course-domain
+  - course-infrastructure
+  - nlp-infrastructure
+  - vocabulary-infrastructure
+  _change: modify

@@ -77,6 +77,54 @@ Methods:
 
 **Types:** Component
 
+### DefaultLemmaAbsenceConfig
+
+**Implements:** LemmaAbsenceConfig
+
+**Types:** Component
+
+**Tests that must pass:**
+
+- should return absolute threshold 0 for A1 → FEAT-LABS/F-LABS-R021
+- should return absolute threshold 2 for A2 → FEAT-LABS/F-LABS-R021
+- should return absolute threshold 5 for B1 → FEAT-LABS/F-LABS-R021
+- should return absolute threshold 8 for B2 → FEAT-LABS/F-LABS-R021
+- should return percentage threshold 0.0 for A1 → FEAT-LABS/F-LABS-R021
+- should return percentage threshold 5.0 for A2 → FEAT-LABS/F-LABS-R021
+- should return percentage threshold 10.0 for B1 → FEAT-LABS/F-LABS-R021
+- should return percentage threshold 15.0 for B2 → FEAT-LABS/F-LABS-R021
+- should return level weight 2.0 for A1 → FEAT-LABS/F-LABS-R024
+- should return level weight 2.0 for A2 → FEAT-LABS/F-LABS-R024
+- should return level weight 1.0 for B1 → FEAT-LABS/F-LABS-R024
+- should return level weight 1.0 for B2 → FEAT-LABS/F-LABS-R024
+- should return high priority bound of 1000 → FEAT-LABS/F-LABS-R011
+- should return medium priority bound of 3000 → FEAT-LABS/F-LABS-R011
+- should return low priority bound of 5000 → FEAT-LABS/F-LABS-R011
+- should return high priority alert threshold of 0 → FEAT-LABS/F-LABS-R014
+- should return medium priority alert threshold of 3 → FEAT-LABS/F-LABS-R014
+- should return low priority alert threshold of 10 → FEAT-LABS/F-LABS-R014
+- should return critical absence threshold of 10 → FEAT-LABS/F-LABS-R025
+- should return acceptable absence threshold of 5 → FEAT-LABS/F-LABS-R025
+- should return high report limit of 20 → FEAT-LABS/F-LABS-R026
+- should return medium report limit of 30 → FEAT-LABS/F-LABS-R026
+- should return low report limit of 50 → FEAT-LABS/F-LABS-R026
+- should return discount per level of 0.1 → FEAT-LABS/F-LABS-R018
+- should have absolute thresholds increasing from A1 to B2 → FEAT-LABS/F-LABS-R021
+- should have percentage thresholds increasing from A1 to B2 → FEAT-LABS/F-LABS-R021
+- should have priority bounds ordered high less than medium less than low → FEAT-LABS/F-LABS-R011
+- should weight critical levels A1 and A2 higher than B1 and B2 → FEAT-LABS/F-LABS-R024
+- should have report limits increasing from high to low priority → FEAT-LABS/F-LABS-R026
+- should have critical absence threshold greater than acceptable absence threshold → FEAT-LABS/F-LABS-R025
+- should have alert thresholds non-decreasing from high to low priority → FEAT-LABS/F-LABS-R014
+- should enforce zero tolerance for high priority alert threshold → FEAT-LABS/F-LABS-R014
+- should enforce A1 zero tolerance with both absolute and percentage thresholds at zero → FEAT-LABS/F-LABS-R021
+- should have discount per level that limits max penalty to 0.3 for three-level distance → FEAT-LABS/F-LABS-R018
+- should return non-negative values for all thresholds and bounds → FEAT-LABS/F-LABS-R021
+- should return positive report limits for all priority levels → FEAT-LABS/F-LABS-R026
+- should return percentage thresholds between 0 and 100 for all levels → FEAT-LABS/F-LABS-R021
+- should return positive level weights for all CEFR levels → FEAT-LABS/F-LABS-R024
+- should return discount per level between 0 exclusive and 1 exclusive → FEAT-LABS/F-LABS-R018
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
@@ -107,6 +155,9 @@ The following models and interfaces are available from dependencies. You can use
 | topicId | `String` |
 | knowledgeId | `String` |
 | quizId | `String` |
+| topicLabel | `String` |
+| knowledgeLabel | `String` |
+| quizLabel | `String` |
 
 ### AuditableKnowledge (`record`)
 
@@ -116,18 +167,27 @@ The following models and interfaces are available from dependencies. You can use
 | title | `String` |
 | instructions | `String` |
 | isSentence | `boolean` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
 
 ### AuditableTopic (`record`)
 
 | Field | Type |
 |-------|------|
 | knowledge | `List<AuditableKnowledge>` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
 
 ### AuditableMilestone (`record`)
 
 | Field | Type |
 |-------|------|
 | topics | `List<AuditableTopic>` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
 
 ### AuditableQuiz (`record`)
 
@@ -135,6 +195,9 @@ The following models and interfaces are available from dependencies. You can use
 |-------|------|
 | sentence | `String` |
 | tokens | `List<NlpToken>` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
 
 ### CefrLevel (`enum`)
 
@@ -174,6 +237,7 @@ The following models and interfaces are available from dependencies. You can use
 | topicId | `String` |
 | knowledgeId | `String` |
 | quizId | `String` |
+| source | `AuditableEntity` |
 
 ### NodeScores (`record`)
 
@@ -187,6 +251,8 @@ The following models and interfaces are available from dependencies. You can use
 |-------|------|
 | quizId | `String` |
 | scores | `NodeScores` |
+| label | `String` |
+| code | `String` |
 
 ### KnowledgeNode (`record`)
 
@@ -195,6 +261,8 @@ The following models and interfaces are available from dependencies. You can use
 | knowledgeId | `String` |
 | scores | `NodeScores` |
 | quizzes | `List<QuizNode>` |
+| label | `String` |
+| code | `String` |
 
 ### TopicNode (`record`)
 
@@ -203,6 +271,8 @@ The following models and interfaces are available from dependencies. You can use
 | topicId | `String` |
 | scores | `NodeScores` |
 | knowledges | `List<KnowledgeNode>` |
+| label | `String` |
+| code | `String` |
 
 ### MilestoneNode (`record`)
 
@@ -211,6 +281,8 @@ The following models and interfaces are available from dependencies. You can use
 | milestoneId | `String` |
 | scores | `NodeScores` |
 | topics | `List<TopicNode>` |
+| label | `String` |
+| code | `String` |
 
 ### NlpToken (`record`)
 
@@ -302,6 +374,43 @@ Methods:
 - `getTop(): int`
 - `getSubExposedThreshold(): double`
 - `getOverExposedThreshold(): double`
+
+### LemmaAbsenceConfig (port) [sealed]
+
+Methods:
+
+- `getAbsoluteThreshold(CefrLevel level): int`
+- `getPercentageThreshold(CefrLevel level): double`
+- `getLevelWeight(CefrLevel level): double`
+- `getHighPriorityBound(): int`
+- `getMediumPriorityBound(): int`
+- `getLowPriorityBound(): int`
+- `getHighPriorityAlertThreshold(): int`
+- `getMediumPriorityAlertThreshold(): int`
+- `getLowPriorityAlertThreshold(): int`
+- `getCriticalAbsenceThreshold(): int`
+- `getAcceptableAbsenceThreshold(): int`
+- `getHighReportLimit(): int`
+- `getMediumReportLimit(): int`
+- `getLowReportLimit(): int`
+- `getDiscountPerLevel(): double`
+
+### EvpCatalogPort (port)
+
+Methods:
+
+- `getExpectedLemmas(CefrLevel level): Set<LemmaAndPos>`
+- `isPhrase(String lemma): boolean`
+- `getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>`
+- `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
+
+### AuditableEntity (port)
+
+Methods:
+
+- `getId(): String`
+- `getLabel(): String`
+- `getCode(): String`
 
 ### From course-domain
 
