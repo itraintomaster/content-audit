@@ -19,6 +19,12 @@ import com.learney.contentaudit.auditdomain.coca.DefaultTokenClassifier;
 import com.learney.contentaudit.auditdomain.coca.DefaultProgressionEvaluator;
 import com.learney.contentaudit.auditdomain.coca.DefaultImprovementPlanner;
 import com.learney.contentaudit.auditapplication.DefaultCocaBucketsConfig;
+import com.learney.contentaudit.auditapplication.DefaultLemmaRecurrenceConfig;
+import com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig;
+import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzer;
+import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import com.learney.contentaudit.auditdomain.lrec.DefaultIntervalCalculator;
+import com.learney.contentaudit.auditdomain.lrec.DefaultExposureClassifier;
 import com.learney.contentaudit.nlpinfrastructure.NlpTokenizerConfig;
 import com.learney.contentaudit.nlpinfrastructure.spacy.SpacyNlpTokenizerFactory;
 import com.learney.contentaudit.coursedomain.CourseValidator;
@@ -68,11 +74,21 @@ public class Main {
                 new DefaultImprovementPlanner()
         );
 
+        // Lemma Recurrence analyzer
+        LemmaRecurrenceConfig lemmaRecurrenceConfig = new DefaultLemmaRecurrenceConfig();
+        LemmaRecurrenceAnalyzer lemmaRecurrenceAnalyzer = new LemmaRecurrenceAnalyzer(
+                new DefaultContentWordFilter(),
+                lemmaRecurrenceConfig,
+                new DefaultIntervalCalculator(),
+                new DefaultExposureClassifier()
+        );
+
         List<ContentAnalyzer> contentAnalyzers = List.of(
                 sentenceLengthAnalyzer,
                 knowledgeTitleLengthAnalyzer,
                 knowledgeInstructionsLengthAnalyzer,
-                cocaBucketsAnalyzer
+                cocaBucketsAnalyzer,
+                lemmaRecurrenceAnalyzer
         );
 
         // Domain: aggregator and engine
@@ -85,10 +101,11 @@ public class Main {
                 courseRepository, courseToAuditableMapper, contentAudit);
 
         // CLI layer: formatters, transformer, and registry
+        DrillDownResolver drillDownResolver = new DefaultDrillDownResolver();
         Map<String, ReportFormatter> formatters = new HashMap<>();
-        formatters.put("text", new TextReportFormatter());
-        formatters.put("json", new JsonReportFormatter());
-        formatters.put("table", new TableReportFormatter());
+        formatters.put("text", new TextReportFormatter(drillDownResolver));
+        formatters.put("json", new JsonReportFormatter(drillDownResolver));
+        formatters.put("table", new TableReportFormatter(drillDownResolver));
 
         DefaultFormatterRegistry formatterRegistry = new DefaultFormatterRegistry(formatters);
         ReportViewModelTransformer viewModelTransformer = new DefaultReportViewModelTransformer();
