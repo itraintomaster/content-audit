@@ -97,6 +97,8 @@ SentinelDefinition
 │   │       └── throws: List<String>
 │   └── implementations: List<Implementation>
 │       ├── name, implements, types, requiresInject
+│       ├── handwrittenTests: List<HandwrittenTest>
+│       │   ├── name, traceability
 │       └── tests: List<DeclarativeTest>
 │           ├── name, target, type
 │           ├── fixtures: List<FixtureDef>

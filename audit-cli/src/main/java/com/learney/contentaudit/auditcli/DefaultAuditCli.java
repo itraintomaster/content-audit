@@ -1,8 +1,12 @@
 package com.learney.contentaudit.auditcli;
 
+import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
 import com.learney.contentaudit.auditapplication.AuditRunner;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 import javax.annotation.processing.Generated;
@@ -30,14 +34,14 @@ import picocli.CommandLine.Parameters;
                 "  # Drill into level A1 to see its topics",
                 "  ./audit-cli.sh db/english-course --level A1",
                 "",
-                "  # Drill into a specific topic within A1",
-                "  ./audit-cli.sh db/english-course --level A1 --topic \"Present Simple\"",
+                "  # List all available analyzers",
+                "  ./audit-cli.sh --analyzers",
                 "",
-                "  # Drill into a specific knowledge within a topic",
-                "  ./audit-cli.sh db/english-course --level A1 --topic \"Present Simple\" --knowledge \"Affirmative\"",
+                "  # Show config for a specific analyzer",
+                "  ./audit-cli.sh --analyzer sentence-length --config",
                 "",
-                "  # Use table format for a compact view",
-                "  ./audit-cli.sh db/english-course --level A1 -f table",
+                "  # Run audit and show stats for a specific analyzer",
+                "  ./audit-cli.sh db/english-course --analyzer sentence-length",
                 "",
                 "  # Export full raw audit data as JSON",
                 "  ./audit-cli.sh db/english-course -f raw",
@@ -52,7 +56,11 @@ public final class DefaultAuditCli implements AuditCli, Callable<Integer> {
 
     private final RawReportFormatter rawReportFormatter;
 
-    @Parameters(index = "0", description = "Path to the course directory", arity = "1")
+    private final AnalyzerRegistry analyzerRegistry;
+
+    private final AnalyzerStatsTransformer analyzerStatsTransformer;
+
+    @Parameters(index = "0", description = "Path to the course directory", arity = "0..1")
     private String coursePath;
 
     @Option(names = {"-f", "--format"},
@@ -72,12 +80,27 @@ public final class DefaultAuditCli implements AuditCli, Callable<Integer> {
             description = "Drill into a knowledge item within the selected topic. Requires --level and --topic.")
     private String knowledge;
 
+    @Option(names = {"--analyzers"},
+            description = "List all available analyzers.")
+    private boolean listAnalyzers;
+
+    @Option(names = {"--analyzer"},
+            description = "Select a specific analyzer by name.")
+    private String analyzerName;
+
+    @Option(names = {"--config"},
+            description = "Show configuration for the selected analyzer (use with --analyzer).")
+    private boolean showConfig;
+
     public DefaultAuditCli(AuditRunner auditRunner, FormatterRegistry formatterRegistry,
-            ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter) {
+            ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter,
+            AnalyzerRegistry analyzerRegistry, AnalyzerStatsTransformer analyzerStatsTransformer) {
         this.auditRunner = auditRunner;
         this.formatterRegistry = formatterRegistry;
         this.viewModelTransformer = viewModelTransformer;
         this.rawReportFormatter = rawReportFormatter;
+        this.analyzerRegistry = analyzerRegistry;
+        this.analyzerStatsTransformer = analyzerStatsTransformer;
     }
 
     @Override
@@ -88,43 +111,178 @@ public final class DefaultAuditCli implements AuditCli, Callable<Integer> {
     @Override
     public Integer call() {
         try {
-            if (topic != null && level == null) {
-                System.err.println("Error: --topic requires --level");
-                return 1;
-            }
-            if (knowledge != null && topic == null) {
-                System.err.println("Error: --knowledge requires --level and --topic");
-                return 1;
+            // Mode: list analyzers
+            if (listAnalyzers) {
+                return handleListAnalyzers();
             }
 
-            AuditReport report = auditRunner.runAudit(Path.of(coursePath));
-
-            if ("raw".equals(formatName)) {
-                System.out.println(rawReportFormatter.format(report));
-                return 0;
+            // Mode: analyzer detail (config and/or stats)
+            if (analyzerName != null) {
+                return handleAnalyzerDetail();
             }
 
-            ReportFormatter formatter = formatterRegistry.getFormatter(formatName);
-            if (formatter == null) {
-                System.err.println("Formato no soportado: " + formatName);
+            // Mode: standard audit (requires coursePath)
+            if (coursePath == null) {
+                System.err.println("Error: missing course path. Use --help for usage.");
                 return 1;
             }
 
-            ReportViewModel viewModel = viewModelTransformer.transform(report);
-            DrillDownScope scope = new DrillDownScope(
-                    Optional.ofNullable(level),
-                    Optional.ofNullable(topic),
-                    Optional.ofNullable(knowledge)
-            );
-            System.out.println(formatter.format(viewModel, scope));
-            return 0;
+            return handleAudit();
         } catch (IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
             return 1;
         } catch (RuntimeException e) {
-            System.err.println("No se pudo ejecutar la auditoria para el curso en la ruta "
-                    + coursePath + ": " + e.getMessage());
+            System.err.println("No se pudo ejecutar la auditoria: " + e.getMessage());
             return 1;
+        }
+    }
+
+    private int handleListAnalyzers() {
+        List<AnalyzerDescriptor> analyzers = analyzerRegistry.listAnalyzers();
+        System.out.println("Available analyzers:\n");
+        for (AnalyzerDescriptor a : analyzers) {
+            System.out.printf("  %-35s [%-10s] %s%n",
+                    a.getName(), a.getTarget(), a.getDescription());
+        }
+        return 0;
+    }
+
+    private int handleAnalyzerDetail() {
+        // Validate analyzer exists
+        boolean exists = analyzerRegistry.listAnalyzers().stream()
+                .anyMatch(a -> analyzerName.equals(a.getName()));
+        if (!exists) {
+            System.err.println("Error: analyzer not found: " + analyzerName);
+            System.err.println("Use --analyzers to see available analyzers.");
+            return 1;
+        }
+
+        // Show config if requested or if no coursePath
+        if (showConfig || coursePath == null) {
+            Optional<Map<String, Object>> configOpt = analyzerRegistry.getAnalyzerConfig(analyzerName);
+            if (configOpt.isPresent()) {
+                System.out.println(toJson(configOpt.get(), 0));
+            } else {
+                System.out.println("No configuration available for: " + analyzerName);
+            }
+        }
+
+        // Show stats if coursePath provided
+        if (coursePath != null) {
+            AuditReport report = auditRunner.runAudit(Path.of(coursePath));
+            AnalyzerStatsView stats = analyzerStatsTransformer.transform(
+                    report, analyzerName, analyzerRegistry);
+            if (showConfig) {
+                System.out.println(); // separator between config and stats
+            }
+            printStats(stats);
+        }
+
+        return 0;
+    }
+
+    private int handleAudit() {
+        if (topic != null && level == null) {
+            System.err.println("Error: --topic requires --level");
+            return 1;
+        }
+        if (knowledge != null && topic == null) {
+            System.err.println("Error: --knowledge requires --level and --topic");
+            return 1;
+        }
+
+        AuditReport report = auditRunner.runAudit(Path.of(coursePath));
+
+        if ("raw".equals(formatName)) {
+            System.out.println(rawReportFormatter.format(report));
+            return 0;
+        }
+
+        ReportFormatter formatter = formatterRegistry.getFormatter(formatName);
+        if (formatter == null) {
+            System.err.println("Formato no soportado: " + formatName);
+            return 1;
+        }
+
+        ReportViewModel viewModel = viewModelTransformer.transform(report);
+        DrillDownScope scope = new DrillDownScope(
+                Optional.ofNullable(level),
+                Optional.ofNullable(topic),
+                Optional.ofNullable(knowledge)
+        );
+        System.out.println(formatter.format(viewModel, scope));
+        return 0;
+    }
+
+    private void printStats(AnalyzerStatsView stats) {
+        System.out.printf("=== %s ===%n", stats.getAnalyzerName());
+        if (!stats.getAnalyzerDescription().isEmpty()) {
+            System.out.println(stats.getAnalyzerDescription());
+        }
+        System.out.printf("%nScore: %.1f%%%n", stats.getCourseScore() * 100);
+
+        // Per-level
+        if (!stats.getLevelScores().isEmpty()) {
+            System.out.println("\nPer level:");
+            for (var entry : stats.getLevelScores().entrySet()) {
+                System.out.printf("  %-6s %.1f%%%n", entry.getKey(), entry.getValue() * 100);
+            }
+        }
+
+        // Distribution
+        if (!stats.getScoreDistribution().isEmpty()) {
+            System.out.println("\nScore distribution:");
+            int maxCount = stats.getScoreDistribution().values().stream()
+                    .mapToInt(Integer::intValue).max().orElse(1);
+            for (var entry : stats.getScoreDistribution().entrySet()) {
+                int barLen = maxCount > 0 ? (entry.getValue() * 30) / maxCount : 0;
+                System.out.printf("  %-8s %4d  %s%n",
+                        entry.getKey(), entry.getValue(), "\u2588".repeat(barLen));
+            }
+        }
+
+        // Worst items
+        if (!stats.getWorstItems().isEmpty()) {
+            System.out.println("\nLowest scoring items:");
+            for (ScoredItemRow item : stats.getWorstItems()) {
+                System.out.printf("  %-25s %.1f%%%n", item.getLabel(), item.getScore() * 100);
+            }
+        }
+    }
+
+    private String toJson(Map<String, Object> map, int indent) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{\n");
+        var entries = map.entrySet().iterator();
+        while (entries.hasNext()) {
+            var entry = entries.next();
+            sb.append("  ".repeat(indent + 1));
+            sb.append("\"").append(entry.getKey()).append("\": ");
+            appendJsonValue(sb, entry.getValue(), indent + 1);
+            if (entries.hasNext()) sb.append(",");
+            sb.append("\n");
+        }
+        sb.append("  ".repeat(indent)).append("}");
+        return sb.toString();
+    }
+
+    @SuppressWarnings("unchecked")
+    private void appendJsonValue(StringBuilder sb, Object value, int indent) {
+        if (value instanceof Map) {
+            sb.append(toJson((Map<String, Object>) value, indent));
+        } else if (value instanceof List<?> list) {
+            sb.append("[\n");
+            for (int i = 0; i < list.size(); i++) {
+                sb.append("  ".repeat(indent + 1));
+                appendJsonValue(sb, list.get(i), indent + 1);
+                if (i < list.size() - 1) sb.append(",");
+                sb.append("\n");
+            }
+            sb.append("  ".repeat(indent)).append("]");
+        } else if (value instanceof String s) {
+            sb.append("\"").append(s).append("\"");
+        } else {
+            sb.append(value);
         }
     }
 }

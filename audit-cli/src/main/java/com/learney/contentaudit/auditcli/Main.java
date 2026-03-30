@@ -127,8 +127,18 @@ public class Main {
         ReportViewModelTransformer viewModelTransformer = new DefaultReportViewModelTransformer();
         RawReportFormatter rawReportFormatter = new RawJsonReportFormatter();
 
+        // Analyzer introspection
+        List<SelfDescribingConfig> describableConfigs = List.of(
+                (SelfDescribingConfig) sentenceLengthConfig,
+                (SelfDescribingConfig) cocaBucketsConfig,
+                (SelfDescribingConfig) lemmaRecurrenceConfig);
+        DefaultAnalyzerRegistry analyzerRegistry = new DefaultAnalyzerRegistry(
+                contentAnalyzers, describableConfigs);
+        AnalyzerStatsTransformer analyzerStatsTransformer = new DefaultAnalyzerStatsTransformer();
+
         DefaultAuditCli auditCli = new DefaultAuditCli(
-                auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter);
+                auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter,
+                analyzerRegistry, analyzerStatsTransformer);
 
         int exitCode = auditCli.run(args);
         System.exit(exitCode);

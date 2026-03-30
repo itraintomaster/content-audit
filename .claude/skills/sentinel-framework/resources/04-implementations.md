@@ -181,7 +181,7 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 #### CocaBucketsAnalyzer (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** ContentAnalyzer
 
 **Constructor dependencies:**
@@ -197,25 +197,25 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 #### CocaTokenAccumulationAggregator (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** ScoreAggregator
 
 #### DefaultTokenClassifier (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** TokenClassifier
 
 #### DefaultProgressionEvaluator (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** ProgressionEvaluator
 
 #### DefaultImprovementPlanner (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** ImprovementPlanner
 
 #### LemmaRecurrenceAnalyzer (package: lrec)
@@ -233,7 +233,7 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 | `intervalCalculator` | `IntervalCalculator` |
 | `exposureClassifier` | `ExposureClassifier` |
 
-**Tests:** 7
+**Tests:** 6
 
 #### DefaultContentWordFilter (package: lrec)
 
@@ -256,6 +256,22 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 **Package:** `com.learney.contentaudit.auditdomain.lrec`
 **Visibility:** internal
 **Implements:** ExposureClassifier
+
+#### LemmaByLevelAbsenceAnalyzer (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Implements:** ContentAnalyzer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `evpCatalogPort` | `EvpCatalogPort` |
+| `contentWordFilter` | `ContentWordFilter` |
+| `lemmaAbsenceConfig` | `LemmaAbsenceConfig` |
+
+**Tests:** 100
 
 ### Module: audit-application
 
@@ -348,6 +364,79 @@ public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMa
 
 **Framework types:** Component
 
+#### DefaultLemmaAbsenceConfig
+
+**Package:** `com.learney.contentaudit.auditapplication`
+
+**Implements:** LemmaAbsenceConfig
+
+**Framework types:** Component
+
+**Tests that must pass:** 39
+
+- should return absolute threshold 0 for A1 [FEAT-LABS/F-LABS-R021]
+- should return absolute threshold 2 for A2 [FEAT-LABS/F-LABS-R021]
+- should return absolute threshold 5 for B1 [FEAT-LABS/F-LABS-R021]
+- should return absolute threshold 8 for B2 [FEAT-LABS/F-LABS-R021]
+- should return percentage threshold 0.0 for A1 [FEAT-LABS/F-LABS-R021]
+- should return percentage threshold 5.0 for A2 [FEAT-LABS/F-LABS-R021]
+- should return percentage threshold 10.0 for B1 [FEAT-LABS/F-LABS-R021]
+- should return percentage threshold 15.0 for B2 [FEAT-LABS/F-LABS-R021]
+- should return level weight 2.0 for A1 [FEAT-LABS/F-LABS-R024]
+- should return level weight 2.0 for A2 [FEAT-LABS/F-LABS-R024]
+- should return level weight 1.0 for B1 [FEAT-LABS/F-LABS-R024]
+- should return level weight 1.0 for B2 [FEAT-LABS/F-LABS-R024]
+- should return high priority bound of 1000 [FEAT-LABS/F-LABS-R011]
+- should return medium priority bound of 3000 [FEAT-LABS/F-LABS-R011]
+- should return low priority bound of 5000 [FEAT-LABS/F-LABS-R011]
+- should return high priority alert threshold of 0 [FEAT-LABS/F-LABS-R014]
+- should return medium priority alert threshold of 3 [FEAT-LABS/F-LABS-R014]
+- should return low priority alert threshold of 10 [FEAT-LABS/F-LABS-R014]
+- should return critical absence threshold of 10 [FEAT-LABS/F-LABS-R025]
+- should return acceptable absence threshold of 5 [FEAT-LABS/F-LABS-R025]
+- should return high report limit of 20 [FEAT-LABS/F-LABS-R026]
+- should return medium report limit of 30 [FEAT-LABS/F-LABS-R026]
+- should return low report limit of 50 [FEAT-LABS/F-LABS-R026]
+- should return discount per level of 0.1 [FEAT-LABS/F-LABS-R018]
+- should have absolute thresholds increasing from A1 to B2 [FEAT-LABS/F-LABS-R021]
+- should have percentage thresholds increasing from A1 to B2 [FEAT-LABS/F-LABS-R021]
+- should have priority bounds ordered high less than medium less than low [FEAT-LABS/F-LABS-R011]
+- should weight critical levels A1 and A2 higher than B1 and B2 [FEAT-LABS/F-LABS-R024]
+- should have report limits increasing from high to low priority [FEAT-LABS/F-LABS-R026]
+- should have critical absence threshold greater than acceptable absence threshold [FEAT-LABS/F-LABS-R025]
+- should have alert thresholds non-decreasing from high to low priority [FEAT-LABS/F-LABS-R014]
+- should enforce zero tolerance for high priority alert threshold [FEAT-LABS/F-LABS-R014]
+- should enforce A1 zero tolerance with both absolute and percentage thresholds at zero [FEAT-LABS/F-LABS-R021]
+- should have discount per level that limits max penalty to 0.3 for three-level distance [FEAT-LABS/F-LABS-R018]
+- should return non-negative values for all thresholds and bounds [FEAT-LABS/F-LABS-R021]
+- should return positive report limits for all priority levels [FEAT-LABS/F-LABS-R026]
+- should return percentage thresholds between 0 and 100 for all levels [FEAT-LABS/F-LABS-R021]
+- should return positive level weights for all CEFR levels [FEAT-LABS/F-LABS-R024]
+- should return discount per level between 0 exclusive and 1 exclusive [FEAT-LABS/F-LABS-R018]
+
+#### DefaultAnalyzerRegistry
+
+**Package:** `com.learney.contentaudit.auditapplication`
+
+**Implements:** AnalyzerRegistry
+
+**Framework types:** Component
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `analyzers` | `List<ContentAnalyzer>` |
+| `configs` | `List<SelfDescribingConfig>` |
+
+**Generated constructor:**
+```java
+public DefaultAnalyzerRegistry(List<ContentAnalyzer> analyzers, List<SelfDescribingConfig> configs) {
+    this.analyzers = analyzers;
+    this.configs = configs;
+}
+```
+
 ### Module: course-infrastructure
 
 #### FileSystemCourseRepository
@@ -410,11 +499,37 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 
 **Implements:** ReportFormatter
 
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `drillDownResolver` | `DrillDownResolver` |
+
+**Generated constructor:**
+```java
+public TextReportFormatter(DrillDownResolver drillDownResolver) {
+    this.drillDownResolver = drillDownResolver;
+}
+```
+
 #### JsonReportFormatter
 
 **Package:** `com.learney.contentaudit.auditcli`
 
 **Implements:** ReportFormatter
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `drillDownResolver` | `DrillDownResolver` |
+
+**Generated constructor:**
+```java
+public JsonReportFormatter(DrillDownResolver drillDownResolver) {
+    this.drillDownResolver = drillDownResolver;
+}
+```
 
 #### DefaultAuditCli
 
@@ -430,14 +545,18 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `formatterRegistry` | `FormatterRegistry` |
 | `viewModelTransformer` | `ReportViewModelTransformer` |
 | `rawReportFormatter` | `RawReportFormatter` |
+| `analyzerRegistry` | `AnalyzerRegistry` |
+| `analyzerStatsTransformer` | `AnalyzerStatsTransformer` |
 
 **Generated constructor:**
 ```java
-public DefaultAuditCli(AuditRunner auditRunner, FormatterRegistry formatterRegistry, ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter) {
+public DefaultAuditCli(AuditRunner auditRunner, FormatterRegistry formatterRegistry, ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter, AnalyzerRegistry analyzerRegistry, AnalyzerStatsTransformer analyzerStatsTransformer) {
     this.auditRunner = auditRunner;
     this.formatterRegistry = formatterRegistry;
     this.viewModelTransformer = viewModelTransformer;
     this.rawReportFormatter = rawReportFormatter;
+    this.analyzerRegistry = analyzerRegistry;
+    this.analyzerStatsTransformer = analyzerStatsTransformer;
 }
 ```
 
@@ -472,11 +591,40 @@ public DefaultAuditCli(AuditRunner auditRunner, FormatterRegistry formatterRegis
 
 **Implements:** ReportFormatter
 
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `drillDownResolver` | `DrillDownResolver` |
+
+**Generated constructor:**
+```java
+public TableReportFormatter(DrillDownResolver drillDownResolver) {
+    this.drillDownResolver = drillDownResolver;
+}
+```
+
 #### RawJsonReportFormatter
 
 **Package:** `com.learney.contentaudit.auditcli`
 
 **Implements:** RawReportFormatter
+
+#### DefaultDrillDownResolver
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implements:** DrillDownResolver
+
+**Framework types:** Component
+
+#### DefaultAnalyzerStatsTransformer
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implements:** AnalyzerStatsTransformer
+
+**Framework types:** Component
 
 ### Module: nlp-infrastructure
 
@@ -528,4 +676,12 @@ public DefaultAuditCli(AuditRunner auditRunner, FormatterRegistry formatterRegis
 | Name | Type |
 |------|------|
 | `delegate` | `NlpTokenizer` |
+
+### Module: vocabulary-infrastructure
+
+#### FileSystemEvpCatalog (package: evp)
+
+**Package:** `com.learney.contentaudit.vocabularyinfrastructure.evp`
+**Visibility:** internal
+**Implements:** EvpCatalogPort
 

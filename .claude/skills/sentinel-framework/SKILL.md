@@ -76,7 +76,7 @@ to software development:
 | `03-interfaces.md` | Port contracts, sealed interfaces, method signatures | Implementing adapters |
 | `04-implementations.md` | Adapter stubs, dependency injection, framework types | Writing implementation code |
 | `05-features.md` | Business rules, user journeys, traceability | Understanding requirements |
-| `06-tests.md` | Declarative test schema, fixtures, mocks, assertions | Making tests pass |
+| `06-tests.md` | Test stubs, handwritten test model, test listing | Making tests pass |
 | `07-configuration.md` | sentinel.yaml DSL specification and examples | Authoring or modifying YAML |
 | `08-architecture.md` | Hexagonal architecture, enforcement pipeline | Architectural decisions |
 | `09-generators.md` | Code generation pipeline, generator types | Understanding generated code |

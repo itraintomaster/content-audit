@@ -56,7 +56,7 @@ From these files, identify:
 - Which **dependencies** are available via injection (`requiresInject`)
 - Which **modules** you can import from (`dependsOn`)
 - Which **external types** are available (if the module declares `uses`, see below)
-- What **tests** must pass (look at `implementations[].tests`)
+- What **tests** must pass (look at `implementations[].tests` and `implementations[].handwrittenTests`)
 
 #### External Dependencies
 
@@ -100,7 +100,7 @@ Write the implementation code. For each implementation class:
 1. Implement all methods from the interfaces it declares
 2. Use constructor injection for all dependencies
 3. Add framework annotations if declared (`@Service`, `@Repository`, etc.)
-4. Satisfy the business rules and pass the declarative tests
+4. Satisfy the business rules and pass the tests
 
 ### Step 5 → Verify
 
@@ -225,7 +225,7 @@ public class MyAdapter implements MyPort {
 
 **Packages:**
 
-- `coca` [public] — COCA frequency bucket distribution analysis. Classifies NLP tokens into frequency bands (K1-K5+), evaluates distribution against configurable targets per CEFR level, assesses progression across levels, and generates improvement directives.
+- `coca` [internal] — COCA frequency bucket distribution analysis. Classifies NLP tokens into frequency bands (K1-K5+), evaluates distribution against configurable targets per CEFR level, assesses progression across levels, and generates improvement directives.
   Models: FrequencyBand, BandConfiguration, AssessmentState, TargetKind, BucketTarget, BucketResult, QuarterBucketTargets, QuarterResult, LevelBucketDistribution, TopicBucketDistribution, ProgressionState, ProgressionExpectation, ProgressionAssessment, ImprovementDirectiveType, ImprovementDirective, CocaBucketsDistributionResult, AnalysisStrategy
   Interfaces: TokenClassifier, ProgressionEvaluator, ImprovementPlanner
   Implementations: CocaBucketsAnalyzer, CocaTokenAccumulationAggregator, DefaultTokenClassifier, DefaultProgressionEvaluator, DefaultImprovementPlanner
@@ -233,26 +233,30 @@ public class MyAdapter implements MyPort {
   Models: ExposureStatus, LemmaStats, ExposureSummary, LemmaRecurrenceResult
   Interfaces: IntervalCalculator, ExposureClassifier
   Implementations: LemmaRecurrenceAnalyzer, DefaultContentWordFilter, DefaultIntervalCalculator, DefaultExposureClassifier
+- `labs` [internal] — Lemma absence analysis by CEFR level. Compares course vocabulary against the EVP catalog to detect absent, misplaced, or scattered lemmas. Classifies absence type, assigns priority by COCA frequency, computes per-level metrics, and generates actionable recommendations.
+  Models: AbsenceType, PriorityLevel, LemmaAndPos, AbsentLemma, AbsenceAssessment, LevelAbsenceMetrics, RecommendationAction, EffortLevel, AbsenceRecommendation
+  Implementations: LemmaByLevelAbsenceAnalyzer
 
 **Models:**
 
 - `AuditReport` — overallScore: double, scores: NodeScores, milestones: List<MilestoneNode>
 - `AuditableCourse` — milestones: List<AuditableMilestone>
-- `AuditContext` — milestoneId: String, topicId: String, knowledgeId: String, quizId: String
-- `AuditableKnowledge` — quizzes: List<AuditableQuiz>, title: String, instructions: String, isSentence: boolean
-- `AuditableTopic` — knowledge: List<AuditableKnowledge>
-- `AuditableMilestone` — topics: List<AuditableTopic>
-- `AuditableQuiz` — sentence: String, tokens: List<NlpToken>
+- `AuditContext` — milestoneId: String, topicId: String, knowledgeId: String, quizId: String, topicLabel: String, knowledgeLabel: String, quizLabel: String
+- `AuditableKnowledge` — quizzes: List<AuditableQuiz>, title: String, instructions: String, isSentence: boolean, id: String, label: String, code: String
+- `AuditableTopic` — knowledge: List<AuditableKnowledge>, id: String, label: String, code: String
+- `AuditableMilestone` — topics: List<AuditableTopic>, id: String, label: String, code: String
+- `AuditableQuiz` — sentence: String, tokens: List<NlpToken>, id: String, label: String, code: String
 - `CefrLevel` [enum] — A1: null, A2: null, B1: null, B2: null
 - `TargetRange` — level: CefrLevel, minTokens: int, maxTokens: int
 - `AuditTarget` [enum] — QUIZ: null, KNOWLEDGE: null, TOPIC: null, MILESTONE: null, COURSE: null
-- `ScoredItem` — analyzerName: String, target: AuditTarget, score: double, milestoneId: String, topicId: String, knowledgeId: String, quizId: String
+- `ScoredItem` — analyzerName: String, target: AuditTarget, score: double, milestoneId: String, topicId: String, knowledgeId: String, quizId: String, source: AuditableEntity
 - `NodeScores` — scores: Map<String,Double>
-- `QuizNode` — quizId: String, scores: NodeScores
-- `KnowledgeNode` — knowledgeId: String, scores: NodeScores, quizzes: List<QuizNode>
-- `TopicNode` — topicId: String, scores: NodeScores, knowledges: List<KnowledgeNode>
-- `MilestoneNode` — milestoneId: String, scores: NodeScores, topics: List<TopicNode>
+- `QuizNode` — quizId: String, scores: NodeScores, entity: AuditableEntity
+- `KnowledgeNode` — knowledgeId: String, scores: NodeScores, quizzes: List<QuizNode>, entity: AuditableEntity
+- `TopicNode` — topicId: String, scores: NodeScores, knowledges: List<KnowledgeNode>, entity: AuditableEntity
+- `MilestoneNode` — milestoneId: String, scores: NodeScores, topics: List<TopicNode>, entity: AuditableEntity
 - `NlpToken` — text: String, lemma: String, posTag: String, frequencyRank: Integer, isStop: boolean, isPunct: boolean
+- `AnalyzerDescriptor` — name: String, description: String, target: AuditTarget
 
 **Interfaces (contracts):**
 
@@ -269,6 +273,7 @@ public class MyAdapter implements MyPort {
   - `getName(): String`
   - `getTarget(): AuditTarget`
   - `getResults(): List<ScoredItem>`
+  - `getDescription(): String`
 - `AnalysisResult`
   - `getName(): String`
   - `getScore(): double`
@@ -282,7 +287,7 @@ public class MyAdapter implements MyPort {
   - `getTargetRange(CefrLevel level): Optional<TargetRange>`
   - `getToleranceMargin(): int`
 - `ScoreAggregator`
-  - `aggregate(List<ScoredItem> scores): AuditReport`
+  - `aggregate(List<ScoredItem> scores,Map<String,AuditableEntity> entityMap): AuditReport`
 - `CocaBucketsConfig`
   - `getBandConfiguration(): BandConfiguration`
   - `getTargetsForLevel(String levelName): List<BucketTarget>`
@@ -296,6 +301,33 @@ public class MyAdapter implements MyPort {
   - `getTop(): int`
   - `getSubExposedThreshold(): double`
   - `getOverExposedThreshold(): double`
+- `LemmaAbsenceConfig` [sealed]
+  - `getAbsoluteThreshold(CefrLevel level): int`
+  - `getPercentageThreshold(CefrLevel level): double`
+  - `getLevelWeight(CefrLevel level): double`
+  - `getHighPriorityBound(): int`
+  - `getMediumPriorityBound(): int`
+  - `getLowPriorityBound(): int`
+  - `getHighPriorityAlertThreshold(): int`
+  - `getMediumPriorityAlertThreshold(): int`
+  - `getLowPriorityAlertThreshold(): int`
+  - `getCriticalAbsenceThreshold(): int`
+  - `getAcceptableAbsenceThreshold(): int`
+  - `getHighReportLimit(): int`
+  - `getMediumReportLimit(): int`
+  - `getLowReportLimit(): int`
+  - `getDiscountPerLevel(): double`
+- `EvpCatalogPort`
+  - `getExpectedLemmas(CefrLevel level): Set<LemmaAndPos>`
+  - `isPhrase(String lemma): boolean`
+  - `getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>`
+  - `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
+- `AuditableEntity`
+  - `getId(): String`
+  - `getLabel(): String`
+  - `getCode(): String`
+- `SelfDescribingConfig`
+  - `describe(): Map<String,Object>`
 
 **Implementations (your work):**
 
@@ -344,7 +376,7 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 #### audit-application
 
-**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure
+**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure
 
 **Interfaces (contracts):**
 
@@ -352,6 +384,9 @@ Domain module for course structure. Contains entity models representing the 5-le
   - `runAudit(Path coursePath): AuditReport`
 - `CourseMapper`
   - `map(CourseEntity course): AuditableCourse`
+- `AnalyzerRegistry`
+  - `listAnalyzers(): List<AnalyzerDescriptor>`
+  - `getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>`
 
 **Implementations (your work):**
 
@@ -364,6 +399,10 @@ Domain module for course structure. Contains entity models representing the 5-le
   Tests: Given a valid course path, when runAudit is called, then returns the audit report from the full chain, Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path, Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity, Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course, Given courseRepository throws an exception, when runAudit is called, then the exception propagates, Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates, Given contentAudit throws an exception, when runAudit is called, then the exception propagates, Given a course with no milestones, when runAudit is called, then returns the report from contentAudit
 - `DefaultCocaBucketsConfig` implements CocaBucketsConfig [Component]
 - `DefaultLemmaRecurrenceConfig` implements LemmaRecurrenceConfig [Component]
+- `DefaultLemmaAbsenceConfig` implements LemmaAbsenceConfig [Component]
+  Tests: should return absolute threshold 0 for A1, should return absolute threshold 2 for A2, should return absolute threshold 5 for B1, should return absolute threshold 8 for B2, should return percentage threshold 0.0 for A1, should return percentage threshold 5.0 for A2, should return percentage threshold 10.0 for B1, should return percentage threshold 15.0 for B2, should return level weight 2.0 for A1, should return level weight 2.0 for A2, should return level weight 1.0 for B1, should return level weight 1.0 for B2, should return high priority bound of 1000, should return medium priority bound of 3000, should return low priority bound of 5000, should return high priority alert threshold of 0, should return medium priority alert threshold of 3, should return low priority alert threshold of 10, should return critical absence threshold of 10, should return acceptable absence threshold of 5, should return high report limit of 20, should return medium report limit of 30, should return low report limit of 50, should return discount per level of 0.1, should have absolute thresholds increasing from A1 to B2, should have percentage thresholds increasing from A1 to B2, should have priority bounds ordered high less than medium less than low, should weight critical levels A1 and A2 higher than B1 and B2, should have report limits increasing from high to low priority, should have critical absence threshold greater than acceptable absence threshold, should have alert thresholds non-decreasing from high to low priority, should enforce zero tolerance for high priority alert threshold, should enforce A1 zero tolerance with both absolute and percentage thresholds at zero, should have discount per level that limits max penalty to 0.3 for three-level distance, should return non-negative values for all thresholds and bounds, should return positive report limits for all priority levels, should return percentage thresholds between 0 and 100 for all levels, should return positive level weights for all CEFR levels, should return discount per level between 0 exclusive and 1 exclusive
+- `DefaultAnalyzerRegistry` implements AnalyzerRegistry [Component]
+  Inject: analyzers: List<ContentAnalyzer>, configs: List<SelfDescribingConfig>
 
 #### course-infrastructure
 
@@ -381,20 +420,26 @@ Infrastructure module for course persistence. Contains the filesystem adapter th
 
 CLI entry point for running content audits from the command line
 
-**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure
+**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure
 
 **Models:**
 
 - `ReportViewModel` — overallScore: double, analyzerNames: List<String>, analyzerScores: Map<String,Double>, milestoneScores: List<MilestoneScoreRow>
-- `MilestoneScoreRow` — milestoneId: String, analyzerScores: Map<String,Double>, overallScore: double, topicScores: List<TopicScoreRow>
-- `QuizScoreRow` — quizId: String, overallScore: double, analyzerScores: Map<String,Double>
-- `KnowledgeScoreRow` — knowledgeId: String, overallScore: double, analyzerScores: Map<String,Double>, quizScores: List<QuizScoreRow>
-- `TopicScoreRow` — topicId: String, overallScore: double, analyzerScores: Map<String,Double>, knowledgeScores: List<KnowledgeScoreRow>
+- `MilestoneScoreRow` — milestoneId: String, analyzerScores: Map<String,Double>, overallScore: double, topicScores: List<TopicScoreRow>, entity: AuditableEntity
+- `QuizScoreRow` — quizId: String, overallScore: double, analyzerScores: Map<String,Double>, entity: AuditableEntity
+- `KnowledgeScoreRow` — knowledgeId: String, overallScore: double, analyzerScores: Map<String,Double>, quizScores: List<QuizScoreRow>, entity: AuditableEntity
+- `TopicScoreRow` — topicId: String, overallScore: double, analyzerScores: Map<String,Double>, knowledgeScores: List<KnowledgeScoreRow>, entity: AuditableEntity
+- `DrillDownScope` — level: Optional<String>, topic: Optional<String>, knowledge: Optional<String>
+- `DrillDownLevel` [enum] — COURSE: null, MILESTONE: null, TOPIC: null, KNOWLEDGE: null
+- `DrillDownView` — depth: DrillDownLevel, nodeName: String, overallScore: double, analyzerScores: Map<String,Double>, analyzerNames: List<String>, childRows: List<ScoreRow>
+- `ChildScoreRow` — id: String, overallScore: double, analyzerScores: Map<String,Double>, entity: AuditableEntity
+- `AnalyzerStatsView` — analyzerName: String, analyzerDescription: String, courseScore: double, levelScores: Map<String,Double>, worstItems: List<ScoredItemRow>, scoreDistribution: Map<String,Integer>
+- `ScoredItemRow` — milestoneId: String, topicId: String, knowledgeId: String, quizId: String, score: double, label: String
 
 **Interfaces (contracts):**
 
 - `ReportFormatter`
-  - `format(ReportViewModel viewModel): String`
+  - `format(ReportViewModel viewModel,DrillDownScope scope): String`
 - `AuditCli` [sealed]
   - `run(String[] args): int`
   - `call(): Integer`
@@ -404,18 +449,31 @@ CLI entry point for running content audits from the command line
   - `transform(AuditReport report): ReportViewModel`
 - `RawReportFormatter`
   - `format(AuditReport report): String`
+- `DrillDownResolver` [sealed]
+  - `resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView`
+- `AnalyzerStatsTransformer` [sealed]
+  - `transform(AuditReport report,String analyzerName,AnalyzerRegistry registry): AnalyzerStatsView`
+- `ScoreRow`
+  - `getEntity(): AuditableEntity`
+  - `getOverallScore(): double`
+  - `getAnalyzerScores(): Map<String,Double>`
 
 **Implementations (your work):**
 
 - `TextReportFormatter` implements ReportFormatter
+  Inject: drillDownResolver: DrillDownResolver
 - `JsonReportFormatter` implements ReportFormatter
+  Inject: drillDownResolver: DrillDownResolver
 - `DefaultAuditCli` implements AuditCli
-  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry, viewModelTransformer: ReportViewModelTransformer, rawReportFormatter: RawReportFormatter
+  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry, viewModelTransformer: ReportViewModelTransformer, rawReportFormatter: RawReportFormatter, analyzerRegistry: AnalyzerRegistry, analyzerStatsTransformer: AnalyzerStatsTransformer
   Tests: Given valid args with course path, when run is called, then returns exit code 0, Given no args provided, when run is called, then returns non-zero exit code, Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code, Given valid args with --format json, when run is called, then json formatter is looked up and returns 0, Given valid args without --format, when run is called, then text formatter is used by default and returns 0, Given valid args, when run is called, then auditRunner runAudit is invoked with course path, Given an unsupported format value, when run is called, then returns non-zero exit code, Given valid args and low audit scores, when run is called, then returns 0 regardless of score values
 - `DefaultFormatterRegistry` implements FormatterRegistry [Component]
 - `DefaultReportViewModelTransformer` implements ReportViewModelTransformer
 - `TableReportFormatter` implements ReportFormatter
+  Inject: drillDownResolver: DrillDownResolver
 - `RawJsonReportFormatter` implements RawReportFormatter
+- `DefaultDrillDownResolver` implements DrillDownResolver [Component]
+- `DefaultAnalyzerStatsTransformer` implements AnalyzerStatsTransformer [Component]
 
 #### nlp-infrastructure
 
@@ -437,6 +495,18 @@ Infrastructure module for NLP processing. Provides SpaCy-backed tokenization beh
 - `NlpTokenizerFactory`
   - `create(NlpTokenizerConfig config): NlpTokenizer`
 
+#### vocabulary-infrastructure
+
+Infrastructure module for linguistic reference catalogs (EVP vocabulary profiles, COCA frequency data). Provides static lookup data for vocabulary analysis. Separate from NLP processing (which handles runtime tokenization).
+
+**Depends on:** audit-domain
+
+**Packages:**
+
+- `evp` [internal] — EVP catalog access — expected lemmas by CEFR level, semantic categories
+  Implementations: FileSystemEvpCatalog
+- `coca` [internal] — COCA frequency ranking lookups
+
 ### Boundaries
 
 | Module | Can Import From |
@@ -444,8 +514,9 @@ Infrastructure module for NLP processing. Provides SpaCy-backed tokenization beh
 | audit-domain | (none — leaf module) |
 | course-domain | (none — leaf module) |
 | refiner-domain | (none — leaf module) |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
 | course-infrastructure | course-domain |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
 | nlp-infrastructure | audit-domain |
+| vocabulary-infrastructure | audit-domain |
 

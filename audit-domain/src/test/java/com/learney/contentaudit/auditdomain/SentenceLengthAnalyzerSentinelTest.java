@@ -115,7 +115,7 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditableQuiz sentQuiz = new AuditableQuiz("She likes red apples very much", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
     AuditContext ctxSentQuiz = new AuditContext("0", "t1", "k2", "q2", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k2", "q2", sentQuiz);
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k2", "q2", null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -159,7 +159,7 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditableQuiz quiz = new AuditableQuiz("She likes apples a lot", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1", quiz);
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1", null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -185,7 +185,7 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditableQuiz quiz = new AuditableQuiz("She really likes green apples a lot today quickly", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.75, "0", "t1", "k1", "q1", quiz);
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.75, "0", "t1", "k1", "q1", null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -211,7 +211,7 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditableQuiz quiz = new AuditableQuiz("Go now", List.of(dummyToken, dummyToken), null, null, null);
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.25, "0", "t1", "k1", "q1", quiz);
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.25, "0", "t1", "k1", "q1", null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -237,7 +237,7 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditableQuiz quiz = new AuditableQuiz("I like big red cats", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1", quiz);
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1", null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -263,7 +263,7 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditableQuiz quiz = new AuditableQuiz("I like big red cats very much here now", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1", quiz);
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1", null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -289,7 +289,7 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the local market every day", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.0, "0", "t1", "k1", "q1", quiz);
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.0, "0", "t1", "k1", "q1", null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -337,7 +337,7 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditableQuiz quiz = new AuditableQuiz("The students should have been studying for their final exams much more carefully this semester", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
     AuditContext ctxQuiz = new AuditContext("3", "t1", "k1", "q1", null, null, null);
     TargetRange rangeB2 = new TargetRange(CefrLevel.B2, 14, 17);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "3", "t1", "k1", "q1", quiz);
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "3", "t1", "k1", "q1", null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -363,7 +363,7 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditableQuiz quiz = new AuditableQuiz("Go", List.of(dummyToken), null, null, null);
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.0, "0", "t1", "k1", "q1", quiz);
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.0, "0", "t1", "k1", "q1", null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -389,7 +389,7 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the garden", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
     AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.5, "0", "t1", "k1", "q1", quiz);
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.5, "0", "t1", "k1", "q1", null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -435,8 +435,8 @@ public class SentenceLengthAnalyzerSentinelTest {
     AuditableQuiz quiz2 = new AuditableQuiz("Good morning", List.of(dummyToken, dummyToken), null, null, null);
     AuditContext ctxQuiz2 = new AuditContext("0", "t1", "k1", "q2", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore1 = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1", quiz1);
-    ScoredItem expectedScore2 = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.25, "0", "t1", "k1", "q2", quiz2);
+    ScoredItem expectedScore1 = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1", null);
+    ScoredItem expectedScore2 = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.25, "0", "t1", "k1", "q2", null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2

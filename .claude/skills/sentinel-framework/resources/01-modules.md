@@ -45,6 +45,10 @@ project-root/
 │   ├── pom.xml            # Module POM (generated)
 │   ├── src/main/java/     # Production code
 │   └── src/test/java/     # Test code
+├── vocabulary-infrastructure/
+│   ├── pom.xml            # Module POM (generated)
+│   ├── src/main/java/     # Production code
+│   └── src/test/java/     # Test code
 ```
 
 ## Declared Modules
@@ -57,10 +61,10 @@ project-root/
 | Depends On | (none — leaf module) |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 17 (AuditReport, AuditableCourse, AuditContext, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, ScoredItem, NodeScores, QuizNode, KnowledgeNode, TopicNode, MilestoneNode, NlpToken) |
-| Interfaces | 10 (ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig) |
+| Models | 18 (AuditReport, AuditableCourse, AuditContext, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, ScoredItem, NodeScores, QuizNode, KnowledgeNode, TopicNode, MilestoneNode, NlpToken, AnalyzerDescriptor) |
+| Interfaces | 14 (ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig) |
 | Implementations | 6 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator) |
-| Packages | 2 (coca [public], lrec [internal]) |
+| Packages | 3 (coca [internal], lrec [internal], labs [internal]) |
 
 ### course-domain
 
@@ -95,12 +99,12 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditapplication` |
-| Depends On | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure |
+| Depends On | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 0 |
-| Interfaces | 2 (AuditRunner, CourseMapper) |
-| Implementations | 5 (CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig) |
+| Interfaces | 3 (AuditRunner, CourseMapper, AnalyzerRegistry) |
+| Implementations | 7 (CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry) |
 | Packages | 0 |
 
 ### course-infrastructure
@@ -125,12 +129,12 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditcli` |
-| Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure |
+| Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 5 (ReportViewModel, MilestoneScoreRow, QuizScoreRow, KnowledgeScoreRow, TopicScoreRow) |
-| Interfaces | 5 (ReportFormatter, AuditCli, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter) |
-| Implementations | 7 (TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry, DefaultReportViewModelTransformer, TableReportFormatter, RawJsonReportFormatter) |
+| Models | 11 (ReportViewModel, MilestoneScoreRow, QuizScoreRow, KnowledgeScoreRow, TopicScoreRow, DrillDownScope, DrillDownLevel, DrillDownView, ChildScoreRow, AnalyzerStatsView, ScoredItemRow) |
+| Interfaces | 8 (ReportFormatter, AuditCli, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter, DrillDownResolver, AnalyzerStatsTransformer, ScoreRow) |
+| Implementations | 9 (TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry, DefaultReportViewModelTransformer, TableReportFormatter, RawJsonReportFormatter, DefaultDrillDownResolver, DefaultAnalyzerStatsTransformer) |
 | Packages | 0 |
 
 ### nlp-infrastructure
@@ -148,6 +152,21 @@ project-root/
 | Implementations | 0 |
 | Packages | 1 (spacy [public]) |
 
+### vocabulary-infrastructure
+
+> Infrastructure module for linguistic reference catalogs (EVP vocabulary profiles, COCA frequency data). Provides static lookup data for vocabulary analysis. Separate from NLP processing (which handles runtime tokenization).
+
+| Property | Value |
+|----------|-------|
+| Package | `com.learney.contentaudit.vocabularyinfrastructure` |
+| Depends On | audit-domain |
+| Allowed Clients | (unrestricted) |
+| Scope | public |
+| Models | 0 |
+| Interfaces | 0 |
+| Implementations | 0 |
+| Packages | 2 (evp [internal], coca [internal]) |
+
 ## Dependency Graph
 
 ```
@@ -159,13 +178,16 @@ audit-application ──depends──> course-domain
 audit-application ──depends──> refiner-domain
 audit-application ──depends──> course-infrastructure
 audit-application ──depends──> nlp-infrastructure
+audit-application ──depends──> vocabulary-infrastructure
 course-infrastructure ──depends──> course-domain
 audit-cli ──depends──> audit-application
 audit-cli ──depends──> audit-domain
 audit-cli ──depends──> course-domain
 audit-cli ──depends──> course-infrastructure
 audit-cli ──depends──> nlp-infrastructure
+audit-cli ──depends──> vocabulary-infrastructure
 nlp-infrastructure ──depends──> audit-domain
+vocabulary-infrastructure ──depends──> audit-domain
 ```
 
 ## Access Control Matrix
@@ -175,10 +197,11 @@ nlp-infrastructure ──depends──> audit-domain
 | audit-domain | (none) | (any) |
 | course-domain | (none) | (any) |
 | refiner-domain | (none) | (any) |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure | (any) |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure | (any) |
 | course-infrastructure | course-domain | (any) |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure | (any) |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure | (any) |
 | nlp-infrastructure | audit-domain | (any) |
+| vocabulary-infrastructure | audit-domain | (any) |
 
 ## Enforcement Mechanisms
 

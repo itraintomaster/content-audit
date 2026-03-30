@@ -69,6 +69,7 @@ Examples:
 | `getName(): String` | (none) |
 | `getTarget(): AuditTarget` | (none) |
 | `getResults(): List<ScoredItem>` | (none) |
+| `getDescription(): String` | (none) |
 
 #### AnalysisResult (port)
 
@@ -110,7 +111,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `aggregate(List<ScoredItem> scores): AuditReport` | (none) |
+| `aggregate(List<ScoredItem> scores,Map<String,AuditableEntity> entityMap): AuditReport` | (none) |
 
 #### CocaBucketsConfig (port)
 
@@ -147,10 +148,63 @@ Examples:
 | `getSubExposedThreshold(): double` | (none) |
 | `getOverExposedThreshold(): double` | (none) |
 
+#### LemmaAbsenceConfig [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** DefaultLemmaAbsenceConfig (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `getAbsoluteThreshold(CefrLevel level): int` | (none) |
+| `getPercentageThreshold(CefrLevel level): double` | (none) |
+| `getLevelWeight(CefrLevel level): double` | (none) |
+| `getHighPriorityBound(): int` | (none) |
+| `getMediumPriorityBound(): int` | (none) |
+| `getLowPriorityBound(): int` | (none) |
+| `getHighPriorityAlertThreshold(): int` | (none) |
+| `getMediumPriorityAlertThreshold(): int` | (none) |
+| `getLowPriorityAlertThreshold(): int` | (none) |
+| `getCriticalAbsenceThreshold(): int` | (none) |
+| `getAcceptableAbsenceThreshold(): int` | (none) |
+| `getHighReportLimit(): int` | (none) |
+| `getMediumReportLimit(): int` | (none) |
+| `getLowReportLimit(): int` | (none) |
+| `getDiscountPerLevel(): double` | (none) |
+
+#### EvpCatalogPort (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `getExpectedLemmas(CefrLevel level): Set<LemmaAndPos>` | (none) |
+| `isPhrase(String lemma): boolean` | (none) |
+| `getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>` | (none) |
+| `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>` | (none) |
+
+#### AuditableEntity (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `getId(): String` | (none) |
+| `getLabel(): String` | (none) |
+| `getCode(): String` | (none) |
+
+#### SelfDescribingConfig (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `describe(): Map<String,Object>` | (none) |
+
 #### TokenClassifier (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 
 | Method | Throws |
 |--------|--------|
@@ -159,7 +213,7 @@ Examples:
 #### ProgressionEvaluator (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 
 | Method | Throws |
 |--------|--------|
@@ -168,7 +222,7 @@ Examples:
 #### ImprovementPlanner (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 
 | Method | Throws |
 |--------|--------|
@@ -236,6 +290,17 @@ Examples:
 |--------|--------|
 | `map(CourseEntity course): AuditableCourse` | (none) |
 
+#### AnalyzerRegistry (service)
+
+**Package:** `com.learney.contentaudit.auditapplication`
+
+**Implemented by:** DefaultAnalyzerRegistry (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `listAnalyzers(): List<AnalyzerDescriptor>` | (none) |
+| `getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>` | (none) |
+
 ### Module: audit-cli
 
 #### ReportFormatter (port)
@@ -246,7 +311,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `format(ReportViewModel viewModel): String` | (none) |
+| `format(ReportViewModel viewModel,DrillDownScope scope): String` | (none) |
 
 #### AuditCli [SEALED] (port)
 
@@ -288,6 +353,36 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `format(AuditReport report): String` | (none) |
+
+#### DrillDownResolver [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implemented by:** DefaultDrillDownResolver (audit-cli)
+
+| Method | Throws |
+|--------|--------|
+| `resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView` | (none) |
+
+#### AnalyzerStatsTransformer [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implemented by:** DefaultAnalyzerStatsTransformer (audit-cli)
+
+| Method | Throws |
+|--------|--------|
+| `transform(AuditReport report,String analyzerName,AnalyzerRegistry registry): AnalyzerStatsView` | (none) |
+
+#### ScoreRow (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `getEntity(): AuditableEntity` | (none) |
+| `getOverallScore(): double` | (none) |
+| `getAnalyzerScores(): Map<String,Double>` | (none) |
 
 ### Module: nlp-infrastructure
 

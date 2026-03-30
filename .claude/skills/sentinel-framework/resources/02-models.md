@@ -70,10 +70,13 @@ new AuditableCourse(List<AuditableMilestone> milestones)
 | `topicId` | `String` |  |
 | `knowledgeId` | `String` |  |
 | `quizId` | `String` |  |
+| `topicLabel` | `String` |  |
+| `knowledgeLabel` | `String` |  |
+| `quizLabel` | `String` |  |
 
 **Generated constructor:**
 ```java
-new AuditContext(String milestoneId, String topicId, String knowledgeId, String quizId)
+new AuditContext(String milestoneId, String topicId, String knowledgeId, String quizId, String topicLabel, String knowledgeLabel, String quizLabel)
 ```
 
 #### AuditableKnowledge
@@ -87,10 +90,13 @@ new AuditContext(String milestoneId, String topicId, String knowledgeId, String 
 | `title` | `String` |  |
 | `instructions` | `String` |  |
 | `isSentence` | `boolean` |  |
+| `id` | `String` |  |
+| `label` | `String` |  |
+| `code` | `String` |  |
 
 **Generated constructor:**
 ```java
-new AuditableKnowledge(List<AuditableQuiz> quizzes, String title, String instructions, boolean isSentence)
+new AuditableKnowledge(List<AuditableQuiz> quizzes, String title, String instructions, boolean isSentence, String id, String label, String code)
 ```
 
 #### AuditableTopic
@@ -101,10 +107,13 @@ new AuditableKnowledge(List<AuditableQuiz> quizzes, String title, String instruc
 | Field | Type | Notes |
 |-------|------|-------|
 | `knowledge` | `List<AuditableKnowledge>` | Import `java.util.List` |
+| `id` | `String` |  |
+| `label` | `String` |  |
+| `code` | `String` |  |
 
 **Generated constructor:**
 ```java
-new AuditableTopic(List<AuditableKnowledge> knowledge)
+new AuditableTopic(List<AuditableKnowledge> knowledge, String id, String label, String code)
 ```
 
 #### AuditableMilestone
@@ -115,10 +124,13 @@ new AuditableTopic(List<AuditableKnowledge> knowledge)
 | Field | Type | Notes |
 |-------|------|-------|
 | `topics` | `List<AuditableTopic>` | Import `java.util.List` |
+| `id` | `String` |  |
+| `label` | `String` |  |
+| `code` | `String` |  |
 
 **Generated constructor:**
 ```java
-new AuditableMilestone(List<AuditableTopic> topics)
+new AuditableMilestone(List<AuditableTopic> topics, String id, String label, String code)
 ```
 
 #### AuditableQuiz
@@ -130,10 +142,13 @@ new AuditableMilestone(List<AuditableTopic> topics)
 |-------|------|-------|
 | `sentence` | `String` |  |
 | `tokens` | `List<NlpToken>` | Import `java.util.List` |
+| `id` | `String` |  |
+| `label` | `String` |  |
+| `code` | `String` |  |
 
 **Generated constructor:**
 ```java
-new AuditableQuiz(String sentence, List<NlpToken> tokens)
+new AuditableQuiz(String sentence, List<NlpToken> tokens, String id, String label, String code)
 ```
 
 #### CefrLevel
@@ -201,10 +216,11 @@ new AuditTarget(null QUIZ, null KNOWLEDGE, null TOPIC, null MILESTONE, null COUR
 | `topicId` | `String` |  |
 | `knowledgeId` | `String` |  |
 | `quizId` | `String` |  |
+| `source` | `AuditableEntity` |  |
 
 **Generated constructor:**
 ```java
-new ScoredItem(String analyzerName, AuditTarget target, double score, String milestoneId, String topicId, String knowledgeId, String quizId)
+new ScoredItem(String analyzerName, AuditTarget target, double score, String milestoneId, String topicId, String knowledgeId, String quizId, AuditableEntity source)
 ```
 
 #### NodeScores
@@ -230,10 +246,11 @@ new NodeScores(Map<String,Double> scores)
 |-------|------|-------|
 | `quizId` | `String` |  |
 | `scores` | `NodeScores` |  |
+| `entity` | `AuditableEntity` |  |
 
 **Generated constructor:**
 ```java
-new QuizNode(String quizId, NodeScores scores)
+new QuizNode(String quizId, NodeScores scores, AuditableEntity entity)
 ```
 
 #### KnowledgeNode
@@ -246,10 +263,11 @@ new QuizNode(String quizId, NodeScores scores)
 | `knowledgeId` | `String` |  |
 | `scores` | `NodeScores` |  |
 | `quizzes` | `List<QuizNode>` | Import `java.util.List` |
+| `entity` | `AuditableEntity` |  |
 
 **Generated constructor:**
 ```java
-new KnowledgeNode(String knowledgeId, NodeScores scores, List<QuizNode> quizzes)
+new KnowledgeNode(String knowledgeId, NodeScores scores, List<QuizNode> quizzes, AuditableEntity entity)
 ```
 
 #### TopicNode
@@ -262,10 +280,11 @@ new KnowledgeNode(String knowledgeId, NodeScores scores, List<QuizNode> quizzes)
 | `topicId` | `String` |  |
 | `scores` | `NodeScores` |  |
 | `knowledges` | `List<KnowledgeNode>` | Import `java.util.List` |
+| `entity` | `AuditableEntity` |  |
 
 **Generated constructor:**
 ```java
-new TopicNode(String topicId, NodeScores scores, List<KnowledgeNode> knowledges)
+new TopicNode(String topicId, NodeScores scores, List<KnowledgeNode> knowledges, AuditableEntity entity)
 ```
 
 #### MilestoneNode
@@ -278,10 +297,11 @@ new TopicNode(String topicId, NodeScores scores, List<KnowledgeNode> knowledges)
 | `milestoneId` | `String` |  |
 | `scores` | `NodeScores` |  |
 | `topics` | `List<TopicNode>` | Import `java.util.List` |
+| `entity` | `AuditableEntity` |  |
 
 **Generated constructor:**
 ```java
-new MilestoneNode(String milestoneId, NodeScores scores, List<TopicNode> topics)
+new MilestoneNode(String milestoneId, NodeScores scores, List<TopicNode> topics, AuditableEntity entity)
 ```
 
 #### NlpToken
@@ -303,10 +323,26 @@ new MilestoneNode(String milestoneId, NodeScores scores, List<TopicNode> topics)
 new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, boolean isStop, boolean isPunct)
 ```
 
+#### AnalyzerDescriptor
+
+**Package:** `com.learney.contentaudit.auditdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `name` | `String` |  |
+| `description` | `String` |  |
+| `target` | `AuditTarget` |  |
+
+**Generated constructor:**
+```java
+new AnalyzerDescriptor(String name, String description, AuditTarget target)
+```
+
 #### FrequencyBand (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** record
 
 | Field | Type |
@@ -318,7 +354,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### BandConfiguration (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** record
 
 | Field | Type |
@@ -329,7 +365,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### AssessmentState (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** enum
 
 | Field | Type |
@@ -342,7 +378,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### TargetKind (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** enum
 
 | Field | Type |
@@ -353,7 +389,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### BucketTarget (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** record
 
 | Field | Type |
@@ -365,7 +401,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### BucketResult (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** record
 
 | Field | Type |
@@ -380,7 +416,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### QuarterBucketTargets (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** record
 
 | Field | Type |
@@ -390,7 +426,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### QuarterResult (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** record
 
 | Field | Type |
@@ -402,7 +438,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### LevelBucketDistribution (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** record
 
 | Field | Type |
@@ -416,7 +452,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### TopicBucketDistribution (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** record
 
 | Field | Type |
@@ -424,11 +460,12 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 | `topicId` | `String` |
 | `score` | `double` |
 | `bucketResults` | `List<BucketResult>` |
+| `topicLabel` | `String` |
 
 #### ProgressionState (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** enum
 
 | Field | Type |
@@ -441,7 +478,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### ProgressionExpectation (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** record
 
 | Field | Type |
@@ -452,7 +489,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### ProgressionAssessment (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** record
 
 | Field | Type |
@@ -465,7 +502,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### ImprovementDirectiveType (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** enum
 
 | Field | Type |
@@ -476,7 +513,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### ImprovementDirective (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** record
 
 | Field | Type |
@@ -492,7 +529,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### CocaBucketsDistributionResult (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** record
 
 | Field | Type |
@@ -505,7 +542,7 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 #### AnalysisStrategy (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
-**Visibility:** public
+**Visibility:** internal
 **Type:** enum
 
 | Field | Type |
@@ -564,6 +601,126 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 | `lemmaStats` | `List<LemmaStats>` |
 | `exposureSummary` | `ExposureSummary` |
 | `overallScore` | `double` |
+
+#### AbsenceType (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `COMPLETELY_ABSENT` | `double` |
+| `APPEARS_TOO_LATE` | `double` |
+| `APPEARS_TOO_EARLY` | `double` |
+| `SCATTERED_PLACEMENT` | `double` |
+
+#### PriorityLevel (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `HIGH` | `null` |
+| `MEDIUM` | `null` |
+| `LOW` | `null` |
+
+#### LemmaAndPos (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `lemma` | `String` |
+| `pos` | `String` |
+
+#### AbsentLemma (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `lemmaAndPos` | `LemmaAndPos` |
+| `expectedLevel` | `CefrLevel` |
+| `absenceType` | `AbsenceType` |
+| `presentInLevels` | `List<CefrLevel>` |
+| `priorityLevel` | `PriorityLevel` |
+| `cocaRank` | `Integer` |
+| `semanticCategory` | `String` |
+
+#### AbsenceAssessment (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `OPTIMAL` | `null` |
+| `ACCEPTABLE` | `null` |
+| `NEEDS_IMPROVEMENT` | `null` |
+
+#### LevelAbsenceMetrics (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `level` | `CefrLevel` |
+| `totalExpected` | `int` |
+| `totalAbsent` | `int` |
+| `absencePercentage` | `double` |
+| `absentLemmas` | `List<AbsentLemma>` |
+| `score` | `double` |
+
+#### RecommendationAction (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `ADD_VOCABULARY` | `null` |
+| `INTRODUCE_EARLIER` | `null` |
+| `REINFORCE_AT_LEVEL` | `null` |
+| `CONSOLIDATE_PLACEMENT` | `null` |
+
+#### EffortLevel (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `LOW` | `null` |
+| `MEDIUM` | `null` |
+| `HIGH` | `null` |
+
+#### AbsenceRecommendation (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `action` | `RecommendationAction` |
+| `description` | `String` |
+| `priority` | `PriorityLevel` |
+| `affectedLemmas` | `List<AbsentLemma>` |
+| `effortLevel` | `EffortLevel` |
+| `expectedImpact` | `double` |
+| `targetLevel` | `CefrLevel` |
 
 ### Module: course-domain
 
@@ -821,10 +978,11 @@ new ReportViewModel(double overallScore, List<String> analyzerNames, Map<String,
 | `analyzerScores` | `Map<String,Double>` |  |
 | `overallScore` | `double` |  |
 | `topicScores` | `List<TopicScoreRow>` | Import `java.util.List` |
+| `entity` | `AuditableEntity` |  |
 
 **Generated constructor:**
 ```java
-new MilestoneScoreRow(String milestoneId, Map<String,Double> analyzerScores, double overallScore, List<TopicScoreRow> topicScores)
+new MilestoneScoreRow(String milestoneId, Map<String,Double> analyzerScores, double overallScore, List<TopicScoreRow> topicScores, AuditableEntity entity)
 ```
 
 #### QuizScoreRow
@@ -837,10 +995,11 @@ new MilestoneScoreRow(String milestoneId, Map<String,Double> analyzerScores, dou
 | `quizId` | `String` |  |
 | `overallScore` | `double` |  |
 | `analyzerScores` | `Map<String,Double>` |  |
+| `entity` | `AuditableEntity` |  |
 
 **Generated constructor:**
 ```java
-new QuizScoreRow(String quizId, double overallScore, Map<String,Double> analyzerScores)
+new QuizScoreRow(String quizId, double overallScore, Map<String,Double> analyzerScores, AuditableEntity entity)
 ```
 
 #### KnowledgeScoreRow
@@ -854,10 +1013,11 @@ new QuizScoreRow(String quizId, double overallScore, Map<String,Double> analyzer
 | `overallScore` | `double` |  |
 | `analyzerScores` | `Map<String,Double>` |  |
 | `quizScores` | `List<QuizScoreRow>` | Import `java.util.List` |
+| `entity` | `AuditableEntity` |  |
 
 **Generated constructor:**
 ```java
-new KnowledgeScoreRow(String knowledgeId, double overallScore, Map<String,Double> analyzerScores, List<QuizScoreRow> quizScores)
+new KnowledgeScoreRow(String knowledgeId, double overallScore, Map<String,Double> analyzerScores, List<QuizScoreRow> quizScores, AuditableEntity entity)
 ```
 
 #### TopicScoreRow
@@ -871,10 +1031,118 @@ new KnowledgeScoreRow(String knowledgeId, double overallScore, Map<String,Double
 | `overallScore` | `double` |  |
 | `analyzerScores` | `Map<String,Double>` |  |
 | `knowledgeScores` | `List<KnowledgeScoreRow>` | Import `java.util.List` |
+| `entity` | `AuditableEntity` |  |
 
 **Generated constructor:**
 ```java
-new TopicScoreRow(String topicId, double overallScore, Map<String,Double> analyzerScores, List<KnowledgeScoreRow> knowledgeScores)
+new TopicScoreRow(String topicId, double overallScore, Map<String,Double> analyzerScores, List<KnowledgeScoreRow> knowledgeScores, AuditableEntity entity)
+```
+
+#### DrillDownScope
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `level` | `Optional<String>` |  |
+| `topic` | `Optional<String>` |  |
+| `knowledge` | `Optional<String>` |  |
+
+**Generated constructor:**
+```java
+new DrillDownScope(Optional<String> level, Optional<String> topic, Optional<String> knowledge)
+```
+
+#### DrillDownLevel
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `COURSE` | `null` |  |
+| `MILESTONE` | `null` |  |
+| `TOPIC` | `null` |  |
+| `KNOWLEDGE` | `null` |  |
+
+**Generated constructor:**
+```java
+new DrillDownLevel(null COURSE, null MILESTONE, null TOPIC, null KNOWLEDGE)
+```
+
+#### DrillDownView
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `depth` | `DrillDownLevel` |  |
+| `nodeName` | `String` |  |
+| `overallScore` | `double` |  |
+| `analyzerScores` | `Map<String,Double>` |  |
+| `analyzerNames` | `List<String>` | Import `java.util.List` |
+| `childRows` | `List<ScoreRow>` | Import `java.util.List` |
+
+**Generated constructor:**
+```java
+new DrillDownView(DrillDownLevel depth, String nodeName, double overallScore, Map<String,Double> analyzerScores, List<String> analyzerNames, List<ScoreRow> childRows)
+```
+
+#### ChildScoreRow
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `id` | `String` |  |
+| `overallScore` | `double` |  |
+| `analyzerScores` | `Map<String,Double>` |  |
+| `entity` | `AuditableEntity` |  |
+
+**Generated constructor:**
+```java
+new ChildScoreRow(String id, double overallScore, Map<String,Double> analyzerScores, AuditableEntity entity)
+```
+
+#### AnalyzerStatsView
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `analyzerName` | `String` |  |
+| `analyzerDescription` | `String` |  |
+| `courseScore` | `double` |  |
+| `levelScores` | `Map<String,Double>` |  |
+| `worstItems` | `List<ScoredItemRow>` | Import `java.util.List` |
+| `scoreDistribution` | `Map<String,Integer>` |  |
+
+**Generated constructor:**
+```java
+new AnalyzerStatsView(String analyzerName, String analyzerDescription, double courseScore, Map<String,Double> levelScores, List<ScoredItemRow> worstItems, Map<String,Integer> scoreDistribution)
+```
+
+#### ScoredItemRow
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `milestoneId` | `String` |  |
+| `topicId` | `String` |  |
+| `knowledgeId` | `String` |  |
+| `quizId` | `String` |  |
+| `score` | `double` |  |
+| `label` | `String` |  |
+
+**Generated constructor:**
+```java
+new ScoredItemRow(String milestoneId, String topicId, String knowledgeId, String quizId, double score, String label)
 ```
 
 ### Module: nlp-infrastructure

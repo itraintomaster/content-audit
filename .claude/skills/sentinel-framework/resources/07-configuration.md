@@ -90,9 +90,36 @@ implementations:
       - name: "depName"
         type: "DepType"
     tests: [...]                  # Declarative test definitions
+    handwrittenTests:              # Handwritten test stubs
+      - name: "should do X"       # Test name (becomes @DisplayName + method)
+        traceability:              # Optional traceability
+          feature: "FEAT-001"
+          rule: "RULE-001"
 ```
 
-## Test Schema
+## Handwritten Test Schema
+
+The preferred way to declare tests. `sentinel generate` creates JUnit stub classes that the developer implements by hand.
+
+```yaml
+handwrittenTests:
+  - name: "should save and return entity"  # Required: descriptive name
+    traceability:                           # Optional: requirement traceability
+      feature: "FEAT-001"
+      rule: "RULE-001"
+      journey: "JOURNEY-001"
+  - name: "should throw on invalid input"  # Another test
+```
+
+Generated stub:
+```java
+@Test @DisplayName("should save and return entity") @Tag("FEAT-001")
+public void shouldSaveAndReturnEntity() {
+    throw new UnsupportedOperationException("Not implemented yet");
+}
+```
+
+## Declarative Test Schema
 
 ```yaml
 tests:

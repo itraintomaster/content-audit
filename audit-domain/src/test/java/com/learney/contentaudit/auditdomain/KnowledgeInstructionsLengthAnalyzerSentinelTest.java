@@ -44,7 +44,7 @@ public class KnowledgeInstructionsLengthAnalyzerSentinelTest {
       ) {
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Some Title", null, false, null, null, null);
     AuditContext ctx = new AuditContext("m1", "t1", "k1", null, null, null, null);
-    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 1.0, "m1", "t1", "k1", null, knowledge);
+    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 1.0, "m1", "t1", "k1", null, null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onKnowledge(knowledge, ctx));
     // Step 2
@@ -59,7 +59,7 @@ public class KnowledgeInstructionsLengthAnalyzerSentinelTest {
       ) {
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Some Title", null, false, null, null, null);
     AuditContext ctx = new AuditContext("m1", "t1", "k1", null, null, null, null);
-    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 1.0, "m1", "t1", "k1", null, knowledge);
+    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 1.0, "m1", "t1", "k1", null, null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onKnowledge(knowledge, ctx));
     // Step 2
@@ -74,7 +74,7 @@ public class KnowledgeInstructionsLengthAnalyzerSentinelTest {
       ) {
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Some Title", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", false, null, null, null);
     AuditContext ctx = new AuditContext("m1", "t1", "k1", null, null, null, null);
-    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 1.0, "m1", "t1", "k1", null, knowledge);
+    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 1.0, "m1", "t1", "k1", null, null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onKnowledge(knowledge, ctx));
     // Step 2
@@ -89,7 +89,7 @@ public class KnowledgeInstructionsLengthAnalyzerSentinelTest {
       ) {
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Some Title", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", false, null, null, null);
     AuditContext ctx = new AuditContext("m1", "t1", "k1", null, null, null, null);
-    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 1.0, "m1", "t1", "k1", null, knowledge);
+    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 1.0, "m1", "t1", "k1", null, null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onKnowledge(knowledge, ctx));
     // Step 2
@@ -104,7 +104,7 @@ public class KnowledgeInstructionsLengthAnalyzerSentinelTest {
       ) {
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Some Title", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", false, null, null, null);
     AuditContext ctx = new AuditContext("m1", "t1", "k1", null, null, null, null);
-    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 0.5, "m1", "t1", "k1", null, knowledge);
+    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 0.5, "m1", "t1", "k1", null, null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onKnowledge(knowledge, ctx));
     // Step 2
@@ -119,7 +119,7 @@ public class KnowledgeInstructionsLengthAnalyzerSentinelTest {
       ) {
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Some Title", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", false, null, null, null);
     AuditContext ctx = new AuditContext("m1", "t1", "k1", null, null, null, null);
-    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 0.5, "m1", "t1", "k1", null, knowledge);
+    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 0.5, "m1", "t1", "k1", null, null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onKnowledge(knowledge, ctx));
     // Step 2
@@ -134,7 +134,7 @@ public class KnowledgeInstructionsLengthAnalyzerSentinelTest {
       ) {
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Some Title", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", false, null, null, null);
     AuditContext ctx = new AuditContext("m1", "t1", "k1", null, null, null, null);
-    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 0.5, "m1", "t1", "k1", null, knowledge);
+    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 0.5, "m1", "t1", "k1", null, null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onKnowledge(knowledge, ctx));
     // Step 2
@@ -149,7 +149,7 @@ public class KnowledgeInstructionsLengthAnalyzerSentinelTest {
       ) {
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Some Title", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", false, null, null, null);
     AuditContext ctx = new AuditContext("m1", "t1", "k1", null, null, null, null);
-    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 0.0, "m1", "t1", "k1", null, knowledge);
+    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 0.0, "m1", "t1", "k1", null, null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onKnowledge(knowledge, ctx));
     // Step 2
@@ -164,7 +164,7 @@ public class KnowledgeInstructionsLengthAnalyzerSentinelTest {
       ) {
     AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Some Title", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", false, null, null, null);
     AuditContext ctx = new AuditContext("m1", "t1", "k1", null, null, null, null);
-    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 0.0, "m1", "t1", "k1", null, knowledge);
+    ScoredItem expectedScore = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 0.0, "m1", "t1", "k1", null, null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onKnowledge(knowledge, ctx));
     // Step 2
@@ -231,9 +231,9 @@ public class KnowledgeInstructionsLengthAnalyzerSentinelTest {
     AuditContext ctx1 = new AuditContext("m1", "t1", "k1", null, null, null, null);
     AuditContext ctx2 = new AuditContext("m1", "t1", "k2", null, null, null, null);
     AuditContext ctx3 = new AuditContext("m1", "t1", "k3", null, null, null, null);
-    ScoredItem expectedShort = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 1.0, "m1", "t1", "k1", null, shortKnowledge);
-    ScoredItem expectedMedium = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 0.5, "m1", "t1", "k2", null, mediumKnowledge);
-    ScoredItem expectedLong = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 0.0, "m1", "t1", "k3", null, longKnowledge);
+    ScoredItem expectedShort = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 1.0, "m1", "t1", "k1", null, null);
+    ScoredItem expectedMedium = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 0.5, "m1", "t1", "k2", null, null);
+    ScoredItem expectedLong = new ScoredItem("knowledge-instructions-length", AuditTarget.KNOWLEDGE, 0.0, "m1", "t1", "k3", null, null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onKnowledge(shortKnowledge, ctx1));
     // Step 2

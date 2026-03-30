@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditcli;
 
+import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
 import com.learney.contentaudit.auditapplication.AuditRunner;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.NodeScores;
@@ -34,6 +35,12 @@ public class DefaultAuditCliSentinelTest {
 
   @Mock
   private RawReportFormatter rawReportFormatter;
+
+  @Mock
+  private AnalyzerRegistry analyzerRegistry;
+
+  @Mock
+  private AnalyzerStatsTransformer analyzerStatsTransformer;
 
   @InjectMocks
   private DefaultAuditCli sut;
