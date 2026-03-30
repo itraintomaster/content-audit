@@ -87,7 +87,7 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
 
     @Override
     public String getDescription() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return "Scores knowledge titles by weighted character count";
     }
 
 }

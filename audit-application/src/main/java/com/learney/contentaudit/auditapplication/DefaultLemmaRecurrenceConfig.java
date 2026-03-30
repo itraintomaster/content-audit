@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditapplication;
 
 import com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -21,5 +22,13 @@ public class DefaultLemmaRecurrenceConfig implements LemmaRecurrenceConfig {
     @Override
     public double getOverExposedThreshold() {
         return 50.0;
+    }
+    @Override
+    public Map<String, Object> describe() {
+        return Map.of(
+                "analyzerName", "lemma-recurrence",
+                "top", getTop(),
+                "subExposedThreshold", getSubExposedThreshold(),
+                "overExposedThreshold", getOverExposedThreshold());
     }
 }

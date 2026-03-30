@@ -14,7 +14,7 @@ public class NlpToken {
 
     private String posTag;
 
-    private Integer frequencyRank;
+    private int frequencyRank;
 
     private boolean isStop;
 
@@ -23,7 +23,7 @@ public class NlpToken {
     public NlpToken() {
     }
 
-    public NlpToken(String text, String lemma, String posTag, Integer frequencyRank, boolean isStop,
+    public NlpToken(String text, String lemma, String posTag, int frequencyRank, boolean isStop,
             boolean isPunct) {
         this.text = text;
         this.lemma = lemma;
@@ -57,11 +57,11 @@ public class NlpToken {
         this.posTag = posTag;
     }
 
-    public Integer getFrequencyRank() {
+    public int getFrequencyRank() {
         return this.frequencyRank;
     }
 
-    public void setFrequencyRank(Integer frequencyRank) {
+    public void setFrequencyRank(int frequencyRank) {
         this.frequencyRank = frequencyRank;
     }
 

@@ -135,7 +135,7 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
 
     @Override
     public String getDescription() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return "Scores quiz sentence length against per-CEFR target token ranges";
     }
 
 }

@@ -143,4 +143,28 @@ public class DefaultCocaBucketsConfig implements CocaBucketsConfig {
     public List<ProgressionExpectation> getProgressionExpectations() {
         return PROGRESSION_EXPECTATIONS;
     }
+    @Override
+    public Map<String, Object> describe() {
+        List<Map<String, Object>> bands = BAND_CONFIGURATION.getBands().stream()
+                .map(b -> Map.<String, Object>of(
+                        "name", b.getName(),
+                        "lowerBound", b.getLowerBound(),
+                        "upperBound", b.getUpperBound()))
+                .toList();
+        Map<String, Object> levelTargets = new java.util.LinkedHashMap<>();
+        for (var entry : LEVEL_TARGETS.entrySet()) {
+            levelTargets.put(entry.getKey(), entry.getValue().stream()
+                    .map(t -> Map.<String, Object>of(
+                            "band", t.getBandName(),
+                            "target", t.getTargetPercentage(),
+                            "kind", t.getKind().name()))
+                    .toList());
+        }
+        return Map.of(
+                "analyzerName", "coca-buckets-distribution",
+                "strategy", getAnalysisStrategy().name(),
+                "toleranceMargin", TOLERANCE_MARGIN,
+                "bands", bands,
+                "levelTargets", levelTargets);
+    }
 }

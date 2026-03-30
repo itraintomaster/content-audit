@@ -162,7 +162,7 @@ public class LemmaRecurrenceAnalyzer implements ContentAnalyzer {
 
     @Override
     public String getDescription() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return "Tracks lemma repetition intervals to detect sub/over-exposed vocabulary";
     }
 
 }

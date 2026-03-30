@@ -149,8 +149,7 @@ The following models and interfaces are available from dependencies. You can use
 |-------|------|
 | quizId | `String` |
 | scores | `NodeScores` |
-| label | `String` |
-| code | `String` |
+| entity | `AuditableEntity` |
 
 ### KnowledgeNode (`record`)
 
@@ -159,8 +158,7 @@ The following models and interfaces are available from dependencies. You can use
 | knowledgeId | `String` |
 | scores | `NodeScores` |
 | quizzes | `List<QuizNode>` |
-| label | `String` |
-| code | `String` |
+| entity | `AuditableEntity` |
 
 ### TopicNode (`record`)
 
@@ -169,8 +167,7 @@ The following models and interfaces are available from dependencies. You can use
 | topicId | `String` |
 | scores | `NodeScores` |
 | knowledges | `List<KnowledgeNode>` |
-| label | `String` |
-| code | `String` |
+| entity | `AuditableEntity` |
 
 ### MilestoneNode (`record`)
 
@@ -179,8 +176,7 @@ The following models and interfaces are available from dependencies. You can use
 | milestoneId | `String` |
 | scores | `NodeScores` |
 | topics | `List<TopicNode>` |
-| label | `String` |
-| code | `String` |
+| entity | `AuditableEntity` |
 
 ### NlpToken (`record`)
 
@@ -192,6 +188,14 @@ The following models and interfaces are available from dependencies. You can use
 | frequencyRank | `Integer` |
 | isStop | `boolean` |
 | isPunct | `boolean` |
+
+### AnalyzerDescriptor (`record`)
+
+| Field | Type |
+|-------|------|
+| name | `String` |
+| description | `String` |
+| target | `AuditTarget` |
 
 ### ContentAudit (service)
 
@@ -217,6 +221,7 @@ Methods:
 - `getName(): String`
 - `getTarget(): AuditTarget`
 - `getResults(): List<ScoredItem>`
+- `getDescription(): String`
 
 ### AnalysisResult (port)
 
@@ -246,7 +251,7 @@ Methods:
 
 Methods:
 
-- `aggregate(List<ScoredItem> scores): AuditReport`
+- `aggregate(List<ScoredItem> scores,Map<String,AuditableEntity> entityMap): AuditReport`
 
 ### CocaBucketsConfig (port)
 
@@ -309,4 +314,10 @@ Methods:
 - `getId(): String`
 - `getLabel(): String`
 - `getCode(): String`
+
+### SelfDescribingConfig (port)
+
+Methods:
+
+- `describe(): Map<String,Object>`
 

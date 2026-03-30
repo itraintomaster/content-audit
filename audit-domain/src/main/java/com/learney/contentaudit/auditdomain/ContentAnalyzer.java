@@ -23,4 +23,6 @@ public interface ContentAnalyzer {
     AuditTarget getTarget();
 
     List<ScoredItem> getResults();
+
+    String getDescription();
 }

@@ -24,8 +24,7 @@ CLI entry point for running content audits from the command line
 | analyzerScores | `Map<String,Double>` |
 | overallScore | `double` |
 | topicScores | `List<TopicScoreRow>` |
-| label | `String` |
-| code | `String` |
+| entity | `AuditableEntity` |
 
 ### QuizScoreRow (`record`)
 
@@ -34,8 +33,7 @@ CLI entry point for running content audits from the command line
 | quizId | `String` |
 | overallScore | `double` |
 | analyzerScores | `Map<String,Double>` |
-| label | `String` |
-| code | `String` |
+| entity | `AuditableEntity` |
 
 ### KnowledgeScoreRow (`record`)
 
@@ -45,8 +43,7 @@ CLI entry point for running content audits from the command line
 | overallScore | `double` |
 | analyzerScores | `Map<String,Double>` |
 | quizScores | `List<QuizScoreRow>` |
-| label | `String` |
-| code | `String` |
+| entity | `AuditableEntity` |
 
 ### TopicScoreRow (`record`)
 
@@ -56,8 +53,7 @@ CLI entry point for running content audits from the command line
 | overallScore | `double` |
 | analyzerScores | `Map<String,Double>` |
 | knowledgeScores | `List<KnowledgeScoreRow>` |
-| label | `String` |
-| code | `String` |
+| entity | `AuditableEntity` |
 
 ### DrillDownScope (`record`)
 
@@ -85,7 +81,7 @@ CLI entry point for running content audits from the command line
 | overallScore | `double` |
 | analyzerScores | `Map<String,Double>` |
 | analyzerNames | `List<String>` |
-| childRows | `List<ChildScoreRow>` |
+| childRows | `List<ScoreRow>` |
 
 ### ChildScoreRow (`record`)
 
@@ -94,8 +90,29 @@ CLI entry point for running content audits from the command line
 | id | `String` |
 | overallScore | `double` |
 | analyzerScores | `Map<String,Double>` |
+| entity | `AuditableEntity` |
+
+### AnalyzerStatsView (`record`)
+
+| Field | Type |
+|-------|------|
+| analyzerName | `String` |
+| analyzerDescription | `String` |
+| courseScore | `double` |
+| levelScores | `Map<String,Double>` |
+| worstItems | `List<ScoredItemRow>` |
+| scoreDistribution | `Map<String,Integer>` |
+
+### ScoredItemRow (`record`)
+
+| Field | Type |
+|-------|------|
+| milestoneId | `String` |
+| topicId | `String` |
+| knowledgeId | `String` |
+| quizId | `String` |
+| score | `double` |
 | label | `String` |
-| code | `String` |
 
 ## Interfaces
 
@@ -136,6 +153,20 @@ Methods:
 
 - `resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView`
 
+### AnalyzerStatsTransformer (port) [sealed]
+
+Methods:
+
+- `transform(AuditReport report,String analyzerName,AnalyzerRegistry registry): AnalyzerStatsView`
+
+### ScoreRow (port)
+
+Methods:
+
+- `getEntity(): AuditableEntity`
+- `getOverallScore(): double`
+- `getAnalyzerScores(): Map<String,Double>`
+
 ## Implementations
 
 ### TextReportFormatter
@@ -164,6 +195,8 @@ Methods:
 - `formatterRegistry`: `FormatterRegistry`
 - `viewModelTransformer`: `ReportViewModelTransformer`
 - `rawReportFormatter`: `RawReportFormatter`
+- `analyzerRegistry`: `AnalyzerRegistry`
+- `analyzerStatsTransformer`: `AnalyzerStatsTransformer`
 
 **Tests that must pass:**
 
@@ -204,6 +237,12 @@ Methods:
 
 **Types:** Component
 
+### DefaultAnalyzerStatsTransformer
+
+**Implements:** AnalyzerStatsTransformer
+
+**Types:** Component
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
@@ -221,6 +260,13 @@ Methods:
 Methods:
 
 - `map(CourseEntity course): AuditableCourse`
+
+### AnalyzerRegistry (service)
+
+Methods:
+
+- `listAnalyzers(): List<AnalyzerDescriptor>`
+- `getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>`
 
 ### From audit-domain
 
@@ -344,8 +390,7 @@ Methods:
 |-------|------|
 | quizId | `String` |
 | scores | `NodeScores` |
-| label | `String` |
-| code | `String` |
+| entity | `AuditableEntity` |
 
 ### KnowledgeNode (`record`)
 
@@ -354,8 +399,7 @@ Methods:
 | knowledgeId | `String` |
 | scores | `NodeScores` |
 | quizzes | `List<QuizNode>` |
-| label | `String` |
-| code | `String` |
+| entity | `AuditableEntity` |
 
 ### TopicNode (`record`)
 
@@ -364,8 +408,7 @@ Methods:
 | topicId | `String` |
 | scores | `NodeScores` |
 | knowledges | `List<KnowledgeNode>` |
-| label | `String` |
-| code | `String` |
+| entity | `AuditableEntity` |
 
 ### MilestoneNode (`record`)
 
@@ -374,8 +417,7 @@ Methods:
 | milestoneId | `String` |
 | scores | `NodeScores` |
 | topics | `List<TopicNode>` |
-| label | `String` |
-| code | `String` |
+| entity | `AuditableEntity` |
 
 ### NlpToken (`record`)
 
@@ -387,6 +429,14 @@ Methods:
 | frequencyRank | `Integer` |
 | isStop | `boolean` |
 | isPunct | `boolean` |
+
+### AnalyzerDescriptor (`record`)
+
+| Field | Type |
+|-------|------|
+| name | `String` |
+| description | `String` |
+| target | `AuditTarget` |
 
 ### ContentAudit (service)
 
@@ -412,6 +462,7 @@ Methods:
 - `getName(): String`
 - `getTarget(): AuditTarget`
 - `getResults(): List<ScoredItem>`
+- `getDescription(): String`
 
 ### AnalysisResult (port)
 
@@ -441,7 +492,7 @@ Methods:
 
 Methods:
 
-- `aggregate(List<ScoredItem> scores): AuditReport`
+- `aggregate(List<ScoredItem> scores,Map<String,AuditableEntity> entityMap): AuditReport`
 
 ### CocaBucketsConfig (port)
 
@@ -504,6 +555,12 @@ Methods:
 - `getId(): String`
 - `getLabel(): String`
 - `getCode(): String`
+
+### SelfDescribingConfig (port)
+
+Methods:
+
+- `describe(): Map<String,Object>`
 
 ### From course-domain
 

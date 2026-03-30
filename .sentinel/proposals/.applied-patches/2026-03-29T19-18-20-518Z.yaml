@@ -1,0 +1,445 @@
+code: __proposal__
+description: "Add analyzer introspection: self-describing configs, analyzer descriptions,\
+  \ analyzer stats view, and analyzer registry; Entity metadata map for score aggregation\
+  \ + common ScoreRow interface in audit-cli; Reuse AuditableEntity as single identity\
+  \ abstraction: replace label/code fields on report tree nodes and score rows with\
+  \ entity reference; ScoreRow exposes getEntity() instead of getId()/getLabel()/getCode()"
+modules:
+- name: audit-domain
+  models:
+  - name: AnalyzerDescriptor
+    type: record
+    fields:
+    - name: name
+      type: String
+      description: Analyzer unique name (e.g. sentence-length)
+    - name: description
+      type: String
+      description: Human-readable description of what the analyzer checks
+    - name: target
+      type: AuditTarget
+      description: The audit target level this analyzer operates at
+    _change: add
+  - name: MilestoneNode
+    type: record
+    fields:
+    - name: milestoneId
+      type: String
+      _change: modify
+    - name: scores
+      type: NodeScores
+      _change: modify
+    - name: topics
+      type: List<TopicNode>
+      _change: modify
+    - name: label
+      type: String
+      _change: delete
+    - name: code
+      type: String
+      _change: delete
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+      _change: add
+    _change: modify
+  - name: TopicNode
+    type: record
+    fields:
+    - name: topicId
+      type: String
+      _change: modify
+    - name: scores
+      type: NodeScores
+      _change: modify
+    - name: knowledges
+      type: List<KnowledgeNode>
+      _change: modify
+    - name: label
+      type: String
+      _change: delete
+    - name: code
+      type: String
+      _change: delete
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+      _change: add
+    _change: modify
+  - name: KnowledgeNode
+    type: record
+    fields:
+    - name: knowledgeId
+      type: String
+      _change: modify
+    - name: scores
+      type: NodeScores
+      _change: modify
+    - name: quizzes
+      type: List<QuizNode>
+      _change: modify
+    - name: label
+      type: String
+      _change: delete
+    - name: code
+      type: String
+      _change: delete
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+      _change: add
+    _change: modify
+  - name: QuizNode
+    type: record
+    fields:
+    - name: quizId
+      type: String
+      _change: modify
+    - name: scores
+      type: NodeScores
+      _change: modify
+    - name: label
+      type: String
+      _change: delete
+    - name: code
+      type: String
+      _change: delete
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+      _change: add
+    _change: modify
+  interfaces:
+  - name: SelfDescribingConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "describe(): Map<String,Object>"
+    _change: add
+  - name: SentenceLengthConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getTargetRange(CefrLevel level): Optional<TargetRange>"
+    - signature: "getToleranceMargin(): int"
+    _change: modify
+    extends:
+    - SelfDescribingConfig
+  - name: CocaBucketsConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getBandConfiguration(): BandConfiguration"
+    - signature: "getTargetsForLevel(String levelName): List<BucketTarget>"
+    - signature: "getQuarterTargetsForLevel(String levelName): List<QuarterBucketTargets>"
+    - signature: "getToleranceMargin(): double"
+    - signature: "getAnalysisStrategy(): AnalysisStrategy"
+    - signature: "getProgressionExpectations(): List<ProgressionExpectation>"
+    _change: modify
+    extends:
+    - SelfDescribingConfig
+  - name: LemmaRecurrenceConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getTop(): int"
+    - signature: "getSubExposedThreshold(): double"
+    - signature: "getOverExposedThreshold(): double"
+    _change: modify
+    extends:
+    - SelfDescribingConfig
+  - name: ContentAnalyzer
+    sealed: false
+    exposes:
+    - signature: "onKnowledge(AuditableKnowledge knowledge,AuditContext ctx): Void"
+    - signature: "onQuiz(AuditableQuiz quiz,AuditContext ctx): Void"
+    - signature: "onMilestone(AuditableMilestone milestone,AuditContext ctx): Void"
+    - signature: "onTopic(AuditableTopic topic,AuditContext ctx): Void"
+    - signature: "onCourseComplete(AuditableCourse course,AuditContext ctx): Void"
+    - signature: "getName(): String"
+    - signature: "getDescription(): String"
+    - signature: "getTarget(): AuditTarget"
+    - signature: "getResults(): List<ScoredItem>"
+    _change: modify
+  - name: ScoreAggregator
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "aggregate(List<ScoredItem> scores,Map<String,AuditableEntity> entityMap):\
+        \ AuditReport"
+    _change: modify
+  _change: modify
+- name: audit-application
+  interfaces:
+  - name: AnalyzerRegistry
+    stereotype: service
+    sealed: false
+    exposes:
+    - signature: "listAnalyzers(): List<AnalyzerDescriptor>"
+    - signature: "getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>"
+    _change: add
+  implementations:
+  - name: DefaultAnalyzerRegistry
+    requiresInject:
+    - name: analyzers
+      type: List<ContentAnalyzer>
+    - name: configs
+      type: List<SelfDescribingConfig>
+    types:
+    - Component
+    implements:
+    - AnalyzerRegistry
+    _change: add
+  _change: modify
+- name: audit-cli
+  models:
+  - name: AnalyzerStatsView
+    type: record
+    fields:
+    - name: analyzerName
+      type: String
+      description: Name of the analyzer
+    - name: analyzerDescription
+      type: String
+      description: Description of the analyzer
+    - name: courseScore
+      type: double
+      description: Course-level score for this analyzer
+    - name: levelScores
+      type: "Map<String,Double>"
+      description: Per-milestone/level score breakdown
+    - name: worstItems
+      type: List<ScoredItemRow>
+      description: Worst-scoring items sorted ascending
+    - name: scoreDistribution
+      type: "Map<String,Integer>"
+      description: Histogram buckets (e.g. 0.0-0.2 -> count)
+    _change: add
+  - name: ScoredItemRow
+    type: record
+    fields:
+    - name: milestoneId
+      type: String
+      description: Milestone containing this item
+    - name: topicId
+      type: String
+      description: Topic containing this item
+    - name: knowledgeId
+      type: String
+      description: Knowledge containing this item
+    - name: quizId
+      type: String
+      description: Quiz id if target is quiz-level
+    - name: score
+      type: double
+      description: Score for this item
+    - name: label
+      type: String
+      description: Human-readable label of the item
+    _change: add
+  - name: MilestoneScoreRow
+    type: record
+    fields:
+    - name: milestoneId
+      type: String
+      _change: modify
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Score per analyzer for this milestone
+      _change: modify
+    - name: overallScore
+      type: double
+      description: Average score across all analyzers at milestone level
+      _change: modify
+    - name: topicScores
+      type: List<TopicScoreRow>
+      description: Per-topic breakdown of analyzer scores
+      _change: modify
+    - name: label
+      type: String
+      _change: delete
+    - name: code
+      type: String
+      _change: delete
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+      _change: add
+    _change: modify
+    extends: ScoreRow
+  - name: TopicScoreRow
+    type: record
+    fields:
+    - name: topicId
+      type: String
+      description: Topic identifier
+      _change: modify
+    - name: overallScore
+      type: double
+      description: Average score across all analyzers at topic level
+      _change: modify
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Score per analyzer for this topic
+      _change: modify
+    - name: knowledgeScores
+      type: List<KnowledgeScoreRow>
+      description: Per-knowledge breakdown of analyzer scores
+      _change: modify
+    - name: label
+      type: String
+      _change: delete
+    - name: code
+      type: String
+      _change: delete
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+      _change: add
+    _change: modify
+    extends: ScoreRow
+  - name: KnowledgeScoreRow
+    type: record
+    fields:
+    - name: knowledgeId
+      type: String
+      description: Knowledge identifier
+      _change: modify
+    - name: overallScore
+      type: double
+      description: Average score across all analyzers at knowledge level
+      _change: modify
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Score per analyzer for this knowledge
+      _change: modify
+    - name: quizScores
+      type: List<QuizScoreRow>
+      description: Per-quiz breakdown of analyzer scores
+      _change: modify
+    - name: label
+      type: String
+      _change: delete
+    - name: code
+      type: String
+      _change: delete
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+      _change: add
+    _change: modify
+    extends: ScoreRow
+  - name: QuizScoreRow
+    type: record
+    fields:
+    - name: quizId
+      type: String
+      description: Quiz identifier
+      _change: modify
+    - name: overallScore
+      type: double
+      description: Average score across all analyzers at quiz level
+      _change: modify
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Score per analyzer for this quiz
+      _change: modify
+    - name: label
+      type: String
+      _change: delete
+    - name: code
+      type: String
+      _change: delete
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+      _change: add
+    _change: modify
+    extends: ScoreRow
+  - name: ChildScoreRow
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: Child node identifier
+      _change: modify
+    - name: overallScore
+      type: double
+      description: Child overall score
+      _change: modify
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Child per-analyzer scores
+      _change: modify
+    - name: label
+      type: String
+      _change: delete
+    - name: code
+      type: String
+      _change: delete
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+      _change: add
+    _change: modify
+    extends: ScoreRow
+  - name: DrillDownView
+    type: record
+    fields:
+    - name: childRows
+      type: List<ScoreRow>
+      description: One level of children detail rows
+      _change: modify
+    _change: modify
+  interfaces:
+  - name: AnalyzerStatsTransformer
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "transform(AuditReport report,String analyzerName,AnalyzerRegistry\
+        \ registry): AnalyzerStatsView"
+    _change: add
+  - name: ScoreRow
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getEntity(): AuditableEntity"
+    - signature: "getOverallScore(): double"
+    - signature: "getAnalyzerScores(): Map<String,Double>"
+    _change: add
+  implementations:
+  - name: DefaultAnalyzerStatsTransformer
+    types:
+    - Component
+    implements:
+    - AnalyzerStatsTransformer
+    _change: add
+  - name: DefaultAuditCli
+    requiresInject:
+    - name: auditRunner
+      type: AuditRunner
+    - name: formatterRegistry
+      type: FormatterRegistry
+    - name: viewModelTransformer
+      type: ReportViewModelTransformer
+    - name: rawReportFormatter
+      type: RawReportFormatter
+    - name: analyzerRegistry
+      type: AnalyzerRegistry
+    - name: analyzerStatsTransformer
+      type: AnalyzerStatsTransformer
+    externalImplements:
+    - java.util.concurrent.Callable<Integer>
+    implements:
+    - AuditCli
+    _change: modify
+  _change: modify

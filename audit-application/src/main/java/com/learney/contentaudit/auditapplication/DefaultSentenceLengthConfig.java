@@ -5,6 +5,7 @@ import com.learney.contentaudit.auditdomain.SentenceLengthConfig;
 import com.learney.contentaudit.auditdomain.TargetRange;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
@@ -32,5 +33,19 @@ public class DefaultSentenceLengthConfig implements SentenceLengthConfig {
     @Override
     public int getToleranceMargin() {
         return TOLERANCE_MARGIN;
+    }
+    @Override
+    public Map<String, Object> describe() {
+        Map<String, Object> ranges = new java.util.LinkedHashMap<>();
+        for (var entry : RANGES.entrySet()) {
+            TargetRange r = entry.getValue();
+            ranges.put(entry.getKey().name(), Map.of(
+                    "minTokens", r.getMinTokens(),
+                    "maxTokens", r.getMaxTokens()));
+        }
+        return Map.of(
+                "analyzerName", "sentence-length",
+                "toleranceMargin", TOLERANCE_MARGIN,
+                "targetRanges", ranges);
     }
 }

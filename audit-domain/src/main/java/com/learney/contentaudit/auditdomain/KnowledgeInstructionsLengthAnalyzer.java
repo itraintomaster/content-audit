@@ -60,7 +60,7 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
 
     @Override
     public String getDescription() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return "Scores knowledge instructions by character length against soft/hard limits";
     }
 
 }

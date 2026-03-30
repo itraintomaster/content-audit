@@ -442,7 +442,7 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
 
     @Override
     public String getDescription() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return "Evaluates COCA frequency band distribution per level/quarter";
     }
 
 }

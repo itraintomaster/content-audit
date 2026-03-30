@@ -20,16 +20,24 @@ import com.learney.contentaudit.auditdomain.coca.DefaultProgressionEvaluator;
 import com.learney.contentaudit.auditdomain.coca.DefaultImprovementPlanner;
 import com.learney.contentaudit.auditapplication.DefaultCocaBucketsConfig;
 import com.learney.contentaudit.auditapplication.DefaultLemmaRecurrenceConfig;
+import com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig;
 import com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig;
+import com.learney.contentaudit.auditdomain.LemmaAbsenceConfig;
 import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzer;
 import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
 import com.learney.contentaudit.auditdomain.lrec.DefaultIntervalCalculator;
 import com.learney.contentaudit.auditdomain.lrec.DefaultExposureClassifier;
+import com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer;
+import com.learney.contentaudit.vocabularyinfrastructure.evp.FileSystemEvpCatalog;
 import com.learney.contentaudit.nlpinfrastructure.NlpTokenizerConfig;
 import com.learney.contentaudit.nlpinfrastructure.spacy.SpacyNlpTokenizerFactory;
 import com.learney.contentaudit.coursedomain.CourseValidator;
 import com.learney.contentaudit.courseinfrastructure.CourseValidatorImpl;
+import com.learney.contentaudit.auditapplication.DefaultAnalyzerRegistry;
+import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
 import com.learney.contentaudit.courseinfrastructure.FileSystemCourseRepository;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,12 +91,20 @@ public class Main {
                 new DefaultExposureClassifier()
         );
 
+        // Lemma Absence analyzer
+        LemmaAbsenceConfig lemmaAbsenceConfig = new DefaultLemmaAbsenceConfig();
+        Path evpCatalogPath = Paths.get(projectRoot, "analysis/recursos-compartidos/enriched_vocabulary_catalog.json");
+        FileSystemEvpCatalog evpCatalog = new FileSystemEvpCatalog(evpCatalogPath);
+        LemmaByLevelAbsenceAnalyzer lemmaAbsenceAnalyzer = new LemmaByLevelAbsenceAnalyzer(
+                evpCatalog, new DefaultContentWordFilter(), lemmaAbsenceConfig);
+
         List<ContentAnalyzer> contentAnalyzers = List.of(
                 sentenceLengthAnalyzer,
                 knowledgeTitleLengthAnalyzer,
                 knowledgeInstructionsLengthAnalyzer,
                 cocaBucketsAnalyzer,
-                lemmaRecurrenceAnalyzer
+                lemmaRecurrenceAnalyzer,
+                lemmaAbsenceAnalyzer
         );
 
         // Domain: aggregator and engine
