@@ -28,6 +28,7 @@ public class DefaultReportViewModelTransformer implements ReportViewModelTransfo
 
         List<MilestoneScoreRow> milestoneScoreRows = new ArrayList<>();
         for (MilestoneNode milestone : milestones) {
+            if (isSyntheticMilestone(milestone.getMilestoneId())) continue;
             milestoneScoreRows.add(toMilestoneRow(milestone));
         }
 
@@ -84,21 +85,36 @@ public class DefaultReportViewModelTransformer implements ReportViewModelTransfo
 
     private Map<String, Double> extractScores(NodeScores nodeScores) {
         if (nodeScores == null || nodeScores.getScores() == null) return Map.of();
-        return nodeScores.getScores();
+        var filtered = new java.util.LinkedHashMap<String, Double>();
+        for (var entry : nodeScores.getScores().entrySet()) {
+            if (!entry.getKey().contains("/")) {
+                filtered.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return filtered;
     }
 
     private double avg(Map<String, Double> scores) {
         return scores.values().stream().mapToDouble(d -> d).average().orElse(0);
     }
 
+    private boolean isSyntheticMilestone(String milestoneId) {
+        if (milestoneId == null) return true;
+        return "0".equals(milestoneId) || "unknown".equals(milestoneId);
+    }
+
     private void collectAnalyzerNames(MilestoneNode milestone, Set<String> names) {
         if (milestone.getScores() != null && milestone.getScores().getScores() != null) {
-            names.addAll(milestone.getScores().getScores().keySet());
+            for (String key : milestone.getScores().getScores().keySet()) {
+                if (!key.contains("/")) names.add(key);
+            }
         }
         if (milestone.getTopics() != null) {
             for (TopicNode topic : milestone.getTopics()) {
                 if (topic.getScores() != null && topic.getScores().getScores() != null) {
-                    names.addAll(topic.getScores().getScores().keySet());
+                    for (String key : topic.getScores().getScores().keySet()) {
+                        if (!key.contains("/")) names.add(key);
+                    }
                 }
             }
         }

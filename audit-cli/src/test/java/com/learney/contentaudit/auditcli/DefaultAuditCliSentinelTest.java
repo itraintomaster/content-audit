@@ -63,7 +63,7 @@ public class DefaultAuditCliSentinelTest {
   @Tag("F-CLI")
   public void givenNoArgsProvidedWhenRunIsCalledThenReturnsNonzeroExitCode() {
     int result = sut.run();
-    Assertions.assertEquals(2, result);
+    Assertions.assertEquals(1, result);
   }
 
   @Test

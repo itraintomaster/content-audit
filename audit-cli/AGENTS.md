@@ -102,6 +102,8 @@ CLI entry point for running content audits from the command line
 | levelScores | `Map<String,Double>` |
 | worstItems | `List<ScoredItemRow>` |
 | scoreDistribution | `Map<String,Integer>` |
+| subMetricsByLevel | `Map<String,Map<String,Double>>` |
+| itemCount | `int` |
 
 ### ScoredItemRow (`record`)
 
@@ -153,7 +155,7 @@ Methods:
 
 - `resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView`
 
-### AnalyzerStatsTransformer (port) [sealed]
+### AnalyzerStatsTransformer (port)
 
 Methods:
 

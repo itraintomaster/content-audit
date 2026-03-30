@@ -219,7 +219,7 @@ public final class DefaultAuditCli implements AuditCli, Callable<Integer> {
         if (!stats.getAnalyzerDescription().isEmpty()) {
             System.out.println(stats.getAnalyzerDescription());
         }
-        System.out.printf("%nScore: %.1f%%%n", stats.getCourseScore() * 100);
+        System.out.printf("%nScore: %.1f%%  (%d items)%n", stats.getCourseScore() * 100, stats.getItemCount());
 
         // Per-level
         if (!stats.getLevelScores().isEmpty()) {
@@ -229,7 +229,37 @@ public final class DefaultAuditCli implements AuditCli, Callable<Integer> {
             }
         }
 
-        // Distribution
+        // Sub-metrics table (e.g., quarter breakdown per level)
+        if (!stats.getSubMetricsByLevel().isEmpty()) {
+            // Collect all sub-metric names across levels
+            List<String> subNames = stats.getSubMetricsByLevel().values().stream()
+                    .flatMap(m -> m.keySet().stream())
+                    .distinct()
+                    .sorted()
+                    .toList();
+
+            System.out.println("\nPer quarter:");
+            System.out.printf("  %-6s", "");
+            for (String sub : subNames) {
+                System.out.printf("  %7s", sub);
+            }
+            System.out.println();
+
+            for (var entry : stats.getSubMetricsByLevel().entrySet()) {
+                System.out.printf("  %-6s", entry.getKey());
+                for (String sub : subNames) {
+                    Double score = entry.getValue().get(sub);
+                    if (score != null) {
+                        System.out.printf("  %6.1f%%", score * 100);
+                    } else {
+                        System.out.printf("  %7s", "-");
+                    }
+                }
+                System.out.println();
+            }
+        }
+
+        // Distribution — only shown when meaningful (>= 5 items)
         if (!stats.getScoreDistribution().isEmpty()) {
             System.out.println("\nScore distribution:");
             int maxCount = stats.getScoreDistribution().values().stream()

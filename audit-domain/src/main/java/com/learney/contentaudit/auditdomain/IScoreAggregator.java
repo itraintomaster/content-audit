@@ -12,10 +12,15 @@ public class IScoreAggregator implements ScoreAggregator {
             return new AuditReport(0.0, new NodeScores(Map.of()), List.of());
         }
 
+        // Separate course-level items (no milestone) from milestone-level items
+        List<ScoredItem> courseOnlyItems = new ArrayList<>();
         Map<String, List<ScoredItem>> byMilestone = new LinkedHashMap<>();
         for (ScoredItem item : scores) {
-            String mid = item.getMilestoneId() != null ? item.getMilestoneId() : "unknown";
-            byMilestone.computeIfAbsent(mid, k -> new ArrayList<>()).add(item);
+            if (item.getMilestoneId() == null) {
+                courseOnlyItems.add(item);
+            } else {
+                byMilestone.computeIfAbsent(item.getMilestoneId(), k -> new ArrayList<>()).add(item);
+            }
         }
 
         double totalScore = 0.0;
@@ -34,6 +39,12 @@ public class IScoreAggregator implements ScoreAggregator {
 
             milestones.add(new MilestoneNode(entry.getKey(), new NodeScores(analyzerScores), topics,
                     entityMap.get(entry.getKey())));
+        }
+
+        // Course-only items count toward overall but don't create milestones
+        for (ScoredItem item : courseOnlyItems) {
+            totalScore += item.getScore();
+            totalCount++;
         }
 
         double overallScore = totalCount > 0 ? totalScore / totalCount : 0.0;

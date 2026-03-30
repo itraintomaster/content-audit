@@ -1120,10 +1120,12 @@ new ChildScoreRow(String id, double overallScore, Map<String,Double> analyzerSco
 | `levelScores` | `Map<String,Double>` |  |
 | `worstItems` | `List<ScoredItemRow>` | Import `java.util.List` |
 | `scoreDistribution` | `Map<String,Integer>` |  |
+| `subMetricsByLevel` | `Map<String,Map<String,Double>>` |  |
+| `itemCount` | `int` |  |
 
 **Generated constructor:**
 ```java
-new AnalyzerStatsView(String analyzerName, String analyzerDescription, double courseScore, Map<String,Double> levelScores, List<ScoredItemRow> worstItems, Map<String,Integer> scoreDistribution)
+new AnalyzerStatsView(String analyzerName, String analyzerDescription, double courseScore, Map<String,Double> levelScores, List<ScoredItemRow> worstItems, Map<String,Integer> scoreDistribution, Map<String,Map<String,Double>> subMetricsByLevel, int itemCount)
 ```
 
 #### ScoredItemRow

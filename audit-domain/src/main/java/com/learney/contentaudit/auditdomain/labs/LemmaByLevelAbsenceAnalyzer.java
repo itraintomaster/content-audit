@@ -670,15 +670,12 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
 
     @Override
     public List<ScoredItem> getResults() {
-        if (courseResult == null && results.isEmpty()) {
+        if (results.isEmpty()) {
             return Collections.emptyList();
         }
-        List<ScoredItem> all = new ArrayList<>();
-        if (courseResult != null) {
-            all.add(courseResult);
-        }
-        all.addAll(results);
-        return Collections.unmodifiableList(all);
+        // Quiz-level items aggregate to course level via the aggregator.
+        // No need to emit the courseResult — it would create a synthetic milestone.
+        return Collections.unmodifiableList(new ArrayList<>(results));
     }
 
     @Override

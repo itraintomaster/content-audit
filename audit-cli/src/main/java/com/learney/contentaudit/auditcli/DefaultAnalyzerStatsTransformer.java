@@ -3,6 +3,7 @@ package com.learney.contentaudit.auditcli;
 import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.KnowledgeNode;
 import com.learney.contentaudit.auditdomain.MilestoneNode;
 import com.learney.contentaudit.auditdomain.NodeScores;
@@ -13,6 +14,7 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -23,11 +25,13 @@ final class DefaultAnalyzerStatsTransformer implements AnalyzerStatsTransformer 
     @Override
     public AnalyzerStatsView transform(AuditReport report, String analyzerName,
             AnalyzerRegistry registry) {
-        String description = registry.listAnalyzers().stream()
+        AnalyzerDescriptor descriptor = registry.listAnalyzers().stream()
                 .filter(d -> analyzerName.equals(d.getName()))
-                .map(AnalyzerDescriptor::getDescription)
                 .findFirst()
-                .orElse("");
+                .orElse(null);
+
+        String description = descriptor != null ? descriptor.getDescription() : "";
+        AuditTarget target = descriptor != null ? descriptor.getTarget() : AuditTarget.QUIZ;
 
         // Course-level score
         double courseScore = scoreFromNode(report.getScores(), analyzerName);
@@ -35,20 +39,39 @@ final class DefaultAnalyzerStatsTransformer implements AnalyzerStatsTransformer 
         // Per-level scores
         Map<String, Double> levelScores = new LinkedHashMap<>();
         for (MilestoneNode m : report.getMilestones()) {
-            Double score = scoreFromNode(m.getScores(), analyzerName);
+            double score = scoreFromNode(m.getScores(), analyzerName);
             if (!Double.isNaN(score)) {
                 levelScores.put(m.getMilestoneId(), score);
             }
         }
 
-        // Collect leaf-level scores for distribution and worst items
-        List<ScoredItemRow> allItems = new ArrayList<>();
+        // Sub-metrics (e.g., coca-buckets-distribution/Q1) per level
+        String prefix = analyzerName + "/";
+        Map<String, Map<String, Double>> subMetricsByLevel = new LinkedHashMap<>();
         for (MilestoneNode m : report.getMilestones()) {
-            collectLeafScores(m, analyzerName, allItems);
+            if (m.getScores() == null || m.getScores().getScores() == null) continue;
+            Map<String, Double> subMetrics = new TreeMap<>();
+            for (var entry : m.getScores().getScores().entrySet()) {
+                if (entry.getKey().startsWith(prefix)) {
+                    String subName = entry.getKey().substring(prefix.length());
+                    subMetrics.put(subName, entry.getValue());
+                }
+            }
+            if (!subMetrics.isEmpty()) {
+                subMetricsByLevel.put(m.getMilestoneId(), subMetrics);
+            }
         }
 
-        // Score distribution histogram
-        Map<String, Integer> distribution = buildDistribution(allItems);
+        // Collect leaf-level scores at the appropriate depth for this analyzer
+        List<ScoredItemRow> allItems = new ArrayList<>();
+        for (MilestoneNode m : report.getMilestones()) {
+            collectScoresAtTarget(m, analyzerName, target, allItems);
+        }
+
+        // Score distribution — only meaningful with enough items (>= 5)
+        Map<String, Integer> distribution = allItems.size() >= 5
+                ? buildDistribution(allItems)
+                : Map.of();
 
         // Worst items: bottom 10 sorted ascending
         List<ScoredItemRow> worstItems = allItems.stream()
@@ -57,7 +80,7 @@ final class DefaultAnalyzerStatsTransformer implements AnalyzerStatsTransformer 
                 .toList();
 
         return new AnalyzerStatsView(analyzerName, description, courseScore,
-                levelScores, worstItems, distribution);
+                levelScores, worstItems, distribution, subMetricsByLevel, allItems.size());
     }
 
     private double scoreFromNode(NodeScores scores, String analyzerName) {
@@ -65,26 +88,29 @@ final class DefaultAnalyzerStatsTransformer implements AnalyzerStatsTransformer 
         return scores.getScores().getOrDefault(analyzerName, Double.NaN);
     }
 
-    private void collectLeafScores(MilestoneNode milestone, String analyzerName,
-            List<ScoredItemRow> items) {
-        if (milestone.getTopics() == null || milestone.getTopics().isEmpty()) {
+    private void collectScoresAtTarget(MilestoneNode milestone, String analyzerName,
+            AuditTarget target, List<ScoredItemRow> items) {
+        if (target == AuditTarget.MILESTONE || target == AuditTarget.COURSE) {
             addIfPresent(milestone.getScores(), analyzerName,
                     milestone.getMilestoneId(), null, null, null, items);
             return;
         }
+        if (milestone.getTopics() == null) return;
         for (TopicNode topic : milestone.getTopics()) {
-            if (topic.getKnowledges() == null || topic.getKnowledges().isEmpty()) {
+            if (target == AuditTarget.TOPIC) {
                 addIfPresent(topic.getScores(), analyzerName,
                         milestone.getMilestoneId(), topic.getTopicId(), null, null, items);
                 continue;
             }
+            if (topic.getKnowledges() == null) continue;
             for (KnowledgeNode knowledge : topic.getKnowledges()) {
-                if (knowledge.getQuizzes() == null || knowledge.getQuizzes().isEmpty()) {
+                if (target == AuditTarget.KNOWLEDGE) {
                     addIfPresent(knowledge.getScores(), analyzerName,
                             milestone.getMilestoneId(), topic.getTopicId(),
                             knowledge.getKnowledgeId(), null, items);
                     continue;
                 }
+                if (knowledge.getQuizzes() == null) continue;
                 for (QuizNode quiz : knowledge.getQuizzes()) {
                     addIfPresent(quiz.getScores(), analyzerName,
                             milestone.getMilestoneId(), topic.getTopicId(),

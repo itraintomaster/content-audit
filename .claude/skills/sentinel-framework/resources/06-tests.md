@@ -27,70 +27,68 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 
 ### KnowledgeTitleLengthAnalyzer (audit-domain)
 
-- Given a KnowledgeTitleLengthAnalyzer, when getName is called, then returns knowledge-title-length → F-KTLEN/F-KTLEN-R008
-- Given a KnowledgeTitleLengthAnalyzer, when getTarget is called, then returns KNOWLEDGE → F-KTLEN/F-KTLEN-R008
-- Given a knowledge with null title, when onKnowledge is called and getResults checked, then score is 0.0 → F-KTLEN/F-KTLEN-R003
-- Given a knowledge with empty title, when onKnowledge is called and getResults checked, then score is 0.0 → F-KTLEN/F-KTLEN-R003
-- Given a knowledge with title within limit, when onKnowledge is called and getResults checked, then score is 1.0 → F-KTLEN/F-KTLEN-R003
-- Given a knowledge with title at exactly 28 weighted chars, when onKnowledge is called and getResults checked, then score is 1.0 → F-KTLEN/F-KTLEN-R001
-- Given a knowledge with title 'fitting' (weighted 5.1), when onKnowledge is called and getResults checked, then score is 1.0 → F-KTLEN/F-KTLEN-R002
-- Given a knowledge with zero-weight title '$$$***', when onKnowledge is called and getResults checked, then score is 1.0 → F-KTLEN/F-KTLEN-R002
-- Given a knowledge with mixed-weight title '$if,a' (weighted 2.7), when onKnowledge is called and getResults checked, then score is 1.0 → F-KTLEN/F-KTLEN-R002
-- Given a knowledge with title of weighted length 35, when onKnowledge is called and getResults checked, then score is 0.75 → F-KTLEN/F-KTLEN-R003
-- Given a knowledge with title of weighted length 42, when onKnowledge is called and getResults checked, then score is 0.5 → F-KTLEN/F-KTLEN-R003
-- Given a knowledge with title of weighted length 56, when onKnowledge is called and getResults checked, then score is 0.0 → F-KTLEN/F-KTLEN-R003
-- Given a knowledge with title of weighted length 70, when onKnowledge is called and getResults checked, then score is 0.0 → F-KTLEN/F-KTLEN-R003
-- Given a KnowledgeTitleLengthAnalyzer, when onQuiz is called, then it completes without error → F-KTLEN/F-KTLEN-R008
-- Given a KnowledgeTitleLengthAnalyzer, when onMilestone is called, then it completes without error → F-KTLEN
-- Given a KnowledgeTitleLengthAnalyzer, when onTopic is called, then it completes without error → F-KTLEN
-- Given a KnowledgeTitleLengthAnalyzer, when onCourseComplete is called, then it completes without error → F-KTLEN
-- Given two knowledges with different title lengths, when both are processed and getResults checked, then returns two correctly scored items → F-KTLEN/F-KTLEN-R003
-- Given no knowledges have been processed, when getResults is called, then returns empty list → F-KTLEN/F-KTLEN-R003
+- should return knowledge-title-length as analyzer name → F-KTLEN/F-KTLEN-R008
+- should return KNOWLEDGE as audit target → F-KTLEN/F-KTLEN-R008
+- should score 0.0 for knowledge with null title → F-KTLEN/F-KTLEN-R003
+- should score 0.0 for knowledge with empty title → F-KTLEN/F-KTLEN-R003
+- should score 1.0 for knowledge with title within limit → F-KTLEN/F-KTLEN-R003
+- should score 1.0 for knowledge with title at exactly 28 weighted chars → F-KTLEN/F-KTLEN-R001
+- should score 1.0 for title fitting with weighted length 5.1 → F-KTLEN/F-KTLEN-R002
+- should score 1.0 for zero-weight special chars title → F-KTLEN/F-KTLEN-R002
+- should score 1.0 for mixed-weight title with weighted length 2.7 → F-KTLEN/F-KTLEN-R002
+- should score 0.75 for title of weighted length 35 → F-KTLEN/F-KTLEN-R003
+- should score 0.5 for title of weighted length 42 → F-KTLEN/F-KTLEN-R003
+- should score 0.0 for title of weighted length 56 → F-KTLEN/F-KTLEN-R003
+- should score 0.0 for title of weighted length 70 → F-KTLEN/F-KTLEN-R003
+- should complete without error when onQuiz is called → F-KTLEN/F-KTLEN-R008
+- should complete without error when onMilestone is called → F-KTLEN
+- should complete without error when onTopic is called → F-KTLEN
+- should complete without error when onCourseComplete is called → F-KTLEN
+- should return two correctly scored items for two knowledges with different title lengths → F-KTLEN/F-KTLEN-R003
+- should return empty list when no knowledges have been processed → F-KTLEN/F-KTLEN-R003
 
 ### KnowledgeInstructionsLengthAnalyzer (audit-domain)
 
-- Given a KnowledgeInstructionsLengthAnalyzer, when getName is called, then returns knowledge-instructions-length → F-KTLEN/F-KTLEN-R008
-- Given a KnowledgeInstructionsLengthAnalyzer, when getTarget is called, then returns KNOWLEDGE → F-KTLEN/F-KTLEN-R008
-- Given a knowledge with null instructions, when onKnowledge is called and getResults checked, then score is 1.0 → F-KTLEN/F-KTLEN-R006
-- Given a knowledge with empty instructions, when onKnowledge is called and getResults checked, then score is 1.0 → F-KTLEN/F-KTLEN-R006
-- Given a knowledge with instructions exactly at soft limit of 70 chars, when onKnowledge is called and getResults checked, then score is 1.0 → F-KTLEN/F-KTLEN-R005
-- Given a knowledge with instructions of 30 chars within soft limit, when onKnowledge is called and getResults checked, then score is 1.0 → F-KTLEN/F-KTLEN-R006
-- Given a knowledge with instructions of 71 chars just above soft limit, when onKnowledge is called and getResults checked, then score is 0.5 → F-KTLEN/F-KTLEN-R005
-- Given a knowledge with instructions exactly at hard limit of 100 chars, when onKnowledge is called and getResults checked, then score is 0.5 → F-KTLEN/F-KTLEN-R005
-- Given a knowledge with instructions of 85 chars between soft and hard limits, when onKnowledge is called and getResults checked, then score is 0.5 → F-KTLEN/F-KTLEN-R006
-- Given a knowledge with instructions of 101 chars just above hard limit, when onKnowledge is called and getResults checked, then score is 0.0 → F-KTLEN/F-KTLEN-R005
-- Given a knowledge with instructions of 200 chars well above hard limit, when onKnowledge is called and getResults checked, then score is 0.0 → F-KTLEN/F-KTLEN-R006
-- Given a KnowledgeInstructionsLengthAnalyzer, when onQuiz is called, then it completes without error → F-KTLEN
-- Given a KnowledgeInstructionsLengthAnalyzer, when onMilestone is called, then it completes without error → F-KTLEN
-- Given a KnowledgeInstructionsLengthAnalyzer, when onTopic is called, then it completes without error → F-KTLEN
-- Given a KnowledgeInstructionsLengthAnalyzer, when onCourseComplete is called, then it completes without error → F-KTLEN
-- Given a fresh KnowledgeInstructionsLengthAnalyzer, when getResults is called without prior processing, then returns empty list
-- Given three knowledges with different instruction lengths, when all are processed and getResults checked, then correct scores are produced for each → F-KTLEN/F-KTLEN-R006
+- should return knowledge-instructions-length as analyzer name → F-KTLEN/F-KTLEN-R008
+- should return KNOWLEDGE as audit target → F-KTLEN/F-KTLEN-R008
+- should score 1.0 for knowledge with null instructions → F-KTLEN/F-KTLEN-R006
+- should score 1.0 for knowledge with empty instructions → F-KTLEN/F-KTLEN-R006
+- should score 1.0 for instructions exactly at soft limit of 70 chars → F-KTLEN/F-KTLEN-R005
+- should score 1.0 for instructions of 30 chars within soft limit → F-KTLEN/F-KTLEN-R006
+- should score 0.5 for instructions of 71 chars just above soft limit → F-KTLEN/F-KTLEN-R005
+- should score 0.5 for instructions exactly at hard limit of 100 chars → F-KTLEN/F-KTLEN-R005
+- should score 0.5 for instructions of 85 chars between soft and hard limits → F-KTLEN/F-KTLEN-R006
+- should score 0.0 for instructions of 101 chars just above hard limit → F-KTLEN/F-KTLEN-R005
+- should score 0.0 for instructions of 200 chars well above hard limit → F-KTLEN/F-KTLEN-R006
+- should complete without error when onQuiz is called → F-KTLEN
+- should complete without error when onMilestone is called → F-KTLEN
+- should complete without error when onTopic is called → F-KTLEN
+- should complete without error when onCourseComplete is called → F-KTLEN
+- should return empty list when getResults is called without prior processing → F-KTLEN
+- should produce correct scores for three knowledges with different instruction lengths → F-KTLEN/F-KTLEN-R006
 
 ### SentenceLengthAnalyzer (audit-domain)
 
-- Given a null milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty → F-SLEN/F-SLEN-R001
-- Given a non-numeric milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty → F-SLEN/F-SLEN-R001
-- Given no target range configured for level, when onQuiz is called, then quiz is excluded and getResults is empty → F-SLEN/F-SLEN-R012
-- Given multiple quizzes across sentence and non-sentence knowledges, when processed, then only sentence quizzes are scored → F-SLEN/F-SLEN-R001
-- Given a SentenceLengthAnalyzer, when getName is called, then returns sentence-length
-- Given a SentenceLengthAnalyzer, when getTarget is called, then returns QUIZ
-- Given a quiz within A1 range, when onQuiz is called and getResults checked, then score is 1.0 → F-SLEN/F-SLEN-R002
-- Given a quiz 1 token above A1 max, when scored, then score is 0.75 → F-SLEN/F-SLEN-R002
-- Given a quiz 3 tokens below A1 min, when scored, then score is 0.25 → F-SLEN/F-SLEN-R002
-- Given a quiz exactly at A1 minimum boundary, when scored, then score is 1.0 → F-SLEN/F-SLEN-R002
-- Given a quiz exactly at A1 maximum boundary, when scored, then score is 1.0 → F-SLEN/F-SLEN-R002
-- Given a quiz 4 tokens above A1 max, when scored, then score is 0.0 → F-SLEN/F-SLEN-R009
-- Given a non-sentence knowledge, when onQuiz is called, then quiz is excluded and getResults is empty → F-SLEN/F-SLEN-R001
-- Given a B2 level quiz within range, when scored, then score is 1.0 → F-SLEN/F-SLEN-R012
-- Given a quiz exactly at tolerance boundary of 4 tokens, when scored, then score is 0.0 → F-SLEN/F-SLEN-R009
-- Given a quiz 2 tokens above A1 max, when scored, then score is 0.5 → F-SLEN/F-SLEN-R002
-- Given a SentenceLengthAnalyzer, when onTopic is called, then it completes without error
-- Given a SentenceLengthAnalyzer, when onCourseComplete is called, then it completes without error
-- Given a full milestone-knowledge-quiz sequence, when processed end to end, then correct scores are produced → F-SLEN/F-SLEN-R002
-- Given a SentenceLengthAnalyzer instance, when getName is called, then returns sentence-length
-- Given a SentenceLengthAnalyzer instance, when getTarget is called, then returns QUIZ
-- Given a knowledge with non-sentence quizzes, when onQuiz is called, then non-sentence quizzes are excluded from scoring → F-SLEN/F-SLEN-R001
+- should exclude quiz when milestoneId is null → F-SLEN/F-SLEN-R001
+- should exclude quiz when milestoneId is non-numeric → F-SLEN/F-SLEN-R001
+- should exclude quiz when no target range configured for level → F-SLEN/F-SLEN-R012
+- should score only sentence quizzes when processing mixed knowledge types → F-SLEN/F-SLEN-R001
+- should return sentence-length as analyzer name → F-SLEN
+- should return QUIZ as audit target → F-SLEN
+- should score 1.0 for quiz within A1 range → F-SLEN/F-SLEN-R002
+- should score 0.75 for quiz 1 token above A1 max → F-SLEN/F-SLEN-R002
+- should score 0.25 for quiz 3 tokens below A1 min → F-SLEN/F-SLEN-R002
+- should score 1.0 for quiz exactly at A1 minimum boundary → F-SLEN/F-SLEN-R002
+- should score 1.0 for quiz exactly at A1 maximum boundary → F-SLEN/F-SLEN-R002
+- should score 0.0 for quiz 4 tokens above A1 max at tolerance boundary → F-SLEN/F-SLEN-R009
+- should exclude non-sentence knowledge quiz from results → F-SLEN/F-SLEN-R001
+- should score 1.0 for B2 level quiz within range → F-SLEN/F-SLEN-R012
+- should score 0.0 for quiz exactly at tolerance boundary → F-SLEN/F-SLEN-R009
+- should score 0.5 for quiz 2 tokens above A1 max → F-SLEN/F-SLEN-R002
+- should complete without error when onTopic is called → F-SLEN
+- should complete without error when onCourseComplete is called → F-SLEN
+- should produce correct scores for full milestone-knowledge-quiz sequence → F-SLEN/F-SLEN-R002
+- should exclude non-sentence quizzes from scoring → F-SLEN/F-SLEN-R001
 
 ### CourseToAuditableMapper (audit-application)
 

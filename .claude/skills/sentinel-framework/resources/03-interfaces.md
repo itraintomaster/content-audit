@@ -364,7 +364,7 @@ Examples:
 |--------|--------|
 | `resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView` | (none) |
 
-#### AnalyzerStatsTransformer [SEALED] (port)
+#### AnalyzerStatsTransformer (port)
 
 **Package:** `com.learney.contentaudit.auditcli`
 

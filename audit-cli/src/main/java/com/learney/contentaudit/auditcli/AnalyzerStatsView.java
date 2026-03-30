@@ -22,18 +22,25 @@ public class AnalyzerStatsView {
 
     private Map<String, Integer> scoreDistribution;
 
+    private Map<String, Map<String, Double>> subMetricsByLevel;
+
+    private int itemCount;
+
     public AnalyzerStatsView() {
     }
 
     public AnalyzerStatsView(String analyzerName, String analyzerDescription, double courseScore,
             Map<String, Double> levelScores, List<ScoredItemRow> worstItems,
-            Map<String, Integer> scoreDistribution) {
+            Map<String, Integer> scoreDistribution,
+            Map<String, Map<String, Double>> subMetricsByLevel, int itemCount) {
         this.analyzerName = analyzerName;
         this.analyzerDescription = analyzerDescription;
         this.courseScore = courseScore;
         this.levelScores = levelScores;
         this.worstItems = worstItems;
         this.scoreDistribution = scoreDistribution;
+        this.subMetricsByLevel = subMetricsByLevel;
+        this.itemCount = itemCount;
     }
 
     public String getAnalyzerName() {
@@ -84,6 +91,22 @@ public class AnalyzerStatsView {
         this.scoreDistribution = scoreDistribution;
     }
 
+    public Map<String, Map<String, Double>> getSubMetricsByLevel() {
+        return this.subMetricsByLevel;
+    }
+
+    public void setSubMetricsByLevel(Map<String, Map<String, Double>> subMetricsByLevel) {
+        this.subMetricsByLevel = subMetricsByLevel;
+    }
+
+    public int getItemCount() {
+        return this.itemCount;
+    }
+
+    public void setItemCount(int itemCount) {
+        this.itemCount = itemCount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -94,11 +117,13 @@ public class AnalyzerStatsView {
                     && Objects.equals(this.courseScore, that.courseScore)
                     && Objects.equals(this.levelScores, that.levelScores)
                     && Objects.equals(this.worstItems, that.worstItems)
-                    && Objects.equals(this.scoreDistribution, that.scoreDistribution);
+                    && Objects.equals(this.scoreDistribution, that.scoreDistribution)
+                    && Objects.equals(this.subMetricsByLevel, that.subMetricsByLevel)
+                    && Objects.equals(this.itemCount, that.itemCount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(analyzerName, analyzerDescription, courseScore, levelScores, worstItems, scoreDistribution);
+        return Objects.hash(analyzerName, analyzerDescription, courseScore, levelScores, worstItems, scoreDistribution, subMetricsByLevel, itemCount);
     }
 }

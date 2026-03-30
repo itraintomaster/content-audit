@@ -1,0 +1,582 @@
+code: __proposal__
+description: "Add handwritten tests for LemmaByLevelAbsenceAnalyzer — 80 tests covering\
+  \ all 31 rules and 5 journeys; Convert KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer,\
+  \ and SentenceLengthAnalyzer from declarative tests to handwrittenTests"
+modules:
+- name: audit-domain
+  implementations:
+  - name: KnowledgeTitleLengthAnalyzer
+    handwrittenTests:
+    - name: should return knowledge-title-length as analyzer name
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R008
+    - name: should return KNOWLEDGE as audit target
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R008
+    - name: should score 0.0 for knowledge with null title
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: should score 0.0 for knowledge with empty title
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: should score 1.0 for knowledge with title within limit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: should score 1.0 for knowledge with title at exactly 28 weighted chars
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R001
+    - name: should score 1.0 for title fitting with weighted length 5.1
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R002
+    - name: should score 1.0 for zero-weight special chars title
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R002
+    - name: should score 1.0 for mixed-weight title with weighted length 2.7
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R002
+    - name: should score 0.75 for title of weighted length 35
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: should score 0.5 for title of weighted length 42
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: should score 0.0 for title of weighted length 56
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: should score 0.0 for title of weighted length 70
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: should complete without error when onQuiz is called
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R008
+    - name: should complete without error when onMilestone is called
+      traceability:
+        feature: F-KTLEN
+    - name: should complete without error when onTopic is called
+      traceability:
+        feature: F-KTLEN
+    - name: should complete without error when onCourseComplete is called
+      traceability:
+        feature: F-KTLEN
+    - name: should return two correctly scored items for two knowledges with different
+        title lengths
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    - name: should return empty list when no knowledges have been processed
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+    implements:
+    - ContentAnalyzer
+  - name: KnowledgeInstructionsLengthAnalyzer
+    handwrittenTests:
+    - name: should return knowledge-instructions-length as analyzer name
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R008
+    - name: should return KNOWLEDGE as audit target
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R008
+    - name: should score 1.0 for knowledge with null instructions
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R006
+    - name: should score 1.0 for knowledge with empty instructions
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R006
+    - name: should score 1.0 for instructions exactly at soft limit of 70 chars
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R005
+    - name: should score 1.0 for instructions of 30 chars within soft limit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R006
+    - name: should score 0.5 for instructions of 71 chars just above soft limit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R005
+    - name: should score 0.5 for instructions exactly at hard limit of 100 chars
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R005
+    - name: should score 0.5 for instructions of 85 chars between soft and hard limits
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R006
+    - name: should score 0.0 for instructions of 101 chars just above hard limit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R005
+    - name: should score 0.0 for instructions of 200 chars well above hard limit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R006
+    - name: should complete without error when onQuiz is called
+      traceability:
+        feature: F-KTLEN
+    - name: should complete without error when onMilestone is called
+      traceability:
+        feature: F-KTLEN
+    - name: should complete without error when onTopic is called
+      traceability:
+        feature: F-KTLEN
+    - name: should complete without error when onCourseComplete is called
+      traceability:
+        feature: F-KTLEN
+    - name: should return empty list when getResults is called without prior processing
+      traceability:
+        feature: F-KTLEN
+    - name: should produce correct scores for three knowledges with different instruction
+        lengths
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R006
+    implements:
+    - ContentAnalyzer
+  - name: SentenceLengthAnalyzer
+    handwrittenTests:
+    - name: should exclude quiz when milestoneId is null
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+    - name: should exclude quiz when milestoneId is non-numeric
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+    - name: should exclude quiz when no target range configured for level
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R012
+    - name: should score only sentence quizzes when processing mixed knowledge types
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+    - name: should return sentence-length as analyzer name
+      traceability:
+        feature: F-SLEN
+    - name: should return QUIZ as audit target
+      traceability:
+        feature: F-SLEN
+    - name: should score 1.0 for quiz within A1 range
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: should score 0.75 for quiz 1 token above A1 max
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: should score 0.25 for quiz 3 tokens below A1 min
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: should score 1.0 for quiz exactly at A1 minimum boundary
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: should score 1.0 for quiz exactly at A1 maximum boundary
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: should score 0.0 for quiz 4 tokens above A1 max at tolerance boundary
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R009
+    - name: should exclude non-sentence knowledge quiz from results
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+    - name: should score 1.0 for B2 level quiz within range
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R012
+    - name: should score 0.0 for quiz exactly at tolerance boundary
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R009
+    - name: should score 0.5 for quiz 2 tokens above A1 max
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: should complete without error when onTopic is called
+      traceability:
+        feature: F-SLEN
+    - name: should complete without error when onCourseComplete is called
+      traceability:
+        feature: F-SLEN
+    - name: should produce correct scores for full milestone-knowledge-quiz sequence
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R002
+    - name: should exclude non-sentence quizzes from scoring
+      traceability:
+        feature: F-SLEN
+        rule: F-SLEN-R001
+    implements:
+    - ContentAnalyzer
+  packages:
+  - name: labs
+    visibility: internal
+    implementations:
+    - name: LemmaByLevelAbsenceAnalyzer
+      handwrittenTests:
+      - name: should return lemma-absence as analyzer name
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+      - name: should return COURSE as audit target
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+      - name: should return description text
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+      - name: should return empty results when no data processed
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+      - name: should obtain expected lemmas for each CEFR level from EVP catalog
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R001
+      - name: should exclude multi-word phrases from expected lemmas
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R005
+      - name: should exclude non-content words from expected lemmas
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R001
+      - name: should include critical functional pronoun I in A1 expected lemmas despite
+          filter rejection
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R016
+      - name: should include critical functional auxiliary be in A2 expected lemmas
+          despite filter rejection
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R016
+      - name: should not apply critical functional override for B1 level
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R016
+      - name: should not apply critical functional override for B2 level
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R016
+      - name: should include all critical pronouns auxiliaries prepositions and connectors
+          in A1
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R016
+      - name: should collect present lemmas from quiz tokens per level
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R002
+      - name: should collect present lemmas separately for each CEFR level
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R002
+      - name: should count a lemma as present only once per level even if it appears
+          multiple times
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R002
+      - name: should skip null tokens and tokens with null lemma during collection
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R002
+      - name: should skip quiz when tokens list is null
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R002
+      - name: should skip quiz when current level is null
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R002
+      - name: should mark lemma as absent when not present in its expected level
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R003
+      - name: should not mark lemma as absent when present in its expected level
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R010
+      - name: should consider LemmaAndPos pair for absence not just lemma string
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R003
+      - name: should not mark lemma as absent when present in expected level even
+          if also in other levels
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R010
+      - name: should find levels where absent lemma appears for cross-level classification
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R004
+      - name: should return empty presentInLevels when lemma not found in any level
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R004
+      - name: should classify as COMPLETELY_ABSENT when lemma not in any level
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R007
+      - name: should classify as APPEARS_TOO_LATE when lemma only in later levels
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R007
+      - name: should classify as APPEARS_TOO_EARLY when lemma only in earlier levels
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R007
+      - name: should classify as SCATTERED_PLACEMENT when lemma in both earlier and
+          later levels
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R007
+      - name: should enumerate exactly four absence types
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R006
+      - name: should assign impact 1.0 to COMPLETELY_ABSENT
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R008
+      - name: should assign impact 0.8 to APPEARS_TOO_LATE
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R008
+      - name: should assign impact 0.6 to APPEARS_TOO_EARLY
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R008
+      - name: should assign impact 0.4 to SCATTERED_PLACEMENT
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R008
+      - name: should have APPEARS_TOO_LATE impact greater than APPEARS_TOO_EARLY impact
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R009
+      - name: should assign HIGH priority for COCA rank 500
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: should assign HIGH priority for COCA rank at boundary 1000
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: should assign MEDIUM priority for COCA rank 1500
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: should assign MEDIUM priority for COCA rank at boundary 3000
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: should assign LOW priority for COCA rank 4000
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: should assign LOW priority for COCA rank at boundary 5000
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: should default to LOW priority when no COCA rank available
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R013
+      - name: should enrich absent lemma with COCA rank and semantic category and
+          priority
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R012
+      - name: should handle null semantic category gracefully during enrichment
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R012
+      - name: should treat same lemma with different POS as different entries
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R015
+      - name: should trigger alert when HIGH priority absent lemmas exceed zero threshold
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R014
+      - name: should trigger alert when MEDIUM priority absent lemmas exceed threshold
+          of 3
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R014
+      - name: should trigger alert when LOW priority absent lemmas exceed threshold
+          of 10
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R014
+      - name: should not trigger alert when count is exactly at threshold
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R014
+      - name: should not discount lemma correctly placed at its expected level in
+          sentence
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R017
+      - name: should not consider non-EVP lemma as misplaced in sentence
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R017
+      - name: should apply 0.1 discount per level of distance for misplaced lemma
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R018
+      - name: should score 0.9 for sentence with 1-level distance misplaced lemma
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R018
+      - name: should score 0.8 for sentence with 2-level distance misplaced lemma
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R018
+      - name: should score 0.7 for sentence with 3-level distance misplaced lemma
+          which is minimum
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R019
+      - name: should use maximum discount among all misplaced lemmas in sentence
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R019
+      - name: should score 1.0 for sentence with no misplaced lemmas
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R020
+      - name: should score 1.0 for sentence containing only non-EVP lemmas
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R020
+      - name: should exceed threshold when absent count exceeds absolute threshold
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R021
+      - name: should exceed threshold when absence percentage exceeds percentage threshold
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R021
+      - name: should not exceed threshold when both absolute and percentage are within
+          limits
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R021
+      - name: should enforce zero tolerance for A1 level
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R021
+      - name: should assess OPTIMAL when all levels within thresholds
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R022
+      - name: should assess ACCEPTABLE when non-critical level exceeds but critical
+          levels pass
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R022
+      - name: should assess NEEDS_IMPROVEMENT when A1 exceeds its threshold
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R022
+      - name: should assess NEEDS_IMPROVEMENT when A2 exceeds its threshold
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R022
+      - name: should assess NEEDS_IMPROVEMENT when total HIGH priority exceeds critical
+          threshold
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R025
+      - name: should compute level metrics with totalExpected totalAbsent absencePercentage
+          and score
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R023
+      - name: should compute weighted global score with A1 A2 weight 2.0 and B1 B2
+          weight 1.0
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R024
+      - name: should return global score 1.0 for course with perfect coverage
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R024
+      - name: should limit HIGH priority absent lemmas to 20 in report
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R026
+      - name: should limit MEDIUM priority absent lemmas to 30 in report
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R026
+      - name: should limit LOW priority absent lemmas to 50 in report
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R026
+      - name: should not generate recommendation for level within its threshold
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R027
+      - name: should map COMPLETELY_ABSENT to ADD_VOCABULARY recommendation
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R028
+      - name: should map APPEARS_TOO_LATE to INTRODUCE_EARLIER recommendation
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R028
+      - name: "full lifecycle: course with full coverage produces OPTIMAL assessment\
+          \ and score 1.0"
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J001
+      - name: "full lifecycle: course with completely absent HIGH priority lemmas\
+          \ in A1 produces NEEDS_IMPROVEMENT"
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J002
+      - name: "full lifecycle: course with lemmas appearing too late produces INTRODUCE_EARLIER\
+          \ recommendations"
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J003
+      - name: "full lifecycle: course with misplaced lemmas in sentences reflects\
+          \ distance discounts in scores"
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J004
+      - name: "full lifecycle: course with multiple levels exceeding thresholds produces\
+          \ prioritized recommendations"
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J005
+      implements:
+      - ContentAnalyzer

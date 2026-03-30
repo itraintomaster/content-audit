@@ -39,7 +39,6 @@ The following interfaces are `sealed`. Only the listed classes may implement the
 - `LemmaAbsenceConfig` permits: DefaultLemmaAbsenceConfig
 - `AuditCli` permits: DefaultAuditCli
 - `DrillDownResolver` permits: DefaultDrillDownResolver
-- `AnalyzerStatsTransformer` permits: DefaultAnalyzerStatsTransformer
 
 ## Rule C - Dependency Injection
 

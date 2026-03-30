@@ -1,7 +1,52 @@
-generatedAt: 2026-03-25T02:32:09.322574Z
+generatedAt: 2026-03-30T20:24:10.080327Z
 system: ContentAudit
 version: 0.0.1
 features:
+- id: FEAT-LREC
+  state: DRAFT
+  requirementFile: requirements/2026-03-28.01_lemma-recurrence/requirement.yaml
+  rulesCoverage:
+  - ruleId: F-LREC-R001
+    state: NO_TESTS
+  - ruleId: F-LREC-R002
+    state: NO_TESTS
+  - ruleId: F-LREC-R003
+    state: NO_TESTS
+  - ruleId: F-LREC-R004
+    state: NO_TESTS
+  - ruleId: F-LREC-R005
+    state: NO_TESTS
+  - ruleId: F-LREC-R006
+    state: NO_TESTS
+  - ruleId: F-LREC-R007
+    state: NO_TESTS
+  - ruleId: F-LREC-R008
+    state: NO_TESTS
+  - ruleId: F-LREC-R009
+    state: NO_TESTS
+  - ruleId: F-LREC-R010
+    state: NO_TESTS
+  - ruleId: F-LREC-R011
+    state: NO_TESTS
+  - ruleId: F-LREC-R012
+    state: NO_TESTS
+  - ruleId: F-LREC-R013
+    state: NO_TESTS
+  - ruleId: F-LREC-R014
+    state: NO_TESTS
+  - ruleId: F-LREC-R015
+    state: NO_TESTS
+  journeysCoverage:
+  - journeyId: F-LREC-J001
+    state: NO_TESTS
+  - journeyId: F-LREC-J002
+    state: NO_TESTS
+  - journeyId: F-LREC-J003
+    state: NO_TESTS
+  - journeyId: F-LREC-J004
+    state: NO_TESTS
+  - journeyId: F-LREC-J005
+    state: NO_TESTS
 - id: FEAT-COURSE
   state: IMPLEMENTED
   requirementFile: requirements/2026-03-15.01_course-structure/requirement.yaml
@@ -244,6 +289,600 @@ features:
       passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
+- id: FEAT-COCA
+  state: DRAFT
+  requirementFile: requirements/2026-03-25.01_coca-buckets-distribution/requirement.yaml
+  rulesCoverage:
+  - ruleId: F-COCA-R001
+    state: NO_TESTS
+  - ruleId: F-COCA-R002
+    state: NO_TESTS
+  - ruleId: F-COCA-R003
+    state: NO_TESTS
+  - ruleId: F-COCA-R004
+    state: NO_TESTS
+  - ruleId: F-COCA-R005
+    state: NO_TESTS
+  - ruleId: F-COCA-R006
+    state: NO_TESTS
+  - ruleId: F-COCA-R007
+    state: NO_TESTS
+  - ruleId: F-COCA-R008
+    state: NO_TESTS
+  - ruleId: F-COCA-R009
+    state: NO_TESTS
+  - ruleId: F-COCA-R010
+    state: NO_TESTS
+  - ruleId: F-COCA-R011
+    state: NO_TESTS
+  - ruleId: F-COCA-R012
+    state: NO_TESTS
+  - ruleId: F-COCA-R013
+    state: NO_TESTS
+  - ruleId: F-COCA-R014
+    state: NO_TESTS
+  - ruleId: F-COCA-R015
+    state: NO_TESTS
+  - ruleId: F-COCA-R016
+    state: NO_TESTS
+  - ruleId: F-COCA-R017
+    state: NO_TESTS
+  - ruleId: F-COCA-R018
+    state: NO_TESTS
+  - ruleId: F-COCA-R019
+    state: NO_TESTS
+  - ruleId: F-COCA-R020
+    state: NO_TESTS
+  - ruleId: F-COCA-R021
+    state: NO_TESTS
+  - ruleId: F-COCA-R022
+    state: NO_TESTS
+  - ruleId: F-COCA-R023
+    state: NO_TESTS
+  - ruleId: F-COCA-R024
+    state: NO_TESTS
+  - ruleId: F-COCA-R025
+    state: NO_TESTS
+  - ruleId: F-COCA-R026
+    state: NO_TESTS
+  - ruleId: F-COCA-R027
+    state: NO_TESTS
+  - ruleId: F-COCA-R028
+    state: NO_TESTS
+  - ruleId: F-COCA-R029
+    state: NO_TESTS
+  - ruleId: F-COCA-R030
+    state: NO_TESTS
+  - ruleId: F-COCA-R031
+    state: NO_TESTS
+  - ruleId: F-COCA-R032
+    state: NO_TESTS
+  - ruleId: F-COCA-R033
+    state: NO_TESTS
+  - ruleId: F-COCA-R034
+    state: NO_TESTS
+  journeysCoverage:
+  - journeyId: F-COCA-J001
+    state: NO_TESTS
+  - journeyId: F-COCA-J002
+    state: NO_TESTS
+  - journeyId: F-COCA-J003
+    state: NO_TESTS
+  - journeyId: F-COCA-J004
+    state: NO_TESTS
+  - journeyId: F-COCA-J005
+    state: NO_TESTS
+  - journeyId: F-COCA-J006
+    state: NO_TESTS
+- id: FEAT-NLP
+  state: IMPLEMENTING
+  requirementFile: requirements/2026-03-25.02_nlp-tokenizer-evolution/requirement.yaml
+  rulesCoverage:
+  - ruleId: F-NLP-R001
+    state: NO_TESTS
+  - ruleId: F-NLP-R002
+    state: NO_TESTS
+  - ruleId: F-NLP-R003
+    state: NO_TESTS
+  - ruleId: F-NLP-R004
+    state: NO_TESTS
+  - ruleId: F-NLP-R005
+    state: NO_TESTS
+  - ruleId: F-NLP-R006
+    state: NO_TESTS
+  - ruleId: F-NLP-R007
+    state: NO_TESTS
+  - ruleId: F-NLP-R008
+    state: PASSING
+    tests:
+    - name: "Given nlpTokenizer throws exception during batch processing, when map\
+        \ is called, then exception propagates"
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: CourseToAuditableMapper
+  - ruleId: F-NLP-R009
+    state: NO_TESTS
+  - ruleId: F-NLP-R010
+    state: PASSING
+    tests:
+    - name: "Given a course with quizzes, when map is called, then analyzeTokensBatch\
+        \ is invoked and returns an AuditableCourse"
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: CourseToAuditableMapper
+    - name: "Given a course with no milestones, when map is called, then returns an\
+        \ AuditableCourse without error"
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: CourseToAuditableMapper
+  - ruleId: F-NLP-R011
+    state: NO_TESTS
+  - ruleId: F-NLP-R012
+    state: NO_TESTS
+  - ruleId: F-NLP-R013
+    state: NO_TESTS
+  - ruleId: F-NLP-R014
+    state: NO_TESTS
+  - ruleId: F-NLP-R015
+    state: NO_TESTS
+  - ruleId: F-NLP-R016
+    state: NO_TESTS
+  - ruleId: F-NLP-R017
+    state: NO_TESTS
+  - ruleId: F-NLP-R018
+    state: NO_TESTS
+  - ruleId: F-NLP-R019
+    state: NO_TESTS
+  - ruleId: F-NLP-R020
+    state: NO_TESTS
+  - ruleId: F-NLP-R021
+    state: NO_TESTS
+  - ruleId: F-NLP-R022
+    state: NO_TESTS
+  - ruleId: F-NLP-R023
+    state: NO_TESTS
+  - ruleId: F-NLP-R024
+    state: NO_TESTS
+  - ruleId: F-NLP-R025
+    state: NO_TESTS
+  - ruleId: F-NLP-R026
+    state: NO_TESTS
+  - ruleId: F-NLP-R027
+    state: NO_TESTS
+  - ruleId: F-NLP-R028
+    state: NO_TESTS
+  - ruleId: F-NLP-R029
+    state: NO_TESTS
+  - ruleId: F-NLP-R030
+    state: NO_TESTS
+  - ruleId: F-NLP-R031
+    state: NO_TESTS
+  - ruleId: F-NLP-R032
+    state: NO_TESTS
+  - ruleId: F-NLP-R033
+    state: NO_TESTS
+  journeysCoverage:
+  - journeyId: F-NLP-J001
+    state: NO_TESTS
+  - journeyId: F-NLP-J002
+    state: NO_TESTS
+  - journeyId: F-NLP-J003
+    state: NO_TESTS
+- id: FEAT-LABS
+  state: IMPLEMENTING
+  requirementFile: requirements/2026-03-28.03_lemma-absence/requirement.yaml
+  rulesCoverage:
+  - ruleId: F-LABS-R001
+    state: NO_TESTS
+  - ruleId: F-LABS-R002
+    state: NO_TESTS
+  - ruleId: F-LABS-R003
+    state: NO_TESTS
+  - ruleId: F-LABS-R004
+    state: NO_TESTS
+  - ruleId: F-LABS-R005
+    state: NO_TESTS
+  - ruleId: F-LABS-R006
+    state: NO_TESTS
+  - ruleId: F-LABS-R007
+    state: NO_TESTS
+  - ruleId: F-LABS-R008
+    state: NO_TESTS
+  - ruleId: F-LABS-R009
+    state: NO_TESTS
+  - ruleId: F-LABS-R010
+    state: NO_TESTS
+  - ruleId: F-LABS-R011
+    state: PASSING
+    tests:
+    - name: should return high priority bound of 1000
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return medium priority bound of 3000
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return low priority bound of 5000
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should have priority bounds ordered high less than medium less than low
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+  - ruleId: F-LABS-R012
+    state: NO_TESTS
+  - ruleId: F-LABS-R013
+    state: NO_TESTS
+  - ruleId: F-LABS-R014
+    state: PASSING
+    tests:
+    - name: should return high priority alert threshold of 0
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return medium priority alert threshold of 3
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return low priority alert threshold of 10
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should have alert thresholds non-decreasing from high to low priority
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should enforce zero tolerance for high priority alert threshold
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+  - ruleId: F-LABS-R015
+    state: NO_TESTS
+  - ruleId: F-LABS-R016
+    state: NO_TESTS
+  - ruleId: F-LABS-R017
+    state: NO_TESTS
+  - ruleId: F-LABS-R018
+    state: PASSING
+    tests:
+    - name: should return discount per level of 0.1
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should have discount per level that limits max penalty to 0.3 for three-level
+        distance
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return discount per level between 0 exclusive and 1 exclusive
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+  - ruleId: F-LABS-R019
+    state: NO_TESTS
+  - ruleId: F-LABS-R020
+    state: NO_TESTS
+  - ruleId: F-LABS-R021
+    state: PASSING
+    tests:
+    - name: should return absolute threshold 0 for A1
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return absolute threshold 2 for A2
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return absolute threshold 5 for B1
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return absolute threshold 8 for B2
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return percentage threshold 0.0 for A1
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return percentage threshold 5.0 for A2
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return percentage threshold 10.0 for B1
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return percentage threshold 15.0 for B2
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should have absolute thresholds increasing from A1 to B2
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should have percentage thresholds increasing from A1 to B2
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should enforce A1 zero tolerance with both absolute and percentage thresholds
+        at zero
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return non-negative values for all thresholds and bounds
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return percentage thresholds between 0 and 100 for all levels
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+  - ruleId: F-LABS-R022
+    state: NO_TESTS
+  - ruleId: F-LABS-R023
+    state: NO_TESTS
+  - ruleId: F-LABS-R024
+    state: PASSING
+    tests:
+    - name: should return level weight 2.0 for A1
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return level weight 2.0 for A2
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return level weight 1.0 for B1
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return level weight 1.0 for B2
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should weight critical levels A1 and A2 higher than B1 and B2
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return positive level weights for all CEFR levels
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+  - ruleId: F-LABS-R025
+    state: PASSING
+    tests:
+    - name: should return critical absence threshold of 10
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return acceptable absence threshold of 5
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should have critical absence threshold greater than acceptable absence
+        threshold
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+  - ruleId: F-LABS-R026
+    state: PASSING
+    tests:
+    - name: should return high report limit of 20
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return medium report limit of 30
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return low report limit of 50
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should have report limits increasing from high to low priority
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return positive report limits for all priority levels
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+  - ruleId: F-LABS-R027
+    state: NO_TESTS
+  - ruleId: F-LABS-R028
+    state: NO_TESTS
+  - ruleId: F-LABS-R029
+    state: NO_TESTS
+  - ruleId: F-LABS-R030
+    state: NO_TESTS
+  - ruleId: F-LABS-R031
+    state: NO_TESTS
+  journeysCoverage:
+  - journeyId: F-LABS-J001
+    state: NO_TESTS
+  - journeyId: F-LABS-J002
+    state: NO_TESTS
+  - journeyId: F-LABS-J003
+    state: NO_TESTS
+  - journeyId: F-LABS-J004
+    state: NO_TESTS
+  - journeyId: F-LABS-J005
+    state: NO_TESTS
+- id: FEAT-CLI
+  state: IMPLEMENTING
+  requirementFile: requirements/2026-03-21.01_cli-audit-runner/requirement.yaml
+  rulesCoverage:
+  - ruleId: F-CLI-R001
+    state: PASSING
+    tests:
+    - name: "Given a valid course path, when runAudit is called, then returns the\
+        \ audit report from the full chain"
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: "Given a valid course path, when runAudit is called, then courseRepository\
+        \ load is invoked with the path"
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: "Given a valid course path, when runAudit is called, then courseToAuditableMapper\
+        \ map is invoked with the loaded entity"
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: "Given a valid course path, when runAudit is called, then contentAudit\
+        \ audit is invoked with the mapped auditable course"
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: "Given courseRepository throws an exception, when runAudit is called,\
+        \ then the exception propagates"
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: "Given courseToAuditableMapper throws an exception, when runAudit is called,\
+        \ then the exception propagates"
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: "Given contentAudit throws an exception, when runAudit is called, then\
+        \ the exception propagates"
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: "Given a course with no milestones, when runAudit is called, then returns\
+        \ the report from contentAudit"
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: "Given valid args, when run is called, then auditRunner runAudit is invoked\
+        \ with course path"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultAuditCli
+  - ruleId: F-CLI-R002
+    state: PASSING
+    tests:
+    - name: "Given no args provided, when run is called, then returns non-zero exit\
+        \ code"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultAuditCli
+  - ruleId: F-CLI-R003
+    state: PASSING
+    tests:
+    - name: "Given valid args with --format json, when run is called, then json formatter\
+        \ is looked up and returns 0"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultAuditCli
+    - name: "Given valid args without --format, when run is called, then text formatter\
+        \ is used by default and returns 0"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultAuditCli
+    - name: "Given an unsupported format value, when run is called, then returns non-zero\
+        \ exit code"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultAuditCli
+  - ruleId: F-CLI-R004
+    state: PASSING
+    tests:
+    - name: "Given valid args with course path, when run is called, then returns exit\
+        \ code 0"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultAuditCli
+    - name: "Given auditRunner throws RuntimeException, when run is called, then returns\
+        \ non-zero exit code"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultAuditCli
+    - name: "Given valid args and low audit scores, when run is called, then returns\
+        \ 0 regardless of score values"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultAuditCli
+  - ruleId: F-CLI-R005
+    state: NO_TESTS
+  - ruleId: F-CLI-R006
+    state: NO_TESTS
+  journeysCoverage:
+  - journeyId: F-CLI-J001
+    state: PASSING
+    tests:
+    - name: "Given a valid course path, when runAudit is called, then returns the\
+        \ audit report from the full chain"
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultAuditRunner
+  - journeyId: F-CLI-J002
+    state: NO_TESTS
+  - journeyId: F-CLI-J003
+    state: NO_TESTS
 - id: FEAT-KTLEN
   state: IMPLEMENTING
   requirementFile: requirements/2026-03-22.01_knowledge-titles-length/requirement.yaml
@@ -251,8 +890,7 @@ features:
   - ruleId: F-KTLEN-R001
     state: PASSING
     tests:
-    - name: "Given a knowledge with title at exactly 28 weighted chars, when onKnowledge\
-        \ is called and getResults checked, then score is 1.0"
+    - name: should score 1.0 for knowledge with title at exactly 28 weighted chars
       implemented: true
       passing: true
       module: audit-domain
@@ -260,20 +898,17 @@ features:
   - ruleId: F-KTLEN-R002
     state: PASSING
     tests:
-    - name: "Given a knowledge with title 'fitting' (weighted 5.1), when onKnowledge\
-        \ is called and getResults checked, then score is 1.0"
+    - name: should score 1.0 for title fitting with weighted length 5.1
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
-    - name: "Given a knowledge with zero-weight title '$$$***', when onKnowledge is\
-        \ called and getResults checked, then score is 1.0"
+    - name: should score 1.0 for zero-weight special chars title
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
-    - name: "Given a knowledge with mixed-weight title '$if,a' (weighted 2.7), when\
-        \ onKnowledge is called and getResults checked, then score is 1.0"
+    - name: should score 1.0 for mixed-weight title with weighted length 2.7
       implemented: true
       passing: true
       module: audit-domain
@@ -281,56 +916,48 @@ features:
   - ruleId: F-KTLEN-R003
     state: PASSING
     tests:
-    - name: "Given a knowledge with null title, when onKnowledge is called and getResults\
-        \ checked, then score is 0.0"
+    - name: should score 0.0 for knowledge with null title
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
-    - name: "Given a knowledge with empty title, when onKnowledge is called and getResults\
-        \ checked, then score is 0.0"
+    - name: should score 0.0 for knowledge with empty title
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
-    - name: "Given a knowledge with title within limit, when onKnowledge is called\
-        \ and getResults checked, then score is 1.0"
+    - name: should score 1.0 for knowledge with title within limit
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
-    - name: "Given a knowledge with title of weighted length 35, when onKnowledge\
-        \ is called and getResults checked, then score is 0.75"
+    - name: should score 0.75 for title of weighted length 35
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
-    - name: "Given a knowledge with title of weighted length 42, when onKnowledge\
-        \ is called and getResults checked, then score is 0.5"
+    - name: should score 0.5 for title of weighted length 42
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
-    - name: "Given a knowledge with title of weighted length 56, when onKnowledge\
-        \ is called and getResults checked, then score is 0.0"
+    - name: should score 0.0 for title of weighted length 56
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
-    - name: "Given a knowledge with title of weighted length 70, when onKnowledge\
-        \ is called and getResults checked, then score is 0.0"
+    - name: should score 0.0 for title of weighted length 70
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
-    - name: "Given two knowledges with different title lengths, when both are processed\
-        \ and getResults checked, then returns two correctly scored items"
+    - name: should return two correctly scored items for two knowledges with different
+        title lengths
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
-    - name: "Given no knowledges have been processed, when getResults is called, then\
-        \ returns empty list"
+    - name: should return empty list when no knowledges have been processed
       implemented: true
       passing: true
       module: audit-domain
@@ -340,26 +967,22 @@ features:
   - ruleId: F-KTLEN-R005
     state: PASSING
     tests:
-    - name: "Given a knowledge with instructions exactly at soft limit of 70 chars,\
-        \ when onKnowledge is called and getResults checked, then score is 1.0"
+    - name: should score 1.0 for instructions exactly at soft limit of 70 chars
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
-    - name: "Given a knowledge with instructions of 71 chars just above soft limit,\
-        \ when onKnowledge is called and getResults checked, then score is 0.5"
+    - name: should score 0.5 for instructions of 71 chars just above soft limit
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
-    - name: "Given a knowledge with instructions exactly at hard limit of 100 chars,\
-        \ when onKnowledge is called and getResults checked, then score is 0.5"
+    - name: should score 0.5 for instructions exactly at hard limit of 100 chars
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
-    - name: "Given a knowledge with instructions of 101 chars just above hard limit,\
-        \ when onKnowledge is called and getResults checked, then score is 0.0"
+    - name: should score 0.0 for instructions of 101 chars just above hard limit
       implemented: true
       passing: true
       module: audit-domain
@@ -367,39 +990,33 @@ features:
   - ruleId: F-KTLEN-R006
     state: PASSING
     tests:
-    - name: "Given a knowledge with null instructions, when onKnowledge is called\
-        \ and getResults checked, then score is 1.0"
+    - name: should score 1.0 for knowledge with null instructions
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
-    - name: "Given a knowledge with empty instructions, when onKnowledge is called\
-        \ and getResults checked, then score is 1.0"
+    - name: should score 1.0 for knowledge with empty instructions
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
-    - name: "Given a knowledge with instructions of 30 chars within soft limit, when\
-        \ onKnowledge is called and getResults checked, then score is 1.0"
+    - name: should score 1.0 for instructions of 30 chars within soft limit
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
-    - name: "Given a knowledge with instructions of 85 chars between soft and hard\
-        \ limits, when onKnowledge is called and getResults checked, then score is\
-        \ 0.5"
+    - name: should score 0.5 for instructions of 85 chars between soft and hard limits
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
-    - name: "Given a knowledge with instructions of 200 chars well above hard limit,\
-        \ when onKnowledge is called and getResults checked, then score is 0.0"
+    - name: should score 0.0 for instructions of 200 chars well above hard limit
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
-    - name: "Given three knowledges with different instruction lengths, when all are\
-        \ processed and getResults checked, then correct scores are produced for each"
+    - name: should produce correct scores for three knowledges with different instruction
+        lengths
       implemented: true
       passing: true
       module: audit-domain
@@ -409,32 +1026,27 @@ features:
   - ruleId: F-KTLEN-R008
     state: PASSING
     tests:
-    - name: "Given a KnowledgeTitleLengthAnalyzer, when getName is called, then returns\
-        \ knowledge-title-length"
+    - name: should return knowledge-title-length as analyzer name
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
-    - name: "Given a KnowledgeTitleLengthAnalyzer, when getTarget is called, then\
-        \ returns KNOWLEDGE"
+    - name: should return KNOWLEDGE as audit target
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
-    - name: "Given a KnowledgeTitleLengthAnalyzer, when onQuiz is called, then it\
-        \ completes without error"
+    - name: should complete without error when onQuiz is called
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
-    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when getName is called,\
-        \ then returns knowledge-instructions-length"
+    - name: should return knowledge-instructions-length as analyzer name
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
-    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when getTarget is called,\
-        \ then returns KNOWLEDGE"
+    - name: should return KNOWLEDGE as audit target
       implemented: true
       passing: true
       module: audit-domain
@@ -455,32 +1067,27 @@ features:
   - ruleId: F-SLEN-R001
     state: PASSING
     tests:
-    - name: "Given a null milestoneId, when onQuiz is called, then quiz is excluded\
-        \ and getResults is empty"
+    - name: should exclude quiz when milestoneId is null
       implemented: true
       passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
-    - name: "Given a non-numeric milestoneId, when onQuiz is called, then quiz is\
-        \ excluded and getResults is empty"
+    - name: should exclude quiz when milestoneId is non-numeric
       implemented: true
       passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
-    - name: "Given multiple quizzes across sentence and non-sentence knowledges, when\
-        \ processed, then only sentence quizzes are scored"
+    - name: should score only sentence quizzes when processing mixed knowledge types
       implemented: true
       passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
-    - name: "Given a non-sentence knowledge, when onQuiz is called, then quiz is excluded\
-        \ and getResults is empty"
+    - name: should exclude non-sentence knowledge quiz from results
       implemented: true
       passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
-    - name: "Given a knowledge with non-sentence quizzes, when onQuiz is called, then\
-        \ non-sentence quizzes are excluded from scoring"
+    - name: should exclude non-sentence quizzes from scoring
       implemented: true
       passing: true
       module: audit-domain
@@ -488,41 +1095,37 @@ features:
   - ruleId: F-SLEN-R002
     state: PASSING
     tests:
-    - name: "Given a quiz within A1 range, when onQuiz is called and getResults checked,\
-        \ then score is 1.0"
+    - name: should score 1.0 for quiz within A1 range
       implemented: true
       passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
-    - name: "Given a quiz 1 token above A1 max, when scored, then score is 0.75"
+    - name: should score 0.75 for quiz 1 token above A1 max
       implemented: true
       passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
-    - name: "Given a quiz 3 tokens below A1 min, when scored, then score is 0.25"
+    - name: should score 0.25 for quiz 3 tokens below A1 min
       implemented: true
       passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
-    - name: "Given a quiz exactly at A1 minimum boundary, when scored, then score\
-        \ is 1.0"
+    - name: should score 1.0 for quiz exactly at A1 minimum boundary
       implemented: true
       passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
-    - name: "Given a quiz exactly at A1 maximum boundary, when scored, then score\
-        \ is 1.0"
+    - name: should score 1.0 for quiz exactly at A1 maximum boundary
       implemented: true
       passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
-    - name: "Given a quiz 2 tokens above A1 max, when scored, then score is 0.5"
+    - name: should score 0.5 for quiz 2 tokens above A1 max
       implemented: true
       passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
-    - name: "Given a full milestone-knowledge-quiz sequence, when processed end to\
-        \ end, then correct scores are produced"
+    - name: should produce correct scores for full milestone-knowledge-quiz sequence
       implemented: true
       passing: true
       module: audit-domain
@@ -530,13 +1133,12 @@ features:
   - ruleId: F-SLEN-R009
     state: PASSING
     tests:
-    - name: "Given a quiz 4 tokens above A1 max, when scored, then score is 0.0"
+    - name: should score 0.0 for quiz 4 tokens above A1 max at tolerance boundary
       implemented: true
       passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
-    - name: "Given a quiz exactly at tolerance boundary of 4 tokens, when scored,\
-        \ then score is 0.0"
+    - name: should score 0.0 for quiz exactly at tolerance boundary
       implemented: true
       passing: true
       module: audit-domain
@@ -544,26 +1146,18 @@ features:
   - ruleId: F-SLEN-R012
     state: PASSING
     tests:
-    - name: "Given no target range configured for level, when onQuiz is called, then\
-        \ quiz is excluded and getResults is empty"
+    - name: should exclude quiz when no target range configured for level
       implemented: true
       passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
-    - name: "Given a B2 level quiz within range, when scored, then score is 1.0"
+    - name: should score 1.0 for B2 level quiz within range
       implemented: true
       passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
   - ruleId: F-SLEN-R013
-    state: PASSING
-    tests:
-    - name: "Given a valid sentence quiz, when onQuiz is called, then nlpTokenizer\
-        \ countTokens is called with quiz sentence"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: SentenceLengthAnalyzer
+    state: NO_TESTS
   - ruleId: F-SLEN-R003
     state: NO_TESTS
   - ruleId: F-SLEN-R004
@@ -597,6 +1191,47 @@ features:
     state: NO_TESTS
   - journeyId: F-SLEN-J005
     state: NO_TESTS
+- id: FEAT-LCOUNT
+  state: DRAFT
+  requirementFile: requirements/2026-03-28.02_lemma-count/requirement.yaml
+  rulesCoverage:
+  - ruleId: F-LCOUNT-R001
+    state: NO_TESTS
+  - ruleId: F-LCOUNT-R002
+    state: NO_TESTS
+  - ruleId: F-LCOUNT-R003
+    state: NO_TESTS
+  - ruleId: F-LCOUNT-R004
+    state: NO_TESTS
+  - ruleId: F-LCOUNT-R005
+    state: NO_TESTS
+  - ruleId: F-LCOUNT-R006
+    state: NO_TESTS
+  - ruleId: F-LCOUNT-R007
+    state: NO_TESTS
+  - ruleId: F-LCOUNT-R008
+    state: NO_TESTS
+  - ruleId: F-LCOUNT-R009
+    state: NO_TESTS
+  - ruleId: F-LCOUNT-R010
+    state: NO_TESTS
+  - ruleId: F-LCOUNT-R011
+    state: NO_TESTS
+  - ruleId: F-LCOUNT-R012
+    state: NO_TESTS
+  - ruleId: F-LCOUNT-R013
+    state: NO_TESTS
+  journeysCoverage:
+  - journeyId: F-LCOUNT-J001
+    state: NO_TESTS
+  - journeyId: F-LCOUNT-J002
+    state: NO_TESTS
+  - journeyId: F-LCOUNT-J003
+    state: NO_TESTS
+  - journeyId: F-LCOUNT-J004
+    state: NO_TESTS
+  - journeyId: F-LCOUNT-J005
+    state: NO_TESTS
 elements:
 - module: audit-domain
   status: EXISTS
@@ -629,6 +1264,12 @@ elements:
       status: EXISTS
     - name: quizId
       status: EXISTS
+    - name: topicLabel
+      status: EXISTS
+    - name: knowledgeLabel
+      status: EXISTS
+    - name: quizLabel
+      status: EXISTS
   - name: AuditableKnowledge
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditableKnowledge.java
@@ -641,11 +1282,23 @@ elements:
       status: EXISTS
     - name: isSentence
       status: EXISTS
+    - name: id
+      status: EXISTS
+    - name: label
+      status: EXISTS
+    - name: code
+      status: EXISTS
   - name: AuditableTopic
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditableTopic.java
     fields:
     - name: knowledge
+      status: EXISTS
+    - name: id
+      status: EXISTS
+    - name: label
+      status: EXISTS
+    - name: code
       status: EXISTS
   - name: AuditableMilestone
     status: EXISTS
@@ -653,13 +1306,25 @@ elements:
     fields:
     - name: topics
       status: EXISTS
+    - name: id
+      status: EXISTS
+    - name: label
+      status: EXISTS
+    - name: code
+      status: EXISTS
   - name: AuditableQuiz
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditableQuiz.java
     fields:
     - name: sentence
       status: EXISTS
-    - name: tokenCount
+    - name: tokens
+      status: EXISTS
+    - name: id
+      status: EXISTS
+    - name: label
+      status: EXISTS
+    - name: code
       status: EXISTS
   - name: CefrLevel
     status: EXISTS
@@ -715,6 +1380,8 @@ elements:
       status: EXISTS
     - name: quizId
       status: EXISTS
+    - name: source
+      status: EXISTS
   - name: NodeScores
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/NodeScores.java
@@ -729,6 +1396,8 @@ elements:
       status: EXISTS
     - name: scores
       status: EXISTS
+    - name: entity
+      status: EXISTS
   - name: KnowledgeNode
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/KnowledgeNode.java
@@ -738,6 +1407,8 @@ elements:
     - name: scores
       status: EXISTS
     - name: quizzes
+      status: EXISTS
+    - name: entity
       status: EXISTS
   - name: TopicNode
     status: EXISTS
@@ -749,6 +1420,8 @@ elements:
       status: EXISTS
     - name: knowledges
       status: EXISTS
+    - name: entity
+      status: EXISTS
   - name: MilestoneNode
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/MilestoneNode.java
@@ -758,6 +1431,34 @@ elements:
     - name: scores
       status: EXISTS
     - name: topics
+      status: EXISTS
+    - name: entity
+      status: EXISTS
+  - name: NlpToken
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/NlpToken.java
+    fields:
+    - name: text
+      status: EXISTS
+    - name: lemma
+      status: EXISTS
+    - name: posTag
+      status: EXISTS
+    - name: frequencyRank
+      status: EXISTS
+    - name: isStop
+      status: EXISTS
+    - name: isPunct
+      status: EXISTS
+  - name: AnalyzerDescriptor
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AnalyzerDescriptor.java
+    fields:
+    - name: name
+      status: EXISTS
+    - name: description
+      status: EXISTS
+    - name: target
       status: EXISTS
   interfaces:
   - name: ContentAudit
@@ -792,6 +1493,8 @@ elements:
       status: EXISTS
     - signature: "getResults(): List<ScoredItem>"
       status: EXISTS
+    - signature: "getDescription(): String"
+      status: EXISTS
   - name: AnalysisResult
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AnalysisResult.java
@@ -810,6 +1513,10 @@ elements:
       status: EXISTS
     - signature: "countTokens(String text): int"
       status: EXISTS
+    - signature: "analyzeTokens(String text): List<NlpToken>"
+      status: EXISTS
+    - signature: "analyzeTokensBatch(List<String> sentences): Map<String,List<NlpToken>>"
+      status: EXISTS
   - name: SentenceLengthConfig
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/SentenceLengthConfig.java
@@ -822,7 +1529,102 @@ elements:
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/ScoreAggregator.java
     methods:
-    - signature: "aggregate(List<ScoredItem> scores): AuditReport"
+    - signature: "aggregate(List<ScoredItem> scores,Map<String,AuditableEntity> entityMap):\
+        \ AuditReport"
+      status: EXISTS
+  - name: CocaBucketsConfig
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/CocaBucketsConfig.java
+    methods:
+    - signature: "getBandConfiguration(): BandConfiguration"
+      status: EXISTS
+    - signature: "getTargetsForLevel(String levelName): List<BucketTarget>"
+      status: EXISTS
+    - signature: "getQuarterTargetsForLevel(String levelName): List<QuarterBucketTargets>"
+      status: EXISTS
+    - signature: "getToleranceMargin(): double"
+      status: EXISTS
+    - signature: "getAnalysisStrategy(): AnalysisStrategy"
+      status: EXISTS
+    - signature: "getProgressionExpectations(): List<ProgressionExpectation>"
+      status: EXISTS
+  - name: ContentWordFilter
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/ContentWordFilter.java
+    methods:
+    - signature: "isContentWord(NlpToken token): boolean"
+      status: EXISTS
+  - name: LemmaRecurrenceConfig
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/LemmaRecurrenceConfig.java
+    methods:
+    - signature: "getTop(): int"
+      status: EXISTS
+    - signature: "getSubExposedThreshold(): double"
+      status: EXISTS
+    - signature: "getOverExposedThreshold(): double"
+      status: EXISTS
+  - name: LemmaAbsenceConfig
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/LemmaAbsenceConfig.java
+    methods:
+    - signature: "getAbsoluteThreshold(CefrLevel level): int"
+      status: EXISTS
+    - signature: "getPercentageThreshold(CefrLevel level): double"
+      status: EXISTS
+    - signature: "getLevelWeight(CefrLevel level): double"
+      status: EXISTS
+    - signature: "getHighPriorityBound(): int"
+      status: EXISTS
+    - signature: "getMediumPriorityBound(): int"
+      status: EXISTS
+    - signature: "getLowPriorityBound(): int"
+      status: EXISTS
+    - signature: "getHighPriorityAlertThreshold(): int"
+      status: EXISTS
+    - signature: "getMediumPriorityAlertThreshold(): int"
+      status: EXISTS
+    - signature: "getLowPriorityAlertThreshold(): int"
+      status: EXISTS
+    - signature: "getCriticalAbsenceThreshold(): int"
+      status: EXISTS
+    - signature: "getAcceptableAbsenceThreshold(): int"
+      status: EXISTS
+    - signature: "getHighReportLimit(): int"
+      status: EXISTS
+    - signature: "getMediumReportLimit(): int"
+      status: EXISTS
+    - signature: "getLowReportLimit(): int"
+      status: EXISTS
+    - signature: "getDiscountPerLevel(): double"
+      status: EXISTS
+  - name: EvpCatalogPort
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/EvpCatalogPort.java
+    methods:
+    - signature: "getExpectedLemmas(CefrLevel level): Set<LemmaAndPos>"
+      status: EXISTS
+    - signature: "isPhrase(String lemma): boolean"
+      status: EXISTS
+    - signature: "getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>"
+      status: EXISTS
+    - signature: "getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>"
+      status: EXISTS
+  - name: AuditableEntity
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditableEntity.java
+    methods:
+    - signature: "getId(): String"
+      status: EXISTS
+    - signature: "getLabel(): String"
+      status: EXISTS
+    - signature: "getCode(): String"
+      status: EXISTS
+  - name: SelfDescribingConfig
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/SelfDescribingConfig.java
+    methods:
+    - signature: "describe(): Map<String,Object>"
       status: EXISTS
   implementations:
   - name: IAuditEngine
@@ -832,155 +1634,557 @@ elements:
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzer.java
     tests:
-    - name: "Given a KnowledgeTitleLengthAnalyzer, when getName is called, then returns\
-        \ knowledge-title-length"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a KnowledgeTitleLengthAnalyzer, when getTarget is called, then\
-        \ returns KNOWLEDGE"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with null title, when onKnowledge is called and getResults\
-        \ checked, then score is 0.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with empty title, when onKnowledge is called and getResults\
-        \ checked, then score is 0.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with title within limit, when onKnowledge is called\
-        \ and getResults checked, then score is 1.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with title at exactly 28 weighted chars, when onKnowledge\
-        \ is called and getResults checked, then score is 1.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with title 'fitting' (weighted 5.1), when onKnowledge\
-        \ is called and getResults checked, then score is 1.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with zero-weight title '$$$***', when onKnowledge is\
-        \ called and getResults checked, then score is 1.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with mixed-weight title '$if,a' (weighted 2.7), when\
-        \ onKnowledge is called and getResults checked, then score is 1.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with title of weighted length 35, when onKnowledge\
-        \ is called and getResults checked, then score is 0.75"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with title of weighted length 42, when onKnowledge\
-        \ is called and getResults checked, then score is 0.5"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with title of weighted length 56, when onKnowledge\
-        \ is called and getResults checked, then score is 0.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with title of weighted length 70, when onKnowledge\
-        \ is called and getResults checked, then score is 0.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a KnowledgeTitleLengthAnalyzer, when onQuiz is called, then it\
-        \ completes without error"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a KnowledgeTitleLengthAnalyzer, when onMilestone is called, then\
-        \ it completes without error"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a KnowledgeTitleLengthAnalyzer, when onTopic is called, then it\
-        \ completes without error"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given a KnowledgeTitleLengthAnalyzer, when onCourseComplete is called,\
-        \ then it completes without error"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given two knowledges with different title lengths, when both are processed\
-        \ and getResults checked, then returns two correctly scored items"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
-    - name: "Given no knowledges have been processed, when getResults is called, then\
-        \ returns empty list"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
+    - name: should return knowledge-title-length as analyzer name
+      status: MISSING
+    - name: should return KNOWLEDGE as audit target
+      status: MISSING
+    - name: should score 0.0 for knowledge with null title
+      status: MISSING
+    - name: should score 0.0 for knowledge with empty title
+      status: MISSING
+    - name: should score 1.0 for knowledge with title within limit
+      status: MISSING
+    - name: should score 1.0 for knowledge with title at exactly 28 weighted chars
+      status: MISSING
+    - name: should score 1.0 for title fitting with weighted length 5.1
+      status: MISSING
+    - name: should score 1.0 for zero-weight special chars title
+      status: MISSING
+    - name: should score 1.0 for mixed-weight title with weighted length 2.7
+      status: MISSING
+    - name: should score 0.75 for title of weighted length 35
+      status: MISSING
+    - name: should score 0.5 for title of weighted length 42
+      status: MISSING
+    - name: should score 0.0 for title of weighted length 56
+      status: MISSING
+    - name: should score 0.0 for title of weighted length 70
+      status: MISSING
+    - name: should complete without error when onQuiz is called
+      status: MISSING
+    - name: should complete without error when onMilestone is called
+      status: MISSING
+    - name: should complete without error when onTopic is called
+      status: MISSING
+    - name: should complete without error when onCourseComplete is called
+      status: MISSING
+    - name: should return two correctly scored items for two knowledges with different
+        title lengths
+      status: MISSING
+    - name: should return empty list when no knowledges have been processed
+      status: MISSING
+    testCleanViews:
+    - |
+      test: "should return knowledge-title-length as analyzer name"
+      trace: F-KTLEN / F-KTLEN-R008
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+
+      then:
+        analyzer.getName() == "knowledge-title-length"
+    - |
+      test: "should return KNOWLEDGE as audit target"
+      trace: F-KTLEN / F-KTLEN-R008
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+
+      then:
+        analyzer.getTarget() == AuditTarget.KNOWLEDGE
+    - |
+      test: "should score 0.0 for knowledge with null title"
+      trace: F-KTLEN / F-KTLEN-R003
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k = knowledge(null)
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(k, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 0.0
+    - |
+      test: "should score 0.0 for knowledge with empty title"
+      trace: F-KTLEN / F-KTLEN-R003
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k = knowledge("")
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(k, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 0.0
+    - |
+      test: "should score 1.0 for knowledge with title within limit"
+      trace: F-KTLEN / F-KTLEN-R003
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k = knowledge("hello")
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(k, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 1.0
+    - |
+      test: "should score 1.0 for knowledge with title at exactly 28 weighted chars"
+      trace: F-KTLEN / F-KTLEN-R001
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k = knowledge(titleOfWeight(28))
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(k, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 1.0
+    - |
+      test: "should score 1.0 for title fitting with weighted length 5.1"
+      trace: F-KTLEN / F-KTLEN-R002
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k = knowledge("fitting")
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(k, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 1.0
+    - |
+      test: "should score 1.0 for zero-weight special chars title"
+      trace: F-KTLEN / F-KTLEN-R002
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k = knowledge("$$$***")
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(k, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 1.0
+    - |
+      test: "should score 1.0 for mixed-weight title with weighted length 2.7"
+      trace: F-KTLEN / F-KTLEN-R002
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k = knowledge("$if,a")
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(k, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 1.0
+    - |
+      test: "should score 0.75 for title of weighted length 35"
+      trace: F-KTLEN / F-KTLEN-R003
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k = knowledge(titleOfWeight(35))
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(k, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 0.75
+    - |
+      test: "should score 0.5 for title of weighted length 42"
+      trace: F-KTLEN / F-KTLEN-R003
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k = knowledge(titleOfWeight(42))
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(k, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 0.5
+    - |
+      test: "should score 0.0 for title of weighted length 56"
+      trace: F-KTLEN / F-KTLEN-R003
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k = knowledge(titleOfWeight(56))
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(k, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 0.0
+    - |
+      test: "should score 0.0 for title of weighted length 70"
+      trace: F-KTLEN / F-KTLEN-R003
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k = knowledge(titleOfWeight(70))
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(k, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 0.0
+    - |
+      test: "should complete without error when onQuiz is called"
+      trace: F-KTLEN / F-KTLEN-R008
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        quiz = AuditableQuiz("sentence", List.of(), "q1", "label", "CODE")
+
+      when:
+        doesNotThrow: sut.onQuiz(quiz, ctx("m1", "t1", "k1"))
+
+      then:
+        analyzer.getResults().isEmpty() is true
+    - |
+      test: "should complete without error when onMilestone is called"
+      trace: F-KTLEN
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        milestone = AuditableMilestone(List.of(), "m1", "label", "CODE")
+
+      when:
+        doesNotThrow: sut.onMilestone(milestone, ctx("m1", null, null))
+
+      then:
+        analyzer.getResults().isEmpty() is true
+    - |
+      test: "should complete without error when onTopic is called"
+      trace: F-KTLEN
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        topic = AuditableTopic(List.of(), "t1", "label", "CODE")
+
+      when:
+        doesNotThrow: sut.onTopic(topic, ctx("m1", "t1", null))
+
+      then:
+        analyzer.getResults().isEmpty() is true
+    - |
+      test: "should complete without error when onCourseComplete is called"
+      trace: F-KTLEN
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        course = AuditableCourse(List.of())
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx(null, null, null))
+
+      then:
+        analyzer.getResults().isEmpty() is true
+    - |
+      test: "should return two correctly scored items for two knowledges with different title lengths"
+      trace: F-KTLEN / F-KTLEN-R003
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k1 = AuditableKnowledge(List.of(), "hello", null, false, "k1", "l1", "C1")
+        k2 = AuditableKnowledge(List.of(), titleOfWeight(35), null, false, "k2", "l2", "C2")
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(k1, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 2
+        results.get(0).getScore() == 1.0
+        results.get(1).getScore() == 0.75
+    - |
+      test: "should return empty list when no knowledges have been processed"
+      trace: F-KTLEN / F-KTLEN-R003
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+
+      then:
+        analyzer.getResults().isEmpty() is true
   - name: KnowledgeInstructionsLengthAnalyzer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzer.java
     tests:
-    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when getName is called,\
-        \ then returns knowledge-instructions-length"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when getTarget is called,\
-        \ then returns KNOWLEDGE"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with null instructions, when onKnowledge is called\
-        \ and getResults checked, then score is 1.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with empty instructions, when onKnowledge is called\
-        \ and getResults checked, then score is 1.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with instructions exactly at soft limit of 70 chars,\
-        \ when onKnowledge is called and getResults checked, then score is 1.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with instructions of 30 chars within soft limit, when\
-        \ onKnowledge is called and getResults checked, then score is 1.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with instructions of 71 chars just above soft limit,\
-        \ when onKnowledge is called and getResults checked, then score is 0.5"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with instructions exactly at hard limit of 100 chars,\
-        \ when onKnowledge is called and getResults checked, then score is 0.5"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with instructions of 85 chars between soft and hard\
-        \ limits, when onKnowledge is called and getResults checked, then score is\
-        \ 0.5"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with instructions of 101 chars just above hard limit,\
-        \ when onKnowledge is called and getResults checked, then score is 0.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with instructions of 200 chars well above hard limit,\
-        \ when onKnowledge is called and getResults checked, then score is 0.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when onQuiz is called, then\
-        \ it completes without error"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when onMilestone is called,\
-        \ then it completes without error"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when onTopic is called,\
-        \ then it completes without error"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given a KnowledgeInstructionsLengthAnalyzer, when onCourseComplete is\
-        \ called, then it completes without error"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given a fresh KnowledgeInstructionsLengthAnalyzer, when getResults is\
-        \ called without prior processing, then returns empty list"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
-    - name: "Given three knowledges with different instruction lengths, when all are\
-        \ processed and getResults checked, then correct scores are produced for each"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
+    - name: should return knowledge-instructions-length as analyzer name
+      status: MISSING
+    - name: should return KNOWLEDGE as audit target
+      status: MISSING
+    - name: should score 1.0 for knowledge with null instructions
+      status: MISSING
+    - name: should score 1.0 for knowledge with empty instructions
+      status: MISSING
+    - name: should score 1.0 for instructions exactly at soft limit of 70 chars
+      status: MISSING
+    - name: should score 1.0 for instructions of 30 chars within soft limit
+      status: MISSING
+    - name: should score 0.5 for instructions of 71 chars just above soft limit
+      status: MISSING
+    - name: should score 0.5 for instructions exactly at hard limit of 100 chars
+      status: MISSING
+    - name: should score 0.5 for instructions of 85 chars between soft and hard limits
+      status: MISSING
+    - name: should score 0.0 for instructions of 101 chars just above hard limit
+      status: MISSING
+    - name: should score 0.0 for instructions of 200 chars well above hard limit
+      status: MISSING
+    - name: should complete without error when onQuiz is called
+      status: MISSING
+    - name: should complete without error when onMilestone is called
+      status: MISSING
+    - name: should complete without error when onTopic is called
+      status: MISSING
+    - name: should complete without error when onCourseComplete is called
+      status: MISSING
+    - name: should return empty list when getResults is called without prior processing
+      status: MISSING
+    - name: should produce correct scores for three knowledges with different instruction
+        lengths
+      status: MISSING
+    testCleanViews:
+    - |
+      test: "should return knowledge-instructions-length as analyzer name"
+      trace: F-KTLEN / F-KTLEN-R008
+
+      then:
+        analyzer.getName() == "knowledge-instructions-length"
+    - |
+      test: "should return KNOWLEDGE as audit target"
+      trace: F-KTLEN / F-KTLEN-R008
+
+      then:
+        analyzer.getTarget() == AuditTarget.KNOWLEDGE
+    - |
+      test: "should score 1.0 for knowledge with null instructions"
+      trace: F-KTLEN / F-KTLEN-R006
+
+      given:
+        knowledge = knowledgeWithInstructions(null)
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(knowledge, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 1.0
+    - |
+      test: "should score 1.0 for knowledge with empty instructions"
+      trace: F-KTLEN / F-KTLEN-R006
+
+      given:
+        knowledge = knowledgeWithInstructions("")
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(knowledge, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 1.0
+    - |
+      test: "should score 1.0 for instructions exactly at soft limit of 70 chars"
+      trace: F-KTLEN / F-KTLEN-R005
+
+      given:
+        instructions = "a".repeat(70)
+        knowledge = knowledgeWithInstructions(instructions)
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(knowledge, ctx("m1", "t1", "k1"))
+
+      then:
+        instructions.length() == 70
+        results.size() == 1
+        results.get(0).getScore() == 1.0
+    - |
+      test: "should score 1.0 for instructions of 30 chars within soft limit"
+      trace: F-KTLEN / F-KTLEN-R006
+
+      given:
+        instructions = "a".repeat(30)
+        knowledge = knowledgeWithInstructions(instructions)
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(knowledge, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 1.0
+    - |
+      test: "should score 0.5 for instructions of 71 chars just above soft limit"
+      trace: F-KTLEN / F-KTLEN-R005
+
+      given:
+        instructions = "a".repeat(71)
+        knowledge = knowledgeWithInstructions(instructions)
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(knowledge, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 0.5
+    - |
+      test: "should score 0.5 for instructions exactly at hard limit of 100 chars"
+      trace: F-KTLEN / F-KTLEN-R005
+
+      given:
+        instructions = "a".repeat(100)
+        knowledge = knowledgeWithInstructions(instructions)
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(knowledge, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 0.5
+    - |
+      test: "should score 0.5 for instructions of 85 chars between soft and hard limits"
+      trace: F-KTLEN / F-KTLEN-R006
+
+      given:
+        instructions = "a".repeat(85)
+        knowledge = knowledgeWithInstructions(instructions)
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(knowledge, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 0.5
+    - |
+      test: "should score 0.0 for instructions of 101 chars just above hard limit"
+      trace: F-KTLEN / F-KTLEN-R005
+
+      given:
+        instructions = "a".repeat(101)
+        knowledge = knowledgeWithInstructions(instructions)
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(knowledge, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 0.0
+    - |
+      test: "should score 0.0 for instructions of 200 chars well above hard limit"
+      trace: F-KTLEN / F-KTLEN-R006
+
+      given:
+        instructions = "a".repeat(200)
+        knowledge = knowledgeWithInstructions(instructions)
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(knowledge, ctx("m1", "t1", "k1"))
+
+      then:
+        results.size() == 1
+        results.get(0).getScore() == 0.0
+    - |
+      test: "should complete without error when onQuiz is called"
+      trace: F-KTLEN
+
+      given:
+        quiz = AuditableQuiz("sentence", List.of(), "q-id", "quiz label", "Q001")
+        ctx = ctx("m1", "t1", "k1")
+
+      when:
+        doesNotThrow: sut.onQuiz(quiz, ctx)
+    - |
+      test: "should complete without error when onMilestone is called"
+      trace: F-KTLEN
+
+      given:
+        milestone = AuditableMilestone(List.of(), "m-id", "milestone label", "M001")
+        ctx = ctx("m1", null, null)
+
+      when:
+        doesNotThrow: sut.onMilestone(milestone, ctx)
+    - |
+      test: "should complete without error when onTopic is called"
+      trace: F-KTLEN
+
+      given:
+        topic = AuditableTopic(List.of(), "t-id", "topic label", "T001")
+        ctx = ctx("m1", "t1", null)
+
+      when:
+        doesNotThrow: sut.onTopic(topic, ctx)
+    - |
+      test: "should complete without error when onCourseComplete is called"
+      trace: F-KTLEN
+
+      given:
+        course = AuditableCourse(List.of())
+        ctx = ctx(null, null, null)
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx)
+    - |
+      test: "should return empty list when getResults is called without prior processing"
+      trace: F-KTLEN
+
+      then:
+        analyzer.getResults().isEmpty() is true
+    - |
+      test: "should produce correct scores for three knowledges with different instruction lengths"
+      trace: F-KTLEN / F-KTLEN-R006
+
+      given:
+        k1 = knowledgeWithInstructions("a".repeat(30))
+        k2 = knowledgeWithInstructions("a".repeat(85))
+        k3 = knowledgeWithInstructions("a".repeat(150))
+        results = analyzer.getResults()
+
+      when:
+        sut.onKnowledge(k1, ctx("m1", "t1", "ka"))
+
+      then:
+        results.size() == 3
+        results.get(0).getScore() == 1.0
+        results.get(1).getScore() == 0.5
+        results.get(2).getScore() == 0.0
   - name: IContentAudit
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/IContentAudit.java
@@ -988,93 +2192,401 @@ elements:
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzer.java
     tests:
-    - name: "Given a null milestoneId, when onQuiz is called, then quiz is excluded\
-        \ and getResults is empty"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a non-numeric milestoneId, when onQuiz is called, then quiz is\
-        \ excluded and getResults is empty"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given no target range configured for level, when onQuiz is called, then\
-        \ quiz is excluded and getResults is empty"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a valid sentence quiz, when onQuiz is called, then nlpTokenizer\
-        \ countTokens is called with quiz sentence"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given multiple quizzes across sentence and non-sentence knowledges, when\
-        \ processed, then only sentence quizzes are scored"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a SentenceLengthAnalyzer, when getName is called, then returns\
-        \ sentence-length"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a SentenceLengthAnalyzer, when getTarget is called, then returns\
-        \ QUIZ"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a quiz within A1 range, when onQuiz is called and getResults checked,\
-        \ then score is 1.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a quiz 1 token above A1 max, when scored, then score is 0.75"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a quiz 3 tokens below A1 min, when scored, then score is 0.25"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a quiz exactly at A1 minimum boundary, when scored, then score\
-        \ is 1.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a quiz exactly at A1 maximum boundary, when scored, then score\
-        \ is 1.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a quiz 4 tokens above A1 max, when scored, then score is 0.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a non-sentence knowledge, when onQuiz is called, then quiz is excluded\
-        \ and getResults is empty"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a B2 level quiz within range, when scored, then score is 1.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a quiz exactly at tolerance boundary of 4 tokens, when scored,\
-        \ then score is 0.0"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a quiz 2 tokens above A1 max, when scored, then score is 0.5"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a SentenceLengthAnalyzer, when onTopic is called, then it completes\
-        \ without error"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a SentenceLengthAnalyzer, when onCourseComplete is called, then\
-        \ it completes without error"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a full milestone-knowledge-quiz sequence, when processed end to\
-        \ end, then correct scores are produced"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a SentenceLengthAnalyzer instance, when getName is called, then\
-        \ returns sentence-length"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a SentenceLengthAnalyzer instance, when getTarget is called, then\
-        \ returns QUIZ"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
-    - name: "Given a knowledge with non-sentence quizzes, when onQuiz is called, then\
-        \ non-sentence quizzes are excluded from scoring"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerSentinelTest.java
+    - name: should exclude quiz when milestoneId is null
+      status: MISSING
+    - name: should exclude quiz when milestoneId is non-numeric
+      status: MISSING
+    - name: should exclude quiz when no target range configured for level
+      status: MISSING
+    - name: should score only sentence quizzes when processing mixed knowledge types
+      status: MISSING
+    - name: should return sentence-length as analyzer name
+      status: MISSING
+    - name: should return QUIZ as audit target
+      status: MISSING
+    - name: should score 1.0 for quiz within A1 range
+      status: MISSING
+    - name: should score 0.75 for quiz 1 token above A1 max
+      status: MISSING
+    - name: should score 0.25 for quiz 3 tokens below A1 min
+      status: MISSING
+    - name: should score 1.0 for quiz exactly at A1 minimum boundary
+      status: MISSING
+    - name: should score 1.0 for quiz exactly at A1 maximum boundary
+      status: MISSING
+    - name: should score 0.0 for quiz 4 tokens above A1 max at tolerance boundary
+      status: MISSING
+    - name: should exclude non-sentence knowledge quiz from results
+      status: MISSING
+    - name: should score 1.0 for B2 level quiz within range
+      status: MISSING
+    - name: should score 0.0 for quiz exactly at tolerance boundary
+      status: MISSING
+    - name: should score 0.5 for quiz 2 tokens above A1 max
+      status: MISSING
+    - name: should complete without error when onTopic is called
+      status: MISSING
+    - name: should complete without error when onCourseComplete is called
+      status: MISSING
+    - name: should produce correct scores for full milestone-knowledge-quiz sequence
+      status: MISSING
+    - name: should exclude non-sentence quizzes from scoring
+      status: MISSING
+    testCleanViews:
+    - |
+      test: "should exclude quiz when milestoneId is null"
+      trace: F-SLEN / F-SLEN-R001
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext(null, "t1", "k1", "q1", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
+        ctxKnowledge = AuditContext(null, "t1", "k1", "q1", null, null, null)
+        quiz = AuditableQuiz("Hello world test", tokens(3), null, null, null)
+        ctxQuiz = AuditContext(null, "t1", "k1", "q1", null, null, null)
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        sut.getResults() == List.of()
+    - |
+      test: "should exclude quiz when milestoneId is non-numeric"
+      trace: F-SLEN / F-SLEN-R001
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext("abc", "t1", "k1", "q1", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
+        ctxKnowledge = AuditContext("abc", "t1", "k1", "q1", null, null, null)
+        quiz = AuditableQuiz("Hello world test", tokens(3), null, null, null)
+        ctxQuiz = AuditContext("abc", "t1", "k1", "q1", null, null, null)
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        sut.getResults() == List.of()
+    - |
+      test: "should exclude quiz when no target range configured for level"
+      trace: F-SLEN / F-SLEN-R012
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
+        ctxKnowledge = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        quiz = AuditableQuiz("She likes apples", tokens(3), null, null, null)
+        ctxQuiz = AuditContext("0", "t1", "k1", "q1", null, null, null)
+
+      mock:
+        config.getTargetRange(any()) -> Optional.empty()
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        sut.getResults() == List.of()
+    - |
+      test: "should score only sentence quizzes when processing mixed knowledge types"
+      trace: F-SLEN / F-SLEN-R001
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        nonSentKnowledge = AuditableKnowledge(List.of(), "Vocab", "Match", false, null, null, null)
+        ctxNonSentKnowledge = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        nonSentQuiz = AuditableQuiz("apple", tokens(1), null, null, null)
+        ctxNonSentQuiz = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        sentKnowledge = AuditableKnowledge(List.of(), "Sentences", "Complete", true, null, null, null)
+        ctxSentKnowledge = AuditContext("0", "t1", "k2", "q2", null, null, null)
+        sentQuiz = AuditableQuiz("She likes red apples very much", tokens(6), null, null, null)
+        ctxSentQuiz = AuditContext("0", "t1", "k2", "q2", null, null, null)
+        rangeA1 = TargetRange(CefrLevel.A1, 5, 8)
+        expectedScore = ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k2", "q2", sentQuiz)
+        result = sut.getResults()
+
+      mock:
+        config.getTargetRange(any()) -> Optional.of(rangeA1)
+        config.getToleranceMargin() -> 4
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        result.size() == 1
+        result.get(0) == expectedScore
+    - |
+      test: "should return sentence-length as analyzer name"
+      trace: F-SLEN
+
+      then:
+        sut.getName() == "sentence-length"
+    - |
+      test: "should return QUIZ as audit target"
+      trace: F-SLEN
+
+      then:
+        sut.getTarget() == AuditTarget.QUIZ
+    - |
+      test: "should score 1.0 for quiz within A1 range"
+      trace: F-SLEN / F-SLEN-R002
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
+        ctxKnowledge = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        quiz = AuditableQuiz("She likes apples a lot today", tokens(6), "q1", null, null)
+        ctxQuiz = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        result = sut.getResults()
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        result.size() == 1
+        result.get(0).getScore() == 1.0
+    - |
+      test: "should score 0.75 for quiz 1 token above A1 max"
+      trace: F-SLEN / F-SLEN-R002
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
+        ctxKnowledge = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        quiz = AuditableQuiz("She really likes green apples a lot today quickly", tokens(9), "q1", null, null)
+        ctxQuiz = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        result = sut.getResults()
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        result.size() == 1
+        result.get(0).getScore() == 0.75
+    - |
+      test: "should score 0.25 for quiz 3 tokens below A1 min"
+      trace: F-SLEN / F-SLEN-R002
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
+        ctxKnowledge = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        quiz = AuditableQuiz("Go now", tokens(2), "q1", null, null)
+        ctxQuiz = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        result = sut.getResults()
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        result.size() == 1
+        result.get(0).getScore() == 0.25
+    - |
+      test: "should score 1.0 for quiz exactly at A1 minimum boundary"
+      trace: F-SLEN / F-SLEN-R002
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
+        ctxKnowledge = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        quiz = AuditableQuiz("I like big red cats", tokens(5), "q1", null, null)
+        ctxQuiz = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        result = sut.getResults()
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        result.size() == 1
+        result.get(0).getScore() == 1.0
+    - |
+      test: "should score 1.0 for quiz exactly at A1 maximum boundary"
+      trace: F-SLEN / F-SLEN-R002
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
+        ctxKnowledge = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        quiz = AuditableQuiz("I like big red cats very much here", tokens(8), "q1", null, null)
+        ctxQuiz = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        result = sut.getResults()
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        result.size() == 1
+        result.get(0).getScore() == 1.0
+    - |
+      test: "should score 0.0 for quiz 4 tokens above A1 max at tolerance boundary"
+      trace: F-SLEN / F-SLEN-R009
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
+        ctxKnowledge = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        quiz = AuditableQuiz("She really likes eating big green apples from the local market", tokens(12), "q1", null, null)
+        ctxQuiz = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        result = sut.getResults()
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        result.size() == 1
+        result.get(0).getScore() == 0.0
+    - |
+      test: "should exclude non-sentence knowledge quiz from results"
+      trace: F-SLEN / F-SLEN-R001
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Vocabulary", "Match words", false, null, null, null)
+        ctxKnowledge = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        quiz = AuditableQuiz("apple", tokens(1), null, null, null)
+        ctxQuiz = AuditContext("0", "t1", "k1", "q1", null, null, null)
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        sut.getResults() == List.of()
+    - |
+      test: "should score 1.0 for B2 level quiz within range"
+      trace: F-SLEN / F-SLEN-R012
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext("3", "t1", "k1", "q1", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Advanced grammar", "Complete", true, null, null, null)
+        ctxKnowledge = AuditContext("3", "t1", "k1", "q1", null, null, null)
+        quiz = AuditableQuiz("The students should have been studying for their final exams much more carefully this semester", tokens(15), "q1", null, null)
+        ctxQuiz = AuditContext("3", "t1", "k1", "q1", null, null, null)
+        rangeB2 = TargetRange(CefrLevel.B2, 14, 17)
+        result = sut.getResults()
+
+      mock:
+        config.getTargetRange(any()) -> Optional.of(rangeB2)
+        config.getToleranceMargin() -> 4
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        result.size() == 1
+        result.get(0).getScore() == 1.0
+    - |
+      test: "should score 0.0 for quiz exactly at tolerance boundary"
+      trace: F-SLEN / F-SLEN-R009
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
+        ctxKnowledge = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        quiz = AuditableQuiz("Go", tokens(1), "q1", null, null)
+        ctxQuiz = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        result = sut.getResults()
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        result.size() == 1
+        result.get(0).getScore() == 0.0
+    - |
+      test: "should score 0.5 for quiz 2 tokens above A1 max"
+      trace: F-SLEN / F-SLEN-R002
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
+        ctxKnowledge = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        quiz = AuditableQuiz("She really likes eating big green apples from the garden", tokens(10), "q1", null, null)
+        ctxQuiz = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        result = sut.getResults()
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        result.size() == 1
+        result.get(0).getScore() == 0.5
+    - |
+      test: "should complete without error when onTopic is called"
+      trace: F-SLEN
+
+      given:
+        topic = AuditableTopic(List.of(), null, null, null)
+        ctx = AuditContext("0", "t1", "k1", "q1", null, null, null)
+
+      when:
+        doesNotThrow: sut.onTopic(topic, ctx)
+    - |
+      test: "should complete without error when onCourseComplete is called"
+      trace: F-SLEN
+
+      given:
+        course = AuditableCourse(List.of())
+        ctx = AuditContext("0", "t1", "k1", "q1", null, null, null)
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx)
+    - |
+      test: "should produce correct scores for full milestone-knowledge-quiz sequence"
+      trace: F-SLEN / F-SLEN-R002
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Basic greetings", "Complete the sentence", true, null, null, null)
+        ctxKnowledge = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        quiz1 = AuditableQuiz("Hello how are you today friend", tokens(6), "q1", null, null)
+        ctxQuiz1 = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        quiz2 = AuditableQuiz("Good morning", tokens(2), "q2", null, null)
+        ctxQuiz2 = AuditContext("0", "t1", "k1", "q2", null, null, null)
+        rangeA1 = TargetRange(CefrLevel.A1, 5, 8)
+        result = sut.getResults()
+
+      mock:
+        config.getTargetRange(any()) -> Optional.of(rangeA1)
+        config.getToleranceMargin() -> 4
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        result.size() == 2
+        result.get(0).getScore() == 1.0
+        result.get(1).getScore() == 0.25
+        result.get(0).getQuizId() == "q1"
+        result.get(1).getQuizId() == "q2"
+    - |
+      test: "should exclude non-sentence quizzes from scoring"
+      trace: F-SLEN / F-SLEN-R001
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctxMilestone = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Vocabulary", "Match words", false, null, null, null)
+        ctxKnowledge = AuditContext("0", "t1", "k1", "q1", null, null, null)
+        quiz = AuditableQuiz("apple", tokens(1), null, null, null)
+        ctxQuiz = AuditContext("0", "t1", "k1", "q1", null, null, null)
+
+      when:
+        sut.onMilestone(milestone, ctxMilestone)
+
+      then:
+        sut.getResults() == List.of()
   - name: IScoreAggregator
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/IScoreAggregator.java
@@ -1309,13 +2821,76 @@ elements:
     methods:
     - signature: "runAudit(Path coursePath): AuditReport"
       status: EXISTS
+  - name: CourseMapper
+    status: EXISTS
+    filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/CourseMapper.java
+    methods:
+    - signature: "map(CourseEntity course): AuditableCourse"
+      status: EXISTS
+  - name: AnalyzerRegistry
+    status: EXISTS
+    filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/AnalyzerRegistry.java
+    methods:
+    - signature: "listAnalyzers(): List<AnalyzerDescriptor>"
+      status: EXISTS
+    - signature: "getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>"
+      status: EXISTS
   implementations:
   - name: CourseToAuditableMapper
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/CourseToAuditableMapper.java
-  - name: CachedNlpTokenizer
-    status: EXISTS
-    filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/CachedNlpTokenizer.java
+    tests:
+    - name: "Given a course with quizzes, when map is called, then analyzeTokensBatch\
+        \ is invoked and returns an AuditableCourse"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/CourseToAuditableMapperSentinelTest.java
+    - name: "Given a course with no milestones, when map is called, then returns an\
+        \ AuditableCourse without error"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/CourseToAuditableMapperSentinelTest.java
+    - name: "Given nlpTokenizer throws exception during batch processing, when map\
+        \ is called, then exception propagates"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/CourseToAuditableMapperSentinelTest.java
+    testCleanViews:
+    - |
+      test: "Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse"
+      trace: F-NLP
+
+      given:
+        course = CourseEntity("507f1f77bcf86cd799439011", "English Course", List.of("k1"), null, "english-course")
+        batchResult = HashMap<>()
+
+      mock:
+        nlpTokenizer.analyzeTokensBatch(any()) -> batchResult
+
+      when:
+        sut.map(course)
+
+      then:
+        verify: nlpTokenizer.analyzeTokensBatch(any())
+    - |
+      test: "Given a course with no milestones, when map is called, then returns an AuditableCourse without error"
+      trace: F-NLP
+
+      given:
+        emptyRoot = RootNodeEntity("507f1f77bcf86cd799439099", "root", NodeKind.ROOT, null, List.of(), List.of())
+        emptyCourse = CourseEntity("507f1f77bcf86cd799439012", "Empty Course", List.of(), emptyRoot, "empty-course")
+
+      when:
+        doesNotThrow: sut.map(emptyCourse)
+    - |
+      test: "Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates"
+      trace: F-NLP
+
+      given:
+        course = CourseEntity("507f1f77bcf86cd799439013", "Problem Course", List.of("k1"), null, "problem-course")
+
+      mock:
+        nlpTokenizer.analyzeTokensBatch(any()) -> throws RuntimeException("NLP processing failed")
+
+      when:
+        throws RuntimeException: sut.map(course)
   - name: DefaultSentenceLengthConfig
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultSentenceLengthConfig.java
@@ -1355,6 +2930,494 @@ elements:
         \ the report from contentAudit"
       status: EXISTS
       testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerSentinelTest.java
+    testCleanViews:
+    - |
+      test: "Given a valid course path, when runAudit is called, then returns the audit report from the full chain"
+      trace: F-CLI
+
+      given:
+        rootNode = RootNodeEntity("root-001", "root", NodeKind.ROOT, null, List.of(), List.of())
+        courseEntity = CourseEntity("course-001", "english-course", List.of(), rootNode, "english-course")
+        auditableCourse = AuditableCourse(List.of())
+        nodeScores = NodeScores(Map.of())
+        auditReport = AuditReport(0.85, nodeScores, List.of())
+        result = sut.runAudit(Path.of("/path/to/course"))
+
+      mock:
+        courseRepository.load(any()) -> courseEntity
+        courseToAuditableMapper.map(any()) -> auditableCourse
+        contentAudit.audit(any()) -> auditReport
+
+      then:
+        result == auditReport
+    - |
+      test: "Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path"
+      trace: F-CLI
+
+      given:
+        rootNode = RootNodeEntity("root-001", "root", NodeKind.ROOT, null, List.of(), List.of())
+        courseEntity = CourseEntity("course-001", "english-course", List.of(), rootNode, "english-course")
+        auditableCourse = AuditableCourse(List.of())
+        nodeScores = NodeScores(Map.of())
+        auditReport = AuditReport(0.85, nodeScores, List.of())
+        result = sut.runAudit(Path.of("/path/to/course"))
+
+      mock:
+        courseRepository.load(any()) -> courseEntity
+        courseToAuditableMapper.map(any()) -> auditableCourse
+        contentAudit.audit(any()) -> auditReport
+
+      then:
+        result == auditReport
+        verify: courseRepository.load(any())
+    - |
+      test: "Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity"
+      trace: F-CLI
+
+      given:
+        rootNode = RootNodeEntity("root-001", "root", NodeKind.ROOT, null, List.of(), List.of())
+        courseEntity = CourseEntity("course-001", "english-course", List.of(), rootNode, "english-course")
+        auditableCourse = AuditableCourse(List.of())
+        nodeScores = NodeScores(Map.of())
+        auditReport = AuditReport(0.85, nodeScores, List.of())
+        result = sut.runAudit(Path.of("/path/to/course"))
+
+      mock:
+        courseRepository.load(any()) -> courseEntity
+        courseToAuditableMapper.map(any()) -> auditableCourse
+        contentAudit.audit(any()) -> auditReport
+
+      then:
+        result == auditReport
+        verify: courseToAuditableMapper.map(any())
+    - |
+      test: "Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course"
+      trace: F-CLI
+
+      given:
+        rootNode = RootNodeEntity("root-001", "root", NodeKind.ROOT, null, List.of(), List.of())
+        courseEntity = CourseEntity("course-001", "english-course", List.of(), rootNode, "english-course")
+        auditableCourse = AuditableCourse(List.of())
+        nodeScores = NodeScores(Map.of())
+        auditReport = AuditReport(0.85, nodeScores, List.of())
+        result = sut.runAudit(Path.of("/path/to/course"))
+
+      mock:
+        courseRepository.load(any()) -> courseEntity
+        courseToAuditableMapper.map(any()) -> auditableCourse
+        contentAudit.audit(any()) -> auditReport
+
+      then:
+        result == auditReport
+        verify: contentAudit.audit(any())
+    - |
+      test: "Given courseRepository throws an exception, when runAudit is called, then the exception propagates"
+      trace: F-CLI
+
+      mock:
+        courseRepository.load(any()) -> throws RuntimeException("Course directory not found")
+
+      when:
+        throws RuntimeException: sut.runAudit(Path.of("/invalid/path"))
+    - |
+      test: "Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates"
+      trace: F-CLI
+
+      given:
+        rootNode = RootNodeEntity("root-001", "root", NodeKind.ROOT, null, List.of(), List.of())
+        courseEntity = CourseEntity("course-001", "english-course", List.of(), rootNode, "english-course")
+
+      mock:
+        courseRepository.load(any()) -> courseEntity
+        courseToAuditableMapper.map(any()) -> throws RuntimeException("Mapping failed")
+
+      when:
+        throws RuntimeException: sut.runAudit(Path.of("/path/to/course"))
+    - |
+      test: "Given contentAudit throws an exception, when runAudit is called, then the exception propagates"
+      trace: F-CLI
+
+      given:
+        rootNode = RootNodeEntity("root-001", "root", NodeKind.ROOT, null, List.of(), List.of())
+        courseEntity = CourseEntity("course-001", "english-course", List.of(), rootNode, "english-course")
+        auditableCourse = AuditableCourse(List.of())
+
+      mock:
+        courseRepository.load(any()) -> courseEntity
+        courseToAuditableMapper.map(any()) -> auditableCourse
+        contentAudit.audit(any()) -> throws RuntimeException("Audit engine failure")
+
+      when:
+        throws RuntimeException: sut.runAudit(Path.of("/path/to/course"))
+    - |
+      test: "Given a course with no milestones, when runAudit is called, then returns the report from contentAudit"
+      trace: F-CLI
+
+      given:
+        rootNode = RootNodeEntity("root-002", "root", NodeKind.ROOT, null, List.of(), List.of())
+        emptyCourse = CourseEntity("course-002", "empty-course", List.of(), rootNode, "empty-course")
+        emptyAuditableCourse = AuditableCourse(List.of())
+        emptyNodeScores = NodeScores(Map.of())
+        emptyReport = AuditReport(0.0, emptyNodeScores, List.of())
+        result = sut.runAudit(Path.of("/path/to/empty-course"))
+
+      mock:
+        courseRepository.load(any()) -> emptyCourse
+        courseToAuditableMapper.map(any()) -> emptyAuditableCourse
+        contentAudit.audit(any()) -> emptyReport
+
+      then:
+        result == emptyReport
+  - name: DefaultCocaBucketsConfig
+    status: EXISTS
+    filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultCocaBucketsConfig.java
+  - name: DefaultLemmaRecurrenceConfig
+    status: EXISTS
+    filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultLemmaRecurrenceConfig.java
+  - name: DefaultLemmaAbsenceConfig
+    status: EXISTS
+    filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfig.java
+    tests:
+    - name: should return absolute threshold 0 for A1
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return absolute threshold 2 for A2
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return absolute threshold 5 for B1
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return absolute threshold 8 for B2
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return percentage threshold 0.0 for A1
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return percentage threshold 5.0 for A2
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return percentage threshold 10.0 for B1
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return percentage threshold 15.0 for B2
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return level weight 2.0 for A1
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return level weight 2.0 for A2
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return level weight 1.0 for B1
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return level weight 1.0 for B2
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return high priority bound of 1000
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return medium priority bound of 3000
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return low priority bound of 5000
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return high priority alert threshold of 0
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return medium priority alert threshold of 3
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return low priority alert threshold of 10
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return critical absence threshold of 10
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return acceptable absence threshold of 5
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return high report limit of 20
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return medium report limit of 30
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return low report limit of 50
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return discount per level of 0.1
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should have absolute thresholds increasing from A1 to B2
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should have percentage thresholds increasing from A1 to B2
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should have priority bounds ordered high less than medium less than low
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should weight critical levels A1 and A2 higher than B1 and B2
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should have report limits increasing from high to low priority
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should have critical absence threshold greater than acceptable absence
+        threshold
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should have alert thresholds non-decreasing from high to low priority
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should enforce zero tolerance for high priority alert threshold
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should enforce A1 zero tolerance with both absolute and percentage thresholds
+        at zero
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should have discount per level that limits max penalty to 0.3 for three-level
+        distance
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return non-negative values for all thresholds and bounds
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return positive report limits for all priority levels
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return percentage thresholds between 0 and 100 for all levels
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return positive level weights for all CEFR levels
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return discount per level between 0 exclusive and 1 exclusive
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    testCleanViews:
+    - |
+      test: "should return absolute threshold 0 for A1"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getAbsoluteThreshold(CefrLevel.A1)
+
+      then:
+        result == 0
+    - |
+      test: "should return absolute threshold 2 for A2"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getAbsoluteThreshold(CefrLevel.A2)
+
+      then:
+        result == 2
+    - |
+      test: "should return absolute threshold 5 for B1"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getAbsoluteThreshold(CefrLevel.B1)
+
+      then:
+        result == 5
+    - |
+      test: "should return absolute threshold 8 for B2"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getAbsoluteThreshold(CefrLevel.B2)
+
+      then:
+        result == 8
+    - |
+      test: "should return percentage threshold 0.0 for A1"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getPercentageThreshold(CefrLevel.A1)
+
+      then:
+        result == 0.0
+    - |
+      test: "should return percentage threshold 5.0 for A2"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getPercentageThreshold(CefrLevel.A2)
+
+      then:
+        result == 5.0
+    - |
+      test: "should return percentage threshold 10.0 for B1"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getPercentageThreshold(CefrLevel.B1)
+
+      then:
+        result == 10.0
+    - |
+      test: "should return percentage threshold 15.0 for B2"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getPercentageThreshold(CefrLevel.B2)
+
+      then:
+        result == 15.0
+    - |
+      test: "should return level weight 2.0 for A1"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getLevelWeight(CefrLevel.A1)
+
+      then:
+        result == 2.0
+    - |
+      test: "should return level weight 2.0 for A2"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getLevelWeight(CefrLevel.A2)
+
+      then:
+        result == 2.0
+    - |
+      test: "should return level weight 1.0 for B1"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getLevelWeight(CefrLevel.B1)
+
+      then:
+        result == 1.0
+    - |
+      test: "should return level weight 1.0 for B2"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getLevelWeight(CefrLevel.B2)
+
+      then:
+        result == 1.0
+    - |
+      test: "should return high priority bound of 1000"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getHighPriorityBound()
+
+      then:
+        result == 1000
+    - |
+      test: "should return medium priority bound of 3000"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getMediumPriorityBound()
+
+      then:
+        result == 3000
+    - |
+      test: "should return low priority bound of 5000"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getLowPriorityBound()
+
+      then:
+        result == 5000
+    - |
+      test: "should return high priority alert threshold of 0"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getHighPriorityAlertThreshold()
+
+      then:
+        result == 0
+    - |
+      test: "should return medium priority alert threshold of 3"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getMediumPriorityAlertThreshold()
+
+      then:
+        result == 3
+    - |
+      test: "should return low priority alert threshold of 10"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getLowPriorityAlertThreshold()
+
+      then:
+        result == 10
+    - |
+      test: "should return critical absence threshold of 10"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getCriticalAbsenceThreshold()
+
+      then:
+        result == 10
+    - |
+      test: "should return acceptable absence threshold of 5"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getAcceptableAbsenceThreshold()
+
+      then:
+        result == 5
+    - |
+      test: "should return high report limit of 20"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getHighReportLimit()
+
+      then:
+        result == 20
+    - |
+      test: "should return medium report limit of 30"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getMediumReportLimit()
+
+      then:
+        result == 30
+    - |
+      test: "should return low report limit of 50"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getLowReportLimit()
+
+      then:
+        result == 50
+    - |
+      test: "should return discount per level of 0.1"
+      trace: FEAT-LABS
+
+      given:
+        result = sut.getDiscountPerLevel()
+
+      then:
+        result == 0.1
+  - name: DefaultAnalyzerRegistry
+    status: EXISTS
+    filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultAnalyzerRegistry.java
 - module: course-infrastructure
   status: EXISTS
   implementations:
@@ -1476,14 +3539,268 @@ elements:
         \ is returned"
       status: EXISTS
       testFilePath: course-infrastructure/src/test/java/com/learney/contentaudit/courseinfrastructure/FileSystemCourseRepositorySentinelTest.java
+    testCleanViews:
+    - |
+      test: "Given a valid course entity, when save is called, then validator is invoked and no exception is thrown"
+      trace: F-COURSE
+
+      given:
+        sentencePart1 = SentencePartEntity(SentencePartKind.TEXT, "She ", List.of())
+        sentencePart2 = SentencePartEntity(SentencePartKind.CLOZE, null, List.of("plays"))
+        form1 = FormEntity("CLOZE", 1.0, null, null, List.of(sentencePart1, sentencePart2))
+        quiz1 = QuizTemplateEntity("aaa111bbb222ccc333ddd441", "aaa111bbb222ccc333ddd441", "CLOZE", "aaa111bbb222ccc333ddd440", "Affirmative sentences", "Escribe la forma afirmativa.", "Ella juega", "a1.01.Present_Simple", "Present Simple", form1, 0.0, 0.0, 0.0, null, null, null, "A1.01.01.01", null, null, null)
+        knowledge1 = KnowledgeEntity("aaa111bbb222ccc333ddd440", "aaa111bbb222ccc333ddd440", NodeKind.KNOWLEDGE, "Affirmative sentences", "11111111-1111-1111-1111-111111111111", "aaa111bbb222ccc333ddd430", true, "Escribe la forma afirmativa.", 1, "affirmative-sentences", List.of(quiz1))
+        topic1 = TopicEntity("aaa111bbb222ccc333ddd430", "aaa111bbb222ccc333ddd430", NodeKind.TOPIC, "Present Simple", "22222222-2222-2222-2222-222222222222", "aaa111bbb222ccc333ddd420", List.of(), List.of("aaa111bbb222ccc333ddd440"), 1, "present-simple", List.of(knowledge1))
+        milestone1 = MilestoneEntity("aaa111bbb222ccc333ddd420", "aaa111bbb222ccc333ddd420", NodeKind.MILESTONE, "A1", "33333333-3333-3333-3333-333333333333", "aaa111bbb222ccc333ddd410", List.of("aaa111bbb222ccc333ddd430"), 1, "a1", List.of(topic1))
+        rootNode = RootNodeEntity("aaa111bbb222ccc333ddd410", "root", NodeKind.ROOT, null, List.of("aaa111bbb222ccc333ddd420"), List.of(milestone1))
+        course1 = CourseEntity("000000000000000000000000", "english-course", List.of("aaa111bbb222ccc333ddd440"), rootNode, "english-course")
+        targetPath = Path.of("/tmp/test-course-output")
+
+      mock:
+        courseValidator.validate(any())
+
+      when:
+        sut.save(course1, targetPath)
+
+      then:
+        verify: courseValidator.validate(any())
+    - |
+      test: "Given an invalid course entity, when save is called, then validator throws CourseValidationException"
+      trace: F-COURSE
+
+      given:
+        invalidCourse = CourseEntity("000000000000000000000000", "invalid-course", List.of(), null, "invalid-course")
+        targetPath = Path.of("/tmp/test-invalid-output")
+
+      mock:
+        courseValidator.validate(any()) -> throws CourseValidationException("/tmp", "estructura invalida")
+
+      when:
+        throws CourseValidationException: sut.save(invalidCourse, targetPath)
+    - |
+      test: "Given a course entity with validator passing, when save is called, then no exception is thrown"
+      trace: F-COURSE
+
+      given:
+        sentencePart1 = SentencePartEntity(SentencePartKind.TEXT, "He ", List.of())
+        sentencePart2 = SentencePartEntity(SentencePartKind.CLOZE, null, List.of("runs"))
+        form1 = FormEntity("CLOZE", 1.0, null, null, List.of(sentencePart1, sentencePart2))
+        quiz1 = QuizTemplateEntity("bbb111ccc222ddd333eee441", "bbb111ccc222ddd333eee441", "CLOZE", "bbb111ccc222ddd333eee440", "Running verbs", "Completa la oracion.", "El corre", "a1.02.Verbs", "Verbs", form1, 0.0, 0.0, 0.0, null, null, null, "A1.02.01.01", null, null, null)
+        knowledge1 = KnowledgeEntity("bbb111ccc222ddd333eee440", "bbb111ccc222ddd333eee440", NodeKind.KNOWLEDGE, "Running verbs", "44444444-4444-4444-4444-444444444444", "bbb111ccc222ddd333eee430", true, "Completa la oracion.", 1, "running-verbs", List.of(quiz1))
+        topic1 = TopicEntity("bbb111ccc222ddd333eee430", "bbb111ccc222ddd333eee430", NodeKind.TOPIC, "Verbs", "55555555-5555-5555-5555-555555555555", "bbb111ccc222ddd333eee420", List.of(), List.of("bbb111ccc222ddd333eee440"), 1, "verbs", List.of(knowledge1))
+        milestone1 = MilestoneEntity("bbb111ccc222ddd333eee420", "bbb111ccc222ddd333eee420", NodeKind.MILESTONE, "A1", "66666666-6666-6666-6666-666666666666", "bbb111ccc222ddd333eee410", List.of("bbb111ccc222ddd333eee430"), 1, "a1", List.of(topic1))
+        rootNode = RootNodeEntity("bbb111ccc222ddd333eee410", "root", NodeKind.ROOT, null, List.of("bbb111ccc222ddd333eee420"), List.of(milestone1))
+        validCourse = CourseEntity("000000000000000000000000", "english-course", List.of("bbb111ccc222ddd333eee440"), rootNode, "english-course")
+        targetPath = Path.of("/tmp/test-valid-output")
+
+      mock:
+        courseValidator.validate(any())
+
+      when:
+        doesNotThrow: sut.save(validCourse, targetPath)
+    - |
+      test: "Given a null course entity, when save is called, then an exception is thrown"
+      trace: F-COURSE
+
+      when:
+        throws IllegalArgumentException: sut.save(null, Path.of("/tmp/test-null-output"))
+    - |
+      test: "Given validator rejects course with duplicate IDs, when save is called, then CourseValidationException propagates"
+      trace: F-COURSE
+
+      given:
+        duplicateIdCourse = CourseEntity("000000000000000000000000", "duplicate-course", List.of(), null, "duplicate-course")
+
+      mock:
+        courseValidator.validate(any()) -> throws CourseValidationException("/tmp/test-dup-output", "Identificador duplicado: el ID aaa111 aparece en Milestone y en Topic")
+
+      when:
+        throws CourseValidationException: sut.save(duplicateIdCourse, Path.of("/tmp/test-dup-output"))
+    - |
+      test: "Given validator rejects course with broken parent references, when save is called, then CourseValidationException propagates"
+      trace: F-COURSE
+
+      given:
+        brokenRefCourse = CourseEntity("000000000000000000000000", "broken-ref-course", List.of(), null, "broken-ref-course")
+
+      mock:
+        courseValidator.validate(any()) -> throws CourseValidationException("/tmp/test-broken-ref-output", "Integridad referencial rota: Topic (abc123) referencia al padre xyz789, pero el padre esperado es def456")
+
+      when:
+        throws CourseValidationException: sut.save(brokenRefCourse, Path.of("/tmp/test-broken-ref-output"))
+    - |
+      test: "Given validator rejects milestone with no topics, when save is called, then CourseValidationException propagates"
+      trace: F-COURSE
+
+      given:
+        emptyMilestoneCourse = CourseEntity("000000000000000000000000", "empty-milestone-course", List.of(), null, "empty-milestone-course")
+
+      mock:
+        courseValidator.validate(any()) -> throws CourseValidationException("/tmp/test-empty-milestone-output", "Estructura incompleta: Milestone 'A1' (abc123) no tiene hijos")
+
+      when:
+        throws CourseValidationException: sut.save(emptyMilestoneCourse, Path.of("/tmp/test-empty-milestone-output"))
 - module: audit-cli
   status: EXISTS
+  models:
+  - name: ReportViewModel
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ReportViewModel.java
+    fields:
+    - name: overallScore
+      status: EXISTS
+    - name: analyzerNames
+      status: EXISTS
+    - name: analyzerScores
+      status: EXISTS
+    - name: milestoneScores
+      status: EXISTS
+  - name: MilestoneScoreRow
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/MilestoneScoreRow.java
+    fields:
+    - name: milestoneId
+      status: EXISTS
+    - name: analyzerScores
+      status: EXISTS
+    - name: overallScore
+      status: EXISTS
+    - name: topicScores
+      status: EXISTS
+    - name: entity
+      status: EXISTS
+  - name: QuizScoreRow
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/QuizScoreRow.java
+    fields:
+    - name: quizId
+      status: EXISTS
+    - name: overallScore
+      status: EXISTS
+    - name: analyzerScores
+      status: EXISTS
+    - name: entity
+      status: EXISTS
+  - name: KnowledgeScoreRow
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/KnowledgeScoreRow.java
+    fields:
+    - name: knowledgeId
+      status: EXISTS
+    - name: overallScore
+      status: EXISTS
+    - name: analyzerScores
+      status: EXISTS
+    - name: quizScores
+      status: EXISTS
+    - name: entity
+      status: EXISTS
+  - name: TopicScoreRow
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/TopicScoreRow.java
+    fields:
+    - name: topicId
+      status: EXISTS
+    - name: overallScore
+      status: EXISTS
+    - name: analyzerScores
+      status: EXISTS
+    - name: knowledgeScores
+      status: EXISTS
+    - name: entity
+      status: EXISTS
+  - name: DrillDownScope
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DrillDownScope.java
+    fields:
+    - name: level
+      status: EXISTS
+    - name: topic
+      status: EXISTS
+    - name: knowledge
+      status: EXISTS
+  - name: DrillDownLevel
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DrillDownLevel.java
+    fields:
+    - name: COURSE
+      status: EXISTS
+    - name: MILESTONE
+      status: EXISTS
+    - name: TOPIC
+      status: EXISTS
+    - name: KNOWLEDGE
+      status: EXISTS
+  - name: DrillDownView
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DrillDownView.java
+    fields:
+    - name: depth
+      status: EXISTS
+    - name: nodeName
+      status: EXISTS
+    - name: overallScore
+      status: EXISTS
+    - name: analyzerScores
+      status: EXISTS
+    - name: analyzerNames
+      status: EXISTS
+    - name: childRows
+      status: EXISTS
+  - name: ChildScoreRow
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ChildScoreRow.java
+    fields:
+    - name: id
+      status: EXISTS
+    - name: overallScore
+      status: EXISTS
+    - name: analyzerScores
+      status: EXISTS
+    - name: entity
+      status: EXISTS
+  - name: AnalyzerStatsView
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerStatsView.java
+    fields:
+    - name: analyzerName
+      status: EXISTS
+    - name: analyzerDescription
+      status: EXISTS
+    - name: courseScore
+      status: EXISTS
+    - name: levelScores
+      status: EXISTS
+    - name: worstItems
+      status: EXISTS
+    - name: scoreDistribution
+      status: EXISTS
+    - name: subMetricsByLevel
+      status: EXISTS
+    - name: itemCount
+      status: EXISTS
+  - name: ScoredItemRow
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ScoredItemRow.java
+    fields:
+    - name: milestoneId
+      status: EXISTS
+    - name: topicId
+      status: EXISTS
+    - name: knowledgeId
+      status: EXISTS
+    - name: quizId
+      status: EXISTS
+    - name: score
+      status: EXISTS
+    - name: label
+      status: EXISTS
   interfaces:
   - name: ReportFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ReportFormatter.java
     methods:
-    - signature: "format(AuditReport report): String"
+    - signature: "format(ReportViewModel viewModel,DrillDownScope scope): String"
       status: EXISTS
   - name: AuditCli
     status: EXISTS
@@ -1491,11 +3808,48 @@ elements:
     methods:
     - signature: "run(String[] args): int"
       status: EXISTS
+    - signature: "call(): Integer"
+      status: EXISTS
   - name: FormatterRegistry
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/FormatterRegistry.java
     methods:
     - signature: "getFormatter(String formatName): ReportFormatter"
+      status: EXISTS
+  - name: ReportViewModelTransformer
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ReportViewModelTransformer.java
+    methods:
+    - signature: "transform(AuditReport report): ReportViewModel"
+      status: EXISTS
+  - name: RawReportFormatter
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/RawReportFormatter.java
+    methods:
+    - signature: "format(AuditReport report): String"
+      status: EXISTS
+  - name: DrillDownResolver
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DrillDownResolver.java
+    methods:
+    - signature: "resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView"
+      status: EXISTS
+  - name: AnalyzerStatsTransformer
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerStatsTransformer.java
+    methods:
+    - signature: "transform(AuditReport report,String analyzerName,AnalyzerRegistry\
+        \ registry): AnalyzerStatsView"
+      status: EXISTS
+  - name: ScoreRow
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ScoreRow.java
+    methods:
+    - signature: "getEntity(): AuditableEntity"
+      status: EXISTS
+    - signature: "getOverallScore(): double"
+      status: EXISTS
+    - signature: "getAnalyzerScores(): Map<String,Double>"
       status: EXISTS
   implementations:
   - name: TextReportFormatter
@@ -1540,14 +3894,173 @@ elements:
         \ 0 regardless of score values"
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
+    testCleanViews:
+    - |
+      test: "Given valid args with course path, when run is called, then returns exit code 0"
+      trace: F-CLI
+
+      given:
+        emptyScores = NodeScores(Map.of())
+        report = AuditReport(0.85, emptyScores, List.of())
+        formatter = Mockito.mock(ReportFormatter.class)
+        result = sut.run("/path/to/course")
+
+      mock:
+        auditRunner.runAudit(any()) -> report
+        formatterRegistry.getFormatter(eq("text")) -> formatter
+
+      then:
+        result == 0
+    - |
+      test: "Given no args provided, when run is called, then returns non-zero exit code"
+      trace: F-CLI
+
+      given:
+        result = sut.run()
+
+      then:
+        result == 1
+    - |
+      test: "Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code"
+      trace: F-CLI
+
+      given:
+        formatter = Mockito.mock(ReportFormatter.class)
+        result = sut.run("/path/to/course")
+
+      mock:
+        auditRunner.runAudit(any()) -> throws RuntimeException("Failed to load course")
+        formatterRegistry.getFormatter(eq("text")) -> formatter
+
+      then:
+        result == 1
+    - |
+      test: "Given valid args with --format json, when run is called, then json formatter is looked up and returns 0"
+      trace: F-CLI
+
+      given:
+        emptyScores = NodeScores(Map.of())
+        report = AuditReport(0.75, emptyScores, List.of())
+        jsonFormatter = Mockito.mock(ReportFormatter.class)
+        result = sut.run("/path/to/course", "--format", "json")
+
+      mock:
+        auditRunner.runAudit(any()) -> report
+        formatterRegistry.getFormatter(eq("json")) -> jsonFormatter
+
+      then:
+        result == 0
+        verify: formatterRegistry.getFormatter(any())
+    - |
+      test: "Given valid args without --format, when run is called, then text formatter is used by default and returns 0"
+      trace: F-CLI
+
+      given:
+        emptyScores = NodeScores(Map.of())
+        report = AuditReport(0.9, emptyScores, List.of())
+        textFormatter = Mockito.mock(ReportFormatter.class)
+        result = sut.run("/path/to/course")
+
+      mock:
+        auditRunner.runAudit(any()) -> report
+        formatterRegistry.getFormatter(eq("text")) -> textFormatter
+
+      then:
+        result == 0
+        verify: formatterRegistry.getFormatter(any())
+    - |
+      test: "Given valid args, when run is called, then auditRunner runAudit is invoked with course path"
+      trace: F-CLI
+
+      given:
+        emptyScores = NodeScores(Map.of())
+        report = AuditReport(0.5, emptyScores, List.of())
+        formatter = Mockito.mock(ReportFormatter.class)
+        result = sut.run("/path/to/course")
+
+      mock:
+        auditRunner.runAudit(any()) -> report
+        formatterRegistry.getFormatter(eq("text")) -> formatter
+
+      then:
+        result == 0
+        verify: auditRunner.runAudit(any())
+    - |
+      test: "Given an unsupported format value, when run is called, then returns non-zero exit code"
+      trace: F-CLI
+
+      given:
+        emptyScores = NodeScores(Map.of())
+        report = AuditReport(0.7, emptyScores, List.of())
+        result = sut.run("/path/to/course", "--format", "xml")
+
+      mock:
+        auditRunner.runAudit(any()) -> report
+        formatterRegistry.getFormatter(eq("xml")) -> null
+
+      then:
+        result == 1
+    - |
+      test: "Given valid args and low audit scores, when run is called, then returns 0 regardless of score values"
+      trace: F-CLI
+
+      given:
+        emptyScores = NodeScores(Map.of())
+        lowScoreReport = AuditReport(0.1, emptyScores, List.of())
+        formatter = Mockito.mock(ReportFormatter.class)
+        result = sut.run("/path/to/course")
+
+      mock:
+        auditRunner.runAudit(any()) -> lowScoreReport
+        formatterRegistry.getFormatter(eq("text")) -> formatter
+
+      then:
+        result == 0
   - name: DefaultFormatterRegistry
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultFormatterRegistry.java
+  - name: DefaultReportViewModelTransformer
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultReportViewModelTransformer.java
+  - name: TableReportFormatter
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/TableReportFormatter.java
+  - name: RawJsonReportFormatter
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/RawJsonReportFormatter.java
+  - name: DefaultDrillDownResolver
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultDrillDownResolver.java
+  - name: DefaultAnalyzerStatsTransformer
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultAnalyzerStatsTransformer.java
+- module: nlp-infrastructure
+  status: EXISTS
+  models:
+  - name: NlpTokenizerConfig
+    status: EXISTS
+    filePath: nlp-infrastructure/src/main/java/com/learney/contentaudit/nlpinfrastructure/NlpTokenizerConfig.java
+    fields:
+    - name: pythonScriptPath
+      status: EXISTS
+    - name: cocaDataPath
+      status: EXISTS
+    - name: timeoutSeconds
+      status: EXISTS
+  interfaces:
+  - name: NlpTokenizerFactory
+    status: EXISTS
+    filePath: nlp-infrastructure/src/main/java/com/learney/contentaudit/nlpinfrastructure/NlpTokenizerFactory.java
+    methods:
+    - signature: "create(NlpTokenizerConfig config): NlpTokenizer"
+      status: EXISTS
+- module: vocabulary-infrastructure
+  status: EXISTS
 testSummary:
-  total: 103
-  passing: 103
+  total: 142
+  passing: 86
   failing: 0
-  notImplemented: 0
+  notImplemented: 56
 patterns:
 - id: declared-1
   pattern: Strategy
@@ -1558,38 +4071,18 @@ patterns:
   involvedElements:
   - type: interface
     moduleName: audit-domain
-    elementName: ContentAnalyzer
-    nodeId: interface-audit-domain-ContentAnalyzer
+    elementName: ScoreAggregator
+    nodeId: interface-audit-domain-ScoreAggregator
   - type: implementation
     moduleName: audit-domain
-    elementName: KnowledgeTitleLengthAnalyzer
-    nodeId: impl-audit-domain-KnowledgeTitleLengthAnalyzer
+    elementName: IScoreAggregator
+    nodeId: impl-audit-domain-IScoreAggregator
   - type: implementation
     moduleName: audit-domain
-    elementName: KnowledgeInstructionsLengthAnalyzer
-    nodeId: impl-audit-domain-KnowledgeInstructionsLengthAnalyzer
-  - type: implementation
-    moduleName: audit-domain
-    elementName: SentenceLengthAnalyzer
-    nodeId: impl-audit-domain-SentenceLengthAnalyzer
+    elementName: CocaTokenAccumulationAggregator
+    nodeId: impl-audit-domain-CocaTokenAccumulationAggregator
   confidence: 1.0
 - id: declared-2
-  pattern: Decorator
-  category: gof
-  source: declared
-  severity: info
-  description: Declared Decorator pattern in audit-application
-  involvedElements:
-  - type: interface
-    moduleName: audit-application
-    elementName: NlpTokenizer
-    nodeId: interface-audit-application-NlpTokenizer
-  - type: implementation
-    moduleName: audit-application
-    elementName: CachedNlpTokenizer
-    nodeId: impl-audit-application-CachedNlpTokenizer
-  confidence: 1.0
-- id: declared-3
   pattern: Strategy
   category: gof
   source: declared
@@ -1608,6 +4101,26 @@ patterns:
     moduleName: audit-cli
     elementName: JsonReportFormatter
     nodeId: impl-audit-cli-JsonReportFormatter
+  - type: implementation
+    moduleName: audit-cli
+    elementName: TableReportFormatter
+    nodeId: impl-audit-cli-TableReportFormatter
+  confidence: 1.0
+- id: declared-3
+  pattern: Factory
+  category: gof
+  source: declared
+  severity: info
+  description: Declared Factory pattern in nlp-infrastructure
+  involvedElements:
+  - type: interface
+    moduleName: nlp-infrastructure
+    elementName: NlpTokenizerFactory
+    nodeId: interface-nlp-infrastructure-NlpTokenizerFactory
+  - type: implementation
+    moduleName: nlp-infrastructure
+    elementName: SpacyNlpTokenizerFactory
+    nodeId: impl-nlp-infrastructure-SpacyNlpTokenizerFactory
   confidence: 1.0
 - id: stereo-4
   pattern: Service
@@ -1694,6 +4207,90 @@ patterns:
     nodeId: interface-audit-domain-ScoreAggregator
   confidence: 0.9
 - id: stereo-11
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: CocaBucketsConfig is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: CocaBucketsConfig
+    nodeId: interface-audit-domain-CocaBucketsConfig
+  confidence: 0.9
+- id: stereo-12
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: ContentWordFilter is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: ContentWordFilter
+    nodeId: interface-audit-domain-ContentWordFilter
+  confidence: 0.9
+- id: stereo-13
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: LemmaRecurrenceConfig is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: LemmaRecurrenceConfig
+    nodeId: interface-audit-domain-LemmaRecurrenceConfig
+  confidence: 0.9
+- id: stereo-14
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: LemmaAbsenceConfig is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: LemmaAbsenceConfig
+    nodeId: interface-audit-domain-LemmaAbsenceConfig
+  confidence: 0.9
+- id: stereo-15
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: EvpCatalogPort is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: EvpCatalogPort
+    nodeId: interface-audit-domain-EvpCatalogPort
+  confidence: 0.9
+- id: stereo-16
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: AuditableEntity is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: AuditableEntity
+    nodeId: interface-audit-domain-AuditableEntity
+  confidence: 0.9
+- id: stereo-17
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: SelfDescribingConfig is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: SelfDescribingConfig
+    nodeId: interface-audit-domain-SelfDescribingConfig
+  confidence: 0.9
+- id: stereo-18
   pattern: Value Object
   category: architectural
   source: detected
@@ -1705,7 +4302,7 @@ patterns:
     elementName: AuditReport
     nodeId: model-audit-domain-AuditReport
   confidence: 0.75
-- id: stereo-12
+- id: stereo-19
   pattern: Value Object
   category: architectural
   source: detected
@@ -1717,7 +4314,7 @@ patterns:
     elementName: AuditableCourse
     nodeId: model-audit-domain-AuditableCourse
   confidence: 0.75
-- id: stereo-13
+- id: stereo-20
   pattern: Value Object
   category: architectural
   source: detected
@@ -1729,55 +4326,55 @@ patterns:
     elementName: AuditContext
     nodeId: model-audit-domain-AuditContext
   confidence: 0.75
-- id: stereo-14
-  pattern: Value Object
+- id: stereo-21
+  pattern: Entity
   category: architectural
   source: detected
   severity: info
-  description: AuditableKnowledge is a value object (record without id)
+  description: AuditableKnowledge has an id field (entity)
   involvedElements:
   - type: model
     moduleName: audit-domain
     elementName: AuditableKnowledge
     nodeId: model-audit-domain-AuditableKnowledge
-  confidence: 0.75
-- id: stereo-15
-  pattern: Value Object
+  confidence: 0.8
+- id: stereo-22
+  pattern: Entity
   category: architectural
   source: detected
   severity: info
-  description: AuditableTopic is a value object (record without id)
+  description: AuditableTopic has an id field (entity)
   involvedElements:
   - type: model
     moduleName: audit-domain
     elementName: AuditableTopic
     nodeId: model-audit-domain-AuditableTopic
-  confidence: 0.75
-- id: stereo-16
-  pattern: Value Object
+  confidence: 0.8
+- id: stereo-23
+  pattern: Entity
   category: architectural
   source: detected
   severity: info
-  description: AuditableMilestone is a value object (record without id)
+  description: AuditableMilestone has an id field (entity)
   involvedElements:
   - type: model
     moduleName: audit-domain
     elementName: AuditableMilestone
     nodeId: model-audit-domain-AuditableMilestone
-  confidence: 0.75
-- id: stereo-17
-  pattern: Value Object
+  confidence: 0.8
+- id: stereo-24
+  pattern: Entity
   category: architectural
   source: detected
   severity: info
-  description: AuditableQuiz is a value object (record without id)
+  description: AuditableQuiz has an id field (entity)
   involvedElements:
   - type: model
     moduleName: audit-domain
     elementName: AuditableQuiz
     nodeId: model-audit-domain-AuditableQuiz
-  confidence: 0.75
-- id: stereo-18
+  confidence: 0.8
+- id: stereo-25
   pattern: Enum
   category: architectural
   source: detected
@@ -1789,7 +4386,7 @@ patterns:
     elementName: CefrLevel
     nodeId: model-audit-domain-CefrLevel
   confidence: 0.95
-- id: stereo-19
+- id: stereo-26
   pattern: Value Object
   category: architectural
   source: detected
@@ -1801,7 +4398,7 @@ patterns:
     elementName: TargetRange
     nodeId: model-audit-domain-TargetRange
   confidence: 0.75
-- id: stereo-20
+- id: stereo-27
   pattern: Enum
   category: architectural
   source: detected
@@ -1813,7 +4410,7 @@ patterns:
     elementName: AuditTarget
     nodeId: model-audit-domain-AuditTarget
   confidence: 0.95
-- id: stereo-21
+- id: stereo-28
   pattern: Value Object
   category: architectural
   source: detected
@@ -1825,7 +4422,7 @@ patterns:
     elementName: ScoredItem
     nodeId: model-audit-domain-ScoredItem
   confidence: 0.75
-- id: stereo-22
+- id: stereo-29
   pattern: Value Object
   category: architectural
   source: detected
@@ -1837,7 +4434,7 @@ patterns:
     elementName: NodeScores
     nodeId: model-audit-domain-NodeScores
   confidence: 0.75
-- id: stereo-23
+- id: stereo-30
   pattern: Value Object
   category: architectural
   source: detected
@@ -1849,7 +4446,7 @@ patterns:
     elementName: QuizNode
     nodeId: model-audit-domain-QuizNode
   confidence: 0.75
-- id: stereo-24
+- id: stereo-31
   pattern: Value Object
   category: architectural
   source: detected
@@ -1861,7 +4458,7 @@ patterns:
     elementName: KnowledgeNode
     nodeId: model-audit-domain-KnowledgeNode
   confidence: 0.75
-- id: stereo-25
+- id: stereo-32
   pattern: Value Object
   category: architectural
   source: detected
@@ -1873,7 +4470,7 @@ patterns:
     elementName: TopicNode
     nodeId: model-audit-domain-TopicNode
   confidence: 0.75
-- id: stereo-26
+- id: stereo-33
   pattern: Value Object
   category: architectural
   source: detected
@@ -1885,7 +4482,31 @@ patterns:
     elementName: MilestoneNode
     nodeId: model-audit-domain-MilestoneNode
   confidence: 0.75
-- id: stereo-27
+- id: stereo-34
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: NlpToken is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: NlpToken
+    nodeId: model-audit-domain-NlpToken
+  confidence: 0.75
+- id: stereo-35
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: AnalyzerDescriptor is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: AnalyzerDescriptor
+    nodeId: model-audit-domain-AnalyzerDescriptor
+  confidence: 0.75
+- id: stereo-36
   pattern: Port
   category: architectural
   source: detected
@@ -1897,7 +4518,7 @@ patterns:
     elementName: CourseRepository
     nodeId: interface-course-domain-CourseRepository
   confidence: 0.9
-- id: stereo-28
+- id: stereo-37
   pattern: Service
   category: architectural
   source: detected
@@ -1909,7 +4530,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: stereo-29
+- id: stereo-38
   pattern: Enum
   category: architectural
   source: detected
@@ -1921,7 +4542,7 @@ patterns:
     elementName: NodeKind
     nodeId: model-course-domain-NodeKind
   confidence: 0.95
-- id: stereo-30
+- id: stereo-39
   pattern: Enum
   category: architectural
   source: detected
@@ -1933,7 +4554,7 @@ patterns:
     elementName: SentencePartKind
     nodeId: model-course-domain-SentencePartKind
   confidence: 0.95
-- id: stereo-31
+- id: stereo-40
   pattern: Entity
   category: architectural
   source: detected
@@ -1945,7 +4566,7 @@ patterns:
     elementName: CourseEntity
     nodeId: model-course-domain-CourseEntity
   confidence: 0.8
-- id: stereo-32
+- id: stereo-41
   pattern: Entity
   category: architectural
   source: detected
@@ -1957,7 +4578,7 @@ patterns:
     elementName: RootNodeEntity
     nodeId: model-course-domain-RootNodeEntity
   confidence: 0.8
-- id: stereo-33
+- id: stereo-42
   pattern: Entity
   category: architectural
   source: detected
@@ -1969,7 +4590,7 @@ patterns:
     elementName: MilestoneEntity
     nodeId: model-course-domain-MilestoneEntity
   confidence: 0.8
-- id: stereo-34
+- id: stereo-43
   pattern: Entity
   category: architectural
   source: detected
@@ -1981,7 +4602,7 @@ patterns:
     elementName: TopicEntity
     nodeId: model-course-domain-TopicEntity
   confidence: 0.8
-- id: stereo-35
+- id: stereo-44
   pattern: Entity
   category: architectural
   source: detected
@@ -1993,7 +4614,7 @@ patterns:
     elementName: KnowledgeEntity
     nodeId: model-course-domain-KnowledgeEntity
   confidence: 0.8
-- id: stereo-36
+- id: stereo-45
   pattern: Entity
   category: architectural
   source: detected
@@ -2005,7 +4626,7 @@ patterns:
     elementName: QuizTemplateEntity
     nodeId: model-course-domain-QuizTemplateEntity
   confidence: 0.8
-- id: stereo-37
+- id: stereo-46
   pattern: Value Object
   category: architectural
   source: detected
@@ -2017,7 +4638,7 @@ patterns:
     elementName: FormEntity
     nodeId: model-course-domain-FormEntity
   confidence: 0.75
-- id: stereo-38
+- id: stereo-47
   pattern: Value Object
   category: architectural
   source: detected
@@ -2029,7 +4650,7 @@ patterns:
     elementName: SentencePartEntity
     nodeId: model-course-domain-SentencePartEntity
   confidence: 0.75
-- id: stereo-39
+- id: stereo-48
   pattern: Service
   category: architectural
   source: detected
@@ -2041,7 +4662,31 @@ patterns:
     elementName: AuditRunner
     nodeId: interface-audit-application-AuditRunner
   confidence: 0.9
-- id: stereo-40
+- id: stereo-49
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: CourseMapper is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-application
+    elementName: CourseMapper
+    nodeId: interface-audit-application-CourseMapper
+  confidence: 0.9
+- id: stereo-50
+  pattern: Service
+  category: architectural
+  source: detected
+  severity: info
+  description: AnalyzerRegistry is a service
+  involvedElements:
+  - type: interface
+    moduleName: audit-application
+    elementName: AnalyzerRegistry
+    nodeId: interface-audit-application-AnalyzerRegistry
+  confidence: 0.9
+- id: stereo-51
   pattern: Port
   category: architectural
   source: detected
@@ -2053,7 +4698,7 @@ patterns:
     elementName: ReportFormatter
     nodeId: interface-audit-cli-ReportFormatter
   confidence: 0.9
-- id: stereo-41
+- id: stereo-52
   pattern: Port
   category: architectural
   source: detected
@@ -2065,7 +4710,7 @@ patterns:
     elementName: AuditCli
     nodeId: interface-audit-cli-AuditCli
   confidence: 0.9
-- id: stereo-42
+- id: stereo-53
   pattern: Port
   category: architectural
   source: detected
@@ -2077,7 +4722,247 @@ patterns:
     elementName: FormatterRegistry
     nodeId: interface-audit-cli-FormatterRegistry
   confidence: 0.9
-- id: anti-43
+- id: stereo-54
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: ReportViewModelTransformer is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: ReportViewModelTransformer
+    nodeId: interface-audit-cli-ReportViewModelTransformer
+  confidence: 0.9
+- id: stereo-55
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: RawReportFormatter is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: RawReportFormatter
+    nodeId: interface-audit-cli-RawReportFormatter
+  confidence: 0.9
+- id: stereo-56
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: DrillDownResolver is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: DrillDownResolver
+    nodeId: interface-audit-cli-DrillDownResolver
+  confidence: 0.9
+- id: stereo-57
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: AnalyzerStatsTransformer is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: AnalyzerStatsTransformer
+    nodeId: interface-audit-cli-AnalyzerStatsTransformer
+  confidence: 0.9
+- id: stereo-58
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: ScoreRow is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: ScoreRow
+    nodeId: interface-audit-cli-ScoreRow
+  confidence: 0.9
+- id: stereo-59
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: ReportViewModel is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-cli
+    elementName: ReportViewModel
+    nodeId: model-audit-cli-ReportViewModel
+  confidence: 0.75
+- id: stereo-60
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: MilestoneScoreRow is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-cli
+    elementName: MilestoneScoreRow
+    nodeId: model-audit-cli-MilestoneScoreRow
+  confidence: 0.75
+- id: stereo-61
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: QuizScoreRow is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-cli
+    elementName: QuizScoreRow
+    nodeId: model-audit-cli-QuizScoreRow
+  confidence: 0.75
+- id: stereo-62
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: KnowledgeScoreRow is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-cli
+    elementName: KnowledgeScoreRow
+    nodeId: model-audit-cli-KnowledgeScoreRow
+  confidence: 0.75
+- id: stereo-63
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: TopicScoreRow is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-cli
+    elementName: TopicScoreRow
+    nodeId: model-audit-cli-TopicScoreRow
+  confidence: 0.75
+- id: stereo-64
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: DrillDownScope is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-cli
+    elementName: DrillDownScope
+    nodeId: model-audit-cli-DrillDownScope
+  confidence: 0.75
+- id: stereo-65
+  pattern: Enum
+  category: architectural
+  source: detected
+  severity: info
+  description: DrillDownLevel is an enum
+  involvedElements:
+  - type: model
+    moduleName: audit-cli
+    elementName: DrillDownLevel
+    nodeId: model-audit-cli-DrillDownLevel
+  confidence: 0.95
+- id: stereo-66
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: DrillDownView is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-cli
+    elementName: DrillDownView
+    nodeId: model-audit-cli-DrillDownView
+  confidence: 0.75
+- id: stereo-67
+  pattern: Entity
+  category: architectural
+  source: detected
+  severity: info
+  description: ChildScoreRow has an id field (entity)
+  involvedElements:
+  - type: model
+    moduleName: audit-cli
+    elementName: ChildScoreRow
+    nodeId: model-audit-cli-ChildScoreRow
+  confidence: 0.8
+- id: stereo-68
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: AnalyzerStatsView is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-cli
+    elementName: AnalyzerStatsView
+    nodeId: model-audit-cli-AnalyzerStatsView
+  confidence: 0.75
+- id: stereo-69
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: ScoredItemRow is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-cli
+    elementName: ScoredItemRow
+    nodeId: model-audit-cli-ScoredItemRow
+  confidence: 0.75
+- id: stereo-71
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: NlpTokenizerConfig is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: nlp-infrastructure
+    elementName: NlpTokenizerConfig
+    nodeId: model-nlp-infrastructure-NlpTokenizerConfig
+  confidence: 0.75
+- id: gof-72
+  pattern: Facade
+  category: gof
+  source: detected
+  severity: info
+  description: DefaultAuditCli aggregates 6 interfaces (facade)
+  involvedElements:
+  - type: implementation
+    moduleName: audit-cli
+    elementName: DefaultAuditCli
+    nodeId: impl-audit-cli-DefaultAuditCli
+  - type: interface
+    moduleName: audit-application
+    elementName: AuditRunner
+    nodeId: interface-audit-application-AuditRunner
+  - type: interface
+    moduleName: audit-cli
+    elementName: FormatterRegistry
+    nodeId: interface-audit-cli-FormatterRegistry
+  - type: interface
+    moduleName: audit-cli
+    elementName: ReportViewModelTransformer
+    nodeId: interface-audit-cli-ReportViewModelTransformer
+  - type: interface
+    moduleName: audit-cli
+    elementName: RawReportFormatter
+    nodeId: interface-audit-cli-RawReportFormatter
+  - type: interface
+    moduleName: audit-application
+    elementName: AnalyzerRegistry
+    nodeId: interface-audit-application-AnalyzerRegistry
+  - type: interface
+    moduleName: audit-cli
+    elementName: AnalyzerStatsTransformer
+    nodeId: interface-audit-cli-AnalyzerStatsTransformer
+  confidence: 0.6
+- id: anti-73
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -2089,31 +4974,103 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-44
+- id: anti-74
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: NlpTokenizer has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: NlpTokenizer
+    nodeId: interface-audit-domain-NlpTokenizer
+  confidence: 0.9
+- id: anti-75
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: ContentWordFilter has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: ContentWordFilter
+    nodeId: interface-audit-domain-ContentWordFilter
+  confidence: 0.9
+- id: anti-76
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: EvpCatalogPort has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: EvpCatalogPort
+    nodeId: interface-audit-domain-EvpCatalogPort
+  confidence: 0.9
+- id: anti-77
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: AuditableEntity has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: AuditableEntity
+    nodeId: interface-audit-domain-AuditableEntity
+  confidence: 0.9
+- id: anti-78
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: SelfDescribingConfig has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: SelfDescribingConfig
+    nodeId: interface-audit-domain-SelfDescribingConfig
+  confidence: 0.9
+- id: anti-79
   pattern: God Module
   category: anti-pattern
   source: detected
   severity: warning
-  description: "audit-domain is too large: 16 models, 7 interfaces, 6 implementations"
+  description: "audit-domain is too large: 18 models, 14 interfaces, 6 implementations"
   involvedElements:
   - type: module
     moduleName: audit-domain
     elementName: audit-domain
     nodeId: module-audit-domain
   confidence: 0.85
-- id: anti-45
+- id: anti-80
   pattern: Fat Interface
   category: anti-pattern
   source: detected
   severity: warning
-  description: ContentAnalyzer has 8 methods (consider ISP)
+  description: ContentAnalyzer has 9 methods (consider ISP)
   involvedElements:
   - type: interface
     moduleName: audit-domain
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.8
-- id: anti-46
+- id: anti-81
+  pattern: Fat Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: LemmaAbsenceConfig has 15 methods (consider ISP)
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: LemmaAbsenceConfig
+    nodeId: interface-audit-domain-LemmaAbsenceConfig
+  confidence: 0.8
+- id: anti-82
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -2125,7 +5082,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-47
+- id: anti-83
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -2137,3 +5094,51 @@ patterns:
     elementName: course-domain
     nodeId: module-course-domain
   confidence: 0.85
+- id: anti-84
+  pattern: God Module
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: "audit-application is too large: 7 implementations"
+  involvedElements:
+  - type: module
+    moduleName: audit-application
+    elementName: audit-application
+    nodeId: module-audit-application
+  confidence: 0.85
+- id: anti-85
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: ScoreRow has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: ScoreRow
+    nodeId: interface-audit-cli-ScoreRow
+  confidence: 0.9
+- id: anti-86
+  pattern: God Module
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: "audit-cli is too large: 11 models, 8 interfaces, 9 implementations"
+  involvedElements:
+  - type: module
+    moduleName: audit-cli
+    elementName: audit-cli
+    nodeId: module-audit-cli
+  confidence: 0.85
+- id: anti-87
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: NlpTokenizerFactory has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: nlp-infrastructure
+    elementName: NlpTokenizerFactory
+    nodeId: interface-nlp-infrastructure-NlpTokenizerFactory
+  confidence: 0.9
