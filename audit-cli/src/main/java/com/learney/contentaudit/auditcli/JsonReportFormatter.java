@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditcli;
 
+import com.learney.contentaudit.auditdomain.AuditableEntity;
 import java.util.List;
 import java.util.Map;
 
@@ -20,20 +21,25 @@ public class JsonReportFormatter implements ReportFormatter {
         sb.append(",\n  \"name\": \"").append(escape(view.getNodeName())).append("\"");
         sb.append(",\n  \"overallScore\": ").append(view.getOverallScore());
 
-        // Analyzer scores
         sb.append(",\n  \"scores\": ");
         appendScoresMap(sb, view.getAnalyzerScores(), 2);
 
-        // Children
-        List<ChildScoreRow> children = view.getChildRows();
+        List<ScoreRow> children = view.getChildRows();
         String childKey = childKey(view.getDepth());
         sb.append(",\n  \"").append(childKey).append("\": [");
         if (children != null && !children.isEmpty()) {
             sb.append("\n");
             for (int i = 0; i < children.size(); i++) {
-                ChildScoreRow child = children.get(i);
+                ScoreRow child = children.get(i);
                 sb.append("    {\n");
-                sb.append("      \"id\": \"").append(escape(child.getId())).append("\"");
+                sb.append("      \"id\": \"").append(escape(idOf(child))).append("\"");
+                AuditableEntity entity = child.getEntity();
+                if (entity != null && entity.getLabel() != null) {
+                    sb.append(",\n      \"label\": \"").append(escape(entity.getLabel())).append("\"");
+                }
+                if (entity != null && entity.getCode() != null) {
+                    sb.append(",\n      \"code\": \"").append(escape(entity.getCode())).append("\"");
+                }
                 sb.append(",\n      \"overallScore\": ").append(child.getOverallScore());
                 sb.append(",\n      \"scores\": ");
                 appendScoresMap(sb, child.getAnalyzerScores(), 6);
@@ -46,6 +52,15 @@ public class JsonReportFormatter implements ReportFormatter {
         sb.append("]\n}");
 
         return sb.toString();
+    }
+
+    private String idOf(ScoreRow row) {
+        if (row instanceof MilestoneScoreRow m) return m.getMilestoneId();
+        if (row instanceof TopicScoreRow t) return t.getTopicId();
+        if (row instanceof KnowledgeScoreRow k) return k.getKnowledgeId();
+        if (row instanceof QuizScoreRow q) return q.getQuizId();
+        if (row instanceof ChildScoreRow c) return c.getId();
+        return "?";
     }
 
     private void appendScoresMap(StringBuilder sb, Map<String, Double> scores, int indent) {

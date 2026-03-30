@@ -69,16 +69,16 @@ public class LemmaRecurrenceAnalyzerSentinelTest {
   @DisplayName("Given an AuditableKnowledge and AuditContext, when onKnowledge is called, then completes without error")
   public void givenAnAuditableKnowledgeAndAuditContextWhenOnKnowledgeIsCalledThenCompletesWithoutError(
       ) {
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Test Knowledge", "Test instructions", true);
-    AuditContext ctx = new AuditContext("m1", "t1", "k1", "q1");
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Test Knowledge", "Test instructions", true, null, null, null);
+    AuditContext ctx = new AuditContext("m1", "t1", "k1", "q1", null, null, null);
     Assertions.assertDoesNotThrow(() -> sut.onKnowledge(knowledge, ctx));
   }
 
   @Test
   @DisplayName("Given an AuditableTopic and AuditContext, when onTopic is called, then completes without error")
   public void givenAnAuditableTopicAndAuditContextWhenOnTopicIsCalledThenCompletesWithoutError() {
-    AuditableTopic topic = new AuditableTopic(List.of());
-    AuditContext ctx = new AuditContext("m1", "t1", "k1", "q1");
+    AuditableTopic topic = new AuditableTopic(List.of(), null, null, null);
+    AuditContext ctx = new AuditContext("m1", "t1", "k1", "q1", null, null, null);
     Assertions.assertDoesNotThrow(() -> sut.onTopic(topic, ctx));
   }
 
@@ -86,8 +86,8 @@ public class LemmaRecurrenceAnalyzerSentinelTest {
   @DisplayName("Given an AuditableMilestone and AuditContext, when onMilestone is called, then completes without error")
   public void givenAnAuditableMilestoneAndAuditContextWhenOnMilestoneIsCalledThenCompletesWithoutError(
       ) {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctx = new AuditContext("m1", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctx = new AuditContext("m1", "t1", "k1", "q1", null, null, null);
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctx));
   }
 }

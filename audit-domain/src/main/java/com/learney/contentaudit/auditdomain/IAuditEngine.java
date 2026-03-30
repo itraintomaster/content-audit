@@ -1,7 +1,9 @@
 package com.learney.contentaudit.auditdomain;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -20,36 +22,42 @@ public class IAuditEngine implements AuditEngine {
 
     @Override
     public AuditReport runAudit(AuditableCourse auditableCourse) {
+        Map<String, AuditableEntity> entityMap = new LinkedHashMap<>();
+
         for (ContentAnalyzer analyzer : contentAnalyzers) {
             for (int mi = 0; mi < auditableCourse.getMilestones().size(); mi++) {
                 AuditableMilestone milestone = auditableCourse.getMilestones().get(mi);
                 CefrLevel[] levels = CefrLevel.values();
                 String milestoneId = mi < levels.length ? levels[mi].name() : String.valueOf(mi);
-                AuditContext milestoneCtx = new AuditContext(milestoneId, null, null, null);
+                entityMap.put(milestoneId, milestone);
+                AuditContext milestoneCtx = new AuditContext(milestoneId, null, null, null, null, null, null);
                 analyzer.onMilestone(milestone, milestoneCtx);
 
                 for (int ti = 0; ti < milestone.getTopics().size(); ti++) {
                     AuditableTopic topic = milestone.getTopics().get(ti);
                     String topicId = milestoneId + "-" + ti;
-                    AuditContext topicCtx = new AuditContext(milestoneId, topicId, null, null);
+                    entityMap.put(topicId, topic);
+                    AuditContext topicCtx = new AuditContext(milestoneId, topicId, null, null, topic.getLabel(), null, null);
                     analyzer.onTopic(topic, topicCtx);
 
                     for (int ki = 0; ki < topic.getKnowledge().size(); ki++) {
                         AuditableKnowledge knowledge = topic.getKnowledge().get(ki);
                         String knowledgeId = topicId + "-" + ki;
-                        AuditContext knowledgeCtx = new AuditContext(milestoneId, topicId, knowledgeId, null);
+                        entityMap.put(knowledgeId, knowledge);
+                        AuditContext knowledgeCtx = new AuditContext(milestoneId, topicId, knowledgeId, null, topic.getLabel(), knowledge.getLabel(), null);
                         analyzer.onKnowledge(knowledge, knowledgeCtx);
 
                         for (int qi = 0; qi < knowledge.getQuizzes().size(); qi++) {
                             AuditableQuiz quiz = knowledge.getQuizzes().get(qi);
                             String quizId = knowledgeId + "-" + qi;
-                            AuditContext quizCtx = new AuditContext(milestoneId, topicId, knowledgeId, quizId);
+                            entityMap.put(quizId, quiz);
+                            AuditContext quizCtx = new AuditContext(milestoneId, topicId, knowledgeId, quizId, topic.getLabel(), knowledge.getLabel(), quiz.getLabel());
                             analyzer.onQuiz(quiz, quizCtx);
                         }
                     }
                 }
             }
-            analyzer.onCourseComplete(auditableCourse, new AuditContext(null, null, null, null));
+            analyzer.onCourseComplete(auditableCourse, new AuditContext(null, null, null, null, null, null, null));
         }
 
         List<ScoredItem> allScores = new ArrayList<>();
@@ -57,6 +65,6 @@ public class IAuditEngine implements AuditEngine {
             allScores.addAll(analyzer.getResults());
         }
 
-        return scoreAggregator.aggregate(allScores);
+        return scoreAggregator.aggregate(allScores, entityMap);
     }
 }

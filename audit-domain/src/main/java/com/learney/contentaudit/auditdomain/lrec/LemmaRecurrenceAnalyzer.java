@@ -138,7 +138,7 @@ public class LemmaRecurrenceAnalyzer implements ContentAnalyzer {
         ExposureSummary exposureSummary = new ExposureSummary(normalCount, subExposedCount, overExposedCount);
 
         // lemmaStats is ordered by count descending (already sorted above)
-        courseResult = new ScoredItem(ANALYZER_NAME, AuditTarget.COURSE, overallScore, "0", null, null, null);
+        courseResult = new ScoredItem(ANALYZER_NAME, AuditTarget.COURSE, overallScore, "0", null, null, null, null);
         return null;
     }
 
@@ -159,4 +159,10 @@ public class LemmaRecurrenceAnalyzer implements ContentAnalyzer {
         }
         return List.of(courseResult);
     }
+
+    @Override
+    public String getDescription() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

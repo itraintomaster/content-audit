@@ -20,14 +20,14 @@ public class DrillDownView {
 
     private List<String> analyzerNames;
 
-    private List<ChildScoreRow> childRows;
+    private List<ScoreRow> childRows;
 
     public DrillDownView() {
     }
 
     public DrillDownView(DrillDownLevel depth, String nodeName, double overallScore,
             Map<String, Double> analyzerScores, List<String> analyzerNames,
-            List<ChildScoreRow> childRows) {
+            List<ScoreRow> childRows) {
         this.depth = depth;
         this.nodeName = nodeName;
         this.overallScore = overallScore;
@@ -76,11 +76,11 @@ public class DrillDownView {
         this.analyzerNames = analyzerNames;
     }
 
-    public List<ChildScoreRow> getChildRows() {
+    public List<ScoreRow> getChildRows() {
         return this.childRows;
     }
 
-    public void setChildRows(List<ChildScoreRow> childRows) {
+    public void setChildRows(List<ScoreRow> childRows) {
         this.childRows = childRows;
     }
 

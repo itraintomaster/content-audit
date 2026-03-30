@@ -16,14 +16,24 @@ public class AuditContext {
 
     private String quizId;
 
+    private String topicLabel;
+
+    private String knowledgeLabel;
+
+    private String quizLabel;
+
     public AuditContext() {
     }
 
-    public AuditContext(String milestoneId, String topicId, String knowledgeId, String quizId) {
+    public AuditContext(String milestoneId, String topicId, String knowledgeId, String quizId,
+            String topicLabel, String knowledgeLabel, String quizLabel) {
         this.milestoneId = milestoneId;
         this.topicId = topicId;
         this.knowledgeId = knowledgeId;
         this.quizId = quizId;
+        this.topicLabel = topicLabel;
+        this.knowledgeLabel = knowledgeLabel;
+        this.quizLabel = quizLabel;
     }
 
     public String getMilestoneId() {
@@ -58,6 +68,30 @@ public class AuditContext {
         this.quizId = quizId;
     }
 
+    public String getTopicLabel() {
+        return this.topicLabel;
+    }
+
+    public void setTopicLabel(String topicLabel) {
+        this.topicLabel = topicLabel;
+    }
+
+    public String getKnowledgeLabel() {
+        return this.knowledgeLabel;
+    }
+
+    public void setKnowledgeLabel(String knowledgeLabel) {
+        this.knowledgeLabel = knowledgeLabel;
+    }
+
+    public String getQuizLabel() {
+        return this.quizLabel;
+    }
+
+    public void setQuizLabel(String quizLabel) {
+        this.quizLabel = quizLabel;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -66,11 +100,14 @@ public class AuditContext {
         return Objects.equals(this.milestoneId, that.milestoneId)
                     && Objects.equals(this.topicId, that.topicId)
                     && Objects.equals(this.knowledgeId, that.knowledgeId)
-                    && Objects.equals(this.quizId, that.quizId);
+                    && Objects.equals(this.quizId, that.quizId)
+                    && Objects.equals(this.topicLabel, that.topicLabel)
+                    && Objects.equals(this.knowledgeLabel, that.knowledgeLabel)
+                    && Objects.equals(this.quizLabel, that.quizLabel);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(milestoneId, topicId, knowledgeId, quizId);
+        return Objects.hash(milestoneId, topicId, knowledgeId, quizId, topicLabel, knowledgeLabel, quizLabel);
     }
 }

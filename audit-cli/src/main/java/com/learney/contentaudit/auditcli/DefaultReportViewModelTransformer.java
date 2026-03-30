@@ -49,7 +49,8 @@ public class DefaultReportViewModelTransformer implements ReportViewModelTransfo
                 topicRows.add(toTopicRow(topic));
             }
         }
-        return new MilestoneScoreRow(milestone.getMilestoneId(), scores, avg(scores), topicRows);
+        return new MilestoneScoreRow(milestone.getMilestoneId(), scores, avg(scores), topicRows,
+                milestone.getEntity());
     }
 
     private TopicScoreRow toTopicRow(TopicNode topic) {
@@ -60,7 +61,8 @@ public class DefaultReportViewModelTransformer implements ReportViewModelTransfo
                 knowledgeRows.add(toKnowledgeRow(knowledge));
             }
         }
-        return new TopicScoreRow(topic.getTopicId(), avg(scores), scores, knowledgeRows);
+        return new TopicScoreRow(topic.getTopicId(), avg(scores), scores, knowledgeRows,
+                topic.getEntity());
     }
 
     private KnowledgeScoreRow toKnowledgeRow(KnowledgeNode knowledge) {
@@ -71,12 +73,13 @@ public class DefaultReportViewModelTransformer implements ReportViewModelTransfo
                 quizRows.add(toQuizRow(quiz));
             }
         }
-        return new KnowledgeScoreRow(knowledge.getKnowledgeId(), avg(scores), scores, quizRows);
+        return new KnowledgeScoreRow(knowledge.getKnowledgeId(), avg(scores), scores, quizRows,
+                knowledge.getEntity());
     }
 
     private QuizScoreRow toQuizRow(QuizNode quiz) {
         Map<String, Double> scores = extractScores(quiz.getScores());
-        return new QuizScoreRow(quiz.getQuizId(), avg(scores), scores);
+        return new QuizScoreRow(quiz.getQuizId(), avg(scores), scores, quiz.getEntity());
     }
 
     private Map<String, Double> extractScores(NodeScores nodeScores) {

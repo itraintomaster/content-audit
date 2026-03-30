@@ -15,13 +15,17 @@ public class MilestoneNode {
 
     private List<TopicNode> topics;
 
+    private AuditableEntity entity;
+
     public MilestoneNode() {
     }
 
-    public MilestoneNode(String milestoneId, NodeScores scores, List<TopicNode> topics) {
+    public MilestoneNode(String milestoneId, NodeScores scores, List<TopicNode> topics,
+            AuditableEntity entity) {
         this.milestoneId = milestoneId;
         this.scores = scores;
         this.topics = topics;
+        this.entity = entity;
     }
 
     public String getMilestoneId() {
@@ -48,6 +52,14 @@ public class MilestoneNode {
         this.topics = topics;
     }
 
+    public AuditableEntity getEntity() {
+        return this.entity;
+    }
+
+    public void setEntity(AuditableEntity entity) {
+        this.entity = entity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,11 +67,12 @@ public class MilestoneNode {
         MilestoneNode that = (MilestoneNode) o;
         return Objects.equals(this.milestoneId, that.milestoneId)
                     && Objects.equals(this.scores, that.scores)
-                    && Objects.equals(this.topics, that.topics);
+                    && Objects.equals(this.topics, that.topics)
+                    && Objects.equals(this.entity, that.entity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(milestoneId, scores, topics);
+        return Objects.hash(milestoneId, scores, topics, entity);
     }
 }

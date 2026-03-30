@@ -53,9 +53,9 @@ class LemmaRecurrenceAnalyzerIntegrationTest {
         NlpToken catToken = new NlpToken("cat", "cat", "NOUN", 100, false, false);
         NlpToken theToken = new NlpToken("the", "the", "DET", 1, true, false);
         NlpToken catsToken = new NlpToken("cats", "cat", "NOUN", 100, false, false);
-        AuditableQuiz quiz1 = new AuditableQuiz("the cat", List.of(theToken, catToken));
-        AuditableQuiz quiz2 = new AuditableQuiz("the cats", List.of(theToken, catsToken));
-        AuditContext ctx = new AuditContext("m1", "t1", "k1", "q1");
+        AuditableQuiz quiz1 = new AuditableQuiz("the cat", List.of(theToken, catToken), null, null, null);
+        AuditableQuiz quiz2 = new AuditableQuiz("the cats", List.of(theToken, catsToken), null, null, null);
+        AuditContext ctx = new AuditContext("m1", "t1", "k1", "q1", null, null, null);
         AuditableCourse course = new AuditableCourse(List.of());
 
         // Mock contentWordFilter: NOUN=true, DET=false

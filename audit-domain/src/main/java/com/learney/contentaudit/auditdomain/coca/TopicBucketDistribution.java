@@ -15,13 +15,17 @@ public class TopicBucketDistribution {
 
     private List<BucketResult> bucketResults;
 
+    private String topicLabel;
+
     public TopicBucketDistribution() {
     }
 
-    public TopicBucketDistribution(String topicId, double score, List<BucketResult> bucketResults) {
+    public TopicBucketDistribution(String topicId, double score, List<BucketResult> bucketResults,
+            String topicLabel) {
         this.topicId = topicId;
         this.score = score;
         this.bucketResults = bucketResults;
+        this.topicLabel = topicLabel;
     }
 
     public String getTopicId() {
@@ -48,6 +52,14 @@ public class TopicBucketDistribution {
         this.bucketResults = bucketResults;
     }
 
+    public String getTopicLabel() {
+        return this.topicLabel;
+    }
+
+    public void setTopicLabel(String topicLabel) {
+        this.topicLabel = topicLabel;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,11 +67,12 @@ public class TopicBucketDistribution {
         TopicBucketDistribution that = (TopicBucketDistribution) o;
         return Objects.equals(this.topicId, that.topicId)
                     && Objects.equals(this.score, that.score)
-                    && Objects.equals(this.bucketResults, that.bucketResults);
+                    && Objects.equals(this.bucketResults, that.bucketResults)
+                    && Objects.equals(this.topicLabel, that.topicLabel);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(topicId, score, bucketResults);
+        return Objects.hash(topicId, score, bucketResults, topicLabel);
     }
 }

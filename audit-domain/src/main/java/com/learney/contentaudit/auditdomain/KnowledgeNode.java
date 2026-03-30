@@ -15,13 +15,17 @@ public class KnowledgeNode {
 
     private List<QuizNode> quizzes;
 
+    private AuditableEntity entity;
+
     public KnowledgeNode() {
     }
 
-    public KnowledgeNode(String knowledgeId, NodeScores scores, List<QuizNode> quizzes) {
+    public KnowledgeNode(String knowledgeId, NodeScores scores, List<QuizNode> quizzes,
+            AuditableEntity entity) {
         this.knowledgeId = knowledgeId;
         this.scores = scores;
         this.quizzes = quizzes;
+        this.entity = entity;
     }
 
     public String getKnowledgeId() {
@@ -48,6 +52,14 @@ public class KnowledgeNode {
         this.quizzes = quizzes;
     }
 
+    public AuditableEntity getEntity() {
+        return this.entity;
+    }
+
+    public void setEntity(AuditableEntity entity) {
+        this.entity = entity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,11 +67,12 @@ public class KnowledgeNode {
         KnowledgeNode that = (KnowledgeNode) o;
         return Objects.equals(this.knowledgeId, that.knowledgeId)
                     && Objects.equals(this.scores, that.scores)
-                    && Objects.equals(this.quizzes, that.quizzes);
+                    && Objects.equals(this.quizzes, that.quizzes)
+                    && Objects.equals(this.entity, that.entity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(knowledgeId, scores, quizzes);
+        return Objects.hash(knowledgeId, scores, quizzes, entity);
     }
 }

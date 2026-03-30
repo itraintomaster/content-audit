@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditcli;
 
+import com.learney.contentaudit.auditdomain.AuditableEntity;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -18,7 +19,7 @@ public final class DefaultDrillDownResolver implements DrillDownResolver {
         MilestoneScoreRow milestone = findMilestone(viewModel, levelName);
         if (milestone == null) {
             throw new IllegalArgumentException("Level '" + levelName
-                    + "' not found. Available: " + milestoneIds(viewModel));
+                    + "' not found. Available: " + describeItems(viewModel.getMilestoneScores()));
         }
 
         if (scope.getTopic() == null || scope.getTopic().isEmpty()) {
@@ -26,10 +27,10 @@ public final class DefaultDrillDownResolver implements DrillDownResolver {
         }
 
         String topicName = scope.getTopic().get();
-        TopicScoreRow topic = findTopic(milestone, topicName);
+        TopicScoreRow topic = findByEntityOrId(milestone.getTopicScores(), topicName);
         if (topic == null) {
             throw new IllegalArgumentException("Topic '" + topicName
-                    + "' not found in " + levelName + ". Available: " + topicIds(milestone));
+                    + "' not found in " + levelName + ". Available: " + describeItems(milestone.getTopicScores()));
         }
 
         if (scope.getKnowledge() == null || scope.getKnowledge().isEmpty()) {
@@ -37,22 +38,19 @@ public final class DefaultDrillDownResolver implements DrillDownResolver {
         }
 
         String knowledgeName = scope.getKnowledge().get();
-        KnowledgeScoreRow knowledge = findKnowledge(topic, knowledgeName);
+        KnowledgeScoreRow knowledge = findByEntityOrId(topic.getKnowledgeScores(), knowledgeName);
         if (knowledge == null) {
             throw new IllegalArgumentException("Knowledge '" + knowledgeName
-                    + "' not found in " + topicName + ". Available: " + knowledgeIds(topic));
+                    + "' not found in " + topicName + ". Available: " + describeItems(topic.getKnowledgeScores()));
         }
 
         return knowledgeView(knowledge);
     }
 
     private DrillDownView courseView(ReportViewModel viewModel) {
-        List<ChildScoreRow> children = new ArrayList<>();
+        List<ScoreRow> children = new ArrayList<>();
         if (viewModel.getMilestoneScores() != null) {
-            for (MilestoneScoreRow m : viewModel.getMilestoneScores()) {
-                children.add(new ChildScoreRow(m.getMilestoneId(), m.getOverallScore(),
-                        safe(m.getAnalyzerScores())));
-            }
+            children.addAll(viewModel.getMilestoneScores());
         }
         return new DrillDownView(DrillDownLevel.COURSE, "Course",
                 viewModel.getOverallScore(), safe(viewModel.getAnalyzerScores()),
@@ -61,42 +59,33 @@ public final class DefaultDrillDownResolver implements DrillDownResolver {
     }
 
     private DrillDownView milestoneView(MilestoneScoreRow milestone) {
-        List<ChildScoreRow> children = new ArrayList<>();
+        List<ScoreRow> children = new ArrayList<>();
         if (milestone.getTopicScores() != null) {
-            for (TopicScoreRow t : milestone.getTopicScores()) {
-                children.add(new ChildScoreRow(t.getTopicId(), t.getOverallScore(),
-                        safe(t.getAnalyzerScores())));
-            }
+            children.addAll(milestone.getTopicScores());
         }
-        return new DrillDownView(DrillDownLevel.MILESTONE, milestone.getMilestoneId(),
+        return new DrillDownView(DrillDownLevel.MILESTONE, label(milestone),
                 milestone.getOverallScore(), safe(milestone.getAnalyzerScores()),
                 List.copyOf(collectAnalyzerNames(children, milestone.getAnalyzerScores())),
                 children);
     }
 
     private DrillDownView topicView(TopicScoreRow topic) {
-        List<ChildScoreRow> children = new ArrayList<>();
+        List<ScoreRow> children = new ArrayList<>();
         if (topic.getKnowledgeScores() != null) {
-            for (KnowledgeScoreRow k : topic.getKnowledgeScores()) {
-                children.add(new ChildScoreRow(k.getKnowledgeId(), k.getOverallScore(),
-                        safe(k.getAnalyzerScores())));
-            }
+            children.addAll(topic.getKnowledgeScores());
         }
-        return new DrillDownView(DrillDownLevel.TOPIC, topic.getTopicId(),
+        return new DrillDownView(DrillDownLevel.TOPIC, label(topic),
                 topic.getOverallScore(), safe(topic.getAnalyzerScores()),
                 List.copyOf(collectAnalyzerNames(children, topic.getAnalyzerScores())),
                 children);
     }
 
     private DrillDownView knowledgeView(KnowledgeScoreRow knowledge) {
-        List<ChildScoreRow> children = new ArrayList<>();
+        List<ScoreRow> children = new ArrayList<>();
         if (knowledge.getQuizScores() != null) {
-            for (QuizScoreRow q : knowledge.getQuizScores()) {
-                children.add(new ChildScoreRow(q.getQuizId(), q.getOverallScore(),
-                        safe(q.getAnalyzerScores())));
-            }
+            children.addAll(knowledge.getQuizScores());
         }
-        return new DrillDownView(DrillDownLevel.KNOWLEDGE, knowledge.getKnowledgeId(),
+        return new DrillDownView(DrillDownLevel.KNOWLEDGE, label(knowledge),
                 knowledge.getOverallScore(), safe(knowledge.getAnalyzerScores()),
                 List.copyOf(collectAnalyzerNames(children, knowledge.getAnalyzerScores())),
                 children);
@@ -105,55 +94,63 @@ public final class DefaultDrillDownResolver implements DrillDownResolver {
     private MilestoneScoreRow findMilestone(ReportViewModel vm, String name) {
         if (vm.getMilestoneScores() == null) return null;
         for (MilestoneScoreRow m : vm.getMilestoneScores()) {
-            if (name.equalsIgnoreCase(m.getMilestoneId())) return m;
+            if (matches(m, name, m.getMilestoneId())) return m;
         }
         return null;
     }
 
-    private TopicScoreRow findTopic(MilestoneScoreRow milestone, String name) {
-        if (milestone.getTopicScores() == null) return null;
-        for (TopicScoreRow t : milestone.getTopicScores()) {
-            if (name.equalsIgnoreCase(t.getTopicId())) return t;
+    @SuppressWarnings("unchecked")
+    private <T extends ScoreRow> T findByEntityOrId(List<T> items, String name) {
+        if (items == null) return null;
+        for (T item : items) {
+            String id = idOf(item);
+            if (matches(item, name, id)) return item;
         }
         return null;
     }
 
-    private KnowledgeScoreRow findKnowledge(TopicScoreRow topic, String name) {
-        if (topic.getKnowledgeScores() == null) return null;
-        for (KnowledgeScoreRow k : topic.getKnowledgeScores()) {
-            if (name.equalsIgnoreCase(k.getKnowledgeId())) return k;
-        }
+    private boolean matches(ScoreRow row, String name, String positionalId) {
+        if (name.equalsIgnoreCase(positionalId)) return true;
+        AuditableEntity entity = row.getEntity();
+        if (entity == null) return false;
+        return name.equalsIgnoreCase(entity.getLabel())
+                || name.equalsIgnoreCase(entity.getId())
+                || name.equalsIgnoreCase(entity.getCode());
+    }
+
+    private String idOf(ScoreRow row) {
+        if (row instanceof TopicScoreRow t) return t.getTopicId();
+        if (row instanceof KnowledgeScoreRow k) return k.getKnowledgeId();
+        if (row instanceof QuizScoreRow q) return q.getQuizId();
+        if (row instanceof MilestoneScoreRow m) return m.getMilestoneId();
         return null;
     }
 
-    private List<String> milestoneIds(ReportViewModel vm) {
-        List<String> ids = new ArrayList<>();
-        if (vm.getMilestoneScores() != null) {
-            for (MilestoneScoreRow m : vm.getMilestoneScores()) ids.add(m.getMilestoneId());
-        }
-        return ids;
+    private String label(ScoreRow row) {
+        AuditableEntity entity = row.getEntity();
+        if (entity != null && entity.getLabel() != null) return entity.getLabel();
+        return idOf(row);
     }
 
-    private List<String> topicIds(MilestoneScoreRow m) {
-        List<String> ids = new ArrayList<>();
-        if (m.getTopicScores() != null) {
-            for (TopicScoreRow t : m.getTopicScores()) ids.add(t.getTopicId());
+    private List<String> describeItems(List<? extends ScoreRow> items) {
+        if (items == null) return List.of();
+        List<String> descs = new ArrayList<>();
+        for (ScoreRow item : items) {
+            String id = idOf(item);
+            AuditableEntity entity = item.getEntity();
+            if (entity != null && entity.getLabel() != null) {
+                descs.add(id + " (" + entity.getLabel() + ")");
+            } else {
+                descs.add(id);
+            }
         }
-        return ids;
+        return descs;
     }
 
-    private List<String> knowledgeIds(TopicScoreRow t) {
-        List<String> ids = new ArrayList<>();
-        if (t.getKnowledgeScores() != null) {
-            for (KnowledgeScoreRow k : t.getKnowledgeScores()) ids.add(k.getKnowledgeId());
-        }
-        return ids;
-    }
-
-    private Set<String> collectAnalyzerNames(List<ChildScoreRow> children, Map<String, Double> parentScores) {
+    private Set<String> collectAnalyzerNames(List<ScoreRow> children, Map<String, Double> parentScores) {
         Set<String> names = new LinkedHashSet<>();
         if (parentScores != null) names.addAll(parentScores.keySet());
-        for (ChildScoreRow child : children) {
+        for (ScoreRow child : children) {
             if (child.getAnalyzerScores() != null) names.addAll(child.getAnalyzerScores().keySet());
         }
         return names;

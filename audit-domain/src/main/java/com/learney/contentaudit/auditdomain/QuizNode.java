@@ -12,12 +12,15 @@ public class QuizNode {
 
     private NodeScores scores;
 
+    private AuditableEntity entity;
+
     public QuizNode() {
     }
 
-    public QuizNode(String quizId, NodeScores scores) {
+    public QuizNode(String quizId, NodeScores scores, AuditableEntity entity) {
         this.quizId = quizId;
         this.scores = scores;
+        this.entity = entity;
     }
 
     public String getQuizId() {
@@ -36,17 +39,26 @@ public class QuizNode {
         this.scores = scores;
     }
 
+    public AuditableEntity getEntity() {
+        return this.entity;
+    }
+
+    public void setEntity(AuditableEntity entity) {
+        this.entity = entity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         QuizNode that = (QuizNode) o;
         return Objects.equals(this.quizId, that.quizId)
-                    && Objects.equals(this.scores, that.scores);
+                    && Objects.equals(this.scores, that.scores)
+                    && Objects.equals(this.entity, that.entity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(quizId, scores);
+        return Objects.hash(quizId, scores, entity);
     }
 }

@@ -33,13 +33,13 @@ public class SentenceLengthAnalyzerSentinelTest {
   @DisplayName("Given a null milestoneId, when onQuiz is called, then quiz is excluded and getResults is empty")
   @Tag("F-SLEN")
   public void givenANullMilestoneIdWhenOnQuizIsCalledThenQuizIsExcludedAndGetResultsIsEmpty() {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestoneNull = new AuditContext(null, "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
-    AuditContext ctxKnowledge = new AuditContext(null, "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestoneNull = new AuditContext(null, "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
+    AuditContext ctxKnowledge = new AuditContext(null, "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz quiz = new AuditableQuiz("Hello world test", List.of(dummyToken, dummyToken, dummyToken));
-    AuditContext ctxQuiz = new AuditContext(null, "t1", "k1", "q1");
+    AuditableQuiz quiz = new AuditableQuiz("Hello world test", List.of(dummyToken, dummyToken, dummyToken), null, null, null);
+    AuditContext ctxQuiz = new AuditContext(null, "t1", "k1", "q1", null, null, null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestoneNull));
     // Step 2
@@ -56,13 +56,13 @@ public class SentenceLengthAnalyzerSentinelTest {
   @Tag("F-SLEN")
   public void givenANonnumericMilestoneIdWhenOnQuizIsCalledThenQuizIsExcludedAndGetResultsIsEmpty(
       ) {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestoneAbc = new AuditContext("abc", "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
-    AuditContext ctxKnowledge = new AuditContext("abc", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestoneAbc = new AuditContext("abc", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
+    AuditContext ctxKnowledge = new AuditContext("abc", "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz quiz = new AuditableQuiz("Hello world test", List.of(dummyToken, dummyToken, dummyToken));
-    AuditContext ctxQuiz = new AuditContext("abc", "t1", "k1", "q1");
+    AuditableQuiz quiz = new AuditableQuiz("Hello world test", List.of(dummyToken, dummyToken, dummyToken), null, null, null);
+    AuditContext ctxQuiz = new AuditContext("abc", "t1", "k1", "q1", null, null, null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestoneAbc));
     // Step 2
@@ -79,13 +79,13 @@ public class SentenceLengthAnalyzerSentinelTest {
   @Tag("F-SLEN")
   public void givenNoTargetRangeConfiguredForLevelWhenOnQuizIsCalledThenQuizIsExcludedAndGetResultsIsEmpty(
       ) {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
-    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
+    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz quiz = new AuditableQuiz("She likes apples", List.of(dummyToken, dummyToken, dummyToken));
-    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
+    AuditableQuiz quiz = new AuditableQuiz("She likes apples", List.of(dummyToken, dummyToken, dummyToken), null, null, null);
+    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -103,19 +103,19 @@ public class SentenceLengthAnalyzerSentinelTest {
   @Tag("F-SLEN")
   public void givenMultipleQuizzesAcrossSentenceAndNonsentenceKnowledgesWhenProcessedThenOnlySentenceQuizzesAreScored(
       ) {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
-    AuditableKnowledge nonSentenceKnowledge = new AuditableKnowledge(List.of(), "Vocab", "Match", false);
-    AuditContext ctxNonSentKnowledge = new AuditContext("0", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge nonSentenceKnowledge = new AuditableKnowledge(List.of(), "Vocab", "Match", false, null, null, null);
+    AuditContext ctxNonSentKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz nonSentQuiz = new AuditableQuiz("apple", List.of(dummyToken));
-    AuditContext ctxNonSentQuiz = new AuditContext("0", "t1", "k1", "q1");
-    AuditableKnowledge sentenceKnowledge = new AuditableKnowledge(List.of(), "Sentences", "Complete", true);
-    AuditContext ctxSentKnowledge = new AuditContext("0", "t1", "k2", "q2");
-    AuditableQuiz sentQuiz = new AuditableQuiz("She likes red apples very much", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
-    AuditContext ctxSentQuiz = new AuditContext("0", "t1", "k2", "q2");
+    AuditableQuiz nonSentQuiz = new AuditableQuiz("apple", List.of(dummyToken), null, null, null);
+    AuditContext ctxNonSentQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge sentenceKnowledge = new AuditableKnowledge(List.of(), "Sentences", "Complete", true, null, null, null);
+    AuditContext ctxSentKnowledge = new AuditContext("0", "t1", "k2", "q2", null, null, null);
+    AuditableQuiz sentQuiz = new AuditableQuiz("She likes red apples very much", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
+    AuditContext ctxSentQuiz = new AuditContext("0", "t1", "k2", "q2", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k2", "q2");
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k2", "q2", sentQuiz);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -151,15 +151,15 @@ public class SentenceLengthAnalyzerSentinelTest {
   @DisplayName("Given a quiz within A1 range, when onQuiz is called and getResults checked, then score is 1.0")
   @Tag("F-SLEN")
   public void givenAQuizWithinA1RangeWhenOnQuizIsCalledAndGetResultsCheckedThenScoreIs10() {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
-    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
+    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz quiz = new AuditableQuiz("She likes apples a lot", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
-    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
+    AuditableQuiz quiz = new AuditableQuiz("She likes apples a lot", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
+    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1");
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1", quiz);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -177,15 +177,15 @@ public class SentenceLengthAnalyzerSentinelTest {
   @DisplayName("Given a quiz 1 token above A1 max, when scored, then score is 0.75")
   @Tag("F-SLEN")
   public void givenAQuiz1TokenAboveA1MaxWhenScoredThenScoreIs075() {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
-    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
+    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz quiz = new AuditableQuiz("She really likes green apples a lot today quickly", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
-    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
+    AuditableQuiz quiz = new AuditableQuiz("She really likes green apples a lot today quickly", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
+    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.75, "0", "t1", "k1", "q1");
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.75, "0", "t1", "k1", "q1", quiz);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -203,15 +203,15 @@ public class SentenceLengthAnalyzerSentinelTest {
   @DisplayName("Given a quiz 3 tokens below A1 min, when scored, then score is 0.25")
   @Tag("F-SLEN")
   public void givenAQuiz3TokensBelowA1MinWhenScoredThenScoreIs025() {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
-    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
+    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz quiz = new AuditableQuiz("Go now", List.of(dummyToken, dummyToken));
-    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
+    AuditableQuiz quiz = new AuditableQuiz("Go now", List.of(dummyToken, dummyToken), null, null, null);
+    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.25, "0", "t1", "k1", "q1");
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.25, "0", "t1", "k1", "q1", quiz);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -229,15 +229,15 @@ public class SentenceLengthAnalyzerSentinelTest {
   @DisplayName("Given a quiz exactly at A1 minimum boundary, when scored, then score is 1.0")
   @Tag("F-SLEN")
   public void givenAQuizExactlyAtA1MinimumBoundaryWhenScoredThenScoreIs10() {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
-    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
+    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz quiz = new AuditableQuiz("I like big red cats", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
-    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
+    AuditableQuiz quiz = new AuditableQuiz("I like big red cats", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
+    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1");
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1", quiz);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -255,15 +255,15 @@ public class SentenceLengthAnalyzerSentinelTest {
   @DisplayName("Given a quiz exactly at A1 maximum boundary, when scored, then score is 1.0")
   @Tag("F-SLEN")
   public void givenAQuizExactlyAtA1MaximumBoundaryWhenScoredThenScoreIs10() {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
-    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
+    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz quiz = new AuditableQuiz("I like big red cats very much here now", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
-    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
+    AuditableQuiz quiz = new AuditableQuiz("I like big red cats very much here now", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
+    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1");
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1", quiz);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -281,15 +281,15 @@ public class SentenceLengthAnalyzerSentinelTest {
   @DisplayName("Given a quiz 4 tokens above A1 max, when scored, then score is 0.0")
   @Tag("F-SLEN")
   public void givenAQuiz4TokensAboveA1MaxWhenScoredThenScoreIs00() {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
-    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
+    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the local market every day", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
-    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
+    AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the local market every day", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
+    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.0, "0", "t1", "k1", "q1");
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.0, "0", "t1", "k1", "q1", quiz);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -307,13 +307,13 @@ public class SentenceLengthAnalyzerSentinelTest {
   @DisplayName("Given a non-sentence knowledge, when onQuiz is called, then quiz is excluded and getResults is empty")
   @Tag("F-SLEN")
   public void givenANonsentenceKnowledgeWhenOnQuizIsCalledThenQuizIsExcludedAndGetResultsIsEmpty() {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Vocabulary", "Match words", false);
-    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Vocabulary", "Match words", false, null, null, null);
+    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz quiz = new AuditableQuiz("apple", List.of(dummyToken));
-    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
+    AuditableQuiz quiz = new AuditableQuiz("apple", List.of(dummyToken), null, null, null);
+    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -329,15 +329,15 @@ public class SentenceLengthAnalyzerSentinelTest {
   @DisplayName("Given a B2 level quiz within range, when scored, then score is 1.0")
   @Tag("F-SLEN")
   public void givenAB2LevelQuizWithinRangeWhenScoredThenScoreIs10() {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestone = new AuditContext("3", "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Advanced grammar", "Complete", true);
-    AuditContext ctxKnowledge = new AuditContext("3", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestone = new AuditContext("3", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Advanced grammar", "Complete", true, null, null, null);
+    AuditContext ctxKnowledge = new AuditContext("3", "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz quiz = new AuditableQuiz("The students should have been studying for their final exams much more carefully this semester", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
-    AuditContext ctxQuiz = new AuditContext("3", "t1", "k1", "q1");
+    AuditableQuiz quiz = new AuditableQuiz("The students should have been studying for their final exams much more carefully this semester", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
+    AuditContext ctxQuiz = new AuditContext("3", "t1", "k1", "q1", null, null, null);
     TargetRange rangeB2 = new TargetRange(CefrLevel.B2, 14, 17);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "3", "t1", "k1", "q1");
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "3", "t1", "k1", "q1", quiz);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -355,15 +355,15 @@ public class SentenceLengthAnalyzerSentinelTest {
   @DisplayName("Given a quiz exactly at tolerance boundary of 4 tokens, when scored, then score is 0.0")
   @Tag("F-SLEN")
   public void givenAQuizExactlyAtToleranceBoundaryOf4TokensWhenScoredThenScoreIs00() {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
-    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
+    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz quiz = new AuditableQuiz("Go", List.of(dummyToken));
-    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
+    AuditableQuiz quiz = new AuditableQuiz("Go", List.of(dummyToken), null, null, null);
+    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.0, "0", "t1", "k1", "q1");
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.0, "0", "t1", "k1", "q1", quiz);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -381,15 +381,15 @@ public class SentenceLengthAnalyzerSentinelTest {
   @DisplayName("Given a quiz 2 tokens above A1 max, when scored, then score is 0.5")
   @Tag("F-SLEN")
   public void givenAQuiz2TokensAboveA1MaxWhenScoredThenScoreIs05() {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true);
-    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
+    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the garden", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
-    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
+    AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the garden", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
+    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.5, "0", "t1", "k1", "q1");
+    ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.5, "0", "t1", "k1", "q1", quiz);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -406,8 +406,8 @@ public class SentenceLengthAnalyzerSentinelTest {
   @Test
   @DisplayName("Given a SentenceLengthAnalyzer, when onTopic is called, then it completes without error")
   public void givenASentenceLengthAnalyzerWhenOnTopicIsCalledThenItCompletesWithoutError() {
-    AuditableTopic topic = new AuditableTopic(List.of());
-    AuditContext ctx = new AuditContext("0", "t1", "k1", "q1");
+    AuditableTopic topic = new AuditableTopic(List.of(), null, null, null);
+    AuditContext ctx = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     Assertions.assertDoesNotThrow(() -> sut.onTopic(topic, ctx));
   }
 
@@ -416,7 +416,7 @@ public class SentenceLengthAnalyzerSentinelTest {
   public void givenASentenceLengthAnalyzerWhenOnCourseCompleteIsCalledThenItCompletesWithoutError(
       ) {
     AuditableCourse course = new AuditableCourse(List.of());
-    AuditContext ctx = new AuditContext("0", "t1", "k1", "q1");
+    AuditContext ctx = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     Assertions.assertDoesNotThrow(() -> sut.onCourseComplete(course, ctx));
   }
 
@@ -425,18 +425,18 @@ public class SentenceLengthAnalyzerSentinelTest {
   @Tag("F-SLEN")
   public void givenAFullMilestoneknowledgequizSequenceWhenProcessedEndToEndThenCorrectScoresAreProduced(
       ) {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Basic greetings", "Complete the sentence", true);
-    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Basic greetings", "Complete the sentence", true, null, null, null);
+    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz quiz1 = new AuditableQuiz("Hello how are you today friend", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken));
-    AuditContext ctxQuiz1 = new AuditContext("0", "t1", "k1", "q1");
-    AuditableQuiz quiz2 = new AuditableQuiz("Good morning", List.of(dummyToken, dummyToken));
-    AuditContext ctxQuiz2 = new AuditContext("0", "t1", "k1", "q2");
+    AuditableQuiz quiz1 = new AuditableQuiz("Hello how are you today friend", List.of(dummyToken, dummyToken, dummyToken, dummyToken, dummyToken, dummyToken), null, null, null);
+    AuditContext ctxQuiz1 = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+    AuditableQuiz quiz2 = new AuditableQuiz("Good morning", List.of(dummyToken, dummyToken), null, null, null);
+    AuditContext ctxQuiz2 = new AuditContext("0", "t1", "k1", "q2", null, null, null);
     TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-    ScoredItem expectedScore1 = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1");
-    ScoredItem expectedScore2 = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.25, "0", "t1", "k1", "q2");
+    ScoredItem expectedScore1 = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k1", "q1", quiz1);
+    ScoredItem expectedScore2 = new ScoredItem("sentence-length", AuditTarget.QUIZ, 0.25, "0", "t1", "k1", "q2", quiz2);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2
@@ -473,13 +473,13 @@ public class SentenceLengthAnalyzerSentinelTest {
   @Tag("F-SLEN")
   public void givenAKnowledgeWithNonsentenceQuizzesWhenOnQuizIsCalledThenNonsentenceQuizzesAreExcludedFromScoring(
       ) {
-    AuditableMilestone milestone = new AuditableMilestone(List.of());
-    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1");
-    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Vocabulary", "Match words", false);
-    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1");
+    AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
+    AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+    AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Vocabulary", "Match words", false, null, null, null);
+    AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     NlpToken dummyToken = new NlpToken("w", "w", "NOUN", 1, false, false);
-    AuditableQuiz quiz = new AuditableQuiz("apple", List.of(dummyToken));
-    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1");
+    AuditableQuiz quiz = new AuditableQuiz("apple", List.of(dummyToken), null, null, null);
+    AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
     // Step 1
     Assertions.assertDoesNotThrow(() -> sut.onMilestone(milestone, ctxMilestone));
     // Step 2

@@ -77,7 +77,8 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
                 ctx.getMilestoneId(),
                 ctx.getTopicId(),
                 ctx.getKnowledgeId(),
-                ctx.getQuizId()
+                ctx.getQuizId(),
+                quiz
         ));
         return null;
     }
@@ -131,4 +132,10 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
             return -1;
         }
     }
+
+    @Override
+    public String getDescription() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

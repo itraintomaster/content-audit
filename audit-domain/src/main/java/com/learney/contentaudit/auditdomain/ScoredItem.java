@@ -22,11 +22,13 @@ public class ScoredItem {
 
     private String quizId;
 
+    private AuditableEntity source;
+
     public ScoredItem() {
     }
 
     public ScoredItem(String analyzerName, AuditTarget target, double score, String milestoneId,
-            String topicId, String knowledgeId, String quizId) {
+            String topicId, String knowledgeId, String quizId, AuditableEntity source) {
         this.analyzerName = analyzerName;
         this.target = target;
         this.score = score;
@@ -34,6 +36,7 @@ public class ScoredItem {
         this.topicId = topicId;
         this.knowledgeId = knowledgeId;
         this.quizId = quizId;
+        this.source = source;
     }
 
     public String getAnalyzerName() {
@@ -92,6 +95,14 @@ public class ScoredItem {
         this.quizId = quizId;
     }
 
+    public AuditableEntity getSource() {
+        return this.source;
+    }
+
+    public void setSource(AuditableEntity source) {
+        this.source = source;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -103,11 +114,12 @@ public class ScoredItem {
                     && Objects.equals(this.milestoneId, that.milestoneId)
                     && Objects.equals(this.topicId, that.topicId)
                     && Objects.equals(this.knowledgeId, that.knowledgeId)
-                    && Objects.equals(this.quizId, that.quizId);
+                    && Objects.equals(this.quizId, that.quizId)
+                    && Objects.equals(this.source, that.source);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(analyzerName, target, score, milestoneId, topicId, knowledgeId, quizId);
+        return Objects.hash(analyzerName, target, score, milestoneId, topicId, knowledgeId, quizId, source);
     }
 }

@@ -2,6 +2,7 @@ package com.learney.contentaudit.auditdomain.coca;
 
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableEntity;
 import com.learney.contentaudit.auditdomain.MilestoneNode;
 import com.learney.contentaudit.auditdomain.NodeScores;
 import com.learney.contentaudit.auditdomain.ScoreAggregator;
@@ -25,7 +26,7 @@ class CocaTokenAccumulationAggregator implements ScoreAggregator {
      * (R025-R029: scores are generated only where targets exist — at level/quarter nodes).
      */
     @Override
-    public AuditReport aggregate(List<ScoredItem> scores) {
+    public AuditReport aggregate(List<ScoredItem> scores, Map<String, AuditableEntity> entityMap) {
         if (scores == null || scores.isEmpty()) {
             return new AuditReport(0.0, new NodeScores(Map.of()), List.of());
         }
@@ -61,7 +62,8 @@ class CocaTokenAccumulationAggregator implements ScoreAggregator {
         for (Map.Entry<String, Map<String, Double>> milestoneEntry : milestoneAnalyzerScores.entrySet()) {
             String milestoneId = milestoneEntry.getKey();
             Map<String, Double> analyzerScores = milestoneEntry.getValue();
-            milestones.add(new MilestoneNode(milestoneId, new NodeScores(analyzerScores), List.of()));
+            milestones.add(new MilestoneNode(milestoneId, new NodeScores(analyzerScores), List.of(),
+                    entityMap != null ? entityMap.get(milestoneId) : null));
         }
 
         // Course-level scores per analyzer = average across milestones

@@ -53,6 +53,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: CourseMapper - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditapplication.AnalyzerRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnalyzerRegistry - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditapplication.CourseToAuditableMapper");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: CourseToAuditableMapper - " + e.getMessage());
@@ -81,6 +86,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultLemmaAbsenceConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.DefaultAnalyzerRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultAnalyzerRegistry - " + e.getMessage());
     }
   }
 }

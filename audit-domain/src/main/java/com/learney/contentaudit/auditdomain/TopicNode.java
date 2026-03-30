@@ -15,13 +15,17 @@ public class TopicNode {
 
     private List<KnowledgeNode> knowledges;
 
+    private AuditableEntity entity;
+
     public TopicNode() {
     }
 
-    public TopicNode(String topicId, NodeScores scores, List<KnowledgeNode> knowledges) {
+    public TopicNode(String topicId, NodeScores scores, List<KnowledgeNode> knowledges,
+            AuditableEntity entity) {
         this.topicId = topicId;
         this.scores = scores;
         this.knowledges = knowledges;
+        this.entity = entity;
     }
 
     public String getTopicId() {
@@ -48,6 +52,14 @@ public class TopicNode {
         this.knowledges = knowledges;
     }
 
+    public AuditableEntity getEntity() {
+        return this.entity;
+    }
+
+    public void setEntity(AuditableEntity entity) {
+        this.entity = entity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,11 +67,12 @@ public class TopicNode {
         TopicNode that = (TopicNode) o;
         return Objects.equals(this.topicId, that.topicId)
                     && Objects.equals(this.scores, that.scores)
-                    && Objects.equals(this.knowledges, that.knowledges);
+                    && Objects.equals(this.knowledges, that.knowledges)
+                    && Objects.equals(this.entity, that.entity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(topicId, scores, knowledges);
+        return Objects.hash(topicId, scores, knowledges, entity);
     }
 }

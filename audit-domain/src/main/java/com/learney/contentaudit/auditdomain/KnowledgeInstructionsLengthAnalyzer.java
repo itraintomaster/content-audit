@@ -45,7 +45,7 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
             }
         }
         results.add(new ScoredItem(ANALYZER_NAME, AuditTarget.KNOWLEDGE, score,
-                ctx.getMilestoneId(), ctx.getTopicId(), ctx.getKnowledgeId(), null));
+                ctx.getMilestoneId(), ctx.getTopicId(), ctx.getKnowledgeId(), null, knowledge));
         return null;
     }
 
@@ -57,4 +57,10 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
 
     @Override
     public List<ScoredItem> getResults() { return List.copyOf(results); }
+
+    @Override
+    public String getDescription() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

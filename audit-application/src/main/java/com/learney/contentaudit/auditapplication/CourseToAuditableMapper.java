@@ -63,7 +63,7 @@ public class CourseToAuditableMapper implements CourseMapper {
         List<AuditableTopic> auditableTopics = topics.stream()
                 .map(this::mapTopic)
                 .collect(Collectors.toList());
-        return new AuditableMilestone(auditableTopics);
+        return new AuditableMilestone(auditableTopics, milestone.getId(), milestone.getLabel(), milestone.getCode());
     }
 
     private AuditableTopic mapTopic(TopicEntity topic) {
@@ -74,7 +74,7 @@ public class CourseToAuditableMapper implements CourseMapper {
         List<AuditableKnowledge> auditableKnowledges = knowledges.stream()
                 .map(this::mapKnowledge)
                 .collect(Collectors.toList());
-        return new AuditableTopic(auditableKnowledges);
+        return new AuditableTopic(auditableKnowledges, topic.getId(), topic.getLabel(), topic.getCode());
     }
 
     private AuditableKnowledge mapKnowledge(KnowledgeEntity ke) {
@@ -86,7 +86,7 @@ public class CourseToAuditableMapper implements CourseMapper {
         List<AuditableQuiz> quizzes = quizTemplates.stream()
                 .map(this::mapQuiz)
                 .collect(Collectors.toList());
-        return new AuditableKnowledge(quizzes, ke.getLabel(), ke.getInstructions(), isSentence);
+        return new AuditableKnowledge(quizzes, ke.getLabel(), ke.getInstructions(), isSentence, ke.getId(), ke.getLabel(), ke.getCode());
     }
 
     private boolean hasSentenceParts(QuizTemplateEntity qt) {
@@ -101,7 +101,7 @@ public class CourseToAuditableMapper implements CourseMapper {
     private AuditableQuiz mapQuiz(QuizTemplateEntity qt) {
         String sentence = buildSentence(qt);
         List<NlpToken> tokens = tokenCache.getOrDefault(sentence, List.of());
-        return new AuditableQuiz(sentence, tokens);
+        return new AuditableQuiz(sentence, tokens, qt.getId(), qt.getTitle(), qt.getCode());
     }
 
     private List<String> collectAllSentences(CourseEntity course) {

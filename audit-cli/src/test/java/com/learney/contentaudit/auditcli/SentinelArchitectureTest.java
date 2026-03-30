@@ -82,6 +82,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: ChildScoreRow - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.AnalyzerStatsView");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnalyzerStatsView - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.ScoredItemRow");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ScoredItemRow - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.ReportFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ReportFormatter - " + e.getMessage());
@@ -110,6 +120,16 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.DrillDownResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DrillDownResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.AnalyzerStatsTransformer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnalyzerStatsTransformer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.ScoreRow");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ScoreRow - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.TextReportFormatter");
@@ -150,6 +170,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.DefaultDrillDownResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultDrillDownResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.DefaultAnalyzerStatsTransformer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultAnalyzerStatsTransformer - " + e.getMessage());
     }
   }
 }

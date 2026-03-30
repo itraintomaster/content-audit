@@ -230,6 +230,7 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
                     level.getLevelName(),
                     null,
                     null,
+                    null,
                     null
             ));
             // Emit quarter-level detail scores
@@ -239,6 +240,7 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
                         AuditTarget.MILESTONE,
                         qr.getScore(),
                         level.getLevelName(),
+                        null,
                         null,
                         null,
                         null
@@ -270,7 +272,7 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
             // Topics have no targets -> BucketResults without assessment
             List<BucketResult> bucketResults = buildBucketResultsNoTarget(bandCounts, total);
             String topicId = (i < topicIds.size()) ? topicIds.get(i) : String.valueOf(i);
-            result.add(new TopicBucketDistribution(topicId, 0.0, bucketResults));
+            result.add(new TopicBucketDistribution(topicId, 0.0, bucketResults, null));
         }
         return result;
     }
@@ -437,4 +439,10 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
         }
         return defaultValue;
     }
+
+    @Override
+    public String getDescription() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

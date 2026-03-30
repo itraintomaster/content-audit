@@ -140,6 +140,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: NlpToken - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.AnalyzerDescriptor");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnalyzerDescriptor - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.ContentAudit");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ContentAudit - " + e.getMessage());
@@ -203,6 +208,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.AuditableEntity");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AuditableEntity - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.SelfDescribingConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SelfDescribingConfig - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditdomain.IAuditEngine");

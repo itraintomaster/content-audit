@@ -185,12 +185,10 @@ modules:
       type: String
     - name: scores
       type: NodeScores
-    - name: label
-      type: String
-      description: Human-readable quiz label
-    - name: code
-      type: String
-      description: Quiz short code
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
   - name: KnowledgeNode
     type: record
     fields:
@@ -200,12 +198,10 @@ modules:
       type: NodeScores
     - name: quizzes
       type: List<QuizNode>
-    - name: label
-      type: String
-      description: Human-readable knowledge label
-    - name: code
-      type: String
-      description: Knowledge short code
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
   - name: TopicNode
     type: record
     fields:
@@ -215,12 +211,10 @@ modules:
       type: NodeScores
     - name: knowledges
       type: List<KnowledgeNode>
-    - name: label
-      type: String
-      description: Human-readable topic label
-    - name: code
-      type: String
-      description: Topic short code
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
   - name: MilestoneNode
     type: record
     fields:
@@ -230,12 +224,10 @@ modules:
       type: NodeScores
     - name: topics
       type: List<TopicNode>
-    - name: label
-      type: String
-      description: Human-readable milestone label
-    - name: code
-      type: String
-      description: Milestone short code
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
   - name: NlpToken
     type: record
     fields:
@@ -257,6 +249,18 @@ modules:
     - name: isPunct
       type: boolean
       description: Whether this token is punctuation
+  - name: AnalyzerDescriptor
+    type: record
+    fields:
+    - name: name
+      type: String
+      description: Analyzer unique name (e.g. sentence-length)
+    - name: description
+      type: String
+      description: Human-readable description of what the analyzer checks
+    - name: target
+      type: AuditTarget
+      description: The audit target level this analyzer operates at
   interfaces:
   - name: ContentAudit
     stereotype: service
@@ -280,6 +284,7 @@ modules:
     - signature: "getName(): String"
     - signature: "getTarget(): AuditTarget"
     - signature: "getResults(): List<ScoredItem>"
+    - signature: "getDescription(): String"
   - name: AnalysisResult
     stereotype: port
     sealed: false
@@ -298,6 +303,8 @@ modules:
   - name: SentenceLengthConfig
     stereotype: port
     sealed: false
+    extends:
+    - SelfDescribingConfig
     exposes:
     - signature: "getTargetRange(CefrLevel level): Optional<TargetRange>"
     - signature: "getToleranceMargin(): int"
@@ -305,10 +312,13 @@ modules:
     stereotype: port
     sealed: false
     exposes:
-    - signature: "aggregate(List<ScoredItem> scores): AuditReport"
+    - signature: "aggregate(List<ScoredItem> scores,Map<String,AuditableEntity> entityMap):\
+        \ AuditReport"
   - name: CocaBucketsConfig
     stereotype: port
     sealed: false
+    extends:
+    - SelfDescribingConfig
     exposes:
     - signature: "getBandConfiguration(): BandConfiguration"
     - signature: "getTargetsForLevel(String levelName): List<BucketTarget>"
@@ -324,6 +334,8 @@ modules:
   - name: LemmaRecurrenceConfig
     stereotype: port
     sealed: false
+    extends:
+    - SelfDescribingConfig
     exposes:
     - signature: "getTop(): int"
     - signature: "getSubExposedThreshold(): double"
@@ -362,6 +374,11 @@ modules:
     - signature: "getId(): String"
     - signature: "getLabel(): String"
     - signature: "getCode(): String"
+  - name: SelfDescribingConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "describe(): Map<String,Object>"
   implementations:
   - name: IAuditEngine
     requiresInject:
@@ -5239,6 +5256,12 @@ modules:
     sealed: false
     exposes:
     - signature: "map(CourseEntity course): AuditableCourse"
+  - name: AnalyzerRegistry
+    stereotype: service
+    sealed: false
+    exposes:
+    - signature: "listAnalyzers(): List<AnalyzerDescriptor>"
+    - signature: "getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>"
   implementations:
   - name: CourseToAuditableMapper
     requiresInject:
@@ -6170,6 +6193,16 @@ modules:
       _change: add
     implements:
     - LemmaAbsenceConfig
+  - name: DefaultAnalyzerRegistry
+    requiresInject:
+    - name: analyzers
+      type: List<ContentAnalyzer>
+    - name: configs
+      type: List<SelfDescribingConfig>
+    types:
+    - Component
+    implements:
+    - AnalyzerRegistry
   patterns:
   - type: Decorator
     decorators:
@@ -6779,12 +6812,11 @@ modules:
     - name: topicScores
       type: List<TopicScoreRow>
       description: Per-topic breakdown of analyzer scores
-    - name: label
-      type: String
-      description: Human-readable milestone label
-    - name: code
-      type: String
-      description: Milestone short code
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+    extends: ScoreRow
   - name: QuizScoreRow
     type: record
     fields:
@@ -6797,12 +6829,11 @@ modules:
     - name: analyzerScores
       type: "Map<String,Double>"
       description: Score per analyzer for this quiz
-    - name: label
-      type: String
-      description: Human-readable quiz label
-    - name: code
-      type: String
-      description: Quiz short code
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+    extends: ScoreRow
   - name: KnowledgeScoreRow
     type: record
     fields:
@@ -6818,12 +6849,11 @@ modules:
     - name: quizScores
       type: List<QuizScoreRow>
       description: Per-quiz breakdown of analyzer scores
-    - name: label
-      type: String
-      description: Human-readable knowledge label
-    - name: code
-      type: String
-      description: Knowledge short code
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+    extends: ScoreRow
   - name: TopicScoreRow
     type: record
     fields:
@@ -6839,12 +6869,11 @@ modules:
     - name: knowledgeScores
       type: List<KnowledgeScoreRow>
       description: Per-knowledge breakdown of analyzer scores
-    - name: label
-      type: String
-      description: Human-readable topic label
-    - name: code
-      type: String
-      description: Topic short code
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+    extends: ScoreRow
   - name: DrillDownScope
     type: record
     fields:
@@ -6884,7 +6913,7 @@ modules:
       type: List<String>
       description: Ordered analyzer names for column headers
     - name: childRows
-      type: List<ChildScoreRow>
+      type: List<ScoreRow>
       description: One level of children detail rows
   - name: ChildScoreRow
     type: record
@@ -6898,12 +6927,53 @@ modules:
     - name: analyzerScores
       type: "Map<String,Double>"
       description: Child per-analyzer scores
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+    extends: ScoreRow
+  - name: AnalyzerStatsView
+    type: record
+    fields:
+    - name: analyzerName
+      type: String
+      description: Name of the analyzer
+    - name: analyzerDescription
+      type: String
+      description: Description of the analyzer
+    - name: courseScore
+      type: double
+      description: Course-level score for this analyzer
+    - name: levelScores
+      type: "Map<String,Double>"
+      description: Per-milestone/level score breakdown
+    - name: worstItems
+      type: List<ScoredItemRow>
+      description: Worst-scoring items sorted ascending
+    - name: scoreDistribution
+      type: "Map<String,Integer>"
+      description: Histogram buckets (e.g. 0.0-0.2 -> count)
+  - name: ScoredItemRow
+    type: record
+    fields:
+    - name: milestoneId
+      type: String
+      description: Milestone containing this item
+    - name: topicId
+      type: String
+      description: Topic containing this item
+    - name: knowledgeId
+      type: String
+      description: Knowledge containing this item
+    - name: quizId
+      type: String
+      description: Quiz id if target is quiz-level
+    - name: score
+      type: double
+      description: Score for this item
     - name: label
       type: String
-      description: Human-readable child node label
-    - name: code
-      type: String
-      description: Child node short code
+      description: Human-readable label of the item
   interfaces:
   - name: ReportFormatter
     stereotype: port
@@ -6936,6 +7006,19 @@ modules:
     sealed: true
     exposes:
     - signature: "resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView"
+  - name: AnalyzerStatsTransformer
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "transform(AuditReport report,String analyzerName,AnalyzerRegistry\
+        \ registry): AnalyzerStatsView"
+  - name: ScoreRow
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getEntity(): AuditableEntity"
+    - signature: "getOverallScore(): double"
+    - signature: "getAnalyzerScores(): Map<String,Double>"
   implementations:
   - name: TextReportFormatter
     requiresInject:
@@ -6959,6 +7042,10 @@ modules:
       type: ReportViewModelTransformer
     - name: rawReportFormatter
       type: RawReportFormatter
+    - name: analyzerRegistry
+      type: AnalyzerRegistry
+    - name: analyzerStatsTransformer
+      type: AnalyzerStatsTransformer
     tests:
     - name: "Given valid args with course path, when run is called, then returns exit\
         \ code 0"
@@ -7268,6 +7355,11 @@ modules:
     - Component
     implements:
     - DrillDownResolver
+  - name: DefaultAnalyzerStatsTransformer
+    types:
+    - Component
+    implements:
+    - AnalyzerStatsTransformer
   patterns:
   - type: Strategy
     implementations:
