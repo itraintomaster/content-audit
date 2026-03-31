@@ -2,6 +2,8 @@ package com.learney.contentaudit.auditapplication;
 
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.LemmaAbsenceConfig;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -96,5 +98,36 @@ public class DefaultLemmaAbsenceConfig implements LemmaAbsenceConfig {
     @Override
     public double getDiscountPerLevel() {
         return 0.1;
+    }
+
+    @Override
+    public Map<String, Object> describe() {
+        Map<String, Object> desc = new LinkedHashMap<>();
+        desc.put("analyzerName", "lemma-absence");
+        desc.put("discountPerLevel", getDiscountPerLevel());
+        desc.put("priorityBounds", Map.of(
+                "high", getHighPriorityBound(),
+                "medium", getMediumPriorityBound(),
+                "low", getLowPriorityBound()));
+        desc.put("reportLimits", Map.of(
+                "high", getHighReportLimit(),
+                "medium", getMediumReportLimit(),
+                "low", getLowReportLimit()));
+        desc.put("alertThresholds", Map.of(
+                "high", getHighPriorityAlertThreshold(),
+                "medium", getMediumPriorityAlertThreshold(),
+                "low", getLowPriorityAlertThreshold()));
+        desc.put("assessmentThresholds", Map.of(
+                "critical", getCriticalAbsenceThreshold(),
+                "acceptable", getAcceptableAbsenceThreshold()));
+        Map<String, Object> thresholdsByLevel = new LinkedHashMap<>();
+        for (CefrLevel level : CefrLevel.values()) {
+            thresholdsByLevel.put(level.name(), Map.of(
+                    "absolute", getAbsoluteThreshold(level),
+                    "percentage", getPercentageThreshold(level),
+                    "weight", getLevelWeight(level)));
+        }
+        desc.put("thresholdsByLevel", thresholdsByLevel);
+        return desc;
     }
 }

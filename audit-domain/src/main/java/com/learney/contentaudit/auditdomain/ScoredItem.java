@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain;
 
+import java.util.Map;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -24,11 +25,14 @@ public class ScoredItem {
 
     private AuditableEntity source;
 
+    private Map<String, Object> metadata;
+
     public ScoredItem() {
     }
 
     public ScoredItem(String analyzerName, AuditTarget target, double score, String milestoneId,
-            String topicId, String knowledgeId, String quizId, AuditableEntity source) {
+            String topicId, String knowledgeId, String quizId, AuditableEntity source,
+            Map<String, Object> metadata) {
         this.analyzerName = analyzerName;
         this.target = target;
         this.score = score;
@@ -37,6 +41,7 @@ public class ScoredItem {
         this.knowledgeId = knowledgeId;
         this.quizId = quizId;
         this.source = source;
+        this.metadata = metadata;
     }
 
     public String getAnalyzerName() {
@@ -103,6 +108,14 @@ public class ScoredItem {
         this.source = source;
     }
 
+    public Map<String, Object> getMetadata() {
+        return this.metadata;
+    }
+
+    public void setMetadata(Map<String, Object> metadata) {
+        this.metadata = metadata;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -115,11 +128,12 @@ public class ScoredItem {
                     && Objects.equals(this.topicId, that.topicId)
                     && Objects.equals(this.knowledgeId, that.knowledgeId)
                     && Objects.equals(this.quizId, that.quizId)
-                    && Objects.equals(this.source, that.source);
+                    && Objects.equals(this.source, that.source)
+                    && Objects.equals(this.metadata, that.metadata);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(analyzerName, target, score, milestoneId, topicId, knowledgeId, quizId, source);
+        return Objects.hash(analyzerName, target, score, milestoneId, topicId, knowledgeId, quizId, source, metadata);
     }
 }

@@ -94,6 +94,15 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         CRITICAL_LEVELS.add(CefrLevel.A2);
     }
 
+    // R008: Impact scores per absence type (architecture defines these on the enum)
+    private static final Map<AbsenceType, Double> IMPACT_SCORES = new EnumMap<>(AbsenceType.class);
+    static {
+        IMPACT_SCORES.put(AbsenceType.COMPLETELY_ABSENT, 1.0);
+        IMPACT_SCORES.put(AbsenceType.APPEARS_TOO_LATE, 0.8);
+        IMPACT_SCORES.put(AbsenceType.APPEARS_TOO_EARLY, 0.6);
+        IMPACT_SCORES.put(AbsenceType.SCATTERED_PLACEMENT, 0.4);
+    }
+
     private final EvpCatalogPort evpCatalogPort;
     private final ContentWordFilter contentWordFilter;
     private final LemmaAbsenceConfig lemmaAbsenceConfig;
@@ -256,22 +265,43 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         Map<LemmaAndPos, CefrLevel> lemmaExpectedLevel = buildLemmaExpectedLevelMap(expectedByLevel);
         scoreQuizzes(course, lemmaExpectedLevel);
 
-        // Step 7: Calculate per-level metrics (R023)
+        // Step 7: Calculate per-level metrics (R023) and emit Milestone-level ScoredItems
         Map<CefrLevel, LevelAbsenceMetrics> levelMetrics = new EnumMap<>(CefrLevel.class);
         for (CefrLevel level : allLevels) {
             Set<LemmaAndPos> expected = expectedByLevel.get(level);
             List<AbsentLemma> absentList = limitedAbsentByLevel.get(level);
+            List<AbsentLemma> fullAbsentList = absentByLevel.get(level);
             int totalExpected = expected.size();
-            int totalAbsent = absentByLevel.get(level).size(); // use un-limited count for percentage
+            int totalAbsent = fullAbsentList.size();
             double absencePercentage = totalExpected == 0 ? 0.0
                     : (double) totalAbsent / totalExpected * 100.0;
 
-            // Level score: 1.0 - absencePercentage/100, weighted by impact of absence types
-            double levelScore = computeLevelScore(totalExpected, totalAbsent, absentByLevel.get(level));
+            double levelScore = computeLevelScore(totalExpected, totalAbsent, fullAbsentList);
 
             LevelAbsenceMetrics metrics = new LevelAbsenceMetrics(
                     level, totalExpected, totalAbsent, absencePercentage, absentList, levelScore);
             levelMetrics.put(level, metrics);
+
+            // Compute per-type sub-scores for milestone metadata
+            Map<String, Object> milestoneMeta = new LinkedHashMap<>();
+            for (AbsenceType type : AbsenceType.values()) {
+                int countForType = 0;
+                for (AbsentLemma al : fullAbsentList) {
+                    if (al.getAbsenceType() == type) {
+                        countForType++;
+                    }
+                }
+                double typeScore = totalExpected == 0 ? 1.0
+                        : 1.0 - (double) countForType / totalExpected;
+                milestoneMeta.put(type.name().toLowerCase() + "Score", typeScore);
+            }
+            milestoneMeta.put("totalExpected", totalExpected);
+            milestoneMeta.put("totalAbsent", totalAbsent);
+            milestoneMeta.put("absencePercentage", absencePercentage);
+
+            results.add(new ScoredItem(
+                    ANALYZER_NAME, AuditTarget.MILESTONE, levelScore,
+                    level.name(), null, null, null, null, milestoneMeta));
         }
 
         // Step 8: Calculate global assessment (R022, R025)
@@ -283,9 +313,11 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         // Step 10: Generate recommendations (R027-R031)
         List<AbsenceRecommendation> recommendations = generateRecommendations(levelMetrics, absentByLevel);
 
-        // Store course-level result
+        // Store course-level result with assessment in metadata
+        Map<String, Object> courseMeta = new LinkedHashMap<>();
+        courseMeta.put("assessment", assessment.name());
         courseResult = new ScoredItem(ANALYZER_NAME, AuditTarget.COURSE, globalScore,
-                null, null, null, null, null);
+                null, null, null, null, null, courseMeta);
     }
 
     // --- Helper: parse CefrLevel from milestoneId string ---
@@ -425,16 +457,73 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
             if (milestone.getTopics() == null) continue;
             for (AuditableTopic topic : milestone.getTopics()) {
                 if (topic.getKnowledge() == null) continue;
+                double topicScoreSum = 0.0;
+                int topicQuizCount = 0;
+                int topicMisplacedCount = 0;
+
                 for (AuditableKnowledge knowledge : topic.getKnowledge()) {
                     if (knowledge.getQuizzes() == null) continue;
+                    double knowledgeScoreSum = 0.0;
+                    int knowledgeQuizCount = 0;
+                    int knowledgeMisplacedCount = 0;
+                    // Collect unique misplaced lemmas per knowledge (dedup by lemma+pos)
+                    Set<String> knowledgeSeen = new HashSet<>();
+                    List<Map<String, String>> knowledgeMisplacedLemmas = new ArrayList<>();
+
                     for (AuditableQuiz quiz : knowledge.getQuizzes()) {
-                        double score = scoreQuiz(quiz, sentenceLevel, lemmaExpectedLevel);
+                        QuizScoreResult qsr = scoreQuiz(quiz, sentenceLevel, lemmaExpectedLevel);
+
+                        // Quiz-level ScoredItem with misplaced lemma details in metadata
+                        Map<String, Object> quizMeta = null;
+                        if (!qsr.misplacedLemmas.isEmpty()) {
+                            quizMeta = new LinkedHashMap<>();
+                            quizMeta.put("misplacedLemmas", qsr.misplacedLemmas);
+                        }
                         ScoredItem item = new ScoredItem(
-                                ANALYZER_NAME, AuditTarget.QUIZ, score,
-                                sentenceLevel.name(), null, null,
-                                quiz.getId(), quiz);
+                                ANALYZER_NAME, AuditTarget.QUIZ, qsr.score,
+                                sentenceLevel.name(), topic.getId(), knowledge.getId(),
+                                quiz.getId(), quiz, quizMeta);
                         results.add(item);
+
+                        knowledgeScoreSum += qsr.score;
+                        knowledgeQuizCount++;
+                        knowledgeMisplacedCount += qsr.misplacedLemmas.size();
+
+                        // Accumulate unique misplaced lemmas for knowledge level
+                        for (Map<String, String> ml : qsr.misplacedLemmas) {
+                            String key = ml.get("lemma") + "|" + ml.get("pos");
+                            if (knowledgeSeen.add(key)) {
+                                knowledgeMisplacedLemmas.add(ml);
+                            }
+                        }
                     }
+
+                    // Knowledge-level ScoredItem
+                    if (knowledgeQuizCount > 0) {
+                        double knowledgeScore = knowledgeScoreSum / knowledgeQuizCount;
+                        Map<String, Object> knowledgeMeta = new LinkedHashMap<>();
+                        knowledgeMeta.put("misplacedLemmaCount", knowledgeMisplacedLemmas.size());
+                        knowledgeMeta.put("misplacedLemmas", knowledgeMisplacedLemmas);
+                        results.add(new ScoredItem(
+                                ANALYZER_NAME, AuditTarget.KNOWLEDGE, knowledgeScore,
+                                sentenceLevel.name(), topic.getId(), knowledge.getId(),
+                                null, knowledge, knowledgeMeta));
+
+                        topicScoreSum += knowledgeScore;
+                        topicQuizCount++;
+                        topicMisplacedCount += knowledgeMisplacedLemmas.size();
+                    }
+                }
+
+                // Topic-level ScoredItem
+                if (topicQuizCount > 0) {
+                    double topicScore = topicScoreSum / topicQuizCount;
+                    Map<String, Object> topicMeta = new LinkedHashMap<>();
+                    topicMeta.put("misplacedLemmaCount", topicMisplacedCount);
+                    results.add(new ScoredItem(
+                            ANALYZER_NAME, AuditTarget.TOPIC, topicScore,
+                            sentenceLevel.name(), topic.getId(), null,
+                            null, topic, topicMeta));
                 }
             }
         }
@@ -494,7 +583,7 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         // COMPLETELY_ABSENT=1.0, APPEARS_TOO_LATE=0.8, APPEARS_TOO_EARLY=0.6, SCATTERED=0.4
         double weightedAbsence = 0.0;
         for (AbsentLemma al : absentList) {
-            weightedAbsence += al.getAbsenceType().getImpactScore();
+            weightedAbsence += IMPACT_SCORES.getOrDefault(al.getAbsenceType(), 1.0);
         }
         double score = 1.0 - weightedAbsence / totalExpected;
         return Math.max(0.0, Math.min(1.0, score));

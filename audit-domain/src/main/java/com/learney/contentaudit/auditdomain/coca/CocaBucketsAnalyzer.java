@@ -231,6 +231,7 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
                     null,
                     null,
                     null,
+                    null,
                     null
             ));
             // Emit quarter-level detail scores
@@ -240,6 +241,7 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
                         AuditTarget.MILESTONE,
                         qr.getScore(),
                         level.getLevelName(),
+                        null,
                         null,
                         null,
                         null,

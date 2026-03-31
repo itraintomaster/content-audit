@@ -5,9 +5,20 @@ description: "Add handwritten tests for LemmaByLevelAbsenceAnalyzer — 80 tests
   \ handwrittenTests for R028-R030 gaps and no-op methods on LemmaByLevelAbsenceAnalyzer;\
   \ Refactor CLI from monolithic DefaultAuditCli into picocli command tree: ContentAuditCmd\
   \ (root) -> AnalyzeCmd, AnalyzerCmd -> AnalyzerListCmd, AnalyzerConfigCmd, AnalyzerStatsCmd.\
-  \ Add filtered runAudit overload to AuditRunner."
+  \ Add filtered runAudit overload to AuditRunner.; Add metadata field to ScoredItem\
+  \ for analyzer-specific data (misplaced lemmas, sub-scores, etc.)"
 modules:
 - name: audit-domain
+  models:
+  - name: ScoredItem
+    type: record
+    fields:
+    - name: metadata
+      type: "Map<String,Object>"
+      description: "Optional analyzer-specific data (misplaced lemmas, sub-scores\
+        \ by absence type, etc.)"
+      _change: add
+    _change: modify
   implementations:
   - name: KnowledgeTitleLengthAnalyzer
     handwrittenTests:
@@ -310,6 +321,7 @@ modules:
           rule: F-LABS-R031
       implements:
       - ContentAnalyzer
+  _change: modify
 - name: audit-cli
   interfaces:
   - name: AuditCli

@@ -125,7 +125,7 @@ public class SentenceLengthAnalyzerTest {
         AuditContext ctxSentQuiz = new AuditContext("0", "t1", "k2", "q2", null, null, null);
 
         TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-        ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k2", "q2", sentQuiz);
+        ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k2", "q2", sentQuiz, null);
 
         sut.onMilestone(milestone, ctxMilestone);
         sut.onKnowledge(nonSentKnowledge, ctxNonSentKnowledge);

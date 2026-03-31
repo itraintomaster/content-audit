@@ -46,7 +46,7 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
             }
         }
         results.add(new ScoredItem(ANALYZER_NAME, AuditTarget.KNOWLEDGE, score,
-                ctx.getMilestoneId(), ctx.getTopicId(), ctx.getKnowledgeId(), null, knowledge));
+                ctx.getMilestoneId(), ctx.getTopicId(), ctx.getKnowledgeId(), null, knowledge, null));
         return null;
     }
 

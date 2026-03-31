@@ -138,7 +138,7 @@ public class LemmaRecurrenceAnalyzer implements ContentAnalyzer {
         ExposureSummary exposureSummary = new ExposureSummary(normalCount, subExposedCount, overExposedCount);
 
         // lemmaStats is ordered by count descending (already sorted above)
-        courseResult = new ScoredItem(ANALYZER_NAME, AuditTarget.COURSE, overallScore, null, null, null, null, null);
+        courseResult = new ScoredItem(ANALYZER_NAME, AuditTarget.COURSE, overallScore, null, null, null, null, null, null);
         return null;
     }
 

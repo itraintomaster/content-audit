@@ -112,9 +112,10 @@ public class Main {
         IAuditEngine auditEngine = new IAuditEngine(contentAnalyzers, scoreAggregator);
         IContentAudit contentAudit = new IContentAudit(auditEngine);
 
-        // Application: runner
+        // Application: runner (with analyzer list for filtering support)
         DefaultAuditRunner auditRunner = new DefaultAuditRunner(
-                courseRepository, courseToAuditableMapper, contentAudit);
+                courseRepository, courseToAuditableMapper, contentAudit,
+                contentAnalyzers, scoreAggregator);
 
         // CLI layer: formatters, transformer, and registry
         DrillDownResolver drillDownResolver = new DefaultDrillDownResolver();
@@ -131,16 +132,29 @@ public class Main {
         List<SelfDescribingConfig> describableConfigs = List.of(
                 (SelfDescribingConfig) sentenceLengthConfig,
                 (SelfDescribingConfig) cocaBucketsConfig,
-                (SelfDescribingConfig) lemmaRecurrenceConfig);
+                (SelfDescribingConfig) lemmaRecurrenceConfig,
+                (SelfDescribingConfig) lemmaAbsenceConfig);
         DefaultAnalyzerRegistry analyzerRegistry = new DefaultAnalyzerRegistry(
                 contentAnalyzers, describableConfigs);
         AnalyzerStatsTransformer analyzerStatsTransformer = new DefaultAnalyzerStatsTransformer();
 
-        DefaultAuditCli auditCli = new DefaultAuditCli(
-                auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter,
-                analyzerRegistry, analyzerStatsTransformer);
+        // Wire picocli command tree
+        ContentAuditCmd rootCmd = new ContentAuditCmd();
+        picocli.CommandLine cmd = new picocli.CommandLine(rootCmd);
 
-        int exitCode = auditCli.run(args);
+        cmd.addSubcommand("analyze", new picocli.CommandLine(
+                new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter)));
+
+        picocli.CommandLine analyzerGroup = new picocli.CommandLine(new AnalyzerCmd());
+        analyzerGroup.addSubcommand("list", new picocli.CommandLine(
+                new AnalyzerListCmd(analyzerRegistry)));
+        analyzerGroup.addSubcommand("config", new picocli.CommandLine(
+                new AnalyzerConfigCmd(analyzerRegistry)));
+        analyzerGroup.addSubcommand("stats", new picocli.CommandLine(
+                new AnalyzerStatsCmd(analyzerRegistry, analyzerStatsTransformer, auditRunner)));
+        cmd.addSubcommand("analyzer", analyzerGroup);
+
+        int exitCode = cmd.execute(args);
         System.exit(exitCode);
     }
 }

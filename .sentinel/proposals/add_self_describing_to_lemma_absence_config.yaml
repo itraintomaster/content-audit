@@ -1,0 +1,12 @@
+code: __proposal__
+description: Make LemmaAbsenceConfig extend SelfDescribingConfig for consistent config
+  introspection
+modules:
+- name: audit-domain
+  interfaces:
+  - name: LemmaAbsenceConfig
+    sealed: false
+    _change: modify
+    extends:
+    - SelfDescribingConfig
+  _change: modify

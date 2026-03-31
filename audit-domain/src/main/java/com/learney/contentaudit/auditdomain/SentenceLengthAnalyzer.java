@@ -78,7 +78,8 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
                 ctx.getTopicId(),
                 ctx.getKnowledgeId(),
                 ctx.getQuizId(),
-                quiz
+                quiz,
+                null
         ));
         return null;
     }

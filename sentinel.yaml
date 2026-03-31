@@ -172,6 +172,10 @@ modules:
     - name: source
       type: AuditableEntity
       description: Reference to the auditable entity that generated this score
+    - name: metadata
+      type: "Map<String,Object>"
+      description: "Optional analyzer-specific data (misplaced lemmas, sub-scores\
+        \ by absence type, etc.)"
   - name: NodeScores
     type: record
     fields:
@@ -359,6 +363,8 @@ modules:
     - signature: "getMediumReportLimit(): int"
     - signature: "getLowReportLimit(): int"
     - signature: "getDiscountPerLevel(): double"
+    extends:
+    - SelfDescribingConfig
   - name: EvpCatalogPort
     stereotype: port
     sealed: false
