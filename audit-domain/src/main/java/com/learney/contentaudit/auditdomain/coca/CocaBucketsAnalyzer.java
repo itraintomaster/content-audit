@@ -222,7 +222,47 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
                 levelDistributions, progressionAssessments, overallScore, directives);
 
         // Emit ScoredItems per level and per quarter at MILESTONE target
+
+        // COURSE-level ScoredItem
+        Map<String, Object> courseMetadata = new LinkedHashMap<>();
+        courseMetadata.put("overallScore", overallScore);
+        List<Map<String, Object>> progressionMaps = new ArrayList<>();
+        for (ProgressionAssessment pa : progressionAssessments) {
+            Map<String, Object> m = new LinkedHashMap<>();
+            m.put("bandName", pa.getBandName());
+            m.put("actualProgression", pa.getActualProgression() != null ? pa.getActualProgression().name() : null);
+            m.put("expectedProgression", pa.getExpectedProgression() != null ? pa.getExpectedProgression().name() : null);
+            m.put("matches", pa.isMatches());
+            progressionMaps.add(m);
+        }
+        courseMetadata.put("progressionAssessments", progressionMaps);
+        List<Map<String, Object>> directiveMaps = new ArrayList<>();
+        for (ImprovementDirective d : directives) {
+            Map<String, Object> m = new LinkedHashMap<>();
+            m.put("type", d.getType() != null ? d.getType().name() : null);
+            m.put("bandName", d.getBandName());
+            m.put("levelName", d.getLevelName());
+            m.put("frequencyRangeFrom", d.getFrequencyRangeFrom());
+            m.put("frequencyRangeTo", d.getFrequencyRangeTo());
+            m.put("actualPercentage", d.getActualPercentage());
+            m.put("targetPercentage", d.getTargetPercentage());
+            directiveMaps.add(m);
+        }
+        courseMetadata.put("improvementDirectives", directiveMaps);
+        results.add(new ScoredItem(ANALYZER_NAME, AuditTarget.COURSE, overallScore, null, null, null, null, null, courseMetadata));
+
         for (LevelBucketDistribution level : levelDistributions) {
+            // Build MILESTONE metadata
+            Map<String, Object> milestoneMetadata = new LinkedHashMap<>();
+            int totalTokens = level.getBucketResults().stream().mapToInt(BucketResult::getCount).sum();
+            milestoneMetadata.put("totalTokens", totalTokens);
+            milestoneMetadata.put("buckets", buildBucketMetadataList(level.getBucketResults()));
+            List<Map<String, Object>> quarterMaps = new ArrayList<>();
+            for (QuarterResult qr : level.getQuarterResults()) {
+                quarterMaps.add(buildQuarterMetadata(qr));
+            }
+            milestoneMetadata.put("quarters", quarterMaps);
+
             results.add(new ScoredItem(
                     ANALYZER_NAME,
                     AuditTarget.MILESTONE,
@@ -232,8 +272,28 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
                     null,
                     null,
                     null,
-                    null
+                    milestoneMetadata
             ));
+
+            // Emit TOPIC-level ScoredItems
+            for (TopicBucketDistribution topic : level.getTopicDistributions()) {
+                Map<String, Object> topicMetadata = new LinkedHashMap<>();
+                int topicTotalTokens = topic.getBucketResults().stream().mapToInt(BucketResult::getCount).sum();
+                topicMetadata.put("totalTokens", topicTotalTokens);
+                topicMetadata.put("buckets", buildTopicBucketMetadataList(topic.getBucketResults()));
+                results.add(new ScoredItem(
+                        ANALYZER_NAME,
+                        AuditTarget.TOPIC,
+                        topic.getScore(),
+                        level.getLevelName(),
+                        topic.getTopicId(),
+                        null,
+                        null,
+                        null,
+                        topicMetadata
+                ));
+            }
+
             // Emit quarter-level detail scores
             for (QuarterResult qr : level.getQuarterResults()) {
                 results.add(new ScoredItem(
@@ -440,6 +500,49 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
             }
         }
         return defaultValue;
+    }
+
+    private Map<String, Object> buildBucketMetadata(BucketResult br) {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("bandName", br.getBandName());
+        m.put("count", br.getCount());
+        m.put("percentage", br.getPercentage());
+        m.put("targetPercentage", br.getTargetPercentage());
+        m.put("score", br.getScore());
+        m.put("assessment", br.getAssessment() != null ? br.getAssessment().name() : null);
+        return m;
+    }
+
+    private List<Map<String, Object>> buildBucketMetadataList(List<BucketResult> buckets) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        for (BucketResult br : buckets) {
+            list.add(buildBucketMetadata(br));
+        }
+        return list;
+    }
+
+    private Map<String, Object> buildTopicBucketMetadata(BucketResult br) {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("bandName", br.getBandName());
+        m.put("count", br.getCount());
+        m.put("percentage", br.getPercentage());
+        return m;
+    }
+
+    private List<Map<String, Object>> buildTopicBucketMetadataList(List<BucketResult> buckets) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        for (BucketResult br : buckets) {
+            list.add(buildTopicBucketMetadata(br));
+        }
+        return list;
+    }
+
+    private Map<String, Object> buildQuarterMetadata(QuarterResult qr) {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("index", qr.getIndex());
+        m.put("score", qr.getScore());
+        m.put("buckets", buildBucketMetadataList(qr.getBucketResults()));
+        return m;
     }
 
     @Override

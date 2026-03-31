@@ -141,6 +141,7 @@ public class Main {
         // Detailed formatters for --detailed mode
         Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
         detailedFormatters.put("lemma-absence", new LemmaAbsenceDetailedFormatter());
+        detailedFormatters.put("coca-buckets-distribution", new CocaBucketsDetailedFormatter());
 
         // Wire picocli command tree
         ContentAuditCmd rootCmd = new ContentAuditCmd();
