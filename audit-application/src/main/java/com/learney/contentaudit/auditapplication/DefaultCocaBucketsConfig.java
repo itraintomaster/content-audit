@@ -37,16 +37,16 @@ public class DefaultCocaBucketsConfig implements CocaBucketsConfig {
                     new BucketTarget("top4k", 1.0, TargetKind.AT_MOST)
             ),
             "A2", List.of(
-                    new BucketTarget("top1k", 70.0, TargetKind.AT_MOST),
+                    new BucketTarget("top1k", 70.0, TargetKind.AT_LEAST),
                     new BucketTarget("top4k", 10.0, TargetKind.AT_MOST)
             ),
             "B1", List.of(
                     new BucketTarget("top1k", 60.0, TargetKind.AT_MOST),
-                    new BucketTarget("top4k", 20.0, TargetKind.AT_MOST)
+                    new BucketTarget("top4k", 10.0, TargetKind.AT_LEAST)
             ),
             "B2", List.of(
                     new BucketTarget("top1k", 50.0, TargetKind.AT_MOST),
-                    new BucketTarget("top4k", 30.0, TargetKind.AT_LEAST)
+                    new BucketTarget("top4k", 20.0, TargetKind.AT_LEAST)
             )
     );
 
@@ -66,39 +66,39 @@ public class DefaultCocaBucketsConfig implements CocaBucketsConfig {
                     ))
             ),
             "A2", List.of(
-                    // Q1 — top1k uses AT_MOST (consistent with level target)
+                    // Q1 — top1k AT_LEAST (lower level: want common words)
                     new QuarterBucketTargets(List.of(
-                            new BucketTarget("top1k", 75.0, TargetKind.AT_MOST),
+                            new BucketTarget("top1k", 75.0, TargetKind.AT_LEAST),
                             new BucketTarget("top4k", 2.0, TargetKind.AT_MOST)
                     )),
                     // Q4
                     new QuarterBucketTargets(List.of(
-                            new BucketTarget("top1k", 65.0, TargetKind.AT_MOST),
+                            new BucketTarget("top1k", 65.0, TargetKind.AT_LEAST),
                             new BucketTarget("top4k", 15.0, TargetKind.AT_MOST)
                     ))
             ),
             "B1", List.of(
-                    // Q1 — top1k uses AT_MOST (consistent with level target)
+                    // Q1 — top4k AT_LEAST (higher level: want rare words)
                     new QuarterBucketTargets(List.of(
                             new BucketTarget("top1k", 65.0, TargetKind.AT_MOST),
-                            new BucketTarget("top4k", 15.0, TargetKind.AT_MOST)
+                            new BucketTarget("top4k", 5.0, TargetKind.AT_LEAST)
                     )),
                     // Q4
                     new QuarterBucketTargets(List.of(
                             new BucketTarget("top1k", 55.0, TargetKind.AT_MOST),
-                            new BucketTarget("top4k", 25.0, TargetKind.AT_MOST)
+                            new BucketTarget("top4k", 15.0, TargetKind.AT_LEAST)
                     ))
             ),
             "B2", List.of(
-                    // Q1 — top1k uses AT_MOST (consistent with level target)
+                    // Q1 — top4k AT_LEAST (higher level: want rare words)
                     new QuarterBucketTargets(List.of(
                             new BucketTarget("top1k", 55.0, TargetKind.AT_MOST),
-                            new BucketTarget("top4k", 25.0, TargetKind.AT_MOST)
+                            new BucketTarget("top4k", 15.0, TargetKind.AT_LEAST)
                     )),
                     // Q4
                     new QuarterBucketTargets(List.of(
                             new BucketTarget("top1k", 45.0, TargetKind.AT_MOST),
-                            new BucketTarget("top4k", 35.0, TargetKind.AT_MOST)
+                            new BucketTarget("top4k", 25.0, TargetKind.AT_LEAST)
                     ))
             )
     );
