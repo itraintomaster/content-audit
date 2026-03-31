@@ -31,6 +31,11 @@ public class ScoredItem {
     }
 
     public ScoredItem(String analyzerName, AuditTarget target, double score, String milestoneId,
+            String topicId, String knowledgeId, String quizId, AuditableEntity source) {
+        this(analyzerName, target, score, milestoneId, topicId, knowledgeId, quizId, source, null);
+    }
+
+    public ScoredItem(String analyzerName, AuditTarget target, double score, String milestoneId,
             String topicId, String knowledgeId, String quizId, AuditableEntity source,
             Map<String, Object> metadata) {
         this.analyzerName = analyzerName;

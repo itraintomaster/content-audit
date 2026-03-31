@@ -138,12 +138,17 @@ public class Main {
                 contentAnalyzers, describableConfigs);
         AnalyzerStatsTransformer analyzerStatsTransformer = new DefaultAnalyzerStatsTransformer();
 
+        // Detailed formatters for --detailed mode
+        Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
+        detailedFormatters.put("lemma-absence", new LemmaAbsenceDetailedFormatter());
+
         // Wire picocli command tree
         ContentAuditCmd rootCmd = new ContentAuditCmd();
         picocli.CommandLine cmd = new picocli.CommandLine(rootCmd);
 
         cmd.addSubcommand("analyze", new picocli.CommandLine(
-                new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter)));
+                new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
+                        rawReportFormatter, detailedFormatters)));
 
         picocli.CommandLine analyzerGroup = new picocli.CommandLine(new AnalyzerCmd());
         analyzerGroup.addSubcommand("list", new picocli.CommandLine(

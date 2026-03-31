@@ -2,10 +2,18 @@ package com.learney.contentaudit.auditapplication;
 
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.ContentAudit;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IContentAudit;
+import com.learney.contentaudit.auditdomain.ScoreAggregator;
+import com.learney.contentaudit.auditdomain.ScoredItem;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -19,17 +27,60 @@ public class DefaultAuditRunner implements AuditRunner {
 
     private final ContentAudit contentAudit;
 
+    private final List<ContentAnalyzer> allAnalyzers;
+
+    private final ScoreAggregator scoreAggregator;
+
     public DefaultAuditRunner(CourseRepository courseRepository,
-            CourseToAuditableMapper courseToAuditableMapper, ContentAudit contentAudit) {
+            CourseToAuditableMapper courseToAuditableMapper, ContentAudit contentAudit,
+            List<ContentAnalyzer> allAnalyzers, ScoreAggregator scoreAggregator) {
         this.courseRepository = courseRepository;
         this.courseToAuditableMapper = courseToAuditableMapper;
         this.contentAudit = contentAudit;
+        this.allAnalyzers = allAnalyzers;
+        this.scoreAggregator = scoreAggregator;
+    }
+
+    public AuditReport runAudit(Path coursePath) {
+        return runAudit(coursePath, null);
     }
 
     @Override
-    public AuditReport runAudit(Path coursePath) {
+    public AuditReport runAudit(Path coursePath, Set<String> analyzerNames) {
         CourseEntity courseEntity = courseRepository.load(coursePath);
         AuditableCourse auditableCourse = courseToAuditableMapper.map(courseEntity);
-        return contentAudit.audit(auditableCourse);
+
+        if (analyzerNames == null || analyzerNames.isEmpty()) {
+            return contentAudit.audit(auditableCourse);
+        }
+
+        List<ContentAnalyzer> filtered = allAnalyzers.stream()
+                .filter(a -> analyzerNames.contains(a.getName()))
+                .toList();
+        ContentAudit filteredAudit = new IContentAudit(
+                new IAuditEngine(filtered, scoreAggregator));
+        return filteredAudit.audit(auditableCourse);
     }
+
+    @Override
+    public List<ScoredItem> runDetailedAudit(Path coursePath, String analyzerName) {
+        CourseEntity courseEntity = courseRepository.load(coursePath);
+        AuditableCourse auditableCourse = courseToAuditableMapper.map(courseEntity);
+
+        List<ContentAnalyzer> filtered = allAnalyzers.stream()
+                .filter(a -> analyzerName.equals(a.getName()))
+                .toList();
+        if (filtered.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        // Run audit with the single analyzer
+        ContentAudit filteredAudit = new IContentAudit(
+                new IAuditEngine(filtered, scoreAggregator));
+        filteredAudit.audit(auditableCourse);
+
+        // Return the raw ScoredItems (with metadata intact)
+        return filtered.get(0).getResults();
+    }
+
 }

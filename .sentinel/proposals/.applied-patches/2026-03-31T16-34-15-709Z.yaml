@@ -1,0 +1,39 @@
+code: __proposal__
+description: "Add detailed audit output: new AuditRunner method, DetailedFormatter\
+  \ interface, LemmaAbsenceDetailedFormatter, and AnalyzeCmd wiring for --detailed\
+  \ flag"
+modules:
+- name: audit-application
+  interfaces:
+  - name: AuditRunner
+    sealed: false
+    exposes:
+    - signature: "runDetailedAudit(Path coursePath,String analyzerName): List<ScoredItem>"
+    _change: modify
+  implementations:
+  - name: DefaultAuditRunner
+    implements:
+    - AuditRunner
+    _change: modify
+  _change: modify
+- name: audit-cli
+  interfaces:
+  - name: DetailedFormatter
+    stereotype: formatter
+    sealed: false
+    exposes:
+    - signature: "format(String analyzerName,List<ScoredItem> items): String"
+    _change: add
+  implementations:
+  - name: LemmaAbsenceDetailedFormatter
+    types:
+    - Component
+    implements:
+    - DetailedFormatter
+    _change: add
+  - name: AnalyzeCmd
+    requiresInject:
+    - name: detailedFormatters
+      type: "Map<String,DetailedFormatter>"
+    _change: modify
+  _change: modify

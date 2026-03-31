@@ -2136,6 +2136,7 @@ modules:
     sealed: false
     exposes:
     - signature: "runAudit(Path coursePath,Set<String> analyzerNames): AuditReport"
+    - signature: "runDetailedAudit(Path coursePath,String analyzerName): List<ScoredItem>"
   - name: CourseMapper
     stereotype: port
     sealed: false
@@ -3904,6 +3905,11 @@ modules:
     - signature: "getEntity(): AuditableEntity"
     - signature: "getOverallScore(): double"
     - signature: "getAnalyzerScores(): Map<String,Double>"
+  - name: DetailedFormatter
+    stereotype: formatter
+    sealed: false
+    exposes:
+    - signature: "format(String analyzerName,List<ScoredItem> items): String"
   implementations:
   - name: TextReportFormatter
     requiresInject:
@@ -3961,6 +3967,8 @@ modules:
       type: RawReportFormatter
     - name: drillDownResolver
       type: DrillDownResolver
+    - name: detailedFormatters
+      type: "Map<String,DetailedFormatter>"
     types:
     - Component
     externalImplements:
@@ -3998,6 +4006,11 @@ modules:
     - Component
     externalImplements:
     - java.util.concurrent.Callable<Integer>
+  - name: LemmaAbsenceDetailedFormatter
+    types:
+    - Component
+    implements:
+    - DetailedFormatter
   patterns:
   - type: Strategy
     implementations:
