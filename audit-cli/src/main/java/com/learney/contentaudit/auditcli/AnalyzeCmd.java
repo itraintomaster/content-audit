@@ -138,7 +138,7 @@ public class AnalyzeCmd implements Callable<Integer> {
                 }
                 List<ScoredItem> items = auditRunner.runDetailedAudit(
                         Path.of(resolvedPath), analyzerName);
-                System.out.println(detailedFormatter.format(analyzerName, items));
+                System.out.println(detailedFormatter.format(analyzerName, items, formatName));
                 return 0;
             }
 

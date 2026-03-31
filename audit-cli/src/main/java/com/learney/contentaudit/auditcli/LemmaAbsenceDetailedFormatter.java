@@ -15,39 +15,123 @@ import javax.annotation.processing.Generated;
 class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
 
     @Override
-    public String format(String analyzerName, List<ScoredItem> items) {
+    public String format(String analyzerName, List<ScoredItem> items, String outputFormat) {
+        Partitioned p = partition(items);
+        return switch (outputFormat) {
+            case "json" -> formatJson(p);
+            case "table" -> formatTable(p);
+            default -> formatText(p);
+        };
+    }
+
+    // ── JSON format ──────────────────────────────────────────────────────────
+
+    private String formatJson(Partitioned p) {
         StringBuilder sb = new StringBuilder();
+        sb.append("{\n");
 
-        // Partition items by target level
-        ScoredItem courseItem = null;
-        Map<String, ScoredItem> milestoneItems = new LinkedHashMap<>();
-        Map<String, List<ScoredItem>> topicsByLevel = new LinkedHashMap<>();
-        Map<String, List<ScoredItem>> knowledgesByLevel = new LinkedHashMap<>();
-
-        for (ScoredItem item : items) {
-            switch (item.getTarget()) {
-                case COURSE:
-                    courseItem = item;
-                    break;
-                case MILESTONE:
-                    milestoneItems.put(item.getMilestoneId(), item);
-                    break;
-                case TOPIC:
-                    topicsByLevel.computeIfAbsent(item.getMilestoneId(), k -> new ArrayList<>()).add(item);
-                    break;
-                case KNOWLEDGE:
-                    knowledgesByLevel.computeIfAbsent(item.getMilestoneId(), k -> new ArrayList<>()).add(item);
-                    break;
-                default:
-                    break;
-            }
+        // Course
+        if (p.course != null) {
+            sb.append("  \"score\": ").append(fmt(p.course.getScore())).append(",\n");
+            String assessment = p.course.getMetadata() != null
+                    ? jsonStr(p.course.getMetadata().get("assessment")) : "null";
+            sb.append("  \"assessment\": ").append(assessment).append(",\n");
         }
 
+        // Milestones
+        sb.append("  \"levels\": [\n");
+        int mi = 0;
+        for (Map.Entry<String, ScoredItem> e : p.milestones.entrySet()) {
+            if (mi > 0) sb.append(",\n");
+            ScoredItem m = e.getValue();
+            Map<String, Object> meta = m.getMetadata();
+            sb.append("    {\n");
+            sb.append("      \"level\": \"").append(e.getKey()).append("\",\n");
+            sb.append("      \"score\": ").append(fmt(m.getScore())).append(",\n");
+            sb.append("      \"totalExpected\": ").append(meta != null ? meta.getOrDefault("totalExpected", 0) : 0).append(",\n");
+            sb.append("      \"totalAbsent\": ").append(meta != null ? meta.getOrDefault("totalAbsent", 0) : 0).append(",\n");
+            sb.append("      \"absencePercentage\": ").append(meta != null ? fmt(toDouble(meta.get("absencePercentage"))) : "0").append(",\n");
+            sb.append("      \"completelyAbsentScore\": ").append(meta != null ? fmt(toDouble(meta.get("completely_absentScore"))) : "0").append(",\n");
+            sb.append("      \"appearsTooLateScore\": ").append(meta != null ? fmt(toDouble(meta.get("appears_too_lateScore"))) : "0").append(",\n");
+            sb.append("      \"appearsTooEarlyScore\": ").append(meta != null ? fmt(toDouble(meta.get("appears_too_earlyScore"))) : "0").append(",\n");
+            sb.append("      \"scatteredPlacementScore\": ").append(meta != null ? fmt(toDouble(meta.get("scattered_placementScore"))) : "0").append(",\n");
+
+            // Topics for this level
+            List<ScoredItem> topics = p.topicsByLevel.getOrDefault(e.getKey(), List.of());
+            sb.append("      \"topics\": [");
+            for (int ti = 0; ti < topics.size(); ti++) {
+                ScoredItem t = topics.get(ti);
+                if (ti > 0) sb.append(",");
+                String label = t.getSource() != null ? t.getSource().getLabel() : t.getTopicId();
+                Map<String, Object> tm = t.getMetadata();
+                int mc = tm != null ? toInt(tm.get("misplacedLemmaCount")) : 0;
+                sb.append("\n        {\"topic\": ").append(jsonStr(label))
+                  .append(", \"score\": ").append(fmt(t.getScore()))
+                  .append(", \"misplacedLemmaCount\": ").append(mc).append("}");
+            }
+            sb.append(topics.isEmpty() ? "]" : "\n      ]");
+
+            sb.append("\n    }");
+            mi++;
+        }
+        sb.append("\n  ]\n}");
+        return sb.toString();
+    }
+
+    // ── Table format (compact) ───────────────────────────────────────────────
+
+    private String formatTable(Partitioned p) {
+        StringBuilder sb = new StringBuilder();
+
+        // Course header
+        String assessment = p.course != null && p.course.getMetadata() != null
+                ? String.valueOf(p.course.getMetadata().get("assessment")) : "N/A";
+        double courseScore = p.course != null ? p.course.getScore() : 0.0;
+        sb.append(String.format("Score: %.2f | Assessment: %s%n%n", courseScore, assessment));
+
+        // Level table
+        sb.append(String.format("%-6s %6s %8s %6s %8s  %-30s%n",
+                "Level", "Score", "Expected", "Absent", "Absent%", "Topics (misplaced count)"));
+        sb.append("─".repeat(80)).append("\n");
+
+        for (Map.Entry<String, ScoredItem> entry : p.milestones.entrySet()) {
+            String level = entry.getKey();
+            ScoredItem m = entry.getValue();
+            Map<String, Object> meta = m.getMetadata();
+
+            // Build compact topic summary
+            List<ScoredItem> topics = p.topicsByLevel.getOrDefault(level, List.of());
+            StringBuilder topicSummary = new StringBuilder();
+            for (int i = 0; i < Math.min(3, topics.size()); i++) {
+                ScoredItem t = topics.get(i);
+                String label = t.getSource() != null ? t.getSource().getLabel() : "?";
+                Map<String, Object> tm = t.getMetadata();
+                int mc = tm != null ? toInt(tm.get("misplacedLemmaCount")) : 0;
+                if (i > 0) topicSummary.append(", ");
+                topicSummary.append(label).append("(").append(mc).append(")");
+            }
+            if (topics.size() > 3) topicSummary.append(" +").append(topics.size() - 3);
+
+            sb.append(String.format("%-6s %6.2f %8s %6s %7.1f%%  %s%n",
+                    level,
+                    m.getScore(),
+                    meta != null ? meta.getOrDefault("totalExpected", "") : "",
+                    meta != null ? meta.getOrDefault("totalAbsent", "") : "",
+                    meta != null ? toDouble(meta.get("absencePercentage")) : 0.0,
+                    truncate(topicSummary.toString(), 50)));
+        }
+        return sb.toString();
+    }
+
+    // ── Text format (full detail) ────────────────────────────────────────────
+
+    private String formatText(Partitioned p) {
+        StringBuilder sb = new StringBuilder();
+
         // Header
-        String assessment = courseItem != null && courseItem.getMetadata() != null
-                ? String.valueOf(courseItem.getMetadata().get("assessment"))
-                : "N/A";
-        double courseScore = courseItem != null ? courseItem.getScore() : 0.0;
+        String assessment = p.course != null && p.course.getMetadata() != null
+                ? String.valueOf(p.course.getMetadata().get("assessment")) : "N/A";
+        double courseScore = p.course != null ? p.course.getScore() : 0.0;
         sb.append(String.format("Lemma Absence Analysis | Score: %.2f | Assessment: %s%n%n",
                 courseScore, assessment));
 
@@ -57,15 +141,14 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
                 "Completely", "TooLate", "TooEarly", "Scattered"));
         sb.append("─".repeat(85)).append("\n");
 
-        for (Map.Entry<String, ScoredItem> entry : milestoneItems.entrySet()) {
+        for (Map.Entry<String, ScoredItem> entry : p.milestones.entrySet()) {
             String level = entry.getKey();
             ScoredItem mi = entry.getValue();
             Map<String, Object> meta = mi.getMetadata();
             if (meta == null) continue;
 
             sb.append(String.format("%-6s %6.2f %9s %7s %7.1f%% %11.2f %8.2f %9.2f %9.2f%n",
-                    level,
-                    mi.getScore(),
+                    level, mi.getScore(),
                     meta.getOrDefault("totalExpected", ""),
                     meta.getOrDefault("totalAbsent", ""),
                     toDouble(meta.get("absencePercentage")),
@@ -76,7 +159,7 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
         }
 
         // Topic breakdown per level
-        for (Map.Entry<String, List<ScoredItem>> entry : topicsByLevel.entrySet()) {
+        for (Map.Entry<String, List<ScoredItem>> entry : p.topicsByLevel.entrySet()) {
             String level = entry.getKey();
             List<ScoredItem> topics = entry.getValue();
             if (topics.isEmpty()) continue;
@@ -95,12 +178,11 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
         }
 
         // Knowledge detail per level (top 10 worst scores)
-        for (Map.Entry<String, List<ScoredItem>> entry : knowledgesByLevel.entrySet()) {
+        for (Map.Entry<String, List<ScoredItem>> entry : p.knowledgesByLevel.entrySet()) {
             String level = entry.getKey();
-            List<ScoredItem> knowledges = entry.getValue();
+            List<ScoredItem> knowledges = new ArrayList<>(entry.getValue());
             if (knowledges.isEmpty()) continue;
 
-            // Sort by score ascending (worst first)
             knowledges.sort((a, b) -> Double.compare(a.getScore(), b.getScore()));
             List<ScoredItem> top = knowledges.subList(0, Math.min(10, knowledges.size()));
 
@@ -121,6 +203,29 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
         return sb.toString();
     }
 
+    // ── Shared helpers ───────────────────────────────────────────────────────
+
+    private static class Partitioned {
+        ScoredItem course;
+        Map<String, ScoredItem> milestones = new LinkedHashMap<>();
+        Map<String, List<ScoredItem>> topicsByLevel = new LinkedHashMap<>();
+        Map<String, List<ScoredItem>> knowledgesByLevel = new LinkedHashMap<>();
+    }
+
+    private Partitioned partition(List<ScoredItem> items) {
+        Partitioned p = new Partitioned();
+        for (ScoredItem item : items) {
+            switch (item.getTarget()) {
+                case COURSE -> p.course = item;
+                case MILESTONE -> p.milestones.put(item.getMilestoneId(), item);
+                case TOPIC -> p.topicsByLevel.computeIfAbsent(item.getMilestoneId(), k -> new ArrayList<>()).add(item);
+                case KNOWLEDGE -> p.knowledgesByLevel.computeIfAbsent(item.getMilestoneId(), k -> new ArrayList<>()).add(item);
+                default -> {}
+            }
+        }
+        return p;
+    }
+
     @SuppressWarnings("unchecked")
     private String formatMisplacedLemmas(Map<String, Object> meta) {
         if (meta == null) return "";
@@ -133,12 +238,20 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
         for (int i = 0; i < Math.min(5, lemmas.size()); i++) {
             Map<String, String> l = lemmas.get(i);
             if (i > 0) sb.append(", ");
-            sb.append(l.get("lemma")).append("(").append(l.get("pos")).append("→").append(l.get("expectedLevel")).append(")");
+            sb.append(l.get("lemma")).append("(").append(l.get("pos"))
+              .append("→").append(l.get("expectedLevel")).append(")");
         }
-        if (lemmas.size() > 5) {
-            sb.append(" +").append(lemmas.size() - 5).append(" more");
-        }
+        if (lemmas.size() > 5) sb.append(" +").append(lemmas.size() - 5).append(" more");
         return sb.toString();
+    }
+
+    private static String jsonStr(Object val) {
+        if (val == null) return "null";
+        return "\"" + String.valueOf(val).replace("\"", "\\\"") + "\"";
+    }
+
+    private static String fmt(double val) {
+        return String.format(java.util.Locale.ROOT, "%.4f", val);
     }
 
     private static double toDouble(Object val) {

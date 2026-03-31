@@ -3909,7 +3909,7 @@ modules:
     stereotype: formatter
     sealed: false
     exposes:
-    - signature: "format(String analyzerName,List<ScoredItem> items): String"
+    - signature: "format(String analyzerName,List<ScoredItem> items,String outputFormat): String"
   implementations:
   - name: TextReportFormatter
     requiresInject:
