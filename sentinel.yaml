@@ -57,7 +57,8 @@ modules:
       type: String
     - name: isSentence
       type: boolean
-      description: Flag indicating whether this knowledge contains sentence-type quizzes eligible for length analysis
+      description: Flag indicating whether this knowledge contains sentence-type quizzes
+        eligible for length analysis
     - name: id
       type: String
       description: Knowledge identifier
@@ -163,7 +164,8 @@ modules:
       description: Topic this score belongs to (null if target is MILESTONE or COURSE)
     - name: knowledgeId
       type: String
-      description: Knowledge this score belongs to (null if target is MILESTONE, TOPIC, or COURSE)
+      description: "Knowledge this score belongs to (null if target is MILESTONE,\
+        \ TOPIC, or COURSE)"
     - name: quizId
       type: String
       description: Quiz this score belongs to (only present if target is QUIZ)
@@ -174,7 +176,7 @@ modules:
     type: record
     fields:
     - name: scores
-      type: Map<String,Double>
+      type: "Map<String,Double>"
       description: Map of analyzerName to score at this node level
   - name: QuizNode
     type: record
@@ -185,7 +187,8 @@ modules:
       type: NodeScores
     - name: entity
       type: AuditableEntity
-      description: Reference to the auditable entity carrying identity (id, label, code)
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
   - name: KnowledgeNode
     type: record
     fields:
@@ -197,7 +200,8 @@ modules:
       type: List<QuizNode>
     - name: entity
       type: AuditableEntity
-      description: Reference to the auditable entity carrying identity (id, label, code)
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
   - name: TopicNode
     type: record
     fields:
@@ -209,7 +213,8 @@ modules:
       type: List<KnowledgeNode>
     - name: entity
       type: AuditableEntity
-      description: Reference to the auditable entity carrying identity (id, label, code)
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
   - name: MilestoneNode
     type: record
     fields:
@@ -221,7 +226,8 @@ modules:
       type: List<TopicNode>
     - name: entity
       type: AuditableEntity
-      description: Reference to the auditable entity carrying identity (id, label, code)
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
   - name: NlpToken
     type: record
     fields:
@@ -233,7 +239,7 @@ modules:
       description: Lemmatized form of the token
     - name: posTag
       type: String
-      description: Universal Dependencies POS tag (NOUN, VERB, ADJ, etc.)
+      description: "Universal Dependencies POS tag (NOUN, VERB, ADJ, etc.)"
     - name: frequencyRank
       type: Integer
       description: COCA frequency ranking (nullable if not found)
@@ -260,118 +266,119 @@ modules:
     stereotype: service
     sealed: false
     exposes:
-    - signature: 'audit(AuditableCourse): AuditReport'
+    - signature: "audit(AuditableCourse): AuditReport"
   - name: AuditEngine
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'runAudit(AuditableCourse): AuditReport'
+    - signature: "runAudit(AuditableCourse): AuditReport"
   - name: ContentAnalyzer
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'onKnowledge(AuditableKnowledge knowledge,AuditContext ctx): Void'
-    - signature: 'onQuiz(AuditableQuiz quiz,AuditContext ctx): Void'
-    - signature: 'onMilestone(AuditableMilestone milestone,AuditContext ctx): Void'
-    - signature: 'onTopic(AuditableTopic topic,AuditContext ctx): Void'
-    - signature: 'onCourseComplete(AuditableCourse course,AuditContext ctx): Void'
-    - signature: 'getName(): String'
-    - signature: 'getTarget(): AuditTarget'
-    - signature: 'getResults(): List<ScoredItem>'
-    - signature: 'getDescription(): String'
+    - signature: "onKnowledge(AuditableKnowledge knowledge,AuditContext ctx): Void"
+    - signature: "onQuiz(AuditableQuiz quiz,AuditContext ctx): Void"
+    - signature: "onMilestone(AuditableMilestone milestone,AuditContext ctx): Void"
+    - signature: "onTopic(AuditableTopic topic,AuditContext ctx): Void"
+    - signature: "onCourseComplete(AuditableCourse course,AuditContext ctx): Void"
+    - signature: "getName(): String"
+    - signature: "getTarget(): AuditTarget"
+    - signature: "getResults(): List<ScoredItem>"
+    - signature: "getDescription(): String"
   - name: AnalysisResult
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'getName(): String'
-    - signature: 'getScore(): double'
-    - signature: 'getTarget(): AuditTarget'
+    - signature: "getName(): String"
+    - signature: "getScore(): double"
+    - signature: "getTarget(): AuditTarget"
   - name: NlpTokenizer
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'tokenize(String text): List<String>'
-    - signature: 'countTokens(String text): int'
-    - signature: 'analyzeTokens(String text): List<NlpToken>'
-    - signature: 'analyzeTokensBatch(List<String> sentences): Map<String,List<NlpToken>>'
+    - signature: "tokenize(String text): List<String>"
+    - signature: "countTokens(String text): int"
+    - signature: "analyzeTokens(String text): List<NlpToken>"
+    - signature: "analyzeTokensBatch(List<String> sentences): Map<String,List<NlpToken>>"
   - name: SentenceLengthConfig
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'getTargetRange(CefrLevel level): Optional<TargetRange>'
-    - signature: 'getToleranceMargin(): int'
+    - signature: "getTargetRange(CefrLevel level): Optional<TargetRange>"
+    - signature: "getToleranceMargin(): int"
     extends:
     - SelfDescribingConfig
   - name: ScoreAggregator
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'aggregate(List<ScoredItem> scores,Map<String,AuditableEntity> entityMap): AuditReport'
+    - signature: "aggregate(List<ScoredItem> scores,Map<String,AuditableEntity> entityMap):\
+        \ AuditReport"
   - name: CocaBucketsConfig
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'getBandConfiguration(): BandConfiguration'
-    - signature: 'getTargetsForLevel(String levelName): List<BucketTarget>'
-    - signature: 'getQuarterTargetsForLevel(String levelName): List<QuarterBucketTargets>'
-    - signature: 'getToleranceMargin(): double'
-    - signature: 'getAnalysisStrategy(): AnalysisStrategy'
-    - signature: 'getProgressionExpectations(): List<ProgressionExpectation>'
+    - signature: "getBandConfiguration(): BandConfiguration"
+    - signature: "getTargetsForLevel(String levelName): List<BucketTarget>"
+    - signature: "getQuarterTargetsForLevel(String levelName): List<QuarterBucketTargets>"
+    - signature: "getToleranceMargin(): double"
+    - signature: "getAnalysisStrategy(): AnalysisStrategy"
+    - signature: "getProgressionExpectations(): List<ProgressionExpectation>"
     extends:
     - SelfDescribingConfig
   - name: ContentWordFilter
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'isContentWord(NlpToken token): boolean'
+    - signature: "isContentWord(NlpToken token): boolean"
   - name: LemmaRecurrenceConfig
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'getTop(): int'
-    - signature: 'getSubExposedThreshold(): double'
-    - signature: 'getOverExposedThreshold(): double'
+    - signature: "getTop(): int"
+    - signature: "getSubExposedThreshold(): double"
+    - signature: "getOverExposedThreshold(): double"
     extends:
     - SelfDescribingConfig
   - name: LemmaAbsenceConfig
     stereotype: port
     sealed: true
     exposes:
-    - signature: 'getAbsoluteThreshold(CefrLevel level): int'
-    - signature: 'getPercentageThreshold(CefrLevel level): double'
-    - signature: 'getLevelWeight(CefrLevel level): double'
-    - signature: 'getHighPriorityBound(): int'
-    - signature: 'getMediumPriorityBound(): int'
-    - signature: 'getLowPriorityBound(): int'
-    - signature: 'getHighPriorityAlertThreshold(): int'
-    - signature: 'getMediumPriorityAlertThreshold(): int'
-    - signature: 'getLowPriorityAlertThreshold(): int'
-    - signature: 'getCriticalAbsenceThreshold(): int'
-    - signature: 'getAcceptableAbsenceThreshold(): int'
-    - signature: 'getHighReportLimit(): int'
-    - signature: 'getMediumReportLimit(): int'
-    - signature: 'getLowReportLimit(): int'
-    - signature: 'getDiscountPerLevel(): double'
+    - signature: "getAbsoluteThreshold(CefrLevel level): int"
+    - signature: "getPercentageThreshold(CefrLevel level): double"
+    - signature: "getLevelWeight(CefrLevel level): double"
+    - signature: "getHighPriorityBound(): int"
+    - signature: "getMediumPriorityBound(): int"
+    - signature: "getLowPriorityBound(): int"
+    - signature: "getHighPriorityAlertThreshold(): int"
+    - signature: "getMediumPriorityAlertThreshold(): int"
+    - signature: "getLowPriorityAlertThreshold(): int"
+    - signature: "getCriticalAbsenceThreshold(): int"
+    - signature: "getAcceptableAbsenceThreshold(): int"
+    - signature: "getHighReportLimit(): int"
+    - signature: "getMediumReportLimit(): int"
+    - signature: "getLowReportLimit(): int"
+    - signature: "getDiscountPerLevel(): double"
   - name: EvpCatalogPort
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'getExpectedLemmas(CefrLevel level): Set<LemmaAndPos>'
-    - signature: 'isPhrase(String lemma): boolean'
-    - signature: 'getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>'
-    - signature: 'getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>'
+    - signature: "getExpectedLemmas(CefrLevel level): Set<LemmaAndPos>"
+    - signature: "isPhrase(String lemma): boolean"
+    - signature: "getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>"
+    - signature: "getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>"
   - name: AuditableEntity
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'getId(): String'
-    - signature: 'getLabel(): String'
-    - signature: 'getCode(): String'
+    - signature: "getId(): String"
+    - signature: "getLabel(): String"
+    - signature: "getCode(): String"
   - name: SelfDescribingConfig
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'describe(): Map<String,Object>'
+    - signature: "describe(): Map<String,Object>"
   implementations:
   - name: IAuditEngine
     requiresInject:
@@ -448,7 +455,8 @@ modules:
     - name: should complete without error when onCourseComplete is called
       traceability:
         feature: F-KTLEN
-    - name: should return two correctly scored items for two knowledges with different title lengths
+    - name: should return two correctly scored items for two knowledges with different
+        title lengths
       traceability:
         feature: F-KTLEN
         rule: F-KTLEN-R003
@@ -519,7 +527,8 @@ modules:
     - name: should return empty list when getResults is called without prior processing
       traceability:
         feature: F-KTLEN
-    - name: should produce correct scores for three knowledges with different instruction lengths
+    - name: should produce correct scores for three knowledges with different instruction
+        lengths
       traceability:
         feature: F-KTLEN
         rule: F-KTLEN-R006
@@ -629,9 +638,10 @@ modules:
   scope: internal
   packages:
   - name: coca
-    description: COCA frequency bucket distribution analysis. Classifies NLP tokens into frequency bands (K1-K5+), evaluates
-      distribution against configurable targets per CEFR level, assesses progression across levels, and generates improvement
-      directives.
+    description: "COCA frequency bucket distribution analysis. Classifies NLP tokens\
+      \ into frequency bands (K1-K5+), evaluates distribution against configurable\
+      \ targets per CEFR level, assesses progression across levels, and generates\
+      \ improvement directives."
     visibility: internal
     models:
     - name: FrequencyBand
@@ -639,7 +649,7 @@ modules:
       fields:
       - name: name
         type: String
-        description: Band identifier (e.g. K1, K2, K3, K4, K5_PLUS)
+        description: "Band identifier (e.g. K1, K2, K3, K4, K5_PLUS)"
       - name: lowerBound
         type: int
         description: Inclusive lower frequency rank bound
@@ -654,7 +664,7 @@ modules:
         description: Ordered list of frequency bands from most common to least common
       - name: openEnded
         type: boolean
-        description: If true, the last band captures all ranks above its lower bound
+        description: "If true, the last band captures all ranks above its lower bound"
     - name: AssessmentState
       type: enum
       fields:
@@ -723,7 +733,7 @@ modules:
       fields:
       - name: levelName
         type: String
-        description: CEFR level name (e.g. A1, A2, B1, B2)
+        description: "CEFR level name (e.g. A1, A2, B1, B2)"
       - name: score
         type: double
         description: Aggregated score for this level (0.0-1.0)
@@ -836,17 +846,19 @@ modules:
       stereotype: port
       sealed: false
       exposes:
-      - signature: 'classify(int frequencyRank,BandConfiguration bandConfig): FrequencyBand'
+      - signature: "classify(int frequencyRank,BandConfiguration bandConfig): FrequencyBand"
     - name: ProgressionEvaluator
       stereotype: port
       sealed: false
       exposes:
-      - signature: 'evaluate(List<LevelBucketDistribution> levels,List<ProgressionExpectation> expectations): List<ProgressionAssessment>'
+      - signature: "evaluate(List<LevelBucketDistribution> levels,List<ProgressionExpectation>\
+          \ expectations): List<ProgressionAssessment>"
     - name: ImprovementPlanner
       stereotype: port
       sealed: false
       exposes:
-      - signature: 'plan(List<LevelBucketDistribution> levels,BandConfiguration bandConfig,CocaBucketsConfig config): List<ImprovementDirective>'
+      - signature: "plan(List<LevelBucketDistribution> levels,BandConfiguration bandConfig,CocaBucketsConfig\
+          \ config): List<ImprovementDirective>"
     implementations:
     - name: CocaBucketsAnalyzer
       requiresInject:
@@ -875,9 +887,10 @@ modules:
       implements:
       - ImprovementPlanner
   - name: lrec
-    description: Lemma recurrence analysis by spaced repetition. Tracks global word positions across the course, calculates
-      mean intervals between consecutive lemma occurrences, classifies exposure status (normal, sub-exposed, over-exposed),
-      and produces a course-level recurrence score.
+    description: "Lemma recurrence analysis by spaced repetition. Tracks global word\
+      \ positions across the course, calculates mean intervals between consecutive\
+      \ lemma occurrences, classifies exposure status (normal, sub-exposed, over-exposed),\
+      \ and produces a course-level recurrence score."
     visibility: internal
     models:
     - name: ExposureStatus
@@ -897,7 +910,7 @@ modules:
         description: Lemmatized form of the word
       - name: pos
         type: String
-        description: Predominant POS tag (NOUN, VERB, ADJ, ADV)
+        description: "Predominant POS tag (NOUN, VERB, ADJ, ADV)"
       - name: count
         type: int
         description: Total number of occurrences in the course
@@ -909,7 +922,7 @@ modules:
         description: Population standard deviation of intervals
       - name: exposureStatus
         type: ExposureStatus
-        description: 'Exposure classification: NORMAL, SUB_EXPOSED, or OVER_EXPOSED'
+        description: "Exposure classification: NORMAL, SUB_EXPOSED, or OVER_EXPOSED"
       - name: occurrencePositions
         type: List<Integer>
         description: All global positions where this lemma appears
@@ -930,7 +943,7 @@ modules:
       fields:
       - name: lemmaStats
         type: List<LemmaStats>
-        description: Per-lemma statistics, ordered by count descending
+        description: "Per-lemma statistics, ordered by count descending"
       - name: exposureSummary
         type: ExposureSummary
         description: Aggregate counts by exposure status
@@ -942,13 +955,14 @@ modules:
       stereotype: port
       sealed: false
       exposes:
-      - signature: 'calculateMeanInterval(List<Integer> positions): double'
-      - signature: 'calculateStdDevInterval(List<Integer> positions,double meanInterval): double'
+      - signature: "calculateMeanInterval(List<Integer> positions): double"
+      - signature: "calculateStdDevInterval(List<Integer> positions,double meanInterval):\
+          \ double"
     - name: ExposureClassifier
       stereotype: port
       sealed: false
       exposes:
-      - signature: 'classify(double meanInterval,LemmaRecurrenceConfig config): ExposureStatus'
+      - signature: "classify(double meanInterval,LemmaRecurrenceConfig config): ExposureStatus"
     implementations:
     - name: LemmaRecurrenceAnalyzer
       requiresInject:
@@ -961,7 +975,8 @@ modules:
       - name: exposureClassifier
         type: ExposureClassifier
       tests:
-      - name: Given a LemmaRecurrenceAnalyzer, when getName is called, then returns lemma-recurrence
+      - name: "Given a LemmaRecurrenceAnalyzer, when getName is called, then returns\
+          \ lemma-recurrence"
         target: LemmaRecurrenceAnalyzer
         invoke:
           method: getName
@@ -971,7 +986,8 @@ modules:
           rule: F-LREC-R015
         assert:
           returns: lemma-recurrence
-      - name: Given a LemmaRecurrenceAnalyzer, when getTarget is called, then returns COURSE
+      - name: "Given a LemmaRecurrenceAnalyzer, when getTarget is called, then returns\
+          \ COURSE"
         target: LemmaRecurrenceAnalyzer
         invoke:
           method: getTarget
@@ -981,7 +997,8 @@ modules:
           rule: F-LREC-R013
         assert:
           returns: COURSE
-      - name: Given no quizzes have been processed, when getResults is called, then returns empty list
+      - name: "Given no quizzes have been processed, when getResults is called, then\
+          \ returns empty list"
         target: LemmaRecurrenceAnalyzer
         invoke:
           method: getResults
@@ -989,8 +1006,9 @@ modules:
         traceability:
           feature: F-LREC
         assert:
-          returns: '[]'
-      - name: Given an AuditableKnowledge and AuditContext, when onKnowledge is called, then completes without error
+          returns: "[]"
+      - name: "Given an AuditableKnowledge and AuditContext, when onKnowledge is called,\
+          \ then completes without error"
         target: LemmaRecurrenceAnalyzer
         invoke:
           method: onKnowledge
@@ -1001,7 +1019,7 @@ modules:
         - id: knowledge
           type: AuditableKnowledge
           construct:
-            quizzes: '[]'
+            quizzes: "[]"
             title: Test Knowledge
             instructions: Test instructions
             isSentence: true
@@ -1015,7 +1033,8 @@ modules:
         type: unit
         assert:
           doesNotThrow: true
-      - name: Given an AuditableTopic and AuditContext, when onTopic is called, then completes without error
+      - name: "Given an AuditableTopic and AuditContext, when onTopic is called, then\
+          \ completes without error"
         target: LemmaRecurrenceAnalyzer
         invoke:
           method: onTopic
@@ -1026,7 +1045,7 @@ modules:
         - id: topic
           type: AuditableTopic
           construct:
-            knowledge: '[]'
+            knowledge: "[]"
         - id: ctx
           type: AuditContext
           construct:
@@ -1037,7 +1056,8 @@ modules:
         type: unit
         assert:
           doesNotThrow: true
-      - name: Given an AuditableMilestone and AuditContext, when onMilestone is called, then completes without error
+      - name: "Given an AuditableMilestone and AuditContext, when onMilestone is called,\
+          \ then completes without error"
         target: LemmaRecurrenceAnalyzer
         invoke:
           method: onMilestone
@@ -1048,7 +1068,7 @@ modules:
         - id: milestone
           type: AuditableMilestone
           construct:
-            topics: '[]'
+            topics: "[]"
         - id: ctx
           type: AuditContext
           construct:
@@ -1063,7 +1083,7 @@ modules:
       - ContentAnalyzer
     - name: DefaultContentWordFilter
       tests:
-      - name: Given a NOUN token, when isContentWord is called, then returns true
+      - name: "Given a NOUN token, when isContentWord is called, then returns true"
         target: DefaultContentWordFilter
         invoke:
           method: isContentWord
@@ -1085,7 +1105,7 @@ modules:
           rule: F-LREC-R003
         assert:
           returns: true
-      - name: Given a VERB token, when isContentWord is called, then returns true
+      - name: "Given a VERB token, when isContentWord is called, then returns true"
         target: DefaultContentWordFilter
         invoke:
           method: isContentWord
@@ -1107,7 +1127,7 @@ modules:
           rule: F-LREC-R003
         assert:
           returns: true
-      - name: Given an ADJ token, when isContentWord is called, then returns true
+      - name: "Given an ADJ token, when isContentWord is called, then returns true"
         target: DefaultContentWordFilter
         invoke:
           method: isContentWord
@@ -1129,7 +1149,7 @@ modules:
           rule: F-LREC-R003
         assert:
           returns: true
-      - name: Given an ADV token, when isContentWord is called, then returns true
+      - name: "Given an ADV token, when isContentWord is called, then returns true"
         target: DefaultContentWordFilter
         invoke:
           method: isContentWord
@@ -1151,7 +1171,7 @@ modules:
           rule: F-LREC-R003
         assert:
           returns: true
-      - name: Given a DET token, when isContentWord is called, then returns false
+      - name: "Given a DET token, when isContentWord is called, then returns false"
         target: DefaultContentWordFilter
         invoke:
           method: isContentWord
@@ -1173,7 +1193,7 @@ modules:
           rule: F-LREC-R003
         assert:
           returns: false
-      - name: Given a PUNCT token, when isContentWord is called, then returns false
+      - name: "Given a PUNCT token, when isContentWord is called, then returns false"
         target: DefaultContentWordFilter
         invoke:
           method: isContentWord
@@ -1199,36 +1219,39 @@ modules:
       - ContentWordFilter
     - name: DefaultIntervalCalculator
       tests:
-      - name: Given positions [10, 110], when calculateMeanInterval is called, then returns 100.0
+      - name: "Given positions [10, 110], when calculateMeanInterval is called, then\
+          \ returns 100.0"
         target: DefaultIntervalCalculator
         invoke:
           method: calculateMeanInterval
           args:
-          - '[10, 110]'
+          - "[10, 110]"
         type: unit
         traceability:
           feature: F-LREC
           rule: F-LREC-R007
         assert:
           returns: 100.0
-      - name: Given positions [0, 100, 200, 300], when calculateMeanInterval is called, then returns 100.0
+      - name: "Given positions [0, 100, 200, 300], when calculateMeanInterval is called,\
+          \ then returns 100.0"
         target: DefaultIntervalCalculator
         invoke:
           method: calculateMeanInterval
           args:
-          - '[0, 100, 200, 300]'
+          - "[0, 100, 200, 300]"
         type: unit
         traceability:
           feature: F-LREC
           rule: F-LREC-R007
         assert:
           returns: 100.0
-      - name: Given positions [10, 110] and mean 100.0, when calculateStdDevInterval is called, then returns 0.0
+      - name: "Given positions [10, 110] and mean 100.0, when calculateStdDevInterval\
+          \ is called, then returns 0.0"
         target: DefaultIntervalCalculator
         invoke:
           method: calculateStdDevInterval
           args:
-          - '[10, 110]'
+          - "[10, 110]"
           - 100.0
         type: unit
         traceability:
@@ -1236,12 +1259,13 @@ modules:
           rule: F-LREC-R007
         assert:
           returns: 0.0
-      - name: Given positions [0, 100, 200, 300] and mean 100.0, when calculateStdDevInterval is called, then returns 0.0
+      - name: "Given positions [0, 100, 200, 300] and mean 100.0, when calculateStdDevInterval\
+          \ is called, then returns 0.0"
         target: DefaultIntervalCalculator
         invoke:
           method: calculateStdDevInterval
           args:
-          - '[0, 100, 200, 300]'
+          - "[0, 100, 200, 300]"
           - 100.0
         type: unit
         traceability:
@@ -1255,9 +1279,10 @@ modules:
       implements:
       - ExposureClassifier
   - name: labs
-    description: Lemma absence analysis by CEFR level. Compares course vocabulary against the EVP catalog to detect absent,
-      misplaced, or scattered lemmas. Classifies absence type, assigns priority by COCA frequency, computes per-level metrics,
-      and generates actionable recommendations.
+    description: "Lemma absence analysis by CEFR level. Compares course vocabulary\
+      \ against the EVP catalog to detect absent, misplaced, or scattered lemmas.\
+      \ Classifies absence type, assigns priority by COCA frequency, computes per-level\
+      \ metrics, and generates actionable recommendations."
     visibility: internal
     models:
     - name: AbsenceType
@@ -1337,13 +1362,13 @@ modules:
         description: Number of expected lemmas not found in this level
       - name: absencePercentage
         type: double
-        description: 'Percentage of absence: (absent/expected)*100'
+        description: "Percentage of absence: (absent/expected)*100"
       - name: absentLemmas
         type: List<AbsentLemma>
         description: Detailed list of absent lemmas with enrichment
       - name: score
         type: double
-        description: 'Level score: 1.0 - (absencePercentage/100) weighted by impact'
+        description: "Level score: 1.0 - (absencePercentage/100) weighted by impact"
     - name: RecommendationAction
       type: enum
       fields:
@@ -1375,7 +1400,7 @@ modules:
         description: Human-readable explanation of the problem and proposed fix
       - name: priority
         type: PriorityLevel
-        description: Recommendation priority (HIGH for A1/A2, varies for B1/B2)
+        description: "Recommendation priority (HIGH for A1/A2, varies for B1/B2)"
       - name: affectedLemmas
         type: List<AbsentLemma>
         description: Lemmas this recommendation addresses
@@ -1397,684 +1422,6 @@ modules:
         type: ContentWordFilter
       - name: lemmaAbsenceConfig
         type: LemmaAbsenceConfig
-      tests:
-      - name: Given a LemmaByLevelAbsenceAnalyzer, when getName is called, then returns lemma-absence
-        target: LemmaByLevelAbsenceAnalyzer
-        invoke:
-          method: getName
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R031
-        assert:
-          returns: lemma-absence
-      - name: Given a LemmaByLevelAbsenceAnalyzer, when getTarget is called, then returns COURSE
-        target: LemmaByLevelAbsenceAnalyzer
-        invoke:
-          method: getTarget
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R031
-        assert:
-          returns: COURSE
-      - name: Given no data has been processed, when getResults is called, then returns empty list
-        target: LemmaByLevelAbsenceAnalyzer
-        invoke:
-          method: getResults
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R031
-        assert:
-          returns: '[]'
-      - name: Given EVP expects lemma cat-NOUN in A1 and course has cat-NOUN in A1, when onCourseComplete is called, then
-          cat-NOUN is not marked as absent
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R010
-      - name: Given EVP expects lemma cat-NOUN in A1 and course does not have cat-NOUN anywhere, when onCourseComplete is
-          called, then cat-NOUN is marked as absent in A1
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R003
-      - name: Given EVP expects run-VERB and run-NOUN in A2 and course only has run-NOUN in A2, when onCourseComplete is called,
-          then run-VERB is absent but run-NOUN is not
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R003
-      - name: Given EVP contains a multiword phrase look-for, when expected lemmas are obtained, then the phrase is excluded
-          from analysis
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R005
-      - name: Given EVP expects lemmas and contentWordFilter rejects functional words, when expected lemmas are obtained,
-          then functional words are excluded
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R001
-      - name: Given a course with quizzes containing content-word tokens in A1, when onCourseComplete is called, then present
-          lemmas are collected from all quiz tokens in A1
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R002
-      - name: Given EVP expects lemma dog-NOUN in A2 and course has dog-NOUN only in B1, when onCourseComplete is called,
-          then dog-NOUN is marked as absent in A2 with presentInLevels containing B1
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R004
-      - name: Given a lemma expected in A2 that does not appear in any level, when classified, then absence type is COMPLETELY_ABSENT
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R007
-      - name: Given a lemma expected in A2 that only appears in B1 and B2, when classified, then absence type is APPEARS_TOO_LATE
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R007
-      - name: Given a lemma expected in B1 that only appears in A1, when classified, then absence type is APPEARS_TOO_EARLY
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R007
-      - name: Given a lemma expected in A2 that appears in A1 and B2, when classified, then absence type is SCATTERED_PLACEMENT
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R007
-      - name: Given a lemma expected in A2 that appears in A2 and also in B1, when onCourseComplete is called, then lemma
-          is not marked as absent
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R010
-      - name: Given COMPLETELY_ABSENT type, when impact score is checked, then it is 1.0
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R008
-      - name: Given APPEARS_TOO_LATE type, when impact score is checked, then it is 0.8
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R008
-      - name: Given APPEARS_TOO_EARLY type, when impact score is checked, then it is 0.6
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R008
-      - name: Given SCATTERED_PLACEMENT type, when impact score is checked, then it is 0.4
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R008
-      - name: Given APPEARS_TOO_LATE and APPEARS_TOO_EARLY impacts, when compared, then TOO_LATE impact 0.8 is greater than
-          TOO_EARLY impact 0.6
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R009
-      - name: Given an absent lemma with COCA rank 500, when priority is assigned, then priority is HIGH
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R011
-      - name: Given an absent lemma with COCA rank 1000, when priority is assigned, then priority is HIGH
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R011
-      - name: Given an absent lemma with COCA rank 1500, when priority is assigned, then priority is MEDIUM
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R011
-      - name: Given an absent lemma with COCA rank 3000, when priority is assigned, then priority is MEDIUM
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R011
-      - name: Given an absent lemma with COCA rank 4000, when priority is assigned, then priority is LOW
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R011
-      - name: Given an absent lemma with COCA rank 5000, when priority is assigned, then priority is LOW
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R011
-      - name: Given an absent lemma with no COCA rank available, when priority is assigned, then priority defaults to LOW
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R013
-      - name: Given an absent lemma, when enrichment is performed, then result contains COCA rank and semantic category and
-          priority level
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R012
-      - name: Given 2 absent lemmas of HIGH priority in A2 exceeding alert threshold of 0, when analysis completes, then an
-          alert is triggered for A2
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R014
-      - name: Given a B1 sentence containing lemma cat-NOUN expected in A1, when sentence is scored, then discount is 0.2
-          and score is 0.8
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R018
-      - name: Given an A2 sentence containing lemma cat-NOUN expected in A1, when sentence is scored, then discount is 0.1
-          and score is 0.9
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R018
-      - name: Given a B2 sentence containing lemma cat-NOUN expected in A1, when sentence is scored, then discount is 0.3
-          and score is 0.7
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R018
-      - name: Given a sentence with two misplaced lemmas at distances 1 and 3, when sentence is scored, then score uses max
-          discount of 0.3 resulting in 0.7
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R019
-      - name: Given a sentence with no misplaced lemmas, when sentence is scored, then score is 1.0
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R020
-      - name: Given a sentence containing only non-EVP lemmas, when sentence is scored, then score is 1.0
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R020
-      - name: Given a sentence with a lemma correctly placed at its expected level, when sentence is scored, then that lemma
-          contributes no discount
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R017
-      - name: Given all levels within their absolute and percentage thresholds, when assessment is computed, then result is
-          OPTIMAL
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R022
-      - name: Given B1 exceeds its threshold but A1 and A2 are within thresholds, when assessment is computed, then result
-          is ACCEPTABLE
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R022
-      - name: Given A1 exceeds its zero-tolerance threshold, when assessment is computed, then result is NEEDS_IMPROVEMENT
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R022
-      - name: Given A2 exceeds its threshold, when assessment is computed, then result is NEEDS_IMPROVEMENT regardless of
-          B1 B2 status
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R022
-      - name: Given A2 has 1 absent lemma but it represents 6 percent of expected, when threshold is checked, then A2 exceeds
-          the percentage threshold even if absolute is within limit
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R021
-      - name: Given A1 has zero tolerance threshold, when any lemma is absent in A1, then A1 exceeds its threshold
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R021
-      - name: Given level metrics for A1, when computed, then result includes totalExpected and totalAbsent and absencePercentage
-          and absentLemmasByType
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R023
-      - name: Given A1 and A2 have weight 2.0 and B1 and B2 have weight 1.0, when global score is computed, then it is the
-          weighted average of per-level scores
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R024
-      - name: Given a course with perfect coverage in all levels, when global score is computed, then score is 1.0
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R024
-      - name: Given more than 20 HIGH priority absent lemmas, when results are reported, then at most 20 HIGH priority lemmas
-          are included in report
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R026
-      - name: Given more than 30 MEDIUM priority absent lemmas, when results are reported, then at most 30 MEDIUM priority
-          lemmas are included in report
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R026
-      - name: Given total HIGH priority absent lemmas exceeds critical threshold, when assessment is computed, then result
-          cannot be OPTIMAL
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R025
-      - name: Given A1 exceeds its threshold with COMPLETELY_ABSENT lemmas, when recommendations are generated, then an ADD_VOCABULARY
-          recommendation is produced for A1
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R028
-      - name: Given B1 has APPEARS_TOO_LATE lemmas exceeding threshold, when recommendations are generated, then an INTRODUCE_EARLIER
-          recommendation is produced
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R028
-      - name: Given A2 has APPEARS_TOO_EARLY lemmas exceeding threshold, when recommendations are generated, then a REINFORCE_AT_LEVEL
-          recommendation is produced
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R028
-      - name: Given B2 has SCATTERED_PLACEMENT lemmas exceeding threshold, when recommendations are generated, then a CONSOLIDATE_PLACEMENT
-          recommendation is produced
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R028
-      - name: Given a recommendation for A1 with any lemma priority, when recommendation priority is computed, then it is
-          HIGH
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R029
-      - name: Given a recommendation for A2 with LOW priority lemmas, when recommendation priority is computed, then it is
-          still HIGH because A2 is a critical level
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R029
-      - name: Given a recommendation for B1 with HIGH priority lemmas, when recommendation priority is computed, then it is
-          MEDIUM
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R029
-      - name: Given a recommendation for B2 with LOW priority lemmas, when recommendation priority is computed, then it is
-          LOW
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R029
-      - name: Given a recommendation affecting 3 lemmas, when effort level is estimated, then it is LOW
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R030
-      - name: Given a recommendation affecting 10 lemmas, when effort level is estimated, then it is MEDIUM
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R030
-      - name: Given a recommendation affecting 20 lemmas, when effort level is estimated, then it is HIGH
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R030
-      - name: Given a level within its threshold, when recommendations are checked, then no recommendation is generated for
-          that level
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R027
-      - name: Given a LemmaByLevelAbsenceAnalyzer, when onTopic is called, then it completes without error
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R031
-      - name: Given a LemmaByLevelAbsenceAnalyzer, when onKnowledge is called, then it completes without error
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R031
-      - name: Given a course with full vocabulary coverage across all levels, when full audit lifecycle is executed, then
-          assessment is OPTIMAL and score is 1.0 and no recommendations are generated
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          journey: F-LABS-J001
-      - name: Given a course where A1 has completely absent HIGH priority lemmas, when full audit lifecycle is executed, then
-          assessment is NEEDS_IMPROVEMENT and recommendations include ADD_VOCABULARY for A1
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          journey: F-LABS-J002
-      - name: Given a course where lemmas expected in A2 only appear in B1, when full audit lifecycle is executed, then those
-          lemmas are classified as APPEARS_TOO_LATE and recommendation is INTRODUCE_EARLIER
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          journey: F-LABS-J003
-      - name: Given a course with misplaced lemmas in sentences, when full audit lifecycle is executed, then sentence scores
-          reflect level distance discounts
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          journey: F-LABS-J004
-      - name: Given a course with multiple levels exceeding thresholds, when full audit lifecycle is executed, then recommendations
-          are generated per level ordered by priority
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          journey: F-LABS-J005
-      - name: Given EVP has expected lemmas for A1 A2 B1 B2, when onCourseComplete is called, then expected lemmas are obtained
-          for each level independently
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R001
-      - name: Given a course with quizzes across A1 and A2, when onCourseComplete is called, then present lemmas are collected
-          separately per level
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R002
-      - name: Given a course where the same lemma appears in multiple topics within A1, when onCourseComplete is called, then
-          the lemma is counted as present only once for A1
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R002
-      - name: Given the four absence types, when their values are enumerated, then they are COMPLETELY_ABSENT and APPEARS_TOO_LATE
-          and APPEARS_TOO_EARLY and SCATTERED_PLACEMENT
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R006
-      - name: Given 4 absent lemmas of MEDIUM priority in B1 exceeding alert threshold of 3, when analysis completes, then
-          an alert is triggered for MEDIUM priority in B1
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R014
-      - name: Given 11 absent lemmas of LOW priority in B2 exceeding alert threshold of 10, when analysis completes, then
-          an alert is triggered for LOW priority in B2
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R014
-      - name: Given 3 absent lemmas of MEDIUM priority in A2 exactly at alert threshold of 3, when analysis completes, then
-          no alert is triggered for MEDIUM priority
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R014
-      - name: Given EVP expects run-VERB in A2 and course has run-NOUN in A2 but not run-VERB, when onCourseComplete is called,
-          then run-VERB is marked absent despite run-NOUN being present
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R015
-      - name: Given the pronoun I is expected in A1 by EVP and is absent from A1, when onCourseComplete is called, then I
-          is marked as absent with priority HIGH despite being a functional word
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R016
-      - name: Given the auxiliary be is expected in A1 and absent from A1, when onCourseComplete is called, then be is marked
-          as absent with priority HIGH
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R016
-      - name: Given a critical functional lemma is absent in B1, when onCourseComplete is called, then it is not treated as
-          a critical functional lemma because only A1 and A2 are critical scope
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R016
-      - name: Given an absent lemma with no semantic category available from EVP, when enrichment is performed, then semantic
-          category is null and other fields are still populated
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R012
-      - name: Given a sentence containing a lemma that does not exist in the EVP catalog, when sentence is scored, then that
-          lemma is not considered misplaced
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R017
-      - name: Given a sentence with a lemma at maximum distance of 3 levels A1 expected in B2 sentence, when sentence is scored,
-          then score is 0.7 which is the minimum possible
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R019
-      - name: Given B1 has 6 absent lemmas exceeding both the absolute threshold of 5 and the percentage threshold of 10 percent,
-          when threshold is checked, then B1 exceeds its threshold
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R021
-      - name: Given B2 has 7 absent lemmas within the absolute threshold of 8 but exceeding the percentage threshold of 15
-          percent, when threshold is checked, then B2 exceeds via percentage
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R021
-      - name: Given A2 has absent lemmas of types COMPLETELY_ABSENT and APPEARS_TOO_LATE, when metrics are computed, then
-          absentLemmasByType groups them correctly by type
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R023
-      - name: Given A1 score is 0.5 and A2 score is 1.0 and B1 score is 1.0 and B2 score is 1.0, when global score is computed,
-          then weighted average reflects A1 and A2 double weight
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R024
-      - name: Given total HIGH priority absent lemmas is between acceptable threshold 5 and critical threshold 10, when assessment
-          is computed, then result is ACCEPTABLE if no critical level exceeds its threshold
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R025
-      - name: Given zero HIGH priority absent lemmas and all levels within thresholds, when assessment is computed, then result
-          is OPTIMAL
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R025
-      - name: Given more than 50 LOW priority absent lemmas, when results are reported, then at most 50 LOW priority lemmas
-          are included in report
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R026
-      - name: Given a recommendation for B1 with MEDIUM priority lemmas, when recommendation priority is computed, then it
-          is MEDIUM
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R029
-      - name: Given a recommendation for B2 with MEDIUM priority lemmas, when recommendation priority is computed, then it
-          is MEDIUM
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R029
-      - name: Given a recommendation affecting 1 lemma, when effort level is estimated, then it is LOW
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R030
-      - name: Given a recommendation affecting 5 lemmas, when effort level is estimated, then it is LOW
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R030
-      - name: Given a recommendation affecting 6 lemmas, when effort level is estimated, then it is MEDIUM
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R030
-      - name: Given a recommendation affecting 15 lemmas, when effort level is estimated, then it is MEDIUM
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R030
-      - name: Given a recommendation affecting 16 lemmas, when effort level is estimated, then it is HIGH
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R030
-      - name: Given a LemmaByLevelAbsenceAnalyzer, when onQuiz is called, then it completes without error
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R031
-      - name: Given a LemmaByLevelAbsenceAnalyzer, when onMilestone is called, then it completes without error
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R031
-      - name: Given EVP catalog returns empty set for all levels, when full audit lifecycle is executed, then analysis completes
-          with 100 percent absence and assessment is NEEDS_IMPROVEMENT
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          journey: F-LABS-J001
-      - name: Given a course with no quizzes in any level, when full audit lifecycle is executed, then present lemmas are
-          empty and all expected lemmas are marked absent
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          journey: F-LABS-J001
-      - name: Given a course where all sentences have scores above 0.8, when sentence scores are retrieved, then no sentence
-          is flagged as problematic
-        target: LemmaByLevelAbsenceAnalyzer
-        type: unit
-        traceability:
-          feature: FEAT-LABS
-          journey: F-LABS-J004
       handwrittenTests:
       - name: should return lemma-absence as analyzer name
         traceability:
@@ -2104,11 +1451,13 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R001
-      - name: should include critical functional pronoun I in A1 expected lemmas despite filter rejection
+      - name: should include critical functional pronoun I in A1 expected lemmas despite
+          filter rejection
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R016
-      - name: should include critical functional auxiliary be in A2 expected lemmas despite filter rejection
+      - name: should include critical functional auxiliary be in A2 expected lemmas
+          despite filter rejection
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R016
@@ -2120,7 +1469,8 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R016
-      - name: should include all critical pronouns auxiliaries prepositions and connectors in A1
+      - name: should include all critical pronouns auxiliaries prepositions and connectors
+          in A1
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R016
@@ -2132,7 +1482,8 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R002
-      - name: should count a lemma as present only once per level even if it appears multiple times
+      - name: should count a lemma as present only once per level even if it appears
+          multiple times
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R002
@@ -2160,7 +1511,8 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R003
-      - name: should not mark lemma as absent when present in expected level even if also in other levels
+      - name: should not mark lemma as absent when present in expected level even
+          if also in other levels
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R010
@@ -2184,7 +1536,8 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R007
-      - name: should classify as SCATTERED_PLACEMENT when lemma in both earlier and later levels
+      - name: should classify as SCATTERED_PLACEMENT when lemma in both earlier and
+          later levels
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R007
@@ -2240,7 +1593,8 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R013
-      - name: should enrich absent lemma with COCA rank and semantic category and priority
+      - name: should enrich absent lemma with COCA rank and semantic category and
+          priority
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R012
@@ -2256,11 +1610,13 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R014
-      - name: should trigger alert when MEDIUM priority absent lemmas exceed threshold of 3
+      - name: should trigger alert when MEDIUM priority absent lemmas exceed threshold
+          of 3
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R014
-      - name: should trigger alert when LOW priority absent lemmas exceed threshold of 10
+      - name: should trigger alert when LOW priority absent lemmas exceed threshold
+          of 10
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R014
@@ -2268,7 +1624,8 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R014
-      - name: should not discount lemma correctly placed at its expected level in sentence
+      - name: should not discount lemma correctly placed at its expected level in
+          sentence
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R017
@@ -2288,7 +1645,8 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R018
-      - name: should score 0.7 for sentence with 3-level distance misplaced lemma which is minimum
+      - name: should score 0.7 for sentence with 3-level distance misplaced lemma
+          which is minimum
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R019
@@ -2312,7 +1670,8 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R021
-      - name: should not exceed threshold when both absolute and percentage are within limits
+      - name: should not exceed threshold when both absolute and percentage are within
+          limits
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R021
@@ -2324,7 +1683,8 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R022
-      - name: should assess ACCEPTABLE when non-critical level exceeds but critical levels pass
+      - name: should assess ACCEPTABLE when non-critical level exceeds but critical
+          levels pass
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R022
@@ -2336,15 +1696,18 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R022
-      - name: should assess NEEDS_IMPROVEMENT when total HIGH priority exceeds critical threshold
+      - name: should assess NEEDS_IMPROVEMENT when total HIGH priority exceeds critical
+          threshold
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R025
-      - name: should compute level metrics with totalExpected totalAbsent absencePercentage and score
+      - name: should compute level metrics with totalExpected totalAbsent absencePercentage
+          and score
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R023
-      - name: should compute weighted global score with A1 A2 weight 2.0 and B1 B2 weight 1.0
+      - name: should compute weighted global score with A1 A2 weight 2.0 and B1 B2
+          weight 1.0
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R024
@@ -2376,32 +1739,105 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R028
-      - name: 'full lifecycle: course with full coverage produces OPTIMAL assessment and score 1.0'
+      - name: "full lifecycle: course with full coverage produces OPTIMAL assessment\
+          \ and score 1.0"
         traceability:
           feature: FEAT-LABS
           journey: F-LABS-J001
-      - name: 'full lifecycle: course with completely absent HIGH priority lemmas in A1 produces NEEDS_IMPROVEMENT'
+      - name: "full lifecycle: course with completely absent HIGH priority lemmas\
+          \ in A1 produces NEEDS_IMPROVEMENT"
         traceability:
           feature: FEAT-LABS
           journey: F-LABS-J002
-      - name: 'full lifecycle: course with lemmas appearing too late produces INTRODUCE_EARLIER recommendations'
+      - name: "full lifecycle: course with lemmas appearing too late produces INTRODUCE_EARLIER\
+          \ recommendations"
         traceability:
           feature: FEAT-LABS
           journey: F-LABS-J003
-      - name: 'full lifecycle: course with misplaced lemmas in sentences reflects distance discounts in scores'
+      - name: "full lifecycle: course with misplaced lemmas in sentences reflects\
+          \ distance discounts in scores"
         traceability:
           feature: FEAT-LABS
           journey: F-LABS-J004
-      - name: 'full lifecycle: course with multiple levels exceeding thresholds produces prioritized recommendations'
+      - name: "full lifecycle: course with multiple levels exceeding thresholds produces\
+          \ prioritized recommendations"
         traceability:
           feature: FEAT-LABS
           journey: F-LABS-J005
+      - name: should map APPEARS_TOO_EARLY to REINFORCE_AT_LEVEL recommendation
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R028
+      - name: should map SCATTERED_PLACEMENT to CONSOLIDATE_PLACEMENT recommendation
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R028
+      - name: should assign HIGH recommendation priority for A1 level
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: should assign HIGH recommendation priority for A2 level
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: should assign MEDIUM recommendation priority for B1 with HIGH priority
+          lemmas
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: should assign MEDIUM recommendation priority for B1 with MEDIUM priority
+          lemmas
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: should assign LOW recommendation priority for B2 with LOW priority lemmas
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: should assign MEDIUM recommendation priority for B2 with MEDIUM priority
+          lemmas
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: should estimate LOW effort for 1 absent lemma
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: should estimate LOW effort for 5 absent lemmas
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: should estimate MEDIUM effort for 6 absent lemmas
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: should estimate MEDIUM effort for 15 absent lemmas
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: should estimate HIGH effort for 16 absent lemmas
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: should estimate HIGH effort for 20 absent lemmas
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: should complete without error when onTopic is called
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+      - name: should complete without error when onKnowledge is called
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
       implements:
       - ContentAnalyzer
 - name: course-domain
-  description: Domain module for course structure. Contains entity models representing the 5-level hierarchy (Course > ROOT
-    > Milestone > Topic > Knowledge > QuizTemplate), ports for persistence and validation, and domain exceptions. All models
-    are Java records with defensive copying. This module has no infrastructure dependencies.
+  description: "Domain module for course structure. Contains entity models representing\
+    \ the 5-level hierarchy (Course > ROOT > Milestone > Topic > Knowledge > QuizTemplate),\
+    \ ports for persistence and validation, and domain exceptions. All models are\
+    \ Java records with defensive copying. This module has no infrastructure dependencies."
   models:
   - name: NodeKind
     type: enum
@@ -2423,7 +1859,7 @@ modules:
       description: MongoDB ObjectId as 24-char hex string
     - name: title
       type: String
-      description: Course name, e.g. english-course
+      description: "Course name, e.g. english-course"
     - name: knowledgeIds
       type: List<String>
       description: Ordered list of all knowledge IDs in the course (R002)
@@ -2432,7 +1868,7 @@ modules:
       description: Explicit ROOT node (R001)
     - name: slug
       type: String
-      description: Directory name on disk, preserved for idempotency (R003/R016)
+      description: "Directory name on disk, preserved for idempotency (R003/R016)"
   - name: RootNodeEntity
     type: record
     fields:
@@ -2462,13 +1898,13 @@ modules:
       description: MongoDB ObjectId as 24-char hex string
     - name: code
       type: String
-      description: Entity code, currently matches id
+      description: "Entity code, currently matches id"
     - name: kind
       type: NodeKind
       description: Always MILESTONE
     - name: label
       type: String
-      description: Visible name, e.g. A1, B2
+      description: "Visible name, e.g. A1, B2"
     - name: oldId
       type: String
       description: Legacy UUID identifier
@@ -2480,10 +1916,11 @@ modules:
       description: Ordered topic IDs defining topic order (R002/R013)
     - name: order
       type: int
-      description: Ordinal position within course, 1-based, derived from ROOT children (R013)
+      description: "Ordinal position within course, 1-based, derived from ROOT children\
+        \ (R013)"
     - name: slug
       type: String
-      description: Directory name on disk, preserved for idempotency (R003/R016)
+      description: "Directory name on disk, preserved for idempotency (R003/R016)"
     - name: topics
       type: List<TopicEntity>
       description: Resolved topic entities in order
@@ -2495,13 +1932,13 @@ modules:
       description: MongoDB ObjectId as 24-char hex string
     - name: code
       type: String
-      description: Entity code, currently matches id
+      description: "Entity code, currently matches id"
     - name: kind
       type: NodeKind
       description: Always TOPIC
     - name: label
       type: String
-      description: Visible name, e.g. Present Simple
+      description: "Visible name, e.g. Present Simple"
     - name: oldId
       type: String
       description: Legacy UUID identifier
@@ -2510,16 +1947,17 @@ modules:
       description: References the parent milestone id (R008)
     - name: children
       type: List<String>
-      description: Always null in current data, preserved for idempotency (R010)
+      description: "Always null in current data, preserved for idempotency (R010)"
     - name: ruleIds
       type: List<String>
       description: Ordered knowledge IDs defining knowledge order (R002/R013)
     - name: order
       type: int
-      description: Ordinal position within milestone, 1-based, derived from milestone children (R013)
+      description: "Ordinal position within milestone, 1-based, derived from milestone\
+        \ children (R013)"
     - name: slug
       type: String
-      description: Directory name on disk, preserved for idempotency (R003/R016)
+      description: "Directory name on disk, preserved for idempotency (R003/R016)"
     - name: knowledges
       type: List<KnowledgeEntity>
       description: Resolved knowledge entities in order
@@ -2531,13 +1969,13 @@ modules:
       description: MongoDB ObjectId as 24-char hex string
     - name: code
       type: String
-      description: Entity code, currently matches id
+      description: "Entity code, currently matches id"
     - name: kind
       type: NodeKind
       description: Always KNOWLEDGE
     - name: label
       type: String
-      description: Visible name, e.g. Affirmative sentences in the present simple
+      description: "Visible name, e.g. Affirmative sentences in the present simple"
     - name: oldId
       type: String
       description: Legacy UUID identifier
@@ -2549,16 +1987,18 @@ modules:
       description: Always true in current data
     - name: instructions
       type: String
-      description: Exercise instructions in Spanish, may be null in exceptional cases (R009)
+      description: "Exercise instructions in Spanish, may be null in exceptional cases\
+        \ (R009)"
     - name: order
       type: int
-      description: Ordinal position within topic, 1-based, derived from topic ruleIds (R013)
+      description: "Ordinal position within topic, 1-based, derived from topic ruleIds\
+        \ (R013)"
     - name: slug
       type: String
-      description: Directory name on disk, preserved for idempotency (R003/R016)
+      description: "Directory name on disk, preserved for idempotency (R003/R016)"
     - name: quizTemplates
       type: List<QuizTemplateEntity>
-      description: Associated quiz templates, at least 1 required (R004)
+      description: "Associated quiz templates, at least 1 required (R004)"
   - name: QuizTemplateEntity
     type: record
     fields:
@@ -2567,19 +2007,19 @@ modules:
       description: Plain string ObjectId (R011)
     - name: oidId
       type: String
-      description: Same value as id, serialized as $oid wrapper in JSON (R011)
+      description: "Same value as id, serialized as $oid wrapper in JSON (R011)"
     - name: kind
       type: String
-      description: Quiz type, currently always CLOZE
+      description: "Quiz type, currently always CLOZE"
     - name: knowledgeId
       type: String
       description: References parent knowledge id (R008)
     - name: title
       type: String
-      description: Quiz title, usually matches knowledge label
+      description: "Quiz title, usually matches knowledge label"
     - name: instructions
       type: String
-      description: Instructions in Spanish, may be empty
+      description: "Instructions in Spanish, may be empty"
     - name: translation
       type: String
       description: Spanish translation of the sentence
@@ -2594,49 +2034,49 @@ modules:
       description: Exercise form structure
     - name: difficulty
       type: double
-      description: 'Difficulty level, currently always 0.0 (R012: stored as $numberDouble)'
+      description: "Difficulty level, currently always 0.0 (R012: stored as $numberDouble)"
     - name: retries
       type: double
-      description: 'Allowed retries, currently always 0.0 (R012: stored as $numberDouble)'
+      description: "Allowed retries, currently always 0.0 (R012: stored as $numberDouble)"
     - name: noScoreRetries
       type: double
-      description: 'No-score retries, currently always 0.0 (R012: stored as $numberDouble)'
+      description: "No-score retries, currently always 0.0 (R012: stored as $numberDouble)"
     - name: code
       type: String
-      description: Auxiliary code, currently always empty
+      description: "Auxiliary code, currently always empty"
     - name: audioUrl
       type: String
-      description: Exercise audio URL, currently always empty
+      description: "Exercise audio URL, currently always empty"
     - name: imageUrl
       type: String
-      description: Exercise image URL, currently always empty
+      description: "Exercise image URL, currently always empty"
     - name: answerAudioUrl
       type: String
       description: Answer audio reference in format Milestone.section.subsection.number
     - name: answerImageUrl
       type: String
-      description: Answer image URL, currently always empty
+      description: "Answer image URL, currently always empty"
     - name: miniTheory
       type: String
-      description: Inline brief theory, currently always empty
+      description: "Inline brief theory, currently always empty"
     - name: successMessage
       type: String
-      description: Success message, currently always empty
+      description: "Success message, currently always empty"
   - name: FormEntity
     type: record
     fields:
     - name: kind
       type: String
-      description: Form type, currently always CLOZE
+      description: "Form type, currently always CLOZE"
     - name: incidence
       type: double
-      description: 'Weight/frequency, currently always 1.0 (R012: stored as $numberDouble)'
+      description: "Weight/frequency, currently always 1.0 (R012: stored as $numberDouble)"
     - name: label
       type: String
-      description: Form label, currently always empty
+      description: "Form label, currently always empty"
     - name: name
       type: String
-      description: Form name, currently always empty
+      description: "Form name, currently always empty"
     - name: sentenceParts
       type: List<SentencePartEntity>
       description: Ordered sentence parts composing the exercise (R002)
@@ -2645,13 +2085,13 @@ modules:
     fields:
     - name: kind
       type: SentencePartKind
-      description: TEXT for fixed text, CLOZE for fill-in-the-blank
+      description: "TEXT for fixed text, CLOZE for fill-in-the-blank"
     - name: text
       type: String
-      description: Visible text for TEXT parts, empty for CLOZE
+      description: "Visible text for TEXT parts, empty for CLOZE"
     - name: options
       type: List<String>
-      description: Answer options for CLOZE parts, null for TEXT parts
+      description: "Answer options for CLOZE parts, null for TEXT parts"
   - name: CourseValidationException
     type: exception
     fields:
@@ -2659,20 +2099,20 @@ modules:
       type: String
     - name: detail
       type: String
-    message: 'Error al cargar el curso desde ''%s'': %s. La carga fue abortada.'
+    message: "Error al cargar el curso desde '%s': %s. La carga fue abortada."
     extends: RuntimeException
   interfaces:
   - name: CourseRepository
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'load(Path path): CourseEntity'
-    - signature: 'save(CourseEntity course, Path path): void'
+    - signature: "load(Path path): CourseEntity"
+    - signature: "save(CourseEntity course, Path path): void"
   - name: CourseValidator
     stereotype: service
     sealed: false
     exposes:
-    - signature: 'validate(CourseEntity course): void'
+    - signature: "validate(CourseEntity course): void"
   scope: internal
 - name: refiner-domain
   scope: internal
@@ -2689,18 +2129,18 @@ modules:
     stereotype: service
     sealed: false
     exposes:
-    - signature: 'runAudit(Path coursePath): AuditReport'
+    - signature: "runAudit(Path coursePath,Set<String> analyzerNames): AuditReport"
   - name: CourseMapper
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'map(CourseEntity course): AuditableCourse'
+    - signature: "map(CourseEntity course): AuditableCourse"
   - name: AnalyzerRegistry
     stereotype: service
     sealed: false
     exposes:
-    - signature: 'listAnalyzers(): List<AnalyzerDescriptor>'
-    - signature: 'getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>'
+    - signature: "listAnalyzers(): List<AnalyzerDescriptor>"
+    - signature: "getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>"
   implementations:
   - name: CourseToAuditableMapper
     requiresInject:
@@ -2709,7 +2149,8 @@ modules:
     types:
     - Component
     tests:
-    - name: Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse
+    - name: "Given a course with quizzes, when map is called, then analyzeTokensBatch\
+        \ is invoked and returns an AuditableCourse"
       target: CourseToAuditableMapper
       mocks:
       - dependency: nlpTokenizer
@@ -2731,7 +2172,7 @@ modules:
           - k1
           slug: english-course
       - id: batchResult
-        type: Map<String,List<NlpToken>>
+        type: "Map<String,List<NlpToken>>"
       type: unit
       traceability:
         feature: F-NLP
@@ -2741,7 +2182,8 @@ modules:
           dependency: nlpTokenizer
           method: analyzeTokensBatch
           times: 1
-    - name: Given a course with no milestones, when map is called, then returns an AuditableCourse without error
+    - name: "Given a course with no milestones, when map is called, then returns an\
+        \ AuditableCourse without error"
       target: CourseToAuditableMapper
       invoke:
         method: map
@@ -2767,7 +2209,8 @@ modules:
         rule: F-NLP-R010
       assert:
         doesNotThrow: true
-    - name: Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates
+    - name: "Given nlpTokenizer throws exception during batch processing, when map\
+        \ is called, then exception propagates"
       target: CourseToAuditableMapper
       mocks:
       - dependency: nlpTokenizer
@@ -2816,7 +2259,8 @@ modules:
     types:
     - Service
     tests:
-    - name: Given a valid course path, when runAudit is called, then returns the audit report from the full chain
+    - name: "Given a valid course path, when runAudit is called, then returns the\
+        \ audit report from the full chain"
       target: DefaultAuditRunner
       mocks:
       - dependency: courseRepository
@@ -2845,30 +2289,30 @@ modules:
           id: root-001
           code: root
           kind: ROOT
-          children: '[]'
-          milestones: '[]'
+          children: "[]"
+          milestones: "[]"
       - id: courseEntity
         type: CourseEntity
         construct:
           id: course-001
           title: english-course
-          knowledgeIds: '[]'
+          knowledgeIds: "[]"
           root: ref:rootNode
           slug: english-course
       - id: auditableCourse
         type: AuditableCourse
         construct:
-          milestones: '[]'
+          milestones: "[]"
       - id: nodeScores
         type: NodeScores
         construct:
-          scores: '{}'
+          scores: "{}"
       - id: auditReport
         type: AuditReport
         construct:
           overallScore: 0.85
           scores: ref:nodeScores
-          milestones: '[]'
+          milestones: "[]"
       type: unit
       traceability:
         feature: F-CLI
@@ -2876,7 +2320,8 @@ modules:
         journey: F-CLI-J001
       assert:
         returns: ref:auditReport
-    - name: Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path
+    - name: "Given a valid course path, when runAudit is called, then courseRepository\
+        \ load is invoked with the path"
       target: DefaultAuditRunner
       mocks:
       - dependency: courseRepository
@@ -2905,30 +2350,30 @@ modules:
           id: root-001
           code: root
           kind: ROOT
-          children: '[]'
-          milestones: '[]'
+          children: "[]"
+          milestones: "[]"
       - id: courseEntity
         type: CourseEntity
         construct:
           id: course-001
           title: english-course
-          knowledgeIds: '[]'
+          knowledgeIds: "[]"
           root: ref:rootNode
           slug: english-course
       - id: auditableCourse
         type: AuditableCourse
         construct:
-          milestones: '[]'
+          milestones: "[]"
       - id: nodeScores
         type: NodeScores
         construct:
-          scores: '{}'
+          scores: "{}"
       - id: auditReport
         type: AuditReport
         construct:
           overallScore: 0.85
           scores: ref:nodeScores
-          milestones: '[]'
+          milestones: "[]"
       type: unit
       traceability:
         feature: F-CLI
@@ -2939,8 +2384,8 @@ modules:
           dependency: courseRepository
           method: load
           times: 1
-    - name: Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded
-        entity
+    - name: "Given a valid course path, when runAudit is called, then courseToAuditableMapper\
+        \ map is invoked with the loaded entity"
       target: DefaultAuditRunner
       mocks:
       - dependency: courseRepository
@@ -2969,30 +2414,30 @@ modules:
           id: root-001
           code: root
           kind: ROOT
-          children: '[]'
-          milestones: '[]'
+          children: "[]"
+          milestones: "[]"
       - id: courseEntity
         type: CourseEntity
         construct:
           id: course-001
           title: english-course
-          knowledgeIds: '[]'
+          knowledgeIds: "[]"
           root: ref:rootNode
           slug: english-course
       - id: auditableCourse
         type: AuditableCourse
         construct:
-          milestones: '[]'
+          milestones: "[]"
       - id: nodeScores
         type: NodeScores
         construct:
-          scores: '{}'
+          scores: "{}"
       - id: auditReport
         type: AuditReport
         construct:
           overallScore: 0.85
           scores: ref:nodeScores
-          milestones: '[]'
+          milestones: "[]"
       type: unit
       traceability:
         feature: F-CLI
@@ -3003,8 +2448,8 @@ modules:
           dependency: courseToAuditableMapper
           method: map
           times: 1
-    - name: Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable
-        course
+    - name: "Given a valid course path, when runAudit is called, then contentAudit\
+        \ audit is invoked with the mapped auditable course"
       target: DefaultAuditRunner
       mocks:
       - dependency: courseRepository
@@ -3033,30 +2478,30 @@ modules:
           id: root-001
           code: root
           kind: ROOT
-          children: '[]'
-          milestones: '[]'
+          children: "[]"
+          milestones: "[]"
       - id: courseEntity
         type: CourseEntity
         construct:
           id: course-001
           title: english-course
-          knowledgeIds: '[]'
+          knowledgeIds: "[]"
           root: ref:rootNode
           slug: english-course
       - id: auditableCourse
         type: AuditableCourse
         construct:
-          milestones: '[]'
+          milestones: "[]"
       - id: nodeScores
         type: NodeScores
         construct:
-          scores: '{}'
+          scores: "{}"
       - id: auditReport
         type: AuditReport
         construct:
           overallScore: 0.85
           scores: ref:nodeScores
-          milestones: '[]'
+          milestones: "[]"
       type: unit
       traceability:
         feature: F-CLI
@@ -3067,7 +2512,8 @@ modules:
           dependency: contentAudit
           method: audit
           times: 1
-    - name: Given courseRepository throws an exception, when runAudit is called, then the exception propagates
+    - name: "Given courseRepository throws an exception, when runAudit is called,\
+        \ then the exception propagates"
       target: DefaultAuditRunner
       mocks:
       - dependency: courseRepository
@@ -3087,7 +2533,8 @@ modules:
         rule: F-CLI-R001
       assert:
         assertThrows: RuntimeException
-    - name: Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates
+    - name: "Given courseToAuditableMapper throws an exception, when runAudit is called,\
+        \ then the exception propagates"
       target: DefaultAuditRunner
       mocks:
       - dependency: courseRepository
@@ -3113,14 +2560,14 @@ modules:
           id: root-001
           code: root
           kind: ROOT
-          children: '[]'
-          milestones: '[]'
+          children: "[]"
+          milestones: "[]"
       - id: courseEntity
         type: CourseEntity
         construct:
           id: course-001
           title: english-course
-          knowledgeIds: '[]'
+          knowledgeIds: "[]"
           root: ref:rootNode
           slug: english-course
       type: unit
@@ -3129,7 +2576,8 @@ modules:
         rule: F-CLI-R001
       assert:
         assertThrows: RuntimeException
-    - name: Given contentAudit throws an exception, when runAudit is called, then the exception propagates
+    - name: "Given contentAudit throws an exception, when runAudit is called, then\
+        \ the exception propagates"
       target: DefaultAuditRunner
       mocks:
       - dependency: courseRepository
@@ -3160,27 +2608,28 @@ modules:
           id: root-001
           code: root
           kind: ROOT
-          children: '[]'
-          milestones: '[]'
+          children: "[]"
+          milestones: "[]"
       - id: courseEntity
         type: CourseEntity
         construct:
           id: course-001
           title: english-course
-          knowledgeIds: '[]'
+          knowledgeIds: "[]"
           root: ref:rootNode
           slug: english-course
       - id: auditableCourse
         type: AuditableCourse
         construct:
-          milestones: '[]'
+          milestones: "[]"
       type: unit
       traceability:
         feature: F-CLI
         rule: F-CLI-R001
       assert:
         assertThrows: RuntimeException
-    - name: Given a course with no milestones, when runAudit is called, then returns the report from contentAudit
+    - name: "Given a course with no milestones, when runAudit is called, then returns\
+        \ the report from contentAudit"
       target: DefaultAuditRunner
       mocks:
       - dependency: courseRepository
@@ -3209,30 +2658,30 @@ modules:
           id: root-002
           code: root
           kind: ROOT
-          children: '[]'
-          milestones: '[]'
+          children: "[]"
+          milestones: "[]"
       - id: emptyCourse
         type: CourseEntity
         construct:
           id: course-002
           title: empty-course
-          knowledgeIds: '[]'
+          knowledgeIds: "[]"
           root: ref:rootNode
           slug: empty-course
       - id: emptyAuditableCourse
         type: AuditableCourse
         construct:
-          milestones: '[]'
+          milestones: "[]"
       - id: emptyNodeScores
         type: NodeScores
         construct:
-          scores: '{}'
+          scores: "{}"
       - id: emptyReport
         type: AuditReport
         construct:
           overallScore: 0
           scores: ref:emptyNodeScores
-          milestones: '[]'
+          milestones: "[]"
       type: unit
       traceability:
         feature: F-CLI
@@ -3549,7 +2998,8 @@ modules:
       traceability:
         feature: FEAT-LABS
         rule: F-LABS-R026
-    - name: should have critical absence threshold greater than acceptable absence threshold
+    - name: should have critical absence threshold greater than acceptable absence
+        threshold
       target: DefaultLemmaAbsenceConfig
       type: unit
       traceability:
@@ -3569,14 +3019,16 @@ modules:
         feature: FEAT-LABS
         rule: F-LABS-R014
       _change: add
-    - name: should enforce A1 zero tolerance with both absolute and percentage thresholds at zero
+    - name: should enforce A1 zero tolerance with both absolute and percentage thresholds
+        at zero
       target: DefaultLemmaAbsenceConfig
       type: unit
       traceability:
         feature: FEAT-LABS
         rule: F-LABS-R021
       _change: add
-    - name: should have discount per level that limits max penalty to 0.3 for three-level distance
+    - name: should have discount per level that limits max penalty to 0.3 for three-level
+        distance
       target: DefaultLemmaAbsenceConfig
       type: unit
       traceability:
@@ -3639,9 +3091,10 @@ modules:
     interface: NlpTokenizer
   scope: public
 - name: course-infrastructure
-  description: Infrastructure module for course persistence. Contains the filesystem adapter that reads/writes the hierarchical
-    directory structure with MongoDB Extended JSON format. Handles directory traversal, JSON parsing/serialization, slug generation,
-    and $oid/$numberDouble format preservation.
+  description: "Infrastructure module for course persistence. Contains the filesystem\
+    \ adapter that reads/writes the hierarchical directory structure with MongoDB\
+    \ Extended JSON format. Handles directory traversal, JSON parsing/serialization,\
+    \ slug generation, and $oid/$numberDouble format preservation."
   dependsOn:
   - course-domain
   implementations:
@@ -3652,7 +3105,8 @@ modules:
     types:
     - Repository
     tests:
-    - name: Given a valid course entity, when save is called, then validator is invoked and no exception is thrown
+    - name: "Given a valid course entity, when save is called, then validator is invoked\
+        \ and no exception is thrown"
       target: FileSystemCourseRepository
       mocks:
       - dependency: courseValidator
@@ -3778,7 +3232,8 @@ modules:
           dependency: courseValidator
           method: validate
           times: 1
-    - name: Given an invalid course entity, when save is called, then validator throws CourseValidationException
+    - name: "Given an invalid course entity, when save is called, then validator throws\
+        \ CourseValidationException"
       target: FileSystemCourseRepository
       mocks:
       - dependency: courseValidator
@@ -3812,7 +3267,8 @@ modules:
         rule: F-COURSE-R014
       assert:
         assertThrows: CourseValidationException
-    - name: Given a course entity with validator passing, when save is called, then no exception is thrown
+    - name: "Given a course entity with validator passing, when save is called, then\
+        \ no exception is thrown"
       target: FileSystemCourseRepository
       mocks:
       - dependency: courseValidator
@@ -3935,7 +3391,8 @@ modules:
         journey: F-COURSE-J002
       assert:
         doesNotThrow: true
-    - name: Given a null course entity, when save is called, then an exception is thrown
+    - name: "Given a null course entity, when save is called, then an exception is\
+        \ thrown"
       target: FileSystemCourseRepository
       invoke:
         method: save
@@ -3948,7 +3405,8 @@ modules:
         rule: F-COURSE-R009
       assert:
         assertThrows: IllegalArgumentException
-    - name: Given validator rejects course with duplicate IDs, when save is called, then CourseValidationException propagates
+    - name: "Given validator rejects course with duplicate IDs, when save is called,\
+        \ then CourseValidationException propagates"
       target: FileSystemCourseRepository
       mocks:
       - dependency: courseValidator
@@ -3959,7 +3417,8 @@ modules:
           type: CourseValidationException
           construct:
             path: /tmp/test-dup-output
-            detail: 'Identificador duplicado: el ID aaa111 aparece en Milestone y en Topic'
+            detail: "Identificador duplicado: el ID aaa111 aparece en Milestone y\
+              \ en Topic"
       invoke:
         method: save
         args:
@@ -3978,8 +3437,8 @@ modules:
         rule: F-COURSE-R006
       assert:
         assertThrows: CourseValidationException
-    - name: Given validator rejects course with broken parent references, when save is called, then CourseValidationException
-        propagates
+    - name: "Given validator rejects course with broken parent references, when save\
+        \ is called, then CourseValidationException propagates"
       target: FileSystemCourseRepository
       mocks:
       - dependency: courseValidator
@@ -3990,7 +3449,8 @@ modules:
           type: CourseValidationException
           construct:
             path: /tmp/test-broken-ref-output
-            detail: 'Integridad referencial rota: Topic (abc123) referencia al padre xyz789, pero el padre esperado es def456'
+            detail: "Integridad referencial rota: Topic (abc123) referencia al padre\
+              \ xyz789, pero el padre esperado es def456"
       invoke:
         method: save
         args:
@@ -4009,7 +3469,8 @@ modules:
         rule: F-COURSE-R008
       assert:
         assertThrows: CourseValidationException
-    - name: Given validator rejects milestone with no topics, when save is called, then CourseValidationException propagates
+    - name: "Given validator rejects milestone with no topics, when save is called,\
+        \ then CourseValidationException propagates"
       target: FileSystemCourseRepository
       mocks:
       - dependency: courseValidator
@@ -4020,7 +3481,7 @@ modules:
           type: CourseValidationException
           construct:
             path: /tmp/test-empty-milestone-output
-            detail: 'Estructura incompleta: Milestone ''A1'' (abc123) no tiene hijos'
+            detail: "Estructura incompleta: Milestone 'A1' (abc123) no tiene hijos"
       invoke:
         method: save
         args:
@@ -4039,144 +3500,150 @@ modules:
         rule: F-COURSE-R015
       assert:
         assertThrows: CourseValidationException
-    - name: Given a valid course directory, when load is called, then returns CourseEntity with 5-level hierarchy including
-        ROOT node
+    - name: "Given a valid course directory, when load is called, then returns CourseEntity\
+        \ with 5-level hierarchy including ROOT node"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         rule: F-COURSE-R001
-    - name: Given a course with ordered milestones and topics, when load is called, then child order matches parent children
-        lists
+    - name: "Given a course with ordered milestones and topics, when load is called,\
+        \ then child order matches parent children lists"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         rule: F-COURSE-R002
-    - name: Given a loaded course, when saved and reloaded, then the result is semantically equivalent to the original
+    - name: "Given a loaded course, when saved and reloaded, then the result is semantically\
+        \ equivalent to the original"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         rule: F-COURSE-R003
-    - name: Given a course directory with quiz templates, when load is called, then every knowledge has at least one quiz
-        template
+    - name: "Given a course directory with quiz templates, when load is called, then\
+        \ every knowledge has at least one quiz template"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         rule: F-COURSE-R004
-    - name: Given a course directory with consistent IDs, when load is called, then all child ID references resolve to existing
-        entities
+    - name: "Given a course directory with consistent IDs, when load is called, then\
+        \ all child ID references resolve to existing entities"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         rule: F-COURSE-R005
-    - name: Given a course directory with unique IDs, when load is called, then no duplicate IDs exist across any hierarchy
-        level
+    - name: "Given a course directory with unique IDs, when load is called, then no\
+        \ duplicate IDs exist across any hierarchy level"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         rule: F-COURSE-R006
-    - name: Given a valid directory structure, when load is called, then each directory level contains its expected descriptor
-        file
+    - name: "Given a valid directory structure, when load is called, then each directory\
+        \ level contains its expected descriptor file"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         rule: F-COURSE-R007
-    - name: Given a loaded course, when inspecting parent references, then each child parentId matches its actual parent id
+    - name: "Given a loaded course, when inspecting parent references, then each child\
+        \ parentId matches its actual parent id"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         rule: F-COURSE-R008
-    - name: Given a course with all required fields populated, when load is called, then all mandatory fields are non-null
+    - name: "Given a course with all required fields populated, when load is called,\
+        \ then all mandatory fields are non-null"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         rule: F-COURSE-R009
-    - name: Given a course with empty string and null field values, when saved and reloaded, then empty and null values are
-        preserved exactly
+    - name: "Given a course with empty string and null field values, when saved and\
+        \ reloaded, then empty and null values are preserved exactly"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         rule: F-COURSE-R010
-    - name: Given quiz templates with dual id and oidId fields, when load is called, then both fields contain the same value
+    - name: "Given quiz templates with dual id and oidId fields, when load is called,\
+        \ then both fields contain the same value"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         rule: F-COURSE-R011
-    - name: Given quiz templates with numberDouble format values, when saved to JSON, then numeric fields preserve MongoDB
-        Extended JSON format
+    - name: "Given quiz templates with numberDouble format values, when saved to JSON,\
+        \ then numeric fields preserve MongoDB Extended JSON format"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         rule: F-COURSE-R012
-    - name: Given a loaded course, when inspecting order fields, then milestones topics and knowledges have sequential 1-based
-        order within their parent
+    - name: "Given a loaded course, when inspecting order fields, then milestones\
+        \ topics and knowledges have sequential 1-based order within their parent"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         rule: F-COURSE-R013
-    - name: Given a milestone with empty children list, when load is called, then validation rejects the course with a descriptive
-        error
+    - name: "Given a milestone with empty children list, when load is called, then\
+        \ validation rejects the course with a descriptive error"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         rule: F-COURSE-R015
-    - name: Given entities with labels, when saved to disk, then directory names are deterministic slugs derived from the
-        labels
+    - name: "Given entities with labels, when saved to disk, then directory names\
+        \ are deterministic slugs derived from the labels"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         rule: F-COURSE-R016
-    - name: Given a course directory with full hierarchy, when loading step by step, then all levels are resolved with correct
-        hierarchy order and validation
+    - name: "Given a course directory with full hierarchy, when loading step by step,\
+        \ then all levels are resolved with correct hierarchy order and validation"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         journey: F-COURSE-J001
-    - name: Given a course in memory, when saving to a target directory, then the directory structure and JSON files are written
-        correctly
+    - name: "Given a course in memory, when saving to a target directory, then the\
+        \ directory structure and JSON files are written correctly"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         journey: F-COURSE-J002
-    - name: Given a course loaded from files, when saved to a new directory and reloaded, then the reloaded course equals
-        the original
+    - name: "Given a course loaded from files, when saved to a new directory and reloaded,\
+        \ then the reloaded course equals the original"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         journey: F-COURSE-J003
-    - name: Given a loaded course, when navigating from ROOT to milestones to topics to knowledges to quizzes, then each level
-        is accessible and correctly ordered
+    - name: "Given a loaded course, when navigating from ROOT to milestones to topics\
+        \ to knowledges to quizzes, then each level is accessible and correctly ordered"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         journey: F-COURSE-J004
-    - name: Given a loaded course, when a knowledge label is modified and the course is saved and reloaded, then the change
-        is reflected and unmodified data remains intact
+    - name: "Given a loaded course, when a knowledge label is modified and the course\
+        \ is saved and reloaded, then the change is reflected and unmodified data\
+        \ remains intact"
       target: FileSystemCourseRepository
       type: integration
       traceability:
         feature: F-COURSE
         journey: F-COURSE-J005
-    - name: Given a nonexistent path or missing descriptor or malformed JSON, when load is called, then a descriptive error
-        is thrown and no partial course is returned
+    - name: "Given a nonexistent path or missing descriptor or malformed JSON, when\
+        \ load is called, then a descriptive error is thrown and no partial course\
+        \ is returned"
       target: FileSystemCourseRepository
       type: integration
       traceability:
@@ -4205,7 +3672,7 @@ modules:
       type: List<String>
       description: Ordered list of all analyzer names present in the report
     - name: analyzerScores
-      type: Map<String,Double>
+      type: "Map<String,Double>"
       description: Course-level score per analyzer
     - name: milestoneScores
       type: List<MilestoneScoreRow>
@@ -4216,7 +3683,7 @@ modules:
     - name: milestoneId
       type: String
     - name: analyzerScores
-      type: Map<String,Double>
+      type: "Map<String,Double>"
       description: Score per analyzer for this milestone
     - name: overallScore
       type: double
@@ -4226,7 +3693,8 @@ modules:
       description: Per-topic breakdown of analyzer scores
     - name: entity
       type: AuditableEntity
-      description: Reference to the auditable entity carrying identity (id, label, code)
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
     extends: ScoreRow
   - name: QuizScoreRow
     type: record
@@ -4238,11 +3706,12 @@ modules:
       type: double
       description: Average score across all analyzers at quiz level
     - name: analyzerScores
-      type: Map<String,Double>
+      type: "Map<String,Double>"
       description: Score per analyzer for this quiz
     - name: entity
       type: AuditableEntity
-      description: Reference to the auditable entity carrying identity (id, label, code)
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
     extends: ScoreRow
   - name: KnowledgeScoreRow
     type: record
@@ -4254,14 +3723,15 @@ modules:
       type: double
       description: Average score across all analyzers at knowledge level
     - name: analyzerScores
-      type: Map<String,Double>
+      type: "Map<String,Double>"
       description: Score per analyzer for this knowledge
     - name: quizScores
       type: List<QuizScoreRow>
       description: Per-quiz breakdown of analyzer scores
     - name: entity
       type: AuditableEntity
-      description: Reference to the auditable entity carrying identity (id, label, code)
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
     extends: ScoreRow
   - name: TopicScoreRow
     type: record
@@ -4273,14 +3743,15 @@ modules:
       type: double
       description: Average score across all analyzers at topic level
     - name: analyzerScores
-      type: Map<String,Double>
+      type: "Map<String,Double>"
       description: Score per analyzer for this topic
     - name: knowledgeScores
       type: List<KnowledgeScoreRow>
       description: Per-knowledge breakdown of analyzer scores
     - name: entity
       type: AuditableEntity
-      description: Reference to the auditable entity carrying identity (id, label, code)
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
     extends: ScoreRow
   - name: DrillDownScope
     type: record
@@ -4309,12 +3780,13 @@ modules:
       description: The resolved depth of the drill-down
     - name: nodeName
       type: String
-      description: Display name of the focused node (course title, level id, topic id, or knowledge id)
+      description: "Display name of the focused node (course title, level id, topic\
+        \ id, or knowledge id)"
     - name: overallScore
       type: double
       description: Overall score of the focused node
     - name: analyzerScores
-      type: Map<String,Double>
+      type: "Map<String,Double>"
       description: Per-analyzer scores of the focused node
     - name: analyzerNames
       type: List<String>
@@ -4332,11 +3804,12 @@ modules:
       type: double
       description: Child overall score
     - name: analyzerScores
-      type: Map<String,Double>
+      type: "Map<String,Double>"
       description: Child per-analyzer scores
     - name: entity
       type: AuditableEntity
-      description: Reference to the auditable entity carrying identity (id, label, code)
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
     extends: ScoreRow
   - name: AnalyzerStatsView
     type: record
@@ -4351,16 +3824,16 @@ modules:
       type: double
       description: Course-level score for this analyzer
     - name: levelScores
-      type: Map<String,Double>
+      type: "Map<String,Double>"
       description: Per-milestone/level score breakdown
     - name: worstItems
       type: List<ScoredItemRow>
       description: Worst-scoring items sorted ascending
     - name: scoreDistribution
-      type: Map<String,Integer>
+      type: "Map<String,Integer>"
       description: Histogram buckets (e.g. 0.0-0.2 -> count)
     - name: subMetricsByLevel
-      type: Map<String,Map<String,Double>>
+      type: "Map<String,Map<String,Double>>"
       description: Sub-metric scores per level (e.g. level -> quarter -> score)
     - name: itemCount
       type: int
@@ -4391,45 +3864,40 @@ modules:
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'format(ReportViewModel viewModel,DrillDownScope scope): String'
-  - name: AuditCli
-    stereotype: port
-    sealed: true
-    exposes:
-    - signature: 'run(String[] args): int'
-    - signature: 'call(): Integer'
+    - signature: "format(ReportViewModel viewModel,DrillDownScope scope): String"
   - name: FormatterRegistry
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'getFormatter(String formatName): ReportFormatter'
+    - signature: "getFormatter(String formatName): ReportFormatter"
   - name: ReportViewModelTransformer
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'transform(AuditReport report): ReportViewModel'
+    - signature: "transform(AuditReport report): ReportViewModel"
   - name: RawReportFormatter
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'format(AuditReport report): String'
+    - signature: "format(AuditReport report): String"
   - name: DrillDownResolver
     stereotype: port
     sealed: true
     exposes:
-    - signature: 'resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView'
+    - signature: "resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView"
   - name: AnalyzerStatsTransformer
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'transform(AuditReport report,String analyzerName,AnalyzerRegistry registry): AnalyzerStatsView'
+    - signature: "transform(AuditReport report,String analyzerName,AnalyzerRegistry\
+        \ registry): AnalyzerStatsView"
   - name: ScoreRow
     stereotype: port
     sealed: false
     exposes:
-    - signature: 'getEntity(): AuditableEntity'
-    - signature: 'getOverallScore(): double'
-    - signature: 'getAnalyzerScores(): Map<String,Double>'
+    - signature: "getEntity(): AuditableEntity"
+    - signature: "getOverallScore(): double"
+    - signature: "getAnalyzerScores(): Map<String,Double>"
   implementations:
   - name: TextReportFormatter
     requiresInject:
@@ -4443,299 +3911,6 @@ modules:
       type: DrillDownResolver
     implements:
     - ReportFormatter
-  - name: DefaultAuditCli
-    requiresInject:
-    - name: auditRunner
-      type: AuditRunner
-    - name: formatterRegistry
-      type: FormatterRegistry
-    - name: viewModelTransformer
-      type: ReportViewModelTransformer
-    - name: rawReportFormatter
-      type: RawReportFormatter
-    - name: analyzerRegistry
-      type: AnalyzerRegistry
-    - name: analyzerStatsTransformer
-      type: AnalyzerStatsTransformer
-    tests:
-    - name: Given valid args with course path, when run is called, then returns exit code 0
-      target: DefaultAuditCli
-      mocks:
-      - dependency: auditRunner
-        method: runAudit
-        thenReturn: ref:report
-        args:
-        - match: any
-      - dependency: formatterRegistry
-        method: getFormatter
-        thenReturn: ref:formatter
-        args:
-        - match: eq
-          value: text
-      invoke:
-        method: run
-        args:
-        - /path/to/course
-      fixtures:
-      - id: emptyScores
-        type: NodeScores
-        construct:
-          scores: '{}'
-      - id: report
-        type: AuditReport
-        construct:
-          overallScore: 0.85
-          scores: ref:emptyScores
-          milestones: '[]'
-      - id: formatter
-        type: ReportFormatter
-      type: unit
-      traceability:
-        feature: F-CLI
-        rule: F-CLI-R004
-      assert:
-        returns: 0
-    - name: Given no args provided, when run is called, then returns non-zero exit code
-      target: DefaultAuditCli
-      invoke:
-        method: run
-      type: unit
-      traceability:
-        feature: F-CLI
-        rule: F-CLI-R002
-      assert:
-        returns: 1
-    - name: Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code
-      target: DefaultAuditCli
-      mocks:
-      - dependency: auditRunner
-        method: runAudit
-        args:
-        - match: any
-        thenThrow:
-          type: RuntimeException
-          message: Failed to load course
-      - dependency: formatterRegistry
-        method: getFormatter
-        thenReturn: ref:formatter
-        args:
-        - match: eq
-          value: text
-      invoke:
-        method: run
-        args:
-        - /path/to/course
-      fixtures:
-      - id: formatter
-        type: ReportFormatter
-      type: unit
-      traceability:
-        feature: F-CLI
-        rule: F-CLI-R004
-      assert:
-        returns: 1
-    - name: Given valid args with --format json, when run is called, then json formatter is looked up and returns 0
-      target: DefaultAuditCli
-      mocks:
-      - dependency: auditRunner
-        method: runAudit
-        thenReturn: ref:report
-        args:
-        - match: any
-      - dependency: formatterRegistry
-        method: getFormatter
-        thenReturn: ref:jsonFormatter
-        args:
-        - match: eq
-          value: json
-      invoke:
-        method: run
-        args:
-        - /path/to/course
-        - --format
-        - json
-      fixtures:
-      - id: emptyScores
-        type: NodeScores
-        construct:
-          scores: '{}'
-      - id: report
-        type: AuditReport
-        construct:
-          overallScore: 0.75
-          scores: ref:emptyScores
-          milestones: '[]'
-      - id: jsonFormatter
-        type: ReportFormatter
-      type: unit
-      traceability:
-        feature: F-CLI
-        rule: F-CLI-R003
-      assert:
-        returns: 0
-        verifyCall:
-          dependency: formatterRegistry
-          method: getFormatter
-          times: 1
-    - name: Given valid args without --format, when run is called, then text formatter is used by default and returns 0
-      target: DefaultAuditCli
-      mocks:
-      - dependency: auditRunner
-        method: runAudit
-        thenReturn: ref:report
-        args:
-        - match: any
-      - dependency: formatterRegistry
-        method: getFormatter
-        thenReturn: ref:textFormatter
-        args:
-        - match: eq
-          value: text
-      invoke:
-        method: run
-        args:
-        - /path/to/course
-      fixtures:
-      - id: emptyScores
-        type: NodeScores
-        construct:
-          scores: '{}'
-      - id: report
-        type: AuditReport
-        construct:
-          overallScore: 0.9
-          scores: ref:emptyScores
-          milestones: '[]'
-      - id: textFormatter
-        type: ReportFormatter
-      type: unit
-      traceability:
-        feature: F-CLI
-        rule: F-CLI-R003
-      assert:
-        returns: 0
-        verifyCall:
-          dependency: formatterRegistry
-          method: getFormatter
-          times: 1
-    - name: Given valid args, when run is called, then auditRunner runAudit is invoked with course path
-      target: DefaultAuditCli
-      mocks:
-      - dependency: auditRunner
-        method: runAudit
-        thenReturn: ref:report
-        args:
-        - match: any
-      - dependency: formatterRegistry
-        method: getFormatter
-        thenReturn: ref:formatter
-        args:
-        - match: eq
-          value: text
-      invoke:
-        method: run
-        args:
-        - /path/to/course
-      fixtures:
-      - id: emptyScores
-        type: NodeScores
-        construct:
-          scores: '{}'
-      - id: report
-        type: AuditReport
-        construct:
-          overallScore: 0.5
-          scores: ref:emptyScores
-          milestones: '[]'
-      - id: formatter
-        type: ReportFormatter
-      type: unit
-      traceability:
-        feature: F-CLI
-        rule: F-CLI-R001
-      assert:
-        returns: 0
-        verifyCall:
-          dependency: auditRunner
-          method: runAudit
-          times: 1
-    - name: Given an unsupported format value, when run is called, then returns non-zero exit code
-      target: DefaultAuditCli
-      mocks:
-      - dependency: auditRunner
-        method: runAudit
-        thenReturn: ref:report
-        args:
-        - match: any
-      - dependency: formatterRegistry
-        method: getFormatter
-        args:
-        - match: eq
-          value: xml
-      invoke:
-        method: run
-        args:
-        - /path/to/course
-        - --format
-        - xml
-      fixtures:
-      - id: emptyScores
-        type: NodeScores
-        construct:
-          scores: '{}'
-      - id: report
-        type: AuditReport
-        construct:
-          overallScore: 0.7
-          scores: ref:emptyScores
-          milestones: '[]'
-      type: unit
-      traceability:
-        feature: F-CLI
-        rule: F-CLI-R003
-      assert:
-        returns: 1
-    - name: Given valid args and low audit scores, when run is called, then returns 0 regardless of score values
-      target: DefaultAuditCli
-      mocks:
-      - dependency: auditRunner
-        method: runAudit
-        thenReturn: ref:lowScoreReport
-        args:
-        - match: any
-      - dependency: formatterRegistry
-        method: getFormatter
-        thenReturn: ref:formatter
-        args:
-        - match: eq
-          value: text
-      invoke:
-        method: run
-        args:
-        - /path/to/course
-      fixtures:
-      - id: emptyScores
-        type: NodeScores
-        construct:
-          scores: '{}'
-      - id: lowScoreReport
-        type: AuditReport
-        construct:
-          overallScore: 0.1
-          scores: ref:emptyScores
-          milestones: '[]'
-      - id: formatter
-        type: ReportFormatter
-      type: unit
-      traceability:
-        feature: F-CLI
-        rule: F-CLI-R004
-      assert:
-        returns: 0
-    externalImplements:
-    - java.util.concurrent.Callable<Integer>
-    implements:
-    - AuditCli
   - name: DefaultFormatterRegistry
     types:
     - Component
@@ -4763,6 +3938,60 @@ modules:
     - Component
     implements:
     - AnalyzerStatsTransformer
+  - name: ContentAuditCmd
+    types:
+    - Component
+    externalImplements:
+    - java.util.concurrent.Callable<Integer>
+  - name: AnalyzeCmd
+    requiresInject:
+    - name: auditRunner
+      type: AuditRunner
+    - name: formatterRegistry
+      type: FormatterRegistry
+    - name: viewModelTransformer
+      type: ReportViewModelTransformer
+    - name: rawReportFormatter
+      type: RawReportFormatter
+    - name: drillDownResolver
+      type: DrillDownResolver
+    types:
+    - Component
+    externalImplements:
+    - java.util.concurrent.Callable<Integer>
+  - name: AnalyzerCmd
+    types:
+    - Component
+    externalImplements:
+    - java.util.concurrent.Callable<Integer>
+  - name: AnalyzerListCmd
+    requiresInject:
+    - name: analyzerRegistry
+      type: AnalyzerRegistry
+    types:
+    - Component
+    externalImplements:
+    - java.util.concurrent.Callable<Integer>
+  - name: AnalyzerConfigCmd
+    requiresInject:
+    - name: analyzerRegistry
+      type: AnalyzerRegistry
+    types:
+    - Component
+    externalImplements:
+    - java.util.concurrent.Callable<Integer>
+  - name: AnalyzerStatsCmd
+    requiresInject:
+    - name: analyzerRegistry
+      type: AnalyzerRegistry
+    - name: analyzerStatsTransformer
+      type: AnalyzerStatsTransformer
+    - name: auditRunner
+      type: AuditRunner
+    types:
+    - Component
+    externalImplements:
+    - java.util.concurrent.Callable<Integer>
   patterns:
   - type: Strategy
     implementations:
@@ -4773,8 +4002,9 @@ modules:
     interface: ReportFormatter
   scope: public
 - name: nlp-infrastructure
-  description: Infrastructure module for NLP processing. Provides SpaCy-backed tokenization behind a factory, with internal
-    caching. Only the factory and configuration model are public; all processing internals are package-private.
+  description: "Infrastructure module for NLP processing. Provides SpaCy-backed tokenization\
+    \ behind a factory, with internal caching. Only the factory and configuration\
+    \ model are public; all processing internals are package-private."
   dependsOn:
   - audit-domain
   models:
@@ -4795,7 +4025,7 @@ modules:
     stereotype: factory
     sealed: false
     exposes:
-    - signature: 'create(NlpTokenizerConfig config): NlpTokenizer'
+    - signature: "create(NlpTokenizerConfig config): NlpTokenizer"
   patterns:
   - type: Factory
     implementations:
@@ -4804,7 +4034,8 @@ modules:
     interface: NlpTokenizerFactory
   packages:
   - name: spacy
-    description: SpaCy-backed NLP tokenization internals. Only the factory is public; all processing classes are package-private.
+    description: SpaCy-backed NLP tokenization internals. Only the factory is public;
+      all processing classes are package-private.
     visibility: public
     implementations:
     - name: SpacyNlpTokenizerFactory
@@ -4837,13 +4068,14 @@ modules:
       implements:
       - NlpTokenizer
 - name: vocabulary-infrastructure
-  description: Infrastructure module for linguistic reference catalogs (EVP vocabulary profiles, COCA frequency data). Provides
-    static lookup data for vocabulary analysis. Separate from NLP processing (which handles runtime tokenization).
+  description: "Infrastructure module for linguistic reference catalogs (EVP vocabulary\
+    \ profiles, COCA frequency data). Provides static lookup data for vocabulary analysis.\
+    \ Separate from NLP processing (which handles runtime tokenization)."
   dependsOn:
   - audit-domain
   packages:
   - name: evp
-    description: EVP catalog access — expected lemmas by CEFR level, semantic categories
+    description: "EVP catalog access — expected lemmas by CEFR level, semantic categories"
     visibility: internal
     implementations:
     - name: FileSystemEvpCatalog

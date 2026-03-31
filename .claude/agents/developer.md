@@ -381,7 +381,7 @@ Domain module for course structure. Contains entity models representing the 5-le
 **Interfaces (contracts):**
 
 - `AuditRunner`
-  - `runAudit(Path coursePath): AuditReport`
+  - `runAudit(Path coursePath,Set<String> analyzerNames): AuditReport`
 - `CourseMapper`
   - `map(CourseEntity course): AuditableCourse`
 - `AnalyzerRegistry`
@@ -440,9 +440,6 @@ CLI entry point for running content audits from the command line
 
 - `ReportFormatter`
   - `format(ReportViewModel viewModel,DrillDownScope scope): String`
-- `AuditCli` [sealed]
-  - `run(String[] args): int`
-  - `call(): Integer`
 - `FormatterRegistry`
   - `getFormatter(String formatName): ReportFormatter`
 - `ReportViewModelTransformer`
@@ -464,9 +461,6 @@ CLI entry point for running content audits from the command line
   Inject: drillDownResolver: DrillDownResolver
 - `JsonReportFormatter` implements ReportFormatter
   Inject: drillDownResolver: DrillDownResolver
-- `DefaultAuditCli` implements AuditCli
-  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry, viewModelTransformer: ReportViewModelTransformer, rawReportFormatter: RawReportFormatter, analyzerRegistry: AnalyzerRegistry, analyzerStatsTransformer: AnalyzerStatsTransformer
-  Tests: Given valid args with course path, when run is called, then returns exit code 0, Given no args provided, when run is called, then returns non-zero exit code, Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code, Given valid args with --format json, when run is called, then json formatter is looked up and returns 0, Given valid args without --format, when run is called, then text formatter is used by default and returns 0, Given valid args, when run is called, then auditRunner runAudit is invoked with course path, Given an unsupported format value, when run is called, then returns non-zero exit code, Given valid args and low audit scores, when run is called, then returns 0 regardless of score values
 - `DefaultFormatterRegistry` implements FormatterRegistry [Component]
 - `DefaultReportViewModelTransformer` implements ReportViewModelTransformer
 - `TableReportFormatter` implements ReportFormatter
@@ -474,6 +468,16 @@ CLI entry point for running content audits from the command line
 - `RawJsonReportFormatter` implements RawReportFormatter
 - `DefaultDrillDownResolver` implements DrillDownResolver [Component]
 - `DefaultAnalyzerStatsTransformer` implements AnalyzerStatsTransformer [Component]
+- `ContentAuditCmd` implements  [Component]
+- `AnalyzeCmd` implements  [Component]
+  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry, viewModelTransformer: ReportViewModelTransformer, rawReportFormatter: RawReportFormatter, drillDownResolver: DrillDownResolver
+- `AnalyzerCmd` implements  [Component]
+- `AnalyzerListCmd` implements  [Component]
+  Inject: analyzerRegistry: AnalyzerRegistry
+- `AnalyzerConfigCmd` implements  [Component]
+  Inject: analyzerRegistry: AnalyzerRegistry
+- `AnalyzerStatsCmd` implements  [Component]
+  Inject: analyzerRegistry: AnalyzerRegistry, analyzerStatsTransformer: AnalyzerStatsTransformer, auditRunner: AuditRunner
 
 #### nlp-infrastructure
 

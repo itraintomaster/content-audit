@@ -37,7 +37,6 @@ Before writing any code, read `sentinel.yaml`. It defines the contracts, boundar
 The following interfaces are `sealed`. Only the listed classes may implement them:
 
 - `LemmaAbsenceConfig` permits: DefaultLemmaAbsenceConfig
-- `AuditCli` permits: DefaultAuditCli
 - `DrillDownResolver` permits: DefaultDrillDownResolver
 
 ## Rule C - Dependency Injection
@@ -136,9 +135,9 @@ CLI entry point for running content audits from the command line
 
 **Models:** ReportViewModel, MilestoneScoreRow, QuizScoreRow, KnowledgeScoreRow, TopicScoreRow, DrillDownScope, DrillDownLevel, DrillDownView, ChildScoreRow, AnalyzerStatsView, ScoredItemRow
 
-**Interfaces:** ReportFormatter, AuditCli, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter, DrillDownResolver, AnalyzerStatsTransformer, ScoreRow
+**Interfaces:** ReportFormatter, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter, DrillDownResolver, AnalyzerStatsTransformer, ScoreRow
 
-**Implementations:** TextReportFormatter, JsonReportFormatter, DefaultAuditCli, DefaultFormatterRegistry, DefaultReportViewModelTransformer, TableReportFormatter, RawJsonReportFormatter, DefaultDrillDownResolver, DefaultAnalyzerStatsTransformer
+**Implementations:** TextReportFormatter, JsonReportFormatter, DefaultFormatterRegistry, DefaultReportViewModelTransformer, TableReportFormatter, RawJsonReportFormatter, DefaultDrillDownResolver, DefaultAnalyzerStatsTransformer, ContentAuditCmd, AnalyzeCmd, AnalyzerCmd, AnalyzerListCmd, AnalyzerConfigCmd, AnalyzerStatsCmd
 
 ### nlp-infrastructure
 

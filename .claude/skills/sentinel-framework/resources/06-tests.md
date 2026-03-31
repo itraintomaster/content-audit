@@ -180,14 +180,3 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - Given a loaded course, when a knowledge label is modified and the course is saved and reloaded, then the change is reflected and unmodified data remains intact → F-COURSE/F-COURSE-J005
 - Given a nonexistent path or missing descriptor or malformed JSON, when load is called, then a descriptive error is thrown and no partial course is returned → F-COURSE/F-COURSE-J006
 
-### DefaultAuditCli (audit-cli)
-
-- Given valid args with course path, when run is called, then returns exit code 0 → F-CLI/F-CLI-R004
-- Given no args provided, when run is called, then returns non-zero exit code → F-CLI/F-CLI-R002
-- Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code → F-CLI/F-CLI-R004
-- Given valid args with --format json, when run is called, then json formatter is looked up and returns 0 → F-CLI/F-CLI-R003
-- Given valid args without --format, when run is called, then text formatter is used by default and returns 0 → F-CLI/F-CLI-R003
-- Given valid args, when run is called, then auditRunner runAudit is invoked with course path → F-CLI/F-CLI-R001
-- Given an unsupported format value, when run is called, then returns non-zero exit code → F-CLI/F-CLI-R003
-- Given valid args and low audit scores, when run is called, then returns 0 regardless of score values → F-CLI/F-CLI-R004
-

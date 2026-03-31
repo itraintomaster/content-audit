@@ -97,11 +97,6 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: ReportFormatter - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.AuditCli");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: AuditCli - " + e.getMessage());
-    }
-    try {
       Class.forName("com.learney.contentaudit.auditcli.FormatterRegistry");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: FormatterRegistry - " + e.getMessage());
@@ -142,11 +137,6 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: JsonReportFormatter - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.DefaultAuditCli");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: DefaultAuditCli - " + e.getMessage());
-    }
-    try {
       Class.forName("com.learney.contentaudit.auditcli.DefaultFormatterRegistry");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultFormatterRegistry - " + e.getMessage());
@@ -175,6 +165,36 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.DefaultAnalyzerStatsTransformer");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultAnalyzerStatsTransformer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.ContentAuditCmd");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ContentAuditCmd - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.AnalyzeCmd");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnalyzeCmd - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.AnalyzerCmd");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnalyzerCmd - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.AnalyzerListCmd");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnalyzerListCmd - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.AnalyzerConfigCmd");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnalyzerConfigCmd - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.AnalyzerStatsCmd");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnalyzerStatsCmd - " + e.getMessage());
     }
   }
 }

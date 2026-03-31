@@ -9,7 +9,7 @@
 
 Methods:
 
-- `runAudit(Path coursePath): AuditReport`
+- `runAudit(Path coursePath,Set<String> analyzerNames): AuditReport`
 
 ### CourseMapper (port)
 

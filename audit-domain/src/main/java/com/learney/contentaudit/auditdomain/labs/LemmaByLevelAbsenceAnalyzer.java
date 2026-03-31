@@ -19,11 +19,11 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -116,6 +116,17 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         this.evpCatalogPort = evpCatalogPort;
         this.contentWordFilter = contentWordFilter;
         this.lemmaAbsenceConfig = lemmaAbsenceConfig;
+    }
+
+    // Holds quiz score + misplaced lemma details together
+    private static class QuizScoreResult {
+        final double score;
+        final List<Map<String, String>> misplacedLemmas;
+
+        QuizScoreResult(double score, List<Map<String, String>> misplacedLemmas) {
+            this.score = score;
+            this.misplacedLemmas = misplacedLemmas;
+        }
     }
 
     @Override
@@ -429,14 +440,16 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         }
     }
 
-    private double scoreQuiz(AuditableQuiz quiz, CefrLevel sentenceLevel,
+    private QuizScoreResult scoreQuiz(AuditableQuiz quiz, CefrLevel sentenceLevel,
             Map<LemmaAndPos, CefrLevel> lemmaExpectedLevel) {
         if (quiz == null || quiz.getTokens() == null) {
-            return 1.0;
+            return new QuizScoreResult(1.0, Collections.emptyList());
         }
         double discountPerLevel = lemmaAbsenceConfig.getDiscountPerLevel();
         double maxDiscount = 0.0;
         int sentenceOrder = LEVEL_ORDER.get(sentenceLevel);
+        List<Map<String, String>> misplacedLemmas = new ArrayList<>();
+        Set<String> seen = new HashSet<>();
 
         for (NlpToken token : quiz.getTokens()) {
             if (token == null || token.getLemma() == null) continue;
@@ -456,22 +469,35 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
             if (discount > maxDiscount) {
                 maxDiscount = discount;
             }
+            // Track misplaced lemma details (deduplicate by lemma+pos)
+            String key = lp.getLemma() + "|" + lp.getPos();
+            if (seen.add(key)) {
+                Map<String, String> info = new LinkedHashMap<>();
+                info.put("lemma", lp.getLemma());
+                info.put("pos", lp.getPos());
+                info.put("expectedLevel", expectedLevel.name());
+                misplacedLemmas.add(info);
+            }
         }
         double score = 1.0 - maxDiscount;
-        // Clamp to [0, 1] range
-        return Math.max(0.0, Math.min(1.0, score));
+        score = Math.max(0.0, Math.min(1.0, score));
+        return new QuizScoreResult(score, misplacedLemmas);
     }
 
-    // --- R024: Compute level score ---
+    // --- R008/R024: Compute level score weighted by absence type impact ---
     private double computeLevelScore(int totalExpected, int totalAbsent,
             List<AbsentLemma> absentList) {
         if (totalExpected == 0) {
             return 1.0;
         }
-        // Base: 1.0 - absence proportion
-        double absenceProportion = (double) totalAbsent / totalExpected;
-        double baseScore = 1.0 - absenceProportion;
-        return Math.max(0.0, Math.min(1.0, baseScore));
+        // R008: Each absent lemma contributes its type's impact score to the penalty
+        // COMPLETELY_ABSENT=1.0, APPEARS_TOO_LATE=0.8, APPEARS_TOO_EARLY=0.6, SCATTERED=0.4
+        double weightedAbsence = 0.0;
+        for (AbsentLemma al : absentList) {
+            weightedAbsence += al.getAbsenceType().getImpactScore();
+        }
+        double score = 1.0 - weightedAbsence / totalExpected;
+        return Math.max(0.0, Math.min(1.0, score));
     }
 
     // --- R022, R025: Compute global assessment ---
@@ -670,12 +696,14 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
 
     @Override
     public List<ScoredItem> getResults() {
-        if (results.isEmpty()) {
+        if (courseResult == null && results.isEmpty()) {
             return Collections.emptyList();
         }
-        // Quiz-level items aggregate to course level via the aggregator.
-        // No need to emit the courseResult — it would create a synthetic milestone.
-        return Collections.unmodifiableList(new ArrayList<>(results));
+        List<ScoredItem> combined = new ArrayList<>(results);
+        if (courseResult != null) {
+            combined.add(courseResult);
+        }
+        return Collections.unmodifiableList(combined);
     }
 
     @Override

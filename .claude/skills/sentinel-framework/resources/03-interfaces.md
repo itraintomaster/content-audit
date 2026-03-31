@@ -278,7 +278,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `runAudit(Path coursePath): AuditReport` | (none) |
+| `runAudit(Path coursePath,Set<String> analyzerNames): AuditReport` | (none) |
 
 #### CourseMapper (port)
 
@@ -312,17 +312,6 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `format(ReportViewModel viewModel,DrillDownScope scope): String` | (none) |
-
-#### AuditCli [SEALED] (port)
-
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implemented by:** DefaultAuditCli (audit-cli)
-
-| Method | Throws |
-|--------|--------|
-| `run(String[] args): int` | (none) |
-| `call(): Integer` | (none) |
 
 #### FormatterRegistry (port)
 
