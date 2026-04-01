@@ -33,16 +33,6 @@ Examples:
 
 ### Module: audit-domain
 
-#### ContentAudit (service)
-
-**Package:** `com.learney.contentaudit.auditdomain`
-
-**Implemented by:** IContentAudit (audit-domain)
-
-| Method | Throws |
-|--------|--------|
-| `audit(AuditableCourse): AuditReport` | (none) |
-
 #### AuditEngine (port)
 
 **Package:** `com.learney.contentaudit.auditdomain`
@@ -51,7 +41,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `runAudit(AuditableCourse): AuditReport` | (none) |
+| `runAudit(AuditableCourse course): AuditReport` | (none) |
 
 #### ContentAnalyzer (port)
 
@@ -61,11 +51,11 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `onKnowledge(AuditableKnowledge knowledge,AuditContext ctx): Void` | (none) |
-| `onQuiz(AuditableQuiz quiz,AuditContext ctx): Void` | (none) |
-| `onMilestone(AuditableMilestone milestone,AuditContext ctx): Void` | (none) |
-| `onTopic(AuditableTopic topic,AuditContext ctx): Void` | (none) |
-| `onCourseComplete(AuditableCourse course,AuditContext ctx): Void` | (none) |
+| `onKnowledge(AuditNode node): Void` | (none) |
+| `onQuiz(AuditNode node): Void` | (none) |
+| `onMilestone(AuditNode node): Void` | (none) |
+| `onTopic(AuditNode node): Void` | (none) |
+| `onCourseComplete(AuditNode rootNode): Void` | (none) |
 | `getName(): String` | (none) |
 | `getTarget(): AuditTarget` | (none) |
 | `getResults(): List<ScoredItem>` | (none) |
@@ -111,7 +101,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `aggregate(List<ScoredItem> scores,Map<String,AuditableEntity> entityMap): AuditReport` | (none) |
+| `aggregate(AuditNode rootNode): void` | (none) |
 
 #### CocaBucketsConfig (port)
 
@@ -171,6 +161,7 @@ Examples:
 | `getMediumReportLimit(): int` | (none) |
 | `getLowReportLimit(): int` | (none) |
 | `getDiscountPerLevel(): double` | (none) |
+| `getCoverageTarget(CefrLevel level): double` | (none) |
 
 #### EvpCatalogPort (port)
 
@@ -279,6 +270,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `runAudit(Path coursePath,Set<String> analyzerNames): AuditReport` | (none) |
+| `runDetailedAudit(Path coursePath,String analyzerName): AuditNode` | (none) |
 
 #### CourseMapper (port)
 
@@ -372,6 +364,16 @@ Examples:
 | `getEntity(): AuditableEntity` | (none) |
 | `getOverallScore(): double` | (none) |
 | `getAnalyzerScores(): Map<String,Double>` | (none) |
+
+#### DetailedFormatter (formatter)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implemented by:** LemmaAbsenceDetailedFormatter (audit-cli), CocaBucketsDetailedFormatter (audit-cli)
+
+| Method | Throws |
+|--------|--------|
+| `format(String analyzerName,AuditNode rootNode,String outputFormat): String` | (none) |
 
 ### Module: nlp-infrastructure
 

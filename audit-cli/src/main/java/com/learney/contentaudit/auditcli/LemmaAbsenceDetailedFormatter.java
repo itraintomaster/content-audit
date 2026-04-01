@@ -1,7 +1,7 @@
 package com.learney.contentaudit.auditcli;
 
+import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
-import com.learney.contentaudit.auditdomain.ScoredItem;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -15,8 +15,8 @@ import javax.annotation.processing.Generated;
 class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
 
     @Override
-    public String format(String analyzerName, List<ScoredItem> items, String outputFormat) {
-        Partitioned p = partition(items);
+    public String format(String analyzerName, AuditNode rootNode, String outputFormat) {
+        Partitioned p = partition(rootNode);
         return switch (outputFormat) {
             case "json" -> formatJson(p);
             case "table" -> formatTable(p);
@@ -31,7 +31,8 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
         sb.append("{\n");
 
         if (p.course != null) {
-            sb.append("  \"score\": ").append(fmt(p.course.getScore())).append(",\n");
+            Double courseScore = mainScore(p.course);
+            sb.append("  \"score\": ").append(fmt(courseScore != null ? courseScore : 0.0)).append(",\n");
             String assessment = p.course.getMetadata() != null
                     ? jsonStr(p.course.getMetadata().get("assessment")) : "null";
             sb.append("  \"assessment\": ").append(assessment).append(",\n");
@@ -39,15 +40,16 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
 
         sb.append("  \"levels\": [\n");
         int mi = 0;
-        for (Map.Entry<String, ScoredItem> e : p.milestones.entrySet()) {
+        for (Map.Entry<String, AuditNode> e : p.milestones.entrySet()) {
             if (mi > 0) sb.append(",\n");
             String levelKey = e.getKey();
-            ScoredItem m = e.getValue();
+            AuditNode m = e.getValue();
             Map<String, Object> meta = m.getMetadata();
 
             sb.append("    {\n");
             sb.append("      \"level\": \"").append(levelKey).append("\",\n");
-            sb.append("      \"score\": ").append(fmt(m.getScore())).append(",\n");
+            Double mScore = mainScore(m);
+            sb.append("      \"score\": ").append(fmt(mScore != null ? mScore : 0.0)).append(",\n");
             sb.append("      \"coverageTarget\": ").append(fmtMeta(meta, "coverageTarget")).append(",\n");
             sb.append("      \"totalExpected\": ").append(meta != null ? meta.getOrDefault("totalExpected", 0) : 0).append(",\n");
             sb.append("      \"totalAbsent\": ").append(meta != null ? meta.getOrDefault("totalAbsent", 0) : 0).append(",\n");
@@ -59,44 +61,46 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
                     new String[]{"lemma", "pos", "type", "priority"})).append(",\n");
 
             // Topics → Knowledges → Quizzes (hierarchical)
-            List<ScoredItem> topics = p.topicsByLevel.getOrDefault(levelKey, List.of());
+            List<AuditNode> topics = p.topicsByLevel.getOrDefault(levelKey, List.of());
             sb.append("      \"topics\": [");
             for (int ti = 0; ti < topics.size(); ti++) {
                 if (ti > 0) sb.append(",");
-                ScoredItem t = topics.get(ti);
-                String topicId = t.getTopicId();
+                AuditNode t = topics.get(ti);
+                String topicId = nodeId(t);
                 sb.append("\n        {\n");
                 sb.append("          \"topicId\": ").append(jsonStr(topicId)).append(",\n");
-                sb.append("          \"topicLabel\": ").append(jsonStr(labelOf(t))).append(",\n");
-                sb.append("          \"score\": ").append(fmt(t.getScore())).append(",\n");
+                sb.append("          \"topicLabel\": ").append(jsonStr(nodeLabel(t))).append(",\n");
+                Double tScore = mainScore(t);
+                sb.append("          \"score\": ").append(fmt(tScore != null ? tScore : 0.0)).append(",\n");
                 sb.append("          \"misplacedLemmaCount\": ").append(metaInt(t, "misplacedLemmaCount")).append(",\n");
 
                 // Knowledges within this topic
-                List<ScoredItem> knowledges = p.knowledgesByTopic.getOrDefault(topicId, List.of());
+                List<AuditNode> knowledges = p.knowledgesByTopic.getOrDefault(topicId, List.of());
                 sb.append("          \"knowledges\": [");
                 for (int ki = 0; ki < knowledges.size(); ki++) {
                     if (ki > 0) sb.append(",");
-                    ScoredItem k = knowledges.get(ki);
-                    String knowledgeId = k.getKnowledgeId();
+                    AuditNode k = knowledges.get(ki);
+                    String knowledgeId = nodeId(k);
                     sb.append("\n            {\n");
                     sb.append("              \"knowledgeId\": ").append(jsonStr(knowledgeId)).append(",\n");
-                    sb.append("              \"knowledgeLabel\": ").append(jsonStr(labelOf(k))).append(",\n");
-                    sb.append("              \"score\": ").append(fmt(k.getScore())).append(",\n");
+                    sb.append("              \"knowledgeLabel\": ").append(jsonStr(nodeLabel(k))).append(",\n");
+                    Double kScore = mainScore(k);
+                    sb.append("              \"score\": ").append(fmt(kScore != null ? kScore : 0.0)).append(",\n");
                     sb.append("              \"misplacedLemmaCount\": ").append(metaInt(k, "misplacedLemmaCount")).append(",\n");
                     sb.append("              \"misplacedLemmas\": ").append(formatLemmaListJson(
                             k.getMetadata(), "misplacedLemmas",
                             new String[]{"lemma", "pos", "expectedLevel"})).append(",\n");
 
                     // Quizzes within this knowledge
-                    List<ScoredItem> quizzes = p.quizzesByKnowledge.getOrDefault(knowledgeId, List.of());
+                    List<AuditNode> quizzes = p.quizzesByKnowledge.getOrDefault(knowledgeId, List.of());
                     sb.append("              \"quizzes\": [");
                     for (int qi = 0; qi < quizzes.size(); qi++) {
                         if (qi > 0) sb.append(",");
-                        ScoredItem q = quizzes.get(qi);
+                        AuditNode q = quizzes.get(qi);
+                        Double qScore = mainScore(q);
                         sb.append("\n                {");
-                        sb.append("\"quizId\": ").append(jsonStr(q.getQuizId()));
-                        sb.append(", \"score\": ").append(fmt(q.getScore()));
-                        int qmc = metaInt(q, "misplacedLemmas");
+                        sb.append("\"quizId\": ").append(jsonStr(nodeId(q)));
+                        sb.append(", \"score\": ").append(fmt(qScore != null ? qScore : 0.0));
                         if (q.getMetadata() != null && q.getMetadata().get("misplacedLemmas") instanceof List) {
                             @SuppressWarnings("unchecked")
                             List<Map<String, String>> qLemmas = (List<Map<String, String>>) q.getMetadata().get("misplacedLemmas");
@@ -128,7 +132,8 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
 
         String assessment = p.course != null && p.course.getMetadata() != null
                 ? String.valueOf(p.course.getMetadata().get("assessment")) : "N/A";
-        double courseScore = p.course != null ? p.course.getScore() : 0.0;
+        Double courseScoreVal = p.course != null ? mainScore(p.course) : null;
+        double courseScore = courseScoreVal != null ? courseScoreVal : 0.0;
         sb.append(String.format("Score: %.2f | Assessment: %s%n%n", courseScore, assessment));
 
         sb.append(String.format("%-6s %6s %7s %8s %6s %8s %8s %8s %9s%n",
@@ -136,14 +141,16 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
                 "Absent", "TooLate", "TooEarly"));
         sb.append("─".repeat(82)).append("\n");
 
-        for (Map.Entry<String, ScoredItem> entry : p.milestones.entrySet()) {
+        for (Map.Entry<String, AuditNode> entry : p.milestones.entrySet()) {
             String level = entry.getKey();
-            ScoredItem m = entry.getValue();
+            AuditNode m = entry.getValue();
+            Double mScoreVal = mainScore(m);
+            double mScore = mScoreVal != null ? mScoreVal : 0.0;
             Map<String, Object> meta = m.getMetadata();
 
             double target = meta != null ? toDouble(meta.get("coverageTarget")) * 100 : 0;
             sb.append(String.format("%-6s %6.2f %6.0f%% %8s %6s %7.1f%% %8.2f %8.2f %9.2f%n",
-                    level, m.getScore(), target,
+                    level, mScore, target,
                     meta != null ? meta.getOrDefault("totalExpected", "") : "",
                     meta != null ? meta.getOrDefault("totalAbsent", "") : "",
                     meta != null ? toDouble(meta.get("absencePercentage")) : 0.0,
@@ -152,14 +159,14 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
                     meta != null ? toDouble(meta.get("appears_too_earlyScore")) : 0.0));
         }
 
-        for (Map.Entry<String, List<ScoredItem>> entry : p.topicsByLevel.entrySet()) {
-            List<ScoredItem> topics = entry.getValue();
+        for (Map.Entry<String, List<AuditNode>> entry : p.topicsByLevel.entrySet()) {
+            List<AuditNode> topics = entry.getValue();
             if (topics.isEmpty()) continue;
             sb.append(String.format("%n%s: ", entry.getKey()));
             for (int i = 0; i < topics.size(); i++) {
-                ScoredItem t = topics.get(i);
+                AuditNode t = topics.get(i);
                 if (i > 0) sb.append(", ");
-                sb.append(labelOf(t)).append("(").append(metaInt(t, "misplacedLemmaCount")).append(")");
+                sb.append(nodeLabel(t)).append("(").append(metaInt(t, "misplacedLemmaCount")).append(")");
             }
             sb.append("\n");
         }
@@ -173,7 +180,8 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
 
         String assessment = p.course != null && p.course.getMetadata() != null
                 ? String.valueOf(p.course.getMetadata().get("assessment")) : "N/A";
-        double courseScore = p.course != null ? p.course.getScore() : 0.0;
+        Double courseScoreVal = p.course != null ? mainScore(p.course) : null;
+        double courseScore = courseScoreVal != null ? courseScoreVal : 0.0;
         sb.append(String.format("Lemma Absence Analysis | Score: %.2f | Assessment: %s%n%n",
                 courseScore, assessment));
 
@@ -183,13 +191,15 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
                 "Absent", "TooLate", "TooEarly"));
         sb.append("─".repeat(82)).append("\n");
 
-        for (Map.Entry<String, ScoredItem> entry : p.milestones.entrySet()) {
-            ScoredItem mi = entry.getValue();
+        for (Map.Entry<String, AuditNode> entry : p.milestones.entrySet()) {
+            AuditNode mi = entry.getValue();
+            Double miScoreVal = mainScore(mi);
+            double miScore = miScoreVal != null ? miScoreVal : 0.0;
             Map<String, Object> meta = mi.getMetadata();
             if (meta == null) continue;
             double target = toDouble(meta.get("coverageTarget")) * 100;
             sb.append(String.format("%-6s %6.2f %6.0f%% %9s %7s %7.1f%% %8.2f %8.2f %9.2f%n",
-                    entry.getKey(), mi.getScore(), target,
+                    entry.getKey(), miScore, target,
                     meta.getOrDefault("totalExpected", ""),
                     meta.getOrDefault("totalAbsent", ""),
                     toDouble(meta.get("absencePercentage")),
@@ -199,7 +209,7 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
         }
 
         // Absent lemmas per level
-        for (Map.Entry<String, ScoredItem> entry : p.milestones.entrySet()) {
+        for (Map.Entry<String, AuditNode> entry : p.milestones.entrySet()) {
             Map<String, Object> meta = entry.getValue().getMetadata();
             if (meta == null) continue;
             @SuppressWarnings("unchecked")
@@ -220,32 +230,40 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
         }
 
         // Topic breakdown per level
-        for (Map.Entry<String, List<ScoredItem>> entry : p.topicsByLevel.entrySet()) {
-            List<ScoredItem> topics = entry.getValue();
+        for (Map.Entry<String, List<AuditNode>> entry : p.topicsByLevel.entrySet()) {
+            List<AuditNode> topics = entry.getValue();
             if (topics.isEmpty()) continue;
             sb.append(String.format("%n%s > Topics:%n", entry.getKey()));
             sb.append(String.format("  %-40s %6s %10s%n", "Topic", "Score", "Misplaced"));
             sb.append("  ").append("─".repeat(58)).append("\n");
-            for (ScoredItem topic : topics) {
+            for (AuditNode topic : topics) {
+                Double tScoreVal = mainScore(topic);
+                double tScore = tScoreVal != null ? tScoreVal : 0.0;
                 sb.append(String.format("  %-40s %6.2f %10d%n",
-                        truncate(labelOf(topic), 40), topic.getScore(),
+                        truncate(nodeLabel(topic), 40), tScore,
                         metaInt(topic, "misplacedLemmaCount")));
             }
         }
 
         // Knowledge detail per level (top 10 worst)
-        for (Map.Entry<String, List<ScoredItem>> entry : p.knowledgesByLevel.entrySet()) {
-            List<ScoredItem> knowledges = new ArrayList<>(entry.getValue());
+        for (Map.Entry<String, List<AuditNode>> entry : p.knowledgesByLevel.entrySet()) {
+            List<AuditNode> knowledges = new ArrayList<>(entry.getValue());
             if (knowledges.isEmpty()) continue;
-            knowledges.sort((a, b) -> Double.compare(a.getScore(), b.getScore()));
-            List<ScoredItem> top = knowledges.subList(0, Math.min(10, knowledges.size()));
+            knowledges.sort((a, b) -> {
+                Double sa = mainScore(a);
+                Double sb2 = mainScore(b);
+                return Double.compare(sa != null ? sa : 0.0, sb2 != null ? sb2 : 0.0);
+            });
+            List<AuditNode> top = knowledges.subList(0, Math.min(10, knowledges.size()));
 
             sb.append(String.format("%n%s > Top Knowledges (worst scores):%n", entry.getKey()));
             sb.append(String.format("  %-50s %6s %5s  %s%n", "Knowledge", "Score", "Count", "Misplaced Lemmas"));
             sb.append("  ").append("─".repeat(90)).append("\n");
-            for (ScoredItem k : top) {
+            for (AuditNode k : top) {
+                Double kScoreVal = mainScore(k);
+                double kScore = kScoreVal != null ? kScoreVal : 0.0;
                 sb.append(String.format("  %-50s %6.2f %5d  %s%n",
-                        truncate(labelOf(k), 50), k.getScore(),
+                        truncate(nodeLabel(k), 50), kScore,
                         metaInt(k, "misplacedLemmaCount"),
                         truncate(formatMisplacedLemmasText(k.getMetadata()), 40)));
             }
@@ -254,38 +272,52 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
         return sb.toString();
     }
 
-    // ── Partitioning ─────────────────────────────────────────────────────────
+    // ── Tree navigation / partitioning ──────────────────────────────────────
 
     private static class Partitioned {
-        ScoredItem course;
-        Map<String, ScoredItem> milestones = new LinkedHashMap<>();
-        Map<String, List<ScoredItem>> topicsByLevel = new LinkedHashMap<>();
-        Map<String, List<ScoredItem>> knowledgesByLevel = new LinkedHashMap<>();
+        AuditNode course;
+        Map<String, AuditNode> milestones = new LinkedHashMap<>();
+        Map<String, List<AuditNode>> topicsByLevel = new LinkedHashMap<>();
+        Map<String, List<AuditNode>> knowledgesByLevel = new LinkedHashMap<>();
         // For hierarchical JSON: group by parent ID
-        Map<String, List<ScoredItem>> knowledgesByTopic = new LinkedHashMap<>();
-        Map<String, List<ScoredItem>> quizzesByKnowledge = new LinkedHashMap<>();
+        Map<String, List<AuditNode>> knowledgesByTopic = new LinkedHashMap<>();
+        Map<String, List<AuditNode>> quizzesByKnowledge = new LinkedHashMap<>();
     }
 
-    private Partitioned partition(List<ScoredItem> items) {
+    private Partitioned partition(AuditNode rootNode) {
         Partitioned p = new Partitioned();
-        for (ScoredItem item : items) {
-            switch (item.getTarget()) {
-                case COURSE -> p.course = item;
-                case MILESTONE -> p.milestones.put(item.getMilestoneId(), item);
-                case TOPIC -> p.topicsByLevel.computeIfAbsent(
-                        item.getMilestoneId(), k -> new ArrayList<>()).add(item);
-                case KNOWLEDGE -> {
-                    p.knowledgesByLevel.computeIfAbsent(
-                            item.getMilestoneId(), k -> new ArrayList<>()).add(item);
-                    if (item.getTopicId() != null) {
-                        p.knowledgesByTopic.computeIfAbsent(
-                                item.getTopicId(), k -> new ArrayList<>()).add(item);
+        if (rootNode == null) return p;
+
+        // rootNode is COURSE
+        p.course = rootNode;
+
+        // Children of root are milestones
+        if (rootNode.getChildren() == null) return p;
+        for (AuditNode milestone : rootNode.getChildren()) {
+            String levelKey = nodeLabel(milestone);
+            p.milestones.put(levelKey, milestone);
+
+            // Topics
+            if (milestone.getChildren() == null) continue;
+            for (AuditNode topic : milestone.getChildren()) {
+                p.topicsByLevel.computeIfAbsent(levelKey, k -> new ArrayList<>()).add(topic);
+                String topicId = nodeId(topic);
+
+                // Knowledges
+                if (topic.getChildren() == null) continue;
+                for (AuditNode knowledge : topic.getChildren()) {
+                    p.knowledgesByLevel.computeIfAbsent(levelKey, k -> new ArrayList<>()).add(knowledge);
+                    if (topicId != null) {
+                        p.knowledgesByTopic.computeIfAbsent(topicId, k -> new ArrayList<>()).add(knowledge);
                     }
-                }
-                case QUIZ -> {
-                    if (item.getKnowledgeId() != null) {
-                        p.quizzesByKnowledge.computeIfAbsent(
-                                item.getKnowledgeId(), k -> new ArrayList<>()).add(item);
+                    String knowledgeId = nodeId(knowledge);
+
+                    // Quizzes
+                    if (knowledge.getChildren() == null) continue;
+                    for (AuditNode quiz : knowledge.getChildren()) {
+                        if (knowledgeId != null) {
+                            p.quizzesByKnowledge.computeIfAbsent(knowledgeId, k -> new ArrayList<>()).add(quiz);
+                        }
                     }
                 }
             }
@@ -295,13 +327,33 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
 
     // ── Shared helpers ───────────────────────────────────────────────────────
 
-    private static String labelOf(ScoredItem item) {
-        return item.getSource() != null ? item.getSource().getLabel() : "";
+    private static Double mainScore(AuditNode node) {
+        if (node.getScores() == null || node.getScores().isEmpty()) return null;
+        // Return the first non-sub-metric score (no "/" in key)
+        for (Map.Entry<String, Double> entry : node.getScores().entrySet()) {
+            if (!entry.getKey().contains("/")) return entry.getValue();
+        }
+        // Fallback: average all scores
+        return node.getScores().values().stream().mapToDouble(d -> d).average().orElse(0.0);
     }
 
-    private static int metaInt(ScoredItem item, String key) {
-        if (item.getMetadata() == null) return 0;
-        Object val = item.getMetadata().get(key);
+    private static String nodeId(AuditNode node) {
+        if (node.getEntity() != null && node.getEntity().getId() != null) {
+            return node.getEntity().getId();
+        }
+        return null;
+    }
+
+    private static String nodeLabel(AuditNode node) {
+        if (node.getEntity() != null && node.getEntity().getLabel() != null) {
+            return node.getEntity().getLabel();
+        }
+        return nodeId(node);
+    }
+
+    private static int metaInt(AuditNode node, String key) {
+        if (node.getMetadata() == null) return 0;
+        Object val = node.getMetadata().get(key);
         if (val instanceof Number) return ((Number) val).intValue();
         if (val instanceof List) return ((List<?>) val).size();
         return 0;

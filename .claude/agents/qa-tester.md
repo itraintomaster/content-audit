@@ -110,16 +110,14 @@ When analyzing an implementation, identify:
 
 **Interfaces:**
 
-- `ContentAudit`
-  - `audit(AuditableCourse): AuditReport`
 - `AuditEngine`
-  - `runAudit(AuditableCourse): AuditReport`
+  - `runAudit(AuditableCourse course): AuditReport`
 - `ContentAnalyzer`
-  - `onKnowledge(AuditableKnowledge knowledge,AuditContext ctx): Void`
-  - `onQuiz(AuditableQuiz quiz,AuditContext ctx): Void`
-  - `onMilestone(AuditableMilestone milestone,AuditContext ctx): Void`
-  - `onTopic(AuditableTopic topic,AuditContext ctx): Void`
-  - `onCourseComplete(AuditableCourse course,AuditContext ctx): Void`
+  - `onKnowledge(AuditNode node): Void`
+  - `onQuiz(AuditNode node): Void`
+  - `onMilestone(AuditNode node): Void`
+  - `onTopic(AuditNode node): Void`
+  - `onCourseComplete(AuditNode rootNode): Void`
   - `getName(): String`
   - `getTarget(): AuditTarget`
   - `getResults(): List<ScoredItem>`
@@ -137,7 +135,7 @@ When analyzing an implementation, identify:
   - `getTargetRange(CefrLevel level): Optional<TargetRange>`
   - `getToleranceMargin(): int`
 - `ScoreAggregator`
-  - `aggregate(List<ScoredItem> scores,Map<String,AuditableEntity> entityMap): AuditReport`
+  - `aggregate(AuditNode rootNode): void`
 - `CocaBucketsConfig`
   - `getBandConfiguration(): BandConfiguration`
   - `getTargetsForLevel(String levelName): List<BucketTarget>`
@@ -167,6 +165,7 @@ When analyzing an implementation, identify:
   - `getMediumReportLimit(): int`
   - `getLowReportLimit(): int`
   - `getDiscountPerLevel(): double`
+  - `getCoverageTarget(CefrLevel level): double`
 - `EvpCatalogPort`
   - `getExpectedLemmas(CefrLevel level): Set<LemmaAndPos>`
   - `isPhrase(String lemma): boolean`
@@ -190,9 +189,6 @@ When analyzing an implementation, identify:
 - `KnowledgeInstructionsLengthAnalyzer` implements ContentAnalyzer
   Tests (17): should return knowledge-instructions-length as analyzer name, should return KNOWLEDGE as audit target, should score 1.0 for knowledge with null instructions, should score 1.0 for knowledge with empty instructions, should score 1.0 for instructions exactly at soft limit of 70 chars, should score 1.0 for instructions of 30 chars within soft limit, should score 0.5 for instructions of 71 chars just above soft limit, should score 0.5 for instructions exactly at hard limit of 100 chars, should score 0.5 for instructions of 85 chars between soft and hard limits, should score 0.0 for instructions of 101 chars just above hard limit, should score 0.0 for instructions of 200 chars well above hard limit, should complete without error when onQuiz is called, should complete without error when onMilestone is called, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should return empty list when getResults is called without prior processing, should produce correct scores for three knowledges with different instruction lengths
   **Untested methods:** getTarget, getName, onKnowledge, onCourseComplete, getResults, onQuiz, onTopic, getDescription, onMilestone
-- `IContentAudit` implements ContentAudit
-  Inject: auditEngine: AuditEngine
-  **NO TESTS** — all 1 methods uncovered
 - `SentenceLengthAnalyzer` implements ContentAnalyzer
   Inject: nlpTokenizer: NlpTokenizer, config: SentenceLengthConfig
   Tests (20): should exclude quiz when milestoneId is null, should exclude quiz when milestoneId is non-numeric, should exclude quiz when no target range configured for level, should score only sentence quizzes when processing mixed knowledge types, should return sentence-length as analyzer name, should return QUIZ as audit target, should score 1.0 for quiz within A1 range, should score 0.75 for quiz 1 token above A1 max, should score 0.25 for quiz 3 tokens below A1 min, should score 1.0 for quiz exactly at A1 minimum boundary, should score 1.0 for quiz exactly at A1 maximum boundary, should score 0.0 for quiz 4 tokens above A1 max at tolerance boundary, should exclude non-sentence knowledge quiz from results, should score 1.0 for B2 level quiz within range, should score 0.0 for quiz exactly at tolerance boundary, should score 0.5 for quiz 2 tokens above A1 max, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should produce correct scores for full milestone-knowledge-quiz sequence, should exclude non-sentence quizzes from scoring
@@ -220,6 +216,7 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 - `AuditRunner`
   - `runAudit(Path coursePath,Set<String> analyzerNames): AuditReport`
+  - `runDetailedAudit(Path coursePath,String analyzerName): AuditNode`
 - `CourseMapper`
   - `map(CourseEntity course): AuditableCourse`
 - `AnalyzerRegistry`
@@ -231,17 +228,20 @@ Domain module for course structure. Contains entity models representing the 5-le
 - `CourseToAuditableMapper` implements CourseMapper
   Inject: nlpTokenizer: NlpTokenizer
   Tests (3): Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse, Given a course with no milestones, when map is called, then returns an AuditableCourse without error, Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates
+  **Untested methods:** map
 - `DefaultSentenceLengthConfig` implements SentenceLengthConfig
   **NO TESTS** — all 2 methods uncovered
 - `DefaultAuditRunner` implements AuditRunner
-  Inject: courseRepository: CourseRepository, courseToAuditableMapper: CourseToAuditableMapper, contentAudit: ContentAudit, courseMapper: CourseMapper
+  Inject: courseRepository: CourseRepository, courseToAuditableMapper: CourseToAuditableMapper, contentAudit: ContentAudit, courseMapper: CourseMapper, auditEngine: AuditEngine
   Tests (8): Given a valid course path, when runAudit is called, then returns the audit report from the full chain, Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path, Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity, Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course, Given courseRepository throws an exception, when runAudit is called, then the exception propagates, Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates, Given contentAudit throws an exception, when runAudit is called, then the exception propagates, Given a course with no milestones, when runAudit is called, then returns the report from contentAudit
+  **Untested methods:** runDetailedAudit, runAudit
 - `DefaultCocaBucketsConfig` implements CocaBucketsConfig
   **NO TESTS** — all 6 methods uncovered
 - `DefaultLemmaRecurrenceConfig` implements LemmaRecurrenceConfig
   **NO TESTS** — all 3 methods uncovered
 - `DefaultLemmaAbsenceConfig` implements LemmaAbsenceConfig
   Tests (39): should return absolute threshold 0 for A1, should return absolute threshold 2 for A2, should return absolute threshold 5 for B1, should return absolute threshold 8 for B2, should return percentage threshold 0.0 for A1, should return percentage threshold 5.0 for A2, should return percentage threshold 10.0 for B1, should return percentage threshold 15.0 for B2, should return level weight 2.0 for A1, should return level weight 2.0 for A2, should return level weight 1.0 for B1, should return level weight 1.0 for B2, should return high priority bound of 1000, should return medium priority bound of 3000, should return low priority bound of 5000, should return high priority alert threshold of 0, should return medium priority alert threshold of 3, should return low priority alert threshold of 10, should return critical absence threshold of 10, should return acceptable absence threshold of 5, should return high report limit of 20, should return medium report limit of 30, should return low report limit of 50, should return discount per level of 0.1, should have absolute thresholds increasing from A1 to B2, should have percentage thresholds increasing from A1 to B2, should have priority bounds ordered high less than medium less than low, should weight critical levels A1 and A2 higher than B1 and B2, should have report limits increasing from high to low priority, should have critical absence threshold greater than acceptable absence threshold, should have alert thresholds non-decreasing from high to low priority, should enforce zero tolerance for high priority alert threshold, should enforce A1 zero tolerance with both absolute and percentage thresholds at zero, should have discount per level that limits max penalty to 0.3 for three-level distance, should return non-negative values for all thresholds and bounds, should return positive report limits for all priority levels, should return percentage thresholds between 0 and 100 for all levels, should return positive level weights for all CEFR levels, should return discount per level between 0 exclusive and 1 exclusive
+  **Untested methods:** getLevelWeight, getMediumPriorityAlertThreshold, getDiscountPerLevel, getHighReportLimit, getCriticalAbsenceThreshold, getLowPriorityAlertThreshold, getHighPriorityAlertThreshold, getPercentageThreshold, getMediumReportLimit, getCoverageTarget, getHighPriorityBound, getMediumPriorityBound, getLowPriorityBound, getAbsoluteThreshold, getLowReportLimit, getAcceptableAbsenceThreshold
 - `DefaultAnalyzerRegistry` implements AnalyzerRegistry
   Inject: analyzers: List<ContentAnalyzer>, configs: List<SelfDescribingConfig>
   **NO TESTS** — all 2 methods uncovered
@@ -279,6 +279,8 @@ CLI entry point for running content audits from the command line
   - `getEntity(): AuditableEntity`
   - `getOverallScore(): double`
   - `getAnalyzerScores(): Map<String,Double>`
+- `DetailedFormatter`
+  - `format(String analyzerName,AuditNode rootNode,String outputFormat): String`
 
 **Implementations:**
 
@@ -303,7 +305,7 @@ CLI entry point for running content audits from the command line
   **NO TESTS** — all 1 methods uncovered
 - `ContentAuditCmd`
 - `AnalyzeCmd`
-  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry, viewModelTransformer: ReportViewModelTransformer, rawReportFormatter: RawReportFormatter, drillDownResolver: DrillDownResolver
+  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry, viewModelTransformer: ReportViewModelTransformer, rawReportFormatter: RawReportFormatter, drillDownResolver: DrillDownResolver, detailedFormatters: Map<String,DetailedFormatter>
 - `AnalyzerCmd`
 - `AnalyzerListCmd`
   Inject: analyzerRegistry: AnalyzerRegistry
@@ -311,6 +313,10 @@ CLI entry point for running content audits from the command line
   Inject: analyzerRegistry: AnalyzerRegistry
 - `AnalyzerStatsCmd`
   Inject: analyzerRegistry: AnalyzerRegistry, analyzerStatsTransformer: AnalyzerStatsTransformer, auditRunner: AuditRunner
+- `LemmaAbsenceDetailedFormatter` implements DetailedFormatter
+  **NO TESTS** — all 1 methods uncovered
+- `CocaBucketsDetailedFormatter` implements DetailedFormatter
+  **NO TESTS** — all 1 methods uncovered
 
 ### nlp-infrastructure
 

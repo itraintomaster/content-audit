@@ -1,19 +1,8 @@
 package com.learney.contentaudit.auditdomain.labs;
 
-import com.learney.contentaudit.auditdomain.AuditReport;
-import com.learney.contentaudit.auditdomain.AuditTarget;
-import com.learney.contentaudit.auditdomain.AuditableEntity;
+import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.IScoreAggregator;
-import com.learney.contentaudit.auditdomain.KnowledgeNode;
-import com.learney.contentaudit.auditdomain.MilestoneNode;
-import com.learney.contentaudit.auditdomain.NodeScores;
 import com.learney.contentaudit.auditdomain.ScoreAggregator;
-import com.learney.contentaudit.auditdomain.ScoredItem;
-import com.learney.contentaudit.auditdomain.TopicNode;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -22,95 +11,15 @@ import javax.annotation.processing.Generated;
 )
 public class LemmaAbsenceScoreAggregator implements ScoreAggregator {
 
-    private static final String ANALYZER_NAME = "lemma-absence";
-
     private final IScoreAggregator baseAggregator = new IScoreAggregator();
 
     @Override
-    public AuditReport aggregate(List<ScoredItem> scores, Map<String, AuditableEntity> entityMap) {
-        // Separate lemma-absence pre-computed items from everything else
-        List<ScoredItem> baseItems = new ArrayList<>();
-        Map<String, ScoredItem> laMilestones = new LinkedHashMap<>();  // milestoneId -> item
-        Map<String, ScoredItem> laTopics = new LinkedHashMap<>();      // topicId -> item
-        Map<String, ScoredItem> laKnowledges = new LinkedHashMap<>();  // knowledgeId -> item
-        ScoredItem laCourse = null;
-
-        for (ScoredItem item : scores) {
-            if (!ANALYZER_NAME.equals(item.getAnalyzerName())) {
-                // Not lemma-absence: pass through to base aggregator
-                baseItems.add(item);
-                continue;
-            }
-
-            switch (item.getTarget()) {
-                case MILESTONE:
-                    laMilestones.put(item.getMilestoneId(), item);
-                    break;
-                case TOPIC:
-                    laTopics.put(item.getTopicId(), item);
-                    break;
-                case KNOWLEDGE:
-                    laKnowledges.put(item.getKnowledgeId(), item);
-                    break;
-                case COURSE:
-                    laCourse = item;
-                    break;
-                default:
-                    // QUIZ items: pass to base for tree building
-                    baseItems.add(item);
-                    break;
-            }
-        }
-
-        // Build report tree using base aggregator (quiz-level items + other analyzers)
-        AuditReport report = baseAggregator.aggregate(baseItems, entityMap);
-
-        // Override lemma-absence scores at each level with pre-computed values
-        if (report.getMilestones() != null) {
-            for (MilestoneNode milestone : report.getMilestones()) {
-                ScoredItem laMs = laMilestones.get(milestone.getMilestoneId());
-                if (laMs != null) {
-                    putScore(milestone.getScores(), laMs.getScore());
-                }
-
-                if (milestone.getTopics() != null) {
-                    for (TopicNode topic : milestone.getTopics()) {
-                        ScoredItem laTopic = laTopics.get(topic.getTopicId());
-                        if (laTopic != null) {
-                            putScore(topic.getScores(), laTopic.getScore());
-                        }
-
-                        if (topic.getKnowledges() != null) {
-                            for (KnowledgeNode knowledge : topic.getKnowledges()) {
-                                ScoredItem laKnowledge = laKnowledges.get(knowledge.getKnowledgeId());
-                                if (laKnowledge != null) {
-                                    putScore(knowledge.getScores(), laKnowledge.getScore());
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Override course-level score
-        if (laCourse != null) {
-            Map<String, Double> courseScores = report.getScores() != null
-                    ? new LinkedHashMap<>(report.getScores().getScores())
-                    : new LinkedHashMap<>();
-            courseScores.put(ANALYZER_NAME, laCourse.getScore());
-            report.setScores(new NodeScores(courseScores));
-        }
-
-        return report;
-    }
-
-    private void putScore(NodeScores nodeScores, double score) {
-        if (nodeScores == null || nodeScores.getScores() == null) {
-            return;
-        }
-        Map<String, Double> scores = new LinkedHashMap<>(nodeScores.getScores());
-        scores.put(ANALYZER_NAME, score);
-        nodeScores.setScores(scores);
+    public void aggregate(AuditNode rootNode) {
+        // The LemmaByLevelAbsenceAnalyzer already writes pre-computed scores at every level
+        // (milestone, topic, knowledge, quiz, course) during onCourseComplete.
+        // We only need the default bubble-up for OTHER analyzers.
+        baseAggregator.aggregate(rootNode);
+        // lemma-absence scores are already set at every level, so bubble-up won't overwrite them
+        // (IScoreAggregator only fills in where scores are missing).
     }
 }

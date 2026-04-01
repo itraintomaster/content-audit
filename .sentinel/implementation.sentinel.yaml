@@ -1,4 +1,4 @@
-analyzedAt: 2026-03-19T02:23:00.667454Z
+analyzedAt: 2026-03-31T16:56:29.142523Z
 system: ContentAudit
 modules:
 - name: course-domain
@@ -235,22 +235,94 @@ modules:
     - signature: "validate(CourseEntity course): void"
 - name: audit-application
   source: sentinel
-  implementations:
-  - name: CachedNlpTokenizer
+  interfaces:
+  - name: CourseMapper
     source: sentinel
     visibility: public
+    sealed: false
+    exposes:
+    - signature: "map(CourseEntity course): AuditableCourse"
+  - name: AuditRunner
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "runAudit(Path coursePath, Set<String> analyzerNames): AuditReport"
+    - signature: "runDetailedAudit(Path coursePath, String analyzerName): List<ScoredItem>"
+  - name: AnalyzerRegistry
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "listAnalyzers(): List<AnalyzerDescriptor>"
+    - signature: "getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>"
+  implementations:
+  - name: DefaultAnalyzerRegistry
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: analyzers
+      type: List<ContentAnalyzer>
+    - name: configs
+      type: List<SelfDescribingConfig>
+    implements:
+    - AnalyzerRegistry
+  - name: DefaultAuditRunner
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: courseRepository
+      type: CourseRepository
+    - name: courseToAuditableMapper
+      type: CourseToAuditableMapper
+    - name: contentAudit
+      type: ContentAudit
+    - name: allAnalyzers
+      type: List<ContentAnalyzer>
+    - name: scoreAggregator
+      type: ScoreAggregator
     sentinelStatus: differs
     implements:
-    - NlpTokenizer
+    - AuditRunner
+  - name: DefaultLemmaAbsenceConfig
+    source: sentinel
+    visibility: public
+    implements:
+    - LemmaAbsenceConfig
   - name: DefaultSentenceLengthConfig
     source: sentinel
     visibility: public
     implements:
     - SentenceLengthConfig
+  - name: DefaultCocaBucketsConfig
+    source: sentinel
+    visibility: public
+    implements:
+    - CocaBucketsConfig
+  - name: DefaultLemmaRecurrenceConfig
+    source: sentinel
+    visibility: public
+    implements:
+    - LemmaRecurrenceConfig
   - name: CourseToAuditableMapper
     source: sentinel
     visibility: public
-    sentinelStatus: differs
+    requiresInject:
+    - name: nlpTokenizer
+      type: NlpTokenizer
+    implements:
+    - CourseMapper
+- name: vocabulary-infrastructure
+  source: sentinel
+  implementations:
+  - name: FileSystemEvpCatalog
+    source: implementation
+    visibility: public
+    requiresInject:
+    - name: catalogPath
+      type: Path
+    implements:
+    - EvpCatalogPort
 - name: audit-domain
   source: sentinel
   models:
@@ -258,7 +330,353 @@ modules:
     source: sentinel
     type: class
     visibility: public
-  - name: TopicScore
+    fields:
+    - name: milestoneId
+      type: String
+    - name: topicId
+      type: String
+    - name: knowledgeId
+      type: String
+    - name: quizId
+      type: String
+    - name: topicLabel
+      type: String
+    - name: knowledgeLabel
+      type: String
+    - name: quizLabel
+      type: String
+  - name: AbsentLemma
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: lemmaAndPos
+      type: LemmaAndPos
+    - name: expectedLevel
+      type: CefrLevel
+    - name: absenceType
+      type: AbsenceType
+    - name: presentInLevels
+      type: List<CefrLevel>
+    - name: priorityLevel
+      type: PriorityLevel
+    - name: cocaRank
+      type: int
+    - name: semanticCategory
+      type: String
+  - name: PriorityLevel
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: HIGH
+      type: constant
+    - name: MEDIUM
+      type: constant
+    - name: LOW
+      type: constant
+  - name: AbsenceRecommendation
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: action
+      type: RecommendationAction
+    - name: description
+      type: String
+    - name: priority
+      type: PriorityLevel
+    - name: affectedLemmas
+      type: List<AbsentLemma>
+    - name: effortLevel
+      type: EffortLevel
+    - name: expectedImpact
+      type: double
+    - name: targetLevel
+      type: CefrLevel
+  - name: AbsenceType
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: COMPLETELY_ABSENT
+      type: constant
+    - name: APPEARS_TOO_LATE
+      type: constant
+    - name: APPEARS_TOO_EARLY
+      type: constant
+    - name: SCATTERED_PLACEMENT
+      type: constant
+  - name: EffortLevel
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: LOW
+      type: constant
+    - name: MEDIUM
+      type: constant
+    - name: HIGH
+      type: constant
+  - name: RecommendationAction
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: ADD_VOCABULARY
+      type: constant
+    - name: INTRODUCE_EARLIER
+      type: constant
+    - name: REINFORCE_AT_LEVEL
+      type: constant
+    - name: CONSOLIDATE_PLACEMENT
+      type: constant
+  - name: LevelAbsenceMetrics
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: level
+      type: CefrLevel
+    - name: totalExpected
+      type: int
+    - name: totalAbsent
+      type: int
+    - name: absencePercentage
+      type: double
+    - name: absentLemmas
+      type: List<AbsentLemma>
+    - name: score
+      type: double
+  - name: AbsenceAssessment
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: OPTIMAL
+      type: constant
+    - name: ACCEPTABLE
+      type: constant
+    - name: NEEDS_IMPROVEMENT
+      type: constant
+  - name: LemmaAndPos
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: lemma
+      type: String
+    - name: pos
+      type: String
+  - name: ExposureStatus
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: NORMAL
+      type: constant
+    - name: SUB_EXPOSED
+      type: constant
+    - name: OVER_EXPOSED
+      type: constant
+  - name: LemmaStats
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: lemma
+      type: String
+    - name: pos
+      type: String
+    - name: count
+      type: int
+    - name: meanInterval
+      type: double
+    - name: stdDevInterval
+      type: double
+    - name: exposureStatus
+      type: ExposureStatus
+    - name: occurrencePositions
+      type: List<Integer>
+  - name: ExposureSummary
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: normalCount
+      type: int
+    - name: subExposedCount
+      type: int
+    - name: overExposedCount
+      type: int
+  - name: LemmaRecurrenceResult
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: lemmaStats
+      type: List<LemmaStats>
+    - name: exposureSummary
+      type: ExposureSummary
+    - name: overallScore
+      type: double
+  - name: MilestoneNode
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: milestoneId
+      type: String
+    - name: scores
+      type: NodeScores
+    - name: topics
+      type: List<TopicNode>
+    - name: entity
+      type: AuditableEntity
+  - name: TopicNode
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: topicId
+      type: String
+    - name: scores
+      type: NodeScores
+    - name: knowledges
+      type: List<KnowledgeNode>
+    - name: entity
+      type: AuditableEntity
+  - name: AnalyzerDescriptor
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: name
+      type: String
+    - name: description
+      type: String
+    - name: target
+      type: AuditTarget
+  - name: KnowledgeNode
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: knowledgeId
+      type: String
+    - name: scores
+      type: NodeScores
+    - name: quizzes
+      type: List<QuizNode>
+    - name: entity
+      type: AuditableEntity
+  - name: QuizNode
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: quizId
+      type: String
+    - name: scores
+      type: NodeScores
+    - name: entity
+      type: AuditableEntity
+  - name: ScoredItem
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: analyzerName
+      type: String
+    - name: target
+      type: AuditTarget
+    - name: score
+      type: double
+    - name: milestoneId
+      type: String
+    - name: topicId
+      type: String
+    - name: knowledgeId
+      type: String
+    - name: quizId
+      type: String
+    - name: source
+      type: AuditableEntity
+    - name: metadata
+      type: "Map<String,Object>"
+  - name: AuditTarget
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: QUIZ
+      type: constant
+    - name: KNOWLEDGE
+      type: constant
+    - name: TOPIC
+      type: constant
+    - name: MILESTONE
+      type: constant
+    - name: COURSE
+      type: constant
+  - name: AuditReport
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: overallScore
+      type: double
+    - name: scores
+      type: NodeScores
+    - name: milestones
+      type: List<MilestoneNode>
+  - name: ProgressionState
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: ASCENDING
+      type: constant
+    - name: DESCENDING
+      type: constant
+    - name: STATIC
+      type: constant
+    - name: IRREGULAR
+      type: constant
+  - name: BandConfiguration
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: bands
+      type: List<FrequencyBand>
+    - name: openEnded
+      type: boolean
+  - name: ImprovementDirectiveType
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: ENRICH
+      type: constant
+    - name: REDUCE
+      type: constant
+  - name: LevelBucketDistribution
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: levelName
+      type: String
+    - name: score
+      type: double
+    - name: bucketResults
+      type: List<BucketResult>
+    - name: quarterResults
+      type: List<QuarterResult>
+    - name: topicDistributions
+      type: List<TopicBucketDistribution>
+  - name: TopicBucketDistribution
     source: sentinel
     type: class
     visibility: public
@@ -266,121 +684,153 @@ modules:
     - name: topicId
       type: String
     - name: score
-      type: Optional<Double>
-    - name: knowledgeScores
-      type: List<KnowledgeScore>
-  - name: QuizScore
+      type: double
+    - name: bucketResults
+      type: List<BucketResult>
+    - name: topicLabel
+      type: String
+  - name: QuarterBucketTargets
     source: sentinel
     type: class
     visibility: public
     fields:
-    - name: quizId
-      type: String
-    - name: tokenCount
-      type: int
-    - name: score
-      type: double
-  - name: CoverageStatus
+    - name: targets
+      type: List<BucketTarget>
+  - name: AssessmentState
     source: sentinel
     type: enum
     visibility: public
     fields:
     - name: OPTIMAL
       type: constant
+    - name: ADEQUATE
+      type: constant
     - name: DEFICIENT
       type: constant
     - name: EXCESSIVE
       type: constant
-    - name: NOT_APPLICABLE
-      type: constant
-  - name: AuditableKnowledge
-    source: sentinel
-    type: class
-    visibility: public
-    fields:
-    - name: quizzes
-      type: List<AuditableQuiz>
-    - name: title
-      type: String
-    - name: instructions
-      type: String
-    - name: isSentence
-      type: boolean
-  - name: SentenceLengthResult
+  - name: FrequencyBand
     source: sentinel
     type: class
     visibility: public
     fields:
     - name: name
       type: String
-    - name: courseScore
+    - name: lowerBound
+      type: int
+    - name: upperBound
+      type: int
+  - name: AnalysisStrategy
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: LEVELS
+      type: constant
+    - name: QUARTERS
+      type: constant
+  - name: ImprovementDirective
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: type
+      type: ImprovementDirectiveType
+    - name: bandName
+      type: String
+    - name: levelName
+      type: String
+    - name: frequencyRangeFrom
+      type: int
+    - name: frequencyRangeTo
+      type: int
+    - name: actualPercentage
       type: double
-    - name: levelMetrics
-      type: List<LevelMetrics>
-    - name: progressionStatus
-      type: ProgressionStatus
-  - name: KnowledgeScore
-    source: sentinel
-    type: class
-    visibility: public
-    fields:
-    - name: knowledgeId
-      type: String
-    - name: score
-      type: Optional<Double>
-    - name: validQuizCount
-      type: int
-    - name: excludedQuizCount
-      type: int
-    - name: quizScores
-      type: List<QuizScore>
-  - name: LevelMetrics
-    source: sentinel
-    type: class
-    visibility: public
-    fields:
-    - name: level
-      type: CefrLevel
-    - name: score
-      type: Optional<Double>
-    - name: validQuizCount
-      type: int
-    - name: excludedQuizCount
-      type: int
-    - name: totalTokens
-      type: long
-    - name: averageLength
+    - name: targetPercentage
       type: double
-    - name: targetRange
-      type: TargetRange
-    - name: status
-      type: CoverageStatus
-    - name: recommendation
-      type: String
-    - name: topicCount
-      type: int
-    - name: knowledgeCount
-      type: int
-    - name: topicScores
-      type: List<TopicScore>
-  - name: AuditableQuiz
+  - name: BucketResult
     source: sentinel
     type: class
     visibility: public
     fields:
-    - name: sentence
+    - name: bandName
       type: String
-    - name: tokenCount
+    - name: count
       type: int
-  - name: AuditReport
-    source: sentinel
-    type: class
-    visibility: public
-    fields:
+    - name: percentage
+      type: double
+    - name: targetPercentage
+      type: double
     - name: score
       type: double
-    - name: results
-      type: List<AnalysisResult>
+    - name: assessment
+      type: AssessmentState
+  - name: ProgressionExpectation
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: bandName
+      type: String
+    - name: expectedProgression
+      type: ProgressionState
+  - name: BucketTarget
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: bandName
+      type: String
+    - name: targetPercentage
+      type: double
+    - name: kind
+      type: TargetKind
+  - name: QuarterResult
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: index
+      type: int
+    - name: bucketResults
+      type: List<BucketResult>
+    - name: score
+      type: double
+  - name: ProgressionAssessment
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: bandName
+      type: String
+    - name: actualProgression
+      type: ProgressionState
+    - name: expectedProgression
+      type: ProgressionState
+    - name: matches
+      type: boolean
+  - name: CocaBucketsDistributionResult
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: levels
+      type: List<LevelBucketDistribution>
+    - name: progressionAssessments
+      type: List<ProgressionAssessment>
+    - name: overallScore
+      type: double
+    - name: improvementDirectives
+      type: List<ImprovementDirective>
+  - name: TargetKind
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: AT_LEAST
+      type: constant
+    - name: AT_MOST
+      type: constant
   - name: AuditableCourse
     source: sentinel
     type: class
@@ -399,33 +849,13 @@ modules:
       type: int
     - name: maxTokens
       type: int
-  - name: AuditableMilestone
+  - name: NodeScores
     source: sentinel
     type: class
     visibility: public
     fields:
-    - name: topics
-      type: List<AuditableTopic>
-  - name: AuditableTopic
-    source: sentinel
-    type: class
-    visibility: public
-    fields:
-    - name: knowledge
-      type: List<AuditableKnowledge>
-  - name: ProgressionStatus
-    source: sentinel
-    type: enum
-    visibility: public
-    fields:
-    - name: POSITIVE
-      type: constant
-    - name: REGRESSIVE
-      type: constant
-    - name: STAGNANT
-      type: constant
-    - name: INSUFFICIENT_DATA
-      type: constant
+    - name: scores
+      type: "Map<String,Double>"
   - name: CefrLevel
     source: sentinel
     type: enum
@@ -439,6 +869,102 @@ modules:
       type: constant
     - name: B2
       type: constant
+  - name: NlpToken
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: text
+      type: String
+    - name: lemma
+      type: String
+    - name: posTag
+      type: String
+    - name: frequencyRank
+      type: int
+    - name: isStop
+      type: boolean
+    - name: isPunct
+      type: boolean
+  - name: AuditableKnowledge
+    source: sentinel
+    type: record
+    fields:
+    - name: quizzes
+      type: List<AuditableQuiz>
+    - name: title
+      type: String
+    - name: instructions
+      type: String
+    - name: isSentence
+      type: boolean
+      description: Flag indicating whether this knowledge contains sentence-type quizzes
+        eligible for length analysis
+    - name: id
+      type: String
+      description: Knowledge identifier
+    - name: label
+      type: String
+      description: Human-readable knowledge label (same as title)
+    - name: code
+      type: String
+      description: Knowledge short code
+    extendsType: AuditableEntity
+    sentinelStatus: missing
+  - name: AuditableTopic
+    source: sentinel
+    type: record
+    fields:
+    - name: knowledge
+      type: List<AuditableKnowledge>
+    - name: id
+      type: String
+      description: Topic identifier
+    - name: label
+      type: String
+      description: Human-readable topic label
+    - name: code
+      type: String
+      description: Topic short code
+    extendsType: AuditableEntity
+    sentinelStatus: missing
+  - name: AuditableMilestone
+    source: sentinel
+    type: record
+    fields:
+    - name: topics
+      type: List<AuditableTopic>
+    - name: id
+      type: String
+      description: Milestone identifier
+    - name: label
+      type: String
+      description: Human-readable milestone label
+    - name: code
+      type: String
+      description: Milestone short code
+    extendsType: AuditableEntity
+    sentinelStatus: missing
+  - name: AuditableQuiz
+    source: sentinel
+    type: record
+    fields:
+    - name: sentence
+      type: String
+    - name: tokens
+      type: List<NlpToken>
+      description: Pre-computed enriched NLP tokens for the quiz sentence
+    - name: id
+      type: String
+      description: Quiz identifier
+    - name: label
+      type: String
+      description: Human-readable quiz label
+    - name: code
+      type: String
+      description: Quiz short code
+    extendsType: AuditableEntity
+    sentinelStatus: missing
   interfaces:
   - name: ContentAudit
     source: sentinel
@@ -446,6 +972,33 @@ modules:
     sealed: false
     exposes:
     - signature: "audit(AuditableCourse auditableCourse): AuditReport"
+  - name: ContentWordFilter
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "isContentWord(NlpToken token): boolean"
+  - name: IntervalCalculator
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "calculateMeanInterval(List<Integer> positions): double"
+    - signature: "calculateStdDevInterval(List<Integer> positions, double meanInterval):\
+        \ double"
+  - name: ExposureClassifier
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "classify(double meanInterval, LemmaRecurrenceConfig config): ExposureStatus"
+  - name: ScoreAggregator
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "aggregate(List<ScoredItem> scores, Map<String,AuditableEntity> entityMap):\
+        \ AuditReport"
   - name: AnalysisResult
     source: sentinel
     visibility: public
@@ -453,23 +1006,38 @@ modules:
     exposes:
     - signature: "getName(): String"
     - signature: "getScore(): double"
+    - signature: "getTarget(): AuditTarget"
   - name: ContentAnalyzer
     source: sentinel
     visibility: public
     sealed: false
     exposes:
     - signature: "onKnowledge(AuditableKnowledge knowledge, AuditContext ctx): Void"
-    - signature: "getResult(): AnalysisResult"
     - signature: "onQuiz(AuditableQuiz quiz, AuditContext ctx): Void"
     - signature: "onMilestone(AuditableMilestone milestone, AuditContext ctx): Void"
     - signature: "onTopic(AuditableTopic topic, AuditContext ctx): Void"
     - signature: "onCourseComplete(AuditableCourse course, AuditContext ctx): Void"
+    - signature: "getName(): String"
+    - signature: "getTarget(): AuditTarget"
+    - signature: "getResults(): List<ScoredItem>"
+    - signature: "getDescription(): String"
   - name: AuditEngine
     source: sentinel
     visibility: public
     sealed: false
     exposes:
     - signature: "runAudit(AuditableCourse auditableCourse): AuditReport"
+  - name: CocaBucketsConfig
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "getBandConfiguration(): BandConfiguration"
+    - signature: "getTargetsForLevel(String levelName): List<BucketTarget>"
+    - signature: "getQuarterTargetsForLevel(String levelName): List<QuarterBucketTargets>"
+    - signature: "getToleranceMargin(): double"
+    - signature: "getAnalysisStrategy(): AnalysisStrategy"
+    - signature: "getProgressionExpectations(): List<ProgressionExpectation>"
   - name: SentenceLengthConfig
     source: sentinel
     visibility: public
@@ -477,6 +1045,50 @@ modules:
     exposes:
     - signature: "getTargetRange(CefrLevel level): Optional<TargetRange>"
     - signature: "getToleranceMargin(): int"
+  - name: EvpCatalogPort
+    source: sentinel
+    visibility: public
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getExpectedLemmas(CefrLevel level): Set<LemmaAndPos>"
+    - signature: "isPhrase(String lemma): boolean"
+    - signature: "getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>"
+    - signature: "getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>"
+  - name: SelfDescribingConfig
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "describe(): Map<String,Object>"
+  - name: TokenClassifier
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "classify(int frequencyRank, BandConfiguration bandConfig): FrequencyBand"
+  - name: ProgressionEvaluator
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "evaluate(List<LevelBucketDistribution> levels, List<ProgressionExpectation>\
+        \ expectations): List<ProgressionAssessment>"
+  - name: ImprovementPlanner
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "plan(List<LevelBucketDistribution> levels, BandConfiguration bandConfig,\
+        \ CocaBucketsConfig config): List<ImprovementDirective>"
+  - name: LemmaRecurrenceConfig
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "getTop(): int"
+    - signature: "getSubExposedThreshold(): double"
+    - signature: "getOverExposedThreshold(): double"
   - name: NlpTokenizer
     source: sentinel
     visibility: public
@@ -484,16 +1096,114 @@ modules:
     exposes:
     - signature: "tokenize(String text): List<String>"
     - signature: "countTokens(String text): int"
+    - signature: "analyzeTokens(String text): List<NlpToken>"
+    - signature: "analyzeTokensBatch(List<String> sentences): Map<String,List<NlpToken>>"
+  - name: AuditableEntity
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "getId(): String"
+    - signature: "getLabel(): String"
+    - signature: "getCode(): String"
+  - name: LemmaAbsenceConfig
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "getAbsoluteThreshold(CefrLevel level): int"
+    - signature: "getPercentageThreshold(CefrLevel level): double"
+    - signature: "getLevelWeight(CefrLevel level): double"
+    - signature: "getHighPriorityBound(): int"
+    - signature: "getMediumPriorityBound(): int"
+    - signature: "getLowPriorityBound(): int"
+    - signature: "getHighPriorityAlertThreshold(): int"
+    - signature: "getMediumPriorityAlertThreshold(): int"
+    - signature: "getLowPriorityAlertThreshold(): int"
+    - signature: "getCriticalAbsenceThreshold(): int"
+    - signature: "getAcceptableAbsenceThreshold(): int"
+    - signature: "getHighReportLimit(): int"
+    - signature: "getMediumReportLimit(): int"
+    - signature: "getLowReportLimit(): int"
+    - signature: "getDiscountPerLevel(): double"
   implementations:
+  - name: LemmaByLevelAbsenceAnalyzer
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: evpCatalogPort
+      type: EvpCatalogPort
+    - name: contentWordFilter
+      type: ContentWordFilter
+    - name: lemmaAbsenceConfig
+      type: LemmaAbsenceConfig
+    implements:
+    - ContentAnalyzer
+  - name: LemmaRecurrenceAnalyzer
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: contentWordFilter
+      type: ContentWordFilter
+    - name: lemmaRecurrenceConfig
+      type: LemmaRecurrenceConfig
+    - name: intervalCalculator
+      type: IntervalCalculator
+    - name: exposureClassifier
+      type: ExposureClassifier
+    implements:
+    - ContentAnalyzer
+  - name: DefaultIntervalCalculator
+    source: sentinel
+    visibility: public
+    implements:
+    - IntervalCalculator
+  - name: DefaultExposureClassifier
+    source: sentinel
+    visibility: public
+    implements:
+    - ExposureClassifier
+  - name: DefaultContentWordFilter
+    source: sentinel
+    visibility: public
+    implements:
+    - ContentWordFilter
   - name: IAuditEngine
     source: sentinel
     visibility: public
-    sentinelStatus: differs
+    requiresInject:
+    - name: contentAnalyzers
+      type: List<ContentAnalyzer>
+    - name: scoreAggregator
+      type: ScoreAggregator
     implements:
     - AuditEngine
+  - name: AuditableKnowledge
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: quizzes
+      type: List<AuditableQuiz>
+    - name: title
+      type: String
+    - name: instructions
+      type: String
+    - name: isSentence
+      type: boolean
+    - name: id
+      type: String
+    - name: label
+      type: String
+    - name: code
+      type: String
+    implements:
+    - AuditableEntity
   - name: SentenceLengthAnalyzer
     source: sentinel
     visibility: public
+    requiresInject:
+    - name: config
+      type: SentenceLengthConfig
     sentinelStatus: differs
     implements:
     - ContentAnalyzer
@@ -502,19 +1212,580 @@ modules:
     visibility: public
     implements:
     - ContentAnalyzer
+  - name: AuditableQuiz
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: sentence
+      type: String
+    - name: tokens
+      type: List<NlpToken>
+    - name: id
+      type: String
+    - name: label
+      type: String
+    - name: code
+      type: String
+    implements:
+    - AuditableEntity
   - name: IContentAudit
     source: sentinel
     visibility: public
-    sentinelStatus: differs
+    requiresInject:
+    - name: auditEngine
+      type: AuditEngine
     implements:
     - ContentAudit
+  - name: CocaBucketsAnalyzer
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: nlpTokenizer
+      type: NlpTokenizer
+    - name: cocaBucketsConfig
+      type: CocaBucketsConfig
+    - name: tokenClassifier
+      type: TokenClassifier
+    - name: progressionEvaluator
+      type: ProgressionEvaluator
+    - name: improvementPlanner
+      type: ImprovementPlanner
+    implements:
+    - ContentAnalyzer
+  - name: DefaultTokenClassifier
+    source: sentinel
+    visibility: public
+    implements:
+    - TokenClassifier
+  - name: CocaTokenAccumulationAggregator
+    source: sentinel
+    visibility: package-private
+    implements:
+    - ScoreAggregator
+  - name: DefaultImprovementPlanner
+    source: sentinel
+    visibility: public
+    implements:
+    - ImprovementPlanner
+  - name: DefaultProgressionEvaluator
+    source: sentinel
+    visibility: public
+    implements:
+    - ProgressionEvaluator
   - name: KnowledgeInstructionsLengthAnalyzer
     source: sentinel
     visibility: public
     implements:
     - ContentAnalyzer
+  - name: IScoreAggregator
+    source: mixed
+    visibility: public
+    implements:
+    - ScoreAggregator
+  - name: AuditableMilestone
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: topics
+      type: List<AuditableTopic>
+    - name: id
+      type: String
+    - name: label
+      type: String
+    - name: code
+      type: String
+    implements:
+    - AuditableEntity
+  - name: AuditableTopic
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: knowledge
+      type: List<AuditableKnowledge>
+    - name: id
+      type: String
+    - name: label
+      type: String
+    - name: code
+      type: String
+    implements:
+    - AuditableEntity
 - name: refiner-domain
   source: sentinel
+- name: audit-cli
+  source: sentinel
+  models:
+  - name: AnalyzerStatsView
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: analyzerName
+      type: String
+    - name: analyzerDescription
+      type: String
+    - name: courseScore
+      type: double
+    - name: levelScores
+      type: "Map<String,Double>"
+    - name: worstItems
+      type: List<ScoredItemRow>
+    - name: scoreDistribution
+      type: "Map<String,Integer>"
+    - name: subMetricsByLevel
+      type: "Map<String,Map<String,Double>>"
+    - name: itemCount
+      type: int
+  - name: DrillDownView
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: depth
+      type: DrillDownLevel
+    - name: nodeName
+      type: String
+    - name: overallScore
+      type: double
+    - name: analyzerScores
+      type: "Map<String,Double>"
+    - name: analyzerNames
+      type: List<String>
+    - name: childRows
+      type: List<ScoreRow>
+  - name: DrillDownScope
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: level
+      type: Optional<String>
+    - name: topic
+      type: Optional<String>
+    - name: knowledge
+      type: Optional<String>
+  - name: Main
+    source: implementation
+    type: class
+    visibility: public
+  - name: DrillDownLevel
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: COURSE
+      type: constant
+    - name: MILESTONE
+      type: constant
+    - name: TOPIC
+      type: constant
+    - name: KNOWLEDGE
+      type: constant
+  - name: ScoredItemRow
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: milestoneId
+      type: String
+    - name: topicId
+      type: String
+    - name: knowledgeId
+      type: String
+    - name: quizId
+      type: String
+    - name: score
+      type: double
+    - name: label
+      type: String
+  - name: CoursePathResolver
+    source: implementation
+    type: class
+    visibility: package-private
+    fields:
+    - name: ENV_KEY
+      type: String
+  - name: ReportViewModel
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: overallScore
+      type: double
+    - name: analyzerNames
+      type: List<String>
+    - name: analyzerScores
+      type: "Map<String,Double>"
+    - name: milestoneScores
+      type: List<MilestoneScoreRow>
+  - name: MilestoneScoreRow
+    source: sentinel
+    type: record
+    fields:
+    - name: milestoneId
+      type: String
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Score per analyzer for this milestone
+    - name: overallScore
+      type: double
+      description: Average score across all analyzers at milestone level
+    - name: topicScores
+      type: List<TopicScoreRow>
+      description: Per-topic breakdown of analyzer scores
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+    extendsType: ScoreRow
+    sentinelStatus: missing
+  - name: QuizScoreRow
+    source: sentinel
+    type: record
+    fields:
+    - name: quizId
+      type: String
+      description: Quiz identifier
+    - name: overallScore
+      type: double
+      description: Average score across all analyzers at quiz level
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Score per analyzer for this quiz
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+    extendsType: ScoreRow
+    sentinelStatus: missing
+  - name: KnowledgeScoreRow
+    source: sentinel
+    type: record
+    fields:
+    - name: knowledgeId
+      type: String
+      description: Knowledge identifier
+    - name: overallScore
+      type: double
+      description: Average score across all analyzers at knowledge level
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Score per analyzer for this knowledge
+    - name: quizScores
+      type: List<QuizScoreRow>
+      description: Per-quiz breakdown of analyzer scores
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+    extendsType: ScoreRow
+    sentinelStatus: missing
+  - name: TopicScoreRow
+    source: sentinel
+    type: record
+    fields:
+    - name: topicId
+      type: String
+      description: Topic identifier
+    - name: overallScore
+      type: double
+      description: Average score across all analyzers at topic level
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Score per analyzer for this topic
+    - name: knowledgeScores
+      type: List<KnowledgeScoreRow>
+      description: Per-knowledge breakdown of analyzer scores
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+    extendsType: ScoreRow
+    sentinelStatus: missing
+  - name: ChildScoreRow
+    source: sentinel
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: Child node identifier
+    - name: overallScore
+      type: double
+      description: Child overall score
+    - name: analyzerScores
+      type: "Map<String,Double>"
+      description: Child per-analyzer scores
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity carrying identity (id, label,\
+        \ code)"
+    extendsType: ScoreRow
+    sentinelStatus: missing
+  interfaces:
+  - name: DetailedFormatter
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "format(String analyzerName, List<ScoredItem> items, String outputFormat):\
+        \ String"
+  - name: ReportViewModelTransformer
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "transform(AuditReport report): ReportViewModel"
+  - name: ScoreRow
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "getEntity(): AuditableEntity"
+    - signature: "getOverallScore(): double"
+    - signature: "getAnalyzerScores(): Map<String,Double>"
+  - name: DrillDownResolver
+    source: sentinel
+    visibility: public
+    sealed: true
+    exposes:
+    - signature: "resolve(ReportViewModel viewModel, DrillDownScope scope): DrillDownView"
+    permits:
+    - DefaultDrillDownResolver
+  - name: AnalyzerStatsTransformer
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "transform(AuditReport report, String analyzerName, AnalyzerRegistry\
+        \ registry): AnalyzerStatsView"
+  - name: RawReportFormatter
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "format(AuditReport report): String"
+  - name: ReportFormatter
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "format(ReportViewModel viewModel, DrillDownScope scope): String"
+  - name: FormatterRegistry
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "getFormatter(String formatName): ReportFormatter"
+  implementations:
+  - name: DefaultFormatterRegistry
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: formatters
+      type: "Map<String,ReportFormatter>"
+    sentinelStatus: differs
+    implements:
+    - FormatterRegistry
+  - name: TextReportFormatter
+    source: mixed
+    visibility: public
+    requiresInject:
+    - name: resolver
+      type: DrillDownResolver
+    sentinelStatus: differs
+    implements:
+    - ReportFormatter
+  - name: MilestoneScoreRow
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: milestoneId
+      type: String
+    - name: analyzerScores
+      type: "Map<String,Double>"
+    - name: overallScore
+      type: double
+    - name: topicScores
+      type: List<TopicScoreRow>
+    - name: entity
+      type: AuditableEntity
+    implements:
+    - ScoreRow
+  - name: DefaultReportViewModelTransformer
+    source: mixed
+    visibility: public
+    implements:
+    - ReportViewModelTransformer
+  - name: RawJsonReportFormatter
+    source: mixed
+    visibility: public
+    implements:
+    - RawReportFormatter
+  - name: ChildScoreRow
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: id
+      type: String
+    - name: overallScore
+      type: double
+    - name: analyzerScores
+      type: "Map<String,Double>"
+    - name: entity
+      type: AuditableEntity
+    implements:
+    - ScoreRow
+  - name: TableReportFormatter
+    source: mixed
+    visibility: public
+    requiresInject:
+    - name: resolver
+      type: DrillDownResolver
+    sentinelStatus: differs
+    implements:
+    - ReportFormatter
+  - name: ContentAuditCmd
+    source: sentinel
+    visibility: public
+    annotations:
+    - Command
+    sentinelStatus: differs
+    implements:
+    - Runnable
+  - name: AnalyzerListCmd
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: analyzerRegistry
+      type: AnalyzerRegistry
+    annotations:
+    - Command
+    sentinelStatus: differs
+    implements:
+    - Callable
+  - name: DefaultAnalyzerStatsTransformer
+    source: sentinel
+    visibility: package-private
+    implements:
+    - AnalyzerStatsTransformer
+  - name: AnalyzeCmd
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: auditRunner
+      type: AuditRunner
+    - name: formatterRegistry
+      type: FormatterRegistry
+    - name: viewModelTransformer
+      type: ReportViewModelTransformer
+    - name: rawReportFormatter
+      type: RawReportFormatter
+    - name: detailedFormatters
+      type: "Map<String,DetailedFormatter>"
+    annotations:
+    - Command
+    sentinelStatus: differs
+    implements:
+    - Callable
+  - name: AnalyzerStatsCmd
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: analyzerRegistry
+      type: AnalyzerRegistry
+    - name: analyzerStatsTransformer
+      type: AnalyzerStatsTransformer
+    - name: auditRunner
+      type: AuditRunner
+    annotations:
+    - Command
+    sentinelStatus: differs
+    implements:
+    - Callable
+  - name: DefaultDrillDownResolver
+    source: mixed
+    visibility: public
+    implements:
+    - DrillDownResolver
+  - name: KnowledgeScoreRow
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: knowledgeId
+      type: String
+    - name: overallScore
+      type: double
+    - name: analyzerScores
+      type: "Map<String,Double>"
+    - name: quizScores
+      type: List<QuizScoreRow>
+    - name: entity
+      type: AuditableEntity
+    implements:
+    - ScoreRow
+  - name: LemmaAbsenceDetailedFormatter
+    source: sentinel
+    visibility: package-private
+    implements:
+    - DetailedFormatter
+  - name: AnalyzerConfigCmd
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: analyzerRegistry
+      type: AnalyzerRegistry
+    annotations:
+    - Command
+    sentinelStatus: differs
+    implements:
+    - Callable
+  - name: AnalyzerCmd
+    source: sentinel
+    visibility: public
+    annotations:
+    - Command
+    sentinelStatus: differs
+    implements:
+    - Runnable
+  - name: TopicScoreRow
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: topicId
+      type: String
+    - name: overallScore
+      type: double
+    - name: analyzerScores
+      type: "Map<String,Double>"
+    - name: knowledgeScores
+      type: List<KnowledgeScoreRow>
+    - name: entity
+      type: AuditableEntity
+    implements:
+    - ScoreRow
+  - name: JsonReportFormatter
+    source: mixed
+    visibility: public
+    requiresInject:
+    - name: resolver
+      type: DrillDownResolver
+    sentinelStatus: differs
+    implements:
+    - ReportFormatter
+  - name: QuizScoreRow
+    source: sentinel
+    visibility: public
+    requiresInject:
+    - name: quizId
+      type: String
+    - name: overallScore
+      type: double
+    - name: analyzerScores
+      type: "Map<String,Double>"
+    - name: entity
+      type: AuditableEntity
+    implements:
+    - ScoreRow
 - name: course-infrastructure
   source: sentinel
   implementations:
@@ -531,6 +1802,70 @@ modules:
       type: CourseValidator
     implements:
     - CourseRepository
+- name: nlp-infrastructure
+  source: sentinel
+  models:
+  - name: NlpTokenizerConfig
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: pythonScriptPath
+      type: String
+    - name: cocaDataPath
+      type: String
+    - name: timeoutSeconds
+      type: int
+  - name: SpacyResultParser
+    source: sentinel
+    type: class
+    visibility: package-private
+    fields:
+    - name: objectMapper
+      type: ObjectMapper
+  - name: SpacyProcessRunner
+    source: sentinel
+    type: class
+    visibility: package-private
+    fields:
+    - name: config
+      type: NlpTokenizerConfig
+    - name: objectMapper
+      type: ObjectMapper
+    - name: CACHE_DIR
+      type: Path
+  interfaces:
+  - name: NlpTokenizerFactory
+    source: sentinel
+    visibility: public
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(NlpTokenizerConfig config): NlpTokenizer"
+  implementations:
+  - name: CachedNlpTokenizer
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: delegate
+      type: NlpTokenizer
+    implements:
+    - NlpTokenizer
+  - name: SpacyNlpTokenizer
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: processRunner
+      type: SpacyProcessRunner
+    - name: resultParser
+      type: SpacyResultParser
+    implements:
+    - NlpTokenizer
+  - name: SpacyNlpTokenizerFactory
+    source: sentinel
+    visibility: public
+    implements:
+    - NlpTokenizerFactory
 dependencies:
   discovered:
   - from: course-domain
@@ -541,14 +1876,52 @@ dependencies:
     to: javax.annotation.processing
     imports:
     - javax.annotation.processing.Generated
+  - from: vocabulary-infrastructure
+    to: com.fasterxml.jackson.databind
+    imports:
+    - com.fasterxml.jackson.databind.ObjectMapper
+    - com.fasterxml.jackson.databind.JsonNode
   - from: audit-domain
     to: javax.annotation.processing
     imports:
     - javax.annotation.processing.Generated
+  - from: audit-cli
+    to: picocli.CommandLine
+    imports:
+    - picocli.CommandLine.Parameters
+    - picocli.CommandLine.Spec
+    - picocli.CommandLine.Option
+    - picocli.CommandLine.Command
+  - from: audit-cli
+    to: javax.annotation.processing
+    imports:
+    - javax.annotation.processing.Generated
+  - from: audit-cli
+    to: picocli
+    imports:
+    - picocli.CommandLine
+  - from: audit-cli
+    to: picocli.CommandLine.Model
+    imports:
+    - picocli.CommandLine.Model.CommandSpec
   - from: course-infrastructure
     to: com.fasterxml.jackson.databind
     imports:
     - com.fasterxml.jackson.databind.ObjectMapper
+  - from: nlp-infrastructure
+    to: com.fasterxml.jackson.databind
+    imports:
+    - com.fasterxml.jackson.databind.ObjectMapper
+    - com.fasterxml.jackson.databind.JsonNode
+  - from: nlp-infrastructure
+    to: com.fasterxml.jackson.databind.node
+    imports:
+    - com.fasterxml.jackson.databind.node.ObjectNode
+    - com.fasterxml.jackson.databind.node.ArrayNode
+  - from: nlp-infrastructure
+    to: javax.annotation.processing
+    imports:
+    - javax.annotation.processing.Generated
 graph:
   edges:
   - from: course-domain.SentencePartEntity
@@ -593,8 +1966,53 @@ graph:
   - from: course-domain.TopicEntity
     to: course-domain.KnowledgeEntity
     relation: references
-  - from: audit-application.CachedNlpTokenizer
-    to: audit-domain.NlpTokenizer
+  - from: audit-application.DefaultAnalyzerRegistry
+    to: audit-domain.SelfDescribingConfig
+    relation: references
+  - from: audit-application.DefaultAnalyzerRegistry
+    to: audit-domain.AnalyzerDescriptor
+    relation: references
+  - from: audit-application.DefaultAnalyzerRegistry
+    to: audit-domain.ContentAnalyzer
+    relation: references
+  - from: audit-application.DefaultAnalyzerRegistry
+    to: audit-application.AnalyzerRegistry
+    relation: references
+  - from: audit-application.DefaultAuditRunner
+    to: course-domain.CourseRepository
+    relation: references
+  - from: audit-application.DefaultAuditRunner
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-application.DefaultAuditRunner
+    to: audit-domain.ScoreAggregator
+    relation: references
+  - from: audit-application.DefaultAuditRunner
+    to: audit-application.AuditRunner
+    relation: references
+  - from: audit-application.DefaultAuditRunner
+    to: audit-domain.ContentAnalyzer
+    relation: references
+  - from: audit-application.DefaultAuditRunner
+    to: audit-domain.ScoredItem
+    relation: references
+  - from: audit-application.DefaultAuditRunner
+    to: audit-domain.ContentAudit
+    relation: references
+  - from: audit-application.DefaultAuditRunner
+    to: audit-application.CourseToAuditableMapper
+    relation: references
+  - from: audit-application.DefaultLemmaAbsenceConfig
+    to: audit-domain.LemmaAbsenceConfig
+    relation: references
+  - from: audit-application.DefaultLemmaAbsenceConfig
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-application.CourseMapper
+    to: audit-domain.AuditableCourse
+    relation: references
+  - from: audit-application.CourseMapper
+    to: course-domain.CourseEntity
     relation: references
   - from: audit-application.DefaultSentenceLengthConfig
     to: audit-domain.CefrLevel
@@ -605,14 +2023,263 @@ graph:
   - from: audit-application.DefaultSentenceLengthConfig
     to: audit-domain.SentenceLengthConfig
     relation: references
+  - from: audit-application.DefaultCocaBucketsConfig
+    to: audit-domain.ProgressionExpectation
+    relation: references
+  - from: audit-application.DefaultCocaBucketsConfig
+    to: audit-domain.QuarterBucketTargets
+    relation: references
+  - from: audit-application.DefaultCocaBucketsConfig
+    to: audit-domain.AnalysisStrategy
+    relation: references
+  - from: audit-application.DefaultCocaBucketsConfig
+    to: audit-domain.BucketTarget
+    relation: references
+  - from: audit-application.DefaultCocaBucketsConfig
+    to: audit-domain.BandConfiguration
+    relation: references
+  - from: audit-application.DefaultCocaBucketsConfig
+    to: audit-domain.CocaBucketsConfig
+    relation: references
+  - from: audit-application.AuditRunner
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-application.AuditRunner
+    to: audit-domain.ScoredItem
+    relation: references
+  - from: audit-application.AnalyzerRegistry
+    to: audit-domain.AnalyzerDescriptor
+    relation: references
+  - from: audit-application.DefaultLemmaRecurrenceConfig
+    to: audit-domain.LemmaRecurrenceConfig
+    relation: references
+  - from: audit-application.CourseToAuditableMapper
+    to: audit-domain.AuditableTopic
+    relation: references
+  - from: audit-application.CourseToAuditableMapper
+    to: audit-application.CourseMapper
+    relation: references
+  - from: audit-application.CourseToAuditableMapper
+    to: audit-domain.NlpToken
+    relation: references
+  - from: audit-application.CourseToAuditableMapper
+    to: course-domain.TopicEntity
+    relation: references
+  - from: audit-application.CourseToAuditableMapper
+    to: audit-domain.AuditableQuiz
+    relation: references
+  - from: audit-application.CourseToAuditableMapper
+    to: audit-domain.AuditableMilestone
+    relation: references
+  - from: audit-application.CourseToAuditableMapper
+    to: audit-domain.NlpTokenizer
+    relation: references
+  - from: audit-application.CourseToAuditableMapper
+    to: course-domain.CourseEntity
+    relation: references
+  - from: audit-application.CourseToAuditableMapper
+    to: course-domain.MilestoneEntity
+    relation: references
+  - from: audit-application.CourseToAuditableMapper
+    to: audit-domain.AuditableCourse
+    relation: references
+  - from: audit-application.CourseToAuditableMapper
+    to: course-domain.QuizTemplateEntity
+    relation: references
+  - from: audit-application.CourseToAuditableMapper
+    to: course-domain.KnowledgeEntity
+    relation: references
+  - from: audit-application.CourseToAuditableMapper
+    to: audit-domain.AuditableKnowledge
+    relation: references
+  - from: vocabulary-infrastructure.FileSystemEvpCatalog
+    to: audit-domain.LemmaAndPos
+    relation: references
+  - from: vocabulary-infrastructure.FileSystemEvpCatalog
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: vocabulary-infrastructure.FileSystemEvpCatalog
+    to: audit-domain.EvpCatalogPort
+    relation: references
+  - from: audit-domain.AbsentLemma
+    to: audit-domain.AbsenceType
+    relation: references
+  - from: audit-domain.AbsentLemma
+    to: audit-domain.LemmaAndPos
+    relation: references
+  - from: audit-domain.AbsentLemma
+    to: audit-domain.PriorityLevel
+    relation: references
+  - from: audit-domain.AbsentLemma
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.AbsenceRecommendation
+    to: audit-domain.RecommendationAction
+    relation: references
+  - from: audit-domain.AbsenceRecommendation
+    to: audit-domain.PriorityLevel
+    relation: references
+  - from: audit-domain.AbsenceRecommendation
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.AbsenceRecommendation
+    to: audit-domain.EffortLevel
+    relation: references
+  - from: audit-domain.AbsenceRecommendation
+    to: audit-domain.AbsentLemma
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.AuditableTopic
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.ScoredItem
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.AbsentLemma
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.RecommendationAction
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.AuditableCourse
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.LevelAbsenceMetrics
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.PriorityLevel
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.AbsenceAssessment
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.AbsenceType
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.LemmaAbsenceConfig
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.LemmaAndPos
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.ContentAnalyzer
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.AbsenceRecommendation
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.AuditableQuiz
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.AuditableMilestone
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.AuditContext
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.ContentWordFilter
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.AuditableKnowledge
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.EffortLevel
+    relation: references
+  - from: audit-domain.LemmaByLevelAbsenceAnalyzer
+    to: audit-domain.EvpCatalogPort
+    relation: references
+  - from: audit-domain.LevelAbsenceMetrics
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.LevelAbsenceMetrics
+    to: audit-domain.AbsentLemma
+    relation: references
   - from: audit-domain.ContentAudit
     to: audit-domain.AuditableCourse
     relation: references
   - from: audit-domain.ContentAudit
     to: audit-domain.AuditReport
     relation: references
-  - from: audit-domain.TopicScore
-    to: audit-domain.KnowledgeScore
+  - from: audit-domain.ContentWordFilter
+    to: audit-domain.NlpToken
+    relation: references
+  - from: audit-domain.LemmaRecurrenceAnalyzer
+    to: audit-domain.AuditableTopic
+    relation: references
+  - from: audit-domain.LemmaRecurrenceAnalyzer
+    to: audit-domain.ExposureClassifier
+    relation: references
+  - from: audit-domain.LemmaRecurrenceAnalyzer
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-domain.LemmaRecurrenceAnalyzer
+    to: audit-domain.ContentAnalyzer
+    relation: references
+  - from: audit-domain.LemmaRecurrenceAnalyzer
+    to: audit-domain.LemmaRecurrenceConfig
+    relation: references
+  - from: audit-domain.LemmaRecurrenceAnalyzer
+    to: audit-domain.ScoredItem
+    relation: references
+  - from: audit-domain.LemmaRecurrenceAnalyzer
+    to: audit-domain.AuditableQuiz
+    relation: references
+  - from: audit-domain.LemmaRecurrenceAnalyzer
+    to: audit-domain.AuditableMilestone
+    relation: references
+  - from: audit-domain.LemmaRecurrenceAnalyzer
+    to: audit-domain.IntervalCalculator
+    relation: references
+  - from: audit-domain.LemmaRecurrenceAnalyzer
+    to: audit-domain.AuditContext
+    relation: references
+  - from: audit-domain.LemmaRecurrenceAnalyzer
+    to: audit-domain.AuditableCourse
+    relation: references
+  - from: audit-domain.LemmaRecurrenceAnalyzer
+    to: audit-domain.ContentWordFilter
+    relation: references
+  - from: audit-domain.LemmaRecurrenceAnalyzer
+    to: audit-domain.AuditableKnowledge
+    relation: references
+  - from: audit-domain.DefaultIntervalCalculator
+    to: audit-domain.IntervalCalculator
+    relation: references
+  - from: audit-domain.LemmaStats
+    to: audit-domain.ExposureStatus
+    relation: references
+  - from: audit-domain.ExposureClassifier
+    to: audit-domain.LemmaRecurrenceConfig
+    relation: references
+  - from: audit-domain.ExposureClassifier
+    to: audit-domain.ExposureStatus
+    relation: references
+  - from: audit-domain.LemmaRecurrenceResult
+    to: audit-domain.LemmaStats
+    relation: references
+  - from: audit-domain.LemmaRecurrenceResult
+    to: audit-domain.ExposureSummary
+    relation: references
+  - from: audit-domain.DefaultExposureClassifier
+    to: audit-domain.ExposureClassifier
+    relation: references
+  - from: audit-domain.DefaultExposureClassifier
+    to: audit-domain.LemmaRecurrenceConfig
+    relation: references
+  - from: audit-domain.DefaultExposureClassifier
+    to: audit-domain.ExposureStatus
+    relation: references
+  - from: audit-domain.DefaultContentWordFilter
+    to: audit-domain.NlpToken
+    relation: references
+  - from: audit-domain.DefaultContentWordFilter
+    to: audit-domain.ContentWordFilter
     relation: references
   - from: audit-domain.IAuditEngine
     to: audit-domain.AuditableCourse
@@ -623,6 +2290,42 @@ graph:
   - from: audit-domain.IAuditEngine
     to: audit-domain.AuditEngine
     relation: references
+  - from: audit-domain.IAuditEngine
+    to: audit-domain.ScoreAggregator
+    relation: references
+  - from: audit-domain.IAuditEngine
+    to: audit-domain.ContentAnalyzer
+    relation: references
+  - from: audit-domain.ScoreAggregator
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-domain.ScoreAggregator
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-domain.ScoreAggregator
+    to: audit-domain.ScoredItem
+    relation: references
+  - from: audit-domain.MilestoneNode
+    to: audit-domain.NodeScores
+    relation: references
+  - from: audit-domain.MilestoneNode
+    to: audit-domain.TopicNode
+    relation: references
+  - from: audit-domain.MilestoneNode
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-domain.TopicNode
+    to: audit-domain.KnowledgeNode
+    relation: references
+  - from: audit-domain.TopicNode
+    to: audit-domain.NodeScores
+    relation: references
+  - from: audit-domain.TopicNode
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-domain.AnalysisResult
+    to: audit-domain.AuditTarget
+    relation: references
   - from: audit-domain.ContentAnalyzer
     to: audit-domain.AuditableTopic
     relation: references
@@ -630,7 +2333,13 @@ graph:
     to: audit-domain.AuditableCourse
     relation: references
   - from: audit-domain.ContentAnalyzer
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-domain.ContentAnalyzer
     to: audit-domain.AuditableQuiz
+    relation: references
+  - from: audit-domain.ContentAnalyzer
+    to: audit-domain.ScoredItem
     relation: references
   - from: audit-domain.ContentAnalyzer
     to: audit-domain.AuditableMilestone
@@ -640,9 +2349,6 @@ graph:
     relation: references
   - from: audit-domain.ContentAnalyzer
     to: audit-domain.AuditContext
-    relation: references
-  - from: audit-domain.ContentAnalyzer
-    to: audit-domain.AnalysisResult
     relation: references
   - from: audit-domain.AuditEngine
     to: audit-domain.AuditableCourse
@@ -651,82 +2357,124 @@ graph:
     to: audit-domain.AuditReport
     relation: references
   - from: audit-domain.AuditableKnowledge
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-domain.AuditableKnowledge
     to: audit-domain.AuditableQuiz
     relation: references
-  - from: audit-domain.SentenceLengthResult
-    to: audit-domain.ProgressionStatus
+  - from: audit-domain.CocaBucketsConfig
+    to: audit-domain.SelfDescribingConfig
     relation: references
-  - from: audit-domain.SentenceLengthResult
-    to: audit-domain.LevelMetrics
+  - from: audit-domain.CocaBucketsConfig
+    to: audit-domain.ProgressionExpectation
+    relation: references
+  - from: audit-domain.CocaBucketsConfig
+    to: audit-domain.QuarterBucketTargets
+    relation: references
+  - from: audit-domain.CocaBucketsConfig
+    to: audit-domain.AnalysisStrategy
+    relation: references
+  - from: audit-domain.CocaBucketsConfig
+    to: audit-domain.BucketTarget
+    relation: references
+  - from: audit-domain.CocaBucketsConfig
+    to: audit-domain.BandConfiguration
+    relation: references
+  - from: audit-domain.AnalyzerDescriptor
+    to: audit-domain.AuditTarget
     relation: references
   - from: audit-domain.SentenceLengthAnalyzer
     to: audit-domain.AuditableTopic
     relation: references
   - from: audit-domain.SentenceLengthAnalyzer
-    to: audit-domain.AuditableCourse
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-domain.SentenceLengthAnalyzer
+    to: audit-domain.TargetRange
     relation: references
   - from: audit-domain.SentenceLengthAnalyzer
     to: audit-domain.ContentAnalyzer
     relation: references
   - from: audit-domain.SentenceLengthAnalyzer
+    to: audit-domain.ScoredItem
+    relation: references
+  - from: audit-domain.SentenceLengthAnalyzer
     to: audit-domain.AuditableQuiz
+    relation: references
+  - from: audit-domain.SentenceLengthAnalyzer
+    to: audit-domain.SentenceLengthConfig
     relation: references
   - from: audit-domain.SentenceLengthAnalyzer
     to: audit-domain.AuditableMilestone
     relation: references
   - from: audit-domain.SentenceLengthAnalyzer
-    to: audit-domain.AuditableKnowledge
-    relation: references
-  - from: audit-domain.SentenceLengthAnalyzer
     to: audit-domain.AuditContext
     relation: references
   - from: audit-domain.SentenceLengthAnalyzer
-    to: audit-domain.AnalysisResult
-    relation: references
-  - from: audit-domain.KnowledgeScore
-    to: audit-domain.QuizScore
-    relation: references
-  - from: audit-domain.KnowledgeTitleLengthAnalyzer
-    to: audit-domain.AuditableTopic
-    relation: references
-  - from: audit-domain.KnowledgeTitleLengthAnalyzer
     to: audit-domain.AuditableCourse
     relation: references
-  - from: audit-domain.KnowledgeTitleLengthAnalyzer
-    to: audit-domain.ContentAnalyzer
-    relation: references
-  - from: audit-domain.KnowledgeTitleLengthAnalyzer
-    to: audit-domain.AuditableQuiz
-    relation: references
-  - from: audit-domain.KnowledgeTitleLengthAnalyzer
-    to: audit-domain.AuditableMilestone
-    relation: references
-  - from: audit-domain.KnowledgeTitleLengthAnalyzer
-    to: audit-domain.AuditableKnowledge
-    relation: references
-  - from: audit-domain.KnowledgeTitleLengthAnalyzer
-    to: audit-domain.AuditContext
-    relation: references
-  - from: audit-domain.KnowledgeTitleLengthAnalyzer
-    to: audit-domain.AnalysisResult
-    relation: references
-  - from: audit-domain.LevelMetrics
-    to: audit-domain.CoverageStatus
-    relation: references
-  - from: audit-domain.LevelMetrics
+  - from: audit-domain.SentenceLengthAnalyzer
     to: audit-domain.CefrLevel
     relation: references
-  - from: audit-domain.LevelMetrics
-    to: audit-domain.TopicScore
+  - from: audit-domain.SentenceLengthAnalyzer
+    to: audit-domain.AuditableKnowledge
     relation: references
-  - from: audit-domain.LevelMetrics
-    to: audit-domain.TargetRange
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.AuditableTopic
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.AuditableCourse
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.ContentAnalyzer
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.ScoredItem
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.AuditableQuiz
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.AuditableMilestone
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.AuditableKnowledge
+    relation: references
+  - from: audit-domain.KnowledgeTitleLengthAnalyzer
+    to: audit-domain.AuditContext
+    relation: references
+  - from: audit-domain.SentenceLengthConfig
+    to: audit-domain.SelfDescribingConfig
     relation: references
   - from: audit-domain.SentenceLengthConfig
     to: audit-domain.CefrLevel
     relation: references
   - from: audit-domain.SentenceLengthConfig
     to: audit-domain.TargetRange
+    relation: references
+  - from: audit-domain.KnowledgeNode
+    to: audit-domain.NodeScores
+    relation: references
+  - from: audit-domain.KnowledgeNode
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-domain.KnowledgeNode
+    to: audit-domain.QuizNode
+    relation: references
+  - from: audit-domain.QuizNode
+    to: audit-domain.NodeScores
+    relation: references
+  - from: audit-domain.QuizNode
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-domain.AuditableQuiz
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-domain.AuditableQuiz
+    to: audit-domain.NlpToken
     relation: references
   - from: audit-domain.IContentAudit
     to: audit-domain.AuditableCourse
@@ -735,10 +2483,223 @@ graph:
     to: audit-domain.AuditReport
     relation: references
   - from: audit-domain.IContentAudit
+    to: audit-domain.AuditEngine
+    relation: references
+  - from: audit-domain.IContentAudit
     to: audit-domain.ContentAudit
     relation: references
+  - from: audit-domain.ScoredItem
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-domain.ScoredItem
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-domain.EvpCatalogPort
+    to: audit-domain.LemmaAndPos
+    relation: references
+  - from: audit-domain.EvpCatalogPort
+    to: audit-domain.CefrLevel
+    relation: references
   - from: audit-domain.AuditReport
-    to: audit-domain.AnalysisResult
+    to: audit-domain.NodeScores
+    relation: references
+  - from: audit-domain.AuditReport
+    to: audit-domain.MilestoneNode
+    relation: references
+  - from: audit-domain.TokenClassifier
+    to: audit-domain.FrequencyBand
+    relation: references
+  - from: audit-domain.TokenClassifier
+    to: audit-domain.BandConfiguration
+    relation: references
+  - from: audit-domain.BandConfiguration
+    to: audit-domain.FrequencyBand
+    relation: references
+  - from: audit-domain.LevelBucketDistribution
+    to: audit-domain.BucketResult
+    relation: references
+  - from: audit-domain.LevelBucketDistribution
+    to: audit-domain.QuarterResult
+    relation: references
+  - from: audit-domain.LevelBucketDistribution
+    to: audit-domain.TopicBucketDistribution
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.AuditableTopic
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.ScoredItem
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.TokenClassifier
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.NlpTokenizer
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.AuditableCourse
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.ProgressionEvaluator
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.QuarterBucketTargets
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.CocaBucketsDistributionResult
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.ImprovementPlanner
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.BucketTarget
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.ContentAnalyzer
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.AuditableQuiz
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.BucketResult
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.AssessmentState
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.TargetKind
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.AuditableMilestone
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.BandConfiguration
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.CocaBucketsConfig
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.AuditContext
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.AuditableKnowledge
+    relation: references
+  - from: audit-domain.CocaBucketsAnalyzer
+    to: audit-domain.TopicBucketDistribution
+    relation: references
+  - from: audit-domain.TopicBucketDistribution
+    to: audit-domain.BucketResult
+    relation: references
+  - from: audit-domain.ProgressionEvaluator
+    to: audit-domain.ProgressionExpectation
+    relation: references
+  - from: audit-domain.ProgressionEvaluator
+    to: audit-domain.LevelBucketDistribution
+    relation: references
+  - from: audit-domain.ProgressionEvaluator
+    to: audit-domain.ProgressionAssessment
+    relation: references
+  - from: audit-domain.DefaultTokenClassifier
+    to: audit-domain.TokenClassifier
+    relation: references
+  - from: audit-domain.DefaultTokenClassifier
+    to: audit-domain.FrequencyBand
+    relation: references
+  - from: audit-domain.DefaultTokenClassifier
+    to: audit-domain.BandConfiguration
+    relation: references
+  - from: audit-domain.QuarterBucketTargets
+    to: audit-domain.BucketTarget
+    relation: references
+  - from: audit-domain.CocaTokenAccumulationAggregator
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-domain.CocaTokenAccumulationAggregator
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-domain.CocaTokenAccumulationAggregator
+    to: audit-domain.ScoreAggregator
+    relation: references
+  - from: audit-domain.CocaTokenAccumulationAggregator
+    to: audit-domain.ScoredItem
+    relation: references
+  - from: audit-domain.DefaultImprovementPlanner
+    to: audit-domain.ImprovementDirective
+    relation: references
+  - from: audit-domain.DefaultImprovementPlanner
+    to: audit-domain.ImprovementPlanner
+    relation: references
+  - from: audit-domain.DefaultImprovementPlanner
+    to: audit-domain.BucketResult
+    relation: references
+  - from: audit-domain.DefaultImprovementPlanner
+    to: audit-domain.FrequencyBand
+    relation: references
+  - from: audit-domain.DefaultImprovementPlanner
+    to: audit-domain.LevelBucketDistribution
+    relation: references
+  - from: audit-domain.DefaultImprovementPlanner
+    to: audit-domain.BandConfiguration
+    relation: references
+  - from: audit-domain.DefaultImprovementPlanner
+    to: audit-domain.CocaBucketsConfig
+    relation: references
+  - from: audit-domain.ImprovementDirective
+    to: audit-domain.ImprovementDirectiveType
+    relation: references
+  - from: audit-domain.BucketResult
+    to: audit-domain.AssessmentState
+    relation: references
+  - from: audit-domain.ProgressionExpectation
+    to: audit-domain.ProgressionState
+    relation: references
+  - from: audit-domain.DefaultProgressionEvaluator
+    to: audit-domain.ProgressionExpectation
+    relation: references
+  - from: audit-domain.DefaultProgressionEvaluator
+    to: audit-domain.ProgressionEvaluator
+    relation: references
+  - from: audit-domain.DefaultProgressionEvaluator
+    to: audit-domain.LevelBucketDistribution
+    relation: references
+  - from: audit-domain.DefaultProgressionEvaluator
+    to: audit-domain.ProgressionState
+    relation: references
+  - from: audit-domain.DefaultProgressionEvaluator
+    to: audit-domain.ProgressionAssessment
+    relation: references
+  - from: audit-domain.BucketTarget
+    to: audit-domain.TargetKind
+    relation: references
+  - from: audit-domain.ImprovementPlanner
+    to: audit-domain.ImprovementDirective
+    relation: references
+  - from: audit-domain.ImprovementPlanner
+    to: audit-domain.LevelBucketDistribution
+    relation: references
+  - from: audit-domain.ImprovementPlanner
+    to: audit-domain.BandConfiguration
+    relation: references
+  - from: audit-domain.ImprovementPlanner
+    to: audit-domain.CocaBucketsConfig
+    relation: references
+  - from: audit-domain.QuarterResult
+    to: audit-domain.BucketResult
+    relation: references
+  - from: audit-domain.ProgressionAssessment
+    to: audit-domain.ProgressionState
+    relation: references
+  - from: audit-domain.CocaBucketsDistributionResult
+    to: audit-domain.ImprovementDirective
+    relation: references
+  - from: audit-domain.CocaBucketsDistributionResult
+    to: audit-domain.LevelBucketDistribution
+    relation: references
+  - from: audit-domain.CocaBucketsDistributionResult
+    to: audit-domain.ProgressionAssessment
     relation: references
   - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
     to: audit-domain.AuditableTopic
@@ -747,7 +2708,13 @@ graph:
     to: audit-domain.AuditableCourse
     relation: references
   - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
     to: audit-domain.ContentAnalyzer
+    relation: references
+  - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
+    to: audit-domain.ScoredItem
     relation: references
   - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
     to: audit-domain.AuditableQuiz
@@ -761,20 +2728,350 @@ graph:
   - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
     to: audit-domain.AuditContext
     relation: references
-  - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
-    to: audit-domain.AnalysisResult
-    relation: references
   - from: audit-domain.AuditableCourse
     to: audit-domain.AuditableMilestone
+    relation: references
+  - from: audit-domain.LemmaRecurrenceConfig
+    to: audit-domain.SelfDescribingConfig
+    relation: references
+  - from: audit-domain.IScoreAggregator
+    to: audit-domain.KnowledgeNode
+    relation: references
+  - from: audit-domain.IScoreAggregator
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-domain.IScoreAggregator
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-domain.IScoreAggregator
+    to: audit-domain.TopicNode
+    relation: references
+  - from: audit-domain.IScoreAggregator
+    to: audit-domain.ScoreAggregator
+    relation: references
+  - from: audit-domain.IScoreAggregator
+    to: audit-domain.QuizNode
+    relation: references
+  - from: audit-domain.IScoreAggregator
+    to: audit-domain.ScoredItem
     relation: references
   - from: audit-domain.TargetRange
     to: audit-domain.CefrLevel
     relation: references
+  - from: audit-domain.NlpTokenizer
+    to: audit-domain.NlpToken
+    relation: references
   - from: audit-domain.AuditableMilestone
     to: audit-domain.AuditableTopic
     relation: references
+  - from: audit-domain.AuditableMilestone
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-domain.LemmaAbsenceConfig
+    to: audit-domain.SelfDescribingConfig
+    relation: references
+  - from: audit-domain.LemmaAbsenceConfig
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.AuditableTopic
+    to: audit-domain.AuditableEntity
+    relation: references
   - from: audit-domain.AuditableTopic
     to: audit-domain.AuditableKnowledge
+    relation: references
+  - from: audit-cli.DefaultFormatterRegistry
+    to: audit-cli.FormatterRegistry
+    relation: references
+  - from: audit-cli.DefaultFormatterRegistry
+    to: audit-cli.ReportFormatter
+    relation: references
+  - from: audit-cli.AnalyzerStatsView
+    to: audit-cli.ScoredItemRow
+    relation: references
+  - from: audit-cli.TextReportFormatter
+    to: audit-cli.ReportViewModel
+    relation: references
+  - from: audit-cli.TextReportFormatter
+    to: audit-cli.ScoreRow
+    relation: references
+  - from: audit-cli.TextReportFormatter
+    to: audit-cli.DrillDownResolver
+    relation: references
+  - from: audit-cli.TextReportFormatter
+    to: audit-cli.DrillDownScope
+    relation: references
+  - from: audit-cli.TextReportFormatter
+    to: audit-cli.DrillDownLevel
+    relation: references
+  - from: audit-cli.TextReportFormatter
+    to: audit-cli.ReportFormatter
+    relation: references
+  - from: audit-cli.MilestoneScoreRow
+    to: audit-cli.ScoreRow
+    relation: references
+  - from: audit-cli.MilestoneScoreRow
+    to: audit-cli.TopicScoreRow
+    relation: references
+  - from: audit-cli.MilestoneScoreRow
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-cli.DetailedFormatter
+    to: audit-domain.ScoredItem
+    relation: references
+  - from: audit-cli.ReportViewModelTransformer
+    to: audit-cli.ReportViewModel
+    relation: references
+  - from: audit-cli.ReportViewModelTransformer
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-cli.DefaultReportViewModelTransformer
+    to: audit-cli.ReportViewModel
+    relation: references
+  - from: audit-cli.DefaultReportViewModelTransformer
+    to: audit-cli.MilestoneScoreRow
+    relation: references
+  - from: audit-cli.DefaultReportViewModelTransformer
+    to: audit-domain.KnowledgeNode
+    relation: references
+  - from: audit-cli.DefaultReportViewModelTransformer
+    to: audit-domain.NodeScores
+    relation: references
+  - from: audit-cli.DefaultReportViewModelTransformer
+    to: audit-cli.TopicScoreRow
+    relation: references
+  - from: audit-cli.DefaultReportViewModelTransformer
+    to: audit-domain.TopicNode
+    relation: references
+  - from: audit-cli.DefaultReportViewModelTransformer
+    to: audit-domain.MilestoneNode
+    relation: references
+  - from: audit-cli.DefaultReportViewModelTransformer
+    to: audit-cli.KnowledgeScoreRow
+    relation: references
+  - from: audit-cli.DefaultReportViewModelTransformer
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-cli.DefaultReportViewModelTransformer
+    to: audit-cli.ReportViewModelTransformer
+    relation: references
+  - from: audit-cli.DefaultReportViewModelTransformer
+    to: audit-domain.QuizNode
+    relation: references
+  - from: audit-cli.DefaultReportViewModelTransformer
+    to: audit-cli.QuizScoreRow
+    relation: references
+  - from: audit-cli.RawJsonReportFormatter
+    to: audit-domain.KnowledgeNode
+    relation: references
+  - from: audit-cli.RawJsonReportFormatter
+    to: audit-domain.NodeScores
+    relation: references
+  - from: audit-cli.RawJsonReportFormatter
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-cli.RawJsonReportFormatter
+    to: audit-domain.TopicNode
+    relation: references
+  - from: audit-cli.RawJsonReportFormatter
+    to: audit-domain.QuizNode
+    relation: references
+  - from: audit-cli.RawJsonReportFormatter
+    to: audit-domain.MilestoneNode
+    relation: references
+  - from: audit-cli.RawJsonReportFormatter
+    to: audit-cli.RawReportFormatter
+    relation: references
+  - from: audit-cli.ChildScoreRow
+    to: audit-cli.ScoreRow
+    relation: references
+  - from: audit-cli.ChildScoreRow
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-cli.TableReportFormatter
+    to: audit-cli.ReportViewModel
+    relation: references
+  - from: audit-cli.TableReportFormatter
+    to: audit-cli.ScoreRow
+    relation: references
+  - from: audit-cli.TableReportFormatter
+    to: audit-cli.DrillDownResolver
+    relation: references
+  - from: audit-cli.TableReportFormatter
+    to: audit-cli.DrillDownScope
+    relation: references
+  - from: audit-cli.TableReportFormatter
+    to: audit-cli.ReportFormatter
+    relation: references
+  - from: audit-cli.AnalyzerListCmd
+    to: audit-application.AnalyzerRegistry
+    relation: references
+  - from: audit-cli.ScoreRow
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-cli.DrillDownResolver
+    to: audit-cli.ReportViewModel
+    relation: references
+  - from: audit-cli.DrillDownResolver
+    to: audit-cli.DrillDownScope
+    relation: references
+  - from: audit-cli.DrillDownResolver
+    to: audit-cli.DrillDownView
+    relation: references
+  - from: audit-cli.DrillDownView
+    to: audit-cli.ScoreRow
+    relation: references
+  - from: audit-cli.DrillDownView
+    to: audit-cli.DrillDownLevel
+    relation: references
+  - from: audit-cli.DefaultAnalyzerStatsTransformer
+    to: audit-cli.AnalyzerStatsView
+    relation: references
+  - from: audit-cli.DefaultAnalyzerStatsTransformer
+    to: audit-domain.NodeScores
+    relation: references
+  - from: audit-cli.DefaultAnalyzerStatsTransformer
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-cli.DefaultAnalyzerStatsTransformer
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-cli.DefaultAnalyzerStatsTransformer
+    to: audit-cli.AnalyzerStatsTransformer
+    relation: references
+  - from: audit-cli.DefaultAnalyzerStatsTransformer
+    to: audit-cli.ScoredItemRow
+    relation: references
+  - from: audit-cli.DefaultAnalyzerStatsTransformer
+    to: audit-application.AnalyzerRegistry
+    relation: references
+  - from: audit-cli.DefaultAnalyzerStatsTransformer
+    to: audit-domain.MilestoneNode
+    relation: references
+  - from: audit-cli.AnalyzeCmd
+    to: audit-cli.FormatterRegistry
+    relation: references
+  - from: audit-cli.AnalyzeCmd
+    to: audit-cli.DetailedFormatter
+    relation: references
+  - from: audit-cli.AnalyzeCmd
+    to: audit-application.AuditRunner
+    relation: references
+  - from: audit-cli.AnalyzeCmd
+    to: audit-cli.ReportViewModelTransformer
+    relation: references
+  - from: audit-cli.AnalyzeCmd
+    to: audit-cli.RawReportFormatter
+    relation: references
+  - from: audit-cli.AnalyzerStatsCmd
+    to: audit-cli.AnalyzerStatsView
+    relation: references
+  - from: audit-cli.AnalyzerStatsCmd
+    to: audit-cli.AnalyzerStatsTransformer
+    relation: references
+  - from: audit-cli.AnalyzerStatsCmd
+    to: audit-application.AuditRunner
+    relation: references
+  - from: audit-cli.AnalyzerStatsCmd
+    to: audit-application.AnalyzerRegistry
+    relation: references
+  - from: audit-cli.AnalyzerStatsTransformer
+    to: audit-cli.AnalyzerStatsView
+    relation: references
+  - from: audit-cli.AnalyzerStatsTransformer
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-cli.AnalyzerStatsTransformer
+    to: audit-application.AnalyzerRegistry
+    relation: references
+  - from: audit-cli.DefaultDrillDownResolver
+    to: audit-cli.ReportViewModel
+    relation: references
+  - from: audit-cli.DefaultDrillDownResolver
+    to: audit-cli.MilestoneScoreRow
+    relation: references
+  - from: audit-cli.DefaultDrillDownResolver
+    to: audit-cli.ScoreRow
+    relation: references
+  - from: audit-cli.DefaultDrillDownResolver
+    to: audit-cli.TopicScoreRow
+    relation: references
+  - from: audit-cli.DefaultDrillDownResolver
+    to: audit-cli.KnowledgeScoreRow
+    relation: references
+  - from: audit-cli.DefaultDrillDownResolver
+    to: audit-cli.DrillDownResolver
+    relation: references
+  - from: audit-cli.DefaultDrillDownResolver
+    to: audit-cli.DrillDownScope
+    relation: references
+  - from: audit-cli.DefaultDrillDownResolver
+    to: audit-cli.DrillDownView
+    relation: references
+  - from: audit-cli.KnowledgeScoreRow
+    to: audit-cli.ScoreRow
+    relation: references
+  - from: audit-cli.KnowledgeScoreRow
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-cli.KnowledgeScoreRow
+    to: audit-cli.QuizScoreRow
+    relation: references
+  - from: audit-cli.LemmaAbsenceDetailedFormatter
+    to: audit-cli.DetailedFormatter
+    relation: references
+  - from: audit-cli.LemmaAbsenceDetailedFormatter
+    to: audit-domain.ScoredItem
+    relation: references
+  - from: audit-cli.AnalyzerConfigCmd
+    to: audit-application.AnalyzerRegistry
+    relation: references
+  - from: audit-cli.RawReportFormatter
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-cli.TopicScoreRow
+    to: audit-cli.KnowledgeScoreRow
+    relation: references
+  - from: audit-cli.TopicScoreRow
+    to: audit-cli.ScoreRow
+    relation: references
+  - from: audit-cli.TopicScoreRow
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-cli.ReportFormatter
+    to: audit-cli.ReportViewModel
+    relation: references
+  - from: audit-cli.ReportFormatter
+    to: audit-cli.DrillDownScope
+    relation: references
+  - from: audit-cli.JsonReportFormatter
+    to: audit-cli.ReportViewModel
+    relation: references
+  - from: audit-cli.JsonReportFormatter
+    to: audit-cli.ScoreRow
+    relation: references
+  - from: audit-cli.JsonReportFormatter
+    to: audit-cli.DrillDownResolver
+    relation: references
+  - from: audit-cli.JsonReportFormatter
+    to: audit-cli.DrillDownScope
+    relation: references
+  - from: audit-cli.JsonReportFormatter
+    to: audit-cli.DrillDownLevel
+    relation: references
+  - from: audit-cli.JsonReportFormatter
+    to: audit-cli.ReportFormatter
+    relation: references
+  - from: audit-cli.QuizScoreRow
+    to: audit-cli.ScoreRow
+    relation: references
+  - from: audit-cli.QuizScoreRow
+    to: audit-domain.AuditableEntity
+    relation: references
+  - from: audit-cli.ReportViewModel
+    to: audit-cli.MilestoneScoreRow
+    relation: references
+  - from: audit-cli.FormatterRegistry
+    to: audit-cli.ReportFormatter
     relation: references
   - from: course-infrastructure.CourseValidatorImpl
     to: course-domain.CourseValidator
@@ -818,8 +3115,66 @@ graph:
   - from: course-infrastructure.FileSystemCourseRepository
     to: course-domain.SentencePartEntity
     relation: references
+  - from: nlp-infrastructure.NlpTokenizerFactory
+    to: nlp-infrastructure.NlpTokenizerConfig
+    relation: references
+  - from: nlp-infrastructure.NlpTokenizerFactory
+    to: audit-domain.NlpTokenizer
+    relation: references
+  - from: nlp-infrastructure.CachedNlpTokenizer
+    to: audit-domain.NlpToken
+    relation: references
+  - from: nlp-infrastructure.CachedNlpTokenizer
+    to: audit-domain.NlpTokenizer
+    relation: references
+  - from: nlp-infrastructure.SpacyResultParser
+    to: audit-domain.NlpToken
+    relation: references
+  - from: nlp-infrastructure.SpacyNlpTokenizer
+    to: nlp-infrastructure.SpacyProcessRunner
+    relation: references
+  - from: nlp-infrastructure.SpacyNlpTokenizer
+    to: nlp-infrastructure.SpacyResultParser
+    relation: references
+  - from: nlp-infrastructure.SpacyNlpTokenizer
+    to: audit-domain.NlpToken
+    relation: references
+  - from: nlp-infrastructure.SpacyNlpTokenizer
+    to: audit-domain.NlpTokenizer
+    relation: references
+  - from: nlp-infrastructure.SpacyNlpTokenizerFactory
+    to: nlp-infrastructure.NlpTokenizerFactory
+    relation: references
+  - from: nlp-infrastructure.SpacyNlpTokenizerFactory
+    to: nlp-infrastructure.NlpTokenizerConfig
+    relation: references
+  - from: nlp-infrastructure.SpacyNlpTokenizerFactory
+    to: audit-domain.NlpTokenizer
+    relation: references
+  - from: nlp-infrastructure.SpacyProcessRunner
+    to: nlp-infrastructure.NlpTokenizerConfig
+    relation: references
   distances:
   - component: course-infrastructure.FileSystemCourseRepository
     distance: 1
+  - component: audit-cli.TextReportFormatter
+    distance: 1
+  - component: audit-cli.RawJsonReportFormatter
+    distance: 1
+  - component: vocabulary-infrastructure.FileSystemEvpCatalog
+    distance: 1
+  - component: audit-cli.TableReportFormatter
+    distance: 1
   - component: course-infrastructure.CourseValidatorImpl
     distance: 1
+  - component: audit-cli.DefaultReportViewModelTransformer
+    distance: 1
+  - component: audit-domain.IScoreAggregator
+    distance: 1
+  - component: audit-cli.JsonReportFormatter
+    distance: 1
+  - component: audit-cli.DefaultDrillDownResolver
+    distance: 1
+  orphans:
+  - audit-cli.CoursePathResolver
+  - audit-cli.Main

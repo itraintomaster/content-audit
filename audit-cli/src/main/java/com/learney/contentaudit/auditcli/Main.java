@@ -5,7 +5,6 @@ import com.learney.contentaudit.auditapplication.DefaultAuditRunner;
 import com.learney.contentaudit.auditapplication.DefaultSentenceLengthConfig;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.IAuditEngine;
-import com.learney.contentaudit.auditdomain.IContentAudit;
 import com.learney.contentaudit.auditdomain.IScoreAggregator;
 import com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzer;
 import com.learney.contentaudit.auditdomain.KnowledgeTitleLengthAnalyzer;
@@ -110,11 +109,10 @@ public class Main {
         // Domain: aggregator and engine
         ScoreAggregator scoreAggregator = new com.learney.contentaudit.auditdomain.labs.LemmaAbsenceScoreAggregator();
         IAuditEngine auditEngine = new IAuditEngine(contentAnalyzers, scoreAggregator);
-        IContentAudit contentAudit = new IContentAudit(auditEngine);
 
         // Application: runner (with analyzer list for filtering support)
         DefaultAuditRunner auditRunner = new DefaultAuditRunner(
-                courseRepository, courseToAuditableMapper, contentAudit,
+                courseRepository, courseToAuditableMapper, auditEngine,
                 contentAnalyzers, scoreAggregator);
 
         // CLI layer: formatters, transformer, and registry

@@ -1,0 +1,160 @@
+---
+features:
+- id: "FEAT-CLI"
+  name: "Punto de Entrada CLI para Ejecucion de Auditoria"
+  description: "Proveer un punto de entrada por linea de comandos (CLI) que permita\
+    \ ejecutar la auditoria completa de un curso, ejercitando toda la cadena: carga\
+    \ del curso desde disco, transformacion a modelo auditable, ejecucion del motor\
+    \ de auditoria con todos los analizadores configurados, y presentacion del resultado\
+    \ en consola."
+  code: "F-CLI"
+  rules:
+  - id: "F-CLI-R001"
+    name: "Ejecucion de auditoria de extremo a extremo"
+    severity: "critical"
+    description: "El CLI debe ejecutar la auditoria completa de un curso proporcionando\
+      \ la ruta al directorio del curso como argumento. La ejecucion debe atravesar\
+      \ toda la cadena de componentes: carga del curso desde disco (CourseRepository),\
+      \ transformacion al modelo auditable (CourseToAuditableMapper con NlpTokenizer),\
+      \ ejecucion del motor de auditoria (AuditEngine con todos los ContentAnalyzer\
+      \ configurados), y agregacion de puntuaciones (ScoreAggregator). El resultado\
+      \ es un AuditReport completo."
+    errorMessage: "No se pudo ejecutar la auditoria para el curso en la ruta {path}:\
+      \ {detalle}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-CLI-R002"
+    name: "Argumento obligatorio: ruta del curso"
+    severity: "critical"
+    description: "El CLI debe recibir como argumento obligatorio la ruta al directorio\
+      \ raiz del curso en disco. Si no se proporciona el argumento o la ruta no existe,\
+      \ el CLI debe informar el error y terminar con un codigo de salida distinto\
+      \ de cero."
+    errorMessage: "Uso: audit-cli <ruta-al-directorio-del-curso>"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-CLI-R003"
+    name: "Presentacion del resultado en consola"
+    severity: "major"
+    description: "Al finalizar la auditoria exitosamente, el CLI debe presentar el\
+      \ AuditReport en consola. El nivel de detalle por defecto es un resumen ejecutivo\
+      \ que incluye: - La puntuacion general del curso (overall score) - La puntuacion\
+      \ de cada nivel (milestone) con su identificador - Un resumen que permita identificar\
+      \ rapidamente si hay niveles con problemas El CLI soporta dos formatos de salida\
+      \ seleccionables mediante el argumento `--format`: - **text** (por defecto):\
+      \ texto plano formateado para lectura humana en terminal - **json**: JSON estructurado\
+      \ para facilitar integracion con pipelines de CI/CD u otras herramientas Si\
+      \ no se especifica `--format`, el CLI usa formato texto."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-CLI-R004"
+    name: "Codigo de salida"
+    severity: "major"
+    description: "El CLI debe retornar codigo de salida 0 cuando la auditoria se ejecuta\
+      \ exitosamente (independientemente de las puntuaciones obtenidas). Debe retornar\
+      \ un codigo de salida distinto de cero cuando ocurre un error que impide completar\
+      \ la auditoria (ruta invalida, error de carga, error en el motor de auditoria)."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-CLI-R005"
+    name: "Metodo publico en la capa de aplicacion"
+    severity: "critical"
+    description: "La capa de aplicacion (audit-application) debe exponer un metodo\
+      \ publico que permita ejecutar la auditoria completa a partir de una ruta de\
+      \ directorio de curso. Este metodo encapsula toda la orquestacion interna: carga\
+      \ del curso via CourseRepository, transformacion via CourseToAuditableMapper,\
+      \ y ejecucion via ContentAudit. El CLI solo necesita invocar este metodo unico.\
+      \ La firma esperada es: `AuditReport runAudit(Path coursePath)`"
+    errorMessage: "Error al ejecutar la auditoria del curso: {detalle}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-CLI-R006"
+    name: "Ensamblaje de dependencias"
+    severity: "major"
+    description: "El CLI es responsable de ensamblar (construir e inyectar) todas\
+      \ las dependencias necesarias para ejecutar la auditoria. Esto incluye instanciar\
+      \ el repositorio de cursos, el tokenizador, la configuracion de analizadores,\
+      \ los analizadores, el motor de auditoria, el agregador, y el servicio de aplicacion.\
+      \ El ensamblaje se realiza al inicio de la ejecucion, antes de invocar la auditoria.\
+      \ Dado que el sistema no usa un framework de inyeccion de dependencias en el\
+      \ CLI (no es una aplicacion Spring Boot), el ensamblaje se realiza manualmente\
+      \ mediante constructor injection en el metodo main."
+    errorMessage: "Error al inicializar el sistema de auditoria: {detalle}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  journeys:
+  - id: "F-CLI-J001"
+    name: "Ejecutar auditoria de un curso desde la terminal"
+    steps:
+    - "El usuario abre una terminal y navega al directorio del proyecto"
+    - "El usuario ejecuta el CLI proporcionando la ruta al curso: `java -jar audit-cli.jar\
+      \ /path/to/english-course`"
+    - "El sistema carga el curso desde el directorio especificado"
+    - "El sistema transforma el curso al modelo auditable, tokenizando las oraciones"
+    - "El sistema ejecuta todos los analizadores configurados sobre el curso auditable"
+    - "El sistema agrega las puntuaciones producidas por los analizadores a traves\
+      \ de la jerarquia del curso"
+    - "El CLI presenta en consola la puntuacion general y las puntuaciones por nivel"
+    - "El CLI termina con codigo de salida 0"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+    flow: []
+  - id: "F-CLI-J002"
+    name: "Error por ruta invalida"
+    steps:
+    - "El usuario ejecuta el CLI sin argumentos o con una ruta que no existe"
+    - "El CLI muestra un mensaje de error indicando el uso correcto y la causa del\
+      \ error"
+    - "El CLI termina con codigo de salida distinto de cero"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+    flow: []
+  - id: "F-CLI-J003"
+    name: "Error durante la auditoria"
+    steps:
+    - "El usuario ejecuta el CLI con una ruta valida pero el contenido del curso tiene\
+      \ problemas (por ejemplo, archivos JSON malformados)"
+    - "El sistema detecta el error durante la carga o el procesamiento"
+    - "El CLI muestra un mensaje de error descriptivo indicando que fallo y donde"
+    - "El CLI termina con codigo de salida distinto de cero"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+    flow: []
+  doubts:
+  - id: "DOUBT-OUTPUT-FORMAT"
+    question: "El formato de salida debe ser texto plano o estructurado?"
+    options:
+    - label: "Opcion A: Texto plano formateado para lectura humana (tablas, indentacion,\
+        \ colores opcionales)"
+      description: null
+    - label: "Opcion B: JSON estructurado para facilitar integracion con otras herramientas"
+      description: null
+    - label: "Opcion C: Ambos, seleccionable por argumento (--format text|json)"
+      description: null
+    answer: "Se soportan ambos formatos seleccionables por argumento `--format text|json`.\
+      \ Texto plano es el formato por defecto. Esto permite tanto lectura humana directa\
+      \ como integracion con herramientas externas."
+  - id: "DOUBT-VERBOSITY"
+    question: "Que nivel de detalle debe mostrar la salida por defecto?"
+    options:
+    - label: "Opcion A: Solo puntuacion general y puntuaciones por nivel (resumen\
+        \ ejecutivo)"
+      description: null
+    - label: "Opcion B: Hasta nivel de topic"
+      description: null
+    - label: "Opcion C: Arbol completo con un flag --verbose para controlar la profundidad"
+      description: null
+    answer: "Resumen ejecutivo por defecto (puntuacion general + niveles). Suficiente\
+      \ para la primera version; el detalle granular puede agregarse en futuras iteraciones\
+      \ con flags opcionales."

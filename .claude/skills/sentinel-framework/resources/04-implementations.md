@@ -65,25 +65,6 @@ public IAuditEngine(List<ContentAnalyzer> contentAnalyzers, ScoreAggregator scor
 
 **Implements:** ContentAnalyzer
 
-#### IContentAudit
-
-**Package:** `com.learney.contentaudit.auditdomain`
-
-**Implements:** ContentAudit
-
-**Constructor dependencies (requiresInject):**
-
-| Name | Type |
-|------|------|
-| `auditEngine` | `AuditEngine` |
-
-**Generated constructor:**
-```java
-public IContentAudit(AuditEngine auditEngine) {
-    this.auditEngine = auditEngine;
-}
-```
-
 #### SentenceLengthAnalyzer
 
 **Package:** `com.learney.contentaudit.auditdomain`
@@ -166,8 +147,6 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 | `intervalCalculator` | `IntervalCalculator` |
 | `exposureClassifier` | `ExposureClassifier` |
 
-**Tests:** 6
-
 #### DefaultContentWordFilter (package: lrec)
 
 **Package:** `com.learney.contentaudit.auditdomain.lrec`
@@ -204,6 +183,12 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 | `contentWordFilter` | `ContentWordFilter` |
 | `lemmaAbsenceConfig` | `LemmaAbsenceConfig` |
 
+#### LemmaAbsenceScoreAggregator (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Implements:** ScoreAggregator
+
 ### Module: audit-application
 
 #### CourseToAuditableMapper
@@ -226,12 +211,6 @@ public CourseToAuditableMapper(NlpTokenizer nlpTokenizer) {
     this.nlpTokenizer = nlpTokenizer;
 }
 ```
-
-**Tests that must pass:** 3
-
-- Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse [F-NLP/F-NLP-R010]
-- Given a course with no milestones, when map is called, then returns an AuditableCourse without error [F-NLP/F-NLP-R010]
-- Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates [F-NLP/F-NLP-R008]
 
 #### DefaultSentenceLengthConfig
 
@@ -257,27 +236,18 @@ public CourseToAuditableMapper(NlpTokenizer nlpTokenizer) {
 | `courseToAuditableMapper` | `CourseToAuditableMapper` |
 | `contentAudit` | `ContentAudit` |
 | `courseMapper` | `CourseMapper` |
+| `auditEngine` | `AuditEngine` |
 
 **Generated constructor:**
 ```java
-public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, ContentAudit contentAudit, CourseMapper courseMapper) {
+public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, ContentAudit contentAudit, CourseMapper courseMapper, AuditEngine auditEngine) {
     this.courseRepository = courseRepository;
     this.courseToAuditableMapper = courseToAuditableMapper;
     this.contentAudit = contentAudit;
     this.courseMapper = courseMapper;
+    this.auditEngine = auditEngine;
 }
 ```
-
-**Tests that must pass:** 8
-
-- Given a valid course path, when runAudit is called, then returns the audit report from the full chain [F-CLI/F-CLI-R001]
-- Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path [F-CLI/F-CLI-R001]
-- Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity [F-CLI/F-CLI-R001]
-- Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course [F-CLI/F-CLI-R001]
-- Given courseRepository throws an exception, when runAudit is called, then the exception propagates [F-CLI/F-CLI-R001]
-- Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates [F-CLI/F-CLI-R001]
-- Given contentAudit throws an exception, when runAudit is called, then the exception propagates [F-CLI/F-CLI-R001]
-- Given a course with no milestones, when runAudit is called, then returns the report from contentAudit [F-CLI/F-CLI-R001]
 
 #### DefaultCocaBucketsConfig
 
@@ -302,48 +272,6 @@ public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMa
 **Implements:** LemmaAbsenceConfig
 
 **Framework types:** Component
-
-**Tests that must pass:** 39
-
-- should return absolute threshold 0 for A1 [FEAT-LABS/F-LABS-R021]
-- should return absolute threshold 2 for A2 [FEAT-LABS/F-LABS-R021]
-- should return absolute threshold 5 for B1 [FEAT-LABS/F-LABS-R021]
-- should return absolute threshold 8 for B2 [FEAT-LABS/F-LABS-R021]
-- should return percentage threshold 0.0 for A1 [FEAT-LABS/F-LABS-R021]
-- should return percentage threshold 5.0 for A2 [FEAT-LABS/F-LABS-R021]
-- should return percentage threshold 10.0 for B1 [FEAT-LABS/F-LABS-R021]
-- should return percentage threshold 15.0 for B2 [FEAT-LABS/F-LABS-R021]
-- should return level weight 2.0 for A1 [FEAT-LABS/F-LABS-R024]
-- should return level weight 2.0 for A2 [FEAT-LABS/F-LABS-R024]
-- should return level weight 1.0 for B1 [FEAT-LABS/F-LABS-R024]
-- should return level weight 1.0 for B2 [FEAT-LABS/F-LABS-R024]
-- should return high priority bound of 1000 [FEAT-LABS/F-LABS-R011]
-- should return medium priority bound of 3000 [FEAT-LABS/F-LABS-R011]
-- should return low priority bound of 5000 [FEAT-LABS/F-LABS-R011]
-- should return high priority alert threshold of 0 [FEAT-LABS/F-LABS-R014]
-- should return medium priority alert threshold of 3 [FEAT-LABS/F-LABS-R014]
-- should return low priority alert threshold of 10 [FEAT-LABS/F-LABS-R014]
-- should return critical absence threshold of 10 [FEAT-LABS/F-LABS-R025]
-- should return acceptable absence threshold of 5 [FEAT-LABS/F-LABS-R025]
-- should return high report limit of 20 [FEAT-LABS/F-LABS-R026]
-- should return medium report limit of 30 [FEAT-LABS/F-LABS-R026]
-- should return low report limit of 50 [FEAT-LABS/F-LABS-R026]
-- should return discount per level of 0.1 [FEAT-LABS/F-LABS-R018]
-- should have absolute thresholds increasing from A1 to B2 [FEAT-LABS/F-LABS-R021]
-- should have percentage thresholds increasing from A1 to B2 [FEAT-LABS/F-LABS-R021]
-- should have priority bounds ordered high less than medium less than low [FEAT-LABS/F-LABS-R011]
-- should weight critical levels A1 and A2 higher than B1 and B2 [FEAT-LABS/F-LABS-R024]
-- should have report limits increasing from high to low priority [FEAT-LABS/F-LABS-R026]
-- should have critical absence threshold greater than acceptable absence threshold [FEAT-LABS/F-LABS-R025]
-- should have alert thresholds non-decreasing from high to low priority [FEAT-LABS/F-LABS-R014]
-- should enforce zero tolerance for high priority alert threshold [FEAT-LABS/F-LABS-R014]
-- should enforce A1 zero tolerance with both absolute and percentage thresholds at zero [FEAT-LABS/F-LABS-R021]
-- should have discount per level that limits max penalty to 0.3 for three-level distance [FEAT-LABS/F-LABS-R018]
-- should return non-negative values for all thresholds and bounds [FEAT-LABS/F-LABS-R021]
-- should return positive report limits for all priority levels [FEAT-LABS/F-LABS-R026]
-- should return percentage thresholds between 0 and 100 for all levels [FEAT-LABS/F-LABS-R021]
-- should return positive level weights for all CEFR levels [FEAT-LABS/F-LABS-R024]
-- should return discount per level between 0 exclusive and 1 exclusive [FEAT-LABS/F-LABS-R018]
 
 #### DefaultAnalyzerRegistry
 
@@ -542,15 +470,17 @@ public TableReportFormatter(DrillDownResolver drillDownResolver) {
 | `viewModelTransformer` | `ReportViewModelTransformer` |
 | `rawReportFormatter` | `RawReportFormatter` |
 | `drillDownResolver` | `DrillDownResolver` |
+| `detailedFormatters` | `Map<String,DetailedFormatter>` |
 
 **Generated constructor:**
 ```java
-public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter, DrillDownResolver drillDownResolver) {
+public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter, DrillDownResolver drillDownResolver, Map<String,DetailedFormatter> detailedFormatters) {
     this.auditRunner = auditRunner;
     this.formatterRegistry = formatterRegistry;
     this.viewModelTransformer = viewModelTransformer;
     this.rawReportFormatter = rawReportFormatter;
     this.drillDownResolver = drillDownResolver;
+    this.detailedFormatters = detailedFormatters;
 }
 ```
 
@@ -628,6 +558,22 @@ public AnalyzerStatsCmd(AnalyzerRegistry analyzerRegistry, AnalyzerStatsTransfor
     this.auditRunner = auditRunner;
 }
 ```
+
+#### LemmaAbsenceDetailedFormatter
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implements:** DetailedFormatter
+
+**Framework types:** Component
+
+#### CocaBucketsDetailedFormatter
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+**Implements:** DetailedFormatter
+
+**Framework types:** Component
 
 ### Module: nlp-infrastructure
 

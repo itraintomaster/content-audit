@@ -1,17 +1,15 @@
 package com.learney.contentaudit.auditapplication;
 
+import com.learney.contentaudit.auditdomain.AuditEngine;
+import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
-import com.learney.contentaudit.auditdomain.ContentAudit;
 import com.learney.contentaudit.auditdomain.IAuditEngine;
-import com.learney.contentaudit.auditdomain.IContentAudit;
 import com.learney.contentaudit.auditdomain.ScoreAggregator;
-import com.learney.contentaudit.auditdomain.ScoredItem;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import java.nio.file.Path;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import javax.annotation.processing.Generated;
@@ -25,62 +23,55 @@ public class DefaultAuditRunner implements AuditRunner {
 
     private final CourseToAuditableMapper courseToAuditableMapper;
 
-    private final ContentAudit contentAudit;
+    private final AuditEngine auditEngine;
 
     private final List<ContentAnalyzer> allAnalyzers;
 
     private final ScoreAggregator scoreAggregator;
 
     public DefaultAuditRunner(CourseRepository courseRepository,
-            CourseToAuditableMapper courseToAuditableMapper, ContentAudit contentAudit,
+            CourseToAuditableMapper courseToAuditableMapper, AuditEngine auditEngine,
             List<ContentAnalyzer> allAnalyzers, ScoreAggregator scoreAggregator) {
         this.courseRepository = courseRepository;
         this.courseToAuditableMapper = courseToAuditableMapper;
-        this.contentAudit = contentAudit;
+        this.auditEngine = auditEngine;
         this.allAnalyzers = allAnalyzers;
         this.scoreAggregator = scoreAggregator;
     }
 
-    public AuditReport runAudit(Path coursePath) {
-        return runAudit(coursePath, null);
-    }
-
     @Override
     public AuditReport runAudit(Path coursePath, Set<String> analyzerNames) {
-        CourseEntity courseEntity = courseRepository.load(coursePath);
-        AuditableCourse auditableCourse = courseToAuditableMapper.map(courseEntity);
+        AuditableCourse auditableCourse = loadCourse(coursePath);
 
         if (analyzerNames == null || analyzerNames.isEmpty()) {
-            return contentAudit.audit(auditableCourse);
+            return auditEngine.runAudit(auditableCourse);
         }
 
         List<ContentAnalyzer> filtered = allAnalyzers.stream()
                 .filter(a -> analyzerNames.contains(a.getName()))
                 .toList();
-        ContentAudit filteredAudit = new IContentAudit(
-                new IAuditEngine(filtered, scoreAggregator));
-        return filteredAudit.audit(auditableCourse);
+        IAuditEngine filteredEngine = new IAuditEngine(filtered, scoreAggregator);
+        return filteredEngine.runAudit(auditableCourse);
     }
 
     @Override
-    public List<ScoredItem> runDetailedAudit(Path coursePath, String analyzerName) {
-        CourseEntity courseEntity = courseRepository.load(coursePath);
-        AuditableCourse auditableCourse = courseToAuditableMapper.map(courseEntity);
+    public AuditNode runDetailedAudit(Path coursePath, String analyzerName) {
+        AuditableCourse auditableCourse = loadCourse(coursePath);
 
         List<ContentAnalyzer> filtered = allAnalyzers.stream()
                 .filter(a -> analyzerName.equals(a.getName()))
                 .toList();
         if (filtered.isEmpty()) {
-            return Collections.emptyList();
+            return null;
         }
 
-        // Run audit with the single analyzer
-        ContentAudit filteredAudit = new IContentAudit(
-                new IAuditEngine(filtered, scoreAggregator));
-        filteredAudit.audit(auditableCourse);
-
-        // Return the raw ScoredItems (with metadata intact)
-        return filtered.get(0).getResults();
+        IAuditEngine filteredEngine = new IAuditEngine(filtered, scoreAggregator);
+        AuditReport report = filteredEngine.runAudit(auditableCourse);
+        return report.getRoot();
     }
 
+    private AuditableCourse loadCourse(Path coursePath) {
+        CourseEntity courseEntity = courseRepository.load(coursePath);
+        return courseToAuditableMapper.map(courseEntity);
+    }
 }

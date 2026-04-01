@@ -235,13 +235,12 @@ public class MyAdapter implements MyPort {
   Implementations: LemmaRecurrenceAnalyzer, DefaultContentWordFilter, DefaultIntervalCalculator, DefaultExposureClassifier
 - `labs` [internal] — Lemma absence analysis by CEFR level. Compares course vocabulary against the EVP catalog to detect absent, misplaced, or scattered lemmas. Classifies absence type, assigns priority by COCA frequency, computes per-level metrics, and generates actionable recommendations.
   Models: AbsenceType, PriorityLevel, LemmaAndPos, AbsentLemma, AbsenceAssessment, LevelAbsenceMetrics, RecommendationAction, EffortLevel, AbsenceRecommendation
-  Implementations: LemmaByLevelAbsenceAnalyzer
+  Implementations: LemmaByLevelAbsenceAnalyzer, LemmaAbsenceScoreAggregator
 
 **Models:**
 
-- `AuditReport` — overallScore: double, scores: NodeScores, milestones: List<MilestoneNode>
+- `AuditReport` — root: AuditNode
 - `AuditableCourse` — milestones: List<AuditableMilestone>
-- `AuditContext` — milestoneId: String, topicId: String, knowledgeId: String, quizId: String, topicLabel: String, knowledgeLabel: String, quizLabel: String
 - `AuditableKnowledge` — quizzes: List<AuditableQuiz>, title: String, instructions: String, isSentence: boolean, id: String, label: String, code: String
 - `AuditableTopic` — knowledge: List<AuditableKnowledge>, id: String, label: String, code: String
 - `AuditableMilestone` — topics: List<AuditableTopic>, id: String, label: String, code: String
@@ -249,27 +248,20 @@ public class MyAdapter implements MyPort {
 - `CefrLevel` [enum] — A1: null, A2: null, B1: null, B2: null
 - `TargetRange` — level: CefrLevel, minTokens: int, maxTokens: int
 - `AuditTarget` [enum] — QUIZ: null, KNOWLEDGE: null, TOPIC: null, MILESTONE: null, COURSE: null
-- `ScoredItem` — analyzerName: String, target: AuditTarget, score: double, milestoneId: String, topicId: String, knowledgeId: String, quizId: String, source: AuditableEntity
-- `NodeScores` — scores: Map<String,Double>
-- `QuizNode` — quizId: String, scores: NodeScores, entity: AuditableEntity
-- `KnowledgeNode` — knowledgeId: String, scores: NodeScores, quizzes: List<QuizNode>, entity: AuditableEntity
-- `TopicNode` — topicId: String, scores: NodeScores, knowledges: List<KnowledgeNode>, entity: AuditableEntity
-- `MilestoneNode` — milestoneId: String, scores: NodeScores, topics: List<TopicNode>, entity: AuditableEntity
 - `NlpToken` — text: String, lemma: String, posTag: String, frequencyRank: Integer, isStop: boolean, isPunct: boolean
 - `AnalyzerDescriptor` — name: String, description: String, target: AuditTarget
+- `AuditNode` — entity: AuditableEntity, target: AuditTarget, parent: AuditNode, children: List<AuditNode>, scores: Map<String,Double>, metadata: Map<String,Object>
 
 **Interfaces (contracts):**
 
-- `ContentAudit`
-  - `audit(AuditableCourse): AuditReport`
 - `AuditEngine`
-  - `runAudit(AuditableCourse): AuditReport`
+  - `runAudit(AuditableCourse course): AuditReport`
 - `ContentAnalyzer`
-  - `onKnowledge(AuditableKnowledge knowledge,AuditContext ctx): Void`
-  - `onQuiz(AuditableQuiz quiz,AuditContext ctx): Void`
-  - `onMilestone(AuditableMilestone milestone,AuditContext ctx): Void`
-  - `onTopic(AuditableTopic topic,AuditContext ctx): Void`
-  - `onCourseComplete(AuditableCourse course,AuditContext ctx): Void`
+  - `onKnowledge(AuditNode node): Void`
+  - `onQuiz(AuditNode node): Void`
+  - `onMilestone(AuditNode node): Void`
+  - `onTopic(AuditNode node): Void`
+  - `onCourseComplete(AuditNode rootNode): Void`
   - `getName(): String`
   - `getTarget(): AuditTarget`
   - `getResults(): List<ScoredItem>`
@@ -287,7 +279,7 @@ public class MyAdapter implements MyPort {
   - `getTargetRange(CefrLevel level): Optional<TargetRange>`
   - `getToleranceMargin(): int`
 - `ScoreAggregator`
-  - `aggregate(List<ScoredItem> scores,Map<String,AuditableEntity> entityMap): AuditReport`
+  - `aggregate(AuditNode rootNode): void`
 - `CocaBucketsConfig`
   - `getBandConfiguration(): BandConfiguration`
   - `getTargetsForLevel(String levelName): List<BucketTarget>`
@@ -317,6 +309,7 @@ public class MyAdapter implements MyPort {
   - `getMediumReportLimit(): int`
   - `getLowReportLimit(): int`
   - `getDiscountPerLevel(): double`
+  - `getCoverageTarget(CefrLevel level): double`
 - `EvpCatalogPort`
   - `getExpectedLemmas(CefrLevel level): Set<LemmaAndPos>`
   - `isPhrase(String lemma): boolean`
@@ -337,8 +330,6 @@ public class MyAdapter implements MyPort {
   Tests: should return knowledge-title-length as analyzer name, should return KNOWLEDGE as audit target, should score 0.0 for knowledge with null title, should score 0.0 for knowledge with empty title, should score 1.0 for knowledge with title within limit, should score 1.0 for knowledge with title at exactly 28 weighted chars, should score 1.0 for title fitting with weighted length 5.1, should score 1.0 for zero-weight special chars title, should score 1.0 for mixed-weight title with weighted length 2.7, should score 0.75 for title of weighted length 35, should score 0.5 for title of weighted length 42, should score 0.0 for title of weighted length 56, should score 0.0 for title of weighted length 70, should complete without error when onQuiz is called, should complete without error when onMilestone is called, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should return two correctly scored items for two knowledges with different title lengths, should return empty list when no knowledges have been processed
 - `KnowledgeInstructionsLengthAnalyzer` implements ContentAnalyzer
   Tests: should return knowledge-instructions-length as analyzer name, should return KNOWLEDGE as audit target, should score 1.0 for knowledge with null instructions, should score 1.0 for knowledge with empty instructions, should score 1.0 for instructions exactly at soft limit of 70 chars, should score 1.0 for instructions of 30 chars within soft limit, should score 0.5 for instructions of 71 chars just above soft limit, should score 0.5 for instructions exactly at hard limit of 100 chars, should score 0.5 for instructions of 85 chars between soft and hard limits, should score 0.0 for instructions of 101 chars just above hard limit, should score 0.0 for instructions of 200 chars well above hard limit, should complete without error when onQuiz is called, should complete without error when onMilestone is called, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should return empty list when getResults is called without prior processing, should produce correct scores for three knowledges with different instruction lengths
-- `IContentAudit` implements ContentAudit
-  Inject: auditEngine: AuditEngine
 - `SentenceLengthAnalyzer` implements ContentAnalyzer
   Inject: nlpTokenizer: NlpTokenizer, config: SentenceLengthConfig
   Tests: should exclude quiz when milestoneId is null, should exclude quiz when milestoneId is non-numeric, should exclude quiz when no target range configured for level, should score only sentence quizzes when processing mixed knowledge types, should return sentence-length as analyzer name, should return QUIZ as audit target, should score 1.0 for quiz within A1 range, should score 0.75 for quiz 1 token above A1 max, should score 0.25 for quiz 3 tokens below A1 min, should score 1.0 for quiz exactly at A1 minimum boundary, should score 1.0 for quiz exactly at A1 maximum boundary, should score 0.0 for quiz 4 tokens above A1 max at tolerance boundary, should exclude non-sentence knowledge quiz from results, should score 1.0 for B2 level quiz within range, should score 0.0 for quiz exactly at tolerance boundary, should score 0.5 for quiz 2 tokens above A1 max, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should produce correct scores for full milestone-knowledge-quiz sequence, should exclude non-sentence quizzes from scoring
@@ -382,6 +373,7 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 - `AuditRunner`
   - `runAudit(Path coursePath,Set<String> analyzerNames): AuditReport`
+  - `runDetailedAudit(Path coursePath,String analyzerName): AuditNode`
 - `CourseMapper`
   - `map(CourseEntity course): AuditableCourse`
 - `AnalyzerRegistry`
@@ -395,7 +387,7 @@ Domain module for course structure. Contains entity models representing the 5-le
   Tests: Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse, Given a course with no milestones, when map is called, then returns an AuditableCourse without error, Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates
 - `DefaultSentenceLengthConfig` implements SentenceLengthConfig [Component]
 - `DefaultAuditRunner` implements AuditRunner [Service]
-  Inject: courseRepository: CourseRepository, courseToAuditableMapper: CourseToAuditableMapper, contentAudit: ContentAudit, courseMapper: CourseMapper
+  Inject: courseRepository: CourseRepository, courseToAuditableMapper: CourseToAuditableMapper, contentAudit: ContentAudit, courseMapper: CourseMapper, auditEngine: AuditEngine
   Tests: Given a valid course path, when runAudit is called, then returns the audit report from the full chain, Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path, Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity, Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course, Given courseRepository throws an exception, when runAudit is called, then the exception propagates, Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates, Given contentAudit throws an exception, when runAudit is called, then the exception propagates, Given a course with no milestones, when runAudit is called, then returns the report from contentAudit
 - `DefaultCocaBucketsConfig` implements CocaBucketsConfig [Component]
 - `DefaultLemmaRecurrenceConfig` implements LemmaRecurrenceConfig [Component]
@@ -434,7 +426,6 @@ CLI entry point for running content audits from the command line
 - `DrillDownView` — depth: DrillDownLevel, nodeName: String, overallScore: double, analyzerScores: Map<String,Double>, analyzerNames: List<String>, childRows: List<ScoreRow>
 - `ChildScoreRow` — id: String, overallScore: double, analyzerScores: Map<String,Double>, entity: AuditableEntity
 - `AnalyzerStatsView` — analyzerName: String, analyzerDescription: String, courseScore: double, levelScores: Map<String,Double>, worstItems: List<ScoredItemRow>, scoreDistribution: Map<String,Integer>, subMetricsByLevel: Map<String,Map<String,Double>>, itemCount: int
-- `ScoredItemRow` — milestoneId: String, topicId: String, knowledgeId: String, quizId: String, score: double, label: String
 
 **Interfaces (contracts):**
 
@@ -454,6 +445,8 @@ CLI entry point for running content audits from the command line
   - `getEntity(): AuditableEntity`
   - `getOverallScore(): double`
   - `getAnalyzerScores(): Map<String,Double>`
+- `DetailedFormatter`
+  - `format(String analyzerName,AuditNode rootNode,String outputFormat): String`
 
 **Implementations (your work):**
 
@@ -470,7 +463,7 @@ CLI entry point for running content audits from the command line
 - `DefaultAnalyzerStatsTransformer` implements AnalyzerStatsTransformer [Component]
 - `ContentAuditCmd` implements  [Component]
 - `AnalyzeCmd` implements  [Component]
-  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry, viewModelTransformer: ReportViewModelTransformer, rawReportFormatter: RawReportFormatter, drillDownResolver: DrillDownResolver
+  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry, viewModelTransformer: ReportViewModelTransformer, rawReportFormatter: RawReportFormatter, drillDownResolver: DrillDownResolver, detailedFormatters: Map<String,DetailedFormatter>
 - `AnalyzerCmd` implements  [Component]
 - `AnalyzerListCmd` implements  [Component]
   Inject: analyzerRegistry: AnalyzerRegistry
@@ -478,6 +471,8 @@ CLI entry point for running content audits from the command line
   Inject: analyzerRegistry: AnalyzerRegistry
 - `AnalyzerStatsCmd` implements  [Component]
   Inject: analyzerRegistry: AnalyzerRegistry, analyzerStatsTransformer: AnalyzerStatsTransformer, auditRunner: AuditRunner
+- `LemmaAbsenceDetailedFormatter` implements DetailedFormatter [Component]
+- `CocaBucketsDetailedFormatter` implements DetailedFormatter [Component]
 
 #### nlp-infrastructure
 

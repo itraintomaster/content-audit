@@ -1,16 +1,8 @@
 package com.learney.contentaudit.auditdomain.coca;
 
-import com.learney.contentaudit.auditdomain.AuditReport;
-import com.learney.contentaudit.auditdomain.AuditTarget;
-import com.learney.contentaudit.auditdomain.AuditableEntity;
-import com.learney.contentaudit.auditdomain.MilestoneNode;
-import com.learney.contentaudit.auditdomain.NodeScores;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
 import com.learney.contentaudit.auditdomain.ScoreAggregator;
-import com.learney.contentaudit.auditdomain.ScoredItem;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -19,69 +11,12 @@ import javax.annotation.processing.Generated;
 )
 class CocaTokenAccumulationAggregator implements ScoreAggregator {
 
-    /**
-     * Aggregates COCA scored items (emitted at MILESTONE level, one per level) into an AuditReport.
-     * Unlike the default aggregator that averages all item scores, this aggregator treats each
-     * MILESTONE-level ScoredItem as a pre-computed level score and builds the report from those
-     * (R025-R029: scores are generated only where targets exist — at level/quarter nodes).
-     */
+    private final IScoreAggregator baseAggregator = new IScoreAggregator();
+
     @Override
-    public AuditReport aggregate(List<ScoredItem> scores, Map<String, AuditableEntity> entityMap) {
-        if (scores == null || scores.isEmpty()) {
-            return new AuditReport(0.0, new NodeScores(Map.of()), List.of());
-        }
-
-        // Group by analyzer name, then by milestone
-        Map<String, Map<String, Double>> analyzerLevelScores = new LinkedHashMap<>();
-        for (ScoredItem item : scores) {
-            if (item.getTarget() != AuditTarget.MILESTONE) {
-                continue;
-            }
-            analyzerLevelScores
-                    .computeIfAbsent(item.getAnalyzerName(), k -> new LinkedHashMap<>())
-                    .put(item.getMilestoneId(), item.getScore());
-        }
-
-        if (analyzerLevelScores.isEmpty()) {
-            return new AuditReport(0.0, new NodeScores(Map.of()), List.of());
-        }
-
-        // Collect all milestone IDs in encounter order
-        Map<String, Map<String, Double>> milestoneAnalyzerScores = new LinkedHashMap<>();
-        for (Map.Entry<String, Map<String, Double>> analyzerEntry : analyzerLevelScores.entrySet()) {
-            String analyzerName = analyzerEntry.getKey();
-            for (Map.Entry<String, Double> levelEntry : analyzerEntry.getValue().entrySet()) {
-                milestoneAnalyzerScores
-                        .computeIfAbsent(levelEntry.getKey(), k -> new LinkedHashMap<>())
-                        .put(analyzerName, levelEntry.getValue());
-            }
-        }
-
-        // Build MilestoneNodes
-        List<MilestoneNode> milestones = new ArrayList<>();
-        for (Map.Entry<String, Map<String, Double>> milestoneEntry : milestoneAnalyzerScores.entrySet()) {
-            String milestoneId = milestoneEntry.getKey();
-            Map<String, Double> analyzerScores = milestoneEntry.getValue();
-            milestones.add(new MilestoneNode(milestoneId, new NodeScores(analyzerScores), List.of(),
-                    entityMap != null ? entityMap.get(milestoneId) : null));
-        }
-
-        // Course-level scores per analyzer = average across milestones
-        Map<String, Double> courseScores = new LinkedHashMap<>();
-        for (Map.Entry<String, Map<String, Double>> analyzerEntry : analyzerLevelScores.entrySet()) {
-            double avg = analyzerEntry.getValue().values().stream()
-                    .mapToDouble(Double::doubleValue)
-                    .average()
-                    .orElse(0.0);
-            courseScores.put(analyzerEntry.getKey(), avg);
-        }
-
-        // Overall score = average of course-level scores per analyzer
-        double overallScore = courseScores.values().stream()
-                .mapToDouble(Double::doubleValue)
-                .average()
-                .orElse(0.0);
-
-        return new AuditReport(overallScore, new NodeScores(courseScores), milestones);
+    public void aggregate(AuditNode rootNode) {
+        // CocaBucketsAnalyzer writes pre-computed scores at MILESTONE, TOPIC, and COURSE levels
+        // during onCourseComplete. Default bubble-up fills in for other analyzers.
+        baseAggregator.aggregate(rootNode);
     }
 }

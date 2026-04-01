@@ -95,11 +95,11 @@ If the user requests work that **skips a phase**, do NOT proceed silently. Inste
 
 ### audit-domain
 
-**Models:** AuditReport, AuditableCourse, AuditContext, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, ScoredItem, NodeScores, QuizNode, KnowledgeNode, TopicNode, MilestoneNode, NlpToken, AnalyzerDescriptor
+**Models:** AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode
 
-**Interfaces:** ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig
+**Interfaces:** AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig
 
-**Implementations:** IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator
+**Implementations:** IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator
 
 ### course-domain
 
@@ -133,11 +133,11 @@ CLI entry point for running content audits from the command line
 
 **Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure
 
-**Models:** ReportViewModel, MilestoneScoreRow, QuizScoreRow, KnowledgeScoreRow, TopicScoreRow, DrillDownScope, DrillDownLevel, DrillDownView, ChildScoreRow, AnalyzerStatsView, ScoredItemRow
+**Models:** ReportViewModel, MilestoneScoreRow, QuizScoreRow, KnowledgeScoreRow, TopicScoreRow, DrillDownScope, DrillDownLevel, DrillDownView, ChildScoreRow, AnalyzerStatsView
 
-**Interfaces:** ReportFormatter, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter, DrillDownResolver, AnalyzerStatsTransformer, ScoreRow
+**Interfaces:** ReportFormatter, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter, DrillDownResolver, AnalyzerStatsTransformer, ScoreRow, DetailedFormatter
 
-**Implementations:** TextReportFormatter, JsonReportFormatter, DefaultFormatterRegistry, DefaultReportViewModelTransformer, TableReportFormatter, RawJsonReportFormatter, DefaultDrillDownResolver, DefaultAnalyzerStatsTransformer, ContentAuditCmd, AnalyzeCmd, AnalyzerCmd, AnalyzerListCmd, AnalyzerConfigCmd, AnalyzerStatsCmd
+**Implementations:** TextReportFormatter, JsonReportFormatter, DefaultFormatterRegistry, DefaultReportViewModelTransformer, TableReportFormatter, RawJsonReportFormatter, DefaultDrillDownResolver, DefaultAnalyzerStatsTransformer, ContentAuditCmd, AnalyzeCmd, AnalyzerCmd, AnalyzerListCmd, AnalyzerConfigCmd, AnalyzerStatsCmd, LemmaAbsenceDetailedFormatter, CocaBucketsDetailedFormatter
 
 ### nlp-infrastructure
 

@@ -1,0 +1,692 @@
+code: FEAT-LABS
+description: 'Complete test coverage for LemmaByLevelAbsenceAnalyzer: adds 33 new tests covering R006, R014, R015, R016, R021,
+  R023, R024, R025, R026, R029, R030, R031, R012, R017, R019, plus J001/J004 journey paths.'
+modules:
+- name: audit-domain
+  packages:
+  - name: labs
+    implementations:
+    - name: LemmaByLevelAbsenceAnalyzer
+      implements:
+      - ContentAnalyzer
+      tests:
+      - name: Given a LemmaByLevelAbsenceAnalyzer, when getName is called, then returns lemma-absence
+        target: LemmaByLevelAbsenceAnalyzer
+        invoke:
+          method: getName
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+        assert:
+          returns: lemma-absence
+      - name: Given a LemmaByLevelAbsenceAnalyzer, when getTarget is called, then returns COURSE
+        target: LemmaByLevelAbsenceAnalyzer
+        invoke:
+          method: getTarget
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+        assert:
+          returns: COURSE
+      - name: Given no data has been processed, when getResults is called, then returns empty list
+        target: LemmaByLevelAbsenceAnalyzer
+        invoke:
+          method: getResults
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+        assert:
+          returns: '[]'
+      - name: Given EVP expects lemma cat-NOUN in A1 and course has cat-NOUN in A1, when onCourseComplete is called, then
+          cat-NOUN is not marked as absent
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R010
+      - name: Given EVP expects lemma cat-NOUN in A1 and course does not have cat-NOUN anywhere, when onCourseComplete is
+          called, then cat-NOUN is marked as absent in A1
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R003
+      - name: Given EVP expects run-VERB and run-NOUN in A2 and course only has run-NOUN in A2, when onCourseComplete is called,
+          then run-VERB is absent but run-NOUN is not
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R003
+      - name: Given EVP contains a multiword phrase look-for, when expected lemmas are obtained, then the phrase is excluded
+          from analysis
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R005
+      - name: Given EVP expects lemmas and contentWordFilter rejects functional words, when expected lemmas are obtained,
+          then functional words are excluded
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R001
+      - name: Given a course with quizzes containing content-word tokens in A1, when onCourseComplete is called, then present
+          lemmas are collected from all quiz tokens in A1
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R002
+      - name: Given EVP expects lemma dog-NOUN in A2 and course has dog-NOUN only in B1, when onCourseComplete is called,
+          then dog-NOUN is marked as absent in A2 with presentInLevels containing B1
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R004
+      - name: Given a lemma expected in A2 that does not appear in any level, when classified, then absence type is COMPLETELY_ABSENT
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R007
+      - name: Given a lemma expected in A2 that only appears in B1 and B2, when classified, then absence type is APPEARS_TOO_LATE
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R007
+      - name: Given a lemma expected in B1 that only appears in A1, when classified, then absence type is APPEARS_TOO_EARLY
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R007
+      - name: Given a lemma expected in A2 that appears in A1 and B2, when classified, then absence type is SCATTERED_PLACEMENT
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R007
+      - name: Given a lemma expected in A2 that appears in A2 and also in B1, when onCourseComplete is called, then lemma
+          is not marked as absent
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R010
+      - name: Given COMPLETELY_ABSENT type, when impact score is checked, then it is 1.0
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R008
+      - name: Given APPEARS_TOO_LATE type, when impact score is checked, then it is 0.8
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R008
+      - name: Given APPEARS_TOO_EARLY type, when impact score is checked, then it is 0.6
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R008
+      - name: Given SCATTERED_PLACEMENT type, when impact score is checked, then it is 0.4
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R008
+      - name: Given APPEARS_TOO_LATE and APPEARS_TOO_EARLY impacts, when compared, then TOO_LATE impact 0.8 is greater than
+          TOO_EARLY impact 0.6
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R009
+      - name: Given an absent lemma with COCA rank 500, when priority is assigned, then priority is HIGH
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: Given an absent lemma with COCA rank 1000, when priority is assigned, then priority is HIGH
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: Given an absent lemma with COCA rank 1500, when priority is assigned, then priority is MEDIUM
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: Given an absent lemma with COCA rank 3000, when priority is assigned, then priority is MEDIUM
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: Given an absent lemma with COCA rank 4000, when priority is assigned, then priority is LOW
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: Given an absent lemma with COCA rank 5000, when priority is assigned, then priority is LOW
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R011
+      - name: Given an absent lemma with no COCA rank available, when priority is assigned, then priority defaults to LOW
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R013
+      - name: Given an absent lemma, when enrichment is performed, then result contains COCA rank and semantic category and
+          priority level
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R012
+      - name: Given 2 absent lemmas of HIGH priority in A2 exceeding alert threshold of 0, when analysis completes, then an
+          alert is triggered for A2
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R014
+      - name: Given a B1 sentence containing lemma cat-NOUN expected in A1, when sentence is scored, then discount is 0.2
+          and score is 0.8
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R018
+      - name: Given an A2 sentence containing lemma cat-NOUN expected in A1, when sentence is scored, then discount is 0.1
+          and score is 0.9
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R018
+      - name: Given a B2 sentence containing lemma cat-NOUN expected in A1, when sentence is scored, then discount is 0.3
+          and score is 0.7
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R018
+      - name: Given a sentence with two misplaced lemmas at distances 1 and 3, when sentence is scored, then score uses max
+          discount of 0.3 resulting in 0.7
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R019
+      - name: Given a sentence with no misplaced lemmas, when sentence is scored, then score is 1.0
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R020
+      - name: Given a sentence containing only non-EVP lemmas, when sentence is scored, then score is 1.0
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R020
+      - name: Given a sentence with a lemma correctly placed at its expected level, when sentence is scored, then that lemma
+          contributes no discount
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R017
+      - name: Given all levels within their absolute and percentage thresholds, when assessment is computed, then result is
+          OPTIMAL
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R022
+      - name: Given B1 exceeds its threshold but A1 and A2 are within thresholds, when assessment is computed, then result
+          is ACCEPTABLE
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R022
+      - name: Given A1 exceeds its zero-tolerance threshold, when assessment is computed, then result is NEEDS_IMPROVEMENT
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R022
+      - name: Given A2 exceeds its threshold, when assessment is computed, then result is NEEDS_IMPROVEMENT regardless of
+          B1 B2 status
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R022
+      - name: Given A2 has 1 absent lemma but it represents 6 percent of expected, when threshold is checked, then A2 exceeds
+          the percentage threshold even if absolute is within limit
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R021
+      - name: Given A1 has zero tolerance threshold, when any lemma is absent in A1, then A1 exceeds its threshold
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R021
+      - name: Given level metrics for A1, when computed, then result includes totalExpected and totalAbsent and absencePercentage
+          and absentLemmasByType
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R023
+      - name: Given A1 and A2 have weight 2.0 and B1 and B2 have weight 1.0, when global score is computed, then it is the
+          weighted average of per-level scores
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R024
+      - name: Given a course with perfect coverage in all levels, when global score is computed, then score is 1.0
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R024
+      - name: Given more than 20 HIGH priority absent lemmas, when results are reported, then at most 20 HIGH priority lemmas
+          are included in report
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R026
+      - name: Given more than 30 MEDIUM priority absent lemmas, when results are reported, then at most 30 MEDIUM priority
+          lemmas are included in report
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R026
+      - name: Given total HIGH priority absent lemmas exceeds critical threshold, when assessment is computed, then result
+          cannot be OPTIMAL
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R025
+      - name: Given A1 exceeds its threshold with COMPLETELY_ABSENT lemmas, when recommendations are generated, then an ADD_VOCABULARY
+          recommendation is produced for A1
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R028
+      - name: Given B1 has APPEARS_TOO_LATE lemmas exceeding threshold, when recommendations are generated, then an INTRODUCE_EARLIER
+          recommendation is produced
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R028
+      - name: Given A2 has APPEARS_TOO_EARLY lemmas exceeding threshold, when recommendations are generated, then a REINFORCE_AT_LEVEL
+          recommendation is produced
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R028
+      - name: Given B2 has SCATTERED_PLACEMENT lemmas exceeding threshold, when recommendations are generated, then a CONSOLIDATE_PLACEMENT
+          recommendation is produced
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R028
+      - name: Given a recommendation for A1 with any lemma priority, when recommendation priority is computed, then it is
+          HIGH
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: Given a recommendation for A2 with LOW priority lemmas, when recommendation priority is computed, then it is
+          still HIGH because A2 is a critical level
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: Given a recommendation for B1 with HIGH priority lemmas, when recommendation priority is computed, then it is
+          MEDIUM
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: Given a recommendation for B2 with LOW priority lemmas, when recommendation priority is computed, then it is
+          LOW
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: Given a recommendation affecting 3 lemmas, when effort level is estimated, then it is LOW
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: Given a recommendation affecting 10 lemmas, when effort level is estimated, then it is MEDIUM
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: Given a recommendation affecting 20 lemmas, when effort level is estimated, then it is HIGH
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: Given a level within its threshold, when recommendations are checked, then no recommendation is generated for
+          that level
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R027
+      - name: Given a LemmaByLevelAbsenceAnalyzer, when onTopic is called, then it completes without error
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+      - name: Given a LemmaByLevelAbsenceAnalyzer, when onKnowledge is called, then it completes without error
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+      - name: Given a course with full vocabulary coverage across all levels, when full audit lifecycle is executed, then
+          assessment is OPTIMAL and score is 1.0 and no recommendations are generated
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J001
+      - name: Given a course where A1 has completely absent HIGH priority lemmas, when full audit lifecycle is executed, then
+          assessment is NEEDS_IMPROVEMENT and recommendations include ADD_VOCABULARY for A1
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J002
+      - name: Given a course where lemmas expected in A2 only appear in B1, when full audit lifecycle is executed, then those
+          lemmas are classified as APPEARS_TOO_LATE and recommendation is INTRODUCE_EARLIER
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J003
+      - name: Given a course with misplaced lemmas in sentences, when full audit lifecycle is executed, then sentence scores
+          reflect level distance discounts
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J004
+      - name: Given a course with multiple levels exceeding thresholds, when full audit lifecycle is executed, then recommendations
+          are generated per level ordered by priority
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J005
+      - name: Given EVP has expected lemmas for A1 A2 B1 B2, when onCourseComplete is called, then expected lemmas are obtained
+          for each level independently
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R001
+      - name: Given a course with quizzes across A1 and A2, when onCourseComplete is called, then present lemmas are collected
+          separately per level
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R002
+      - name: Given a course where the same lemma appears in multiple topics within A1, when onCourseComplete is called, then
+          the lemma is counted as present only once for A1
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R002
+      - name: Given the four absence types, when their values are enumerated, then they are COMPLETELY_ABSENT and APPEARS_TOO_LATE
+          and APPEARS_TOO_EARLY and SCATTERED_PLACEMENT
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R006
+      - name: Given 4 absent lemmas of MEDIUM priority in B1 exceeding alert threshold of 3, when analysis completes, then
+          an alert is triggered for MEDIUM priority in B1
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R014
+      - name: Given 11 absent lemmas of LOW priority in B2 exceeding alert threshold of 10, when analysis completes, then
+          an alert is triggered for LOW priority in B2
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R014
+      - name: Given 3 absent lemmas of MEDIUM priority in A2 exactly at alert threshold of 3, when analysis completes, then
+          no alert is triggered for MEDIUM priority
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R014
+      - name: Given EVP expects run-VERB in A2 and course has run-NOUN in A2 but not run-VERB, when onCourseComplete is called,
+          then run-VERB is marked absent despite run-NOUN being present
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R015
+      - name: Given the pronoun I is expected in A1 by EVP and is absent from A1, when onCourseComplete is called, then I
+          is marked as absent with priority HIGH despite being a functional word
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R016
+      - name: Given the auxiliary be is expected in A1 and absent from A1, when onCourseComplete is called, then be is marked
+          as absent with priority HIGH
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R016
+      - name: Given a critical functional lemma is absent in B1, when onCourseComplete is called, then it is not treated as
+          a critical functional lemma because only A1 and A2 are critical scope
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R016
+      - name: Given an absent lemma with no semantic category available from EVP, when enrichment is performed, then semantic
+          category is null and other fields are still populated
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R012
+      - name: Given a sentence containing a lemma that does not exist in the EVP catalog, when sentence is scored, then that
+          lemma is not considered misplaced
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R017
+      - name: Given a sentence with a lemma at maximum distance of 3 levels A1 expected in B2 sentence, when sentence is scored,
+          then score is 0.7 which is the minimum possible
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R019
+      - name: Given B1 has 6 absent lemmas exceeding both the absolute threshold of 5 and the percentage threshold of 10 percent,
+          when threshold is checked, then B1 exceeds its threshold
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R021
+      - name: Given B2 has 7 absent lemmas within the absolute threshold of 8 but exceeding the percentage threshold of 15
+          percent, when threshold is checked, then B2 exceeds via percentage
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R021
+      - name: Given A2 has absent lemmas of types COMPLETELY_ABSENT and APPEARS_TOO_LATE, when metrics are computed, then
+          absentLemmasByType groups them correctly by type
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R023
+      - name: Given A1 score is 0.5 and A2 score is 1.0 and B1 score is 1.0 and B2 score is 1.0, when global score is computed,
+          then weighted average reflects A1 and A2 double weight
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R024
+      - name: Given total HIGH priority absent lemmas is between acceptable threshold 5 and critical threshold 10, when assessment
+          is computed, then result is ACCEPTABLE if no critical level exceeds its threshold
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R025
+      - name: Given zero HIGH priority absent lemmas and all levels within thresholds, when assessment is computed, then result
+          is OPTIMAL
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R025
+      - name: Given more than 50 LOW priority absent lemmas, when results are reported, then at most 50 LOW priority lemmas
+          are included in report
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R026
+      - name: Given a recommendation for B1 with MEDIUM priority lemmas, when recommendation priority is computed, then it
+          is MEDIUM
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: Given a recommendation for B2 with MEDIUM priority lemmas, when recommendation priority is computed, then it
+          is MEDIUM
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R029
+      - name: Given a recommendation affecting 1 lemma, when effort level is estimated, then it is LOW
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: Given a recommendation affecting 5 lemmas, when effort level is estimated, then it is LOW
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: Given a recommendation affecting 6 lemmas, when effort level is estimated, then it is MEDIUM
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: Given a recommendation affecting 15 lemmas, when effort level is estimated, then it is MEDIUM
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: Given a recommendation affecting 16 lemmas, when effort level is estimated, then it is HIGH
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R030
+      - name: Given a LemmaByLevelAbsenceAnalyzer, when onQuiz is called, then it completes without error
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+      - name: Given a LemmaByLevelAbsenceAnalyzer, when onMilestone is called, then it completes without error
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R031
+      - name: Given EVP catalog returns empty set for all levels, when full audit lifecycle is executed, then analysis completes
+          with 100 percent absence and assessment is NEEDS_IMPROVEMENT
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J001
+      - name: Given a course with no quizzes in any level, when full audit lifecycle is executed, then present lemmas are
+          empty and all expected lemmas are marked absent
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J001
+      - name: Given a course where all sentences have scores above 0.8, when sentence scores are retrieved, then no sentence
+          is flagged as problematic
+        target: LemmaByLevelAbsenceAnalyzer
+        type: unit
+        traceability:
+          feature: FEAT-LABS
+          journey: F-LABS-J004
+      _change: modify
+    _change: modify
+  _change: modify

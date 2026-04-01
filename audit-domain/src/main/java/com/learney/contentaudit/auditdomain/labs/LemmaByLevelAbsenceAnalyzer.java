@@ -1,8 +1,7 @@
 package com.learney.contentaudit.auditdomain.labs;
 
-import com.learney.contentaudit.auditdomain.AuditContext;
+import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
-import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.AuditableKnowledge;
 import com.learney.contentaudit.auditdomain.AuditableMilestone;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
@@ -13,7 +12,6 @@ import com.learney.contentaudit.auditdomain.ContentWordFilter;
 import com.learney.contentaudit.auditdomain.EvpCatalogPort;
 import com.learney.contentaudit.auditdomain.LemmaAbsenceConfig;
 import com.learney.contentaudit.auditdomain.NlpToken;
-import com.learney.contentaudit.auditdomain.ScoredItem;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;
@@ -110,15 +108,6 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
     // Map<CefrLevel, Set<LemmaAndPos>>
     private final Map<CefrLevel, Set<LemmaAndPos>> presentLemmasByLevel = new EnumMap<>(CefrLevel.class);
 
-    // Tracks current milestone level during traversal
-    private CefrLevel currentLevel = null;
-
-    // Stores quiz scored items after onCourseComplete
-    private final List<ScoredItem> results = new ArrayList<>();
-
-    // Stores course-level ScoredItem
-    private ScoredItem courseResult = null;
-
     public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort,
             ContentWordFilter contentWordFilter, LemmaAbsenceConfig lemmaAbsenceConfig) {
         this.evpCatalogPort = evpCatalogPort;
@@ -126,40 +115,29 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         this.lemmaAbsenceConfig = lemmaAbsenceConfig;
     }
 
-    // Holds quiz score + misplaced lemma details together
-    private static class QuizScoreResult {
-        final double score;
-        final List<Map<String, String>> misplacedLemmas;
-
-        QuizScoreResult(double score, List<Map<String, String>> misplacedLemmas) {
-            this.score = score;
-            this.misplacedLemmas = misplacedLemmas;
-        }
-    }
-
     @Override
-    public Void onMilestone(AuditableMilestone milestone, AuditContext ctx) {
-        currentLevel = parseCefrLevel(ctx.getMilestoneId());
+    public Void onMilestone(AuditNode node) {
         return null;
     }
 
     @Override
-    public Void onTopic(AuditableTopic topic, AuditContext ctx) {
+    public Void onTopic(AuditNode node) {
         return null;
     }
 
     @Override
-    public Void onKnowledge(AuditableKnowledge knowledge, AuditContext ctx) {
+    public Void onKnowledge(AuditNode node) {
         return null;
     }
 
     @Override
-    public Void onQuiz(AuditableQuiz quiz, AuditContext ctx) {
-        if (quiz == null || quiz.getTokens() == null || currentLevel == null) {
+    public Void onQuiz(AuditNode node) {
+        AuditableQuiz quiz = (AuditableQuiz) node.getEntity();
+        if (quiz == null || quiz.getTokens() == null) {
             return null;
         }
-        // Parse level from context in case we are called out of milestone order
-        CefrLevel level = parseCefrLevel(ctx.getMilestoneId());
+        // Derive CEFR level by walking up to the milestone node
+        CefrLevel level = parseLevelFromQuizNode(node);
         if (level == null) {
             return null;
         }
@@ -178,13 +156,13 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
     }
 
     @Override
-    public Void onCourseComplete(AuditableCourse course, AuditContext ctx) {
-        // Run the full analysis pipeline
-        runAnalysis(course);
+    public Void onCourseComplete(AuditNode rootNode) {
+        // Run the full analysis pipeline, writing results directly to tree nodes
+        runAnalysis(rootNode);
         return null;
     }
 
-    private void runAnalysis(AuditableCourse course) {
+    private void runAnalysis(AuditNode rootNode) {
         CefrLevel[] allLevels = CefrLevel.values();
 
         // Step 1: For each level, get expected lemmas from EVP (filtered)
@@ -262,10 +240,13 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         // Step 6: Score quizzes (sentence scoring — R017-R020)
         // We need the EVP level map: for each LemmaAndPos, which level does EVP assign?
         Map<LemmaAndPos, CefrLevel> lemmaExpectedLevel = buildLemmaExpectedLevelMap(expectedByLevel);
-        scoreQuizzes(course, lemmaExpectedLevel);
+        scoreQuizzes(rootNode, lemmaExpectedLevel);
 
-        // Step 7: Calculate per-level metrics (R023) and emit Milestone-level ScoredItems
+        // Step 7: Calculate per-level metrics (R023) and write to milestone nodes
         Map<CefrLevel, LevelAbsenceMetrics> levelMetrics = new EnumMap<>(CefrLevel.class);
+        List<AuditNode> milestoneNodes = rootNode.getChildren() != null
+                ? rootNode.getChildren() : Collections.emptyList();
+
         for (CefrLevel level : allLevels) {
             Set<LemmaAndPos> expected = expectedByLevel.get(level);
             List<AbsentLemma> absentList = limitedAbsentByLevel.get(level);
@@ -324,9 +305,12 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
             }
             milestoneMeta.put("absentLemmas", absentLemmaDetails);
 
-            results.add(new ScoredItem(
-                    ANALYZER_NAME, AuditTarget.MILESTONE, levelScore,
-                    level.name(), null, null, null, null, milestoneMeta));
+            // Write score and metadata directly to the matching milestone node
+            AuditNode milestoneNode = findMilestoneNodeForLevel(milestoneNodes, level);
+            if (milestoneNode != null) {
+                milestoneNode.getScores().put(ANALYZER_NAME, levelScore);
+                milestoneNode.getMetadata().putAll(milestoneMeta);
+            }
         }
 
         // Step 8: Calculate global assessment (R022, R025)
@@ -338,18 +322,46 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         // Step 10: Generate recommendations (R027-R031)
         List<AbsenceRecommendation> recommendations = generateRecommendations(levelMetrics, absentByLevel);
 
-        // Store course-level result with assessment in metadata
+        // Write course-level score and assessment to root node
         Map<String, Object> courseMeta = new LinkedHashMap<>();
         courseMeta.put("assessment", assessment.name());
-        courseResult = new ScoredItem(ANALYZER_NAME, AuditTarget.COURSE, globalScore,
-                null, null, null, null, null, courseMeta);
+        rootNode.getScores().put(ANALYZER_NAME, globalScore);
+        rootNode.getMetadata().putAll(courseMeta);
     }
 
-    // --- Helper: parse CefrLevel from milestoneId string ---
-    private CefrLevel parseCefrLevel(String milestoneId) {
-        if (milestoneId == null) return null;
+    // --- Helper: find the milestone node whose entity label matches a CEFR level ---
+    private AuditNode findMilestoneNodeForLevel(List<AuditNode> milestoneNodes, CefrLevel level) {
+        for (AuditNode node : milestoneNodes) {
+            if (node.getEntity() instanceof AuditableMilestone) {
+                AuditableMilestone milestone = (AuditableMilestone) node.getEntity();
+                CefrLevel nodeLevel = parseCefrLevelFromLabel(milestone.getLabel());
+                if (level.equals(nodeLevel)) {
+                    return node;
+                }
+            }
+        }
+        return null;
+    }
+
+    // --- Helper: derive CefrLevel by walking up the node tree from a quiz node ---
+    // tree structure: quiz -> knowledge -> topic -> milestone
+    private CefrLevel parseLevelFromQuizNode(AuditNode quizNode) {
+        AuditNode knowledgeNode = quizNode.getParent();
+        if (knowledgeNode == null) return null;
+        AuditNode topicNode = knowledgeNode.getParent();
+        if (topicNode == null) return null;
+        AuditNode milestoneNode = topicNode.getParent();
+        if (milestoneNode == null) return null;
+        if (!(milestoneNode.getEntity() instanceof AuditableMilestone)) return null;
+        AuditableMilestone milestone = (AuditableMilestone) milestoneNode.getEntity();
+        return parseCefrLevelFromLabel(milestone.getLabel());
+    }
+
+    // --- Helper: parse CefrLevel from a milestone label string ---
+    private CefrLevel parseCefrLevelFromLabel(String label) {
+        if (label == null) return null;
         try {
-            return CefrLevel.valueOf(milestoneId);
+            return CefrLevel.valueOf(label);
         } catch (IllegalArgumentException e) {
             return null;
         }
@@ -392,13 +404,10 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         }
         int expectedOrder = LEVEL_ORDER.get(expectedLevel);
         boolean hasEarlier = false;
-        boolean hasLater = false;
         for (CefrLevel presentLevel : presentInLevels) {
             int presentOrder = LEVEL_ORDER.get(presentLevel);
             if (presentOrder < expectedOrder) {
                 hasEarlier = true;
-            } else if (presentOrder > expectedOrder) {
-                hasLater = true;
             }
         }
         // R007: If lemma appears in ANY earlier level -> TOO_EARLY (even if also in later levels)
@@ -466,27 +475,33 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         return result;
     }
 
-    // --- R017-R020: Score quizzes based on misplaced lemmas ---
-    private void scoreQuizzes(AuditableCourse course,
-            Map<LemmaAndPos, CefrLevel> lemmaExpectedLevel) {
-        if (course == null || course.getMilestones() == null) {
+    // --- R017-R020: Score quizzes based on misplaced lemmas, writing to nodes ---
+    private void scoreQuizzes(AuditNode rootNode, Map<LemmaAndPos, CefrLevel> lemmaExpectedLevel) {
+        List<AuditNode> milestoneNodes = rootNode.getChildren();
+        if (milestoneNodes == null) {
             return;
         }
         CefrLevel[] levels = CefrLevel.values();
-        for (int mi = 0; mi < course.getMilestones().size(); mi++) {
-            AuditableMilestone milestone = course.getMilestones().get(mi);
+        for (int mi = 0; mi < milestoneNodes.size(); mi++) {
+            AuditNode milestoneNode = milestoneNodes.get(mi);
             CefrLevel sentenceLevel = mi < levels.length ? levels[mi] : null;
             if (sentenceLevel == null) continue;
 
-            if (milestone.getTopics() == null) continue;
-            for (AuditableTopic topic : milestone.getTopics()) {
-                if (topic.getKnowledge() == null) continue;
+            List<AuditNode> topicNodes = milestoneNode.getChildren();
+            if (topicNodes == null) continue;
+
+            for (AuditNode topicNode : topicNodes) {
+                List<AuditNode> knowledgeNodes = topicNode.getChildren();
+                if (knowledgeNodes == null) continue;
+
                 double topicScoreSum = 0.0;
                 int topicQuizCount = 0;
                 int topicMisplacedCount = 0;
 
-                for (AuditableKnowledge knowledge : topic.getKnowledge()) {
-                    if (knowledge.getQuizzes() == null) continue;
+                for (AuditNode knowledgeNode : knowledgeNodes) {
+                    List<AuditNode> quizNodes = knowledgeNode.getChildren();
+                    if (quizNodes == null) continue;
+
                     double knowledgeScoreSum = 0.0;
                     int knowledgeQuizCount = 0;
                     int knowledgeMisplacedCount = 0;
@@ -494,27 +509,28 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
                     Set<String> knowledgeSeen = new HashSet<>();
                     List<Map<String, String>> knowledgeMisplacedLemmas = new ArrayList<>();
 
-                    for (AuditableQuiz quiz : knowledge.getQuizzes()) {
-                        QuizScoreResult qsr = scoreQuiz(quiz, sentenceLevel, lemmaExpectedLevel);
-
-                        // Quiz-level ScoredItem with misplaced lemma details in metadata
-                        Map<String, Object> quizMeta = null;
-                        if (!qsr.misplacedLemmas.isEmpty()) {
-                            quizMeta = new LinkedHashMap<>();
-                            quizMeta.put("misplacedLemmas", qsr.misplacedLemmas);
+                    for (AuditNode quizNode : quizNodes) {
+                        AuditableQuiz quiz = (AuditableQuiz) quizNode.getEntity();
+                        double quizScore = 1.0;
+                        List<Map<String, String>> misplacedLemmas = Collections.emptyList();
+                        if (quiz != null) {
+                            QuizScoringResult qsr = scoreQuiz(quiz, sentenceLevel, lemmaExpectedLevel);
+                            quizScore = qsr.score;
+                            misplacedLemmas = qsr.misplacedLemmas;
                         }
-                        ScoredItem item = new ScoredItem(
-                                ANALYZER_NAME, AuditTarget.QUIZ, qsr.score,
-                                sentenceLevel.name(), topic.getId(), knowledge.getId(),
-                                quiz.getId(), quiz, quizMeta);
-                        results.add(item);
 
-                        knowledgeScoreSum += qsr.score;
+                        // Write quiz score and misplaced lemma details directly to quiz node
+                        quizNode.getScores().put(ANALYZER_NAME, quizScore);
+                        if (!misplacedLemmas.isEmpty()) {
+                            quizNode.getMetadata().put("misplacedLemmas", misplacedLemmas);
+                        }
+
+                        knowledgeScoreSum += quizScore;
                         knowledgeQuizCount++;
-                        knowledgeMisplacedCount += qsr.misplacedLemmas.size();
+                        knowledgeMisplacedCount += misplacedLemmas.size();
 
                         // Accumulate unique misplaced lemmas for knowledge level
-                        for (Map<String, String> ml : qsr.misplacedLemmas) {
+                        for (Map<String, String> ml : misplacedLemmas) {
                             String key = ml.get("lemma") + "|" + ml.get("pos");
                             if (knowledgeSeen.add(key)) {
                                 knowledgeMisplacedLemmas.add(ml);
@@ -522,16 +538,12 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
                         }
                     }
 
-                    // Knowledge-level ScoredItem
+                    // Write knowledge-level score and metadata
                     if (knowledgeQuizCount > 0) {
                         double knowledgeScore = knowledgeScoreSum / knowledgeQuizCount;
-                        Map<String, Object> knowledgeMeta = new LinkedHashMap<>();
-                        knowledgeMeta.put("misplacedLemmaCount", knowledgeMisplacedLemmas.size());
-                        knowledgeMeta.put("misplacedLemmas", knowledgeMisplacedLemmas);
-                        results.add(new ScoredItem(
-                                ANALYZER_NAME, AuditTarget.KNOWLEDGE, knowledgeScore,
-                                sentenceLevel.name(), topic.getId(), knowledge.getId(),
-                                null, knowledge, knowledgeMeta));
+                        knowledgeNode.getScores().put(ANALYZER_NAME, knowledgeScore);
+                        knowledgeNode.getMetadata().put("misplacedLemmaCount", knowledgeMisplacedLemmas.size());
+                        knowledgeNode.getMetadata().put("misplacedLemmas", knowledgeMisplacedLemmas);
 
                         topicScoreSum += knowledgeScore;
                         topicQuizCount++;
@@ -539,24 +551,31 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
                     }
                 }
 
-                // Topic-level ScoredItem
+                // Write topic-level score and metadata
                 if (topicQuizCount > 0) {
                     double topicScore = topicScoreSum / topicQuizCount;
-                    Map<String, Object> topicMeta = new LinkedHashMap<>();
-                    topicMeta.put("misplacedLemmaCount", topicMisplacedCount);
-                    results.add(new ScoredItem(
-                            ANALYZER_NAME, AuditTarget.TOPIC, topicScore,
-                            sentenceLevel.name(), topic.getId(), null,
-                            null, topic, topicMeta));
+                    topicNode.getScores().put(ANALYZER_NAME, topicScore);
+                    topicNode.getMetadata().put("misplacedLemmaCount", topicMisplacedCount);
                 }
             }
         }
     }
 
-    private QuizScoreResult scoreQuiz(AuditableQuiz quiz, CefrLevel sentenceLevel,
+    // Holds quiz score + misplaced lemma details together (internal use only)
+    private static class QuizScoringResult {
+        final double score;
+        final List<Map<String, String>> misplacedLemmas;
+
+        QuizScoringResult(double score, List<Map<String, String>> misplacedLemmas) {
+            this.score = score;
+            this.misplacedLemmas = misplacedLemmas;
+        }
+    }
+
+    private QuizScoringResult scoreQuiz(AuditableQuiz quiz, CefrLevel sentenceLevel,
             Map<LemmaAndPos, CefrLevel> lemmaExpectedLevel) {
         if (quiz == null || quiz.getTokens() == null) {
-            return new QuizScoreResult(1.0, Collections.emptyList());
+            return new QuizScoringResult(1.0, Collections.emptyList());
         }
         double discountPerLevel = lemmaAbsenceConfig.getDiscountPerLevel();
         double maxDiscount = 0.0;
@@ -594,7 +613,7 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         }
         double score = 1.0 - maxDiscount;
         score = Math.max(0.0, Math.min(1.0, score));
-        return new QuizScoreResult(score, misplacedLemmas);
+        return new QuizScoringResult(score, misplacedLemmas);
     }
 
     // --- R008/R024/R032: Compute level score relative to coverage target ---
@@ -808,18 +827,6 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
     @Override
     public AuditTarget getTarget() {
         return AuditTarget.COURSE;
-    }
-
-    @Override
-    public List<ScoredItem> getResults() {
-        if (courseResult == null && results.isEmpty()) {
-            return Collections.emptyList();
-        }
-        List<ScoredItem> combined = new ArrayList<>(results);
-        if (courseResult != null) {
-            combined.add(courseResult);
-        }
-        return Collections.unmodifiableList(combined);
     }
 
     @Override

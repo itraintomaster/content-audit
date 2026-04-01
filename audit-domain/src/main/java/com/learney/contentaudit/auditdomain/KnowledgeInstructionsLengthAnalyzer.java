@@ -1,7 +1,5 @@
 package com.learney.contentaudit.auditdomain;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -14,8 +12,6 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
     private static final int SOFT_LIMIT = 70;
     private static final int HARD_LIMIT = 100;
 
-    private final List<ScoredItem> results = new ArrayList<>();
-
     @Override
     public String getName() { return ANALYZER_NAME; }
 
@@ -23,13 +19,14 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
     public AuditTarget getTarget() { return AuditTarget.KNOWLEDGE; }
 
     @Override
-    public Void onMilestone(AuditableMilestone milestone, AuditContext ctx) { return null; }
+    public Void onMilestone(AuditNode node) { return null; }
 
     @Override
-    public Void onTopic(AuditableTopic topic, AuditContext ctx) { return null; }
+    public Void onTopic(AuditNode node) { return null; }
 
     @Override
-    public Void onKnowledge(AuditableKnowledge knowledge, AuditContext ctx) {
+    public Void onKnowledge(AuditNode node) {
+        AuditableKnowledge knowledge = (AuditableKnowledge) node.getEntity();
         String instructions = knowledge.getInstructions();
         double score;
         if (instructions == null || instructions.isEmpty()) {
@@ -44,23 +41,18 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
                 score = 0.0;
             }
         }
-        results.add(new ScoredItem(ANALYZER_NAME, AuditTarget.KNOWLEDGE, score,
-                ctx.getMilestoneId(), ctx.getTopicId(), ctx.getKnowledgeId(), null, knowledge, null));
+        node.getScores().put(ANALYZER_NAME, score);
         return null;
     }
 
     @Override
-    public Void onQuiz(AuditableQuiz quiz, AuditContext ctx) { return null; }
+    public Void onQuiz(AuditNode node) { return null; }
 
     @Override
-    public Void onCourseComplete(AuditableCourse course, AuditContext ctx) { return null; }
-
-    @Override
-    public List<ScoredItem> getResults() { return List.copyOf(results); }
+    public Void onCourseComplete(AuditNode rootNode) { return null; }
 
     @Override
     public String getDescription() {
         return "Scores knowledge instructions by character length against soft/hard limits";
     }
-
 }

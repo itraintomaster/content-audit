@@ -1,19 +1,13 @@
 package com.learney.contentaudit.auditdomain.lrec;
 
-import com.learney.contentaudit.auditdomain.AuditContext;
+import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
-import com.learney.contentaudit.auditdomain.AuditableCourse;
-import com.learney.contentaudit.auditdomain.AuditableKnowledge;
-import com.learney.contentaudit.auditdomain.AuditableMilestone;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
-import com.learney.contentaudit.auditdomain.AuditableTopic;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.ContentWordFilter;
 import com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig;
 import com.learney.contentaudit.auditdomain.NlpToken;
-import com.learney.contentaudit.auditdomain.ScoredItem;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -45,9 +39,6 @@ public class LemmaRecurrenceAnalyzer implements ContentAnalyzer {
     // Maps lemma -> POS tag (first observed)
     private final Map<String, String> lemmaPosTag = new HashMap<>();
 
-    // Stores computed result after onCourseComplete
-    private ScoredItem courseResult = null;
-
     public LemmaRecurrenceAnalyzer(ContentWordFilter contentWordFilter,
             LemmaRecurrenceConfig lemmaRecurrenceConfig, IntervalCalculator intervalCalculator,
             ExposureClassifier exposureClassifier) {
@@ -58,12 +49,13 @@ public class LemmaRecurrenceAnalyzer implements ContentAnalyzer {
     }
 
     @Override
-    public Void onKnowledge(AuditableKnowledge knowledge, AuditContext ctx) {
+    public Void onKnowledge(AuditNode node) {
         return null;
     }
 
     @Override
-    public Void onQuiz(AuditableQuiz quiz, AuditContext ctx) {
+    public Void onQuiz(AuditNode node) {
+        AuditableQuiz quiz = (AuditableQuiz) node.getEntity();
         if (quiz == null || quiz.getTokens() == null) {
             return null;
         }
@@ -81,17 +73,17 @@ public class LemmaRecurrenceAnalyzer implements ContentAnalyzer {
     }
 
     @Override
-    public Void onMilestone(AuditableMilestone milestone, AuditContext ctx) {
+    public Void onMilestone(AuditNode node) {
         return null;
     }
 
     @Override
-    public Void onTopic(AuditableTopic topic, AuditContext ctx) {
+    public Void onTopic(AuditNode node) {
         return null;
     }
 
     @Override
-    public Void onCourseComplete(AuditableCourse course, AuditContext ctx) {
+    public Void onCourseComplete(AuditNode rootNode) {
         int top = lemmaRecurrenceConfig.getTop();
 
         // Select top N lemmas by count
@@ -138,7 +130,7 @@ public class LemmaRecurrenceAnalyzer implements ContentAnalyzer {
         ExposureSummary exposureSummary = new ExposureSummary(normalCount, subExposedCount, overExposedCount);
 
         // lemmaStats is ordered by count descending (already sorted above)
-        courseResult = new ScoredItem(ANALYZER_NAME, AuditTarget.COURSE, overallScore, null, null, null, null, null, null);
+        rootNode.getScores().put(ANALYZER_NAME, overallScore);
         return null;
     }
 
@@ -150,14 +142,6 @@ public class LemmaRecurrenceAnalyzer implements ContentAnalyzer {
     @Override
     public AuditTarget getTarget() {
         return AuditTarget.COURSE;
-    }
-
-    @Override
-    public List<ScoredItem> getResults() {
-        if (courseResult == null) {
-            return Collections.emptyList();
-        }
-        return List.of(courseResult);
     }
 
     @Override

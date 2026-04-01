@@ -1,0 +1,246 @@
+code: __proposal__
+description: "Simplify audit engine: replace 6 type-specific node/context models with\
+  \ unified AuditNode tree, remove ContentAudit wrapper, update ContentAnalyzer callbacks\
+  \ to operate on AuditNode, update ScoreAggregator to in-place tree aggregation"
+modules:
+- name: audit-domain
+  models:
+  - name: AuditNode
+    type: record
+    fields:
+    - name: entity
+      type: AuditableEntity
+      description: "Reference to the auditable entity at this node (AuditableCourse,\
+        \ AuditableMilestone, etc.)"
+    - name: target
+      type: AuditTarget
+      description: "The hierarchy level: COURSE, MILESTONE, TOPIC, KNOWLEDGE, or QUIZ"
+    - name: parent
+      type: AuditNode
+      description: "Parent node in the tree, null for the root (COURSE) node"
+    - name: children
+      type: List<AuditNode>
+      description: Child nodes; empty for leaf (QUIZ) nodes
+    - name: scores
+      type: "Map<String,Double>"
+      description: "Per-analyzer scores at this node level (analyzerName -> score)"
+    - name: metadata
+      type: "Map<String,Object>"
+      description: "Analyzer-specific data attached to this node (e.g., misplaced\
+        \ lemmas, sub-scores)"
+    _change: add
+  - name: NodeScores
+    type: record
+    _change: delete
+  - name: ScoredItem
+    type: record
+    _change: delete
+  - name: AuditContext
+    type: record
+    _change: delete
+  - name: MilestoneNode
+    type: record
+    _change: delete
+  - name: TopicNode
+    type: record
+    _change: delete
+  - name: KnowledgeNode
+    type: record
+    _change: delete
+  - name: QuizNode
+    type: record
+    _change: delete
+  - name: AuditReport
+    type: record
+    fields:
+    - name: root
+      type: AuditNode
+      description: "Root node of the audit tree (target=COURSE). Children are milestones.\
+        \ Course-level scores live in root.scores."
+      _change: add
+    - name: overallScore
+      type: double
+      _change: delete
+    - name: milestones
+      type: List<MilestoneNode>
+      _change: delete
+    - name: scores
+      type: NodeScores
+      _change: delete
+    _change: modify
+  interfaces:
+  - name: ContentAudit
+    sealed: false
+    _change: delete
+  - name: ContentAnalyzer
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "onMilestone(AuditNode node): Void"
+    - signature: "onTopic(AuditNode node): Void"
+    - signature: "onKnowledge(AuditNode node): Void"
+    - signature: "onQuiz(AuditNode node): Void"
+    - signature: "onCourseComplete(AuditNode rootNode): Void"
+    - signature: "getName(): String"
+    - signature: "getTarget(): AuditTarget"
+    - signature: "getDescription(): String"
+    _change: modify
+  - name: AuditEngine
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "runAudit(AuditableCourse course): AuditReport"
+    _change: modify
+  - name: ScoreAggregator
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "aggregate(AuditNode rootNode): void"
+    _change: modify
+  implementations:
+  - name: IContentAudit
+    _change: delete
+  - name: IAuditEngine
+    requiresInject:
+    - name: contentAnalyzers
+      type: List<ContentAnalyzer>
+    - name: scoreAggregator
+      type: ScoreAggregator
+    implements:
+    - AuditEngine
+    _change: modify
+  - name: IScoreAggregator
+    implements:
+    - ScoreAggregator
+    _change: modify
+  - name: SentenceLengthAnalyzer
+    requiresInject:
+    - name: nlpTokenizer
+      type: NlpTokenizer
+    - name: config
+      type: SentenceLengthConfig
+    implements:
+    - ContentAnalyzer
+    _change: modify
+  - name: KnowledgeTitleLengthAnalyzer
+    implements:
+    - ContentAnalyzer
+    _change: modify
+  - name: KnowledgeInstructionsLengthAnalyzer
+    implements:
+    - ContentAnalyzer
+    _change: modify
+  packages:
+  - name: coca
+    visibility: internal
+    implementations:
+    - name: CocaBucketsAnalyzer
+      requiresInject:
+      - name: nlpTokenizer
+        type: NlpTokenizer
+      - name: cocaBucketsConfig
+        type: CocaBucketsConfig
+      - name: tokenClassifier
+        type: TokenClassifier
+      - name: progressionEvaluator
+        type: ProgressionEvaluator
+      - name: improvementPlanner
+        type: ImprovementPlanner
+      implements:
+      - ContentAnalyzer
+      _change: modify
+    - name: CocaTokenAccumulationAggregator
+      implements:
+      - ScoreAggregator
+      _change: modify
+    _change: modify
+  - name: lrec
+    visibility: internal
+    implementations:
+    - name: LemmaRecurrenceAnalyzer
+      requiresInject:
+      - name: contentWordFilter
+        type: ContentWordFilter
+      - name: lemmaRecurrenceConfig
+        type: LemmaRecurrenceConfig
+      - name: intervalCalculator
+        type: IntervalCalculator
+      - name: exposureClassifier
+        type: ExposureClassifier
+      implements:
+      - ContentAnalyzer
+      _change: modify
+    _change: modify
+  - name: labs
+    visibility: internal
+    implementations:
+    - name: LemmaByLevelAbsenceAnalyzer
+      requiresInject:
+      - name: evpCatalogPort
+        type: EvpCatalogPort
+      - name: contentWordFilter
+        type: ContentWordFilter
+      - name: lemmaAbsenceConfig
+        type: LemmaAbsenceConfig
+      implements:
+      - ContentAnalyzer
+      _change: modify
+    - name: LemmaAbsenceScoreAggregator
+      implements:
+      - ScoreAggregator
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-application
+  interfaces:
+  - name: AuditRunner
+    stereotype: service
+    sealed: false
+    exposes:
+    - signature: "runAudit(Path coursePath,Set<String> analyzerNames): AuditReport"
+    - signature: "runDetailedAudit(Path coursePath,String analyzerName): AuditNode"
+    _change: modify
+  implementations:
+  - name: DefaultAuditRunner
+    requiresInject:
+    - name: courseRepository
+      type: CourseRepository
+    - name: courseToAuditableMapper
+      type: CourseToAuditableMapper
+    - name: auditEngine
+      type: AuditEngine
+    - name: courseMapper
+      type: CourseMapper
+    types:
+    - Service
+    implements:
+    - AuditRunner
+    _change: modify
+  _change: modify
+- name: audit-cli
+  models:
+  - name: ScoredItemRow
+    type: record
+    _change: delete
+  interfaces:
+  - name: DetailedFormatter
+    stereotype: formatter
+    sealed: false
+    exposes:
+    - signature: "format(String analyzerName,AuditNode rootNode,String outputFormat):\
+        \ String"
+    _change: modify
+  implementations:
+  - name: LemmaAbsenceDetailedFormatter
+    types:
+    - Component
+    implements:
+    - DetailedFormatter
+    _change: modify
+  - name: CocaBucketsDetailedFormatter
+    types:
+    - Component
+    implements:
+    - DetailedFormatter
+    _change: modify
+  _change: modify

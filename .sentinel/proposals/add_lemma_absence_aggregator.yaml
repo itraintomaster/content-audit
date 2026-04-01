@@ -1,0 +1,22 @@
+code: __proposal__
+description: "Add LemmaAbsenceScoreAggregator to labs package, implementing ScoreAggregator strategy"
+modules:
+- name: audit-domain
+  packages:
+  - name: labs
+    visibility: internal
+    implementations:
+    - name: LemmaAbsenceScoreAggregator
+      implements:
+      - ScoreAggregator
+      _change: add
+    _change: modify
+  patterns:
+  - type: Strategy
+    interface: ScoreAggregator
+    implementations:
+    - IScoreAggregator
+    - CocaTokenAccumulationAggregator
+    - LemmaAbsenceScoreAggregator
+    _change: modify
+  _change: modify

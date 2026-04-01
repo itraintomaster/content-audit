@@ -1,11 +1,7 @@
 package com.learney.contentaudit.auditcli;
 
+import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
-import com.learney.contentaudit.auditdomain.KnowledgeNode;
-import com.learney.contentaudit.auditdomain.MilestoneNode;
-import com.learney.contentaudit.auditdomain.NodeScores;
-import com.learney.contentaudit.auditdomain.QuizNode;
-import com.learney.contentaudit.auditdomain.TopicNode;
 import java.util.List;
 import java.util.Map;
 
@@ -13,18 +9,23 @@ public final class RawJsonReportFormatter implements RawReportFormatter {
 
     @Override
     public String format(AuditReport report) {
+        AuditNode root = report.getRoot();
         StringBuilder sb = new StringBuilder();
         sb.append("{\n");
-        sb.append("  \"overallScore\": ").append(report.getOverallScore());
+
+        Map<String, Double> rootScores = root != null ? root.getScores() : null;
+        double overallScore = avgScores(rootScores);
+        sb.append("  \"overallScore\": ").append(overallScore);
 
         // Course-level scores map
         sb.append(",\n  \"scores\": ");
-        appendScoresMap(sb, report.getScores(), 2);
+        appendScoresMap(sb, rootScores, 2);
 
-        // Milestones
+        // Milestones (children of root)
         sb.append(",\n  \"milestones\": [");
-        List<MilestoneNode> milestones = report.getMilestones();
-        if (milestones != null && !milestones.isEmpty()) {
+        List<AuditNode> milestones = (root != null && root.getChildren() != null)
+                ? root.getChildren() : List.of();
+        if (!milestones.isEmpty()) {
             sb.append("\n");
             for (int i = 0; i < milestones.size(); i++) {
                 appendMilestoneNode(sb, milestones.get(i), 4);
@@ -37,16 +38,17 @@ public final class RawJsonReportFormatter implements RawReportFormatter {
         return sb.toString();
     }
 
-    private void appendMilestoneNode(StringBuilder sb, MilestoneNode milestone, int indent) {
+    private void appendMilestoneNode(StringBuilder sb, AuditNode milestone, int indent) {
         String pad = " ".repeat(indent);
+        String milestoneId = entityId(milestone);
         sb.append(pad).append("{\n");
-        sb.append(pad).append("  \"milestoneId\": \"").append(escape(milestone.getMilestoneId())).append("\"");
+        sb.append(pad).append("  \"milestoneId\": \"").append(escape(milestoneId)).append("\"");
         sb.append(",\n").append(pad).append("  \"scores\": ");
         appendScoresMap(sb, milestone.getScores(), indent + 2);
 
-        List<TopicNode> topics = milestone.getTopics();
+        List<AuditNode> topics = milestone.getChildren() != null ? milestone.getChildren() : List.of();
         sb.append(",\n").append(pad).append("  \"topics\": [");
-        if (topics != null && !topics.isEmpty()) {
+        if (!topics.isEmpty()) {
             sb.append("\n");
             for (int i = 0; i < topics.size(); i++) {
                 appendTopicNode(sb, topics.get(i), indent + 4);
@@ -59,16 +61,17 @@ public final class RawJsonReportFormatter implements RawReportFormatter {
         sb.append("\n").append(pad).append("}");
     }
 
-    private void appendTopicNode(StringBuilder sb, TopicNode topic, int indent) {
+    private void appendTopicNode(StringBuilder sb, AuditNode topic, int indent) {
         String pad = " ".repeat(indent);
+        String topicId = entityId(topic);
         sb.append(pad).append("{\n");
-        sb.append(pad).append("  \"topicId\": \"").append(escape(topic.getTopicId())).append("\"");
+        sb.append(pad).append("  \"topicId\": \"").append(escape(topicId)).append("\"");
         sb.append(",\n").append(pad).append("  \"scores\": ");
         appendScoresMap(sb, topic.getScores(), indent + 2);
 
-        List<KnowledgeNode> knowledges = topic.getKnowledges();
+        List<AuditNode> knowledges = topic.getChildren() != null ? topic.getChildren() : List.of();
         sb.append(",\n").append(pad).append("  \"knowledges\": [");
-        if (knowledges != null && !knowledges.isEmpty()) {
+        if (!knowledges.isEmpty()) {
             sb.append("\n");
             for (int i = 0; i < knowledges.size(); i++) {
                 appendKnowledgeNode(sb, knowledges.get(i), indent + 4);
@@ -81,16 +84,17 @@ public final class RawJsonReportFormatter implements RawReportFormatter {
         sb.append("\n").append(pad).append("}");
     }
 
-    private void appendKnowledgeNode(StringBuilder sb, KnowledgeNode knowledge, int indent) {
+    private void appendKnowledgeNode(StringBuilder sb, AuditNode knowledge, int indent) {
         String pad = " ".repeat(indent);
+        String knowledgeId = entityId(knowledge);
         sb.append(pad).append("{\n");
-        sb.append(pad).append("  \"knowledgeId\": \"").append(escape(knowledge.getKnowledgeId())).append("\"");
+        sb.append(pad).append("  \"knowledgeId\": \"").append(escape(knowledgeId)).append("\"");
         sb.append(",\n").append(pad).append("  \"scores\": ");
         appendScoresMap(sb, knowledge.getScores(), indent + 2);
 
-        List<QuizNode> quizzes = knowledge.getQuizzes();
+        List<AuditNode> quizzes = knowledge.getChildren() != null ? knowledge.getChildren() : List.of();
         sb.append(",\n").append(pad).append("  \"quizzes\": [");
-        if (quizzes != null && !quizzes.isEmpty()) {
+        if (!quizzes.isEmpty()) {
             sb.append("\n");
             for (int i = 0; i < quizzes.size(); i++) {
                 appendQuizNode(sb, quizzes.get(i), indent + 4);
@@ -103,22 +107,22 @@ public final class RawJsonReportFormatter implements RawReportFormatter {
         sb.append("\n").append(pad).append("}");
     }
 
-    private void appendQuizNode(StringBuilder sb, QuizNode quiz, int indent) {
+    private void appendQuizNode(StringBuilder sb, AuditNode quiz, int indent) {
         String pad = " ".repeat(indent);
+        String quizId = entityId(quiz);
         sb.append(pad).append("{\n");
-        sb.append(pad).append("  \"quizId\": \"").append(escape(quiz.getQuizId())).append("\"");
+        sb.append(pad).append("  \"quizId\": \"").append(escape(quizId)).append("\"");
         sb.append(",\n").append(pad).append("  \"scores\": ");
         appendScoresMap(sb, quiz.getScores(), indent + 2);
         sb.append("\n").append(pad).append("}");
     }
 
-    private void appendScoresMap(StringBuilder sb, NodeScores nodeScores, int indent) {
+    private void appendScoresMap(StringBuilder sb, Map<String, Double> scores, int indent) {
         String pad = " ".repeat(indent);
-        if (nodeScores == null || nodeScores.getScores() == null || nodeScores.getScores().isEmpty()) {
+        if (scores == null || scores.isEmpty()) {
             sb.append("{}");
             return;
         }
-        Map<String, Double> scores = nodeScores.getScores();
         sb.append("{\n");
         int i = 0;
         for (Map.Entry<String, Double> entry : scores.entrySet()) {
@@ -128,6 +132,18 @@ public final class RawJsonReportFormatter implements RawReportFormatter {
             i++;
         }
         sb.append(pad).append("}");
+    }
+
+    private double avgScores(Map<String, Double> scores) {
+        if (scores == null || scores.isEmpty()) return 0.0;
+        return scores.values().stream().mapToDouble(d -> d).average().orElse(0.0);
+    }
+
+    private String entityId(AuditNode node) {
+        if (node.getEntity() != null && node.getEntity().getId() != null) {
+            return node.getEntity().getId();
+        }
+        return "";
     }
 
     private String escape(String value) {

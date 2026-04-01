@@ -2,13 +2,9 @@ package com.learney.contentaudit.auditcli;
 
 import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditTarget;
-import com.learney.contentaudit.auditdomain.KnowledgeNode;
-import com.learney.contentaudit.auditdomain.MilestoneNode;
-import com.learney.contentaudit.auditdomain.NodeScores;
-import com.learney.contentaudit.auditdomain.QuizNode;
-import com.learney.contentaudit.auditdomain.TopicNode;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -33,38 +29,44 @@ final class DefaultAnalyzerStatsTransformer implements AnalyzerStatsTransformer 
         String description = descriptor != null ? descriptor.getDescription() : "";
         AuditTarget target = descriptor != null ? descriptor.getTarget() : AuditTarget.QUIZ;
 
+        AuditNode root = report.getRoot();
+
         // Course-level score
-        double courseScore = scoreFromNode(report.getScores(), analyzerName);
+        double courseScore = scoreFromNode(root != null ? root.getScores() : null, analyzerName);
+
+        // Milestones are root's children
+        List<AuditNode> milestoneNodes = (root != null && root.getChildren() != null)
+                ? root.getChildren() : List.of();
 
         // Per-level scores
         Map<String, Double> levelScores = new LinkedHashMap<>();
-        for (MilestoneNode m : report.getMilestones()) {
+        for (AuditNode m : milestoneNodes) {
             double score = scoreFromNode(m.getScores(), analyzerName);
             if (!Double.isNaN(score)) {
-                levelScores.put(m.getMilestoneId(), score);
+                levelScores.put(nodeId(m), score);
             }
         }
 
         // Sub-metrics (e.g., coca-buckets-distribution/Q1) per level
         String prefix = analyzerName + "/";
         Map<String, Map<String, Double>> subMetricsByLevel = new LinkedHashMap<>();
-        for (MilestoneNode m : report.getMilestones()) {
-            if (m.getScores() == null || m.getScores().getScores() == null) continue;
+        for (AuditNode m : milestoneNodes) {
+            if (m.getScores() == null) continue;
             Map<String, Double> subMetrics = new TreeMap<>();
-            for (var entry : m.getScores().getScores().entrySet()) {
+            for (var entry : m.getScores().entrySet()) {
                 if (entry.getKey().startsWith(prefix)) {
                     String subName = entry.getKey().substring(prefix.length());
                     subMetrics.put(subName, entry.getValue());
                 }
             }
             if (!subMetrics.isEmpty()) {
-                subMetricsByLevel.put(m.getMilestoneId(), subMetrics);
+                subMetricsByLevel.put(nodeId(m), subMetrics);
             }
         }
 
         // Collect leaf-level scores at the appropriate depth for this analyzer
         List<ScoredItemRow> allItems = new ArrayList<>();
-        for (MilestoneNode m : report.getMilestones()) {
+        for (AuditNode m : milestoneNodes) {
             collectScoresAtTarget(m, analyzerName, target, allItems);
         }
 
@@ -83,54 +85,71 @@ final class DefaultAnalyzerStatsTransformer implements AnalyzerStatsTransformer 
                 levelScores, worstItems, distribution, subMetricsByLevel, allItems.size());
     }
 
-    private double scoreFromNode(NodeScores scores, String analyzerName) {
-        if (scores == null || scores.getScores() == null) return Double.NaN;
-        return scores.getScores().getOrDefault(analyzerName, Double.NaN);
+    private double scoreFromNode(Map<String, Double> scores, String analyzerName) {
+        if (scores == null) return Double.NaN;
+        return scores.getOrDefault(analyzerName, Double.NaN);
     }
 
-    private void collectScoresAtTarget(MilestoneNode milestone, String analyzerName,
+    private void collectScoresAtTarget(AuditNode milestone, String analyzerName,
             AuditTarget target, List<ScoredItemRow> items) {
+        String milestoneId = nodeId(milestone);
         if (target == AuditTarget.MILESTONE || target == AuditTarget.COURSE) {
             addIfPresent(milestone.getScores(), analyzerName,
-                    milestone.getMilestoneId(), null, null, null, items);
+                    milestoneId, null, null, null, items, nodeLabel(milestone));
             return;
         }
-        if (milestone.getTopics() == null) return;
-        for (TopicNode topic : milestone.getTopics()) {
+        if (milestone.getChildren() == null) return;
+        for (AuditNode topic : milestone.getChildren()) {
+            String topicId = nodeId(topic);
             if (target == AuditTarget.TOPIC) {
                 addIfPresent(topic.getScores(), analyzerName,
-                        milestone.getMilestoneId(), topic.getTopicId(), null, null, items);
+                        milestoneId, topicId, null, null, items, nodeLabel(topic));
                 continue;
             }
-            if (topic.getKnowledges() == null) continue;
-            for (KnowledgeNode knowledge : topic.getKnowledges()) {
+            if (topic.getChildren() == null) continue;
+            for (AuditNode knowledge : topic.getChildren()) {
+                String knowledgeId = nodeId(knowledge);
                 if (target == AuditTarget.KNOWLEDGE) {
                     addIfPresent(knowledge.getScores(), analyzerName,
-                            milestone.getMilestoneId(), topic.getTopicId(),
-                            knowledge.getKnowledgeId(), null, items);
+                            milestoneId, topicId, knowledgeId, null, items, nodeLabel(knowledge));
                     continue;
                 }
-                if (knowledge.getQuizzes() == null) continue;
-                for (QuizNode quiz : knowledge.getQuizzes()) {
+                if (knowledge.getChildren() == null) continue;
+                for (AuditNode quiz : knowledge.getChildren()) {
+                    String quizId = nodeId(quiz);
                     addIfPresent(quiz.getScores(), analyzerName,
-                            milestone.getMilestoneId(), topic.getTopicId(),
-                            knowledge.getKnowledgeId(), quiz.getQuizId(), items);
+                            milestoneId, topicId, knowledgeId, quizId, items, nodeLabel(quiz));
                 }
             }
         }
     }
 
-    private void addIfPresent(NodeScores scores, String analyzerName,
+    private void addIfPresent(Map<String, Double> scores, String analyzerName,
             String milestoneId, String topicId, String knowledgeId, String quizId,
-            List<ScoredItemRow> items) {
-        if (scores == null || scores.getScores() == null) return;
-        Double score = scores.getScores().get(analyzerName);
+            List<ScoredItemRow> items, String label) {
+        if (scores == null) return;
+        Double score = scores.get(analyzerName);
         if (score == null) return;
-        String label = quizId != null ? quizId
+        String displayLabel = label != null ? label
+                : quizId != null ? quizId
                 : knowledgeId != null ? knowledgeId
                 : topicId != null ? topicId
                 : milestoneId;
-        items.add(new ScoredItemRow(milestoneId, topicId, knowledgeId, quizId, score, label));
+        items.add(new ScoredItemRow(milestoneId, topicId, knowledgeId, quizId, score, displayLabel));
+    }
+
+    private String nodeId(AuditNode node) {
+        if (node.getEntity() != null && node.getEntity().getId() != null) {
+            return node.getEntity().getId();
+        }
+        return null;
+    }
+
+    private String nodeLabel(AuditNode node) {
+        if (node.getEntity() != null && node.getEntity().getLabel() != null) {
+            return node.getEntity().getLabel();
+        }
+        return nodeId(node);
     }
 
     private Map<String, Integer> buildDistribution(List<ScoredItemRow> items) {

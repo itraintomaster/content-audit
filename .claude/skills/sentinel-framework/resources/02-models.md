@@ -36,13 +36,11 @@ They represent the domain entities of the system and are declared in `sentinel.y
 
 | Field | Type | Notes |
 |-------|------|-------|
-| `overallScore` | `double` |  |
-| `scores` | `NodeScores` |  |
-| `milestones` | `List<MilestoneNode>` | Import `java.util.List` |
+| `root` | `AuditNode` |  |
 
 **Generated constructor:**
 ```java
-new AuditReport(double overallScore, NodeScores scores, List<MilestoneNode> milestones)
+new AuditReport(AuditNode root)
 ```
 
 #### AuditableCourse
@@ -57,26 +55,6 @@ new AuditReport(double overallScore, NodeScores scores, List<MilestoneNode> mile
 **Generated constructor:**
 ```java
 new AuditableCourse(List<AuditableMilestone> milestones)
-```
-
-#### AuditContext
-
-**Package:** `com.learney.contentaudit.auditdomain`
-**Type:** record
-
-| Field | Type | Notes |
-|-------|------|-------|
-| `milestoneId` | `String` |  |
-| `topicId` | `String` |  |
-| `knowledgeId` | `String` |  |
-| `quizId` | `String` |  |
-| `topicLabel` | `String` |  |
-| `knowledgeLabel` | `String` |  |
-| `quizLabel` | `String` |  |
-
-**Generated constructor:**
-```java
-new AuditContext(String milestoneId, String topicId, String knowledgeId, String quizId, String topicLabel, String knowledgeLabel, String quizLabel)
 ```
 
 #### AuditableKnowledge
@@ -202,108 +180,6 @@ new TargetRange(CefrLevel level, int minTokens, int maxTokens)
 new AuditTarget(null QUIZ, null KNOWLEDGE, null TOPIC, null MILESTONE, null COURSE)
 ```
 
-#### ScoredItem
-
-**Package:** `com.learney.contentaudit.auditdomain`
-**Type:** record
-
-| Field | Type | Notes |
-|-------|------|-------|
-| `analyzerName` | `String` |  |
-| `target` | `AuditTarget` |  |
-| `score` | `double` |  |
-| `milestoneId` | `String` |  |
-| `topicId` | `String` |  |
-| `knowledgeId` | `String` |  |
-| `quizId` | `String` |  |
-| `source` | `AuditableEntity` |  |
-
-**Generated constructor:**
-```java
-new ScoredItem(String analyzerName, AuditTarget target, double score, String milestoneId, String topicId, String knowledgeId, String quizId, AuditableEntity source)
-```
-
-#### NodeScores
-
-**Package:** `com.learney.contentaudit.auditdomain`
-**Type:** record
-
-| Field | Type | Notes |
-|-------|------|-------|
-| `scores` | `Map<String,Double>` |  |
-
-**Generated constructor:**
-```java
-new NodeScores(Map<String,Double> scores)
-```
-
-#### QuizNode
-
-**Package:** `com.learney.contentaudit.auditdomain`
-**Type:** record
-
-| Field | Type | Notes |
-|-------|------|-------|
-| `quizId` | `String` |  |
-| `scores` | `NodeScores` |  |
-| `entity` | `AuditableEntity` |  |
-
-**Generated constructor:**
-```java
-new QuizNode(String quizId, NodeScores scores, AuditableEntity entity)
-```
-
-#### KnowledgeNode
-
-**Package:** `com.learney.contentaudit.auditdomain`
-**Type:** record
-
-| Field | Type | Notes |
-|-------|------|-------|
-| `knowledgeId` | `String` |  |
-| `scores` | `NodeScores` |  |
-| `quizzes` | `List<QuizNode>` | Import `java.util.List` |
-| `entity` | `AuditableEntity` |  |
-
-**Generated constructor:**
-```java
-new KnowledgeNode(String knowledgeId, NodeScores scores, List<QuizNode> quizzes, AuditableEntity entity)
-```
-
-#### TopicNode
-
-**Package:** `com.learney.contentaudit.auditdomain`
-**Type:** record
-
-| Field | Type | Notes |
-|-------|------|-------|
-| `topicId` | `String` |  |
-| `scores` | `NodeScores` |  |
-| `knowledges` | `List<KnowledgeNode>` | Import `java.util.List` |
-| `entity` | `AuditableEntity` |  |
-
-**Generated constructor:**
-```java
-new TopicNode(String topicId, NodeScores scores, List<KnowledgeNode> knowledges, AuditableEntity entity)
-```
-
-#### MilestoneNode
-
-**Package:** `com.learney.contentaudit.auditdomain`
-**Type:** record
-
-| Field | Type | Notes |
-|-------|------|-------|
-| `milestoneId` | `String` |  |
-| `scores` | `NodeScores` |  |
-| `topics` | `List<TopicNode>` | Import `java.util.List` |
-| `entity` | `AuditableEntity` |  |
-
-**Generated constructor:**
-```java
-new MilestoneNode(String milestoneId, NodeScores scores, List<TopicNode> topics, AuditableEntity entity)
-```
-
 #### NlpToken
 
 **Package:** `com.learney.contentaudit.auditdomain`
@@ -337,6 +213,25 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 **Generated constructor:**
 ```java
 new AnalyzerDescriptor(String name, String description, AuditTarget target)
+```
+
+#### AuditNode
+
+**Package:** `com.learney.contentaudit.auditdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `entity` | `AuditableEntity` |  |
+| `target` | `AuditTarget` |  |
+| `parent` | `AuditNode` |  |
+| `children` | `List<AuditNode>` | Import `java.util.List` |
+| `scores` | `Map<String,Double>` |  |
+| `metadata` | `Map<String,Object>` |  |
+
+**Generated constructor:**
+```java
+new AuditNode(AuditableEntity entity, AuditTarget target, AuditNode parent, List<AuditNode> children, Map<String,Double> scores, Map<String,Object> metadata)
 ```
 
 #### FrequencyBand (package: coca)
@@ -613,7 +508,6 @@ new AnalyzerDescriptor(String name, String description, AuditTarget target)
 | `COMPLETELY_ABSENT` | `double` |
 | `APPEARS_TOO_LATE` | `double` |
 | `APPEARS_TOO_EARLY` | `double` |
-| `SCATTERED_PLACEMENT` | `double` |
 
 #### PriorityLevel (package: labs)
 
@@ -691,8 +585,7 @@ new AnalyzerDescriptor(String name, String description, AuditTarget target)
 |-------|------|
 | `ADD_VOCABULARY` | `null` |
 | `INTRODUCE_EARLIER` | `null` |
-| `REINFORCE_AT_LEVEL` | `null` |
-| `CONSOLIDATE_PLACEMENT` | `null` |
+| `REMOVE_FROM_LEVEL` | `null` |
 
 #### EffortLevel (package: labs)
 
@@ -1126,25 +1019,6 @@ new ChildScoreRow(String id, double overallScore, Map<String,Double> analyzerSco
 **Generated constructor:**
 ```java
 new AnalyzerStatsView(String analyzerName, String analyzerDescription, double courseScore, Map<String,Double> levelScores, List<ScoredItemRow> worstItems, Map<String,Integer> scoreDistribution, Map<String,Map<String,Double>> subMetricsByLevel, int itemCount)
-```
-
-#### ScoredItemRow
-
-**Package:** `com.learney.contentaudit.auditcli`
-**Type:** record
-
-| Field | Type | Notes |
-|-------|------|-------|
-| `milestoneId` | `String` |  |
-| `topicId` | `String` |  |
-| `knowledgeId` | `String` |  |
-| `quizId` | `String` |  |
-| `score` | `double` |  |
-| `label` | `String` |  |
-
-**Generated constructor:**
-```java
-new ScoredItemRow(String milestoneId, String topicId, String knowledgeId, String quizId, double score, String label)
 ```
 
 ### Module: nlp-infrastructure

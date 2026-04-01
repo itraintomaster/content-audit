@@ -6,117 +6,50 @@ import java.util.List;
 import java.util.Map;
 
 public class IScoreAggregator implements ScoreAggregator {
+
     @Override
-    public AuditReport aggregate(List<ScoredItem> scores, Map<String, AuditableEntity> entityMap) {
-        if (scores == null || scores.isEmpty()) {
-            return new AuditReport(0.0, new NodeScores(Map.of()), List.of());
-        }
-
-        // Separate course-level items (no milestone) from milestone-level items
-        List<ScoredItem> courseOnlyItems = new ArrayList<>();
-        Map<String, List<ScoredItem>> byMilestone = new LinkedHashMap<>();
-        for (ScoredItem item : scores) {
-            if (item.getMilestoneId() == null) {
-                courseOnlyItems.add(item);
-            } else {
-                byMilestone.computeIfAbsent(item.getMilestoneId(), k -> new ArrayList<>()).add(item);
-            }
-        }
-
-        double totalScore = 0.0;
-        int totalCount = 0;
-        List<MilestoneNode> milestones = new ArrayList<>();
-
-        for (Map.Entry<String, List<ScoredItem>> entry : byMilestone.entrySet()) {
-            List<ScoredItem> milestoneItems = entry.getValue();
-            List<TopicNode> topics = buildTopicNodes(milestoneItems, entityMap);
-            Map<String, Double> analyzerScores = averageByAnalyzer(milestoneItems);
-
-            for (ScoredItem item : milestoneItems) {
-                totalScore += item.getScore();
-                totalCount++;
-            }
-
-            milestones.add(new MilestoneNode(entry.getKey(), new NodeScores(analyzerScores), topics,
-                    entityMap.get(entry.getKey())));
-        }
-
-        // Course-only items count toward overall but don't create milestones
-        for (ScoredItem item : courseOnlyItems) {
-            totalScore += item.getScore();
-            totalCount++;
-        }
-
-        double overallScore = totalCount > 0 ? totalScore / totalCount : 0.0;
-        Map<String, Double> courseScores = averageByAnalyzer(scores);
-        return new AuditReport(overallScore, new NodeScores(courseScores), milestones);
+    public void aggregate(AuditNode rootNode) {
+        bubbleUp(rootNode);
     }
 
-    private List<TopicNode> buildTopicNodes(List<ScoredItem> milestoneItems, Map<String, AuditableEntity> entityMap) {
-        Map<String, List<ScoredItem>> byTopic = new LinkedHashMap<>();
-        for (ScoredItem item : milestoneItems) {
-            String tid = item.getTopicId();
-            if (tid != null) {
-                byTopic.computeIfAbsent(tid, k -> new ArrayList<>()).add(item);
+    /**
+     * For each node, if an analyzer has scores in children but not in the node itself,
+     * compute the average of children scores and set it on the node.
+     * Processes bottom-up (children first).
+     */
+    private void bubbleUp(AuditNode node) {
+        if (node.getChildren() == null || node.getChildren().isEmpty()) {
+            return;
+        }
+
+        // First, recurse into children
+        for (AuditNode child : node.getChildren()) {
+            bubbleUp(child);
+        }
+
+        // Collect all analyzer names that appear in children
+        Map<String, List<Double>> childScoresByAnalyzer = new LinkedHashMap<>();
+        for (AuditNode child : node.getChildren()) {
+            if (child.getScores() != null) {
+                for (Map.Entry<String, Double> entry : child.getScores().entrySet()) {
+                    childScoresByAnalyzer.computeIfAbsent(entry.getKey(), k -> new ArrayList<>())
+                            .add(entry.getValue());
+                }
             }
         }
 
-        List<TopicNode> topics = new ArrayList<>();
-        for (Map.Entry<String, List<ScoredItem>> entry : byTopic.entrySet()) {
-            List<ScoredItem> topicItems = entry.getValue();
-            List<KnowledgeNode> knowledges = buildKnowledgeNodes(topicItems, entityMap);
-            topics.add(new TopicNode(entry.getKey(), new NodeScores(averageByAnalyzer(topicItems)), knowledges,
-                    entityMap.get(entry.getKey())));
+        // For each analyzer: if node doesn't have a score yet, compute average from children
+        if (node.getScores() == null) {
+            node.setScores(new LinkedHashMap<>());
         }
-        return topics;
-    }
-
-    private List<KnowledgeNode> buildKnowledgeNodes(List<ScoredItem> topicItems, Map<String, AuditableEntity> entityMap) {
-        Map<String, List<ScoredItem>> byKnowledge = new LinkedHashMap<>();
-        for (ScoredItem item : topicItems) {
-            String kid = item.getKnowledgeId();
-            if (kid != null) {
-                byKnowledge.computeIfAbsent(kid, k -> new ArrayList<>()).add(item);
+        for (Map.Entry<String, List<Double>> entry : childScoresByAnalyzer.entrySet()) {
+            if (!node.getScores().containsKey(entry.getKey())) {
+                double avg = entry.getValue().stream()
+                        .mapToDouble(Double::doubleValue)
+                        .average()
+                        .orElse(0.0);
+                node.getScores().put(entry.getKey(), avg);
             }
         }
-
-        List<KnowledgeNode> knowledges = new ArrayList<>();
-        for (Map.Entry<String, List<ScoredItem>> entry : byKnowledge.entrySet()) {
-            List<ScoredItem> knowledgeItems = entry.getValue();
-            List<QuizNode> quizzes = buildQuizNodes(knowledgeItems, entityMap);
-            knowledges.add(new KnowledgeNode(entry.getKey(), new NodeScores(averageByAnalyzer(knowledgeItems)), quizzes,
-                    entityMap.get(entry.getKey())));
-        }
-        return knowledges;
-    }
-
-    private List<QuizNode> buildQuizNodes(List<ScoredItem> knowledgeItems, Map<String, AuditableEntity> entityMap) {
-        Map<String, List<ScoredItem>> byQuiz = new LinkedHashMap<>();
-        for (ScoredItem item : knowledgeItems) {
-            String qid = item.getQuizId();
-            if (qid != null) {
-                byQuiz.computeIfAbsent(qid, k -> new ArrayList<>()).add(item);
-            }
-        }
-
-        List<QuizNode> quizzes = new ArrayList<>();
-        for (Map.Entry<String, List<ScoredItem>> entry : byQuiz.entrySet()) {
-            quizzes.add(new QuizNode(entry.getKey(), new NodeScores(averageByAnalyzer(entry.getValue())),
-                    entityMap.get(entry.getKey())));
-        }
-        return quizzes;
-    }
-
-    private Map<String, Double> averageByAnalyzer(List<ScoredItem> items) {
-        Map<String, List<Double>> byAnalyzer = new LinkedHashMap<>();
-        for (ScoredItem item : items) {
-            byAnalyzer.computeIfAbsent(item.getAnalyzerName(), k -> new ArrayList<>())
-                    .add(item.getScore());
-        }
-        Map<String, Double> result = new LinkedHashMap<>();
-        for (Map.Entry<String, List<Double>> e : byAnalyzer.entrySet()) {
-            result.put(e.getKey(), e.getValue().stream().mapToDouble(Double::doubleValue).average().orElse(0.0));
-        }
-        return result;
     }
 }

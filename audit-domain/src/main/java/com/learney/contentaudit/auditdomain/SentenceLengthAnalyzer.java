@@ -1,7 +1,5 @@
 package com.learney.contentaudit.auditdomain;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
@@ -14,11 +12,6 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
     private static final String ANALYZER_NAME = "sentence-length";
 
     private final SentenceLengthConfig config;
-
-    private final List<ScoredItem> results = new ArrayList<>();
-
-    private boolean currentKnowledgeIsSentence = false;
-    private CefrLevel currentLevel = null;
 
     public SentenceLengthAnalyzer(SentenceLengthConfig config) {
         this.config = config;
@@ -35,63 +28,51 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
     }
 
     @Override
-    public Void onMilestone(AuditableMilestone milestone, AuditContext ctx) {
-        String milestoneId = ctx.getMilestoneId();
-        int milestoneIndex = parseMilestoneIndex(milestoneId);
-        CefrLevel[] levels = CefrLevel.values();
-        currentLevel = (milestoneIndex >= 0 && milestoneIndex < levels.length)
-                ? levels[milestoneIndex]
-                : null;
+    public Void onMilestone(AuditNode node) {
         return null;
     }
 
     @Override
-    public Void onTopic(AuditableTopic topic, AuditContext ctx) {
+    public Void onTopic(AuditNode node) {
         return null;
     }
 
     @Override
-    public Void onKnowledge(AuditableKnowledge knowledge, AuditContext ctx) {
-        currentKnowledgeIsSentence = knowledge.isIsSentence();
+    public Void onKnowledge(AuditNode node) {
         return null;
     }
 
     @Override
-    public Void onQuiz(AuditableQuiz quiz, AuditContext ctx) {
-        if (!currentKnowledgeIsSentence || currentLevel == null) {
+    public Void onQuiz(AuditNode node) {
+        AuditableQuiz quiz = (AuditableQuiz) node.getEntity();
+        AuditNode knowledgeNode = node.getParent();
+        AuditableKnowledge knowledge = (AuditableKnowledge) knowledgeNode.getEntity();
+
+        if (!knowledge.isIsSentence()) {
             return null;
         }
 
-        Optional<TargetRange> rangeOpt = config.getTargetRange(currentLevel);
+        // Navigate up to milestone to get CEFR level
+        AuditNode milestoneNode = knowledgeNode.getParent().getParent(); // quiz -> knowledge -> topic -> milestone
+        CefrLevel level = parseCefrLevel(milestoneNode);
+        if (level == null) {
+            return null;
+        }
+
+        Optional<TargetRange> rangeOpt = config.getTargetRange(level);
         if (rangeOpt.isEmpty()) {
             return null;
         }
 
         int tokens = quiz.getTokens() != null ? quiz.getTokens().size() : 0;
         double score = scoreQuiz(tokens, rangeOpt.get());
-
-        results.add(new ScoredItem(
-                ANALYZER_NAME,
-                AuditTarget.QUIZ,
-                score,
-                ctx.getMilestoneId(),
-                ctx.getTopicId(),
-                ctx.getKnowledgeId(),
-                ctx.getQuizId(),
-                quiz,
-                null
-        ));
+        node.getScores().put(ANALYZER_NAME, score);
         return null;
     }
 
     @Override
-    public Void onCourseComplete(AuditableCourse course, AuditContext ctx) {
+    public Void onCourseComplete(AuditNode rootNode) {
         return null;
-    }
-
-    @Override
-    public List<ScoredItem> getResults() {
-        return List.copyOf(results);
     }
 
     private double scoreQuiz(int tokens, TargetRange range) {
@@ -117,20 +98,14 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
         return 1.0 - ((double) distance / margin);
     }
 
-    private int parseMilestoneIndex(String milestoneId) {
-        if (milestoneId == null) {
-            return -1;
-        }
-        CefrLevel[] levels = CefrLevel.values();
-        for (int i = 0; i < levels.length; i++) {
-            if (levels[i].name().equals(milestoneId)) {
-                return i;
-            }
-        }
+    private CefrLevel parseCefrLevel(AuditNode milestoneNode) {
+        if (milestoneNode == null || milestoneNode.getEntity() == null) return null;
+        String label = milestoneNode.getEntity().getLabel();
+        if (label == null) return null;
         try {
-            return Integer.parseInt(milestoneId);
-        } catch (NumberFormatException e) {
-            return -1;
+            return CefrLevel.valueOf(label);
+        } catch (IllegalArgumentException e) {
+            return null;
         }
     }
 
@@ -138,5 +113,4 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
     public String getDescription() {
         return "Scores quiz sentence length against per-CEFR target token ranges";
     }
-
 }

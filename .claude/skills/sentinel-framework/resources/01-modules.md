@@ -61,9 +61,9 @@ project-root/
 | Depends On | (none — leaf module) |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 18 (AuditReport, AuditableCourse, AuditContext, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, ScoredItem, NodeScores, QuizNode, KnowledgeNode, TopicNode, MilestoneNode, NlpToken, AnalyzerDescriptor) |
-| Interfaces | 14 (ContentAudit, AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig) |
-| Implementations | 6 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, IContentAudit, SentenceLengthAnalyzer, IScoreAggregator) |
+| Models | 12 (AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode) |
+| Interfaces | 13 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig) |
+| Implementations | 5 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator) |
 | Packages | 3 (coca [internal], lrec [internal], labs [internal]) |
 
 ### course-domain
@@ -132,9 +132,9 @@ project-root/
 | Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 11 (ReportViewModel, MilestoneScoreRow, QuizScoreRow, KnowledgeScoreRow, TopicScoreRow, DrillDownScope, DrillDownLevel, DrillDownView, ChildScoreRow, AnalyzerStatsView, ScoredItemRow) |
-| Interfaces | 7 (ReportFormatter, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter, DrillDownResolver, AnalyzerStatsTransformer, ScoreRow) |
-| Implementations | 14 (TextReportFormatter, JsonReportFormatter, DefaultFormatterRegistry, DefaultReportViewModelTransformer, TableReportFormatter, RawJsonReportFormatter, DefaultDrillDownResolver, DefaultAnalyzerStatsTransformer, ContentAuditCmd, AnalyzeCmd, AnalyzerCmd, AnalyzerListCmd, AnalyzerConfigCmd, AnalyzerStatsCmd) |
+| Models | 10 (ReportViewModel, MilestoneScoreRow, QuizScoreRow, KnowledgeScoreRow, TopicScoreRow, DrillDownScope, DrillDownLevel, DrillDownView, ChildScoreRow, AnalyzerStatsView) |
+| Interfaces | 8 (ReportFormatter, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter, DrillDownResolver, AnalyzerStatsTransformer, ScoreRow, DetailedFormatter) |
+| Implementations | 16 (TextReportFormatter, JsonReportFormatter, DefaultFormatterRegistry, DefaultReportViewModelTransformer, TableReportFormatter, RawJsonReportFormatter, DefaultDrillDownResolver, DefaultAnalyzerStatsTransformer, ContentAuditCmd, AnalyzeCmd, AnalyzerCmd, AnalyzerListCmd, AnalyzerConfigCmd, AnalyzerStatsCmd, LemmaAbsenceDetailedFormatter, CocaBucketsDetailedFormatter) |
 | Packages | 0 |
 
 ### nlp-infrastructure

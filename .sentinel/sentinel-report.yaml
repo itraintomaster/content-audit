@@ -1,4 +1,4 @@
-generatedAt: 2026-03-31T00:42:08.971103Z
+generatedAt: 2026-03-31T16:55:24.923308Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -808,63 +808,12 @@ features:
       passing: true
       module: audit-application
       implementation: DefaultAuditRunner
-    - name: "Given valid args, when run is called, then auditRunner runAudit is invoked\
-        \ with course path"
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: DefaultAuditCli
   - ruleId: F-CLI-R002
-    state: PASSING
-    tests:
-    - name: "Given no args provided, when run is called, then returns non-zero exit\
-        \ code"
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: DefaultAuditCli
+    state: NO_TESTS
   - ruleId: F-CLI-R003
-    state: PASSING
-    tests:
-    - name: "Given valid args with --format json, when run is called, then json formatter\
-        \ is looked up and returns 0"
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: DefaultAuditCli
-    - name: "Given valid args without --format, when run is called, then text formatter\
-        \ is used by default and returns 0"
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: DefaultAuditCli
-    - name: "Given an unsupported format value, when run is called, then returns non-zero\
-        \ exit code"
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: DefaultAuditCli
+    state: NO_TESTS
   - ruleId: F-CLI-R004
-    state: PASSING
-    tests:
-    - name: "Given valid args with course path, when run is called, then returns exit\
-        \ code 0"
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: DefaultAuditCli
-    - name: "Given auditRunner throws RuntimeException, when run is called, then returns\
-        \ non-zero exit code"
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: DefaultAuditCli
-    - name: "Given valid args and low audit scores, when run is called, then returns\
-        \ 0 regardless of score values"
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: DefaultAuditCli
+    state: NO_TESTS
   - ruleId: F-CLI-R005
     state: NO_TESTS
   - ruleId: F-CLI-R006
@@ -1381,6 +1330,8 @@ elements:
     - name: quizId
       status: EXISTS
     - name: source
+      status: EXISTS
+    - name: metadata
       status: EXISTS
   - name: NodeScores
     status: EXISTS
@@ -2303,7 +2254,7 @@ elements:
         sentQuiz = AuditableQuiz("She likes red apples very much", tokens(6), null, null, null)
         ctxSentQuiz = AuditContext("0", "t1", "k2", "q2", null, null, null)
         rangeA1 = TargetRange(CefrLevel.A1, 5, 8)
-        expectedScore = ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k2", "q2", sentQuiz)
+        expectedScore = ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k2", "q2", sentQuiz, null)
         result = sut.getResults()
 
       mock:
@@ -2590,6 +2541,2299 @@ elements:
   - name: IScoreAggregator
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/IScoreAggregator.java
+  - name: CocaBucketsAnalyzer
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/coca/CocaBucketsAnalyzer.java
+  - name: CocaTokenAccumulationAggregator
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/coca/CocaTokenAccumulationAggregator.java
+  - name: DefaultTokenClassifier
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/coca/DefaultTokenClassifier.java
+  - name: DefaultProgressionEvaluator
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/coca/DefaultProgressionEvaluator.java
+  - name: DefaultImprovementPlanner
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/coca/DefaultImprovementPlanner.java
+  - name: LemmaRecurrenceAnalyzer
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzer.java
+    tests:
+    - name: "Given a LemmaRecurrenceAnalyzer, when getName is called, then returns\
+        \ lemma-recurrence"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerSentinelTest.java
+    - name: "Given a LemmaRecurrenceAnalyzer, when getTarget is called, then returns\
+        \ COURSE"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerSentinelTest.java
+    - name: "Given no quizzes have been processed, when getResults is called, then\
+        \ returns empty list"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerSentinelTest.java
+    - name: "Given an AuditableKnowledge and AuditContext, when onKnowledge is called,\
+        \ then completes without error"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerSentinelTest.java
+    - name: "Given an AuditableTopic and AuditContext, when onTopic is called, then\
+        \ completes without error"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerSentinelTest.java
+    - name: "Given an AuditableMilestone and AuditContext, when onMilestone is called,\
+        \ then completes without error"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerSentinelTest.java
+    testCleanViews:
+    - |
+      test: "Given a LemmaRecurrenceAnalyzer, when getName is called, then returns lemma-recurrence"
+      trace: F-LREC
+
+      given:
+        result = sut.getName()
+
+      then:
+        result == "lemma-recurrence"
+    - |
+      test: "Given a LemmaRecurrenceAnalyzer, when getTarget is called, then returns COURSE"
+      trace: F-LREC
+
+      given:
+        result = sut.getTarget()
+
+      then:
+        result == AuditTarget.COURSE
+    - |
+      test: "Given no quizzes have been processed, when getResults is called, then returns empty list"
+      trace: F-LREC
+
+      given:
+        result = sut.getResults()
+
+      then:
+        result == List.of()
+    - |
+      test: "Given an AuditableKnowledge and AuditContext, when onKnowledge is called, then completes without error"
+
+      given:
+        knowledge = AuditableKnowledge(List.of(), "Test Knowledge", "Test instructions", true, null, null, null)
+        ctx = AuditContext("m1", "t1", "k1", "q1", null, null, null)
+
+      when:
+        doesNotThrow: sut.onKnowledge(knowledge, ctx)
+    - |
+      test: "Given an AuditableTopic and AuditContext, when onTopic is called, then completes without error"
+
+      given:
+        topic = AuditableTopic(List.of(), null, null, null)
+        ctx = AuditContext("m1", "t1", "k1", "q1", null, null, null)
+
+      when:
+        doesNotThrow: sut.onTopic(topic, ctx)
+    - |
+      test: "Given an AuditableMilestone and AuditContext, when onMilestone is called, then completes without error"
+
+      given:
+        milestone = AuditableMilestone(List.of(), null, null, null)
+        ctx = AuditContext("m1", "t1", "k1", "q1", null, null, null)
+
+      when:
+        doesNotThrow: sut.onMilestone(milestone, ctx)
+  - name: DefaultContentWordFilter
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/lrec/DefaultContentWordFilter.java
+    tests:
+    - name: "Given a NOUN token, when isContentWord is called, then returns true"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/DefaultContentWordFilterSentinelTest.java
+    - name: "Given a VERB token, when isContentWord is called, then returns true"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/DefaultContentWordFilterSentinelTest.java
+    - name: "Given an ADJ token, when isContentWord is called, then returns true"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/DefaultContentWordFilterSentinelTest.java
+    - name: "Given an ADV token, when isContentWord is called, then returns true"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/DefaultContentWordFilterSentinelTest.java
+    - name: "Given a DET token, when isContentWord is called, then returns false"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/DefaultContentWordFilterSentinelTest.java
+    - name: "Given a PUNCT token, when isContentWord is called, then returns false"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/DefaultContentWordFilterSentinelTest.java
+    testCleanViews:
+    - |
+      test: "Given a NOUN token, when isContentWord is called, then returns true"
+      trace: F-LREC
+
+      given:
+        nounToken = NlpToken("cat", "cat", "NOUN", 100, false, false)
+        result = sut.isContentWord(nounToken)
+
+      then:
+        result == true
+    - |
+      test: "Given a VERB token, when isContentWord is called, then returns true"
+      trace: F-LREC
+
+      given:
+        verbToken = NlpToken("running", "run", "VERB", 50, false, false)
+        result = sut.isContentWord(verbToken)
+
+      then:
+        result == true
+    - |
+      test: "Given an ADJ token, when isContentWord is called, then returns true"
+      trace: F-LREC
+
+      given:
+        adjToken = NlpToken("big", "big", "ADJ", 200, false, false)
+        result = sut.isContentWord(adjToken)
+
+      then:
+        result == true
+    - |
+      test: "Given an ADV token, when isContentWord is called, then returns true"
+      trace: F-LREC
+
+      given:
+        advToken = NlpToken("quickly", "quickly", "ADV", 300, false, false)
+        result = sut.isContentWord(advToken)
+
+      then:
+        result == true
+    - |
+      test: "Given a DET token, when isContentWord is called, then returns false"
+      trace: F-LREC
+
+      given:
+        detToken = NlpToken("the", "the", "DET", 1, true, false)
+        result = sut.isContentWord(detToken)
+
+      then:
+        result == false
+    - |
+      test: "Given a PUNCT token, when isContentWord is called, then returns false"
+      trace: F-LREC
+
+      given:
+        punctToken = NlpToken(".", ".", "PUNCT", 0, false, true)
+        result = sut.isContentWord(punctToken)
+
+      then:
+        result == false
+  - name: DefaultIntervalCalculator
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/lrec/DefaultIntervalCalculator.java
+    tests:
+    - name: "Given positions [10, 110], when calculateMeanInterval is called, then\
+        \ returns 100.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/DefaultIntervalCalculatorSentinelTest.java
+    - name: "Given positions [0, 100, 200, 300], when calculateMeanInterval is called,\
+        \ then returns 100.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/DefaultIntervalCalculatorSentinelTest.java
+    - name: "Given positions [10, 110] and mean 100.0, when calculateStdDevInterval\
+        \ is called, then returns 0.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/DefaultIntervalCalculatorSentinelTest.java
+    - name: "Given positions [0, 100, 200, 300] and mean 100.0, when calculateStdDevInterval\
+        \ is called, then returns 0.0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/DefaultIntervalCalculatorSentinelTest.java
+    testCleanViews:
+    - |
+      test: "Given positions [10, 110], when calculateMeanInterval is called, then returns 100.0"
+      trace: F-LREC
+
+      given:
+        result = sut.calculateMeanInterval("[10, 110]")
+
+      then:
+        result == 100.0
+    - |
+      test: "Given positions [0, 100, 200, 300], when calculateMeanInterval is called, then returns 100.0"
+      trace: F-LREC
+
+      given:
+        result = sut.calculateMeanInterval("[0, 100, 200, 300]")
+
+      then:
+        result == 100.0
+    - |
+      test: "Given positions [10, 110] and mean 100.0, when calculateStdDevInterval is called, then returns 0.0"
+      trace: F-LREC
+
+      given:
+        result = sut.calculateStdDevInterval("[10, 110]", 100.0)
+
+      then:
+        result == 0.0
+    - |
+      test: "Given positions [0, 100, 200, 300] and mean 100.0, when calculateStdDevInterval is called, then returns 0.0"
+      trace: F-LREC
+
+      given:
+        result = sut.calculateStdDevInterval("[0, 100, 200, 300]", 100.0)
+
+      then:
+        result == 0.0
+  - name: DefaultExposureClassifier
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/lrec/DefaultExposureClassifier.java
+  - name: LemmaByLevelAbsenceAnalyzer
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzer.java
+    tests:
+    - name: should return lemma-absence as analyzer name
+      status: MISSING
+    - name: should return COURSE as audit target
+      status: MISSING
+    - name: should return description text
+      status: MISSING
+    - name: should return empty results when no data processed
+      status: MISSING
+    - name: should obtain expected lemmas for each CEFR level from EVP catalog
+      status: MISSING
+    - name: should exclude multi-word phrases from expected lemmas
+      status: MISSING
+    - name: should exclude non-content words from expected lemmas
+      status: MISSING
+    - name: should include critical functional pronoun I in A1 expected lemmas despite
+        filter rejection
+      status: MISSING
+    - name: should include critical functional auxiliary be in A2 expected lemmas
+        despite filter rejection
+      status: MISSING
+    - name: should not apply critical functional override for B1 level
+      status: MISSING
+    - name: should not apply critical functional override for B2 level
+      status: MISSING
+    - name: should include all critical pronouns auxiliaries prepositions and connectors
+        in A1
+      status: MISSING
+    - name: should collect present lemmas from quiz tokens per level
+      status: MISSING
+    - name: should collect present lemmas separately for each CEFR level
+      status: MISSING
+    - name: should count a lemma as present only once per level even if it appears
+        multiple times
+      status: MISSING
+    - name: should skip null tokens and tokens with null lemma during collection
+      status: MISSING
+    - name: should skip quiz when tokens list is null
+      status: MISSING
+    - name: should skip quiz when current level is null
+      status: MISSING
+    - name: should mark lemma as absent when not present in its expected level
+      status: MISSING
+    - name: should not mark lemma as absent when present in its expected level
+      status: MISSING
+    - name: should consider LemmaAndPos pair for absence not just lemma string
+      status: MISSING
+    - name: should not mark lemma as absent when present in expected level even if
+        also in other levels
+      status: MISSING
+    - name: should find levels where absent lemma appears for cross-level classification
+      status: MISSING
+    - name: should return empty presentInLevels when lemma not found in any level
+      status: MISSING
+    - name: should classify as COMPLETELY_ABSENT when lemma not in any level
+      status: MISSING
+    - name: should classify as APPEARS_TOO_LATE when lemma only in later levels
+      status: MISSING
+    - name: should classify as APPEARS_TOO_EARLY when lemma only in earlier levels
+      status: MISSING
+    - name: should classify as SCATTERED_PLACEMENT when lemma in both earlier and
+        later levels
+      status: MISSING
+    - name: should enumerate exactly four absence types
+      status: MISSING
+    - name: should assign impact 1.0 to COMPLETELY_ABSENT
+      status: MISSING
+    - name: should assign impact 0.8 to APPEARS_TOO_LATE
+      status: MISSING
+    - name: should assign impact 0.6 to APPEARS_TOO_EARLY
+      status: MISSING
+    - name: should assign impact 0.4 to SCATTERED_PLACEMENT
+      status: MISSING
+    - name: should have APPEARS_TOO_LATE impact greater than APPEARS_TOO_EARLY impact
+      status: MISSING
+    - name: should assign HIGH priority for COCA rank 500
+      status: MISSING
+    - name: should assign HIGH priority for COCA rank at boundary 1000
+      status: MISSING
+    - name: should assign MEDIUM priority for COCA rank 1500
+      status: MISSING
+    - name: should assign MEDIUM priority for COCA rank at boundary 3000
+      status: MISSING
+    - name: should assign LOW priority for COCA rank 4000
+      status: MISSING
+    - name: should assign LOW priority for COCA rank at boundary 5000
+      status: MISSING
+    - name: should default to LOW priority when no COCA rank available
+      status: MISSING
+    - name: should enrich absent lemma with COCA rank and semantic category and priority
+      status: MISSING
+    - name: should handle null semantic category gracefully during enrichment
+      status: MISSING
+    - name: should treat same lemma with different POS as different entries
+      status: MISSING
+    - name: should trigger alert when HIGH priority absent lemmas exceed zero threshold
+      status: MISSING
+    - name: should trigger alert when MEDIUM priority absent lemmas exceed threshold
+        of 3
+      status: MISSING
+    - name: should trigger alert when LOW priority absent lemmas exceed threshold
+        of 10
+      status: MISSING
+    - name: should not trigger alert when count is exactly at threshold
+      status: MISSING
+    - name: should not discount lemma correctly placed at its expected level in sentence
+      status: MISSING
+    - name: should not consider non-EVP lemma as misplaced in sentence
+      status: MISSING
+    - name: should apply 0.1 discount per level of distance for misplaced lemma
+      status: MISSING
+    - name: should score 0.9 for sentence with 1-level distance misplaced lemma
+      status: MISSING
+    - name: should score 0.8 for sentence with 2-level distance misplaced lemma
+      status: MISSING
+    - name: should score 0.7 for sentence with 3-level distance misplaced lemma which
+        is minimum
+      status: MISSING
+    - name: should use maximum discount among all misplaced lemmas in sentence
+      status: MISSING
+    - name: should score 1.0 for sentence with no misplaced lemmas
+      status: MISSING
+    - name: should score 1.0 for sentence containing only non-EVP lemmas
+      status: MISSING
+    - name: should exceed threshold when absent count exceeds absolute threshold
+      status: MISSING
+    - name: should exceed threshold when absence percentage exceeds percentage threshold
+      status: MISSING
+    - name: should not exceed threshold when both absolute and percentage are within
+        limits
+      status: MISSING
+    - name: should enforce zero tolerance for A1 level
+      status: MISSING
+    - name: should assess OPTIMAL when all levels within thresholds
+      status: MISSING
+    - name: should assess ACCEPTABLE when non-critical level exceeds but critical
+        levels pass
+      status: MISSING
+    - name: should assess NEEDS_IMPROVEMENT when A1 exceeds its threshold
+      status: MISSING
+    - name: should assess NEEDS_IMPROVEMENT when A2 exceeds its threshold
+      status: MISSING
+    - name: should assess NEEDS_IMPROVEMENT when total HIGH priority exceeds critical
+        threshold
+      status: MISSING
+    - name: should compute level metrics with totalExpected totalAbsent absencePercentage
+        and score
+      status: MISSING
+    - name: should compute weighted global score with A1 A2 weight 2.0 and B1 B2 weight
+        1.0
+      status: MISSING
+    - name: should return global score 1.0 for course with perfect coverage
+      status: MISSING
+    - name: should limit HIGH priority absent lemmas to 20 in report
+      status: MISSING
+    - name: should limit MEDIUM priority absent lemmas to 30 in report
+      status: MISSING
+    - name: should limit LOW priority absent lemmas to 50 in report
+      status: MISSING
+    - name: should not generate recommendation for level within its threshold
+      status: MISSING
+    - name: should map COMPLETELY_ABSENT to ADD_VOCABULARY recommendation
+      status: MISSING
+    - name: should map APPEARS_TOO_LATE to INTRODUCE_EARLIER recommendation
+      status: MISSING
+    - name: "full lifecycle: course with full coverage produces OPTIMAL assessment\
+        \ and score 1.0"
+      status: MISSING
+    - name: "full lifecycle: course with completely absent HIGH priority lemmas in\
+        \ A1 produces NEEDS_IMPROVEMENT"
+      status: MISSING
+    - name: "full lifecycle: course with lemmas appearing too late produces INTRODUCE_EARLIER\
+        \ recommendations"
+      status: MISSING
+    - name: "full lifecycle: course with misplaced lemmas in sentences reflects distance\
+        \ discounts in scores"
+      status: MISSING
+    - name: "full lifecycle: course with multiple levels exceeding thresholds produces\
+        \ prioritized recommendations"
+      status: MISSING
+    - name: should map APPEARS_TOO_EARLY to REINFORCE_AT_LEVEL recommendation
+      status: MISSING
+    - name: should map SCATTERED_PLACEMENT to CONSOLIDATE_PLACEMENT recommendation
+      status: MISSING
+    - name: should assign HIGH recommendation priority for A1 level
+      status: MISSING
+    - name: should assign HIGH recommendation priority for A2 level
+      status: MISSING
+    - name: should assign MEDIUM recommendation priority for B1 with HIGH priority
+        lemmas
+      status: MISSING
+    - name: should assign MEDIUM recommendation priority for B1 with MEDIUM priority
+        lemmas
+      status: MISSING
+    - name: should assign LOW recommendation priority for B2 with LOW priority lemmas
+      status: MISSING
+    - name: should assign MEDIUM recommendation priority for B2 with MEDIUM priority
+        lemmas
+      status: MISSING
+    - name: should estimate LOW effort for 1 absent lemma
+      status: MISSING
+    - name: should estimate LOW effort for 5 absent lemmas
+      status: MISSING
+    - name: should estimate MEDIUM effort for 6 absent lemmas
+      status: MISSING
+    - name: should estimate MEDIUM effort for 15 absent lemmas
+      status: MISSING
+    - name: should estimate HIGH effort for 16 absent lemmas
+      status: MISSING
+    - name: should estimate HIGH effort for 20 absent lemmas
+      status: MISSING
+    - name: should complete without error when onTopic is called
+      status: MISSING
+    - name: should complete without error when onKnowledge is called
+      status: MISSING
+    testCleanViews:
+    - |
+      test: "should return lemma-absence as analyzer name"
+      trace: FEAT-LABS / F-LABS-R031
+
+      then:
+        sut.getName() == "lemma-absence"
+    - |
+      test: "should return COURSE as audit target"
+      trace: FEAT-LABS / F-LABS-R031
+
+      then:
+        sut.getTarget() == AuditTarget.COURSE
+    - |
+      test: "should return description text"
+      trace: FEAT-LABS / F-LABS-R031
+
+      given:
+        desc = sut.getDescription()
+
+      then:
+        desc is not null
+        desc.isBlank() is false
+    - |
+      test: "should return empty results when no data processed"
+      trace: FEAT-LABS / F-LABS-R031
+
+      then:
+        sut.getResults().isEmpty() is true
+    - |
+      test: "should obtain expected lemmas for each CEFR level from EVP catalog"
+      trace: FEAT-LABS / F-LABS-R001
+
+      given:
+        course = AuditableCourse(Collections.emptyList())
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        verify: evpCatalogPort.getExpectedLemmas(CefrLevel.A1)
+        verify: evpCatalogPort.getExpectedLemmas(CefrLevel.A2)
+        verify: evpCatalogPort.getExpectedLemmas(CefrLevel.B1)
+        verify: evpCatalogPort.getExpectedLemmas(CefrLevel.B2)
+    - |
+      test: "should exclude multi-word phrases from expected lemmas"
+      trace: FEAT-LABS / F-LABS-R005
+
+      given:
+        phrase = LemmaAndPos("look up", "VERB")
+        single = LemmaAndPos("cat", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(phrase, single))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("look up") -> true
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(single) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(single) -> Optional.of("animal")
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        results.isEmpty() is false
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should exclude non-content words from expected lemmas"
+      trace: FEAT-LABS / F-LABS-R001
+
+      given:
+        nonContent = LemmaAndPos("the", "DET")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(nonContent))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("the") -> false
+        contentWordFilter.isContentWord(any()) -> false
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        results.isEmpty() is false
+        courseItem.getScore() == 1.0
+    - |
+      test: "should include critical functional pronoun I in A1 expected lemmas despite filter rejection"
+      trace: FEAT-LABS / F-LABS-R016
+
+      given:
+        pronounI = LemmaAndPos("i", "PRON")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(pronounI))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("i") -> false
+        evpCatalogPort.getCocaRank(pronounI) -> Optional.of(10)
+        evpCatalogPort.getSemanticCategory(pronounI) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+        verify: contentWordFilter.isContentWord(any()) x 0
+    - |
+      test: "should include critical functional auxiliary be in A2 expected lemmas despite filter rejection"
+      trace: FEAT-LABS / F-LABS-R016
+
+      given:
+        be = LemmaAndPos("be", "VERB")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> new HashSet<>(List.of(be))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("be") -> false
+        evpCatalogPort.getCocaRank(be) -> Optional.of(5)
+        evpCatalogPort.getSemanticCategory(be) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("A2"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+        verify: contentWordFilter.isContentWord(any()) x 0
+    - |
+      test: "should not apply critical functional override for B1 level"
+      trace: FEAT-LABS / F-LABS-R016
+
+      given:
+        be = LemmaAndPos("be", "VERB")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> new HashSet<>(List.of(be))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("be") -> false
+        contentWordFilter.isContentWord(any()) -> false
+
+      when:
+        sut.onCourseComplete(course, ctx("B1"))
+
+      then:
+        courseItem.getScore() == 1.0
+        verify: contentWordFilter.isContentWord(any())
+    - |
+      test: "should not apply critical functional override for B2 level"
+      trace: FEAT-LABS / F-LABS-R016
+
+      given:
+        can = LemmaAndPos("can", "VERB")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> new HashSet<>(List.of(can))
+        evpCatalogPort.isPhrase("can") -> false
+        contentWordFilter.isContentWord(any()) -> false
+
+      when:
+        sut.onCourseComplete(course, ctx("B2"))
+
+      then:
+        courseItem.getScore() == 1.0
+        verify: contentWordFilter.isContentWord(any())
+    - |
+      test: "should include all critical pronouns auxiliaries prepositions and connectors in A1"
+      trace: FEAT-LABS / F-LABS-R016
+
+      given:
+        criticals = List.of("i", "you", "he", "she", "it", "we", "they", "be", "have", "do", "will", "would", "can", "could", "should", "might", "must", "in", "on", "at", "for", "with", "by", "from", "to", "of", "about", "and", "but", "or", "so", "because", "when", "if", "while", "since")
+        expected = HashSet<>()
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> expected
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should collect present lemmas from quiz tokens per level"
+      trace: FEAT-LABS / F-LABS-R002
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        token = NlpToken("cats", "cat", "NOUN", 0, false, false)
+        quiz = AuditableQuiz("cats are nice", List.of(token), "q1", "l", "c")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(token) -> true
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        courseItem.getScore() == 1.0
+    - |
+      test: "should collect present lemmas separately for each CEFR level"
+      trace: FEAT-LABS / F-LABS-R002
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        dog = LemmaAndPos("dog", "NOUN")
+        catToken = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> new HashSet<>(List.of(dog))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        evpCatalogPort.isPhrase("dog") -> false
+        evpCatalogPort.getCocaRank(dog) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(dog) -> Optional.empty()
+        contentWordFilter.isContentWord(catToken) -> true
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should count a lemma as present only once per level even if it appears multiple times"
+      trace: FEAT-LABS / F-LABS-R002
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        catToken = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(catToken) -> true
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        courseItem.getScore() == 1.0
+    - |
+      test: "should skip null tokens and tokens with null lemma during collection"
+      trace: FEAT-LABS / F-LABS-R002
+
+      given:
+        nullLemmaToken = NlpToken("word", null, "NOUN", 0, false, false)
+        quiz = AuditableQuiz("s", Arrays.asList(null, nullLemmaToken), "q1", "l", "c")
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+    - |
+      test: "should skip quiz when tokens list is null"
+      trace: FEAT-LABS / F-LABS-R002
+
+      given:
+        quiz = AuditableQuiz("sentence", null, "q1", "l", "c")
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        sut.getResults().isEmpty() is true
+    - |
+      test: "should skip quiz when current level is null"
+      trace: FEAT-LABS / F-LABS-R002
+
+      given:
+        token = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        quiz = AuditableQuiz("cat", List.of(token), "q1", "l", "c")
+
+      when:
+        doesNotThrow: sut.onQuiz(quiz, ctx("INVALID"))
+
+      then:
+        sut.getResults().isEmpty() is true
+    - |
+      test: "should mark lemma as absent when not present in its expected level"
+      trace: FEAT-LABS / F-LABS-R003
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should not mark lemma as absent when present in its expected level"
+      trace: FEAT-LABS / F-LABS-R010
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        token = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(token) -> true
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        courseItem.getScore() == 1.0
+    - |
+      test: "should consider LemmaAndPos pair for absence not just lemma string"
+      trace: FEAT-LABS / F-LABS-R003
+
+      given:
+        runNoun = LemmaAndPos("run", "NOUN")
+        runVerb = LemmaAndPos("run", "VERB")
+        runVerbToken = NlpToken("run", "run", "VERB", 0, false, false)
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(runNoun, runVerb))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("run") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(any()) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(any()) -> Optional.empty()
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should not mark lemma as absent when present in expected level even if also in other levels"
+      trace: FEAT-LABS / F-LABS-R010
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        token = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(token) -> true
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        courseItem.getScore() == 1.0
+    - |
+      test: "should find levels where absent lemma appears for cross-level classification"
+      trace: FEAT-LABS / F-LABS-R004
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        token = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A1) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.A1) -> 0.0
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m3", "l", "c"), ctx("B1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should return empty presentInLevels when lemma not found in any level"
+      trace: FEAT-LABS / F-LABS-R004
+
+      given:
+        rare = LemmaAndPos("xenolith", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(rare))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("xenolith") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(rare) -> Optional.empty()
+        evpCatalogPort.getSemanticCategory(rare) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should classify as COMPLETELY_ABSENT when lemma not in any level"
+      trace: FEAT-LABS / F-LABS-R007
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        AbsenceType.valueOf("COMPLETELY_ABSENT") == AbsenceType.COMPLETELY_ABSENT
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should classify as APPEARS_TOO_LATE when lemma only in later levels"
+      trace: FEAT-LABS / F-LABS-R007
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        token = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m4", "l", "c"), ctx("B2"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should classify as APPEARS_TOO_EARLY when lemma only in earlier levels"
+      trace: FEAT-LABS / F-LABS-R007
+
+      given:
+        dog = LemmaAndPos("dog", "NOUN")
+        token = NlpToken("dog", "dog", "NOUN", 0, false, false)
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> new HashSet<>(List.of(dog))
+        evpCatalogPort.isPhrase("dog") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(dog) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(dog) -> Optional.empty()
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should classify as SCATTERED_PLACEMENT when lemma in both earlier and later levels"
+      trace: FEAT-LABS / F-LABS-R007
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        token = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should enumerate exactly four absence types"
+      trace: FEAT-LABS / F-LABS-R006
+
+      given:
+        types = AbsenceType.values()
+        typeList = List.of(types)
+
+      then:
+        types.length == 4
+        typeList.contains(AbsenceType.COMPLETELY_ABSENT) is true
+        typeList.contains(AbsenceType.APPEARS_TOO_LATE) is true
+        typeList.contains(AbsenceType.APPEARS_TOO_EARLY) is true
+        typeList.contains(AbsenceType.SCATTERED_PLACEMENT) is true
+    - |
+      test: "should assign impact 1.0 to COMPLETELY_ABSENT"
+      trace: FEAT-LABS / F-LABS-R008
+
+      then:
+        AbsenceType.COMPLETELY_ABSENT is not null
+        AbsenceType.valueOf("COMPLETELY_ABSENT") == AbsenceType.COMPLETELY_ABSENT
+    - |
+      test: "should assign impact 0.8 to APPEARS_TOO_LATE"
+      trace: FEAT-LABS / F-LABS-R008
+
+      then:
+        AbsenceType.APPEARS_TOO_LATE is not null
+        AbsenceType.valueOf("APPEARS_TOO_LATE") == AbsenceType.APPEARS_TOO_LATE
+    - |
+      test: "should assign impact 0.6 to APPEARS_TOO_EARLY"
+      trace: FEAT-LABS / F-LABS-R008
+
+      then:
+        AbsenceType.APPEARS_TOO_EARLY is not null
+        AbsenceType.valueOf("APPEARS_TOO_EARLY") == AbsenceType.APPEARS_TOO_EARLY
+    - |
+      test: "should assign impact 0.4 to SCATTERED_PLACEMENT"
+      trace: FEAT-LABS / F-LABS-R008
+
+      then:
+        AbsenceType.SCATTERED_PLACEMENT is not null
+        AbsenceType.valueOf("SCATTERED_PLACEMENT") == AbsenceType.SCATTERED_PLACEMENT
+    - |
+      test: "should have APPEARS_TOO_LATE impact greater than APPEARS_TOO_EARLY impact"
+      trace: FEAT-LABS / F-LABS-R009
+
+      given:
+        tooLate = AbsenceType.APPEARS_TOO_LATE
+        tooEarly = AbsenceType.APPEARS_TOO_EARLY
+
+      then:
+        tooLate is not null
+        tooEarly is not null
+        tooLate != null
+    - |
+      test: "should assign HIGH priority for COCA rank 500"
+      trace: FEAT-LABS / F-LABS-R011
+
+      given:
+        item = runWithAbsentB1Lemma(500)
+
+      then:
+        item.getScore() < 1.0 is true
+    - |
+      test: "should assign HIGH priority for COCA rank at boundary 1000"
+      trace: FEAT-LABS / F-LABS-R011
+
+      given:
+        item = runWithAbsentB1Lemma(1000)
+
+      then:
+        item.getScore() < 1.0 is true
+    - |
+      test: "should assign MEDIUM priority for COCA rank 1500"
+      trace: FEAT-LABS / F-LABS-R011
+
+      given:
+        item = runWithAbsentB1Lemma(1500)
+
+      then:
+        item.getScore() < 1.0 is true
+    - |
+      test: "should assign MEDIUM priority for COCA rank at boundary 3000"
+      trace: FEAT-LABS / F-LABS-R011
+
+      given:
+        item = runWithAbsentB1Lemma(3000)
+
+      then:
+        item.getScore() < 1.0 is true
+    - |
+      test: "should assign LOW priority for COCA rank 4000"
+      trace: FEAT-LABS / F-LABS-R011
+
+      given:
+        item = runWithAbsentB1Lemma(4000)
+
+      then:
+        item.getScore() < 1.0 is true
+    - |
+      test: "should assign LOW priority for COCA rank at boundary 5000"
+      trace: FEAT-LABS / F-LABS-R011
+
+      given:
+        item = runWithAbsentB1Lemma(5000)
+
+      then:
+        item.getScore() < 1.0 is true
+    - |
+      test: "should default to LOW priority when no COCA rank available"
+      trace: FEAT-LABS / F-LABS-R013
+
+      given:
+        rare = LemmaAndPos("obscure", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+
+      mock:
+        lemmaAbsenceConfig.getLowReportLimit() -> 50
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> new HashSet<>(List.of(rare))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("obscure") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(rare) -> Optional.empty()
+        evpCatalogPort.getSemanticCategory(rare) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("B1"))
+
+      then:
+        results.isEmpty() is false
+    - |
+      test: "should enrich absent lemma with COCA rank and semantic category and priority"
+      trace: FEAT-LABS / F-LABS-R012
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(750)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.of("animals")
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        sut.getResults().isEmpty() is false
+        verify: evpCatalogPort.getCocaRank(cat)
+        verify: evpCatalogPort.getSemanticCategory(cat)
+    - |
+      test: "should handle null semantic category gracefully during enrichment"
+      trace: FEAT-LABS / F-LABS-R012
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        sut.getResults().isEmpty() is false
+    - |
+      test: "should treat same lemma with different POS as different entries"
+      trace: FEAT-LABS / F-LABS-R015
+
+      given:
+        runNoun = LemmaAndPos("run", "NOUN")
+        runVerb = LemmaAndPos("run", "VERB")
+
+      then:
+        runNoun != null
+        runNoun.hashCode() != null
+    - |
+      test: "should trigger alert when HIGH priority absent lemmas exceed zero threshold"
+      trace: FEAT-LABS / F-LABS-R014
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A1) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.A1) -> 0.0
+        lemmaAbsenceConfig.getCriticalAbsenceThreshold() -> 0
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should trigger alert when MEDIUM priority absent lemmas exceed threshold of 3"
+      trace: FEAT-LABS / F-LABS-R014
+
+      given:
+        course = AuditableCourse(Collections.emptyList())
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        verify: lemmaAbsenceConfig.getHighReportLimit() x atLeastOnce()
+    - |
+      test: "should trigger alert when LOW priority absent lemmas exceed threshold of 10"
+      trace: FEAT-LABS / F-LABS-R014
+
+      given:
+        course = AuditableCourse(Collections.emptyList())
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        verify: lemmaAbsenceConfig.getLowReportLimit() x atLeastOnce()
+    - |
+      test: "should not trigger alert when count is exactly at threshold"
+      trace: FEAT-LABS / F-LABS-R014
+
+      given:
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        courseItem.getScore() == 1.0
+    - |
+      test: "should not discount lemma correctly placed at its expected level in sentence"
+      trace: FEAT-LABS / F-LABS-R017
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        catToken = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        course = buildCourseForQuizScoring(catToken)
+        results = sut.getResults()
+        quizItem = results.stream().filter(r -> r.getTarget() == AuditTarget.QUIZ).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(catToken) -> true
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        quizItem.getScore() == 1.0
+    - |
+      test: "should not consider non-EVP lemma as misplaced in sentence"
+      trace: FEAT-LABS / F-LABS-R017
+
+      given:
+        token = NlpToken("unknown", "unknown", "NOUN", 0, false, false)
+        course = buildCourseForQuizScoring(token)
+        results = sut.getResults()
+        quizItem = results.stream().filter(r -> r.getTarget() == AuditTarget.QUIZ).findFirst().orElseThrow()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        quizItem.getScore() == 1.0
+    - |
+      test: "should apply 0.1 discount per level of distance for misplaced lemma"
+      trace: FEAT-LABS / F-LABS-R018
+
+      given:
+        course = buildCourseForQuizScoring(new NlpToken("x", "x", "NOUN", 0, false, false))
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        verify: lemmaAbsenceConfig.getDiscountPerLevel() x atLeastOnce()
+    - |
+      test: "should score 0.9 for sentence with 1-level distance misplaced lemma"
+      trace: FEAT-LABS / F-LABS-R018
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        catToken = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        course = buildCourseForQuizScoring(catToken)
+        results = sut.getResults()
+        quizItem = results.stream().filter(r -> r.getTarget() == AuditTarget.QUIZ).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        quizItem.getScore() == 0.9
+    - |
+      test: "should score 0.8 for sentence with 2-level distance misplaced lemma"
+      trace: FEAT-LABS / F-LABS-R018
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        catToken = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        course = buildCourseForQuizScoring(catToken)
+        results = sut.getResults()
+        quizItem = results.stream().filter(r -> r.getTarget() == AuditTarget.QUIZ).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        quizItem.getScore() == 0.8
+    - |
+      test: "should score 0.7 for sentence with 3-level distance misplaced lemma which is minimum"
+      trace: FEAT-LABS / F-LABS-R019
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        catToken = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        course = buildCourseForQuizScoring(catToken)
+        results = sut.getResults()
+        quizItem = results.stream().filter(r -> r.getTarget() == AuditTarget.QUIZ).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        quizItem.getScore() == 0.7
+    - |
+      test: "should use maximum discount among all misplaced lemmas in sentence"
+      trace: FEAT-LABS / F-LABS-R019
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        dog = LemmaAndPos("dog", "NOUN")
+        catToken = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        dogToken = NlpToken("dog", "dog", "NOUN", 0, false, false)
+        quiz = AuditableQuiz("cat dog", List.of(catToken, dogToken), "q1", "l", "c")
+        knowledge = AuditableKnowledge(List.of(quiz), "t", "i", true, "k1", "l", "c")
+        topic = AuditableTopic(List.of(knowledge), "t1", "l", "c")
+        m = AuditableMilestone(List.of(topic), "m1", "l", "c")
+        course = AuditableCourse(List.of(m))
+        results = sut.getResults()
+        quizItem = results.stream().filter(r -> r.getTarget() == AuditTarget.QUIZ).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> new HashSet<>(List.of(dog))
+        evpCatalogPort.isPhrase("cat") -> false
+        evpCatalogPort.isPhrase("dog") -> false
+        contentWordFilter.isContentWord(argThat(t -> t != null && "cat".equals(t.getLemma()))) -> true
+        contentWordFilter.isContentWord(argThat(t -> t != null && "dog".equals(t.getLemma()))) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getCocaRank(dog) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(any()) -> Optional.empty()
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        quizItem.getScore() == 0.7
+    - |
+      test: "should score 1.0 for sentence with no misplaced lemmas"
+      trace: FEAT-LABS / F-LABS-R020
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        catToken = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        course = buildCourseForQuizScoring(catToken)
+        results = sut.getResults()
+        quizItem = results.stream().filter(r -> r.getTarget() == AuditTarget.QUIZ).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(catToken) -> true
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        quizItem.getScore() == 1.0
+    - |
+      test: "should score 1.0 for sentence containing only non-EVP lemmas"
+      trace: FEAT-LABS / F-LABS-R020
+
+      given:
+        token = NlpToken("xyzzy", "xyzzy", "NOUN", 0, false, false)
+        course = buildCourseForQuizScoring(token)
+        results = sut.getResults()
+        quizItem = results.stream().filter(r -> r.getTarget() == AuditTarget.QUIZ).findFirst().orElseThrow()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        quizItem.getScore() == 1.0
+    - |
+      test: "should exceed threshold when absent count exceeds absolute threshold"
+      trace: FEAT-LABS / F-LABS-R021
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A1) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.A1) -> 100.0
+        lemmaAbsenceConfig.getCriticalAbsenceThreshold() -> 100
+        lemmaAbsenceConfig.getAcceptableAbsenceThreshold() -> 50
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should exceed threshold when absence percentage exceeds percentage threshold"
+      trace: FEAT-LABS / F-LABS-R021
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A1) -> 1000
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.A1) -> 0.0
+        lemmaAbsenceConfig.getCriticalAbsenceThreshold() -> 100
+        lemmaAbsenceConfig.getAcceptableAbsenceThreshold() -> 50
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should not exceed threshold when both absolute and percentage are within limits"
+      trace: FEAT-LABS / F-LABS-R021
+
+      given:
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        courseItem.getScore() == 1.0
+    - |
+      test: "should enforce zero tolerance for A1 level"
+      trace: FEAT-LABS / F-LABS-R021
+
+      given:
+        word = LemmaAndPos("apple", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A1) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.A1) -> 0.0
+        lemmaAbsenceConfig.getCriticalAbsenceThreshold() -> 100
+        lemmaAbsenceConfig.getAcceptableAbsenceThreshold() -> 50
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(word))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("apple") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(word) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(word) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should assess OPTIMAL when all levels within thresholds"
+      trace: FEAT-LABS / F-LABS-R022
+
+      given:
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        courseItem.getScore() == 1.0
+    - |
+      test: "should assess ACCEPTABLE when non-critical level exceeds but critical levels pass"
+      trace: FEAT-LABS / F-LABS-R022
+
+      given:
+        word = LemmaAndPos("table", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A1) -> 100
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A2) -> 100
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.B1) -> 0
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.B2) -> 100
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.B1) -> 0.0
+        lemmaAbsenceConfig.getCriticalAbsenceThreshold() -> 100
+        lemmaAbsenceConfig.getAcceptableAbsenceThreshold() -> 0
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> new HashSet<>(List.of(word))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("table") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(word) -> Optional.of(1500)
+        evpCatalogPort.getSemanticCategory(word) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("B1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should assess NEEDS_IMPROVEMENT when A1 exceeds its threshold"
+      trace: FEAT-LABS / F-LABS-R022
+
+      given:
+        word = LemmaAndPos("apple", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A1) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.A1) -> 0.0
+        lemmaAbsenceConfig.getCriticalAbsenceThreshold() -> 100
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(word))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("apple") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(word) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(word) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should assess NEEDS_IMPROVEMENT when A2 exceeds its threshold"
+      trace: FEAT-LABS / F-LABS-R022
+
+      given:
+        word = LemmaAndPos("house", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A2) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.A2) -> 0.0
+        lemmaAbsenceConfig.getCriticalAbsenceThreshold() -> 100
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> new HashSet<>(List.of(word))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("house") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(word) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(word) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("A2"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should assess NEEDS_IMPROVEMENT when total HIGH priority exceeds critical threshold"
+      trace: FEAT-LABS / F-LABS-R025
+
+      given:
+        word = LemmaAndPos("table", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(any()) -> 1000
+        lemmaAbsenceConfig.getPercentageThreshold(any()) -> 100.0
+        lemmaAbsenceConfig.getCriticalAbsenceThreshold() -> 0
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> new HashSet<>(List.of(word))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("table") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(word) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(word) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("B1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "should compute level metrics with totalExpected totalAbsent absencePercentage and score"
+      trace: FEAT-LABS / F-LABS-R023
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        dog = LemmaAndPos("dog", "NOUN")
+        catToken = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat, dog))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        evpCatalogPort.isPhrase("dog") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getCocaRank(dog) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(any()) -> Optional.empty()
+        contentWordFilter.isContentWord(catToken) -> true
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        courseItem.getScore() == 5.0 / 6.0
+    - |
+      test: "should compute weighted global score with A1 A2 weight 2.0 and B1 B2 weight 1.0"
+      trace: FEAT-LABS / F-LABS-R024
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        courseItem.getScore() == 4.0 / 6.0
+    - |
+      test: "should return global score 1.0 for course with perfect coverage"
+      trace: FEAT-LABS / F-LABS-R024
+
+      given:
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        courseItem.getScore() == 1.0
+    - |
+      test: "should limit HIGH priority absent lemmas to 20 in report"
+      trace: FEAT-LABS / F-LABS-R026
+
+      given:
+        course = AuditableCourse(Collections.emptyList())
+
+      mock:
+        lemmaAbsenceConfig.getHighReportLimit() -> 20
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        lemmaAbsenceConfig.getHighReportLimit() == 20
+        verify: lemmaAbsenceConfig.getHighReportLimit() x atLeastOnce()
+    - |
+      test: "should limit MEDIUM priority absent lemmas to 30 in report"
+      trace: FEAT-LABS / F-LABS-R026
+
+      given:
+        course = AuditableCourse(Collections.emptyList())
+
+      mock:
+        lemmaAbsenceConfig.getMediumReportLimit() -> 30
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        lemmaAbsenceConfig.getMediumReportLimit() == 30
+        verify: lemmaAbsenceConfig.getMediumReportLimit() x atLeastOnce()
+    - |
+      test: "should limit LOW priority absent lemmas to 50 in report"
+      trace: FEAT-LABS / F-LABS-R026
+
+      given:
+        course = AuditableCourse(Collections.emptyList())
+
+      mock:
+        lemmaAbsenceConfig.getLowReportLimit() -> 50
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        lemmaAbsenceConfig.getLowReportLimit() == 50
+        verify: lemmaAbsenceConfig.getLowReportLimit() x atLeastOnce()
+    - |
+      test: "should not generate recommendation for level within its threshold"
+      trace: FEAT-LABS / F-LABS-R027
+
+      given:
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItems = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).count()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        courseItems == 1
+    - |
+      test: "should map COMPLETELY_ABSENT to ADD_VOCABULARY recommendation"
+      trace: FEAT-LABS / F-LABS-R028
+
+      then:
+        RecommendationAction.valueOf("ADD_VOCABULARY") == RecommendationAction.ADD_VOCABULARY
+        RecommendationAction.ADD_VOCABULARY is not null
+    - |
+      test: "should map APPEARS_TOO_LATE to INTRODUCE_EARLIER recommendation"
+      trace: FEAT-LABS / F-LABS-R028
+
+      then:
+        RecommendationAction.valueOf("INTRODUCE_EARLIER") == RecommendationAction.INTRODUCE_EARLIER
+        RecommendationAction.INTRODUCE_EARLIER is not null
+    - |
+      test: "full lifecycle: course with full coverage produces OPTIMAL assessment and score 1.0"
+      trace: FEAT-LABS / F-LABS-J001
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        dog = LemmaAndPos("dog", "NOUN")
+        catToken = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        dogToken = NlpToken("dog", "dog", "NOUN", 0, false, false)
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> new HashSet<>(List.of(dog))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        evpCatalogPort.isPhrase("dog") -> false
+        contentWordFilter.isContentWord(catToken) -> true
+        contentWordFilter.isContentWord(dogToken) -> true
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        courseItem.getScore() == 1.0
+    - |
+      test: "full lifecycle: course with completely absent HIGH priority lemmas in A1 produces NEEDS_IMPROVEMENT"
+      trace: FEAT-LABS / F-LABS-J002
+
+      given:
+        apple = LemmaAndPos("apple", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A1) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.A1) -> 0.0
+        lemmaAbsenceConfig.getCriticalAbsenceThreshold() -> 100
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(apple))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("apple") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(apple) -> Optional.of(300)
+        evpCatalogPort.getSemanticCategory(apple) -> Optional.of("food")
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        results.isEmpty() is false
+        courseItem.getScore() < 1.0 is true
+    - |
+      test: "full lifecycle: course with lemmas appearing too late produces INTRODUCE_EARLIER recommendations"
+      trace: FEAT-LABS / F-LABS-J003
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        catToken = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A1) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.A1) -> 0.0
+        lemmaAbsenceConfig.getCriticalAbsenceThreshold() -> 100
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m3", "l", "c"), ctx("B1"))
+
+      then:
+        courseItem.getScore() < 1.0 is true
+        RecommendationAction.valueOf("INTRODUCE_EARLIER") == RecommendationAction.INTRODUCE_EARLIER
+    - |
+      test: "full lifecycle: course with misplaced lemmas in sentences reflects distance discounts in scores"
+      trace: FEAT-LABS / F-LABS-J004
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        catToken = NlpToken("cat", "cat", "NOUN", 0, false, false)
+        course = buildCourseForQuizScoring(catToken)
+        results = sut.getResults()
+        quizItem = results.stream().filter(r -> r.getTarget() == AuditTarget.QUIZ).findFirst().orElseThrow()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onMilestone(new AuditableMilestone(List.of(), "m1", "l", "c"), ctx("A1"))
+
+      then:
+        quizItem.getScore() == 0.7
+    - |
+      test: "full lifecycle: course with multiple levels exceeding thresholds produces prioritized recommendations"
+      trace: FEAT-LABS / F-LABS-J005
+
+      given:
+        apple = LemmaAndPos("apple", "NOUN")
+        table = LemmaAndPos("table", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+        results = sut.getResults()
+        courseItem = results.stream().filter(r -> r.getTarget() == AuditTarget.COURSE).findFirst().orElseThrow()
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A1) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.A1) -> 0.0
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.B1) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.B1) -> 0.0
+        lemmaAbsenceConfig.getCriticalAbsenceThreshold() -> 100
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(apple))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> new HashSet<>(List.of(table))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("apple") -> false
+        evpCatalogPort.isPhrase("table") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(apple) -> Optional.of(500)
+        evpCatalogPort.getCocaRank(table) -> Optional.of(1500)
+        evpCatalogPort.getSemanticCategory(any()) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        results.isEmpty() is false
+        courseItem.getScore() < 1.0 is true
+        verify: lemmaAbsenceConfig.getCriticalAbsenceThreshold() x atLeastOnce()
+    - |
+      test: "shouldMapAPPEARSTOOEARLYToREINFORCEATLEVELRecommendation"
+
+      then:
+        RecommendationAction.valueOf("REINFORCE_AT_LEVEL") == RecommendationAction.REINFORCE_AT_LEVEL
+        RecommendationAction.REINFORCE_AT_LEVEL is not null
+    - |
+      test: "shouldMapSCATTEREDPLACEMENTToCONSOLIDATEPLACEMENTRecommendation"
+
+      then:
+        RecommendationAction.valueOf("CONSOLIDATE_PLACEMENT") == RecommendationAction.CONSOLIDATE_PLACEMENT
+        RecommendationAction.CONSOLIDATE_PLACEMENT is not null
+    - |
+      test: "shouldAssignHIGHRecommendationPriorityForA1Level"
+
+      given:
+        word = LemmaAndPos("apple", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A1) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.A1) -> 0.0
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(word))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("apple") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(word) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(word) -> Optional.empty()
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx("A1"))
+
+      then:
+        PriorityLevel.valueOf("HIGH") == PriorityLevel.HIGH
+        verify: lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A1) x atLeastOnce()
+    - |
+      test: "shouldAssignHIGHRecommendationPriorityForA2Level"
+
+      given:
+        word = LemmaAndPos("house", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A2) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.A2) -> 0.0
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> new HashSet<>(List.of(word))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("house") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(word) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(word) -> Optional.empty()
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx("A2"))
+
+      then:
+        PriorityLevel.valueOf("HIGH") == PriorityLevel.HIGH
+        verify: lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.A2) x atLeastOnce()
+    - |
+      test: "shouldAssignMEDIUMRecommendationPriorityForB1WithHIGHPriorityLemmas"
+
+      given:
+        word = LemmaAndPos("table", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.B1) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.B1) -> 0.0
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> new HashSet<>(List.of(word))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("table") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(word) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(word) -> Optional.empty()
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx("B1"))
+
+      then:
+        PriorityLevel.valueOf("MEDIUM") == PriorityLevel.MEDIUM
+        verify: lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.B1) x atLeastOnce()
+    - |
+      test: "shouldAssignMEDIUMRecommendationPriorityForB1WithMEDIUMPriorityLemmas"
+
+      given:
+        word = LemmaAndPos("table", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.B1) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.B1) -> 0.0
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> new HashSet<>(List.of(word))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("table") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(word) -> Optional.of(1500)
+        evpCatalogPort.getSemanticCategory(word) -> Optional.empty()
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx("B1"))
+
+      then:
+        PriorityLevel.valueOf("MEDIUM") == PriorityLevel.MEDIUM
+        verify: lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.B1) x atLeastOnce()
+    - |
+      test: "shouldAssignLOWRecommendationPriorityForB2WithLOWPriorityLemmas"
+
+      given:
+        word = LemmaAndPos("table", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.B2) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.B2) -> 0.0
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> new HashSet<>(List.of(word))
+        evpCatalogPort.isPhrase("table") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(word) -> Optional.of(4000)
+        evpCatalogPort.getSemanticCategory(word) -> Optional.empty()
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx("B2"))
+
+      then:
+        PriorityLevel.valueOf("LOW") == PriorityLevel.LOW
+        verify: lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.B2) x atLeastOnce()
+    - |
+      test: "shouldAssignMEDIUMRecommendationPriorityForB2WithMEDIUMPriorityLemmas"
+
+      given:
+        word = LemmaAndPos("table", "NOUN")
+        course = AuditableCourse(Collections.emptyList())
+
+      mock:
+        lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.B2) -> 0
+        lemmaAbsenceConfig.getPercentageThreshold(CefrLevel.B2) -> 0.0
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> new HashSet<>(List.of(word))
+        evpCatalogPort.isPhrase("table") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(word) -> Optional.of(2000)
+        evpCatalogPort.getSemanticCategory(word) -> Optional.empty()
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx("B2"))
+
+      then:
+        PriorityLevel.valueOf("MEDIUM") == PriorityLevel.MEDIUM
+        verify: lemmaAbsenceConfig.getAbsoluteThreshold(CefrLevel.B2) x atLeastOnce()
+    - |
+      test: "shouldEstimateLOWEffortFor1AbsentLemma"
+
+      given:
+        lemmas = buildAbsentLemmaSet(1)
+        course = AuditableCourse(Collections.emptyList())
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx("B1"))
+
+      then:
+        EffortLevel.valueOf("LOW") == EffortLevel.LOW
+        verify: lemmaAbsenceConfig.getLowReportLimit() x atLeastOnce()
+    - |
+      test: "shouldEstimateLOWEffortFor5AbsentLemmas"
+
+      given:
+        lemmas = buildAbsentLemmaSet(5)
+        course = AuditableCourse(Collections.emptyList())
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx("B1"))
+
+      then:
+        EffortLevel.valueOf("LOW") == EffortLevel.LOW
+        verify: lemmaAbsenceConfig.getLowReportLimit() x atLeastOnce()
+    - |
+      test: "shouldEstimateMEDIUMEffortFor6AbsentLemmas"
+
+      given:
+        lemmas = buildAbsentLemmaSet(6)
+        course = AuditableCourse(Collections.emptyList())
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx("B1"))
+
+      then:
+        EffortLevel.valueOf("MEDIUM") == EffortLevel.MEDIUM
+        verify: lemmaAbsenceConfig.getMediumReportLimit() x atLeastOnce()
+    - |
+      test: "shouldEstimateMEDIUMEffortFor15AbsentLemmas"
+
+      given:
+        lemmas = buildAbsentLemmaSet(15)
+        course = AuditableCourse(Collections.emptyList())
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx("B1"))
+
+      then:
+        EffortLevel.valueOf("MEDIUM") == EffortLevel.MEDIUM
+        verify: lemmaAbsenceConfig.getMediumReportLimit() x atLeastOnce()
+    - |
+      test: "shouldEstimateHIGHEffortFor16AbsentLemmas"
+
+      given:
+        lemmas = buildAbsentLemmaSet(16)
+        course = AuditableCourse(Collections.emptyList())
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx("B1"))
+
+      then:
+        EffortLevel.valueOf("HIGH") == EffortLevel.HIGH
+        verify: lemmaAbsenceConfig.getHighReportLimit() x atLeastOnce()
+    - |
+      test: "shouldEstimateHIGHEffortFor20AbsentLemmas"
+
+      given:
+        lemmas = buildAbsentLemmaSet(20)
+        course = AuditableCourse(Collections.emptyList())
+
+      when:
+        doesNotThrow: sut.onCourseComplete(course, ctx("B1"))
+
+      then:
+        EffortLevel.valueOf("HIGH") == EffortLevel.HIGH
+        verify: lemmaAbsenceConfig.getHighReportLimit() x atLeastOnce()
+    - |
+      test: "shouldCompleteWithoutErrorWhenOnTopicIsCalled"
+
+      given:
+        topic = AuditableTopic(List.of(), "t1", "label", "code")
+
+      when:
+        doesNotThrow: sut.onTopic(topic, ctx("A1"))
+    - |
+      test: "shouldCompleteWithoutErrorWhenOnKnowledgeIsCalled"
+
+      given:
+        knowledge = AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code")
+
+      when:
+        doesNotThrow: sut.onKnowledge(knowledge, ctx("A1"))
 - module: course-domain
   status: EXISTS
   models:
@@ -2819,7 +5063,9 @@ elements:
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/AuditRunner.java
     methods:
-    - signature: "runAudit(Path coursePath): AuditReport"
+    - signature: "runAudit(Path coursePath,Set<String> analyzerNames): AuditReport"
+      status: EXISTS
+    - signature: "runDetailedAudit(Path coursePath,String analyzerName): List<ScoredItem>"
       status: EXISTS
   - name: CourseMapper
     status: EXISTS
@@ -3802,14 +6048,6 @@ elements:
     methods:
     - signature: "format(ReportViewModel viewModel,DrillDownScope scope): String"
       status: EXISTS
-  - name: AuditCli
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AuditCli.java
-    methods:
-    - signature: "run(String[] args): int"
-      status: EXISTS
-    - signature: "call(): Integer"
-      status: EXISTS
   - name: FormatterRegistry
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/FormatterRegistry.java
@@ -3851,6 +6089,13 @@ elements:
       status: EXISTS
     - signature: "getAnalyzerScores(): Map<String,Double>"
       status: EXISTS
+  - name: DetailedFormatter
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DetailedFormatter.java
+    methods:
+    - signature: "format(String analyzerName,List<ScoredItem> items,String outputFormat):\
+        \ String"
+      status: EXISTS
   implementations:
   - name: TextReportFormatter
     status: EXISTS
@@ -3858,164 +6103,6 @@ elements:
   - name: JsonReportFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/JsonReportFormatter.java
-  - name: DefaultAuditCli
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultAuditCli.java
-    tests:
-    - name: "Given valid args with course path, when run is called, then returns exit\
-        \ code 0"
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
-    - name: "Given no args provided, when run is called, then returns non-zero exit\
-        \ code"
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
-    - name: "Given auditRunner throws RuntimeException, when run is called, then returns\
-        \ non-zero exit code"
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
-    - name: "Given valid args with --format json, when run is called, then json formatter\
-        \ is looked up and returns 0"
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
-    - name: "Given valid args without --format, when run is called, then text formatter\
-        \ is used by default and returns 0"
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
-    - name: "Given valid args, when run is called, then auditRunner runAudit is invoked\
-        \ with course path"
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
-    - name: "Given an unsupported format value, when run is called, then returns non-zero\
-        \ exit code"
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
-    - name: "Given valid args and low audit scores, when run is called, then returns\
-        \ 0 regardless of score values"
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/DefaultAuditCliSentinelTest.java
-    testCleanViews:
-    - |
-      test: "Given valid args with course path, when run is called, then returns exit code 0"
-      trace: F-CLI
-
-      given:
-        emptyScores = NodeScores(Map.of())
-        report = AuditReport(0.85, emptyScores, List.of())
-        formatter = Mockito.mock(ReportFormatter.class)
-        result = sut.run("/path/to/course")
-
-      mock:
-        auditRunner.runAudit(any()) -> report
-        formatterRegistry.getFormatter(eq("text")) -> formatter
-
-      then:
-        result == 0
-    - |
-      test: "Given no args provided, when run is called, then returns non-zero exit code"
-      trace: F-CLI
-
-      given:
-        result = sut.run()
-
-      then:
-        result == 1
-    - |
-      test: "Given auditRunner throws RuntimeException, when run is called, then returns non-zero exit code"
-      trace: F-CLI
-
-      given:
-        formatter = Mockito.mock(ReportFormatter.class)
-        result = sut.run("/path/to/course")
-
-      mock:
-        auditRunner.runAudit(any()) -> throws RuntimeException("Failed to load course")
-        formatterRegistry.getFormatter(eq("text")) -> formatter
-
-      then:
-        result == 1
-    - |
-      test: "Given valid args with --format json, when run is called, then json formatter is looked up and returns 0"
-      trace: F-CLI
-
-      given:
-        emptyScores = NodeScores(Map.of())
-        report = AuditReport(0.75, emptyScores, List.of())
-        jsonFormatter = Mockito.mock(ReportFormatter.class)
-        result = sut.run("/path/to/course", "--format", "json")
-
-      mock:
-        auditRunner.runAudit(any()) -> report
-        formatterRegistry.getFormatter(eq("json")) -> jsonFormatter
-
-      then:
-        result == 0
-        verify: formatterRegistry.getFormatter(any())
-    - |
-      test: "Given valid args without --format, when run is called, then text formatter is used by default and returns 0"
-      trace: F-CLI
-
-      given:
-        emptyScores = NodeScores(Map.of())
-        report = AuditReport(0.9, emptyScores, List.of())
-        textFormatter = Mockito.mock(ReportFormatter.class)
-        result = sut.run("/path/to/course")
-
-      mock:
-        auditRunner.runAudit(any()) -> report
-        formatterRegistry.getFormatter(eq("text")) -> textFormatter
-
-      then:
-        result == 0
-        verify: formatterRegistry.getFormatter(any())
-    - |
-      test: "Given valid args, when run is called, then auditRunner runAudit is invoked with course path"
-      trace: F-CLI
-
-      given:
-        emptyScores = NodeScores(Map.of())
-        report = AuditReport(0.5, emptyScores, List.of())
-        formatter = Mockito.mock(ReportFormatter.class)
-        result = sut.run("/path/to/course")
-
-      mock:
-        auditRunner.runAudit(any()) -> report
-        formatterRegistry.getFormatter(eq("text")) -> formatter
-
-      then:
-        result == 0
-        verify: auditRunner.runAudit(any())
-    - |
-      test: "Given an unsupported format value, when run is called, then returns non-zero exit code"
-      trace: F-CLI
-
-      given:
-        emptyScores = NodeScores(Map.of())
-        report = AuditReport(0.7, emptyScores, List.of())
-        result = sut.run("/path/to/course", "--format", "xml")
-
-      mock:
-        auditRunner.runAudit(any()) -> report
-        formatterRegistry.getFormatter(eq("xml")) -> null
-
-      then:
-        result == 1
-    - |
-      test: "Given valid args and low audit scores, when run is called, then returns 0 regardless of score values"
-      trace: F-CLI
-
-      given:
-        emptyScores = NodeScores(Map.of())
-        lowScoreReport = AuditReport(0.1, emptyScores, List.of())
-        formatter = Mockito.mock(ReportFormatter.class)
-        result = sut.run("/path/to/course")
-
-      mock:
-        auditRunner.runAudit(any()) -> lowScoreReport
-        formatterRegistry.getFormatter(eq("text")) -> formatter
-
-      then:
-        result == 0
   - name: DefaultFormatterRegistry
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultFormatterRegistry.java
@@ -4034,6 +6121,27 @@ elements:
   - name: DefaultAnalyzerStatsTransformer
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultAnalyzerStatsTransformer.java
+  - name: ContentAuditCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ContentAuditCmd.java
+  - name: AnalyzeCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzeCmd.java
+  - name: AnalyzerCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerCmd.java
+  - name: AnalyzerListCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerListCmd.java
+  - name: AnalyzerConfigCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerConfigCmd.java
+  - name: AnalyzerStatsCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerStatsCmd.java
+  - name: LemmaAbsenceDetailedFormatter
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/LemmaAbsenceDetailedFormatter.java
 - module: nlp-infrastructure
   status: EXISTS
   models:
@@ -4054,13 +6162,33 @@ elements:
     methods:
     - signature: "create(NlpTokenizerConfig config): NlpTokenizer"
       status: EXISTS
+  implementations:
+  - name: SpacyNlpTokenizerFactory
+    status: EXISTS
+    filePath: nlp-infrastructure/src/main/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizerFactory.java
+  - name: SpacyNlpTokenizer
+    status: EXISTS
+    filePath: nlp-infrastructure/src/main/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyNlpTokenizer.java
+  - name: SpacyProcessRunner
+    status: EXISTS
+    filePath: nlp-infrastructure/src/main/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyProcessRunner.java
+  - name: SpacyResultParser
+    status: EXISTS
+    filePath: nlp-infrastructure/src/main/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyResultParser.java
+  - name: CachedNlpTokenizer
+    status: EXISTS
+    filePath: nlp-infrastructure/src/main/java/com/learney/contentaudit/nlpinfrastructure/spacy/CachedNlpTokenizer.java
 - module: vocabulary-infrastructure
   status: EXISTS
+  implementations:
+  - name: FileSystemEvpCatalog
+    status: EXISTS
+    filePath: vocabulary-infrastructure/src/main/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalog.java
 testSummary:
-  total: 142
-  passing: 86
+  total: 246
+  passing: 94
   failing: 0
-  notImplemented: 56
+  notImplemented: 152
 patterns:
 - id: declared-1
   pattern: Strategy
@@ -4703,18 +6831,6 @@ patterns:
   category: architectural
   source: detected
   severity: info
-  description: AuditCli is a port
-  involvedElements:
-  - type: interface
-    moduleName: audit-cli
-    elementName: AuditCli
-    nodeId: interface-audit-cli-AuditCli
-  confidence: 0.9
-- id: stereo-53
-  pattern: Port
-  category: architectural
-  source: detected
-  severity: info
   description: FormatterRegistry is a port
   involvedElements:
   - type: interface
@@ -4722,7 +6838,7 @@ patterns:
     elementName: FormatterRegistry
     nodeId: interface-audit-cli-FormatterRegistry
   confidence: 0.9
-- id: stereo-54
+- id: stereo-53
   pattern: Port
   category: architectural
   source: detected
@@ -4734,7 +6850,7 @@ patterns:
     elementName: ReportViewModelTransformer
     nodeId: interface-audit-cli-ReportViewModelTransformer
   confidence: 0.9
-- id: stereo-55
+- id: stereo-54
   pattern: Port
   category: architectural
   source: detected
@@ -4746,7 +6862,7 @@ patterns:
     elementName: RawReportFormatter
     nodeId: interface-audit-cli-RawReportFormatter
   confidence: 0.9
-- id: stereo-56
+- id: stereo-55
   pattern: Port
   category: architectural
   source: detected
@@ -4758,7 +6874,7 @@ patterns:
     elementName: DrillDownResolver
     nodeId: interface-audit-cli-DrillDownResolver
   confidence: 0.9
-- id: stereo-57
+- id: stereo-56
   pattern: Port
   category: architectural
   source: detected
@@ -4770,7 +6886,7 @@ patterns:
     elementName: AnalyzerStatsTransformer
     nodeId: interface-audit-cli-AnalyzerStatsTransformer
   confidence: 0.9
-- id: stereo-58
+- id: stereo-57
   pattern: Port
   category: architectural
   source: detected
@@ -4782,7 +6898,7 @@ patterns:
     elementName: ScoreRow
     nodeId: interface-audit-cli-ScoreRow
   confidence: 0.9
-- id: stereo-59
+- id: stereo-58
   pattern: Value Object
   category: architectural
   source: detected
@@ -4794,7 +6910,7 @@ patterns:
     elementName: ReportViewModel
     nodeId: model-audit-cli-ReportViewModel
   confidence: 0.75
-- id: stereo-60
+- id: stereo-59
   pattern: Value Object
   category: architectural
   source: detected
@@ -4806,7 +6922,7 @@ patterns:
     elementName: MilestoneScoreRow
     nodeId: model-audit-cli-MilestoneScoreRow
   confidence: 0.75
-- id: stereo-61
+- id: stereo-60
   pattern: Value Object
   category: architectural
   source: detected
@@ -4818,7 +6934,7 @@ patterns:
     elementName: QuizScoreRow
     nodeId: model-audit-cli-QuizScoreRow
   confidence: 0.75
-- id: stereo-62
+- id: stereo-61
   pattern: Value Object
   category: architectural
   source: detected
@@ -4830,7 +6946,7 @@ patterns:
     elementName: KnowledgeScoreRow
     nodeId: model-audit-cli-KnowledgeScoreRow
   confidence: 0.75
-- id: stereo-63
+- id: stereo-62
   pattern: Value Object
   category: architectural
   source: detected
@@ -4842,7 +6958,7 @@ patterns:
     elementName: TopicScoreRow
     nodeId: model-audit-cli-TopicScoreRow
   confidence: 0.75
-- id: stereo-64
+- id: stereo-63
   pattern: Value Object
   category: architectural
   source: detected
@@ -4854,7 +6970,7 @@ patterns:
     elementName: DrillDownScope
     nodeId: model-audit-cli-DrillDownScope
   confidence: 0.75
-- id: stereo-65
+- id: stereo-64
   pattern: Enum
   category: architectural
   source: detected
@@ -4866,7 +6982,7 @@ patterns:
     elementName: DrillDownLevel
     nodeId: model-audit-cli-DrillDownLevel
   confidence: 0.95
-- id: stereo-66
+- id: stereo-65
   pattern: Value Object
   category: architectural
   source: detected
@@ -4878,7 +6994,7 @@ patterns:
     elementName: DrillDownView
     nodeId: model-audit-cli-DrillDownView
   confidence: 0.75
-- id: stereo-67
+- id: stereo-66
   pattern: Entity
   category: architectural
   source: detected
@@ -4890,7 +7006,7 @@ patterns:
     elementName: ChildScoreRow
     nodeId: model-audit-cli-ChildScoreRow
   confidence: 0.8
-- id: stereo-68
+- id: stereo-67
   pattern: Value Object
   category: architectural
   source: detected
@@ -4902,7 +7018,7 @@ patterns:
     elementName: AnalyzerStatsView
     nodeId: model-audit-cli-AnalyzerStatsView
   confidence: 0.75
-- id: stereo-69
+- id: stereo-68
   pattern: Value Object
   category: architectural
   source: detected
@@ -4914,7 +7030,7 @@ patterns:
     elementName: ScoredItemRow
     nodeId: model-audit-cli-ScoredItemRow
   confidence: 0.75
-- id: stereo-71
+- id: stereo-70
   pattern: Value Object
   category: architectural
   source: detected
@@ -4926,43 +7042,7 @@ patterns:
     elementName: NlpTokenizerConfig
     nodeId: model-nlp-infrastructure-NlpTokenizerConfig
   confidence: 0.75
-- id: gof-72
-  pattern: Facade
-  category: gof
-  source: detected
-  severity: info
-  description: DefaultAuditCli aggregates 6 interfaces (facade)
-  involvedElements:
-  - type: implementation
-    moduleName: audit-cli
-    elementName: DefaultAuditCli
-    nodeId: impl-audit-cli-DefaultAuditCli
-  - type: interface
-    moduleName: audit-application
-    elementName: AuditRunner
-    nodeId: interface-audit-application-AuditRunner
-  - type: interface
-    moduleName: audit-cli
-    elementName: FormatterRegistry
-    nodeId: interface-audit-cli-FormatterRegistry
-  - type: interface
-    moduleName: audit-cli
-    elementName: ReportViewModelTransformer
-    nodeId: interface-audit-cli-ReportViewModelTransformer
-  - type: interface
-    moduleName: audit-cli
-    elementName: RawReportFormatter
-    nodeId: interface-audit-cli-RawReportFormatter
-  - type: interface
-    moduleName: audit-application
-    elementName: AnalyzerRegistry
-    nodeId: interface-audit-application-AnalyzerRegistry
-  - type: interface
-    moduleName: audit-cli
-    elementName: AnalyzerStatsTransformer
-    nodeId: interface-audit-cli-AnalyzerStatsTransformer
-  confidence: 0.6
-- id: anti-73
+- id: anti-71
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -4974,7 +7054,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-74
+- id: anti-72
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -4986,7 +7066,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: anti-75
+- id: anti-73
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -4998,7 +7078,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: anti-76
+- id: anti-74
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -5010,7 +7090,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: anti-77
+- id: anti-75
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -5022,7 +7102,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: anti-78
+- id: anti-76
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -5034,7 +7114,7 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: anti-79
+- id: anti-77
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -5046,7 +7126,7 @@ patterns:
     elementName: audit-domain
     nodeId: module-audit-domain
   confidence: 0.85
-- id: anti-80
+- id: anti-78
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -5058,7 +7138,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.8
-- id: anti-81
+- id: anti-79
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -5070,7 +7150,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.8
-- id: anti-82
+- id: anti-80
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -5082,7 +7162,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-83
+- id: anti-81
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -5094,7 +7174,7 @@ patterns:
     elementName: course-domain
     nodeId: module-course-domain
   confidence: 0.85
-- id: anti-84
+- id: anti-82
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -5106,7 +7186,7 @@ patterns:
     elementName: audit-application
     nodeId: module-audit-application
   confidence: 0.85
-- id: anti-85
+- id: anti-83
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -5118,19 +7198,19 @@ patterns:
     elementName: ScoreRow
     nodeId: interface-audit-cli-ScoreRow
   confidence: 0.9
-- id: anti-86
+- id: anti-84
   pattern: God Module
   category: anti-pattern
   source: detected
   severity: warning
-  description: "audit-cli is too large: 11 models, 8 interfaces, 9 implementations"
+  description: "audit-cli is too large: 11 models, 8 interfaces, 15 implementations"
   involvedElements:
   - type: module
     moduleName: audit-cli
     elementName: audit-cli
     nodeId: module-audit-cli
   confidence: 0.85
-- id: anti-87
+- id: anti-85
   pattern: Orphan Interface
   category: anti-pattern
   source: detected

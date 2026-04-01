@@ -1,0 +1,416 @@
+---
+features:
+- id: "FEAT-LCOUNT"
+  name: "Analisis de Conteo de Apariciones de Lemas EVP"
+  description: "Evaluar si cada lema esperado del catalogo EVP (English Vocabulary\
+    \ Profile) aparece un numero adecuado de veces a lo largo del curso, clasificando\
+    \ cada lema segun su nivel de exposicion (ausente, sub-expuesto, normal, sobre-expuesto)\
+    \ y generando puntuaciones que reflejan la adecuacion de la frecuencia de aparicion.\
+    \ Las puntuaciones individuales por lema se agregan a traves de la jerarquia del\
+    \ curso mediante el motor de agregacion generico de la plataforma ContentAudit,\
+    \ permitiendo localizar donde se concentran los problemas de exposicion de vocabulario."
+  code: "F-LCOUNT"
+  rules:
+  - id: "F-LCOUNT-R001"
+    name: "Conteo de apariciones por lema esperado"
+    severity: "critical"
+    description: "Para cada nivel CEFR, el analizador obtiene la lista de lemas esperados\
+      \ del catalogo EVP y cuenta cuantas veces aparece cada uno de esos lemas en\
+      \ el conjunto completo de oraciones del curso. El conteo se realiza sobre la\
+      \ forma lematizada de los tokens (forma base), no sobre la forma flexionada\
+      \ que aparece en la oracion. Dos tokens diferentes que se lematizan a la misma\
+      \ forma base se cuentan como apariciones del mismo lema. Por ejemplo, \"running\"\
+      , \"ran\" y \"runs\" se lematizan a \"run\", y cada una cuenta como una aparicion\
+      \ de \"run\". La identificacion de un lema se basa en la combinacion de su forma\
+      \ lematizada y su parte de la oracion. Es decir, \"run\" como verbo y \"run\"\
+      \ como sustantivo se consideran lemas distintos. Si el EVP espera \"run\" como\
+      \ verbo en A1, solo se cuentan las apariciones de \"run\" que fueron etiquetadas\
+      \ como verbo por el procesamiento linguistico."
+    errorMessage: "Error al contar apariciones del lema {lema} ({parteOracion}) en\
+      \ el nivel {nivel}: {detalle}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LCOUNT-R002"
+    name: "El conteo abarca todo el curso, no solo el nivel del lema"
+    severity: "critical"
+    description: "El conteo de apariciones de un lema esperado se realiza sobre **todas\
+      \ las oraciones del curso completo**, no solo sobre las oraciones del nivel\
+      \ CEFR donde el EVP lo clasifica. Si el EVP indica que \"cat\" es un lema de\
+      \ nivel A1, se cuentan todas las apariciones de \"cat\" en A1, A2, B1 y B2.\
+      \ Esto responde a que el aprendizaje de vocabulario es acumulativo: un estudiante\
+      \ que aprendio \"cat\" en A1 seguira encontrandolo en niveles posteriores, y\
+      \ esas apariciones refuerzan el aprendizaje. Contar solo las apariciones dentro\
+      \ del nivel asignado subestimaria la exposicion real del estudiante al lema."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LCOUNT-R003"
+    name: "Clasificacion de lemas por nivel de exposicion"
+    severity: "critical"
+    description: "Una vez contadas las apariciones de cada lema esperado, se clasifica\
+      \ en uno de cuatro estados de exposicion segun la cantidad de apariciones y\
+      \ los umbrales configurados: | Estado | Condicion | Significado pedagogico |\
+      \ |--------|-----------|----------------------| | Ausente | apariciones == 0\
+      \ | El lema no aparece en ningun lugar del curso; el estudiante no tiene exposicion\
+      \ alguna | | Sub-expuesto | 0 < apariciones < umbralMinimo | El lema aparece\
+      \ pero no las veces suficientes para que el estudiante lo retenga | | Normal\
+      \ | umbralMinimo <= apariciones <= umbralMaximo | El lema aparece un numero\
+      \ adecuado de veces para el aprendizaje | | Sobre-expuesto | apariciones > umbralMaximo\
+      \ | El lema aparece demasiadas veces, lo que puede saturar el material sin beneficio\
+      \ pedagogico adicional | Los umbrales por defecto son: - **umbralMinimo (subExposed)**:\
+      \ 4 apariciones - **umbralMaximo (overExposed)**: 15 apariciones Un lema ausente\
+      \ es el caso mas critico porque indica una laguna total de exposicion. Un lema\
+      \ sub-expuesto indica exposicion insuficiente. Un lema normal tiene exposicion\
+      \ adecuada. Un lema sobre-expuesto no es necesariamente un problema grave, pero\
+      \ indica que el espacio del curso podria aprovecharse mejor con otras palabras."
+    errorMessage: "Estado de exposicion indeterminado para el lema {lema} ({parteOracion}):\
+      \ apariciones = {count}, umbrales = [{min}, {max}]"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LCOUNT-R004"
+    name: "Los lemas esperados se obtienen del catalogo EVP"
+    severity: "critical"
+    description: "La lista de lemas esperados por nivel se obtiene del catalogo EVP\
+      \ (English Vocabulary Profile). Solo los lemas listados en el EVP para cada\
+      \ nivel participan en el analisis; las demas palabras que aparecen en el curso\
+      \ no se evaluan. El catalogo proporciona para cada lema su forma base, la parte\
+      \ de la oracion y el nivel CEFR asignado. Se excluyen del analisis las entradas\
+      \ del EVP que son frases (expresiones de multiples palabras), ya que el conteo\
+      \ opera a nivel de tokens individuales. Solo se consideran lemas de una sola\
+      \ palabra."
+    errorMessage: "No se encontraron lemas esperados en el catalogo EVP para el nivel\
+      \ {nivel}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LCOUNT-R005"
+    name: "Los datos de lematizacion provienen de procesamiento linguistico previo"
+    severity: "critical"
+    description: "La forma lematizada de cada token y su parte de la oracion provienen\
+      \ de un procesamiento linguistico previo. El analizador utiliza los lemas ya\
+      \ asociados a cada token; no realiza lematizacion propia. Esto es fundamental\
+      \ porque la lematizacion es un proceso que depende del contexto de la oracion\
+      \ (por ejemplo, \"saw\" puede lematizarse a \"see\" o a \"saw\" segun el contexto)\
+      \ y debe realizarse de manera consistente con el resto de los analizadores del\
+      \ sistema."
+    errorMessage: "Token sin datos de lematizacion en el quiz {quizId}: el procesamiento\
+      \ linguistico previo no asocio lema"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LCOUNT-R006"
+    name: "Puntuacion individual por lema"
+    severity: "critical"
+    description: "Cada lema esperado del EVP recibe una puntuacion entre 0.0 y 1.0\
+      \ que refleja la adecuacion de su frecuencia de aparicion. La puntuacion se\
+      \ calcula segun el estado de exposicion del lema: | Estado | Formula de puntuacion\
+      \ | Ejemplo | |--------|----------------------|---------| | Ausente | 0.0 |\
+      \ Un lema que no aparece nunca recibe la peor puntuacion | | Sub-expuesto |\
+      \ apariciones / umbralMinimo | Con umbralMinimo=4: 1 aparicion = 0.25, 2 apariciones\
+      \ = 0.50, 3 apariciones = 0.75 | | Normal | 1.0 | Cualquier lema dentro del\
+      \ rango adecuado recibe la puntuacion perfecta | | Sobre-expuesto | max(0.0,\
+      \ 1.0 - (apariciones - umbralMaximo) / 50) | Con umbralMaximo=15: 25 apariciones\
+      \ = 0.80, 40 apariciones = 0.50, 65 apariciones = 0.0 | La puntuacion de lemas\
+      \ sub-expuestos crece linealmente desde 0.0 hasta casi 1.0 a medida que se acercan\
+      \ al umbral minimo. La puntuacion de lemas sobre-expuestos decrece linealmente\
+      \ desde 1.0 hacia 0.0 con un factor de degradacion de 1/50 por cada aparicion\
+      \ adicional mas alla del umbral maximo."
+    errorMessage: "Puntuacion fuera de rango [0.0, 1.0] calculada para el lema {lema}\
+      \ ({parteOracion}): {puntuacion}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LCOUNT-R007"
+    name: "Puntuacion por oracion (quiz)"
+    severity: "critical"
+    description: "Cada oracion (quiz) del curso recibe una puntuacion entre 0.0 y\
+      \ 1.0 que refleja la adecuacion de los lemas esperados que contiene. La puntuacion\
+      \ se calcula como el **promedio de las puntuaciones individuales** (R006) de\
+      \ los lemas esperados del EVP que aparecen en esa oracion. Solo participan en\
+      \ el promedio los lemas que: 1. Aparecen en la oracion (estan presentes como\
+      \ tokens lematizados) 2. Son lemas esperados del EVP (estan listados en el catalogo\
+      \ para algun nivel) Si una oracion no contiene ninguno de los lemas esperados\
+      \ del EVP, no recibe puntuacion de este analizador y no participa en la agregacion\
+      \ posterior. Ejemplo: una oracion contiene los lemas \"cat\" (score 1.0, normal),\
+      \ \"run\" (score 0.50, sub-expuesto) y \"the\" (no es lema EVP, se ignora).\
+      \ La puntuacion de la oracion es (1.0 + 0.50) / 2 = 0.75."
+    errorMessage: "Error al calcular la puntuacion de la oracion del quiz {quizId}\
+      \ en el knowledge {knowledgeId}: {detalle}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LCOUNT-R008"
+    name: "Puntuacion general del analisis (overall score)"
+    severity: "critical"
+    description: "La puntuacion general del analisis de conteo de lemas es el **promedio\
+      \ de las puntuaciones individuales de todos los lemas esperados** del EVP para\
+      \ los niveles evaluados. Todos los lemas participan en este promedio, incluyendo\
+      \ los ausentes (que aportan puntuacion 0.0). Esta puntuacion general refleja\
+      \ la cobertura y adecuacion de la exposicion al vocabulario objetivo en el curso\
+      \ completo. Un curso donde la mayoria de los lemas del EVP aparecen un numero\
+      \ adecuado de veces tendra una puntuacion cercana a 1.0; un curso donde muchos\
+      \ lemas estan ausentes o sub-expuestos tendra una puntuacion baja. Ejemplo:\
+      \ si el EVP define 784 lemas para A1, y de esos 600 tienen puntuacion 1.0 (normal),\
+      \ 100 tienen puntuacion 0.5 (sub-expuestos), 50 tienen puntuacion 0.0 (ausentes)\
+      \ y 34 tienen puntuacion 0.8 (sobre-expuestos), la puntuacion general seria:\
+      \ (600 * 1.0 + 100 * 0.5 + 50 * 0.0 + 34 * 0.8) / 784 = (600 + 50 + 0 + 27.2)\
+      \ / 784 = 0.863."
+    errorMessage: "Error al calcular la puntuacion general: {detalle}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LCOUNT-R009"
+    name: "Exclusion de quizzes que no son oraciones"
+    severity: "critical"
+    description: "Los quizzes marcados como \"no oracion\" (etiquetas, listas de vocabulario,\
+      \ instrucciones u otro contenido no evaluable) deben excluirse del analisis.\
+      \ El analizador no cuenta los tokens de estos quizzes ni les asigna puntuacion.\
+      \ Este comportamiento es coherente con otros analizadores del sistema que operan\
+      \ sobre oraciones. Sin embargo, si un lema esperado del EVP aparece exclusivamente\
+      \ en quizzes no-oracion, esas apariciones **no se contabilizan**. El lema se\
+      \ considera ausente o sub-expuesto segun sus apariciones en oraciones validas\
+      \ unicamente."
+    errorMessage: "Se incluyo un quiz no-oracion en el conteo de lemas del knowledge\
+      \ {knowledgeId}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LCOUNT-R010"
+    name: "Resultado detallado por lema"
+    severity: "major"
+    description: "El resultado del analisis debe incluir, para cada lema esperado\
+      \ evaluado, la siguiente informacion: - **Lema**: la forma base de la palabra\
+      \ - **Parte de la oracion**: sustantivo, verbo, adjetivo, etc. - **Nivel CEFR\
+      \ asignado**: el nivel donde el EVP clasifica el lema - **Cantidad de apariciones**:\
+      \ cuantas veces se encontro el lema en el curso - **Estado de exposicion**:\
+      \ ausente, sub-expuesto, normal o sobre-expuesto - **Puntuacion individual**:\
+      \ la puntuacion calculada segun R006 Este detalle permite al creador de contenido\
+      \ identificar exactamente que lemas necesitan atencion: cuales estan ausentes,\
+      \ cuales necesitan mas apariciones, y cuales aparecen demasiado."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LCOUNT-R011"
+    name: "Agregacion a traves de la jerarquia (provista por la plataforma)"
+    severity: "critical"
+    description: "Las puntuaciones por quiz (R007) se agregan a traves de la jerarquia\
+      \ del curso por el motor de agregacion generico de ContentAudit, de la misma\
+      \ forma que en otros analizadores: - **Knowledge**: promedio de las puntuaciones\
+      \ de sus quizzes con puntuacion - **Topic**: promedio de las puntuaciones de\
+      \ sus knowledges con puntuacion - **Nivel (Milestone)**: promedio de las puntuaciones\
+      \ de sus topics con puntuacion - **Curso**: promedio de las puntuaciones de\
+      \ sus niveles con puntuacion Los quizzes sin puntuacion (excluidos por R009\
+      \ o que no contienen lemas EVP) no participan en el promedio. Un knowledge cuyos\
+      \ quizzes no tienen puntuacion queda sin puntuacion y no participa en la agregacion\
+      \ del topic padre. Esto permite al usuario navegar la jerarquia y localizar\
+      \ donde se concentran los problemas: en un nivel especifico, en un topic particular,\
+      \ o en knowledges individuales."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LCOUNT-R012"
+    name: "Nombre del analizador en el informe"
+    severity: "major"
+    description: "El analizador se identifica con el nombre **\"lemma-count\"** en\
+      \ el informe de auditoria. Este nombre aparece en las puntuaciones por nodo\
+      \ de la jerarquia y permite al usuario distinguir los resultados de este analisis\
+      \ de los de otros analizadores (como \"lemma-recurrence\" o \"sentence-length\"\
+      )."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-LCOUNT-R013"
+    name: "Los umbrales de exposicion no son configurables en esta version"
+    severity: "minor"
+    description: "Los umbrales de exposicion (umbralMinimo = 4, umbralMaximo = 15)\
+      \ y el factor de degradacion por sobre-exposicion (1/50) estan fijos y no son\
+      \ configurables por el usuario en esta primera version. Provienen de la implementacion\
+      \ de referencia. [ASSUMPTION] Se asume que los umbrales de la referencia son\
+      \ adecuados como punto de partida. Sin embargo, la seccion de Open Questions\
+      \ documenta preocupaciones sobre la adecuacion del umbral de sobre-exposicion\
+      \ (15) para lemas basicos de alta frecuencia. Si se determina que los umbrales\
+      \ necesitan ajuste, deberia considerarse hacerlos configurables por nivel CEFR.\
+      \ Se mantienen fijos por simplicidad, alineado con el alcance de esta primera\
+      \ version."
+    errorMessage: null
+    validation: "ASSUMPTION"
+    code: null
+    rationale: null
+  journeys:
+  - id: "F-LCOUNT-J001"
+    name: "Auditar el conteo de apariciones de lemas EVP de un curso completo"
+    steps:
+    - "El usuario inicia una auditoria de un curso previamente cargado en el sistema"
+    - "El sistema recorre todas las oraciones del curso, identificando en cada una\
+      \ los tokens lematizados"
+    - "Para cada nivel CEFR, el analizador obtiene los lemas esperados del catalogo\
+      \ EVP"
+    - "El analizador cuenta cuantas veces aparece cada lema esperado en el conjunto\
+      \ completo de oraciones del curso"
+    - "El analizador clasifica cada lema segun su nivel de exposicion (ausente, sub-expuesto,\
+      \ normal, sobre-expuesto) y le asigna una puntuacion individual"
+    - "El analizador calcula la puntuacion de cada oracion como el promedio de las\
+      \ puntuaciones de los lemas esperados que contiene"
+    - "La plataforma agrega las puntuaciones de oraciones hacia arriba a traves de\
+      \ la jerarquia: para cada knowledge calcula el promedio de sus quizzes, para\
+      \ cada topic el promedio de sus knowledges, para cada nivel el promedio de sus\
+      \ topics, y para el curso el promedio de sus niveles"
+    - "El usuario recibe un informe con la puntuacion general, las puntuaciones por\
+      \ nivel de la jerarquia, y el detalle de la clasificacion de cada lema"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+    flow: []
+  - id: "F-LCOUNT-J002"
+    name: "Identificar lemas con exposicion insuficiente"
+    steps:
+    - "El usuario ha ejecutado la auditoria de conteo de lemas (J001)"
+    - "El usuario observa que la puntuacion general del analizador \"lemma-count\"\
+      \ es baja (por ejemplo, 0.65)"
+    - "El usuario consulta el detalle de lemas por nivel y filtra por estado \"ausente\"\
+      \ y \"sub-expuesto\""
+    - "El usuario identifica los lemas que requieren mas apariciones en el curso,\
+      \ priorizando los ausentes (puntuacion 0.0) sobre los sub-expuestos"
+    - "El usuario puede tomar acciones correctivas: agregar oraciones que incluyan\
+      \ los lemas faltantes o sub-expuestos, o modificar oraciones existentes para\
+      \ incorporarlos"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+    flow: []
+  - id: "F-LCOUNT-J003"
+    name: "Localizar problemas de exposicion en la jerarquia del curso"
+    steps:
+    - "El usuario ha ejecutado la auditoria de conteo de lemas (J001)"
+    - "El usuario observa que un nivel (por ejemplo, B1) tiene una puntuacion baja\
+      \ en el analizador \"lemma-count\""
+    - "El usuario profundiza en los topics del nivel B1 y encuentra que el topic \"\
+      Travel Vocabulary\" tiene la puntuacion mas baja"
+    - "El usuario profundiza en los knowledges de \"Travel Vocabulary\" y revisa las\
+      \ puntuaciones por quiz"
+    - "El usuario identifica que varias oraciones contienen unicamente lemas sobre-expuestos\
+      \ (que aportan puntuaciones inferiores a 1.0) y ningun lema sub-expuesto o ausente\
+      \ que podria incorporarse"
+    - "El usuario reorganiza el contenido para distribuir mejor los lemas que necesitan\
+      \ mas exposicion"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+    flow: []
+  - id: "F-LCOUNT-J004"
+    name: "Comparar exposicion de vocabulario entre niveles"
+    steps:
+    - "El usuario ha ejecutado la auditoria de conteo de lemas (J001)"
+    - "El usuario consulta las puntuaciones del analizador \"lemma-count\" por nivel\
+      \ CEFR"
+    - "El usuario compara la proporcion de lemas ausentes y sub-expuestos entre niveles"
+    - "El usuario identifica si los problemas de exposicion se concentran en un nivel\
+      \ especifico (por ejemplo, B2 tiene muchos lemas ausentes porque el contenido\
+      \ de B2 es menos extenso) o se distribuyen uniformemente"
+    - "El usuario prioriza las acciones correctivas en los niveles con peor cobertura\
+      \ de vocabulario"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+    flow: []
+  - id: "F-LCOUNT-J005"
+    name: "Revisar lemas sobre-expuestos para optimizar el contenido"
+    steps:
+    - "El usuario ha ejecutado la auditoria de conteo de lemas (J001)"
+    - "El usuario filtra los lemas con estado \"sobre-expuesto\" y revisa cuales son"
+    - "El usuario encuentra que lemas como \"be\" y \"have\" (nivel A1) tienen mas\
+      \ de 100 apariciones cada uno"
+    - "El usuario evalua si estas sobre-exposiciones son realmente problematicas (verbos\
+      \ basicos que naturalmente aparecen con alta frecuencia) o si indican contenido\
+      \ repetitivo que podria mejorarse"
+    - "El usuario decide si las sobre-exposiciones de verbos basicos son aceptables\
+      \ o si necesitan revision, considerando que la penalizacion por sobre-exposicion\
+      \ puede producir falsos positivos para vocabulario de muy alta frecuencia"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+    flow: []
+  doubts:
+  - id: "DOUBT-OVER-EXPOSURE-THRESHOLD"
+    question: "El umbral de sobre-exposicion (15) es demasiado bajo para lemas basicos?"
+    options:
+    - label: "Opcion A: Mantener el umbral de 15 para todos los lemas, aceptando que\
+        \ algunos tendran puntuaciones artificialmente bajas. Es el comportamiento\
+        \ de la referencia."
+      description: null
+    - label: "Opcion B: Definir umbrales diferenciados por nivel CEFR: un umbral mas\
+        \ alto para A1 (por ejemplo, 50) y progresivamente mas bajos para niveles\
+        \ superiores, reflejando que el vocabulario basico naturalmente aparece con\
+        \ mas frecuencia."
+      description: null
+    - label: "Opcion C: Excluir del analisis de sobre-exposicion los lemas cuya frecuencia\
+        \ de uso en el idioma es extremadamente alta (por ejemplo, los top 100 del\
+        \ ranking COCA), ya que su sobre-exposicion es inevitable y no indica un problema\
+        \ de contenido."
+      description: null
+    - label: "Opcion D: Ajustar el factor de degradacion en lugar de los umbrales:\
+        \ usar un factor mas suave (por ejemplo, 1/200 en vez de 1/50) para que la\
+        \ penalizacion sea mas gradual y tolere mejor las altas frecuencias."
+      description: null
+    answer: null
+  - id: "DOUBT-DEGRADATION-FACTOR"
+    question: "El factor de degradacion de sobre-exposicion (1/50) es adecuado?"
+    options:
+    - label: "Opcion A: Mantener 1/50 como en la referencia"
+      description: null
+    - label: "Opcion B: Usar un factor mas suave (por ejemplo, 1/100 o 1/200) para\
+        \ tolerar mejor las frecuencias altas naturales"
+      description: null
+    - label: "Opcion C: Usar una funcion de degradacion no lineal (por ejemplo, logaritmica)\
+        \ que penalice menos los primeros excesos y mas los extremos"
+      description: null
+    - label: "Opcion D: Hacer el factor configurable junto con los umbrales de exposicion"
+      description: null
+    answer: null
+  - id: "DOUBT-COUNT-SCOPE"
+    question: "El conteo debe ser sobre todo el curso o solo sobre el nivel del lema?"
+    options:
+    - label: "Opcion A: Contar en todo el curso (comportamiento de la referencia,\
+        \ refleja exposicion total)"
+      description: null
+    - label: "Opcion B: Contar solo en el nivel del lema (mayor precision por nivel)"
+      description: null
+    - label: "Opcion C: Contar en todo el curso pero ponderar las apariciones fuera\
+        \ del nivel con un factor de descuento (por ejemplo, las apariciones en otros\
+        \ niveles cuentan la mitad)"
+      description: null
+    answer: null
+  - id: "DOUBT-CONFIGURABLE-THRESHOLDS"
+    question: "Los umbrales deberian ser configurables por nivel CEFR?"
+    options:
+    - label: "Opcion A: Mantener umbrales globales (simplicidad, alineado con la referencia)"
+      description: null
+    - label: "Opcion B: Definir umbrales por nivel CEFR (mayor precision, mayor complejidad\
+        \ de configuracion)"
+      description: null
+    - label: "Opcion C: Definir umbrales globales en esta primera version, pero disenar\
+        \ la configuracion para que sea extensible a umbrales por nivel en el futuro"
+      description: null
+    answer: null
+  - id: "DOUBT-ABSENT-VS-LEMMA-ABSENCE"
+    question: "Como se relaciona el estado \"ausente\" de este analizador con el analizador\
+      \ de LemmaAbsence?"
+    options:
+    - label: "Opcion A: Cada analizador opera independientemente; la superposicion\
+        \ es aceptable porque proveen perspectivas complementarias. El usuario ve\
+        \ ambos resultados y los usa para diferentes propositos."
+      description: null
+    - label: "Opcion B: LemmaCount excluye los lemas ausentes de su analisis (solo\
+        \ evalua lemas que tienen al menos 1 aparicion), delegando la deteccion de\
+        \ ausencias a LemmaAbsence."
+      description: null
+    - label: "Opcion C: Se define un orden de analisis donde LemmaAbsence se ejecuta\
+        \ primero y sus resultados informan a LemmaCount."
+      description: null
+    answer: null

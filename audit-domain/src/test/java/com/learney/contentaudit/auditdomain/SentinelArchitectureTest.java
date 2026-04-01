@@ -65,11 +65,6 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: AuditableCourse - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditdomain.AuditContext");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: AuditContext - " + e.getMessage());
-    }
-    try {
       Class.forName("com.learney.contentaudit.auditdomain.AuditableKnowledge");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AuditableKnowledge - " + e.getMessage());
@@ -105,36 +100,6 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: AuditTarget - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditdomain.ScoredItem");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: ScoredItem - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditdomain.NodeScores");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: NodeScores - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditdomain.QuizNode");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: QuizNode - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditdomain.KnowledgeNode");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: KnowledgeNode - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditdomain.TopicNode");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: TopicNode - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditdomain.MilestoneNode");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: MilestoneNode - " + e.getMessage());
-    }
-    try {
       Class.forName("com.learney.contentaudit.auditdomain.NlpToken");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: NlpToken - " + e.getMessage());
@@ -145,9 +110,9 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: AnalyzerDescriptor - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditdomain.ContentAudit");
+      Class.forName("com.learney.contentaudit.auditdomain.AuditNode");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: ContentAudit - " + e.getMessage());
+      Assertions.fail("Missing declared class: AuditNode - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditdomain.AuditEngine");
@@ -228,11 +193,6 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzer");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: KnowledgeInstructionsLengthAnalyzer - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditdomain.IContentAudit");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: IContentAudit - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer");
@@ -468,6 +428,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaByLevelAbsenceAnalyzer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.labs.LemmaAbsenceScoreAggregator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceScoreAggregator - " + e.getMessage());
     }
   }
 }

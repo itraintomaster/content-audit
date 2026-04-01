@@ -1,0 +1,9 @@
+code: __proposal__
+description: "Make RawReportFormatter non-sealed so Mockito can mock it in tests"
+modules:
+- name: audit-cli
+  interfaces:
+  - name: RawReportFormatter
+    sealed: false
+    _change: modify
+  _change: modify

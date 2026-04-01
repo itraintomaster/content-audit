@@ -105,17 +105,6 @@ CLI entry point for running content audits from the command line
 | subMetricsByLevel | `Map<String,Map<String,Double>>` |
 | itemCount | `int` |
 
-### ScoredItemRow (`record`)
-
-| Field | Type |
-|-------|------|
-| milestoneId | `String` |
-| topicId | `String` |
-| knowledgeId | `String` |
-| quizId | `String` |
-| score | `double` |
-| label | `String` |
-
 ## Interfaces
 
 ### ReportFormatter (port)
@@ -161,6 +150,12 @@ Methods:
 - `getEntity(): AuditableEntity`
 - `getOverallScore(): double`
 - `getAnalyzerScores(): Map<String,Double>`
+
+### DetailedFormatter (formatter)
+
+Methods:
+
+- `format(String analyzerName,AuditNode rootNode,String outputFormat): String`
 
 ## Implementations
 
@@ -233,6 +228,7 @@ Methods:
 - `viewModelTransformer`: `ReportViewModelTransformer`
 - `rawReportFormatter`: `RawReportFormatter`
 - `drillDownResolver`: `DrillDownResolver`
+- `detailedFormatters`: `Map<String,DetailedFormatter>`
 
 ### AnalyzerCmd
 
@@ -272,6 +268,18 @@ Methods:
 - `analyzerStatsTransformer`: `AnalyzerStatsTransformer`
 - `auditRunner`: `AuditRunner`
 
+### LemmaAbsenceDetailedFormatter
+
+**Implements:** DetailedFormatter
+
+**Types:** Component
+
+### CocaBucketsDetailedFormatter
+
+**Implements:** DetailedFormatter
+
+**Types:** Component
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
@@ -283,6 +291,7 @@ The following models and interfaces are available from dependencies. You can use
 Methods:
 
 - `runAudit(Path coursePath,Set<String> analyzerNames): AuditReport`
+- `runDetailedAudit(Path coursePath,String analyzerName): AuditNode`
 
 ### CourseMapper (port)
 
@@ -305,27 +314,13 @@ Methods:
 
 | Field | Type |
 |-------|------|
-| overallScore | `double` |
-| scores | `NodeScores` |
-| milestones | `List<MilestoneNode>` |
+| root | `AuditNode` |
 
 ### AuditableCourse (`record`)
 
 | Field | Type |
 |-------|------|
 | milestones | `List<AuditableMilestone>` |
-
-### AuditContext (`record`)
-
-| Field | Type |
-|-------|------|
-| milestoneId | `String` |
-| topicId | `String` |
-| knowledgeId | `String` |
-| quizId | `String` |
-| topicLabel | `String` |
-| knowledgeLabel | `String` |
-| quizLabel | `String` |
 
 ### AuditableKnowledge (`record`)
 
@@ -394,60 +389,6 @@ Methods:
 | MILESTONE | `null` |
 | COURSE | `null` |
 
-### ScoredItem (`record`)
-
-| Field | Type |
-|-------|------|
-| analyzerName | `String` |
-| target | `AuditTarget` |
-| score | `double` |
-| milestoneId | `String` |
-| topicId | `String` |
-| knowledgeId | `String` |
-| quizId | `String` |
-| source | `AuditableEntity` |
-
-### NodeScores (`record`)
-
-| Field | Type |
-|-------|------|
-| scores | `Map<String,Double>` |
-
-### QuizNode (`record`)
-
-| Field | Type |
-|-------|------|
-| quizId | `String` |
-| scores | `NodeScores` |
-| entity | `AuditableEntity` |
-
-### KnowledgeNode (`record`)
-
-| Field | Type |
-|-------|------|
-| knowledgeId | `String` |
-| scores | `NodeScores` |
-| quizzes | `List<QuizNode>` |
-| entity | `AuditableEntity` |
-
-### TopicNode (`record`)
-
-| Field | Type |
-|-------|------|
-| topicId | `String` |
-| scores | `NodeScores` |
-| knowledges | `List<KnowledgeNode>` |
-| entity | `AuditableEntity` |
-
-### MilestoneNode (`record`)
-
-| Field | Type |
-|-------|------|
-| milestoneId | `String` |
-| scores | `NodeScores` |
-| topics | `List<TopicNode>` |
-| entity | `AuditableEntity` |
-
 ### NlpToken (`record`)
 
 | Field | Type |
@@ -467,27 +408,32 @@ Methods:
 | description | `String` |
 | target | `AuditTarget` |
 
-### ContentAudit (service)
+### AuditNode (`record`)
 
-Methods:
-
-- `audit(AuditableCourse): AuditReport`
+| Field | Type |
+|-------|------|
+| entity | `AuditableEntity` |
+| target | `AuditTarget` |
+| parent | `AuditNode` |
+| children | `List<AuditNode>` |
+| scores | `Map<String,Double>` |
+| metadata | `Map<String,Object>` |
 
 ### AuditEngine (port)
 
 Methods:
 
-- `runAudit(AuditableCourse): AuditReport`
+- `runAudit(AuditableCourse course): AuditReport`
 
 ### ContentAnalyzer (port)
 
 Methods:
 
-- `onKnowledge(AuditableKnowledge knowledge,AuditContext ctx): Void`
-- `onQuiz(AuditableQuiz quiz,AuditContext ctx): Void`
-- `onMilestone(AuditableMilestone milestone,AuditContext ctx): Void`
-- `onTopic(AuditableTopic topic,AuditContext ctx): Void`
-- `onCourseComplete(AuditableCourse course,AuditContext ctx): Void`
+- `onKnowledge(AuditNode node): Void`
+- `onQuiz(AuditNode node): Void`
+- `onMilestone(AuditNode node): Void`
+- `onTopic(AuditNode node): Void`
+- `onCourseComplete(AuditNode rootNode): Void`
 - `getName(): String`
 - `getTarget(): AuditTarget`
 - `getResults(): List<ScoredItem>`
@@ -521,7 +467,7 @@ Methods:
 
 Methods:
 
-- `aggregate(List<ScoredItem> scores,Map<String,AuditableEntity> entityMap): AuditReport`
+- `aggregate(AuditNode rootNode): void`
 
 ### CocaBucketsConfig (port)
 
@@ -567,6 +513,7 @@ Methods:
 - `getMediumReportLimit(): int`
 - `getLowReportLimit(): int`
 - `getDiscountPerLevel(): double`
+- `getCoverageTarget(CefrLevel level): double`
 
 ### EvpCatalogPort (port)
 

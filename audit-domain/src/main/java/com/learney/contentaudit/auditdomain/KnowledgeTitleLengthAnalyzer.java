@@ -1,7 +1,5 @@
 package com.learney.contentaudit.auditdomain;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -13,8 +11,6 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
     private static final String ANALYZER_NAME = "knowledge-title-length";
     private static final double MAX_WEIGHTED_LENGTH = 28.0;
 
-    private final List<ScoredItem> results = new ArrayList<>();
-
     @Override
     public String getName() { return ANALYZER_NAME; }
 
@@ -22,17 +18,14 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
     public AuditTarget getTarget() { return AuditTarget.KNOWLEDGE; }
 
     @Override
-    public Void onMilestone(AuditableMilestone milestone, AuditContext ctx) {
-        return null;
-    }
+    public Void onMilestone(AuditNode node) { return null; }
 
     @Override
-    public Void onTopic(AuditableTopic topic, AuditContext ctx) {
-        return null;
-    }
+    public Void onTopic(AuditNode node) { return null; }
 
     @Override
-    public Void onKnowledge(AuditableKnowledge knowledge, AuditContext ctx) {
+    public Void onKnowledge(AuditNode node) {
+        AuditableKnowledge knowledge = (AuditableKnowledge) node.getEntity();
         String title = knowledge.getTitle();
         double score;
         if (title == null || title.isEmpty()) {
@@ -45,8 +38,7 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
                 score = Math.max(0.0, 1.0 - (weightedLength - MAX_WEIGHTED_LENGTH) / MAX_WEIGHTED_LENGTH);
             }
         }
-        results.add(new ScoredItem(ANALYZER_NAME, AuditTarget.KNOWLEDGE, score,
-                ctx.getMilestoneId(), ctx.getTopicId(), ctx.getKnowledgeId(), null, knowledge, null));
+        node.getScores().put(ANALYZER_NAME, score);
         return null;
     }
 
@@ -60,34 +52,21 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
 
     private double charWeight(char c) {
         switch (c) {
-            case '$':
-            case '*':
-                return 0.0;
-            case 'i':
-            case ',':
-            case '.':
-                return 0.5;
-            case 'f':
-            case 't':
-            case '"':
-                return 0.7;
-            default:
-                return 1.0;
+            case '$': case '*': return 0.0;
+            case 'i': case ',': case '.': return 0.5;
+            case 'f': case 't': case '"': return 0.7;
+            default: return 1.0;
         }
     }
 
     @Override
-    public Void onQuiz(AuditableQuiz quiz, AuditContext ctx) { return null; }
+    public Void onQuiz(AuditNode node) { return null; }
 
     @Override
-    public Void onCourseComplete(AuditableCourse course, AuditContext ctx) { return null; }
-
-    @Override
-    public List<ScoredItem> getResults() { return List.copyOf(results); }
+    public Void onCourseComplete(AuditNode rootNode) { return null; }
 
     @Override
     public String getDescription() {
         return "Scores knowledge titles by weighted character count";
     }
-
 }

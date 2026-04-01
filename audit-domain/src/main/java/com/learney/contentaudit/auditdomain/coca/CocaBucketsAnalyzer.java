@@ -1,17 +1,12 @@
 package com.learney.contentaudit.auditdomain.coca;
 
-import com.learney.contentaudit.auditdomain.AuditContext;
+import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
-import com.learney.contentaudit.auditdomain.AuditableCourse;
-import com.learney.contentaudit.auditdomain.AuditableKnowledge;
-import com.learney.contentaudit.auditdomain.AuditableMilestone;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
-import com.learney.contentaudit.auditdomain.AuditableTopic;
 import com.learney.contentaudit.auditdomain.CocaBucketsConfig;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.NlpToken;
 import com.learney.contentaudit.auditdomain.NlpTokenizer;
-import com.learney.contentaudit.auditdomain.ScoredItem;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -35,12 +30,11 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
     // State accumulated during traversal:
     // levelName -> topicIndex -> bandName -> tokenCount
     private final Map<String, List<Map<String, Integer>>> levelTopicBandCounts = new LinkedHashMap<>();
-    // levelName -> (ordered topic list for quarter assignment)
-    private final Map<String, List<String>> levelTopicIds = new LinkedHashMap<>();
+    // levelName -> ordered list of topic AuditNodes (for index-based quarter assignment and writing scores)
+    private final Map<String, List<AuditNode>> levelTopicNodes = new LinkedHashMap<>();
 
     private String currentLevelName = null;
     private int currentTopicIndexInLevel = -1;
-    private final List<ScoredItem> results = new ArrayList<>();
 
     // Stored result for post-processing
     private CocaBucketsDistributionResult distributionResult = null;
@@ -66,39 +60,40 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
     }
 
     @Override
-    public Void onMilestone(AuditableMilestone milestone, AuditContext ctx) {
-        currentLevelName = resolveLevelName(ctx.getMilestoneId());
+    public Void onMilestone(AuditNode node) {
+        currentLevelName = node.getEntity().getLabel();
         currentTopicIndexInLevel = -1;
         if (currentLevelName != null) {
             levelTopicBandCounts.putIfAbsent(currentLevelName, new ArrayList<>());
-            levelTopicIds.putIfAbsent(currentLevelName, new ArrayList<>());
+            levelTopicNodes.putIfAbsent(currentLevelName, new ArrayList<>());
         }
         return null;
     }
 
     @Override
-    public Void onTopic(AuditableTopic topic, AuditContext ctx) {
+    public Void onTopic(AuditNode node) {
         if (currentLevelName == null) {
             return null;
         }
         currentTopicIndexInLevel++;
         List<Map<String, Integer>> topicCounts = levelTopicBandCounts.get(currentLevelName);
         topicCounts.add(new LinkedHashMap<>());
-        levelTopicIds.get(currentLevelName).add(ctx.getTopicId());
+        levelTopicNodes.get(currentLevelName).add(node);
         return null;
     }
 
     @Override
-    public Void onKnowledge(AuditableKnowledge knowledge, AuditContext ctx) {
+    public Void onKnowledge(AuditNode node) {
         return null;
     }
 
     @Override
-    public Void onQuiz(AuditableQuiz quiz, AuditContext ctx) {
+    public Void onQuiz(AuditNode node) {
         if (currentLevelName == null || currentTopicIndexInLevel < 0) {
             return null;
         }
 
+        AuditableQuiz quiz = (AuditableQuiz) node.getEntity();
         List<NlpToken> tokens = quiz.getTokens();
         if (tokens == null || tokens.isEmpty()) {
             return null;
@@ -128,16 +123,32 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
     }
 
     @Override
-    public Void onCourseComplete(AuditableCourse course, AuditContext ctx) {
+    public Void onCourseComplete(AuditNode rootNode) {
         BandConfiguration bandConfig = cocaBucketsConfig.getBandConfiguration();
         AnalysisStrategy strategy = cocaBucketsConfig.getAnalysisStrategy();
+
+        // Build a map from levelName -> milestone AuditNode for writing scores back
+        Map<String, AuditNode> levelToMilestoneNode = new LinkedHashMap<>();
+        if (rootNode.getChildren() != null) {
+            for (AuditNode milestoneNode : rootNode.getChildren()) {
+                if (milestoneNode.getEntity() != null) {
+                    levelToMilestoneNode.put(milestoneNode.getEntity().getLabel(), milestoneNode);
+                }
+            }
+        }
 
         List<LevelBucketDistribution> levelDistributions = new ArrayList<>();
 
         for (Map.Entry<String, List<Map<String, Integer>>> levelEntry : levelTopicBandCounts.entrySet()) {
             String levelName = levelEntry.getKey();
             List<Map<String, Integer>> topicCounts = levelEntry.getValue();
-            List<String> topicIds = levelTopicIds.getOrDefault(levelName, List.of());
+            List<AuditNode> topicNodes = levelTopicNodes.getOrDefault(levelName, List.of());
+
+            // Extract topic IDs from nodes for TopicBucketDistribution
+            List<String> topicIds = new ArrayList<>();
+            for (AuditNode tn : topicNodes) {
+                topicIds.add(tn.getEntity().getId());
+            }
 
             // Aggregate band counts per topic -> TopicBucketDistribution
             List<TopicBucketDistribution> topicDistributions = buildTopicDistributions(
@@ -221,9 +232,8 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
         distributionResult = new CocaBucketsDistributionResult(
                 levelDistributions, progressionAssessments, overallScore, directives);
 
-        // Emit ScoredItems per level and per quarter at MILESTONE target
-
-        // COURSE-level ScoredItem
+        // Write course-level score and metadata to root node
+        rootNode.getScores().put(ANALYZER_NAME, overallScore);
         Map<String, Object> courseMetadata = new LinkedHashMap<>();
         courseMetadata.put("overallScore", overallScore);
         List<Map<String, Object>> progressionMaps = new ArrayList<>();
@@ -249,79 +259,59 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
             directiveMaps.add(m);
         }
         courseMetadata.put("improvementDirectives", directiveMaps);
-        results.add(new ScoredItem(ANALYZER_NAME, AuditTarget.COURSE, overallScore, null, null, null, null, null, courseMetadata));
+        rootNode.getMetadata().put(ANALYZER_NAME, courseMetadata);
 
         for (LevelBucketDistribution level : levelDistributions) {
-            // Build MILESTONE metadata
-            Map<String, Object> milestoneMetadata = new LinkedHashMap<>();
-            int totalTokens = level.getBucketResults().stream().mapToInt(BucketResult::getCount).sum();
-            milestoneMetadata.put("totalTokens", totalTokens);
-            milestoneMetadata.put("buckets", buildBucketMetadataList(level.getBucketResults()));
-            List<Map<String, Object>> quarterMaps = new ArrayList<>();
-            for (QuarterResult qr : level.getQuarterResults()) {
-                quarterMaps.add(buildQuarterMetadata(qr));
+            // Write milestone-level score and metadata to the corresponding milestone node
+            AuditNode milestoneNode = levelToMilestoneNode.get(level.getLevelName());
+            if (milestoneNode != null) {
+                milestoneNode.getScores().put(ANALYZER_NAME, level.getScore());
+
+                Map<String, Object> milestoneMetadata = new LinkedHashMap<>();
+                int totalTokens = level.getBucketResults().stream().mapToInt(BucketResult::getCount).sum();
+                milestoneMetadata.put("totalTokens", totalTokens);
+                milestoneMetadata.put("buckets", buildBucketMetadataList(level.getBucketResults()));
+                List<Map<String, Object>> quarterMaps = new ArrayList<>();
+                for (QuarterResult qr : level.getQuarterResults()) {
+                    quarterMaps.add(buildQuarterMetadata(qr));
+                }
+                milestoneMetadata.put("quarters", quarterMaps);
+                milestoneNode.getMetadata().put(ANALYZER_NAME, milestoneMetadata);
+
+                // Write quarter-level detail scores to milestone node metadata
+                for (QuarterResult qr : level.getQuarterResults()) {
+                    milestoneNode.getScores().put(ANALYZER_NAME + "/Q" + qr.getIndex(), qr.getScore());
+                }
             }
-            milestoneMetadata.put("quarters", quarterMaps);
 
-            results.add(new ScoredItem(
-                    ANALYZER_NAME,
-                    AuditTarget.MILESTONE,
-                    level.getScore(),
-                    level.getLevelName(),
-                    null,
-                    null,
-                    null,
-                    null,
-                    milestoneMetadata
-            ));
-
-            // Emit TOPIC-level ScoredItems
+            // Write topic-level scores and metadata to each topic node
+            List<AuditNode> topicNodes = levelTopicNodes.getOrDefault(level.getLevelName(), List.of());
             for (TopicBucketDistribution topic : level.getTopicDistributions()) {
-                Map<String, Object> topicMetadata = new LinkedHashMap<>();
-                int topicTotalTokens = topic.getBucketResults().stream().mapToInt(BucketResult::getCount).sum();
-                topicMetadata.put("totalTokens", topicTotalTokens);
-                topicMetadata.put("buckets", buildTopicBucketMetadataList(topic.getBucketResults()));
-                results.add(new ScoredItem(
-                        ANALYZER_NAME,
-                        AuditTarget.TOPIC,
-                        topic.getScore(),
-                        level.getLevelName(),
-                        topic.getTopicId(),
-                        null,
-                        null,
-                        null,
-                        topicMetadata
-                ));
-            }
+                AuditNode topicNode = findTopicNodeById(topicNodes, topic.getTopicId());
+                if (topicNode != null) {
+                    topicNode.getScores().put(ANALYZER_NAME, topic.getScore());
 
-            // Emit quarter-level detail scores
-            for (QuarterResult qr : level.getQuarterResults()) {
-                results.add(new ScoredItem(
-                        ANALYZER_NAME + "/Q" + qr.getIndex(),
-                        AuditTarget.MILESTONE,
-                        qr.getScore(),
-                        level.getLevelName(),
-                        null,
-                        null,
-                        null,
-                        null,
-                        null
-                ));
+                    Map<String, Object> topicMetadata = new LinkedHashMap<>();
+                    int topicTotalTokens = topic.getBucketResults().stream().mapToInt(BucketResult::getCount).sum();
+                    topicMetadata.put("totalTokens", topicTotalTokens);
+                    topicMetadata.put("buckets", buildTopicBucketMetadataList(topic.getBucketResults()));
+                    topicNode.getMetadata().put(ANALYZER_NAME, topicMetadata);
+                }
             }
         }
 
         return null;
     }
 
-    @Override
-    public List<ScoredItem> getResults() {
-        return List.copyOf(results);
-    }
-
     // ---- Helper methods ----
 
-    private String resolveLevelName(String milestoneId) {
-        return milestoneId;
+    private AuditNode findTopicNodeById(List<AuditNode> topicNodes, String topicId) {
+        for (AuditNode node : topicNodes) {
+            if (node.getEntity() != null && topicId.equals(node.getEntity().getId())) {
+                return node;
+            }
+        }
+        return null;
     }
 
     private List<TopicBucketDistribution> buildTopicDistributions(

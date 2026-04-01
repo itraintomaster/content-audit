@@ -87,11 +87,6 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: AnalyzerStatsView - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.ScoredItemRow");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: ScoredItemRow - " + e.getMessage());
-    }
-    try {
       Class.forName("com.learney.contentaudit.auditcli.ReportFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ReportFormatter - " + e.getMessage());
@@ -125,6 +120,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.ScoreRow");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ScoreRow - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.DetailedFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DetailedFormatter - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.TextReportFormatter");
@@ -195,6 +195,16 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.AnalyzerStatsCmd");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AnalyzerStatsCmd - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.LemmaAbsenceDetailedFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceDetailedFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.CocaBucketsDetailedFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CocaBucketsDetailedFormatter - " + e.getMessage());
     }
   }
 }

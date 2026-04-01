@@ -3,7 +3,6 @@ package com.learney.contentaudit.auditdomain;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -22,49 +21,91 @@ public class IAuditEngine implements AuditEngine {
 
     @Override
     public AuditReport runAudit(AuditableCourse auditableCourse) {
-        Map<String, AuditableEntity> entityMap = new LinkedHashMap<>();
+        // Step 1: Build the AuditNode tree from the course hierarchy
+        AuditNode root = buildTree(auditableCourse);
 
+        // Step 2: For each analyzer, traverse the tree calling callbacks
         for (ContentAnalyzer analyzer : contentAnalyzers) {
-            for (int mi = 0; mi < auditableCourse.getMilestones().size(); mi++) {
-                AuditableMilestone milestone = auditableCourse.getMilestones().get(mi);
-                CefrLevel[] levels = CefrLevel.values();
-                String milestoneId = mi < levels.length ? levels[mi].name() : String.valueOf(mi);
-                entityMap.put(milestoneId, milestone);
-                AuditContext milestoneCtx = new AuditContext(milestoneId, null, null, null, null, null, null);
-                analyzer.onMilestone(milestone, milestoneCtx);
+            traverseAndNotify(root, analyzer);
+            analyzer.onCourseComplete(root);
+        }
 
-                for (int ti = 0; ti < milestone.getTopics().size(); ti++) {
-                    AuditableTopic topic = milestone.getTopics().get(ti);
-                    String topicId = milestoneId + "-" + ti;
-                    entityMap.put(topicId, topic);
-                    AuditContext topicCtx = new AuditContext(milestoneId, topicId, null, null, topic.getLabel(), null, null);
-                    analyzer.onTopic(topic, topicCtx);
+        // Step 3: Run score aggregation (bubble-up or custom)
+        scoreAggregator.aggregate(root);
 
-                    for (int ki = 0; ki < topic.getKnowledge().size(); ki++) {
-                        AuditableKnowledge knowledge = topic.getKnowledge().get(ki);
-                        String knowledgeId = topicId + "-" + ki;
-                        entityMap.put(knowledgeId, knowledge);
-                        AuditContext knowledgeCtx = new AuditContext(milestoneId, topicId, knowledgeId, null, topic.getLabel(), knowledge.getLabel(), null);
-                        analyzer.onKnowledge(knowledge, knowledgeCtx);
+        return new AuditReport(root);
+    }
 
-                        for (int qi = 0; qi < knowledge.getQuizzes().size(); qi++) {
-                            AuditableQuiz quiz = knowledge.getQuizzes().get(qi);
-                            String quizId = knowledgeId + "-" + qi;
-                            entityMap.put(quizId, quiz);
-                            AuditContext quizCtx = new AuditContext(milestoneId, topicId, knowledgeId, quizId, topic.getLabel(), knowledge.getLabel(), quiz.getLabel());
-                            analyzer.onQuiz(quiz, quizCtx);
-                        }
+    private AuditNode buildTree(AuditableCourse course) {
+        AuditNode root = new AuditNode();
+        root.setTarget(AuditTarget.COURSE);
+        root.setEntity(null); // Course has no AuditableEntity
+        root.setScores(new LinkedHashMap<>());
+        root.setMetadata(new LinkedHashMap<>());
+
+        List<AuditNode> milestoneNodes = new ArrayList<>();
+        for (AuditableMilestone milestone : course.getMilestones()) {
+            AuditNode milestoneNode = new AuditNode();
+            milestoneNode.setTarget(AuditTarget.MILESTONE);
+            milestoneNode.setEntity(milestone);
+            milestoneNode.setParent(root);
+            milestoneNode.setScores(new LinkedHashMap<>());
+            milestoneNode.setMetadata(new LinkedHashMap<>());
+
+            List<AuditNode> topicNodes = new ArrayList<>();
+            for (AuditableTopic topic : milestone.getTopics()) {
+                AuditNode topicNode = new AuditNode();
+                topicNode.setTarget(AuditTarget.TOPIC);
+                topicNode.setEntity(topic);
+                topicNode.setParent(milestoneNode);
+                topicNode.setScores(new LinkedHashMap<>());
+                topicNode.setMetadata(new LinkedHashMap<>());
+
+                List<AuditNode> knowledgeNodes = new ArrayList<>();
+                for (AuditableKnowledge knowledge : topic.getKnowledge()) {
+                    AuditNode knowledgeNode = new AuditNode();
+                    knowledgeNode.setTarget(AuditTarget.KNOWLEDGE);
+                    knowledgeNode.setEntity(knowledge);
+                    knowledgeNode.setParent(topicNode);
+                    knowledgeNode.setScores(new LinkedHashMap<>());
+                    knowledgeNode.setMetadata(new LinkedHashMap<>());
+
+                    List<AuditNode> quizNodes = new ArrayList<>();
+                    for (AuditableQuiz quiz : knowledge.getQuizzes()) {
+                        AuditNode quizNode = new AuditNode();
+                        quizNode.setTarget(AuditTarget.QUIZ);
+                        quizNode.setEntity(quiz);
+                        quizNode.setParent(knowledgeNode);
+                        quizNode.setChildren(List.of());
+                        quizNode.setScores(new LinkedHashMap<>());
+                        quizNode.setMetadata(new LinkedHashMap<>());
+                        quizNodes.add(quizNode);
+                    }
+                    knowledgeNode.setChildren(quizNodes);
+                    knowledgeNodes.add(knowledgeNode);
+                }
+                topicNode.setChildren(knowledgeNodes);
+                topicNodes.add(topicNode);
+            }
+            milestoneNode.setChildren(topicNodes);
+            milestoneNodes.add(milestoneNode);
+        }
+        root.setChildren(milestoneNodes);
+        return root;
+    }
+
+    private void traverseAndNotify(AuditNode root, ContentAnalyzer analyzer) {
+        for (AuditNode milestone : root.getChildren()) {
+            analyzer.onMilestone(milestone);
+            for (AuditNode topic : milestone.getChildren()) {
+                analyzer.onTopic(topic);
+                for (AuditNode knowledge : topic.getChildren()) {
+                    analyzer.onKnowledge(knowledge);
+                    for (AuditNode quiz : knowledge.getChildren()) {
+                        analyzer.onQuiz(quiz);
                     }
                 }
             }
-            analyzer.onCourseComplete(auditableCourse, new AuditContext(null, null, null, null, null, null, null));
         }
-
-        List<ScoredItem> allScores = new ArrayList<>();
-        for (ContentAnalyzer analyzer : contentAnalyzers) {
-            allScores.addAll(analyzer.getResults());
-        }
-
-        return scoreAggregator.aggregate(allScores, entityMap);
     }
 }

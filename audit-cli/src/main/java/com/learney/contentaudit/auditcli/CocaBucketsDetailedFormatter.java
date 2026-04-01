@@ -1,6 +1,6 @@
 package com.learney.contentaudit.auditcli;
 
-import com.learney.contentaudit.auditdomain.ScoredItem;
+import com.learney.contentaudit.auditdomain.AuditNode;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -13,9 +13,11 @@ import javax.annotation.processing.Generated;
 )
 class CocaBucketsDetailedFormatter implements DetailedFormatter {
 
+    private static final String ANALYZER_NAME = "coca-buckets-distribution";
+
     @Override
-    public String format(String analyzerName, List<ScoredItem> items, String outputFormat) {
-        Partitioned p = partition(items);
+    public String format(String analyzerName, AuditNode rootNode, String outputFormat) {
+        Partitioned p = partition(rootNode);
         return switch (outputFormat) {
             case "json" -> formatJson(p);
             case "table" -> formatTable(p);
@@ -30,19 +32,19 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         StringBuilder sb = new StringBuilder();
         sb.append("{\n");
 
-        double courseScore = p.course != null ? p.course.getScore() : 0.0;
+        double courseScore = p.course != null ? nodeScore(p.course) : 0.0;
         sb.append("  \"score\": ").append(fmt(courseScore)).append(",\n");
 
         // Levels
         sb.append("  \"levels\": [\n");
         int mi = 0;
-        for (Map.Entry<String, ScoredItem> e : p.milestones.entrySet()) {
+        for (Map.Entry<String, AuditNode> e : p.milestones.entrySet()) {
             if (mi > 0) sb.append(",\n");
-            ScoredItem m = e.getValue();
+            AuditNode m = e.getValue();
             Map<String, Object> meta = m.getMetadata();
             sb.append("    {\n");
             sb.append("      \"level\": \"").append(e.getKey()).append("\",\n");
-            sb.append("      \"score\": ").append(fmt(m.getScore())).append(",\n");
+            sb.append("      \"score\": ").append(fmt(nodeScore(m))).append(",\n");
             sb.append("      \"totalTokens\": ").append(meta != null ? toInt(meta.get("totalTokens")) : 0).append(",\n");
 
             // Buckets
@@ -60,18 +62,18 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
             sb.append(",\n");
 
             // Topics for this level
-            List<ScoredItem> topics = p.topicsByLevel.getOrDefault(e.getKey(), List.of());
+            List<AuditNode> topics = p.topicsByLevel.getOrDefault(e.getKey(), List.of());
             sb.append("      \"topics\": [");
             for (int ti = 0; ti < topics.size(); ti++) {
-                ScoredItem t = topics.get(ti);
+                AuditNode t = topics.get(ti);
                 if (ti > 0) sb.append(",");
                 Map<String, Object> tm = t.getMetadata();
-                String label = t.getSource() != null ? t.getSource().getLabel() : t.getTopicId();
+                String label = nodeLabel(t);
                 int totalTokens = tm != null ? toInt(tm.get("totalTokens")) : 0;
                 List<Map<String, Object>> tBuckets = tm != null
                         ? (List<Map<String, Object>>) tm.get("buckets") : null;
                 sb.append("\n        {\"topic\": ").append(jsonStr(label))
-                  .append(", \"score\": ").append(fmt(t.getScore()))
+                  .append(", \"score\": ").append(fmt(nodeScore(t)))
                   .append(", \"totalTokens\": ").append(totalTokens)
                   .append(", \"buckets\": ");
                 appendBucketsJson(sb, tBuckets, "        ");
@@ -138,7 +140,6 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
             sb.append("}");
         }
         sb.append("\n  ").append(indent).append("]");
-        // undo extra "  indent" appended after — caller appends after this
     }
 
     @SuppressWarnings("unchecked")
@@ -211,7 +212,7 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
     private String formatTable(Partitioned p) {
         StringBuilder sb = new StringBuilder();
 
-        double courseScore = p.course != null ? p.course.getScore() : 0.0;
+        double courseScore = p.course != null ? nodeScore(p.course) : 0.0;
 
         // Compute progression match count for header
         int progressionTotal = 0;
@@ -234,10 +235,8 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
 
         // Extract band names from first milestone
         List<String> bandNames = extractBandNames(p);
-        int bandCount = bandNames.size();
 
         // Build header
-        // Columns: Level Score Tokens [band%...] Q1 Q2 Q3 Q4
         StringBuilder header = new StringBuilder();
         header.append(String.format("%-6s %6s %7s", "Level", "Score", "Tokens"));
         for (String band : bandNames) {
@@ -252,14 +251,14 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         sb.append(header).append("\n");
         sb.append("─".repeat(header.length())).append("\n");
 
-        for (Map.Entry<String, ScoredItem> entry : p.milestones.entrySet()) {
+        for (Map.Entry<String, AuditNode> entry : p.milestones.entrySet()) {
             String level = entry.getKey();
-            ScoredItem m = entry.getValue();
+            AuditNode m = entry.getValue();
             Map<String, Object> meta = m.getMetadata();
 
             sb.append(String.format("%-6s %6.2f %7d",
                     level,
-                    m.getScore(),
+                    nodeScore(m),
                     meta != null ? toInt(meta.get("totalTokens")) : 0));
 
             // Band percentages
@@ -294,7 +293,7 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
     private String formatText(Partitioned p) {
         StringBuilder sb = new StringBuilder();
 
-        double courseScore = p.course != null ? p.course.getScore() : 0.0;
+        double courseScore = p.course != null ? nodeScore(p.course) : 0.0;
         sb.append(String.format(java.util.Locale.ROOT,
                 "COCA Buckets Distribution | Score: %.2f%n%n", courseScore));
 
@@ -306,20 +305,19 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         StringBuilder headerLine = new StringBuilder();
         headerLine.append(String.format("%-6s %6s %7s", "Level", "Score", "Tokens"));
         for (String band : bandNames) {
-            // Two sub-columns per band: actual% and target%
             headerLine.append(String.format("  %-7s %-6s", band + "%", "tgt%"));
         }
         sb.append(headerLine).append("\n");
         sb.append("─".repeat(headerLine.length())).append("\n");
 
-        for (Map.Entry<String, ScoredItem> entry : p.milestones.entrySet()) {
+        for (Map.Entry<String, AuditNode> entry : p.milestones.entrySet()) {
             String level = entry.getKey();
-            ScoredItem m = entry.getValue();
+            AuditNode m = entry.getValue();
             Map<String, Object> meta = m.getMetadata();
 
             sb.append(String.format("%-6s %6.2f %7d",
                     level,
-                    m.getScore(),
+                    nodeScore(m),
                     meta != null ? toInt(meta.get("totalTokens")) : 0));
 
             List<Map<String, Object>> buckets = meta != null
@@ -335,9 +333,9 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         }
 
         // Per-level quarter breakdown
-        for (Map.Entry<String, ScoredItem> entry : p.milestones.entrySet()) {
+        for (Map.Entry<String, AuditNode> entry : p.milestones.entrySet()) {
             String level = entry.getKey();
-            ScoredItem m = entry.getValue();
+            AuditNode m = entry.getValue();
             Map<String, Object> meta = m.getMetadata();
             if (meta == null) continue;
 
@@ -412,29 +410,56 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         return sb.toString();
     }
 
-    // ── Shared helpers ───────────────────────────────────────────────────────
+    // ── Tree navigation / partitioning ──────────────────────────────────────
 
     private static class Partitioned {
-        ScoredItem course;
-        Map<String, ScoredItem> milestones = new LinkedHashMap<>();
-        Map<String, List<ScoredItem>> topicsByLevel = new LinkedHashMap<>();
+        AuditNode course;
+        Map<String, AuditNode> milestones = new LinkedHashMap<>();
+        Map<String, List<AuditNode>> topicsByLevel = new LinkedHashMap<>();
     }
 
-    private Partitioned partition(List<ScoredItem> items) {
+    private Partitioned partition(AuditNode rootNode) {
         Partitioned p = new Partitioned();
-        for (ScoredItem item : items) {
-            // Exclude quarter sub-items — only process the canonical analyzer name
-            if (!"coca-buckets-distribution".equals(item.getAnalyzerName())) continue;
-            switch (item.getTarget()) {
-                case COURSE -> p.course = item;
-                case MILESTONE -> p.milestones.put(item.getMilestoneId(), item);
-                case TOPIC -> p.topicsByLevel
-                        .computeIfAbsent(item.getMilestoneId(), k -> new ArrayList<>())
-                        .add(item);
-                default -> {}
+        if (rootNode == null) return p;
+
+        // rootNode is COURSE
+        p.course = rootNode;
+
+        if (rootNode.getChildren() == null) return p;
+        for (AuditNode milestone : rootNode.getChildren()) {
+            String levelKey = nodeLabel(milestone);
+            p.milestones.put(levelKey, milestone);
+
+            if (milestone.getChildren() == null) continue;
+            for (AuditNode topic : milestone.getChildren()) {
+                p.topicsByLevel.computeIfAbsent(levelKey, k -> new ArrayList<>()).add(topic);
             }
         }
         return p;
+    }
+
+    // ── Shared helpers ───────────────────────────────────────────────────────
+
+    private double nodeScore(AuditNode node) {
+        if (node.getScores() == null) return 0.0;
+        Double score = node.getScores().get(ANALYZER_NAME);
+        if (score != null) return score;
+        // Fallback: average non-sub-metric scores
+        return node.getScores().entrySet().stream()
+                .filter(e -> !e.getKey().contains("/"))
+                .mapToDouble(Map.Entry::getValue)
+                .average()
+                .orElse(0.0);
+    }
+
+    private static String nodeLabel(AuditNode node) {
+        if (node.getEntity() != null && node.getEntity().getLabel() != null) {
+            return node.getEntity().getLabel();
+        }
+        if (node.getEntity() != null && node.getEntity().getId() != null) {
+            return node.getEntity().getId();
+        }
+        return "";
     }
 
     /**
@@ -443,7 +468,7 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
      */
     @SuppressWarnings("unchecked")
     private List<String> extractBandNames(Partitioned p) {
-        for (ScoredItem m : p.milestones.values()) {
+        for (AuditNode m : p.milestones.values()) {
             Map<String, Object> meta = m.getMetadata();
             if (meta == null) continue;
             List<Map<String, Object>> buckets = (List<Map<String, Object>>) meta.get("buckets");
@@ -462,7 +487,7 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
     @SuppressWarnings("unchecked")
     private int maxQuarterCount(Partitioned p) {
         int max = 0;
-        for (ScoredItem m : p.milestones.values()) {
+        for (AuditNode m : p.milestones.values()) {
             Map<String, Object> meta = m.getMetadata();
             if (meta == null) continue;
             List<Map<String, Object>> quarters = (List<Map<String, Object>>) meta.get("quarters");
@@ -484,7 +509,7 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
 
     /**
      * Return the formatted target string for a named band, including the comparison operator.
-     * The target is formatted as e.g. "≥40.0" or "≤35.0". Returns "" if not present.
+     * Returns "" if not present.
      */
     private String findBucketTarget(List<Map<String, Object>> buckets, String bandName) {
         if (buckets == null) return "";
@@ -494,15 +519,13 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
                 Object assessment = b.get("assessment");
                 if (tgt == null) return "";
                 double tgtVal = toDouble(tgt);
-                // Infer direction from assessment label if present
                 String assessStr = assessment != null ? String.valueOf(assessment).toLowerCase() : "";
                 String op;
                 if (assessStr.contains("low") || assessStr.contains("below")) {
-                    op = "\u2265"; // ≥ (need more)
+                    op = "\u2265"; // ≥
                 } else if (assessStr.contains("high") || assessStr.contains("above")) {
-                    op = "\u2264"; // ≤ (need less)
+                    op = "\u2264"; // ≤
                 } else {
-                    // Fall back to band index heuristic: first band (highest frequency) uses ≥, rest use ≤
                     int idx = buckets.indexOf(b);
                     op = idx == 0 ? "\u2265" : "\u2264";
                 }

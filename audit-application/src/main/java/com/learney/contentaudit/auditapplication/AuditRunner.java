@@ -1,9 +1,8 @@
 package com.learney.contentaudit.auditapplication;
 
+import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
-import com.learney.contentaudit.auditdomain.ScoredItem;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Set;
 import javax.annotation.processing.Generated;
 
@@ -14,5 +13,5 @@ import javax.annotation.processing.Generated;
 public interface AuditRunner {
     AuditReport runAudit(Path coursePath, Set<String> analyzerNames);
 
-    List<ScoredItem> runDetailedAudit(Path coursePath, String analyzerName);
+    AuditNode runDetailedAudit(Path coursePath, String analyzerName);
 }

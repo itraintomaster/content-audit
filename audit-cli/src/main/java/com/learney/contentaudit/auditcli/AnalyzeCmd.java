@@ -1,8 +1,8 @@
 package com.learney.contentaudit.auditcli;
 
 import com.learney.contentaudit.auditapplication.AuditRunner;
+import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
-import com.learney.contentaudit.auditdomain.ScoredItem;
 import java.nio.file.Path;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -136,9 +136,9 @@ public class AnalyzeCmd implements Callable<Integer> {
                     System.err.println("No detailed view available for: " + analyzerName);
                     return 1;
                 }
-                List<ScoredItem> items = auditRunner.runDetailedAudit(
+                AuditNode rootNode = auditRunner.runDetailedAudit(
                         Path.of(resolvedPath), analyzerName);
-                System.out.println(detailedFormatter.format(analyzerName, items, formatName));
+                System.out.println(detailedFormatter.format(analyzerName, rootNode, formatName));
                 return 0;
             }
 
