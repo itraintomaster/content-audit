@@ -43,11 +43,13 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
         int mi = 0;
         for (Map.Entry<String, ScoredItem> e : p.milestones.entrySet()) {
             if (mi > 0) sb.append(",\n");
+            String levelKey = e.getKey();
             ScoredItem m = e.getValue();
             Map<String, Object> meta = m.getMetadata();
             sb.append("    {\n");
-            sb.append("      \"level\": \"").append(e.getKey()).append("\",\n");
+            sb.append("      \"level\": \"").append(levelKey).append("\",\n");
             sb.append("      \"score\": ").append(fmt(m.getScore())).append(",\n");
+            sb.append("      \"coverageTarget\": ").append(meta != null ? fmt(toDouble(meta.get("coverageTarget"))) : "0").append(",\n");
             sb.append("      \"totalExpected\": ").append(meta != null ? meta.getOrDefault("totalExpected", 0) : 0).append(",\n");
             sb.append("      \"totalAbsent\": ").append(meta != null ? meta.getOrDefault("totalAbsent", 0) : 0).append(",\n");
             sb.append("      \"absencePercentage\": ").append(meta != null ? fmt(toDouble(meta.get("absencePercentage"))) : "0").append(",\n");
@@ -55,11 +57,11 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
             sb.append("      \"appearsTooLateScore\": ").append(meta != null ? fmt(toDouble(meta.get("appears_too_lateScore"))) : "0").append(",\n");
             sb.append("      \"appearsTooEarlyScore\": ").append(meta != null ? fmt(toDouble(meta.get("appears_too_earlyScore"))) : "0").append(",\n");
 
-            // Absent lemmas (TOO_LATE + COMPLETELY_ABSENT) for this level
+            // Absent lemmas (TOO_LATE + COMPLETELY_ABSENT)
             sb.append("      \"absentLemmas\": ").append(formatAbsentLemmasJson(meta)).append(",\n");
 
-            // Topics for this level
-            List<ScoredItem> topics = p.topicsByLevel.getOrDefault(e.getKey(), List.of());
+            // Topics with misplaced lemma details
+            List<ScoredItem> topics = p.topicsByLevel.getOrDefault(levelKey, List.of());
             sb.append("      \"topics\": [");
             for (int ti = 0; ti < topics.size(); ti++) {
                 ScoredItem t = topics.get(ti);
@@ -71,7 +73,24 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
                   .append(", \"score\": ").append(fmt(t.getScore()))
                   .append(", \"misplacedLemmaCount\": ").append(mc).append("}");
             }
-            sb.append(topics.isEmpty() ? "]" : "\n      ]");
+            sb.append(topics.isEmpty() ? "],\n" : "\n      ],\n");
+
+            // Knowledges with misplaced lemma details
+            List<ScoredItem> knowledges = p.knowledgesByLevel.getOrDefault(levelKey, List.of());
+            sb.append("      \"knowledges\": [");
+            for (int ki = 0; ki < knowledges.size(); ki++) {
+                ScoredItem k = knowledges.get(ki);
+                if (ki > 0) sb.append(",");
+                String label = k.getSource() != null ? k.getSource().getLabel() : k.getKnowledgeId();
+                Map<String, Object> km = k.getMetadata();
+                int mc = km != null ? toInt(km.get("misplacedLemmaCount")) : 0;
+                sb.append("\n        {\"knowledge\": ").append(jsonStr(label))
+                  .append(", \"score\": ").append(fmt(k.getScore()))
+                  .append(", \"misplacedLemmaCount\": ").append(mc)
+                  .append(", \"misplacedLemmas\": ").append(formatMisplacedLemmasJson(km))
+                  .append("}");
+            }
+            sb.append(knowledges.isEmpty() ? "]" : "\n      ]");
 
             sb.append("\n    }");
             mi++;
@@ -92,35 +111,41 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
         sb.append(String.format("Score: %.2f | Assessment: %s%n%n", courseScore, assessment));
 
         // Level table
-        sb.append(String.format("%-6s %6s %8s %6s %8s  %-30s%n",
-                "Level", "Score", "Expected", "Absent", "Absent%", "Topics (misplaced count)"));
-        sb.append("─".repeat(80)).append("\n");
+        sb.append(String.format("%-6s %6s %7s %8s %6s %8s %8s %8s %9s%n",
+                "Level", "Score", "Target", "Expected", "Absent", "Absent%",
+                "Absent", "TooLate", "TooEarly"));
+        sb.append("─".repeat(82)).append("\n");
 
         for (Map.Entry<String, ScoredItem> entry : p.milestones.entrySet()) {
             String level = entry.getKey();
             ScoredItem m = entry.getValue();
             Map<String, Object> meta = m.getMetadata();
 
-            // Build compact topic summary
-            List<ScoredItem> topics = p.topicsByLevel.getOrDefault(level, List.of());
-            StringBuilder topicSummary = new StringBuilder();
-            for (int i = 0; i < Math.min(3, topics.size()); i++) {
+            double target = meta != null ? toDouble(meta.get("coverageTarget")) * 100 : 0;
+            sb.append(String.format("%-6s %6.2f %6.0f%% %8s %6s %7.1f%% %8.2f %8.2f %9.2f%n",
+                    level, m.getScore(), target,
+                    meta != null ? meta.getOrDefault("totalExpected", "") : "",
+                    meta != null ? meta.getOrDefault("totalAbsent", "") : "",
+                    meta != null ? toDouble(meta.get("absencePercentage")) : 0.0,
+                    meta != null ? toDouble(meta.get("completely_absentScore")) : 0.0,
+                    meta != null ? toDouble(meta.get("appears_too_lateScore")) : 0.0,
+                    meta != null ? toDouble(meta.get("appears_too_earlyScore")) : 0.0));
+        }
+
+        // Topics per level (compact)
+        for (Map.Entry<String, List<ScoredItem>> entry : p.topicsByLevel.entrySet()) {
+            List<ScoredItem> topics = entry.getValue();
+            if (topics.isEmpty()) continue;
+            sb.append(String.format("%n%s: ", entry.getKey()));
+            for (int i = 0; i < topics.size(); i++) {
                 ScoredItem t = topics.get(i);
                 String label = t.getSource() != null ? t.getSource().getLabel() : "?";
                 Map<String, Object> tm = t.getMetadata();
                 int mc = tm != null ? toInt(tm.get("misplacedLemmaCount")) : 0;
-                if (i > 0) topicSummary.append(", ");
-                topicSummary.append(label).append("(").append(mc).append(")");
+                if (i > 0) sb.append(", ");
+                sb.append(label).append("(").append(mc).append(")");
             }
-            if (topics.size() > 3) topicSummary.append(" +").append(topics.size() - 3);
-
-            sb.append(String.format("%-6s %6.2f %8s %6s %7.1f%%  %s%n",
-                    level,
-                    m.getScore(),
-                    meta != null ? meta.getOrDefault("totalExpected", "") : "",
-                    meta != null ? meta.getOrDefault("totalAbsent", "") : "",
-                    meta != null ? toDouble(meta.get("absencePercentage")) : 0.0,
-                    truncate(topicSummary.toString(), 50)));
+            sb.append("\n");
         }
         return sb.toString();
     }
@@ -288,6 +313,26 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
               .append(", \"priority\": ").append(jsonStr(l.get("priority"))).append("}");
         }
         sb.append("\n      ]");
+        return sb.toString();
+    }
+
+    @SuppressWarnings("unchecked")
+    private String formatMisplacedLemmasJson(Map<String, Object> meta) {
+        if (meta == null) return "[]";
+        Object obj = meta.get("misplacedLemmas");
+        if (!(obj instanceof List)) return "[]";
+        List<Map<String, String>> lemmas = (List<Map<String, String>>) obj;
+        if (lemmas.isEmpty()) return "[]";
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < lemmas.size(); i++) {
+            Map<String, String> l = lemmas.get(i);
+            if (i > 0) sb.append(",");
+            sb.append("{\"lemma\": ").append(jsonStr(l.get("lemma")))
+              .append(", \"pos\": ").append(jsonStr(l.get("pos")))
+              .append(", \"expectedLevel\": ").append(jsonStr(l.get("expectedLevel"))).append("}");
+        }
+        sb.append("]");
         return sb.toString();
     }
 
