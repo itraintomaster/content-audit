@@ -108,7 +108,7 @@ public class Main {
         );
 
         // Domain: aggregator and engine
-        ScoreAggregator scoreAggregator = new IScoreAggregator();
+        ScoreAggregator scoreAggregator = new com.learney.contentaudit.auditdomain.labs.LemmaAbsenceScoreAggregator();
         IAuditEngine auditEngine = new IAuditEngine(contentAnalyzers, scoreAggregator);
         IContentAudit contentAudit = new IContentAudit(auditEngine);
 
