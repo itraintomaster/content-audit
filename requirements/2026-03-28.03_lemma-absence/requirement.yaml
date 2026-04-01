@@ -203,8 +203,10 @@ features:
     name: "Identificacion de lemas mal ubicados en una oracion"
     severity: "major"
     description: "Para cada oracion del curso, se identifican los lemas cuyo nivel\
-      \ esperado (segun EVP) difiere del nivel al que pertenece la oracion. Solo\
-      \ los lemas del catalogo EVP participan en esta evaluacion."
+      \ esperado (segun EVP) es superior al nivel de la oracion. Solo se consideran\
+      \ mal ubicados los lemas de niveles mas avanzados que aparecen en oraciones\
+      \ de niveles inferiores. Los lemas de niveles iguales o inferiores al de la\
+      \ oracion no se penalizan (son vocabulario basico reutilizado)."
     errorMessage: null
     validation: "AUTO_VALIDATED"
     code: null
@@ -212,21 +214,22 @@ features:
   - id: "F-LABS-R018"
     name: "Descuento por distancia de nivel"
     severity: "major"
-    description: "Para cada lema mal ubicado: descuento = 0.1 * distancia de niveles.\
-      \ La distancia es la diferencia absoluta en orden CEFR (A1=1, A2=2, B1=3, B2=4).\
-      \ [ASSUMPTION] El factor 0.1 es un valor fijo no configurable."
+    description: "Para cada lema mal ubicado (nivel esperado superior al de la oracion):\
+      \ descuento = 0.1 * (nivel esperado - nivel de la oracion). Solo se aplica\
+      \ cuando el nivel esperado es mayor que el de la oracion. El factor 0.1 es\
+      \ configurable via getDiscountPerLevel()."
     errorMessage: null
-    validation: "ASSUMPTION"
+    validation: "AUTO_VALIDATED"
     code: null
-    rationale: "El factor de descuento 0.1 por nivel de distancia es un valor hardcodeado\
-      \ razonable. 10% de penalizacion por nivel de separacion es facil de interpretar."
+    rationale: null
   - id: "F-LABS-R019"
     name: "Calculo de score por oracion"
     severity: "critical"
     description: "Score de la oracion = 1.0 - maximo descuento entre todos los lemas\
       \ mal ubicados. Se toma el maximo descuento (no la suma) porque un solo lema\
       \ severamente mal ubicado es suficiente para penalizar la oracion. Score minimo\
-      \ posible: 0.7."
+      \ posible: 0.7. Oraciones con solo lemas de niveles iguales o inferiores\
+      \ reciben score 1.0."
     errorMessage: "Score calculado fuera de rango [0.0, 1.0] para la oracion {sentenceId}:\
       \ {score}"
     validation: "AUTO_VALIDATED"

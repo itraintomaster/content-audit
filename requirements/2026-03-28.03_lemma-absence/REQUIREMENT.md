@@ -289,31 +289,31 @@ Estos lemas funcionales criticos reciben **siempre prioridad HIGH**, independien
 ### Rule[F-LABS-R017] - Identificacion de lemas mal ubicados en una oracion
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
-Para cada oracion del curso, el sistema identifica los lemas que aparecen en la oracion pero cuyo nivel esperado (segun el EVP) difiere del nivel al que pertenece la oracion. Un lema se considera "mal ubicado" en una oracion si la oracion pertenece a un nivel distinto al nivel esperado del lema.
+Para cada oracion del curso, el sistema identifica los lemas cuyo nivel esperado (segun EVP) es **superior** al nivel al que pertenece la oracion. Un lema se considera "mal ubicado" cuando es una palabra de un nivel mas avanzado que aparece en una oracion de un nivel inferior.
 
-Ejemplo: una oracion del nivel B1 que contiene el lema "cat" (esperado en A1). El lema "cat" esta mal ubicado en esta oracion porque se introdujo dos niveles despues de lo esperado.
+Ejemplo: una oracion del nivel A1 que contiene el lema "invest" (esperado en B2). El lema esta mal ubicado porque es una palabra demasiado avanzada para A1.
 
-Solo los lemas que estan en el catalogo EVP participan en esta evaluacion. Los lemas que no aparecen en el EVP no se consideran mal ubicados.
+Los lemas cuyo nivel esperado es **igual o inferior** al de la oracion no se consideran mal ubicados. Una palabra de A1 que aparece en B2 es vocabulario basico reutilizado, no un error de contenido. La accion correctiva para esos lemas (si estan ausentes en su nivel esperado) se maneja a nivel de Level mediante los tipos de ausencia TOO_LATE y COMPLETELY_ABSENT (R006).
+
+Solo los lemas que estan en el catalogo EVP participan en esta evaluacion.
 
 **Error**: N/A (esta regla describe un mecanismo de deteccion)
 
 ### Rule[F-LABS-R018] - Descuento por distancia de nivel
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
-Para cada lema mal ubicado en una oracion, se calcula un **descuento** proporcional a la distancia entre el nivel de la oracion y el nivel esperado del lema:
+Para cada lema mal ubicado en una oracion (nivel esperado superior al de la oracion), se calcula un **descuento** proporcional a la distancia:
 
-descuento = 0.1 * distancia de niveles
+descuento = 0.1 * (nivel esperado del lema - nivel de la oracion)
 
-La distancia de niveles se calcula como la diferencia absoluta en el orden numerico de los niveles CEFR (A1=1, A2=2, B1=3, B2=4).
+La distancia se calcula como la diferencia en el orden numerico de los niveles CEFR (A1=1, A2=2, B1=3, B2=4). Solo se aplica cuando el nivel esperado es mayor que el de la oracion.
 
 Ejemplos:
-- Lema A1 en oracion A2: distancia = |2-1| = 1, descuento = 0.1
-- Lema A1 en oracion B1: distancia = |3-1| = 2, descuento = 0.2
-- Lema A1 en oracion B2: distancia = |4-1| = 3, descuento = 0.3
+- Lema B2 en oracion A1: distancia = 4-1 = 3, descuento = 0.3
+- Lema B1 en oracion A2: distancia = 3-2 = 1, descuento = 0.1
+- Lema A1 en oracion B2: no se penaliza (vocabulario basico reutilizado)
 
-El factor de 0.1 por nivel de distancia es un valor fijo.
-
-[ASSUMPTION] Se asume que el factor de descuento (0.1 por nivel) es un valor fijo no configurable. El analisis original lo describe como un valor hardcodeado. Si bien podria ser beneficioso hacerlo configurable, la simplicidad del valor actual (10% de penalizacion por cada nivel de separacion) es razonable y facil de interpretar. Ver Doubt[DOUBT-DISCOUNT-FACTOR].
+El factor de 0.1 por nivel de distancia es un valor fijo configurable via `getDiscountPerLevel()`.
 
 **Error**: N/A (esta regla describe una formula de calculo)
 
@@ -324,15 +324,15 @@ La puntuacion de una oracion se calcula como:
 
 score de la oracion = 1.0 - maximo descuento entre todos los lemas mal ubicados
 
-Se toma el **maximo** descuento (no la suma) porque la presencia de un solo lema severamente mal ubicado es suficiente para penalizar la oracion. El descuento mayor refleja el peor caso de descolocacion en esa oracion.
+Se toma el **maximo** descuento (no la suma) porque la presencia de un solo lema severamente mal ubicado es suficiente para penalizar la oracion.
 
 Ejemplos:
 - Oracion sin lemas mal ubicados: score = 1.0 (perfecta)
-- Oracion con un lema a 1 nivel de distancia: score = 1.0 - 0.1 = 0.9
-- Oracion con lemas a distancia 1 y 3: score = 1.0 - max(0.1, 0.3) = 0.7
-- Oracion con un lema a 3 niveles de distancia: score = 1.0 - 0.3 = 0.7
+- Oracion A1 con lema B1 (distancia 2): score = 1.0 - 0.2 = 0.8
+- Oracion A1 con lemas B1 y B2 (distancias 2 y 3): score = 1.0 - max(0.2, 0.3) = 0.7
+- Oracion B2 con lema A1: score = 1.0 (no se penaliza, vocabulario basico)
 
-El score minimo posible por oracion es 0.7 (un lema a la maxima distancia de 3 niveles, por ejemplo A1 en B2).
+El score minimo posible es 0.7 (lema a maxima distancia de 3 niveles, por ejemplo B2 en oracion A1).
 
 **Error**: "Score calculado fuera de rango [0.0, 1.0] para la oracion {sentenceId}: {score}"
 

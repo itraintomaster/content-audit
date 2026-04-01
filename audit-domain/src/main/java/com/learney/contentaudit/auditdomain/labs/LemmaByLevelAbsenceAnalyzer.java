@@ -573,26 +573,23 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
                 continue;
             }
             int expectedOrder = LEVEL_ORDER.get(expectedLevel);
-            if (expectedOrder == sentenceOrder) {
-                // Correctly placed — no discount (R020)
+            // Only penalize lemmas from a HIGHER level than this sentence
+            // (advanced word in basic level). Words from lower levels are normal reuse.
+            if (expectedOrder <= sentenceOrder) {
                 continue;
             }
-            int distance = Math.abs(sentenceOrder - expectedOrder);
+            int distance = expectedOrder - sentenceOrder;
             double discount = discountPerLevel * distance;
             if (discount > maxDiscount) {
                 maxDiscount = discount;
             }
-            // Only report as misplaced if the lemma is from a HIGHER level than this sentence
-            // (advanced word in basic level). Words from lower levels are normal reuse.
-            if (expectedOrder > sentenceOrder) {
-                String key = lp.getLemma() + "|" + lp.getPos();
-                if (seen.add(key)) {
-                    Map<String, String> info = new LinkedHashMap<>();
-                    info.put("lemma", lp.getLemma());
-                    info.put("pos", lp.getPos());
-                    info.put("expectedLevel", expectedLevel.name());
-                    misplacedLemmas.add(info);
-                }
+            String key = lp.getLemma() + "|" + lp.getPos();
+            if (seen.add(key)) {
+                Map<String, String> info = new LinkedHashMap<>();
+                info.put("lemma", lp.getLemma());
+                info.put("pos", lp.getPos());
+                info.put("expectedLevel", expectedLevel.name());
+                misplacedLemmas.add(info);
             }
         }
         double score = 1.0 - maxDiscount;
