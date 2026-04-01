@@ -36,4 +36,6 @@ public interface LemmaAbsenceConfig extends SelfDescribingConfig {
     int getLowReportLimit();
 
     double getDiscountPerLevel();
+
+    double getCoverageTarget(CefrLevel level);
 }

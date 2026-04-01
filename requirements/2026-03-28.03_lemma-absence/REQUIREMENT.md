@@ -127,16 +127,17 @@ La determinacion de si una entrada del EVP es un lema individual o una frase mul
 ### Rule[F-LABS-R006] - Tipos de ausencia
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-Cada lema ausente se clasifica en uno de cuatro tipos de ausencia, segun donde aparece (o no) en el curso:
+Cada lema ausente se clasifica en uno de tres tipos de ausencia, segun donde aparece (o no) en el curso:
 
-| Tipo de ausencia | Descripcion | Impacto pedagogico |
-|------------------|-------------|-------------------|
-| COMPLETELY_ABSENT | El lema no aparece en ninguna oracion de ningun nivel del curso | El mas grave: el estudiante no tiene ninguna exposicion al lema |
-| APPEARS_TOO_LATE | El lema aparece pero solo en niveles posteriores al esperado | Grave: el estudiante no tiene acceso al lema cuando lo necesita |
-| APPEARS_TOO_EARLY | El lema aparece pero solo en niveles anteriores al esperado | Moderado: el lema se introdujo antes de tiempo y puede no reforzarse en su nivel objetivo |
-| SCATTERED_PLACEMENT | El lema aparece en niveles tanto anteriores como posteriores al esperado, sin un patron claro | Menor: el lema esta presente pero no sigue la progresion esperada |
+| Tipo de ausencia | Descripcion | Impacto pedagogico | Accion correctiva |
+|------------------|-------------|-------------------|-------------------|
+| COMPLETELY_ABSENT | El lema no aparece en ninguna oracion de ningun nivel del curso | El mas grave: el estudiante no tiene ninguna exposicion al lema | Agregar oraciones con el lema en el nivel esperado |
+| APPEARS_TOO_LATE | El lema aparece pero solo en niveles posteriores al esperado | Grave: el estudiante no tiene acceso al lema cuando lo necesita | Agregar el lema al nivel esperado |
+| APPEARS_TOO_EARLY | El lema aparece en al menos un nivel anterior al esperado | Moderado: el lema se introdujo antes de lo adecuado | Quitar o reemplazar el lema en los niveles donde no corresponde |
 
-La clasificacion determina la prioridad de correccion: los lemas completamente ausentes son los mas urgentes, seguidos por los que aparecen demasiado tarde.
+La clasificacion prioriza la deteccion de apariciones tempranas: si un lema aparece en cualquier nivel anterior al esperado, se clasifica como APPEARS_TOO_EARLY independientemente de que tambien aparezca en niveles posteriores. Esto orienta la accion correctiva hacia la remocion del lema de niveles inadecuados.
+
+La prioridad de correccion: los lemas completamente ausentes son los mas urgentes, seguidos por los que aparecen demasiado tarde.
 
 **Error**: N/A (esta regla describe una clasificacion)
 
@@ -148,11 +149,10 @@ El algoritmo para determinar el tipo de ausencia de un lema es el siguiente:
 1. Se obtiene la lista de niveles del curso donde el lema esta presente (R004).
 2. Si la lista esta **vacia** (el lema no aparece en ningun nivel): tipo = **COMPLETELY_ABSENT**
 3. Si la lista **no esta vacia**, se compara cada nivel presente con el nivel esperado usando el orden numerico de los niveles CEFR (A1=1, A2=2, B1=3, B2=4):
-   - Si **todos** los niveles presentes tienen un orden **menor** que el nivel esperado: tipo = **APPEARS_TOO_EARLY**
+   - Si **al menos un** nivel presente tiene un orden **menor** que el nivel esperado: tipo = **APPEARS_TOO_EARLY** (independientemente de que tambien aparezca en niveles posteriores)
    - Si **todos** los niveles presentes tienen un orden **mayor** que el nivel esperado: tipo = **APPEARS_TOO_LATE**
-   - En cualquier otro caso (niveles presentes tanto antes como despues, o en mezcla): tipo = **SCATTERED_PLACEMENT**
 
-Ejemplo: lema esperado en A2 (orden 2). Si solo aparece en A1 (orden 1) -> APPEARS_TOO_EARLY. Si solo aparece en B1 (orden 3) y B2 (orden 4) -> APPEARS_TOO_LATE. Si aparece en A1 (orden 1) y B2 (orden 4) -> SCATTERED_PLACEMENT.
+Ejemplo: lema esperado en A2 (orden 2). Si aparece en A1 (orden 1) -> APPEARS_TOO_EARLY. Si aparece en A1 (orden 1) y B2 (orden 4) -> APPEARS_TOO_EARLY (prioriza la deteccion de aparicion temprana). Si solo aparece en B1 (orden 3) y B2 (orden 4) -> APPEARS_TOO_LATE.
 
 **Error**: N/A (esta regla describe un algoritmo de clasificacion)
 
@@ -166,9 +166,8 @@ Cada tipo de ausencia tiene asociada una **puntuacion de impacto** que refleja s
 | COMPLETELY_ABSENT | 1.0 (impacto maximo) |
 | APPEARS_TOO_LATE | 0.8 |
 | APPEARS_TOO_EARLY | 0.6 |
-| SCATTERED_PLACEMENT | 0.4 |
 
-La puntuacion de impacto se utiliza para ponderar la importancia de cada lema ausente en el calculo de metricas por nivel y en la priorizacion de recomendaciones. Un lema completamente ausente con impacto 1.0 contribuye mas al deterioro de la puntuacion que un lema con ubicacion dispersa (impacto 0.4).
+La puntuacion de impacto se utiliza para ponderar la importancia de cada lema ausente en el calculo de metricas por nivel y en la priorizacion de recomendaciones. Un lema completamente ausente con impacto 1.0 contribuye mas al deterioro de la puntuacion que un lema que aparece demasiado temprano (impacto 0.6).
 
 **Error**: N/A (esta regla describe valores fijos de puntuacion)
 
@@ -179,7 +178,7 @@ La clasificacion APPEARS_TOO_LATE tiene mayor impacto (0.8) que APPEARS_TOO_EARL
 
 - **APPEARS_TOO_LATE**: El estudiante no tuvo acceso al vocabulario cuando lo necesitaba. Una palabra de A1 que recien aparece en B2 significa que el estudiante paso tres niveles sin exposicion a vocabulario que deberia haber dominado desde el principio. Esto genera una laguna acumulativa.
 
-- **APPEARS_TOO_EARLY**: El estudiante fue expuesto al vocabulario antes de tiempo. Si bien esto puede no ser ideal (el estudiante podria no estar preparado para esa palabra), el vocabulario al menos esta presente en el curso. El problema es que podria no reforzarse en el nivel donde se espera su consolidacion.
+- **APPEARS_TOO_EARLY**: El estudiante fue expuesto al vocabulario antes de tiempo. Por ejemplo, "nevertheless" en A1 no es adecuado para ese nivel. La accion correctiva es quitar o reemplazar el lema en los niveles donde no corresponde. Es menos grave que TOO_LATE porque el vocabulario al menos esta presente en el curso.
 
 **Error**: N/A (esta regla describe una justificacion de diseno)
 
@@ -392,17 +391,26 @@ Para cada nivel CEFR, el resultado incluye las siguientes metricas:
 |---------|-------------|
 | Total de lemas esperados | Cantidad de lemas del EVP para este nivel (despues de filtrado) |
 | Total de lemas ausentes | Cantidad de lemas que no aparecen en el nivel |
-| Porcentaje de ausencia | (lemas ausentes / lemas esperados) * 100 |
+| Porcentaje de cobertura | (lemas presentes / lemas esperados) * 100 |
+| Coverage target | Porcentaje objetivo de cobertura para este nivel (configurable, R032) |
 | Lemas ausentes por tipo | Desglose de lemas ausentes agrupados por tipo de ausencia (R006) |
 
 Cada lema ausente en el desglose incluye la informacion enriquecida (R012): lema, nivel esperado, tipo de ausencia, ranking COCA, nivel de prioridad y parte de la oracion.
 
 **Error**: N/A (esta regla describe la estructura del resultado)
 
-### Rule[F-LABS-R024] - Puntuacion global del analisis
+### Rule[F-LABS-R024] - Puntuacion por nivel relativa al coverage target
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-La puntuacion global del analisis de ausencia de lemas es un valor entre 0.0 y 1.0 que refleja el grado de cobertura de vocabulario del curso. Se calcula como el promedio ponderado de las puntuaciones por nivel, donde los niveles criticos (A1, A2) tienen mayor peso:
+La puntuacion de cada nivel se calcula como la proporcion entre la cobertura actual y el coverage target del nivel:
+
+1. Se calcula la **cobertura actual** del nivel: `1.0 - (ausencia ponderada por impact / total esperado)`. La ponderacion usa los impact scores de R008.
+2. Si la cobertura alcanza o supera el coverage target -> **score = 1.0** (objetivo cumplido).
+3. Si no -> **score = cobertura / target** (proporcion de avance hacia el objetivo).
+
+Ejemplo: A1 con cobertura 0.68 y target 0.95 -> score = 0.68 / 0.95 = 0.72. Cuando la cobertura alcance 0.95, el score sera 1.0.
+
+La **puntuacion global** es el promedio ponderado de las puntuaciones por nivel:
 
 | Nivel | Peso |
 |-------|------|
@@ -411,11 +419,23 @@ La puntuacion global del analisis de ausencia de lemas es un valor entre 0.0 y 1
 | B1 | 1.0 |
 | B2 | 1.0 |
 
-La puntuacion de cada nivel se basa en la proporcion de lemas presentes: score del nivel = 1.0 - (porcentaje de ausencia / 100), ponderada por el impacto de los tipos de ausencia de sus lemas.
-
-[ASSUMPTION] Se asume que A1 y A2 tienen peso doble en el promedio global, reflejando su criticidad pedagogica. El analisis original no define explicitamente los pesos pero enfatiza repetidamente que A1/A2 son criticos. Este esquema de pesos puede ajustarse.
-
 **Error**: "Error al calcular la puntuacion global: {detalle}"
+
+### Rule[F-LABS-R032] - Coverage targets configurables por nivel
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+Cada nivel CEFR tiene un **coverage target** configurable que define el porcentaje de cobertura de vocabulario esperado para considerar el nivel como completo:
+
+| Nivel | Target por defecto | Justificacion |
+|-------|--------------------|---------------|
+| A1 | 95% | Vocabulario fundamental, cobertura casi total requerida |
+| A2 | 85% | Todavia basico, el estudiante ya tiene base A1 |
+| B1 | 70% | Vocabulario mas amplio, el estudiante infiere por contexto |
+| B2 | 55% | EVP muy extenso, el curso cubre lo esencial |
+
+Los targets son configurables via `LemmaAbsenceConfig.getCoverageTarget(CefrLevel)`. Los niveles iniciales requieren mayor cobertura porque son la base del aprendizaje. Los niveles avanzados tienen targets menores porque el EVP es mas extenso y el estudiante ya tiene herramientas para inferir vocabulario por contexto.
+
+**Error**: N/A (esta regla describe valores configurables)
 
 ### Rule[F-LABS-R025] - Umbrales de assessment global
 **Severity**: major | **Validation**: AUTO_VALIDATED
@@ -475,9 +495,8 @@ Las recomendaciones se generan segun el tipo de ausencia predominante en el nive
 | Tipo de ausencia | Accion recomendada |
 |------------------|--------------------|
 | COMPLETELY_ABSENT | "Agregar oraciones que contengan los lemas ausentes en el nivel {nivel}" |
-| APPEARS_TOO_LATE | "Introducir los lemas ausentes en niveles anteriores (idealmente en {nivelEsperado}) ademas de donde ya aparecen" |
-| APPEARS_TOO_EARLY | "Reforzar los lemas en su nivel esperado ({nivelEsperado}), no solo en los niveles donde ya aparecen" |
-| SCATTERED_PLACEMENT | "Consolidar la aparicion de los lemas en su nivel esperado ({nivelEsperado}) y revisar la coherencia de su distribucion entre niveles" |
+| APPEARS_TOO_LATE | "Introducir los lemas ausentes en el nivel esperado ({nivelEsperado}) ademas de donde ya aparecen" |
+| APPEARS_TOO_EARLY | "Quitar o reemplazar los lemas en los niveles anteriores donde no corresponden para que aparezcan desde {nivelEsperado} en adelante" |
 
 **Error**: N/A (esta regla describe la logica de recomendaciones)
 
@@ -898,5 +917,4 @@ lemmaAbsence:
     - COMPLETELY_ABSENT
     - APPEARS_TOO_EARLY
     - APPEARS_TOO_LATE
-    - SCATTERED_PLACEMENT
 ```

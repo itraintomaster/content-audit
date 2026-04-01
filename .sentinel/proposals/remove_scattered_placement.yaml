@@ -1,0 +1,37 @@
+code: __proposal__
+description: "Remove SCATTERED_PLACEMENT from AbsenceType, update APPEARS_TOO_EARLY\
+  \ description, remove CONSOLIDATE_PLACEMENT from RecommendationAction, replace REINFORCE_AT_LEVEL\
+  \ with REMOVE_FROM_LEVEL"
+modules:
+- name: audit-domain
+  packages:
+  - name: labs
+    visibility: internal
+    models:
+    - name: AbsenceType
+      type: enum
+      fields:
+      - name: SCATTERED_PLACEMENT
+        type: double
+        description: Lemma in levels both before and after expected — impact 0.4
+        _change: delete
+      - name: APPEARS_TOO_EARLY
+        type: double
+        description: Lemma found in at least one level before expected — impact 0.6
+        _change: modify
+      _change: modify
+    - name: RecommendationAction
+      type: enum
+      fields:
+      - name: CONSOLIDATE_PLACEMENT
+        description: Consolidate lemma placement across levels
+        _change: delete
+      - name: REINFORCE_AT_LEVEL
+        description: Reinforce lemmas at their expected level
+        _change: delete
+      - name: REMOVE_FROM_LEVEL
+        description: Remove or replace lemmas from levels where they appear too early
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify

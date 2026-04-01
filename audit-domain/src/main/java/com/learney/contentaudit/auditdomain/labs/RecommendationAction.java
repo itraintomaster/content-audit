@@ -11,7 +11,5 @@ public enum RecommendationAction {
 
     INTRODUCE_EARLIER,
 
-    REINFORCE_AT_LEVEL,
-
-    CONSOLIDATE_PLACEMENT
+    REMOVE_FROM_LEVEL
 }

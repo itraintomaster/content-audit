@@ -49,6 +49,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         when(lemmaAbsenceConfig.getCriticalAbsenceThreshold()).thenReturn(10);
         when(lemmaAbsenceConfig.getAcceptableAbsenceThreshold()).thenReturn(5);
         when(lemmaAbsenceConfig.getDiscountPerLevel()).thenReturn(0.1);
+        when(lemmaAbsenceConfig.getCoverageTarget(any())).thenReturn(1.0); // Default: 100% target
         // Default: all tokens pass content word filter (overridden per test when needed)
         when(contentWordFilter.isContentWord(any())).thenReturn(true);
     }
@@ -773,12 +774,12 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should classify as SCATTERED_PLACEMENT when lemma in both earlier and later levels")
+    @DisplayName("should classify as APPEARS_TOO_EARLY when lemma in both earlier and later levels")
     @Tag("FEAT-LABS")
     @Tag("F-LABS-R007")
-    public void shouldClassifyAsSCATTEREDPLACEMENTWhenLemmaInBothEarlierAndLaterLevels() {
+    public void shouldClassifyAsAPPEARSTOOEARLYWhenLemmaInBothEarlierAndLaterLevels() {
         stubMinimalConfig();
-        // "cat" expected at A2 (order 2), present in A1 (earlier) AND B1 (later) -> SCATTERED_PLACEMENT
+        // "cat" expected at A2 (order 2), present in A1 (earlier) AND B1 (later) -> APPEARS_TOO_EARLY
         LemmaAndPos cat = new LemmaAndPos("cat", "NOUN");
         when(evpCatalogPort.getExpectedLemmas(CefrLevel.A1)).thenReturn(Collections.emptySet());
         when(evpCatalogPort.getExpectedLemmas(CefrLevel.A2)).thenReturn(new HashSet<>(List.of(cat)));
@@ -807,17 +808,16 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should enumerate exactly four absence types")
+    @DisplayName("should enumerate exactly three absence types")
     @Tag("FEAT-LABS")
     @Tag("F-LABS-R006")
-    public void shouldEnumerateExactlyFourAbsenceTypes() {
+    public void shouldEnumerateExactlyThreeAbsenceTypes() {
         AbsenceType[] types = AbsenceType.values();
-        assertEquals(4, types.length);
+        assertEquals(3, types.length);
         List<AbsenceType> typeList = List.of(types);
         assertTrue(typeList.contains(AbsenceType.COMPLETELY_ABSENT));
         assertTrue(typeList.contains(AbsenceType.APPEARS_TOO_LATE));
         assertTrue(typeList.contains(AbsenceType.APPEARS_TOO_EARLY));
-        assertTrue(typeList.contains(AbsenceType.SCATTERED_PLACEMENT));
     }
 
     @Test
@@ -854,15 +854,6 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     public void shouldAssignImpact06ToAPPEARSTOOEARLY() {
         assertNotNull(AbsenceType.APPEARS_TOO_EARLY);
         assertEquals(AbsenceType.APPEARS_TOO_EARLY, AbsenceType.valueOf("APPEARS_TOO_EARLY"));
-    }
-
-    @Test
-    @DisplayName("should assign impact 0.4 to SCATTERED_PLACEMENT")
-    @Tag("FEAT-LABS")
-    @Tag("F-LABS-R008")
-    public void shouldAssignImpact04ToSCATTEREDPLACEMENT() {
-        assertNotNull(AbsenceType.SCATTERED_PLACEMENT);
-        assertEquals(AbsenceType.SCATTERED_PLACEMENT, AbsenceType.valueOf("SCATTERED_PLACEMENT"));
     }
 
     @Test
@@ -2020,25 +2011,14 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     }
 
     @Test
-    @org.junit.jupiter.api.DisplayName("should map APPEARS_TOO_EARLY to REINFORCE_AT_LEVEL recommendation")
+    @org.junit.jupiter.api.DisplayName("should map APPEARS_TOO_EARLY to REMOVE_FROM_LEVEL recommendation")
     @org.junit.jupiter.api.Tag("FEAT-LABS")
     @org.junit.jupiter.api.Tag("F-LABS-R028")
-    public void shouldMapAPPEARSTOOEARLYToREINFORCEATLEVELRecommendation() {
-        // R028: APPEARS_TOO_EARLY -> REINFORCE_AT_LEVEL action
-        assertEquals(RecommendationAction.REINFORCE_AT_LEVEL,
-                RecommendationAction.valueOf("REINFORCE_AT_LEVEL"));
-        assertNotNull(RecommendationAction.REINFORCE_AT_LEVEL);
-    }
-
-    @Test
-    @org.junit.jupiter.api.DisplayName("should map SCATTERED_PLACEMENT to CONSOLIDATE_PLACEMENT recommendation")
-    @org.junit.jupiter.api.Tag("FEAT-LABS")
-    @org.junit.jupiter.api.Tag("F-LABS-R028")
-    public void shouldMapSCATTEREDPLACEMENTToCONSOLIDATEPLACEMENTRecommendation() {
-        // R028: SCATTERED_PLACEMENT -> CONSOLIDATE_PLACEMENT action
-        assertEquals(RecommendationAction.CONSOLIDATE_PLACEMENT,
-                RecommendationAction.valueOf("CONSOLIDATE_PLACEMENT"));
-        assertNotNull(RecommendationAction.CONSOLIDATE_PLACEMENT);
+    public void shouldMapAPPEARSTOOEARLYToREMOVEFROMLEVELRecommendation() {
+        // R028: APPEARS_TOO_EARLY -> REMOVE_FROM_LEVEL action
+        assertEquals(RecommendationAction.REMOVE_FROM_LEVEL,
+                RecommendationAction.valueOf("REMOVE_FROM_LEVEL"));
+        assertNotNull(RecommendationAction.REMOVE_FROM_LEVEL);
     }
 
     @Test

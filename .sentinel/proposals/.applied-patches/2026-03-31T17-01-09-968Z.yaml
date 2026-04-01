@@ -1,0 +1,36 @@
+code: __proposal__
+description: "Add coca-buckets detailed view: modify CocaBucketsAnalyzer to emit ScoredItems\
+  \ with metadata at COURSE/MILESTONE/TOPIC levels, add CocaBucketsDetailedFormatter\
+  \ in audit-cli"
+modules:
+- name: audit-domain
+  packages:
+  - name: coca
+    visibility: internal
+    implementations:
+    - name: CocaBucketsAnalyzer
+      requiresInject:
+      - name: nlpTokenizer
+        type: NlpTokenizer
+      - name: cocaBucketsConfig
+        type: CocaBucketsConfig
+      - name: tokenClassifier
+        type: TokenClassifier
+      - name: progressionEvaluator
+        type: ProgressionEvaluator
+      - name: improvementPlanner
+        type: ImprovementPlanner
+      implements:
+      - ContentAnalyzer
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  implementations:
+  - name: CocaBucketsDetailedFormatter
+    types:
+    - Component
+    implements:
+    - DetailedFormatter
+    _change: add
+  _change: modify

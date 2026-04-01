@@ -54,7 +54,9 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
             sb.append("      \"completelyAbsentScore\": ").append(meta != null ? fmt(toDouble(meta.get("completely_absentScore"))) : "0").append(",\n");
             sb.append("      \"appearsTooLateScore\": ").append(meta != null ? fmt(toDouble(meta.get("appears_too_lateScore"))) : "0").append(",\n");
             sb.append("      \"appearsTooEarlyScore\": ").append(meta != null ? fmt(toDouble(meta.get("appears_too_earlyScore"))) : "0").append(",\n");
-            sb.append("      \"scatteredPlacementScore\": ").append(meta != null ? fmt(toDouble(meta.get("scattered_placementScore"))) : "0").append(",\n");
+
+            // Absent lemmas (TOO_LATE + COMPLETELY_ABSENT) for this level
+            sb.append("      \"absentLemmas\": ").append(formatAbsentLemmasJson(meta)).append(",\n");
 
             // Topics for this level
             List<ScoredItem> topics = p.topicsByLevel.getOrDefault(e.getKey(), List.of());
@@ -136,10 +138,10 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
                 courseScore, assessment));
 
         // Level summary table
-        sb.append(String.format("%-6s %6s %9s %7s %8s %11s %8s %9s %9s%n",
-                "Level", "Score", "Expected", "Absent", "Absent%",
-                "Completely", "TooLate", "TooEarly", "Scattered"));
-        sb.append("─".repeat(85)).append("\n");
+        sb.append(String.format("%-6s %6s %7s %9s %7s %8s %8s %8s %9s%n",
+                "Level", "Score", "Target", "Expected", "Absent", "Absent%",
+                "Absent", "TooLate", "TooEarly"));
+        sb.append("─".repeat(82)).append("\n");
 
         for (Map.Entry<String, ScoredItem> entry : p.milestones.entrySet()) {
             String level = entry.getKey();
@@ -147,15 +149,38 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
             Map<String, Object> meta = mi.getMetadata();
             if (meta == null) continue;
 
-            sb.append(String.format("%-6s %6.2f %9s %7s %7.1f%% %11.2f %8.2f %9.2f %9.2f%n",
+            double target = toDouble(meta.get("coverageTarget")) * 100;
+            sb.append(String.format("%-6s %6.2f %6.0f%% %9s %7s %7.1f%% %8.2f %8.2f %9.2f%n",
                     level, mi.getScore(),
+                    target,
                     meta.getOrDefault("totalExpected", ""),
                     meta.getOrDefault("totalAbsent", ""),
                     toDouble(meta.get("absencePercentage")),
                     toDouble(meta.get("completely_absentScore")),
                     toDouble(meta.get("appears_too_lateScore")),
-                    toDouble(meta.get("appears_too_earlyScore")),
-                    toDouble(meta.get("scattered_placementScore"))));
+                    toDouble(meta.get("appears_too_earlyScore"))));
+        }
+
+        // Absent lemmas per level (TOO_LATE + COMPLETELY_ABSENT)
+        for (Map.Entry<String, ScoredItem> entry : p.milestones.entrySet()) {
+            String level = entry.getKey();
+            Map<String, Object> meta = entry.getValue().getMetadata();
+            if (meta == null) continue;
+            @SuppressWarnings("unchecked")
+            List<Map<String, String>> absentLemmas = (List<Map<String, String>>) meta.get("absentLemmas");
+            if (absentLemmas == null || absentLemmas.isEmpty()) continue;
+
+            sb.append(String.format("%n%s > Lemmas to add (%d):%n", level, absentLemmas.size()));
+            sb.append(String.format("  %-20s %-6s %-18s %s%n", "Lemma", "POS", "Type", "Priority"));
+            sb.append("  ").append("─".repeat(55)).append("\n");
+            for (int i = 0; i < Math.min(15, absentLemmas.size()); i++) {
+                Map<String, String> al = absentLemmas.get(i);
+                sb.append(String.format("  %-20s %-6s %-18s %s%n",
+                        al.get("lemma"), al.get("pos"), al.get("type"), al.get("priority")));
+            }
+            if (absentLemmas.size() > 15) {
+                sb.append(String.format("  ... +%d more%n", absentLemmas.size() - 15));
+            }
         }
 
         // Topic breakdown per level
@@ -242,6 +267,27 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
               .append("→").append(l.get("expectedLevel")).append(")");
         }
         if (lemmas.size() > 5) sb.append(" +").append(lemmas.size() - 5).append(" more");
+        return sb.toString();
+    }
+
+    @SuppressWarnings("unchecked")
+    private String formatAbsentLemmasJson(Map<String, Object> meta) {
+        if (meta == null) return "[]";
+        Object obj = meta.get("absentLemmas");
+        if (!(obj instanceof List)) return "[]";
+        List<Map<String, String>> lemmas = (List<Map<String, String>>) obj;
+        if (lemmas.isEmpty()) return "[]";
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < lemmas.size(); i++) {
+            Map<String, String> l = lemmas.get(i);
+            if (i > 0) sb.append(",");
+            sb.append("\n        {\"lemma\": ").append(jsonStr(l.get("lemma")))
+              .append(", \"pos\": ").append(jsonStr(l.get("pos")))
+              .append(", \"type\": ").append(jsonStr(l.get("type")))
+              .append(", \"priority\": ").append(jsonStr(l.get("priority"))).append("}");
+        }
+        sb.append("\n      ]");
         return sb.toString();
     }
 

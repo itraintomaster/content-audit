@@ -74,10 +74,14 @@ features:
   - id: "F-LABS-R006"
     name: "Tipos de ausencia"
     severity: "critical"
-    description: "Cada lema ausente se clasifica en uno de cuatro tipos: COMPLETELY_ABSENT\
-      \ (no aparece en ningun nivel), APPEARS_TOO_LATE (solo en niveles posteriores),\
-      \ APPEARS_TOO_EARLY (solo en niveles anteriores), SCATTERED_PLACEMENT (en niveles\
-      \ mixtos sin patron claro)."
+    description: "Cada lema ausente se clasifica en uno de tres tipos: COMPLETELY_ABSENT\
+      \ (no aparece en ningun nivel), APPEARS_TOO_LATE (aparece solo en niveles posteriores\
+      \ al esperado), APPEARS_TOO_EARLY (aparece en al menos un nivel anterior al\
+      \ esperado). La clasificacion prioriza la deteccion de apariciones tempranas:\
+      \ si un lema aparece en cualquier nivel anterior al esperado, se clasifica como\
+      \ TOO_EARLY independientemente de que tambien aparezca en niveles posteriores.\
+      \ Esto orienta la accion correctiva: quitar o reemplazar el lema en los niveles\
+      \ donde no deberia estar."
     errorMessage: null
     validation: "AUTO_VALIDATED"
     code: null
@@ -86,9 +90,10 @@ features:
     name: "Algoritmo de clasificacion de ausencia"
     severity: "critical"
     description: "Algoritmo: si el lema no aparece en ningun nivel -> COMPLETELY_ABSENT.\
-      \ Si aparece solo en niveles con orden menor al esperado -> APPEARS_TOO_EARLY.\
-      \ Si aparece solo en niveles con orden mayor -> APPEARS_TOO_LATE. En cualquier\
-      \ otro caso -> SCATTERED_PLACEMENT. Orden CEFR: A1=1, A2=2, B1=3, B2=4."
+      \ Si aparece en al menos un nivel con orden menor al esperado -> APPEARS_TOO_EARLY\
+      \ (independientemente de que tambien aparezca en niveles posteriores). Si aparece\
+      \ solo en niveles con orden mayor al esperado -> APPEARS_TOO_LATE.\
+      \ Orden CEFR: A1=1, A2=2, B1=3, B2=4."
     errorMessage: null
     validation: "AUTO_VALIDATED"
     code: null
@@ -97,8 +102,8 @@ features:
     name: "Puntuacion de impacto por tipo de ausencia"
     severity: "major"
     description: "Cada tipo de ausencia tiene una puntuacion de impacto: COMPLETELY_ABSENT=1.0,\
-      \ APPEARS_TOO_LATE=0.8, APPEARS_TOO_EARLY=0.6, SCATTERED_PLACEMENT=0.4. La\
-      \ puntuacion pondera la importancia de cada lema ausente en el calculo de metricas."
+      \ APPEARS_TOO_LATE=0.8, APPEARS_TOO_EARLY=0.6. La puntuacion pondera la\
+      \ importancia de cada lema ausente en el calculo de metricas."
     errorMessage: null
     validation: "AUTO_VALIDATED"
     code: null
@@ -109,7 +114,8 @@ features:
     description: "APPEARS_TOO_LATE tiene mayor impacto (0.8) que APPEARS_TOO_EARLY\
       \ (0.6) porque el estudiante no tuvo acceso al vocabulario cuando lo necesitaba,\
       \ generando una laguna acumulativa. APPEARS_TOO_EARLY es menos grave porque\
-      \ el vocabulario al menos esta presente en el curso."
+      \ el vocabulario al menos esta presente en el curso, aunque la accion correctiva\
+      \ es quitar el lema del nivel donde no corresponde."
     errorMessage: null
     validation: "AUTO_VALIDATED"
     code: null
@@ -262,23 +268,40 @@ features:
     name: "Metricas por nivel"
     severity: "critical"
     description: "Para cada nivel: total de lemas esperados, total de lemas ausentes,\
-      \ porcentaje de ausencia, y desglose de lemas ausentes por tipo de ausencia\
-      \ con informacion enriquecida."
+      \ porcentaje de cobertura, coverage target configurable, y desglose de lemas\
+      \ ausentes por tipo de ausencia con informacion enriquecida."
     errorMessage: null
     validation: "AUTO_VALIDATED"
     code: null
     rationale: null
   - id: "F-LABS-R024"
-    name: "Puntuacion global del analisis"
+    name: "Puntuacion por nivel relativa al coverage target"
     severity: "critical"
-    description: "Puntuacion entre 0.0 y 1.0 calculada como promedio ponderado de\
-      \ las puntuaciones por nivel. Pesos: A1=2.0, A2=2.0, B1=1.0, B2=1.0.\
-      \ [ASSUMPTION] Niveles criticos tienen peso doble."
+    description: "La puntuacion de cada nivel se calcula como la proporcion entre\
+      \ la cobertura actual y el coverage target del nivel. Cobertura actual =\
+      \ 1.0 - (ausencia ponderada por impact / total esperado). Si la cobertura\
+      \ alcanza o supera el target, score = 1.0. Si no, score = cobertura / target.\
+      \ Esto refleja la distancia al objetivo: cuando se alcanza el target, el score\
+      \ es perfecto. La puntuacion global es el promedio ponderado de las puntuaciones\
+      \ por nivel. Pesos: A1=2.0, A2=2.0, B1=1.0, B2=1.0."
     errorMessage: "Error al calcular la puntuacion global: {detalle}"
-    validation: "ASSUMPTION"
+    validation: "AUTO_VALIDATED"
     code: null
-    rationale: "A1 y A2 tienen peso doble reflejando su criticidad pedagogica,\
-      \ consistente con el enfasis del analisis original."
+    rationale: null
+  - id: "F-LABS-R032"
+    name: "Coverage targets configurables por nivel"
+    severity: "critical"
+    description: "Cada nivel CEFR tiene un coverage target configurable que define\
+      \ el porcentaje de cobertura de vocabulario esperado para considerar el nivel\
+      \ como completo. Valores por defecto: A1=0.95 (95%), A2=0.85 (85%), B1=0.70\
+      \ (70%), B2=0.55 (55%). Los niveles iniciales requieren mayor cobertura porque\
+      \ son la base del aprendizaje. Los niveles avanzados tienen targets menores porque\
+      \ el EVP es mas extenso y el estudiante ya tiene herramientas para inferir\
+      \ vocabulario por contexto. Los targets son configurables via LemmaAbsenceConfig."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
   - id: "F-LABS-R025"
     name: "Umbrales de assessment global"
     severity: "major"
@@ -310,9 +333,10 @@ features:
   - id: "F-LABS-R028"
     name: "Tipos de accion en recomendaciones"
     severity: "major"
-    description: "Acciones por tipo de ausencia: COMPLETELY_ABSENT -> agregar oraciones,\
-      \ APPEARS_TOO_LATE -> introducir en niveles anteriores, APPEARS_TOO_EARLY ->\
-      \ reforzar en nivel esperado, SCATTERED_PLACEMENT -> consolidar distribucion."
+    description: "Acciones por tipo de ausencia: COMPLETELY_ABSENT -> agregar oraciones\
+      \ con el lema en el nivel esperado, APPEARS_TOO_LATE -> introducir el lema en\
+      \ el nivel esperado (ademas de donde ya aparece), APPEARS_TOO_EARLY -> quitar\
+      \ o reemplazar el lema en los niveles anteriores donde no corresponde."
     errorMessage: null
     validation: "AUTO_VALIDATED"
     code: null

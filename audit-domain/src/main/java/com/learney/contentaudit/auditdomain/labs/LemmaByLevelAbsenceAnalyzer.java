@@ -100,7 +100,6 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         IMPACT_SCORES.put(AbsenceType.COMPLETELY_ABSENT, 1.0);
         IMPACT_SCORES.put(AbsenceType.APPEARS_TOO_LATE, 0.8);
         IMPACT_SCORES.put(AbsenceType.APPEARS_TOO_EARLY, 0.6);
-        IMPACT_SCORES.put(AbsenceType.SCATTERED_PLACEMENT, 0.4);
     }
 
     private final EvpCatalogPort evpCatalogPort;
@@ -276,7 +275,7 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
             double absencePercentage = totalExpected == 0 ? 0.0
                     : (double) totalAbsent / totalExpected * 100.0;
 
-            double levelScore = computeLevelScore(totalExpected, totalAbsent, fullAbsentList);
+            double levelScore = computeLevelScore(level, totalExpected, totalAbsent, fullAbsentList);
 
             LevelAbsenceMetrics metrics = new LevelAbsenceMetrics(
                     level, totalExpected, totalAbsent, absencePercentage, absentList, levelScore);
@@ -298,6 +297,32 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
             milestoneMeta.put("totalExpected", totalExpected);
             milestoneMeta.put("totalAbsent", totalAbsent);
             milestoneMeta.put("absencePercentage", absencePercentage);
+            milestoneMeta.put("coverageTarget", lemmaAbsenceConfig.getCoverageTarget(level));
+
+            // Include absent lemmas that need action: TOO_LATE and COMPLETELY_ABSENT
+            // Sorted by priority (HIGH first) then by type (COMPLETELY_ABSENT first)
+            List<AbsentLemma> actionable = new ArrayList<>();
+            for (AbsentLemma al : absentList) {
+                if (al.getAbsenceType() == AbsenceType.APPEARS_TOO_LATE
+                        || al.getAbsenceType() == AbsenceType.COMPLETELY_ABSENT) {
+                    actionable.add(al);
+                }
+            }
+            actionable.sort((a, b) -> {
+                int pCmp = a.getPriorityLevel().ordinal() - b.getPriorityLevel().ordinal();
+                if (pCmp != 0) return pCmp;
+                return a.getAbsenceType().ordinal() - b.getAbsenceType().ordinal();
+            });
+            List<Map<String, String>> absentLemmaDetails = new ArrayList<>();
+            for (AbsentLemma al : actionable) {
+                Map<String, String> info = new LinkedHashMap<>();
+                info.put("lemma", al.getLemmaAndPos().getLemma());
+                info.put("pos", al.getLemmaAndPos().getPos());
+                info.put("type", al.getAbsenceType().name());
+                info.put("priority", al.getPriorityLevel().name());
+                absentLemmaDetails.add(info);
+            }
+            milestoneMeta.put("absentLemmas", absentLemmaDetails);
 
             results.add(new ScoredItem(
                     ANALYZER_NAME, AuditTarget.MILESTONE, levelScore,
@@ -376,12 +401,11 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
                 hasLater = true;
             }
         }
-        if (hasEarlier && !hasLater) {
+        // R007: If lemma appears in ANY earlier level -> TOO_EARLY (even if also in later levels)
+        if (hasEarlier) {
             return AbsenceType.APPEARS_TOO_EARLY;
-        } else if (hasLater && !hasEarlier) {
-            return AbsenceType.APPEARS_TOO_LATE;
         } else {
-            return AbsenceType.SCATTERED_PLACEMENT;
+            return AbsenceType.APPEARS_TOO_LATE;
         }
     }
 
@@ -558,14 +582,17 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
             if (discount > maxDiscount) {
                 maxDiscount = discount;
             }
-            // Track misplaced lemma details (deduplicate by lemma+pos)
-            String key = lp.getLemma() + "|" + lp.getPos();
-            if (seen.add(key)) {
-                Map<String, String> info = new LinkedHashMap<>();
-                info.put("lemma", lp.getLemma());
-                info.put("pos", lp.getPos());
-                info.put("expectedLevel", expectedLevel.name());
-                misplacedLemmas.add(info);
+            // Only report as misplaced if the lemma is from a HIGHER level than this sentence
+            // (advanced word in basic level). Words from lower levels are normal reuse.
+            if (expectedOrder > sentenceOrder) {
+                String key = lp.getLemma() + "|" + lp.getPos();
+                if (seen.add(key)) {
+                    Map<String, String> info = new LinkedHashMap<>();
+                    info.put("lemma", lp.getLemma());
+                    info.put("pos", lp.getPos());
+                    info.put("expectedLevel", expectedLevel.name());
+                    misplacedLemmas.add(info);
+                }
             }
         }
         double score = 1.0 - maxDiscount;
@@ -573,20 +600,28 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         return new QuizScoreResult(score, misplacedLemmas);
     }
 
-    // --- R008/R024: Compute level score weighted by absence type impact ---
-    private double computeLevelScore(int totalExpected, int totalAbsent,
+    // --- R008/R024/R032: Compute level score relative to coverage target ---
+    private double computeLevelScore(CefrLevel level, int totalExpected, int totalAbsent,
             List<AbsentLemma> absentList) {
         if (totalExpected == 0) {
             return 1.0;
         }
         // R008: Each absent lemma contributes its type's impact score to the penalty
-        // COMPLETELY_ABSENT=1.0, APPEARS_TOO_LATE=0.8, APPEARS_TOO_EARLY=0.6, SCATTERED=0.4
         double weightedAbsence = 0.0;
         for (AbsentLemma al : absentList) {
             weightedAbsence += IMPACT_SCORES.getOrDefault(al.getAbsenceType(), 1.0);
         }
-        double score = 1.0 - weightedAbsence / totalExpected;
-        return Math.max(0.0, Math.min(1.0, score));
+        double coverage = 1.0 - weightedAbsence / totalExpected;
+
+        // R032: Score relative to coverage target
+        double target = lemmaAbsenceConfig.getCoverageTarget(level);
+        if (target <= 0.0) {
+            return 1.0;
+        }
+        if (coverage >= target) {
+            return 1.0;
+        }
+        return Math.max(0.0, coverage / target);
     }
 
     // --- R022, R025: Compute global assessment ---
@@ -703,9 +738,7 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
             case APPEARS_TOO_LATE:
                 return RecommendationAction.INTRODUCE_EARLIER;
             case APPEARS_TOO_EARLY:
-                return RecommendationAction.REINFORCE_AT_LEVEL;
-            case SCATTERED_PLACEMENT:
-                return RecommendationAction.CONSOLIDATE_PLACEMENT;
+                return RecommendationAction.REMOVE_FROM_LEVEL;
             default:
                 return RecommendationAction.ADD_VOCABULARY;
         }
@@ -717,14 +750,11 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
             case COMPLETELY_ABSENT:
                 return "Agregar oraciones que contengan los lemas ausentes en el nivel " + level.name();
             case APPEARS_TOO_LATE:
-                return "Introducir los lemas ausentes en niveles anteriores (idealmente en " + level.name()
+                return "Introducir los lemas ausentes en el nivel esperado (" + level.name()
                         + ") ademas de donde ya aparecen";
             case APPEARS_TOO_EARLY:
-                return "Reforzar los lemas en su nivel esperado (" + level.name()
-                        + "), no solo en los niveles donde ya aparecen";
-            case SCATTERED_PLACEMENT:
-                return "Consolidar la aparicion de los lemas en su nivel esperado (" + level.name()
-                        + ") y revisar la coherencia de su distribucion entre niveles";
+                return "Quitar o reemplazar los lemas en los niveles anteriores donde no corresponden"
+                        + " para que aparezcan desde " + level.name() + " en adelante";
             default:
                 return "";
         }

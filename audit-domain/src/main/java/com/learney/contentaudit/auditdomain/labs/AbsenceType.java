@@ -11,7 +11,5 @@ public enum AbsenceType {
 
     APPEARS_TOO_LATE,
 
-    APPEARS_TOO_EARLY,
-
-    SCATTERED_PLACEMENT
+    APPEARS_TOO_EARLY
 }

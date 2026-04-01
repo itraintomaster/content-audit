@@ -1,0 +1,10 @@
+code: __proposal__
+description: "Add getCoverageTarget(CefrLevel) method to LemmaAbsenceConfig for R032"
+modules:
+- name: audit-domain
+  interfaces:
+  - name: LemmaAbsenceConfig
+    exposes:
+    - signature: "getCoverageTarget(CefrLevel level): double"
+    _change: modify
+  _change: modify

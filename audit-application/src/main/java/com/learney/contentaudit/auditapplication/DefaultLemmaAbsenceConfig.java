@@ -125,9 +125,21 @@ public class DefaultLemmaAbsenceConfig implements LemmaAbsenceConfig {
             thresholdsByLevel.put(level.name(), Map.of(
                     "absolute", getAbsoluteThreshold(level),
                     "percentage", getPercentageThreshold(level),
-                    "weight", getLevelWeight(level)));
+                    "weight", getLevelWeight(level),
+                    "coverageTarget", getCoverageTarget(level)));
         }
         desc.put("thresholdsByLevel", thresholdsByLevel);
         return desc;
     }
+
+    @Override
+    public double getCoverageTarget(CefrLevel level) {
+        return switch (level) {
+            case A1 -> 0.95;
+            case A2 -> 0.85;
+            case B1 -> 0.70;
+            case B2 -> 0.55;
+        };
+    }
+
 }

@@ -363,6 +363,7 @@ modules:
     - signature: "getMediumReportLimit(): int"
     - signature: "getLowReportLimit(): int"
     - signature: "getDiscountPerLevel(): double"
+    - signature: "getCoverageTarget(CefrLevel level): double"
     extends:
     - SelfDescribingConfig
   - name: EvpCatalogPort
@@ -1302,10 +1303,7 @@ modules:
         description: Lemma only in levels after expected — impact 0.8
       - name: APPEARS_TOO_EARLY
         type: double
-        description: Lemma only in levels before expected — impact 0.6
-      - name: SCATTERED_PLACEMENT
-        type: double
-        description: Lemma in levels both before and after expected — impact 0.4
+        description: Lemma found in at least one level before expected — impact 0.6
     - name: PriorityLevel
       type: enum
       fields:
@@ -1382,10 +1380,8 @@ modules:
         description: Add sentences containing completely absent lemmas
       - name: INTRODUCE_EARLIER
         description: Introduce lemmas in earlier levels where they are expected
-      - name: REINFORCE_AT_LEVEL
-        description: Reinforce lemmas at their expected level
-      - name: CONSOLIDATE_PLACEMENT
-        description: Consolidate lemma placement across levels
+      - name: REMOVE_FROM_LEVEL
+        description: Remove or replace lemmas from levels where they appear too early
     - name: EffortLevel
       type: enum
       fields:
@@ -1542,12 +1538,12 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R007
-      - name: should classify as SCATTERED_PLACEMENT when lemma in both earlier and
+      - name: should classify as APPEARS_TOO_EARLY when lemma in both earlier and
           later levels
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R007
-      - name: should enumerate exactly four absence types
+      - name: should enumerate exactly three absence types
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R006
@@ -1560,10 +1556,6 @@ modules:
           feature: FEAT-LABS
           rule: F-LABS-R008
       - name: should assign impact 0.6 to APPEARS_TOO_EARLY
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R008
-      - name: should assign impact 0.4 to SCATTERED_PLACEMENT
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R008
@@ -1770,11 +1762,7 @@ modules:
         traceability:
           feature: FEAT-LABS
           journey: F-LABS-J005
-      - name: should map APPEARS_TOO_EARLY to REINFORCE_AT_LEVEL recommendation
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R028
-      - name: should map SCATTERED_PLACEMENT to CONSOLIDATE_PLACEMENT recommendation
+      - name: should map APPEARS_TOO_EARLY to REMOVE_FROM_LEVEL recommendation
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R028
@@ -3909,7 +3897,8 @@ modules:
     stereotype: formatter
     sealed: false
     exposes:
-    - signature: "format(String analyzerName,List<ScoredItem> items,String outputFormat): String"
+    - signature: "format(String analyzerName,List<ScoredItem> items,String outputFormat):\
+        \ String"
   implementations:
   - name: TextReportFormatter
     requiresInject:
@@ -4007,6 +3996,11 @@ modules:
     externalImplements:
     - java.util.concurrent.Callable<Integer>
   - name: LemmaAbsenceDetailedFormatter
+    types:
+    - Component
+    implements:
+    - DetailedFormatter
+  - name: CocaBucketsDetailedFormatter
     types:
     - Component
     implements:
