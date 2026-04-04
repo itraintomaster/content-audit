@@ -115,9 +115,4 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
         return "Scores quiz sentence length against per-CEFR target token ranges";
     }
 
-    @Override
-    public List<ScoredItem> getResults() {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
-
 }

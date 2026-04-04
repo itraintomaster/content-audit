@@ -94,6 +94,15 @@ Methods:
 
 **Tests that must pass:**
 
+- should have alert thresholds non-decreasing from high to low priority → FEAT-LABS/F-LABS-R014
+- should enforce zero tolerance for high priority alert threshold → FEAT-LABS/F-LABS-R014
+- should enforce A1 zero tolerance with both absolute and percentage thresholds at zero → FEAT-LABS/F-LABS-R021
+- should have discount per level that limits max penalty to 0.3 for three-level distance → FEAT-LABS/F-LABS-R018
+- should return non-negative values for all thresholds and bounds → FEAT-LABS/F-LABS-R021
+- should return positive report limits for all priority levels → FEAT-LABS/F-LABS-R026
+- should return percentage thresholds between 0 and 100 for all levels → FEAT-LABS/F-LABS-R021
+- should return positive level weights for all CEFR levels → FEAT-LABS/F-LABS-R024
+- should return discount per level between 0 exclusive and 1 exclusive → FEAT-LABS/F-LABS-R018
 - should return absolute threshold 0 for A1 → FEAT-LABS/F-LABS-R021
 - should return absolute threshold 2 for A2 → FEAT-LABS/F-LABS-R021
 - should return absolute threshold 5 for B1 → FEAT-LABS/F-LABS-R021

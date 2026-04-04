@@ -149,9 +149,4 @@ public class LemmaRecurrenceAnalyzer implements ContentAnalyzer {
         return "Tracks lemma repetition intervals to detect sub/over-exposed vocabulary";
     }
 
-    @Override
-    public List<ScoredItem> getResults() {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
-
 }

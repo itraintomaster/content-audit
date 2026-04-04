@@ -1,7 +1,119 @@
-generatedAt: 2026-04-04T16:52:57.834964Z
+generatedAt: 2026-04-04T23:25:02.729024Z
 system: ContentAudit
 version: 0.0.1
 features:
+- id: FEAT-DLABS
+  state: IMPLEMENTING
+  requirementFile: requirements/2026-04-04.01_typed-diagnostics-lemma-absence/requirement.yaml
+  rulesCoverage:
+  - ruleId: F-DLABS-R001
+    state: NO_TESTS
+  - ruleId: F-DLABS-R002
+    state: NO_TESTS
+  - ruleId: F-DLABS-R003
+    state: PASSING
+    tests:
+    - name: should handle missing diagnosis gracefully when analyzer did not produce
+        results
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: LemmaAbsenceDetailedFormatter
+  - ruleId: F-DLABS-R004
+    state: NO_TESTS
+  - ruleId: F-DLABS-R005
+    state: NO_TESTS
+  - ruleId: F-DLABS-R006
+    state: NO_TESTS
+  - ruleId: F-DLABS-R007
+    state: NO_TESTS
+  - ruleId: F-DLABS-R008
+    state: NO_TESTS
+  - ruleId: F-DLABS-R009
+    state: NO_TESTS
+  - ruleId: F-DLABS-R010
+    state: NO_TESTS
+  - ruleId: F-DLABS-R011
+    state: PASSING
+    tests:
+    - name: should return empty when navigating to nonexistent ancestor level
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: LemmaAbsenceDetailedFormatter
+  - ruleId: F-DLABS-R012
+    state: NO_TESTS
+  - ruleId: F-DLABS-R013
+    state: PASSING
+    tests:
+    - name: should format text output from typed diagnoses matching previous metadata-based
+        output
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: LemmaAbsenceDetailedFormatter
+    - name: should format json output from typed diagnoses matching previous metadata-based
+        output
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: LemmaAbsenceDetailedFormatter
+    - name: should format table output from typed diagnoses matching previous metadata-based
+        output
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: LemmaAbsenceDetailedFormatter
+  - ruleId: F-DLABS-R014
+    state: NO_TESTS
+  journeysCoverage:
+  - journeyId: F-DLABS-J001
+    state: NO_TESTS
+  - journeyId: F-DLABS-J002
+    state: PASSING
+    tests:
+    - name: should navigate from quiz node to milestone ancestor to access level diagnosis
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: LemmaAbsenceDetailedFormatter
+    - name: should return empty when navigating to nonexistent ancestor level
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: LemmaAbsenceDetailedFormatter
+  - journeyId: F-DLABS-J003
+    state: PASSING
+    tests:
+    - name: should format text output from typed diagnoses matching previous metadata-based
+        output
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: LemmaAbsenceDetailedFormatter
+    - name: should format json output from typed diagnoses matching previous metadata-based
+        output
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: LemmaAbsenceDetailedFormatter
+    - name: should format table output from typed diagnoses matching previous metadata-based
+        output
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: LemmaAbsenceDetailedFormatter
+    - name: should read typed diagnoses from course milestone and quiz nodes for formatting
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: LemmaAbsenceDetailedFormatter
+    - name: should handle missing diagnosis gracefully when analyzer did not produce
+        results
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: LemmaAbsenceDetailedFormatter
 - id: FEAT-LREC
   state: DRAFT
   requirementFile: requirements/2026-03-28.01_lemma-recurrence/requirement.yaml
@@ -525,6 +637,16 @@ features:
   - ruleId: F-LABS-R014
     state: PASSING
     tests:
+    - name: should have alert thresholds non-decreasing from high to low priority
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should enforce zero tolerance for high priority alert threshold
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
     - name: should return high priority alert threshold of 0
       implemented: true
       passing: true
@@ -559,6 +681,17 @@ features:
   - ruleId: F-LABS-R018
     state: PASSING
     tests:
+    - name: should have discount per level that limits max penalty to 0.3 for three-level
+        distance
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return discount per level between 0 exclusive and 1 exclusive
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
     - name: should return discount per level of 0.1
       implemented: true
       passing: true
@@ -582,6 +715,22 @@ features:
   - ruleId: F-LABS-R021
     state: PASSING
     tests:
+    - name: should enforce A1 zero tolerance with both absolute and percentage thresholds
+        at zero
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return non-negative values for all thresholds and bounds
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return percentage thresholds between 0 and 100 for all levels
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
     - name: should return absolute threshold 0 for A1
       implemented: true
       passing: true
@@ -655,6 +804,11 @@ features:
   - ruleId: F-LABS-R024
     state: PASSING
     tests:
+    - name: should return positive level weights for all CEFR levels
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
     - name: should return level weight 2.0 for A1
       implemented: true
       passing: true
@@ -709,6 +863,11 @@ features:
   - ruleId: F-LABS-R026
     state: PASSING
     tests:
+    - name: should return positive report limits for all priority levels
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
     - name: should return high report limit of 20
       implemented: true
       passing: true
@@ -865,7 +1024,7 @@ features:
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
   - ruleId: F-KTLEN-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should score 0.5 for title of weighted length 28.5
       implemented: true
@@ -904,22 +1063,22 @@ features:
       implementation: KnowledgeTitleLengthAnalyzer
     - name: should score 0.75 for title of weighted length 35
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
     - name: should score 0.5 for title of weighted length 42
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
     - name: should score 0.0 for title of weighted length 56
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
     - name: should score 0.0 for title of weighted length 70
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
     - name: should return two correctly scored items for two knowledges with different
@@ -1407,6 +1566,8 @@ elements:
       status: EXISTS
     - name: metadata
       status: EXISTS
+    - name: diagnoses
+      status: EXISTS
   interfaces:
   - name: AuditEngine
     status: EXISTS
@@ -1567,6 +1728,39 @@ elements:
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/SelfDescribingConfig.java
     methods:
     - signature: "describe(): Map<String,Object>"
+      status: EXISTS
+  - name: NodeDiagnoses
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/NodeDiagnoses.java
+  - name: CourseDiagnoses
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/CourseDiagnoses.java
+    methods:
+    - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>"
+      status: EXISTS
+  - name: LevelDiagnoses
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/LevelDiagnoses.java
+    methods:
+    - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>"
+      status: EXISTS
+  - name: TopicDiagnoses
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/TopicDiagnoses.java
+    methods:
+    - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
+      status: EXISTS
+  - name: KnowledgeDiagnoses
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/KnowledgeDiagnoses.java
+    methods:
+    - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
+      status: EXISTS
+  - name: QuizDiagnoses
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/QuizDiagnoses.java
+    methods:
+    - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
       status: EXISTS
   implementations:
   - name: IAuditEngine
@@ -1867,6 +2061,62 @@ elements:
 
       then:
         analyzer is not null
+    - |
+      test: "should score 0.75 for title of weighted length 35"
+      trace: F-KTLEN / F-KTLEN-R003
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k = AuditableKnowledge(List.of(), titleOfWeight(35), null, false, "k1", "l", "C")
+        node = buildKnowledgeNode(k)
+
+      when:
+        sut.onKnowledge(node)
+
+      then:
+        node.getScores().get("knowledge-title-length") == 0.0
+    - |
+      test: "should score 0.5 for title of weighted length 42"
+      trace: F-KTLEN / F-KTLEN-R003
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k = AuditableKnowledge(List.of(), titleOfWeight(42), null, false, "k1", "l", "C")
+        node = buildKnowledgeNode(k)
+
+      when:
+        sut.onKnowledge(node)
+
+      then:
+        node.getScores().get("knowledge-title-length") == 0.0
+    - |
+      test: "should score 0.0 for title of weighted length 56"
+      trace: F-KTLEN / F-KTLEN-R003
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k = AuditableKnowledge(List.of(), titleOfWeight(56), null, false, "k1", "l", "C")
+        node = buildKnowledgeNode(k)
+
+      when:
+        sut.onKnowledge(node)
+
+      then:
+        node.getScores().get("knowledge-title-length") == 0.0
+    - |
+      test: "should score 0.0 for title of weighted length 70"
+      trace: F-KTLEN / F-KTLEN-R003
+
+      given:
+        analyzer = KnowledgeTitleLengthAnalyzer()
+        k = AuditableKnowledge(List.of(), titleOfWeight(70), null, false, "k1", "l", "C")
+        node = buildKnowledgeNode(k)
+
+      when:
+        sut.onKnowledge(node)
+
+      then:
+        node.getScores().get("knowledge-title-length") == 0.0
   - name: KnowledgeInstructionsLengthAnalyzer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzer.java
@@ -2924,6 +3174,29 @@ elements:
     - name: should complete without error when onTopic is called
       status: MISSING
     - name: should complete without error when onKnowledge is called
+      status: MISSING
+    - name: should emit LemmaAbsenceCourseDiagnosis with assessment on CourseDiagnoses
+        node after onCourseComplete
+      status: MISSING
+    - name: should emit LemmaAbsenceLevelDiagnosis with coverage metrics on LevelDiagnoses
+        milestone nodes
+      status: MISSING
+    - name: should include typed AbsentLemma entries with lemma pos absenceType and
+        priority in level diagnosis
+      status: MISSING
+    - name: should emit LemmaPlacementDiagnosis on TopicDiagnoses topic nodes with
+        misplacedLemmaCount
+      status: MISSING
+    - name: should emit LemmaPlacementDiagnosis with misplacedLemmas list on knowledge
+        and quiz nodes
+      status: MISSING
+    - name: should populate MisplacedLemma with lemmaAndPos expectedLevel and foundInLevel
+        on quiz diagnosis
+      status: MISSING
+    - name: should not write lemma-absence data to untyped metadata map after migration
+      status: MISSING
+    - name: should return empty Optional from getLemmaAbsenceDiagnosis when analyzer
+        did not run
       status: MISSING
     testCleanViews:
     - |
@@ -4675,6 +4948,217 @@ elements:
 
       when:
         doesNotThrow: sut.onKnowledge(makeNode(AuditTarget.KNOWLEDGE, knowledge, null))
+    - |
+      test: "should emit LemmaAbsenceCourseDiagnosis with assessment on CourseDiagnoses node after onCourseComplete"
+      trace: FEAT-DLABS / F-DLABS-R002, F-DLABS-R004
+
+      given:
+        rootNode = buildEmptyCourseTree()
+        courseDiagnoses = (CourseDiagnoses) rootNode.getDiagnoses()
+
+      when:
+        sut.onCourseComplete(rootNode)
+
+      then:
+        assertInstanceOf(CourseDiagnoses.class)
+        courseDiagnoses.getLemmaAbsenceDiagnosis().isPresent() is true
+        courseDiagnoses.getLemmaAbsenceDiagnosis().get().getAssessment() is not null
+    - |
+      test: "should emit LemmaAbsenceLevelDiagnosis with coverage metrics on LevelDiagnoses milestone nodes"
+      trace: FEAT-DLABS / F-DLABS-R002, F-DLABS-R005
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        rootNode = buildEmptyCourseTree()
+        a1Node = rootNode.getChildren().get(0)
+        levelDiagnoses = (LevelDiagnoses) a1Node.getDiagnoses()
+        diagnosis = levelDiagnoses.getLemmaAbsenceDiagnosis().get()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(rootNode)
+
+      then:
+        assertInstanceOf(LevelDiagnoses.class)
+        levelDiagnoses.getLemmaAbsenceDiagnosis().isPresent() is true
+        diagnosis.getLevel() == CefrLevel.A1
+        diagnosis.getTotalExpected() == 1
+        diagnosis.getTotalAbsent() == 1
+        diagnosis.getAbsencePercentage() > 0.0 is true
+    - |
+      test: "should include typed AbsentLemma entries with lemma pos absenceType and priority in level diagnosis"
+      trace: FEAT-DLABS / F-DLABS-R006
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        rootNode = buildEmptyCourseTree()
+        a1Node = rootNode.getChildren().get(0)
+        levelDiagnoses = (LevelDiagnoses) a1Node.getDiagnoses()
+        diagnosis = levelDiagnoses.getLemmaAbsenceDiagnosis().get()
+        absentLemma = diagnosis.getAbsentLemmas().get(0)
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(rootNode)
+
+      then:
+        diagnosis.getAbsentLemmas() is not null
+        diagnosis.getAbsentLemmas().isEmpty() is false
+        absentLemma.getLemmaAndPos() == cat
+        absentLemma.getExpectedLevel() == CefrLevel.A1
+        absentLemma.getAbsenceType() is not null
+        absentLemma.getPriorityLevel() is not null
+    - |
+      test: "should emit LemmaPlacementDiagnosis on TopicDiagnoses topic nodes with misplacedLemmaCount"
+      trace: FEAT-DLABS / F-DLABS-R002, F-DLABS-R007
+
+      given:
+        ambiguous = LemmaAndPos("ambiguous", "ADJ")
+        token = NlpToken("ambiguous", "ambiguous", "ADJ", 2000, false, false)
+        rootNode = courseTreeWithQuiz(0, "q1", List.of(token))
+        topicNode = findByTarget(rootNode, AuditTarget.TOPIC)
+        topicDiagnoses = (TopicDiagnoses) topicNode.getDiagnoses()
+        placement = topicDiagnoses.getLemmaAbsenceDiagnosis().get()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> new HashSet<>(List.of(ambiguous))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("ambiguous") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(ambiguous) -> Optional.of(2000)
+        evpCatalogPort.getSemanticCategory(ambiguous) -> Optional.empty()
+        contentWordFilter.isContentWord(token) -> true
+
+      when:
+        sut.onQuiz(findByTarget(rootNode, AuditTarget.QUIZ))
+
+      then:
+        topicNode is not null
+        assertInstanceOf(TopicDiagnoses.class)
+        topicDiagnoses.getLemmaAbsenceDiagnosis().isPresent() is true
+        placement.getMisplacedLemmaCount() > 0 is true
+    - |
+      test: "should emit LemmaPlacementDiagnosis with misplacedLemmas list on knowledge and quiz nodes"
+      trace: FEAT-DLABS / F-DLABS-R008, F-DLABS-R009
+
+      given:
+        ambiguous = LemmaAndPos("ambiguous", "ADJ")
+        token = NlpToken("ambiguous", "ambiguous", "ADJ", 2000, false, false)
+        rootNode = courseTreeWithQuiz(0, "q1", List.of(token))
+        knowledgeNode = findByTarget(rootNode, AuditTarget.KNOWLEDGE)
+        knowledgeDiagnoses = (KnowledgeDiagnoses) knowledgeNode.getDiagnoses()
+        quizNode = findByTarget(rootNode, AuditTarget.QUIZ)
+        quizDiagnoses = (QuizDiagnoses) quizNode.getDiagnoses()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> new HashSet<>(List.of(ambiguous))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("ambiguous") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(ambiguous) -> Optional.of(2000)
+        evpCatalogPort.getSemanticCategory(ambiguous) -> Optional.empty()
+        contentWordFilter.isContentWord(token) -> true
+
+      when:
+        sut.onQuiz(findByTarget(rootNode, AuditTarget.QUIZ))
+
+      then:
+        knowledgeNode is not null
+        assertInstanceOf(KnowledgeDiagnoses.class)
+        knowledgeDiagnoses.getLemmaAbsenceDiagnosis().isPresent() is true
+        knowledgeDiagnoses.getLemmaAbsenceDiagnosis().get().getMisplacedLemmas().isEmpty() is false
+        quizNode is not null
+        assertInstanceOf(QuizDiagnoses.class)
+        quizDiagnoses.getLemmaAbsenceDiagnosis().isPresent() is true
+        quizDiagnoses.getLemmaAbsenceDiagnosis().get().getMisplacedLemmas().isEmpty() is false
+    - |
+      test: "should populate MisplacedLemma with lemmaAndPos expectedLevel and foundInLevel on quiz diagnosis"
+      trace: FEAT-DLABS / F-DLABS-R010
+
+      given:
+        ambiguous = LemmaAndPos("ambiguous", "ADJ")
+        token = NlpToken("ambiguous", "ambiguous", "ADJ", 2000, false, false)
+        rootNode = courseTreeWithQuiz(0, "q1", List.of(token))
+        quizNode = findByTarget(rootNode, AuditTarget.QUIZ)
+        quizDiagnoses = (QuizDiagnoses) quizNode.getDiagnoses()
+        ml = quizDiagnoses.getLemmaAbsenceDiagnosis().get().getMisplacedLemmas().get(0)
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> new HashSet<>(List.of(ambiguous))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("ambiguous") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(ambiguous) -> Optional.of(2000)
+        evpCatalogPort.getSemanticCategory(ambiguous) -> Optional.empty()
+        contentWordFilter.isContentWord(token) -> true
+
+      when:
+        sut.onQuiz(findByTarget(rootNode, AuditTarget.QUIZ))
+
+      then:
+        ml.getLemmaAndPos() == ambiguous
+        ml.getExpectedLevel() == CefrLevel.B1
+        ml.getFoundInLevel() == CefrLevel.A1
+    - |
+      test: "should not write lemma-absence data to untyped metadata map after migration"
+      trace: FEAT-DLABS / F-DLABS-R014
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        rootNode = buildEmptyCourseTree()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("cat") -> false
+        contentWordFilter.isContentWord(any()) -> true
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(rootNode)
+
+      then:
+        rootNode.getMetadata().isEmpty() is true
+    - |
+      test: "should return empty Optional from getLemmaAbsenceDiagnosis when analyzer did not run"
+      trace: FEAT-DLABS / F-DLABS-R003
+
+      given:
+        freshDiagnoses = DefaultCourseDiagnoses()
+        freshLevel = DefaultLevelDiagnoses()
+        freshTopic = DefaultTopicDiagnoses()
+
+      then:
+        freshDiagnoses.getLemmaAbsenceDiagnosis().isPresent() is false
+        freshLevel.getLemmaAbsenceDiagnosis().isPresent() is false
+        freshTopic.getLemmaAbsenceDiagnosis().isPresent() is false
   - name: LemmaAbsenceScoreAggregator
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/labs/LemmaAbsenceScoreAggregator.java
@@ -5151,6 +5635,35 @@ elements:
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfig.java
     tests:
+    - name: should have alert thresholds non-decreasing from high to low priority
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should enforce zero tolerance for high priority alert threshold
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should enforce A1 zero tolerance with both absolute and percentage thresholds
+        at zero
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should have discount per level that limits max penalty to 0.3 for three-level
+        distance
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return non-negative values for all thresholds and bounds
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return positive report limits for all priority levels
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return percentage thresholds between 0 and 100 for all levels
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return positive level weights for all CEFR levels
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
+    - name: should return discount per level between 0 exclusive and 1 exclusive
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
     - name: should return absolute threshold 0 for A1
       status: MISSING
     - name: should return absolute threshold 2 for A2
@@ -5938,6 +6451,192 @@ elements:
   - name: LemmaAbsenceDetailedFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/LemmaAbsenceDetailedFormatter.java
+    tests:
+    - name: should format text output from typed diagnoses matching previous metadata-based
+        output
+      status: MISSING
+    - name: should format json output from typed diagnoses matching previous metadata-based
+        output
+      status: MISSING
+    - name: should format table output from typed diagnoses matching previous metadata-based
+        output
+      status: MISSING
+    - name: should read typed diagnoses from course milestone and quiz nodes for formatting
+      status: MISSING
+    - name: should handle missing diagnosis gracefully when analyzer did not produce
+        results
+      status: MISSING
+    - name: should navigate from quiz node to milestone ancestor to access level diagnosis
+      status: MISSING
+    - name: should return empty when navigating to nonexistent ancestor level
+      status: MISSING
+    testCleanViews:
+    - |
+      test: "should format text output from typed diagnoses matching previous metadata-based output"
+      trace: FEAT-DLABS / F-DLABS-R013 / F-DLABS-J003
+
+      given:
+        course = buildFullTree()
+        milestoneNode = course.getChildren().get(0)
+        absentLemma = makeAbsentLemma("go", "VERB", AbsenceType.COMPLETELY_ABSENT, PriorityLevel.HIGH)
+        topicNode = milestoneNode.getChildren().get(0)
+        misplacedLemma = makeMisplacedLemma("run", "VERB", CefrLevel.A1)
+        knowledgeNode = topicNode.getChildren().get(0)
+        result = formatter.format("lemma-absence", course, "text")
+
+      when:
+        sut.setDiagnoses(courseWithAssessment(AbsenceAssessment.NEEDS_IMPROVEMENT))
+
+      then:
+        result is not null
+        result.contains("NEEDS_IMPROVEMENT") is true
+        result.contains("go") is true
+        result.contains("COMPLETELY_ABSENT") is true
+        result.contains("HIGH") is true
+        result.contains("run") is true
+        result.contains("Lemma Absence Analysis") is true
+        result.contains("A1") is true
+    - |
+      test: "should format json output from typed diagnoses matching previous metadata-based output"
+      trace: FEAT-DLABS / F-DLABS-R013 / F-DLABS-J003
+
+      given:
+        course = buildFullTree()
+        milestoneNode = course.getChildren().get(0)
+        absentLemma = makeAbsentLemma("have", "VERB", AbsenceType.APPEARS_TOO_LATE, PriorityLevel.MEDIUM)
+        topicNode = milestoneNode.getChildren().get(0)
+        misplacedLemma = makeMisplacedLemma("make", "VERB", CefrLevel.A1)
+        knowledgeNode = topicNode.getChildren().get(0)
+        quizNode = knowledgeNode.getChildren().get(0)
+        result = formatter.format("lemma-absence", course, "json")
+
+      when:
+        sut.setDiagnoses(courseWithAssessment(AbsenceAssessment.ACCEPTABLE))
+
+      then:
+        result is not null
+        result.contains("\"score\":") is true
+        result.contains("\"assessment\":") is true
+        result.contains("ACCEPTABLE") is true
+        result.contains("\"levels\":") is true
+        result.contains("\"coverageTarget\":") is true
+        result.contains("\"totalExpected\": 50") is true
+        result.contains("\"totalAbsent\": 5") is true
+        result.contains("have") is true
+        result.contains("APPEARS_TOO_LATE") is true
+        result.contains("make") is true
+        result.contains("\"topics\":") is true
+        result.contains("\"knowledges\":") is true
+        result.contains("\"quizzes\":") is true
+    - |
+      test: "should format table output from typed diagnoses matching previous metadata-based output"
+      trace: FEAT-DLABS / F-DLABS-R013 / F-DLABS-J003
+
+      given:
+        course = buildFullTree()
+        milestoneNode = course.getChildren().get(0)
+        topicNode = milestoneNode.getChildren().get(0)
+        misplacedLemma = makeMisplacedLemma("be", "VERB", CefrLevel.A1)
+        result = formatter.format("lemma-absence", course, "table")
+
+      when:
+        sut.setDiagnoses(courseWithAssessment(AbsenceAssessment.OPTIMAL))
+
+      then:
+        result is not null
+        result.contains("OPTIMAL") is true
+        result.contains("Level") is true
+        result.contains("Score") is true
+        result.contains("A1") is true
+        result.contains("Grammar Topic(2)") is true
+    - |
+      test: "should read typed diagnoses from course milestone and quiz nodes for formatting"
+      trace: FEAT-DLABS / F-DLABS-R004, F-DLABS-R005, F-DLABS-R009 / F-DLABS-J003
+
+      given:
+        course = buildFullTree()
+        cd = courseWithAssessment(AbsenceAssessment.NEEDS_IMPROVEMENT)
+        milestoneNode = course.getChildren().get(0)
+        absentLemma = makeAbsentLemma("take", "VERB", AbsenceType.COMPLETELY_ABSENT, PriorityLevel.LOW)
+        ld = levelWithDiagnosis(300, 30, 10.0, 0.80, 0.75, 0.70, 0.65, List.of(absentLemma))
+        topicNode = milestoneNode.getChildren().get(0)
+        knowledgeNode = topicNode.getChildren().get(0)
+        quizNode = knowledgeNode.getChildren().get(0)
+        quizMisplaced = makeMisplacedLemma("know", "VERB", CefrLevel.A1)
+        jsonResult = formatter.format("lemma-absence", course, "json")
+
+      when:
+        sut.setDiagnoses(cd)
+
+      then:
+        jsonResult.contains("NEEDS_IMPROVEMENT") is true
+        jsonResult.contains("\"totalExpected\": 300") is true
+        jsonResult.contains("\"totalAbsent\": 30") is true
+        jsonResult.contains("take") is true
+        jsonResult.contains("know") is true
+    - |
+      test: "should handle missing diagnosis gracefully when analyzer did not produce results"
+      trace: FEAT-DLABS / F-DLABS-R003 / F-DLABS-J003
+
+      given:
+        course = buildFullTree()
+
+      then:
+        assertDoesNotThrow(() -> {
+          String textResult = formatter.format("lemma-absence", course, "text");
+          assertNotNull(textResult);
+          assertTrue(textResult.contains("N/A"), "Missing course diagnosis should produce N/A assessment");
+      })
+        assertDoesNotThrow(() -> {
+          String jsonResult = formatter.format("lemma-absence", course, "json");
+          assertNotNull(jsonResult);
+          assertTrue(jsonResult.contains("\"assessment\": null"), "Missing course diagnosis should produce null assessment in JSON");
+      })
+        assertDoesNotThrow(() -> {
+          String tableResult = formatter.format("lemma-absence", course, "table");
+          assertNotNull(tableResult);
+          assertTrue(tableResult.contains("N/A"), "Missing course diagnosis should produce N/A in table");
+      })
+    - |
+      test: "should navigate from quiz node to milestone ancestor to access level diagnosis"
+      trace: FEAT-DLABS / F-DLABS-R011, F-DLABS-R012 / F-DLABS-J002
+
+      given:
+        course = makeNode(AuditTarget.COURSE, null, null)
+        milestoneNode = makeNode(AuditTarget.MILESTONE, milestone("m1", "A1"), course)
+        topicNode = makeNode(AuditTarget.TOPIC, topic("t1", "Topic"), milestoneNode)
+        knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge("k1", "Knowledge"), topicNode)
+        quizNode = makeNode(AuditTarget.QUIZ, quiz("q1"), knowledgeNode)
+        ld = DefaultLevelDiagnoses()
+        diag = LemmaAbsenceLevelDiagnosis(CefrLevel.A1, 100, 10, 10.0, 0.90, 0.85, 0.80, 0.75, AbsenceAssessment.ACCEPTABLE, List.of(), List.of(), 0, 0, 0)
+        ancestorOpt = quizNode.ancestor(AuditTarget.MILESTONE)
+        foundMilestone = ancestorOpt.get()
+        levelDiag = (LevelDiagnoses) foundMilestone.getDiagnoses()
+
+      when:
+        sut.setLemmaAbsenceDiagnosis(diag)
+
+      then:
+        ancestorOpt.isPresent() is true
+        foundMilestone.getTarget() == AuditTarget.MILESTONE
+        foundMilestone.getDiagnoses() instanceof LevelDiagnoses is true
+        levelDiag.getLemmaAbsenceDiagnosis().isPresent() is true
+        levelDiag.getLemmaAbsenceDiagnosis().get().getTotalExpected() == 100
+    - |
+      test: "should return empty when navigating to nonexistent ancestor level"
+      trace: FEAT-DLABS / F-DLABS-R011 / F-DLABS-J002
+
+      given:
+        course = makeNode(AuditTarget.COURSE, null, null)
+        milestoneNode = makeNode(AuditTarget.MILESTONE, milestone("m1", "A1"), course)
+        knowledgeAncestor = milestoneNode.ancestor(AuditTarget.KNOWLEDGE)
+        topicAncestor = course.ancestor(AuditTarget.TOPIC)
+        quizAncestor = milestoneNode.ancestor(AuditTarget.QUIZ)
+
+      then:
+        knowledgeAncestor.isPresent() is false
+        topicAncestor.isPresent() is false
+        quizAncestor.isPresent() is false
   - name: CocaBucketsDetailedFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/CocaBucketsDetailedFormatter.java
@@ -5984,10 +6683,10 @@ elements:
     status: EXISTS
     filePath: vocabulary-infrastructure/src/main/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalog.java
 testSummary:
-  total: 256
-  passing: 50
+  total: 280
+  passing: 59
   failing: 0
-  notImplemented: 206
+  notImplemented: 221
 patterns:
 - id: declared-1
   pattern: Strategy
@@ -6210,6 +6909,78 @@ patterns:
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
 - id: stereo-17
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: NodeDiagnoses is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: NodeDiagnoses
+    nodeId: interface-audit-domain-NodeDiagnoses
+  confidence: 0.9
+- id: stereo-18
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: CourseDiagnoses is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: CourseDiagnoses
+    nodeId: interface-audit-domain-CourseDiagnoses
+  confidence: 0.9
+- id: stereo-19
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: LevelDiagnoses is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: LevelDiagnoses
+    nodeId: interface-audit-domain-LevelDiagnoses
+  confidence: 0.9
+- id: stereo-20
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: TopicDiagnoses is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: TopicDiagnoses
+    nodeId: interface-audit-domain-TopicDiagnoses
+  confidence: 0.9
+- id: stereo-21
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: KnowledgeDiagnoses is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: KnowledgeDiagnoses
+    nodeId: interface-audit-domain-KnowledgeDiagnoses
+  confidence: 0.9
+- id: stereo-22
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: QuizDiagnoses is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: QuizDiagnoses
+    nodeId: interface-audit-domain-QuizDiagnoses
+  confidence: 0.9
+- id: stereo-23
   pattern: Value Object
   category: architectural
   source: detected
@@ -6221,7 +6992,7 @@ patterns:
     elementName: AuditReport
     nodeId: model-audit-domain-AuditReport
   confidence: 0.75
-- id: stereo-18
+- id: stereo-24
   pattern: Value Object
   category: architectural
   source: detected
@@ -6233,7 +7004,7 @@ patterns:
     elementName: AuditableCourse
     nodeId: model-audit-domain-AuditableCourse
   confidence: 0.75
-- id: stereo-19
+- id: stereo-25
   pattern: Entity
   category: architectural
   source: detected
@@ -6245,7 +7016,7 @@ patterns:
     elementName: AuditableKnowledge
     nodeId: model-audit-domain-AuditableKnowledge
   confidence: 0.8
-- id: stereo-20
+- id: stereo-26
   pattern: Entity
   category: architectural
   source: detected
@@ -6257,7 +7028,7 @@ patterns:
     elementName: AuditableTopic
     nodeId: model-audit-domain-AuditableTopic
   confidence: 0.8
-- id: stereo-21
+- id: stereo-27
   pattern: Entity
   category: architectural
   source: detected
@@ -6269,7 +7040,7 @@ patterns:
     elementName: AuditableMilestone
     nodeId: model-audit-domain-AuditableMilestone
   confidence: 0.8
-- id: stereo-22
+- id: stereo-28
   pattern: Entity
   category: architectural
   source: detected
@@ -6281,7 +7052,7 @@ patterns:
     elementName: AuditableQuiz
     nodeId: model-audit-domain-AuditableQuiz
   confidence: 0.8
-- id: stereo-23
+- id: stereo-29
   pattern: Enum
   category: architectural
   source: detected
@@ -6293,7 +7064,7 @@ patterns:
     elementName: CefrLevel
     nodeId: model-audit-domain-CefrLevel
   confidence: 0.95
-- id: stereo-24
+- id: stereo-30
   pattern: Value Object
   category: architectural
   source: detected
@@ -6305,7 +7076,7 @@ patterns:
     elementName: TargetRange
     nodeId: model-audit-domain-TargetRange
   confidence: 0.75
-- id: stereo-25
+- id: stereo-31
   pattern: Enum
   category: architectural
   source: detected
@@ -6317,7 +7088,7 @@ patterns:
     elementName: AuditTarget
     nodeId: model-audit-domain-AuditTarget
   confidence: 0.95
-- id: stereo-26
+- id: stereo-32
   pattern: Value Object
   category: architectural
   source: detected
@@ -6329,7 +7100,7 @@ patterns:
     elementName: NlpToken
     nodeId: model-audit-domain-NlpToken
   confidence: 0.75
-- id: stereo-27
+- id: stereo-33
   pattern: Value Object
   category: architectural
   source: detected
@@ -6341,7 +7112,7 @@ patterns:
     elementName: AnalyzerDescriptor
     nodeId: model-audit-domain-AnalyzerDescriptor
   confidence: 0.75
-- id: stereo-28
+- id: stereo-34
   pattern: Value Object
   category: architectural
   source: detected
@@ -6353,7 +7124,7 @@ patterns:
     elementName: AuditNode
     nodeId: model-audit-domain-AuditNode
   confidence: 0.75
-- id: stereo-29
+- id: stereo-35
   pattern: Port
   category: architectural
   source: detected
@@ -6365,7 +7136,7 @@ patterns:
     elementName: CourseRepository
     nodeId: interface-course-domain-CourseRepository
   confidence: 0.9
-- id: stereo-30
+- id: stereo-36
   pattern: Service
   category: architectural
   source: detected
@@ -6377,7 +7148,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: stereo-31
+- id: stereo-37
   pattern: Enum
   category: architectural
   source: detected
@@ -6389,7 +7160,7 @@ patterns:
     elementName: NodeKind
     nodeId: model-course-domain-NodeKind
   confidence: 0.95
-- id: stereo-32
+- id: stereo-38
   pattern: Enum
   category: architectural
   source: detected
@@ -6401,7 +7172,7 @@ patterns:
     elementName: SentencePartKind
     nodeId: model-course-domain-SentencePartKind
   confidence: 0.95
-- id: stereo-33
+- id: stereo-39
   pattern: Entity
   category: architectural
   source: detected
@@ -6413,7 +7184,7 @@ patterns:
     elementName: CourseEntity
     nodeId: model-course-domain-CourseEntity
   confidence: 0.8
-- id: stereo-34
+- id: stereo-40
   pattern: Entity
   category: architectural
   source: detected
@@ -6425,7 +7196,7 @@ patterns:
     elementName: RootNodeEntity
     nodeId: model-course-domain-RootNodeEntity
   confidence: 0.8
-- id: stereo-35
+- id: stereo-41
   pattern: Entity
   category: architectural
   source: detected
@@ -6437,7 +7208,7 @@ patterns:
     elementName: MilestoneEntity
     nodeId: model-course-domain-MilestoneEntity
   confidence: 0.8
-- id: stereo-36
+- id: stereo-42
   pattern: Entity
   category: architectural
   source: detected
@@ -6449,7 +7220,7 @@ patterns:
     elementName: TopicEntity
     nodeId: model-course-domain-TopicEntity
   confidence: 0.8
-- id: stereo-37
+- id: stereo-43
   pattern: Entity
   category: architectural
   source: detected
@@ -6461,7 +7232,7 @@ patterns:
     elementName: KnowledgeEntity
     nodeId: model-course-domain-KnowledgeEntity
   confidence: 0.8
-- id: stereo-38
+- id: stereo-44
   pattern: Entity
   category: architectural
   source: detected
@@ -6473,7 +7244,7 @@ patterns:
     elementName: QuizTemplateEntity
     nodeId: model-course-domain-QuizTemplateEntity
   confidence: 0.8
-- id: stereo-39
+- id: stereo-45
   pattern: Value Object
   category: architectural
   source: detected
@@ -6485,7 +7256,7 @@ patterns:
     elementName: FormEntity
     nodeId: model-course-domain-FormEntity
   confidence: 0.75
-- id: stereo-40
+- id: stereo-46
   pattern: Value Object
   category: architectural
   source: detected
@@ -6497,7 +7268,7 @@ patterns:
     elementName: SentencePartEntity
     nodeId: model-course-domain-SentencePartEntity
   confidence: 0.75
-- id: stereo-41
+- id: stereo-47
   pattern: Service
   category: architectural
   source: detected
@@ -6509,7 +7280,7 @@ patterns:
     elementName: AuditRunner
     nodeId: interface-audit-application-AuditRunner
   confidence: 0.9
-- id: stereo-42
+- id: stereo-48
   pattern: Port
   category: architectural
   source: detected
@@ -6521,7 +7292,7 @@ patterns:
     elementName: CourseMapper
     nodeId: interface-audit-application-CourseMapper
   confidence: 0.9
-- id: stereo-43
+- id: stereo-49
   pattern: Service
   category: architectural
   source: detected
@@ -6533,7 +7304,7 @@ patterns:
     elementName: AnalyzerRegistry
     nodeId: interface-audit-application-AnalyzerRegistry
   confidence: 0.9
-- id: stereo-44
+- id: stereo-50
   pattern: Port
   category: architectural
   source: detected
@@ -6545,7 +7316,7 @@ patterns:
     elementName: ReportFormatter
     nodeId: interface-audit-cli-ReportFormatter
   confidence: 0.9
-- id: stereo-45
+- id: stereo-51
   pattern: Port
   category: architectural
   source: detected
@@ -6557,7 +7328,7 @@ patterns:
     elementName: FormatterRegistry
     nodeId: interface-audit-cli-FormatterRegistry
   confidence: 0.9
-- id: stereo-46
+- id: stereo-52
   pattern: Port
   category: architectural
   source: detected
@@ -6569,7 +7340,7 @@ patterns:
     elementName: ReportViewModelTransformer
     nodeId: interface-audit-cli-ReportViewModelTransformer
   confidence: 0.9
-- id: stereo-47
+- id: stereo-53
   pattern: Port
   category: architectural
   source: detected
@@ -6581,7 +7352,7 @@ patterns:
     elementName: RawReportFormatter
     nodeId: interface-audit-cli-RawReportFormatter
   confidence: 0.9
-- id: stereo-48
+- id: stereo-54
   pattern: Port
   category: architectural
   source: detected
@@ -6593,7 +7364,7 @@ patterns:
     elementName: DrillDownResolver
     nodeId: interface-audit-cli-DrillDownResolver
   confidence: 0.9
-- id: stereo-49
+- id: stereo-55
   pattern: Port
   category: architectural
   source: detected
@@ -6605,7 +7376,7 @@ patterns:
     elementName: AnalyzerStatsTransformer
     nodeId: interface-audit-cli-AnalyzerStatsTransformer
   confidence: 0.9
-- id: stereo-50
+- id: stereo-56
   pattern: Port
   category: architectural
   source: detected
@@ -6617,7 +7388,7 @@ patterns:
     elementName: ScoreRow
     nodeId: interface-audit-cli-ScoreRow
   confidence: 0.9
-- id: stereo-51
+- id: stereo-57
   pattern: Value Object
   category: architectural
   source: detected
@@ -6629,7 +7400,7 @@ patterns:
     elementName: ReportViewModel
     nodeId: model-audit-cli-ReportViewModel
   confidence: 0.75
-- id: stereo-52
+- id: stereo-58
   pattern: Value Object
   category: architectural
   source: detected
@@ -6641,7 +7412,7 @@ patterns:
     elementName: MilestoneScoreRow
     nodeId: model-audit-cli-MilestoneScoreRow
   confidence: 0.75
-- id: stereo-53
+- id: stereo-59
   pattern: Value Object
   category: architectural
   source: detected
@@ -6653,7 +7424,7 @@ patterns:
     elementName: QuizScoreRow
     nodeId: model-audit-cli-QuizScoreRow
   confidence: 0.75
-- id: stereo-54
+- id: stereo-60
   pattern: Value Object
   category: architectural
   source: detected
@@ -6665,7 +7436,7 @@ patterns:
     elementName: KnowledgeScoreRow
     nodeId: model-audit-cli-KnowledgeScoreRow
   confidence: 0.75
-- id: stereo-55
+- id: stereo-61
   pattern: Value Object
   category: architectural
   source: detected
@@ -6677,7 +7448,7 @@ patterns:
     elementName: TopicScoreRow
     nodeId: model-audit-cli-TopicScoreRow
   confidence: 0.75
-- id: stereo-56
+- id: stereo-62
   pattern: Value Object
   category: architectural
   source: detected
@@ -6689,7 +7460,7 @@ patterns:
     elementName: DrillDownScope
     nodeId: model-audit-cli-DrillDownScope
   confidence: 0.75
-- id: stereo-57
+- id: stereo-63
   pattern: Enum
   category: architectural
   source: detected
@@ -6701,7 +7472,7 @@ patterns:
     elementName: DrillDownLevel
     nodeId: model-audit-cli-DrillDownLevel
   confidence: 0.95
-- id: stereo-58
+- id: stereo-64
   pattern: Value Object
   category: architectural
   source: detected
@@ -6713,7 +7484,7 @@ patterns:
     elementName: DrillDownView
     nodeId: model-audit-cli-DrillDownView
   confidence: 0.75
-- id: stereo-59
+- id: stereo-65
   pattern: Entity
   category: architectural
   source: detected
@@ -6725,7 +7496,7 @@ patterns:
     elementName: ChildScoreRow
     nodeId: model-audit-cli-ChildScoreRow
   confidence: 0.8
-- id: stereo-60
+- id: stereo-66
   pattern: Value Object
   category: architectural
   source: detected
@@ -6737,7 +7508,7 @@ patterns:
     elementName: AnalyzerStatsView
     nodeId: model-audit-cli-AnalyzerStatsView
   confidence: 0.75
-- id: stereo-62
+- id: stereo-68
   pattern: Value Object
   category: architectural
   source: detected
@@ -6749,7 +7520,7 @@ patterns:
     elementName: NlpTokenizerConfig
     nodeId: model-nlp-infrastructure-NlpTokenizerConfig
   confidence: 0.75
-- id: anti-64
+- id: anti-70
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -6761,7 +7532,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-65
+- id: anti-71
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -6773,7 +7544,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: anti-66
+- id: anti-72
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -6785,7 +7556,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: anti-67
+- id: anti-73
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -6797,7 +7568,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: anti-68
+- id: anti-74
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -6809,7 +7580,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: anti-69
+- id: anti-75
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -6821,19 +7592,91 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: anti-70
+- id: anti-76
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: NodeDiagnoses has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: NodeDiagnoses
+    nodeId: interface-audit-domain-NodeDiagnoses
+  confidence: 0.9
+- id: anti-77
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: CourseDiagnoses has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: CourseDiagnoses
+    nodeId: interface-audit-domain-CourseDiagnoses
+  confidence: 0.9
+- id: anti-78
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: LevelDiagnoses has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: LevelDiagnoses
+    nodeId: interface-audit-domain-LevelDiagnoses
+  confidence: 0.9
+- id: anti-79
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: TopicDiagnoses has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: TopicDiagnoses
+    nodeId: interface-audit-domain-TopicDiagnoses
+  confidence: 0.9
+- id: anti-80
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: KnowledgeDiagnoses has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: KnowledgeDiagnoses
+    nodeId: interface-audit-domain-KnowledgeDiagnoses
+  confidence: 0.9
+- id: anti-81
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: QuizDiagnoses has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: QuizDiagnoses
+    nodeId: interface-audit-domain-QuizDiagnoses
+  confidence: 0.9
+- id: anti-82
   pattern: God Module
   category: anti-pattern
   source: detected
   severity: warning
-  description: "audit-domain is too large: 12 models, 13 interfaces"
+  description: "audit-domain is too large: 12 models, 19 interfaces"
   involvedElements:
   - type: module
     moduleName: audit-domain
     elementName: audit-domain
     nodeId: module-audit-domain
   confidence: 0.85
-- id: anti-71
+- id: anti-83
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -6845,7 +7688,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.8
-- id: anti-72
+- id: anti-84
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -6857,7 +7700,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.8
-- id: anti-73
+- id: anti-85
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -6869,7 +7712,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-74
+- id: anti-86
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -6881,7 +7724,7 @@ patterns:
     elementName: course-domain
     nodeId: module-course-domain
   confidence: 0.85
-- id: anti-75
+- id: anti-87
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -6893,7 +7736,7 @@ patterns:
     elementName: audit-application
     nodeId: module-audit-application
   confidence: 0.85
-- id: anti-76
+- id: anti-88
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -6905,7 +7748,7 @@ patterns:
     elementName: ScoreRow
     nodeId: interface-audit-cli-ScoreRow
   confidence: 0.9
-- id: anti-77
+- id: anti-89
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -6917,7 +7760,7 @@ patterns:
     elementName: audit-cli
     nodeId: module-audit-cli
   confidence: 0.85
-- id: anti-78
+- id: anti-90
   pattern: Orphan Interface
   category: anti-pattern
   source: detected

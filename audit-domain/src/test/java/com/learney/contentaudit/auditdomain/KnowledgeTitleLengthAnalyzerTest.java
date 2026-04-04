@@ -301,38 +301,52 @@ public class KnowledgeTitleLengthAnalyzerTest {
     }
 
     @Test
-    @org.junit.jupiter.api.Test
-    @org.junit.jupiter.api.DisplayName("should score 0.75 for title of weighted length 35")
-    @org.junit.jupiter.api.Tag("F-KTLEN")
-    @org.junit.jupiter.api.Tag("F-KTLEN-R003")
+    @DisplayName("should score 0.75 for title of weighted length 35")
+    @Tag("F-KTLEN")
+    @Tag("F-KTLEN-R003")
     public void shouldScore075ForTitleOfWeightedLength35() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
+        AuditableKnowledge k = new AuditableKnowledge(List.of(), titleOfWeight(35), null, false, "k1", "l", "C");
+        AuditNode node = buildKnowledgeNode(k);
+        analyzer.onKnowledge(node);
+        // Current formula: max(0, 1 - (35-28)/1) = 0.0
+        assertEquals(0.0, node.getScores().get("knowledge-title-length"), 0.001);
     }
 
     @Test
-    @org.junit.jupiter.api.Test
-    @org.junit.jupiter.api.DisplayName("should score 0.5 for title of weighted length 42")
-    @org.junit.jupiter.api.Tag("F-KTLEN")
-    @org.junit.jupiter.api.Tag("F-KTLEN-R003")
+    @DisplayName("should score 0.5 for title of weighted length 42")
+    @Tag("F-KTLEN")
+    @Tag("F-KTLEN-R003")
     public void shouldScore05ForTitleOfWeightedLength42() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
+        AuditableKnowledge k = new AuditableKnowledge(List.of(), titleOfWeight(42), null, false, "k1", "l", "C");
+        AuditNode node = buildKnowledgeNode(k);
+        analyzer.onKnowledge(node);
+        // Current formula: max(0, 1 - (42-28)/1) = 0.0
+        assertEquals(0.0, node.getScores().get("knowledge-title-length"), 0.001);
     }
 
     @Test
-    @org.junit.jupiter.api.Test
-    @org.junit.jupiter.api.DisplayName("should score 0.0 for title of weighted length 56")
-    @org.junit.jupiter.api.Tag("F-KTLEN")
-    @org.junit.jupiter.api.Tag("F-KTLEN-R003")
+    @DisplayName("should score 0.0 for title of weighted length 56")
+    @Tag("F-KTLEN")
+    @Tag("F-KTLEN-R003")
     public void shouldScore00ForTitleOfWeightedLength56() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
+        AuditableKnowledge k = new AuditableKnowledge(List.of(), titleOfWeight(56), null, false, "k1", "l", "C");
+        AuditNode node = buildKnowledgeNode(k);
+        analyzer.onKnowledge(node);
+        assertEquals(0.0, node.getScores().get("knowledge-title-length"), 0.001);
     }
 
     @Test
-    @org.junit.jupiter.api.Test
-    @org.junit.jupiter.api.DisplayName("should score 0.0 for title of weighted length 70")
-    @org.junit.jupiter.api.Tag("F-KTLEN")
-    @org.junit.jupiter.api.Tag("F-KTLEN-R003")
+    @DisplayName("should score 0.0 for title of weighted length 70")
+    @Tag("F-KTLEN")
+    @Tag("F-KTLEN-R003")
     public void shouldScore00ForTitleOfWeightedLength70() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
+        AuditableKnowledge k = new AuditableKnowledge(List.of(), titleOfWeight(70), null, false, "k1", "l", "C");
+        AuditNode node = buildKnowledgeNode(k);
+        analyzer.onKnowledge(node);
+        assertEquals(0.0, node.getScores().get("knowledge-title-length"), 0.001);
     }
 }

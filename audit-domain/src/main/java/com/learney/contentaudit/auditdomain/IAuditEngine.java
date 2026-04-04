@@ -42,6 +42,7 @@ public class IAuditEngine implements AuditEngine {
         root.setEntity(null); // Course has no AuditableEntity
         root.setScores(new LinkedHashMap<>());
         root.setMetadata(new LinkedHashMap<>());
+        root.setDiagnoses(new DefaultCourseDiagnoses());
 
         List<AuditNode> milestoneNodes = new ArrayList<>();
         for (AuditableMilestone milestone : course.getMilestones()) {
@@ -51,6 +52,7 @@ public class IAuditEngine implements AuditEngine {
             milestoneNode.setParent(root);
             milestoneNode.setScores(new LinkedHashMap<>());
             milestoneNode.setMetadata(new LinkedHashMap<>());
+            milestoneNode.setDiagnoses(new DefaultLevelDiagnoses());
 
             List<AuditNode> topicNodes = new ArrayList<>();
             for (AuditableTopic topic : milestone.getTopics()) {
@@ -60,6 +62,7 @@ public class IAuditEngine implements AuditEngine {
                 topicNode.setParent(milestoneNode);
                 topicNode.setScores(new LinkedHashMap<>());
                 topicNode.setMetadata(new LinkedHashMap<>());
+                topicNode.setDiagnoses(new DefaultTopicDiagnoses());
 
                 List<AuditNode> knowledgeNodes = new ArrayList<>();
                 for (AuditableKnowledge knowledge : topic.getKnowledge()) {
@@ -69,6 +72,7 @@ public class IAuditEngine implements AuditEngine {
                     knowledgeNode.setParent(topicNode);
                     knowledgeNode.setScores(new LinkedHashMap<>());
                     knowledgeNode.setMetadata(new LinkedHashMap<>());
+                    knowledgeNode.setDiagnoses(new DefaultKnowledgeDiagnoses());
 
                     List<AuditNode> quizNodes = new ArrayList<>();
                     for (AuditableQuiz quiz : knowledge.getQuizzes()) {
@@ -79,6 +83,7 @@ public class IAuditEngine implements AuditEngine {
                         quizNode.setChildren(List.of());
                         quizNode.setScores(new LinkedHashMap<>());
                         quizNode.setMetadata(new LinkedHashMap<>());
+                        quizNode.setDiagnoses(new DefaultQuizDiagnoses());
                         quizNodes.add(quizNode);
                     }
                     knowledgeNode.setChildren(quizNodes);

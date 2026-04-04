@@ -71,9 +71,4 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
         return "Scores knowledge titles by weighted character count";
     }
 
-    @Override
-    public List<ScoredItem> getResults() {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
-
 }

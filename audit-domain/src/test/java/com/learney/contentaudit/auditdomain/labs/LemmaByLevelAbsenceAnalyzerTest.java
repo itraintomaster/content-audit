@@ -2363,75 +2363,271 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         assertDoesNotThrow(() -> sut.onKnowledge(makeNode(AuditTarget.KNOWLEDGE, knowledge, null)));
     }
 
+    /** Add Default*Diagnoses containers to every node in the tree */
+    private void addDiagnosesToTree(AuditNode node) {
+        switch (node.getTarget()) {
+            case COURSE:
+                node.setDiagnoses(new DefaultCourseDiagnoses());
+                break;
+            case MILESTONE:
+                node.setDiagnoses(new DefaultLevelDiagnoses());
+                break;
+            case TOPIC:
+                node.setDiagnoses(new DefaultTopicDiagnoses());
+                break;
+            case KNOWLEDGE:
+                node.setDiagnoses(new DefaultKnowledgeDiagnoses());
+                break;
+            case QUIZ:
+                node.setDiagnoses(new DefaultQuizDiagnoses());
+                break;
+        }
+        if (node.getChildren() != null) {
+            for (AuditNode child : node.getChildren()) {
+                addDiagnosesToTree(child);
+            }
+        }
+    }
+
     @Test
-    @org.junit.jupiter.api.Test
-    @org.junit.jupiter.api.DisplayName("should emit LemmaAbsenceCourseDiagnosis with assessment on CourseDiagnoses node after onCourseComplete")
-    @org.junit.jupiter.api.Tag("FEAT-DLABS")
-    @org.junit.jupiter.api.Tag("F-DLABS-R002, F-DLABS-R004")
+    @DisplayName("should emit LemmaAbsenceCourseDiagnosis with assessment on CourseDiagnoses node after onCourseComplete")
+    @Tag("FEAT-DLABS")
+    @Tag("F-DLABS-R002, F-DLABS-R004")
     public void shouldEmitLemmaAbsenceCourseDiagnosisWithAssessmentOnCourseDiagnosesNodeAfterOnCourseComplete() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        stubMinimalConfig();
+        stubEmptyEvp();
+        AuditNode rootNode = buildEmptyCourseTree();
+        addDiagnosesToTree(rootNode);
+
+        sut.onCourseComplete(rootNode);
+
+        assertInstanceOf(CourseDiagnoses.class, rootNode.getDiagnoses());
+        CourseDiagnoses courseDiagnoses = (CourseDiagnoses) rootNode.getDiagnoses();
+        assertTrue(courseDiagnoses.getLemmaAbsenceDiagnosis().isPresent());
+        assertNotNull(courseDiagnoses.getLemmaAbsenceDiagnosis().get().getAssessment());
     }
 
     @Test
-    @org.junit.jupiter.api.Test
-    @org.junit.jupiter.api.DisplayName("should emit LemmaAbsenceLevelDiagnosis with coverage metrics on LevelDiagnoses milestone nodes")
-    @org.junit.jupiter.api.Tag("FEAT-DLABS")
-    @org.junit.jupiter.api.Tag("F-DLABS-R002, F-DLABS-R005")
+    @DisplayName("should emit LemmaAbsenceLevelDiagnosis with coverage metrics on LevelDiagnoses milestone nodes")
+    @Tag("FEAT-DLABS")
+    @Tag("F-DLABS-R002, F-DLABS-R005")
     public void shouldEmitLemmaAbsenceLevelDiagnosisWithCoverageMetricsOnLevelDiagnosesMilestoneNodes() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        stubMinimalConfig();
+        LemmaAndPos cat = new LemmaAndPos("cat", "NOUN");
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A1)).thenReturn(new HashSet<>(List.of(cat)));
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B1)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.isPhrase("cat")).thenReturn(false);
+        when(contentWordFilter.isContentWord(any())).thenReturn(true);
+        when(evpCatalogPort.getCocaRank(cat)).thenReturn(Optional.of(500));
+        when(evpCatalogPort.getSemanticCategory(cat)).thenReturn(Optional.empty());
+
+        AuditNode rootNode = buildEmptyCourseTree();
+        addDiagnosesToTree(rootNode);
+
+        sut.onCourseComplete(rootNode);
+
+        // Find the A1 milestone node
+        AuditNode a1Node = rootNode.getChildren().get(0);
+        assertInstanceOf(LevelDiagnoses.class, a1Node.getDiagnoses());
+        LevelDiagnoses levelDiagnoses = (LevelDiagnoses) a1Node.getDiagnoses();
+        assertTrue(levelDiagnoses.getLemmaAbsenceDiagnosis().isPresent());
+        LemmaAbsenceLevelDiagnosis diagnosis = levelDiagnoses.getLemmaAbsenceDiagnosis().get();
+        assertEquals(CefrLevel.A1, diagnosis.getLevel());
+        assertEquals(1, diagnosis.getTotalExpected());
+        assertEquals(1, diagnosis.getTotalAbsent());
+        assertTrue(diagnosis.getAbsencePercentage() > 0.0);
     }
 
     @Test
-    @org.junit.jupiter.api.Test
-    @org.junit.jupiter.api.DisplayName("should include typed AbsentLemma entries with lemma pos absenceType and priority in level diagnosis")
-    @org.junit.jupiter.api.Tag("FEAT-DLABS")
-    @org.junit.jupiter.api.Tag("F-DLABS-R006")
+    @DisplayName("should include typed AbsentLemma entries with lemma pos absenceType and priority in level diagnosis")
+    @Tag("FEAT-DLABS")
+    @Tag("F-DLABS-R006")
     public void shouldIncludeTypedAbsentLemmaEntriesWithLemmaPosAbsenceTypeAndPriorityInLevelDiagnosis() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        stubMinimalConfig();
+        LemmaAndPos cat = new LemmaAndPos("cat", "NOUN");
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A1)).thenReturn(new HashSet<>(List.of(cat)));
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B1)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.isPhrase("cat")).thenReturn(false);
+        when(contentWordFilter.isContentWord(any())).thenReturn(true);
+        when(evpCatalogPort.getCocaRank(cat)).thenReturn(Optional.of(500));
+        when(evpCatalogPort.getSemanticCategory(cat)).thenReturn(Optional.empty());
+
+        AuditNode rootNode = buildEmptyCourseTree();
+        addDiagnosesToTree(rootNode);
+
+        sut.onCourseComplete(rootNode);
+
+        AuditNode a1Node = rootNode.getChildren().get(0);
+        LevelDiagnoses levelDiagnoses = (LevelDiagnoses) a1Node.getDiagnoses();
+        LemmaAbsenceLevelDiagnosis diagnosis = levelDiagnoses.getLemmaAbsenceDiagnosis().get();
+        assertNotNull(diagnosis.getAbsentLemmas());
+        assertFalse(diagnosis.getAbsentLemmas().isEmpty());
+        AbsentLemma absentLemma = diagnosis.getAbsentLemmas().get(0);
+        assertEquals(cat, absentLemma.getLemmaAndPos());
+        assertEquals(CefrLevel.A1, absentLemma.getExpectedLevel());
+        assertNotNull(absentLemma.getAbsenceType());
+        assertNotNull(absentLemma.getPriorityLevel());
     }
 
     @Test
-    @org.junit.jupiter.api.Test
-    @org.junit.jupiter.api.DisplayName("should emit LemmaPlacementDiagnosis on TopicDiagnoses topic nodes with misplacedLemmaCount")
-    @org.junit.jupiter.api.Tag("FEAT-DLABS")
-    @org.junit.jupiter.api.Tag("F-DLABS-R002, F-DLABS-R007")
+    @DisplayName("should emit LemmaPlacementDiagnosis on TopicDiagnoses topic nodes with misplacedLemmaCount")
+    @Tag("FEAT-DLABS")
+    @Tag("F-DLABS-R002, F-DLABS-R007")
     public void shouldEmitLemmaPlacementDiagnosisOnTopicDiagnosesTopicNodesWithMisplacedLemmaCount() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        stubMinimalConfig();
+        // A1 quiz contains B1-level word "ambiguous" -> misplaced
+        LemmaAndPos ambiguous = new LemmaAndPos("ambiguous", "ADJ");
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A1)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B1)).thenReturn(new HashSet<>(List.of(ambiguous)));
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.isPhrase("ambiguous")).thenReturn(false);
+        when(contentWordFilter.isContentWord(any())).thenReturn(true);
+        when(evpCatalogPort.getCocaRank(ambiguous)).thenReturn(Optional.of(2000));
+        when(evpCatalogPort.getSemanticCategory(ambiguous)).thenReturn(Optional.empty());
+
+        NlpToken token = new NlpToken("ambiguous", "ambiguous", "ADJ", 2000, false, false);
+        when(contentWordFilter.isContentWord(token)).thenReturn(true);
+
+        // Build A1 quiz tree with diagnoses
+        AuditNode rootNode = courseTreeWithQuiz(0, "q1", List.of(token));
+        addDiagnosesToTree(rootNode);
+
+        sut.onQuiz(findByTarget(rootNode, AuditTarget.QUIZ));
+        sut.onCourseComplete(rootNode);
+
+        AuditNode topicNode = findByTarget(rootNode, AuditTarget.TOPIC);
+        assertNotNull(topicNode);
+        assertInstanceOf(TopicDiagnoses.class, topicNode.getDiagnoses());
+        TopicDiagnoses topicDiagnoses = (TopicDiagnoses) topicNode.getDiagnoses();
+        assertTrue(topicDiagnoses.getLemmaAbsenceDiagnosis().isPresent());
+        LemmaPlacementDiagnosis placement = topicDiagnoses.getLemmaAbsenceDiagnosis().get();
+        assertTrue(placement.getMisplacedLemmaCount() > 0);
     }
 
     @Test
-    @org.junit.jupiter.api.Test
-    @org.junit.jupiter.api.DisplayName("should emit LemmaPlacementDiagnosis with misplacedLemmas list on knowledge and quiz nodes")
-    @org.junit.jupiter.api.Tag("FEAT-DLABS")
-    @org.junit.jupiter.api.Tag("F-DLABS-R008, F-DLABS-R009")
+    @DisplayName("should emit LemmaPlacementDiagnosis with misplacedLemmas list on knowledge and quiz nodes")
+    @Tag("FEAT-DLABS")
+    @Tag("F-DLABS-R008, F-DLABS-R009")
     public void shouldEmitLemmaPlacementDiagnosisWithMisplacedLemmasListOnKnowledgeAndQuizNodes() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        stubMinimalConfig();
+        LemmaAndPos ambiguous = new LemmaAndPos("ambiguous", "ADJ");
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A1)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B1)).thenReturn(new HashSet<>(List.of(ambiguous)));
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.isPhrase("ambiguous")).thenReturn(false);
+        when(contentWordFilter.isContentWord(any())).thenReturn(true);
+        when(evpCatalogPort.getCocaRank(ambiguous)).thenReturn(Optional.of(2000));
+        when(evpCatalogPort.getSemanticCategory(ambiguous)).thenReturn(Optional.empty());
+
+        NlpToken token = new NlpToken("ambiguous", "ambiguous", "ADJ", 2000, false, false);
+        when(contentWordFilter.isContentWord(token)).thenReturn(true);
+
+        AuditNode rootNode = courseTreeWithQuiz(0, "q1", List.of(token));
+        addDiagnosesToTree(rootNode);
+
+        sut.onQuiz(findByTarget(rootNode, AuditTarget.QUIZ));
+        sut.onCourseComplete(rootNode);
+
+        // Verify knowledge node
+        AuditNode knowledgeNode = findByTarget(rootNode, AuditTarget.KNOWLEDGE);
+        assertNotNull(knowledgeNode);
+        assertInstanceOf(KnowledgeDiagnoses.class, knowledgeNode.getDiagnoses());
+        KnowledgeDiagnoses knowledgeDiagnoses = (KnowledgeDiagnoses) knowledgeNode.getDiagnoses();
+        assertTrue(knowledgeDiagnoses.getLemmaAbsenceDiagnosis().isPresent());
+        assertFalse(knowledgeDiagnoses.getLemmaAbsenceDiagnosis().get().getMisplacedLemmas().isEmpty());
+
+        // Verify quiz node
+        AuditNode quizNode = findByTarget(rootNode, AuditTarget.QUIZ);
+        assertNotNull(quizNode);
+        assertInstanceOf(QuizDiagnoses.class, quizNode.getDiagnoses());
+        QuizDiagnoses quizDiagnoses = (QuizDiagnoses) quizNode.getDiagnoses();
+        assertTrue(quizDiagnoses.getLemmaAbsenceDiagnosis().isPresent());
+        assertFalse(quizDiagnoses.getLemmaAbsenceDiagnosis().get().getMisplacedLemmas().isEmpty());
     }
 
     @Test
-    @org.junit.jupiter.api.Test
-    @org.junit.jupiter.api.DisplayName("should populate MisplacedLemma with lemmaAndPos expectedLevel and foundInLevel on quiz diagnosis")
-    @org.junit.jupiter.api.Tag("FEAT-DLABS")
-    @org.junit.jupiter.api.Tag("F-DLABS-R010")
+    @DisplayName("should populate MisplacedLemma with lemmaAndPos expectedLevel and foundInLevel on quiz diagnosis")
+    @Tag("FEAT-DLABS")
+    @Tag("F-DLABS-R010")
     public void shouldPopulateMisplacedLemmaWithLemmaAndPosExpectedLevelAndFoundInLevelOnQuizDiagnosis() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        stubMinimalConfig();
+        LemmaAndPos ambiguous = new LemmaAndPos("ambiguous", "ADJ");
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A1)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B1)).thenReturn(new HashSet<>(List.of(ambiguous)));
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.isPhrase("ambiguous")).thenReturn(false);
+        when(contentWordFilter.isContentWord(any())).thenReturn(true);
+        when(evpCatalogPort.getCocaRank(ambiguous)).thenReturn(Optional.of(2000));
+        when(evpCatalogPort.getSemanticCategory(ambiguous)).thenReturn(Optional.empty());
+
+        NlpToken token = new NlpToken("ambiguous", "ambiguous", "ADJ", 2000, false, false);
+        when(contentWordFilter.isContentWord(token)).thenReturn(true);
+
+        // A1 quiz (index 0) containing a B1 word
+        AuditNode rootNode = courseTreeWithQuiz(0, "q1", List.of(token));
+        addDiagnosesToTree(rootNode);
+
+        sut.onQuiz(findByTarget(rootNode, AuditTarget.QUIZ));
+        sut.onCourseComplete(rootNode);
+
+        AuditNode quizNode = findByTarget(rootNode, AuditTarget.QUIZ);
+        QuizDiagnoses quizDiagnoses = (QuizDiagnoses) quizNode.getDiagnoses();
+        MisplacedLemma ml = quizDiagnoses.getLemmaAbsenceDiagnosis().get().getMisplacedLemmas().get(0);
+        assertEquals(ambiguous, ml.getLemmaAndPos());
+        assertEquals(CefrLevel.B1, ml.getExpectedLevel());   // B1 is where EVP expects it
+        assertEquals(CefrLevel.A1, ml.getFoundInLevel());    // A1 is where it was found
     }
 
     @Test
-    @org.junit.jupiter.api.Test
-    @org.junit.jupiter.api.DisplayName("should not write lemma-absence data to untyped metadata map after migration")
-    @org.junit.jupiter.api.Tag("FEAT-DLABS")
-    @org.junit.jupiter.api.Tag("F-DLABS-R014")
+    @DisplayName("should not write lemma-absence data to untyped metadata map after migration")
+    @Tag("FEAT-DLABS")
+    @Tag("F-DLABS-R014")
     public void shouldNotWriteLemmaabsenceDataToUntypedMetadataMapAfterMigration() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        stubMinimalConfig();
+        LemmaAndPos cat = new LemmaAndPos("cat", "NOUN");
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A1)).thenReturn(new HashSet<>(List.of(cat)));
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B1)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.isPhrase("cat")).thenReturn(false);
+        when(contentWordFilter.isContentWord(any())).thenReturn(true);
+        when(evpCatalogPort.getCocaRank(cat)).thenReturn(Optional.of(500));
+        when(evpCatalogPort.getSemanticCategory(cat)).thenReturn(Optional.empty());
+
+        AuditNode rootNode = buildEmptyCourseTree();
+        addDiagnosesToTree(rootNode);
+
+        sut.onCourseComplete(rootNode);
+
+        // After migration metadata should be empty (no legacy keys)
+        assertTrue(rootNode.getMetadata().isEmpty(),
+                "Course root metadata should be empty after DLABS migration");
+        for (AuditNode milestone : rootNode.getChildren()) {
+            assertTrue(milestone.getMetadata().isEmpty(),
+                    "Milestone metadata should be empty after DLABS migration");
+        }
     }
 
     @Test
-    @org.junit.jupiter.api.Test
-    @org.junit.jupiter.api.DisplayName("should return empty Optional from getLemmaAbsenceDiagnosis when analyzer did not run")
-    @org.junit.jupiter.api.Tag("FEAT-DLABS")
-    @org.junit.jupiter.api.Tag("F-DLABS-R003")
+    @DisplayName("should return empty Optional from getLemmaAbsenceDiagnosis when analyzer did not run")
+    @Tag("FEAT-DLABS")
+    @Tag("F-DLABS-R003")
     public void shouldReturnEmptyOptionalFromGetLemmaAbsenceDiagnosisWhenAnalyzerDidNotRun() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // A fresh DefaultCourseDiagnoses (not populated by the analyzer) returns empty
+        DefaultCourseDiagnoses freshDiagnoses = new DefaultCourseDiagnoses();
+        assertFalse(freshDiagnoses.getLemmaAbsenceDiagnosis().isPresent());
+
+        DefaultLevelDiagnoses freshLevel = new DefaultLevelDiagnoses();
+        assertFalse(freshLevel.getLemmaAbsenceDiagnosis().isPresent());
+
+        DefaultTopicDiagnoses freshTopic = new DefaultTopicDiagnoses();
+        assertFalse(freshTopic.getLemmaAbsenceDiagnosis().isPresent());
     }
 }

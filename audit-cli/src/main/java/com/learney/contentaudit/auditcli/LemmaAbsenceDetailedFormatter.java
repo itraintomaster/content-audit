@@ -2,10 +2,21 @@ package com.learney.contentaudit.auditcli;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
+import com.learney.contentaudit.auditdomain.KnowledgeDiagnoses;
+import com.learney.contentaudit.auditdomain.LevelDiagnoses;
+import com.learney.contentaudit.auditdomain.QuizDiagnoses;
+import com.learney.contentaudit.auditdomain.TopicDiagnoses;
+import com.learney.contentaudit.auditdomain.labs.AbsentLemma;
+import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis;
+import com.learney.contentaudit.auditdomain.labs.LemmaPlacementDiagnosis;
+import com.learney.contentaudit.auditdomain.labs.MisplacedLemma;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -33,8 +44,7 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
         if (p.course != null) {
             Double courseScore = mainScore(p.course);
             sb.append("  \"score\": ").append(fmt(courseScore != null ? courseScore : 0.0)).append(",\n");
-            String assessment = p.course.getMetadata() != null
-                    ? jsonStr(p.course.getMetadata().get("assessment")) : "null";
+            String assessment = courseAssessmentName(p.course);
             sb.append("  \"assessment\": ").append(assessment).append(",\n");
         }
 
@@ -44,21 +54,22 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
             if (mi > 0) sb.append(",\n");
             String levelKey = e.getKey();
             AuditNode m = e.getValue();
-            Map<String, Object> meta = m.getMetadata();
+            LemmaAbsenceLevelDiagnosis levelDiag = levelDiagnosis(m);
 
             sb.append("    {\n");
             sb.append("      \"level\": \"").append(levelKey).append("\",\n");
             Double mScore = mainScore(m);
             sb.append("      \"score\": ").append(fmt(mScore != null ? mScore : 0.0)).append(",\n");
-            sb.append("      \"coverageTarget\": ").append(fmtMeta(meta, "coverageTarget")).append(",\n");
-            sb.append("      \"totalExpected\": ").append(meta != null ? meta.getOrDefault("totalExpected", 0) : 0).append(",\n");
-            sb.append("      \"totalAbsent\": ").append(meta != null ? meta.getOrDefault("totalAbsent", 0) : 0).append(",\n");
-            sb.append("      \"absencePercentage\": ").append(fmtMeta(meta, "absencePercentage")).append(",\n");
-            sb.append("      \"completelyAbsentScore\": ").append(fmtMeta(meta, "completely_absentScore")).append(",\n");
-            sb.append("      \"appearsTooLateScore\": ").append(fmtMeta(meta, "appears_too_lateScore")).append(",\n");
-            sb.append("      \"appearsTooEarlyScore\": ").append(fmtMeta(meta, "appears_too_earlyScore")).append(",\n");
-            sb.append("      \"absentLemmas\": ").append(formatLemmaListJson(meta, "absentLemmas",
-                    new String[]{"lemma", "pos", "type", "priority"})).append(",\n");
+            sb.append("      \"coverageTarget\": ").append(fmt(levelDiag != null ? levelDiag.getCoverageTarget() : 0.0)).append(",\n");
+            sb.append("      \"totalExpected\": ").append(levelDiag != null ? levelDiag.getTotalExpected() : 0).append(",\n");
+            sb.append("      \"totalAbsent\": ").append(levelDiag != null ? levelDiag.getTotalAbsent() : 0).append(",\n");
+            sb.append("      \"absencePercentage\": ").append(fmt(levelDiag != null ? levelDiag.getAbsencePercentage() : 0.0)).append(",\n");
+            sb.append("      \"completelyAbsentScore\": ").append(fmt(levelDiag != null ? levelDiag.getCompletelyAbsentScore() : 0.0)).append(",\n");
+            sb.append("      \"appearsTooLateScore\": ").append(fmt(levelDiag != null ? levelDiag.getTooLateScore() : 0.0)).append(",\n");
+            sb.append("      \"appearsTooEarlyScore\": ").append(fmt(levelDiag != null ? levelDiag.getTooEarlyScore() : 0.0)).append(",\n");
+            List<AbsentLemma> absentLemmas = levelDiag != null && levelDiag.getAbsentLemmas() != null
+                    ? levelDiag.getAbsentLemmas() : Collections.emptyList();
+            sb.append("      \"absentLemmas\": ").append(formatAbsentLemmasJson(absentLemmas)).append(",\n");
 
             // Topics → Knowledges → Quizzes (hierarchical)
             List<AuditNode> topics = p.topicsByLevel.getOrDefault(levelKey, List.of());
@@ -72,7 +83,7 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
                 sb.append("          \"topicLabel\": ").append(jsonStr(nodeLabel(t))).append(",\n");
                 Double tScore = mainScore(t);
                 sb.append("          \"score\": ").append(fmt(tScore != null ? tScore : 0.0)).append(",\n");
-                sb.append("          \"misplacedLemmaCount\": ").append(metaInt(t, "misplacedLemmaCount")).append(",\n");
+                sb.append("          \"misplacedLemmaCount\": ").append(placementMisplacedCount(t)).append(",\n");
 
                 // Knowledges within this topic
                 List<AuditNode> knowledges = p.knowledgesByTopic.getOrDefault(topicId, List.of());
@@ -86,10 +97,9 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
                     sb.append("              \"knowledgeLabel\": ").append(jsonStr(nodeLabel(k))).append(",\n");
                     Double kScore = mainScore(k);
                     sb.append("              \"score\": ").append(fmt(kScore != null ? kScore : 0.0)).append(",\n");
-                    sb.append("              \"misplacedLemmaCount\": ").append(metaInt(k, "misplacedLemmaCount")).append(",\n");
-                    sb.append("              \"misplacedLemmas\": ").append(formatLemmaListJson(
-                            k.getMetadata(), "misplacedLemmas",
-                            new String[]{"lemma", "pos", "expectedLevel"})).append(",\n");
+                    sb.append("              \"misplacedLemmaCount\": ").append(placementMisplacedCount(k)).append(",\n");
+                    List<MisplacedLemma> kMisplaced = knowledgeMisplacedLemmas(k);
+                    sb.append("              \"misplacedLemmas\": ").append(formatMisplacedLemmasJson(kMisplaced)).append(",\n");
 
                     // Quizzes within this knowledge
                     List<AuditNode> quizzes = p.quizzesByKnowledge.getOrDefault(knowledgeId, List.of());
@@ -101,14 +111,8 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
                         sb.append("\n                {");
                         sb.append("\"quizId\": ").append(jsonStr(nodeId(q)));
                         sb.append(", \"score\": ").append(fmt(qScore != null ? qScore : 0.0));
-                        if (q.getMetadata() != null && q.getMetadata().get("misplacedLemmas") instanceof List) {
-                            @SuppressWarnings("unchecked")
-                            List<Map<String, String>> qLemmas = (List<Map<String, String>>) q.getMetadata().get("misplacedLemmas");
-                            sb.append(", \"misplacedLemmas\": ").append(formatLemmaListJsonDirect(
-                                    qLemmas, new String[]{"lemma", "pos", "expectedLevel"}));
-                        } else {
-                            sb.append(", \"misplacedLemmas\": []");
-                        }
+                        List<MisplacedLemma> qMisplaced = quizMisplacedLemmas(q);
+                        sb.append(", \"misplacedLemmas\": ").append(formatMisplacedLemmasJson(qMisplaced));
                         sb.append("}");
                     }
                     sb.append(quizzes.isEmpty() ? "]\n" : "\n              ]\n");
@@ -130,8 +134,7 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
     private String formatTable(Partitioned p) {
         StringBuilder sb = new StringBuilder();
 
-        String assessment = p.course != null && p.course.getMetadata() != null
-                ? String.valueOf(p.course.getMetadata().get("assessment")) : "N/A";
+        String assessment = p.course != null ? courseAssessmentString(p.course) : "N/A";
         Double courseScoreVal = p.course != null ? mainScore(p.course) : null;
         double courseScore = courseScoreVal != null ? courseScoreVal : 0.0;
         sb.append(String.format("Score: %.2f | Assessment: %s%n%n", courseScore, assessment));
@@ -146,17 +149,17 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
             AuditNode m = entry.getValue();
             Double mScoreVal = mainScore(m);
             double mScore = mScoreVal != null ? mScoreVal : 0.0;
-            Map<String, Object> meta = m.getMetadata();
+            LemmaAbsenceLevelDiagnosis levelDiag = levelDiagnosis(m);
 
-            double target = meta != null ? toDouble(meta.get("coverageTarget")) * 100 : 0;
+            double target = levelDiag != null ? levelDiag.getCoverageTarget() * 100 : 0;
             sb.append(String.format("%-6s %6.2f %6.0f%% %8s %6s %7.1f%% %8.2f %8.2f %9.2f%n",
                     level, mScore, target,
-                    meta != null ? meta.getOrDefault("totalExpected", "") : "",
-                    meta != null ? meta.getOrDefault("totalAbsent", "") : "",
-                    meta != null ? toDouble(meta.get("absencePercentage")) : 0.0,
-                    meta != null ? toDouble(meta.get("completely_absentScore")) : 0.0,
-                    meta != null ? toDouble(meta.get("appears_too_lateScore")) : 0.0,
-                    meta != null ? toDouble(meta.get("appears_too_earlyScore")) : 0.0));
+                    levelDiag != null ? levelDiag.getTotalExpected() : "",
+                    levelDiag != null ? levelDiag.getTotalAbsent() : "",
+                    levelDiag != null ? levelDiag.getAbsencePercentage() : 0.0,
+                    levelDiag != null ? levelDiag.getCompletelyAbsentScore() : 0.0,
+                    levelDiag != null ? levelDiag.getTooLateScore() : 0.0,
+                    levelDiag != null ? levelDiag.getTooEarlyScore() : 0.0));
         }
 
         for (Map.Entry<String, List<AuditNode>> entry : p.topicsByLevel.entrySet()) {
@@ -166,7 +169,7 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
             for (int i = 0; i < topics.size(); i++) {
                 AuditNode t = topics.get(i);
                 if (i > 0) sb.append(", ");
-                sb.append(nodeLabel(t)).append("(").append(metaInt(t, "misplacedLemmaCount")).append(")");
+                sb.append(nodeLabel(t)).append("(").append(placementMisplacedCount(t)).append(")");
             }
             sb.append("\n");
         }
@@ -178,8 +181,7 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
     private String formatText(Partitioned p) {
         StringBuilder sb = new StringBuilder();
 
-        String assessment = p.course != null && p.course.getMetadata() != null
-                ? String.valueOf(p.course.getMetadata().get("assessment")) : "N/A";
+        String assessment = p.course != null ? courseAssessmentString(p.course) : "N/A";
         Double courseScoreVal = p.course != null ? mainScore(p.course) : null;
         double courseScore = courseScoreVal != null ? courseScoreVal : 0.0;
         sb.append(String.format("Lemma Absence Analysis | Score: %.2f | Assessment: %s%n%n",
@@ -192,37 +194,39 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
         sb.append("─".repeat(82)).append("\n");
 
         for (Map.Entry<String, AuditNode> entry : p.milestones.entrySet()) {
-            AuditNode mi = entry.getValue();
-            Double miScoreVal = mainScore(mi);
+            AuditNode milestoneNode = entry.getValue();
+            Double miScoreVal = mainScore(milestoneNode);
             double miScore = miScoreVal != null ? miScoreVal : 0.0;
-            Map<String, Object> meta = mi.getMetadata();
-            if (meta == null) continue;
-            double target = toDouble(meta.get("coverageTarget")) * 100;
+            LemmaAbsenceLevelDiagnosis levelDiag = levelDiagnosis(milestoneNode);
+            if (levelDiag == null) continue;
+            double target = levelDiag.getCoverageTarget() * 100;
             sb.append(String.format("%-6s %6.2f %6.0f%% %9s %7s %7.1f%% %8.2f %8.2f %9.2f%n",
                     entry.getKey(), miScore, target,
-                    meta.getOrDefault("totalExpected", ""),
-                    meta.getOrDefault("totalAbsent", ""),
-                    toDouble(meta.get("absencePercentage")),
-                    toDouble(meta.get("completely_absentScore")),
-                    toDouble(meta.get("appears_too_lateScore")),
-                    toDouble(meta.get("appears_too_earlyScore"))));
+                    levelDiag.getTotalExpected(),
+                    levelDiag.getTotalAbsent(),
+                    levelDiag.getAbsencePercentage(),
+                    levelDiag.getCompletelyAbsentScore(),
+                    levelDiag.getTooLateScore(),
+                    levelDiag.getTooEarlyScore()));
         }
 
         // Absent lemmas per level
         for (Map.Entry<String, AuditNode> entry : p.milestones.entrySet()) {
-            Map<String, Object> meta = entry.getValue().getMetadata();
-            if (meta == null) continue;
-            @SuppressWarnings("unchecked")
-            List<Map<String, String>> absentLemmas = (List<Map<String, String>>) meta.get("absentLemmas");
+            LemmaAbsenceLevelDiagnosis levelDiag = levelDiagnosis(entry.getValue());
+            if (levelDiag == null) continue;
+            List<AbsentLemma> absentLemmas = levelDiag.getAbsentLemmas();
             if (absentLemmas == null || absentLemmas.isEmpty()) continue;
 
             sb.append(String.format("%n%s > Lemmas to add (%d):%n", entry.getKey(), absentLemmas.size()));
             sb.append(String.format("  %-20s %-6s %-18s %s%n", "Lemma", "POS", "Type", "Priority"));
             sb.append("  ").append("─".repeat(55)).append("\n");
             for (int i = 0; i < Math.min(15, absentLemmas.size()); i++) {
-                Map<String, String> al = absentLemmas.get(i);
+                AbsentLemma al = absentLemmas.get(i);
                 sb.append(String.format("  %-20s %-6s %-18s %s%n",
-                        al.get("lemma"), al.get("pos"), al.get("type"), al.get("priority")));
+                        al.getLemmaAndPos().getLemma(),
+                        al.getLemmaAndPos().getPos(),
+                        al.getAbsenceType() != null ? al.getAbsenceType().name() : "",
+                        al.getPriorityLevel() != null ? al.getPriorityLevel().name() : ""));
             }
             if (absentLemmas.size() > 15) {
                 sb.append(String.format("  ... +%d more%n", absentLemmas.size() - 15));
@@ -241,7 +245,7 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
                 double tScore = tScoreVal != null ? tScoreVal : 0.0;
                 sb.append(String.format("  %-40s %6.2f %10d%n",
                         truncate(nodeLabel(topic), 40), tScore,
-                        metaInt(topic, "misplacedLemmaCount")));
+                        placementMisplacedCount(topic)));
             }
         }
 
@@ -264,8 +268,8 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
                 double kScore = kScoreVal != null ? kScoreVal : 0.0;
                 sb.append(String.format("  %-50s %6.2f %5d  %s%n",
                         truncate(nodeLabel(k), 50), kScore,
-                        metaInt(k, "misplacedLemmaCount"),
-                        truncate(formatMisplacedLemmasText(k.getMetadata()), 40)));
+                        placementMisplacedCount(k),
+                        truncate(formatMisplacedLemmasText(knowledgeMisplacedLemmas(k)), 40)));
             }
         }
 
@@ -325,6 +329,69 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
         return p;
     }
 
+    // ── Typed diagnoses accessors ────────────────────────────────────────────
+
+    private static LemmaAbsenceLevelDiagnosis levelDiagnosis(AuditNode node) {
+        if (node.getDiagnoses() instanceof LevelDiagnoses ld) {
+            return ld.getLemmaAbsenceDiagnosis().orElse(null);
+        }
+        return null;
+    }
+
+    private static int placementMisplacedCount(AuditNode node) {
+        LemmaPlacementDiagnosis diag = placementDiagnosis(node);
+        return diag != null ? diag.getMisplacedLemmaCount() : 0;
+    }
+
+    private static List<MisplacedLemma> knowledgeMisplacedLemmas(AuditNode node) {
+        if (node.getDiagnoses() instanceof KnowledgeDiagnoses kd) {
+            return kd.getLemmaAbsenceDiagnosis()
+                    .map(LemmaPlacementDiagnosis::getMisplacedLemmas)
+                    .orElse(Collections.emptyList());
+        }
+        return Collections.emptyList();
+    }
+
+    private static List<MisplacedLemma> quizMisplacedLemmas(AuditNode node) {
+        if (node.getDiagnoses() instanceof QuizDiagnoses qd) {
+            return qd.getLemmaAbsenceDiagnosis()
+                    .map(LemmaPlacementDiagnosis::getMisplacedLemmas)
+                    .orElse(Collections.emptyList());
+        }
+        return Collections.emptyList();
+    }
+
+    private static LemmaPlacementDiagnosis placementDiagnosis(AuditNode node) {
+        if (node.getDiagnoses() instanceof TopicDiagnoses td) {
+            return td.getLemmaAbsenceDiagnosis().orElse(null);
+        }
+        if (node.getDiagnoses() instanceof KnowledgeDiagnoses kd) {
+            return kd.getLemmaAbsenceDiagnosis().orElse(null);
+        }
+        if (node.getDiagnoses() instanceof QuizDiagnoses qd) {
+            return qd.getLemmaAbsenceDiagnosis().orElse(null);
+        }
+        return null;
+    }
+
+    private static String courseAssessmentName(AuditNode course) {
+        if (course.getDiagnoses() instanceof CourseDiagnoses cd) {
+            return cd.getLemmaAbsenceDiagnosis()
+                    .map(diag -> jsonStr(diag.getAssessment() != null ? diag.getAssessment().name() : null))
+                    .orElse("null");
+        }
+        return "null";
+    }
+
+    private static String courseAssessmentString(AuditNode course) {
+        if (course.getDiagnoses() instanceof CourseDiagnoses cd) {
+            return cd.getLemmaAbsenceDiagnosis()
+                    .map(diag -> diag.getAssessment() != null ? diag.getAssessment().name() : "N/A")
+                    .orElse("N/A");
+        }
+        return "N/A";
+    }
+
     // ── Shared helpers ───────────────────────────────────────────────────────
 
     private static Double mainScore(AuditNode node) {
@@ -351,61 +418,54 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
         return nodeId(node);
     }
 
-    private static int metaInt(AuditNode node, String key) {
-        if (node.getMetadata() == null) return 0;
-        Object val = node.getMetadata().get(key);
-        if (val instanceof Number) return ((Number) val).intValue();
-        if (val instanceof List) return ((List<?>) val).size();
-        return 0;
-    }
-
-    @SuppressWarnings("unchecked")
-    private String formatMisplacedLemmasText(Map<String, Object> meta) {
-        if (meta == null) return "";
-        Object obj = meta.get("misplacedLemmas");
-        if (!(obj instanceof List)) return "";
-        List<Map<String, String>> lemmas = (List<Map<String, String>>) obj;
-        if (lemmas.isEmpty()) return "";
+    private String formatMisplacedLemmasText(List<MisplacedLemma> lemmas) {
+        if (lemmas == null || lemmas.isEmpty()) return "";
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < Math.min(5, lemmas.size()); i++) {
-            Map<String, String> l = lemmas.get(i);
+            MisplacedLemma l = lemmas.get(i);
             if (i > 0) sb.append(", ");
-            sb.append(l.get("lemma")).append("(").append(l.get("pos"))
-              .append("→").append(l.get("expectedLevel")).append(")");
+            sb.append(l.getLemmaAndPos().getLemma())
+              .append("(").append(l.getLemmaAndPos().getPos())
+              .append("→").append(l.getExpectedLevel() != null ? l.getExpectedLevel().name() : "")
+              .append(")");
         }
         if (lemmas.size() > 5) sb.append(" +").append(lemmas.size() - 5).append(" more");
         return sb.toString();
     }
 
-    @SuppressWarnings("unchecked")
-    private String formatLemmaListJson(Map<String, Object> meta, String key, String[] fields) {
-        if (meta == null) return "[]";
-        Object obj = meta.get(key);
-        if (!(obj instanceof List)) return "[]";
-        return formatLemmaListJsonDirect((List<Map<String, String>>) obj, fields);
-    }
-
-    private String formatLemmaListJsonDirect(List<Map<String, String>> lemmas, String[] fields) {
+    private String formatAbsentLemmasJson(List<AbsentLemma> lemmas) {
         if (lemmas == null || lemmas.isEmpty()) return "[]";
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         for (int i = 0; i < lemmas.size(); i++) {
-            Map<String, String> l = lemmas.get(i);
+            AbsentLemma al = lemmas.get(i);
             if (i > 0) sb.append(",");
             sb.append("{");
-            for (int f = 0; f < fields.length; f++) {
-                if (f > 0) sb.append(", ");
-                sb.append(jsonStr(fields[f])).append(": ").append(jsonStr(l.get(fields[f])));
-            }
+            sb.append(jsonStr("lemma")).append(": ").append(jsonStr(al.getLemmaAndPos().getLemma()));
+            sb.append(", ").append(jsonStr("pos")).append(": ").append(jsonStr(al.getLemmaAndPos().getPos()));
+            sb.append(", ").append(jsonStr("type")).append(": ").append(jsonStr(al.getAbsenceType() != null ? al.getAbsenceType().name() : null));
+            sb.append(", ").append(jsonStr("priority")).append(": ").append(jsonStr(al.getPriorityLevel() != null ? al.getPriorityLevel().name() : null));
             sb.append("}");
         }
         sb.append("]");
         return sb.toString();
     }
 
-    private static String fmtMeta(Map<String, Object> meta, String key) {
-        if (meta == null) return "0";
-        return fmt(toDouble(meta.get(key)));
+    private String formatMisplacedLemmasJson(List<MisplacedLemma> lemmas) {
+        if (lemmas == null || lemmas.isEmpty()) return "[]";
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < lemmas.size(); i++) {
+            MisplacedLemma ml = lemmas.get(i);
+            if (i > 0) sb.append(",");
+            sb.append("{");
+            sb.append(jsonStr("lemma")).append(": ").append(jsonStr(ml.getLemmaAndPos().getLemma()));
+            sb.append(", ").append(jsonStr("pos")).append(": ").append(jsonStr(ml.getLemmaAndPos().getPos()));
+            sb.append(", ").append(jsonStr("expectedLevel")).append(": ").append(jsonStr(ml.getExpectedLevel() != null ? ml.getExpectedLevel().name() : null));
+            sb.append("}");
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
     private static String jsonStr(Object val) {
@@ -415,11 +475,6 @@ class LemmaAbsenceDetailedFormatter implements DetailedFormatter {
 
     private static String fmt(double val) {
         return String.format(java.util.Locale.ROOT, "%.4f", val);
-    }
-
-    private static double toDouble(Object val) {
-        if (val instanceof Number) return ((Number) val).doubleValue();
-        return 0.0;
     }
 
     private static String truncate(String s, int max) {

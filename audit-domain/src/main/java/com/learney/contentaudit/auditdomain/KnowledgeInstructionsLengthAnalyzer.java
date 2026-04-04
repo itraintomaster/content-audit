@@ -73,9 +73,4 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
         return "Scores knowledge instructions by weighted character length against soft/hard limits";
     }
 
-    @Override
-    public List<ScoredItem> getResults() {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
-
 }
