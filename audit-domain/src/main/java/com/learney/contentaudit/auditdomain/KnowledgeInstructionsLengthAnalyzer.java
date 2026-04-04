@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain;
+import java.util.List;
 
 import javax.annotation.processing.Generated;
 
@@ -55,4 +56,6 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
     public String getDescription() {
         return "Scores knowledge instructions by character length against soft/hard limits";
     }
+
+
 }

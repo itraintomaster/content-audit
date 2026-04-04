@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain;
+import java.util.List;
 
 import java.util.Optional;
 import javax.annotation.processing.Generated;
@@ -113,4 +114,6 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
     public String getDescription() {
         return "Scores quiz sentence length against per-CEFR target token ranges";
     }
+
+
 }

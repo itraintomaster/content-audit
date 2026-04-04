@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain;
+import java.util.List;
 
 import javax.annotation.processing.Generated;
 
@@ -69,4 +70,6 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
     public String getDescription() {
         return "Scores knowledge titles by weighted character count";
     }
+
+
 }
