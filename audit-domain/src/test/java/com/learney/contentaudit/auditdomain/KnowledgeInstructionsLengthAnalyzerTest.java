@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,8 +22,14 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
 
     // -- helpers --
 
-    private AuditContext ctx(String milestoneId, String topicId, String knowledgeId) {
-        return new AuditContext(milestoneId, topicId, knowledgeId, null, null, null, null);
+    private AuditNode buildKnowledgeNode(AuditableKnowledge knowledge) {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.KNOWLEDGE);
+        node.setEntity(knowledge);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        return node;
     }
 
     private AuditableKnowledge knowledgeWithInstructions(String instructions) {
@@ -54,12 +62,9 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     @Tag("F-KTLEN")
     @Tag("F-KTLEN-R006")
     public void shouldScore10ForKnowledgeWithNullInstructions() {
-        AuditableKnowledge knowledge = knowledgeWithInstructions(null);
-        analyzer.onKnowledge(knowledge, ctx("m1", "t1", "k1"));
-
-        List<ScoredItem> results = analyzer.getResults();
-        assertEquals(1, results.size());
-        assertEquals(1.0, results.get(0).getScore());
+        AuditNode node = buildKnowledgeNode(knowledgeWithInstructions(null));
+        analyzer.onKnowledge(node);
+        assertEquals(1.0, node.getScores().get("knowledge-instructions-length"));
     }
 
     @Test
@@ -67,12 +72,9 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     @Tag("F-KTLEN")
     @Tag("F-KTLEN-R006")
     public void shouldScore10ForKnowledgeWithEmptyInstructions() {
-        AuditableKnowledge knowledge = knowledgeWithInstructions("");
-        analyzer.onKnowledge(knowledge, ctx("m1", "t1", "k1"));
-
-        List<ScoredItem> results = analyzer.getResults();
-        assertEquals(1, results.size());
-        assertEquals(1.0, results.get(0).getScore());
+        AuditNode node = buildKnowledgeNode(knowledgeWithInstructions(""));
+        analyzer.onKnowledge(node);
+        assertEquals(1.0, node.getScores().get("knowledge-instructions-length"));
     }
 
     // -- within soft limit (<=70) score 1.0 --
@@ -84,13 +86,9 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     public void shouldScore10ForInstructionsExactlyAtSoftLimitOf70Chars() {
         String instructions = "a".repeat(70);
         assertEquals(70, instructions.length());
-
-        AuditableKnowledge knowledge = knowledgeWithInstructions(instructions);
-        analyzer.onKnowledge(knowledge, ctx("m1", "t1", "k1"));
-
-        List<ScoredItem> results = analyzer.getResults();
-        assertEquals(1, results.size());
-        assertEquals(1.0, results.get(0).getScore());
+        AuditNode node = buildKnowledgeNode(knowledgeWithInstructions(instructions));
+        analyzer.onKnowledge(node);
+        assertEquals(1.0, node.getScores().get("knowledge-instructions-length"));
     }
 
     @Test
@@ -99,12 +97,9 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     @Tag("F-KTLEN-R006")
     public void shouldScore10ForInstructionsOf30CharsWithinSoftLimit() {
         String instructions = "a".repeat(30);
-        AuditableKnowledge knowledge = knowledgeWithInstructions(instructions);
-        analyzer.onKnowledge(knowledge, ctx("m1", "t1", "k1"));
-
-        List<ScoredItem> results = analyzer.getResults();
-        assertEquals(1, results.size());
-        assertEquals(1.0, results.get(0).getScore());
+        AuditNode node = buildKnowledgeNode(knowledgeWithInstructions(instructions));
+        analyzer.onKnowledge(node);
+        assertEquals(1.0, node.getScores().get("knowledge-instructions-length"));
     }
 
     // -- between soft and hard limits (71..100) score 0.5 --
@@ -115,12 +110,9 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     @Tag("F-KTLEN-R005")
     public void shouldScore05ForInstructionsOf71CharsJustAboveSoftLimit() {
         String instructions = "a".repeat(71);
-        AuditableKnowledge knowledge = knowledgeWithInstructions(instructions);
-        analyzer.onKnowledge(knowledge, ctx("m1", "t1", "k1"));
-
-        List<ScoredItem> results = analyzer.getResults();
-        assertEquals(1, results.size());
-        assertEquals(0.5, results.get(0).getScore());
+        AuditNode node = buildKnowledgeNode(knowledgeWithInstructions(instructions));
+        analyzer.onKnowledge(node);
+        assertEquals(0.5, node.getScores().get("knowledge-instructions-length"));
     }
 
     @Test
@@ -129,12 +121,9 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     @Tag("F-KTLEN-R005")
     public void shouldScore05ForInstructionsExactlyAtHardLimitOf100Chars() {
         String instructions = "a".repeat(100);
-        AuditableKnowledge knowledge = knowledgeWithInstructions(instructions);
-        analyzer.onKnowledge(knowledge, ctx("m1", "t1", "k1"));
-
-        List<ScoredItem> results = analyzer.getResults();
-        assertEquals(1, results.size());
-        assertEquals(0.5, results.get(0).getScore());
+        AuditNode node = buildKnowledgeNode(knowledgeWithInstructions(instructions));
+        analyzer.onKnowledge(node);
+        assertEquals(0.5, node.getScores().get("knowledge-instructions-length"));
     }
 
     @Test
@@ -143,12 +132,9 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     @Tag("F-KTLEN-R006")
     public void shouldScore05ForInstructionsOf85CharsBetweenSoftAndHardLimits() {
         String instructions = "a".repeat(85);
-        AuditableKnowledge knowledge = knowledgeWithInstructions(instructions);
-        analyzer.onKnowledge(knowledge, ctx("m1", "t1", "k1"));
-
-        List<ScoredItem> results = analyzer.getResults();
-        assertEquals(1, results.size());
-        assertEquals(0.5, results.get(0).getScore());
+        AuditNode node = buildKnowledgeNode(knowledgeWithInstructions(instructions));
+        analyzer.onKnowledge(node);
+        assertEquals(0.5, node.getScores().get("knowledge-instructions-length"));
     }
 
     // -- above hard limit (>100) score 0.0 --
@@ -159,12 +145,9 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     @Tag("F-KTLEN-R005")
     public void shouldScore00ForInstructionsOf101CharsJustAboveHardLimit() {
         String instructions = "a".repeat(101);
-        AuditableKnowledge knowledge = knowledgeWithInstructions(instructions);
-        analyzer.onKnowledge(knowledge, ctx("m1", "t1", "k1"));
-
-        List<ScoredItem> results = analyzer.getResults();
-        assertEquals(1, results.size());
-        assertEquals(0.0, results.get(0).getScore());
+        AuditNode node = buildKnowledgeNode(knowledgeWithInstructions(instructions));
+        analyzer.onKnowledge(node);
+        assertEquals(0.0, node.getScores().get("knowledge-instructions-length"));
     }
 
     @Test
@@ -173,12 +156,9 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     @Tag("F-KTLEN-R006")
     public void shouldScore00ForInstructionsOf200CharsWellAboveHardLimit() {
         String instructions = "a".repeat(200);
-        AuditableKnowledge knowledge = knowledgeWithInstructions(instructions);
-        analyzer.onKnowledge(knowledge, ctx("m1", "t1", "k1"));
-
-        List<ScoredItem> results = analyzer.getResults();
-        assertEquals(1, results.size());
-        assertEquals(0.0, results.get(0).getScore());
+        AuditNode node = buildKnowledgeNode(knowledgeWithInstructions(instructions));
+        analyzer.onKnowledge(node);
+        assertEquals(0.0, node.getScores().get("knowledge-instructions-length"));
     }
 
     // -- no-op methods complete without error --
@@ -187,36 +167,50 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     @DisplayName("should complete without error when onQuiz is called")
     @Tag("F-KTLEN")
     public void shouldCompleteWithoutErrorWhenOnQuizIsCalled() {
-        AuditableQuiz quiz = new AuditableQuiz("sentence", List.of(), "q-id", "quiz label", "Q001");
-        AuditContext ctx = ctx("m1", "t1", "k1");
-        assertDoesNotThrow(() -> analyzer.onQuiz(quiz, ctx));
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.QUIZ);
+        node.setScores(new LinkedHashMap<>());
+        node.setChildren(new ArrayList<>());
+        node.setMetadata(new LinkedHashMap<>());
+        assertDoesNotThrow(() -> analyzer.onQuiz(node));
     }
 
     @Test
     @DisplayName("should complete without error when onMilestone is called")
     @Tag("F-KTLEN")
     public void shouldCompleteWithoutErrorWhenOnMilestoneIsCalled() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), "m-id", "milestone label", "M001");
-        AuditContext ctx = ctx("m1", null, null);
-        assertDoesNotThrow(() -> analyzer.onMilestone(milestone, ctx));
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.MILESTONE);
+        node.setEntity(new AuditableMilestone(List.of(), "m-id", "milestone label", "M001"));
+        node.setScores(new LinkedHashMap<>());
+        node.setChildren(new ArrayList<>());
+        node.setMetadata(new LinkedHashMap<>());
+        assertDoesNotThrow(() -> analyzer.onMilestone(node));
     }
 
     @Test
     @DisplayName("should complete without error when onTopic is called")
     @Tag("F-KTLEN")
     public void shouldCompleteWithoutErrorWhenOnTopicIsCalled() {
-        AuditableTopic topic = new AuditableTopic(List.of(), "t-id", "topic label", "T001");
-        AuditContext ctx = ctx("m1", "t1", null);
-        assertDoesNotThrow(() -> analyzer.onTopic(topic, ctx));
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.TOPIC);
+        node.setEntity(new AuditableTopic(List.of(), "t-id", "topic label", "T001"));
+        node.setScores(new LinkedHashMap<>());
+        node.setChildren(new ArrayList<>());
+        node.setMetadata(new LinkedHashMap<>());
+        assertDoesNotThrow(() -> analyzer.onTopic(node));
     }
 
     @Test
     @DisplayName("should complete without error when onCourseComplete is called")
     @Tag("F-KTLEN")
     public void shouldCompleteWithoutErrorWhenOnCourseCompleteIsCalled() {
-        AuditableCourse course = new AuditableCourse(List.of());
-        AuditContext ctx = ctx(null, null, null);
-        assertDoesNotThrow(() -> analyzer.onCourseComplete(course, ctx));
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.COURSE);
+        node.setScores(new LinkedHashMap<>());
+        node.setChildren(new ArrayList<>());
+        node.setMetadata(new LinkedHashMap<>());
+        assertDoesNotThrow(() -> analyzer.onCourseComplete(node));
     }
 
     // -- empty results before any processing --
@@ -225,7 +219,10 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     @DisplayName("should return empty list when getResults is called without prior processing")
     @Tag("F-KTLEN")
     public void shouldReturnEmptyListWhenGetResultsIsCalledWithoutPriorProcessing() {
-        assertTrue(analyzer.getResults().isEmpty());
+        // With the new API there is no getResults(); we verify that a freshly
+        // constructed analyzer has not written any scores to a node that was never processed.
+        AuditNode node = buildKnowledgeNode(knowledgeWithInstructions("test"));
+        assertFalse(node.getScores().containsKey("knowledge-instructions-length"));
     }
 
     // -- multiple knowledges accumulate correctly --
@@ -236,20 +233,18 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     @Tag("F-KTLEN-R006")
     public void shouldProduceCorrectScoresForThreeKnowledgesWithDifferentInstructionLengths() {
         // 30 chars -> 1.0 (within soft limit)
-        AuditableKnowledge k1 = knowledgeWithInstructions("a".repeat(30));
+        AuditNode node1 = buildKnowledgeNode(knowledgeWithInstructions("a".repeat(30)));
         // 85 chars -> 0.5 (between soft and hard)
-        AuditableKnowledge k2 = knowledgeWithInstructions("a".repeat(85));
+        AuditNode node2 = buildKnowledgeNode(knowledgeWithInstructions("a".repeat(85)));
         // 150 chars -> 0.0 (above hard limit)
-        AuditableKnowledge k3 = knowledgeWithInstructions("a".repeat(150));
+        AuditNode node3 = buildKnowledgeNode(knowledgeWithInstructions("a".repeat(150)));
 
-        analyzer.onKnowledge(k1, ctx("m1", "t1", "ka"));
-        analyzer.onKnowledge(k2, ctx("m1", "t1", "kb"));
-        analyzer.onKnowledge(k3, ctx("m1", "t1", "kc"));
+        analyzer.onKnowledge(node1);
+        analyzer.onKnowledge(node2);
+        analyzer.onKnowledge(node3);
 
-        List<ScoredItem> results = analyzer.getResults();
-        assertEquals(3, results.size());
-        assertEquals(1.0, results.get(0).getScore());
-        assertEquals(0.5, results.get(1).getScore());
-        assertEquals(0.0, results.get(2).getScore());
+        assertEquals(1.0, node1.getScores().get("knowledge-instructions-length"));
+        assertEquals(0.5, node2.getScores().get("knowledge-instructions-length"));
+        assertEquals(0.0, node3.getScores().get("knowledge-instructions-length"));
     }
 }

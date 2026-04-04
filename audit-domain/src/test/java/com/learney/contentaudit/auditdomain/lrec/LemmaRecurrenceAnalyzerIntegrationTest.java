@@ -1,19 +1,19 @@
 package com.learney.contentaudit.auditdomain.lrec;
 
-import com.learney.contentaudit.auditdomain.AuditContext;
+import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
-import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.ContentWordFilter;
 import com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig;
 import com.learney.contentaudit.auditdomain.NlpToken;
-import com.learney.contentaudit.auditdomain.ScoredItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,7 +22,7 @@ import static org.mockito.Mockito.lenient;
 
 /**
  * Handwritten integration test for LemmaRecurrenceAnalyzer.
- * Covers the full pipeline: onQuiz → onCourseComplete → getResults.
+ * Covers the full pipeline: onQuiz → onCourseComplete → scores on rootNode.
  *
  * This test exists because the declarative DSL cannot express:
  * - Mockito.anyDouble() for primitive double parameters
@@ -46,8 +46,29 @@ class LemmaRecurrenceAnalyzerIntegrationTest {
         sut = new LemmaRecurrenceAnalyzer(contentWordFilter, config, intervalCalculator, exposureClassifier);
     }
 
+    // -- helpers --
+
+    private AuditNode buildQuizNode(AuditableQuiz quiz) {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.QUIZ);
+        node.setEntity(quiz);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        return node;
+    }
+
+    private AuditNode buildCourseNode() {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.COURSE);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        return node;
+    }
+
     @Test
-    @DisplayName("Given two quizzes with content words, when full pipeline runs, then getResults returns scored item with correct score")
+    @DisplayName("Given two quizzes with content words, when full pipeline runs, then scores contain correct score on root node")
     void fullPipelineReturnsCorrectScore() {
         // Fixtures
         NlpToken catToken = new NlpToken("cat", "cat", "NOUN", 100, false, false);
@@ -55,16 +76,17 @@ class LemmaRecurrenceAnalyzerIntegrationTest {
         NlpToken catsToken = new NlpToken("cats", "cat", "NOUN", 100, false, false);
         AuditableQuiz quiz1 = new AuditableQuiz("the cat", List.of(theToken, catToken), null, null, null);
         AuditableQuiz quiz2 = new AuditableQuiz("the cats", List.of(theToken, catsToken), null, null, null);
-        AuditContext ctx = new AuditContext("m1", "t1", "k1", "q1", null, null, null);
-        AuditableCourse course = new AuditableCourse(List.of());
+        AuditNode quizNode1 = buildQuizNode(quiz1);
+        AuditNode quizNode2 = buildQuizNode(quiz2);
+        AuditNode courseNode = buildCourseNode();
 
         // Mock contentWordFilter: NOUN=true, DET=false
         lenient().when(contentWordFilter.isContentWord(argThat(t -> t != null && "NOUN".equals(t.getPosTag())))).thenReturn(true);
         lenient().when(contentWordFilter.isContentWord(argThat(t -> t == null || !"NOUN".equals(t.getPosTag())))).thenReturn(false);
 
         // Process quizzes
-        sut.onQuiz(quiz1, ctx);
-        sut.onQuiz(quiz2, ctx);
+        sut.onQuiz(quizNode1);
+        sut.onQuiz(quizNode2);
 
         // Mock collaborators for onCourseComplete
         lenient().when(config.getTop()).thenReturn(2000);
@@ -72,14 +94,10 @@ class LemmaRecurrenceAnalyzerIntegrationTest {
         lenient().when(intervalCalculator.calculateStdDevInterval(any(), anyDouble())).thenReturn(0.0);
         lenient().when(exposureClassifier.classify(anyDouble(), any())).thenReturn(ExposureStatus.NORMAL);
 
-        sut.onCourseComplete(course, ctx);
+        sut.onCourseComplete(courseNode);
 
-        // Verify results
-        List<ScoredItem> results = sut.getResults();
-        assertEquals(1, results.size());
-        ScoredItem item = results.get(0);
-        assertEquals("lemma-recurrence", item.getAnalyzerName());
-        assertEquals(AuditTarget.COURSE, item.getTarget());
-        assertEquals(1.0, item.getScore(), 0.01);
+        // Verify score written to root node
+        assertTrue(courseNode.getScores().containsKey("lemma-recurrence"));
+        assertEquals(1.0, courseNode.getScores().get("lemma-recurrence"), 0.01);
     }
 }

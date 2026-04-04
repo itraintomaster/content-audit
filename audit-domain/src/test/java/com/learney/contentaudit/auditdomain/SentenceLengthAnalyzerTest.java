@@ -1,5 +1,8 @@
 package com.learney.contentaudit.auditdomain;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
@@ -16,9 +19,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 public class SentenceLengthAnalyzerTest {
 
     @Mock
-    private NlpTokenizer nlpTokenizer;
-
-    @Mock
     private SentenceLengthConfig config;
 
     @InjectMocks
@@ -33,13 +33,91 @@ public class SentenceLengthAnalyzerTest {
     }
 
     private static List<NlpToken> tokens(int count) {
-        return java.util.Collections.nCopies(count, token());
+        return Collections.nCopies(count, token());
     }
 
     private void setupA1Range() {
         TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
         Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeA1));
         Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
+    }
+
+    /**
+     * Builds a minimal course-level root node (no entity needed).
+     */
+    private AuditNode buildCourseNode() {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.COURSE);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        return node;
+    }
+
+    /**
+     * Builds a milestone node. The milestone label is used by SentenceLengthAnalyzer
+     * to derive the CefrLevel via CefrLevel.valueOf(label).
+     */
+    private AuditNode buildMilestoneNode(AuditNode parent, AuditableMilestone milestone) {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.MILESTONE);
+        node.setEntity(milestone);
+        node.setParent(parent);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        parent.getChildren().add(node);
+        return node;
+    }
+
+    private AuditNode buildTopicNode(AuditNode parent, AuditableTopic topic) {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.TOPIC);
+        node.setEntity(topic);
+        node.setParent(parent);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        parent.getChildren().add(node);
+        return node;
+    }
+
+    private AuditNode buildKnowledgeNode(AuditNode parent, AuditableKnowledge knowledge) {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.KNOWLEDGE);
+        node.setEntity(knowledge);
+        node.setParent(parent);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        parent.getChildren().add(node);
+        return node;
+    }
+
+    private AuditNode buildQuizNode(AuditNode parent, AuditableQuiz quiz) {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.QUIZ);
+        node.setEntity(quiz);
+        node.setParent(parent);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        parent.getChildren().add(node);
+        return node;
+    }
+
+    /**
+     * Builds the full tree: course -> milestone(label) -> topic -> knowledge -> quiz
+     * and returns the quiz node.
+     */
+    private AuditNode fullTree(String milestoneLabel, AuditableKnowledge knowledge, AuditableQuiz quiz) {
+        AuditNode courseNode = buildCourseNode();
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, milestoneLabel, null);
+        AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone);
+        AuditableTopic topic = new AuditableTopic(List.of(), null, null, null);
+        AuditNode topicNode = buildTopicNode(milestoneNode, topic);
+        AuditNode knowledgeNode = buildKnowledgeNode(topicNode, knowledge);
+        return buildQuizNode(knowledgeNode, quiz);
     }
 
     // ------------------------------------------------------------------
@@ -51,18 +129,14 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R001")
     public void shouldExcludeQuizWhenMilestoneIdIsNull() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext(null, "t1", "k1", "q1", null, null, null);
+        // milestone label null → CefrLevel.valueOf(null) → null → skip
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditContext ctxKnowledge = new AuditContext(null, "t1", "k1", "q1", null, null, null);
         AuditableQuiz quiz = new AuditableQuiz("Hello world test", tokens(3), null, null, null);
-        AuditContext ctxQuiz = new AuditContext(null, "t1", "k1", "q1", null, null, null);
+        AuditNode quizNode = fullTree(null, knowledge, quiz);
 
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(knowledge, ctxKnowledge);
-        sut.onQuiz(quiz, ctxQuiz);
+        sut.onQuiz(quizNode);
 
-        Assertions.assertEquals(List.of(), sut.getResults());
+        Assertions.assertFalse(quizNode.getScores().containsKey("sentence-length"));
     }
 
     @Test
@@ -70,18 +144,14 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R001")
     public void shouldExcludeQuizWhenMilestoneIdIsNonnumeric() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext("abc", "t1", "k1", "q1", null, null, null);
+        // milestone label "abc" is not a valid CefrLevel → skip
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditContext ctxKnowledge = new AuditContext("abc", "t1", "k1", "q1", null, null, null);
         AuditableQuiz quiz = new AuditableQuiz("Hello world test", tokens(3), null, null, null);
-        AuditContext ctxQuiz = new AuditContext("abc", "t1", "k1", "q1", null, null, null);
+        AuditNode quizNode = fullTree("abc", knowledge, quiz);
 
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(knowledge, ctxKnowledge);
-        sut.onQuiz(quiz, ctxQuiz);
+        sut.onQuiz(quizNode);
 
-        Assertions.assertEquals(List.of(), sut.getResults());
+        Assertions.assertFalse(quizNode.getScores().containsKey("sentence-length"));
     }
 
     @Test
@@ -89,19 +159,14 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R012")
     public void shouldExcludeQuizWhenNoTargetRangeConfiguredForLevel() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
         AuditableQuiz quiz = new AuditableQuiz("She likes apples", tokens(3), null, null, null);
-        AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(knowledge, ctxKnowledge);
         Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.empty());
-        sut.onQuiz(quiz, ctxQuiz);
+        sut.onQuiz(quizNode);
 
-        Assertions.assertEquals(List.of(), sut.getResults());
+        Assertions.assertFalse(quizNode.getScores().containsKey("sentence-length"));
     }
 
     @Test
@@ -109,35 +174,34 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R001")
     public void shouldScoreOnlySentenceQuizzesWhenProcessingMixedKnowledgeTypes() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode courseNode = buildCourseNode();
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, "A1", null);
+        AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone);
+        AuditableTopic topic = new AuditableTopic(List.of(), null, null, null);
+        AuditNode topicNode = buildTopicNode(milestoneNode, topic);
 
         // Non-sentence knowledge
         AuditableKnowledge nonSentKnowledge = new AuditableKnowledge(List.of(), "Vocab", "Match", false, null, null, null);
-        AuditContext ctxNonSentKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode nonSentKnowledgeNode = buildKnowledgeNode(topicNode, nonSentKnowledge);
         AuditableQuiz nonSentQuiz = new AuditableQuiz("apple", tokens(1), null, null, null);
-        AuditContext ctxNonSentQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode nonSentQuizNode = buildQuizNode(nonSentKnowledgeNode, nonSentQuiz);
 
         // Sentence knowledge
         AuditableKnowledge sentKnowledge = new AuditableKnowledge(List.of(), "Sentences", "Complete", true, null, null, null);
-        AuditContext ctxSentKnowledge = new AuditContext("0", "t1", "k2", "q2", null, null, null);
+        AuditNode sentKnowledgeNode = buildKnowledgeNode(topicNode, sentKnowledge);
         AuditableQuiz sentQuiz = new AuditableQuiz("She likes red apples very much", tokens(6), null, null, null);
-        AuditContext ctxSentQuiz = new AuditContext("0", "t1", "k2", "q2", null, null, null);
+        AuditNode sentQuizNode = buildQuizNode(sentKnowledgeNode, sentQuiz);
 
         TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
-        ScoredItem expectedScore = new ScoredItem("sentence-length", AuditTarget.QUIZ, 1.0, "0", "t1", "k2", "q2", sentQuiz, null);
-
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(nonSentKnowledge, ctxNonSentKnowledge);
-        sut.onQuiz(nonSentQuiz, ctxNonSentQuiz);
-        sut.onKnowledge(sentKnowledge, ctxSentKnowledge);
         Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeA1));
         Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
-        sut.onQuiz(sentQuiz, ctxSentQuiz);
 
-        List<ScoredItem> result = sut.getResults();
-        Assertions.assertEquals(1, result.size());
-        Assertions.assertEquals(expectedScore, result.get(0));
+        sut.onQuiz(nonSentQuizNode);
+        sut.onQuiz(sentQuizNode);
+
+        Assertions.assertFalse(nonSentQuizNode.getScores().containsKey("sentence-length"));
+        Assertions.assertTrue(sentQuizNode.getScores().containsKey("sentence-length"));
+        Assertions.assertEquals(1.0, sentQuizNode.getScores().get("sentence-length"));
     }
 
     @Test
@@ -159,22 +223,15 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R002")
     public void shouldScore10ForQuizWithinA1Range() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
         // 6 tokens — within [5, 8]
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
         AuditableQuiz quiz = new AuditableQuiz("She likes apples a lot today", tokens(6), "q1", null, null);
-        AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(knowledge, ctxKnowledge);
-        sut.onQuiz(quiz, ctxQuiz);
+        sut.onQuiz(quizNode);
 
-        List<ScoredItem> result = sut.getResults();
-        Assertions.assertEquals(1, result.size());
-        Assertions.assertEquals(1.0, result.get(0).getScore());
+        Assertions.assertEquals(1.0, quizNode.getScores().get("sentence-length"));
     }
 
     @Test
@@ -182,22 +239,15 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R002")
     public void shouldScore075ForQuiz1TokenAboveA1Max() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
         // 9 tokens — 1 above max of 8; distance=1, margin=4 → 1 - 1/4 = 0.75
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
         AuditableQuiz quiz = new AuditableQuiz("She really likes green apples a lot today quickly", tokens(9), "q1", null, null);
-        AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(knowledge, ctxKnowledge);
-        sut.onQuiz(quiz, ctxQuiz);
+        sut.onQuiz(quizNode);
 
-        List<ScoredItem> result = sut.getResults();
-        Assertions.assertEquals(1, result.size());
-        Assertions.assertEquals(0.75, result.get(0).getScore());
+        Assertions.assertEquals(0.75, quizNode.getScores().get("sentence-length"));
     }
 
     @Test
@@ -205,22 +255,15 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R002")
     public void shouldScore025ForQuiz3TokensBelowA1Min() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
         // 2 tokens — 3 below min of 5; distance=3, margin=4 → 1 - 3/4 = 0.25
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
         AuditableQuiz quiz = new AuditableQuiz("Go now", tokens(2), "q1", null, null);
-        AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(knowledge, ctxKnowledge);
-        sut.onQuiz(quiz, ctxQuiz);
+        sut.onQuiz(quizNode);
 
-        List<ScoredItem> result = sut.getResults();
-        Assertions.assertEquals(1, result.size());
-        Assertions.assertEquals(0.25, result.get(0).getScore());
+        Assertions.assertEquals(0.25, quizNode.getScores().get("sentence-length"));
     }
 
     @Test
@@ -228,22 +271,15 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R002")
     public void shouldScore10ForQuizExactlyAtA1MinimumBoundary() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
         // 5 tokens — exactly at min
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
         AuditableQuiz quiz = new AuditableQuiz("I like big red cats", tokens(5), "q1", null, null);
-        AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(knowledge, ctxKnowledge);
-        sut.onQuiz(quiz, ctxQuiz);
+        sut.onQuiz(quizNode);
 
-        List<ScoredItem> result = sut.getResults();
-        Assertions.assertEquals(1, result.size());
-        Assertions.assertEquals(1.0, result.get(0).getScore());
+        Assertions.assertEquals(1.0, quizNode.getScores().get("sentence-length"));
     }
 
     @Test
@@ -251,22 +287,15 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R002")
     public void shouldScore10ForQuizExactlyAtA1MaximumBoundary() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
         // 8 tokens — exactly at max
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
         AuditableQuiz quiz = new AuditableQuiz("I like big red cats very much here", tokens(8), "q1", null, null);
-        AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(knowledge, ctxKnowledge);
-        sut.onQuiz(quiz, ctxQuiz);
+        sut.onQuiz(quizNode);
 
-        List<ScoredItem> result = sut.getResults();
-        Assertions.assertEquals(1, result.size());
-        Assertions.assertEquals(1.0, result.get(0).getScore());
+        Assertions.assertEquals(1.0, quizNode.getScores().get("sentence-length"));
     }
 
     @Test
@@ -274,22 +303,15 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R009")
     public void shouldScore00ForQuiz4TokensAboveA1MaxAtToleranceBoundary() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
         // 12 tokens — 4 above max of 8; distance=4 >= margin=4 → 0.0
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
         AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the local market", tokens(12), "q1", null, null);
-        AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(knowledge, ctxKnowledge);
-        sut.onQuiz(quiz, ctxQuiz);
+        sut.onQuiz(quizNode);
 
-        List<ScoredItem> result = sut.getResults();
-        Assertions.assertEquals(1, result.size());
-        Assertions.assertEquals(0.0, result.get(0).getScore());
+        Assertions.assertEquals(0.0, quizNode.getScores().get("sentence-length"));
     }
 
     @Test
@@ -297,18 +319,13 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R001")
     public void shouldExcludeNonsentenceKnowledgeQuizFromResults() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Vocabulary", "Match words", false, null, null, null);
-        AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
         AuditableQuiz quiz = new AuditableQuiz("apple", tokens(1), null, null, null);
-        AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(knowledge, ctxKnowledge);
-        sut.onQuiz(quiz, ctxQuiz);
+        sut.onQuiz(quizNode);
 
-        Assertions.assertEquals(List.of(), sut.getResults());
+        Assertions.assertFalse(quizNode.getScores().containsKey("sentence-length"));
     }
 
     @Test
@@ -316,27 +333,20 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R012")
     public void shouldScore10ForB2LevelQuizWithinRange() {
-        // milestoneId "3" → index 3 → CefrLevel.B2
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext("3", "t1", "k1", "q1", null, null, null);
+        // milestone label "B2" → CefrLevel.B2; 15 tokens within [14, 17]
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Advanced grammar", "Complete", true, null, null, null);
-        AuditContext ctxKnowledge = new AuditContext("3", "t1", "k1", "q1", null, null, null);
-        // 15 tokens — within [14, 17]
         AuditableQuiz quiz = new AuditableQuiz(
                 "The students should have been studying for their final exams much more carefully this semester",
                 tokens(15), "q1", null, null);
-        AuditContext ctxQuiz = new AuditContext("3", "t1", "k1", "q1", null, null, null);
+        AuditNode quizNode = fullTree("B2", knowledge, quiz);
+
         TargetRange rangeB2 = new TargetRange(CefrLevel.B2, 14, 17);
         Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeB2));
         Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
 
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(knowledge, ctxKnowledge);
-        sut.onQuiz(quiz, ctxQuiz);
+        sut.onQuiz(quizNode);
 
-        List<ScoredItem> result = sut.getResults();
-        Assertions.assertEquals(1, result.size());
-        Assertions.assertEquals(1.0, result.get(0).getScore());
+        Assertions.assertEquals(1.0, quizNode.getScores().get("sentence-length"));
     }
 
     @Test
@@ -344,22 +354,15 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R009")
     public void shouldScore00ForQuizExactlyAtToleranceBoundary() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
         // 1 token — 4 below min of 5; distance=4 >= margin=4 → 0.0
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
         AuditableQuiz quiz = new AuditableQuiz("Go", tokens(1), "q1", null, null);
-        AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(knowledge, ctxKnowledge);
-        sut.onQuiz(quiz, ctxQuiz);
+        sut.onQuiz(quizNode);
 
-        List<ScoredItem> result = sut.getResults();
-        Assertions.assertEquals(1, result.size());
-        Assertions.assertEquals(0.0, result.get(0).getScore());
+        Assertions.assertEquals(0.0, quizNode.getScores().get("sentence-length"));
     }
 
     @Test
@@ -367,40 +370,35 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R002")
     public void shouldScore05ForQuiz2TokensAboveA1Max() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
         // 10 tokens — 2 above max of 8; distance=2, margin=4 → 1 - 2/4 = 0.5
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
         AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the garden", tokens(10), "q1", null, null);
-        AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(knowledge, ctxKnowledge);
-        sut.onQuiz(quiz, ctxQuiz);
+        sut.onQuiz(quizNode);
 
-        List<ScoredItem> result = sut.getResults();
-        Assertions.assertEquals(1, result.size());
-        Assertions.assertEquals(0.5, result.get(0).getScore());
+        Assertions.assertEquals(0.5, quizNode.getScores().get("sentence-length"));
     }
 
     @Test
     @DisplayName("should complete without error when onTopic is called")
     @Tag("F-SLEN")
     public void shouldCompleteWithoutErrorWhenOnTopicIsCalled() {
-        AuditableTopic topic = new AuditableTopic(List.of(), null, null, null);
-        AuditContext ctx = new AuditContext("0", "t1", "k1", "q1", null, null, null);
-        Assertions.assertDoesNotThrow(() -> sut.onTopic(topic, ctx));
+        AuditNode topicNode = new AuditNode();
+        topicNode.setTarget(AuditTarget.TOPIC);
+        topicNode.setScores(new LinkedHashMap<>());
+        topicNode.setChildren(new ArrayList<>());
+        topicNode.setMetadata(new LinkedHashMap<>());
+        Assertions.assertDoesNotThrow(() -> sut.onTopic(topicNode));
     }
 
     @Test
     @DisplayName("should complete without error when onCourseComplete is called")
     @Tag("F-SLEN")
     public void shouldCompleteWithoutErrorWhenOnCourseCompleteIsCalled() {
-        AuditableCourse course = new AuditableCourse(List.of());
-        AuditContext ctx = new AuditContext("0", "t1", "k1", "q1", null, null, null);
-        Assertions.assertDoesNotThrow(() -> sut.onCourseComplete(course, ctx));
+        AuditNode courseNode = buildCourseNode();
+        Assertions.assertDoesNotThrow(() -> sut.onCourseComplete(courseNode));
     }
 
     @Test
@@ -408,34 +406,33 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R002")
     public void shouldProduceCorrectScoresForFullMilestoneknowledgequizSequence() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode courseNode = buildCourseNode();
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, "A1", null);
+        AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone);
+        AuditableTopic topic = new AuditableTopic(List.of(), null, null, null);
+        AuditNode topicNode = buildTopicNode(milestoneNode, topic);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Basic greetings", "Complete the sentence", true, null, null, null);
-        AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode knowledgeNode = buildKnowledgeNode(topicNode, knowledge);
 
         // quiz1: 6 tokens, within [5,8] → score 1.0
         AuditableQuiz quiz1 = new AuditableQuiz("Hello how are you today friend", tokens(6), "q1", null, null);
-        AuditContext ctxQuiz1 = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode quizNode1 = buildQuizNode(knowledgeNode, quiz1);
 
         // quiz2: 2 tokens, 3 below min 5, distance=3, margin=4 → score 0.25
         AuditableQuiz quiz2 = new AuditableQuiz("Good morning", tokens(2), "q2", null, null);
-        AuditContext ctxQuiz2 = new AuditContext("0", "t1", "k1", "q2", null, null, null);
+        AuditNode quizNode2 = buildQuizNode(knowledgeNode, quiz2);
 
         TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
         Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.of(rangeA1));
         Mockito.lenient().when(config.getToleranceMargin()).thenReturn(4);
 
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(knowledge, ctxKnowledge);
-        sut.onQuiz(quiz1, ctxQuiz1);
-        sut.onQuiz(quiz2, ctxQuiz2);
+        sut.onMilestone(milestoneNode);
+        sut.onKnowledge(knowledgeNode);
+        sut.onQuiz(quizNode1);
+        sut.onQuiz(quizNode2);
 
-        List<ScoredItem> result = sut.getResults();
-        Assertions.assertEquals(2, result.size());
-        Assertions.assertEquals(1.0, result.get(0).getScore());
-        Assertions.assertEquals(0.25, result.get(1).getScore());
-        Assertions.assertEquals("q1", result.get(0).getQuizId());
-        Assertions.assertEquals("q2", result.get(1).getQuizId());
+        Assertions.assertEquals(1.0, quizNode1.getScores().get("sentence-length"));
+        Assertions.assertEquals(0.25, quizNode2.getScores().get("sentence-length"));
     }
 
     @Test
@@ -443,17 +440,12 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN")
     @Tag("F-SLEN-R001")
     public void shouldExcludeNonsentenceQuizzesFromScoring() {
-        AuditableMilestone milestone = new AuditableMilestone(List.of(), null, null, null);
-        AuditContext ctxMilestone = new AuditContext("0", "t1", "k1", "q1", null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Vocabulary", "Match words", false, null, null, null);
-        AuditContext ctxKnowledge = new AuditContext("0", "t1", "k1", "q1", null, null, null);
         AuditableQuiz quiz = new AuditableQuiz("apple", tokens(1), null, null, null);
-        AuditContext ctxQuiz = new AuditContext("0", "t1", "k1", "q1", null, null, null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
-        sut.onMilestone(milestone, ctxMilestone);
-        sut.onKnowledge(knowledge, ctxKnowledge);
-        sut.onQuiz(quiz, ctxQuiz);
+        sut.onQuiz(quizNode);
 
-        Assertions.assertEquals(List.of(), sut.getResults());
+        Assertions.assertFalse(quizNode.getScores().containsKey("sentence-length"));
     }
 }
