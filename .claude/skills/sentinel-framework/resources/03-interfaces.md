@@ -192,6 +192,50 @@ Examples:
 |--------|--------|
 | `describe(): Map<String,Object>` | (none) |
 
+#### NodeDiagnoses [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+#### CourseDiagnoses (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>` | (none) |
+
+#### LevelDiagnoses (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>` | (none) |
+
+#### TopicDiagnoses (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>` | (none) |
+
+#### KnowledgeDiagnoses (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>` | (none) |
+
+#### QuizDiagnoses (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>` | (none) |
+
 #### TokenClassifier (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`

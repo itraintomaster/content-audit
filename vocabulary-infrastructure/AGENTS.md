@@ -121,6 +121,7 @@ The following models and interfaces are available from dependencies. You can use
 | children | `List<AuditNode>` |
 | scores | `Map<String,Double>` |
 | metadata | `Map<String,Object>` |
+| diagnoses | `NodeDiagnoses` |
 
 ### AuditEngine (port)
 
@@ -240,4 +241,36 @@ Methods:
 Methods:
 
 - `describe(): Map<String,Object>`
+
+### NodeDiagnoses (port) [sealed]
+
+### CourseDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
+
+### LevelDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>`
+
+### TopicDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+
+### KnowledgeDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+
+### QuizDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 

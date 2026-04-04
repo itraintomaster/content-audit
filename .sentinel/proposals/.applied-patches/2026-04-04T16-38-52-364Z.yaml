@@ -1,0 +1,49 @@
+code: __proposal__
+description: "Correct KnowledgeTitleLengthAnalyzer test expectations — remove stale\
+  \ graduated scoring tests (0.75/0.5 at old thresholds), add corrected binary scoring\
+  \ tests (0.5 at 28.5, 0.0 at 29 and 35), and rename over-limit test for clarity"
+modules:
+- name: audit-domain
+  implementations:
+  - name: KnowledgeTitleLengthAnalyzer
+    tests:
+    - name: should score 0.75 for title of weighted length 35
+      _change: delete
+    - name: should score 0.5 for title of weighted length 42
+      _change: delete
+    - name: should score 0.0 for title of weighted length 56
+      _change: delete
+    - name: should score 0.5 for title of weighted length 28.5
+      target: KnowledgeTitleLengthAnalyzer
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+      _change: add
+    - name: should score 0.0 for title of weighted length 29
+      target: KnowledgeTitleLengthAnalyzer
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+      _change: add
+    - name: should score 0.0 for title of weighted length 35
+      target: KnowledgeTitleLengthAnalyzer
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+      _change: add
+    - name: should score 0.0 for title of weighted length 70
+      _change: delete
+    - name: should score 0.0 for title well beyond limit at weighted length 70
+      target: KnowledgeTitleLengthAnalyzer
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R003
+      _change: add
+    implements:
+    - ContentAnalyzer
+    _change: modify
+  _change: modify

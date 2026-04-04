@@ -113,6 +113,7 @@
 | children | `List<AuditNode>` |
 | scores | `Map<String,Double>` |
 | metadata | `Map<String,Object>` |
+| diagnoses | `NodeDiagnoses` |
 
 ## Interfaces
 
@@ -235,6 +236,38 @@ Methods:
 
 - `describe(): Map<String,Object>`
 
+### NodeDiagnoses (port) [sealed]
+
+### CourseDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
+
+### LevelDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>`
+
+### TopicDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+
+### KnowledgeDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+
+### QuizDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+
 ## Implementations
 
 ### IAuditEngine
@@ -252,6 +285,10 @@ Methods:
 
 **Tests that must pass:**
 
+- should score 0.5 for title of weighted length 28.5 → F-KTLEN/F-KTLEN-R003
+- should score 0.0 for title of weighted length 29 → F-KTLEN/F-KTLEN-R003
+- should score 0.0 for title of weighted length 35 → F-KTLEN/F-KTLEN-R003
+- should score 0.0 for title well beyond limit at weighted length 70 → F-KTLEN/F-KTLEN-R003
 - should return knowledge-title-length as analyzer name → F-KTLEN/F-KTLEN-R008
 - should return KNOWLEDGE as audit target → F-KTLEN/F-KTLEN-R008
 - should score 0.0 for knowledge with null title → F-KTLEN/F-KTLEN-R003
@@ -278,6 +315,14 @@ Methods:
 
 **Tests that must pass:**
 
+- should score 1.0 for instructions exactly at soft limit of 70 weighted chars → F-KTLEN/F-KTLEN-R005
+- should score 1.0 for instructions of 30 weighted chars within soft limit → F-KTLEN/F-KTLEN-R006
+- should score 0.5 for instructions of 71 weighted chars just above soft limit → F-KTLEN/F-KTLEN-R005
+- should score 0.5 for instructions exactly at hard limit of 100 weighted chars → F-KTLEN/F-KTLEN-R005
+- should score 0.5 for instructions of 85 weighted chars between soft and hard limits → F-KTLEN/F-KTLEN-R006
+- should score 0.0 for instructions of 101 weighted chars just above hard limit → F-KTLEN/F-KTLEN-R005
+- should score 0.0 for instructions of 200 weighted chars well above hard limit → F-KTLEN/F-KTLEN-R006
+- should use weighted character length not plain string length for scoring instructions → F-KTLEN/F-KTLEN-R005
 - should return knowledge-instructions-length as analyzer name → F-KTLEN/F-KTLEN-R008
 - should return KNOWLEDGE as audit target → F-KTLEN/F-KTLEN-R008
 - should score 1.0 for knowledge with null instructions → F-KTLEN/F-KTLEN-R006

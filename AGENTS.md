@@ -37,6 +37,7 @@ Before writing any code, read `sentinel.yaml`. It defines the contracts, boundar
 The following interfaces are `sealed`. Only the listed classes may implement them:
 
 - `LemmaAbsenceConfig` permits: DefaultLemmaAbsenceConfig
+- `NodeDiagnoses` permits: (none declared)
 - `DrillDownResolver` permits: DefaultDrillDownResolver
 
 ## Rule C - Dependency Injection
@@ -97,7 +98,7 @@ If the user requests work that **skips a phase**, do NOT proceed silently. Inste
 
 **Models:** AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode
 
-**Interfaces:** AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig
+**Interfaces:** AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses
 
 **Implementations:** IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator
 

@@ -1,6 +1,5 @@
 package com.learney.contentaudit.auditdomain;
 import java.util.List;
-
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -11,6 +10,7 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
 
     private static final String ANALYZER_NAME = "knowledge-title-length";
     private static final double MAX_WEIGHTED_LENGTH = 28.0;
+    private static final double DEGRADATION_RANGE = 1.0;
 
     @Override
     public String getName() { return ANALYZER_NAME; }
@@ -36,7 +36,7 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
             if (weightedLength <= MAX_WEIGHTED_LENGTH) {
                 score = 1.0;
             } else {
-                score = Math.max(0.0, 1.0 - (weightedLength - MAX_WEIGHTED_LENGTH) / MAX_WEIGHTED_LENGTH);
+                score = Math.max(0.0, 1.0 - (weightedLength - MAX_WEIGHTED_LENGTH) / DEGRADATION_RANGE);
             }
         }
         node.getScores().put(ANALYZER_NAME, score);
@@ -71,5 +71,9 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
         return "Scores knowledge titles by weighted character count";
     }
 
+    @Override
+    public List<ScoredItem> getResults() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 
 }

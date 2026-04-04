@@ -22,17 +22,21 @@ public class AuditNode {
 
     private Map<String, Object> metadata;
 
+    private NodeDiagnoses diagnoses;
+
     public AuditNode() {
     }
 
     public AuditNode(AuditableEntity entity, AuditTarget target, AuditNode parent,
-            List<AuditNode> children, Map<String, Double> scores, Map<String, Object> metadata) {
+            List<AuditNode> children, Map<String, Double> scores, Map<String, Object> metadata,
+            NodeDiagnoses diagnoses) {
         this.entity = entity;
         this.target = target;
         this.parent = parent;
         this.children = children;
         this.scores = scores;
         this.metadata = metadata;
+        this.diagnoses = diagnoses;
     }
 
     public AuditableEntity getEntity() {
@@ -83,6 +87,14 @@ public class AuditNode {
         this.metadata = metadata;
     }
 
+    public NodeDiagnoses getDiagnoses() {
+        return this.diagnoses;
+    }
+
+    public void setDiagnoses(NodeDiagnoses diagnoses) {
+        this.diagnoses = diagnoses;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,11 +105,12 @@ public class AuditNode {
                     && Objects.equals(this.parent, that.parent)
                     && Objects.equals(this.children, that.children)
                     && Objects.equals(this.scores, that.scores)
-                    && Objects.equals(this.metadata, that.metadata);
+                    && Objects.equals(this.metadata, that.metadata)
+                    && Objects.equals(this.diagnoses, that.diagnoses);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(entity, target, parent, children, scores, metadata);
+        return Objects.hash(entity, target, parent, children, scores, metadata, diagnoses);
     }
 }

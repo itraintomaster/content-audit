@@ -2362,4 +2362,76 @@ public class LemmaByLevelAbsenceAnalyzerTest {
                 List.of(), "title", "instructions", true, "k1", "label", "code");
         assertDoesNotThrow(() -> sut.onKnowledge(makeNode(AuditTarget.KNOWLEDGE, knowledge, null)));
     }
+
+    @Test
+    @org.junit.jupiter.api.Test
+    @org.junit.jupiter.api.DisplayName("should emit LemmaAbsenceCourseDiagnosis with assessment on CourseDiagnoses node after onCourseComplete")
+    @org.junit.jupiter.api.Tag("FEAT-DLABS")
+    @org.junit.jupiter.api.Tag("F-DLABS-R002, F-DLABS-R004")
+    public void shouldEmitLemmaAbsenceCourseDiagnosisWithAssessmentOnCourseDiagnosesNodeAfterOnCourseComplete() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @org.junit.jupiter.api.Test
+    @org.junit.jupiter.api.DisplayName("should emit LemmaAbsenceLevelDiagnosis with coverage metrics on LevelDiagnoses milestone nodes")
+    @org.junit.jupiter.api.Tag("FEAT-DLABS")
+    @org.junit.jupiter.api.Tag("F-DLABS-R002, F-DLABS-R005")
+    public void shouldEmitLemmaAbsenceLevelDiagnosisWithCoverageMetricsOnLevelDiagnosesMilestoneNodes() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @org.junit.jupiter.api.Test
+    @org.junit.jupiter.api.DisplayName("should include typed AbsentLemma entries with lemma pos absenceType and priority in level diagnosis")
+    @org.junit.jupiter.api.Tag("FEAT-DLABS")
+    @org.junit.jupiter.api.Tag("F-DLABS-R006")
+    public void shouldIncludeTypedAbsentLemmaEntriesWithLemmaPosAbsenceTypeAndPriorityInLevelDiagnosis() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @org.junit.jupiter.api.Test
+    @org.junit.jupiter.api.DisplayName("should emit LemmaPlacementDiagnosis on TopicDiagnoses topic nodes with misplacedLemmaCount")
+    @org.junit.jupiter.api.Tag("FEAT-DLABS")
+    @org.junit.jupiter.api.Tag("F-DLABS-R002, F-DLABS-R007")
+    public void shouldEmitLemmaPlacementDiagnosisOnTopicDiagnosesTopicNodesWithMisplacedLemmaCount() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @org.junit.jupiter.api.Test
+    @org.junit.jupiter.api.DisplayName("should emit LemmaPlacementDiagnosis with misplacedLemmas list on knowledge and quiz nodes")
+    @org.junit.jupiter.api.Tag("FEAT-DLABS")
+    @org.junit.jupiter.api.Tag("F-DLABS-R008, F-DLABS-R009")
+    public void shouldEmitLemmaPlacementDiagnosisWithMisplacedLemmasListOnKnowledgeAndQuizNodes() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @org.junit.jupiter.api.Test
+    @org.junit.jupiter.api.DisplayName("should populate MisplacedLemma with lemmaAndPos expectedLevel and foundInLevel on quiz diagnosis")
+    @org.junit.jupiter.api.Tag("FEAT-DLABS")
+    @org.junit.jupiter.api.Tag("F-DLABS-R010")
+    public void shouldPopulateMisplacedLemmaWithLemmaAndPosExpectedLevelAndFoundInLevelOnQuizDiagnosis() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @org.junit.jupiter.api.Test
+    @org.junit.jupiter.api.DisplayName("should not write lemma-absence data to untyped metadata map after migration")
+    @org.junit.jupiter.api.Tag("FEAT-DLABS")
+    @org.junit.jupiter.api.Tag("F-DLABS-R014")
+    public void shouldNotWriteLemmaabsenceDataToUntypedMetadataMapAfterMigration() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @org.junit.jupiter.api.Test
+    @org.junit.jupiter.api.DisplayName("should return empty Optional from getLemmaAbsenceDiagnosis when analyzer did not run")
+    @org.junit.jupiter.api.Tag("FEAT-DLABS")
+    @org.junit.jupiter.api.Tag("F-DLABS-R003")
+    public void shouldReturnEmptyOptionalFromGetLemmaAbsenceDiagnosisWhenAnalyzerDidNotRun() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -540,6 +540,9 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
         return "Evaluates COCA frequency band distribution per level/quarter";
     }
 
-
+    @Override
+    public List<ScoredItem> getResults() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 
 }

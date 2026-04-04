@@ -1,0 +1,165 @@
+code: __proposal__
+description: "FEAT-DLABS: Typed analyzer diagnostics for lemma absence. Adds per-level\
+  \ diagnosis interfaces (NodeDiagnoses hierarchy) with typed accessor methods, diagnosis\
+  \ record models in the labs package, and a new diagnoses field on AuditNode. Option\
+  \ C design: compile-time type safety per hierarchy level, extensible for future\
+  \ analyzer migrations."
+modules:
+- name: audit-domain
+  models:
+  - name: AuditNode
+    type: record
+    fields:
+    - name: diagnoses
+      type: NodeDiagnoses
+      description: "Per-level typed diagnoses container. The concrete type matches\
+        \ the node's AuditTarget level (CourseDiagnoses, LevelDiagnoses, TopicDiagnoses,\
+        \ KnowledgeDiagnoses, or QuizDiagnoses)."
+      _change: add
+    _change: modify
+  interfaces:
+  - name: NodeDiagnoses
+    stereotype: port
+    sealed: true
+    _change: add
+  - name: CourseDiagnoses
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>"
+    _change: add
+    extends:
+    - NodeDiagnoses
+  - name: LevelDiagnoses
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>"
+    _change: add
+    extends:
+    - NodeDiagnoses
+  - name: TopicDiagnoses
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
+    _change: add
+    extends:
+    - NodeDiagnoses
+  - name: KnowledgeDiagnoses
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
+    _change: add
+    extends:
+    - NodeDiagnoses
+  - name: QuizDiagnoses
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
+    _change: add
+    extends:
+    - NodeDiagnoses
+  packages:
+  - name: labs
+    visibility: internal
+    models:
+    - name: LemmaAbsenceCourseDiagnosis
+      type: record
+      fields:
+      - name: assessment
+        type: AbsenceAssessment
+        description: "Global absence assessment for the course: OPTIMAL, ACCEPTABLE,\
+          \ or NEEDS_IMPROVEMENT"
+      _change: add
+    - name: LemmaAbsenceLevelDiagnosis
+      type: record
+      fields:
+      - name: level
+        type: CefrLevel
+        description: The CEFR level this diagnosis describes
+      - name: totalExpected
+        type: int
+        description: Total lemmas expected at this CEFR level per EVP catalog
+      - name: totalAbsent
+        type: int
+        description: Total lemmas absent from this level
+      - name: absencePercentage
+        type: double
+        description: Percentage of expected lemmas that are absent
+      - name: coverageTarget
+        type: double
+        description: Configured coverage target threshold for this level
+      - name: completelyAbsentScore
+        type: double
+        description: Weighted score contribution from completely absent lemmas
+      - name: tooLateScore
+        type: double
+        description: Weighted score contribution from lemmas appearing too late
+      - name: tooEarlyScore
+        type: double
+        description: Weighted score contribution from lemmas appearing too early
+      - name: assessment
+        type: AbsenceAssessment
+        description: Absence assessment for this specific level
+      - name: absentLemmas
+        type: List<AbsentLemma>
+        description: Detailed list of each absent lemma with classification and priority
+      - name: misplacedLemmas
+        type: List<MisplacedLemma>
+        description: Lemmas found at wrong levels relative to this level
+      - name: highPriorityCount
+        type: int
+        description: Count of HIGH priority absent lemmas
+      - name: mediumPriorityCount
+        type: int
+        description: Count of MEDIUM priority absent lemmas
+      - name: lowPriorityCount
+        type: int
+        description: Count of LOW priority absent lemmas
+      _change: add
+    - name: LemmaPlacementDiagnosis
+      type: record
+      fields:
+      - name: misplacedLemmaCount
+        type: int
+        description: Number of misplaced lemmas at this node
+      - name: misplacedLemmas
+        type: List<MisplacedLemma>
+        description: Detailed list of each misplaced lemma
+      _change: add
+    - name: MisplacedLemma
+      type: record
+      fields:
+      - name: lemmaAndPos
+        type: LemmaAndPos
+        description: The misplaced lemma-POS pair
+      - name: expectedLevel
+        type: CefrLevel
+        description: CEFR level where the lemma should appear per EVP
+      - name: foundInLevel
+        type: CefrLevel
+        description: CEFR level where the lemma was actually found
+      - name: absenceType
+        type: AbsenceType
+        description: Classification of the misplacement (TOO_LATE or TOO_EARLY)
+      - name: cocaRank
+        type: Integer
+        description: "COCA frequency ranking (nullable, null if unavailable)"
+      - name: semanticCategory
+        type: String
+        description: Semantic topic from EVP catalog (nullable)
+      _change: add
+    _change: modify
+  _change: modify
+- name: audit-cli
+  implementations:
+  - name: LemmaAbsenceDetailedFormatter
+    types:
+    - Component
+    implements:
+    - DetailedFormatter
+    _change: modify
+  _change: modify

@@ -35,7 +35,7 @@ Los knowledges estan organizados dentro de la jerarquia del curso: **Curso -> Ni
 Esta funcionalidad comprende dos analisis distintos que operan sobre datos diferentes del knowledge:
 
 1. **Longitud de titulo**: evalua el titulo (label) del knowledge usando longitud ponderada por caracteres.
-2. **Longitud de instrucciones**: evalua el texto de instrucciones del knowledge usando longitud simple en caracteres.
+2. **Longitud de instrucciones**: evalua el texto de instrucciones del knowledge usando longitud ponderada por caracteres (mismo sistema de pesos que los titulos).
 
 Cada analisis opera como un analizador independiente dentro de la plataforma, produciendo su propio conjunto de puntuaciones. Esto permite que el informe de auditoria presente las puntuaciones de cada analisis por separado, y que el usuario pueda distinguir si los problemas son de titulos, de instrucciones, o de ambos. Los dos analizadores se identifican como **"knowledge-title-length"** (longitud de titulos) y **"knowledge-instructions-length"** (longitud de instrucciones).
 
@@ -105,15 +105,16 @@ Cada knowledge recibe una puntuacion entre 0.0 y 1.0 que refleja la adecuacion d
 
 1. **Titulo nulo o vacio**: la puntuacion es 0.0. Todo knowledge debe tener un titulo; la ausencia de titulo se considera un defecto grave. Esta condicion se evalua antes que cualquier calculo de longitud ponderada.
 2. **Longitud ponderada dentro del limite** (menor o igual a 28): la puntuacion es 1.0.
-3. **Longitud ponderada excede el limite**: la puntuacion disminuye linealmente:
-   - `score = max(0.0, 1.0 - (longitudPonderada - limiteMaximo) / limiteMaximo)`
-   - Esto significa que un titulo con el doble del limite maximo (56 caracteres ponderados) recibe puntuacion 0.0.
+3. **Longitud ponderada excede el limite**: la puntuacion disminuye linealmente hasta alcanzar 0.0 al siguiente entero:
+   - `score = max(0.0, 1.0 - (longitudPonderada - limiteMaximo) / margenDegradacion)`
+   - Donde `limiteMaximo = 28` y `margenDegradacion = 1` (configurable, por defecto 1).
+   - Esto significa que a 29 caracteres ponderados la puntuacion es 0.0, replicando el comportamiento binario de la referencia pero permitiendo credito parcial para valores fraccionarios entre 28 y 29 (ej: 28.5 → 0.5).
 
-Ejemplo para limite maximo de 28:
+Ejemplo para limite maximo de 28, margen de degradacion 1:
 
-| Longitud ponderada | 0 (vacio) | 15  | 28  | 35   | 42   | 56  |
-|--------------------|-----------|-----|-----|------|------|-----|
-| Puntuacion         | 0.0       | 1.0 | 1.0 | 0.75 | 0.50 | 0.0 |
+| Longitud ponderada | 0 (vacio) | 15  | 28  | 28.5 | 29  |
+|--------------------|-----------|-----|-----|------|-----|
+| Puntuacion         | 0.0       | 1.0 | 1.0 | 0.50 | 0.0 |
 
 **Error**: "Puntuacion fuera de rango [0.0, 1.0] calculada para el titulo del knowledge {knowledgeId}: {puntuacion}"
 
@@ -133,14 +134,14 @@ Los pesos por caracter definidos en R002 estan fijos y no son configurables por 
 ### Rule[F-KTLEN-R005] - Limites de longitud de instrucciones
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-Las instrucciones de cada knowledge se evaluan contra dos umbrales de longitud medida en caracteres simples (no ponderada):
+Las instrucciones de cada knowledge se evaluan contra dos umbrales de longitud ponderada:
 
 | Parametro | Valor | Significado |
 |-----------|-------|-------------|
-| Limite suave (soft limit) | 70 caracteres | Las instrucciones empiezan a ser largas |
-| Limite duro (hard limit) | 100 caracteres | Las instrucciones son definitivamente demasiado largas |
+| Limite suave (soft limit) | 70 caracteres ponderados | Las instrucciones empiezan a ser largas |
+| Limite duro (hard limit) | 100 caracteres ponderados | Las instrucciones son definitivamente demasiado largas |
 
-La longitud se mide como la cantidad de caracteres del string de instrucciones (length del string). A diferencia de los titulos, no se usa longitud ponderada porque las instrucciones se muestran en bloques de texto donde el truncamiento no es un problema visual critico; lo que importa es la cantidad total de texto que el estudiante debe procesar.
+La longitud se calcula usando el mismo sistema de pesos por caracter definido en R002 para titulos. Esto alinea el calculo con la implementacion de referencia, que usa longitud ponderada tanto para titulos como para instrucciones.
 
 **Error**: "Configuracion de limites de instrucciones invalida: el limite suave ({soft}) debe ser menor que el limite duro ({hard})"
 
@@ -152,11 +153,11 @@ Cada knowledge recibe una puntuacion entre 0.0 y 1.0 para la longitud de sus ins
 | Condicion | Puntuacion | Significado |
 |-----------|-----------|-------------|
 | Instrucciones nulas o vacias | 1.0 | No se penaliza la ausencia de instrucciones |
-| Longitud <= limite suave (70) | 1.0 | Instrucciones adecuadas |
-| Longitud > limite suave (70) y <= limite duro (100) | 0.5 | Instrucciones aceptables pero largas |
-| Longitud > limite duro (100) | 0.0 | Instrucciones demasiado largas |
+| Longitud ponderada <= limite suave (70) | 1.0 | Instrucciones adecuadas |
+| Longitud ponderada > limite suave (70) y <= limite duro (100) | 0.5 | Instrucciones aceptables pero largas |
+| Longitud ponderada > limite duro (100) | 0.0 | Instrucciones demasiado largas |
 
-El scoring discreto (tres niveles) en lugar de lineal refleja la naturaleza de la evaluacion: no hay una diferencia gradual entre "adecuado" y "largo", sino umbrales claros donde la legibilidad cambia. 70 caracteres es aproximadamente una linea de texto en la interfaz; 100 caracteres fuerza al texto a ocupar multiples lineas en la mayoria de dispositivos.
+El scoring discreto (tres niveles) en lugar de lineal refleja la naturaleza de la evaluacion: no hay una diferencia gradual entre "adecuado" y "largo", sino umbrales claros donde la legibilidad cambia. 70 caracteres ponderados es aproximadamente una linea de texto en la interfaz; 100 caracteres ponderados fuerza al texto a ocupar multiples lineas en la mayoria de dispositivos.
 
 **Error**: "Puntuacion fuera de rango [0.0, 1.0] calculada para las instrucciones del knowledge {knowledgeId}: {puntuacion}"
 
@@ -181,7 +182,7 @@ Cada uno de los dos analizadores de esta funcionalidad se identifica con un nomb
 | Analizador | Nombre en el informe | Que evalua |
 |------------|---------------------|------------|
 | Longitud de titulos | `knowledge-title-length` | Longitud ponderada del titulo de cada knowledge (R001-R003) |
-| Longitud de instrucciones | `knowledge-instructions-length` | Longitud simple de las instrucciones de cada knowledge (R005-R006) |
+| Longitud de instrucciones | `knowledge-instructions-length` | Longitud ponderada de las instrucciones de cada knowledge (R005-R006) |
 
 Estos nombres aparecen en las puntuaciones por nodo de la jerarquia y permiten al usuario filtrar y comparar resultados de ambos analisis de forma independiente.
 
@@ -197,7 +198,7 @@ Estos nombres aparecen en las puntuaciones por nodo de la jerarquia y permiten a
 1. El usuario inicia una auditoria de un curso previamente cargado en el sistema
 2. El sistema recorre la jerarquia del curso de arriba hacia abajo: para cada nivel (milestone), sus topics, y sus knowledges
 3. Para cada knowledge, el analizador de titulos calcula la longitud ponderada del titulo usando el sistema de pesos por caracter (R002) y produce una puntuacion individual (R003)
-4. Para cada knowledge, el analizador de instrucciones mide la longitud simple de las instrucciones y produce una puntuacion basada en los umbrales suave y duro (R006)
+4. Para cada knowledge, el analizador de instrucciones calcula la longitud ponderada de las instrucciones usando el sistema de pesos por caracter (R002) y produce una puntuacion basada en los umbrales suave y duro (R006)
 5. La plataforma agrega las puntuaciones de ambos analizadores por separado a traves de la jerarquia: para cada topic calcula el promedio de sus knowledges, para cada nivel el promedio de sus topics, y para el curso el promedio de sus niveles
 6. El usuario recibe un informe con las puntuaciones de longitud de titulos y de instrucciones en cada nivel de la jerarquia, permitiendo identificar donde se concentran los problemas
 
@@ -216,7 +217,7 @@ Estos nombres aparecen en las puntuaciones por nodo de la jerarquia y permiten a
 1. El usuario ha ejecutado la auditoria de un curso (J001)
 2. El usuario observa que la puntuacion del analizador "knowledge-instructions-length" en un nivel es baja
 3. El usuario profundiza en los topics y knowledges del nivel
-4. El usuario identifica los knowledges cuyas instrucciones tienen puntuacion 0.0 (mas de 100 caracteres) o 0.5 (entre 70 y 100 caracteres)
+4. El usuario identifica los knowledges cuyas instrucciones tienen puntuacion 0.0 (mas de 100 caracteres ponderados) o 0.5 (entre 70 y 100 caracteres ponderados)
 5. El usuario prioriza las instrucciones con puntuacion 0.0 (las mas criticas) y las sintetiza para reducir su longitud por debajo de los 70 caracteres
 
 ### Journey[F-KTLEN-J004] - Comparar problemas de titulos vs instrucciones por nivel
@@ -232,50 +233,26 @@ Estos nombres aparecen en las puntuaciones por nodo de la jerarquia y permiten a
 
 ## Open Questions
 
-### Doubt[DOUBT-WEIGHTED-CHARS] - Se debe usar el sistema de caracteres ponderados para titulos?
-**Status**: OPEN
+### Doubt[DOUBT-WEIGHTED-CHARS] - Se debe usar el sistema de caracteres ponderados?
+**Status**: RESOLVED
 
-La implementacion de referencia (`analysis/06-knowledge-titles-length`) usa un sistema de pesos por caracter para calcular la longitud de los titulos, disenado para una fuente proporcional especifica. La implementacion provisional actual en el sistema usa longitud simple (cantidad de caracteres del texto).
+**Resuelto**: Se usa longitud ponderada con los pesos de la referencia (0.0, 0.5, 0.7, 1.0) tanto para titulos como para instrucciones. Esto alinea el calculo con la implementacion de referencia, que aplicaba longitud ponderada a ambos campos.
 
-El sistema de pesos agrega complejidad al calculo pero refleja con mayor precision el espacio visual que ocupa cada titulo en la interfaz. Sin el, un titulo de 28 caracteres compuesto por "i" y "," (caracteres estrechos) se penalizaria igual que uno compuesto por "m" y "w" (caracteres anchos), a pesar de que visualmente el segundo ocupa mucho mas espacio.
-
-**Pregunta**: El sistema de pesos por caracter es necesario para la interfaz actual, o la longitud simple es suficiente?
-
-- [ ] Opcion A: Usar longitud ponderada con los pesos de la referencia (0.0, 0.5, 0.7, 1.0) — mayor precision visual, mayor complejidad
-- [ ] Opcion B: Usar longitud simple (todos los caracteres pesan 1.0) — mas simple, menos preciso visualmente
-- [ ] Opcion C: Usar longitud ponderada pero recalibrar los pesos para la fuente de la interfaz actual
+- [x] Opcion A: Usar longitud ponderada con los pesos de la referencia — para titulos e instrucciones
 
 ### Doubt[DOUBT-TITLE-MAX-LENGTH] - Cual es el limite maximo correcto para titulos?
-**Status**: OPEN
+**Status**: RESOLVED
 
-Existe una discrepancia significativa entre la implementacion de referencia y la implementacion provisional:
+**Resuelto**: Se usa un limite de 28 caracteres ponderados, igual que la referencia. La degradacion lineal opera en una ventana de 1 caracter ponderado (28→29), replicando el comportamiento binario de la referencia pero con credito parcial para valores fraccionarios.
 
-- **Referencia**: 28 caracteres ponderados (disenado para un contexto de UI con espacio limitado)
-- **Implementacion provisional**: rango de 3 a 80 caracteres simples (mucho mas permisivo)
-
-Un limite de 28 es muy restrictivo y asume que los titulos se muestran en elementos de UI con espacio muy limitado (como tarjetas o botones). Un limite de 80 es muy permisivo y probablemente no detectaria titulos problematicos.
-
-**Pregunta**: Cual es el limite maximo adecuado para los titulos de knowledges en la interfaz actual?
-
-- [ ] Opcion A: 28 caracteres (ponderados o simples), como en la referencia original
-- [ ] Opcion B: 80 caracteres simples, como en la implementacion provisional
-- [ ] Opcion C: Otro valor que se determine segun los elementos de interfaz donde se muestran los titulos
+- [x] Opcion A: 28 caracteres ponderados, como en la referencia original, con degradacion lineal en ventana de 1
 
 ### Doubt[DOUBT-INSTRUCTIONS-LIMITS] - Cuales son los limites correctos para instrucciones?
-**Status**: OPEN
+**Status**: RESOLVED
 
-Existe una discrepancia importante entre la referencia y la implementacion provisional:
+**Resuelto**: Se usan los limites de la referencia (70/100 caracteres ponderados) con scoring discreto de tres niveles (1.0 / 0.5 / 0.0). La longitud se mide con el sistema de pesos por caracter (R002), alineando con la implementacion de referencia.
 
-- **Referencia**: limite suave 70, limite duro 100, scoring discreto de tres niveles (1.0 / 0.5 / 0.0)
-- **Implementacion provisional**: limite unico de 300, scoring lineal continuo
-
-Los limites de la referencia (70/100) son significativamente mas estrictos que el limite provisional (300). Ademas, los modelos de scoring son diferentes: la referencia usa tres niveles discretos, mientras que la implementacion provisional usa una penalizacion lineal gradual.
-
-**Pregunta**: Que limites y sistema de scoring se deben usar para las instrucciones?
-
-- [ ] Opcion A: Limites 70/100 con scoring de tres niveles, como en la referencia — mas estricto, refleja restricciones reales de UI
-- [ ] Opcion B: Limite unico de 300 con scoring lineal, como en la implementacion provisional — mas permisivo, penalizacion gradual
-- [ ] Opcion C: Limites configurables que se determinen segun las necesidades del equipo de contenido
+- [x] Opcion A: Limites 70/100 con scoring de tres niveles y longitud ponderada, como en la referencia
 
 ### Doubt[DOUBT-TITLE-MIN-LENGTH] - Se debe evaluar un largo minimo para titulos?
 **Status**: OPEN

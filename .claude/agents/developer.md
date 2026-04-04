@@ -234,7 +234,7 @@ public class MyAdapter implements MyPort {
   Interfaces: IntervalCalculator, ExposureClassifier
   Implementations: LemmaRecurrenceAnalyzer, DefaultContentWordFilter, DefaultIntervalCalculator, DefaultExposureClassifier
 - `labs` [internal] — Lemma absence analysis by CEFR level. Compares course vocabulary against the EVP catalog to detect absent, misplaced, or scattered lemmas. Classifies absence type, assigns priority by COCA frequency, computes per-level metrics, and generates actionable recommendations.
-  Models: AbsenceType, PriorityLevel, LemmaAndPos, AbsentLemma, AbsenceAssessment, LevelAbsenceMetrics, RecommendationAction, EffortLevel, AbsenceRecommendation
+  Models: AbsenceType, PriorityLevel, LemmaAndPos, AbsentLemma, AbsenceAssessment, LevelAbsenceMetrics, RecommendationAction, EffortLevel, AbsenceRecommendation, LemmaAbsenceCourseDiagnosis, LemmaAbsenceLevelDiagnosis, LemmaPlacementDiagnosis, MisplacedLemma
   Implementations: LemmaByLevelAbsenceAnalyzer, LemmaAbsenceScoreAggregator
 
 **Models:**
@@ -250,7 +250,7 @@ public class MyAdapter implements MyPort {
 - `AuditTarget` [enum] — QUIZ: null, KNOWLEDGE: null, TOPIC: null, MILESTONE: null, COURSE: null
 - `NlpToken` — text: String, lemma: String, posTag: String, frequencyRank: Integer, isStop: boolean, isPunct: boolean
 - `AnalyzerDescriptor` — name: String, description: String, target: AuditTarget
-- `AuditNode` — entity: AuditableEntity, target: AuditTarget, parent: AuditNode, children: List<AuditNode>, scores: Map<String,Double>, metadata: Map<String,Object>
+- `AuditNode` — entity: AuditableEntity, target: AuditTarget, parent: AuditNode, children: List<AuditNode>, scores: Map<String,Double>, metadata: Map<String,Object>, diagnoses: NodeDiagnoses
 
 **Interfaces (contracts):**
 
@@ -321,15 +321,26 @@ public class MyAdapter implements MyPort {
   - `getCode(): String`
 - `SelfDescribingConfig`
   - `describe(): Map<String,Object>`
+- `NodeDiagnoses` [sealed]
+- `CourseDiagnoses`
+  - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
+- `LevelDiagnoses`
+  - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>`
+- `TopicDiagnoses`
+  - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+- `KnowledgeDiagnoses`
+  - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+- `QuizDiagnoses`
+  - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 
 **Implementations (your work):**
 
 - `IAuditEngine` implements AuditEngine
   Inject: contentAnalyzers: List<ContentAnalyzer>, scoreAggregator: ScoreAggregator
 - `KnowledgeTitleLengthAnalyzer` implements ContentAnalyzer
-  Tests: should return knowledge-title-length as analyzer name, should return KNOWLEDGE as audit target, should score 0.0 for knowledge with null title, should score 0.0 for knowledge with empty title, should score 1.0 for knowledge with title within limit, should score 1.0 for knowledge with title at exactly 28 weighted chars, should score 1.0 for title fitting with weighted length 5.1, should score 1.0 for zero-weight special chars title, should score 1.0 for mixed-weight title with weighted length 2.7, should score 0.75 for title of weighted length 35, should score 0.5 for title of weighted length 42, should score 0.0 for title of weighted length 56, should score 0.0 for title of weighted length 70, should complete without error when onQuiz is called, should complete without error when onMilestone is called, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should return two correctly scored items for two knowledges with different title lengths, should return empty list when no knowledges have been processed
+  Tests: should score 0.5 for title of weighted length 28.5, should score 0.0 for title of weighted length 29, should score 0.0 for title of weighted length 35, should score 0.0 for title well beyond limit at weighted length 70, should return knowledge-title-length as analyzer name, should return KNOWLEDGE as audit target, should score 0.0 for knowledge with null title, should score 0.0 for knowledge with empty title, should score 1.0 for knowledge with title within limit, should score 1.0 for knowledge with title at exactly 28 weighted chars, should score 1.0 for title fitting with weighted length 5.1, should score 1.0 for zero-weight special chars title, should score 1.0 for mixed-weight title with weighted length 2.7, should score 0.75 for title of weighted length 35, should score 0.5 for title of weighted length 42, should score 0.0 for title of weighted length 56, should score 0.0 for title of weighted length 70, should complete without error when onQuiz is called, should complete without error when onMilestone is called, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should return two correctly scored items for two knowledges with different title lengths, should return empty list when no knowledges have been processed
 - `KnowledgeInstructionsLengthAnalyzer` implements ContentAnalyzer
-  Tests: should return knowledge-instructions-length as analyzer name, should return KNOWLEDGE as audit target, should score 1.0 for knowledge with null instructions, should score 1.0 for knowledge with empty instructions, should score 1.0 for instructions exactly at soft limit of 70 chars, should score 1.0 for instructions of 30 chars within soft limit, should score 0.5 for instructions of 71 chars just above soft limit, should score 0.5 for instructions exactly at hard limit of 100 chars, should score 0.5 for instructions of 85 chars between soft and hard limits, should score 0.0 for instructions of 101 chars just above hard limit, should score 0.0 for instructions of 200 chars well above hard limit, should complete without error when onQuiz is called, should complete without error when onMilestone is called, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should return empty list when getResults is called without prior processing, should produce correct scores for three knowledges with different instruction lengths
+  Tests: should score 1.0 for instructions exactly at soft limit of 70 weighted chars, should score 1.0 for instructions of 30 weighted chars within soft limit, should score 0.5 for instructions of 71 weighted chars just above soft limit, should score 0.5 for instructions exactly at hard limit of 100 weighted chars, should score 0.5 for instructions of 85 weighted chars between soft and hard limits, should score 0.0 for instructions of 101 weighted chars just above hard limit, should score 0.0 for instructions of 200 weighted chars well above hard limit, should use weighted character length not plain string length for scoring instructions, should return knowledge-instructions-length as analyzer name, should return KNOWLEDGE as audit target, should score 1.0 for knowledge with null instructions, should score 1.0 for knowledge with empty instructions, should score 1.0 for instructions exactly at soft limit of 70 chars, should score 1.0 for instructions of 30 chars within soft limit, should score 0.5 for instructions of 71 chars just above soft limit, should score 0.5 for instructions exactly at hard limit of 100 chars, should score 0.5 for instructions of 85 chars between soft and hard limits, should score 0.0 for instructions of 101 chars just above hard limit, should score 0.0 for instructions of 200 chars well above hard limit, should complete without error when onQuiz is called, should complete without error when onMilestone is called, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should return empty list when getResults is called without prior processing, should produce correct scores for three knowledges with different instruction lengths
 - `SentenceLengthAnalyzer` implements ContentAnalyzer
   Inject: nlpTokenizer: NlpTokenizer, config: SentenceLengthConfig
   Tests: should exclude quiz when milestoneId is null, should exclude quiz when milestoneId is non-numeric, should exclude quiz when no target range configured for level, should score only sentence quizzes when processing mixed knowledge types, should return sentence-length as analyzer name, should return QUIZ as audit target, should score 1.0 for quiz within A1 range, should score 0.75 for quiz 1 token above A1 max, should score 0.25 for quiz 3 tokens below A1 min, should score 1.0 for quiz exactly at A1 minimum boundary, should score 1.0 for quiz exactly at A1 maximum boundary, should score 0.0 for quiz 4 tokens above A1 max at tolerance boundary, should exclude non-sentence knowledge quiz from results, should score 1.0 for B2 level quiz within range, should score 0.0 for quiz exactly at tolerance boundary, should score 0.5 for quiz 2 tokens above A1 max, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should produce correct scores for full milestone-knowledge-quiz sequence, should exclude non-sentence quizzes from scoring
@@ -472,6 +483,7 @@ CLI entry point for running content audits from the command line
 - `AnalyzerStatsCmd` implements  [Component]
   Inject: analyzerRegistry: AnalyzerRegistry, analyzerStatsTransformer: AnalyzerStatsTransformer, auditRunner: AuditRunner
 - `LemmaAbsenceDetailedFormatter` implements DetailedFormatter [Component]
+  Tests: should format text output from typed diagnoses matching previous metadata-based output, should format json output from typed diagnoses matching previous metadata-based output, should format table output from typed diagnoses matching previous metadata-based output, should read typed diagnoses from course milestone and quiz nodes for formatting, should handle missing diagnosis gracefully when analyzer did not produce results, should navigate from quiz node to milestone ancestor to access level diagnosis, should return empty when navigating to nonexistent ancestor level
 - `CocaBucketsDetailedFormatter` implements DetailedFormatter [Component]
 
 #### nlp-infrastructure

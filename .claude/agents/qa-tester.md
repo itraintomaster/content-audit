@@ -177,6 +177,17 @@ When analyzing an implementation, identify:
   - `getCode(): String`
 - `SelfDescribingConfig`
   - `describe(): Map<String,Object>`
+- `NodeDiagnoses` [sealed]
+- `CourseDiagnoses`
+  - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
+- `LevelDiagnoses`
+  - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>`
+- `TopicDiagnoses`
+  - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+- `KnowledgeDiagnoses`
+  - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+- `QuizDiagnoses`
+  - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 
 **Implementations:**
 
@@ -184,10 +195,10 @@ When analyzing an implementation, identify:
   Inject: contentAnalyzers: List<ContentAnalyzer>, scoreAggregator: ScoreAggregator
   **NO TESTS** — all 1 methods uncovered
 - `KnowledgeTitleLengthAnalyzer` implements ContentAnalyzer
-  Tests (19): should return knowledge-title-length as analyzer name, should return KNOWLEDGE as audit target, should score 0.0 for knowledge with null title, should score 0.0 for knowledge with empty title, should score 1.0 for knowledge with title within limit, should score 1.0 for knowledge with title at exactly 28 weighted chars, should score 1.0 for title fitting with weighted length 5.1, should score 1.0 for zero-weight special chars title, should score 1.0 for mixed-weight title with weighted length 2.7, should score 0.75 for title of weighted length 35, should score 0.5 for title of weighted length 42, should score 0.0 for title of weighted length 56, should score 0.0 for title of weighted length 70, should complete without error when onQuiz is called, should complete without error when onMilestone is called, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should return two correctly scored items for two knowledges with different title lengths, should return empty list when no knowledges have been processed
+  Tests (23): should score 0.5 for title of weighted length 28.5, should score 0.0 for title of weighted length 29, should score 0.0 for title of weighted length 35, should score 0.0 for title well beyond limit at weighted length 70, should return knowledge-title-length as analyzer name, should return KNOWLEDGE as audit target, should score 0.0 for knowledge with null title, should score 0.0 for knowledge with empty title, should score 1.0 for knowledge with title within limit, should score 1.0 for knowledge with title at exactly 28 weighted chars, should score 1.0 for title fitting with weighted length 5.1, should score 1.0 for zero-weight special chars title, should score 1.0 for mixed-weight title with weighted length 2.7, should score 0.75 for title of weighted length 35, should score 0.5 for title of weighted length 42, should score 0.0 for title of weighted length 56, should score 0.0 for title of weighted length 70, should complete without error when onQuiz is called, should complete without error when onMilestone is called, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should return two correctly scored items for two knowledges with different title lengths, should return empty list when no knowledges have been processed
   **Untested methods:** getTarget, getName, onKnowledge, onCourseComplete, getResults, onQuiz, onTopic, getDescription, onMilestone
 - `KnowledgeInstructionsLengthAnalyzer` implements ContentAnalyzer
-  Tests (17): should return knowledge-instructions-length as analyzer name, should return KNOWLEDGE as audit target, should score 1.0 for knowledge with null instructions, should score 1.0 for knowledge with empty instructions, should score 1.0 for instructions exactly at soft limit of 70 chars, should score 1.0 for instructions of 30 chars within soft limit, should score 0.5 for instructions of 71 chars just above soft limit, should score 0.5 for instructions exactly at hard limit of 100 chars, should score 0.5 for instructions of 85 chars between soft and hard limits, should score 0.0 for instructions of 101 chars just above hard limit, should score 0.0 for instructions of 200 chars well above hard limit, should complete without error when onQuiz is called, should complete without error when onMilestone is called, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should return empty list when getResults is called without prior processing, should produce correct scores for three knowledges with different instruction lengths
+  Tests (25): should score 1.0 for instructions exactly at soft limit of 70 weighted chars, should score 1.0 for instructions of 30 weighted chars within soft limit, should score 0.5 for instructions of 71 weighted chars just above soft limit, should score 0.5 for instructions exactly at hard limit of 100 weighted chars, should score 0.5 for instructions of 85 weighted chars between soft and hard limits, should score 0.0 for instructions of 101 weighted chars just above hard limit, should score 0.0 for instructions of 200 weighted chars well above hard limit, should use weighted character length not plain string length for scoring instructions, should return knowledge-instructions-length as analyzer name, should return KNOWLEDGE as audit target, should score 1.0 for knowledge with null instructions, should score 1.0 for knowledge with empty instructions, should score 1.0 for instructions exactly at soft limit of 70 chars, should score 1.0 for instructions of 30 chars within soft limit, should score 0.5 for instructions of 71 chars just above soft limit, should score 0.5 for instructions exactly at hard limit of 100 chars, should score 0.5 for instructions of 85 chars between soft and hard limits, should score 0.0 for instructions of 101 chars just above hard limit, should score 0.0 for instructions of 200 chars well above hard limit, should complete without error when onQuiz is called, should complete without error when onMilestone is called, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should return empty list when getResults is called without prior processing, should produce correct scores for three knowledges with different instruction lengths
   **Untested methods:** getTarget, getName, onKnowledge, onCourseComplete, getResults, onQuiz, onTopic, getDescription, onMilestone
 - `SentenceLengthAnalyzer` implements ContentAnalyzer
   Inject: nlpTokenizer: NlpTokenizer, config: SentenceLengthConfig
@@ -314,7 +325,8 @@ CLI entry point for running content audits from the command line
 - `AnalyzerStatsCmd`
   Inject: analyzerRegistry: AnalyzerRegistry, analyzerStatsTransformer: AnalyzerStatsTransformer, auditRunner: AuditRunner
 - `LemmaAbsenceDetailedFormatter` implements DetailedFormatter
-  **NO TESTS** — all 1 methods uncovered
+  Tests (7): should format text output from typed diagnoses matching previous metadata-based output, should format json output from typed diagnoses matching previous metadata-based output, should format table output from typed diagnoses matching previous metadata-based output, should read typed diagnoses from course milestone and quiz nodes for formatting, should handle missing diagnosis gracefully when analyzer did not produce results, should navigate from quiz node to milestone ancestor to access level diagnosis, should return empty when navigating to nonexistent ancestor level
+  **Untested methods:** format
 - `CocaBucketsDetailedFormatter` implements DetailedFormatter
   **NO TESTS** — all 1 methods uncovered
 

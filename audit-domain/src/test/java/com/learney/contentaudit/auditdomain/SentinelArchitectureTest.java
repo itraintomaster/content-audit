@@ -180,6 +180,36 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: SelfDescribingConfig - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.NodeDiagnoses");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: NodeDiagnoses - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.CourseDiagnoses");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CourseDiagnoses - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.LevelDiagnoses");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LevelDiagnoses - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.TopicDiagnoses");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TopicDiagnoses - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.KnowledgeDiagnoses");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeDiagnoses - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.QuizDiagnoses");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizDiagnoses - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.IAuditEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: IAuditEngine - " + e.getMessage());
@@ -423,6 +453,26 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.labs.AbsenceRecommendation");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AbsenceRecommendation - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.labs.LemmaAbsenceCourseDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceCourseDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceLevelDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.labs.LemmaPlacementDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaPlacementDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.labs.MisplacedLemma");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MisplacedLemma - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer");

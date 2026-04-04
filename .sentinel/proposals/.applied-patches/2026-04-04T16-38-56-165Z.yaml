@@ -1,0 +1,91 @@
+code: __proposal__
+description: "Correct KnowledgeInstructionsLengthAnalyzer test names — rename all\
+  \ 'chars' to 'weighted chars' for consistency with weighted character scoring, and\
+  \ add new test verifying weighted vs plain length distinction"
+modules:
+- name: audit-domain
+  implementations:
+  - name: KnowledgeInstructionsLengthAnalyzer
+    tests:
+    - name: should score 1.0 for instructions exactly at soft limit of 70 chars
+      _change: delete
+    - name: should score 1.0 for instructions of 30 chars within soft limit
+      _change: delete
+    - name: should score 0.5 for instructions of 71 chars just above soft limit
+      _change: delete
+    - name: should score 0.5 for instructions exactly at hard limit of 100 chars
+      _change: delete
+    - name: should score 0.5 for instructions of 85 chars between soft and hard limits
+      _change: delete
+    - name: should score 0.0 for instructions of 101 chars just above hard limit
+      _change: delete
+    - name: should score 0.0 for instructions of 200 chars well above hard limit
+      _change: delete
+    - name: should score 1.0 for instructions exactly at soft limit of 70 weighted
+        chars
+      target: KnowledgeInstructionsLengthAnalyzer
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R005
+      _change: add
+    - name: should score 1.0 for instructions of 30 weighted chars within soft limit
+      target: KnowledgeInstructionsLengthAnalyzer
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R006
+      _change: add
+    - name: should score 0.5 for instructions of 71 weighted chars just above soft
+        limit
+      target: KnowledgeInstructionsLengthAnalyzer
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R005
+      _change: add
+    - name: should score 0.5 for instructions exactly at hard limit of 100 weighted
+        chars
+      target: KnowledgeInstructionsLengthAnalyzer
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R005
+      _change: add
+    - name: should score 0.5 for instructions of 85 weighted chars between soft and
+        hard limits
+      target: KnowledgeInstructionsLengthAnalyzer
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R006
+      _change: add
+    - name: should score 0.0 for instructions of 101 weighted chars just above hard
+        limit
+      target: KnowledgeInstructionsLengthAnalyzer
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R005
+      _change: add
+    - name: should score 0.0 for instructions of 200 weighted chars well above hard
+        limit
+      target: KnowledgeInstructionsLengthAnalyzer
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R006
+      _change: add
+    - name: should use weighted character length not plain string length for scoring
+        instructions
+      target: KnowledgeInstructionsLengthAnalyzer
+      type: unit
+      traceability:
+        feature: F-KTLEN
+        rule: F-KTLEN-R005
+        journey: F-KTLEN-J003
+      _change: add
+    implements:
+    - ContentAnalyzer
+    _change: modify
+  _change: modify

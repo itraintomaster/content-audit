@@ -1,0 +1,499 @@
+---
+features:
+- id: "FEAT-DIAG-LABS"
+  name: "Diagnosticos Tipados para el Analizador de Ausencia de Lemas"
+  description: "Reemplazar los resultados no tipados (`Map<String, Object> metadata`)\
+    \ que el analizador de ausencia de lemas (FEAT-LABS) emite en cada nodo del arbol\
+    \ de auditoria por **registros de diagnostico tipados** que describan de forma\
+    \ explicita y navegable la informacion producida en cada nivel de la jerarquia\
+    \ del curso. Este cambio es el primer paso de una iniciativa mas amplia para dotar\
+    \ a todos los analizadores del sistema ContentAudit de diagnosticos tipados, y\
+    \ se aplica inicialmente al analizador lemma-absence por ser el que emite la estructura\
+    \ de datos mas compleja y el que mas se beneficia de la tipificacion."
+  code: "F-DIAG-LABS"
+  rules:
+  - id: "F-DIAG-LABS-R001"
+    name: "Interfaz sellada AnalyzerDiagnosis"
+    severity: "critical"
+    description: "Todos los registros de diagnostico que emiten los analizadores del\
+      \ sistema deben implementar una interfaz comun denominada `AnalyzerDiagnosis`.\
+      \ Esta interfaz actua como tipo base sellado: solo los registros de diagnostico\
+      \ definidos dentro del sistema pueden implementarla. Esto garantiza que el mapa\
+      \ de diagnosticos solo contenga registros conocidos y validables. La interfaz\
+      \ no define operaciones propias; su proposito es exclusivamente servir como\
+      \ tipo comun para que el mapa de diagnosticos pueda almacenar registros de cualquier\
+      \ analizador de forma segura."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DIAG-LABS-R002"
+    name: "Mapa de diagnosticos en el nodo de auditoria"
+    severity: "critical"
+    description: "Cada nodo del arbol de auditoria debe contener un **mapa de diagnosticos**\
+      \ donde la clave es el nombre del analizador (cadena de texto) y el valor es\
+      \ un registro que implementa `AnalyzerDiagnosis`. Este mapa reemplaza al mapa\
+      \ generico sin tipo que existe actualmente. Las claves del mapa corresponden\
+      \ a los nombres de analizadores definidos en sus respectivos requerimientos.\
+      \ Para el analizador de ausencia de lemas, la clave es `\"lemma-absence\"` (definida\
+      \ en FEAT-LABS R031). Un nodo puede tener diagnosticos de multiples analizadores\
+      \ simultaneamente (por ejemplo, un nodo de quiz puede tener diagnosticos de\
+      \ lemma-absence, sentence-length y coca-buckets). Cada analizador escribe bajo\
+      \ su propia clave sin interferir con los demas."
+    errorMessage: "No se encontro diagnostico para el analizador '{nombre}' en el\
+      \ nodo {nodoId}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DIAG-LABS-R003"
+    name: "Acceso tipado a diagnosticos"
+    severity: "critical"
+    description: "El nodo de auditoria debe proveer un mecanismo de acceso tipado\
+      \ que permita a los consumidores obtener el diagnostico de un analizador especifico\
+      \ con su tipo concreto, sin necesidad de realizar conversiones manuales. El\
+      \ consumidor solicita el diagnostico indicando el nombre del analizador y el\
+      \ tipo esperado del registro, y el sistema retorna el registro ya convertido\
+      \ al tipo solicitado. Si el diagnostico existe pero no corresponde al tipo solicitado,\
+      \ el sistema debe senalar el error de forma clara indicando el tipo esperado\
+      \ y el tipo real encontrado. Si el diagnostico no existe para el analizador\
+      \ solicitado, el sistema debe retornar una indicacion de ausencia (no un error)."
+    errorMessage: "El diagnostico del analizador '{nombre}' es de tipo {tipoReal},\
+      \ pero se solicito {tipoEsperado}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DIAG-LABS-R004"
+    name: "Registro de diagnostico a nivel curso: LemmaAbsenceCourseDiagnosis"
+    severity: "critical"
+    description: "En el nodo de curso del arbol de auditoria, el analizador lemma-absence\
+      \ debe emitir un registro `LemmaAbsenceCourseDiagnosis` que contiene: | Campo\
+      \ | Tipo | Descripcion | Regla FEAT-LABS | |-------|------|-------------|-----------------|\
+      \ | assessment | AbsenceAssessment | Evaluacion global: OPTIMAL, ACCEPTABLE\
+      \ o NEEDS_IMPROVEMENT | R022 | El valor de `AbsenceAssessment` es una enumeracion\
+      \ con exactamente tres valores posibles, correspondientes a las categorias definidas\
+      \ en FEAT-LABS R022. Este registro es el mas simple del analizador, ya que a\
+      \ nivel de curso solo se emite la evaluacion global."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DIAG-LABS-R005"
+    name: "Registro de diagnostico a nivel milestone: LemmaAbsenceLevelDiagnosis"
+    severity: "critical"
+    description: "En cada nodo de nivel (milestone) del arbol de auditoria, el analizador\
+      \ lemma-absence debe emitir un registro `LemmaAbsenceLevelDiagnosis` que contiene:\
+      \ | Campo | Tipo | Descripcion | Regla FEAT-LABS | |-------|------|-------------|-----------------|\
+      \ | totalExpected | Entero | Cantidad total de lemas esperados para este nivel\
+      \ | R023 | | totalAbsent | Entero | Cantidad total de lemas ausentes en este\
+      \ nivel | R023 | | absencePercentage | Decimal | Porcentaje de lemas ausentes\
+      \ respecto al total esperado | R023 | | coverageTarget | Decimal | Objetivo\
+      \ de cobertura configurado para este nivel | R032 | | completelyAbsentScore\
+      \ | Decimal | Puntuacion ponderada de lemas completamente ausentes | R008 |\
+      \ | tooLateScore | Decimal | Puntuacion ponderada de lemas que aparecen demasiado\
+      \ tarde | R008 | | tooEarlyScore | Decimal | Puntuacion ponderada de lemas que\
+      \ aparecen demasiado temprano | R008 | | absentLemmas | Lista de AbsentLemma\
+      \ | Lista detallada de cada lema ausente con su clasificacion | R006, R011,\
+      \ R012 | Este es el registro mas complejo del analizador, ya que consolida todas\
+      \ las metricas de cobertura del nivel junto con el detalle de cada lema ausente.\
+      \ Todos los campos corresponden a datos que el analizador ya calcula segun las\
+      \ reglas de FEAT-LABS; la diferencia es que ahora se exponen como campos tipados\
+      \ en lugar de entradas de un mapa sin tipo."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DIAG-LABS-R006"
+    name: "Registro auxiliar AbsentLemma"
+    severity: "critical"
+    description: "Cada lema ausente dentro de `LemmaAbsenceLevelDiagnosis.absentLemmas`\
+      \ se representa como un registro `AbsentLemma` con los siguientes campos: |\
+      \ Campo | Tipo | Descripcion | Regla FEAT-LABS | |-------|------|-------------|-----------------|\
+      \ | lemma | Texto | Forma base de la palabra ausente | R003 | | pos | Texto\
+      \ | Parte de la oracion del lema (sustantivo, verbo, etc.) | R001, R015 | |\
+      \ absenceType | AbsenceType | Tipo de ausencia: COMPLETELY_ABSENT, APPEARS_TOO_LATE\
+      \ o APPEARS_TOO_EARLY | R006, R007 | | priority | Priority | Nivel de prioridad\
+      \ basado en frecuencia COCA: HIGH, MEDIUM o LOW | R011 | `AbsenceType` es una\
+      \ enumeracion con exactamente tres valores: COMPLETELY_ABSENT, APPEARS_TOO_LATE,\
+      \ APPEARS_TOO_EARLY, correspondientes a los tipos definidos en FEAT-LABS R006.\
+      \ `Priority` es una enumeracion con exactamente tres valores: HIGH, MEDIUM,\
+      \ LOW, correspondientes a las bandas de prioridad definidas en FEAT-LABS R011."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DIAG-LABS-R007"
+    name: "Registro de diagnostico a nivel topic: LemmaPlacementDiagnosis"
+    severity: "critical"
+    description: "En cada nodo de topic del arbol de auditoria, el analizador lemma-absence\
+      \ debe emitir un registro `LemmaPlacementDiagnosis` que contiene: | Campo |\
+      \ Tipo | Descripcion | Regla FEAT-LABS | |-------|------|-------------|-----------------|\
+      \ | misplacedLemmaCount | Entero | Cantidad de lemas mal ubicados en este topic\
+      \ | R017 | | misplacedLemmas | Lista de MisplacedLemma | Lista detallada de\
+      \ cada lema mal ubicado | R017 | Este registro se reutiliza en los niveles topic,\
+      \ knowledge y quiz (R008, R009) porque la estructura de datos de ubicacion de\
+      \ lemas es identica en los tres niveles. La diferencia esta en el alcance: a\
+      \ nivel topic incluye todos los lemas mal ubicados del topic, a nivel knowledge\
+      \ los del knowledge, y a nivel quiz los del quiz individual."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DIAG-LABS-R008"
+    name: "Reutilizacion de LemmaPlacementDiagnosis en knowledge"
+    severity: "critical"
+    description: "En cada nodo de knowledge del arbol de auditoria, el analizador\
+      \ lemma-absence debe emitir el mismo tipo de registro `LemmaPlacementDiagnosis`\
+      \ definido en R007. Los campos son identicos; el contenido refleja los lemas\
+      \ mal ubicados dentro de ese knowledge especifico."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DIAG-LABS-R009"
+    name: "Reutilizacion de LemmaPlacementDiagnosis en quiz"
+    severity: "critical"
+    description: "En cada nodo de quiz del arbol de auditoria, el analizador lemma-absence\
+      \ debe emitir el mismo tipo de registro `LemmaPlacementDiagnosis` definido en\
+      \ R007. Los campos son identicos; el contenido refleja los lemas mal ubicados\
+      \ dentro de ese quiz especifico."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DIAG-LABS-R010"
+    name: "Registro auxiliar MisplacedLemma"
+    severity: "critical"
+    description: "Cada lema mal ubicado dentro de `LemmaPlacementDiagnosis.misplacedLemmas`\
+      \ se representa como un registro `MisplacedLemma` con los siguientes campos:\
+      \ | Campo | Tipo | Descripcion | Regla FEAT-LABS | |-------|------|-------------|-----------------|\
+      \ | lemma | Texto | Forma base de la palabra mal ubicada | R017 | | pos | Texto\
+      \ | Parte de la oracion del lema | R017 | | expectedLevel | CefrLevel | Nivel\
+      \ CEFR donde el EVP indica que el lema deberia estar | R017 | `CefrLevel` es\
+      \ una enumeracion con los valores A1, A2, B1, B2, representando los niveles\
+      \ del Marco Comun Europeo de Referencia para las Lenguas."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DIAG-LABS-R011"
+    name: "Navegacion hacia nodos ancestros"
+    severity: "critical"
+    description: "Cada nodo del arbol de auditoria debe proveer un mecanismo para\
+      \ navegar hacia su nodo ancestro en un nivel especifico de la jerarquia. Dado\
+      \ un nodo (por ejemplo, un quiz), el consumidor debe poder solicitar \"dame\
+      \ el ancestro de tipo milestone\" y obtener el nodo del nivel CEFR que contiene\
+      \ ese quiz. La navegacion es ascendente (del nodo hacia la raiz) y acepta como\
+      \ parametro el nivel de la jerarquia al que se quiere llegar (curso, milestone,\
+      \ topic, knowledge). Si el nodo solicitado como ancestro no existe en la cadena\
+      \ de ancestros del nodo actual (por ejemplo, solicitar el ancestro \"knowledge\"\
+      \ desde un nodo de curso), el sistema debe retornar una indicacion de ausencia.\
+      \ Este mecanismo es esencial para el caso de uso del refiner: al corregir un\
+      \ quiz con lemas mal ubicados, el refiner navega hasta el milestone ancestro\
+      \ para consultar el `LemmaAbsenceLevelDiagnosis` y obtener la lista de lemas\
+      \ ausentes disponibles como reemplazo."
+    errorMessage: "No se encontro ancestro de tipo '{nivel}' para el nodo {nodoId}"
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DIAG-LABS-R012"
+    name: "Combinacion de navegacion y acceso tipado"
+    severity: "major"
+    description: "Los consumidores deben poder combinar la navegacion hacia ancestros\
+      \ (R011) con el acceso tipado a diagnosticos (R003) para realizar consultas\
+      \ cruzadas entre niveles. El patron de uso tipico es: 1. Partir de un nodo hoja\
+      \ (por ejemplo, un quiz). 2. Navegar hacia un ancestro (por ejemplo, el milestone).\
+      \ 3. Obtener el diagnostico tipado de un analizador en ese ancestro (por ejemplo,\
+      \ `LemmaAbsenceLevelDiagnosis`). Este patron permite al refiner, por ejemplo:\
+      \ - Desde un quiz con lemas mal ubicados, navegar al milestone y consultar los\
+      \ lemas ausentes de ese nivel para sugerir reemplazos. - Desde un quiz con oracion\
+      \ corta (detectada por sentence-length), navegar al milestone y consultar que\
+      \ lemas estan ausentes (de lemma-absence) para sugerir palabras que alarguen\
+      \ la oracion y al mismo tiempo cubran vocabulario faltante. La combinacion de\
+      \ ambos mecanismos es lo que habilita el consumo cruzado entre analizadores\
+      \ a traves de la jerarquia."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DIAG-LABS-R013"
+    name: "Migracion del formateador de detalle de lemma-absence"
+    severity: "major"
+    description: "El formateador de detalle de ausencia de lemas (`LemmaAbsenceDetailedFormatter`)\
+      \ es el principal consumidor actual de los datos de diagnostico del analizador.\
+      \ Tras la migracion, este formateador debe leer los registros de diagnostico\
+      \ tipados en lugar de acceder al mapa generico. El formateador accede a datos\
+      \ en los siguientes niveles: | Nivel | Dato que consume | Registro tipado |\
+      \ |-------|-----------------|-----------------| | Curso | Assessment global\
+      \ | LemmaAbsenceCourseDiagnosis | | Milestone | Metricas de cobertura y lista\
+      \ de lemas ausentes | LemmaAbsenceLevelDiagnosis | | Knowledge | Conteo y detalle\
+      \ de lemas mal ubicados | LemmaPlacementDiagnosis | | Quiz | Detalle de lemas\
+      \ mal ubicados | LemmaPlacementDiagnosis | Tras la migracion, el formateador\
+      \ no debe contener ninguna conversion insegura ni supresion de advertencias\
+      \ relacionada con tipos. Todos los accesos a datos de diagnostico deben ser\
+      \ a traves del mecanismo de acceso tipado (R003)."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DIAG-LABS-R014"
+    name: "Eliminacion del mapa generico para lemma-absence"
+    severity: "major"
+    description: "Una vez completada la migracion del analizador lemma-absence y todos\
+      \ sus consumidores, el analizador no debe escribir datos en el mapa generico\
+      \ sin tipo. Toda la informacion de diagnostico de lemma-absence debe fluir exclusivamente\
+      \ a traves de los registros tipados definidos en este requerimiento (R004-R010).\
+      \ Otros analizadores que aun no hayan sido migrados pueden seguir usando el\
+      \ mapa generico temporalmente. La coexistencia del mapa de diagnosticos tipados\
+      \ y el mapa generico es aceptable durante el periodo de migracion, pero para\
+      \ lemma-absence la migracion debe ser completa."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  journeys:
+  - id: "F-DIAG-LABS-J001"
+    name: "Consultar diagnosticos tipados del analizador lemma-absence"
+    steps: []
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+    flow:
+    - id: "ejecutar_auditoria"
+      action: "El usuario ejecuta una auditoria de un curso en ContentAudit"
+      then: "obtener_diagnostico_curso"
+      outcomes: []
+      result: null
+      gate: []
+    - id: "obtener_diagnostico_curso"
+      action: "El consumidor solicita el diagnostico tipado de lemma-absence en el\
+        \ nodo curso, obteniendo el LemmaAbsenceCourseDiagnosis con el assessment\
+        \ global"
+      then: null
+      outcomes:
+      - when: "El assessment es OPTIMAL"
+        then: "confirmar_cobertura"
+      - when: "El assessment es ACCEPTABLE o NEEDS_IMPROVEMENT"
+        then: "obtener_diagnostico_nivel"
+      result: null
+      gate:
+      - "F-DIAG-LABS-R002"
+      - "F-DIAG-LABS-R003"
+      - "F-DIAG-LABS-R004"
+    - id: "obtener_diagnostico_nivel"
+      action: "El consumidor solicita el diagnostico tipado de lemma-absence en un\
+        \ nodo de nivel (milestone), obteniendo el LemmaAbsenceLevelDiagnosis con\
+        \ las metricas de cobertura y la lista tipada de lemas ausentes"
+      then: null
+      outcomes:
+      - when: "Hay lemas ausentes en el nivel"
+        then: "explorar_detalle_quiz"
+      - when: "No hay lemas ausentes en el nivel"
+        then: "confirmar_cobertura"
+      result: null
+      gate:
+      - "F-DIAG-LABS-R003"
+      - "F-DIAG-LABS-R005"
+      - "F-DIAG-LABS-R006"
+    - id: "explorar_detalle_quiz"
+      action: "El consumidor solicita el diagnostico tipado de lemma-absence en un\
+        \ nodo de quiz, obteniendo el LemmaPlacementDiagnosis con los lemas mal ubicados\
+        \ tipados"
+      then: "confirmar_acceso_tipado"
+      outcomes: []
+      result: null
+      gate:
+      - "F-DIAG-LABS-R003"
+      - "F-DIAG-LABS-R009"
+      - "F-DIAG-LABS-R010"
+    - id: "confirmar_acceso_tipado"
+      action: "El consumidor ha accedido a todos los datos de diagnostico sin conversiones\
+        \ inseguras, con campos nombrados y autocompletado disponible"
+      then: null
+      outcomes: []
+      result: "success"
+      gate: []
+    - id: "confirmar_cobertura"
+      action: "La cobertura de vocabulario es adecuada, el consumidor no necesita\
+        \ profundizar"
+      then: null
+      outcomes: []
+      result: "success"
+      gate: []
+  - id: "F-DIAG-LABS-J002"
+    name: "Navegar desde un quiz hacia el diagnostico de su milestone ancestro"
+    steps: []
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+    flow:
+    - id: "identificar_quiz_problematico"
+      action: "El consumidor (por ejemplo, el futuro refiner) identifica un quiz con\
+        \ lemas mal ubicados a partir de su LemmaPlacementDiagnosis"
+      then: "navegar_a_milestone"
+      outcomes: []
+      result: null
+      gate:
+      - "F-DIAG-LABS-R003"
+      - "F-DIAG-LABS-R009"
+    - id: "navegar_a_milestone"
+      action: "El consumidor solicita el nodo ancestro de tipo milestone desde el\
+        \ nodo del quiz"
+      then: null
+      outcomes:
+      - when: "El milestone ancestro existe"
+        then: "obtener_diagnostico_nivel"
+      - when: "No se encuentra el milestone ancestro (estructura de arbol incompleta)"
+        then: "error_navegacion"
+      result: null
+      gate:
+      - "F-DIAG-LABS-R011"
+    - id: "obtener_diagnostico_nivel"
+      action: "El consumidor obtiene el LemmaAbsenceLevelDiagnosis del milestone,\
+        \ accediendo a la lista de lemas ausentes disponibles como posibles reemplazos"
+      then: "cruzar_datos"
+      outcomes: []
+      result: null
+      gate:
+      - "F-DIAG-LABS-R003"
+      - "F-DIAG-LABS-R005"
+      - "F-DIAG-LABS-R012"
+    - id: "cruzar_datos"
+      action: "El consumidor cruza los lemas mal ubicados del quiz con los lemas ausentes\
+        \ del nivel para identificar reemplazos que mejoren tanto la ubicacion como\
+        \ la cobertura"
+      then: null
+      outcomes: []
+      result: "success"
+      gate: []
+    - id: "error_navegacion"
+      action: "El sistema informa que no se pudo navegar al milestone ancestro desde\
+        \ el quiz"
+      then: null
+      outcomes: []
+      result: "failure"
+      gate: []
+  - id: "F-DIAG-LABS-J003"
+    name: "Formatear informe de ausencia de lemas usando diagnosticos tipados"
+    steps: []
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+    flow:
+    - id: "iniciar_formateo"
+      action: "El formateador de detalle de lemma-absence recibe el arbol de auditoria\
+        \ para generar el informe"
+      then: "leer_diagnostico_curso"
+      outcomes: []
+      result: null
+      gate: []
+    - id: "leer_diagnostico_curso"
+      action: "El formateador solicita el LemmaAbsenceCourseDiagnosis del nodo curso\
+        \ para obtener el assessment global"
+      then: null
+      outcomes:
+      - when: "El diagnostico existe en el nodo curso"
+        then: "leer_diagnosticos_niveles"
+      - when: "El diagnostico no existe (el analizador no se ejecuto)"
+        then: "omitir_seccion"
+      result: null
+      gate:
+      - "F-DIAG-LABS-R003"
+      - "F-DIAG-LABS-R004"
+      - "F-DIAG-LABS-R013"
+    - id: "leer_diagnosticos_niveles"
+      action: "El formateador itera sobre los nodos de nivel y solicita el LemmaAbsenceLevelDiagnosis\
+        \ de cada uno para obtener metricas y lemas ausentes"
+      then: "leer_diagnosticos_quiz"
+      outcomes: []
+      result: null
+      gate:
+      - "F-DIAG-LABS-R003"
+      - "F-DIAG-LABS-R005"
+      - "F-DIAG-LABS-R006"
+      - "F-DIAG-LABS-R013"
+    - id: "leer_diagnosticos_quiz"
+      action: "El formateador itera sobre los nodos de quiz dentro de cada knowledge\
+        \ y solicita el LemmaPlacementDiagnosis para obtener el detalle de lemas mal\
+        \ ubicados"
+      then: "generar_informe"
+      outcomes: []
+      result: null
+      gate:
+      - "F-DIAG-LABS-R003"
+      - "F-DIAG-LABS-R009"
+      - "F-DIAG-LABS-R010"
+      - "F-DIAG-LABS-R013"
+    - id: "generar_informe"
+      action: "El formateador genera el informe completo sin ninguna conversion insegura,\
+        \ accediendo a todos los datos a traves de campos tipados"
+      then: null
+      outcomes: []
+      result: "success"
+      gate:
+      - "F-DIAG-LABS-R014"
+    - id: "omitir_seccion"
+      action: "El formateador omite la seccion de ausencia de lemas porque el analizador\
+        \ no produjo diagnosticos"
+      then: null
+      outcomes: []
+      result: "success"
+      gate: []
+  doubts:
+  - id: "DOUBT-COEXISTENCE"
+    question: "Coexistencia del mapa generico y el mapa de diagnosticos"
+    options:
+    - label: "Opcion A: Coexistencia temporal — ambos mapas existen en paralelo. Los\
+        \ analizadores migrados escriben en el mapa tipado; los no migrados siguen\
+        \ escribiendo en el generico. El mapa generico se elimina cuando todos los\
+        \ analizadores esten migrados."
+      description: null
+    - label: "Opcion B: Reemplazo inmediato — el mapa generico se elimina desde el\
+        \ inicio. Los analizadores no migrados deben emitir un diagnostico generico\
+        \ (por ejemplo, `RawDiagnosis` que envuelve un mapa sin tipo) para cumplir\
+        \ con la interfaz. Esto fuerza la migracion de todos los analizadores a corto\
+        \ plazo."
+      description: null
+    - label: "Opcion C: Reemplazo gradual con wrapper — el mapa generico se envuelve\
+        \ automaticamente en un `RawDiagnosis` por defecto, y los analizadores migrados\
+        \ emiten sus diagnosticos tipados. Funcionalmente equivalente a Opcion B pero\
+        \ sin exigir cambios inmediatos en los analizadores no migrados."
+      description: null
+    answer: null
+  - id: "DOUBT-DIAGNOSIS-KEY"
+    question: "Clave del mapa de diagnosticos"
+    options:
+    - label: "Opcion A: Usar el nombre del analizador como clave (alineado con R031\
+        \ de FEAT-LABS). Simple, descriptivo, unico por definicion."
+      description: null
+    - label: "Opcion B: Usar un identificador mas formal (por ejemplo, un enum o constante).\
+        \ Mas robusto ante errores tipograficos, pero menos flexible."
+      description: null
+    answer: null
+  - id: "DOUBT-LEVEL-DIAGNOSIS-TYPE"
+    question: "Tipo de diagnostico para topic vs knowledge vs quiz"
+    options:
+    - label: "Opcion A: Reutilizar `LemmaPlacementDiagnosis` en los tres niveles.\
+        \ A nivel topic, la lista `misplacedLemmas` puede estar vacia mientras que\
+        \ el conteo refleja el total. Mas simple, un solo tipo."
+      description: null
+    - label: "Opcion B: Crear `LemmaPlacementSummaryDiagnosis` (solo conteo) para\
+        \ topic, y `LemmaPlacementDiagnosis` (conteo + lista) para knowledge y quiz.\
+        \ Mas preciso, pero mas tipos para mantener."
+      description: null
+    - label: "Opcion C: Enriquecer el nivel topic para que tambien emita la lista\
+        \ detallada, alineandolo con knowledge y quiz. Elimina la asimetria a costa\
+        \ de emitir mas datos."
+      description: null
+    answer: null
+  - id: "DOUBT-ANCESTOR-SCOPE"
+    question: "Alcance de la navegacion hacia ancestros"
+    options:
+    - label: "Opcion A: Navegacion generica desde el inicio. Es mas util a futuro\
+        \ cuando el refiner necesite navegar hacia otros niveles, y el esfuerzo adicional\
+        \ es minimo."
+      description: null
+    - label: "Opcion B: Solo la navegacion quiz-a-milestone por ahora. Se generaliza\
+        \ cuando haya un segundo caso de uso concreto. Sigue el principio de \"no\
+        \ construir lo que no se necesita aun\"."
+      description: null
+    answer: null

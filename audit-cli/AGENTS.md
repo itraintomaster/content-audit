@@ -274,6 +274,16 @@ Methods:
 
 **Types:** Component
 
+**Tests that must pass:**
+
+- should format text output from typed diagnoses matching previous metadata-based output → FEAT-DLABS/F-DLABS-R013
+- should format json output from typed diagnoses matching previous metadata-based output → FEAT-DLABS/F-DLABS-R013
+- should format table output from typed diagnoses matching previous metadata-based output → FEAT-DLABS/F-DLABS-R013
+- should read typed diagnoses from course milestone and quiz nodes for formatting → FEAT-DLABS/F-DLABS-R004, F-DLABS-R005, F-DLABS-R009
+- should handle missing diagnosis gracefully when analyzer did not produce results → FEAT-DLABS/F-DLABS-R003
+- should navigate from quiz node to milestone ancestor to access level diagnosis → FEAT-DLABS/F-DLABS-R011, F-DLABS-R012
+- should return empty when navigating to nonexistent ancestor level → FEAT-DLABS/F-DLABS-R011
+
 ### CocaBucketsDetailedFormatter
 
 **Implements:** DetailedFormatter
@@ -418,6 +428,7 @@ Methods:
 | children | `List<AuditNode>` |
 | scores | `Map<String,Double>` |
 | metadata | `Map<String,Object>` |
+| diagnoses | `NodeDiagnoses` |
 
 ### AuditEngine (port)
 
@@ -537,6 +548,38 @@ Methods:
 Methods:
 
 - `describe(): Map<String,Object>`
+
+### NodeDiagnoses (port) [sealed]
+
+### CourseDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
+
+### LevelDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>`
+
+### TopicDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+
+### KnowledgeDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+
+### QuizDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 
 ### From course-domain
 

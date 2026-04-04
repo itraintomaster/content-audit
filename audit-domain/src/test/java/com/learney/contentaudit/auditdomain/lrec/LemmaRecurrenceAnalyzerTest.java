@@ -6,6 +6,7 @@ import static org.mockito.Mockito.*;
 import com.learney.contentaudit.auditdomain.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -75,5 +76,34 @@ public class LemmaRecurrenceAnalyzerTest {
     public void givenAnAuditableMilestoneWhenOnMilestoneIsCalledThenCompletesWithoutError() {
         AuditableMilestone m = new AuditableMilestone(null, "m1", "A1", "c");
         assertDoesNotThrow(() -> sut.onMilestone(makeNode(AuditTarget.MILESTONE, m)));
+    }
+
+    @Test
+    @Disabled("Stub pending implementation")
+    @org.junit.jupiter.api.DisplayName("Given no quizzes have been processed, when getResults is called, then returns empty list")
+    @org.junit.jupiter.api.Tag("F-LREC")
+    public void givenNoQuizzesHaveBeenProcessedWhenGetResultsIsCalledThenReturnsEmptyList() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @Disabled("Stub pending implementation")
+    @org.junit.jupiter.api.DisplayName("Given an AuditableKnowledge and AuditContext, when onKnowledge is called, then completes without error")
+    public void givenAnAuditableKnowledgeAndAuditContextWhenOnKnowledgeIsCalledThenCompletesWithoutError() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @Disabled("Stub pending implementation")
+    @org.junit.jupiter.api.DisplayName("Given an AuditableTopic and AuditContext, when onTopic is called, then completes without error")
+    public void givenAnAuditableTopicAndAuditContextWhenOnTopicIsCalledThenCompletesWithoutError() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @Disabled("Stub pending implementation")
+    @org.junit.jupiter.api.DisplayName("Given an AuditableMilestone and AuditContext, when onMilestone is called, then completes without error")
+    public void givenAnAuditableMilestoneAndAuditContextWhenOnMilestoneIsCalledThenCompletesWithoutError() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

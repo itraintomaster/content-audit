@@ -147,56 +147,56 @@ public class KnowledgeTitleLengthAnalyzerTest {
     }
 
     // ---------------------------------------------------------------------------
-    // Titles in the degradation zone (28 < weighted length < 56) → partial score
+    // Titles in the degradation zone (28 < weighted length < 29) → partial score
     // ---------------------------------------------------------------------------
 
     @Test
-    @DisplayName("should score 0.75 for title of weighted length 35")
+    @DisplayName("should score 0.5 for title of weighted length 28.5")
     @Tag("F-KTLEN")
     @Tag("F-KTLEN-R003")
-    public void shouldScore075ForTitleOfWeightedLength35() {
+    public void shouldScore05ForTitleOfWeightedLength285() {
         KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
-        // 35 'a' chars → weighted length 35; score = 1.0 - (35-28)/28 = 0.75
-        AuditNode node = buildKnowledgeNode(knowledge(titleOfWeight(35)));
-        analyzer.onKnowledge(node);
-        assertEquals(0.75, node.getScores().get("knowledge-title-length"), 0.001);
-    }
-
-    @Test
-    @DisplayName("should score 0.5 for title of weighted length 42")
-    @Tag("F-KTLEN")
-    @Tag("F-KTLEN-R003")
-    public void shouldScore05ForTitleOfWeightedLength42() {
-        KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
-        // 42 'a' chars → weighted length 42; score = 1.0 - (42-28)/28 = 0.5
-        AuditNode node = buildKnowledgeNode(knowledge(titleOfWeight(42)));
+        // 28 'a' chars (28.0) + 1 'i' char (0.5) → weighted length 28.5; score = 1.0 - (28.5-28)/1 = 0.5
+        AuditNode node = buildKnowledgeNode(knowledge(titleOfWeight(28) + "i"));
         analyzer.onKnowledge(node);
         assertEquals(0.5, node.getScores().get("knowledge-title-length"), 0.001);
     }
 
     // ---------------------------------------------------------------------------
-    // Titles at or beyond hard limit (weighted length >= 56) → score 0.0
+    // Titles at or beyond zero-point (weighted length >= 29) → score 0.0
     // ---------------------------------------------------------------------------
 
     @Test
-    @DisplayName("should score 0.0 for title of weighted length 56")
+    @DisplayName("should score 0.0 for title of weighted length 29")
     @Tag("F-KTLEN")
     @Tag("F-KTLEN-R003")
-    public void shouldScore00ForTitleOfWeightedLength56() {
+    public void shouldScore00ForTitleOfWeightedLength29() {
         KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
-        // 56 'a' chars → weighted length 56; score = max(0, 1.0 - 28/28) = 0.0
-        AuditNode node = buildKnowledgeNode(knowledge(titleOfWeight(56)));
+        // 29 'a' chars → weighted length 29; score = max(0, 1.0 - (29-28)/1) = 0.0
+        AuditNode node = buildKnowledgeNode(knowledge(titleOfWeight(29)));
         analyzer.onKnowledge(node);
         assertEquals(0.0, node.getScores().get("knowledge-title-length"), 0.001);
     }
 
     @Test
-    @DisplayName("should score 0.0 for title of weighted length 70")
+    @DisplayName("should score 0.0 for title of weighted length 35")
     @Tag("F-KTLEN")
     @Tag("F-KTLEN-R003")
-    public void shouldScore00ForTitleOfWeightedLength70() {
+    public void shouldScore00ForTitleOfWeightedLength35() {
         KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
-        // 70 'a' chars → weighted length 70; score = max(0, 1.0 - 42/28) = 0.0
+        // 35 'a' chars → weighted length 35; score = max(0, 1.0 - (35-28)/1) = 0.0
+        AuditNode node = buildKnowledgeNode(knowledge(titleOfWeight(35)));
+        analyzer.onKnowledge(node);
+        assertEquals(0.0, node.getScores().get("knowledge-title-length"), 0.001);
+    }
+
+    @Test
+    @DisplayName("should score 0.0 for title well beyond limit at weighted length 70")
+    @Tag("F-KTLEN")
+    @Tag("F-KTLEN-R003")
+    public void shouldScore00ForTitleWellBeyondLimitAtWeightedLength70() {
+        KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
+        // 70 'a' chars → weighted length 70; score = max(0, 1.0 - (70-28)/1) = 0.0
         AuditNode node = buildKnowledgeNode(knowledge(titleOfWeight(70)));
         analyzer.onKnowledge(node);
         assertEquals(0.0, node.getScores().get("knowledge-title-length"), 0.001);
@@ -276,18 +276,18 @@ public class KnowledgeTitleLengthAnalyzerTest {
     public void shouldReturnTwoCorrectlyScoredItemsForTwoKnowledgesWithDifferentTitleLengths() {
         KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
 
-        // First knowledge: short title within soft limit → score 1.0
+        // First knowledge: short title within limit → score 1.0
         AuditableKnowledge k1 = new AuditableKnowledge(List.of(), "hello", null, false, "k1", "l1", "C1");
         AuditNode node1 = buildKnowledgeNode(k1);
         analyzer.onKnowledge(node1);
 
-        // Second knowledge: 35 chars → score 0.75
-        AuditableKnowledge k2 = new AuditableKnowledge(List.of(), titleOfWeight(35), null, false, "k2", "l2", "C2");
+        // Second knowledge: 29 'a' chars → weighted length 29 → score 0.0
+        AuditableKnowledge k2 = new AuditableKnowledge(List.of(), titleOfWeight(29), null, false, "k2", "l2", "C2");
         AuditNode node2 = buildKnowledgeNode(k2);
         analyzer.onKnowledge(node2);
 
         assertEquals(1.0, node1.getScores().get("knowledge-title-length"), 0.001);
-        assertEquals(0.75, node2.getScores().get("knowledge-title-length"), 0.001);
+        assertEquals(0.0, node2.getScores().get("knowledge-title-length"), 0.001);
     }
 
     @Test
@@ -298,5 +298,41 @@ public class KnowledgeTitleLengthAnalyzerTest {
         KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
         // No onKnowledge calls → no scores written anywhere; just verify the analyzer exists
         assertNotNull(analyzer);
+    }
+
+    @Test
+    @org.junit.jupiter.api.Test
+    @org.junit.jupiter.api.DisplayName("should score 0.75 for title of weighted length 35")
+    @org.junit.jupiter.api.Tag("F-KTLEN")
+    @org.junit.jupiter.api.Tag("F-KTLEN-R003")
+    public void shouldScore075ForTitleOfWeightedLength35() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @org.junit.jupiter.api.Test
+    @org.junit.jupiter.api.DisplayName("should score 0.5 for title of weighted length 42")
+    @org.junit.jupiter.api.Tag("F-KTLEN")
+    @org.junit.jupiter.api.Tag("F-KTLEN-R003")
+    public void shouldScore05ForTitleOfWeightedLength42() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @org.junit.jupiter.api.Test
+    @org.junit.jupiter.api.DisplayName("should score 0.0 for title of weighted length 56")
+    @org.junit.jupiter.api.Tag("F-KTLEN")
+    @org.junit.jupiter.api.Tag("F-KTLEN-R003")
+    public void shouldScore00ForTitleOfWeightedLength56() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @org.junit.jupiter.api.Test
+    @org.junit.jupiter.api.DisplayName("should score 0.0 for title of weighted length 70")
+    @org.junit.jupiter.api.Tag("F-KTLEN")
+    @org.junit.jupiter.api.Tag("F-KTLEN-R003")
+    public void shouldScore00ForTitleOfWeightedLength70() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

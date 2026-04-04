@@ -80,7 +80,7 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     // -- within soft limit (<=70) score 1.0 --
 
     @Test
-    @DisplayName("should score 1.0 for instructions exactly at soft limit of 70 chars")
+    @DisplayName("should score 1.0 for instructions exactly at soft limit of 70 weighted chars")
     @Tag("F-KTLEN")
     @Tag("F-KTLEN-R005")
     public void shouldScore10ForInstructionsExactlyAtSoftLimitOf70Chars() {
@@ -92,7 +92,7 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should score 1.0 for instructions of 30 chars within soft limit")
+    @DisplayName("should score 1.0 for instructions of 30 weighted chars within soft limit")
     @Tag("F-KTLEN")
     @Tag("F-KTLEN-R006")
     public void shouldScore10ForInstructionsOf30CharsWithinSoftLimit() {
@@ -105,7 +105,7 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     // -- between soft and hard limits (71..100) score 0.5 --
 
     @Test
-    @DisplayName("should score 0.5 for instructions of 71 chars just above soft limit")
+    @DisplayName("should score 0.5 for instructions of 71 weighted chars just above soft limit")
     @Tag("F-KTLEN")
     @Tag("F-KTLEN-R005")
     public void shouldScore05ForInstructionsOf71CharsJustAboveSoftLimit() {
@@ -116,7 +116,7 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should score 0.5 for instructions exactly at hard limit of 100 chars")
+    @DisplayName("should score 0.5 for instructions exactly at hard limit of 100 weighted chars")
     @Tag("F-KTLEN")
     @Tag("F-KTLEN-R005")
     public void shouldScore05ForInstructionsExactlyAtHardLimitOf100Chars() {
@@ -127,7 +127,7 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should score 0.5 for instructions of 85 chars between soft and hard limits")
+    @DisplayName("should score 0.5 for instructions of 85 weighted chars between soft and hard limits")
     @Tag("F-KTLEN")
     @Tag("F-KTLEN-R006")
     public void shouldScore05ForInstructionsOf85CharsBetweenSoftAndHardLimits() {
@@ -140,7 +140,7 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     // -- above hard limit (>100) score 0.0 --
 
     @Test
-    @DisplayName("should score 0.0 for instructions of 101 chars just above hard limit")
+    @DisplayName("should score 0.0 for instructions of 101 weighted chars just above hard limit")
     @Tag("F-KTLEN")
     @Tag("F-KTLEN-R005")
     public void shouldScore00ForInstructionsOf101CharsJustAboveHardLimit() {
@@ -151,7 +151,7 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should score 0.0 for instructions of 200 chars well above hard limit")
+    @DisplayName("should score 0.0 for instructions of 200 weighted chars well above hard limit")
     @Tag("F-KTLEN")
     @Tag("F-KTLEN-R006")
     public void shouldScore00ForInstructionsOf200CharsWellAboveHardLimit() {
@@ -159,6 +159,22 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
         AuditNode node = buildKnowledgeNode(knowledgeWithInstructions(instructions));
         analyzer.onKnowledge(node);
         assertEquals(0.0, node.getScores().get("knowledge-instructions-length"));
+    }
+
+    // -- weighted vs plain length --
+
+    @Test
+    @DisplayName("should use weighted character length not plain string length for scoring instructions")
+    @Tag("F-KTLEN")
+    @Tag("F-KTLEN-R005")
+    public void shouldUseWeightedCharacterLengthNotPlainStringLengthForScoringInstructions() {
+        // 80 commas: plain length = 80 (would be > 70 soft limit), weighted = 80 * 0.5 = 40 (within soft limit)
+        String instructions = ",".repeat(80);
+        assertEquals(80, instructions.length());
+        AuditNode node = buildKnowledgeNode(knowledgeWithInstructions(instructions));
+        analyzer.onKnowledge(node);
+        // If using weighted length (40 <= 70), score is 1.0; if using plain length (80 > 70), score would be 0.5
+        assertEquals(1.0, node.getScores().get("knowledge-instructions-length"));
     }
 
     // -- no-op methods complete without error --

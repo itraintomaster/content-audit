@@ -1,6 +1,5 @@
 package com.learney.contentaudit.auditdomain;
 import java.util.List;
-
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -10,8 +9,8 @@ import javax.annotation.processing.Generated;
 public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
 
     private static final String ANALYZER_NAME = "knowledge-instructions-length";
-    private static final int SOFT_LIMIT = 70;
-    private static final int HARD_LIMIT = 100;
+    private static final double SOFT_LIMIT = 70.0;
+    private static final double HARD_LIMIT = 100.0;
 
     @Override
     public String getName() { return ANALYZER_NAME; }
@@ -33,10 +32,10 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
         if (instructions == null || instructions.isEmpty()) {
             score = 1.0;
         } else {
-            int len = instructions.length();
-            if (len <= SOFT_LIMIT) {
+            double weightedLen = computeWeightedLength(instructions);
+            if (weightedLen <= SOFT_LIMIT) {
                 score = 1.0;
-            } else if (len <= HARD_LIMIT) {
+            } else if (weightedLen <= HARD_LIMIT) {
                 score = 0.5;
             } else {
                 score = 0.0;
@@ -44,6 +43,23 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
         }
         node.getScores().put(ANALYZER_NAME, score);
         return null;
+    }
+
+    private double computeWeightedLength(String text) {
+        double total = 0.0;
+        for (int i = 0; i < text.length(); i++) {
+            total += charWeight(text.charAt(i));
+        }
+        return total;
+    }
+
+    private double charWeight(char c) {
+        switch (c) {
+            case '$': case '*': return 0.0;
+            case 'i': case ',': case '.': return 0.5;
+            case 'f': case 't': case '"': return 0.7;
+            default: return 1.0;
+        }
     }
 
     @Override
@@ -54,8 +70,12 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
 
     @Override
     public String getDescription() {
-        return "Scores knowledge instructions by character length against soft/hard limits";
+        return "Scores knowledge instructions by weighted character length against soft/hard limits";
     }
 
+    @Override
+    public List<ScoredItem> getResults() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 
 }

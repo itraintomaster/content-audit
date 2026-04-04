@@ -228,10 +228,11 @@ new AnalyzerDescriptor(String name, String description, AuditTarget target)
 | `children` | `List<AuditNode>` | Import `java.util.List` |
 | `scores` | `Map<String,Double>` |  |
 | `metadata` | `Map<String,Object>` |  |
+| `diagnoses` | `NodeDiagnoses` |  |
 
 **Generated constructor:**
 ```java
-new AuditNode(AuditableEntity entity, AuditTarget target, AuditNode parent, List<AuditNode> children, Map<String,Double> scores, Map<String,Object> metadata)
+new AuditNode(AuditableEntity entity, AuditTarget target, AuditNode parent, List<AuditNode> children, Map<String,Double> scores, Map<String,Object> metadata, NodeDiagnoses diagnoses)
 ```
 
 #### FrequencyBand (package: coca)
@@ -614,6 +615,65 @@ new AuditNode(AuditableEntity entity, AuditTarget target, AuditNode parent, List
 | `effortLevel` | `EffortLevel` |
 | `expectedImpact` | `double` |
 | `targetLevel` | `CefrLevel` |
+
+#### LemmaAbsenceCourseDiagnosis (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `assessment` | `AbsenceAssessment` |
+
+#### LemmaAbsenceLevelDiagnosis (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `level` | `CefrLevel` |
+| `totalExpected` | `int` |
+| `totalAbsent` | `int` |
+| `absencePercentage` | `double` |
+| `coverageTarget` | `double` |
+| `completelyAbsentScore` | `double` |
+| `tooLateScore` | `double` |
+| `tooEarlyScore` | `double` |
+| `assessment` | `AbsenceAssessment` |
+| `absentLemmas` | `List<AbsentLemma>` |
+| `misplacedLemmas` | `List<MisplacedLemma>` |
+| `highPriorityCount` | `int` |
+| `mediumPriorityCount` | `int` |
+| `lowPriorityCount` | `int` |
+
+#### LemmaPlacementDiagnosis (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `misplacedLemmaCount` | `int` |
+| `misplacedLemmas` | `List<MisplacedLemma>` |
+
+#### MisplacedLemma (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `lemmaAndPos` | `LemmaAndPos` |
+| `expectedLevel` | `CefrLevel` |
+| `foundInLevel` | `CefrLevel` |
+| `absenceType` | `AbsenceType` |
+| `cocaRank` | `Integer` |
+| `semanticCategory` | `String` |
 
 ### Module: course-domain
 

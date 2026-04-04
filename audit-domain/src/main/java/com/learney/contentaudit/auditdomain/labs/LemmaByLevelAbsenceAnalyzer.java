@@ -834,6 +834,9 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         return "Detects expected vocabulary absent from each CEFR level";
     }
 
-
+    @Override
+    public List<ScoredItem> getResults() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 
 }
