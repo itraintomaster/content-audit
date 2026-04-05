@@ -1,0 +1,273 @@
+---
+features:
+- id: "FEAT-DCOCA"
+  name: "Diagnosticos Tipados para el Analizador de Distribucion COCA"
+  description: "Reemplazar los resultados no tipados (`Map<String, Object> metadata`)\
+    \ que el analizador de distribucion COCA (FEAT-COCA) emite en cada nodo del arbol\
+    \ de auditoria por **registros de diagnostico tipados** que describan de forma\
+    \ explicita la informacion producida en cada nivel de la jerarquia del curso.\
+    \ Este es el segundo paso de la iniciativa de diagnosticos tipados iniciada por\
+    \ FEAT-DLABS, y aplica el mismo patron al analizador coca-buckets-distribution."
+  code: "F-DCOCA"
+  rules:
+  - id: "F-DCOCA-R001"
+    name: "Registro de diagnostico a nivel curso: CocaProgressionDiagnosis"
+    severity: "critical"
+    description: "En el nodo de curso del arbol de auditoria, el analizador coca-buckets-distribution\
+      \ debe emitir un registro `CocaProgressionDiagnosis` que contiene: | Campo |\
+      \ Tipo | Descripcion | Regla FEAT-COCA | |-------|------|-------------|-----------------|\
+      \ | overallScore | Decimal | Puntuacion global del analisis COCA | R018, R019\
+      \ | | progressionAssessments | Lista de ProgressionAssessment | Evaluacion de\
+      \ la progresion por banda de frecuencia entre niveles | R022, R023 | | improvementDirectives\
+      \ | Lista de ImprovementDirective | Directivas de mejora indicando que bandas\
+      \ necesitan ajustes en que niveles | R024, R025, R026 | `ProgressionAssessment`\
+      \ es un modelo existente en el dominio COCA con los campos: `bandName` (nombre\
+      \ de la banda), `actualProgression` (progresion real, tipo `ProgressionState`),\
+      \ `expectedProgression` (progresion esperada, tipo `ProgressionState`) y `matches`\
+      \ (si la progresion real coincide con la esperada). `ImprovementDirective` es\
+      \ un modelo existente en el dominio COCA con los campos: `type` (tipo `ImprovementDirectiveType`:\
+      \ ENRICH o REDUCE), `bandName`, `levelName`, `frequencyRangeFrom` (entero),\
+      \ `frequencyRangeTo` (entero), `actualPercentage` (decimal) y `targetPercentage`\
+      \ (decimal)."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DCOCA-R002"
+    name: "Registro de diagnostico a nivel milestone: CocaBucketsLevelDiagnosis"
+    severity: "critical"
+    description: "En cada nodo de nivel (milestone) del arbol de auditoria, el analizador\
+      \ coca-buckets-distribution debe emitir un registro `CocaBucketsLevelDiagnosis`\
+      \ que contiene: | Campo | Tipo | Descripcion | Regla FEAT-COCA | |-------|------|-------------|-----------------|\
+      \ | totalTokens | Entero | Cantidad total de tokens clasificados en este nivel\
+      \ | R005 | | buckets | Lista de BucketResult | Resultado por banda de frecuencia\
+      \ con conteo, porcentaje, objetivo, score y assessment | R006, R012, R013 |\
+      \ | quarters | Lista de QuarterResult | Resultado por trimestre con indice,\
+      \ score y buckets internos | R010, R011 | `BucketResult` es un modelo existente\
+      \ en el dominio COCA con los campos: `bandName`, `count` (entero), `percentage`\
+      \ (decimal), `targetPercentage` (decimal), `score` (decimal) y `assessment`\
+      \ (tipo `AssessmentState`: OPTIMAL, ADEQUATE, DEFICIENT, EXCESSIVE). `QuarterResult`\
+      \ es un modelo existente en el dominio COCA con los campos: `index` (entero),\
+      \ `bucketResults` (lista de `BucketResult`) y `score` (decimal)."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DCOCA-R003"
+    name: "Registro de diagnostico a nivel topic: CocaBucketsTopicDiagnosis"
+    severity: "critical"
+    description: "En cada nodo de topic del arbol de auditoria, el analizador coca-buckets-distribution\
+      \ debe emitir un registro `CocaBucketsTopicDiagnosis` que contiene: | Campo\
+      \ | Tipo | Descripcion | Regla FEAT-COCA | |-------|------|-------------|-----------------|\
+      \ | totalTokens | Entero | Cantidad total de tokens clasificados en este topic\
+      \ | R005 | | buckets | Lista de BucketSummary | Resumen de distribucion por\
+      \ banda con conteo y porcentaje (sin evaluacion contra objetivos) | R005, R006\
+      \ | `BucketSummary` es un registro nuevo y mas simple que `BucketResult`. A\
+      \ nivel de topic, la distribucion se muestra como referencia informativa sin\
+      \ evaluacion contra objetivos, por lo que no incluye `targetPercentage`, `score`\
+      \ ni `assessment`. Sus campos son: | Campo | Tipo | Descripcion | |-------|------|-------------|\
+      \ | bandName | Texto | Nombre de la banda de frecuencia (ej: top1k, top2k) |\
+      \ | count | Entero | Cantidad de tokens clasificados en esta banda | | percentage\
+      \ | Decimal | Porcentaje de tokens en esta banda respecto al total del topic\
+      \ |"
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DCOCA-R004"
+    name: "Ausencia de diagnostico en niveles knowledge y quiz"
+    severity: "major"
+    description: "El analizador coca-buckets-distribution **no** emite diagnosticos\
+      \ a nivel knowledge ni a nivel quiz. Esto es consistente con el diseno de FEAT-COCA:\
+      \ la unidad natural de evaluacion de distribucion de vocabulario es el nivel\
+      \ (o trimestre), no el quiz individual. Los tokens se acumulan desde quiz hacia\
+      \ arriba en la jerarquia, y recien a nivel de topic se presenta la distribucion\
+      \ acumulada como referencia informativa, y a nivel de milestone se evalua contra\
+      \ objetivos. En consecuencia, las interfaces `KnowledgeDiagnoses` y `QuizDiagnoses`\
+      \ **no** reciben un metodo `getCocaBucketsDiagnosis()`. Solicitar datos de coca-buckets\
+      \ en esos niveles no tiene sentido funcional."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DCOCA-R005"
+    name: "Nuevos metodos en las interfaces de diagnostico por nivel"
+    severity: "critical"
+    description: "Las interfaces de diagnostico por nivel deben extenderse con metodos\
+      \ tipados para acceder al diagnostico de coca-buckets: | Interfaz | Nuevo metodo\
+      \ | Tipo de retorno | |----------|-------------|-----------------| | CourseDiagnoses\
+      \ | getCocaBucketsDiagnosis() | Opcional de CocaProgressionDiagnosis | | LevelDiagnoses\
+      \ | getCocaBucketsDiagnosis() | Opcional de CocaBucketsLevelDiagnosis | | TopicDiagnoses\
+      \ | getCocaBucketsDiagnosis() | Opcional de CocaBucketsTopicDiagnosis | Estos\
+      \ metodos siguen el mismo patron establecido por `getLemmaAbsenceDiagnosis()`\
+      \ en FEAT-DLABS: retornan un valor opcional que esta vacio cuando el analizador\
+      \ no se ejecuto sobre ese nodo, y contiene el registro tipado cuando el analizador\
+      \ produjo datos. Las implementaciones por defecto (`DefaultCourseDiagnoses`,\
+      \ `DefaultLevelDiagnoses`, `DefaultTopicDiagnoses`) deben actualizarse para\
+      \ soportar el nuevo metodo."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DCOCA-R006"
+    name: "Migracion del formateador de detalle de coca-buckets"
+    severity: "major"
+    description: "El formateador de detalle de coca-buckets (`CocaBucketsDetailedFormatter`)\
+      \ es el principal consumidor actual de los datos del analizador. Tras la migracion,\
+      \ este formateador debe leer los registros de diagnostico tipados en lugar de\
+      \ acceder al mapa generico. El formateador accede a datos en los siguientes\
+      \ niveles: | Nivel | Dato que consume | Registro tipado | |-------|-----------------|-----------------|\
+      \ | Curso | Puntuacion global, progresion y directivas de mejora | CocaProgressionDiagnosis\
+      \ | | Milestone | Tokens totales, buckets con targets y quarters | CocaBucketsLevelDiagnosis\
+      \ | | Topic | Tokens totales y buckets informativos | CocaBucketsTopicDiagnosis\
+      \ | Tras la migracion, el formateador no debe contener ninguna conversion insegura\
+      \ (`@SuppressWarnings(\"unchecked\")`) ni acceso a `getMetadata()` para datos\
+      \ de coca-buckets. Todos los accesos a datos de diagnostico deben ser a traves\
+      \ de los registros tipados obtenidos via las interfaces de diagnostico (R005)."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  - id: "F-DCOCA-R007"
+    name: "Eliminacion del mapa generico para coca-buckets"
+    severity: "major"
+    description: "Una vez completada la migracion del analizador coca-buckets-distribution\
+      \ y todos sus consumidores, el analizador no debe escribir datos en el mapa\
+      \ generico sin tipo para la clave \"coca-buckets-distribution\". Toda la informacion\
+      \ de diagnostico de coca-buckets debe fluir exclusivamente a traves de los registros\
+      \ tipados definidos en este requerimiento (R001-R003). La misma regla de coexistencia\
+      \ temporal establecida en FEAT-DLABS R014 aplica: otros analizadores que aun\
+      \ no hayan sido migrados pueden seguir usando el mapa generico, pero para coca-buckets\
+      \ la migracion debe ser completa."
+    errorMessage: null
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+  journeys:
+  - id: "F-DCOCA-J001"
+    name: "Formatear informe de distribucion COCA usando diagnosticos tipados"
+    steps: []
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+    flow:
+    - id: "iniciar_formateo"
+      action: "El formateador de detalle de coca-buckets recibe el arbol de auditoria\
+        \ para generar el informe"
+      then: "leer_diagnostico_curso"
+      outcomes: []
+      result: null
+      gate: []
+    - id: "leer_diagnostico_curso"
+      action: "El formateador solicita el CocaProgressionDiagnosis del nodo curso\
+        \ para obtener la puntuacion global, las evaluaciones de progresion y las\
+        \ directivas de mejora"
+      then: null
+      outcomes:
+      - when: "El diagnostico existe en el nodo curso"
+        then: "leer_diagnosticos_niveles"
+      - when: "El diagnostico no existe (el analizador no se ejecuto)"
+        then: "omitir_seccion"
+      result: null
+      gate:
+      - "F-DCOCA-R001"
+      - "F-DCOCA-R005"
+    - id: "leer_diagnosticos_niveles"
+      action: "El formateador itera sobre los nodos de nivel y solicita el CocaBucketsLevelDiagnosis\
+        \ de cada uno para obtener tokens totales, buckets evaluados y quarters"
+      then: "leer_diagnosticos_topics"
+      outcomes: []
+      result: null
+      gate:
+      - "F-DCOCA-R002"
+      - "F-DCOCA-R005"
+    - id: "leer_diagnosticos_topics"
+      action: "El formateador itera sobre los nodos de topic dentro de cada nivel\
+        \ y solicita el CocaBucketsTopicDiagnosis para obtener la distribucion informativa\
+        \ de tokens por banda"
+      then: "generar_informe"
+      outcomes: []
+      result: null
+      gate:
+      - "F-DCOCA-R003"
+      - "F-DCOCA-R005"
+    - id: "generar_informe"
+      action: "El formateador genera el informe completo sin ninguna conversion insegura,\
+        \ accediendo a todos los datos a traves de campos tipados"
+      then: null
+      outcomes: []
+      result: "success"
+      gate:
+      - "F-DCOCA-R006"
+      - "F-DCOCA-R007"
+    - id: "omitir_seccion"
+      action: "El formateador omite la seccion de distribucion COCA porque el analizador\
+        \ no produjo diagnosticos"
+      then: null
+      outcomes: []
+      result: "success"
+      gate: []
+  - id: "F-DCOCA-J002"
+    name: "Consultar diagnosticos COCA desde el futuro refiner"
+    steps: []
+    validation: "AUTO_VALIDATED"
+    code: null
+    rationale: null
+    flow:
+    - id: "identificar_quiz_problematico"
+      action: "El refiner identifica un quiz que necesita correccion (por ejemplo,\
+        \ oraciones con vocabulario inadecuado para el nivel)"
+      then: "navegar_a_milestone"
+      outcomes: []
+      result: null
+      gate: []
+    - id: "navegar_a_milestone"
+      action: "El refiner navega desde el quiz hasta su milestone ancestro usando\
+        \ el mecanismo de navegacion del arbol (FEAT-DLABS R011)"
+      then: null
+      outcomes:
+      - when: "El milestone ancestro existe"
+        then: "obtener_diagnostico_nivel"
+      - when: "No se encuentra el milestone ancestro"
+        then: "error_navegacion"
+      result: null
+      gate: []
+    - id: "obtener_diagnostico_nivel"
+      action: "El refiner obtiene el CocaBucketsLevelDiagnosis del milestone para\
+        \ conocer la distribucion de vocabulario actual y los buckets deficientes\
+        \ del nivel"
+      then: "cruzar_con_otros_diagnosticos"
+      outcomes: []
+      result: null
+      gate:
+      - "F-DCOCA-R002"
+      - "F-DCOCA-R005"
+    - id: "cruzar_con_otros_diagnosticos"
+      action: "El refiner cruza la informacion de distribucion COCA con los diagnosticos\
+        \ de otros analizadores (por ejemplo, lemas ausentes de lemma-absence) para\
+        \ generar sugerencias de correccion que mejoren multiples dimensiones simultaneamente"
+      then: null
+      outcomes: []
+      result: "success"
+      gate: []
+    - id: "error_navegacion"
+      action: "El sistema informa que no se pudo navegar al milestone ancestro desde\
+        \ el quiz"
+      then: null
+      outcomes: []
+      result: "failure"
+      gate: []
+  doubts:
+  - id: "DOUBT-BUCKET-SUMMARY"
+    question: "Tipo separado para buckets de topic vs BucketResult reutilizado"
+    options:
+    - label: "Opcion A: Crear `BucketSummary` con solo `bandName`, `count` y `percentage`.\
+        \ Mas preciso semanti camente: deja claro que a nivel topic no hay evaluacion\
+        \ contra objetivos. Introduce un tipo nuevo pero simple."
+      description: null
+    - label: "Opcion B: Reutilizar `BucketResult` en todos los niveles. A nivel topic,\
+        \ los campos `targetPercentage`, `score` y `assessment` tendrian valores por\
+        \ defecto. Menos tipos, pero la semanti ca es menos clara: un consumidor podria\
+        \ interpretar incorrectamente que el score 0.0 significa una evaluacion deficiente."
+      description: null
+    answer: null
