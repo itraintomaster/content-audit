@@ -1,0 +1,42 @@
+code: __proposal__
+description: Remove legacy getResults() from ContentAnalyzer (ScoredItem no longer
+  exists) and associated tests; mark CocaBucketsAnalyzer and CocaBucketsDetailedFormatter
+  for FEAT-DCOCA typed diagnostics migration
+modules:
+- name: audit-domain
+  interfaces:
+  - name: ContentAnalyzer
+    sealed: false
+    exposes:
+    - signature: "getResults(): List<ScoredItem>"
+      _change: delete
+    _change: modify
+  implementations:
+  - name: KnowledgeInstructionsLengthAnalyzer
+    handwrittenTests:
+    - name: should return empty list when getResults is called without prior processing
+      _change: delete
+    _change: modify
+  packages:
+  - name: lrec
+    visibility: internal
+    implementations:
+    - name: LemmaRecurrenceAnalyzer
+      handwrittenTests:
+      - name: "Given no quizzes have been processed, when getResults is called, then\
+          \ returns empty list"
+        _change: delete
+      _change: modify
+    _change: modify
+  - name: coca
+    visibility: internal
+    implementations:
+    - name: CocaBucketsAnalyzer
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  implementations:
+  - name: CocaBucketsDetailedFormatter
+    _change: modify
+  _change: modify

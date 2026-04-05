@@ -1,0 +1,90 @@
+code: __proposal__
+description: "Add typed diagnosis records for COCA buckets distribution analyzer (FEAT-DCOCA):\
+  \ CocaProgressionDiagnosis (course), CocaBucketsLevelDiagnosis (milestone), CocaBucketsTopicDiagnosis\
+  \ (topic), BucketSummary model, new getCocaBucketsDiagnosis() methods on per-level\
+  \ interfaces, and mark CocaBucketsAnalyzer and CocaBucketsDetailedFormatter for\
+  \ modification"
+modules:
+- name: audit-domain
+  interfaces:
+  - name: CourseDiagnoses
+    sealed: false
+    exposes:
+    - signature: "getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>"
+    _change: modify
+  - name: LevelDiagnoses
+    sealed: false
+    exposes:
+    - signature: "getCocaBucketsDiagnosis(): Optional<CocaBucketsLevelDiagnosis>"
+    _change: modify
+  - name: TopicDiagnoses
+    sealed: false
+    exposes:
+    - signature: "getCocaBucketsDiagnosis(): Optional<CocaBucketsTopicDiagnosis>"
+    _change: modify
+  packages:
+  - name: coca
+    visibility: internal
+    models:
+    - name: CocaProgressionDiagnosis
+      type: record
+      fields:
+      - name: overallScore
+        type: double
+        description: Global COCA distribution analysis score (0.0-1.0)
+      - name: progressionAssessments
+        type: List<ProgressionAssessment>
+        description: Progression evaluation per frequency band across levels
+      - name: improvementDirectives
+        type: List<ImprovementDirective>
+        description: Directives indicating which bands need adjustments in which levels
+      _change: add
+    - name: CocaBucketsLevelDiagnosis
+      type: record
+      fields:
+      - name: totalTokens
+        type: int
+        description: Total number of classified tokens in this level
+      - name: buckets
+        type: List<BucketResult>
+        description: "Distribution results per frequency band with count, percentage,\
+          \ target, score and assessment"
+      - name: quarters
+        type: List<QuarterResult>
+        description: "Distribution results per quarter with index, score and internal\
+          \ buckets"
+      _change: add
+    - name: CocaBucketsTopicDiagnosis
+      type: record
+      fields:
+      - name: totalTokens
+        type: int
+        description: Total number of classified tokens in this topic
+      - name: buckets
+        type: List<BucketSummary>
+        description: Informational distribution summary per band without evaluation
+          against targets
+      _change: add
+    - name: BucketSummary
+      type: record
+      fields:
+      - name: bandName
+        type: String
+        description: "Name of the frequency band (e.g., top1k, top2k)"
+      - name: count
+        type: int
+        description: Number of tokens classified into this band
+      - name: percentage
+        type: double
+        description: Percentage of tokens in this band relative to topic total (0.0-1.0)
+      _change: add
+    implementations:
+    - name: CocaBucketsAnalyzer
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  implementations:
+  - name: CocaBucketsDetailedFormatter
+    _change: modify
+  _change: modify

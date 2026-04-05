@@ -134,7 +134,6 @@ Methods:
 - `onCourseComplete(AuditNode rootNode): Void`
 - `getName(): String`
 - `getTarget(): AuditTarget`
-- `getResults(): List<ScoredItem>`
 - `getDescription(): String`
 
 ### AnalysisResult (port)
@@ -243,18 +242,21 @@ Methods:
 Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
+- `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
 
 ### LevelDiagnoses (port)
 
 Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>`
+- `getCocaBucketsDiagnosis(): Optional<CocaBucketsLevelDiagnosis>`
 
 ### TopicDiagnoses (port)
 
 Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+- `getCocaBucketsDiagnosis(): Optional<CocaBucketsTopicDiagnosis>`
 
 ### KnowledgeDiagnoses (port)
 
@@ -338,7 +340,6 @@ Methods:
 - should complete without error when onMilestone is called → F-KTLEN
 - should complete without error when onTopic is called → F-KTLEN
 - should complete without error when onCourseComplete is called → F-KTLEN
-- should return empty list when getResults is called without prior processing → F-KTLEN
 - should produce correct scores for three knowledges with different instruction lengths → F-KTLEN/F-KTLEN-R006
 
 ### SentenceLengthAnalyzer

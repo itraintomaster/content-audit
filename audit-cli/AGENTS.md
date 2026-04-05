@@ -447,7 +447,6 @@ Methods:
 - `onCourseComplete(AuditNode rootNode): Void`
 - `getName(): String`
 - `getTarget(): AuditTarget`
-- `getResults(): List<ScoredItem>`
 - `getDescription(): String`
 
 ### AnalysisResult (port)
@@ -556,18 +555,21 @@ Methods:
 Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
+- `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
 
 ### LevelDiagnoses (port)
 
 Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>`
+- `getCocaBucketsDiagnosis(): Optional<CocaBucketsLevelDiagnosis>`
 
 ### TopicDiagnoses (port)
 
 Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+- `getCocaBucketsDiagnosis(): Optional<CocaBucketsTopicDiagnosis>`
 
 ### KnowledgeDiagnoses (port)
 

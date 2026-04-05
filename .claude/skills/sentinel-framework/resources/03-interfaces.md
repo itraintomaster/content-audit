@@ -58,7 +58,6 @@ Examples:
 | `onCourseComplete(AuditNode rootNode): Void` | (none) |
 | `getName(): String` | (none) |
 | `getTarget(): AuditTarget` | (none) |
-| `getResults(): List<ScoredItem>` | (none) |
 | `getDescription(): String` | (none) |
 
 #### AnalysisResult (port)
@@ -203,6 +202,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>` | (none) |
+| `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>` | (none) |
 
 #### LevelDiagnoses (port)
 
@@ -211,6 +211,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>` | (none) |
+| `getCocaBucketsDiagnosis(): Optional<CocaBucketsLevelDiagnosis>` | (none) |
 
 #### TopicDiagnoses (port)
 
@@ -219,6 +220,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>` | (none) |
+| `getCocaBucketsDiagnosis(): Optional<CocaBucketsTopicDiagnosis>` | (none) |
 
 #### KnowledgeDiagnoses (port)
 

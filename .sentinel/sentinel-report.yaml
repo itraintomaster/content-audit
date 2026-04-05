@@ -1,4 +1,4 @@
-generatedAt: 2026-04-04T23:25:02.729024Z
+generatedAt: 2026-04-05T15:21:45.679847Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -13,6 +13,12 @@ features:
   - ruleId: F-DLABS-R003
     state: PASSING
     tests:
+    - name: should return empty Optional from getLemmaAbsenceDiagnosis when analyzer
+        did not run
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
     - name: should handle missing diagnosis gracefully when analyzer did not produce
         results
       implemented: true
@@ -24,7 +30,14 @@ features:
   - ruleId: F-DLABS-R005
     state: NO_TESTS
   - ruleId: F-DLABS-R006
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should include typed AbsentLemma entries with lemma pos absenceType and
+        priority in level diagnosis
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R007
     state: NO_TESTS
   - ruleId: F-DLABS-R008
@@ -32,7 +45,14 @@ features:
   - ruleId: F-DLABS-R009
     state: NO_TESTS
   - ruleId: F-DLABS-R010
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should populate MisplacedLemma with lemmaAndPos expectedLevel and foundInLevel
+        on quiz diagnosis
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R011
     state: PASSING
     tests:
@@ -65,7 +85,13 @@ features:
       module: audit-cli
       implementation: LemmaAbsenceDetailedFormatter
   - ruleId: F-DLABS-R014
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should not write lemma-absence data to untyped metadata map after migration
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   journeysCoverage:
   - journeyId: F-DLABS-J001
     state: NO_TESTS
@@ -115,7 +141,7 @@ features:
       module: audit-cli
       implementation: LemmaAbsenceDetailedFormatter
 - id: FEAT-LREC
-  state: DRAFT
+  state: IMPLEMENTING
   requirementFile: requirements/2026-03-28.01_lemma-recurrence/requirement.yaml
   rulesCoverage:
   - ruleId: F-LREC-R001
@@ -123,7 +149,38 @@ features:
   - ruleId: F-LREC-R002
     state: NO_TESTS
   - ruleId: F-LREC-R003
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given a NOUN token, when isContentWord is called, then returns true"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultContentWordFilter
+    - name: "Given a VERB token, when isContentWord is called, then returns true"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultContentWordFilter
+    - name: "Given an ADJ token, when isContentWord is called, then returns true"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultContentWordFilter
+    - name: "Given an ADV token, when isContentWord is called, then returns true"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultContentWordFilter
+    - name: "Given a DET token, when isContentWord is called, then returns false"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultContentWordFilter
+    - name: "Given a PUNCT token, when isContentWord is called, then returns false"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultContentWordFilter
   - ruleId: F-LREC-R004
     state: NO_TESTS
   - ruleId: F-LREC-R005
@@ -131,7 +188,32 @@ features:
   - ruleId: F-LREC-R006
     state: NO_TESTS
   - ruleId: F-LREC-R007
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given positions [10, 110], when calculateMeanInterval is called, then\
+        \ returns 100.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultIntervalCalculator
+    - name: "Given positions [0, 100, 200, 300], when calculateMeanInterval is called,\
+        \ then returns 100.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultIntervalCalculator
+    - name: "Given positions [10, 110] and mean 100.0, when calculateStdDevInterval\
+        \ is called, then returns 0.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultIntervalCalculator
+    - name: "Given positions [0, 100, 200, 300] and mean 100.0, when calculateStdDevInterval\
+        \ is called, then returns 0.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultIntervalCalculator
   - ruleId: F-LREC-R008
     state: NO_TESTS
   - ruleId: F-LREC-R009
@@ -143,11 +225,25 @@ features:
   - ruleId: F-LREC-R012
     state: NO_TESTS
   - ruleId: F-LREC-R013
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given a LemmaRecurrenceAnalyzer, when getTarget is called, then returns\
+        \ COURSE"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-LREC-R014
     state: NO_TESTS
   - ruleId: F-LREC-R015
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given a LemmaRecurrenceAnalyzer, when getName is called, then returns\
+        \ lemma-recurrence"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
   journeysCoverage:
   - journeyId: F-LREC-J001
     state: NO_TESTS
@@ -158,6 +254,29 @@ features:
   - journeyId: F-LREC-J004
     state: NO_TESTS
   - journeyId: F-LREC-J005
+    state: NO_TESTS
+- id: FEAT-DCOCA
+  state: DRAFT
+  requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/requirement.yaml
+  rulesCoverage:
+  - ruleId: F-DCOCA-R001
+    state: NO_TESTS
+  - ruleId: F-DCOCA-R002
+    state: NO_TESTS
+  - ruleId: F-DCOCA-R003
+    state: NO_TESTS
+  - ruleId: F-DCOCA-R004
+    state: NO_TESTS
+  - ruleId: F-DCOCA-R005
+    state: NO_TESTS
+  - ruleId: F-DCOCA-R006
+    state: NO_TESTS
+  - ruleId: F-DCOCA-R007
+    state: NO_TESTS
+  journeysCoverage:
+  - journeyId: F-DCOCA-J001
+    state: NO_TESTS
+  - journeyId: F-DCOCA-J002
     state: NO_TESTS
 - id: FEAT-COURSE
   state: IMPLEMENTED
@@ -584,32 +703,195 @@ features:
   - journeyId: F-NLP-J003
     state: NO_TESTS
 - id: FEAT-LABS
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: requirements/2026-03-28.03_lemma-absence/requirement.yaml
   rulesCoverage:
   - ruleId: F-LABS-R001
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should obtain expected lemmas for each CEFR level from EVP catalog
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should exclude non-content words from expected lemmas
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R002
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should collect present lemmas from quiz tokens per level
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should collect present lemmas separately for each CEFR level
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should count a lemma as present only once per level even if it appears
+        multiple times
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should skip null tokens and tokens with null lemma during collection
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should skip quiz when tokens list is null
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should skip quiz when current level is null
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R003
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should mark lemma as absent when not present in its expected level
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should consider LemmaAndPos pair for absence not just lemma string
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R004
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should find levels where absent lemma appears for cross-level classification
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should return empty presentInLevels when lemma not found in any level
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R005
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should exclude multi-word phrases from expected lemmas
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R006
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should enumerate exactly three absence types
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R007
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should classify as COMPLETELY_ABSENT when lemma not in any level
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should classify as APPEARS_TOO_LATE when lemma only in later levels
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should classify as APPEARS_TOO_EARLY when lemma only in earlier levels
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should classify as APPEARS_TOO_EARLY when lemma in both earlier and later
+        levels
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R008
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should assign impact 1.0 to COMPLETELY_ABSENT
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should assign impact 0.8 to APPEARS_TOO_LATE
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should assign impact 0.6 to APPEARS_TOO_EARLY
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R009
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should have APPEARS_TOO_LATE impact greater than APPEARS_TOO_EARLY impact
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R010
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should not mark lemma as absent when present in its expected level
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should not mark lemma as absent when present in expected level even if
+        also in other levels
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R011
     state: PASSING
     tests:
+    - name: should assign HIGH priority for COCA rank 500
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should assign HIGH priority for COCA rank at boundary 1000
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should assign MEDIUM priority for COCA rank 1500
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should assign MEDIUM priority for COCA rank at boundary 3000
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should assign LOW priority for COCA rank 4000
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should assign LOW priority for COCA rank at boundary 5000
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
     - name: should return high priority bound of 1000
       implemented: true
       passing: true
@@ -631,12 +913,51 @@ features:
       module: audit-application
       implementation: DefaultLemmaAbsenceConfig
   - ruleId: F-LABS-R012
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should enrich absent lemma with COCA rank and semantic category and priority
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should handle null semantic category gracefully during enrichment
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R013
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should default to LOW priority when no COCA rank available
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R014
     state: PASSING
     tests:
+    - name: should trigger alert when HIGH priority absent lemmas exceed zero threshold
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should trigger alert when MEDIUM priority absent lemmas exceed threshold
+        of 3
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should trigger alert when LOW priority absent lemmas exceed threshold
+        of 10
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should not trigger alert when count is exactly at threshold
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
     - name: should have alert thresholds non-decreasing from high to low priority
       implemented: true
       passing: true
@@ -673,14 +994,75 @@ features:
       module: audit-application
       implementation: DefaultLemmaAbsenceConfig
   - ruleId: F-LABS-R015
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should treat same lemma with different POS as different entries
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R016
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should include critical functional pronoun I in A1 expected lemmas despite
+        filter rejection
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should include critical functional auxiliary be in A2 expected lemmas
+        despite filter rejection
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should not apply critical functional override for B1 level
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should not apply critical functional override for B2 level
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should include all critical pronouns auxiliaries prepositions and connectors
+        in A1
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R017
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should not discount lemma correctly placed at its expected level in sentence
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should not consider non-EVP lemma as misplaced in sentence
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R018
     state: PASSING
     tests:
+    - name: should apply 0.1 discount per level of distance for misplaced lemma
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should score 0.9 for sentence with 1-level distance misplaced lemma
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should score 0.8 for sentence with 2-level distance misplaced lemma
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
     - name: should have discount per level that limits max penalty to 0.3 for three-level
         distance
       implemented: true
@@ -709,12 +1091,56 @@ features:
       module: audit-application
       implementation: DefaultLemmaAbsenceConfig
   - ruleId: F-LABS-R019
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should score 0.7 for sentence with 3-level distance misplaced lemma which
+        is minimum
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should use maximum discount among all misplaced lemmas in sentence
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R020
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should score 1.0 for sentence with no misplaced lemmas
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should score 1.0 for sentence containing only non-EVP lemmas
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R021
     state: PASSING
     tests:
+    - name: should exceed threshold when absent count exceeds absolute threshold
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should exceed threshold when absence percentage exceeds percentage threshold
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should not exceed threshold when both absolute and percentage are within
+        limits
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should enforce zero tolerance for A1 level
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
     - name: should enforce A1 zero tolerance with both absolute and percentage thresholds
         at zero
       implemented: true
@@ -798,12 +1224,52 @@ features:
       module: audit-application
       implementation: DefaultLemmaAbsenceConfig
   - ruleId: F-LABS-R022
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should assess OPTIMAL when all levels within thresholds
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should assess ACCEPTABLE when non-critical level exceeds but critical
+        levels pass
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should assess NEEDS_IMPROVEMENT when A1 exceeds its threshold
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should assess NEEDS_IMPROVEMENT when A2 exceeds its threshold
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R023
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should compute level metrics with totalExpected totalAbsent absencePercentage
+        and score
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R024
     state: PASSING
     tests:
+    - name: should compute weighted global score with A1 A2 weight 2.0 and B1 B2 weight
+        1.0
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should return global score 1.0 for course with perfect coverage
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
     - name: should return positive level weights for all CEFR levels
       implemented: true
       passing: true
@@ -840,10 +1306,47 @@ features:
       module: audit-application
       implementation: DefaultLemmaAbsenceConfig
   - ruleId: F-LABS-R032
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should return coverage target 0.95 for A1
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return coverage target 0.85 for A2
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return coverage target 0.70 for B1
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return coverage target 0.55 for B2
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should have coverage targets decreasing from A1 to B2
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
+    - name: should return coverage targets between 0 and 1 for all levels
+      implemented: true
+      passing: true
+      module: audit-application
+      implementation: DefaultLemmaAbsenceConfig
   - ruleId: F-LABS-R025
     state: PASSING
     tests:
+    - name: should assess NEEDS_IMPROVEMENT when total HIGH priority exceeds critical
+        threshold
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
     - name: should return critical absence threshold of 10
       implemented: true
       passing: true
@@ -863,6 +1366,21 @@ features:
   - ruleId: F-LABS-R026
     state: PASSING
     tests:
+    - name: should limit HIGH priority absent lemmas to 20 in report
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should limit MEDIUM priority absent lemmas to 30 in report
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should limit LOW priority absent lemmas to 50 in report
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
     - name: should return positive report limits for all priority levels
       implemented: true
       passing: true
@@ -894,26 +1412,179 @@ features:
       module: audit-application
       implementation: DefaultLemmaAbsenceConfig
   - ruleId: F-LABS-R027
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should not generate recommendation for level within its threshold
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R028
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should map COMPLETELY_ABSENT to ADD_VOCABULARY recommendation
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should map APPEARS_TOO_LATE to INTRODUCE_EARLIER recommendation
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should map APPEARS_TOO_EARLY to REMOVE_FROM_LEVEL recommendation
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R029
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should assign HIGH recommendation priority for A1 level
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should assign HIGH recommendation priority for A2 level
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should assign MEDIUM recommendation priority for B1 with HIGH priority
+        lemmas
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should assign MEDIUM recommendation priority for B1 with MEDIUM priority
+        lemmas
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should assign LOW recommendation priority for B2 with LOW priority lemmas
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should assign MEDIUM recommendation priority for B2 with MEDIUM priority
+        lemmas
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R030
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should estimate LOW effort for 1 absent lemma
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should estimate LOW effort for 5 absent lemmas
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should estimate MEDIUM effort for 6 absent lemmas
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should estimate MEDIUM effort for 15 absent lemmas
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should estimate HIGH effort for 16 absent lemmas
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should estimate HIGH effort for 20 absent lemmas
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R031
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should return lemma-absence as analyzer name
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should return COURSE as audit target
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should return description text
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should return empty results when no data processed
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should complete without error when onTopic is called
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should complete without error when onKnowledge is called
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   journeysCoverage:
   - journeyId: F-LABS-J001
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "full lifecycle: course with full coverage produces OPTIMAL assessment\
+        \ and score 1.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - journeyId: F-LABS-J002
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "full lifecycle: course with completely absent HIGH priority lemmas in\
+        \ A1 produces NEEDS_IMPROVEMENT"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - journeyId: F-LABS-J003
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "full lifecycle: course with lemmas appearing too late produces INTRODUCE_EARLIER\
+        \ recommendations"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - journeyId: F-LABS-J004
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "full lifecycle: course with misplaced lemmas in sentences reflects distance\
+        \ discounts in scores"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - journeyId: F-LABS-J005
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "full lifecycle: course with multiple levels exceeding thresholds produces\
+        \ prioritized recommendations"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
 - id: FEAT-CLI
   state: IMPLEMENTING
   requirementFile: requirements/2026-03-21.01_cli-audit-runner/requirement.yaml
@@ -1593,8 +2264,6 @@ elements:
       status: EXISTS
     - signature: "getTarget(): AuditTarget"
       status: EXISTS
-    - signature: "getResults(): List<ScoredItem>"
-      status: MISSING
     - signature: "getDescription(): String"
       status: EXISTS
   - name: AnalysisResult
@@ -1738,17 +2407,23 @@ elements:
     methods:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>"
       status: EXISTS
+    - signature: "getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>"
+      status: EXISTS
   - name: LevelDiagnoses
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/LevelDiagnoses.java
     methods:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>"
       status: EXISTS
+    - signature: "getCocaBucketsDiagnosis(): Optional<CocaBucketsLevelDiagnosis>"
+      status: EXISTS
   - name: TopicDiagnoses
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/TopicDiagnoses.java
     methods:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
+      status: EXISTS
+    - signature: "getCocaBucketsDiagnosis(): Optional<CocaBucketsTopicDiagnosis>"
       status: EXISTS
   - name: KnowledgeDiagnoses
     status: EXISTS
@@ -2181,8 +2856,6 @@ elements:
     - name: should complete without error when onTopic is called
       status: MISSING
     - name: should complete without error when onCourseComplete is called
-      status: MISSING
-    - name: should return empty list when getResults is called without prior processing
       status: MISSING
     - name: should produce correct scores for three knowledges with different instruction
         lengths
@@ -2756,9 +3429,6 @@ elements:
       status: MISSING
     - name: "Given a LemmaRecurrenceAnalyzer, when getTarget is called, then returns\
         \ COURSE"
-      status: MISSING
-    - name: "Given no quizzes have been processed, when getResults is called, then\
-        \ returns empty list"
       status: MISSING
     - name: "Given an AuditableKnowledge and AuditContext, when onKnowledge is called,\
         \ then completes without error"
@@ -5745,6 +6415,18 @@ elements:
       status: MISSING
     - name: should return discount per level between 0 exclusive and 1 exclusive
       status: MISSING
+    - name: should return coverage target 0.95 for A1
+      status: MISSING
+    - name: should return coverage target 0.85 for A2
+      status: MISSING
+    - name: should return coverage target 0.70 for B1
+      status: MISSING
+    - name: should return coverage target 0.55 for B2
+      status: MISSING
+    - name: should have coverage targets decreasing from A1 to B2
+      status: MISSING
+    - name: should return coverage targets between 0 and 1 for all levels
+      status: MISSING
     testCleanViews:
     - |
       test: "should return absolute threshold 0 for A1"
@@ -5986,6 +6668,38 @@ elements:
 
       then:
         discount > 0.0 && discount < 1.0 is true
+    - |
+      test: "should return coverage target 0.95 for A1"
+      trace: FEAT-LABS / F-LABS-R032
+
+      then:
+        config.getCoverageTarget(CefrLevel.A1) == 0.95
+    - |
+      test: "should return coverage target 0.85 for A2"
+      trace: FEAT-LABS / F-LABS-R032
+
+      then:
+        config.getCoverageTarget(CefrLevel.A2) == 0.85
+    - |
+      test: "should return coverage target 0.70 for B1"
+      trace: FEAT-LABS / F-LABS-R032
+
+      then:
+        config.getCoverageTarget(CefrLevel.B1) == 0.70
+    - |
+      test: "should return coverage target 0.55 for B2"
+      trace: FEAT-LABS / F-LABS-R032
+
+      then:
+        config.getCoverageTarget(CefrLevel.B2) == 0.55
+    - |
+      test: "should have coverage targets decreasing from A1 to B2"
+      trace: FEAT-LABS / F-LABS-R032
+
+      then:
+        config.getCoverageTarget(CefrLevel.A1) > config.getCoverageTarget(CefrLevel.A2) is true
+        config.getCoverageTarget(CefrLevel.A2) > config.getCoverageTarget(CefrLevel.B1) is true
+        config.getCoverageTarget(CefrLevel.B1) > config.getCoverageTarget(CefrLevel.B2) is true
   - name: DefaultAnalyzerRegistry
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultAnalyzerRegistry.java
@@ -6683,10 +7397,10 @@ elements:
     status: EXISTS
     filePath: vocabulary-infrastructure/src/main/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalog.java
 testSummary:
-  total: 280
+  total: 284
   passing: 59
   failing: 0
-  notImplemented: 221
+  notImplemented: 225
 patterns:
 - id: declared-1
   pattern: Strategy
@@ -7681,7 +8395,7 @@ patterns:
   category: anti-pattern
   source: detected
   severity: warning
-  description: ContentAnalyzer has 9 methods (consider ISP)
+  description: ContentAnalyzer has 8 methods (consider ISP)
   involvedElements:
   - type: interface
     moduleName: audit-domain

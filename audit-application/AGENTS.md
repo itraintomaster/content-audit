@@ -142,6 +142,12 @@ Methods:
 - should return percentage thresholds between 0 and 100 for all levels → FEAT-LABS/F-LABS-R021
 - should return positive level weights for all CEFR levels → FEAT-LABS/F-LABS-R024
 - should return discount per level between 0 exclusive and 1 exclusive → FEAT-LABS/F-LABS-R018
+- should return coverage target 0.95 for A1 → FEAT-LABS/F-LABS-R032
+- should return coverage target 0.85 for A2 → FEAT-LABS/F-LABS-R032
+- should return coverage target 0.70 for B1 → FEAT-LABS/F-LABS-R032
+- should return coverage target 0.55 for B2 → FEAT-LABS/F-LABS-R032
+- should have coverage targets decreasing from A1 to B2 → FEAT-LABS/F-LABS-R032
+- should return coverage targets between 0 and 1 for all levels → FEAT-LABS/F-LABS-R032
 
 ### DefaultAnalyzerRegistry
 
@@ -289,7 +295,6 @@ Methods:
 - `onCourseComplete(AuditNode rootNode): Void`
 - `getName(): String`
 - `getTarget(): AuditTarget`
-- `getResults(): List<ScoredItem>`
 - `getDescription(): String`
 
 ### AnalysisResult (port)
@@ -398,18 +403,21 @@ Methods:
 Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
+- `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
 
 ### LevelDiagnoses (port)
 
 Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>`
+- `getCocaBucketsDiagnosis(): Optional<CocaBucketsLevelDiagnosis>`
 
 ### TopicDiagnoses (port)
 
 Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+- `getCocaBucketsDiagnosis(): Optional<CocaBucketsTopicDiagnosis>`
 
 ### KnowledgeDiagnoses (port)
 

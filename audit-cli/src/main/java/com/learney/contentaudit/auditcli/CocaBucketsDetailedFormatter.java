@@ -1,6 +1,17 @@
 package com.learney.contentaudit.auditcli;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
+import com.learney.contentaudit.auditdomain.LevelDiagnoses;
+import com.learney.contentaudit.auditdomain.TopicDiagnoses;
+import com.learney.contentaudit.auditdomain.coca.BucketResult;
+import com.learney.contentaudit.auditdomain.coca.BucketSummary;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsLevelDiagnosis;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsTopicDiagnosis;
+import com.learney.contentaudit.auditdomain.coca.CocaProgressionDiagnosis;
+import com.learney.contentaudit.auditdomain.coca.ImprovementDirective;
+import com.learney.contentaudit.auditdomain.coca.ProgressionAssessment;
+import com.learney.contentaudit.auditdomain.coca.QuarterResult;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -27,7 +38,6 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
 
     // ── JSON format ──────────────────────────────────────────────────────────
 
-    @SuppressWarnings("unchecked")
     private String formatJson(Partitioned p) {
         StringBuilder sb = new StringBuilder();
         sb.append("{\n");
@@ -41,22 +51,20 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         for (Map.Entry<String, AuditNode> e : p.milestones.entrySet()) {
             if (mi > 0) sb.append(",\n");
             AuditNode m = e.getValue();
-            Map<String, Object> meta = m.getMetadata();
+            CocaBucketsLevelDiagnosis levelDiag = levelDiagnosis(m);
             sb.append("    {\n");
             sb.append("      \"level\": \"").append(e.getKey()).append("\",\n");
             sb.append("      \"score\": ").append(fmt(nodeScore(m))).append(",\n");
-            sb.append("      \"totalTokens\": ").append(meta != null ? toInt(meta.get("totalTokens")) : 0).append(",\n");
+            sb.append("      \"totalTokens\": ").append(levelDiag != null ? levelDiag.getTotalTokens() : 0).append(",\n");
 
             // Buckets
-            List<Map<String, Object>> buckets = meta != null
-                    ? (List<Map<String, Object>>) meta.get("buckets") : null;
+            List<BucketResult> buckets = levelDiag != null ? levelDiag.getBuckets() : null;
             sb.append("      \"buckets\": ");
             appendBucketsJson(sb, buckets, "      ");
             sb.append(",\n");
 
             // Quarters
-            List<Map<String, Object>> quarters = meta != null
-                    ? (List<Map<String, Object>>) meta.get("quarters") : null;
+            List<QuarterResult> quarters = levelDiag != null ? levelDiag.getQuarters() : null;
             sb.append("      \"quarters\": ");
             appendQuartersJson(sb, quarters, "      ");
             sb.append(",\n");
@@ -67,16 +75,15 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
             for (int ti = 0; ti < topics.size(); ti++) {
                 AuditNode t = topics.get(ti);
                 if (ti > 0) sb.append(",");
-                Map<String, Object> tm = t.getMetadata();
+                CocaBucketsTopicDiagnosis topicDiag = topicDiagnosis(t);
                 String label = nodeLabel(t);
-                int totalTokens = tm != null ? toInt(tm.get("totalTokens")) : 0;
-                List<Map<String, Object>> tBuckets = tm != null
-                        ? (List<Map<String, Object>>) tm.get("buckets") : null;
+                int totalTokens = topicDiag != null ? topicDiag.getTotalTokens() : 0;
+                List<BucketSummary> tBuckets = topicDiag != null ? topicDiag.getBuckets() : null;
                 sb.append("\n        {\"topic\": ").append(jsonStr(label))
                   .append(", \"score\": ").append(fmt(nodeScore(t)))
                   .append(", \"totalTokens\": ").append(totalTokens)
                   .append(", \"buckets\": ");
-                appendBucketsJson(sb, tBuckets, "        ");
+                appendBucketSummariesJson(sb, tBuckets, "        ");
                 sb.append("}");
             }
             sb.append(topics.isEmpty() ? "]" : "\n      ]");
@@ -88,10 +95,9 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
 
         // Progression
         sb.append("  \"progression\": ");
-        if (p.course != null && p.course.getMetadata() != null) {
-            List<Map<String, Object>> progressions =
-                    (List<Map<String, Object>>) p.course.getMetadata().get("progressionAssessments");
-            appendProgressionJson(sb, progressions);
+        CocaProgressionDiagnosis courseDiag = courseDiagnosis(p.course);
+        if (courseDiag != null) {
+            appendProgressionJson(sb, courseDiag.getProgressionAssessments());
         } else {
             sb.append("[]");
         }
@@ -99,10 +105,8 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
 
         // Directives
         sb.append("  \"directives\": ");
-        if (p.course != null && p.course.getMetadata() != null) {
-            List<Map<String, Object>> directives =
-                    (List<Map<String, Object>>) p.course.getMetadata().get("improvementDirectives");
-            appendDirectivesJson(sb, directives);
+        if (courseDiag != null) {
+            appendDirectivesJson(sb, courseDiag.getImprovementDirectives());
         } else {
             sb.append("[]");
         }
@@ -111,8 +115,7 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         return sb.toString();
     }
 
-    @SuppressWarnings("unchecked")
-    private void appendBucketsJson(StringBuilder sb, List<Map<String, Object>> buckets, String indent) {
+    private void appendBucketsJson(StringBuilder sb, List<BucketResult> buckets, String indent) {
         if (buckets == null || buckets.isEmpty()) {
             sb.append("[]");
             return;
@@ -120,30 +123,40 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         sb.append("[");
         for (int i = 0; i < buckets.size(); i++) {
             if (i > 0) sb.append(",");
-            Map<String, Object> b = buckets.get(i);
+            BucketResult b = buckets.get(i);
             sb.append("\n  ").append(indent).append("{")
-              .append("\"bandName\": ").append(jsonStr(b.get("bandName")))
-              .append(", \"count\": ").append(toInt(b.get("count")))
-              .append(", \"percentage\": ").append(fmt(toDouble(b.get("percentage"))));
-            Object tgt = b.get("targetPercentage");
-            if (tgt != null) {
-                sb.append(", \"targetPercentage\": ").append(fmt(toDouble(tgt)));
-            }
-            Object score = b.get("score");
-            if (score != null) {
-                sb.append(", \"score\": ").append(fmt(toDouble(score)));
-            }
-            Object assessment = b.get("assessment");
-            if (assessment != null) {
-                sb.append(", \"assessment\": ").append(jsonStr(assessment));
+              .append("\"bandName\": ").append(jsonStr(b.getBandName()))
+              .append(", \"count\": ").append(b.getCount())
+              .append(", \"percentage\": ").append(fmt(b.getPercentage()));
+            sb.append(", \"targetPercentage\": ").append(fmt(b.getTargetPercentage()));
+            sb.append(", \"score\": ").append(fmt(b.getScore()));
+            if (b.getAssessment() != null) {
+                sb.append(", \"assessment\": ").append(jsonStr(b.getAssessment().name()));
             }
             sb.append("}");
         }
         sb.append("\n  ").append(indent).append("]");
     }
 
-    @SuppressWarnings("unchecked")
-    private void appendQuartersJson(StringBuilder sb, List<Map<String, Object>> quarters, String indent) {
+    private void appendBucketSummariesJson(StringBuilder sb, List<BucketSummary> buckets, String indent) {
+        if (buckets == null || buckets.isEmpty()) {
+            sb.append("[]");
+            return;
+        }
+        sb.append("[");
+        for (int i = 0; i < buckets.size(); i++) {
+            if (i > 0) sb.append(",");
+            BucketSummary b = buckets.get(i);
+            sb.append("\n  ").append(indent).append("{")
+              .append("\"bandName\": ").append(jsonStr(b.getBandName()))
+              .append(", \"count\": ").append(b.getCount())
+              .append(", \"percentage\": ").append(fmt(b.getPercentage()));
+            sb.append("}");
+        }
+        sb.append("\n  ").append(indent).append("]");
+    }
+
+    private void appendQuartersJson(StringBuilder sb, List<QuarterResult> quarters, String indent) {
         if (quarters == null || quarters.isEmpty()) {
             sb.append("[]");
             return;
@@ -151,20 +164,18 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         sb.append("[");
         for (int i = 0; i < quarters.size(); i++) {
             if (i > 0) sb.append(",");
-            Map<String, Object> q = quarters.get(i);
+            QuarterResult q = quarters.get(i);
             sb.append("\n  ").append(indent).append("{")
-              .append("\"index\": ").append(toInt(q.get("index")))
-              .append(", \"score\": ").append(fmt(toDouble(q.get("score"))));
-            List<Map<String, Object>> qBuckets = (List<Map<String, Object>>) q.get("buckets");
+              .append("\"index\": ").append(q.getIndex())
+              .append(", \"score\": ").append(fmt(q.getScore()));
             sb.append(", \"buckets\": ");
-            appendBucketsJson(sb, qBuckets, indent + "  ");
+            appendBucketsJson(sb, q.getBucketResults(), indent + "  ");
             sb.append("}");
         }
         sb.append("\n  ").append(indent).append("]");
     }
 
-    @SuppressWarnings("unchecked")
-    private void appendProgressionJson(StringBuilder sb, List<Map<String, Object>> progressions) {
+    private void appendProgressionJson(StringBuilder sb, List<ProgressionAssessment> progressions) {
         if (progressions == null || progressions.isEmpty()) {
             sb.append("[]");
             return;
@@ -172,19 +183,18 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         sb.append("[");
         for (int i = 0; i < progressions.size(); i++) {
             if (i > 0) sb.append(",");
-            Map<String, Object> pr = progressions.get(i);
+            ProgressionAssessment pr = progressions.get(i);
             sb.append("\n    {")
-              .append("\"bandName\": ").append(jsonStr(pr.get("bandName")))
-              .append(", \"actualProgression\": ").append(jsonStr(pr.get("actualProgression")))
-              .append(", \"expectedProgression\": ").append(jsonStr(pr.get("expectedProgression")))
-              .append(", \"matches\": ").append(pr.get("matches"))
+              .append("\"bandName\": ").append(jsonStr(pr.getBandName()))
+              .append(", \"actualProgression\": ").append(jsonStr(pr.getActualProgression() != null ? pr.getActualProgression().name() : null))
+              .append(", \"expectedProgression\": ").append(jsonStr(pr.getExpectedProgression() != null ? pr.getExpectedProgression().name() : null))
+              .append(", \"matches\": ").append(pr.isMatches())
               .append("}");
         }
         sb.append("\n  ]");
     }
 
-    @SuppressWarnings("unchecked")
-    private void appendDirectivesJson(StringBuilder sb, List<Map<String, Object>> directives) {
+    private void appendDirectivesJson(StringBuilder sb, List<ImprovementDirective> directives) {
         if (directives == null || directives.isEmpty()) {
             sb.append("[]");
             return;
@@ -192,15 +202,15 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         sb.append("[");
         for (int i = 0; i < directives.size(); i++) {
             if (i > 0) sb.append(",");
-            Map<String, Object> d = directives.get(i);
+            ImprovementDirective d = directives.get(i);
             sb.append("\n    {")
-              .append("\"type\": ").append(jsonStr(d.get("type")))
-              .append(", \"bandName\": ").append(jsonStr(d.get("bandName")))
-              .append(", \"levelName\": ").append(jsonStr(d.get("levelName")))
-              .append(", \"frequencyRangeFrom\": ").append(toInt(d.get("frequencyRangeFrom")))
-              .append(", \"frequencyRangeTo\": ").append(toInt(d.get("frequencyRangeTo")))
-              .append(", \"actualPercentage\": ").append(fmt(toDouble(d.get("actualPercentage"))))
-              .append(", \"targetPercentage\": ").append(fmt(toDouble(d.get("targetPercentage"))))
+              .append("\"type\": ").append(jsonStr(d.getType() != null ? d.getType().name() : null))
+              .append(", \"bandName\": ").append(jsonStr(d.getBandName()))
+              .append(", \"levelName\": ").append(jsonStr(d.getLevelName()))
+              .append(", \"frequencyRangeFrom\": ").append(d.getFrequencyRangeFrom())
+              .append(", \"frequencyRangeTo\": ").append(d.getFrequencyRangeTo())
+              .append(", \"actualPercentage\": ").append(fmt(d.getActualPercentage()))
+              .append(", \"targetPercentage\": ").append(fmt(d.getTargetPercentage()))
               .append("}");
         }
         sb.append("\n  ]");
@@ -208,7 +218,6 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
 
     // ── Table format (compact) ───────────────────────────────────────────────
 
-    @SuppressWarnings("unchecked")
     private String formatTable(Partitioned p) {
         StringBuilder sb = new StringBuilder();
 
@@ -217,15 +226,12 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         // Compute progression match count for header
         int progressionTotal = 0;
         int progressionMatch = 0;
-        if (p.course != null && p.course.getMetadata() != null) {
-            List<Map<String, Object>> progressions =
-                    (List<Map<String, Object>>) p.course.getMetadata().get("progressionAssessments");
-            if (progressions != null) {
-                progressionTotal = progressions.size();
-                for (Map<String, Object> pr : progressions) {
-                    Object matches = pr.get("matches");
-                    if (Boolean.TRUE.equals(matches)) progressionMatch++;
-                }
+        CocaProgressionDiagnosis courseDiag = courseDiagnosis(p.course);
+        if (courseDiag != null && courseDiag.getProgressionAssessments() != null) {
+            List<ProgressionAssessment> progressions = courseDiag.getProgressionAssessments();
+            progressionTotal = progressions.size();
+            for (ProgressionAssessment pr : progressions) {
+                if (pr.isMatches()) progressionMatch++;
             }
         }
 
@@ -254,28 +260,26 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         for (Map.Entry<String, AuditNode> entry : p.milestones.entrySet()) {
             String level = entry.getKey();
             AuditNode m = entry.getValue();
-            Map<String, Object> meta = m.getMetadata();
+            CocaBucketsLevelDiagnosis levelDiag = levelDiagnosis(m);
 
             sb.append(String.format("%-6s %6.2f %7d",
                     level,
                     nodeScore(m),
-                    meta != null ? toInt(meta.get("totalTokens")) : 0));
+                    levelDiag != null ? levelDiag.getTotalTokens() : 0));
 
             // Band percentages
-            List<Map<String, Object>> buckets = meta != null
-                    ? (List<Map<String, Object>>) meta.get("buckets") : null;
+            List<BucketResult> buckets = levelDiag != null ? levelDiag.getBuckets() : null;
             for (String band : bandNames) {
-                double pct = findBucketPercentage(buckets, band);
+                double pct = findBucketResultPercentage(buckets, band);
                 sb.append(String.format("  %-8s", String.format(java.util.Locale.ROOT, "%.1f", pct)));
             }
 
             // Quarter scores
-            List<Map<String, Object>> quarters = meta != null
-                    ? (List<Map<String, Object>>) meta.get("quarters") : null;
+            List<QuarterResult> quarters = levelDiag != null ? levelDiag.getQuarters() : null;
             int qCount = quarters != null ? quarters.size() : 0;
             for (int qi = 0; qi < maxQuarters; qi++) {
                 if (quarters != null && qi < qCount) {
-                    double qScore = toDouble(quarters.get(qi).get("score"));
+                    double qScore = quarters.get(qi).getScore();
                     sb.append(String.format("  %5.2f", qScore));
                 } else {
                     sb.append(String.format("  %5s", "-"));
@@ -289,7 +293,6 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
 
     // ── Text format (full detail) ────────────────────────────────────────────
 
-    @SuppressWarnings("unchecked")
     private String formatText(Partitioned p) {
         StringBuilder sb = new StringBuilder();
 
@@ -313,18 +316,17 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         for (Map.Entry<String, AuditNode> entry : p.milestones.entrySet()) {
             String level = entry.getKey();
             AuditNode m = entry.getValue();
-            Map<String, Object> meta = m.getMetadata();
+            CocaBucketsLevelDiagnosis levelDiag = levelDiagnosis(m);
 
             sb.append(String.format("%-6s %6.2f %7d",
                     level,
                     nodeScore(m),
-                    meta != null ? toInt(meta.get("totalTokens")) : 0));
+                    levelDiag != null ? levelDiag.getTotalTokens() : 0));
 
-            List<Map<String, Object>> buckets = meta != null
-                    ? (List<Map<String, Object>>) meta.get("buckets") : null;
+            List<BucketResult> buckets = levelDiag != null ? levelDiag.getBuckets() : null;
             for (String band : bandNames) {
-                double pct = findBucketPercentage(buckets, band);
-                String tgt = findBucketTarget(buckets, band);
+                double pct = findBucketResultPercentage(buckets, band);
+                String tgt = findBucketResultTarget(buckets, band);
                 sb.append(String.format("  %-7s %-6s",
                         String.format(java.util.Locale.ROOT, "%.1f", pct),
                         tgt));
@@ -336,11 +338,10 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         for (Map.Entry<String, AuditNode> entry : p.milestones.entrySet()) {
             String level = entry.getKey();
             AuditNode m = entry.getValue();
-            Map<String, Object> meta = m.getMetadata();
-            if (meta == null) continue;
+            CocaBucketsLevelDiagnosis levelDiag = levelDiagnosis(m);
+            if (levelDiag == null) continue;
 
-            List<Map<String, Object>> quarters =
-                    (List<Map<String, Object>>) meta.get("quarters");
+            List<QuarterResult> quarters = levelDiag.getQuarters();
             if (quarters == null || quarters.isEmpty()) continue;
 
             sb.append(String.format("%n%s > Quarters:%n", level));
@@ -352,14 +353,13 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
             sb.append(qHeader).append("\n");
             sb.append("  ").append("─".repeat(qHeader.length() - 2)).append("\n");
 
-            for (Map<String, Object> q : quarters) {
-                int idx = toInt(q.get("index"));
-                double qScore = toDouble(q.get("score"));
+            for (QuarterResult q : quarters) {
+                int idx = q.getIndex();
+                double qScore = q.getScore();
                 sb.append(String.format("  %-5s %6.2f", "Q" + idx, qScore));
-                List<Map<String, Object>> qBuckets =
-                        (List<Map<String, Object>>) q.get("buckets");
+                List<BucketResult> qBuckets = q.getBucketResults();
                 for (String band : bandNames) {
-                    double pct = findBucketPercentage(qBuckets, band);
+                    double pct = findBucketResultPercentage(qBuckets, band);
                     sb.append(String.format("  %-8s",
                             String.format(java.util.Locale.ROOT, "%.1f", pct)));
                 }
@@ -368,41 +368,38 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         }
 
         // Progression
-        if (p.course != null && p.course.getMetadata() != null) {
-            List<Map<String, Object>> progressions =
-                    (List<Map<String, Object>>) p.course.getMetadata().get("progressionAssessments");
+        CocaProgressionDiagnosis courseDiag = courseDiagnosis(p.course);
+        if (courseDiag != null) {
+            List<ProgressionAssessment> progressions = courseDiag.getProgressionAssessments();
             if (progressions != null && !progressions.isEmpty()) {
                 sb.append("\nProgression:\n");
                 sb.append(String.format("  %-10s %-14s %-14s %s%n",
                         "Band", "Actual", "Expected", "Match"));
                 sb.append("  ").append("─".repeat(45)).append("\n");
-                for (Map<String, Object> pr : progressions) {
-                    boolean matches = Boolean.TRUE.equals(pr.get("matches"));
+                for (ProgressionAssessment pr : progressions) {
+                    boolean matches = pr.isMatches();
                     sb.append(String.format("  %-10s %-14s %-14s %s%n",
-                            pr.get("bandName"),
-                            pr.get("actualProgression"),
-                            pr.get("expectedProgression"),
+                            pr.getBandName(),
+                            pr.getActualProgression() != null ? pr.getActualProgression().name() : "",
+                            pr.getExpectedProgression() != null ? pr.getExpectedProgression().name() : "",
                             matches ? "\u2713" : "\u2717"));
                 }
             }
-        }
 
-        // Improvement Directives
-        if (p.course != null && p.course.getMetadata() != null) {
-            List<Map<String, Object>> directives =
-                    (List<Map<String, Object>>) p.course.getMetadata().get("improvementDirectives");
+            // Improvement Directives
+            List<ImprovementDirective> directives = courseDiag.getImprovementDirectives();
             if (directives != null && !directives.isEmpty()) {
                 sb.append("\nImprovement Directives:\n");
-                for (Map<String, Object> d : directives) {
+                for (ImprovementDirective d : directives) {
                     sb.append(String.format(java.util.Locale.ROOT,
                             "  %s %s in %s (actual: %.1f%%, target: %.1f%%, range: %d-%d)%n",
-                            d.get("type"),
-                            d.get("bandName"),
-                            d.get("levelName"),
-                            toDouble(d.get("actualPercentage")),
-                            toDouble(d.get("targetPercentage")),
-                            toInt(d.get("frequencyRangeFrom")),
-                            toInt(d.get("frequencyRangeTo"))));
+                            d.getType() != null ? d.getType().name() : "",
+                            d.getBandName(),
+                            d.getLevelName(),
+                            d.getActualPercentage(),
+                            d.getTargetPercentage(),
+                            d.getFrequencyRangeFrom(),
+                            d.getFrequencyRangeTo()));
                 }
             }
         }
@@ -438,6 +435,30 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
         return p;
     }
 
+    // ── Typed diagnoses accessors ────────────────────────────────────────────
+
+    private static CocaProgressionDiagnosis courseDiagnosis(AuditNode node) {
+        if (node == null) return null;
+        if (node.getDiagnoses() instanceof CourseDiagnoses cd) {
+            return cd.getCocaBucketsDiagnosis().orElse(null);
+        }
+        return null;
+    }
+
+    private static CocaBucketsLevelDiagnosis levelDiagnosis(AuditNode node) {
+        if (node.getDiagnoses() instanceof LevelDiagnoses ld) {
+            return ld.getCocaBucketsDiagnosis().orElse(null);
+        }
+        return null;
+    }
+
+    private static CocaBucketsTopicDiagnosis topicDiagnosis(AuditNode node) {
+        if (node.getDiagnoses() instanceof TopicDiagnoses td) {
+            return td.getCocaBucketsDiagnosis().orElse(null);
+        }
+        return null;
+    }
+
     // ── Shared helpers ───────────────────────────────────────────────────────
 
     private double nodeScore(AuditNode node) {
@@ -466,17 +487,15 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
      * Extract ordered band names from the first MILESTONE item's buckets list.
      * Falls back to empty list if no milestone data is available.
      */
-    @SuppressWarnings("unchecked")
     private List<String> extractBandNames(Partitioned p) {
         for (AuditNode m : p.milestones.values()) {
-            Map<String, Object> meta = m.getMetadata();
-            if (meta == null) continue;
-            List<Map<String, Object>> buckets = (List<Map<String, Object>>) meta.get("buckets");
+            CocaBucketsLevelDiagnosis levelDiag = levelDiagnosis(m);
+            if (levelDiag == null) continue;
+            List<BucketResult> buckets = levelDiag.getBuckets();
             if (buckets == null || buckets.isEmpty()) continue;
             List<String> names = new ArrayList<>();
-            for (Map<String, Object> b : buckets) {
-                Object name = b.get("bandName");
-                if (name != null) names.add(String.valueOf(name));
+            for (BucketResult b : buckets) {
+                if (b.getBandName() != null) names.add(b.getBandName());
             }
             return names;
         }
@@ -484,24 +503,23 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
     }
 
     /** Determine the maximum number of quarters across all milestones. */
-    @SuppressWarnings("unchecked")
     private int maxQuarterCount(Partitioned p) {
         int max = 0;
         for (AuditNode m : p.milestones.values()) {
-            Map<String, Object> meta = m.getMetadata();
-            if (meta == null) continue;
-            List<Map<String, Object>> quarters = (List<Map<String, Object>>) meta.get("quarters");
+            CocaBucketsLevelDiagnosis levelDiag = levelDiagnosis(m);
+            if (levelDiag == null) continue;
+            List<QuarterResult> quarters = levelDiag.getQuarters();
             if (quarters != null) max = Math.max(max, quarters.size());
         }
         return max;
     }
 
-    /** Return the percentage for a named band from a buckets list, or 0.0 if not found. */
-    private double findBucketPercentage(List<Map<String, Object>> buckets, String bandName) {
+    /** Return the percentage for a named band from a BucketResult list, or 0.0 if not found. */
+    private double findBucketResultPercentage(List<BucketResult> buckets, String bandName) {
         if (buckets == null) return 0.0;
-        for (Map<String, Object> b : buckets) {
-            if (bandName.equals(b.get("bandName"))) {
-                return toDouble(b.get("percentage"));
+        for (BucketResult b : buckets) {
+            if (bandName.equals(b.getBandName())) {
+                return b.getPercentage();
             }
         }
         return 0.0;
@@ -511,20 +529,27 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
      * Return the formatted target string for a named band, including the comparison operator.
      * Returns "" if not present.
      */
-    private String findBucketTarget(List<Map<String, Object>> buckets, String bandName) {
+    private String findBucketResultTarget(List<BucketResult> buckets, String bandName) {
         if (buckets == null) return "";
-        for (Map<String, Object> b : buckets) {
-            if (bandName.equals(b.get("bandName"))) {
-                Object tgt = b.get("targetPercentage");
-                Object assessment = b.get("assessment");
-                if (tgt == null) return "";
-                double tgtVal = toDouble(tgt);
-                String assessStr = assessment != null ? String.valueOf(assessment).toLowerCase() : "";
+        for (BucketResult b : buckets) {
+            if (bandName.equals(b.getBandName())) {
+                double tgtVal = b.getTargetPercentage();
+                if (tgtVal == 0.0 && b.getAssessment() == null) return "";
                 String op;
-                if (assessStr.contains("low") || assessStr.contains("below")) {
-                    op = "\u2265"; // ≥
-                } else if (assessStr.contains("high") || assessStr.contains("above")) {
-                    op = "\u2264"; // ≤
+                if (b.getAssessment() != null) {
+                    switch (b.getAssessment()) {
+                        case DEFICIENT:
+                            op = "\u2265"; // ≥ (need more)
+                            break;
+                        case EXCESSIVE:
+                            op = "\u2264"; // ≤ (need less)
+                            break;
+                        default:
+                            // OPTIMAL or ADEQUATE: use position as fallback
+                            int idx = buckets.indexOf(b);
+                            op = idx == 0 ? "\u2265" : "\u2264";
+                            break;
+                    }
                 } else {
                     int idx = buckets.indexOf(b);
                     op = idx == 0 ? "\u2265" : "\u2264";
@@ -542,16 +567,6 @@ class CocaBucketsDetailedFormatter implements DetailedFormatter {
 
     private static String fmt(double val) {
         return String.format(java.util.Locale.ROOT, "%.4f", val);
-    }
-
-    private static double toDouble(Object val) {
-        if (val instanceof Number) return ((Number) val).doubleValue();
-        return 0.0;
-    }
-
-    private static int toInt(Object val) {
-        if (val instanceof Number) return ((Number) val).intValue();
-        return 0;
     }
 
     private static String truncate(String s, int max) {

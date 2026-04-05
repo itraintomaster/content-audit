@@ -76,7 +76,6 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should complete without error when onMilestone is called → F-KTLEN
 - should complete without error when onTopic is called → F-KTLEN
 - should complete without error when onCourseComplete is called → F-KTLEN
-- should return empty list when getResults is called without prior processing → F-KTLEN
 - should produce correct scores for three knowledges with different instruction lengths → F-KTLEN/F-KTLEN-R006
 
 ### SentenceLengthAnalyzer (audit-domain)
@@ -169,6 +168,12 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should return percentage thresholds between 0 and 100 for all levels → FEAT-LABS/F-LABS-R021
 - should return positive level weights for all CEFR levels → FEAT-LABS/F-LABS-R024
 - should return discount per level between 0 exclusive and 1 exclusive → FEAT-LABS/F-LABS-R018
+- should return coverage target 0.95 for A1 → FEAT-LABS/F-LABS-R032
+- should return coverage target 0.85 for A2 → FEAT-LABS/F-LABS-R032
+- should return coverage target 0.70 for B1 → FEAT-LABS/F-LABS-R032
+- should return coverage target 0.55 for B2 → FEAT-LABS/F-LABS-R032
+- should have coverage targets decreasing from A1 to B2 → FEAT-LABS/F-LABS-R032
+- should return coverage targets between 0 and 1 for all levels → FEAT-LABS/F-LABS-R032
 
 ### FileSystemCourseRepository (course-infrastructure)
 

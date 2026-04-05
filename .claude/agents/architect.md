@@ -146,7 +146,7 @@ modules:                 # List of affected modules
 ```
 
 Rules:
-1. **Every changed element needs `_change`** — `"add"`, `"modify"`, or `"delete"`. This applies to modules, packages, models, fields, interfaces, and implementations
+1. **Every changed element needs `_change`** — `"add"`, `"modify"`, or `"delete"`. This applies to modules, packages, models, fields, interfaces, implementations, individual method signatures, and individual handwritten tests
 2. **Context modules** — When modifying elements inside an existing module, include the module with `_change: "modify"` (or omit `_change` on the module)
 3. **References must resolve** — `dependsOn` → known module, `implements` → known interface
 4. **`implements` is always an array** — `implements: ["InterfaceName"]`, never a bare string
@@ -186,6 +186,34 @@ modules:
             _change: "add"
             exposes:
               - signature: "analyze(Order order): AnalysisResult"
+```
+
+Delete example (removing a single method signature from an interface):
+
+```yaml
+modules:
+  - name: "domain"
+    _change: "modify"
+    interfaces:
+      - name: "ContentAnalyzer"
+        _change: "modify"
+        exposes:
+          - signature: "getResults(): List<ScoredItem>"
+            _change: "delete"
+```
+
+Delete example (removing a single handwritten test from an implementation):
+
+```yaml
+modules:
+  - name: "domain"
+    _change: "modify"
+    implementations:
+      - name: "KnowledgeAnalyzer"
+        _change: "modify"
+        handwrittenTests:
+          - name: "should return empty list when getResults is called"
+            _change: "delete"
 ```
 
 ---

@@ -193,7 +193,6 @@ modules:
     - signature: "onCourseComplete(AuditNode rootNode): Void"
     - signature: "getName(): String"
     - signature: "getTarget(): AuditTarget"
-    - signature: "getResults(): List<ScoredItem>"
     - signature: "getDescription(): String"
   - name: AnalysisResult
     stereotype: port
@@ -299,16 +298,19 @@ modules:
     sealed: false
     exposes:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>"
+    - signature: "getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>"
   - name: LevelDiagnoses
     stereotype: port
     sealed: false
     exposes:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>"
+    - signature: "getCocaBucketsDiagnosis(): Optional<CocaBucketsLevelDiagnosis>"
   - name: TopicDiagnoses
     stereotype: port
     sealed: false
     exposes:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
+    - signature: "getCocaBucketsDiagnosis(): Optional<CocaBucketsTopicDiagnosis>"
   - name: KnowledgeDiagnoses
     stereotype: port
     sealed: false
@@ -556,9 +558,6 @@ modules:
       traceability:
         feature: F-KTLEN
     - name: should complete without error when onCourseComplete is called
-      traceability:
-        feature: F-KTLEN
-    - name: should return empty list when getResults is called without prior processing
       traceability:
         feature: F-KTLEN
     - name: should produce correct scores for three knowledges with different instruction
@@ -870,6 +869,54 @@ modules:
       fields:
       - name: LEVELS
       - name: QUARTERS
+    - name: CocaProgressionDiagnosis
+      type: record
+      fields:
+      - name: overallScore
+        type: double
+        description: Global COCA distribution analysis score (0.0-1.0)
+      - name: progressionAssessments
+        type: List<ProgressionAssessment>
+        description: Progression evaluation per frequency band across levels
+      - name: improvementDirectives
+        type: List<ImprovementDirective>
+        description: Directives indicating which bands need adjustments in which levels
+    - name: CocaBucketsLevelDiagnosis
+      type: record
+      fields:
+      - name: totalTokens
+        type: int
+        description: Total number of classified tokens in this level
+      - name: buckets
+        type: List<BucketResult>
+        description: "Distribution results per frequency band with count, percentage,\
+          \ target, score and assessment"
+      - name: quarters
+        type: List<QuarterResult>
+        description: "Distribution results per quarter with index, score and internal\
+          \ buckets"
+    - name: CocaBucketsTopicDiagnosis
+      type: record
+      fields:
+      - name: totalTokens
+        type: int
+        description: Total number of classified tokens in this topic
+      - name: buckets
+        type: List<BucketSummary>
+        description: Informational distribution summary per band without evaluation
+          against targets
+    - name: BucketSummary
+      type: record
+      fields:
+      - name: bandName
+        type: String
+        description: "Name of the frequency band (e.g., top1k, top2k)"
+      - name: count
+        type: int
+        description: Number of tokens classified into this band
+      - name: percentage
+        type: double
+        description: Percentage of tokens in this band relative to topic total (0.0-1.0)
     interfaces:
     - name: TokenClassifier
       stereotype: port
@@ -1014,10 +1061,6 @@ modules:
         traceability:
           feature: F-LREC
           rule: F-LREC-R013
-      - name: "Given no quizzes have been processed, when getResults is called, then\
-          \ returns empty list"
-        traceability:
-          feature: F-LREC
       - name: "Given an AuditableKnowledge and AuditContext, when onKnowledge is called,\
           \ then completes without error"
       - name: "Given an AuditableTopic and AuditContext, when onTopic is called, then\
@@ -2525,6 +2568,30 @@ modules:
       traceability:
         feature: FEAT-LABS
         rule: F-LABS-R018
+    - name: should return coverage target 0.95 for A1
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R032
+    - name: should return coverage target 0.85 for A2
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R032
+    - name: should return coverage target 0.70 for B1
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R032
+    - name: should return coverage target 0.55 for B2
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R032
+    - name: should have coverage targets decreasing from A1 to B2
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R032
+    - name: should return coverage targets between 0 and 1 for all levels
+      traceability:
+        feature: FEAT-LABS
+        rule: F-LABS-R032
     implements:
     - LemmaAbsenceConfig
   - name: DefaultAnalyzerRegistry

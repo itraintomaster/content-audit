@@ -5,6 +5,9 @@ import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.CocaBucketsConfig;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
+import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultLevelDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultTopicDiagnoses;
 import com.learney.contentaudit.auditdomain.NlpToken;
 import com.learney.contentaudit.auditdomain.NlpTokenizer;
 import java.util.ArrayList;
@@ -232,70 +235,56 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
         distributionResult = new CocaBucketsDistributionResult(
                 levelDistributions, progressionAssessments, overallScore, directives);
 
-        // Write course-level score and metadata to root node
+        // Write course-level score to root node
         rootNode.getScores().put(ANALYZER_NAME, overallScore);
-        Map<String, Object> courseMetadata = new LinkedHashMap<>();
-        courseMetadata.put("overallScore", overallScore);
-        List<Map<String, Object>> progressionMaps = new ArrayList<>();
-        for (ProgressionAssessment pa : progressionAssessments) {
-            Map<String, Object> m = new LinkedHashMap<>();
-            m.put("bandName", pa.getBandName());
-            m.put("actualProgression", pa.getActualProgression() != null ? pa.getActualProgression().name() : null);
-            m.put("expectedProgression", pa.getExpectedProgression() != null ? pa.getExpectedProgression().name() : null);
-            m.put("matches", pa.isMatches());
-            progressionMaps.add(m);
+
+        // Write typed course-level diagnosis
+        if (rootNode.getDiagnoses() instanceof DefaultCourseDiagnoses) {
+            DefaultCourseDiagnoses courseDiagnoses = (DefaultCourseDiagnoses) rootNode.getDiagnoses();
+            courseDiagnoses.setCocaBucketsDiagnosis(
+                    new CocaProgressionDiagnosis(overallScore, progressionAssessments, directives));
         }
-        courseMetadata.put("progressionAssessments", progressionMaps);
-        List<Map<String, Object>> directiveMaps = new ArrayList<>();
-        for (ImprovementDirective d : directives) {
-            Map<String, Object> m = new LinkedHashMap<>();
-            m.put("type", d.getType() != null ? d.getType().name() : null);
-            m.put("bandName", d.getBandName());
-            m.put("levelName", d.getLevelName());
-            m.put("frequencyRangeFrom", d.getFrequencyRangeFrom());
-            m.put("frequencyRangeTo", d.getFrequencyRangeTo());
-            m.put("actualPercentage", d.getActualPercentage());
-            m.put("targetPercentage", d.getTargetPercentage());
-            directiveMaps.add(m);
-        }
-        courseMetadata.put("improvementDirectives", directiveMaps);
-        rootNode.getMetadata().put(ANALYZER_NAME, courseMetadata);
 
         for (LevelBucketDistribution level : levelDistributions) {
-            // Write milestone-level score and metadata to the corresponding milestone node
+            // Write milestone-level score to the corresponding milestone node
             AuditNode milestoneNode = levelToMilestoneNode.get(level.getLevelName());
             if (milestoneNode != null) {
                 milestoneNode.getScores().put(ANALYZER_NAME, level.getScore());
 
-                Map<String, Object> milestoneMetadata = new LinkedHashMap<>();
+                // Write typed milestone-level diagnosis
                 int totalTokens = level.getBucketResults().stream().mapToInt(BucketResult::getCount).sum();
-                milestoneMetadata.put("totalTokens", totalTokens);
-                milestoneMetadata.put("buckets", buildBucketMetadataList(level.getBucketResults()));
-                List<Map<String, Object>> quarterMaps = new ArrayList<>();
-                for (QuarterResult qr : level.getQuarterResults()) {
-                    quarterMaps.add(buildQuarterMetadata(qr));
+                if (milestoneNode.getDiagnoses() instanceof DefaultLevelDiagnoses) {
+                    DefaultLevelDiagnoses levelDiagnoses = (DefaultLevelDiagnoses) milestoneNode.getDiagnoses();
+                    levelDiagnoses.setCocaBucketsDiagnosis(
+                            new CocaBucketsLevelDiagnosis(totalTokens, level.getBucketResults(), level.getQuarterResults()));
                 }
-                milestoneMetadata.put("quarters", quarterMaps);
-                milestoneNode.getMetadata().put(ANALYZER_NAME, milestoneMetadata);
 
-                // Write quarter-level detail scores to milestone node metadata
+                // Write quarter-level detail scores to milestone node scores
                 for (QuarterResult qr : level.getQuarterResults()) {
                     milestoneNode.getScores().put(ANALYZER_NAME + "/Q" + qr.getIndex(), qr.getScore());
                 }
             }
 
-            // Write topic-level scores and metadata to each topic node
+            // Write topic-level scores and typed diagnoses to each topic node
             List<AuditNode> topicNodes = levelTopicNodes.getOrDefault(level.getLevelName(), List.of());
             for (TopicBucketDistribution topic : level.getTopicDistributions()) {
                 AuditNode topicNode = findTopicNodeById(topicNodes, topic.getTopicId());
                 if (topicNode != null) {
                     topicNode.getScores().put(ANALYZER_NAME, topic.getScore());
 
-                    Map<String, Object> topicMetadata = new LinkedHashMap<>();
+                    // Build BucketSummary list from BucketResults (topic level: no evaluation against targets)
                     int topicTotalTokens = topic.getBucketResults().stream().mapToInt(BucketResult::getCount).sum();
-                    topicMetadata.put("totalTokens", topicTotalTokens);
-                    topicMetadata.put("buckets", buildTopicBucketMetadataList(topic.getBucketResults()));
-                    topicNode.getMetadata().put(ANALYZER_NAME, topicMetadata);
+                    List<BucketSummary> bucketSummaries = new ArrayList<>();
+                    for (BucketResult br : topic.getBucketResults()) {
+                        bucketSummaries.add(new BucketSummary(br.getBandName(), br.getCount(), br.getPercentage()));
+                    }
+
+                    // Write typed topic-level diagnosis
+                    if (topicNode.getDiagnoses() instanceof DefaultTopicDiagnoses) {
+                        DefaultTopicDiagnoses topicDiagnoses = (DefaultTopicDiagnoses) topicNode.getDiagnoses();
+                        topicDiagnoses.setCocaBucketsDiagnosis(
+                                new CocaBucketsTopicDiagnosis(topicTotalTokens, bucketSummaries));
+                    }
                 }
             }
         }
@@ -490,49 +479,6 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
             }
         }
         return defaultValue;
-    }
-
-    private Map<String, Object> buildBucketMetadata(BucketResult br) {
-        Map<String, Object> m = new LinkedHashMap<>();
-        m.put("bandName", br.getBandName());
-        m.put("count", br.getCount());
-        m.put("percentage", br.getPercentage());
-        m.put("targetPercentage", br.getTargetPercentage());
-        m.put("score", br.getScore());
-        m.put("assessment", br.getAssessment() != null ? br.getAssessment().name() : null);
-        return m;
-    }
-
-    private List<Map<String, Object>> buildBucketMetadataList(List<BucketResult> buckets) {
-        List<Map<String, Object>> list = new ArrayList<>();
-        for (BucketResult br : buckets) {
-            list.add(buildBucketMetadata(br));
-        }
-        return list;
-    }
-
-    private Map<String, Object> buildTopicBucketMetadata(BucketResult br) {
-        Map<String, Object> m = new LinkedHashMap<>();
-        m.put("bandName", br.getBandName());
-        m.put("count", br.getCount());
-        m.put("percentage", br.getPercentage());
-        return m;
-    }
-
-    private List<Map<String, Object>> buildTopicBucketMetadataList(List<BucketResult> buckets) {
-        List<Map<String, Object>> list = new ArrayList<>();
-        for (BucketResult br : buckets) {
-            list.add(buildTopicBucketMetadata(br));
-        }
-        return list;
-    }
-
-    private Map<String, Object> buildQuarterMetadata(QuarterResult qr) {
-        Map<String, Object> m = new LinkedHashMap<>();
-        m.put("index", qr.getIndex());
-        m.put("score", qr.getScore());
-        m.put("buckets", buildBucketMetadataList(qr.getBucketResults()));
-        return m;
     }
 
     @Override

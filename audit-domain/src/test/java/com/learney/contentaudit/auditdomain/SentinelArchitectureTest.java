@@ -320,6 +320,26 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: AnalysisStrategy - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.CocaProgressionDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CocaProgressionDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.CocaBucketsLevelDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CocaBucketsLevelDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.CocaBucketsTopicDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CocaBucketsTopicDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.coca.BucketSummary");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: BucketSummary - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.coca.TokenClassifier");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: TokenClassifier - " + e.getMessage());

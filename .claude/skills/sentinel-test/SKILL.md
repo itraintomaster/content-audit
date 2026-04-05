@@ -44,6 +44,19 @@ implementations:
 | `traceability` | No | Links to feature/rule/journey for coverage tracking |
 | `className` | No | Override the default class name (default: `{ImplName}Test`) |
 | `methodName` | No | Override the default method name (default: camelCase of name) |
+| `_change` | No | `delete` to remove an obsolete test from the architecture |
+
+### Removing Obsolete Tests
+
+When a test is no longer valid (e.g., it tests a method that was removed or a rule that no longer applies), mark it for removal with `_change: delete`:
+
+```yaml
+handwrittenTests:
+  - name: "should return empty list when getResults is called"
+    _change: delete
+```
+
+This tells the patch system to remove the test entry from `sentinel.yaml`. The generated stub file is not automatically deleted — the developer removes it.
 
 ## Generated Stub Structure
 

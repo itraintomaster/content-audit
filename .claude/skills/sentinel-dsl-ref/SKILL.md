@@ -112,6 +112,7 @@ interfaces:
     exposes:
       - signature: string      # "methodName(Type arg): ReturnType"
         throws: [string]       # Optional exception types
+        _change: add|modify|delete  # Optional — for removing individual signatures in patches
 ```
 
 **Signature format:** `methodName(Type argName, Type2 argName2): ReturnType`
@@ -120,6 +121,7 @@ interfaces:
 - Use `:` to separate return type — NOT `->` or `=>`
 - No space between method name and `(` — `send(...)` not `send (...)`
 - Generics without spaces: `Map<String,Object>` not `Map<String, Object>`
+- `_change: "delete"` on a signature removes that single method from the interface without deleting the whole interface
 - `patch propose` does NOT validate signatures — malformed signatures pass proposal but fail during `sentinel generate`
 
 ## Implementation

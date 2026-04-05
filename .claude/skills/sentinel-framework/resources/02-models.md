@@ -446,6 +446,53 @@ new AuditNode(AuditableEntity entity, AuditTarget target, AuditNode parent, List
 | `LEVELS` | `null` |
 | `QUARTERS` | `null` |
 
+#### CocaProgressionDiagnosis (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `overallScore` | `double` |
+| `progressionAssessments` | `List<ProgressionAssessment>` |
+| `improvementDirectives` | `List<ImprovementDirective>` |
+
+#### CocaBucketsLevelDiagnosis (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `totalTokens` | `int` |
+| `buckets` | `List<BucketResult>` |
+| `quarters` | `List<QuarterResult>` |
+
+#### CocaBucketsTopicDiagnosis (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `totalTokens` | `int` |
+| `buckets` | `List<BucketSummary>` |
+
+#### BucketSummary (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `bandName` | `String` |
+| `count` | `int` |
+| `percentage` | `double` |
+
 #### ExposureStatus (package: lrec)
 
 **Package:** `com.learney.contentaudit.auditdomain.lrec`

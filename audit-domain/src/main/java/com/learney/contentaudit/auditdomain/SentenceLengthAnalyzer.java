@@ -1,6 +1,4 @@
 package com.learney.contentaudit.auditdomain;
-import java.util.List;
-
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 

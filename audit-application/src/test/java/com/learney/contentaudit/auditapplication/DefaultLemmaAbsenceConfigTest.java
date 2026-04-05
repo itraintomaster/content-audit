@@ -349,4 +349,58 @@ public class DefaultLemmaAbsenceConfigTest {
         double discount = config.getDiscountPerLevel();
         assertTrue(discount > 0.0 && discount < 1.0);
     }
+
+    @Test
+    @DisplayName("should return coverage target 0.95 for A1")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R032")
+    public void shouldReturnCoverageTarget095ForA1() {
+        assertEquals(0.95, config.getCoverageTarget(CefrLevel.A1), 0.001);
+    }
+
+    @Test
+    @DisplayName("should return coverage target 0.85 for A2")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R032")
+    public void shouldReturnCoverageTarget085ForA2() {
+        assertEquals(0.85, config.getCoverageTarget(CefrLevel.A2), 0.001);
+    }
+
+    @Test
+    @DisplayName("should return coverage target 0.70 for B1")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R032")
+    public void shouldReturnCoverageTarget070ForB1() {
+        assertEquals(0.70, config.getCoverageTarget(CefrLevel.B1), 0.001);
+    }
+
+    @Test
+    @DisplayName("should return coverage target 0.55 for B2")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R032")
+    public void shouldReturnCoverageTarget055ForB2() {
+        assertEquals(0.55, config.getCoverageTarget(CefrLevel.B2), 0.001);
+    }
+
+    @Test
+    @DisplayName("should have coverage targets decreasing from A1 to B2")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R032")
+    public void shouldHaveCoverageTargetsDecreasingFromA1ToB2() {
+        assertTrue(config.getCoverageTarget(CefrLevel.A1) > config.getCoverageTarget(CefrLevel.A2));
+        assertTrue(config.getCoverageTarget(CefrLevel.A2) > config.getCoverageTarget(CefrLevel.B1));
+        assertTrue(config.getCoverageTarget(CefrLevel.B1) > config.getCoverageTarget(CefrLevel.B2));
+    }
+
+    @Test
+    @DisplayName("should return coverage targets between 0 and 1 for all levels")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R032")
+    public void shouldReturnCoverageTargetsBetween0And1ForAllLevels() {
+        for (CefrLevel level : CefrLevel.values()) {
+            double target = config.getCoverageTarget(level);
+            assertTrue(target > 0.0 && target <= 1.0,
+                    "Coverage target for " + level + " should be between 0 and 1, was " + target);
+        }
+    }
 }
