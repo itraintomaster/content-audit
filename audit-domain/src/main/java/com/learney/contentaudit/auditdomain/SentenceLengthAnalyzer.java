@@ -63,9 +63,29 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
             return null;
         }
 
+        TargetRange range = rangeOpt.get();
         int tokens = quiz.getTokens() != null ? quiz.getTokens().size() : 0;
-        double score = scoreQuiz(tokens, rangeOpt.get());
+        double score = scoreQuiz(tokens, range);
         node.getScores().put(ANALYZER_NAME, score);
+
+        if (node.getDiagnoses() instanceof DefaultQuizDiagnoses quizDiagnoses) {
+            int targetMin = range.getMinTokens();
+            int targetMax = range.getMaxTokens();
+            int toleranceMargin = config.getToleranceMargin();
+            int delta;
+            if (tokens < targetMin) {
+                delta = tokens - targetMin; // negative
+            } else if (tokens > targetMax) {
+                delta = tokens - targetMax; // positive
+            } else {
+                delta = 0; // within range
+            }
+            SentenceLengthDiagnosis diagnosis = new SentenceLengthDiagnosis(
+                tokens, targetMin, targetMax, level, delta, toleranceMargin
+            );
+            quizDiagnoses.setSentenceLengthDiagnosis(diagnosis);
+        }
+
         return null;
     }
 

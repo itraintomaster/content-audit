@@ -430,6 +430,17 @@ Methods:
 | metadata | `Map<String,Object>` |
 | diagnoses | `NodeDiagnoses` |
 
+### SentenceLengthDiagnosis (`record`)
+
+| Field | Type |
+|-------|------|
+| tokenCount | `int` |
+| targetMin | `int` |
+| targetMax | `int` |
+| cefrLevel | `CefrLevel` |
+| delta | `int` |
+| toleranceMargin | `int` |
+
 ### AuditEngine (port)
 
 Methods:
@@ -582,6 +593,7 @@ Methods:
 Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+- `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
 
 ### From course-domain
 

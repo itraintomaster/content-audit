@@ -235,6 +235,25 @@ new AnalyzerDescriptor(String name, String description, AuditTarget target)
 new AuditNode(AuditableEntity entity, AuditTarget target, AuditNode parent, List<AuditNode> children, Map<String,Double> scores, Map<String,Object> metadata, NodeDiagnoses diagnoses)
 ```
 
+#### SentenceLengthDiagnosis
+
+**Package:** `com.learney.contentaudit.auditdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `tokenCount` | `int` |  |
+| `targetMin` | `int` |  |
+| `targetMax` | `int` |  |
+| `cefrLevel` | `CefrLevel` |  |
+| `delta` | `int` |  |
+| `toleranceMargin` | `int` |  |
+
+**Generated constructor:**
+```java
+new SentenceLengthDiagnosis(int tokenCount, int targetMin, int targetMax, CefrLevel cefrLevel, int delta, int toleranceMargin)
+```
+
 #### FrequencyBand (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`

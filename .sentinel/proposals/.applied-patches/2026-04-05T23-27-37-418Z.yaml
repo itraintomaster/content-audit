@@ -1,0 +1,41 @@
+code: __proposal__
+description: Add typed SentenceLengthDiagnosis record at quiz level and extend QuizDiagnoses
+  interface with getSentenceLengthDiagnosis() method. Mark SentenceLengthAnalyzer
+  for modification to emit the diagnosis.
+modules:
+- name: audit-domain
+  models:
+  - name: SentenceLengthDiagnosis
+    type: record
+    fields:
+    - name: tokenCount
+      type: int
+      description: Actual token count of the quiz sentence
+    - name: targetMin
+      type: int
+      description: Minimum expected tokens for this CEFR level
+    - name: targetMax
+      type: int
+      description: Maximum expected tokens for this CEFR level
+    - name: cefrLevel
+      type: CefrLevel
+      description: The CEFR level derived from the ancestor milestone
+    - name: delta
+      type: int
+      description: "Tokens over/under range (0 if within, positive if over, negative\
+        \ if under)"
+    - name: toleranceMargin
+      type: int
+      description: Configured tolerance margin used for scoring
+    _change: add
+  interfaces:
+  - name: QuizDiagnoses
+    sealed: false
+    exposes:
+    - signature: "getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>"
+      _change: add
+    _change: modify
+  implementations:
+  - name: SentenceLengthAnalyzer
+    _change: modify
+  _change: modify

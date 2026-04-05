@@ -251,6 +251,7 @@ public class MyAdapter implements MyPort {
 - `NlpToken` — text: String, lemma: String, posTag: String, frequencyRank: Integer, isStop: boolean, isPunct: boolean
 - `AnalyzerDescriptor` — name: String, description: String, target: AuditTarget
 - `AuditNode` — entity: AuditableEntity, target: AuditTarget, parent: AuditNode, children: List<AuditNode>, scores: Map<String,Double>, metadata: Map<String,Object>, diagnoses: NodeDiagnoses
+- `SentenceLengthDiagnosis` — tokenCount: int, targetMin: int, targetMax: int, cefrLevel: CefrLevel, delta: int, toleranceMargin: int
 
 **Interfaces (contracts):**
 
@@ -334,6 +335,7 @@ public class MyAdapter implements MyPort {
   - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 - `QuizDiagnoses`
   - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+  - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
 
 **Implementations (your work):**
 

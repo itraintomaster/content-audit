@@ -115,6 +115,17 @@
 | metadata | `Map<String,Object>` |
 | diagnoses | `NodeDiagnoses` |
 
+### SentenceLengthDiagnosis (`record`)
+
+| Field | Type |
+|-------|------|
+| tokenCount | `int` |
+| targetMin | `int` |
+| targetMax | `int` |
+| cefrLevel | `CefrLevel` |
+| delta | `int` |
+| toleranceMargin | `int` |
+
 ## Interfaces
 
 ### AuditEngine (port)
@@ -269,6 +280,7 @@ Methods:
 Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+- `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
 
 ## Implementations
 

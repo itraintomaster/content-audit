@@ -237,6 +237,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>` | (none) |
+| `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>` | (none) |
 
 #### TokenClassifier (package: coca)
 

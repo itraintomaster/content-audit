@@ -176,6 +176,28 @@ modules:
       description: "Per-level typed diagnoses container. The concrete type matches\
         \ the node's AuditTarget level (CourseDiagnoses, LevelDiagnoses, TopicDiagnoses,\
         \ KnowledgeDiagnoses, or QuizDiagnoses)."
+  - name: SentenceLengthDiagnosis
+    type: record
+    fields:
+    - name: tokenCount
+      type: int
+      description: Actual token count of the quiz sentence
+    - name: targetMin
+      type: int
+      description: Minimum expected tokens for this CEFR level
+    - name: targetMax
+      type: int
+      description: Maximum expected tokens for this CEFR level
+    - name: cefrLevel
+      type: CefrLevel
+      description: The CEFR level derived from the ancestor milestone
+    - name: delta
+      type: int
+      description: "Tokens over/under range (0 if within, positive if over, negative\
+        \ if under)"
+    - name: toleranceMargin
+      type: int
+      description: Configured tolerance margin used for scoring
   interfaces:
   - name: AuditEngine
     stereotype: port
@@ -321,6 +343,7 @@ modules:
     sealed: false
     exposes:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
+    - signature: "getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>"
   implementations:
   - name: IAuditEngine
     requiresInject:

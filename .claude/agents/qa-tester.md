@@ -199,6 +199,7 @@ When analyzing an implementation, identify:
   - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 - `QuizDiagnoses`
   - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+  - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
 
 **Implementations:**
 
