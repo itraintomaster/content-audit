@@ -342,69 +342,64 @@ Examples:
 
 ### Module: audit-cli
 
-#### ReportFormatter (port)
+#### ReportFormatter (package: formatting)
 
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implemented by:** TextReportFormatter (audit-cli), JsonReportFormatter (audit-cli), TableReportFormatter (audit-cli)
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 
 | Method | Throws |
 |--------|--------|
 | `format(ReportViewModel viewModel,DrillDownScope scope): String` | (none) |
 
-#### FormatterRegistry (port)
+#### FormatterRegistry (package: formatting)
 
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implemented by:** DefaultFormatterRegistry (audit-cli)
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 
 | Method | Throws |
 |--------|--------|
 | `getFormatter(String formatName): ReportFormatter` | (none) |
 
-#### ReportViewModelTransformer (port)
+#### ReportViewModelTransformer (package: formatting)
 
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implemented by:** DefaultReportViewModelTransformer (audit-cli)
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 
 | Method | Throws |
 |--------|--------|
 | `transform(AuditReport report): ReportViewModel` | (none) |
 
-#### RawReportFormatter (port)
+#### RawReportFormatter (package: formatting)
 
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implemented by:** RawJsonReportFormatter (audit-cli)
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 
 | Method | Throws |
 |--------|--------|
 | `format(AuditReport report): String` | (none) |
 
-#### DrillDownResolver [SEALED] (port)
+#### DrillDownResolver (package: formatting) [SEALED]
 
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implemented by:** DefaultDrillDownResolver (audit-cli)
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 
 | Method | Throws |
 |--------|--------|
 | `resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView` | (none) |
 
-#### AnalyzerStatsTransformer (port)
+#### AnalyzerStatsTransformer (package: formatting)
 
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implemented by:** DefaultAnalyzerStatsTransformer (audit-cli)
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 
 | Method | Throws |
 |--------|--------|
 | `transform(AuditReport report,String analyzerName,AnalyzerRegistry registry): AnalyzerStatsView` | (none) |
 
-#### ScoreRow (port)
+#### ScoreRow (package: formatting)
 
-**Package:** `com.learney.contentaudit.auditcli`
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 
 | Method | Throws |
 |--------|--------|
@@ -412,11 +407,10 @@ Examples:
 | `getOverallScore(): double` | (none) |
 | `getAnalyzerScores(): Map<String,Double>` | (none) |
 
-#### DetailedFormatter (formatter)
+#### DetailedFormatter (package: formatting)
 
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implemented by:** LemmaAbsenceDetailedFormatter (audit-cli), CocaBucketsDetailedFormatter (audit-cli)
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 
 | Method | Throws |
 |--------|--------|

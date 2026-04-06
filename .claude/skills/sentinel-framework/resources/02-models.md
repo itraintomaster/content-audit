@@ -969,183 +969,156 @@ new CourseValidationException(String path, String detail)
 
 ### Module: audit-cli
 
-#### ReportViewModel
+#### ReportViewModel (package: formatting)
 
-**Package:** `com.learney.contentaudit.auditcli`
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 **Type:** record
 
-| Field | Type | Notes |
-|-------|------|-------|
-| `overallScore` | `double` |  |
-| `analyzerNames` | `List<String>` | Import `java.util.List` |
-| `analyzerScores` | `Map<String,Double>` |  |
-| `milestoneScores` | `List<MilestoneScoreRow>` | Import `java.util.List` |
+| Field | Type |
+|-------|------|
+| `overallScore` | `double` |
+| `analyzerNames` | `List<String>` |
+| `analyzerScores` | `Map<String,Double>` |
+| `milestoneScores` | `List<MilestoneScoreRow>` |
 
-**Generated constructor:**
-```java
-new ReportViewModel(double overallScore, List<String> analyzerNames, Map<String,Double> analyzerScores, List<MilestoneScoreRow> milestoneScores)
-```
+#### MilestoneScoreRow (package: formatting)
 
-#### MilestoneScoreRow
-
-**Package:** `com.learney.contentaudit.auditcli`
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 **Type:** record
 
-| Field | Type | Notes |
-|-------|------|-------|
-| `milestoneId` | `String` |  |
-| `analyzerScores` | `Map<String,Double>` |  |
-| `overallScore` | `double` |  |
-| `topicScores` | `List<TopicScoreRow>` | Import `java.util.List` |
-| `entity` | `AuditableEntity` |  |
+| Field | Type |
+|-------|------|
+| `milestoneId` | `String` |
+| `analyzerScores` | `Map<String,Double>` |
+| `overallScore` | `double` |
+| `topicScores` | `List<TopicScoreRow>` |
+| `entity` | `AuditableEntity` |
 
-**Generated constructor:**
-```java
-new MilestoneScoreRow(String milestoneId, Map<String,Double> analyzerScores, double overallScore, List<TopicScoreRow> topicScores, AuditableEntity entity)
-```
+#### QuizScoreRow (package: formatting)
 
-#### QuizScoreRow
-
-**Package:** `com.learney.contentaudit.auditcli`
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 **Type:** record
 
-| Field | Type | Notes |
-|-------|------|-------|
-| `quizId` | `String` |  |
-| `overallScore` | `double` |  |
-| `analyzerScores` | `Map<String,Double>` |  |
-| `entity` | `AuditableEntity` |  |
+| Field | Type |
+|-------|------|
+| `quizId` | `String` |
+| `overallScore` | `double` |
+| `analyzerScores` | `Map<String,Double>` |
+| `entity` | `AuditableEntity` |
 
-**Generated constructor:**
-```java
-new QuizScoreRow(String quizId, double overallScore, Map<String,Double> analyzerScores, AuditableEntity entity)
-```
+#### KnowledgeScoreRow (package: formatting)
 
-#### KnowledgeScoreRow
-
-**Package:** `com.learney.contentaudit.auditcli`
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 **Type:** record
 
-| Field | Type | Notes |
-|-------|------|-------|
-| `knowledgeId` | `String` |  |
-| `overallScore` | `double` |  |
-| `analyzerScores` | `Map<String,Double>` |  |
-| `quizScores` | `List<QuizScoreRow>` | Import `java.util.List` |
-| `entity` | `AuditableEntity` |  |
+| Field | Type |
+|-------|------|
+| `knowledgeId` | `String` |
+| `overallScore` | `double` |
+| `analyzerScores` | `Map<String,Double>` |
+| `quizScores` | `List<QuizScoreRow>` |
+| `entity` | `AuditableEntity` |
 
-**Generated constructor:**
-```java
-new KnowledgeScoreRow(String knowledgeId, double overallScore, Map<String,Double> analyzerScores, List<QuizScoreRow> quizScores, AuditableEntity entity)
-```
+#### TopicScoreRow (package: formatting)
 
-#### TopicScoreRow
-
-**Package:** `com.learney.contentaudit.auditcli`
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 **Type:** record
 
-| Field | Type | Notes |
-|-------|------|-------|
-| `topicId` | `String` |  |
-| `overallScore` | `double` |  |
-| `analyzerScores` | `Map<String,Double>` |  |
-| `knowledgeScores` | `List<KnowledgeScoreRow>` | Import `java.util.List` |
-| `entity` | `AuditableEntity` |  |
+| Field | Type |
+|-------|------|
+| `topicId` | `String` |
+| `overallScore` | `double` |
+| `analyzerScores` | `Map<String,Double>` |
+| `knowledgeScores` | `List<KnowledgeScoreRow>` |
+| `entity` | `AuditableEntity` |
 
-**Generated constructor:**
-```java
-new TopicScoreRow(String topicId, double overallScore, Map<String,Double> analyzerScores, List<KnowledgeScoreRow> knowledgeScores, AuditableEntity entity)
-```
+#### ChildScoreRow (package: formatting)
 
-#### DrillDownScope
-
-**Package:** `com.learney.contentaudit.auditcli`
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 **Type:** record
 
-| Field | Type | Notes |
-|-------|------|-------|
-| `level` | `Optional<String>` |  |
-| `topic` | `Optional<String>` |  |
-| `knowledge` | `Optional<String>` |  |
+| Field | Type |
+|-------|------|
+| `id` | `String` |
+| `overallScore` | `double` |
+| `analyzerScores` | `Map<String,Double>` |
+| `entity` | `AuditableEntity` |
 
-**Generated constructor:**
-```java
-new DrillDownScope(Optional<String> level, Optional<String> topic, Optional<String> knowledge)
-```
+#### DrillDownScope (package: formatting)
 
-#### DrillDownLevel
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Type:** record
 
-**Package:** `com.learney.contentaudit.auditcli`
+| Field | Type |
+|-------|------|
+| `level` | `Optional<String>` |
+| `topic` | `Optional<String>` |
+| `knowledge` | `Optional<String>` |
+
+#### DrillDownLevel (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 **Type:** enum
 
-| Field | Type | Notes |
-|-------|------|-------|
-| `COURSE` | `null` |  |
-| `MILESTONE` | `null` |  |
-| `TOPIC` | `null` |  |
-| `KNOWLEDGE` | `null` |  |
+| Field | Type |
+|-------|------|
+| `COURSE` | `null` |
+| `MILESTONE` | `null` |
+| `TOPIC` | `null` |
+| `KNOWLEDGE` | `null` |
 
-**Generated constructor:**
-```java
-new DrillDownLevel(null COURSE, null MILESTONE, null TOPIC, null KNOWLEDGE)
-```
+#### DrillDownView (package: formatting)
 
-#### DrillDownView
-
-**Package:** `com.learney.contentaudit.auditcli`
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 **Type:** record
 
-| Field | Type | Notes |
-|-------|------|-------|
-| `depth` | `DrillDownLevel` |  |
-| `nodeName` | `String` |  |
-| `overallScore` | `double` |  |
-| `analyzerScores` | `Map<String,Double>` |  |
-| `analyzerNames` | `List<String>` | Import `java.util.List` |
-| `childRows` | `List<ScoreRow>` | Import `java.util.List` |
+| Field | Type |
+|-------|------|
+| `depth` | `DrillDownLevel` |
+| `nodeName` | `String` |
+| `overallScore` | `double` |
+| `analyzerScores` | `Map<String,Double>` |
+| `analyzerNames` | `List<String>` |
+| `childRows` | `List<ScoreRow>` |
 
-**Generated constructor:**
-```java
-new DrillDownView(DrillDownLevel depth, String nodeName, double overallScore, Map<String,Double> analyzerScores, List<String> analyzerNames, List<ScoreRow> childRows)
-```
+#### AnalyzerStatsView (package: formatting)
 
-#### ChildScoreRow
-
-**Package:** `com.learney.contentaudit.auditcli`
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 **Type:** record
 
-| Field | Type | Notes |
-|-------|------|-------|
-| `id` | `String` |  |
-| `overallScore` | `double` |  |
-| `analyzerScores` | `Map<String,Double>` |  |
-| `entity` | `AuditableEntity` |  |
+| Field | Type |
+|-------|------|
+| `analyzerName` | `String` |
+| `analyzerDescription` | `String` |
+| `courseScore` | `double` |
+| `levelScores` | `Map<String,Double>` |
+| `worstItems` | `List<ScoredItemRow>` |
+| `scoreDistribution` | `Map<String,Integer>` |
+| `subMetricsByLevel` | `Map<String,Map<String,Double>>` |
+| `itemCount` | `int` |
 
-**Generated constructor:**
-```java
-new ChildScoreRow(String id, double overallScore, Map<String,Double> analyzerScores, AuditableEntity entity)
-```
+#### ScoredItemRow (package: formatting)
 
-#### AnalyzerStatsView
-
-**Package:** `com.learney.contentaudit.auditcli`
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 **Type:** record
 
-| Field | Type | Notes |
-|-------|------|-------|
-| `analyzerName` | `String` |  |
-| `analyzerDescription` | `String` |  |
-| `courseScore` | `double` |  |
-| `levelScores` | `Map<String,Double>` |  |
-| `worstItems` | `List<ScoredItemRow>` | Import `java.util.List` |
-| `scoreDistribution` | `Map<String,Integer>` |  |
-| `subMetricsByLevel` | `Map<String,Map<String,Double>>` |  |
-| `itemCount` | `int` |  |
-
-**Generated constructor:**
-```java
-new AnalyzerStatsView(String analyzerName, String analyzerDescription, double courseScore, Map<String,Double> levelScores, List<ScoredItemRow> worstItems, Map<String,Integer> scoreDistribution, Map<String,Map<String,Double>> subMetricsByLevel, int itemCount)
-```
+| Field | Type |
+|-------|------|
+| `id` | `String` |
+| `label` | `String` |
+| `score` | `double` |
+| `level` | `String` |
 
 ### Module: nlp-infrastructure
 

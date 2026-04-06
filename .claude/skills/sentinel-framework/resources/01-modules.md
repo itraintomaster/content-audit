@@ -132,10 +132,10 @@ project-root/
 | Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 10 (ReportViewModel, MilestoneScoreRow, QuizScoreRow, KnowledgeScoreRow, TopicScoreRow, DrillDownScope, DrillDownLevel, DrillDownView, ChildScoreRow, AnalyzerStatsView) |
-| Interfaces | 8 (ReportFormatter, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter, DrillDownResolver, AnalyzerStatsTransformer, ScoreRow, DetailedFormatter) |
-| Implementations | 16 (TextReportFormatter, JsonReportFormatter, DefaultFormatterRegistry, DefaultReportViewModelTransformer, TableReportFormatter, RawJsonReportFormatter, DefaultDrillDownResolver, DefaultAnalyzerStatsTransformer, ContentAuditCmd, AnalyzeCmd, AnalyzerCmd, AnalyzerListCmd, AnalyzerConfigCmd, AnalyzerStatsCmd, LemmaAbsenceDetailedFormatter, CocaBucketsDetailedFormatter) |
-| Packages | 0 |
+| Models | 0 |
+| Interfaces | 0 |
+| Implementations | 0 |
+| Packages | 2 (commands [public], formatting [internal]) |
 
 ### nlp-infrastructure
 

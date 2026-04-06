@@ -284,64 +284,6 @@ Infrastructure module for course persistence. Contains the filesystem adapter th
 
 CLI entry point for running content audits from the command line
 
-**Interfaces:**
-
-- `ReportFormatter`
-  - `format(ReportViewModel viewModel,DrillDownScope scope): String`
-- `FormatterRegistry`
-  - `getFormatter(String formatName): ReportFormatter`
-- `ReportViewModelTransformer`
-  - `transform(AuditReport report): ReportViewModel`
-- `RawReportFormatter`
-  - `format(AuditReport report): String`
-- `DrillDownResolver` [sealed]
-  - `resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView`
-- `AnalyzerStatsTransformer`
-  - `transform(AuditReport report,String analyzerName,AnalyzerRegistry registry): AnalyzerStatsView`
-- `ScoreRow`
-  - `getEntity(): AuditableEntity`
-  - `getOverallScore(): double`
-  - `getAnalyzerScores(): Map<String,Double>`
-- `DetailedFormatter`
-  - `format(String analyzerName,AuditNode rootNode,String outputFormat): String`
-
-**Implementations:**
-
-- `TextReportFormatter` implements ReportFormatter
-  Inject: drillDownResolver: DrillDownResolver
-  **NO TESTS** — all 1 methods uncovered
-- `JsonReportFormatter` implements ReportFormatter
-  Inject: drillDownResolver: DrillDownResolver
-  **NO TESTS** — all 1 methods uncovered
-- `DefaultFormatterRegistry` implements FormatterRegistry
-  **NO TESTS** — all 1 methods uncovered
-- `DefaultReportViewModelTransformer` implements ReportViewModelTransformer
-  **NO TESTS** — all 1 methods uncovered
-- `TableReportFormatter` implements ReportFormatter
-  Inject: drillDownResolver: DrillDownResolver
-  **NO TESTS** — all 1 methods uncovered
-- `RawJsonReportFormatter` implements RawReportFormatter
-  **NO TESTS** — all 1 methods uncovered
-- `DefaultDrillDownResolver` implements DrillDownResolver
-  **NO TESTS** — all 1 methods uncovered
-- `DefaultAnalyzerStatsTransformer` implements AnalyzerStatsTransformer
-  **NO TESTS** — all 1 methods uncovered
-- `ContentAuditCmd`
-- `AnalyzeCmd`
-  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry, viewModelTransformer: ReportViewModelTransformer, rawReportFormatter: RawReportFormatter, drillDownResolver: DrillDownResolver, detailedFormatters: Map<String,DetailedFormatter>
-- `AnalyzerCmd`
-- `AnalyzerListCmd`
-  Inject: analyzerRegistry: AnalyzerRegistry
-- `AnalyzerConfigCmd`
-  Inject: analyzerRegistry: AnalyzerRegistry
-- `AnalyzerStatsCmd`
-  Inject: analyzerRegistry: AnalyzerRegistry, analyzerStatsTransformer: AnalyzerStatsTransformer, auditRunner: AuditRunner
-- `LemmaAbsenceDetailedFormatter` implements DetailedFormatter
-  Tests (7): should format text output from typed diagnoses matching previous metadata-based output, should format json output from typed diagnoses matching previous metadata-based output, should format table output from typed diagnoses matching previous metadata-based output, should read typed diagnoses from course milestone and quiz nodes for formatting, should handle missing diagnosis gracefully when analyzer did not produce results, should navigate from quiz node to milestone ancestor to access level diagnosis, should return empty when navigating to nonexistent ancestor level
-  **Untested methods:** format
-- `CocaBucketsDetailedFormatter` implements DetailedFormatter
-  **NO TESTS** — all 1 methods uncovered
-
 ### nlp-infrastructure
 
 Infrastructure module for NLP processing. Provides SpaCy-backed tokenization behind a factory, with internal caching. Only the factory and configuration model are public; all processing internals are package-private.

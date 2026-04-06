@@ -2,6 +2,7 @@ package com.learney.contentaudit.auditcli;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.learney.contentaudit.auditcli.formatting.LemmaAbsenceDetailedFormatter;
 import com.learney.contentaudit.auditdomain.*;
 import com.learney.contentaudit.auditdomain.labs.*;
 import java.util.*;

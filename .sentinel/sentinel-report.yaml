@@ -1,4 +1,4 @@
-generatedAt: 2026-04-05T15:21:45.679847Z
+generatedAt: 2026-04-06T02:03:43.563180Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -19,12 +19,6 @@ features:
       passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
-    - name: should handle missing diagnosis gracefully when analyzer did not produce
-        results
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: LemmaAbsenceDetailedFormatter
   - ruleId: F-DLABS-R004
     state: NO_TESTS
   - ruleId: F-DLABS-R005
@@ -54,36 +48,11 @@ features:
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R011
-    state: PASSING
-    tests:
-    - name: should return empty when navigating to nonexistent ancestor level
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: LemmaAbsenceDetailedFormatter
+    state: NO_TESTS
   - ruleId: F-DLABS-R012
     state: NO_TESTS
   - ruleId: F-DLABS-R013
-    state: PASSING
-    tests:
-    - name: should format text output from typed diagnoses matching previous metadata-based
-        output
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: LemmaAbsenceDetailedFormatter
-    - name: should format json output from typed diagnoses matching previous metadata-based
-        output
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: LemmaAbsenceDetailedFormatter
-    - name: should format table output from typed diagnoses matching previous metadata-based
-        output
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: LemmaAbsenceDetailedFormatter
+    state: NO_TESTS
   - ruleId: F-DLABS-R014
     state: PASSING
     tests:
@@ -96,50 +65,9 @@ features:
   - journeyId: F-DLABS-J001
     state: NO_TESTS
   - journeyId: F-DLABS-J002
-    state: PASSING
-    tests:
-    - name: should navigate from quiz node to milestone ancestor to access level diagnosis
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: LemmaAbsenceDetailedFormatter
-    - name: should return empty when navigating to nonexistent ancestor level
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: LemmaAbsenceDetailedFormatter
+    state: NO_TESTS
   - journeyId: F-DLABS-J003
-    state: PASSING
-    tests:
-    - name: should format text output from typed diagnoses matching previous metadata-based
-        output
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: LemmaAbsenceDetailedFormatter
-    - name: should format json output from typed diagnoses matching previous metadata-based
-        output
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: LemmaAbsenceDetailedFormatter
-    - name: should format table output from typed diagnoses matching previous metadata-based
-        output
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: LemmaAbsenceDetailedFormatter
-    - name: should read typed diagnoses from course milestone and quiz nodes for formatting
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: LemmaAbsenceDetailedFormatter
-    - name: should handle missing diagnosis gracefully when analyzer did not produce
-        results
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: LemmaAbsenceDetailedFormatter
+    state: NO_TESTS
 - id: FEAT-LREC
   state: IMPLEMENTING
   requirementFile: requirements/2026-03-28.01_lemma-recurrence/requirement.yaml
@@ -1915,6 +1843,21 @@ features:
       implementation: KnowledgeInstructionsLengthAnalyzer
   - journeyId: F-KTLEN-J004
     state: NO_TESTS
+- id: FEAT-DSLEN
+  state: DRAFT
+  requirementFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/requirement.yaml
+  rulesCoverage:
+  - ruleId: F-DSLEN-R001
+    state: NO_TESTS
+  - ruleId: F-DSLEN-R002
+    state: NO_TESTS
+  - ruleId: F-DSLEN-R003
+    state: NO_TESTS
+  - ruleId: F-DSLEN-R004
+    state: NO_TESTS
+  journeysCoverage:
+  - journeyId: F-DSLEN-J001
+    state: NO_TESTS
 - id: FEAT-SLEN
   state: IMPLEMENTING
   requirementFile: requirements/2026-03-18.01_sentence-length/requirement.yaml
@@ -2239,6 +2182,22 @@ elements:
       status: EXISTS
     - name: diagnoses
       status: EXISTS
+  - name: SentenceLengthDiagnosis
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/SentenceLengthDiagnosis.java
+    fields:
+    - name: tokenCount
+      status: EXISTS
+    - name: targetMin
+      status: EXISTS
+    - name: targetMax
+      status: EXISTS
+    - name: cefrLevel
+      status: EXISTS
+    - name: delta
+      status: EXISTS
+    - name: toleranceMargin
+      status: EXISTS
   interfaces:
   - name: AuditEngine
     status: EXISTS
@@ -2436,6 +2395,8 @@ elements:
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/QuizDiagnoses.java
     methods:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
+      status: EXISTS
+    - signature: "getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>"
       status: EXISTS
   implementations:
   - name: IAuditEngine
@@ -6927,263 +6888,55 @@ elements:
         throws CourseValidationException: sut.save(emptyMilestoneCourse, Path.of("/tmp/test-empty-milestone-output"))
 - module: audit-cli
   status: EXISTS
-  models:
-  - name: ReportViewModel
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ReportViewModel.java
-    fields:
-    - name: overallScore
-      status: EXISTS
-    - name: analyzerNames
-      status: EXISTS
-    - name: analyzerScores
-      status: EXISTS
-    - name: milestoneScores
-      status: EXISTS
-  - name: MilestoneScoreRow
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/MilestoneScoreRow.java
-    fields:
-    - name: milestoneId
-      status: EXISTS
-    - name: analyzerScores
-      status: EXISTS
-    - name: overallScore
-      status: EXISTS
-    - name: topicScores
-      status: EXISTS
-    - name: entity
-      status: EXISTS
-  - name: QuizScoreRow
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/QuizScoreRow.java
-    fields:
-    - name: quizId
-      status: EXISTS
-    - name: overallScore
-      status: EXISTS
-    - name: analyzerScores
-      status: EXISTS
-    - name: entity
-      status: EXISTS
-  - name: KnowledgeScoreRow
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/KnowledgeScoreRow.java
-    fields:
-    - name: knowledgeId
-      status: EXISTS
-    - name: overallScore
-      status: EXISTS
-    - name: analyzerScores
-      status: EXISTS
-    - name: quizScores
-      status: EXISTS
-    - name: entity
-      status: EXISTS
-  - name: TopicScoreRow
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/TopicScoreRow.java
-    fields:
-    - name: topicId
-      status: EXISTS
-    - name: overallScore
-      status: EXISTS
-    - name: analyzerScores
-      status: EXISTS
-    - name: knowledgeScores
-      status: EXISTS
-    - name: entity
-      status: EXISTS
-  - name: DrillDownScope
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DrillDownScope.java
-    fields:
-    - name: level
-      status: EXISTS
-    - name: topic
-      status: EXISTS
-    - name: knowledge
-      status: EXISTS
-  - name: DrillDownLevel
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DrillDownLevel.java
-    fields:
-    - name: COURSE
-      status: EXISTS
-    - name: MILESTONE
-      status: EXISTS
-    - name: TOPIC
-      status: EXISTS
-    - name: KNOWLEDGE
-      status: EXISTS
-  - name: DrillDownView
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DrillDownView.java
-    fields:
-    - name: depth
-      status: EXISTS
-    - name: nodeName
-      status: EXISTS
-    - name: overallScore
-      status: EXISTS
-    - name: analyzerScores
-      status: EXISTS
-    - name: analyzerNames
-      status: EXISTS
-    - name: childRows
-      status: EXISTS
-  - name: ChildScoreRow
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ChildScoreRow.java
-    fields:
-    - name: id
-      status: EXISTS
-    - name: overallScore
-      status: EXISTS
-    - name: analyzerScores
-      status: EXISTS
-    - name: entity
-      status: EXISTS
-  - name: AnalyzerStatsView
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerStatsView.java
-    fields:
-    - name: analyzerName
-      status: EXISTS
-    - name: analyzerDescription
-      status: EXISTS
-    - name: courseScore
-      status: EXISTS
-    - name: levelScores
-      status: EXISTS
-    - name: worstItems
-      status: EXISTS
-    - name: scoreDistribution
-      status: EXISTS
-    - name: subMetricsByLevel
-      status: EXISTS
-    - name: itemCount
-      status: EXISTS
-  interfaces:
-  - name: ReportFormatter
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ReportFormatter.java
-    methods:
-    - signature: "format(ReportViewModel viewModel,DrillDownScope scope): String"
-      status: EXISTS
-  - name: FormatterRegistry
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/FormatterRegistry.java
-    methods:
-    - signature: "getFormatter(String formatName): ReportFormatter"
-      status: EXISTS
-  - name: ReportViewModelTransformer
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ReportViewModelTransformer.java
-    methods:
-    - signature: "transform(AuditReport report): ReportViewModel"
-      status: EXISTS
-  - name: RawReportFormatter
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/RawReportFormatter.java
-    methods:
-    - signature: "format(AuditReport report): String"
-      status: EXISTS
-  - name: DrillDownResolver
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DrillDownResolver.java
-    methods:
-    - signature: "resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView"
-      status: EXISTS
-  - name: AnalyzerStatsTransformer
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerStatsTransformer.java
-    methods:
-    - signature: "transform(AuditReport report,String analyzerName,AnalyzerRegistry\
-        \ registry): AnalyzerStatsView"
-      status: EXISTS
-  - name: ScoreRow
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ScoreRow.java
-    methods:
-    - signature: "getEntity(): AuditableEntity"
-      status: EXISTS
-    - signature: "getOverallScore(): double"
-      status: EXISTS
-    - signature: "getAnalyzerScores(): Map<String,Double>"
-      status: EXISTS
-  - name: DetailedFormatter
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DetailedFormatter.java
-    methods:
-    - signature: "format(String analyzerName,AuditNode rootNode,String outputFormat):\
-        \ String"
-      status: EXISTS
   implementations:
-  - name: TextReportFormatter
+  - name: Main
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/TextReportFormatter.java
-  - name: JsonReportFormatter
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/JsonReportFormatter.java
-  - name: DefaultFormatterRegistry
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultFormatterRegistry.java
-  - name: DefaultReportViewModelTransformer
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultReportViewModelTransformer.java
-  - name: TableReportFormatter
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/TableReportFormatter.java
-  - name: RawJsonReportFormatter
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/RawJsonReportFormatter.java
-  - name: DefaultDrillDownResolver
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultDrillDownResolver.java
-  - name: DefaultAnalyzerStatsTransformer
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DefaultAnalyzerStatsTransformer.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/Main.java
   - name: ContentAuditCmd
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ContentAuditCmd.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/ContentAuditCmd.java
   - name: AnalyzeCmd
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzeCmd.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmd.java
   - name: AnalyzerCmd
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerCmd.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/AnalyzerCmd.java
   - name: AnalyzerListCmd
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerListCmd.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/AnalyzerListCmd.java
   - name: AnalyzerConfigCmd
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerConfigCmd.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/AnalyzerConfigCmd.java
   - name: AnalyzerStatsCmd
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerStatsCmd.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/AnalyzerStatsCmd.java
+  - name: TextReportFormatter
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/TextReportFormatter.java
+  - name: JsonReportFormatter
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/JsonReportFormatter.java
+  - name: TableReportFormatter
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/TableReportFormatter.java
+  - name: DefaultFormatterRegistry
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/DefaultFormatterRegistry.java
+  - name: DefaultReportViewModelTransformer
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/DefaultReportViewModelTransformer.java
+  - name: RawJsonReportFormatter
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/RawJsonReportFormatter.java
+  - name: DefaultDrillDownResolver
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/DefaultDrillDownResolver.java
+  - name: DefaultAnalyzerStatsTransformer
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/DefaultAnalyzerStatsTransformer.java
   - name: LemmaAbsenceDetailedFormatter
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/LemmaAbsenceDetailedFormatter.java
-    tests:
-    - name: should format text output from typed diagnoses matching previous metadata-based
-        output
-      status: MISSING
-    - name: should format json output from typed diagnoses matching previous metadata-based
-        output
-      status: MISSING
-    - name: should format table output from typed diagnoses matching previous metadata-based
-        output
-      status: MISSING
-    - name: should read typed diagnoses from course milestone and quiz nodes for formatting
-      status: MISSING
-    - name: should handle missing diagnosis gracefully when analyzer did not produce
-        results
-      status: MISSING
-    - name: should navigate from quiz node to milestone ancestor to access level diagnosis
-      status: MISSING
-    - name: should return empty when navigating to nonexistent ancestor level
-      status: MISSING
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/LemmaAbsenceDetailedFormatter.java
     testCleanViews:
     - |
       test: "should format text output from typed diagnoses matching previous metadata-based output"
@@ -7353,7 +7106,7 @@ elements:
         quizAncestor.isPresent() is false
   - name: CocaBucketsDetailedFormatter
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/CocaBucketsDetailedFormatter.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/CocaBucketsDetailedFormatter.java
 - module: nlp-infrastructure
   status: EXISTS
   models:
@@ -7397,10 +7150,10 @@ elements:
     status: EXISTS
     filePath: vocabulary-infrastructure/src/main/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalog.java
 testSummary:
-  total: 284
+  total: 277
   passing: 59
   failing: 0
-  notImplemented: 225
+  notImplemented: 218
 patterns:
 - id: declared-1
   pattern: Strategy
@@ -7839,6 +7592,18 @@ patterns:
     nodeId: model-audit-domain-AuditNode
   confidence: 0.75
 - id: stereo-35
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: SentenceLengthDiagnosis is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: SentenceLengthDiagnosis
+    nodeId: model-audit-domain-SentenceLengthDiagnosis
+  confidence: 0.75
+- id: stereo-36
   pattern: Port
   category: architectural
   source: detected
@@ -7850,7 +7615,7 @@ patterns:
     elementName: CourseRepository
     nodeId: interface-course-domain-CourseRepository
   confidence: 0.9
-- id: stereo-36
+- id: stereo-37
   pattern: Service
   category: architectural
   source: detected
@@ -7862,7 +7627,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: stereo-37
+- id: stereo-38
   pattern: Enum
   category: architectural
   source: detected
@@ -7874,7 +7639,7 @@ patterns:
     elementName: NodeKind
     nodeId: model-course-domain-NodeKind
   confidence: 0.95
-- id: stereo-38
+- id: stereo-39
   pattern: Enum
   category: architectural
   source: detected
@@ -7886,7 +7651,7 @@ patterns:
     elementName: SentencePartKind
     nodeId: model-course-domain-SentencePartKind
   confidence: 0.95
-- id: stereo-39
+- id: stereo-40
   pattern: Entity
   category: architectural
   source: detected
@@ -7898,7 +7663,7 @@ patterns:
     elementName: CourseEntity
     nodeId: model-course-domain-CourseEntity
   confidence: 0.8
-- id: stereo-40
+- id: stereo-41
   pattern: Entity
   category: architectural
   source: detected
@@ -7910,7 +7675,7 @@ patterns:
     elementName: RootNodeEntity
     nodeId: model-course-domain-RootNodeEntity
   confidence: 0.8
-- id: stereo-41
+- id: stereo-42
   pattern: Entity
   category: architectural
   source: detected
@@ -7922,7 +7687,7 @@ patterns:
     elementName: MilestoneEntity
     nodeId: model-course-domain-MilestoneEntity
   confidence: 0.8
-- id: stereo-42
+- id: stereo-43
   pattern: Entity
   category: architectural
   source: detected
@@ -7934,7 +7699,7 @@ patterns:
     elementName: TopicEntity
     nodeId: model-course-domain-TopicEntity
   confidence: 0.8
-- id: stereo-43
+- id: stereo-44
   pattern: Entity
   category: architectural
   source: detected
@@ -7946,7 +7711,7 @@ patterns:
     elementName: KnowledgeEntity
     nodeId: model-course-domain-KnowledgeEntity
   confidence: 0.8
-- id: stereo-44
+- id: stereo-45
   pattern: Entity
   category: architectural
   source: detected
@@ -7958,7 +7723,7 @@ patterns:
     elementName: QuizTemplateEntity
     nodeId: model-course-domain-QuizTemplateEntity
   confidence: 0.8
-- id: stereo-45
+- id: stereo-46
   pattern: Value Object
   category: architectural
   source: detected
@@ -7970,7 +7735,7 @@ patterns:
     elementName: FormEntity
     nodeId: model-course-domain-FormEntity
   confidence: 0.75
-- id: stereo-46
+- id: stereo-47
   pattern: Value Object
   category: architectural
   source: detected
@@ -7982,7 +7747,7 @@ patterns:
     elementName: SentencePartEntity
     nodeId: model-course-domain-SentencePartEntity
   confidence: 0.75
-- id: stereo-47
+- id: stereo-48
   pattern: Service
   category: architectural
   source: detected
@@ -7994,7 +7759,7 @@ patterns:
     elementName: AuditRunner
     nodeId: interface-audit-application-AuditRunner
   confidence: 0.9
-- id: stereo-48
+- id: stereo-49
   pattern: Port
   category: architectural
   source: detected
@@ -8006,7 +7771,7 @@ patterns:
     elementName: CourseMapper
     nodeId: interface-audit-application-CourseMapper
   confidence: 0.9
-- id: stereo-49
+- id: stereo-50
   pattern: Service
   category: architectural
   source: detected
@@ -8018,211 +7783,7 @@ patterns:
     elementName: AnalyzerRegistry
     nodeId: interface-audit-application-AnalyzerRegistry
   confidence: 0.9
-- id: stereo-50
-  pattern: Port
-  category: architectural
-  source: detected
-  severity: info
-  description: ReportFormatter is a port
-  involvedElements:
-  - type: interface
-    moduleName: audit-cli
-    elementName: ReportFormatter
-    nodeId: interface-audit-cli-ReportFormatter
-  confidence: 0.9
-- id: stereo-51
-  pattern: Port
-  category: architectural
-  source: detected
-  severity: info
-  description: FormatterRegistry is a port
-  involvedElements:
-  - type: interface
-    moduleName: audit-cli
-    elementName: FormatterRegistry
-    nodeId: interface-audit-cli-FormatterRegistry
-  confidence: 0.9
 - id: stereo-52
-  pattern: Port
-  category: architectural
-  source: detected
-  severity: info
-  description: ReportViewModelTransformer is a port
-  involvedElements:
-  - type: interface
-    moduleName: audit-cli
-    elementName: ReportViewModelTransformer
-    nodeId: interface-audit-cli-ReportViewModelTransformer
-  confidence: 0.9
-- id: stereo-53
-  pattern: Port
-  category: architectural
-  source: detected
-  severity: info
-  description: RawReportFormatter is a port
-  involvedElements:
-  - type: interface
-    moduleName: audit-cli
-    elementName: RawReportFormatter
-    nodeId: interface-audit-cli-RawReportFormatter
-  confidence: 0.9
-- id: stereo-54
-  pattern: Port
-  category: architectural
-  source: detected
-  severity: info
-  description: DrillDownResolver is a port
-  involvedElements:
-  - type: interface
-    moduleName: audit-cli
-    elementName: DrillDownResolver
-    nodeId: interface-audit-cli-DrillDownResolver
-  confidence: 0.9
-- id: stereo-55
-  pattern: Port
-  category: architectural
-  source: detected
-  severity: info
-  description: AnalyzerStatsTransformer is a port
-  involvedElements:
-  - type: interface
-    moduleName: audit-cli
-    elementName: AnalyzerStatsTransformer
-    nodeId: interface-audit-cli-AnalyzerStatsTransformer
-  confidence: 0.9
-- id: stereo-56
-  pattern: Port
-  category: architectural
-  source: detected
-  severity: info
-  description: ScoreRow is a port
-  involvedElements:
-  - type: interface
-    moduleName: audit-cli
-    elementName: ScoreRow
-    nodeId: interface-audit-cli-ScoreRow
-  confidence: 0.9
-- id: stereo-57
-  pattern: Value Object
-  category: architectural
-  source: detected
-  severity: info
-  description: ReportViewModel is a value object (record without id)
-  involvedElements:
-  - type: model
-    moduleName: audit-cli
-    elementName: ReportViewModel
-    nodeId: model-audit-cli-ReportViewModel
-  confidence: 0.75
-- id: stereo-58
-  pattern: Value Object
-  category: architectural
-  source: detected
-  severity: info
-  description: MilestoneScoreRow is a value object (record without id)
-  involvedElements:
-  - type: model
-    moduleName: audit-cli
-    elementName: MilestoneScoreRow
-    nodeId: model-audit-cli-MilestoneScoreRow
-  confidence: 0.75
-- id: stereo-59
-  pattern: Value Object
-  category: architectural
-  source: detected
-  severity: info
-  description: QuizScoreRow is a value object (record without id)
-  involvedElements:
-  - type: model
-    moduleName: audit-cli
-    elementName: QuizScoreRow
-    nodeId: model-audit-cli-QuizScoreRow
-  confidence: 0.75
-- id: stereo-60
-  pattern: Value Object
-  category: architectural
-  source: detected
-  severity: info
-  description: KnowledgeScoreRow is a value object (record without id)
-  involvedElements:
-  - type: model
-    moduleName: audit-cli
-    elementName: KnowledgeScoreRow
-    nodeId: model-audit-cli-KnowledgeScoreRow
-  confidence: 0.75
-- id: stereo-61
-  pattern: Value Object
-  category: architectural
-  source: detected
-  severity: info
-  description: TopicScoreRow is a value object (record without id)
-  involvedElements:
-  - type: model
-    moduleName: audit-cli
-    elementName: TopicScoreRow
-    nodeId: model-audit-cli-TopicScoreRow
-  confidence: 0.75
-- id: stereo-62
-  pattern: Value Object
-  category: architectural
-  source: detected
-  severity: info
-  description: DrillDownScope is a value object (record without id)
-  involvedElements:
-  - type: model
-    moduleName: audit-cli
-    elementName: DrillDownScope
-    nodeId: model-audit-cli-DrillDownScope
-  confidence: 0.75
-- id: stereo-63
-  pattern: Enum
-  category: architectural
-  source: detected
-  severity: info
-  description: DrillDownLevel is an enum
-  involvedElements:
-  - type: model
-    moduleName: audit-cli
-    elementName: DrillDownLevel
-    nodeId: model-audit-cli-DrillDownLevel
-  confidence: 0.95
-- id: stereo-64
-  pattern: Value Object
-  category: architectural
-  source: detected
-  severity: info
-  description: DrillDownView is a value object (record without id)
-  involvedElements:
-  - type: model
-    moduleName: audit-cli
-    elementName: DrillDownView
-    nodeId: model-audit-cli-DrillDownView
-  confidence: 0.75
-- id: stereo-65
-  pattern: Entity
-  category: architectural
-  source: detected
-  severity: info
-  description: ChildScoreRow has an id field (entity)
-  involvedElements:
-  - type: model
-    moduleName: audit-cli
-    elementName: ChildScoreRow
-    nodeId: model-audit-cli-ChildScoreRow
-  confidence: 0.8
-- id: stereo-66
-  pattern: Value Object
-  category: architectural
-  source: detected
-  severity: info
-  description: AnalyzerStatsView is a value object (record without id)
-  involvedElements:
-  - type: model
-    moduleName: audit-cli
-    elementName: AnalyzerStatsView
-    nodeId: model-audit-cli-AnalyzerStatsView
-  confidence: 0.75
-- id: stereo-68
   pattern: Value Object
   category: architectural
   source: detected
@@ -8234,7 +7795,7 @@ patterns:
     elementName: NlpTokenizerConfig
     nodeId: model-nlp-infrastructure-NlpTokenizerConfig
   confidence: 0.75
-- id: anti-70
+- id: anti-53
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8246,7 +7807,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-71
+- id: anti-54
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8258,7 +7819,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: anti-72
+- id: anti-55
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8270,7 +7831,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: anti-73
+- id: anti-56
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8282,7 +7843,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: anti-74
+- id: anti-57
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8294,7 +7855,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: anti-75
+- id: anti-58
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8306,7 +7867,7 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: anti-76
+- id: anti-59
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8318,7 +7879,7 @@ patterns:
     elementName: NodeDiagnoses
     nodeId: interface-audit-domain-NodeDiagnoses
   confidence: 0.9
-- id: anti-77
+- id: anti-60
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8330,7 +7891,7 @@ patterns:
     elementName: CourseDiagnoses
     nodeId: interface-audit-domain-CourseDiagnoses
   confidence: 0.9
-- id: anti-78
+- id: anti-61
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8342,7 +7903,7 @@ patterns:
     elementName: LevelDiagnoses
     nodeId: interface-audit-domain-LevelDiagnoses
   confidence: 0.9
-- id: anti-79
+- id: anti-62
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8354,7 +7915,7 @@ patterns:
     elementName: TopicDiagnoses
     nodeId: interface-audit-domain-TopicDiagnoses
   confidence: 0.9
-- id: anti-80
+- id: anti-63
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8366,7 +7927,7 @@ patterns:
     elementName: KnowledgeDiagnoses
     nodeId: interface-audit-domain-KnowledgeDiagnoses
   confidence: 0.9
-- id: anti-81
+- id: anti-64
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8378,19 +7939,19 @@ patterns:
     elementName: QuizDiagnoses
     nodeId: interface-audit-domain-QuizDiagnoses
   confidence: 0.9
-- id: anti-82
+- id: anti-65
   pattern: God Module
   category: anti-pattern
   source: detected
   severity: warning
-  description: "audit-domain is too large: 12 models, 19 interfaces"
+  description: "audit-domain is too large: 13 models, 19 interfaces"
   involvedElements:
   - type: module
     moduleName: audit-domain
     elementName: audit-domain
     nodeId: module-audit-domain
   confidence: 0.85
-- id: anti-83
+- id: anti-66
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -8402,7 +7963,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.8
-- id: anti-84
+- id: anti-67
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -8414,7 +7975,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.8
-- id: anti-85
+- id: anti-68
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8426,7 +7987,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-86
+- id: anti-69
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -8438,7 +7999,7 @@ patterns:
     elementName: course-domain
     nodeId: module-course-domain
   confidence: 0.85
-- id: anti-87
+- id: anti-70
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -8450,31 +8011,7 @@ patterns:
     elementName: audit-application
     nodeId: module-audit-application
   confidence: 0.85
-- id: anti-88
-  pattern: Orphan Interface
-  category: anti-pattern
-  source: detected
-  severity: warning
-  description: ScoreRow has no implementations
-  involvedElements:
-  - type: interface
-    moduleName: audit-cli
-    elementName: ScoreRow
-    nodeId: interface-audit-cli-ScoreRow
-  confidence: 0.9
-- id: anti-89
-  pattern: God Module
-  category: anti-pattern
-  source: detected
-  severity: warning
-  description: "audit-cli is too large: 8 interfaces, 16 implementations"
-  involvedElements:
-  - type: module
-    moduleName: audit-cli
-    elementName: audit-cli
-    nodeId: module-audit-cli
-  confidence: 0.85
-- id: anti-90
+- id: anti-71
   pattern: Orphan Interface
   category: anti-pattern
   source: detected

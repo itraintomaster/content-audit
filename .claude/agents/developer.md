@@ -429,66 +429,14 @@ CLI entry point for running content audits from the command line
 
 **Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure
 
-**Models:**
+**Packages:**
 
-- `ReportViewModel` — overallScore: double, analyzerNames: List<String>, analyzerScores: Map<String,Double>, milestoneScores: List<MilestoneScoreRow>
-- `MilestoneScoreRow` — milestoneId: String, analyzerScores: Map<String,Double>, overallScore: double, topicScores: List<TopicScoreRow>, entity: AuditableEntity
-- `QuizScoreRow` — quizId: String, overallScore: double, analyzerScores: Map<String,Double>, entity: AuditableEntity
-- `KnowledgeScoreRow` — knowledgeId: String, overallScore: double, analyzerScores: Map<String,Double>, quizScores: List<QuizScoreRow>, entity: AuditableEntity
-- `TopicScoreRow` — topicId: String, overallScore: double, analyzerScores: Map<String,Double>, knowledgeScores: List<KnowledgeScoreRow>, entity: AuditableEntity
-- `DrillDownScope` — level: Optional<String>, topic: Optional<String>, knowledge: Optional<String>
-- `DrillDownLevel` [enum] — COURSE: null, MILESTONE: null, TOPIC: null, KNOWLEDGE: null
-- `DrillDownView` — depth: DrillDownLevel, nodeName: String, overallScore: double, analyzerScores: Map<String,Double>, analyzerNames: List<String>, childRows: List<ScoreRow>
-- `ChildScoreRow` — id: String, overallScore: double, analyzerScores: Map<String,Double>, entity: AuditableEntity
-- `AnalyzerStatsView` — analyzerName: String, analyzerDescription: String, courseScore: double, levelScores: Map<String,Double>, worstItems: List<ScoredItemRow>, scoreDistribution: Map<String,Integer>, subMetricsByLevel: Map<String,Map<String,Double>>, itemCount: int
-
-**Interfaces (contracts):**
-
-- `ReportFormatter`
-  - `format(ReportViewModel viewModel,DrillDownScope scope): String`
-- `FormatterRegistry`
-  - `getFormatter(String formatName): ReportFormatter`
-- `ReportViewModelTransformer`
-  - `transform(AuditReport report): ReportViewModel`
-- `RawReportFormatter`
-  - `format(AuditReport report): String`
-- `DrillDownResolver` [sealed]
-  - `resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView`
-- `AnalyzerStatsTransformer`
-  - `transform(AuditReport report,String analyzerName,AnalyzerRegistry registry): AnalyzerStatsView`
-- `ScoreRow`
-  - `getEntity(): AuditableEntity`
-  - `getOverallScore(): double`
-  - `getAnalyzerScores(): Map<String,Double>`
-- `DetailedFormatter`
-  - `format(String analyzerName,AuditNode rootNode,String outputFormat): String`
-
-**Implementations (your work):**
-
-- `TextReportFormatter` implements ReportFormatter
-  Inject: drillDownResolver: DrillDownResolver
-- `JsonReportFormatter` implements ReportFormatter
-  Inject: drillDownResolver: DrillDownResolver
-- `DefaultFormatterRegistry` implements FormatterRegistry [Component]
-- `DefaultReportViewModelTransformer` implements ReportViewModelTransformer
-- `TableReportFormatter` implements ReportFormatter
-  Inject: drillDownResolver: DrillDownResolver
-- `RawJsonReportFormatter` implements RawReportFormatter
-- `DefaultDrillDownResolver` implements DrillDownResolver [Component]
-- `DefaultAnalyzerStatsTransformer` implements AnalyzerStatsTransformer [Component]
-- `ContentAuditCmd` implements  [Component]
-- `AnalyzeCmd` implements  [Component]
-  Inject: auditRunner: AuditRunner, formatterRegistry: FormatterRegistry, viewModelTransformer: ReportViewModelTransformer, rawReportFormatter: RawReportFormatter, drillDownResolver: DrillDownResolver, detailedFormatters: Map<String,DetailedFormatter>
-- `AnalyzerCmd` implements  [Component]
-- `AnalyzerListCmd` implements  [Component]
-  Inject: analyzerRegistry: AnalyzerRegistry
-- `AnalyzerConfigCmd` implements  [Component]
-  Inject: analyzerRegistry: AnalyzerRegistry
-- `AnalyzerStatsCmd` implements  [Component]
-  Inject: analyzerRegistry: AnalyzerRegistry, analyzerStatsTransformer: AnalyzerStatsTransformer, auditRunner: AuditRunner
-- `LemmaAbsenceDetailedFormatter` implements DetailedFormatter [Component]
-  Tests: should format text output from typed diagnoses matching previous metadata-based output, should format json output from typed diagnoses matching previous metadata-based output, should format table output from typed diagnoses matching previous metadata-based output, should read typed diagnoses from course milestone and quiz nodes for formatting, should handle missing diagnosis gracefully when analyzer did not produce results, should navigate from quiz node to milestone ancestor to access level diagnosis, should return empty when navigating to nonexistent ancestor level
-- `CocaBucketsDetailedFormatter` implements DetailedFormatter [Component]
+- `commands` [public] — Public CLI command tree — the only exported API of the audit-cli module
+  Implementations: Main, ContentAuditCmd, AnalyzeCmd, AnalyzerCmd, AnalyzerListCmd, AnalyzerConfigCmd, AnalyzerStatsCmd
+- `formatting` [internal] — Internal formatting infrastructure — report transformers, view models, formatters, and drill-down resolution
+  Models: ReportViewModel, MilestoneScoreRow, QuizScoreRow, KnowledgeScoreRow, TopicScoreRow, ChildScoreRow, DrillDownScope, DrillDownLevel, DrillDownView, AnalyzerStatsView, ScoredItemRow
+  Interfaces: ReportFormatter, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter, DrillDownResolver, AnalyzerStatsTransformer, ScoreRow, DetailedFormatter
+  Implementations: TextReportFormatter, JsonReportFormatter, TableReportFormatter, DefaultFormatterRegistry, DefaultReportViewModelTransformer, RawJsonReportFormatter, DefaultDrillDownResolver, DefaultAnalyzerStatsTransformer, LemmaAbsenceDetailedFormatter, CocaBucketsDetailedFormatter
 
 #### nlp-infrastructure
 

@@ -382,116 +382,25 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 
 ### Module: audit-cli
 
-#### TextReportFormatter
+#### Main (package: commands)
 
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implements:** ReportFormatter
-
-**Constructor dependencies (requiresInject):**
-
-| Name | Type |
-|------|------|
-| `drillDownResolver` | `DrillDownResolver` |
-
-**Generated constructor:**
-```java
-public TextReportFormatter(DrillDownResolver drillDownResolver) {
-    this.drillDownResolver = drillDownResolver;
-}
-```
-
-#### JsonReportFormatter
-
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implements:** ReportFormatter
-
-**Constructor dependencies (requiresInject):**
-
-| Name | Type |
-|------|------|
-| `drillDownResolver` | `DrillDownResolver` |
-
-**Generated constructor:**
-```java
-public JsonReportFormatter(DrillDownResolver drillDownResolver) {
-    this.drillDownResolver = drillDownResolver;
-}
-```
-
-#### DefaultFormatterRegistry
-
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implements:** FormatterRegistry
-
-**Framework types:** Component
-
-#### DefaultReportViewModelTransformer
-
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implements:** ReportViewModelTransformer
-
-#### TableReportFormatter
-
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implements:** ReportFormatter
-
-**Constructor dependencies (requiresInject):**
-
-| Name | Type |
-|------|------|
-| `drillDownResolver` | `DrillDownResolver` |
-
-**Generated constructor:**
-```java
-public TableReportFormatter(DrillDownResolver drillDownResolver) {
-    this.drillDownResolver = drillDownResolver;
-}
-```
-
-#### RawJsonReportFormatter
-
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implements:** RawReportFormatter
-
-#### DefaultDrillDownResolver
-
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implements:** DrillDownResolver
-
-**Framework types:** Component
-
-#### DefaultAnalyzerStatsTransformer
-
-**Package:** `com.learney.contentaudit.auditcli`
-
-**Implements:** AnalyzerStatsTransformer
-
-**Framework types:** Component
-
-#### ContentAuditCmd
-
-**Package:** `com.learney.contentaudit.auditcli`
-
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** public
 **Implements:** 
 
-**Framework types:** Component
+#### ContentAuditCmd (package: commands)
 
-#### AnalyzeCmd
-
-**Package:** `com.learney.contentaudit.auditcli`
-
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** public
 **Implements:** 
 
-**Framework types:** Component
+#### AnalyzeCmd (package: commands)
 
-**Constructor dependencies (requiresInject):**
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** public
+**Implements:** 
+
+**Constructor dependencies:**
 
 | Name | Type |
 |------|------|
@@ -502,77 +411,43 @@ public TableReportFormatter(DrillDownResolver drillDownResolver) {
 | `drillDownResolver` | `DrillDownResolver` |
 | `detailedFormatters` | `Map<String,DetailedFormatter>` |
 
-**Generated constructor:**
-```java
-public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter, DrillDownResolver drillDownResolver, Map<String,DetailedFormatter> detailedFormatters) {
-    this.auditRunner = auditRunner;
-    this.formatterRegistry = formatterRegistry;
-    this.viewModelTransformer = viewModelTransformer;
-    this.rawReportFormatter = rawReportFormatter;
-    this.drillDownResolver = drillDownResolver;
-    this.detailedFormatters = detailedFormatters;
-}
-```
+#### AnalyzerCmd (package: commands)
 
-#### AnalyzerCmd
-
-**Package:** `com.learney.contentaudit.auditcli`
-
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** public
 **Implements:** 
 
-**Framework types:** Component
+#### AnalyzerListCmd (package: commands)
 
-#### AnalyzerListCmd
-
-**Package:** `com.learney.contentaudit.auditcli`
-
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** public
 **Implements:** 
 
-**Framework types:** Component
-
-**Constructor dependencies (requiresInject):**
+**Constructor dependencies:**
 
 | Name | Type |
 |------|------|
 | `analyzerRegistry` | `AnalyzerRegistry` |
 
-**Generated constructor:**
-```java
-public AnalyzerListCmd(AnalyzerRegistry analyzerRegistry) {
-    this.analyzerRegistry = analyzerRegistry;
-}
-```
+#### AnalyzerConfigCmd (package: commands)
 
-#### AnalyzerConfigCmd
-
-**Package:** `com.learney.contentaudit.auditcli`
-
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** public
 **Implements:** 
 
-**Framework types:** Component
-
-**Constructor dependencies (requiresInject):**
+**Constructor dependencies:**
 
 | Name | Type |
 |------|------|
 | `analyzerRegistry` | `AnalyzerRegistry` |
 
-**Generated constructor:**
-```java
-public AnalyzerConfigCmd(AnalyzerRegistry analyzerRegistry) {
-    this.analyzerRegistry = analyzerRegistry;
-}
-```
+#### AnalyzerStatsCmd (package: commands)
 
-#### AnalyzerStatsCmd
-
-**Package:** `com.learney.contentaudit.auditcli`
-
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** public
 **Implements:** 
 
-**Framework types:** Component
-
-**Constructor dependencies (requiresInject):**
+**Constructor dependencies:**
 
 | Name | Type |
 |------|------|
@@ -580,30 +455,83 @@ public AnalyzerConfigCmd(AnalyzerRegistry analyzerRegistry) {
 | `analyzerStatsTransformer` | `AnalyzerStatsTransformer` |
 | `auditRunner` | `AuditRunner` |
 
-**Generated constructor:**
-```java
-public AnalyzerStatsCmd(AnalyzerRegistry analyzerRegistry, AnalyzerStatsTransformer analyzerStatsTransformer, AuditRunner auditRunner) {
-    this.analyzerRegistry = analyzerRegistry;
-    this.analyzerStatsTransformer = analyzerStatsTransformer;
-    this.auditRunner = auditRunner;
-}
-```
+#### TextReportFormatter (package: formatting)
 
-#### LemmaAbsenceDetailedFormatter
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Implements:** ReportFormatter
 
-**Package:** `com.learney.contentaudit.auditcli`
+**Constructor dependencies:**
 
+| Name | Type |
+|------|------|
+| `drillDownResolver` | `DrillDownResolver` |
+
+#### JsonReportFormatter (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Implements:** ReportFormatter
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `drillDownResolver` | `DrillDownResolver` |
+
+#### TableReportFormatter (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Implements:** ReportFormatter
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `drillDownResolver` | `DrillDownResolver` |
+
+#### DefaultFormatterRegistry (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Implements:** FormatterRegistry
+
+#### DefaultReportViewModelTransformer (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Implements:** ReportViewModelTransformer
+
+#### RawJsonReportFormatter (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Implements:** RawReportFormatter
+
+#### DefaultDrillDownResolver (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Implements:** DrillDownResolver
+
+#### DefaultAnalyzerStatsTransformer (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Implements:** AnalyzerStatsTransformer
+
+#### LemmaAbsenceDetailedFormatter (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 **Implements:** DetailedFormatter
 
-**Framework types:** Component
+#### CocaBucketsDetailedFormatter (package: formatting)
 
-#### CocaBucketsDetailedFormatter
-
-**Package:** `com.learney.contentaudit.auditcli`
-
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
 **Implements:** DetailedFormatter
-
-**Framework types:** Component
 
 ### Module: nlp-infrastructure
 

@@ -35,174 +35,190 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackageFormattingVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..auditcli..", "java..").should().dependOnClassesThat().resideInAPackage("..auditcli.formatting..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
-      Class.forName("com.learney.contentaudit.auditcli.ReportViewModel");
+      Class.forName("com.learney.contentaudit.auditcli.commands.Main");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: ReportViewModel - " + e.getMessage());
+      Assertions.fail("Missing declared class: Main - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.MilestoneScoreRow");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: MilestoneScoreRow - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.QuizScoreRow");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: QuizScoreRow - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.KnowledgeScoreRow");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: KnowledgeScoreRow - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.TopicScoreRow");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: TopicScoreRow - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.DrillDownScope");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: DrillDownScope - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.DrillDownLevel");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: DrillDownLevel - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.DrillDownView");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: DrillDownView - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.ChildScoreRow");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: ChildScoreRow - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.AnalyzerStatsView");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: AnalyzerStatsView - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.ReportFormatter");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: ReportFormatter - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.FormatterRegistry");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: FormatterRegistry - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.ReportViewModelTransformer");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: ReportViewModelTransformer - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.RawReportFormatter");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: RawReportFormatter - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.DrillDownResolver");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: DrillDownResolver - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.AnalyzerStatsTransformer");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: AnalyzerStatsTransformer - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.ScoreRow");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: ScoreRow - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.DetailedFormatter");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: DetailedFormatter - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.TextReportFormatter");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: TextReportFormatter - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.JsonReportFormatter");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: JsonReportFormatter - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.DefaultFormatterRegistry");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: DefaultFormatterRegistry - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.DefaultReportViewModelTransformer");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: DefaultReportViewModelTransformer - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.TableReportFormatter");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: TableReportFormatter - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.RawJsonReportFormatter");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: RawJsonReportFormatter - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.DefaultDrillDownResolver");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: DefaultDrillDownResolver - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.DefaultAnalyzerStatsTransformer");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: DefaultAnalyzerStatsTransformer - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.ContentAuditCmd");
+      Class.forName("com.learney.contentaudit.auditcli.commands.ContentAuditCmd");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ContentAuditCmd - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.AnalyzeCmd");
+      Class.forName("com.learney.contentaudit.auditcli.commands.AnalyzeCmd");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AnalyzeCmd - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.AnalyzerCmd");
+      Class.forName("com.learney.contentaudit.auditcli.commands.AnalyzerCmd");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AnalyzerCmd - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.AnalyzerListCmd");
+      Class.forName("com.learney.contentaudit.auditcli.commands.AnalyzerListCmd");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AnalyzerListCmd - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.AnalyzerConfigCmd");
+      Class.forName("com.learney.contentaudit.auditcli.commands.AnalyzerConfigCmd");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AnalyzerConfigCmd - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.AnalyzerStatsCmd");
+      Class.forName("com.learney.contentaudit.auditcli.commands.AnalyzerStatsCmd");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AnalyzerStatsCmd - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.LemmaAbsenceDetailedFormatter");
+      Class.forName("com.learney.contentaudit.auditcli.formatting.ReportViewModel");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ReportViewModel - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.MilestoneScoreRow");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MilestoneScoreRow - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.QuizScoreRow");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizScoreRow - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.KnowledgeScoreRow");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeScoreRow - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.TopicScoreRow");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TopicScoreRow - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.ChildScoreRow");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ChildScoreRow - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.DrillDownScope");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DrillDownScope - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.DrillDownLevel");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DrillDownLevel - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.DrillDownView");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DrillDownView - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.AnalyzerStatsView");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnalyzerStatsView - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.ScoredItemRow");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ScoredItemRow - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.ReportFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ReportFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.FormatterRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FormatterRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.ReportViewModelTransformer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ReportViewModelTransformer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.RawReportFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RawReportFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.DrillDownResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DrillDownResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.AnalyzerStatsTransformer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnalyzerStatsTransformer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.ScoreRow");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ScoreRow - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.DetailedFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DetailedFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.TextReportFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TextReportFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.JsonReportFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JsonReportFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.TableReportFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TableReportFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.DefaultFormatterRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultFormatterRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.DefaultReportViewModelTransformer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultReportViewModelTransformer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.RawJsonReportFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RawJsonReportFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.DefaultDrillDownResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultDrillDownResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.DefaultAnalyzerStatsTransformer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultAnalyzerStatsTransformer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.LemmaAbsenceDetailedFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaAbsenceDetailedFormatter - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.CocaBucketsDetailedFormatter");
+      Class.forName("com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: CocaBucketsDetailedFormatter - " + e.getMessage());
     }

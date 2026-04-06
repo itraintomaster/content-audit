@@ -206,13 +206,3 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - Given a loaded course, when a knowledge label is modified and the course is saved and reloaded, then the change is reflected and unmodified data remains intact → F-COURSE/F-COURSE-J005
 - Given a nonexistent path or missing descriptor or malformed JSON, when load is called, then a descriptive error is thrown and no partial course is returned → F-COURSE/F-COURSE-J006
 
-### LemmaAbsenceDetailedFormatter (audit-cli)
-
-- should format text output from typed diagnoses matching previous metadata-based output → FEAT-DLABS/F-DLABS-R013/F-DLABS-J003
-- should format json output from typed diagnoses matching previous metadata-based output → FEAT-DLABS/F-DLABS-R013/F-DLABS-J003
-- should format table output from typed diagnoses matching previous metadata-based output → FEAT-DLABS/F-DLABS-R013/F-DLABS-J003
-- should read typed diagnoses from course milestone and quiz nodes for formatting → FEAT-DLABS/F-DLABS-R004, F-DLABS-R005, F-DLABS-R009/F-DLABS-J003
-- should handle missing diagnosis gracefully when analyzer did not produce results → FEAT-DLABS/F-DLABS-R003/F-DLABS-J003
-- should navigate from quiz node to milestone ancestor to access level diagnosis → FEAT-DLABS/F-DLABS-R011, F-DLABS-R012/F-DLABS-J002
-- should return empty when navigating to nonexistent ancestor level → FEAT-DLABS/F-DLABS-R011/F-DLABS-J002
-

@@ -3206,374 +3206,6 @@ modules:
   - course-infrastructure
   - nlp-infrastructure
   - vocabulary-infrastructure
-  models:
-  - name: ReportViewModel
-    type: record
-    fields:
-    - name: overallScore
-      type: double
-      description: Course-level overall score
-    - name: analyzerNames
-      type: List<String>
-      description: Ordered list of all analyzer names present in the report
-    - name: analyzerScores
-      type: "Map<String,Double>"
-      description: Course-level score per analyzer
-    - name: milestoneScores
-      type: List<MilestoneScoreRow>
-      description: Per-milestone breakdown of analyzer scores
-  - name: MilestoneScoreRow
-    type: record
-    fields:
-    - name: milestoneId
-      type: String
-    - name: analyzerScores
-      type: "Map<String,Double>"
-      description: Score per analyzer for this milestone
-    - name: overallScore
-      type: double
-      description: Average score across all analyzers at milestone level
-    - name: topicScores
-      type: List<TopicScoreRow>
-      description: Per-topic breakdown of analyzer scores
-    - name: entity
-      type: AuditableEntity
-      description: "Reference to the auditable entity carrying identity (id, label,\
-        \ code)"
-    extends: ScoreRow
-  - name: QuizScoreRow
-    type: record
-    fields:
-    - name: quizId
-      type: String
-      description: Quiz identifier
-    - name: overallScore
-      type: double
-      description: Average score across all analyzers at quiz level
-    - name: analyzerScores
-      type: "Map<String,Double>"
-      description: Score per analyzer for this quiz
-    - name: entity
-      type: AuditableEntity
-      description: "Reference to the auditable entity carrying identity (id, label,\
-        \ code)"
-    extends: ScoreRow
-  - name: KnowledgeScoreRow
-    type: record
-    fields:
-    - name: knowledgeId
-      type: String
-      description: Knowledge identifier
-    - name: overallScore
-      type: double
-      description: Average score across all analyzers at knowledge level
-    - name: analyzerScores
-      type: "Map<String,Double>"
-      description: Score per analyzer for this knowledge
-    - name: quizScores
-      type: List<QuizScoreRow>
-      description: Per-quiz breakdown of analyzer scores
-    - name: entity
-      type: AuditableEntity
-      description: "Reference to the auditable entity carrying identity (id, label,\
-        \ code)"
-    extends: ScoreRow
-  - name: TopicScoreRow
-    type: record
-    fields:
-    - name: topicId
-      type: String
-      description: Topic identifier
-    - name: overallScore
-      type: double
-      description: Average score across all analyzers at topic level
-    - name: analyzerScores
-      type: "Map<String,Double>"
-      description: Score per analyzer for this topic
-    - name: knowledgeScores
-      type: List<KnowledgeScoreRow>
-      description: Per-knowledge breakdown of analyzer scores
-    - name: entity
-      type: AuditableEntity
-      description: "Reference to the auditable entity carrying identity (id, label,\
-        \ code)"
-    extends: ScoreRow
-  - name: DrillDownScope
-    type: record
-    fields:
-    - name: level
-      type: Optional<String>
-      description: Selected milestone/level to drill into (e.g. A1)
-    - name: topic
-      type: Optional<String>
-      description: Selected topic within the level
-    - name: knowledge
-      type: Optional<String>
-      description: Selected knowledge within the topic
-  - name: DrillDownLevel
-    type: enum
-    fields:
-    - name: COURSE
-    - name: MILESTONE
-    - name: TOPIC
-    - name: KNOWLEDGE
-  - name: DrillDownView
-    type: record
-    fields:
-    - name: depth
-      type: DrillDownLevel
-      description: The resolved depth of the drill-down
-    - name: nodeName
-      type: String
-      description: "Display name of the focused node (course title, level id, topic\
-        \ id, or knowledge id)"
-    - name: overallScore
-      type: double
-      description: Overall score of the focused node
-    - name: analyzerScores
-      type: "Map<String,Double>"
-      description: Per-analyzer scores of the focused node
-    - name: analyzerNames
-      type: List<String>
-      description: Ordered analyzer names for column headers
-    - name: childRows
-      type: List<ScoreRow>
-      description: One level of children detail rows
-  - name: ChildScoreRow
-    type: record
-    fields:
-    - name: id
-      type: String
-      description: Child node identifier
-    - name: overallScore
-      type: double
-      description: Child overall score
-    - name: analyzerScores
-      type: "Map<String,Double>"
-      description: Child per-analyzer scores
-    - name: entity
-      type: AuditableEntity
-      description: "Reference to the auditable entity carrying identity (id, label,\
-        \ code)"
-    extends: ScoreRow
-  - name: AnalyzerStatsView
-    type: record
-    fields:
-    - name: analyzerName
-      type: String
-      description: Name of the analyzer
-    - name: analyzerDescription
-      type: String
-      description: Description of the analyzer
-    - name: courseScore
-      type: double
-      description: Course-level score for this analyzer
-    - name: levelScores
-      type: "Map<String,Double>"
-      description: Per-milestone/level score breakdown
-    - name: worstItems
-      type: List<ScoredItemRow>
-      description: Worst-scoring items sorted ascending
-    - name: scoreDistribution
-      type: "Map<String,Integer>"
-      description: Histogram buckets (e.g. 0.0-0.2 -> count)
-    - name: subMetricsByLevel
-      type: "Map<String,Map<String,Double>>"
-      description: Sub-metric scores per level (e.g. level -> quarter -> score)
-    - name: itemCount
-      type: int
-      description: Total number of scored items for this analyzer
-  interfaces:
-  - name: ReportFormatter
-    stereotype: port
-    sealed: false
-    exposes:
-    - signature: "format(ReportViewModel viewModel,DrillDownScope scope): String"
-  - name: FormatterRegistry
-    stereotype: port
-    sealed: false
-    exposes:
-    - signature: "getFormatter(String formatName): ReportFormatter"
-  - name: ReportViewModelTransformer
-    stereotype: port
-    sealed: false
-    exposes:
-    - signature: "transform(AuditReport report): ReportViewModel"
-  - name: RawReportFormatter
-    stereotype: port
-    sealed: false
-    exposes:
-    - signature: "format(AuditReport report): String"
-  - name: DrillDownResolver
-    stereotype: port
-    sealed: true
-    exposes:
-    - signature: "resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView"
-  - name: AnalyzerStatsTransformer
-    stereotype: port
-    sealed: false
-    exposes:
-    - signature: "transform(AuditReport report,String analyzerName,AnalyzerRegistry\
-        \ registry): AnalyzerStatsView"
-  - name: ScoreRow
-    stereotype: port
-    sealed: false
-    exposes:
-    - signature: "getEntity(): AuditableEntity"
-    - signature: "getOverallScore(): double"
-    - signature: "getAnalyzerScores(): Map<String,Double>"
-  - name: DetailedFormatter
-    stereotype: formatter
-    sealed: false
-    exposes:
-    - signature: "format(String analyzerName,AuditNode rootNode,String outputFormat):\
-        \ String"
-  implementations:
-  - name: TextReportFormatter
-    requiresInject:
-    - name: drillDownResolver
-      type: DrillDownResolver
-    implements:
-    - ReportFormatter
-  - name: JsonReportFormatter
-    requiresInject:
-    - name: drillDownResolver
-      type: DrillDownResolver
-    implements:
-    - ReportFormatter
-  - name: DefaultFormatterRegistry
-    types:
-    - Component
-    implements:
-    - FormatterRegistry
-  - name: DefaultReportViewModelTransformer
-    implements:
-    - ReportViewModelTransformer
-  - name: TableReportFormatter
-    requiresInject:
-    - name: drillDownResolver
-      type: DrillDownResolver
-    implements:
-    - ReportFormatter
-  - name: RawJsonReportFormatter
-    implements:
-    - RawReportFormatter
-  - name: DefaultDrillDownResolver
-    types:
-    - Component
-    implements:
-    - DrillDownResolver
-  - name: DefaultAnalyzerStatsTransformer
-    types:
-    - Component
-    implements:
-    - AnalyzerStatsTransformer
-  - name: ContentAuditCmd
-    types:
-    - Component
-    externalImplements:
-    - java.util.concurrent.Callable<Integer>
-  - name: AnalyzeCmd
-    requiresInject:
-    - name: auditRunner
-      type: AuditRunner
-    - name: formatterRegistry
-      type: FormatterRegistry
-    - name: viewModelTransformer
-      type: ReportViewModelTransformer
-    - name: rawReportFormatter
-      type: RawReportFormatter
-    - name: drillDownResolver
-      type: DrillDownResolver
-    - name: detailedFormatters
-      type: "Map<String,DetailedFormatter>"
-    types:
-    - Component
-    externalImplements:
-    - java.util.concurrent.Callable<Integer>
-  - name: AnalyzerCmd
-    types:
-    - Component
-    externalImplements:
-    - java.util.concurrent.Callable<Integer>
-  - name: AnalyzerListCmd
-    requiresInject:
-    - name: analyzerRegistry
-      type: AnalyzerRegistry
-    types:
-    - Component
-    externalImplements:
-    - java.util.concurrent.Callable<Integer>
-  - name: AnalyzerConfigCmd
-    requiresInject:
-    - name: analyzerRegistry
-      type: AnalyzerRegistry
-    types:
-    - Component
-    externalImplements:
-    - java.util.concurrent.Callable<Integer>
-  - name: AnalyzerStatsCmd
-    requiresInject:
-    - name: analyzerRegistry
-      type: AnalyzerRegistry
-    - name: analyzerStatsTransformer
-      type: AnalyzerStatsTransformer
-    - name: auditRunner
-      type: AuditRunner
-    types:
-    - Component
-    externalImplements:
-    - java.util.concurrent.Callable<Integer>
-  - name: LemmaAbsenceDetailedFormatter
-    types:
-    - Component
-    handwrittenTests:
-    - name: should format text output from typed diagnoses matching previous metadata-based
-        output
-      traceability:
-        feature: FEAT-DLABS
-        rule: F-DLABS-R013
-        journey: F-DLABS-J003
-    - name: should format json output from typed diagnoses matching previous metadata-based
-        output
-      traceability:
-        feature: FEAT-DLABS
-        rule: F-DLABS-R013
-        journey: F-DLABS-J003
-    - name: should format table output from typed diagnoses matching previous metadata-based
-        output
-      traceability:
-        feature: FEAT-DLABS
-        rule: F-DLABS-R013
-        journey: F-DLABS-J003
-    - name: should read typed diagnoses from course milestone and quiz nodes for formatting
-      traceability:
-        feature: FEAT-DLABS
-        rule: "F-DLABS-R004, F-DLABS-R005, F-DLABS-R009"
-        journey: F-DLABS-J003
-    - name: should handle missing diagnosis gracefully when analyzer did not produce
-        results
-      traceability:
-        feature: FEAT-DLABS
-        rule: F-DLABS-R003
-        journey: F-DLABS-J003
-    - name: should navigate from quiz node to milestone ancestor to access level diagnosis
-      traceability:
-        feature: FEAT-DLABS
-        rule: "F-DLABS-R011, F-DLABS-R012"
-        journey: F-DLABS-J002
-    - name: should return empty when navigating to nonexistent ancestor level
-      traceability:
-        feature: FEAT-DLABS
-        rule: F-DLABS-R011
-        journey: F-DLABS-J002
-    implements:
-    - DetailedFormatter
-  - name: CocaBucketsDetailedFormatter
-    types:
-    - Component
-    implements:
-    - DetailedFormatter
   patterns:
   - type: Strategy
     implementations:
@@ -3583,6 +3215,362 @@ modules:
     suppressed: false
     interface: ReportFormatter
   scope: public
+  packages:
+  - name: commands
+    description: Public CLI command tree — the only exported API of the audit-cli
+      module
+    visibility: public
+    implementations:
+    - name: Main
+      types:
+      - Component
+    - name: ContentAuditCmd
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+    - name: AnalyzeCmd
+      requiresInject:
+      - name: auditRunner
+        type: AuditRunner
+      - name: formatterRegistry
+        type: FormatterRegistry
+      - name: viewModelTransformer
+        type: ReportViewModelTransformer
+      - name: rawReportFormatter
+        type: RawReportFormatter
+      - name: drillDownResolver
+        type: DrillDownResolver
+      - name: detailedFormatters
+        type: "Map<String,DetailedFormatter>"
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+    - name: AnalyzerCmd
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+    - name: AnalyzerListCmd
+      requiresInject:
+      - name: analyzerRegistry
+        type: AnalyzerRegistry
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+    - name: AnalyzerConfigCmd
+      requiresInject:
+      - name: analyzerRegistry
+        type: AnalyzerRegistry
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+    - name: AnalyzerStatsCmd
+      requiresInject:
+      - name: analyzerRegistry
+        type: AnalyzerRegistry
+      - name: analyzerStatsTransformer
+        type: AnalyzerStatsTransformer
+      - name: auditRunner
+        type: AuditRunner
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+  - name: formatting
+    description: "Internal formatting infrastructure — report transformers, view models,\
+      \ formatters, and drill-down resolution"
+    visibility: internal
+    models:
+    - name: ReportViewModel
+      type: record
+      fields:
+      - name: overallScore
+        type: double
+        description: Course-level overall score
+      - name: analyzerNames
+        type: List<String>
+        description: Ordered list of all analyzer names present in the report
+      - name: analyzerScores
+        type: "Map<String,Double>"
+        description: Course-level score per analyzer
+      - name: milestoneScores
+        type: List<MilestoneScoreRow>
+        description: Per-milestone breakdown of analyzer scores
+    - name: MilestoneScoreRow
+      type: record
+      fields:
+      - name: milestoneId
+        type: String
+      - name: analyzerScores
+        type: "Map<String,Double>"
+        description: Score per analyzer for this milestone
+      - name: overallScore
+        type: double
+        description: Average score across all analyzers at milestone level
+      - name: topicScores
+        type: List<TopicScoreRow>
+        description: Per-topic breakdown of analyzer scores
+      - name: entity
+        type: AuditableEntity
+        description: "Reference to the auditable entity carrying identity (id, label,\
+          \ code)"
+      extends: ScoreRow
+    - name: QuizScoreRow
+      type: record
+      fields:
+      - name: quizId
+        type: String
+        description: Quiz identifier
+      - name: overallScore
+        type: double
+        description: Average score across all analyzers at quiz level
+      - name: analyzerScores
+        type: "Map<String,Double>"
+        description: Score per analyzer for this quiz
+      - name: entity
+        type: AuditableEntity
+        description: "Reference to the auditable entity carrying identity (id, label,\
+          \ code)"
+      extends: ScoreRow
+    - name: KnowledgeScoreRow
+      type: record
+      fields:
+      - name: knowledgeId
+        type: String
+        description: Knowledge identifier
+      - name: overallScore
+        type: double
+        description: Average score across all analyzers at knowledge level
+      - name: analyzerScores
+        type: "Map<String,Double>"
+        description: Score per analyzer for this knowledge
+      - name: quizScores
+        type: List<QuizScoreRow>
+        description: Per-quiz breakdown of analyzer scores
+      - name: entity
+        type: AuditableEntity
+        description: "Reference to the auditable entity carrying identity (id, label,\
+          \ code)"
+      extends: ScoreRow
+    - name: TopicScoreRow
+      type: record
+      fields:
+      - name: topicId
+        type: String
+        description: Topic identifier
+      - name: overallScore
+        type: double
+        description: Average score across all analyzers at topic level
+      - name: analyzerScores
+        type: "Map<String,Double>"
+        description: Score per analyzer for this topic
+      - name: knowledgeScores
+        type: List<KnowledgeScoreRow>
+        description: Per-knowledge breakdown of analyzer scores
+      - name: entity
+        type: AuditableEntity
+        description: "Reference to the auditable entity carrying identity (id, label,\
+          \ code)"
+      extends: ScoreRow
+    - name: ChildScoreRow
+      type: record
+      fields:
+      - name: id
+        type: String
+        description: Child node identifier
+      - name: overallScore
+        type: double
+        description: Child overall score
+      - name: analyzerScores
+        type: "Map<String,Double>"
+        description: Child per-analyzer scores
+      - name: entity
+        type: AuditableEntity
+        description: "Reference to the auditable entity carrying identity (id, label,\
+          \ code)"
+      extends: ScoreRow
+    - name: DrillDownScope
+      type: record
+      fields:
+      - name: level
+        type: Optional<String>
+        description: Selected milestone/level to drill into (e.g. A1)
+      - name: topic
+        type: Optional<String>
+        description: Selected topic within the level
+      - name: knowledge
+        type: Optional<String>
+        description: Selected knowledge within the topic
+    - name: DrillDownLevel
+      type: enum
+      fields:
+      - name: COURSE
+      - name: MILESTONE
+      - name: TOPIC
+      - name: KNOWLEDGE
+    - name: DrillDownView
+      type: record
+      fields:
+      - name: depth
+        type: DrillDownLevel
+        description: The resolved depth of the drill-down
+      - name: nodeName
+        type: String
+        description: "Display name of the focused node (course title, level id, topic\
+          \ id, or knowledge id)"
+      - name: overallScore
+        type: double
+        description: Overall score of the focused node
+      - name: analyzerScores
+        type: "Map<String,Double>"
+        description: Per-analyzer scores of the focused node
+      - name: analyzerNames
+        type: List<String>
+        description: Ordered analyzer names for column headers
+      - name: childRows
+        type: List<ScoreRow>
+        description: One level of children detail rows
+    - name: AnalyzerStatsView
+      type: record
+      fields:
+      - name: analyzerName
+        type: String
+        description: Name of the analyzer
+      - name: analyzerDescription
+        type: String
+        description: Description of the analyzer
+      - name: courseScore
+        type: double
+        description: Course-level score for this analyzer
+      - name: levelScores
+        type: "Map<String,Double>"
+        description: Per-milestone/level score breakdown
+      - name: worstItems
+        type: List<ScoredItemRow>
+        description: Worst-scoring items sorted ascending
+      - name: scoreDistribution
+        type: "Map<String,Integer>"
+        description: Histogram buckets (e.g. 0.0-0.2 -> count)
+      - name: subMetricsByLevel
+        type: "Map<String,Map<String,Double>>"
+        description: Sub-metric scores per level (e.g. level -> quarter -> score)
+      - name: itemCount
+        type: int
+        description: Total number of scored items for this analyzer
+    - name: ScoredItemRow
+      type: record
+      fields:
+      - name: id
+        type: String
+        description: Item identifier
+      - name: label
+        type: String
+        description: Display label for the item
+      - name: score
+        type: double
+        description: Score value for the item
+      - name: level
+        type: String
+        description: CEFR level the item belongs to
+    interfaces:
+    - name: ReportFormatter
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "format(ReportViewModel viewModel,DrillDownScope scope): String"
+    - name: FormatterRegistry
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "getFormatter(String formatName): ReportFormatter"
+    - name: ReportViewModelTransformer
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "transform(AuditReport report): ReportViewModel"
+    - name: RawReportFormatter
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "format(AuditReport report): String"
+    - name: DrillDownResolver
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "resolve(ReportViewModel viewModel,DrillDownScope scope): DrillDownView"
+    - name: AnalyzerStatsTransformer
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "transform(AuditReport report,String analyzerName,AnalyzerRegistry\
+          \ registry): AnalyzerStatsView"
+    - name: ScoreRow
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "getEntity(): AuditableEntity"
+      - signature: "getOverallScore(): double"
+      - signature: "getAnalyzerScores(): Map<String,Double>"
+    - name: DetailedFormatter
+      stereotype: formatter
+      sealed: false
+      exposes:
+      - signature: "format(String analyzerName,AuditNode rootNode,String outputFormat):\
+          \ String"
+    implementations:
+    - name: TextReportFormatter
+      requiresInject:
+      - name: drillDownResolver
+        type: DrillDownResolver
+      implements:
+      - ReportFormatter
+    - name: JsonReportFormatter
+      requiresInject:
+      - name: drillDownResolver
+        type: DrillDownResolver
+      implements:
+      - ReportFormatter
+    - name: TableReportFormatter
+      requiresInject:
+      - name: drillDownResolver
+        type: DrillDownResolver
+      implements:
+      - ReportFormatter
+    - name: DefaultFormatterRegistry
+      types:
+      - Component
+      implements:
+      - FormatterRegistry
+    - name: DefaultReportViewModelTransformer
+      implements:
+      - ReportViewModelTransformer
+    - name: RawJsonReportFormatter
+      implements:
+      - RawReportFormatter
+    - name: DefaultDrillDownResolver
+      types:
+      - Component
+      implements:
+      - DrillDownResolver
+    - name: DefaultAnalyzerStatsTransformer
+      types:
+      - Component
+      implements:
+      - AnalyzerStatsTransformer
+    - name: LemmaAbsenceDetailedFormatter
+      types:
+      - Component
+      implements:
+      - DetailedFormatter
+    - name: CocaBucketsDetailedFormatter
+      types:
+      - Component
+      implements:
+      - DetailedFormatter
 - name: nlp-infrastructure
   description: "Infrastructure module for NLP processing. Provides SpaCy-backed tokenization\
     \ behind a factory, with internal caching. Only the factory and configuration\

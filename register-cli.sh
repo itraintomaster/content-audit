@@ -22,7 +22,7 @@ done
 
 cat > "$WRAPPER" <<EOF
 #!/usr/bin/env bash
-exec java -cp "$CLASSPATH" com.learney.contentaudit.auditcli.Main "\$@"
+exec java -cp "$CLASSPATH" com.learney.contentaudit.auditcli.commands.Main "\$@"
 EOF
 
 chmod +x "$WRAPPER"

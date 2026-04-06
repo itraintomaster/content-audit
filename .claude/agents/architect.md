@@ -249,7 +249,7 @@ modules:
 | refiner-domain | — | — | — | — |
 | audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure | AuditRunner, CourseMapper, AnalyzerRegistry | CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry | — |
 | course-infrastructure | course-domain | — | FileSystemCourseRepository | — |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure | ReportFormatter, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter, DrillDownResolver, AnalyzerStatsTransformer, ScoreRow, DetailedFormatter | TextReportFormatter, JsonReportFormatter, DefaultFormatterRegistry, DefaultReportViewModelTransformer, TableReportFormatter, RawJsonReportFormatter, DefaultDrillDownResolver, DefaultAnalyzerStatsTransformer, ContentAuditCmd, AnalyzeCmd, AnalyzerCmd, AnalyzerListCmd, AnalyzerConfigCmd, AnalyzerStatsCmd, LemmaAbsenceDetailedFormatter, CocaBucketsDetailedFormatter | — |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure | — | — | commands [public], formatting [internal] |
 | nlp-infrastructure | audit-domain | NlpTokenizerFactory | — | spacy [public] |
 | vocabulary-infrastructure | audit-domain | — | — | evp [internal], coca [internal] |
 
