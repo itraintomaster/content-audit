@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-class DefaultCorrectionContextResolver implements CorrectionContextResolver {
+public class DefaultCorrectionContextResolver implements CorrectionContextResolver {
 
     @Override
     public Optional<SentenceLengthCorrectionContext> resolve(AuditReport report,

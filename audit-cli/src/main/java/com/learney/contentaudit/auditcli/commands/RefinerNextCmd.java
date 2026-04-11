@@ -4,14 +4,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.learney.contentaudit.auditcli.RefinerNextCommand;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.RefinerEngine;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
+import com.learney.contentaudit.refinerdomain.SuggestedLemma;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.Callable;
@@ -29,6 +35,8 @@ final class RefinerNextCmd implements RefinerNextCommand, Callable<Integer> {
 
     private final RefinementPlanStore refinementPlanStore;
     private final RefinerEngine refinerEngine;
+    private final AuditReportStore auditReportStore;
+    private final CorrectionContextResolver correctionContextResolver;
 
     @Parameters(index = "0", arity = "0..1",
             description = "Plan ID. If omitted, uses the latest plan.")
@@ -47,9 +55,12 @@ final class RefinerNextCmd implements RefinerNextCommand, Callable<Integer> {
             description = "Filter by diagnosis: SENTENCE_LENGTH, LEMMA_ABSENCE, COCA_BUCKETS, etc.")
     private String diagnosisFilter;
 
-    public RefinerNextCmd(RefinementPlanStore refinementPlanStore, RefinerEngine refinerEngine) {
+    public RefinerNextCmd(RefinementPlanStore refinementPlanStore, RefinerEngine refinerEngine,
+            AuditReportStore auditReportStore, CorrectionContextResolver correctionContextResolver) {
         this.refinementPlanStore = refinementPlanStore;
         this.refinerEngine = refinerEngine;
+        this.auditReportStore = auditReportStore;
+        this.correctionContextResolver = correctionContextResolver;
     }
 
     @Override
@@ -124,24 +135,86 @@ final class RefinerNextCmd implements RefinerNextCommand, Callable<Integer> {
 
         RefinementTask task = nextTask.get();
 
+        // Resolve correction context for SENTENCE_LENGTH tasks (R006)
+        SentenceLengthCorrectionContext correctionContext = null;
+        String correctionContextError = null;
+        if (task.getDiagnosisKind() == DiagnosisKind.SENTENCE_LENGTH) {
+            String sourceAuditId = plan.getSourceAuditId();
+            if (sourceAuditId == null || sourceAuditId.isBlank()) {
+                correctionContextError = "no sourceAuditId on plan";
+            } else {
+                Optional<AuditReport> reportOpt = auditReportStore.load(sourceAuditId);
+                if (reportOpt.isEmpty()) {
+                    correctionContextError = "audit report '" + sourceAuditId + "' not found";
+                } else {
+                    Optional<SentenceLengthCorrectionContext> contextOpt =
+                            correctionContextResolver.resolve(reportOpt.get(), task);
+                    if (contextOpt.isPresent()) {
+                        correctionContext = contextOpt.get();
+                    } else {
+                        correctionContextError = "context could not be resolved for task " + task.getId();
+                    }
+                }
+            }
+        }
+
         return switch (formatName) {
-            case "json" -> printJson(task, total);
-            case "table" -> printTable(task, total);
-            default -> printText(task, total);
+            case "json" -> printJson(task, total, correctionContext, correctionContextError);
+            case "table" -> printTable(task, total, correctionContext, correctionContextError);
+            default -> printText(task, total, correctionContext, correctionContextError);
         };
     }
 
-    private Integer printText(RefinementTask task, int total) {
+    private Integer printText(RefinementTask task, int total,
+            SentenceLengthCorrectionContext correctionContext, String correctionContextError) {
         System.out.println("Next task (#" + task.getPriority() + " of " + total + "):");
         System.out.println("  Target:    " + (task.getNodeTarget() != null ? task.getNodeTarget().name() : "UNKNOWN"));
         System.out.println("  Node:      " + task.getNodeLabel() + " (id: " + task.getNodeId() + ")");
         System.out.println("  Diagnosis: " + task.getDiagnosisKind());
         System.out.println("  Priority:  " + task.getPriority());
         System.out.println("  Status:    " + task.getStatus());
+        if (task.getDiagnosisKind() == DiagnosisKind.SENTENCE_LENGTH) {
+            System.out.println();
+            if (correctionContext != null) {
+                printCorrectionContextText(correctionContext);
+            } else {
+                System.out.println("  Correction context: not available ("
+                        + (correctionContextError != null ? correctionContextError : "unknown reason") + ")");
+            }
+        }
         return 0;
     }
 
-    private Integer printTable(RefinementTask task, int total) {
+    private void printCorrectionContextText(SentenceLengthCorrectionContext ctx) {
+        System.out.println("  Correction context:");
+        System.out.println("    Sentence:     " + nullToEmpty(ctx.getSentence()));
+        System.out.println("    Translation:  " + nullToEmpty(ctx.getTranslation()));
+        System.out.println("    Knowledge:    " + nullToEmpty(ctx.getKnowledgeTitle()));
+        System.out.println("    Instructions: " + nullToEmpty(ctx.getKnowledgeInstructions()));
+        System.out.println("    Topic:        " + nullToEmpty(ctx.getTopicLabel()));
+        System.out.println("    CEFR Level:   " + (ctx.getCefrLevel() != null ? ctx.getCefrLevel().name() : ""));
+        String deltaStr = ctx.getDelta() > 0 ? "+" + ctx.getDelta()
+                : (ctx.getDelta() < 0 ? String.valueOf(ctx.getDelta()) : "0");
+        System.out.println("    Tokens:       " + ctx.getTokenCount()
+                + " (target: " + ctx.getTargetMin() + "-" + ctx.getTargetMax()
+                + ", delta: " + deltaStr + ")");
+        System.out.println("    Suggested lemmas:");
+        List<SuggestedLemma> lemmas = ctx.getSuggestedLemmas();
+        if (lemmas == null || lemmas.isEmpty()) {
+            System.out.println("      (none available)");
+        } else {
+            for (int i = 0; i < lemmas.size(); i++) {
+                SuggestedLemma l = lemmas.get(i);
+                String cocaPart = l.getCocaRank() > 0 ? " [COCA #" + l.getCocaRank() + "]" : "";
+                System.out.println("      " + (i + 1) + ". " + nullToEmpty(l.getLemma())
+                        + " (" + nullToEmpty(l.getPos()) + ") - " + nullToEmpty(l.getReason())
+                        + cocaPart);
+            }
+        }
+    }
+
+    private Integer printTable(RefinementTask task, int total,
+            SentenceLengthCorrectionContext correctionContext, String correctionContextError) {
         System.out.println("Next task (#" + task.getPriority() + " of " + total + ")");
         System.out.println();
         System.out.println("┌──────────────┬──────────────────────────────────────────┐");
@@ -152,6 +225,15 @@ final class RefinerNextCmd implements RefinerNextCommand, Callable<Integer> {
         System.out.printf("│ Priority     │ %-40d │%n", task.getPriority());
         System.out.printf("│ Status       │ %-40s │%n", task.getStatus());
         System.out.println("└──────────────┴──────────────────────────────────────────┘");
+        if (task.getDiagnosisKind() == DiagnosisKind.SENTENCE_LENGTH) {
+            System.out.println();
+            if (correctionContext != null) {
+                printCorrectionContextText(correctionContext);
+            } else {
+                System.out.println("  Correction context: not available ("
+                        + (correctionContextError != null ? correctionContextError : "unknown reason") + ")");
+            }
+        }
         return 0;
     }
 
@@ -166,7 +248,8 @@ final class RefinerNextCmd implements RefinerNextCommand, Callable<Integer> {
         return sb.toString();
     }
 
-    private Integer printJson(RefinementTask task, int total) {
+    private Integer printJson(RefinementTask task, int total,
+            SentenceLengthCorrectionContext correctionContext, String correctionContextError) {
         try {
             Map<String, Object> output = new LinkedHashMap<>();
             output.put("taskNumber", task.getPriority());
@@ -179,6 +262,16 @@ final class RefinerNextCmd implements RefinerNextCommand, Callable<Integer> {
             output.put("priority", task.getPriority());
             output.put("status", task.getStatus() != null ? task.getStatus().name() : null);
 
+            if (task.getDiagnosisKind() == DiagnosisKind.SENTENCE_LENGTH) {
+                if (correctionContext != null) {
+                    output.put("correctionContext", buildCorrectionContextMap(correctionContext));
+                } else {
+                    output.put("correctionContext", null);
+                    output.put("correctionContextError",
+                            correctionContextError != null ? correctionContextError : "unknown reason");
+                }
+            }
+
             ObjectMapper om = new ObjectMapper();
             om.enable(SerializationFeature.INDENT_OUTPUT);
             System.out.println(om.writeValueAsString(output));
@@ -187,5 +280,42 @@ final class RefinerNextCmd implements RefinerNextCommand, Callable<Integer> {
             System.err.println("Error formatting JSON: " + e.getMessage());
             return 1;
         }
+    }
+
+    private Map<String, Object> buildCorrectionContextMap(SentenceLengthCorrectionContext ctx) {
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("sentence", ctx.getSentence());
+        map.put("translation", ctx.getTranslation());
+        map.put("knowledgeTitle", ctx.getKnowledgeTitle());
+        map.put("knowledgeInstructions", ctx.getKnowledgeInstructions());
+        map.put("topicLabel", ctx.getTopicLabel());
+        map.put("cefrLevel", ctx.getCefrLevel() != null ? ctx.getCefrLevel().name() : null);
+        map.put("tokenCount", ctx.getTokenCount());
+        Map<String, Object> targetRange = new LinkedHashMap<>();
+        targetRange.put("min", ctx.getTargetMin());
+        targetRange.put("max", ctx.getTargetMax());
+        map.put("targetRange", targetRange);
+        map.put("delta", ctx.getDelta());
+        List<SuggestedLemma> lemmas = ctx.getSuggestedLemmas();
+        if (lemmas == null) {
+            map.put("suggestedLemmas", List.of());
+        } else {
+            List<Map<String, Object>> lemmaList = lemmas.stream()
+                    .map(l -> {
+                        Map<String, Object> lm = new LinkedHashMap<>();
+                        lm.put("lemma", l.getLemma());
+                        lm.put("pos", l.getPos());
+                        lm.put("reason", l.getReason());
+                        lm.put("cocaRank", l.getCocaRank());
+                        return lm;
+                    })
+                    .toList();
+            map.put("suggestedLemmas", lemmaList);
+        }
+        return map;
+    }
+
+    private static String nullToEmpty(String s) {
+        return s != null ? s : "";
     }
 }

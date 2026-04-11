@@ -111,3 +111,9 @@ Good test names describe the **behavior** being tested:
 - `"full lifecycle: create, update, and delete booking"` — integration
 
 Each test name should map to a specific business rule or journey when possible.
+
+## Important: Method Naming
+
+Sentinel derives Java method names from the `handwrittenTests` `name` field using camelCase conversion. These names are **canonical**. If a test method is renamed, `sentinel generate` will not find it and will reinsert a duplicate stub, causing `@Test is not a repeatable annotation` compilation errors.
+
+**Never rename generated test method stubs. Only implement their body.**

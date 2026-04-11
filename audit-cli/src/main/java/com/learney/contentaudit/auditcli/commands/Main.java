@@ -38,6 +38,8 @@ import com.learney.contentaudit.courseinfrastructure.FileSystemCourseRepository;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore;
 import com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.DefaultCorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
 import com.learney.contentaudit.refinerdomain.RefinerEngine;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
@@ -187,12 +189,14 @@ public class Main {
         // Refiner commands
         RefinerEngine refinerEngine = new DefaultRefinerEngine();
         RefinementPlanStore refinementPlanStore = new FileSystemRefinementPlanStore();
+        CorrectionContextResolver correctionContextResolver = new DefaultCorrectionContextResolver();
 
         picocli.CommandLine refinerGroup = new picocli.CommandLine(new RefinerCmd());
         refinerGroup.addSubcommand("plan", new picocli.CommandLine(
                 new RefinerPlanCmd(auditReportStore, refinerEngine, refinementPlanStore)));
         refinerGroup.addSubcommand("next", new picocli.CommandLine(
-                new RefinerNextCmd(refinementPlanStore, refinerEngine)));
+                new RefinerNextCmd(refinementPlanStore, refinerEngine, auditReportStore,
+                        correctionContextResolver)));
         refinerGroup.addSubcommand("list", new picocli.CommandLine(
                 new RefinerListCmd(refinementPlanStore)));
         cmd.addSubcommand("refiner", refinerGroup);
