@@ -1,9 +1,19 @@
 code: __proposal__
 description: "Reduce audit-cli public API surface: move commands to public 'commands'\
   \ package, move all formatting internals to internal 'formatting' package. Add missing\
-  \ Main and ScoredItemRow declarations."
+  \ Main and ScoredItemRow declarations.; Add audit report persistence layer: AuditReportSummary\
+  \ model and AuditReportStore port in audit-domain, FileSystemAuditReportStore in\
+  \ new audit-infrastructure module, wire dependencies in audit-application and audit-cli"
 modules:
 - name: audit-cli
+  dependsOn:
+  - audit-application
+  - audit-domain
+  - course-domain
+  - course-infrastructure
+  - nlp-infrastructure
+  - vocabulary-infrastructure
+  - audit-infrastructure
   models:
   - name: ReportViewModel
     type: record
@@ -487,4 +497,56 @@ modules:
       - DetailedFormatter
       _change: add
     _change: add
+  _change: modify
+- name: audit-domain
+  models:
+  - name: AuditReportSummary
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: Unique audit report identifier (timestamp-based)
+    - name: timestamp
+      type: Instant
+      description: When the audit was executed
+    - name: courseName
+      type: String
+      description: Name of the audited course
+    - name: overallScore
+      type: double
+      description: Aggregate score from the audit
+    _change: add
+  interfaces:
+  - name: AuditReportStore
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "save(AuditReport report): String"
+    - signature: "load(String id): Optional<AuditReport>"
+    - signature: "loadLatest(): Optional<AuditReport>"
+    - signature: "list(): List<AuditReportSummary>"
+    _change: add
+  _change: modify
+- name: audit-infrastructure
+  description: Filesystem persistence adapters for audit reports
+  dependsOn:
+  - audit-domain
+  implementations:
+  - name: FileSystemAuditReportStore
+    types:
+    - Repository
+    implements:
+    - AuditReportStore
+    _change: add
+  scope: internal
+  _change: add
+- name: audit-application
+  dependsOn:
+  - audit-domain
+  - course-domain
+  - refiner-domain
+  - course-infrastructure
+  - nlp-infrastructure
+  - vocabulary-infrastructure
+  - audit-infrastructure
   _change: modify

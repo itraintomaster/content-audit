@@ -1,0 +1,198 @@
+package com.learney.contentaudit.auditcli.commands;
+
+import com.learney.contentaudit.auditcli.RefinerPlanCommand;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.refinerdomain.RefinerEngine;
+import com.learney.contentaudit.refinerdomain.RefinementPlan;
+import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
+import picocli.CommandLine.Parameters;
+
+@Command(
+    name = "plan",
+    description = "Generate a refinement plan from an audit report.%n%nAnalyzes the audit results"
+        + " and creates a prioritized list of%nimprovements. If no audit-id is provided, uses the"
+        + " latest audit.",
+    mixinStandardHelpOptions = true,
+    footer = {
+        "",
+        "Examples:",
+        "  # Generate a plan from the latest audit",
+        "  content-audit refiner plan",
+        "",
+        "  # Generate a plan from a specific audit",
+        "  content-audit refiner plan 2026-04-06T19-30-00",
+    }
+)
+final class RefinerPlanCmd implements RefinerPlanCommand, Callable<Integer> {
+
+    private final AuditReportStore auditReportStore;
+    private final RefinerEngine refinerEngine;
+    private final RefinementPlanStore refinementPlanStore;
+
+    @Parameters(index = "0", arity = "0..1",
+            description = "Audit report ID. If omitted, uses the latest audit.")
+    private String auditId;
+
+    @Option(names = {"-f", "--format"},
+            description = "Output format: text, json, table (default: ${DEFAULT-VALUE})",
+            defaultValue = "text")
+    private String formatName;
+
+    public RefinerPlanCmd(AuditReportStore auditReportStore, RefinerEngine refinerEngine,
+            RefinementPlanStore refinementPlanStore) {
+        this.auditReportStore = auditReportStore;
+        this.refinerEngine = refinerEngine;
+        this.refinementPlanStore = refinementPlanStore;
+    }
+
+    @Override
+    public Integer call() {
+        return plan(this.auditId);
+    }
+
+    @Override
+    public int plan(String auditId) {
+        Optional<AuditReport> reportOpt;
+        if (auditId == null || auditId.isBlank()) {
+            reportOpt = auditReportStore.loadLatest();
+            if (reportOpt.isEmpty()) {
+                System.err.println("Error: no audits found. Run 'content-audit analyze' first.");
+                return 1;
+            }
+        } else {
+            reportOpt = auditReportStore.load(auditId);
+            if (reportOpt.isEmpty()) {
+                System.err.println("Error: audit not found: " + auditId);
+                return 1;
+            }
+        }
+
+        AuditReport report = reportOpt.get();
+        RefinementPlan plan = refinerEngine.plan(report);
+        String planId = refinementPlanStore.save(plan);
+
+        List<RefinementTask> tasks = plan.getTasks() != null ? plan.getTasks() : List.of();
+
+        return switch (formatName) {
+            case "json" -> printJson(plan, planId, tasks);
+            case "table" -> printTable(planId, plan, tasks);
+            default -> printText(planId, plan, tasks);
+        };
+    }
+
+    private Integer printText(String planId, RefinementPlan plan, List<RefinementTask> tasks) {
+        int total = tasks.size();
+
+        System.out.println("Refinement plan created: " + planId);
+        System.out.println("Source audit:            " + sourceAuditLabel(plan));
+        System.out.println("Tasks:                   " + total + " improvements identified");
+
+        if (total == 0) {
+            System.out.println();
+            System.out.println("No improvements needed — all scores are perfect.");
+            return 0;
+        }
+
+        System.out.println();
+        String headerFmt = "%-9s  %-11s  %-23s  %s";
+        System.out.println(String.format(headerFmt, "Priority", "Target", "Node", "Diagnosis"));
+        System.out.println("─────────  ───────────  ───────────────────────  ──────────────────────");
+
+        int displayLimit = Math.min(total, 20);
+        String rowFmt = "%-9d  %-11s  %-23s  %s";
+        for (int i = 0; i < displayLimit; i++) {
+            RefinementTask t = tasks.get(i);
+            System.out.println(String.format(rowFmt,
+                    t.getPriority(),
+                    targetLabel(t.getNodeTarget()),
+                    truncate(t.getNodeLabel(), 23),
+                    t.getDiagnosisKind()));
+        }
+        if (total > 20) {
+            System.out.println("[+" + (total - 20) + " more tasks]");
+        }
+        return 0;
+    }
+
+    private Integer printTable(String planId, RefinementPlan plan, List<RefinementTask> tasks) {
+        int total = tasks.size();
+        System.out.println("Plan: " + planId + "  |  Audit: " + sourceAuditLabel(plan)
+                + "  |  Tasks: " + total);
+        if (total == 0) return 0;
+
+        System.out.println();
+        System.out.println("┌─────────┬───────────┬─────────────────────────┬────────────────────────────────┐");
+        System.out.println("│ Prio    │ Target    │ Node                    │ Diagnosis                      │");
+        System.out.println("├─────────┼───────────┼─────────────────────────┼────────────────────────────────┤");
+
+        for (RefinementTask t : tasks) {
+            System.out.printf("│ %-7d │ %-9s │ %-23s │ %-30s │%n",
+                    t.getPriority(),
+                    targetLabel(t.getNodeTarget()),
+                    truncate(t.getNodeLabel(), 23),
+                    t.getDiagnosisKind());
+        }
+        System.out.println("└─────────┴───────────┴─────────────────────────┴────────────────────────────────┘");
+        return 0;
+    }
+
+    private Integer printJson(RefinementPlan plan, String planId, List<RefinementTask> tasks) {
+        try {
+            Map<String, Object> output = new LinkedHashMap<>();
+            output.put("planId", planId);
+            output.put("sourceAuditId", plan.getSourceAuditId());
+            output.put("createdAt", plan.getCreatedAt() != null ? plan.getCreatedAt().toString() : null);
+            output.put("taskCount", tasks.size());
+            output.put("tasks", tasks.stream().map(t -> {
+                Map<String, Object> m = new LinkedHashMap<>();
+                m.put("id", t.getId());
+                m.put("priority", t.getPriority());
+                m.put("target", targetLabel(t.getNodeTarget()));
+                m.put("nodeId", t.getNodeId());
+                m.put("nodeLabel", t.getNodeLabel());
+                m.put("diagnosis", t.getDiagnosisKind() != null ? t.getDiagnosisKind().name() : null);
+                m.put("status", t.getStatus() != null ? t.getStatus().name() : null);
+                return m;
+            }).collect(Collectors.toList()));
+
+            ObjectMapper om = new ObjectMapper();
+            om.registerModule(new JavaTimeModule());
+            om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            om.enable(SerializationFeature.INDENT_OUTPUT);
+            System.out.println(om.writeValueAsString(output));
+            return 0;
+        } catch (Exception e) {
+            System.err.println("Error formatting JSON: " + e.getMessage());
+            return 1;
+        }
+    }
+
+    private static String sourceAuditLabel(RefinementPlan plan) {
+        return plan.getSourceAuditId() != null && !plan.getSourceAuditId().isBlank()
+                ? plan.getSourceAuditId() : "(latest)";
+    }
+
+    private static String targetLabel(AuditTarget target) {
+        return target != null ? target.name() : "UNKNOWN";
+    }
+
+    private static String truncate(String s, int maxLen) {
+        if (s == null) return "";
+        if (s.length() <= maxLen) return s;
+        return s.substring(0, maxLen - 1) + "\u2026";
+    }
+}

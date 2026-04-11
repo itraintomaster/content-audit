@@ -35,6 +35,12 @@ import com.learney.contentaudit.courseinfrastructure.CourseValidatorImpl;
 import com.learney.contentaudit.auditapplication.DefaultAnalyzerRegistry;
 import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
 import com.learney.contentaudit.courseinfrastructure.FileSystemCourseRepository;
+import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore;
+import com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
+import com.learney.contentaudit.refinerdomain.RefinerEngine;
+import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.auditcli.formatting.AnalyzerStatsTransformer;
 import com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter;
 import com.learney.contentaudit.auditcli.formatting.DefaultAnalyzerStatsTransformer;
@@ -152,6 +158,9 @@ public class Main {
                 contentAnalyzers, describableConfigs);
         AnalyzerStatsTransformer analyzerStatsTransformer = new DefaultAnalyzerStatsTransformer();
 
+        // Audit persistence
+        AuditReportStore auditReportStore = new FileSystemAuditReportStore();
+
         // Detailed formatters for --detailed mode
         Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
         detailedFormatters.put("lemma-absence", new LemmaAbsenceDetailedFormatter());
@@ -163,7 +172,8 @@ public class Main {
 
         cmd.addSubcommand("analyze", new picocli.CommandLine(
                 new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
-                        rawReportFormatter, drillDownResolver, detailedFormatters)));
+                        rawReportFormatter, drillDownResolver, detailedFormatters,
+                        auditReportStore)));
 
         picocli.CommandLine analyzerGroup = new picocli.CommandLine(new AnalyzerCmd());
         analyzerGroup.addSubcommand("list", new picocli.CommandLine(
@@ -173,6 +183,19 @@ public class Main {
         analyzerGroup.addSubcommand("stats", new picocli.CommandLine(
                 new AnalyzerStatsCmd(analyzerRegistry, analyzerStatsTransformer, auditRunner)));
         cmd.addSubcommand("analyzer", analyzerGroup);
+
+        // Refiner commands
+        RefinerEngine refinerEngine = new DefaultRefinerEngine();
+        RefinementPlanStore refinementPlanStore = new FileSystemRefinementPlanStore();
+
+        picocli.CommandLine refinerGroup = new picocli.CommandLine(new RefinerCmd());
+        refinerGroup.addSubcommand("plan", new picocli.CommandLine(
+                new RefinerPlanCmd(auditReportStore, refinerEngine, refinementPlanStore)));
+        refinerGroup.addSubcommand("next", new picocli.CommandLine(
+                new RefinerNextCmd(refinementPlanStore, refinerEngine)));
+        refinerGroup.addSubcommand("list", new picocli.CommandLine(
+                new RefinerListCmd(refinementPlanStore)));
+        cmd.addSubcommand("refiner", refinerGroup);
 
         int exitCode = cmd.execute(args);
         System.exit(exitCode);

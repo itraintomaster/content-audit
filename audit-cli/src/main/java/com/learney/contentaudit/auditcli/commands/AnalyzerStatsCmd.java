@@ -2,6 +2,7 @@ package com.learney.contentaudit.auditcli.commands;
 
 import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
 import com.learney.contentaudit.auditapplication.AuditRunner;
+import com.learney.contentaudit.auditcli.AnalyzerStatsCommand;
 import com.learney.contentaudit.auditcli.formatting.AnalyzerStatsTransformer;
 import com.learney.contentaudit.auditcli.formatting.AnalyzerStatsView;
 import com.learney.contentaudit.auditcli.formatting.ScoredItemRow;
@@ -36,7 +37,7 @@ import picocli.CommandLine.Parameters;
                 "  CONTENT_AUDIT_CONTENT_FOLDER=db/english-course content-audit analyzer stats lemma-recurrence",
         }
 )
-class AnalyzerStatsCmd implements Callable<Integer> {
+final class AnalyzerStatsCmd implements AnalyzerStatsCommand, Callable<Integer> {
     private final AnalyzerRegistry analyzerRegistry;
 
     private final AnalyzerStatsTransformer analyzerStatsTransformer;
@@ -58,6 +59,11 @@ class AnalyzerStatsCmd implements Callable<Integer> {
 
     @Override
     public Integer call() {
+        return showStats(this.analyzerName, this.coursePath);
+    }
+
+    @Override
+    public int showStats(String analyzerName, String coursePath) {
         boolean exists = analyzerRegistry.listAnalyzers().stream()
                 .anyMatch(a -> analyzerName.equals(a.getName()));
         if (!exists) {
@@ -144,4 +150,5 @@ class AnalyzerStatsCmd implements Callable<Integer> {
             }
         }
     }
+
 }

@@ -289,6 +289,15 @@ The following models and interfaces are available from dependencies. You can use
 | delta | `int` |
 | toleranceMargin | `int` |
 
+### AuditReportSummary (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| timestamp | `Instant` |
+| courseName | `String` |
+| overallScore | `double` |
+
 ### AuditEngine (port)
 
 Methods:
@@ -442,6 +451,15 @@ Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
+
+### AuditReportStore (port)
+
+Methods:
+
+- `save(AuditReport report): String`
+- `load(String id): Optional<AuditReport>`
+- `loadLatest(): Optional<AuditReport>`
+- `list(): List<AuditReportSummary>`
 
 ### From course-domain
 
@@ -597,6 +615,65 @@ Methods:
 Methods:
 
 - `validate(CourseEntity course): void`
+
+### From refiner-domain
+
+## Models
+
+### DiagnosisKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| SENTENCE_LENGTH | `null` |
+| LEMMA_ABSENCE | `null` |
+| COCA_BUCKETS | `null` |
+| LEMMA_RECURRENCE | `null` |
+| KNOWLEDGE_TITLE_LENGTH | `null` |
+| KNOWLEDGE_INSTRUCTIONS_LENGTH | `null` |
+
+### RefinementTaskStatus (`enum`)
+
+| Field | Type |
+|-------|------|
+| PENDING | `null` |
+| COMPLETED | `null` |
+| SKIPPED | `null` |
+
+### RefinementTask (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| nodeTarget | `AuditTarget` |
+| nodeId | `String` |
+| nodeLabel | `String` |
+| diagnosisKind | `DiagnosisKind` |
+| priority | `int` |
+| status | `RefinementTaskStatus` |
+
+### RefinementPlan (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| sourceAuditId | `String` |
+| createdAt | `Instant` |
+| tasks | `List<RefinementTask>` |
+
+### RefinerEngine (port)
+
+Methods:
+
+- `plan(AuditReport report): RefinementPlan`
+- `nextTask(RefinementPlan plan): Optional<RefinementTask>`
+
+### RefinementPlanStore (port)
+
+Methods:
+
+- `save(RefinementPlan plan): String`
+- `load(String id): Optional<RefinementPlan>`
+- `loadLatest(): Optional<RefinementPlan>`
 
 ### From nlp-infrastructure
 

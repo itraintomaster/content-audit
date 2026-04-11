@@ -200,6 +200,11 @@ When analyzing an implementation, identify:
 - `QuizDiagnoses`
   - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
   - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
+- `AuditReportStore`
+  - `save(AuditReport report): String`
+  - `load(String id): Optional<AuditReport>`
+  - `loadLatest(): Optional<AuditReport>`
+  - `list(): List<AuditReportSummary>`
 
 **Implementations:**
 
@@ -232,6 +237,18 @@ Domain module for course structure. Contains entity models representing the 5-le
   - `validate(CourseEntity course): void`
 
 ### refiner-domain
+
+Domain module for the refinement workflow. Defines the plan/task model and ports for generating and persisting refinement plans derived from audit reports.
+
+**Interfaces:**
+
+- `RefinerEngine`
+  - `plan(AuditReport report): RefinementPlan`
+  - `nextTask(RefinementPlan plan): Optional<RefinementTask>`
+- `RefinementPlanStore`
+  - `save(RefinementPlan plan): String`
+  - `load(String id): Optional<RefinementPlan>`
+  - `loadLatest(): Optional<RefinementPlan>`
 
 ### audit-application
 
@@ -284,6 +301,23 @@ Infrastructure module for course persistence. Contains the filesystem adapter th
 
 CLI entry point for running content audits from the command line
 
+**Interfaces:**
+
+- `AnalyzeCommand` [sealed]
+  - `analyze(String coursePath, String format, String level, String topic, String knowledge, List<String> analyzers, boolean detailed): Integer`
+- `AnalyzerListCommand` [sealed]
+  - `list(): Integer`
+- `AnalyzerConfigCommand` [sealed]
+  - `showConfig(String analyzerName): Integer`
+- `AnalyzerStatsCommand` [sealed]
+  - `showStats(String analyzerName, String coursePath): Integer`
+- `RefinerPlanCommand` [sealed]
+  - `plan(String auditId): Integer`
+- `RefinerNextCommand` [sealed]
+  - `next(String planId): Integer`
+- `RefinerListCommand` [sealed]
+  - `listTasks(String planId): Integer`
+
 ### nlp-infrastructure
 
 Infrastructure module for NLP processing. Provides SpaCy-backed tokenization behind a factory, with internal caching. Only the factory and configuration model are public; all processing internals are package-private.
@@ -296,4 +330,16 @@ Infrastructure module for NLP processing. Provides SpaCy-backed tokenization beh
 ### vocabulary-infrastructure
 
 Infrastructure module for linguistic reference catalogs (EVP vocabulary profiles, COCA frequency data). Provides static lookup data for vocabulary analysis. Separate from NLP processing (which handles runtime tokenization).
+
+### audit-infrastructure
+
+Filesystem persistence adapters for audit reports
+
+**Implementations:**
+
+- `FileSystemAuditReportStore` implements AuditReportStore
+  Tests (1): should save an AuditReport and load it back with identical content
+  **Untested methods:** load, save, loadLatest, list
+- `FileSystemRefinementPlanStore` implements RefinementPlanStore
+  **NO TESTS** — all 3 methods uncovered
 

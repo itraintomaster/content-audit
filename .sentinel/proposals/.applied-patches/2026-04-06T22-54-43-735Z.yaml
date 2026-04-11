@@ -1,0 +1,52 @@
+code: __proposal__
+description: Add command interfaces to audit-cli commands package for API view visibility
+modules:
+- name: audit-cli
+  packages:
+  - name: commands
+    visibility: internal
+    interfaces:
+    - name: AnalyzeCommand
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "analyze(String coursePath, String format, String level, String\
+          \ topic, String knowledge, List<String> analyzers, boolean detailed): Integer"
+      _change: add
+    - name: AnalyzerListCommand
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "list(): Integer"
+      _change: add
+    - name: AnalyzerConfigCommand
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "showConfig(String analyzerName): Integer"
+      _change: add
+    - name: AnalyzerStatsCommand
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "showStats(String analyzerName, String coursePath): Integer"
+      _change: add
+    implementations:
+    - name: AnalyzeCmd
+      implements:
+      - AnalyzeCommand
+      _change: modify
+    - name: AnalyzerListCmd
+      implements:
+      - AnalyzerListCommand
+      _change: modify
+    - name: AnalyzerConfigCmd
+      implements:
+      - AnalyzerConfigCommand
+      _change: modify
+    - name: AnalyzerStatsCmd
+      implements:
+      - AnalyzerStatsCommand
+      _change: modify
+    _change: modify
+  _change: modify

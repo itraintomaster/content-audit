@@ -244,14 +244,15 @@ modules:
 
 | Module | Dependencies | Interfaces | Implementations | Packages |
 |--------|-------------|------------|------------------|----------|
-| audit-domain | — | AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses | IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator | coca [internal], lrec [internal], labs [internal] |
+| audit-domain | — | AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore | IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator | coca [internal], lrec [internal], labs [internal] |
 | course-domain | — | CourseRepository, CourseValidator | — | — |
-| refiner-domain | — | — | — | — |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure | AuditRunner, CourseMapper, AnalyzerRegistry | CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry | — |
+| refiner-domain | audit-domain | RefinerEngine, RefinementPlanStore | — | — |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure | AuditRunner, CourseMapper, AnalyzerRegistry | CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry | — |
 | course-infrastructure | course-domain | — | FileSystemCourseRepository | — |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure | — | — | commands [public], formatting [internal] |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain | AnalyzeCommand, AnalyzerListCommand, AnalyzerConfigCommand, AnalyzerStatsCommand, RefinerPlanCommand, RefinerNextCommand, RefinerListCommand | — | commands [internal], formatting [internal] |
 | nlp-infrastructure | audit-domain | NlpTokenizerFactory | — | spacy [public] |
 | vocabulary-infrastructure | audit-domain | — | — | evp [internal], coca [internal] |
+| audit-infrastructure | audit-domain, refiner-domain | — | FileSystemAuditReportStore, FileSystemRefinementPlanStore | — |
 
 ### Boundaries
 
@@ -259,10 +260,11 @@ modules:
 |--------|------------|
 | audit-domain | (none) |
 | course-domain | (none) |
-| refiner-domain | (none) |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
+| refiner-domain | audit-domain |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure |
 | course-infrastructure | course-domain |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain |
 | nlp-infrastructure | audit-domain |
 | vocabulary-infrastructure | audit-domain |
+| audit-infrastructure | audit-domain, refiner-domain |
 

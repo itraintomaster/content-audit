@@ -1,0 +1,16 @@
+code: __proposal__
+description: Add handwritten round-trip test for FileSystemAuditReportStore
+modules:
+- name: audit-infrastructure
+  implementations:
+  - name: FileSystemAuditReportStore
+    handwrittenTests:
+    - name: should save an AuditReport and load it back with identical content
+      traceability:
+        feature: FEAT-STORE
+        rule: F-STORE-R001
+      _change: add
+    implements:
+    - AuditReportStore
+    _change: modify
+  _change: modify

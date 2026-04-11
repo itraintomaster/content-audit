@@ -1,6 +1,37 @@
-analyzedAt: 2026-04-02T03:25:58.471686Z
+analyzedAt: 2026-04-10T01:01:55.000396Z
 system: ContentAudit
 modules:
+- name: audit-infrastructure
+  source: sentinel
+  models:
+  - name: AuditPersistenceException
+    source: implementation
+    type: exception
+    visibility: package-private
+    extendsType: RuntimeException
+  - name: AuditReportObjectMapper
+    source: implementation
+    type: class
+    visibility: package-private
+  implementations:
+  - name: FileSystemAuditReportStore
+    source: mixed
+    visibility: public
+    requiresInject:
+    - name: baseDir
+      type: Path
+    sentinelStatus: differs
+    implements:
+    - AuditReportStore
+  - name: FileSystemRefinementPlanStore
+    source: mixed
+    visibility: public
+    requiresInject:
+    - name: baseDir
+      type: Path
+    sentinelStatus: differs
+    implements:
+    - RefinementPlanStore
 - name: course-domain
   source: sentinel
   models:
@@ -375,6 +406,15 @@ modules:
       type: double
     - name: targetLevel
       type: CefrLevel
+  - name: LemmaPlacementDiagnosis
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: misplacedLemmaCount
+      type: int
+    - name: misplacedLemmas
+      type: List<MisplacedLemma>
   - name: AbsenceType
     source: sentinel
     type: enum
@@ -445,6 +485,63 @@ modules:
       type: String
     - name: pos
       type: String
+  - name: LemmaAbsenceCourseDiagnosis
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: assessment
+      type: AbsenceAssessment
+  - name: MisplacedLemma
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: lemmaAndPos
+      type: LemmaAndPos
+    - name: expectedLevel
+      type: CefrLevel
+    - name: foundInLevel
+      type: CefrLevel
+    - name: absenceType
+      type: AbsenceType
+    - name: cocaRank
+      type: int
+    - name: semanticCategory
+      type: String
+  - name: LemmaAbsenceLevelDiagnosis
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: level
+      type: CefrLevel
+    - name: totalExpected
+      type: int
+    - name: totalAbsent
+      type: int
+    - name: absencePercentage
+      type: double
+    - name: coverageTarget
+      type: double
+    - name: completelyAbsentScore
+      type: double
+    - name: tooLateScore
+      type: double
+    - name: tooEarlyScore
+      type: double
+    - name: assessment
+      type: AbsenceAssessment
+    - name: absentLemmas
+      type: List<AbsentLemma>
+    - name: misplacedLemmas
+      type: List<MisplacedLemma>
+    - name: highPriorityCount
+      type: int
+    - name: mediumPriorityCount
+      type: int
+    - name: lowPriorityCount
+      type: int
   - name: ExposureStatus
     source: sentinel
     type: enum
@@ -497,6 +594,19 @@ modules:
       type: ExposureSummary
     - name: overallScore
       type: double
+  - name: AuditReportSummary
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: id
+      type: String
+    - name: timestamp
+      type: Instant
+    - name: courseName
+      type: String
+    - name: overallScore
+      type: double
   - name: AnalyzerDescriptor
     source: sentinel
     type: class
@@ -543,6 +653,17 @@ modules:
       type: constant
     - name: IRREGULAR
       type: constant
+  - name: CocaProgressionDiagnosis
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: overallScore
+      type: double
+    - name: progressionAssessments
+      type: List<ProgressionAssessment>
+    - name: improvementDirectives
+      type: List<ImprovementDirective>
   - name: BandConfiguration
     source: sentinel
     type: class
@@ -609,6 +730,17 @@ modules:
       type: constant
     - name: EXCESSIVE
       type: constant
+  - name: CocaBucketsLevelDiagnosis
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: totalTokens
+      type: int
+    - name: buckets
+      type: List<BucketResult>
+    - name: quarters
+      type: List<QuarterResult>
   - name: FrequencyBand
     source: sentinel
     type: class
@@ -696,6 +828,15 @@ modules:
       type: List<BucketResult>
     - name: score
       type: double
+  - name: CocaBucketsTopicDiagnosis
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: totalTokens
+      type: int
+    - name: buckets
+      type: List<BucketSummary>
   - name: ProgressionAssessment
     source: sentinel
     type: class
@@ -722,6 +863,17 @@ modules:
       type: double
     - name: improvementDirectives
       type: List<ImprovementDirective>
+  - name: BucketSummary
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: bandName
+      type: String
+    - name: count
+      type: int
+    - name: percentage
+      type: double
   - name: TargetKind
     source: sentinel
     type: enum
@@ -732,7 +884,7 @@ modules:
     - name: AT_MOST
       type: constant
   - name: AuditNode
-    source: sentinel
+    source: mixed
     type: class
     visibility: public
     fields:
@@ -748,6 +900,8 @@ modules:
       type: "Map<String,Double>"
     - name: metadata
       type: "Map<String,Object>"
+    - name: diagnoses
+      type: NodeDiagnoses
   - name: AuditableCourse
     source: sentinel
     type: class
@@ -765,6 +919,23 @@ modules:
     - name: minTokens
       type: int
     - name: maxTokens
+      type: int
+  - name: SentenceLengthDiagnosis
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: tokenCount
+      type: int
+    - name: targetMin
+      type: int
+    - name: targetMax
+      type: int
+    - name: cefrLevel
+      type: CefrLevel
+    - name: delta
+      type: int
+    - name: toleranceMargin
       type: int
   - name: CefrLevel
     source: sentinel
@@ -923,13 +1094,19 @@ modules:
     - signature: "getName(): String"
     - signature: "getTarget(): AuditTarget"
     - signature: "getDescription(): String"
-    sentinelStatus: differs
   - name: AuditEngine
     source: sentinel
     visibility: public
     sealed: false
     exposes:
     - signature: "runAudit(AuditableCourse course): AuditReport"
+  - name: CourseDiagnoses
+    source: mixed
+    visibility: public
+    sealed: true
+    exposes:
+    - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>"
+    - signature: "getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>"
   - name: CocaBucketsConfig
     source: sentinel
     visibility: public
@@ -941,6 +1118,19 @@ modules:
     - signature: "getToleranceMargin(): double"
     - signature: "getAnalysisStrategy(): AnalysisStrategy"
     - signature: "getProgressionExpectations(): List<ProgressionExpectation>"
+  - name: TopicDiagnoses
+    source: mixed
+    visibility: public
+    sealed: true
+    exposes:
+    - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
+    - signature: "getCocaBucketsDiagnosis(): Optional<CocaBucketsTopicDiagnosis>"
+  - name: KnowledgeDiagnoses
+    source: mixed
+    visibility: public
+    sealed: true
+    exposes:
+    - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
   - name: SentenceLengthConfig
     source: sentinel
     visibility: public
@@ -948,6 +1138,15 @@ modules:
     exposes:
     - signature: "getTargetRange(CefrLevel level): Optional<TargetRange>"
     - signature: "getToleranceMargin(): int"
+  - name: AuditReportStore
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "save(AuditReport report): String"
+    - signature: "load(String id): Optional<AuditReport>"
+    - signature: "loadLatest(): Optional<AuditReport>"
+    - signature: "list(): List<AuditReportSummary>"
   - name: EvpCatalogPort
     source: sentinel
     visibility: public
@@ -958,12 +1157,29 @@ modules:
     - signature: "isPhrase(String lemma): boolean"
     - signature: "getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>"
     - signature: "getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>"
+  - name: QuizDiagnoses
+    source: mixed
+    visibility: public
+    sealed: true
+    exposes:
+    - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
+    - signature: "getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>"
   - name: SelfDescribingConfig
     source: sentinel
     visibility: public
     sealed: false
     exposes:
     - signature: "describe(): Map<String,Object>"
+  - name: NodeDiagnoses
+    source: mixed
+    visibility: public
+    sealed: true
+    permits:
+    - CourseDiagnoses
+    - LevelDiagnoses
+    - TopicDiagnoses
+    - KnowledgeDiagnoses
+    - QuizDiagnoses
   - name: TokenClassifier
     source: sentinel
     visibility: public
@@ -984,6 +1200,13 @@ modules:
     exposes:
     - signature: "plan(List<LevelBucketDistribution> levels, BandConfiguration bandConfig,\
         \ CocaBucketsConfig config): List<ImprovementDirective>"
+  - name: LevelDiagnoses
+    source: mixed
+    visibility: public
+    sealed: true
+    exposes:
+    - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>"
+    - signature: "getCocaBucketsDiagnosis(): Optional<CocaBucketsLevelDiagnosis>"
   - name: LemmaRecurrenceConfig
     source: sentinel
     visibility: public
@@ -1087,6 +1310,16 @@ modules:
       type: ScoreAggregator
     implements:
     - AuditEngine
+  - name: DefaultKnowledgeDiagnoses
+    source: implementation
+    visibility: public
+    implements:
+    - KnowledgeDiagnoses
+  - name: DefaultLevelDiagnoses
+    source: implementation
+    visibility: public
+    implements:
+    - LevelDiagnoses
   - name: AuditableKnowledge
     source: sentinel
     visibility: public
@@ -1121,6 +1354,11 @@ modules:
     visibility: public
     implements:
     - ContentAnalyzer
+  - name: DefaultCourseDiagnoses
+    source: implementation
+    visibility: public
+    implements:
+    - CourseDiagnoses
   - name: AuditableQuiz
     source: sentinel
     visibility: public
@@ -1178,6 +1416,16 @@ modules:
     visibility: public
     implements:
     - ContentAnalyzer
+  - name: DefaultTopicDiagnoses
+    source: implementation
+    visibility: public
+    implements:
+    - TopicDiagnoses
+  - name: DefaultQuizDiagnoses
+    source: implementation
+    visibility: public
+    implements:
+    - QuizDiagnoses
   - name: IScoreAggregator
     source: mixed
     visibility: public
@@ -1213,6 +1461,89 @@ modules:
     - AuditableEntity
 - name: refiner-domain
   source: sentinel
+  models:
+  - name: DiagnosisKind
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: SENTENCE_LENGTH
+      type: constant
+    - name: LEMMA_ABSENCE
+      type: constant
+    - name: COCA_BUCKETS
+      type: constant
+    - name: LEMMA_RECURRENCE
+      type: constant
+    - name: KNOWLEDGE_TITLE_LENGTH
+      type: constant
+    - name: KNOWLEDGE_INSTRUCTIONS_LENGTH
+      type: constant
+  - name: RefinementPlan
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: id
+      type: String
+    - name: sourceAuditId
+      type: String
+    - name: createdAt
+      type: Instant
+    - name: tasks
+      type: List<RefinementTask>
+  - name: RefinementTask
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: id
+      type: String
+    - name: nodeTarget
+      type: AuditTarget
+    - name: nodeId
+      type: String
+    - name: nodeLabel
+      type: String
+    - name: diagnosisKind
+      type: DiagnosisKind
+    - name: priority
+      type: int
+    - name: status
+      type: RefinementTaskStatus
+  - name: RefinementTaskStatus
+    source: sentinel
+    type: enum
+    visibility: public
+    fields:
+    - name: PENDING
+      type: constant
+    - name: COMPLETED
+      type: constant
+    - name: SKIPPED
+      type: constant
+  interfaces:
+  - name: RefinementPlanStore
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "save(RefinementPlan plan): String"
+    - signature: "load(String id): Optional<RefinementPlan>"
+    - signature: "loadLatest(): Optional<RefinementPlan>"
+  - name: RefinerEngine
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "plan(AuditReport report): RefinementPlan"
+    - signature: "nextTask(RefinementPlan plan): Optional<RefinementTask>"
+  implementations:
+  - name: DefaultRefinerEngine
+    source: implementation
+    visibility: public
+    implements:
+    - RefinerEngine
 - name: audit-cli
   source: sentinel
   models:
@@ -1265,10 +1596,6 @@ modules:
       type: Optional<String>
     - name: knowledge
       type: Optional<String>
-  - name: Main
-    source: implementation
-    type: class
-    visibility: public
   - name: DrillDownLevel
     source: sentinel
     type: enum
@@ -1299,13 +1626,6 @@ modules:
       type: double
     - name: label
       type: String
-  - name: CoursePathResolver
-    source: implementation
-    type: class
-    visibility: package-private
-    fields:
-    - name: ENV_KEY
-      type: String
   - name: ReportViewModel
     source: sentinel
     type: class
@@ -1319,6 +1639,17 @@ modules:
       type: "Map<String,Double>"
     - name: milestoneScores
       type: List<MilestoneScoreRow>
+  - name: Main
+    source: implementation
+    type: class
+    visibility: public
+  - name: CoursePathResolver
+    source: implementation
+    type: class
+    visibility: package-private
+    fields:
+    - name: ENV_KEY
+      type: String
   - name: MilestoneScoreRow
     source: sentinel
     type: record
@@ -1423,6 +1754,18 @@ modules:
     extendsType: ScoreRow
     sentinelStatus: missing
   interfaces:
+  - name: RefinerNextCommand
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "next(String planId): int"
+  - name: RefinerPlanCommand
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "plan(String auditId): int"
   - name: DetailedFormatter
     source: sentinel
     visibility: public
@@ -1477,6 +1820,37 @@ modules:
     sealed: false
     exposes:
     - signature: "getFormatter(String formatName): ReportFormatter"
+  - name: AnalyzerConfigCommand
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "showConfig(String analyzerName): int"
+  - name: RefinerListCommand
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "listTasks(String planId): int"
+  - name: AnalyzeCommand
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "analyze(String coursePath, String format, String level, String topic,\
+        \ String knowledge, List<String> analyzers, boolean detailed): int"
+  - name: AnalyzerListCommand
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "list(): int"
+  - name: AnalyzerStatsCommand
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "showStats(String analyzerName, String coursePath): int"
   implementations:
   - name: DefaultFormatterRegistry
     source: sentinel
@@ -1484,16 +1858,14 @@ modules:
     requiresInject:
     - name: formatters
       type: "Map<String,ReportFormatter>"
-    sentinelStatus: differs
     implements:
     - FormatterRegistry
   - name: TextReportFormatter
-    source: mixed
+    source: implementation
     visibility: public
     requiresInject:
     - name: resolver
       type: DrillDownResolver
-    sentinelStatus: differs
     implements:
     - ReportFormatter
   - name: MilestoneScoreRow
@@ -1513,12 +1885,12 @@ modules:
     implements:
     - ScoreRow
   - name: DefaultReportViewModelTransformer
-    source: mixed
+    source: implementation
     visibility: public
     implements:
     - ReportViewModelTransformer
   - name: RawJsonReportFormatter
-    source: mixed
+    source: implementation
     visibility: public
     implements:
     - RawReportFormatter
@@ -1537,79 +1909,25 @@ modules:
     implements:
     - ScoreRow
   - name: TableReportFormatter
-    source: mixed
+    source: implementation
     visibility: public
     requiresInject:
     - name: resolver
       type: DrillDownResolver
-    sentinelStatus: differs
     implements:
     - ReportFormatter
   - name: CocaBucketsDetailedFormatter
     source: sentinel
-    visibility: package-private
+    visibility: public
     implements:
     - DetailedFormatter
-  - name: ContentAuditCmd
-    source: sentinel
-    visibility: public
-    annotations:
-    - Command
-    sentinelStatus: differs
-    implements:
-    - Runnable
-  - name: AnalyzerListCmd
-    source: sentinel
-    visibility: package-private
-    requiresInject:
-    - name: analyzerRegistry
-      type: AnalyzerRegistry
-    annotations:
-    - Command
-    sentinelStatus: differs
-    implements:
-    - Callable
   - name: DefaultAnalyzerStatsTransformer
     source: sentinel
-    visibility: package-private
+    visibility: public
     implements:
     - AnalyzerStatsTransformer
-  - name: AnalyzeCmd
-    source: sentinel
-    visibility: public
-    requiresInject:
-    - name: auditRunner
-      type: AuditRunner
-    - name: formatterRegistry
-      type: FormatterRegistry
-    - name: viewModelTransformer
-      type: ReportViewModelTransformer
-    - name: rawReportFormatter
-      type: RawReportFormatter
-    - name: detailedFormatters
-      type: "Map<String,DetailedFormatter>"
-    annotations:
-    - Command
-    sentinelStatus: differs
-    implements:
-    - Callable
-  - name: AnalyzerStatsCmd
-    source: sentinel
-    visibility: package-private
-    requiresInject:
-    - name: analyzerRegistry
-      type: AnalyzerRegistry
-    - name: analyzerStatsTransformer
-      type: AnalyzerStatsTransformer
-    - name: auditRunner
-      type: AuditRunner
-    annotations:
-    - Command
-    sentinelStatus: differs
-    implements:
-    - Callable
   - name: DefaultDrillDownResolver
-    source: mixed
+    source: implementation
     visibility: public
     implements:
     - DrillDownResolver
@@ -1631,28 +1949,9 @@ modules:
     - ScoreRow
   - name: LemmaAbsenceDetailedFormatter
     source: sentinel
-    visibility: package-private
+    visibility: public
     implements:
     - DetailedFormatter
-  - name: AnalyzerConfigCmd
-    source: sentinel
-    visibility: package-private
-    requiresInject:
-    - name: analyzerRegistry
-      type: AnalyzerRegistry
-    annotations:
-    - Command
-    sentinelStatus: differs
-    implements:
-    - Callable
-  - name: AnalyzerCmd
-    source: sentinel
-    visibility: public
-    annotations:
-    - Command
-    sentinelStatus: differs
-    implements:
-    - Runnable
   - name: TopicScoreRow
     source: sentinel
     visibility: public
@@ -1670,12 +1969,11 @@ modules:
     implements:
     - ScoreRow
   - name: JsonReportFormatter
-    source: mixed
+    source: implementation
     visibility: public
     requiresInject:
     - name: resolver
       type: DrillDownResolver
-    sentinelStatus: differs
     implements:
     - ReportFormatter
   - name: QuizScoreRow
@@ -1692,6 +1990,129 @@ modules:
       type: AuditableEntity
     implements:
     - ScoreRow
+  - name: ContentAuditCmd
+    source: sentinel
+    visibility: public
+    annotations:
+    - Command
+    implements:
+    - Runnable
+  - name: AnalyzerListCmd
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: analyzerRegistry
+      type: AnalyzerRegistry
+    annotations:
+    - Command
+    implements:
+    - AnalyzerListCommand
+    - Callable
+  - name: AnalyzeCmd
+    source: implementation
+    visibility: public
+    requiresInject:
+    - name: auditRunner
+      type: AuditRunner
+    - name: formatterRegistry
+      type: FormatterRegistry
+    - name: viewModelTransformer
+      type: ReportViewModelTransformer
+    - name: rawReportFormatter
+      type: RawReportFormatter
+    - name: drillDownResolver
+      type: DrillDownResolver
+    - name: detailedFormatters
+      type: "Map<String,DetailedFormatter>"
+    - name: auditReportStore
+      type: AuditReportStore
+    annotations:
+    - Command
+    implements:
+    - AnalyzeCommand
+    - Callable
+  - name: AnalyzerStatsCmd
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: analyzerRegistry
+      type: AnalyzerRegistry
+    - name: analyzerStatsTransformer
+      type: AnalyzerStatsTransformer
+    - name: auditRunner
+      type: AuditRunner
+    annotations:
+    - Command
+    implements:
+    - AnalyzerStatsCommand
+    - Callable
+  - name: RefinerPlanCmd
+    source: implementation
+    visibility: package-private
+    requiresInject:
+    - name: auditReportStore
+      type: AuditReportStore
+    - name: refinerEngine
+      type: RefinerEngine
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+    annotations:
+    - Command
+    implements:
+    - RefinerPlanCommand
+    - Callable
+  - name: AnalyzerConfigCmd
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: analyzerRegistry
+      type: AnalyzerRegistry
+    annotations:
+    - Command
+    implements:
+    - AnalyzerConfigCommand
+    - Callable
+  - name: AnalyzerCmd
+    source: sentinel
+    visibility: public
+    annotations:
+    - Command
+    implements:
+    - Runnable
+  - name: RefinerListCmd
+    source: implementation
+    visibility: package-private
+    requiresInject:
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+    annotations:
+    - Command
+    implements:
+    - RefinerListCommand
+    - Callable
+  - name: RefinerCmd
+    source: implementation
+    visibility: public
+    annotations:
+    - Command
+    implements:
+    - Runnable
+  - name: RefinerNextCmd
+    source: implementation
+    visibility: package-private
+    requiresInject:
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+    - name: refinerEngine
+      type: RefinerEngine
+    annotations:
+    - Command
+    implements:
+    - RefinerNextCommand
+    - Callable
+  - name: Main
+    source: sentinel
+    sentinelStatus: missing
 - name: course-infrastructure
   source: sentinel
   implementations:
@@ -1772,8 +2193,38 @@ modules:
     visibility: public
     implements:
     - NlpTokenizerFactory
+  - name: SpacyProcessRunner
+    source: sentinel
+    visibility: package-private
+    requiresInject:
+    - name: config
+      type: NlpTokenizerConfig
+    sentinelStatus: missing
+  - name: SpacyResultParser
+    source: sentinel
+    visibility: package-private
+    sentinelStatus: missing
 dependencies:
   discovered:
+  - from: audit-infrastructure
+    to: com.fasterxml.jackson.datatype.jsr310
+    imports:
+    - com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+  - from: audit-infrastructure
+    to: com.fasterxml.jackson.annotation
+    imports:
+    - com.fasterxml.jackson.annotation.JsonIgnore
+    - com.fasterxml.jackson.annotation.JsonSubTypes
+    - com.fasterxml.jackson.annotation.JsonTypeInfo
+  - from: audit-infrastructure
+    to: com.fasterxml.jackson.databind
+    imports:
+    - com.fasterxml.jackson.databind.ObjectMapper
+    - com.fasterxml.jackson.databind.SerializationFeature
+  - from: audit-infrastructure
+    to: com.fasterxml.jackson.datatype.jdk8
+    imports:
+    - com.fasterxml.jackson.datatype.jdk8.Jdk8Module
   - from: course-domain
     to: javax.annotation.processing
     imports:
@@ -1791,6 +2242,10 @@ dependencies:
     to: javax.annotation.processing
     imports:
     - javax.annotation.processing.Generated
+  - from: refiner-domain
+    to: javax.annotation.processing
+    imports:
+    - javax.annotation.processing.Generated
   - from: audit-cli
     to: picocli.CommandLine
     imports:
@@ -1799,17 +2254,26 @@ dependencies:
     - picocli.CommandLine.Option
     - picocli.CommandLine.Command
   - from: audit-cli
+    to: picocli.CommandLine.Model
+    imports:
+    - picocli.CommandLine.Model.CommandSpec
+  - from: audit-cli
     to: javax.annotation.processing
     imports:
     - javax.annotation.processing.Generated
+  - from: audit-cli
+    to: com.fasterxml.jackson.datatype.jsr310
+    imports:
+    - com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
   - from: audit-cli
     to: picocli
     imports:
     - picocli.CommandLine
   - from: audit-cli
-    to: picocli.CommandLine.Model
+    to: com.fasterxml.jackson.databind
     imports:
-    - picocli.CommandLine.Model.CommandSpec
+    - com.fasterxml.jackson.databind.ObjectMapper
+    - com.fasterxml.jackson.databind.SerializationFeature
   - from: course-infrastructure
     to: com.fasterxml.jackson.databind
     imports:
@@ -1830,6 +2294,24 @@ dependencies:
     - javax.annotation.processing.Generated
 graph:
   edges:
+  - from: audit-infrastructure.FileSystemAuditReportStore
+    to: audit-domain.AuditNode
+    relation: references
+  - from: audit-infrastructure.FileSystemAuditReportStore
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-infrastructure.FileSystemAuditReportStore
+    to: audit-domain.AuditReportStore
+    relation: references
+  - from: audit-infrastructure.FileSystemAuditReportStore
+    to: audit-domain.AuditReportSummary
+    relation: references
+  - from: audit-infrastructure.FileSystemRefinementPlanStore
+    to: refiner-domain.RefinementPlan
+    relation: references
+  - from: audit-infrastructure.FileSystemRefinementPlanStore
+    to: refiner-domain.RefinementPlanStore
+    relation: references
   - from: course-domain.SentencePartEntity
     to: course-domain.SentencePartKind
     relation: references
@@ -2037,6 +2519,9 @@ graph:
   - from: audit-domain.AbsenceRecommendation
     to: audit-domain.AbsentLemma
     relation: references
+  - from: audit-domain.LemmaPlacementDiagnosis
+    to: audit-domain.MisplacedLemma
+    relation: references
   - from: audit-domain.LemmaByLevelAbsenceAnalyzer
     to: audit-domain.AuditTarget
     relation: references
@@ -2101,6 +2586,30 @@ graph:
     to: audit-domain.CefrLevel
     relation: references
   - from: audit-domain.LevelAbsenceMetrics
+    to: audit-domain.AbsentLemma
+    relation: references
+  - from: audit-domain.LemmaAbsenceCourseDiagnosis
+    to: audit-domain.AbsenceAssessment
+    relation: references
+  - from: audit-domain.MisplacedLemma
+    to: audit-domain.AbsenceType
+    relation: references
+  - from: audit-domain.MisplacedLemma
+    to: audit-domain.LemmaAndPos
+    relation: references
+  - from: audit-domain.MisplacedLemma
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.LemmaAbsenceLevelDiagnosis
+    to: audit-domain.MisplacedLemma
+    relation: references
+  - from: audit-domain.LemmaAbsenceLevelDiagnosis
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.LemmaAbsenceLevelDiagnosis
+    to: audit-domain.AbsenceAssessment
+    relation: references
+  - from: audit-domain.LemmaAbsenceLevelDiagnosis
     to: audit-domain.AbsentLemma
     relation: references
   - from: audit-domain.ContentWordFilter
@@ -2181,6 +2690,21 @@ graph:
   - from: audit-domain.ScoreAggregator
     to: audit-domain.AuditNode
     relation: references
+  - from: audit-domain.DefaultKnowledgeDiagnoses
+    to: audit-domain.KnowledgeDiagnoses
+    relation: references
+  - from: audit-domain.DefaultKnowledgeDiagnoses
+    to: audit-domain.LemmaPlacementDiagnosis
+    relation: references
+  - from: audit-domain.DefaultLevelDiagnoses
+    to: audit-domain.CocaBucketsLevelDiagnosis
+    relation: references
+  - from: audit-domain.DefaultLevelDiagnoses
+    to: audit-domain.LevelDiagnoses
+    relation: references
+  - from: audit-domain.DefaultLevelDiagnoses
+    to: audit-domain.LemmaAbsenceLevelDiagnosis
+    relation: references
   - from: audit-domain.AnalysisResult
     to: audit-domain.AuditTarget
     relation: references
@@ -2195,6 +2719,15 @@ graph:
     relation: references
   - from: audit-domain.AuditEngine
     to: audit-domain.AuditReport
+    relation: references
+  - from: audit-domain.CourseDiagnoses
+    to: audit-domain.CocaProgressionDiagnosis
+    relation: references
+  - from: audit-domain.CourseDiagnoses
+    to: audit-domain.LemmaAbsenceCourseDiagnosis
+    relation: references
+  - from: audit-domain.CourseDiagnoses
+    to: audit-domain.NodeDiagnoses
     relation: references
   - from: audit-domain.AuditableKnowledge
     to: audit-domain.AuditableEntity
@@ -2220,6 +2753,15 @@ graph:
   - from: audit-domain.CocaBucketsConfig
     to: audit-domain.BandConfiguration
     relation: references
+  - from: audit-domain.TopicDiagnoses
+    to: audit-domain.CocaBucketsTopicDiagnosis
+    relation: references
+  - from: audit-domain.TopicDiagnoses
+    to: audit-domain.LemmaPlacementDiagnosis
+    relation: references
+  - from: audit-domain.TopicDiagnoses
+    to: audit-domain.NodeDiagnoses
+    relation: references
   - from: audit-domain.AnalyzerDescriptor
     to: audit-domain.AuditTarget
     relation: references
@@ -2241,6 +2783,12 @@ graph:
   - from: audit-domain.SentenceLengthAnalyzer
     to: audit-domain.SentenceLengthConfig
     relation: references
+  - from: audit-domain.KnowledgeDiagnoses
+    to: audit-domain.LemmaPlacementDiagnosis
+    relation: references
+  - from: audit-domain.KnowledgeDiagnoses
+    to: audit-domain.NodeDiagnoses
+    relation: references
   - from: audit-domain.KnowledgeTitleLengthAnalyzer
     to: audit-domain.AuditNode
     relation: references
@@ -2259,17 +2807,41 @@ graph:
   - from: audit-domain.SentenceLengthConfig
     to: audit-domain.TargetRange
     relation: references
+  - from: audit-domain.DefaultCourseDiagnoses
+    to: audit-domain.CocaProgressionDiagnosis
+    relation: references
+  - from: audit-domain.DefaultCourseDiagnoses
+    to: audit-domain.LemmaAbsenceCourseDiagnosis
+    relation: references
+  - from: audit-domain.DefaultCourseDiagnoses
+    to: audit-domain.CourseDiagnoses
+    relation: references
   - from: audit-domain.AuditableQuiz
     to: audit-domain.AuditableEntity
     relation: references
   - from: audit-domain.AuditableQuiz
     to: audit-domain.NlpToken
     relation: references
+  - from: audit-domain.AuditReportStore
+    to: audit-domain.AuditReport
+    relation: references
+  - from: audit-domain.AuditReportStore
+    to: audit-domain.AuditReportSummary
+    relation: references
   - from: audit-domain.EvpCatalogPort
     to: audit-domain.LemmaAndPos
     relation: references
   - from: audit-domain.EvpCatalogPort
     to: audit-domain.CefrLevel
+    relation: references
+  - from: audit-domain.QuizDiagnoses
+    to: audit-domain.LemmaPlacementDiagnosis
+    relation: references
+  - from: audit-domain.QuizDiagnoses
+    to: audit-domain.NodeDiagnoses
+    relation: references
+  - from: audit-domain.QuizDiagnoses
+    to: audit-domain.SentenceLengthDiagnosis
     relation: references
   - from: audit-domain.AuditReport
     to: audit-domain.AuditNode
@@ -2279,6 +2851,12 @@ graph:
     relation: references
   - from: audit-domain.TokenClassifier
     to: audit-domain.BandConfiguration
+    relation: references
+  - from: audit-domain.CocaProgressionDiagnosis
+    to: audit-domain.ImprovementDirective
+    relation: references
+  - from: audit-domain.CocaProgressionDiagnosis
+    to: audit-domain.ProgressionAssessment
     relation: references
   - from: audit-domain.BandConfiguration
     to: audit-domain.FrequencyBand
@@ -2335,9 +2913,6 @@ graph:
     to: audit-domain.ImprovementPlanner
     relation: references
   - from: audit-domain.CocaBucketsAnalyzer
-    to: audit-domain.QuarterResult
-    relation: references
-  - from: audit-domain.CocaBucketsAnalyzer
     to: audit-domain.BucketTarget
     relation: references
   - from: audit-domain.CocaBucketsAnalyzer
@@ -2375,6 +2950,12 @@ graph:
     relation: references
   - from: audit-domain.CocaTokenAccumulationAggregator
     to: audit-domain.IScoreAggregator
+    relation: references
+  - from: audit-domain.CocaBucketsLevelDiagnosis
+    to: audit-domain.BucketResult
+    relation: references
+  - from: audit-domain.CocaBucketsLevelDiagnosis
+    to: audit-domain.QuarterResult
     relation: references
   - from: audit-domain.DefaultImprovementPlanner
     to: audit-domain.ImprovementDirective
@@ -2439,6 +3020,9 @@ graph:
   - from: audit-domain.QuarterResult
     to: audit-domain.BucketResult
     relation: references
+  - from: audit-domain.CocaBucketsTopicDiagnosis
+    to: audit-domain.BucketSummary
+    relation: references
   - from: audit-domain.ProgressionAssessment
     to: audit-domain.ProgressionState
     relation: references
@@ -2450,6 +3034,15 @@ graph:
     relation: references
   - from: audit-domain.CocaBucketsDistributionResult
     to: audit-domain.ProgressionAssessment
+    relation: references
+  - from: audit-domain.LevelDiagnoses
+    to: audit-domain.CocaBucketsLevelDiagnosis
+    relation: references
+  - from: audit-domain.LevelDiagnoses
+    to: audit-domain.NodeDiagnoses
+    relation: references
+  - from: audit-domain.LevelDiagnoses
+    to: audit-domain.LemmaAbsenceLevelDiagnosis
     relation: references
   - from: audit-domain.KnowledgeInstructionsLengthAnalyzer
     to: audit-domain.AuditNode
@@ -2466,11 +3059,32 @@ graph:
   - from: audit-domain.AuditNode
     to: audit-domain.AuditableEntity
     relation: references
+  - from: audit-domain.AuditNode
+    to: audit-domain.NodeDiagnoses
+    relation: references
+  - from: audit-domain.DefaultTopicDiagnoses
+    to: audit-domain.CocaBucketsTopicDiagnosis
+    relation: references
+  - from: audit-domain.DefaultTopicDiagnoses
+    to: audit-domain.TopicDiagnoses
+    relation: references
+  - from: audit-domain.DefaultTopicDiagnoses
+    to: audit-domain.LemmaPlacementDiagnosis
+    relation: references
   - from: audit-domain.AuditableCourse
     to: audit-domain.AuditableMilestone
     relation: references
   - from: audit-domain.LemmaRecurrenceConfig
     to: audit-domain.SelfDescribingConfig
+    relation: references
+  - from: audit-domain.DefaultQuizDiagnoses
+    to: audit-domain.QuizDiagnoses
+    relation: references
+  - from: audit-domain.DefaultQuizDiagnoses
+    to: audit-domain.LemmaPlacementDiagnosis
+    relation: references
+  - from: audit-domain.DefaultQuizDiagnoses
+    to: audit-domain.SentenceLengthDiagnosis
     relation: references
   - from: audit-domain.IScoreAggregator
     to: audit-domain.AuditNode
@@ -2490,6 +3104,9 @@ graph:
   - from: audit-domain.AuditableMilestone
     to: audit-domain.AuditableEntity
     relation: references
+  - from: audit-domain.SentenceLengthDiagnosis
+    to: audit-domain.CefrLevel
+    relation: references
   - from: audit-domain.LemmaAbsenceConfig
     to: audit-domain.SelfDescribingConfig
     relation: references
@@ -2501,6 +3118,51 @@ graph:
     relation: references
   - from: audit-domain.AuditableTopic
     to: audit-domain.AuditableKnowledge
+    relation: references
+  - from: refiner-domain.RefinementPlanStore
+    to: refiner-domain.RefinementPlan
+    relation: references
+  - from: refiner-domain.RefinerEngine
+    to: audit-domain.AuditReport
+    relation: references
+  - from: refiner-domain.RefinerEngine
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.RefinerEngine
+    to: refiner-domain.RefinementPlan
+    relation: references
+  - from: refiner-domain.RefinementPlan
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.RefinementTask
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: refiner-domain.RefinementTask
+    to: refiner-domain.RefinementTaskStatus
+    relation: references
+  - from: refiner-domain.RefinementTask
+    to: refiner-domain.DiagnosisKind
+    relation: references
+  - from: refiner-domain.DefaultRefinerEngine
+    to: audit-domain.AuditNode
+    relation: references
+  - from: refiner-domain.DefaultRefinerEngine
+    to: audit-domain.AuditReport
+    relation: references
+  - from: refiner-domain.DefaultRefinerEngine
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: refiner-domain.DefaultRefinerEngine
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.DefaultRefinerEngine
+    to: refiner-domain.RefinementPlan
+    relation: references
+  - from: refiner-domain.DefaultRefinerEngine
+    to: refiner-domain.RefinerEngine
+    relation: references
+  - from: refiner-domain.DefaultRefinerEngine
+    to: refiner-domain.DiagnosisKind
     relation: references
   - from: audit-cli.DefaultFormatterRegistry
     to: audit-cli.FormatterRegistry
@@ -2602,13 +3264,34 @@ graph:
     to: audit-cli.ReportFormatter
     relation: references
   - from: audit-cli.CocaBucketsDetailedFormatter
+    to: audit-domain.CocaProgressionDiagnosis
+    relation: references
+  - from: audit-cli.CocaBucketsDetailedFormatter
+    to: audit-domain.CocaBucketsLevelDiagnosis
+    relation: references
+  - from: audit-cli.CocaBucketsDetailedFormatter
+    to: audit-domain.BucketResult
+    relation: references
+  - from: audit-cli.CocaBucketsDetailedFormatter
+    to: audit-domain.CocaBucketsTopicDiagnosis
+    relation: references
+  - from: audit-cli.CocaBucketsDetailedFormatter
     to: audit-domain.AuditNode
     relation: references
   - from: audit-cli.CocaBucketsDetailedFormatter
     to: audit-cli.DetailedFormatter
     relation: references
-  - from: audit-cli.AnalyzerListCmd
-    to: audit-application.AnalyzerRegistry
+  - from: audit-cli.CocaBucketsDetailedFormatter
+    to: audit-domain.ImprovementDirective
+    relation: references
+  - from: audit-cli.CocaBucketsDetailedFormatter
+    to: audit-domain.QuarterResult
+    relation: references
+  - from: audit-cli.CocaBucketsDetailedFormatter
+    to: audit-domain.BucketSummary
+    relation: references
+  - from: audit-cli.CocaBucketsDetailedFormatter
+    to: audit-domain.ProgressionAssessment
     relation: references
   - from: audit-cli.ScoreRow
     to: audit-domain.AuditableEntity
@@ -2647,33 +3330,6 @@ graph:
     to: audit-cli.ScoredItemRow
     relation: references
   - from: audit-cli.DefaultAnalyzerStatsTransformer
-    to: audit-application.AnalyzerRegistry
-    relation: references
-  - from: audit-cli.AnalyzeCmd
-    to: audit-cli.FormatterRegistry
-    relation: references
-  - from: audit-cli.AnalyzeCmd
-    to: audit-cli.DetailedFormatter
-    relation: references
-  - from: audit-cli.AnalyzeCmd
-    to: audit-application.AuditRunner
-    relation: references
-  - from: audit-cli.AnalyzeCmd
-    to: audit-cli.ReportViewModelTransformer
-    relation: references
-  - from: audit-cli.AnalyzeCmd
-    to: audit-cli.RawReportFormatter
-    relation: references
-  - from: audit-cli.AnalyzerStatsCmd
-    to: audit-cli.AnalyzerStatsView
-    relation: references
-  - from: audit-cli.AnalyzerStatsCmd
-    to: audit-cli.AnalyzerStatsTransformer
-    relation: references
-  - from: audit-cli.AnalyzerStatsCmd
-    to: audit-application.AuditRunner
-    relation: references
-  - from: audit-cli.AnalyzerStatsCmd
     to: audit-application.AnalyzerRegistry
     relation: references
   - from: audit-cli.AnalyzerStatsTransformer
@@ -2722,10 +3378,19 @@ graph:
     to: audit-domain.AuditNode
     relation: references
   - from: audit-cli.LemmaAbsenceDetailedFormatter
+    to: audit-domain.MisplacedLemma
+    relation: references
+  - from: audit-cli.LemmaAbsenceDetailedFormatter
     to: audit-cli.DetailedFormatter
     relation: references
-  - from: audit-cli.AnalyzerConfigCmd
-    to: audit-application.AnalyzerRegistry
+  - from: audit-cli.LemmaAbsenceDetailedFormatter
+    to: audit-domain.LemmaPlacementDiagnosis
+    relation: references
+  - from: audit-cli.LemmaAbsenceDetailedFormatter
+    to: audit-domain.AbsentLemma
+    relation: references
+  - from: audit-cli.LemmaAbsenceDetailedFormatter
+    to: audit-domain.LemmaAbsenceLevelDiagnosis
     relation: references
   - from: audit-cli.RawReportFormatter
     to: audit-domain.AuditReport
@@ -2774,6 +3439,105 @@ graph:
     relation: references
   - from: audit-cli.FormatterRegistry
     to: audit-cli.ReportFormatter
+    relation: references
+  - from: audit-cli.AnalyzerListCmd
+    to: audit-cli.AnalyzerListCommand
+    relation: references
+  - from: audit-cli.AnalyzerListCmd
+    to: audit-application.AnalyzerRegistry
+    relation: references
+  - from: audit-cli.AnalyzeCmd
+    to: audit-cli.FormatterRegistry
+    relation: references
+  - from: audit-cli.AnalyzeCmd
+    to: audit-domain.AuditReportStore
+    relation: references
+  - from: audit-cli.AnalyzeCmd
+    to: audit-cli.AnalyzeCommand
+    relation: references
+  - from: audit-cli.AnalyzeCmd
+    to: audit-cli.DetailedFormatter
+    relation: references
+  - from: audit-cli.AnalyzeCmd
+    to: audit-cli.DrillDownResolver
+    relation: references
+  - from: audit-cli.AnalyzeCmd
+    to: audit-application.AuditRunner
+    relation: references
+  - from: audit-cli.AnalyzeCmd
+    to: audit-cli.ReportViewModelTransformer
+    relation: references
+  - from: audit-cli.AnalyzeCmd
+    to: audit-cli.RawReportFormatter
+    relation: references
+  - from: audit-cli.AnalyzerStatsCmd
+    to: audit-cli.AnalyzerStatsView
+    relation: references
+  - from: audit-cli.AnalyzerStatsCmd
+    to: audit-cli.AnalyzerStatsTransformer
+    relation: references
+  - from: audit-cli.AnalyzerStatsCmd
+    to: audit-application.AuditRunner
+    relation: references
+  - from: audit-cli.AnalyzerStatsCmd
+    to: audit-application.AnalyzerRegistry
+    relation: references
+  - from: audit-cli.AnalyzerStatsCmd
+    to: audit-cli.AnalyzerStatsCommand
+    relation: references
+  - from: audit-cli.RefinerPlanCmd
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-cli.RefinerPlanCmd
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: audit-cli.RefinerPlanCmd
+    to: refiner-domain.RefinementPlan
+    relation: references
+  - from: audit-cli.RefinerPlanCmd
+    to: refiner-domain.RefinerEngine
+    relation: references
+  - from: audit-cli.RefinerPlanCmd
+    to: audit-cli.RefinerPlanCommand
+    relation: references
+  - from: audit-cli.RefinerPlanCmd
+    to: audit-domain.AuditReportStore
+    relation: references
+  - from: audit-cli.RefinerPlanCmd
+    to: refiner-domain.RefinementPlanStore
+    relation: references
+  - from: audit-cli.AnalyzerConfigCmd
+    to: audit-cli.AnalyzerConfigCommand
+    relation: references
+  - from: audit-cli.AnalyzerConfigCmd
+    to: audit-application.AnalyzerRegistry
+    relation: references
+  - from: audit-cli.RefinerListCmd
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-cli.RefinerListCmd
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: audit-cli.RefinerListCmd
+    to: audit-cli.RefinerListCommand
+    relation: references
+  - from: audit-cli.RefinerListCmd
+    to: refiner-domain.RefinementPlan
+    relation: references
+  - from: audit-cli.RefinerListCmd
+    to: refiner-domain.RefinementPlanStore
+    relation: references
+  - from: audit-cli.RefinerNextCmd
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: audit-cli.RefinerNextCmd
+    to: refiner-domain.RefinerEngine
+    relation: references
+  - from: audit-cli.RefinerNextCmd
+    to: audit-cli.RefinerNextCommand
+    relation: references
+  - from: audit-cli.RefinerNextCmd
+    to: refiner-domain.RefinementPlanStore
     relation: references
   - from: course-infrastructure.CourseValidatorImpl
     to: course-domain.CourseValidator
@@ -2857,7 +3621,13 @@ graph:
     to: nlp-infrastructure.NlpTokenizerConfig
     relation: references
   distances:
+  - component: audit-domain.CourseDiagnoses
+    distance: 1
+  - component: audit-cli.RefinerPlanCmd
+    distance: 1
   - component: course-infrastructure.FileSystemCourseRepository
+    distance: 1
+  - component: audit-domain.LevelDiagnoses
     distance: 1
   - component: audit-cli.TextReportFormatter
     distance: 1
@@ -2867,20 +3637,841 @@ graph:
     distance: 1
   - component: vocabulary-infrastructure.FileSystemEvpCatalog
     distance: 1
+  - component: audit-domain.QuizDiagnoses
+    distance: 1
+  - component: audit-domain.KnowledgeDiagnoses
+    distance: 1
   - component: audit-cli.TableReportFormatter
+    distance: 1
+  - component: audit-cli.RefinerListCmd
+    distance: 1
+  - component: audit-domain.DefaultCourseDiagnoses
+    distance: 1
+  - component: audit-domain.TopicDiagnoses
+    distance: 1
+  - component: audit-cli.AnalyzeCmd
     distance: 1
   - component: audit-domain.ContentAnalyzer
     distance: 1
+  - component: audit-domain.DefaultLevelDiagnoses
+    distance: 1
+  - component: audit-domain.DefaultKnowledgeDiagnoses
+    distance: 1
+  - component: audit-infrastructure.FileSystemAuditReportStore
+    distance: 1
   - component: course-infrastructure.CourseValidatorImpl
+    distance: 1
+  - component: refiner-domain.DefaultRefinerEngine
     distance: 1
   - component: audit-cli.DefaultReportViewModelTransformer
     distance: 1
+  - component: audit-domain.AuditNode
+    distance: 1
+  - component: audit-domain.DefaultQuizDiagnoses
+    distance: 1
+  - component: audit-infrastructure.FileSystemRefinementPlanStore
+    distance: 1
+  - component: audit-cli.RefinerNextCmd
+    distance: 1
   - component: audit-domain.IScoreAggregator
+    distance: 1
+  - component: audit-domain.DefaultTopicDiagnoses
     distance: 1
   - component: audit-cli.JsonReportFormatter
     distance: 1
   - component: audit-cli.DefaultDrillDownResolver
     distance: 1
+  - component: audit-domain.NodeDiagnoses
+    distance: 2
   orphans:
   - audit-cli.CoursePathResolver
+  - audit-infrastructure.AuditPersistenceException
+  - audit-cli.RefinerCmd
   - audit-cli.Main
+  - audit-infrastructure.AuditReportObjectMapper
+methodCallGraph:
+  edges:
+  - fromInterface: AuditReportStore
+    fromMethod: save
+    toInterface: AuditReportStore
+    toMethod: resolveAuditsDir
+    toModule: audit-infrastructure
+    earlyReturn: false
+  - fromInterface: AuditReportStore
+    fromMethod: save
+    toInterface: DateTimeFormatter
+    toMethod: format
+    toModule: audit-infrastructure
+    earlyReturn: false
+  - fromInterface: AuditReportStore
+    fromMethod: load
+    toInterface: AuditReportStore
+    toMethod: resolveAuditsDir
+    toModule: audit-infrastructure
+    earlyReturn: false
+  - fromInterface: AuditReportStore
+    fromMethod: load
+    toInterface: AuditReportStore
+    toMethod: loadFromFile
+    toModule: audit-infrastructure
+    fragment: "alt [else: !Files.exists(file)]"
+    earlyReturn: false
+  - fromInterface: AuditReportStore
+    fromMethod: loadLatest
+    toInterface: AuditReportStore
+    toMethod: resolveAuditsDir
+    toModule: audit-infrastructure
+    earlyReturn: false
+  - fromInterface: AuditReportStore
+    fromMethod: list
+    toInterface: AuditReportStore
+    toMethod: resolveAuditsDir
+    toModule: audit-infrastructure
+    earlyReturn: false
+  - fromInterface: AuditReportStore
+    fromMethod: list
+    toInterface: AuditReportStore
+    toMethod: loadFromFile
+    toModule: audit-infrastructure
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: AuditReportStore
+    fromMethod: list
+    toInterface: AuditReportStore
+    toMethod: extractIdFromFilename
+    toModule: audit-infrastructure
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: AuditReportStore
+    fromMethod: list
+    toInterface: AuditReportStore
+    toMethod: parseTimestampFromId
+    toModule: audit-infrastructure
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: AuditReportStore
+    fromMethod: list
+    toInterface: AuditReportStore
+    toMethod: extractCourseName
+    toModule: audit-infrastructure
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: AuditReportStore
+    fromMethod: list
+    toInterface: AuditReportStore
+    toMethod: extractOverallScore
+    toModule: audit-infrastructure
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: AuditRunner
+    fromMethod: runAudit
+    toInterface: AuditRunner
+    toMethod: loadCourse
+    toModule: audit-application
+    earlyReturn: false
+  - fromInterface: AuditRunner
+    fromMethod: runAudit
+    toInterface: AuditEngine
+    toMethod: runAudit
+    toModule: audit-domain
+    fragment: "alt [analyzerNames == null || analyzerName...]"
+    earlyReturn: true
+  - fromInterface: AuditRunner
+    fromMethod: runDetailedAudit
+    toInterface: AuditRunner
+    toMethod: loadCourse
+    toModule: audit-application
+    earlyReturn: false
+  - fromInterface: CourseMapper
+    fromMethod: map
+    toInterface: CourseMapper
+    toMethod: collectAllSentences
+    toModule: audit-application
+    fragment: "alt [else: course == null]"
+    earlyReturn: false
+  - fromInterface: CourseMapper
+    fromMethod: map
+    toInterface: NlpTokenizer
+    toMethod: analyzeTokensBatch
+    toModule: audit-domain
+    fragment: "alt [else: course == null]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onQuiz
+    toInterface: ContentAnalyzer
+    toMethod: parseLevelFromQuizNode
+    toModule: audit-domain
+    fragment: "alt [else: quiz == null || quiz.getTokens() == null]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onQuiz
+    toInterface: ContentAnalyzer
+    toMethod: isCriticalFunctionalLemma
+    toModule: audit-domain
+    fragment: "loop [for each quiz.getTokens()]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onQuiz
+    toInterface: ContentWordFilter
+    toMethod: isContentWord
+    toModule: audit-domain
+    fragment: "alt [isCriticalFunctional || contentWordFi...]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: ContentAnalyzer
+    toMethod: runAnalysis
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: ScoreAggregator
+    fromMethod: aggregate
+    toInterface: IScoreAggregator
+    toMethod: aggregate
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onQuiz
+    toInterface: ContentWordFilter
+    toMethod: isContentWord
+    toModule: audit-domain
+    fragment: "alt [token != null && contentWordFilter.is...]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: LemmaRecurrenceConfig
+    toMethod: getTop
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: IntervalCalculator
+    toMethod: calculateMeanInterval
+    toModule: audit-domain
+    fragment: "loop [for]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: IntervalCalculator
+    toMethod: calculateStdDevInterval
+    toModule: audit-domain
+    fragment: "loop [for]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: ExposureClassifier
+    toMethod: classify
+    toModule: audit-domain
+    fragment: "loop [for]"
+    earlyReturn: false
+  - fromInterface: AuditEngine
+    fromMethod: runAudit
+    toInterface: AuditEngine
+    toMethod: buildTree
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: AuditEngine
+    fromMethod: runAudit
+    toInterface: AuditEngine
+    toMethod: traverseAndNotify
+    toModule: audit-domain
+    fragment: "loop [for each contentAnalyzers]"
+    earlyReturn: false
+  - fromInterface: AuditEngine
+    fromMethod: runAudit
+    toInterface: ScoreAggregator
+    toMethod: aggregate
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onQuiz
+    toInterface: ContentAnalyzer
+    toMethod: parseCefrLevel
+    toModule: audit-domain
+    fragment: "alt [else: !knowledge.isIsSentence()]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onQuiz
+    toInterface: SentenceLengthConfig
+    toMethod: getTargetRange
+    toModule: audit-domain
+    fragment: "alt [else: level == null]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onQuiz
+    toInterface: ContentAnalyzer
+    toMethod: scoreQuiz
+    toModule: audit-domain
+    fragment: "alt [else: rangeOpt.isEmpty()]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onQuiz
+    toInterface: SentenceLengthConfig
+    toMethod: getToleranceMargin
+    toModule: audit-domain
+    fragment: "alt [node.getDiagnoses() instanceof Defaul...]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onQuiz
+    toInterface: CocaBucketsConfig
+    toMethod: getBandConfiguration
+    toModule: audit-domain
+    fragment: "alt [else: tokens == null || tokens.isEmpty()]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onQuiz
+    toInterface: TokenClassifier
+    toMethod: classify
+    toModule: audit-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: CocaBucketsConfig
+    toMethod: getBandConfiguration
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: CocaBucketsConfig
+    toMethod: getAnalysisStrategy
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: ContentAnalyzer
+    toMethod: buildTopicDistributions
+    toModule: audit-domain
+    fragment: "loop [for each levelTopicBandCounts.entryS...]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: ContentAnalyzer
+    toMethod: aggregateBandCounts
+    toModule: audit-domain
+    fragment: "loop [for each levelTopicBandCounts.entryS...]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: CocaBucketsConfig
+    toMethod: getTargetsForLevel
+    toModule: audit-domain
+    fragment: "loop [for each levelTopicBandCounts.entryS...]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: ContentAnalyzer
+    toMethod: buildBucketResults
+    toModule: audit-domain
+    fragment: "loop [for each levelTopicBandCounts.entryS...]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: CocaBucketsConfig
+    toMethod: getToleranceMargin
+    toModule: audit-domain
+    fragment: "loop [for each levelTopicBandCounts.entryS...]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: CocaBucketsConfig
+    toMethod: getQuarterTargetsForLevel
+    toModule: audit-domain
+    fragment: "alt [strategy == AnalysisStrategy.QUARTERS]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: ContentAnalyzer
+    toMethod: interpolateQuarters
+    toModule: audit-domain
+    fragment: "alt [strategy == AnalysisStrategy.QUARTERS]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: ContentAnalyzer
+    toMethod: topicRangeForQuarter
+    toModule: audit-domain
+    fragment: "loop [for]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: ContentAnalyzer
+    toMethod: buildBucketResults
+    toModule: audit-domain
+    fragment: "loop [for]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: CocaBucketsConfig
+    toMethod: getToleranceMargin
+    toModule: audit-domain
+    fragment: "loop [for]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: ContentAnalyzer
+    toMethod: averageBucketScore
+    toModule: audit-domain
+    fragment: "loop [for]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: ContentAnalyzer
+    toMethod: averageBucketScore
+    toModule: audit-domain
+    fragment: "alt [strategy == AnalysisStrategy.QUARTERS]"
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: ProgressionEvaluator
+    toMethod: evaluate
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: CocaBucketsConfig
+    toMethod: getProgressionExpectations
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: ImprovementPlanner
+    toMethod: plan
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: ContentAnalyzer
+    fromMethod: onCourseComplete
+    toInterface: ContentAnalyzer
+    toMethod: findTopicNodeById
+    toModule: audit-domain
+    fragment: "loop [for each level.getTopicDistributions()]"
+    earlyReturn: false
+  - fromInterface: RefinerEngine
+    fromMethod: plan
+    toInterface: RefinerEngine
+    toMethod: walkNode
+    toModule: refiner-domain
+    fragment: "alt [report.getRoot() != null]"
+    earlyReturn: false
+  - fromInterface: RefinerEngine
+    fromMethod: plan
+    toInterface: DateTimeFormatter
+    toMethod: format
+    toModule: refiner-domain
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: DrillDownResolver
+    toMethod: resolve
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: ReportFormatter
+    toMethod: childLabel
+    toModule: audit-cli
+    fragment: "alt [children != null && !children.isEmpty()]"
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: ReportFormatter
+    toMethod: formatHeader
+    toModule: audit-cli
+    fragment: "loop [for each children]"
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: ReportFormatter
+    toMethod: idOf
+    toModule: audit-cli
+    fragment: "loop [for each children]"
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: ReportFormatter
+    toMethod: truncate
+    toModule: audit-cli
+    fragment: "loop [for each children]"
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: ReportFormatter
+    toMethod: formatScore
+    toModule: audit-cli
+    fragment: "loop [for each children]"
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: ReportFormatter
+    toMethod: formatScore
+    toModule: audit-cli
+    fragment: "loop [for each analyzers]"
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: ReportFormatter
+    toMethod: formatScore
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: ReportFormatter
+    toMethod: escape
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: ReportFormatter
+    toMethod: appendScoresMap
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: ReportFormatter
+    toMethod: childKey
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: ReportFormatter
+    toMethod: escape
+    toModule: audit-cli
+    fragment: "loop [for]"
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: ReportFormatter
+    toMethod: idOf
+    toModule: audit-cli
+    fragment: "loop [for]"
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: ReportFormatter
+    toMethod: escape
+    toModule: audit-cli
+    fragment: "alt [entity != null && entity.getLabel() !...]"
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: ReportFormatter
+    toMethod: escape
+    toModule: audit-cli
+    fragment: "alt [entity != null && entity.getCode() !=...]"
+    earlyReturn: false
+  - fromInterface: ReportFormatter
+    fromMethod: format
+    toInterface: ReportFormatter
+    toMethod: appendScoresMap
+    toModule: audit-cli
+    fragment: "loop [for]"
+    earlyReturn: false
+  - fromInterface: AnalyzerListCommand
+    fromMethod: list
+    toInterface: AnalyzerRegistry
+    toMethod: listAnalyzers
+    toModule: audit-application
+    earlyReturn: false
+  - fromInterface: AnalyzeCommand
+    fromMethod: analyze
+    toInterface: AuditRunner
+    toMethod: runDetailedAudit
+    toModule: audit-application
+    fragment: "alt [detailed]"
+    earlyReturn: true
+  - fromInterface: AnalyzeCommand
+    fromMethod: analyze
+    toInterface: AuditRunner
+    toMethod: runAudit
+    toModule: audit-application
+    fragment: "alt [else: detailed]"
+    earlyReturn: false
+  - fromInterface: AnalyzeCommand
+    fromMethod: analyze
+    toInterface: AuditReportStore
+    toMethod: save
+    toModule: audit-domain
+    fragment: "alt [else: detailed]"
+    earlyReturn: false
+  - fromInterface: AnalyzeCommand
+    fromMethod: analyze
+    toInterface: RawReportFormatter
+    toMethod: format
+    toModule: audit-cli
+    fragment: "alt [\"raw\".equals(format)]"
+    earlyReturn: true
+  - fromInterface: AnalyzeCommand
+    fromMethod: analyze
+    toInterface: FormatterRegistry
+    toMethod: getFormatter
+    toModule: audit-cli
+    fragment: "alt [else: \"raw\".equals(format)]"
+    earlyReturn: false
+  - fromInterface: AnalyzeCommand
+    fromMethod: analyze
+    toInterface: ReportViewModelTransformer
+    toMethod: transform
+    toModule: audit-cli
+    fragment: "alt [else: formatter == null]"
+    earlyReturn: false
+  - fromInterface: AnalyzerStatsCommand
+    fromMethod: showStats
+    toInterface: AnalyzerRegistry
+    toMethod: listAnalyzers
+    toModule: audit-application
+    earlyReturn: false
+  - fromInterface: AnalyzerStatsCommand
+    fromMethod: showStats
+    toInterface: AuditRunner
+    toMethod: runAudit
+    toModule: audit-application
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: AnalyzerStatsCommand
+    fromMethod: showStats
+    toInterface: AnalyzerStatsTransformer
+    toMethod: transform
+    toModule: audit-cli
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: AnalyzerStatsCommand
+    fromMethod: showStats
+    toInterface: AnalyzerStatsCommand
+    toMethod: printStats
+    toModule: audit-cli
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: RefinerPlanCommand
+    fromMethod: plan
+    toInterface: AuditReportStore
+    toMethod: loadLatest
+    toModule: audit-domain
+    fragment: "alt [auditId == null || auditId.isBlank()]"
+    earlyReturn: true
+  - fromInterface: RefinerPlanCommand
+    fromMethod: plan
+    toInterface: AuditReportStore
+    toMethod: load
+    toModule: audit-domain
+    fragment: "alt [auditId == null || auditId.isBlank()]"
+    earlyReturn: true
+  - fromInterface: RefinerPlanCommand
+    fromMethod: plan
+    toInterface: RefinerEngine
+    toMethod: plan
+    toModule: refiner-domain
+    fragment: "alt [else: auditId == null || auditId.isBlank()]"
+    earlyReturn: false
+  - fromInterface: RefinerPlanCommand
+    fromMethod: plan
+    toInterface: RefinementPlanStore
+    toMethod: save
+    toModule: refiner-domain
+    fragment: "alt [else: auditId == null || auditId.isBlank()]"
+    earlyReturn: false
+  - fromInterface: RefinerPlanCommand
+    fromMethod: plan
+    toInterface: RefinerPlanCommand
+    toMethod: printJson
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: RefinerPlanCommand
+    fromMethod: plan
+    toInterface: RefinerPlanCommand
+    toMethod: printTable
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: RefinerPlanCommand
+    fromMethod: plan
+    toInterface: RefinerPlanCommand
+    toMethod: printText
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: AnalyzerConfigCommand
+    fromMethod: showConfig
+    toInterface: AnalyzerRegistry
+    toMethod: listAnalyzers
+    toModule: audit-application
+    earlyReturn: false
+  - fromInterface: AnalyzerConfigCommand
+    fromMethod: showConfig
+    toInterface: AnalyzerRegistry
+    toMethod: getAnalyzerConfig
+    toModule: audit-application
+    fragment: "alt [else: !exists]"
+    earlyReturn: false
+  - fromInterface: AnalyzerConfigCommand
+    fromMethod: showConfig
+    toInterface: AnalyzerConfigCommand
+    toMethod: toJson
+    toModule: audit-cli
+    fragment: "alt [configOpt.isPresent()]"
+    earlyReturn: false
+  - fromInterface: RefinerListCommand
+    fromMethod: listTasks
+    toInterface: RefinementPlanStore
+    toMethod: loadLatest
+    toModule: refiner-domain
+    fragment: "alt [planId == null || planId.isBlank()]"
+    earlyReturn: true
+  - fromInterface: RefinerListCommand
+    fromMethod: listTasks
+    toInterface: RefinementPlanStore
+    toMethod: load
+    toModule: refiner-domain
+    fragment: "alt [planId == null || planId.isBlank()]"
+    earlyReturn: true
+  - fromInterface: RefinerListCommand
+    fromMethod: listTasks
+    toInterface: RefinerListCommand
+    toMethod: printJson
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: RefinerListCommand
+    fromMethod: listTasks
+    toInterface: RefinerListCommand
+    toMethod: printTable
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: RefinerListCommand
+    fromMethod: listTasks
+    toInterface: RefinerListCommand
+    toMethod: printText
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: RefinerNextCommand
+    fromMethod: next
+    toInterface: RefinementPlanStore
+    toMethod: loadLatest
+    toModule: refiner-domain
+    fragment: "alt [planId == null || planId.isBlank()]"
+    earlyReturn: true
+  - fromInterface: RefinerNextCommand
+    fromMethod: next
+    toInterface: RefinementPlanStore
+    toMethod: load
+    toModule: refiner-domain
+    fragment: "alt [planId == null || planId.isBlank()]"
+    earlyReturn: true
+  - fromInterface: RefinerNextCommand
+    fromMethod: next
+    toInterface: RefinerEngine
+    toMethod: nextTask
+    toModule: refiner-domain
+    fragment: "alt [else: planId == null || planId.isBlank()]"
+    earlyReturn: false
+  - fromInterface: RefinerNextCommand
+    fromMethod: next
+    toInterface: RefinerNextCommand
+    toMethod: printJson
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: RefinerNextCommand
+    fromMethod: next
+    toInterface: RefinerNextCommand
+    toMethod: printTable
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: RefinerNextCommand
+    fromMethod: next
+    toInterface: RefinerNextCommand
+    toMethod: printText
+    toModule: audit-cli
+    earlyReturn: false
+  - fromInterface: CourseRepository
+    fromMethod: load
+    toInterface: CourseRepository
+    toMethod: readJsonMap
+    toModule: course-infrastructure
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: CourseRepository
+    fromMethod: load
+    toInterface: CourseRepository
+    toMethod: extractOid
+    toModule: course-infrastructure
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: CourseRepository
+    fromMethod: load
+    toInterface: CourseRepository
+    toMethod: extractOidList
+    toModule: course-infrastructure
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: CourseRepository
+    fromMethod: load
+    toInterface: CourseRepository
+    toMethod: asMap
+    toModule: course-infrastructure
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: CourseRepository
+    fromMethod: load
+    toInterface: CourseRepository
+    toMethod: loadMilestone
+    toModule: course-infrastructure
+    fragment: "alt [Files.exists(milestoneFile)]"
+    earlyReturn: false
+  - fromInterface: CourseRepository
+    fromMethod: load
+    toInterface: CourseValidator
+    toMethod: validate
+    toModule: course-domain
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: CourseRepository
+    fromMethod: save
+    toInterface: CourseValidator
+    toMethod: validate
+    toModule: course-domain
+    earlyReturn: false
+  - fromInterface: CourseRepository
+    fromMethod: save
+    toInterface: CourseRepository
+    toMethod: writeCourseJson
+    toModule: course-infrastructure
+    fragment: "opt [try]"
+    earlyReturn: false
+  - fromInterface: CourseRepository
+    fromMethod: save
+    toInterface: CourseRepository
+    toMethod: writeMilestone
+    toModule: course-infrastructure
+    fragment: "loop [for each root.getMilestones()]"
+    earlyReturn: false
+  - fromInterface: NlpTokenizer
+    fromMethod: analyzeTokensBatch
+    toInterface: NlpTokenizer
+    toMethod: analyzeTokensBatch
+    toModule: audit-domain
+    earlyReturn: false
+  - fromInterface: NlpTokenizer
+    fromMethod: analyzeTokensBatch
+    toInterface: SpacyProcessRunner
+    toMethod: run
+    toModule: nlp-infrastructure
+    earlyReturn: false
+  - fromInterface: NlpTokenizer
+    fromMethod: analyzeTokensBatch
+    toInterface: SpacyResultParser
+    toMethod: parse
+    toModule: nlp-infrastructure
+    earlyReturn: false
+  - fromInterface: NlpTokenizer
+    fromMethod: analyzeTokens
+    toInterface: NlpTokenizer
+    toMethod: analyzeTokensBatch
+    toModule: nlp-infrastructure
+    earlyReturn: false
+  - fromInterface: NlpTokenizer
+    fromMethod: tokenize
+    toInterface: NlpTokenizer
+    toMethod: analyzeTokens
+    toModule: nlp-infrastructure
+    earlyReturn: false
+  - fromInterface: NlpTokenizer
+    fromMethod: countTokens
+    toInterface: NlpTokenizer
+    toMethod: analyzeTokens
+    toModule: nlp-infrastructure
+    earlyReturn: false

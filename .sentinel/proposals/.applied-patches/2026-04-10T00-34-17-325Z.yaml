@@ -1,0 +1,29 @@
+code: __proposal__
+description: "Remove sealed: true from 7 audit-cli command interfaces to fix compilation\
+  \ error — sealed interfaces cannot be implemented by classes in a different package\
+  \ without Java module-info.java"
+modules:
+- name: audit-cli
+  interfaces:
+  - name: AnalyzeCommand
+    sealed: false
+    _change: modify
+  - name: AnalyzerListCommand
+    sealed: false
+    _change: modify
+  - name: AnalyzerConfigCommand
+    sealed: false
+    _change: modify
+  - name: AnalyzerStatsCommand
+    sealed: false
+    _change: modify
+  - name: RefinerPlanCommand
+    sealed: false
+    _change: modify
+  - name: RefinerNextCommand
+    sealed: false
+    _change: modify
+  - name: RefinerListCommand
+    sealed: false
+    _change: modify
+  _change: modify

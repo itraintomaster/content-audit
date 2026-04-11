@@ -5,6 +5,50 @@
 
 CLI entry point for running content audits from the command line
 
+## Interfaces
+
+### AnalyzeCommand (port) [sealed]
+
+Methods:
+
+- `analyze(String coursePath, String format, String level, String topic, String knowledge, List<String> analyzers, boolean detailed): Integer`
+
+### AnalyzerListCommand (port) [sealed]
+
+Methods:
+
+- `list(): Integer`
+
+### AnalyzerConfigCommand (port) [sealed]
+
+Methods:
+
+- `showConfig(String analyzerName): Integer`
+
+### AnalyzerStatsCommand (port) [sealed]
+
+Methods:
+
+- `showStats(String analyzerName, String coursePath): Integer`
+
+### RefinerPlanCommand (port) [sealed]
+
+Methods:
+
+- `plan(String auditId): Integer`
+
+### RefinerNextCommand (port) [sealed]
+
+Methods:
+
+- `next(String planId): Integer`
+
+### RefinerListCommand (port) [sealed]
+
+Methods:
+
+- `listTasks(String planId): Integer`
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
@@ -155,6 +199,15 @@ Methods:
 | cefrLevel | `CefrLevel` |
 | delta | `int` |
 | toleranceMargin | `int` |
+
+### AuditReportSummary (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| timestamp | `Instant` |
+| courseName | `String` |
+| overallScore | `double` |
 
 ### AuditEngine (port)
 
@@ -310,6 +363,15 @@ Methods:
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
 
+### AuditReportStore (port)
+
+Methods:
+
+- `save(AuditReport report): String`
+- `load(String id): Optional<AuditReport>`
+- `loadLatest(): Optional<AuditReport>`
+- `list(): List<AuditReportSummary>`
+
 ### From course-domain
 
 ## Models
@@ -464,6 +526,65 @@ Methods:
 Methods:
 
 - `validate(CourseEntity course): void`
+
+### From refiner-domain
+
+## Models
+
+### DiagnosisKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| SENTENCE_LENGTH | `null` |
+| LEMMA_ABSENCE | `null` |
+| COCA_BUCKETS | `null` |
+| LEMMA_RECURRENCE | `null` |
+| KNOWLEDGE_TITLE_LENGTH | `null` |
+| KNOWLEDGE_INSTRUCTIONS_LENGTH | `null` |
+
+### RefinementTaskStatus (`enum`)
+
+| Field | Type |
+|-------|------|
+| PENDING | `null` |
+| COMPLETED | `null` |
+| SKIPPED | `null` |
+
+### RefinementTask (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| nodeTarget | `AuditTarget` |
+| nodeId | `String` |
+| nodeLabel | `String` |
+| diagnosisKind | `DiagnosisKind` |
+| priority | `int` |
+| status | `RefinementTaskStatus` |
+
+### RefinementPlan (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| sourceAuditId | `String` |
+| createdAt | `Instant` |
+| tasks | `List<RefinementTask>` |
+
+### RefinerEngine (port)
+
+Methods:
+
+- `plan(AuditReport report): RefinementPlan`
+- `nextTask(RefinementPlan plan): Optional<RefinementTask>`
+
+### RefinementPlanStore (port)
+
+Methods:
+
+- `save(RefinementPlan plan): String`
+- `load(String id): Optional<RefinementPlan>`
+- `loadLatest(): Optional<RefinementPlan>`
 
 ### From nlp-infrastructure
 

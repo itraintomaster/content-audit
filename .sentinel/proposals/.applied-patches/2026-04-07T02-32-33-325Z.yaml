@@ -1,0 +1,99 @@
+code: __proposal__
+description: "Add refiner-domain skeleton: DiagnosisKind, RefinementTaskStatus, RefinementTask,\
+  \ RefinementPlan models; RefinerEngine and RefinementPlanStore ports; FileSystemRefinementPlanStore\
+  \ adapter in audit-infrastructure"
+modules:
+- name: refiner-domain
+  description: Domain module for the refinement workflow. Defines the plan/task model
+    and ports for generating and persisting refinement plans derived from audit reports.
+  dependsOn:
+  - audit-domain
+  models:
+  - name: DiagnosisKind
+    type: enum
+    fields:
+    - name: SENTENCE_LENGTH
+    - name: LEMMA_ABSENCE
+    - name: COCA_BUCKETS
+    - name: LEMMA_RECURRENCE
+    - name: KNOWLEDGE_TITLE_LENGTH
+    - name: KNOWLEDGE_INSTRUCTIONS_LENGTH
+    _change: add
+  - name: RefinementTaskStatus
+    type: enum
+    fields:
+    - name: PENDING
+    - name: COMPLETED
+    - name: SKIPPED
+    _change: add
+  - name: RefinementTask
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: Unique task identifier
+    - name: nodeTarget
+      type: AuditTarget
+      description: "The hierarchy level of the node (QUIZ, KNOWLEDGE, TOPIC, MILESTONE,\
+        \ COURSE)"
+    - name: nodeId
+      type: String
+      description: Identifier of the target entity
+    - name: nodeLabel
+      type: String
+      description: Human-readable label for display
+    - name: diagnosisKind
+      type: DiagnosisKind
+      description: Which analyzer flagged the problem
+    - name: priority
+      type: int
+      description: Priority rank (1 = highest)
+    - name: status
+      type: RefinementTaskStatus
+      description: Current status
+    _change: add
+  - name: RefinementPlan
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: Unique plan identifier
+    - name: sourceAuditId
+      type: String
+      description: ID of the AuditReport this plan was derived from
+    - name: createdAt
+      type: Instant
+      description: When this plan was created
+    - name: tasks
+      type: List<RefinementTask>
+      description: Prioritized list of refinement tasks
+    _change: add
+  interfaces:
+  - name: RefinerEngine
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "plan(AuditReport report): RefinementPlan"
+    - signature: "nextTask(RefinementPlan plan): Optional<RefinementTask>"
+    _change: add
+  - name: RefinementPlanStore
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "save(RefinementPlan plan): String"
+    - signature: "load(String id): Optional<RefinementPlan>"
+    - signature: "loadLatest(): Optional<RefinementPlan>"
+    _change: add
+  _change: modify
+- name: audit-infrastructure
+  dependsOn:
+  - audit-domain
+  - refiner-domain
+  implementations:
+  - name: FileSystemRefinementPlanStore
+    types:
+    - Repository
+    implements:
+    - RefinementPlanStore
+    _change: add
+  _change: modify

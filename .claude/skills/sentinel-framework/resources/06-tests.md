@@ -206,3 +206,7 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - Given a loaded course, when a knowledge label is modified and the course is saved and reloaded, then the change is reflected and unmodified data remains intact → F-COURSE/F-COURSE-J005
 - Given a nonexistent path or missing descriptor or malformed JSON, when load is called, then a descriptive error is thrown and no partial course is returned → F-COURSE/F-COURSE-J006
 
+### FileSystemAuditReportStore (audit-infrastructure)
+
+- should save an AuditReport and load it back with identical content → FEAT-STORE/F-STORE-R001
+

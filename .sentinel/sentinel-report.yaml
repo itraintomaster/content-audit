@@ -1,4 +1,4 @@
-generatedAt: 2026-04-06T02:03:43.563180Z
+generatedAt: 2026-04-11T01:12:04.527817Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -2198,6 +2198,18 @@ elements:
       status: EXISTS
     - name: toleranceMargin
       status: EXISTS
+  - name: AuditReportSummary
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditReportSummary.java
+    fields:
+    - name: id
+      status: EXISTS
+    - name: timestamp
+      status: EXISTS
+    - name: courseName
+      status: EXISTS
+    - name: overallScore
+      status: EXISTS
   interfaces:
   - name: AuditEngine
     status: EXISTS
@@ -2397,6 +2409,18 @@ elements:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
       status: EXISTS
     - signature: "getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>"
+      status: EXISTS
+  - name: AuditReportStore
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditReportStore.java
+    methods:
+    - signature: "save(AuditReport report): String"
+      status: EXISTS
+    - signature: "load(String id): Optional<AuditReport>"
+      status: EXISTS
+    - signature: "loadLatest(): Optional<AuditReport>"
+      status: EXISTS
+    - signature: "list(): List<AuditReportSummary>"
       status: EXISTS
   implementations:
   - name: IAuditEngine
@@ -6015,6 +6039,82 @@ elements:
       status: EXISTS
 - module: refiner-domain
   status: EXISTS
+  models:
+  - name: DiagnosisKind
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/DiagnosisKind.java
+    fields:
+    - name: SENTENCE_LENGTH
+      status: EXISTS
+    - name: LEMMA_ABSENCE
+      status: EXISTS
+    - name: COCA_BUCKETS
+      status: EXISTS
+    - name: LEMMA_RECURRENCE
+      status: EXISTS
+    - name: KNOWLEDGE_TITLE_LENGTH
+      status: EXISTS
+    - name: KNOWLEDGE_INSTRUCTIONS_LENGTH
+      status: EXISTS
+  - name: RefinementTaskStatus
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/RefinementTaskStatus.java
+    fields:
+    - name: PENDING
+      status: EXISTS
+    - name: COMPLETED
+      status: EXISTS
+    - name: SKIPPED
+      status: EXISTS
+  - name: RefinementTask
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/RefinementTask.java
+    fields:
+    - name: id
+      status: EXISTS
+    - name: nodeTarget
+      status: EXISTS
+    - name: nodeId
+      status: EXISTS
+    - name: nodeLabel
+      status: EXISTS
+    - name: diagnosisKind
+      status: EXISTS
+    - name: priority
+      status: EXISTS
+    - name: status
+      status: EXISTS
+  - name: RefinementPlan
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/RefinementPlan.java
+    fields:
+    - name: id
+      status: EXISTS
+    - name: sourceAuditId
+      status: EXISTS
+    - name: createdAt
+      status: EXISTS
+    - name: tasks
+      status: EXISTS
+  interfaces:
+  - name: RefinerEngine
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/RefinerEngine.java
+    methods:
+    - signature: "plan(AuditReport report): RefinementPlan"
+      status: EXISTS
+    - signature: "nextTask(RefinementPlan plan): Optional<RefinementTask>"
+      status: EXISTS
+  - name: RefinementPlanStore
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/RefinementPlanStore.java
+    methods:
+    - signature: "save(RefinementPlan plan): String"
+      status: EXISTS
+    - signature: "load(String id): Optional<RefinementPlan>"
+      status: EXISTS
+    - signature: "loadLatest(): Optional<RefinementPlan>"
+      status: EXISTS
 - module: audit-application
   status: EXISTS
   interfaces:
@@ -6888,6 +6988,50 @@ elements:
         throws CourseValidationException: sut.save(emptyMilestoneCourse, Path.of("/tmp/test-empty-milestone-output"))
 - module: audit-cli
   status: EXISTS
+  interfaces:
+  - name: AnalyzeCommand
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzeCommand.java
+    methods:
+    - signature: "analyze(String coursePath, String format, String level, String topic,\
+        \ String knowledge, List<String> analyzers, boolean detailed): Integer"
+      status: EXISTS
+  - name: AnalyzerListCommand
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerListCommand.java
+    methods:
+    - signature: "list(): Integer"
+      status: EXISTS
+  - name: AnalyzerConfigCommand
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerConfigCommand.java
+    methods:
+    - signature: "showConfig(String analyzerName): Integer"
+      status: EXISTS
+  - name: AnalyzerStatsCommand
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerStatsCommand.java
+    methods:
+    - signature: "showStats(String analyzerName, String coursePath): Integer"
+      status: EXISTS
+  - name: RefinerPlanCommand
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/RefinerPlanCommand.java
+    methods:
+    - signature: "plan(String auditId): Integer"
+      status: EXISTS
+  - name: RefinerNextCommand
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/RefinerNextCommand.java
+    methods:
+    - signature: "next(String planId): Integer"
+      status: EXISTS
+  - name: RefinerListCommand
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/RefinerListCommand.java
+    methods:
+    - signature: "listTasks(String planId): Integer"
+      status: EXISTS
   implementations:
   - name: Main
     status: EXISTS
@@ -6910,6 +7054,18 @@ elements:
   - name: AnalyzerStatsCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/AnalyzerStatsCmd.java
+  - name: RefinerCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RefinerCmd.java
+  - name: RefinerPlanCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RefinerPlanCmd.java
+  - name: RefinerNextCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmd.java
+  - name: RefinerListCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RefinerListCmd.java
   - name: TextReportFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/TextReportFormatter.java
@@ -7149,11 +7305,200 @@ elements:
   - name: FileSystemEvpCatalog
     status: EXISTS
     filePath: vocabulary-infrastructure/src/main/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalog.java
+- module: audit-infrastructure
+  status: EXISTS
+  implementations:
+  - name: FileSystemAuditReportStore
+    status: EXISTS
+    filePath: audit-infrastructure/src/main/java/com/learney/contentaudit/auditinfrastructure/FileSystemAuditReportStore.java
+    tests:
+    - name: should save an AuditReport and load it back with identical content
+      status: MISSING
+    testCleanViews:
+    - |
+      test: "should save an AuditReport and load it back with identical content"
+      trace: FEAT-STORE
+
+      given:
+        quiz = AuditableQuiz("The cat sat on the mat.", List.of(new NlpToken("cat", "cat", "NOUN", 500, false, false)), "quiz-1", "Quiz One", "Q1")
+        quizDiagnoses = DefaultQuizDiagnoses()
+        sentenceDiagnosis = SentenceLengthDiagnosis(7, 5, 10, CefrLevel.A1, 0, 2)
+        quizLemmaDiagnosis = LemmaPlacementDiagnosis(0, List.of())
+        quizScores = HashMap<>()
+        quizMetadata = HashMap<>()
+        quizNode = AuditNode(quiz, AuditTarget.QUIZ, null, List.of(), quizScores, quizMetadata, quizDiagnoses)
+        knowledge = AuditableKnowledge(List.of(quiz), "Prepositions", "Complete the sentence with the correct preposition.", true, "know-1", "Knowledge One", "K1")
+        knowledgeDiagnoses = DefaultKnowledgeDiagnoses()
+        knowledgeLemmaDiagnosis = LemmaPlacementDiagnosis(1, List.of())
+        knowledgeScores = HashMap<>()
+        knowledgeMetadata = HashMap<>()
+        knowledgeNode = AuditNode(knowledge, AuditTarget.KNOWLEDGE, null, new ArrayList<>(List.of(quizNode)), knowledgeScores, knowledgeMetadata, knowledgeDiagnoses)
+        topic = AuditableTopic(List.of(knowledge), "topic-1", "Topic One", "T1")
+        topicScores = HashMap<>()
+        topicNode = AuditNode(topic, AuditTarget.TOPIC, null, new ArrayList<>(List.of(knowledgeNode)), topicScores, new HashMap<>(), null)
+        milestone = AuditableMilestone(List.of(topic), "ms-1", "Milestone One", "M1")
+        milestoneScores = HashMap<>()
+        milestoneNode = AuditNode(milestone, AuditTarget.MILESTONE, null, new ArrayList<>(List.of(topicNode)), milestoneScores, new HashMap<>(), null)
+        courseScores = HashMap<>()
+        rootNode = AuditNode(null, AuditTarget.COURSE, null, new ArrayList<>(List.of(milestoneNode)), courseScores, new HashMap<>(), null)
+        original = AuditReport(rootNode)
+        store = FileSystemAuditReportStore(tempDir)
+        id = store.save(original)
+        loadedOpt = store.load(id)
+        loaded = loadedOpt.get()
+        loadedRoot = loaded.getRoot()
+        loadedMilestone = loadedRoot.getChildren().get(0)
+        loadedMilestoneEntity = (AuditableMilestone) loadedMilestone.getEntity()
+        loadedTopic = loadedMilestone.getChildren().get(0)
+        loadedTopicEntity = (AuditableTopic) loadedTopic.getEntity()
+        loadedKnowledge = loadedTopic.getChildren().get(0)
+        loadedKnowledgeEntity = (AuditableKnowledge) loadedKnowledge.getEntity()
+        loadedKD = (DefaultKnowledgeDiagnoses) loadedKnowledge.getDiagnoses()
+        loadedQuiz = loadedKnowledge.getChildren().get(0)
+        loadedQuizEntity = (AuditableQuiz) loadedQuiz.getEntity()
+        loadedToken = loadedQuizEntity.getTokens().get(0)
+        loadedQD = (DefaultQuizDiagnoses) loadedQuiz.getDiagnoses()
+        loadedSLD = loadedQD.getSentenceLengthDiagnosis().get()
+
+      when:
+        sut.setSentenceLengthDiagnosis(sentenceDiagnosis)
+
+      then:
+        id is not null
+        id.isBlank() is false
+        loadedOpt.isPresent() is true
+        assertNotSame(original)
+        loadedRoot is not null
+        loadedRoot.getParent() is null
+        loadedRoot.getTarget() == AuditTarget.COURSE
+        loadedRoot.getScores() == courseScores
+        loadedRoot.getEntity() is null
+        loadedRoot.getChildren().size() == 1
+        loadedMilestone.getTarget() == AuditTarget.MILESTONE
+        loadedMilestone.getParent() is not null
+        loadedMilestone.getParent().getTarget() == AuditTarget.COURSE
+        loadedMilestone.getScores() == milestoneScores
+        loadedMilestone.getEntity() instanceof AuditableMilestone is true
+        loadedMilestoneEntity.getId() == "ms-1"
+        loadedMilestoneEntity.getLabel() == "Milestone One"
+        loadedMilestoneEntity.getCode() == "M1"
+        loadedMilestone.getChildren().size() == 1
+        loadedTopic.getTarget() == AuditTarget.TOPIC
+        loadedTopic.getParent() is not null
+        loadedTopic.getParent().getTarget() == AuditTarget.MILESTONE
+        loadedTopic.getEntity() instanceof AuditableTopic is true
+        loadedTopicEntity.getId() == "topic-1"
+        loadedTopic.getChildren().size() == 1
+        loadedKnowledge.getTarget() == AuditTarget.KNOWLEDGE
+        loadedKnowledge.getParent() is not null
+        loadedKnowledge.getParent().getTarget() == AuditTarget.TOPIC
+        loadedKnowledge.getScores() == knowledgeScores
+        loadedKnowledge.getEntity() instanceof AuditableKnowledge is true
+        loadedKnowledgeEntity.getId() == "know-1"
+        loadedKnowledgeEntity.getTitle() == "Prepositions"
+        loadedKnowledgeEntity.isIsSentence() is true
+        loadedKnowledge.getDiagnoses() is not null
+        loadedKnowledge.getDiagnoses() instanceof DefaultKnowledgeDiagnoses is true
+        loadedKD.getLemmaAbsenceDiagnosis().isPresent() is true
+        loadedKD.getLemmaAbsenceDiagnosis().get().getMisplacedLemmaCount() == 1
+        loadedKnowledge.getChildren().size() == 1
+        loadedQuiz.getTarget() == AuditTarget.QUIZ
+        loadedQuiz.getParent() is not null
+        loadedQuiz.getParent().getTarget() == AuditTarget.KNOWLEDGE
+        loadedQuiz.getChildren().size() == 0
+        loadedQuiz.getScores() == quizScores
+        loadedQuiz.getEntity() instanceof AuditableQuiz is true
+        loadedQuizEntity.getId() == "quiz-1"
+        loadedQuizEntity.getLabel() == "Quiz One"
+        loadedQuizEntity.getCode() == "Q1"
+        loadedQuizEntity.getSentence() == "The cat sat on the mat."
+        loadedQuizEntity.getTokens() is not null
+        loadedQuizEntity.getTokens().size() == 1
+        loadedToken.getText() == "cat"
+        loadedToken.getLemma() == "cat"
+        loadedToken.getPosTag() == "NOUN"
+        loadedToken.getFrequencyRank() == 500
+        loadedToken.isIsStop() is false
+        loadedToken.isIsPunct() is false
+        loadedQuiz.getDiagnoses() is not null
+        loadedQuiz.getDiagnoses() instanceof DefaultQuizDiagnoses is true
+        loadedQD.getSentenceLengthDiagnosis().isPresent() is true
+        loadedSLD.getTokenCount() == 7
+        loadedSLD.getTargetMin() == 5
+        loadedSLD.getTargetMax() == 10
+        loadedSLD.getCefrLevel() == CefrLevel.A1
+        loadedSLD.getDelta() == 0
+        loadedSLD.getToleranceMargin() == 2
+        loadedQD.getLemmaAbsenceDiagnosis().isPresent() is true
+        loadedQD.getLemmaAbsenceDiagnosis().get().getMisplacedLemmaCount() == 0
+        loadedQuiz.getMetadata().get("tokenCount") == "7"
+        loadedKnowledge.getMetadata().get("quizCount") == "1"
+    - |
+      test: "should return empty Optional when loading a non-existent ID"
+
+      given:
+        store = FileSystemAuditReportStore(tempDir)
+        result = store.load("nonexistent-id")
+
+      then:
+        result.isPresent() is false
+    - |
+      test: "should return empty Optional when loadLatest is called on an empty store"
+
+      given:
+        store = FileSystemAuditReportStore(tempDir)
+        result = store.loadLatest()
+
+      then:
+        result.isPresent() is false
+    - |
+      test: "should return an empty list when listing an empty store"
+
+      given:
+        store = FileSystemAuditReportStore(tempDir)
+        summaries = store.list()
+
+      then:
+        summaries is not null
+        summaries.isEmpty() is true
+    - |
+      test: "should list saved reports with correct summary information"
+
+      given:
+        store = FileSystemAuditReportStore(tempDir)
+        scores = Map.of("sentence-length", 0.75)
+        root = AuditNode(null, AuditTarget.COURSE, null, List.of(), scores, Map.of(), null)
+        report = AuditReport(root)
+        id = store.save(report)
+        summaries = store.list()
+
+      then:
+        summaries.size() == 1
+        summaries.get(0).getId() == id
+        summaries.get(0).getOverallScore() == 0.75
+    - |
+      test: "should load the most recent report via loadLatest"
+
+      given:
+        store = FileSystemAuditReportStore(tempDir)
+        root1 = AuditNode(null, AuditTarget.COURSE, null, List.of(), Map.of("sentence-length", 0.5), Map.of(), null)
+        root2 = AuditNode(null, AuditTarget.COURSE, null, List.of(), Map.of("sentence-length", 0.9), Map.of(), null)
+        latest = store.loadLatest()
+
+      when:
+        sut.save(new AuditReport(root1))
+
+      then:
+        latest.isPresent() is true
+        latest.get().getRoot().getScores().get("sentence-length") == 0.9
+  - name: FileSystemRefinementPlanStore
+    status: EXISTS
+    filePath: audit-infrastructure/src/main/java/com/learney/contentaudit/auditinfrastructure/FileSystemRefinementPlanStore.java
 testSummary:
-  total: 277
+  total: 278
   passing: 59
   failing: 0
-  notImplemented: 218
+  notImplemented: 219
 patterns:
 - id: declared-1
   pattern: Strategy
@@ -7448,6 +7793,18 @@ patterns:
     nodeId: interface-audit-domain-QuizDiagnoses
   confidence: 0.9
 - id: stereo-23
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: AuditReportStore is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: AuditReportStore
+    nodeId: interface-audit-domain-AuditReportStore
+  confidence: 0.9
+- id: stereo-24
   pattern: Value Object
   category: architectural
   source: detected
@@ -7459,7 +7816,7 @@ patterns:
     elementName: AuditReport
     nodeId: model-audit-domain-AuditReport
   confidence: 0.75
-- id: stereo-24
+- id: stereo-25
   pattern: Value Object
   category: architectural
   source: detected
@@ -7471,7 +7828,7 @@ patterns:
     elementName: AuditableCourse
     nodeId: model-audit-domain-AuditableCourse
   confidence: 0.75
-- id: stereo-25
+- id: stereo-26
   pattern: Entity
   category: architectural
   source: detected
@@ -7483,7 +7840,7 @@ patterns:
     elementName: AuditableKnowledge
     nodeId: model-audit-domain-AuditableKnowledge
   confidence: 0.8
-- id: stereo-26
+- id: stereo-27
   pattern: Entity
   category: architectural
   source: detected
@@ -7495,7 +7852,7 @@ patterns:
     elementName: AuditableTopic
     nodeId: model-audit-domain-AuditableTopic
   confidence: 0.8
-- id: stereo-27
+- id: stereo-28
   pattern: Entity
   category: architectural
   source: detected
@@ -7507,7 +7864,7 @@ patterns:
     elementName: AuditableMilestone
     nodeId: model-audit-domain-AuditableMilestone
   confidence: 0.8
-- id: stereo-28
+- id: stereo-29
   pattern: Entity
   category: architectural
   source: detected
@@ -7519,7 +7876,7 @@ patterns:
     elementName: AuditableQuiz
     nodeId: model-audit-domain-AuditableQuiz
   confidence: 0.8
-- id: stereo-29
+- id: stereo-30
   pattern: Enum
   category: architectural
   source: detected
@@ -7531,7 +7888,7 @@ patterns:
     elementName: CefrLevel
     nodeId: model-audit-domain-CefrLevel
   confidence: 0.95
-- id: stereo-30
+- id: stereo-31
   pattern: Value Object
   category: architectural
   source: detected
@@ -7543,7 +7900,7 @@ patterns:
     elementName: TargetRange
     nodeId: model-audit-domain-TargetRange
   confidence: 0.75
-- id: stereo-31
+- id: stereo-32
   pattern: Enum
   category: architectural
   source: detected
@@ -7555,7 +7912,7 @@ patterns:
     elementName: AuditTarget
     nodeId: model-audit-domain-AuditTarget
   confidence: 0.95
-- id: stereo-32
+- id: stereo-33
   pattern: Value Object
   category: architectural
   source: detected
@@ -7567,7 +7924,7 @@ patterns:
     elementName: NlpToken
     nodeId: model-audit-domain-NlpToken
   confidence: 0.75
-- id: stereo-33
+- id: stereo-34
   pattern: Value Object
   category: architectural
   source: detected
@@ -7579,7 +7936,7 @@ patterns:
     elementName: AnalyzerDescriptor
     nodeId: model-audit-domain-AnalyzerDescriptor
   confidence: 0.75
-- id: stereo-34
+- id: stereo-35
   pattern: Value Object
   category: architectural
   source: detected
@@ -7591,7 +7948,7 @@ patterns:
     elementName: AuditNode
     nodeId: model-audit-domain-AuditNode
   confidence: 0.75
-- id: stereo-35
+- id: stereo-36
   pattern: Value Object
   category: architectural
   source: detected
@@ -7603,7 +7960,19 @@ patterns:
     elementName: SentenceLengthDiagnosis
     nodeId: model-audit-domain-SentenceLengthDiagnosis
   confidence: 0.75
-- id: stereo-36
+- id: stereo-37
+  pattern: Entity
+  category: architectural
+  source: detected
+  severity: info
+  description: AuditReportSummary has an id field (entity)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: AuditReportSummary
+    nodeId: model-audit-domain-AuditReportSummary
+  confidence: 0.8
+- id: stereo-38
   pattern: Port
   category: architectural
   source: detected
@@ -7615,7 +7984,7 @@ patterns:
     elementName: CourseRepository
     nodeId: interface-course-domain-CourseRepository
   confidence: 0.9
-- id: stereo-37
+- id: stereo-39
   pattern: Service
   category: architectural
   source: detected
@@ -7627,7 +7996,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: stereo-38
+- id: stereo-40
   pattern: Enum
   category: architectural
   source: detected
@@ -7639,7 +8008,7 @@ patterns:
     elementName: NodeKind
     nodeId: model-course-domain-NodeKind
   confidence: 0.95
-- id: stereo-39
+- id: stereo-41
   pattern: Enum
   category: architectural
   source: detected
@@ -7651,7 +8020,7 @@ patterns:
     elementName: SentencePartKind
     nodeId: model-course-domain-SentencePartKind
   confidence: 0.95
-- id: stereo-40
+- id: stereo-42
   pattern: Entity
   category: architectural
   source: detected
@@ -7663,7 +8032,7 @@ patterns:
     elementName: CourseEntity
     nodeId: model-course-domain-CourseEntity
   confidence: 0.8
-- id: stereo-41
+- id: stereo-43
   pattern: Entity
   category: architectural
   source: detected
@@ -7675,7 +8044,7 @@ patterns:
     elementName: RootNodeEntity
     nodeId: model-course-domain-RootNodeEntity
   confidence: 0.8
-- id: stereo-42
+- id: stereo-44
   pattern: Entity
   category: architectural
   source: detected
@@ -7687,7 +8056,7 @@ patterns:
     elementName: MilestoneEntity
     nodeId: model-course-domain-MilestoneEntity
   confidence: 0.8
-- id: stereo-43
+- id: stereo-45
   pattern: Entity
   category: architectural
   source: detected
@@ -7699,7 +8068,7 @@ patterns:
     elementName: TopicEntity
     nodeId: model-course-domain-TopicEntity
   confidence: 0.8
-- id: stereo-44
+- id: stereo-46
   pattern: Entity
   category: architectural
   source: detected
@@ -7711,7 +8080,7 @@ patterns:
     elementName: KnowledgeEntity
     nodeId: model-course-domain-KnowledgeEntity
   confidence: 0.8
-- id: stereo-45
+- id: stereo-47
   pattern: Entity
   category: architectural
   source: detected
@@ -7723,7 +8092,7 @@ patterns:
     elementName: QuizTemplateEntity
     nodeId: model-course-domain-QuizTemplateEntity
   confidence: 0.8
-- id: stereo-46
+- id: stereo-48
   pattern: Value Object
   category: architectural
   source: detected
@@ -7735,7 +8104,7 @@ patterns:
     elementName: FormEntity
     nodeId: model-course-domain-FormEntity
   confidence: 0.75
-- id: stereo-47
+- id: stereo-49
   pattern: Value Object
   category: architectural
   source: detected
@@ -7747,7 +8116,79 @@ patterns:
     elementName: SentencePartEntity
     nodeId: model-course-domain-SentencePartEntity
   confidence: 0.75
-- id: stereo-48
+- id: stereo-50
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: RefinerEngine is a port
+  involvedElements:
+  - type: interface
+    moduleName: refiner-domain
+    elementName: RefinerEngine
+    nodeId: interface-refiner-domain-RefinerEngine
+  confidence: 0.9
+- id: stereo-51
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: RefinementPlanStore is a port
+  involvedElements:
+  - type: interface
+    moduleName: refiner-domain
+    elementName: RefinementPlanStore
+    nodeId: interface-refiner-domain-RefinementPlanStore
+  confidence: 0.9
+- id: stereo-52
+  pattern: Enum
+  category: architectural
+  source: detected
+  severity: info
+  description: DiagnosisKind is an enum
+  involvedElements:
+  - type: model
+    moduleName: refiner-domain
+    elementName: DiagnosisKind
+    nodeId: model-refiner-domain-DiagnosisKind
+  confidence: 0.95
+- id: stereo-53
+  pattern: Enum
+  category: architectural
+  source: detected
+  severity: info
+  description: RefinementTaskStatus is an enum
+  involvedElements:
+  - type: model
+    moduleName: refiner-domain
+    elementName: RefinementTaskStatus
+    nodeId: model-refiner-domain-RefinementTaskStatus
+  confidence: 0.95
+- id: stereo-54
+  pattern: Entity
+  category: architectural
+  source: detected
+  severity: info
+  description: RefinementTask has an id field (entity)
+  involvedElements:
+  - type: model
+    moduleName: refiner-domain
+    elementName: RefinementTask
+    nodeId: model-refiner-domain-RefinementTask
+  confidence: 0.8
+- id: stereo-55
+  pattern: Entity
+  category: architectural
+  source: detected
+  severity: info
+  description: RefinementPlan has an id field (entity)
+  involvedElements:
+  - type: model
+    moduleName: refiner-domain
+    elementName: RefinementPlan
+    nodeId: model-refiner-domain-RefinementPlan
+  confidence: 0.8
+- id: stereo-56
   pattern: Service
   category: architectural
   source: detected
@@ -7759,7 +8200,7 @@ patterns:
     elementName: AuditRunner
     nodeId: interface-audit-application-AuditRunner
   confidence: 0.9
-- id: stereo-49
+- id: stereo-57
   pattern: Port
   category: architectural
   source: detected
@@ -7771,7 +8212,7 @@ patterns:
     elementName: CourseMapper
     nodeId: interface-audit-application-CourseMapper
   confidence: 0.9
-- id: stereo-50
+- id: stereo-58
   pattern: Service
   category: architectural
   source: detected
@@ -7783,7 +8224,91 @@ patterns:
     elementName: AnalyzerRegistry
     nodeId: interface-audit-application-AnalyzerRegistry
   confidence: 0.9
-- id: stereo-52
+- id: stereo-59
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: AnalyzeCommand is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: AnalyzeCommand
+    nodeId: interface-audit-cli-AnalyzeCommand
+  confidence: 0.9
+- id: stereo-60
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: AnalyzerListCommand is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: AnalyzerListCommand
+    nodeId: interface-audit-cli-AnalyzerListCommand
+  confidence: 0.9
+- id: stereo-61
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: AnalyzerConfigCommand is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: AnalyzerConfigCommand
+    nodeId: interface-audit-cli-AnalyzerConfigCommand
+  confidence: 0.9
+- id: stereo-62
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: AnalyzerStatsCommand is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: AnalyzerStatsCommand
+    nodeId: interface-audit-cli-AnalyzerStatsCommand
+  confidence: 0.9
+- id: stereo-63
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: RefinerPlanCommand is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: RefinerPlanCommand
+    nodeId: interface-audit-cli-RefinerPlanCommand
+  confidence: 0.9
+- id: stereo-64
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: RefinerNextCommand is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: RefinerNextCommand
+    nodeId: interface-audit-cli-RefinerNextCommand
+  confidence: 0.9
+- id: stereo-65
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: RefinerListCommand is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: RefinerListCommand
+    nodeId: interface-audit-cli-RefinerListCommand
+  confidence: 0.9
+- id: stereo-67
   pattern: Value Object
   category: architectural
   source: detected
@@ -7795,7 +8320,7 @@ patterns:
     elementName: NlpTokenizerConfig
     nodeId: model-nlp-infrastructure-NlpTokenizerConfig
   confidence: 0.75
-- id: anti-53
+- id: anti-68
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -7807,7 +8332,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-54
+- id: anti-69
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -7819,7 +8344,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: anti-55
+- id: anti-70
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -7831,7 +8356,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: anti-56
+- id: anti-71
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -7843,7 +8368,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: anti-57
+- id: anti-72
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -7855,7 +8380,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: anti-58
+- id: anti-73
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -7867,7 +8392,7 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: anti-59
+- id: anti-74
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -7879,7 +8404,7 @@ patterns:
     elementName: NodeDiagnoses
     nodeId: interface-audit-domain-NodeDiagnoses
   confidence: 0.9
-- id: anti-60
+- id: anti-75
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -7891,7 +8416,7 @@ patterns:
     elementName: CourseDiagnoses
     nodeId: interface-audit-domain-CourseDiagnoses
   confidence: 0.9
-- id: anti-61
+- id: anti-76
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -7903,7 +8428,7 @@ patterns:
     elementName: LevelDiagnoses
     nodeId: interface-audit-domain-LevelDiagnoses
   confidence: 0.9
-- id: anti-62
+- id: anti-77
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -7915,7 +8440,7 @@ patterns:
     elementName: TopicDiagnoses
     nodeId: interface-audit-domain-TopicDiagnoses
   confidence: 0.9
-- id: anti-63
+- id: anti-78
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -7927,7 +8452,7 @@ patterns:
     elementName: KnowledgeDiagnoses
     nodeId: interface-audit-domain-KnowledgeDiagnoses
   confidence: 0.9
-- id: anti-64
+- id: anti-79
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -7939,19 +8464,19 @@ patterns:
     elementName: QuizDiagnoses
     nodeId: interface-audit-domain-QuizDiagnoses
   confidence: 0.9
-- id: anti-65
+- id: anti-80
   pattern: God Module
   category: anti-pattern
   source: detected
   severity: warning
-  description: "audit-domain is too large: 13 models, 19 interfaces"
+  description: "audit-domain is too large: 14 models, 20 interfaces"
   involvedElements:
   - type: module
     moduleName: audit-domain
     elementName: audit-domain
     nodeId: module-audit-domain
   confidence: 0.85
-- id: anti-66
+- id: anti-81
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -7963,7 +8488,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.8
-- id: anti-67
+- id: anti-82
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -7975,7 +8500,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.8
-- id: anti-68
+- id: anti-83
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -7987,7 +8512,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-69
+- id: anti-84
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -7999,7 +8524,19 @@ patterns:
     elementName: course-domain
     nodeId: module-course-domain
   confidence: 0.85
-- id: anti-70
+- id: anti-85
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: RefinerEngine has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: refiner-domain
+    elementName: RefinerEngine
+    nodeId: interface-refiner-domain-RefinerEngine
+  confidence: 0.9
+- id: anti-86
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -8011,7 +8548,103 @@ patterns:
     elementName: audit-application
     nodeId: module-audit-application
   confidence: 0.85
-- id: anti-71
+- id: anti-87
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: AnalyzeCommand has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: AnalyzeCommand
+    nodeId: interface-audit-cli-AnalyzeCommand
+  confidence: 0.9
+- id: anti-88
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: AnalyzerListCommand has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: AnalyzerListCommand
+    nodeId: interface-audit-cli-AnalyzerListCommand
+  confidence: 0.9
+- id: anti-89
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: AnalyzerConfigCommand has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: AnalyzerConfigCommand
+    nodeId: interface-audit-cli-AnalyzerConfigCommand
+  confidence: 0.9
+- id: anti-90
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: AnalyzerStatsCommand has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: AnalyzerStatsCommand
+    nodeId: interface-audit-cli-AnalyzerStatsCommand
+  confidence: 0.9
+- id: anti-91
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: RefinerPlanCommand has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: RefinerPlanCommand
+    nodeId: interface-audit-cli-RefinerPlanCommand
+  confidence: 0.9
+- id: anti-92
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: RefinerNextCommand has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: RefinerNextCommand
+    nodeId: interface-audit-cli-RefinerNextCommand
+  confidence: 0.9
+- id: anti-93
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: RefinerListCommand has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: RefinerListCommand
+    nodeId: interface-audit-cli-RefinerListCommand
+  confidence: 0.9
+- id: anti-94
+  pattern: God Module
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: "audit-cli is too large: 7 interfaces"
+  involvedElements:
+  - type: module
+    moduleName: audit-cli
+    elementName: audit-cli
+    nodeId: module-audit-cli
+  confidence: 0.85
+- id: anti-95
   pattern: Orphan Interface
   category: anti-pattern
   source: detected

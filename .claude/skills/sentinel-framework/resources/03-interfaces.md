@@ -239,6 +239,19 @@ Examples:
 | `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>` | (none) |
 | `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>` | (none) |
 
+#### AuditReportStore (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** FileSystemAuditReportStore (audit-infrastructure)
+
+| Method | Throws |
+|--------|--------|
+| `save(AuditReport report): String` | (none) |
+| `load(String id): Optional<AuditReport>` | (none) |
+| `loadLatest(): Optional<AuditReport>` | (none) |
+| `list(): List<AuditReportSummary>` | (none) |
+
 #### TokenClassifier (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
@@ -306,6 +319,29 @@ Examples:
 |--------|--------|
 | `validate(CourseEntity course): void` | (none) |
 
+### Module: refiner-domain
+
+#### RefinerEngine (port)
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+
+| Method | Throws |
+|--------|--------|
+| `plan(AuditReport report): RefinementPlan` | (none) |
+| `nextTask(RefinementPlan plan): Optional<RefinementTask>` | (none) |
+
+#### RefinementPlanStore (port)
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+
+**Implemented by:** FileSystemRefinementPlanStore (audit-infrastructure)
+
+| Method | Throws |
+|--------|--------|
+| `save(RefinementPlan plan): String` | (none) |
+| `load(String id): Optional<RefinementPlan>` | (none) |
+| `loadLatest(): Optional<RefinementPlan>` | (none) |
+
 ### Module: audit-application
 
 #### AuditRunner (service)
@@ -341,6 +377,62 @@ Examples:
 | `getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>` | (none) |
 
 ### Module: audit-cli
+
+#### AnalyzeCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `analyze(String coursePath, String format, String level, String topic, String knowledge, List<String> analyzers, boolean detailed): Integer` | (none) |
+
+#### AnalyzerListCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `list(): Integer` | (none) |
+
+#### AnalyzerConfigCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `showConfig(String analyzerName): Integer` | (none) |
+
+#### AnalyzerStatsCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `showStats(String analyzerName, String coursePath): Integer` | (none) |
+
+#### RefinerPlanCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `plan(String auditId): Integer` | (none) |
+
+#### RefinerNextCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `next(String planId): Integer` | (none) |
+
+#### RefinerListCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `listTasks(String planId): Integer` | (none) |
 
 #### ReportFormatter (package: formatting)
 

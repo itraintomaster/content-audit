@@ -198,6 +198,21 @@ modules:
     - name: toleranceMargin
       type: int
       description: Configured tolerance margin used for scoring
+  - name: AuditReportSummary
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: Unique audit report identifier (timestamp-based)
+    - name: timestamp
+      type: Instant
+      description: When the audit was executed
+    - name: courseName
+      type: String
+      description: Name of the audited course
+    - name: overallScore
+      type: double
+      description: Aggregate score from the audit
   interfaces:
   - name: AuditEngine
     stereotype: port
@@ -344,6 +359,14 @@ modules:
     exposes:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
     - signature: "getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>"
+  - name: AuditReportStore
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "save(AuditReport report): String"
+    - signature: "load(String id): Optional<AuditReport>"
+    - signature: "loadLatest(): Optional<AuditReport>"
+    - signature: "list(): List<AuditReportSummary>"
   implementations:
   - name: IAuditEngine
     requiresInject:
@@ -2237,6 +2260,80 @@ modules:
     - signature: "validate(CourseEntity course): void"
   scope: internal
 - name: refiner-domain
+  description: Domain module for the refinement workflow. Defines the plan/task model
+    and ports for generating and persisting refinement plans derived from audit reports.
+  dependsOn:
+  - audit-domain
+  models:
+  - name: DiagnosisKind
+    type: enum
+    fields:
+    - name: SENTENCE_LENGTH
+    - name: LEMMA_ABSENCE
+    - name: COCA_BUCKETS
+    - name: LEMMA_RECURRENCE
+    - name: KNOWLEDGE_TITLE_LENGTH
+    - name: KNOWLEDGE_INSTRUCTIONS_LENGTH
+  - name: RefinementTaskStatus
+    type: enum
+    fields:
+    - name: PENDING
+    - name: COMPLETED
+    - name: SKIPPED
+  - name: RefinementTask
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: Unique task identifier
+    - name: nodeTarget
+      type: AuditTarget
+      description: "The hierarchy level of the node (QUIZ, KNOWLEDGE, TOPIC, MILESTONE,\
+        \ COURSE)"
+    - name: nodeId
+      type: String
+      description: Identifier of the target entity
+    - name: nodeLabel
+      type: String
+      description: Human-readable label for display
+    - name: diagnosisKind
+      type: DiagnosisKind
+      description: Which analyzer flagged the problem
+    - name: priority
+      type: int
+      description: Priority rank (1 = highest)
+    - name: status
+      type: RefinementTaskStatus
+      description: Current status
+  - name: RefinementPlan
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: Unique plan identifier
+    - name: sourceAuditId
+      type: String
+      description: ID of the AuditReport this plan was derived from
+    - name: createdAt
+      type: Instant
+      description: When this plan was created
+    - name: tasks
+      type: List<RefinementTask>
+      description: Prioritized list of refinement tasks
+  interfaces:
+  - name: RefinerEngine
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "plan(AuditReport report): RefinementPlan"
+    - signature: "nextTask(RefinementPlan plan): Optional<RefinementTask>"
+  - name: RefinementPlanStore
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "save(RefinementPlan plan): String"
+    - signature: "load(String id): Optional<RefinementPlan>"
+    - signature: "loadLatest(): Optional<RefinementPlan>"
   scope: internal
 - name: audit-application
   dependsOn:
@@ -2246,6 +2343,7 @@ modules:
   - course-infrastructure
   - nlp-infrastructure
   - vocabulary-infrastructure
+  - audit-infrastructure
   interfaces:
   - name: AuditRunner
     stereotype: service
@@ -3206,6 +3304,45 @@ modules:
   - course-infrastructure
   - nlp-infrastructure
   - vocabulary-infrastructure
+  - audit-infrastructure
+  - refiner-domain
+  interfaces:
+  - name: AnalyzeCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "analyze(String coursePath, String format, String level, String topic,\
+        \ String knowledge, List<String> analyzers, boolean detailed): Integer"
+  - name: AnalyzerListCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "list(): Integer"
+  - name: AnalyzerConfigCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "showConfig(String analyzerName): Integer"
+  - name: AnalyzerStatsCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "showStats(String analyzerName, String coursePath): Integer"
+  - name: RefinerPlanCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "plan(String auditId): Integer"
+  - name: RefinerNextCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "next(String planId): Integer"
+  - name: RefinerListCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "listTasks(String planId): Integer"
   patterns:
   - type: Strategy
     implementations:
@@ -3219,7 +3356,7 @@ modules:
   - name: commands
     description: Public CLI command tree — the only exported API of the audit-cli
       module
-    visibility: public
+    visibility: internal
     implementations:
     - name: Main
       types:
@@ -3243,10 +3380,14 @@ modules:
         type: DrillDownResolver
       - name: detailedFormatters
         type: "Map<String,DetailedFormatter>"
+      - name: auditReportStore
+        type: AuditReportStore
       types:
       - Component
       externalImplements:
       - java.util.concurrent.Callable<Integer>
+      implements:
+      - AnalyzeCommand
     - name: AnalyzerCmd
       types:
       - Component
@@ -3260,6 +3401,8 @@ modules:
       - Component
       externalImplements:
       - java.util.concurrent.Callable<Integer>
+      implements:
+      - AnalyzerListCommand
     - name: AnalyzerConfigCmd
       requiresInject:
       - name: analyzerRegistry
@@ -3268,6 +3411,8 @@ modules:
       - Component
       externalImplements:
       - java.util.concurrent.Callable<Integer>
+      implements:
+      - AnalyzerConfigCommand
     - name: AnalyzerStatsCmd
       requiresInject:
       - name: analyzerRegistry
@@ -3280,6 +3425,49 @@ modules:
       - Component
       externalImplements:
       - java.util.concurrent.Callable<Integer>
+      implements:
+      - AnalyzerStatsCommand
+    - name: RefinerCmd
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+    - name: RefinerPlanCmd
+      requiresInject:
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: refinerEngine
+        type: RefinerEngine
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - RefinerPlanCommand
+    - name: RefinerNextCmd
+      requiresInject:
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: refinerEngine
+        type: RefinerEngine
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - RefinerNextCommand
+    - name: RefinerListCmd
+      requiresInject:
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - RefinerListCommand
   - name: formatting
     description: "Internal formatting infrastructure — report transformers, view models,\
       \ formatters, and drill-down resolution"
@@ -3654,6 +3842,29 @@ modules:
   - name: coca
     description: COCA frequency ranking lookups
     visibility: internal
+- name: audit-infrastructure
+  description: Filesystem persistence adapters for audit reports
+  dependsOn:
+  - audit-domain
+  - refiner-domain
+  implementations:
+  - name: FileSystemAuditReportStore
+    types:
+    - Repository
+    handwrittenTests:
+    - name: should save an AuditReport and load it back with identical content
+      traceability:
+        feature: FEAT-STORE
+        rule: F-STORE-R001
+      _change: add
+    implements:
+    - AuditReportStore
+  - name: FileSystemRefinementPlanStore
+    types:
+    - Repository
+    implements:
+    - RefinementPlanStore
+  scope: internal
 language:
   name: java
   version: 17

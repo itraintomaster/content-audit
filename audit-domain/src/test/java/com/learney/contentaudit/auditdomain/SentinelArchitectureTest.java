@@ -120,6 +120,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: SentenceLengthDiagnosis - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.AuditReportSummary");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AuditReportSummary - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.AuditEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AuditEngine - " + e.getMessage());
@@ -213,6 +218,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.QuizDiagnoses");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: QuizDiagnoses - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.AuditReportStore");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AuditReportStore - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditdomain.IAuditEngine");

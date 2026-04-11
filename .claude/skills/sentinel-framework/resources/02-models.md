@@ -254,6 +254,23 @@ new AuditNode(AuditableEntity entity, AuditTarget target, AuditNode parent, List
 new SentenceLengthDiagnosis(int tokenCount, int targetMin, int targetMax, CefrLevel cefrLevel, int delta, int toleranceMargin)
 ```
 
+#### AuditReportSummary
+
+**Package:** `com.learney.contentaudit.auditdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `id` | `String` |  |
+| `timestamp` | `Instant` |  |
+| `courseName` | `String` |  |
+| `overallScore` | `double` |  |
+
+**Generated constructor:**
+```java
+new AuditReportSummary(String id, Instant timestamp, String courseName, double overallScore)
+```
+
 #### FrequencyBand (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
@@ -965,6 +982,80 @@ new SentencePartEntity(SentencePartKind kind, String text, List<String> options)
 **Generated class** extends `RuntimeException` with constructor:
 ```java
 new CourseValidationException(String path, String detail)
+```
+
+### Module: refiner-domain
+
+#### DiagnosisKind
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `SENTENCE_LENGTH` | `null` |  |
+| `LEMMA_ABSENCE` | `null` |  |
+| `COCA_BUCKETS` | `null` |  |
+| `LEMMA_RECURRENCE` | `null` |  |
+| `KNOWLEDGE_TITLE_LENGTH` | `null` |  |
+| `KNOWLEDGE_INSTRUCTIONS_LENGTH` | `null` |  |
+
+**Generated constructor:**
+```java
+new DiagnosisKind(null SENTENCE_LENGTH, null LEMMA_ABSENCE, null COCA_BUCKETS, null LEMMA_RECURRENCE, null KNOWLEDGE_TITLE_LENGTH, null KNOWLEDGE_INSTRUCTIONS_LENGTH)
+```
+
+#### RefinementTaskStatus
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `PENDING` | `null` |  |
+| `COMPLETED` | `null` |  |
+| `SKIPPED` | `null` |  |
+
+**Generated constructor:**
+```java
+new RefinementTaskStatus(null PENDING, null COMPLETED, null SKIPPED)
+```
+
+#### RefinementTask
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `id` | `String` |  |
+| `nodeTarget` | `AuditTarget` |  |
+| `nodeId` | `String` |  |
+| `nodeLabel` | `String` |  |
+| `diagnosisKind` | `DiagnosisKind` |  |
+| `priority` | `int` |  |
+| `status` | `RefinementTaskStatus` |  |
+
+**Generated constructor:**
+```java
+new RefinementTask(String id, AuditTarget nodeTarget, String nodeId, String nodeLabel, DiagnosisKind diagnosisKind, int priority, RefinementTaskStatus status)
+```
+
+#### RefinementPlan
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `id` | `String` |  |
+| `sourceAuditId` | `String` |  |
+| `createdAt` | `Instant` |  |
+| `tasks` | `List<RefinementTask>` | Import `java.util.List` |
+
+**Generated constructor:**
+```java
+new RefinementPlan(String id, String sourceAuditId, Instant createdAt, List<RefinementTask> tasks)
 ```
 
 ### Module: audit-cli

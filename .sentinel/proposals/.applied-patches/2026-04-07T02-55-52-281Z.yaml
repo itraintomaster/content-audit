@@ -1,0 +1,107 @@
+code: __proposal__
+description: Add refiner CLI commands to audit-cli commands package and fix AnalyzeCmd
+  missing dependency
+modules:
+- name: audit-cli
+  dependsOn:
+  - audit-application
+  - audit-domain
+  - course-domain
+  - course-infrastructure
+  - nlp-infrastructure
+  - vocabulary-infrastructure
+  - audit-infrastructure
+  - refiner-domain
+  packages:
+  - name: commands
+    visibility: internal
+    interfaces:
+    - name: RefinerPlanCommand
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "plan(String auditId): Integer"
+      _change: add
+    - name: RefinerNextCommand
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "next(String planId): Integer"
+      _change: add
+    - name: RefinerListCommand
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "listTasks(String planId): Integer"
+      _change: add
+    implementations:
+    - name: AnalyzeCmd
+      requiresInject:
+      - name: auditRunner
+        type: AuditRunner
+      - name: formatterRegistry
+        type: FormatterRegistry
+      - name: viewModelTransformer
+        type: ReportViewModelTransformer
+      - name: rawReportFormatter
+        type: RawReportFormatter
+      - name: drillDownResolver
+        type: DrillDownResolver
+      - name: detailedFormatters
+        type: "Map<String,DetailedFormatter>"
+      - name: auditReportStore
+        type: AuditReportStore
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - AnalyzeCommand
+      _change: modify
+    - name: RefinerCmd
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      _change: add
+    - name: RefinerPlanCmd
+      requiresInject:
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: refinerEngine
+        type: RefinerEngine
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - RefinerPlanCommand
+      _change: add
+    - name: RefinerNextCmd
+      requiresInject:
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: refinerEngine
+        type: RefinerEngine
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - RefinerNextCommand
+      _change: add
+    - name: RefinerListCmd
+      requiresInject:
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - RefinerListCommand
+      _change: add
+    _change: modify
+  _change: modify

@@ -5,10 +5,13 @@ import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition;
+import java.lang.Class;
+import java.lang.ClassNotFoundException;
 import java.lang.Exception;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 @Generated(
@@ -28,6 +31,40 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceModuleBoundaries() {
     JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.classes().that().resideInAPackage("..refinerdomain..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..refinerdomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+    ArchRuleDefinition.classes().that().resideInAPackage("..refinerdomain..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..refinerdomain..", "..auditdomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+  }
+
+  @Test
+  public void enforceAllDeclaredClassesExist() {
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.DiagnosisKind");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DiagnosisKind - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.RefinementTaskStatus");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RefinementTaskStatus - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.RefinementTask");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RefinementTask - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.RefinementPlan");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RefinementPlan - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.RefinerEngine");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RefinerEngine - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.RefinementPlanStore");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RefinementPlanStore - " + e.getMessage());
+    }
   }
 }

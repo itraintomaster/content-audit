@@ -38,6 +38,13 @@ The following interfaces are `sealed`. Only the listed classes may implement the
 
 - `LemmaAbsenceConfig` permits: DefaultLemmaAbsenceConfig
 - `NodeDiagnoses` permits: (none declared)
+- `AnalyzeCommand` permits: (none declared)
+- `AnalyzerListCommand` permits: (none declared)
+- `AnalyzerConfigCommand` permits: (none declared)
+- `AnalyzerStatsCommand` permits: (none declared)
+- `RefinerPlanCommand` permits: (none declared)
+- `RefinerNextCommand` permits: (none declared)
+- `RefinerListCommand` permits: (none declared)
 
 ## Rule C - Dependency Injection
 
@@ -95,9 +102,9 @@ If the user requests work that **skips a phase**, do NOT proceed silently. Inste
 
 ### audit-domain
 
-**Models:** AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis
+**Models:** AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary
 
-**Interfaces:** AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses
+**Interfaces:** AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore
 
 **Implementations:** IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator
 
@@ -111,9 +118,17 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 ### refiner-domain
 
+Domain module for the refinement workflow. Defines the plan/task model and ports for generating and persisting refinement plans derived from audit reports.
+
+**Depends on:** audit-domain
+
+**Models:** DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan
+
+**Interfaces:** RefinerEngine, RefinementPlanStore
+
 ### audit-application
 
-**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure
+**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure
 
 **Interfaces:** AuditRunner, CourseMapper, AnalyzerRegistry
 
@@ -131,7 +146,9 @@ Infrastructure module for course persistence. Contains the filesystem adapter th
 
 CLI entry point for running content audits from the command line
 
-**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure
+**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain
+
+**Interfaces:** AnalyzeCommand, AnalyzerListCommand, AnalyzerConfigCommand, AnalyzerStatsCommand, RefinerPlanCommand, RefinerNextCommand, RefinerListCommand
 
 ### nlp-infrastructure
 
@@ -149,16 +166,25 @@ Infrastructure module for linguistic reference catalogs (EVP vocabulary profiles
 
 **Depends on:** audit-domain
 
+### audit-infrastructure
+
+Filesystem persistence adapters for audit reports
+
+**Depends on:** audit-domain, refiner-domain
+
+**Implementations:** FileSystemAuditReportStore, FileSystemRefinementPlanStore
+
 ## Boundaries
 
 | Module | Can Access |
 |--------|------------|
 | audit-domain | (none) |
 | course-domain | (none) |
-| refiner-domain | (none) |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
+| refiner-domain | audit-domain |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure |
 | course-infrastructure | course-domain |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain |
 | nlp-infrastructure | audit-domain |
 | vocabulary-infrastructure | audit-domain |
+| audit-infrastructure | audit-domain, refiner-domain |
 

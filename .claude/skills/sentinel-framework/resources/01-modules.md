@@ -49,6 +49,10 @@ project-root/
 │   ├── pom.xml            # Module POM (generated)
 │   ├── src/main/java/     # Production code
 │   └── src/test/java/     # Test code
+├── audit-infrastructure/
+│   ├── pom.xml            # Module POM (generated)
+│   ├── src/main/java/     # Production code
+│   └── src/test/java/     # Test code
 ```
 
 ## Declared Modules
@@ -61,8 +65,8 @@ project-root/
 | Depends On | (none — leaf module) |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 13 (AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis) |
-| Interfaces | 19 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses) |
+| Models | 14 (AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary) |
+| Interfaces | 20 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore) |
 | Implementations | 5 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator) |
 | Packages | 3 (coca [internal], lrec [internal], labs [internal]) |
 
@@ -83,14 +87,16 @@ project-root/
 
 ### refiner-domain
 
+> Domain module for the refinement workflow. Defines the plan/task model and ports for generating and persisting refinement plans derived from audit reports.
+
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.refinerdomain` |
-| Depends On | (none — leaf module) |
+| Depends On | audit-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 0 |
-| Interfaces | 0 |
+| Models | 4 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan) |
+| Interfaces | 2 (RefinerEngine, RefinementPlanStore) |
 | Implementations | 0 |
 | Packages | 0 |
 
@@ -99,7 +105,7 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditapplication` |
-| Depends On | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
+| Depends On | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 0 |
@@ -129,13 +135,13 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditcli` |
-| Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
+| Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 0 |
-| Interfaces | 0 |
+| Interfaces | 7 (AnalyzeCommand, AnalyzerListCommand, AnalyzerConfigCommand, AnalyzerStatsCommand, RefinerPlanCommand, RefinerNextCommand, RefinerListCommand) |
 | Implementations | 0 |
-| Packages | 2 (commands [public], formatting [internal]) |
+| Packages | 2 (commands [internal], formatting [internal]) |
 
 ### nlp-infrastructure
 
@@ -167,18 +173,34 @@ project-root/
 | Implementations | 0 |
 | Packages | 2 (evp [internal], coca [internal]) |
 
+### audit-infrastructure
+
+> Filesystem persistence adapters for audit reports
+
+| Property | Value |
+|----------|-------|
+| Package | `com.learney.contentaudit.auditinfrastructure` |
+| Depends On | audit-domain, refiner-domain |
+| Allowed Clients | (unrestricted) |
+| Scope | internal |
+| Models | 0 |
+| Interfaces | 0 |
+| Implementations | 2 (FileSystemAuditReportStore, FileSystemRefinementPlanStore) |
+| Packages | 0 |
+
 ## Dependency Graph
 
 ```
 audit-domain (leaf — no dependencies)
 course-domain (leaf — no dependencies)
-refiner-domain (leaf — no dependencies)
+refiner-domain ──depends──> audit-domain
 audit-application ──depends──> audit-domain
 audit-application ──depends──> course-domain
 audit-application ──depends──> refiner-domain
 audit-application ──depends──> course-infrastructure
 audit-application ──depends──> nlp-infrastructure
 audit-application ──depends──> vocabulary-infrastructure
+audit-application ──depends──> audit-infrastructure
 course-infrastructure ──depends──> course-domain
 audit-cli ──depends──> audit-application
 audit-cli ──depends──> audit-domain
@@ -186,8 +208,12 @@ audit-cli ──depends──> course-domain
 audit-cli ──depends──> course-infrastructure
 audit-cli ──depends──> nlp-infrastructure
 audit-cli ──depends──> vocabulary-infrastructure
+audit-cli ──depends──> audit-infrastructure
+audit-cli ──depends──> refiner-domain
 nlp-infrastructure ──depends──> audit-domain
 vocabulary-infrastructure ──depends──> audit-domain
+audit-infrastructure ──depends──> audit-domain
+audit-infrastructure ──depends──> refiner-domain
 ```
 
 ## Access Control Matrix
@@ -196,12 +222,13 @@ vocabulary-infrastructure ──depends──> audit-domain
 |--------|----------------|--------------------|
 | audit-domain | (none) | (any) |
 | course-domain | (none) | (any) |
-| refiner-domain | (none) | (any) |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure | (any) |
+| refiner-domain | audit-domain | (any) |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure | (any) |
 | course-infrastructure | course-domain | (any) |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure | (any) |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain | (any) |
 | nlp-infrastructure | audit-domain | (any) |
 | vocabulary-infrastructure | audit-domain | (any) |
+| audit-infrastructure | audit-domain, refiner-domain | (any) |
 
 ## Enforcement Mechanisms
 

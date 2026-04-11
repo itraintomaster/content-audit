@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
+import com.learney.contentaudit.auditcli.AnalyzerListCommand;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -21,7 +22,7 @@ import picocli.CommandLine.Command;
                 "  content-audit analyzer list",
         }
 )
-class AnalyzerListCmd implements Callable<Integer> {
+final class AnalyzerListCmd implements AnalyzerListCommand, Callable<Integer> {
     private final AnalyzerRegistry analyzerRegistry;
 
     public AnalyzerListCmd(AnalyzerRegistry analyzerRegistry) {
@@ -30,6 +31,11 @@ class AnalyzerListCmd implements Callable<Integer> {
 
     @Override
     public Integer call() {
+        return list();
+    }
+
+    @Override
+    public int list() {
         List<AnalyzerDescriptor> analyzers = analyzerRegistry.listAnalyzers();
         System.out.println("Available analyzers:\n");
         for (AnalyzerDescriptor a : analyzers) {
@@ -38,4 +44,5 @@ class AnalyzerListCmd implements Callable<Integer> {
         }
         return 0;
     }
+
 }

@@ -126,6 +126,15 @@
 | delta | `int` |
 | toleranceMargin | `int` |
 
+### AuditReportSummary (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| timestamp | `Instant` |
+| courseName | `String` |
+| overallScore | `double` |
+
 ## Interfaces
 
 ### AuditEngine (port)
@@ -281,6 +290,15 @@ Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
+
+### AuditReportStore (port)
+
+Methods:
+
+- `save(AuditReport report): String`
+- `load(String id): Optional<AuditReport>`
+- `loadLatest(): Optional<AuditReport>`
+- `list(): List<AuditReportSummary>`
 
 ## Implementations
 

@@ -252,6 +252,7 @@ public class MyAdapter implements MyPort {
 - `AnalyzerDescriptor` — name: String, description: String, target: AuditTarget
 - `AuditNode` — entity: AuditableEntity, target: AuditTarget, parent: AuditNode, children: List<AuditNode>, scores: Map<String,Double>, metadata: Map<String,Object>, diagnoses: NodeDiagnoses
 - `SentenceLengthDiagnosis` — tokenCount: int, targetMin: int, targetMax: int, cefrLevel: CefrLevel, delta: int, toleranceMargin: int
+- `AuditReportSummary` — id: String, timestamp: Instant, courseName: String, overallScore: double
 
 **Interfaces (contracts):**
 
@@ -336,6 +337,11 @@ public class MyAdapter implements MyPort {
 - `QuizDiagnoses`
   - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
   - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
+- `AuditReportStore`
+  - `save(AuditReport report): String`
+  - `load(String id): Optional<AuditReport>`
+  - `loadLatest(): Optional<AuditReport>`
+  - `list(): List<AuditReportSummary>`
 
 **Implementations (your work):**
 
@@ -379,10 +385,30 @@ Domain module for course structure. Contains entity models representing the 5-le
 
 #### refiner-domain
 
+Domain module for the refinement workflow. Defines the plan/task model and ports for generating and persisting refinement plans derived from audit reports.
+
+**Depends on:** audit-domain
+
+**Models:**
+
+- `DiagnosisKind` [enum] — SENTENCE_LENGTH: null, LEMMA_ABSENCE: null, COCA_BUCKETS: null, LEMMA_RECURRENCE: null, KNOWLEDGE_TITLE_LENGTH: null, KNOWLEDGE_INSTRUCTIONS_LENGTH: null
+- `RefinementTaskStatus` [enum] — PENDING: null, COMPLETED: null, SKIPPED: null
+- `RefinementTask` — id: String, nodeTarget: AuditTarget, nodeId: String, nodeLabel: String, diagnosisKind: DiagnosisKind, priority: int, status: RefinementTaskStatus
+- `RefinementPlan` — id: String, sourceAuditId: String, createdAt: Instant, tasks: List<RefinementTask>
+
+**Interfaces (contracts):**
+
+- `RefinerEngine`
+  - `plan(AuditReport report): RefinementPlan`
+  - `nextTask(RefinementPlan plan): Optional<RefinementTask>`
+- `RefinementPlanStore`
+  - `save(RefinementPlan plan): String`
+  - `load(String id): Optional<RefinementPlan>`
+  - `loadLatest(): Optional<RefinementPlan>`
 
 #### audit-application
 
-**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure
+**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure
 
 **Interfaces (contracts):**
 
@@ -427,16 +453,33 @@ Infrastructure module for course persistence. Contains the filesystem adapter th
 
 CLI entry point for running content audits from the command line
 
-**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure
+**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain
 
 **Packages:**
 
-- `commands` [public] — Public CLI command tree — the only exported API of the audit-cli module
-  Implementations: Main, ContentAuditCmd, AnalyzeCmd, AnalyzerCmd, AnalyzerListCmd, AnalyzerConfigCmd, AnalyzerStatsCmd
+- `commands` [internal] — Public CLI command tree — the only exported API of the audit-cli module
+  Implementations: Main, ContentAuditCmd, AnalyzeCmd, AnalyzerCmd, AnalyzerListCmd, AnalyzerConfigCmd, AnalyzerStatsCmd, RefinerCmd, RefinerPlanCmd, RefinerNextCmd, RefinerListCmd
 - `formatting` [internal] — Internal formatting infrastructure — report transformers, view models, formatters, and drill-down resolution
   Models: ReportViewModel, MilestoneScoreRow, QuizScoreRow, KnowledgeScoreRow, TopicScoreRow, ChildScoreRow, DrillDownScope, DrillDownLevel, DrillDownView, AnalyzerStatsView, ScoredItemRow
   Interfaces: ReportFormatter, FormatterRegistry, ReportViewModelTransformer, RawReportFormatter, DrillDownResolver, AnalyzerStatsTransformer, ScoreRow, DetailedFormatter
   Implementations: TextReportFormatter, JsonReportFormatter, TableReportFormatter, DefaultFormatterRegistry, DefaultReportViewModelTransformer, RawJsonReportFormatter, DefaultDrillDownResolver, DefaultAnalyzerStatsTransformer, LemmaAbsenceDetailedFormatter, CocaBucketsDetailedFormatter
+
+**Interfaces (contracts):**
+
+- `AnalyzeCommand` [sealed]
+  - `analyze(String coursePath, String format, String level, String topic, String knowledge, List<String> analyzers, boolean detailed): Integer`
+- `AnalyzerListCommand` [sealed]
+  - `list(): Integer`
+- `AnalyzerConfigCommand` [sealed]
+  - `showConfig(String analyzerName): Integer`
+- `AnalyzerStatsCommand` [sealed]
+  - `showStats(String analyzerName, String coursePath): Integer`
+- `RefinerPlanCommand` [sealed]
+  - `plan(String auditId): Integer`
+- `RefinerNextCommand` [sealed]
+  - `next(String planId): Integer`
+- `RefinerListCommand` [sealed]
+  - `listTasks(String planId): Integer`
 
 #### nlp-infrastructure
 
@@ -470,16 +513,29 @@ Infrastructure module for linguistic reference catalogs (EVP vocabulary profiles
   Implementations: FileSystemEvpCatalog
 - `coca` [internal] — COCA frequency ranking lookups
 
+#### audit-infrastructure
+
+Filesystem persistence adapters for audit reports
+
+**Depends on:** audit-domain, refiner-domain
+
+**Implementations (your work):**
+
+- `FileSystemAuditReportStore` implements AuditReportStore [Repository]
+  Tests: should save an AuditReport and load it back with identical content
+- `FileSystemRefinementPlanStore` implements RefinementPlanStore [Repository]
+
 ### Boundaries
 
 | Module | Can Import From |
 |--------|----------------|
 | audit-domain | (none — leaf module) |
 | course-domain | (none — leaf module) |
-| refiner-domain | (none — leaf module) |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
+| refiner-domain | audit-domain |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure |
 | course-infrastructure | course-domain |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain |
 | nlp-infrastructure | audit-domain |
 | vocabulary-infrastructure | audit-domain |
+| audit-infrastructure | audit-domain, refiner-domain |
 

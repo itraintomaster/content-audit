@@ -210,3 +210,8 @@ patterns:
 - Use `private` for implementation details that even sibling packages shouldn't access
 - **Prefer packages for sub-domains** — when a module contains a cohesive sub-domain (e.g., pricing, scheduling, notifications), encapsulate it: expose the contract in a `public` package and hide the implementation in a `private` package. This is lighter than a full sub-module
 - Package names must be valid Java identifiers (lowercase, no hyphens)
+
+**Interface completeness principle:** Every distinct execution flow should be traceable through sentinel interface contracts. If an implementation handles multiple cases (e.g., filtered vs unfiltered), each case should be a separate method on the interface (e.g., `runAudit()` and `runFilteredAudit(analyzers)`), not a single method with internal branching that creates ad-hoc concrete classes. This ensures:
+- Sequence diagrams capture ALL execution paths (flows through injected interfaces are visible; flows through locally instantiated classes are not)
+- The architecture is explicit about what operations exist
+- Tests can target each path independently through the contract

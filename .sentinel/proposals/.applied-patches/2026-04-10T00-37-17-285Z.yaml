@@ -1,0 +1,29 @@
+code: __proposal__
+description: Unseal 7 module-level interfaces in audit-cli to allow implementation
+  by classes in the commands sub-package (sealed interfaces cannot be extended across
+  packages in unnamed Java modules)
+modules:
+- name: audit-cli
+  interfaces:
+  - name: AnalyzeCommand
+    sealed: false
+    _change: modify
+  - name: AnalyzerListCommand
+    sealed: false
+    _change: modify
+  - name: AnalyzerConfigCommand
+    sealed: false
+    _change: modify
+  - name: AnalyzerStatsCommand
+    sealed: false
+    _change: modify
+  - name: RefinerPlanCommand
+    sealed: false
+    _change: modify
+  - name: RefinerNextCommand
+    sealed: false
+    _change: modify
+  - name: RefinerListCommand
+    sealed: false
+    _change: modify
+  _change: modify

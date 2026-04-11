@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
+import com.learney.contentaudit.auditcli.AnalyzerConfigCommand;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -32,7 +33,7 @@ import picocli.CommandLine.Parameters;
                 "  content-audit analyzer config lemma-recurrence",
         }
 )
-class AnalyzerConfigCmd implements Callable<Integer> {
+final class AnalyzerConfigCmd implements AnalyzerConfigCommand, Callable<Integer> {
     private final AnalyzerRegistry analyzerRegistry;
 
     @Parameters(index = "0", description = "Analyzer name (e.g. sentence-length)")
@@ -44,6 +45,11 @@ class AnalyzerConfigCmd implements Callable<Integer> {
 
     @Override
     public Integer call() {
+        return showConfig(this.analyzerName);
+    }
+
+    @Override
+    public int showConfig(String analyzerName) {
         boolean exists = analyzerRegistry.listAnalyzers().stream()
                 .anyMatch(a -> analyzerName.equals(a.getName()));
         if (!exists) {
@@ -96,4 +102,5 @@ class AnalyzerConfigCmd implements Callable<Integer> {
             sb.append(value);
         }
     }
+
 }

@@ -1,0 +1,76 @@
+code: __proposal__
+description: Move 7 command interfaces from commands package to module-level for Architect
+  Studio visibility
+modules:
+- name: audit-cli
+  interfaces:
+  - name: AnalyzeCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "analyze(String coursePath, String format, String level, String topic,\
+        \ String knowledge, List<String> analyzers, boolean detailed): Integer"
+    _change: add
+  - name: AnalyzerListCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "list(): Integer"
+    _change: add
+  - name: AnalyzerConfigCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "showConfig(String analyzerName): Integer"
+    _change: add
+  - name: AnalyzerStatsCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "showStats(String analyzerName, String coursePath): Integer"
+    _change: add
+  - name: RefinerPlanCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "plan(String auditId): Integer"
+    _change: add
+  - name: RefinerNextCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "next(String planId): Integer"
+    _change: add
+  - name: RefinerListCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "listTasks(String planId): Integer"
+    _change: add
+  packages:
+  - name: commands
+    visibility: internal
+    interfaces:
+    - name: AnalyzeCommand
+      sealed: false
+      _change: delete
+    - name: AnalyzerListCommand
+      sealed: false
+      _change: delete
+    - name: AnalyzerConfigCommand
+      sealed: false
+      _change: delete
+    - name: AnalyzerStatsCommand
+      sealed: false
+      _change: delete
+    - name: RefinerPlanCommand
+      sealed: false
+      _change: delete
+    - name: RefinerNextCommand
+      sealed: false
+      _change: delete
+    - name: RefinerListCommand
+      sealed: false
+      _change: delete
+    _change: modify
+  _change: modify
