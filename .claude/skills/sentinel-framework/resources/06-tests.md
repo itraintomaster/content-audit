@@ -101,6 +101,30 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should produce correct scores for full milestone-knowledge-quiz sequence → F-SLEN/F-SLEN-R002
 - should exclude non-sentence quizzes from scoring → F-SLEN/F-SLEN-R001
 
+### DefaultCorrectionContextResolver (refiner-domain)
+
+- should resolve context with all fields populated from quiz diagnosis and ancestor entities → FEAT-RCSL/F-RCSL-R001/F-RCSL-J001
+- should populate sentence and translation from AuditableQuiz entity on the quiz node → FEAT-RCSL/F-RCSL-R001
+- should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge on knowledge ancestor → FEAT-RCSL/F-RCSL-R001
+- should populate topicLabel from AuditableTopic on topic ancestor → FEAT-RCSL/F-RCSL-R001
+- should populate cefrLevel tokenCount targetMin targetMax and delta from SentenceLengthDiagnosis → FEAT-RCSL/F-RCSL-R001
+- should return empty when quiz node is not found in the audit tree → FEAT-RCSL/F-RCSL-R002
+- should return empty when task nodeTarget does not match any node target in the tree → FEAT-RCSL/F-RCSL-R002
+- should locate the correct quiz node when multiple quiz nodes exist in the tree → FEAT-RCSL/F-RCSL-R002
+- should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas and exclude APPEARS_TOO_EARLY → FEAT-RCSL/F-RCSL-R003
+- should order suggested lemmas by COCA rank ascending with lowest rank first → FEAT-RCSL/F-RCSL-R003
+- should place lemmas without COCA rank after lemmas with COCA rank → FEAT-RCSL/F-RCSL-R003
+- should map AbsentLemma fields to SuggestedLemma fields correctly → FEAT-RCSL/F-RCSL-R003
+- should return empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY → FEAT-RCSL/F-RCSL-R003
+- should return suggested lemmas from the milestone ancestor of the quiz node → FEAT-RCSL/F-RCSL-R003
+- should return context with empty suggested lemmas when milestone has no LemmaAbsenceLevelDiagnosis → FEAT-RCSL/F-RCSL-R004/F-RCSL-J003
+- should return context with empty suggested lemmas when milestone ancestor is not found → FEAT-RCSL/F-RCSL-R004/F-RCSL-J003
+- should return context with empty suggested lemmas when absent lemmas list is empty → FEAT-RCSL/F-RCSL-R004/F-RCSL-J003
+- should limit suggested lemmas to 10 when more than 10 qualify after filtering → FEAT-RCSL/F-RCSL-R005
+- should resolve context with negative delta for a sentence shorter than target range → FEAT-RCSL/F-RCSL-R001/F-RCSL-J002
+- should resolve context with zero delta when sentence is within target range → FEAT-RCSL/F-RCSL-R001
+- should set taskId from the RefinementTask id → FEAT-RCSL/F-RCSL-R001
+
 ### CourseToAuditableMapper (audit-application)
 
 - Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse → F-NLP/F-NLP-R010

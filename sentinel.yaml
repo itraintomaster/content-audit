@@ -2382,6 +2382,131 @@ modules:
     - signature: "resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>"
   implementations:
   - name: DefaultCorrectionContextResolver
+    handwrittenTests:
+    - name: should resolve context with all fields populated from quiz diagnosis and
+        ancestor entities
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+        journey: F-RCSL-J001
+      _change: add
+    - name: should populate sentence and translation from AuditableQuiz entity on
+        the quiz node
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+      _change: add
+    - name: should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge
+        on knowledge ancestor
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+      _change: add
+    - name: should populate topicLabel from AuditableTopic on topic ancestor
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+      _change: add
+    - name: should populate cefrLevel tokenCount targetMin targetMax and delta from
+        SentenceLengthDiagnosis
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+      _change: add
+    - name: should return empty when quiz node is not found in the audit tree
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R002
+      _change: add
+    - name: should return empty when task nodeTarget does not match any node target
+        in the tree
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R002
+      _change: add
+    - name: should locate the correct quiz node when multiple quiz nodes exist in
+        the tree
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R002
+      _change: add
+    - name: should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas and
+        exclude APPEARS_TOO_EARLY
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R003
+      _change: add
+    - name: should order suggested lemmas by COCA rank ascending with lowest rank
+        first
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R003
+      _change: add
+    - name: should place lemmas without COCA rank after lemmas with COCA rank
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R003
+      _change: add
+    - name: should map AbsentLemma fields to SuggestedLemma fields correctly
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R003
+      _change: add
+    - name: should return empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R003
+      _change: add
+    - name: should return suggested lemmas from the milestone ancestor of the quiz
+        node
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R003
+      _change: add
+    - name: should return context with empty suggested lemmas when milestone has no
+        LemmaAbsenceLevelDiagnosis
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R004
+        journey: F-RCSL-J003
+      _change: add
+    - name: should return context with empty suggested lemmas when milestone ancestor
+        is not found
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R004
+        journey: F-RCSL-J003
+      _change: add
+    - name: should return context with empty suggested lemmas when absent lemmas list
+        is empty
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R004
+        journey: F-RCSL-J003
+      _change: add
+    - name: should limit suggested lemmas to 10 when more than 10 qualify after filtering
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R005
+      _change: add
+    - name: should resolve context with negative delta for a sentence shorter than
+        target range
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+        journey: F-RCSL-J002
+      _change: add
+    - name: should resolve context with zero delta when sentence is within target
+        range
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+      _change: add
+    - name: should set taskId from the RefinementTask id
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+      _change: add
     implements:
     - CorrectionContextResolver
   scope: internal
