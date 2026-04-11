@@ -64,7 +64,9 @@ Never use `new` to instantiate dependencies. Use constructor injection as declar
 **NEVER** write directly to `.sentinel/proposals/` or create `architectural_patch.yaml` files manually.
 **NEVER** run `sentinel patch apply` or any command that modifies `sentinel.yaml` — only the user applies patches via the Architect Studio or the CLI.
 
-All architectural changes must go through the **architect agent** (`@architect`), which proposes validated patches using `sentinel patch propose`. The CLI validates the patch, merges it with any existing proposal, and writes it to `.sentinel/proposals/architectural_patch.yaml`.
+All architectural changes (modules, models, interfaces, implementations, dependencies, patterns) must go through the **architect agent** (`@architect`), which proposes validated patches using `sentinel patch propose`. The CLI validates the patch, merges it with any existing proposal, and writes it to `.sentinel/proposals/architectural_patch.yaml`.
+
+**Test declarations** (`handwrittenTests`) are NOT architectural changes — they go through the **QA tester agent** (`@qa-tester`), which also uses `sentinel patch propose`.
 
 ## Rule W - Development Workflow
 
@@ -79,7 +81,7 @@ Requirement → Architecture → [accept & sentinel generate] → Test Design �
 1. **Requirement** — Define or refine features, business rules, user journeys, and doubts in `REQUIREMENT.md`.
 2. **Architecture** — Design the solution in `sentinel.yaml`: modules, models, interfaces, implementations, dependencies.
 3. **Accept & Generate (Architecture)** — User accepts the architecture. Run `sentinel generate` to produce contracts and implementation stubs.
-4. **Test Design** — Define test names under `handwrittenTests` in `sentinel.yaml`. Use `@qa-tester` to propose test coverage with traceability.
+4. **Test Design** — `@qa-tester` proposes test names and executes `sentinel patch propose` to add them as `handwrittenTests` in `sentinel.yaml`. Do NOT delegate this to the Architect.
 5. **Generate Test Stubs** — Run `sentinel generate` to produce JUnit stub classes.
 6. **Development** — Implement the contracts and the test stubs. Only now should production code be written.
 

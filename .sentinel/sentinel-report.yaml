@@ -1,4 +1,4 @@
-generatedAt: 2026-04-11T16:40:15.038569Z
+generatedAt: 2026-04-11T17:22:58.266685Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -2031,19 +2031,143 @@ features:
   - journeyId: F-LCOUNT-J005
     state: NO_TESTS
 - id: FEAT-RCSL
-  state: DRAFT
+  state: IMPLEMENTING
   requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/requirement.yaml
   rulesCoverage:
   - ruleId: F-RCSL-R001
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should resolve context with all fields populated from quiz diagnosis and
+        ancestor entities
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should populate sentence and translation from AuditableQuiz entity on
+        the quiz node
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge
+        on knowledge ancestor
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should populate topicLabel from AuditableTopic on topic ancestor
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should populate cefrLevel tokenCount targetMin targetMax and delta from
+        SentenceLengthDiagnosis
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should resolve context with negative delta for a sentence shorter than
+        target range
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should resolve context with zero delta when sentence is within target
+        range
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should set taskId from the RefinementTask id
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
   - ruleId: F-RCSL-R002
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should return empty when quiz node is not found in the audit tree
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should return empty when task nodeTarget does not match any node target
+        in the tree
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should locate the correct quiz node when multiple quiz nodes exist in
+        the tree
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
   - ruleId: F-RCSL-R003
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas and
+        exclude APPEARS_TOO_EARLY
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should order suggested lemmas by COCA rank ascending with lowest rank
+        first
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should place lemmas without COCA rank after lemmas with COCA rank
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should map AbsentLemma fields to SuggestedLemma fields correctly
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should return empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should return suggested lemmas from the milestone ancestor of the quiz
+        node
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
   - ruleId: F-RCSL-R004
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should return context with empty suggested lemmas when milestone has no
+        LemmaAbsenceLevelDiagnosis
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should return context with empty suggested lemmas when milestone ancestor
+        is not found
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should return context with empty suggested lemmas when absent lemmas list
+        is empty
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
   - ruleId: F-RCSL-R005
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should limit suggested lemmas to 10 when more than 10 qualify after filtering
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
   - ruleId: F-RCSL-R006
     state: NO_TESTS
   - ruleId: F-RCSL-R007
@@ -2052,11 +2176,44 @@ features:
     state: NO_TESTS
   journeysCoverage:
   - journeyId: F-RCSL-J001
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should resolve context with all fields populated from quiz diagnosis and
+        ancestor entities
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
   - journeyId: F-RCSL-J002
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should resolve context with negative delta for a sentence shorter than
+        target range
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
   - journeyId: F-RCSL-J003
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should return context with empty suggested lemmas when milestone has no
+        LemmaAbsenceLevelDiagnosis
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should return context with empty suggested lemmas when milestone ancestor
+        is not found
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
+    - name: should return context with empty suggested lemmas when absent lemmas list
+        is empty
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultCorrectionContextResolver
 elements:
 - module: audit-domain
   status: EXISTS
@@ -6194,6 +6351,538 @@ elements:
   - name: DefaultCorrectionContextResolver
     status: EXISTS
     filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/DefaultCorrectionContextResolver.java
+    tests:
+    - name: should resolve context with all fields populated from quiz diagnosis and
+        ancestor entities
+      status: MISSING
+    - name: should populate sentence and translation from AuditableQuiz entity on
+        the quiz node
+      status: MISSING
+    - name: should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge
+        on knowledge ancestor
+      status: MISSING
+    - name: should populate topicLabel from AuditableTopic on topic ancestor
+      status: MISSING
+    - name: should populate cefrLevel tokenCount targetMin targetMax and delta from
+        SentenceLengthDiagnosis
+      status: MISSING
+    - name: should return empty when quiz node is not found in the audit tree
+      status: MISSING
+    - name: should return empty when task nodeTarget does not match any node target
+        in the tree
+      status: MISSING
+    - name: should locate the correct quiz node when multiple quiz nodes exist in
+        the tree
+      status: MISSING
+    - name: should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas and
+        exclude APPEARS_TOO_EARLY
+      status: MISSING
+    - name: should order suggested lemmas by COCA rank ascending with lowest rank
+        first
+      status: MISSING
+    - name: should place lemmas without COCA rank after lemmas with COCA rank
+      status: MISSING
+    - name: should map AbsentLemma fields to SuggestedLemma fields correctly
+      status: MISSING
+    - name: should return empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY
+      status: MISSING
+    - name: should return suggested lemmas from the milestone ancestor of the quiz
+        node
+      status: MISSING
+    - name: should return context with empty suggested lemmas when milestone has no
+        LemmaAbsenceLevelDiagnosis
+      status: MISSING
+    - name: should return context with empty suggested lemmas when milestone ancestor
+        is not found
+      status: MISSING
+    - name: should return context with empty suggested lemmas when absent lemmas list
+        is empty
+      status: MISSING
+    - name: should limit suggested lemmas to 10 when more than 10 qualify after filtering
+      status: MISSING
+    - name: should resolve context with negative delta for a sentence shorter than
+        target range
+      status: MISSING
+    - name: should resolve context with zero delta when sentence is within target
+        range
+      status: MISSING
+    - name: should set taskId from the RefinementTask id
+      status: MISSING
+    testCleanViews:
+    - |
+      test: "should resolve context with all fields populated from quiz diagnosis and ancestor entities"
+      trace: FEAT-RCSL / F-RCSL-R001 / F-RCSL-J001
+
+      given:
+        quiz = AuditableQuiz("The cat sat.", List.of(), "quiz-1", null, null, "El gato se sentó.")
+        knowledge = AuditableKnowledge(List.of(), "Animals", "Complete the sentence.", true, "know-1", null, null)
+        topic = AuditableTopic(List.of(), "topic-1", "Basic Animals", null)
+        milestone = AuditableMilestone(List.of(), "ms-1", "A1", null)
+        sld = buildDiagnosis(3, 2, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        absentLemmas = List.of(buildAbsentLemma("cat", "NOUN", AbsenceType.COMPLETELY_ABSENT, 500))
+        milestoneDiag = buildMilestoneDiagnoses(absentLemmas)
+        tree = buildFullTree("ms-1", new AuditableMilestone(List.of(), "ms-1", "A1", null), milestoneDiag, new AuditableTopic(List.of(), "topic-1", "Basic Animals", null), new AuditableKnowledge(List.of(), "Animals", "Complete the sentence.", true, "know-1", null, null), new AuditableQuiz("The cat sat.", List.of(), "quiz-1", null, null, "El gato se sentó."), quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-1")
+        result = sut.resolve(report, task)
+        ctx = result.get()
+
+      then:
+        result.isPresent() is true
+        ctx.getTaskId() == "task-1"
+        ctx.getSentence() == "The cat sat."
+        ctx.getTranslation() == "El gato se sentó."
+        ctx.getKnowledgeTitle() == "Animals"
+        ctx.getKnowledgeInstructions() == "Complete the sentence."
+        ctx.getTopicLabel() == "Basic Animals"
+        ctx.getCefrLevel() == CefrLevel.A1
+        ctx.getTokenCount() == 3
+        ctx.getTargetMin() == 2
+        ctx.getTargetMax() == 5
+        ctx.getDelta() == 0
+        ctx.getSuggestedLemmas() is not null
+    - |
+      test: "should populate sentence and translation from AuditableQuiz entity on the quiz node"
+      trace: FEAT-RCSL / F-RCSL-R001
+
+      given:
+        quiz = AuditableQuiz("I love learning.", List.of(), "quiz-2", null, null, "Me encanta aprender.")
+        knowledge = AuditableKnowledge(List.of(), "Feelings", "Complete.", true, "know-2", null, null)
+        topic = AuditableTopic(List.of(), "topic-2", "Emotions", null)
+        milestone = AuditableMilestone(List.of(), "ms-2", "A1", null)
+        sld = buildDiagnosis(3, 2, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        milestoneDiag = buildMilestoneDiagnoses(List.of())
+        tree = buildFullTree("ms-2", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-2")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getSentence() == "I love learning."
+        result.get().getTranslation() == "Me encanta aprender."
+    - |
+      test: "should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge on knowledge ancestor"
+      trace: FEAT-RCSL / F-RCSL-R001
+
+      given:
+        quiz = AuditableQuiz("He reads.", List.of(), "quiz-3", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Reading Skills", "Choose the correct word.", true, "know-3", null, null)
+        topic = AuditableTopic(List.of(), "topic-3", "Skills", null)
+        milestone = AuditableMilestone(List.of(), "ms-3", "A2", null)
+        sld = buildDiagnosis(2, 2, 5, CefrLevel.A2, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        milestoneDiag = buildMilestoneDiagnoses(List.of())
+        tree = buildFullTree("ms-3", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-3")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getKnowledgeTitle() == "Reading Skills"
+        result.get().getKnowledgeInstructions() == "Choose the correct word."
+    - |
+      test: "should populate topicLabel from AuditableTopic on topic ancestor"
+      trace: FEAT-RCSL / F-RCSL-R001
+
+      given:
+        quiz = AuditableQuiz("She sings.", List.of(), "quiz-4", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Music", "Complete.", true, "know-4", null, null)
+        topic = AuditableTopic(List.of(), "topic-4", "Arts and Culture", null)
+        milestone = AuditableMilestone(List.of(), "ms-4", "B1", null)
+        sld = buildDiagnosis(2, 2, 8, CefrLevel.B1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        milestoneDiag = buildMilestoneDiagnoses(List.of())
+        tree = buildFullTree("ms-4", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-4")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getTopicLabel() == "Arts and Culture"
+    - |
+      test: "should populate cefrLevel tokenCount targetMin targetMax and delta from SentenceLengthDiagnosis"
+      trace: FEAT-RCSL / F-RCSL-R001
+
+      given:
+        quiz = AuditableQuiz("They were going.", List.of(), "quiz-5", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Verbs", "Complete.", true, "know-5", null, null)
+        topic = AuditableTopic(List.of(), "topic-5", "Grammar", null)
+        milestone = AuditableMilestone(List.of(), "ms-5", "B2", null)
+        sld = buildDiagnosis(11, 10, 15, CefrLevel.B2, 2)
+        quizDiag = buildQuizDiagnoses(sld)
+        milestoneDiag = buildMilestoneDiagnoses(List.of())
+        tree = buildFullTree("ms-5", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-5")
+        result = sut.resolve(report, task)
+        ctx = result.get()
+
+      then:
+        result.isPresent() is true
+        ctx.getCefrLevel() == CefrLevel.B2
+        ctx.getTokenCount() == 11
+        ctx.getTargetMin() == 10
+        ctx.getTargetMax() == 15
+        ctx.getDelta() == 2
+    - |
+      test: "should return empty when quiz node is not found in the audit tree"
+      trace: FEAT-RCSL / F-RCSL-R002
+
+      given:
+        quiz = AuditableQuiz("Hello.", List.of(), "quiz-6", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete.", true, "know-6", null, null)
+        topic = AuditableTopic(List.of(), "topic-6", "Social", null)
+        milestone = AuditableMilestone(List.of(), "ms-6", "A1", null)
+        sld = buildDiagnosis(1, 1, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        milestoneDiag = buildMilestoneDiagnoses(List.of())
+        tree = buildFullTree("ms-6", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("nonexistent-quiz-id")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isEmpty() is true
+    - |
+      test: "should return empty when task nodeTarget does not match any node target in the tree"
+      trace: FEAT-RCSL / F-RCSL-R002
+
+      given:
+        quiz = AuditableQuiz("Hello.", List.of(), "quiz-7", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete.", true, "know-7", null, null)
+        topic = AuditableTopic(List.of(), "topic-7", "Social", null)
+        milestone = AuditableMilestone(List.of(), "ms-7", "A1", null)
+        sld = buildDiagnosis(1, 1, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        milestoneDiag = buildMilestoneDiagnoses(List.of())
+        tree = buildFullTree("ms-7", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = RefinementTask("task-7", AuditTarget.KNOWLEDGE, "quiz-7", "label", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        result = sut.resolve(report, task)
+
+      then:
+        result.isEmpty() is true
+    - |
+      test: "should locate the correct quiz node when multiple quiz nodes exist in the tree"
+      trace: FEAT-RCSL / F-RCSL-R002
+
+      given:
+        knowledge = AuditableKnowledge(List.of(), "Mixed", "Do it.", true, "know-8", null, null)
+        topic = AuditableTopic(List.of(), "topic-8", "Topic 8", null)
+        milestone = AuditableMilestone(List.of(), "ms-8", "A1", null)
+        quiz1 = AuditableQuiz("First sentence.", List.of(), "quiz-8a", null, null, null)
+        quiz2 = AuditableQuiz("Second sentence.", List.of(), "quiz-8b", null, null, null)
+        sld1 = buildDiagnosis(2, 2, 5, CefrLevel.A1, 0)
+        sld2 = buildDiagnosis(2, 2, 5, CefrLevel.A1, 0)
+        diag1 = buildQuizDiagnoses(sld1)
+        diag2 = buildQuizDiagnoses(sld2)
+        milestoneDiag = buildMilestoneDiagnoses(List.of())
+        courseNode = buildCourseNode()
+        milestoneNode = buildMilestoneNode(courseNode, milestone, milestoneDiag)
+        topicNode = buildTopicNode(milestoneNode, topic)
+        knowledgeNode = buildKnowledgeNode(topicNode, knowledge)
+        report = AuditReport(courseNode)
+        task = buildTask("quiz-8b")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getSentence() == "Second sentence."
+    - |
+      test: "should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas and exclude APPEARS_TOO_EARLY"
+      trace: FEAT-RCSL / F-RCSL-R003
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-9", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-9", null, null)
+        topic = AuditableTopic(List.of(), "topic-9", "T9", null)
+        milestone = AuditableMilestone(List.of(), "ms-9", "A1", null)
+        sld = buildDiagnosis(2, 2, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        absentLemmas = List.of(buildAbsentLemma("walk", "VERB", AbsenceType.COMPLETELY_ABSENT, 100), buildAbsentLemma("run", "VERB", AbsenceType.APPEARS_TOO_LATE, 200), buildAbsentLemma("fly", "VERB", AbsenceType.APPEARS_TOO_EARLY, 300))
+        milestoneDiag = buildMilestoneDiagnoses(absentLemmas)
+        tree = buildFullTree("ms-9", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-9")
+        result = sut.resolve(report, task)
+        lemmas = result.get().getSuggestedLemmas()
+
+      then:
+        result.isPresent() is true
+        lemmas.size() == 2
+        lemmas.stream().noneMatch(l -> l.getReason().equals("APPEARS_TOO_EARLY")) is true
+        lemmas.stream().anyMatch(l -> l.getLemma().equals("walk")) is true
+        lemmas.stream().anyMatch(l -> l.getLemma().equals("run")) is true
+    - |
+      test: "should order suggested lemmas by COCA rank ascending with lowest rank first"
+      trace: FEAT-RCSL / F-RCSL-R003
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-10", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-10", null, null)
+        topic = AuditableTopic(List.of(), "topic-10", "T10", null)
+        milestone = AuditableMilestone(List.of(), "ms-10", "A1", null)
+        sld = buildDiagnosis(2, 2, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        absentLemmas = List.of(buildAbsentLemma("dog", "NOUN", AbsenceType.COMPLETELY_ABSENT, 500), buildAbsentLemma("cat", "NOUN", AbsenceType.COMPLETELY_ABSENT, 200), buildAbsentLemma("bird", "NOUN", AbsenceType.APPEARS_TOO_LATE, 350))
+        milestoneDiag = buildMilestoneDiagnoses(absentLemmas)
+        tree = buildFullTree("ms-10", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-10")
+        result = sut.resolve(report, task)
+        lemmas = result.get().getSuggestedLemmas()
+
+      then:
+        result.isPresent() is true
+        lemmas.size() == 3
+        lemmas.get(0).getLemma() == "cat"
+        lemmas.get(1).getLemma() == "bird"
+        lemmas.get(2).getLemma() == "dog"
+    - |
+      test: "should place lemmas without COCA rank after lemmas with COCA rank"
+      trace: FEAT-RCSL / F-RCSL-R003
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-11", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-11", null, null)
+        topic = AuditableTopic(List.of(), "topic-11", "T11", null)
+        milestone = AuditableMilestone(List.of(), "ms-11", "A1", null)
+        sld = buildDiagnosis(2, 2, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        absentLemmas = List.of(// no rank
+      buildAbsentLemma("unknown", "NOUN", AbsenceType.COMPLETELY_ABSENT, 0), // has rank
+      buildAbsentLemma("table", "NOUN", AbsenceType.COMPLETELY_ABSENT, 150), // no rank
+      buildAbsentLemma("chair", "NOUN", AbsenceType.APPEARS_TOO_LATE, 0))
+        milestoneDiag = buildMilestoneDiagnoses(absentLemmas)
+        tree = buildFullTree("ms-11", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-11")
+        result = sut.resolve(report, task)
+        lemmas = result.get().getSuggestedLemmas()
+
+      then:
+        result.isPresent() is true
+        lemmas.size() == 3
+        lemmas.get(0).getLemma() == "table"
+        lemmas.get(1).getCocaRank() == 0 || lemmas.get(2).getCocaRank() == 0 is true
+    - |
+      test: "should map AbsentLemma fields to SuggestedLemma fields correctly"
+      trace: FEAT-RCSL / F-RCSL-R003
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-12", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-12", null, null)
+        topic = AuditableTopic(List.of(), "topic-12", "T12", null)
+        milestone = AuditableMilestone(List.of(), "ms-12", "A1", null)
+        sld = buildDiagnosis(2, 2, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        absentLemmas = List.of(buildAbsentLemma("house", "NOUN", AbsenceType.COMPLETELY_ABSENT, 250))
+        milestoneDiag = buildMilestoneDiagnoses(absentLemmas)
+        tree = buildFullTree("ms-12", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-12")
+        result = sut.resolve(report, task)
+        lemmas = result.get().getSuggestedLemmas()
+        sl = lemmas.get(0)
+
+      then:
+        result.isPresent() is true
+        lemmas.size() == 1
+        sl.getLemma() == "house"
+        sl.getPos() == "NOUN"
+        sl.getReason() == "COMPLETELY_ABSENT"
+        sl.getCocaRank() == 250
+    - |
+      test: "should return empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY"
+      trace: FEAT-RCSL / F-RCSL-R003
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-13", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-13", null, null)
+        topic = AuditableTopic(List.of(), "topic-13", "T13", null)
+        milestone = AuditableMilestone(List.of(), "ms-13", "A1", null)
+        sld = buildDiagnosis(2, 2, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        absentLemmas = List.of(buildAbsentLemma("advanced", "ADJ", AbsenceType.APPEARS_TOO_EARLY, 1000), buildAbsentLemma("complex", "ADJ", AbsenceType.APPEARS_TOO_EARLY, 2000))
+        milestoneDiag = buildMilestoneDiagnoses(absentLemmas)
+        tree = buildFullTree("ms-13", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-13")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getSuggestedLemmas().isEmpty() is true
+    - |
+      test: "should return suggested lemmas from the milestone ancestor of the quiz node"
+      trace: FEAT-RCSL / F-RCSL-R003
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-14", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-14", null, null)
+        topic = AuditableTopic(List.of(), "topic-14", "T14", null)
+        milestone = AuditableMilestone(List.of(), "ms-14", "A1", null)
+        sld = buildDiagnosis(2, 2, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        absentLemmas = List.of(buildAbsentLemma("jump", "VERB", AbsenceType.COMPLETELY_ABSENT, 400))
+        milestoneDiag = buildMilestoneDiagnoses(absentLemmas)
+        tree = buildFullTree("ms-14", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-14")
+        result = sut.resolve(report, task)
+        lemmas = result.get().getSuggestedLemmas()
+
+      then:
+        result.isPresent() is true
+        lemmas.size() == 1
+        lemmas.get(0).getLemma() == "jump"
+    - |
+      test: "should return context with empty suggested lemmas when milestone has no LemmaAbsenceLevelDiagnosis"
+      trace: FEAT-RCSL / F-RCSL-R004 / F-RCSL-J003
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-15", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-15", null, null)
+        topic = AuditableTopic(List.of(), "topic-15", "T15", null)
+        milestone = AuditableMilestone(List.of(), "ms-15", "A1", null)
+        sld = buildDiagnosis(2, 2, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        milestoneDiag = DefaultLevelDiagnoses()
+        tree = buildFullTree("ms-15", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-15")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getSuggestedLemmas().isEmpty() is true
+    - |
+      test: "should return context with empty suggested lemmas when milestone ancestor is not found"
+      trace: FEAT-RCSL / F-RCSL-R004 / F-RCSL-J003
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-16", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-16", null, null)
+        topic = AuditableTopic(List.of(), "topic-16", "T16", null)
+        sld = buildDiagnosis(2, 2, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        courseNode = buildCourseNode()
+        topicNode = buildTopicNode(courseNode, topic)
+        knowledgeNode = buildKnowledgeNode(topicNode, knowledge)
+        report = AuditReport(courseNode)
+        task = buildTask("quiz-16")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getSuggestedLemmas().isEmpty() is true
+    - |
+      test: "should return context with empty suggested lemmas when absent lemmas list is empty"
+      trace: FEAT-RCSL / F-RCSL-R004 / F-RCSL-J003
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-17", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-17", null, null)
+        topic = AuditableTopic(List.of(), "topic-17", "T17", null)
+        milestone = AuditableMilestone(List.of(), "ms-17", "A1", null)
+        sld = buildDiagnosis(2, 2, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        milestoneDiag = buildMilestoneDiagnoses(List.of())
+        tree = buildFullTree("ms-17", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-17")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getSuggestedLemmas().isEmpty() is true
+    - |
+      test: "should limit suggested lemmas to 10 when more than 10 qualify after filtering"
+      trace: FEAT-RCSL / F-RCSL-R005
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-18", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-18", null, null)
+        topic = AuditableTopic(List.of(), "topic-18", "T18", null)
+        milestone = AuditableMilestone(List.of(), "ms-18", "A1", null)
+        sld = buildDiagnosis(2, 2, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        absentLemmas = ArrayList<>()
+        milestoneDiag = buildMilestoneDiagnoses(absentLemmas)
+        tree = buildFullTree("ms-18", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-18")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getSuggestedLemmas().size() == 10
+    - |
+      test: "should resolve context with negative delta for a sentence shorter than target range"
+      trace: FEAT-RCSL / F-RCSL-R001 / F-RCSL-J002
+
+      given:
+        quiz = AuditableQuiz("Go.", List.of(), "quiz-19", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-19", null, null)
+        topic = AuditableTopic(List.of(), "topic-19", "T19", null)
+        milestone = AuditableMilestone(List.of(), "ms-19", "A1", null)
+        sld = buildDiagnosis(1, 5, 8, CefrLevel.A1, -4)
+        quizDiag = buildQuizDiagnoses(sld)
+        milestoneDiag = buildMilestoneDiagnoses(List.of())
+        tree = buildFullTree("ms-19", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-19")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getDelta() == -4
+        result.get().getTokenCount() == 1
+    - |
+      test: "should resolve context with zero delta when sentence is within target range"
+      trace: FEAT-RCSL / F-RCSL-R001
+
+      given:
+        quiz = AuditableQuiz("I like cats.", List.of(), "quiz-20", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-20", null, null)
+        topic = AuditableTopic(List.of(), "topic-20", "T20", null)
+        milestone = AuditableMilestone(List.of(), "ms-20", "A1", null)
+        sld = buildDiagnosis(3, 2, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        milestoneDiag = buildMilestoneDiagnoses(List.of())
+        tree = buildFullTree("ms-20", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-20")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getDelta() == 0
+    - |
+      test: "should set taskId from the RefinementTask id"
+      trace: FEAT-RCSL / F-RCSL-R001
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-21", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-21", null, null)
+        topic = AuditableTopic(List.of(), "topic-21", "T21", null)
+        milestone = AuditableMilestone(List.of(), "ms-21", "A1", null)
+        sld = buildDiagnosis(2, 2, 5, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnoses(sld)
+        milestoneDiag = buildMilestoneDiagnoses(List.of())
+        tree = buildFullTree("ms-21", milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = RefinementTask("my-specific-task-id", AuditTarget.QUIZ, "quiz-21", "label", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getTaskId() == "my-specific-task-id"
 - module: audit-application
   status: EXISTS
   interfaces:
@@ -7574,10 +8263,10 @@ elements:
     status: EXISTS
     filePath: audit-infrastructure/src/main/java/com/learney/contentaudit/auditinfrastructure/FileSystemRefinementPlanStore.java
 testSummary:
-  total: 278
+  total: 299
   passing: 59
   failing: 0
-  notImplemented: 219
+  notImplemented: 240
 patterns:
 - id: declared-1
   pattern: Strategy

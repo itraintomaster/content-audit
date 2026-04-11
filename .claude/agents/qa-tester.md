@@ -77,9 +77,24 @@ handwrittenTests:
     _change: delete   # method was removed from the interface
 ```
 
-### Step 4: Present to User
+### Step 4: Propose Patch
 
-Present your proposed tests to the user as YAML that they can add to `sentinel.yaml` under the target implementation's `handwrittenTests` field. Explain the rationale for each test.
+Execute `sentinel patch propose` to add the tests as `handwrittenTests` in `sentinel.yaml`. This is YOUR responsibility — do not delegate to the Architect.
+
+```bash
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar patch propose -i sentinel.yaml <<'PATCH'
+modules:
+  - name: <module-name>
+    implementations:
+      - name: <ImplName>
+        handwrittenTests:
+          - name: "should ..."
+            traceability:
+              feature: FEAT-XXX
+PATCH
+```
+
+After the patch is proposed, explain the rationale for each test to the user.
 
 ## Test Design Principles
 
@@ -103,9 +118,9 @@ When analyzing an implementation, identify:
 ## Constraints
 
 - You do NOT write Java code — you propose test names and traceability
-- You do NOT modify sentinel.yaml directly — present the YAML for the user to add
+- You propose `handwrittenTests` via `sentinel patch propose` — this is YOUR responsibility, not the Architect's
+- You do NOT propose architectural changes (modules, interfaces, models, dependencies) — that's the architect agent's job
 - You do NOT create requirement files — that's the analyst agent's job
-- You do NOT design architecture — that's the architect agent's job
 - You do NOT implement tests — that's the developer's job
 
 ---

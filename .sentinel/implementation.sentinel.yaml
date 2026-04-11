@@ -1,4 +1,4 @@
-analyzedAt: 2026-04-10T01:01:55.000396Z
+analyzedAt: 2026-04-11T19:25:21.297039Z
 system: ContentAudit
 modules:
 - name: audit-infrastructure
@@ -1044,6 +1044,9 @@ modules:
     - name: code
       type: String
       description: Quiz short code
+    - name: translation
+      type: String
+      description: Spanish translation of the quiz sentence
     extendsType: AuditableEntity
     sentinelStatus: missing
   interfaces:
@@ -1373,6 +1376,8 @@ modules:
       type: String
     - name: code
       type: String
+    - name: translation
+      type: String
     implements:
     - AuditableEntity
   - name: CocaBucketsAnalyzer
@@ -1462,6 +1467,19 @@ modules:
 - name: refiner-domain
   source: sentinel
   models:
+  - name: SuggestedLemma
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: lemma
+      type: String
+    - name: pos
+      type: String
+    - name: reason
+      type: String
+    - name: cocaRank
+      type: int
   - name: DiagnosisKind
     source: sentinel
     type: enum
@@ -1511,6 +1529,35 @@ modules:
       type: int
     - name: status
       type: RefinementTaskStatus
+  - name: SentenceLengthCorrectionContext
+    source: sentinel
+    type: class
+    visibility: public
+    fields:
+    - name: taskId
+      type: String
+    - name: sentence
+      type: String
+    - name: translation
+      type: String
+    - name: knowledgeTitle
+      type: String
+    - name: knowledgeInstructions
+      type: String
+    - name: topicLabel
+      type: String
+    - name: cefrLevel
+      type: CefrLevel
+    - name: tokenCount
+      type: int
+    - name: targetMin
+      type: int
+    - name: targetMax
+      type: int
+    - name: delta
+      type: int
+    - name: suggestedLemmas
+      type: List<SuggestedLemma>
   - name: RefinementTaskStatus
     source: sentinel
     type: enum
@@ -1536,9 +1583,20 @@ modules:
     visibility: public
     sealed: false
     exposes:
-    - signature: "plan(AuditReport report): RefinementPlan"
+    - signature: "plan(AuditReport report, String auditId): RefinementPlan"
     - signature: "nextTask(RefinementPlan plan): Optional<RefinementTask>"
+  - name: CorrectionContextResolver
+    source: sentinel
+    visibility: public
+    sealed: false
+    exposes:
+    - signature: "resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>"
   implementations:
+  - name: DefaultCorrectionContextResolver
+    source: mixed
+    visibility: package-private
+    implements:
+    - CorrectionContextResolver
   - name: DefaultRefinerEngine
     source: implementation
     visibility: public
@@ -3122,6 +3180,24 @@ graph:
   - from: refiner-domain.RefinementPlanStore
     to: refiner-domain.RefinementPlan
     relation: references
+  - from: refiner-domain.DefaultCorrectionContextResolver
+    to: audit-domain.AuditNode
+    relation: references
+  - from: refiner-domain.DefaultCorrectionContextResolver
+    to: audit-domain.AuditReport
+    relation: references
+  - from: refiner-domain.DefaultCorrectionContextResolver
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: refiner-domain.DefaultCorrectionContextResolver
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.DefaultCorrectionContextResolver
+    to: refiner-domain.CorrectionContextResolver
+    relation: references
+  - from: refiner-domain.DefaultCorrectionContextResolver
+    to: refiner-domain.SentenceLengthCorrectionContext
+    relation: references
   - from: refiner-domain.RefinerEngine
     to: audit-domain.AuditReport
     relation: references
@@ -3130,6 +3206,15 @@ graph:
     relation: references
   - from: refiner-domain.RefinerEngine
     to: refiner-domain.RefinementPlan
+    relation: references
+  - from: refiner-domain.CorrectionContextResolver
+    to: audit-domain.AuditReport
+    relation: references
+  - from: refiner-domain.CorrectionContextResolver
+    to: refiner-domain.RefinementTask
+    relation: references
+  - from: refiner-domain.CorrectionContextResolver
+    to: refiner-domain.SentenceLengthCorrectionContext
     relation: references
   - from: refiner-domain.RefinementPlan
     to: refiner-domain.RefinementTask
@@ -3142,6 +3227,12 @@ graph:
     relation: references
   - from: refiner-domain.RefinementTask
     to: refiner-domain.DiagnosisKind
+    relation: references
+  - from: refiner-domain.SentenceLengthCorrectionContext
+    to: audit-domain.CefrLevel
+    relation: references
+  - from: refiner-domain.SentenceLengthCorrectionContext
+    to: refiner-domain.SuggestedLemma
     relation: references
   - from: refiner-domain.DefaultRefinerEngine
     to: audit-domain.AuditNode
@@ -3528,6 +3619,9 @@ graph:
     to: refiner-domain.RefinementPlanStore
     relation: references
   - from: audit-cli.RefinerNextCmd
+    to: audit-domain.AuditTarget
+    relation: references
+  - from: audit-cli.RefinerNextCmd
     to: refiner-domain.RefinementTask
     relation: references
   - from: audit-cli.RefinerNextCmd
@@ -3538,6 +3632,9 @@ graph:
     relation: references
   - from: audit-cli.RefinerNextCmd
     to: refiner-domain.RefinementPlanStore
+    relation: references
+  - from: audit-cli.RefinerNextCmd
+    to: refiner-domain.DiagnosisKind
     relation: references
   - from: course-infrastructure.CourseValidatorImpl
     to: course-domain.CourseValidator
@@ -3623,9 +3720,27 @@ graph:
   distances:
   - component: audit-domain.CourseDiagnoses
     distance: 1
-  - component: audit-cli.RefinerPlanCmd
-    distance: 1
   - component: course-infrastructure.FileSystemCourseRepository
+    distance: 1
+  - component: vocabulary-infrastructure.FileSystemEvpCatalog
+    distance: 1
+  - component: audit-domain.QuizDiagnoses
+    distance: 1
+  - component: audit-domain.KnowledgeDiagnoses
+    distance: 1
+  - component: audit-domain.DefaultLevelDiagnoses
+    distance: 1
+  - component: audit-infrastructure.FileSystemAuditReportStore
+    distance: 1
+  - component: refiner-domain.DefaultRefinerEngine
+    distance: 1
+  - component: audit-domain.AuditNode
+    distance: 1
+  - component: audit-domain.DefaultQuizDiagnoses
+    distance: 1
+  - component: audit-domain.DefaultTopicDiagnoses
+    distance: 1
+  - component: audit-cli.RefinerPlanCmd
     distance: 1
   - component: audit-domain.LevelDiagnoses
     distance: 1
@@ -3634,12 +3749,6 @@ graph:
   - component: audit-cli.RawJsonReportFormatter
     distance: 1
   - component: audit-cli.ScoredItemRow
-    distance: 1
-  - component: vocabulary-infrastructure.FileSystemEvpCatalog
-    distance: 1
-  - component: audit-domain.QuizDiagnoses
-    distance: 1
-  - component: audit-domain.KnowledgeDiagnoses
     distance: 1
   - component: audit-cli.TableReportFormatter
     distance: 1
@@ -3653,21 +3762,11 @@ graph:
     distance: 1
   - component: audit-domain.ContentAnalyzer
     distance: 1
-  - component: audit-domain.DefaultLevelDiagnoses
-    distance: 1
   - component: audit-domain.DefaultKnowledgeDiagnoses
-    distance: 1
-  - component: audit-infrastructure.FileSystemAuditReportStore
     distance: 1
   - component: course-infrastructure.CourseValidatorImpl
     distance: 1
-  - component: refiner-domain.DefaultRefinerEngine
-    distance: 1
   - component: audit-cli.DefaultReportViewModelTransformer
-    distance: 1
-  - component: audit-domain.AuditNode
-    distance: 1
-  - component: audit-domain.DefaultQuizDiagnoses
     distance: 1
   - component: audit-infrastructure.FileSystemRefinementPlanStore
     distance: 1
@@ -3675,7 +3774,7 @@ graph:
     distance: 1
   - component: audit-domain.IScoreAggregator
     distance: 1
-  - component: audit-domain.DefaultTopicDiagnoses
+  - component: refiner-domain.DefaultCorrectionContextResolver
     distance: 1
   - component: audit-cli.JsonReportFormatter
     distance: 1
@@ -3684,11 +3783,11 @@ graph:
   - component: audit-domain.NodeDiagnoses
     distance: 2
   orphans:
+  - audit-infrastructure.AuditReportObjectMapper
   - audit-cli.CoursePathResolver
   - audit-infrastructure.AuditPersistenceException
   - audit-cli.RefinerCmd
   - audit-cli.Main
-  - audit-infrastructure.AuditReportObjectMapper
 methodCallGraph:
   edges:
   - fromInterface: AuditReportStore
@@ -4243,7 +4342,7 @@ methodCallGraph:
   - fromInterface: RefinerPlanCommand
     fromMethod: plan
     toInterface: AuditReportStore
-    toMethod: loadLatest
+    toMethod: list
     toModule: audit-domain
     fragment: "alt [auditId == null || auditId.isBlank()]"
     earlyReturn: true
@@ -4354,11 +4453,11 @@ methodCallGraph:
     earlyReturn: true
   - fromInterface: RefinerNextCommand
     fromMethod: next
-    toInterface: RefinerEngine
-    toMethod: nextTask
-    toModule: refiner-domain
-    fragment: "alt [else: planId == null || planId.isBlank()]"
-    earlyReturn: false
+    toInterface: RefinerNextCommand
+    toMethod: buildFilterDesc
+    toModule: audit-cli
+    fragment: "alt [nextTask.isEmpty()]"
+    earlyReturn: true
   - fromInterface: RefinerNextCommand
     fromMethod: next
     toInterface: RefinerNextCommand

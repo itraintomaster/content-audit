@@ -43,7 +43,7 @@ class FileSystemAuditReportStoreTest {
     @Test
     @DisplayName("should save an AuditReport and load it back with identical content")
     @Tag("FEAT-STORE")
-    void shouldSaveAndLoadWithIdenticalContent(@TempDir Path tempDir) {
+    void shouldSaveAnAuditReportAndLoadItBackWithIdenticalContent(@TempDir Path tempDir) {
         // Build a realistic AuditReport tree:
         // COURSE (entity=null) → MILESTONE → TOPIC → KNOWLEDGE → QUIZ
 
