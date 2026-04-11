@@ -327,7 +327,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `plan(AuditReport report): RefinementPlan` | (none) |
+| `plan(AuditReport report, String auditId): RefinementPlan` | (none) |
 | `nextTask(RefinementPlan plan): Optional<RefinementTask>` | (none) |
 
 #### RefinementPlanStore (port)
@@ -341,6 +341,16 @@ Examples:
 | `save(RefinementPlan plan): String` | (none) |
 | `load(String id): Optional<RefinementPlan>` | (none) |
 | `loadLatest(): Optional<RefinementPlan>` | (none) |
+
+#### CorrectionContextResolver (port)
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+
+**Implemented by:** DefaultCorrectionContextResolver (refiner-domain)
+
+| Method | Throws |
+|--------|--------|
+| `resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>` | (none) |
 
 ### Module: audit-application
 

@@ -131,7 +131,7 @@ public class SentenceLengthAnalyzerTest {
     public void shouldExcludeQuizWhenMilestoneIdIsNull() {
         // milestone label null → CefrLevel.valueOf(null) → null → skip
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditableQuiz quiz = new AuditableQuiz("Hello world test", tokens(3), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz("Hello world test", tokens(3), null, null, null, null);
         AuditNode quizNode = fullTree(null, knowledge, quiz);
 
         sut.onQuiz(quizNode);
@@ -146,7 +146,7 @@ public class SentenceLengthAnalyzerTest {
     public void shouldExcludeQuizWhenMilestoneIdIsNonnumeric() {
         // milestone label "abc" is not a valid CefrLevel → skip
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditableQuiz quiz = new AuditableQuiz("Hello world test", tokens(3), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz("Hello world test", tokens(3), null, null, null, null);
         AuditNode quizNode = fullTree("abc", knowledge, quiz);
 
         sut.onQuiz(quizNode);
@@ -160,7 +160,7 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN-R012")
     public void shouldExcludeQuizWhenNoTargetRangeConfiguredForLevel() {
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditableQuiz quiz = new AuditableQuiz("She likes apples", tokens(3), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz("She likes apples", tokens(3), null, null, null, null);
         AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         Mockito.lenient().when(config.getTargetRange(Mockito.any())).thenReturn(Optional.empty());
@@ -183,13 +183,13 @@ public class SentenceLengthAnalyzerTest {
         // Non-sentence knowledge
         AuditableKnowledge nonSentKnowledge = new AuditableKnowledge(List.of(), "Vocab", "Match", false, null, null, null);
         AuditNode nonSentKnowledgeNode = buildKnowledgeNode(topicNode, nonSentKnowledge);
-        AuditableQuiz nonSentQuiz = new AuditableQuiz("apple", tokens(1), null, null, null);
+        AuditableQuiz nonSentQuiz = new AuditableQuiz("apple", tokens(1), null, null, null, null);
         AuditNode nonSentQuizNode = buildQuizNode(nonSentKnowledgeNode, nonSentQuiz);
 
         // Sentence knowledge
         AuditableKnowledge sentKnowledge = new AuditableKnowledge(List.of(), "Sentences", "Complete", true, null, null, null);
         AuditNode sentKnowledgeNode = buildKnowledgeNode(topicNode, sentKnowledge);
-        AuditableQuiz sentQuiz = new AuditableQuiz("She likes red apples very much", tokens(6), null, null, null);
+        AuditableQuiz sentQuiz = new AuditableQuiz("She likes red apples very much", tokens(6), null, null, null, null);
         AuditNode sentQuizNode = buildQuizNode(sentKnowledgeNode, sentQuiz);
 
         TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
@@ -225,7 +225,7 @@ public class SentenceLengthAnalyzerTest {
     public void shouldScore10ForQuizWithinA1Range() {
         // 6 tokens — within [5, 8]
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditableQuiz quiz = new AuditableQuiz("She likes apples a lot today", tokens(6), "q1", null, null);
+        AuditableQuiz quiz = new AuditableQuiz("She likes apples a lot today", tokens(6), "q1", null, null, null);
         AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
@@ -241,7 +241,7 @@ public class SentenceLengthAnalyzerTest {
     public void shouldScore075ForQuiz1TokenAboveA1Max() {
         // 9 tokens — 1 above max of 8; distance=1, margin=4 → 1 - 1/4 = 0.75
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditableQuiz quiz = new AuditableQuiz("She really likes green apples a lot today quickly", tokens(9), "q1", null, null);
+        AuditableQuiz quiz = new AuditableQuiz("She really likes green apples a lot today quickly", tokens(9), "q1", null, null, null);
         AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
@@ -257,7 +257,7 @@ public class SentenceLengthAnalyzerTest {
     public void shouldScore025ForQuiz3TokensBelowA1Min() {
         // 2 tokens — 3 below min of 5; distance=3, margin=4 → 1 - 3/4 = 0.25
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditableQuiz quiz = new AuditableQuiz("Go now", tokens(2), "q1", null, null);
+        AuditableQuiz quiz = new AuditableQuiz("Go now", tokens(2), "q1", null, null, null);
         AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
@@ -273,7 +273,7 @@ public class SentenceLengthAnalyzerTest {
     public void shouldScore10ForQuizExactlyAtA1MinimumBoundary() {
         // 5 tokens — exactly at min
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditableQuiz quiz = new AuditableQuiz("I like big red cats", tokens(5), "q1", null, null);
+        AuditableQuiz quiz = new AuditableQuiz("I like big red cats", tokens(5), "q1", null, null, null);
         AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
@@ -289,7 +289,7 @@ public class SentenceLengthAnalyzerTest {
     public void shouldScore10ForQuizExactlyAtA1MaximumBoundary() {
         // 8 tokens — exactly at max
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditableQuiz quiz = new AuditableQuiz("I like big red cats very much here", tokens(8), "q1", null, null);
+        AuditableQuiz quiz = new AuditableQuiz("I like big red cats very much here", tokens(8), "q1", null, null, null);
         AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
@@ -305,7 +305,7 @@ public class SentenceLengthAnalyzerTest {
     public void shouldScore00ForQuiz4TokensAboveA1MaxAtToleranceBoundary() {
         // 12 tokens — 4 above max of 8; distance=4 >= margin=4 → 0.0
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the local market", tokens(12), "q1", null, null);
+        AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the local market", tokens(12), "q1", null, null, null);
         AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
@@ -320,7 +320,7 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN-R001")
     public void shouldExcludeNonsentenceKnowledgeQuizFromResults() {
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Vocabulary", "Match words", false, null, null, null);
-        AuditableQuiz quiz = new AuditableQuiz("apple", tokens(1), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz("apple", tokens(1), null, null, null, null);
         AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         sut.onQuiz(quizNode);
@@ -337,7 +337,7 @@ public class SentenceLengthAnalyzerTest {
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Advanced grammar", "Complete", true, null, null, null);
         AuditableQuiz quiz = new AuditableQuiz(
                 "The students should have been studying for their final exams much more carefully this semester",
-                tokens(15), "q1", null, null);
+                tokens(15), "q1", null, null, null);
         AuditNode quizNode = fullTree("B2", knowledge, quiz);
 
         TargetRange rangeB2 = new TargetRange(CefrLevel.B2, 14, 17);
@@ -356,7 +356,7 @@ public class SentenceLengthAnalyzerTest {
     public void shouldScore00ForQuizExactlyAtToleranceBoundary() {
         // 1 token — 4 below min of 5; distance=4 >= margin=4 → 0.0
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditableQuiz quiz = new AuditableQuiz("Go", tokens(1), "q1", null, null);
+        AuditableQuiz quiz = new AuditableQuiz("Go", tokens(1), "q1", null, null, null);
         AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
@@ -372,7 +372,7 @@ public class SentenceLengthAnalyzerTest {
     public void shouldScore05ForQuiz2TokensAboveA1Max() {
         // 10 tokens — 2 above max of 8; distance=2, margin=4 → 1 - 2/4 = 0.5
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null);
-        AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the garden", tokens(10), "q1", null, null);
+        AuditableQuiz quiz = new AuditableQuiz("She really likes eating big green apples from the garden", tokens(10), "q1", null, null, null);
         AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         setupA1Range();
@@ -415,11 +415,11 @@ public class SentenceLengthAnalyzerTest {
         AuditNode knowledgeNode = buildKnowledgeNode(topicNode, knowledge);
 
         // quiz1: 6 tokens, within [5,8] → score 1.0
-        AuditableQuiz quiz1 = new AuditableQuiz("Hello how are you today friend", tokens(6), "q1", null, null);
+        AuditableQuiz quiz1 = new AuditableQuiz("Hello how are you today friend", tokens(6), "q1", null, null, null);
         AuditNode quizNode1 = buildQuizNode(knowledgeNode, quiz1);
 
         // quiz2: 2 tokens, 3 below min 5, distance=3, margin=4 → score 0.25
-        AuditableQuiz quiz2 = new AuditableQuiz("Good morning", tokens(2), "q2", null, null);
+        AuditableQuiz quiz2 = new AuditableQuiz("Good morning", tokens(2), "q2", null, null, null);
         AuditNode quizNode2 = buildQuizNode(knowledgeNode, quiz2);
 
         TargetRange rangeA1 = new TargetRange(CefrLevel.A1, 5, 8);
@@ -441,7 +441,7 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SLEN-R001")
     public void shouldExcludeNonsentenceQuizzesFromScoring() {
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Vocabulary", "Match words", false, null, null, null);
-        AuditableQuiz quiz = new AuditableQuiz("apple", tokens(1), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz("apple", tokens(1), null, null, null, null);
         AuditNode quizNode = fullTree("A1", knowledge, quiz);
 
         sut.onQuiz(quizNode);

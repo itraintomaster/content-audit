@@ -67,13 +67,21 @@ final class RefinerPlanCmd implements RefinerPlanCommand, Callable<Integer> {
     @Override
     public int plan(String auditId) {
         Optional<AuditReport> reportOpt;
+        String resolvedAuditId;
         if (auditId == null || auditId.isBlank()) {
-            reportOpt = auditReportStore.loadLatest();
-            if (reportOpt.isEmpty()) {
+            var summaries = auditReportStore.list();
+            if (summaries.isEmpty()) {
                 System.err.println("Error: no audits found. Run 'content-audit analyze' first.");
                 return 1;
             }
+            resolvedAuditId = summaries.get(summaries.size() - 1).getId();
+            reportOpt = auditReportStore.load(resolvedAuditId);
+            if (reportOpt.isEmpty()) {
+                System.err.println("Error: could not load latest audit.");
+                return 1;
+            }
         } else {
+            resolvedAuditId = auditId;
             reportOpt = auditReportStore.load(auditId);
             if (reportOpt.isEmpty()) {
                 System.err.println("Error: audit not found: " + auditId);
@@ -82,7 +90,7 @@ final class RefinerPlanCmd implements RefinerPlanCommand, Callable<Integer> {
         }
 
         AuditReport report = reportOpt.get();
-        RefinementPlan plan = refinerEngine.plan(report);
+        RefinementPlan plan = refinerEngine.plan(report, resolvedAuditId);
         String planId = refinementPlanStore.save(plan);
 
         List<RefinementTask> tasks = plan.getTasks() != null ? plan.getTasks() : List.of();

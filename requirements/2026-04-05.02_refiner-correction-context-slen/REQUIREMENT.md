@@ -68,7 +68,11 @@ Para cada tarea de refinamiento de tipo SENTENCE_LENGTH, el sistema debe poder c
 | Campo | Tipo | Origen | Descripcion |
 |-------|------|--------|-------------|
 | taskId | Texto | RefinementTask.id | Identificador de la tarea que se esta corrigiendo |
-| sentence | Texto | AuditableQuiz.sentence | La oracion actual del quiz tal como esta escrita |
+| sentence | Texto | AuditableQuiz.sentence | La oracion actual del quiz tal como esta escrita (texto plano) |
+| translation | Texto | QuizTemplateEntity.translation | Traduccion al espanol de la oracion actual |
+| knowledgeTitle | Texto | AuditableKnowledge.title | Titulo del knowledge al que pertenece el quiz (e.g., "Affirmative sentences in the present simple") |
+| knowledgeInstructions | Texto | AuditableKnowledge.instructions | Instrucciones del ejercicio (e.g., "Escribe la forma afirmativa") |
+| topicLabel | Texto | AuditableTopic.label | Nombre del topic (e.g., "Present Simple") |
 | cefrLevel | Nivel CEFR | SentenceLengthDiagnosis.cefrLevel | Nivel CEFR del quiz (A1, A2, B1, B2) |
 | tokenCount | Entero | SentenceLengthDiagnosis.tokenCount | Cantidad actual de tokens en la oracion |
 | targetMin | Entero | SentenceLengthDiagnosis.targetMin | Minimo de tokens esperados para el nivel CEFR |
@@ -76,7 +80,7 @@ Para cada tarea de refinamiento de tipo SENTENCE_LENGTH, el sistema debe poder c
 | delta | Entero | SentenceLengthDiagnosis.delta | Desviacion respecto al rango (positivo = exceso, negativo = carencia, 0 = dentro del rango) |
 | suggestedLemmas | Lista de lemas sugeridos | Derivado de LemmaAbsenceLevelDiagnosis | Lista de lemas ausentes que el LLM podria incorporar (ver R003) |
 
-Este contexto reune informacion de tres fuentes distintas: la tarea de refinamiento, el nodo quiz del arbol de auditoria (con su diagnostico de longitud y la entidad AuditableQuiz), y el nodo milestone ancestro (con su diagnostico de ausencia de lemas).
+Este contexto reune informacion de multiples fuentes: la tarea de refinamiento, el nodo quiz del arbol de auditoria (con su diagnostico de longitud y la entidad AuditableQuiz), los nodos ancestros knowledge y topic (para el contexto pedagogico del ejercicio), la entidad QuizTemplateEntity (para la traduccion), y el nodo milestone ancestro (con su diagnostico de ausencia de lemas).
 
 **Error**: N/A (esta regla define la estructura de un registro)
 
@@ -163,6 +167,10 @@ En formato JSON, el contexto de correccion se incluye como un campo adicional `c
   "status": "PENDING",
   "correctionContext": {
     "sentence": "She plays tennis every afternoon with her friends",
+    "translation": "Ella juega tenis todas las tardes con sus amigas",
+    "knowledgeTitle": "Affirmative sentences in the present simple",
+    "knowledgeInstructions": "Escribe la forma afirmativa",
+    "topicLabel": "Present Simple",
     "cefrLevel": "A1",
     "tokenCount": 15,
     "targetRange": {
@@ -197,9 +205,13 @@ Next task (#1 of 42):
   Status:    PENDING
 
   Correction context:
-    Sentence:    She plays tennis every afternoon with her friends
-    CEFR Level:  A1
-    Tokens:      15 (target: 5-8, delta: +7)
+    Sentence:     She plays tennis every afternoon with her friends
+    Translation:  Ella juega tenis todas las tardes con sus amigas
+    Knowledge:    Affirmative sentences in the present simple
+    Instructions: Escribe la forma afirmativa
+    Topic:        Present Simple
+    CEFR Level:   A1
+    Tokens:       15 (target: 5-8, delta: +7)
     Suggested lemmas:
       1. like (VERB) - COMPLETELY_ABSENT [COCA #52]
       2. want (VERB) - APPEARS_TOO_LATE [COCA #89]
@@ -212,21 +224,19 @@ Si no hay lemas sugeridos, la seccion "Suggested lemmas" muestra "(none availabl
 
 ---
 
-### Grupo C - Exclusiones explicitas de esta iteracion
+### Limitaciones de alcance de esta iteracion
 
-### Rule[F-RCSL-R009] - No cruzar con COCA Buckets
-**Severity**: minor | **Validation**: AUTO_VALIDATED
+Las siguientes limitaciones son decisiones explicitas de alcance, no reglas de negocio. Se levantaran en futuras iteraciones:
 
-En esta iteracion, los lemas sugeridos **no** se cruzan con el diagnostico de COCA Buckets (CocaBucketsLevelDiagnosis) para balancear bandas de frecuencia. La seleccion se basa unicamente en el tipo de ausencia y el rango COCA individual del lema. El balanceo por bandas de frecuencia es una optimizacion para una iteracion futura.
+- **No se cruza con COCA Buckets**: los lemas sugeridos no se cruzan con el diagnostico de COCA Buckets (CocaBucketsLevelDiagnosis) para balancear bandas de frecuencia. La seleccion se basa unicamente en el tipo de ausencia y el rango COCA individual del lema.
 
-**Error**: N/A (esta regla define una exclusion de alcance)
+- **No se valida compatibilidad semantica**: los lemas sugeridos se ofrecen sin garantia de compatibilidad semantica con la oracion actual. El LLM es responsable de elegir cuales usar y como integrarlos.
 
-### Rule[F-RCSL-R010] - No validar compatibilidad semantica
-**Severity**: minor | **Validation**: AUTO_VALIDATED
+- **La sentence se entrega como texto plano**: el contexto no incluye la estructura de formulario TEXT/CLOZE del quiz. La transformacion de la sentence generada por el LLM a la estructura de formulario es responsabilidad de una etapa posterior (persistencia).
 
-Los lemas sugeridos se ofrecen como opciones sin garantia de compatibilidad semantica con la oracion actual. El LLM es responsable de elegir cuales usar y como integrarlos gramaticalmente. Por ejemplo, si la oracion habla de comida y un lema sugerido es "play" (VERB), el LLM puede ignorarlo y elegir otro mas apropiado.
+- **No se define el output del LLM**: este requerimiento solo cubre el contexto de entrada. El formato de la respuesta del LLM, la validacion de esa respuesta, y su persistencia en el curso son requerimientos separados.
 
-**Error**: N/A (esta regla define una exclusion de alcance)
+- **No se define donde se guarda la correccion**: la persistencia de correcciones en el curso (modelo de propuesta, aplicacion, etc.) es un requerimiento separado.
 
 ---
 
@@ -415,4 +425,4 @@ El campo sourceAuditId del RefinementPlan actualmente llega como cadena vacia al
 **Pregunta**: Se corrige como parte de esta feature o como un fix previo independiente?
 
 - [ ] Opcion A: Corregir como prerequisito independiente antes de implementar esta feature. Mantiene la separacion de concerns.
-- [ ] Opcion B: Corregir como parte de esta feature. Reduce el numero de iteraciones pero mezcla un bugfix con una nueva funcionalidad.
+- [x] Opcion B: Corregir como parte de esta feature. Reduce el numero de iteraciones pero mezcla un bugfix con una nueva funcionalidad.

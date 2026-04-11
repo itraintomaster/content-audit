@@ -87,6 +87,9 @@ modules:
     - name: code
       type: String
       description: Quiz short code
+    - name: translation
+      type: String
+      description: Spanish translation of the quiz sentence
     extends: AuditableEntity
   - name: CefrLevel
     type: enum
@@ -2320,12 +2323,50 @@ modules:
     - name: tasks
       type: List<RefinementTask>
       description: Prioritized list of refinement tasks
+  - name: SuggestedLemma
+    type: record
+    fields:
+    - name: lemma
+      type: String
+    - name: pos
+      type: String
+    - name: reason
+      type: String
+    - name: cocaRank
+      type: Integer
+  - name: SentenceLengthCorrectionContext
+    type: record
+    fields:
+    - name: taskId
+      type: String
+    - name: sentence
+      type: String
+    - name: translation
+      type: String
+    - name: knowledgeTitle
+      type: String
+    - name: knowledgeInstructions
+      type: String
+    - name: topicLabel
+      type: String
+    - name: cefrLevel
+      type: CefrLevel
+    - name: tokenCount
+      type: int
+    - name: targetMin
+      type: int
+    - name: targetMax
+      type: int
+    - name: delta
+      type: int
+    - name: suggestedLemmas
+      type: List<SuggestedLemma>
   interfaces:
   - name: RefinerEngine
     stereotype: port
     sealed: false
     exposes:
-    - signature: "plan(AuditReport report): RefinementPlan"
+    - signature: "plan(AuditReport report, String auditId): RefinementPlan"
     - signature: "nextTask(RefinementPlan plan): Optional<RefinementTask>"
   - name: RefinementPlanStore
     stereotype: port
@@ -2334,6 +2375,15 @@ modules:
     - signature: "save(RefinementPlan plan): String"
     - signature: "load(String id): Optional<RefinementPlan>"
     - signature: "loadLatest(): Optional<RefinementPlan>"
+  - name: CorrectionContextResolver
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>"
+  implementations:
+  - name: DefaultCorrectionContextResolver
+    implements:
+    - CorrectionContextResolver
   scope: internal
 - name: audit-application
   dependsOn:
@@ -3452,6 +3502,10 @@ modules:
         type: RefinementPlanStore
       - name: refinerEngine
         type: RefinerEngine
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: correctionContextResolver
+        type: CorrectionContextResolver
       types:
       - Component
       externalImplements:

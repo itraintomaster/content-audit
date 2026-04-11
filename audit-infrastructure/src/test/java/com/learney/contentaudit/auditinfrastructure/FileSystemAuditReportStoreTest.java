@@ -53,7 +53,8 @@ class FileSystemAuditReportStoreTest {
                 List.of(new NlpToken("cat", "cat", "NOUN", 500, false, false)),
                 "quiz-1",
                 "Quiz One",
-                "Q1"
+                "Q1",
+                null
         );
 
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
@@ -322,5 +323,4 @@ class FileSystemAuditReportStoreTest {
         assertTrue(latest.isPresent());
         assertEquals(0.9, latest.get().getRoot().getScores().get("sentence-length"), 1e-9);
     }
-
 }

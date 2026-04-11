@@ -82,6 +82,7 @@ The following models and interfaces are available from dependencies. You can use
 | id | `String` |
 | label | `String` |
 | code | `String` |
+| translation | `String` |
 
 ### CefrLevel (`enum`)
 
@@ -368,11 +369,37 @@ Methods:
 | createdAt | `Instant` |
 | tasks | `List<RefinementTask>` |
 
+### SuggestedLemma (`record`)
+
+| Field | Type |
+|-------|------|
+| lemma | `String` |
+| pos | `String` |
+| reason | `String` |
+| cocaRank | `Integer` |
+
+### SentenceLengthCorrectionContext (`record`)
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| sentence | `String` |
+| translation | `String` |
+| knowledgeTitle | `String` |
+| knowledgeInstructions | `String` |
+| topicLabel | `String` |
+| cefrLevel | `CefrLevel` |
+| tokenCount | `int` |
+| targetMin | `int` |
+| targetMax | `int` |
+| delta | `int` |
+| suggestedLemmas | `List<SuggestedLemma>` |
+
 ### RefinerEngine (port)
 
 Methods:
 
-- `plan(AuditReport report): RefinementPlan`
+- `plan(AuditReport report, String auditId): RefinementPlan`
 - `nextTask(RefinementPlan plan): Optional<RefinementTask>`
 
 ### RefinementPlanStore (port)
@@ -382,4 +409,10 @@ Methods:
 - `save(RefinementPlan plan): String`
 - `load(String id): Optional<RefinementPlan>`
 - `loadLatest(): Optional<RefinementPlan>`
+
+### CorrectionContextResolver (port)
+
+Methods:
+
+- `resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>`
 

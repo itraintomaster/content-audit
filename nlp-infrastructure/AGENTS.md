@@ -82,6 +82,7 @@ The following models and interfaces are available from dependencies. You can use
 | id | `String` |
 | label | `String` |
 | code | `String` |
+| translation | `String` |
 
 ### CefrLevel (`enum`)
 

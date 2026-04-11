@@ -243,12 +243,19 @@ Domain module for the refinement workflow. Defines the plan/task model and ports
 **Interfaces:**
 
 - `RefinerEngine`
-  - `plan(AuditReport report): RefinementPlan`
+  - `plan(AuditReport report, String auditId): RefinementPlan`
   - `nextTask(RefinementPlan plan): Optional<RefinementTask>`
 - `RefinementPlanStore`
   - `save(RefinementPlan plan): String`
   - `load(String id): Optional<RefinementPlan>`
   - `loadLatest(): Optional<RefinementPlan>`
+- `CorrectionContextResolver`
+  - `resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>`
+
+**Implementations:**
+
+- `DefaultCorrectionContextResolver` implements CorrectionContextResolver
+  **NO TESTS** — all 1 methods uncovered
 
 ### audit-application
 

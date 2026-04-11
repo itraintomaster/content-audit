@@ -1,0 +1,96 @@
+code: __proposal__
+description: "Add correction context resolution for sentence-length refinement tasks:\
+  \ translation field on AuditableQuiz, SuggestedLemma and SentenceLengthCorrectionContext\
+  \ models, CorrectionContextResolver port with default implementation in refiner-domain,\
+  \ overloaded plan method on RefinerEngine, and updated RefinerNextCmd dependencies"
+modules:
+- name: audit-domain
+  models:
+  - name: AuditableQuiz
+    type: record
+    fields:
+    - name: translation
+      type: String
+      description: Spanish translation of the quiz sentence
+      _change: add
+    _change: modify
+  _change: modify
+- name: refiner-domain
+  models:
+  - name: SuggestedLemma
+    type: record
+    fields:
+    - name: lemma
+      type: String
+    - name: pos
+      type: String
+    - name: reason
+      type: String
+    - name: cocaRank
+      type: Integer
+    _change: add
+  - name: SentenceLengthCorrectionContext
+    type: record
+    fields:
+    - name: taskId
+      type: String
+    - name: sentence
+      type: String
+    - name: translation
+      type: String
+    - name: knowledgeTitle
+      type: String
+    - name: knowledgeInstructions
+      type: String
+    - name: topicLabel
+      type: String
+    - name: cefrLevel
+      type: CefrLevel
+    - name: tokenCount
+      type: int
+    - name: targetMin
+      type: int
+    - name: targetMax
+      type: int
+    - name: delta
+      type: int
+    - name: suggestedLemmas
+      type: List<SuggestedLemma>
+    _change: add
+  interfaces:
+  - name: RefinerEngine
+    sealed: false
+    exposes:
+    - signature: "plan(AuditReport report, String auditId): RefinementPlan"
+      _change: add
+    _change: modify
+  - name: CorrectionContextResolver
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>"
+    _change: add
+  implementations:
+  - name: DefaultCorrectionContextResolver
+    implements:
+    - CorrectionContextResolver
+    _change: add
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: commands
+    visibility: internal
+    implementations:
+    - name: RefinerNextCmd
+      requiresInject:
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: refinerEngine
+        type: RefinerEngine
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: correctionContextResolver
+        type: CorrectionContextResolver
+      _change: modify
+    _change: modify
+  _change: modify

@@ -101,7 +101,7 @@ public class CourseToAuditableMapper implements CourseMapper {
     private AuditableQuiz mapQuiz(QuizTemplateEntity qt) {
         String sentence = buildSentence(qt);
         List<NlpToken> tokens = tokenCache.getOrDefault(sentence, List.of());
-        return new AuditableQuiz(sentence, tokens, qt.getId(), qt.getTitle(), qt.getCode());
+        return new AuditableQuiz(sentence, tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation());
     }
 
     private List<String> collectAllSentences(CourseEntity course) {

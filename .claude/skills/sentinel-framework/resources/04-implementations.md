@@ -207,6 +207,14 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 **Visibility:** internal
 **Implements:** ScoreAggregator
 
+### Module: refiner-domain
+
+#### DefaultCorrectionContextResolver
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+
+**Implements:** CorrectionContextResolver
+
 ### Module: audit-application
 
 #### CourseToAuditableMapper
@@ -488,6 +496,8 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 |------|------|
 | `refinementPlanStore` | `RefinementPlanStore` |
 | `refinerEngine` | `RefinerEngine` |
+| `auditReportStore` | `AuditReportStore` |
+| `correctionContextResolver` | `CorrectionContextResolver` |
 
 #### RefinerListCmd (package: commands)
 

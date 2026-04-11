@@ -95,9 +95,9 @@ project-root/
 | Depends On | audit-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 4 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan) |
-| Interfaces | 2 (RefinerEngine, RefinementPlanStore) |
-| Implementations | 0 |
+| Models | 6 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext) |
+| Interfaces | 3 (RefinerEngine, RefinementPlanStore, CorrectionContextResolver) |
+| Implementations | 1 (DefaultCorrectionContextResolver) |
 | Packages | 0 |
 
 ### audit-application

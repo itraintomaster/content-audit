@@ -123,10 +123,11 @@ new AuditableMilestone(List<AuditableTopic> topics, String id, String label, Str
 | `id` | `String` |  |
 | `label` | `String` |  |
 | `code` | `String` |  |
+| `translation` | `String` |  |
 
 **Generated constructor:**
 ```java
-new AuditableQuiz(String sentence, List<NlpToken> tokens, String id, String label, String code)
+new AuditableQuiz(String sentence, List<NlpToken> tokens, String id, String label, String code, String translation)
 ```
 
 #### CefrLevel
@@ -1056,6 +1057,48 @@ new RefinementTask(String id, AuditTarget nodeTarget, String nodeId, String node
 **Generated constructor:**
 ```java
 new RefinementPlan(String id, String sourceAuditId, Instant createdAt, List<RefinementTask> tasks)
+```
+
+#### SuggestedLemma
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `lemma` | `String` |  |
+| `pos` | `String` |  |
+| `reason` | `String` |  |
+| `cocaRank` | `Integer` |  |
+
+**Generated constructor:**
+```java
+new SuggestedLemma(String lemma, String pos, String reason, Integer cocaRank)
+```
+
+#### SentenceLengthCorrectionContext
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `taskId` | `String` |  |
+| `sentence` | `String` |  |
+| `translation` | `String` |  |
+| `knowledgeTitle` | `String` |  |
+| `knowledgeInstructions` | `String` |  |
+| `topicLabel` | `String` |  |
+| `cefrLevel` | `CefrLevel` |  |
+| `tokenCount` | `int` |  |
+| `targetMin` | `int` |  |
+| `targetMax` | `int` |  |
+| `delta` | `int` |  |
+| `suggestedLemmas` | `List<SuggestedLemma>` | Import `java.util.List` |
+
+**Generated constructor:**
+```java
+new SentenceLengthCorrectionContext(String taskId, String sentence, String translation, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, int tokenCount, int targetMin, int targetMax, int delta, List<SuggestedLemma> suggestedLemmas)
 ```
 
 ### Module: audit-cli

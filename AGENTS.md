@@ -122,9 +122,11 @@ Domain module for the refinement workflow. Defines the plan/task model and ports
 
 **Depends on:** audit-domain
 
-**Models:** DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan
+**Models:** DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext
 
-**Interfaces:** RefinerEngine, RefinementPlanStore
+**Interfaces:** RefinerEngine, RefinementPlanStore, CorrectionContextResolver
+
+**Implementations:** DefaultCorrectionContextResolver
 
 ### audit-application
 

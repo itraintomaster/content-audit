@@ -52,7 +52,7 @@ public class DefaultRefinerEngine implements RefinerEngine {
     // -------------------------------------------------------------------------
 
     @Override
-    public RefinementPlan plan(AuditReport report) {
+    public RefinementPlan plan(AuditReport report, String auditId) {
         List<ScoredTask> rawTasks = new ArrayList<>();
 
         if (report.getRoot() != null) {
@@ -79,7 +79,7 @@ public class DefaultRefinerEngine implements RefinerEngine {
 
         String planId = TIMESTAMP_FORMATTER.format(Instant.now());
 
-        return new RefinementPlan(planId, "", Instant.now(), tasks);
+        return new RefinementPlan(planId, auditId != null ? auditId : "", Instant.now(), tasks);
     }
 
     @Override

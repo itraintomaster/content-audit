@@ -19,16 +19,19 @@ public class AuditableQuiz implements AuditableEntity {
 
     private String code;
 
+    private String translation;
+
     public AuditableQuiz() {
     }
 
     public AuditableQuiz(String sentence, List<NlpToken> tokens, String id, String label,
-            String code) {
+            String code, String translation) {
         this.sentence = sentence;
         this.tokens = tokens;
         this.id = id;
         this.label = label;
         this.code = code;
+        this.translation = translation;
     }
 
     public String getSentence() {
@@ -71,6 +74,14 @@ public class AuditableQuiz implements AuditableEntity {
         this.code = code;
     }
 
+    public String getTranslation() {
+        return this.translation;
+    }
+
+    public void setTranslation(String translation) {
+        this.translation = translation;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,11 +91,12 @@ public class AuditableQuiz implements AuditableEntity {
                     && Objects.equals(this.tokens, that.tokens)
                     && Objects.equals(this.id, that.id)
                     && Objects.equals(this.label, that.label)
-                    && Objects.equals(this.code, that.code);
+                    && Objects.equals(this.code, that.code)
+                    && Objects.equals(this.translation, that.translation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sentence, tokens, id, label, code);
+        return Objects.hash(sentence, tokens, id, label, code, translation);
     }
 }

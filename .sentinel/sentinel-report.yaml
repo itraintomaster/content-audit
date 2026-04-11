@@ -1,4 +1,4 @@
-generatedAt: 2026-04-11T01:12:04.527817Z
+generatedAt: 2026-04-11T16:40:15.038569Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -2030,6 +2030,33 @@ features:
     state: NO_TESTS
   - journeyId: F-LCOUNT-J005
     state: NO_TESTS
+- id: FEAT-RCSL
+  state: DRAFT
+  requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/requirement.yaml
+  rulesCoverage:
+  - ruleId: F-RCSL-R001
+    state: NO_TESTS
+  - ruleId: F-RCSL-R002
+    state: NO_TESTS
+  - ruleId: F-RCSL-R003
+    state: NO_TESTS
+  - ruleId: F-RCSL-R004
+    state: NO_TESTS
+  - ruleId: F-RCSL-R005
+    state: NO_TESTS
+  - ruleId: F-RCSL-R006
+    state: NO_TESTS
+  - ruleId: F-RCSL-R007
+    state: NO_TESTS
+  - ruleId: F-RCSL-R008
+    state: NO_TESTS
+  journeysCoverage:
+  - journeyId: F-RCSL-J001
+    state: NO_TESTS
+  - journeyId: F-RCSL-J002
+    state: NO_TESTS
+  - journeyId: F-RCSL-J003
+    state: NO_TESTS
 elements:
 - module: audit-domain
   status: EXISTS
@@ -2101,6 +2128,8 @@ elements:
     - name: label
       status: EXISTS
     - name: code
+      status: EXISTS
+    - name: translation
       status: EXISTS
   - name: CefrLevel
     status: EXISTS
@@ -3100,7 +3129,7 @@ elements:
 
       given:
         knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
-        quiz = AuditableQuiz("Hello world test", tokens(3), null, null, null)
+        quiz = AuditableQuiz("Hello world test", tokens(3), null, null, null, null)
         quizNode = fullTree(null, knowledge, quiz)
 
       when:
@@ -3114,7 +3143,7 @@ elements:
 
       given:
         knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
-        quiz = AuditableQuiz("Hello world test", tokens(3), null, null, null)
+        quiz = AuditableQuiz("Hello world test", tokens(3), null, null, null, null)
         quizNode = fullTree("abc", knowledge, quiz)
 
       when:
@@ -3128,7 +3157,7 @@ elements:
 
       given:
         knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
-        quiz = AuditableQuiz("She likes apples", tokens(3), null, null, null)
+        quiz = AuditableQuiz("She likes apples", tokens(3), null, null, null, null)
         quizNode = fullTree("A1", knowledge, quiz)
 
       mock:
@@ -3151,11 +3180,11 @@ elements:
         topicNode = buildTopicNode(milestoneNode, topic)
         nonSentKnowledge = AuditableKnowledge(List.of(), "Vocab", "Match", false, null, null, null)
         nonSentKnowledgeNode = buildKnowledgeNode(topicNode, nonSentKnowledge)
-        nonSentQuiz = AuditableQuiz("apple", tokens(1), null, null, null)
+        nonSentQuiz = AuditableQuiz("apple", tokens(1), null, null, null, null)
         nonSentQuizNode = buildQuizNode(nonSentKnowledgeNode, nonSentQuiz)
         sentKnowledge = AuditableKnowledge(List.of(), "Sentences", "Complete", true, null, null, null)
         sentKnowledgeNode = buildKnowledgeNode(topicNode, sentKnowledge)
-        sentQuiz = AuditableQuiz("She likes red apples very much", tokens(6), null, null, null)
+        sentQuiz = AuditableQuiz("She likes red apples very much", tokens(6), null, null, null, null)
         sentQuizNode = buildQuizNode(sentKnowledgeNode, sentQuiz)
         rangeA1 = TargetRange(CefrLevel.A1, 5, 8)
 
@@ -3188,7 +3217,7 @@ elements:
 
       given:
         knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
-        quiz = AuditableQuiz("She likes apples a lot today", tokens(6), "q1", null, null)
+        quiz = AuditableQuiz("She likes apples a lot today", tokens(6), "q1", null, null, null)
         quizNode = fullTree("A1", knowledge, quiz)
 
       when:
@@ -3202,7 +3231,7 @@ elements:
 
       given:
         knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
-        quiz = AuditableQuiz("She really likes green apples a lot today quickly", tokens(9), "q1", null, null)
+        quiz = AuditableQuiz("She really likes green apples a lot today quickly", tokens(9), "q1", null, null, null)
         quizNode = fullTree("A1", knowledge, quiz)
 
       when:
@@ -3216,7 +3245,7 @@ elements:
 
       given:
         knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
-        quiz = AuditableQuiz("Go now", tokens(2), "q1", null, null)
+        quiz = AuditableQuiz("Go now", tokens(2), "q1", null, null, null)
         quizNode = fullTree("A1", knowledge, quiz)
 
       when:
@@ -3230,7 +3259,7 @@ elements:
 
       given:
         knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
-        quiz = AuditableQuiz("I like big red cats", tokens(5), "q1", null, null)
+        quiz = AuditableQuiz("I like big red cats", tokens(5), "q1", null, null, null)
         quizNode = fullTree("A1", knowledge, quiz)
 
       when:
@@ -3244,7 +3273,7 @@ elements:
 
       given:
         knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
-        quiz = AuditableQuiz("I like big red cats very much here", tokens(8), "q1", null, null)
+        quiz = AuditableQuiz("I like big red cats very much here", tokens(8), "q1", null, null, null)
         quizNode = fullTree("A1", knowledge, quiz)
 
       when:
@@ -3258,7 +3287,7 @@ elements:
 
       given:
         knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
-        quiz = AuditableQuiz("She really likes eating big green apples from the local market", tokens(12), "q1", null, null)
+        quiz = AuditableQuiz("She really likes eating big green apples from the local market", tokens(12), "q1", null, null, null)
         quizNode = fullTree("A1", knowledge, quiz)
 
       when:
@@ -3272,7 +3301,7 @@ elements:
 
       given:
         knowledge = AuditableKnowledge(List.of(), "Vocabulary", "Match words", false, null, null, null)
-        quiz = AuditableQuiz("apple", tokens(1), null, null, null)
+        quiz = AuditableQuiz("apple", tokens(1), null, null, null, null)
         quizNode = fullTree("A1", knowledge, quiz)
 
       when:
@@ -3286,7 +3315,7 @@ elements:
 
       given:
         knowledge = AuditableKnowledge(List.of(), "Advanced grammar", "Complete", true, null, null, null)
-        quiz = AuditableQuiz("The students should have been studying for their final exams much more carefully this semester", tokens(15), "q1", null, null)
+        quiz = AuditableQuiz("The students should have been studying for their final exams much more carefully this semester", tokens(15), "q1", null, null, null)
         quizNode = fullTree("B2", knowledge, quiz)
         rangeB2 = TargetRange(CefrLevel.B2, 14, 17)
 
@@ -3305,7 +3334,7 @@ elements:
 
       given:
         knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
-        quiz = AuditableQuiz("Go", tokens(1), "q1", null, null)
+        quiz = AuditableQuiz("Go", tokens(1), "q1", null, null, null)
         quizNode = fullTree("A1", knowledge, quiz)
 
       when:
@@ -3319,7 +3348,7 @@ elements:
 
       given:
         knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete", true, null, null, null)
-        quiz = AuditableQuiz("She really likes eating big green apples from the garden", tokens(10), "q1", null, null)
+        quiz = AuditableQuiz("She really likes eating big green apples from the garden", tokens(10), "q1", null, null, null)
         quizNode = fullTree("A1", knowledge, quiz)
 
       when:
@@ -3357,9 +3386,9 @@ elements:
         topicNode = buildTopicNode(milestoneNode, topic)
         knowledge = AuditableKnowledge(List.of(), "Basic greetings", "Complete the sentence", true, null, null, null)
         knowledgeNode = buildKnowledgeNode(topicNode, knowledge)
-        quiz1 = AuditableQuiz("Hello how are you today friend", tokens(6), "q1", null, null)
+        quiz1 = AuditableQuiz("Hello how are you today friend", tokens(6), "q1", null, null, null)
         quizNode1 = buildQuizNode(knowledgeNode, quiz1)
-        quiz2 = AuditableQuiz("Good morning", tokens(2), "q2", null, null)
+        quiz2 = AuditableQuiz("Good morning", tokens(2), "q2", null, null, null)
         quizNode2 = buildQuizNode(knowledgeNode, quiz2)
         rangeA1 = TargetRange(CefrLevel.A1, 5, 8)
 
@@ -3379,7 +3408,7 @@ elements:
 
       given:
         knowledge = AuditableKnowledge(List.of(), "Vocabulary", "Match words", false, null, null, null)
-        quiz = AuditableQuiz("apple", tokens(1), null, null, null)
+        quiz = AuditableQuiz("apple", tokens(1), null, null, null, null)
         quizNode = fullTree("A1", knowledge, quiz)
 
       when:
@@ -4138,7 +4167,7 @@ elements:
 
       given:
         nullLemmaToken = NlpToken("word", null, "NOUN", 0, false, false)
-        quiz = AuditableQuiz("s", Arrays.asList(null, nullLemmaToken), "q1", "l", "c")
+        quiz = AuditableQuiz("s", Arrays.asList(null, nullLemmaToken), "q1", "l", "c", null)
 
       when:
         doesNotThrow: sut.onQuiz(makeNode(AuditTarget.QUIZ, quiz, null))
@@ -4147,7 +4176,7 @@ elements:
       trace: FEAT-LABS / F-LABS-R002
 
       given:
-        quiz = AuditableQuiz("sentence", null, "q1", "l", "c")
+        quiz = AuditableQuiz("sentence", null, "q1", "l", "c", null)
 
       when:
         doesNotThrow: sut.onQuiz(makeNode(AuditTarget.QUIZ, quiz, null))
@@ -4157,7 +4186,7 @@ elements:
 
       given:
         token = NlpToken("cat", "cat", "NOUN", 0, false, false)
-        quiz = AuditableQuiz("cat", List.of(token), "q1", "l", "c")
+        quiz = AuditableQuiz("cat", List.of(token), "q1", "l", "c", null)
 
       when:
         doesNotThrow: sut.onQuiz(makeNode(AuditTarget.QUIZ, quiz, null))
@@ -6096,12 +6125,52 @@ elements:
       status: EXISTS
     - name: tasks
       status: EXISTS
+  - name: SuggestedLemma
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/SuggestedLemma.java
+    fields:
+    - name: lemma
+      status: EXISTS
+    - name: pos
+      status: EXISTS
+    - name: reason
+      status: EXISTS
+    - name: cocaRank
+      status: EXISTS
+  - name: SentenceLengthCorrectionContext
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/SentenceLengthCorrectionContext.java
+    fields:
+    - name: taskId
+      status: EXISTS
+    - name: sentence
+      status: EXISTS
+    - name: translation
+      status: EXISTS
+    - name: knowledgeTitle
+      status: EXISTS
+    - name: knowledgeInstructions
+      status: EXISTS
+    - name: topicLabel
+      status: EXISTS
+    - name: cefrLevel
+      status: EXISTS
+    - name: tokenCount
+      status: EXISTS
+    - name: targetMin
+      status: EXISTS
+    - name: targetMax
+      status: EXISTS
+    - name: delta
+      status: EXISTS
+    - name: suggestedLemmas
+      status: EXISTS
   interfaces:
   - name: RefinerEngine
     status: EXISTS
     filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/RefinerEngine.java
     methods:
-    - signature: "plan(AuditReport report): RefinementPlan"
+    - signature: "plan(AuditReport report, String auditId): RefinementPlan"
       status: EXISTS
     - signature: "nextTask(RefinementPlan plan): Optional<RefinementTask>"
       status: EXISTS
@@ -6115,6 +6184,16 @@ elements:
       status: EXISTS
     - signature: "loadLatest(): Optional<RefinementPlan>"
       status: EXISTS
+  - name: CorrectionContextResolver
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/CorrectionContextResolver.java
+    methods:
+    - signature: "resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>"
+      status: EXISTS
+  implementations:
+  - name: DefaultCorrectionContextResolver
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/DefaultCorrectionContextResolver.java
 - module: audit-application
   status: EXISTS
   interfaces:
@@ -7320,7 +7399,7 @@ elements:
       trace: FEAT-STORE
 
       given:
-        quiz = AuditableQuiz("The cat sat on the mat.", List.of(new NlpToken("cat", "cat", "NOUN", 500, false, false)), "quiz-1", "Quiz One", "Q1")
+        quiz = AuditableQuiz("The cat sat on the mat.", List.of(new NlpToken("cat", "cat", "NOUN", 500, false, false)), "quiz-1", "Quiz One", "Q1", null)
         quizDiagnoses = DefaultQuizDiagnoses()
         sentenceDiagnosis = SentenceLengthDiagnosis(7, 5, 10, CefrLevel.A1, 0, 2)
         quizLemmaDiagnosis = LemmaPlacementDiagnosis(0, List.of())
@@ -8141,6 +8220,18 @@ patterns:
     nodeId: interface-refiner-domain-RefinementPlanStore
   confidence: 0.9
 - id: stereo-52
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: CorrectionContextResolver is a port
+  involvedElements:
+  - type: interface
+    moduleName: refiner-domain
+    elementName: CorrectionContextResolver
+    nodeId: interface-refiner-domain-CorrectionContextResolver
+  confidence: 0.9
+- id: stereo-53
   pattern: Enum
   category: architectural
   source: detected
@@ -8152,7 +8243,7 @@ patterns:
     elementName: DiagnosisKind
     nodeId: model-refiner-domain-DiagnosisKind
   confidence: 0.95
-- id: stereo-53
+- id: stereo-54
   pattern: Enum
   category: architectural
   source: detected
@@ -8164,7 +8255,7 @@ patterns:
     elementName: RefinementTaskStatus
     nodeId: model-refiner-domain-RefinementTaskStatus
   confidence: 0.95
-- id: stereo-54
+- id: stereo-55
   pattern: Entity
   category: architectural
   source: detected
@@ -8176,7 +8267,7 @@ patterns:
     elementName: RefinementTask
     nodeId: model-refiner-domain-RefinementTask
   confidence: 0.8
-- id: stereo-55
+- id: stereo-56
   pattern: Entity
   category: architectural
   source: detected
@@ -8188,7 +8279,31 @@ patterns:
     elementName: RefinementPlan
     nodeId: model-refiner-domain-RefinementPlan
   confidence: 0.8
-- id: stereo-56
+- id: stereo-57
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: SuggestedLemma is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: refiner-domain
+    elementName: SuggestedLemma
+    nodeId: model-refiner-domain-SuggestedLemma
+  confidence: 0.75
+- id: stereo-58
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: SentenceLengthCorrectionContext is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: refiner-domain
+    elementName: SentenceLengthCorrectionContext
+    nodeId: model-refiner-domain-SentenceLengthCorrectionContext
+  confidence: 0.75
+- id: stereo-59
   pattern: Service
   category: architectural
   source: detected
@@ -8200,7 +8315,7 @@ patterns:
     elementName: AuditRunner
     nodeId: interface-audit-application-AuditRunner
   confidence: 0.9
-- id: stereo-57
+- id: stereo-60
   pattern: Port
   category: architectural
   source: detected
@@ -8212,7 +8327,7 @@ patterns:
     elementName: CourseMapper
     nodeId: interface-audit-application-CourseMapper
   confidence: 0.9
-- id: stereo-58
+- id: stereo-61
   pattern: Service
   category: architectural
   source: detected
@@ -8224,7 +8339,7 @@ patterns:
     elementName: AnalyzerRegistry
     nodeId: interface-audit-application-AnalyzerRegistry
   confidence: 0.9
-- id: stereo-59
+- id: stereo-62
   pattern: Port
   category: architectural
   source: detected
@@ -8236,7 +8351,7 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: stereo-60
+- id: stereo-63
   pattern: Port
   category: architectural
   source: detected
@@ -8248,7 +8363,7 @@ patterns:
     elementName: AnalyzerListCommand
     nodeId: interface-audit-cli-AnalyzerListCommand
   confidence: 0.9
-- id: stereo-61
+- id: stereo-64
   pattern: Port
   category: architectural
   source: detected
@@ -8260,7 +8375,7 @@ patterns:
     elementName: AnalyzerConfigCommand
     nodeId: interface-audit-cli-AnalyzerConfigCommand
   confidence: 0.9
-- id: stereo-62
+- id: stereo-65
   pattern: Port
   category: architectural
   source: detected
@@ -8272,7 +8387,7 @@ patterns:
     elementName: AnalyzerStatsCommand
     nodeId: interface-audit-cli-AnalyzerStatsCommand
   confidence: 0.9
-- id: stereo-63
+- id: stereo-66
   pattern: Port
   category: architectural
   source: detected
@@ -8284,7 +8399,7 @@ patterns:
     elementName: RefinerPlanCommand
     nodeId: interface-audit-cli-RefinerPlanCommand
   confidence: 0.9
-- id: stereo-64
+- id: stereo-67
   pattern: Port
   category: architectural
   source: detected
@@ -8296,7 +8411,7 @@ patterns:
     elementName: RefinerNextCommand
     nodeId: interface-audit-cli-RefinerNextCommand
   confidence: 0.9
-- id: stereo-65
+- id: stereo-68
   pattern: Port
   category: architectural
   source: detected
@@ -8308,7 +8423,7 @@ patterns:
     elementName: RefinerListCommand
     nodeId: interface-audit-cli-RefinerListCommand
   confidence: 0.9
-- id: stereo-67
+- id: stereo-70
   pattern: Value Object
   category: architectural
   source: detected
@@ -8320,7 +8435,7 @@ patterns:
     elementName: NlpTokenizerConfig
     nodeId: model-nlp-infrastructure-NlpTokenizerConfig
   confidence: 0.75
-- id: anti-68
+- id: anti-71
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8332,7 +8447,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-69
+- id: anti-72
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8344,7 +8459,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: anti-70
+- id: anti-73
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8356,7 +8471,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: anti-71
+- id: anti-74
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8368,7 +8483,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: anti-72
+- id: anti-75
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8380,7 +8495,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: anti-73
+- id: anti-76
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8392,7 +8507,7 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: anti-74
+- id: anti-77
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8404,7 +8519,7 @@ patterns:
     elementName: NodeDiagnoses
     nodeId: interface-audit-domain-NodeDiagnoses
   confidence: 0.9
-- id: anti-75
+- id: anti-78
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8416,7 +8531,7 @@ patterns:
     elementName: CourseDiagnoses
     nodeId: interface-audit-domain-CourseDiagnoses
   confidence: 0.9
-- id: anti-76
+- id: anti-79
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8428,7 +8543,7 @@ patterns:
     elementName: LevelDiagnoses
     nodeId: interface-audit-domain-LevelDiagnoses
   confidence: 0.9
-- id: anti-77
+- id: anti-80
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8440,7 +8555,7 @@ patterns:
     elementName: TopicDiagnoses
     nodeId: interface-audit-domain-TopicDiagnoses
   confidence: 0.9
-- id: anti-78
+- id: anti-81
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8452,7 +8567,7 @@ patterns:
     elementName: KnowledgeDiagnoses
     nodeId: interface-audit-domain-KnowledgeDiagnoses
   confidence: 0.9
-- id: anti-79
+- id: anti-82
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8464,7 +8579,7 @@ patterns:
     elementName: QuizDiagnoses
     nodeId: interface-audit-domain-QuizDiagnoses
   confidence: 0.9
-- id: anti-80
+- id: anti-83
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -8476,7 +8591,7 @@ patterns:
     elementName: audit-domain
     nodeId: module-audit-domain
   confidence: 0.85
-- id: anti-81
+- id: anti-84
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -8488,7 +8603,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.8
-- id: anti-82
+- id: anti-85
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -8500,7 +8615,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.8
-- id: anti-83
+- id: anti-86
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8512,7 +8627,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-84
+- id: anti-87
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -8524,7 +8639,7 @@ patterns:
     elementName: course-domain
     nodeId: module-course-domain
   confidence: 0.85
-- id: anti-85
+- id: anti-88
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8536,7 +8651,7 @@ patterns:
     elementName: RefinerEngine
     nodeId: interface-refiner-domain-RefinerEngine
   confidence: 0.9
-- id: anti-86
+- id: anti-89
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -8548,7 +8663,7 @@ patterns:
     elementName: audit-application
     nodeId: module-audit-application
   confidence: 0.85
-- id: anti-87
+- id: anti-90
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8560,7 +8675,7 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: anti-88
+- id: anti-91
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8572,7 +8687,7 @@ patterns:
     elementName: AnalyzerListCommand
     nodeId: interface-audit-cli-AnalyzerListCommand
   confidence: 0.9
-- id: anti-89
+- id: anti-92
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8584,7 +8699,7 @@ patterns:
     elementName: AnalyzerConfigCommand
     nodeId: interface-audit-cli-AnalyzerConfigCommand
   confidence: 0.9
-- id: anti-90
+- id: anti-93
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8596,7 +8711,7 @@ patterns:
     elementName: AnalyzerStatsCommand
     nodeId: interface-audit-cli-AnalyzerStatsCommand
   confidence: 0.9
-- id: anti-91
+- id: anti-94
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8608,7 +8723,7 @@ patterns:
     elementName: RefinerPlanCommand
     nodeId: interface-audit-cli-RefinerPlanCommand
   confidence: 0.9
-- id: anti-92
+- id: anti-95
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8620,7 +8735,7 @@ patterns:
     elementName: RefinerNextCommand
     nodeId: interface-audit-cli-RefinerNextCommand
   confidence: 0.9
-- id: anti-93
+- id: anti-96
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -8632,7 +8747,7 @@ patterns:
     elementName: RefinerListCommand
     nodeId: interface-audit-cli-RefinerListCommand
   confidence: 0.9
-- id: anti-94
+- id: anti-97
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -8644,7 +8759,7 @@ patterns:
     elementName: audit-cli
     nodeId: module-audit-cli
   confidence: 0.85
-- id: anti-95
+- id: anti-98
   pattern: Orphan Interface
   category: anti-pattern
   source: detected

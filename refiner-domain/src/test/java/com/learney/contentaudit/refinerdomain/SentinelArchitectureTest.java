@@ -57,6 +57,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: RefinementPlan - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.refinerdomain.SuggestedLemma");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SuggestedLemma - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SentenceLengthCorrectionContext - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.refinerdomain.RefinerEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RefinerEngine - " + e.getMessage());
@@ -65,6 +75,16 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.refinerdomain.RefinementPlanStore");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RefinementPlanStore - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.CorrectionContextResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CorrectionContextResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.DefaultCorrectionContextResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultCorrectionContextResolver - " + e.getMessage());
     }
   }
 }

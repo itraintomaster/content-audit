@@ -47,7 +47,7 @@ public class LemmaAbsenceDetailedFormatterTest {
     }
 
     private AuditableQuiz quiz(String id) {
-        return new AuditableQuiz("sentence", List.of(), id, "label", null);
+        return new AuditableQuiz("sentence", List.of(), id, "label", null, null);
     }
 
     /**

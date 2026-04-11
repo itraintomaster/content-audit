@@ -244,7 +244,7 @@ public class MyAdapter implements MyPort {
 - `AuditableKnowledge` — quizzes: List<AuditableQuiz>, title: String, instructions: String, isSentence: boolean, id: String, label: String, code: String
 - `AuditableTopic` — knowledge: List<AuditableKnowledge>, id: String, label: String, code: String
 - `AuditableMilestone` — topics: List<AuditableTopic>, id: String, label: String, code: String
-- `AuditableQuiz` — sentence: String, tokens: List<NlpToken>, id: String, label: String, code: String
+- `AuditableQuiz` — sentence: String, tokens: List<NlpToken>, id: String, label: String, code: String, translation: String
 - `CefrLevel` [enum] — A1: null, A2: null, B1: null, B2: null
 - `TargetRange` — level: CefrLevel, minTokens: int, maxTokens: int
 - `AuditTarget` [enum] — QUIZ: null, KNOWLEDGE: null, TOPIC: null, MILESTONE: null, COURSE: null
@@ -395,16 +395,24 @@ Domain module for the refinement workflow. Defines the plan/task model and ports
 - `RefinementTaskStatus` [enum] — PENDING: null, COMPLETED: null, SKIPPED: null
 - `RefinementTask` — id: String, nodeTarget: AuditTarget, nodeId: String, nodeLabel: String, diagnosisKind: DiagnosisKind, priority: int, status: RefinementTaskStatus
 - `RefinementPlan` — id: String, sourceAuditId: String, createdAt: Instant, tasks: List<RefinementTask>
+- `SuggestedLemma` — lemma: String, pos: String, reason: String, cocaRank: Integer
+- `SentenceLengthCorrectionContext` — taskId: String, sentence: String, translation: String, knowledgeTitle: String, knowledgeInstructions: String, topicLabel: String, cefrLevel: CefrLevel, tokenCount: int, targetMin: int, targetMax: int, delta: int, suggestedLemmas: List<SuggestedLemma>
 
 **Interfaces (contracts):**
 
 - `RefinerEngine`
-  - `plan(AuditReport report): RefinementPlan`
+  - `plan(AuditReport report, String auditId): RefinementPlan`
   - `nextTask(RefinementPlan plan): Optional<RefinementTask>`
 - `RefinementPlanStore`
   - `save(RefinementPlan plan): String`
   - `load(String id): Optional<RefinementPlan>`
   - `loadLatest(): Optional<RefinementPlan>`
+- `CorrectionContextResolver`
+  - `resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>`
+
+**Implementations (your work):**
+
+- `DefaultCorrectionContextResolver` implements CorrectionContextResolver
 
 #### audit-application
 

@@ -56,6 +56,7 @@
 | id | `String` |
 | label | `String` |
 | code | `String` |
+| translation | `String` |
 
 ### CefrLevel (`enum`)
 
