@@ -1,10 +1,10 @@
-generatedAt: 2026-04-11T19:59:49.602323Z
+generatedAt: 2026-04-12T03:16:34.479181Z
 system: ContentAudit
 version: 0.0.1
 features:
 - id: FEAT-DLABS
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-04.01_typed-diagnostics-lemma-absence/requirement.yaml
+  requirementFile: requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DLABS-R001
     state: NO_TESTS
@@ -70,7 +70,7 @@ features:
     state: NO_TESTS
 - id: FEAT-LREC
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-28.01_lemma-recurrence/requirement.yaml
+  requirementFile: requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LREC-R001
     state: NO_TESTS
@@ -185,7 +185,7 @@ features:
     state: NO_TESTS
 - id: FEAT-DCOCA
   state: DRAFT
-  requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/requirement.yaml
+  requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DCOCA-R001
     state: NO_TESTS
@@ -208,7 +208,7 @@ features:
     state: NO_TESTS
 - id: FEAT-COURSE
   state: IMPLEMENTED
-  requirementFile: requirements/2026-03-15.01_course-structure/requirement.yaml
+  requirementFile: requirements/2026-03-15.01_course-structure/REQUIREMENT.md
   patchFile: requirements/2026-03-15.01_course-structure/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-COURSE-R001
@@ -450,7 +450,7 @@ features:
       implementation: FileSystemCourseRepository
 - id: FEAT-COCA
   state: DRAFT
-  requirementFile: requirements/2026-03-25.01_coca-buckets-distribution/requirement.yaml
+  requirementFile: requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COCA-R001
     state: NO_TESTS
@@ -535,7 +535,7 @@ features:
     state: NO_TESTS
 - id: FEAT-NLP
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-25.02_nlp-tokenizer-evolution/requirement.yaml
+  requirementFile: requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-NLP-R001
     state: NO_TESTS
@@ -632,7 +632,7 @@ features:
     state: NO_TESTS
 - id: FEAT-LABS
   state: IMPLEMENTED
-  requirementFile: requirements/2026-03-28.03_lemma-absence/requirement.yaml
+  requirementFile: requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LABS-R001
     state: PASSING
@@ -1515,7 +1515,7 @@ features:
       implementation: LemmaByLevelAbsenceAnalyzer
 - id: FEAT-CLI
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-21.01_cli-audit-runner/requirement.yaml
+  requirementFile: requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLI-R001
     state: PASSING
@@ -1594,7 +1594,7 @@ features:
     state: NO_TESTS
 - id: FEAT-KTLEN
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-22.01_knowledge-titles-length/requirement.yaml
+  requirementFile: requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-KTLEN-R001
     state: PASSING
@@ -1845,7 +1845,7 @@ features:
     state: NO_TESTS
 - id: FEAT-DSLEN
   state: DRAFT
-  requirementFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/requirement.yaml
+  requirementFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DSLEN-R001
     state: NO_TESTS
@@ -1860,7 +1860,7 @@ features:
     state: NO_TESTS
 - id: FEAT-SLEN
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-18.01_sentence-length/requirement.yaml
+  requirementFile: requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SLEN-R001
     state: PASSING
@@ -1991,7 +1991,7 @@ features:
     state: NO_TESTS
 - id: FEAT-LCOUNT
   state: DRAFT
-  requirementFile: requirements/2026-03-28.02_lemma-count/requirement.yaml
+  requirementFile: requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LCOUNT-R001
     state: NO_TESTS
@@ -2031,8 +2031,8 @@ features:
   - journeyId: F-LCOUNT-J005
     state: NO_TESTS
 - id: FEAT-RCSL
-  state: IMPLEMENTING
-  requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/requirement.yaml
+  state: IMPLEMENTED
+  requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCSL-R001
     state: PASSING
@@ -2169,11 +2169,127 @@ features:
       module: refiner-domain
       implementation: DefaultCorrectionContextResolver
   - ruleId: F-RCSL-R006
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should resolve correction context when task diagnosis is SENTENCE_LENGTH
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should not resolve correction context when task diagnosis is LEMMA_ABSENCE
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should not resolve correction context when task diagnosis is COCA_BUCKETS
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should not include correctionContext field in JSON output for LEMMA_ABSENCE
+        task
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should not include correction context section in text output for non SENTENCE_LENGTH
+        task
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
   - ruleId: F-RCSL-R007
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should include correctionContext object in JSON when context resolves
+        successfully
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should include sentence translation knowledgeTitle knowledgeInstructions
+        topicLabel and cefrLevel in JSON correctionContext
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should include targetRange with min and max and delta in JSON correctionContext
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should include suggestedLemmas array with lemma pos reason and cocaRank
+        in JSON correctionContext
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should set correctionContext to null and include correctionContextError
+        when audit report not found
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should set correctionContext to null and include correctionContextError
+        when sourceAuditId is blank
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should set correctionContext to null and include correctionContextError
+        when resolver returns empty
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should output empty suggestedLemmas array in JSON when context has no
+        suggested lemmas
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
   - ruleId: F-RCSL-R008
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should print correction context section with all fields in text format
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should print numbered suggested lemmas list with lemma pos reason and
+        COCA rank in text format
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should print none available for suggested lemmas when list is empty in
+        text format
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should format positive delta with plus sign in text output tokens line
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should format negative delta without plus sign in text output tokens line
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should print not available message with error reason when context cannot
+        be built in text format
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should print correction context section in table format for SENTENCE_LENGTH
+        task
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
   journeysCoverage:
   - journeyId: F-RCSL-J001
     state: PASSING
@@ -2184,6 +2300,33 @@ features:
       passing: true
       module: refiner-domain
       implementation: DefaultCorrectionContextResolver
+    - name: should resolve correction context when task diagnosis is SENTENCE_LENGTH
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should include correctionContext object in JSON when context resolves
+        successfully
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should set correctionContext to null and include correctionContextError
+        when audit report not found
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should print correction context section with all fields in text format
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should format positive delta with plus sign in text output tokens line
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
   - journeyId: F-RCSL-J002
     state: PASSING
     tests:
@@ -2193,6 +2336,11 @@ features:
       passing: true
       module: refiner-domain
       implementation: DefaultCorrectionContextResolver
+    - name: should format negative delta without plus sign in text output tokens line
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
   - journeyId: F-RCSL-J003
     state: PASSING
     tests:
@@ -2214,6 +2362,18 @@ features:
       passing: true
       module: refiner-domain
       implementation: DefaultCorrectionContextResolver
+    - name: should output empty suggestedLemmas array in JSON when context has no
+        suggested lemmas
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should print none available for suggested lemmas when list is empty in
+        text format
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
 elements:
 - module: audit-domain
   status: EXISTS
@@ -7831,6 +7991,658 @@ elements:
   - name: RefinerNextCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmd.java
+    tests:
+    - name: should resolve correction context when task diagnosis is SENTENCE_LENGTH
+      status: MISSING
+    - name: should not resolve correction context when task diagnosis is LEMMA_ABSENCE
+      status: MISSING
+    - name: should not resolve correction context when task diagnosis is COCA_BUCKETS
+      status: MISSING
+    - name: should not include correctionContext field in JSON output for LEMMA_ABSENCE
+        task
+      status: MISSING
+    - name: should not include correction context section in text output for non SENTENCE_LENGTH
+        task
+      status: MISSING
+    - name: should include correctionContext object in JSON when context resolves
+        successfully
+      status: MISSING
+    - name: should include sentence translation knowledgeTitle knowledgeInstructions
+        topicLabel and cefrLevel in JSON correctionContext
+      status: MISSING
+    - name: should include targetRange with min and max and delta in JSON correctionContext
+      status: MISSING
+    - name: should include suggestedLemmas array with lemma pos reason and cocaRank
+        in JSON correctionContext
+      status: MISSING
+    - name: should set correctionContext to null and include correctionContextError
+        when audit report not found
+      status: MISSING
+    - name: should set correctionContext to null and include correctionContextError
+        when sourceAuditId is blank
+      status: MISSING
+    - name: should set correctionContext to null and include correctionContextError
+        when resolver returns empty
+      status: MISSING
+    - name: should output empty suggestedLemmas array in JSON when context has no
+        suggested lemmas
+      status: MISSING
+    - name: should print correction context section with all fields in text format
+      status: MISSING
+    - name: should print numbered suggested lemmas list with lemma pos reason and
+        COCA rank in text format
+      status: MISSING
+    - name: should print none available for suggested lemmas when list is empty in
+        text format
+      status: MISSING
+    - name: should format positive delta with plus sign in text output tokens line
+      status: MISSING
+    - name: should format negative delta without plus sign in text output tokens line
+      status: MISSING
+    - name: should print not available message with error reason when context cannot
+        be built in text format
+      status: MISSING
+    - name: should print correction context section in table format for SENTENCE_LENGTH
+        task
+      status: MISSING
+    testCleanViews:
+    - |
+      test: "should resolve correction context when task diagnosis is SENTENCE_LENGTH"
+      trace: FEAT-RCSL / F-RCSL-R006 / F-RCSL-J001
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-001", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        context = SentenceLengthCorrectionContext("task-001", "She plays tennis every day.", "Ella juega tenis todos los dias.", "Present Simple Affirmative", "Write the affirmative form.", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.next("plan-001")
+
+      then:
+        verify: resolver.resolve(report, task)
+    - |
+      test: "should not resolve correction context when task diagnosis is LEMMA_ABSENCE"
+      trace: FEAT-RCSL / F-RCSL-R006
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-002", DiagnosisKind.LEMMA_ABSENCE)
+        plan = buildPlan("audit-001", task)
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+
+      when:
+        sut.next("plan-001")
+
+      then:
+        verify: reportStore.load(any()) x 0
+        verify: resolver.resolve(any(), any()) x 0
+    - |
+      test: "should not resolve correction context when task diagnosis is COCA_BUCKETS"
+      trace: FEAT-RCSL / F-RCSL-R006
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-003", DiagnosisKind.COCA_BUCKETS)
+        plan = buildPlan("audit-001", task)
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+
+      when:
+        sut.next("plan-001")
+
+      then:
+        verify: reportStore.load(any()) x 0
+        verify: resolver.resolve(any(), any()) x 0
+    - |
+      test: "should not include correctionContext field in JSON output for LEMMA_ABSENCE task"
+      trace: FEAT-RCSL / F-RCSL-R006
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-004", DiagnosisKind.LEMMA_ABSENCE)
+        plan = buildPlan("audit-001", task)
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        output = outContent.toString()
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        output.contains("correctionContext") is false
+    - |
+      test: "should not include correction context section in text output for non SENTENCE_LENGTH task"
+      trace: FEAT-RCSL / F-RCSL-R006
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-005", DiagnosisKind.LEMMA_ABSENCE)
+        plan = buildPlan("audit-001", task)
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        output = outContent.toString()
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        output.contains("Correction context") is false
+        output.contains("LEMMA_ABSENCE") is true
+    - |
+      test: "should include correctionContext object in JSON when context resolves successfully"
+      trace: FEAT-RCSL / F-RCSL-R007 / F-RCSL-J001
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        root = ObjectMapper().readTree(outContent.toString())
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        root.has("correctionContext") is true
+        root.get("correctionContext").isNull() is false
+        root.get("correctionContext").isObject() is true
+        root.has("correctionContextError") is false
+    - |
+      test: "should include sentence translation knowledgeTitle knowledgeInstructions topicLabel and cefrLevel in JSON correctionContext"
+      trace: FEAT-RCSL / F-RCSL-R007
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        ctx = ObjectMapper().readTree(outContent.toString()).get("correctionContext")
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        ctx.get("sentence").asText() == "She plays tennis every afternoon with her friends"
+        ctx.get("translation").asText() == "Ella juega tenis todas las tardes con sus amigas"
+        ctx.get("knowledgeTitle").asText() == "Affirmative sentences in the present simple"
+        ctx.get("knowledgeInstructions").asText() == "Escribe la forma afirmativa"
+        ctx.get("topicLabel").asText() == "Present Simple"
+        ctx.get("cefrLevel").asText() == "A1"
+    - |
+      test: "should include targetRange with min and max and delta in JSON correctionContext"
+      trace: FEAT-RCSL / F-RCSL-R007
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        ctx = ObjectMapper().readTree(outContent.toString()).get("correctionContext")
+        targetRange = ctx.get("targetRange")
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        ctx.get("tokenCount").asInt() == 15
+        ctx.get("delta").asInt() == 7
+        targetRange is not null
+        targetRange.isObject() is true
+        targetRange.get("min").asInt() == 5
+        targetRange.get("max").asInt() == 8
+    - |
+      test: "should include suggestedLemmas array with lemma pos reason and cocaRank in JSON correctionContext"
+      trace: FEAT-RCSL / F-RCSL-R007
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        lemmas = List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52), new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89), new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201))
+        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, lemmas)
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        suggestedLemmas = ObjectMapper().readTree(outContent.toString()).get("correctionContext").get("suggestedLemmas")
+        first = suggestedLemmas.get(0)
+        second = suggestedLemmas.get(1)
+        third = suggestedLemmas.get(2)
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        suggestedLemmas is not null
+        suggestedLemmas.isArray() is true
+        suggestedLemmas.size() == 3
+        first.get("lemma").asText() == "like"
+        first.get("pos").asText() == "VERB"
+        first.get("reason").asText() == "COMPLETELY_ABSENT"
+        first.get("cocaRank").asInt() == 52
+        second.get("lemma").asText() == "want"
+        second.get("pos").asText() == "VERB"
+        second.get("reason").asText() == "APPEARS_TOO_LATE"
+        second.get("cocaRank").asInt() == 89
+        third.get("lemma").asText() == "big"
+        third.get("pos").asText() == "ADJ"
+        third.get("reason").asText() == "COMPLETELY_ABSENT"
+        third.get("cocaRank").asInt() == 201
+    - |
+      test: "should set correctionContext to null and include correctionContextError when audit report not found"
+      trace: FEAT-RCSL / F-RCSL-R007 / F-RCSL-J001
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("audit-missing", task)
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        root = ObjectMapper().readTree(outContent.toString())
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-missing") -> Optional.empty()
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        root.has("correctionContext") is true
+        root.get("correctionContext").isNull() is true
+        root.has("correctionContextError") is true
+        root.get("correctionContextError").asText().isBlank() is false
+    - |
+      test: "should set correctionContext to null and include correctionContextError when sourceAuditId is blank"
+      trace: FEAT-RCSL / F-RCSL-R007
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("", task)
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        root = ObjectMapper().readTree(outContent.toString())
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        root.has("correctionContext") is true
+        root.get("correctionContext").isNull() is true
+        root.has("correctionContextError") is true
+        root.get("correctionContextError").asText().isBlank() is false
+    - |
+      test: "should set correctionContext to null and include correctionContextError when resolver returns empty"
+      trace: FEAT-RCSL / F-RCSL-R007
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        root = ObjectMapper().readTree(outContent.toString())
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.empty()
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        root.has("correctionContext") is true
+        root.get("correctionContext").isNull() is true
+        root.has("correctionContextError") is true
+        root.get("correctionContextError").asText().isBlank() is false
+    - |
+      test: "should output empty suggestedLemmas array in JSON when context has no suggested lemmas"
+      trace: FEAT-RCSL / F-RCSL-R007 / F-RCSL-J003
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        suggestedLemmas = ObjectMapper().readTree(outContent.toString()).get("correctionContext").get("suggestedLemmas")
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        suggestedLemmas is not null
+        suggestedLemmas.isArray() is true
+        suggestedLemmas.size() == 0
+    - |
+      test: "should print correction context section with all fields in text format"
+      trace: FEAT-RCSL / F-RCSL-R008 / F-RCSL-J001
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        output = outContent.toString()
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        output.contains("Correction context:") is true
+        output.contains("Sentence:") is true
+        output.contains("She plays tennis every afternoon with her friends") is true
+        output.contains("Translation:") is true
+        output.contains("Ella juega tenis todas las tardes con sus amigas") is true
+        output.contains("Knowledge:") is true
+        output.contains("Affirmative sentences in the present simple") is true
+        output.contains("Instructions:") is true
+        output.contains("Escribe la forma afirmativa") is true
+        output.contains("Topic:") is true
+        output.contains("Present Simple") is true
+        output.contains("CEFR Level:") is true
+        output.contains("A1") is true
+        output.contains("Tokens:") is true
+        output.contains("15 (target: 5-8, delta: +7)") is true
+        output.contains("Suggested lemmas:") is true
+    - |
+      test: "should print numbered suggested lemmas list with lemma pos reason and COCA rank in text format"
+      trace: FEAT-RCSL / F-RCSL-R008
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        lemmas = List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52), new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89), new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201))
+        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, lemmas)
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        output = outContent.toString()
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        output.contains("1. like (VERB) - COMPLETELY_ABSENT [COCA #52]") is true
+        output.contains("2. want (VERB) - APPEARS_TOO_LATE [COCA #89]") is true
+        output.contains("3. big (ADJ) - COMPLETELY_ABSENT [COCA #201]") is true
+    - |
+      test: "should print none available for suggested lemmas when list is empty in text format"
+      trace: FEAT-RCSL / F-RCSL-R008 / F-RCSL-J003
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        output = outContent.toString()
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        output.contains("Suggested lemmas:") is true
+        output.contains("(none available)") is true
+    - |
+      test: "should format positive delta with plus sign in text output tokens line"
+      trace: FEAT-RCSL / F-RCSL-R008 / F-RCSL-J001
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        output = outContent.toString()
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        output.contains("delta: +7") is true
+    - |
+      test: "should format negative delta without plus sign in text output tokens line"
+      trace: FEAT-RCSL / F-RCSL-R008 / F-RCSL-J002
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        context = SentenceLengthCorrectionContext("task-014", "She plays", "Ella juega", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 5, 8, 12, -3, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        output = outContent.toString()
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        output.contains("delta: -3") is true
+        output.contains("delta: +-3") is false
+    - |
+      test: "should print not available message with error reason when context cannot be built in text format"
+      trace: FEAT-RCSL / F-RCSL-R008
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        output = outContent.toString()
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.empty()
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        output.contains("Correction context: not available") is true
+        output.contains("context could not be resolved for task task-014") is true
+    - |
+      test: "should print correction context section in table format for SENTENCE_LENGTH task"
+      trace: FEAT-RCSL / F-RCSL-R008
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "table")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        output = outContent.toString()
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        output.contains("SENTENCE_LENGTH") is true
+        output.contains("Correction context:") is true
+        output.contains("Sentence:") is true
+        output.contains("She plays tennis every afternoon with her friends") is true
+        output.contains("15 (target: 5-8, delta: +7)") is true
   - name: RefinerListCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RefinerListCmd.java
@@ -8263,10 +9075,10 @@ elements:
     status: EXISTS
     filePath: audit-infrastructure/src/main/java/com/learney/contentaudit/auditinfrastructure/FileSystemRefinementPlanStore.java
 testSummary:
-  total: 299
+  total: 319
   passing: 59
   failing: 0
-  notImplemented: 240
+  notImplemented: 260
 patterns:
 - id: declared-1
   pattern: Strategy

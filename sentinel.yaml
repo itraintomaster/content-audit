@@ -3633,6 +3633,129 @@ modules:
         type: CorrectionContextResolver
       types:
       - Component
+      handwrittenTests:
+      - name: should resolve correction context when task diagnosis is SENTENCE_LENGTH
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R006
+          journey: F-RCSL-J001
+        _change: add
+      - name: should not resolve correction context when task diagnosis is LEMMA_ABSENCE
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R006
+        _change: add
+      - name: should not resolve correction context when task diagnosis is COCA_BUCKETS
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R006
+        _change: add
+      - name: should not include correctionContext field in JSON output for LEMMA_ABSENCE
+          task
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R006
+        _change: add
+      - name: should not include correction context section in text output for non
+          SENTENCE_LENGTH task
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R006
+        _change: add
+      - name: should include correctionContext object in JSON when context resolves
+          successfully
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R007
+          journey: F-RCSL-J001
+        _change: add
+      - name: should include sentence translation knowledgeTitle knowledgeInstructions
+          topicLabel and cefrLevel in JSON correctionContext
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R007
+        _change: add
+      - name: should include targetRange with min and max and delta in JSON correctionContext
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R007
+        _change: add
+      - name: should include suggestedLemmas array with lemma pos reason and cocaRank
+          in JSON correctionContext
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R007
+        _change: add
+      - name: should set correctionContext to null and include correctionContextError
+          when audit report not found
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R007
+          journey: F-RCSL-J001
+        _change: add
+      - name: should set correctionContext to null and include correctionContextError
+          when sourceAuditId is blank
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R007
+        _change: add
+      - name: should set correctionContext to null and include correctionContextError
+          when resolver returns empty
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R007
+        _change: add
+      - name: should output empty suggestedLemmas array in JSON when context has no
+          suggested lemmas
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R007
+          journey: F-RCSL-J003
+        _change: add
+      - name: should print correction context section with all fields in text format
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R008
+          journey: F-RCSL-J001
+        _change: add
+      - name: should print numbered suggested lemmas list with lemma pos reason and
+          COCA rank in text format
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R008
+        _change: add
+      - name: should print none available for suggested lemmas when list is empty
+          in text format
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R008
+          journey: F-RCSL-J003
+        _change: add
+      - name: should format positive delta with plus sign in text output tokens line
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R008
+          journey: F-RCSL-J001
+        _change: add
+      - name: should format negative delta without plus sign in text output tokens
+          line
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R008
+          journey: F-RCSL-J002
+        _change: add
+      - name: should print not available message with error reason when context cannot
+          be built in text format
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R008
+        _change: add
+      - name: should print correction context section in table format for SENTENCE_LENGTH
+          task
+        traceability:
+          feature: FEAT-RCSL
+          rule: F-RCSL-R008
+        _change: add
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:

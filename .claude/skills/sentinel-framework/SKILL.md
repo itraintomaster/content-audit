@@ -13,7 +13,7 @@ globs:
   - "**/*SentinelTest.java"
   - "**/*SentinelArchitectureTest.java"
   - "**/module-info.java"
-  - "requirements/**/requirement.yaml"
+  - "requirements/**/REQUIREMENT.md"
   - "requirements/**/architectural_patch.yaml"
 resources:
   - resources/01-modules.md

@@ -102,16 +102,6 @@ Write the implementation code. For each implementation class:
 3. Add framework annotations if declared (`@Service`, `@Repository`, etc.)
 4. Satisfy the business rules and pass the tests
 
-### Implementing Handwritten Tests
-
-When implementing `handwrittenTests` declared in `sentinel.yaml`:
-
-1. **The stubs already exist** — `sentinel generate` created them. Do NOT create new test files or methods.
-2. Find the generated test class in `src/test/java/` of the module. The class name is `{Implementation}Test.java`.
-3. Implement the body of each existing method (replace the `throw new UnsupportedOperationException("Not implemented yet")`).
-4. **Never rename the methods.** The Java method name is canonical — Sentinel derives it from the test name in `sentinel.yaml`. If you rename it, `sentinel generate` will reinsert a duplicate stub, causing `@Test is not a repeatable annotation` compilation errors.
-5. Do not modify the `@DisplayName`, `@Tag`, or `@Test` annotations that Sentinel generated.
-
 ### Step 5 → Verify
 
 After implementing, compile and test:
@@ -185,6 +175,7 @@ If you find yourself writing any of these patterns, STOP and emit an ESCALATION 
 - You do NOT return dummy/placeholder implementations when you lack access to required types
 - You do NOT create in-memory alternatives to avoid importing restricted packages
 - You do NOT implement partial/degraded functionality with TODO comments about needing architecture changes
+- You do NOT implement `handwrittenTests` — that's the test-writer agent's job (`@test-writer`). If asked to implement handwritten test stubs, delegate to `@test-writer`.
 
 ---
 

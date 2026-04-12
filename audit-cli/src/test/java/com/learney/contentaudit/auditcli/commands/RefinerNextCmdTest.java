@@ -1,0 +1,996 @@
+package com.learney.contentaudit.auditcli.commands;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.RefinerEngine;
+import com.learney.contentaudit.refinerdomain.RefinementPlan;
+import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
+import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.lang.reflect.Field;
+import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+public class RefinerNextCmdTest {
+
+    // ── Helper methods ──────────────────────────────────────────────────────
+
+    private RefinerNextCmd buildCmd(RefinementPlanStore planStore, RefinerEngine refinerEngine,
+            AuditReportStore reportStore, CorrectionContextResolver resolver, String format)
+            throws Exception {
+        RefinerNextCmd cmd = new RefinerNextCmd(planStore, refinerEngine, reportStore, resolver);
+        Field formatField = RefinerNextCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, format);
+        return cmd;
+    }
+
+    private RefinementTask buildTask(String id, DiagnosisKind diagnosisKind) {
+        return new RefinementTask(id, AuditTarget.QUIZ, "quiz-node-001", "Quiz 1 - L1.T1.K1",
+                diagnosisKind, 1, RefinementTaskStatus.PENDING);
+    }
+
+    private RefinementPlan buildPlan(String sourceAuditId, RefinementTask task) {
+        return new RefinementPlan("plan-001", sourceAuditId, Instant.now(), List.of(task));
+    }
+
+    @Test
+    @DisplayName("should resolve correction context when task diagnosis is SENTENCE_LENGTH")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R006")
+    @Tag("F-RCSL-J001")
+    public void shouldResolveCorrectionContextWhenTaskDiagnosisIsSENTENCELENGTH() throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-001", DiagnosisKind.SENTENCE_LENGTH);
+        RefinementPlan plan = buildPlan("audit-001", task);
+
+        AuditReport report = new AuditReport(null);
+        SentenceLengthCorrectionContext context = new SentenceLengthCorrectionContext(
+                "task-001", "She plays tennis every day.", "Ella juega tenis todos los dias.",
+                "Present Simple Affirmative", "Write the affirmative form.", "Present Simple",
+                CefrLevel.A1, 15, 5, 8, 7, List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        // Act
+        cmd.next("plan-001");
+
+        // Assert — the resolver was called because the task is SENTENCE_LENGTH
+        verify(resolver).resolve(report, task);
+    }
+
+    @Test
+    @DisplayName("should not resolve correction context when task diagnosis is LEMMA_ABSENCE")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R006")
+    public void shouldNotResolveCorrectionContextWhenTaskDiagnosisIsLEMMAABSENCE() throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-002", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = buildPlan("audit-001", task);
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        // Act
+        cmd.next("plan-001");
+
+        // Assert — neither the report store nor the resolver should be consulted for non-SENTENCE_LENGTH tasks
+        verify(reportStore, never()).load(any());
+        verify(resolver, never()).resolve(any(), any());
+    }
+
+    @Test
+    @DisplayName("should not resolve correction context when task diagnosis is COCA_BUCKETS")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R006")
+    public void shouldNotResolveCorrectionContextWhenTaskDiagnosisIsCOCABUCKETS() throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-003", DiagnosisKind.COCA_BUCKETS);
+        RefinementPlan plan = buildPlan("audit-001", task);
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        // Act
+        cmd.next("plan-001");
+
+        // Assert — neither the report store nor the resolver should be consulted for non-SENTENCE_LENGTH tasks
+        verify(reportStore, never()).load(any());
+        verify(resolver, never()).resolve(any(), any());
+    }
+
+    @Test
+    @DisplayName("should not include correctionContext field in JSON output for LEMMA_ABSENCE task")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R006")
+    public void shouldNotIncludeCorrectionContextFieldInJSONOutputForLEMMAABSENCETask() throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-004", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = buildPlan("audit-001", task);
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — JSON output must not contain a correctionContext key for LEMMA_ABSENCE tasks
+        String output = outContent.toString();
+        assertFalse(output.contains("correctionContext"),
+                "JSON output should not contain 'correctionContext' for LEMMA_ABSENCE task, but got: " + output);
+    }
+
+    @Test
+    @DisplayName("should not include correction context section in text output for non SENTENCE_LENGTH task")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R006")
+    public void shouldNotIncludeCorrectionContextSectionInTextOutputForNonSENTENCELENGTHTask() throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-005", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = buildPlan("audit-001", task);
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — text output must not contain the correction context section header
+        String output = outContent.toString();
+        assertFalse(output.contains("Correction context"),
+                "Text output should not contain 'Correction context' section for LEMMA_ABSENCE task, but got: " + output);
+        // Verify the basic task data is still present
+        assertTrue(output.contains("LEMMA_ABSENCE"),
+                "Text output should still show the diagnosis kind, but got: " + output);
+    }
+
+    @Test
+    @DisplayName("should include correctionContext object in JSON when context resolves successfully")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    @Tag("F-RCSL-J001")
+    public void shouldIncludeCorrectionContextObjectInJSONWhenContextResolvesSuccessfully()
+            throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+        // tokenCount=15, targetMin=5, targetMax=8, delta=7 (15 exceeds max 8 by 7)
+        SentenceLengthCorrectionContext context = new SentenceLengthCorrectionContext(
+                "task-014",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 15, 5, 8, 7, List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — correctionContext must be a non-null JSON object; no error field present
+        JsonNode root = new ObjectMapper().readTree(outContent.toString());
+        assertTrue(root.has("correctionContext"),
+                "JSON output must contain a correctionContext field");
+        assertFalse(root.get("correctionContext").isNull(),
+                "correctionContext must not be null when context resolves successfully");
+        assertTrue(root.get("correctionContext").isObject(),
+                "correctionContext must be a JSON object");
+        assertFalse(root.has("correctionContextError"),
+                "correctionContextError must not be present when context resolves successfully");
+    }
+
+    @Test
+    @DisplayName("should include sentence translation knowledgeTitle knowledgeInstructions topicLabel and cefrLevel in JSON correctionContext")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    public void shouldIncludeSentenceTranslationKnowledgeTitleKnowledgeInstructionsTopicLabelAndCefrLevelInJSONCorrectionContext(
+            ) throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+        SentenceLengthCorrectionContext context = new SentenceLengthCorrectionContext(
+                "task-014",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 15, 5, 8, 7, List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — all string fields from R001/R007 are present in correctionContext
+        JsonNode ctx = new ObjectMapper().readTree(outContent.toString()).get("correctionContext");
+        assertEquals("She plays tennis every afternoon with her friends",
+                ctx.get("sentence").asText());
+        assertEquals("Ella juega tenis todas las tardes con sus amigas",
+                ctx.get("translation").asText());
+        assertEquals("Affirmative sentences in the present simple",
+                ctx.get("knowledgeTitle").asText());
+        assertEquals("Escribe la forma afirmativa",
+                ctx.get("knowledgeInstructions").asText());
+        assertEquals("Present Simple", ctx.get("topicLabel").asText());
+        assertEquals("A1", ctx.get("cefrLevel").asText());
+    }
+
+    @Test
+    @DisplayName("should include targetRange with min and max and delta in JSON correctionContext")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    public void shouldIncludeTargetRangeWithMinAndMaxAndDeltaInJSONCorrectionContext() throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+        // tokenCount=15, targetMin=5, targetMax=8, delta=7: sentence has 15 tokens, max is 8, so 7 above
+        SentenceLengthCorrectionContext context = new SentenceLengthCorrectionContext(
+                "task-014",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 15, 5, 8, 7, List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — tokenCount, delta, and nested targetRange{min,max} match the fixture values
+        JsonNode ctx = new ObjectMapper().readTree(outContent.toString()).get("correctionContext");
+        assertEquals(15, ctx.get("tokenCount").asInt());
+        assertEquals(7, ctx.get("delta").asInt());
+        JsonNode targetRange = ctx.get("targetRange");
+        assertNotNull(targetRange, "targetRange must be present in correctionContext");
+        assertTrue(targetRange.isObject(), "targetRange must be a JSON object");
+        assertEquals(5, targetRange.get("min").asInt());
+        assertEquals(8, targetRange.get("max").asInt());
+    }
+
+    @Test
+    @DisplayName("should include suggestedLemmas array with lemma pos reason and cocaRank in JSON correctionContext")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    public void shouldIncludeSuggestedLemmasArrayWithLemmaPosReasonAndCocaRankInJSONCorrectionContext(
+            ) throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+        List<SuggestedLemma> lemmas = List.of(
+                new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52),
+                new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89),
+                new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201));
+        SentenceLengthCorrectionContext context = new SentenceLengthCorrectionContext(
+                "task-014",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 15, 5, 8, 7, lemmas);
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — suggestedLemmas array has 3 elements matching the R007 example exactly
+        JsonNode suggestedLemmas = new ObjectMapper().readTree(outContent.toString())
+                .get("correctionContext").get("suggestedLemmas");
+        assertNotNull(suggestedLemmas, "suggestedLemmas must be present");
+        assertTrue(suggestedLemmas.isArray(), "suggestedLemmas must be a JSON array");
+        assertEquals(3, suggestedLemmas.size());
+
+        JsonNode first = suggestedLemmas.get(0);
+        assertEquals("like", first.get("lemma").asText());
+        assertEquals("VERB", first.get("pos").asText());
+        assertEquals("COMPLETELY_ABSENT", first.get("reason").asText());
+        assertEquals(52, first.get("cocaRank").asInt());
+
+        JsonNode second = suggestedLemmas.get(1);
+        assertEquals("want", second.get("lemma").asText());
+        assertEquals("VERB", second.get("pos").asText());
+        assertEquals("APPEARS_TOO_LATE", second.get("reason").asText());
+        assertEquals(89, second.get("cocaRank").asInt());
+
+        JsonNode third = suggestedLemmas.get(2);
+        assertEquals("big", third.get("lemma").asText());
+        assertEquals("ADJ", third.get("pos").asText());
+        assertEquals("COMPLETELY_ABSENT", third.get("reason").asText());
+        assertEquals(201, third.get("cocaRank").asInt());
+    }
+
+    @Test
+    @DisplayName("should set correctionContext to null and include correctionContextError when audit report not found")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    @Tag("F-RCSL-J001")
+    public void shouldSetCorrectionContextToNullAndIncludeCorrectionContextErrorWhenAuditReportNotFound(
+            ) throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH);
+        // Plan refers to "audit-missing" which does not exist in the store
+        RefinementPlan plan = buildPlan("audit-missing", task);
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-missing")).thenReturn(Optional.empty());
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — correctionContext is null and correctionContextError carries the reason
+        JsonNode root = new ObjectMapper().readTree(outContent.toString());
+        assertTrue(root.has("correctionContext"),
+                "correctionContext field must be present even when null");
+        assertTrue(root.get("correctionContext").isNull(),
+                "correctionContext must be null when audit report is not found");
+        assertTrue(root.has("correctionContextError"),
+                "correctionContextError must be present when audit report is not found");
+        assertFalse(root.get("correctionContextError").asText().isBlank(),
+                "correctionContextError message must not be blank");
+    }
+
+    @Test
+    @DisplayName("should set correctionContext to null and include correctionContextError when sourceAuditId is blank")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    public void shouldSetCorrectionContextToNullAndIncludeCorrectionContextErrorWhenSourceAuditIdIsBlank(
+            ) throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH);
+        // Plan with blank sourceAuditId — no audit report can be loaded
+        RefinementPlan plan = buildPlan("", task);
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — correctionContext is null and correctionContextError explains the blank sourceAuditId
+        JsonNode root = new ObjectMapper().readTree(outContent.toString());
+        assertTrue(root.has("correctionContext"),
+                "correctionContext field must be present even when null");
+        assertTrue(root.get("correctionContext").isNull(),
+                "correctionContext must be null when sourceAuditId is blank");
+        assertTrue(root.has("correctionContextError"),
+                "correctionContextError must be present when sourceAuditId is blank");
+        assertFalse(root.get("correctionContextError").asText().isBlank(),
+                "correctionContextError message must not be blank");
+    }
+
+    @Test
+    @DisplayName("should set correctionContext to null and include correctionContextError when resolver returns empty")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    public void shouldSetCorrectionContextToNullAndIncludeCorrectionContextErrorWhenResolverReturnsEmpty(
+            ) throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        // Resolver cannot build the context for this task
+        when(resolver.resolve(report, task)).thenReturn(Optional.empty());
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — correctionContext is null and correctionContextError carries the reason
+        JsonNode root = new ObjectMapper().readTree(outContent.toString());
+        assertTrue(root.has("correctionContext"),
+                "correctionContext field must be present even when null");
+        assertTrue(root.get("correctionContext").isNull(),
+                "correctionContext must be null when resolver returns empty");
+        assertTrue(root.has("correctionContextError"),
+                "correctionContextError must be present when resolver returns empty");
+        assertFalse(root.get("correctionContextError").asText().isBlank(),
+                "correctionContextError message must not be blank");
+    }
+
+    @Test
+    @DisplayName("should output empty suggestedLemmas array in JSON when context has no suggested lemmas")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    @Tag("F-RCSL-J003")
+    public void shouldOutputEmptySuggestedLemmasArrayInJSONWhenContextHasNoSuggestedLemmas()
+            throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+        // Context with empty suggested lemmas list (R004 scenario: no lemmas available)
+        SentenceLengthCorrectionContext context = new SentenceLengthCorrectionContext(
+                "task-014",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 15, 5, 8, 7, List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — suggestedLemmas is an empty array, not null or absent
+        JsonNode suggestedLemmas = new ObjectMapper().readTree(outContent.toString())
+                .get("correctionContext").get("suggestedLemmas");
+        assertNotNull(suggestedLemmas, "suggestedLemmas must be present in correctionContext");
+        assertTrue(suggestedLemmas.isArray(), "suggestedLemmas must be a JSON array");
+        assertEquals(0, suggestedLemmas.size(),
+                "suggestedLemmas array must be empty when context has no suggested lemmas");
+    }
+
+    @Test
+    @DisplayName("should print correction context section with all fields in text format")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R008")
+    @Tag("F-RCSL-J001")
+    public void shouldPrintCorrectionContextSectionWithAllFieldsInTextFormat() throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        SentenceLengthCorrectionContext context = new SentenceLengthCorrectionContext(
+                "task-014",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                15, 5, 8, 7,
+                List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — all labeled fields from R008 format example are present
+        String output = outContent.toString();
+        assertTrue(output.contains("Correction context:"), "output missing 'Correction context:' header");
+        assertTrue(output.contains("Sentence:"), "output missing 'Sentence:' label");
+        assertTrue(output.contains("She plays tennis every afternoon with her friends"),
+                "output missing sentence value");
+        assertTrue(output.contains("Translation:"), "output missing 'Translation:' label");
+        assertTrue(output.contains("Ella juega tenis todas las tardes con sus amigas"),
+                "output missing translation value");
+        assertTrue(output.contains("Knowledge:"), "output missing 'Knowledge:' label");
+        assertTrue(output.contains("Affirmative sentences in the present simple"),
+                "output missing knowledgeTitle value");
+        assertTrue(output.contains("Instructions:"), "output missing 'Instructions:' label");
+        assertTrue(output.contains("Escribe la forma afirmativa"), "output missing instructions value");
+        assertTrue(output.contains("Topic:"), "output missing 'Topic:' label");
+        assertTrue(output.contains("Present Simple"), "output missing topicLabel value");
+        assertTrue(output.contains("CEFR Level:"), "output missing 'CEFR Level:' label");
+        assertTrue(output.contains("A1"), "output missing cefrLevel value");
+        assertTrue(output.contains("Tokens:"), "output missing 'Tokens:' label");
+        assertTrue(output.contains("15 (target: 5-8, delta: +7)"), "output missing tokens line");
+        assertTrue(output.contains("Suggested lemmas:"), "output missing 'Suggested lemmas:' label");
+    }
+
+    @Test
+    @DisplayName("should print numbered suggested lemmas list with lemma pos reason and COCA rank in text format")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R008")
+    public void shouldPrintNumberedSuggestedLemmasListWithLemmaPosReasonAndCOCARankInTextFormat() throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        List<SuggestedLemma> lemmas = List.of(
+                new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52),
+                new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89),
+                new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201));
+
+        SentenceLengthCorrectionContext context = new SentenceLengthCorrectionContext(
+                "task-014",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                15, 5, 8, 7,
+                lemmas);
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — each lemma appears numbered with lemma, POS, reason, and COCA rank
+        String output = outContent.toString();
+        assertTrue(output.contains("1. like (VERB) - COMPLETELY_ABSENT [COCA #52]"),
+                "output missing first numbered lemma entry");
+        assertTrue(output.contains("2. want (VERB) - APPEARS_TOO_LATE [COCA #89]"),
+                "output missing second numbered lemma entry");
+        assertTrue(output.contains("3. big (ADJ) - COMPLETELY_ABSENT [COCA #201]"),
+                "output missing third numbered lemma entry");
+    }
+
+    @Test
+    @DisplayName("should print none available for suggested lemmas when list is empty in text format")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R008")
+    @Tag("F-RCSL-J003")
+    public void shouldPrintNoneAvailableForSuggestedLemmasWhenListIsEmptyInTextFormat() throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        SentenceLengthCorrectionContext context = new SentenceLengthCorrectionContext(
+                "task-014",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                15, 5, 8, 7,
+                List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — "(none available)" appears under "Suggested lemmas:" when list is empty
+        String output = outContent.toString();
+        assertTrue(output.contains("Suggested lemmas:"), "output missing 'Suggested lemmas:' label");
+        assertTrue(output.contains("(none available)"),
+                "output should show '(none available)' when suggested lemmas list is empty");
+    }
+
+    @Test
+    @DisplayName("should format positive delta with plus sign in text output tokens line")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R008")
+    @Tag("F-RCSL-J001")
+    public void shouldFormatPositiveDeltaWithPlusSignInTextOutputTokensLine() throws Exception {
+        // Arrange — tokenCount=15, range=[5,8], delta=+7 (sentence is 7 tokens above maximum)
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        SentenceLengthCorrectionContext context = new SentenceLengthCorrectionContext(
+                "task-014",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                15, 5, 8, 7,
+                List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — positive delta (7) is prefixed with "+" in the tokens line
+        String output = outContent.toString();
+        assertTrue(output.contains("delta: +7"),
+                "positive delta must be rendered with a '+' prefix, but got: " + output);
+    }
+
+    @Test
+    @DisplayName("should format negative delta without plus sign in text output tokens line")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R008")
+    @Tag("F-RCSL-J002")
+    public void shouldFormatNegativeDeltaWithoutPlusSignInTextOutputTokensLine() throws Exception {
+        // Arrange — tokenCount=5, range=[8,12], delta=-3 (sentence is 3 tokens below minimum)
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        SentenceLengthCorrectionContext context = new SentenceLengthCorrectionContext(
+                "task-014",
+                "She plays",
+                "Ella juega",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                5, 8, 12, -3,
+                List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — negative delta (-3) is rendered with "-" but without "+" prefix
+        String output = outContent.toString();
+        assertTrue(output.contains("delta: -3"),
+                "negative delta must be rendered without a '+' prefix, but got: " + output);
+        assertFalse(output.contains("delta: +-3"),
+                "negative delta must not have a '+' prefix, but got: " + output);
+    }
+
+    @Test
+    @DisplayName("should print not available message with error reason when context cannot be built in text format")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R008")
+    public void shouldPrintNotAvailableMessageWithErrorReasonWhenContextCannotBeBuiltInTextFormat() throws Exception {
+        // Arrange — resolver returns empty so context cannot be built
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.empty());
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — "not available" message with error reason is shown instead of context section
+        String output = outContent.toString();
+        assertTrue(output.contains("Correction context: not available"),
+                "output should show 'Correction context: not available' when context cannot be built, but got: " + output);
+        assertTrue(output.contains("context could not be resolved for task task-014"),
+                "output should include the error reason, but got: " + output);
+    }
+
+    @Test
+    @DisplayName("should print correction context section in table format for SENTENCE_LENGTH task")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R008")
+    public void shouldPrintCorrectionContextSectionInTableFormatForSENTENCELENGTHTask() throws Exception {
+        // Arrange — format is "table"; the correction context section should still appear
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        SentenceLengthCorrectionContext context = new SentenceLengthCorrectionContext(
+                "task-014",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                15, 5, 8, 7,
+                List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "table");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — table header is rendered and correction context section follows it
+        String output = outContent.toString();
+        assertTrue(output.contains("SENTENCE_LENGTH"),
+                "table output should include diagnosis kind, but got: " + output);
+        assertTrue(output.contains("Correction context:"),
+                "table format should include correction context section, but got: " + output);
+        assertTrue(output.contains("Sentence:"),
+                "table format correction context should include 'Sentence:' label, but got: " + output);
+        assertTrue(output.contains("She plays tennis every afternoon with her friends"),
+                "table format correction context should include sentence value, but got: " + output);
+        assertTrue(output.contains("15 (target: 5-8, delta: +7)"),
+                "table format correction context should include tokens line, but got: " + output);
+    }
+}

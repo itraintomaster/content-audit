@@ -11,4 +11,5 @@ workflow phases, and agent instructions are defined in `AGENTS.md`.
 When designing tests for an implementation, invoke the `@qa-tester` agent.
 It analyzes contracts and requirements to propose test names with traceability.
 Tests are declared as `handwrittenTests` in sentinel.yaml, and `sentinel generate`
-creates JUnit stub classes that developers implement by hand.
+creates JUnit stub classes. The `@test-writer` agent implements test bodies
+using requirement context for data fidelity.

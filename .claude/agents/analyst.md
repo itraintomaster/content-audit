@@ -42,7 +42,6 @@ Requirements are authored as **REQUIREMENT.md** files inside feature folders:
 requirements/
 └── 2026-03-09.01_shopping-cart/
     ├── REQUIREMENT.md              # Source of truth
-    ├── requirement.yaml            # Auto-generated
     └── references/                 # Supporting documents
 ```
 

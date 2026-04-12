@@ -45,7 +45,7 @@ Features live in requirement folders and are referenced from `sentinel.yaml`:
 
 ```yaml
 definitions:
-  - requirements/2026-02-19.01_my-feature/requirement.yaml
+  - requirements/2026-02-19.01_my-feature/REQUIREMENT.md
 ```
 
 See resource `11-requirements.md` for the full requirement folder convention.

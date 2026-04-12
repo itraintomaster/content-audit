@@ -16,7 +16,7 @@ language:                        # Target language for code generation
   version: "17"                 # Language version (default: 17)
 
 definitions:                    # Requirement files — one per feature folder
-  - requirements/2026-02-19.01_my-feature/requirement.yaml
+  - requirements/2026-02-19.01_my-feature/REQUIREMENT.md
 
 modules: [...]                  # Module definitions
 features: [...]                 # Business features (or from definitions)
@@ -176,9 +176,9 @@ Each requirement lives in its own dated folder. `sentinel.yaml` references them 
 ```yaml
 # sentinel.yaml
 definitions:
-  - requirements/2026-02-19.01_user-registration/requirement.yaml
-  - requirements/2026-02-19.02_payment-processing/requirement.yaml
+  - requirements/2026-02-19.01_user-registration/REQUIREMENT.md
+  - requirements/2026-02-19.02_payment-processing/REQUIREMENT.md
 ```
 
-Each `requirement.yaml` contains a `features:` list. The engine merges them into the main definition.
+Each `REQUIREMENT.md` is the source of truth for a feature. The engine parses them into the main definition.
 See `11-requirements.md` for the full convention including architecture patches.

@@ -8,10 +8,10 @@ architectural proposals. Each feature requirement lives in its own dated folder.
 ```
 requirements/
   2026-02-19.01_user-registration/
-    requirement.yaml          # Feature requirements (rules, journeys)
+    REQUIREMENT.md            # Feature requirements (rules, journeys) — source of truth
     architectural_patch.yaml  # Architecture proposal (added after analysis)
   2026-02-19.02_payment-processing/
-    requirement.yaml
+    REQUIREMENT.md
     architectural_patch.yaml
 ```
 
@@ -34,13 +34,13 @@ Each requirement folder is registered individually in `sentinel.yaml`:
 
 ```yaml
 definitions:
-  - requirements/2026-02-19.01_user-registration/requirement.yaml
-  - requirements/2026-02-19.02_payment-processing/requirement.yaml
+  - requirements/2026-02-19.01_user-registration/REQUIREMENT.md
+  - requirements/2026-02-19.02_payment-processing/REQUIREMENT.md
 ```
 
 ---
 
-## requirement.yaml Schema
+## REQUIREMENT.md Schema
 
 ```yaml
 features:
@@ -67,7 +67,7 @@ features:
 
 ### Validation Rules
 
-A `requirement.yaml` is valid when:
+A `REQUIREMENT.md` is valid when:
 
 | Rule | Requirement |
 |------|-------------|
@@ -162,7 +162,7 @@ This merges the patch into `sentinel.yaml`, runs `sentinel generate`, and produc
 ## Feature Workflow Summary
 
 ```
-1. Create requirement folder + requirement.yaml
+1. Create requirement folder + REQUIREMENT.md
    sentinel requirement validate --file requirements/YYYY-MM-DD.NN_name/
 
 2. Architect writes architectural_patch.yaml in the same folder
@@ -184,7 +184,7 @@ This merges the patch into `sentinel.yaml`, runs `sentinel generate`, and produc
 
 | State | Condition |
 |-------|-----------|
-| `DRAFT` | `requirement.yaml` exists, no `architectural_patch.yaml` |
+| `DRAFT` | `REQUIREMENT.md` exists, no `architectural_patch.yaml` |
 | `ANALYSED` | Patch exists and all rules have test declarations |
 | `IMPLEMENTING` | Patch applied to sentinel.yaml, some elements missing or tests failing |
 | `IMPLEMENTED` | All elements exist, all tests passing |

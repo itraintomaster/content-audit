@@ -48,7 +48,7 @@ Identify:
 If the implementation is linked to features, read the requirement files:
 
 ```bash
-cat requirements/*/requirement.yaml
+cat requirements/*/REQUIREMENT.md
 ```
 
 Extract:
