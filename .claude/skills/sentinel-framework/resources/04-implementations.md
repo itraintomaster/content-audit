@@ -209,11 +209,38 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 
 ### Module: refiner-domain
 
-#### DefaultCorrectionContextResolver
+#### SentenceLengthContextResolver
 
 **Package:** `com.learney.contentaudit.refinerdomain`
 
-**Implements:** CorrectionContextResolver
+**Implements:** CorrectionContextResolver<SentenceLengthCorrectionContext>
+
+#### LemmaAbsenceContextResolver
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+
+**Implements:** CorrectionContextResolver<LemmaAbsenceCorrectionContext>
+
+#### DispatchingCorrectionContextResolver
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+
+**Implements:** CorrectionContextResolver<CorrectionContext>
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `sentenceLengthResolver` | `SentenceLengthContextResolver` |
+| `lemmaAbsenceResolver` | `LemmaAbsenceContextResolver` |
+
+**Generated constructor:**
+```java
+public DispatchingCorrectionContextResolver(SentenceLengthContextResolver sentenceLengthResolver, LemmaAbsenceContextResolver lemmaAbsenceResolver) {
+    this.sentenceLengthResolver = sentenceLengthResolver;
+    this.lemmaAbsenceResolver = lemmaAbsenceResolver;
+}
+```
 
 ### Module: audit-application
 

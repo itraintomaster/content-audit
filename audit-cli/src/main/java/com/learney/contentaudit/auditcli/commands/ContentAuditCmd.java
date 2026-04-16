@@ -1,5 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import java.util.concurrent.Callable;
+
 import javax.annotation.processing.Generated;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
@@ -30,12 +32,13 @@ import picocli.CommandLine.Model.CommandSpec;
                 "  content-audit analyzer config sentence-length",
         }
 )
-public class ContentAuditCmd implements Runnable {
+class ContentAuditCmd implements Callable<Integer> {
     @Spec
     CommandSpec spec;
 
     @Override
-    public void run() {
+    public Integer call() throws Exception {
         spec.commandLine().usage(System.out);
+        return 0;
     }
 }

@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import java.util.concurrent.Callable;
 
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
@@ -13,13 +14,15 @@ import picocli.CommandLine.Model.CommandSpec;
     mixinStandardHelpOptions = true,
     subcommands = {CommandLine.HelpCommand.class}
 )
-public class RefinerCmd implements Runnable {
+class RefinerCmd implements Callable<Integer> {
 
     @Spec
     CommandSpec spec;
 
     @Override
-    public void run() {
+    public Integer call() throws Exception {
         spec.commandLine().usage(System.out);
+        return 0;
     }
+
 }

@@ -1,15 +1,6 @@
 <!-- SENTINEL MANAGED FILE - DO NOT EDIT -->
 # Sentinel-Governed Project
 
-This project is governed by Sentinel. All architecture rules, module boundaries,
-workflow phases, and agent instructions are defined in `AGENTS.md`.
+This project is governed by Sentinel. Read `AGENTS.md` for all rules and instructions.
 
-**Read `AGENTS.md` before making any changes.**
-
-## Test Creation
-
-When designing tests for an implementation, invoke the `@qa-tester` agent.
-It analyzes contracts and requirements to propose test names with traceability.
-Tests are declared as `handwrittenTests` in sentinel.yaml, and `sentinel generate`
-creates JUnit stub classes. The `@test-writer` agent implements test bodies
-using requirement context for data fidelity.
+**Your first action in every conversation must be to read `AGENTS.md`. Do not skip this step.**

@@ -687,6 +687,30 @@ Methods:
 | delta | `int` |
 | suggestedLemmas | `List<SuggestedLemma>` |
 
+### MisplacedLemmaContext (`record`)
+
+| Field | Type |
+|-------|------|
+| lemma | `String` |
+| pos | `String` |
+| expectedLevel | `CefrLevel` |
+| quizLevel | `CefrLevel` |
+| cocaRank | `Integer` |
+
+### LemmaAbsenceCorrectionContext (`record`)
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| sentence | `String` |
+| translation | `String` |
+| knowledgeTitle | `String` |
+| knowledgeInstructions | `String` |
+| topicLabel | `String` |
+| cefrLevel | `CefrLevel` |
+| misplacedLemmas | `List<MisplacedLemmaContext>` |
+| suggestedLemmas | `List<SuggestedLemma>` |
+
 ### RefinerEngine (port)
 
 Methods:
@@ -702,11 +726,13 @@ Methods:
 - `load(String id): Optional<RefinementPlan>`
 - `loadLatest(): Optional<RefinementPlan>`
 
-### CorrectionContextResolver (port)
+### CorrectionContextResolver<T extends CorrectionContext> (port)
 
 Methods:
 
-- `resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>`
+- `resolve(AuditReport report, RefinementTask task): Optional<T>`
+
+### CorrectionContext (port)
 
 ### From nlp-infrastructure
 

@@ -86,12 +86,12 @@ SentinelDefinition
 ├── modules: List<Module>
 │   ├── name, description, dependsOn, allowedClients, scope
 │   ├── models: List<Model>
-│   │   ├── name: String
+│   │   ├── name: String, implements: List<String>
 │   │   └── fields: List<Field>
 │   │       ├── name: String
 │   │       └── type: String
 │   ├── interfaces: List<Interface>
-│   │   ├── name, stereotype, sealed
+│   │   ├── name, stereotype, sealed, typeParameters
 │   │   └── exposes: List<MethodSignature>
 │   │       ├── signature: String
 │   │       └── throws: List<String>

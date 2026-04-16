@@ -1,0 +1,51 @@
+code: __proposal__
+description: Set visibility public on 11 implementations accessed cross-package from
+  Main.java in audit-cli/commands
+modules:
+- name: audit-cli
+  packages:
+  - name: formatting
+    visibility: internal
+    implementations:
+    - name: CocaBucketsDetailedFormatter
+      visibility: public
+      _change: modify
+    - name: DefaultAnalyzerStatsTransformer
+      visibility: public
+      _change: modify
+    - name: DefaultDrillDownResolver
+      visibility: public
+      _change: modify
+    - name: DefaultFormatterRegistry
+      visibility: public
+      _change: modify
+    - name: DefaultReportViewModelTransformer
+      visibility: public
+      _change: modify
+    - name: JsonReportFormatter
+      visibility: public
+      _change: modify
+    - name: LemmaAbsenceDetailedFormatter
+      visibility: public
+      _change: modify
+    - name: RawJsonReportFormatter
+      visibility: public
+      _change: modify
+    - name: TableReportFormatter
+      visibility: public
+      _change: modify
+    - name: TextReportFormatter
+      visibility: public
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-domain
+  packages:
+  - name: labs
+    visibility: internal
+    implementations:
+    - name: LemmaAbsenceScoreAggregator
+      visibility: public
+      _change: modify
+    _change: modify
+  _change: modify

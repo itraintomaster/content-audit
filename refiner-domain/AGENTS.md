@@ -73,6 +73,30 @@ Domain module for the refinement workflow. Defines the plan/task model and ports
 | delta | `int` |
 | suggestedLemmas | `List<SuggestedLemma>` |
 
+### MisplacedLemmaContext (`record`)
+
+| Field | Type |
+|-------|------|
+| lemma | `String` |
+| pos | `String` |
+| expectedLevel | `CefrLevel` |
+| quizLevel | `CefrLevel` |
+| cocaRank | `Integer` |
+
+### LemmaAbsenceCorrectionContext (`record`)
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| sentence | `String` |
+| translation | `String` |
+| knowledgeTitle | `String` |
+| knowledgeInstructions | `String` |
+| topicLabel | `String` |
+| cefrLevel | `CefrLevel` |
+| misplacedLemmas | `List<MisplacedLemmaContext>` |
+| suggestedLemmas | `List<SuggestedLemma>` |
+
 ## Interfaces
 
 ### RefinerEngine (port)
@@ -90,17 +114,19 @@ Methods:
 - `load(String id): Optional<RefinementPlan>`
 - `loadLatest(): Optional<RefinementPlan>`
 
-### CorrectionContextResolver (port)
+### CorrectionContextResolver<T extends CorrectionContext> (port)
 
 Methods:
 
-- `resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>`
+- `resolve(AuditReport report, RefinementTask task): Optional<T>`
+
+### CorrectionContext (port)
 
 ## Implementations
 
-### DefaultCorrectionContextResolver
+### SentenceLengthContextResolver
 
-**Implements:** CorrectionContextResolver
+**Implements:** CorrectionContextResolver<SentenceLengthCorrectionContext>
 
 **Tests that must pass:**
 
@@ -125,6 +151,52 @@ Methods:
 - should resolve context with negative delta for a sentence shorter than target range → FEAT-RCSL/F-RCSL-R001
 - should resolve context with zero delta when sentence is within target range → FEAT-RCSL/F-RCSL-R001
 - should set taskId from the RefinementTask id → FEAT-RCSL/F-RCSL-R001
+
+### LemmaAbsenceContextResolver
+
+**Implements:** CorrectionContextResolver<LemmaAbsenceCorrectionContext>
+
+**Tests that must pass:**
+
+- should resolve context with all fields populated from quiz diagnosis and ancestor entities → FEAT-RCLA/F-RCLA-R003
+- should populate sentence and translation from AuditableQuiz entity on the quiz node → FEAT-RCLA/F-RCLA-R003
+- should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge on knowledge ancestor → FEAT-RCLA/F-RCLA-R003
+- should populate topicLabel from AuditableTopic on topic ancestor → FEAT-RCLA/F-RCLA-R003
+- should populate cefrLevel from milestone ancestor → FEAT-RCLA/F-RCLA-R003
+- should populate misplacedLemmas from LemmaPlacementDiagnosis on quiz node → FEAT-RCLA/F-RCLA-R004
+- should map MisplacedLemma fields to MisplacedLemmaContext fields correctly → FEAT-RCLA/F-RCLA-R004
+- should include expectedLevel and quizLevel in each MisplacedLemmaContext entry → FEAT-RCLA/F-RCLA-R004
+- should include cocaRank as null in MisplacedLemmaContext when not available → FEAT-RCLA/F-RCLA-R004
+- should return empty when quiz node is not found in the audit tree → FEAT-RCLA/F-RCLA-R005
+- should return empty when task nodeTarget does not match any node target in the tree → FEAT-RCLA/F-RCLA-R005
+- should locate the correct quiz node when multiple quiz nodes exist in the tree → FEAT-RCLA/F-RCLA-R005
+- should return empty when quiz node has no LemmaPlacementDiagnosis → FEAT-RCLA/F-RCLA-R006
+- should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas in suggestedLemmas and exclude APPEARS_TOO_EARLY → FEAT-RCLA/F-RCLA-R004b
+- should order suggested lemmas by COCA rank ascending with lowest rank first → FEAT-RCLA/F-RCLA-R004b
+- should place lemmas without COCA rank after lemmas with COCA rank in suggestedLemmas → FEAT-RCLA/F-RCLA-R004b
+- should map AbsentLemma fields to SuggestedLemma fields correctly → FEAT-RCLA/F-RCLA-R004b
+- should limit suggested lemmas to 10 when more than 10 qualify after filtering → FEAT-RCLA/F-RCLA-R004b
+- should return context with empty suggested lemmas when milestone has no LemmaAbsenceLevelDiagnosis → FEAT-RCLA/F-RCLA-R004c
+- should return context with empty suggested lemmas when milestone ancestor is not found → FEAT-RCLA/F-RCLA-R004c
+- should return context with empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY → FEAT-RCLA/F-RCLA-R004c
+- should set taskId from the RefinementTask id → FEAT-RCLA/F-RCLA-R003
+
+### DispatchingCorrectionContextResolver
+
+**Implements:** CorrectionContextResolver<CorrectionContext>
+
+**Dependencies (constructor injection):**
+
+- `sentenceLengthResolver`: `SentenceLengthContextResolver`
+- `lemmaAbsenceResolver`: `LemmaAbsenceContextResolver`
+
+**Tests that must pass:**
+
+- should delegate to sentenceLengthResolver when task diagnosis is SENTENCE_LENGTH → FEAT-RCLA/F-RCLA-R007
+- should delegate to lemmaAbsenceResolver when task diagnosis is LEMMA_ABSENCE → FEAT-RCLA/F-RCLA-R007
+- should return empty for unsupported diagnosis kind COCA_BUCKETS → FEAT-RCLA/F-RCLA-R007
+- should return empty for unsupported diagnosis kind LEMMA_RECURRENCE → FEAT-RCLA/F-RCLA-R007
+- should propagate empty from delegate when delegate returns empty → FEAT-RCLA/F-RCLA-R007
 
 ## Dependency Contracts
 

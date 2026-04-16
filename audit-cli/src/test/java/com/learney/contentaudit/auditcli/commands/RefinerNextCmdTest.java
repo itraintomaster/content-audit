@@ -23,6 +23,8 @@ import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
+import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
 import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
 import java.io.ByteArrayOutputStream;
@@ -93,32 +95,6 @@ public class RefinerNextCmdTest {
     }
 
     @Test
-    @DisplayName("should not resolve correction context when task diagnosis is LEMMA_ABSENCE")
-    @Tag("FEAT-RCSL")
-    @Tag("F-RCSL-R006")
-    public void shouldNotResolveCorrectionContextWhenTaskDiagnosisIsLEMMAABSENCE() throws Exception {
-        // Arrange
-        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
-        RefinerEngine refinerEngine = mock(RefinerEngine.class);
-        AuditReportStore reportStore = mock(AuditReportStore.class);
-        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
-
-        RefinementTask task = buildTask("task-002", DiagnosisKind.LEMMA_ABSENCE);
-        RefinementPlan plan = buildPlan("audit-001", task);
-
-        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
-
-        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
-
-        // Act
-        cmd.next("plan-001");
-
-        // Assert — neither the report store nor the resolver should be consulted for non-SENTENCE_LENGTH tasks
-        verify(reportStore, never()).load(any());
-        verify(resolver, never()).resolve(any(), any());
-    }
-
-    @Test
     @DisplayName("should not resolve correction context when task diagnosis is COCA_BUCKETS")
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R006")
@@ -142,77 +118,6 @@ public class RefinerNextCmdTest {
         // Assert — neither the report store nor the resolver should be consulted for non-SENTENCE_LENGTH tasks
         verify(reportStore, never()).load(any());
         verify(resolver, never()).resolve(any(), any());
-    }
-
-    @Test
-    @DisplayName("should not include correctionContext field in JSON output for LEMMA_ABSENCE task")
-    @Tag("FEAT-RCSL")
-    @Tag("F-RCSL-R006")
-    public void shouldNotIncludeCorrectionContextFieldInJSONOutputForLEMMAABSENCETask() throws Exception {
-        // Arrange
-        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
-        RefinerEngine refinerEngine = mock(RefinerEngine.class);
-        AuditReportStore reportStore = mock(AuditReportStore.class);
-        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
-
-        RefinementTask task = buildTask("task-004", DiagnosisKind.LEMMA_ABSENCE);
-        RefinementPlan plan = buildPlan("audit-001", task);
-
-        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
-
-        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json");
-
-        PrintStream originalOut = System.out;
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        try {
-            // Act
-            cmd.next("plan-001");
-        } finally {
-            System.setOut(originalOut);
-        }
-
-        // Assert — JSON output must not contain a correctionContext key for LEMMA_ABSENCE tasks
-        String output = outContent.toString();
-        assertFalse(output.contains("correctionContext"),
-                "JSON output should not contain 'correctionContext' for LEMMA_ABSENCE task, but got: " + output);
-    }
-
-    @Test
-    @DisplayName("should not include correction context section in text output for non SENTENCE_LENGTH task")
-    @Tag("FEAT-RCSL")
-    @Tag("F-RCSL-R006")
-    public void shouldNotIncludeCorrectionContextSectionInTextOutputForNonSENTENCELENGTHTask() throws Exception {
-        // Arrange
-        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
-        RefinerEngine refinerEngine = mock(RefinerEngine.class);
-        AuditReportStore reportStore = mock(AuditReportStore.class);
-        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
-
-        RefinementTask task = buildTask("task-005", DiagnosisKind.LEMMA_ABSENCE);
-        RefinementPlan plan = buildPlan("audit-001", task);
-
-        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
-
-        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
-
-        PrintStream originalOut = System.out;
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        try {
-            // Act
-            cmd.next("plan-001");
-        } finally {
-            System.setOut(originalOut);
-        }
-
-        // Assert — text output must not contain the correction context section header
-        String output = outContent.toString();
-        assertFalse(output.contains("Correction context"),
-                "Text output should not contain 'Correction context' section for LEMMA_ABSENCE task, but got: " + output);
-        // Verify the basic task data is still present
-        assertTrue(output.contains("LEMMA_ABSENCE"),
-                "Text output should still show the diagnosis kind, but got: " + output);
     }
 
     @Test
@@ -992,5 +897,601 @@ public class RefinerNextCmdTest {
                 "table format correction context should include sentence value, but got: " + output);
         assertTrue(output.contains("15 (target: 5-8, delta: +7)"),
                 "table format correction context should include tokens line, but got: " + output);
+    }
+
+    @Test
+    @DisplayName("should resolve correction context when task diagnosis is LEMMA_ABSENCE")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R007")
+    public void shouldResolveCorrectionContextWhenTaskDiagnosisIsLEMMAABSENCE() throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        List<MisplacedLemmaContext> misplaced = List.of(
+                new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840));
+        LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                misplaced,
+                List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        // Act
+        cmd.next("plan-001");
+
+        // Assert — the resolver was called because the task is LEMMA_ABSENCE
+        verify(resolver).resolve(report, task);
+    }
+
+    @Test
+    @DisplayName("should include correctionContext with misplacedLemmas array in JSON for LEMMA_ABSENCE task")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R008")
+    public void shouldIncludeCorrectionContextWithMisplacedLemmasArrayInJSONForLEMMAABSENCETask() throws Exception {
+        // Arrange
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        List<MisplacedLemmaContext> misplaced = List.of(
+                new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
+                new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205));
+        LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                misplaced,
+                List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — correctionContext is a non-null object and misplacedLemmas is a non-null array
+        JsonNode root = new ObjectMapper().readTree(outContent.toString());
+        assertTrue(root.has("correctionContext"), "JSON output must contain a correctionContext field");
+        assertFalse(root.get("correctionContext").isNull(), "correctionContext must not be null");
+        JsonNode misplacedLemmas = root.get("correctionContext").get("misplacedLemmas");
+        assertNotNull(misplacedLemmas, "misplacedLemmas must be present in correctionContext");
+        assertTrue(misplacedLemmas.isArray(), "misplacedLemmas must be a JSON array");
+        assertEquals(2, misplacedLemmas.size(), "misplacedLemmas array must have 2 elements");
+    }
+
+    @Test
+    @DisplayName("should include misplacedLemmas with lemma pos expectedLevel quizLevel and cocaRank in JSON correctionContext")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R008")
+    public void shouldIncludeMisplacedLemmasWithLemmaPosExpectedLevelQuizLevelAndCocaRankInJSONCorrectionContext() throws Exception {
+        // Arrange — two misplaced lemmas matching the R008 example exactly
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        List<MisplacedLemmaContext> misplaced = List.of(
+                new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
+                new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205));
+        LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                misplaced,
+                List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — each misplacedLemma entry has lemma, pos, expectedLevel, quizLevel, cocaRank
+        JsonNode misplacedLemmas = new ObjectMapper().readTree(outContent.toString())
+                .get("correctionContext").get("misplacedLemmas");
+
+        JsonNode first = misplacedLemmas.get(0);
+        assertEquals("negotiate", first.get("lemma").asText());
+        assertEquals("VERB", first.get("pos").asText());
+        assertEquals("B2", first.get("expectedLevel").asText());
+        assertEquals("A1", first.get("quizLevel").asText());
+        assertEquals(2840, first.get("cocaRank").asInt());
+
+        JsonNode second = misplacedLemmas.get(1);
+        assertEquals("contract", second.get("lemma").asText());
+        assertEquals("NOUN", second.get("pos").asText());
+        assertEquals("B1", second.get("expectedLevel").asText());
+        assertEquals("A1", second.get("quizLevel").asText());
+        assertEquals(1205, second.get("cocaRank").asInt());
+    }
+
+    @Test
+    @DisplayName("should include suggestedLemmas array in JSON correctionContext for LEMMA_ABSENCE task")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R008")
+    public void shouldIncludeSuggestedLemmasArrayInJSONCorrectionContextForLEMMAABSENCETask() throws Exception {
+        // Arrange — three suggested lemmas matching the R008 example
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        List<MisplacedLemmaContext> misplaced = List.of(
+                new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840));
+        List<SuggestedLemma> suggested = List.of(
+                new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52),
+                new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89),
+                new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201));
+        LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                misplaced,
+                suggested);
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — suggestedLemmas array has 3 elements with lemma, pos, reason, cocaRank
+        JsonNode suggestedLemmas = new ObjectMapper().readTree(outContent.toString())
+                .get("correctionContext").get("suggestedLemmas");
+        assertNotNull(suggestedLemmas, "suggestedLemmas must be present in correctionContext");
+        assertTrue(suggestedLemmas.isArray(), "suggestedLemmas must be a JSON array");
+        assertEquals(3, suggestedLemmas.size());
+
+        JsonNode first = suggestedLemmas.get(0);
+        assertEquals("like", first.get("lemma").asText());
+        assertEquals("VERB", first.get("pos").asText());
+        assertEquals("COMPLETELY_ABSENT", first.get("reason").asText());
+        assertEquals(52, first.get("cocaRank").asInt());
+
+        JsonNode second = suggestedLemmas.get(1);
+        assertEquals("want", second.get("lemma").asText());
+        assertEquals("APPEARS_TOO_LATE", second.get("reason").asText());
+
+        JsonNode third = suggestedLemmas.get(2);
+        assertEquals("big", third.get("lemma").asText());
+        assertEquals("ADJ", third.get("pos").asText());
+        assertEquals(201, third.get("cocaRank").asInt());
+    }
+
+    @Test
+    @DisplayName("should set correctionContext to null and include correctionContextError in JSON for LEMMA_ABSENCE when resolver returns empty")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R008")
+    public void shouldSetCorrectionContextToNullAndIncludeCorrectionContextErrorInJSONForLEMMAABSENCEWhenResolverReturnsEmpty() throws Exception {
+        // Arrange — resolver cannot build the LEMMA_ABSENCE context (e.g., no placement diagnosis)
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.empty());
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — correctionContext is null and correctionContextError carries the reason
+        JsonNode root = new ObjectMapper().readTree(outContent.toString());
+        assertTrue(root.has("correctionContext"), "correctionContext field must be present even when null");
+        assertTrue(root.get("correctionContext").isNull(),
+                "correctionContext must be null when resolver returns empty for LEMMA_ABSENCE");
+        assertTrue(root.has("correctionContextError"),
+                "correctionContextError must be present when resolver returns empty");
+        assertFalse(root.get("correctionContextError").asText().isBlank(),
+                "correctionContextError message must not be blank");
+    }
+
+    @Test
+    @DisplayName("should print correction context section with misplaced lemmas in text format for LEMMA_ABSENCE task")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R009")
+    public void shouldPrintCorrectionContextSectionWithMisplacedLemmasInTextFormatForLEMMAABSENCETask() throws Exception {
+        // Arrange — full correction context for a LEMMA_ABSENCE task
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        List<MisplacedLemmaContext> misplaced = List.of(
+                new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840));
+        LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                misplaced,
+                List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — all labeled fields from R009 format example are present
+        String output = outContent.toString();
+        assertTrue(output.contains("Correction context:"), "output missing 'Correction context:' header");
+        assertTrue(output.contains("Sentence:"), "output missing 'Sentence:' label");
+        assertTrue(output.contains("She needs to negotiate the contract before Friday"),
+                "output missing sentence value");
+        assertTrue(output.contains("Translation:"), "output missing 'Translation:' label");
+        assertTrue(output.contains("Ella necesita negociar el contrato antes del viernes"),
+                "output missing translation value");
+        assertTrue(output.contains("Knowledge:"), "output missing 'Knowledge:' label");
+        assertTrue(output.contains("Affirmative sentences in the present simple"),
+                "output missing knowledgeTitle value");
+        assertTrue(output.contains("Instructions:"), "output missing 'Instructions:' label");
+        assertTrue(output.contains("Escribe la forma afirmativa"), "output missing instructions value");
+        assertTrue(output.contains("Topic:"), "output missing 'Topic:' label");
+        assertTrue(output.contains("Present Simple"), "output missing topicLabel value");
+        assertTrue(output.contains("CEFR Level:"), "output missing 'CEFR Level:' label");
+        assertTrue(output.contains("A1"), "output missing cefrLevel value");
+        assertTrue(output.contains("Misplaced lemmas:"), "output missing 'Misplaced lemmas:' label");
+    }
+
+    @Test
+    @DisplayName("should print numbered misplaced lemmas list with expected and found levels in text format")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R009")
+    public void shouldPrintNumberedMisplacedLemmasListWithExpectedAndFoundLevelsInTextFormat() throws Exception {
+        // Arrange — two misplaced lemmas matching the R009 example exactly
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        List<MisplacedLemmaContext> misplaced = List.of(
+                new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
+                new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205));
+        LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                misplaced,
+                List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — each misplaced lemma appears numbered with lemma, POS, expectedLevel, quizLevel, COCA rank
+        // R009 format: "1. negotiate (VERB) - expected B2, found in A1 [COCA #2840]"
+        String output = outContent.toString();
+        assertTrue(output.contains("1. negotiate (VERB) - expected B2, found in A1 [COCA #2840]"),
+                "output missing first numbered misplaced lemma entry, but got: " + output);
+        assertTrue(output.contains("2. contract (NOUN) - expected B1, found in A1 [COCA #1205]"),
+                "output missing second numbered misplaced lemma entry, but got: " + output);
+    }
+
+    @Test
+    @DisplayName("should print suggested replacements in text format for LEMMA_ABSENCE task")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R009")
+    public void shouldPrintSuggestedReplacementsInTextFormatForLEMMAABSENCETask() throws Exception {
+        // Arrange — three suggested replacements matching the R009 example exactly
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        List<MisplacedLemmaContext> misplaced = List.of(
+                new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840));
+        List<SuggestedLemma> suggested = List.of(
+                new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52),
+                new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89),
+                new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201));
+        LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                misplaced,
+                suggested);
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — "Suggested replacements:" section with numbered entries per R009 format
+        // R009 format: "1. like (VERB) - COMPLETELY_ABSENT [COCA #52]"
+        String output = outContent.toString();
+        assertTrue(output.contains("Suggested replacements:"), "output missing 'Suggested replacements:' label");
+        assertTrue(output.contains("1. like (VERB) - COMPLETELY_ABSENT [COCA #52]"),
+                "output missing first suggested replacement entry, but got: " + output);
+        assertTrue(output.contains("2. want (VERB) - APPEARS_TOO_LATE [COCA #89]"),
+                "output missing second suggested replacement entry, but got: " + output);
+        assertTrue(output.contains("3. big (ADJ) - COMPLETELY_ABSENT [COCA #201]"),
+                "output missing third suggested replacement entry, but got: " + output);
+    }
+
+    @Test
+    @DisplayName("should print none available for suggested replacements when list is empty in text format for LEMMA_ABSENCE")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R009")
+    public void shouldPrintNoneAvailableForSuggestedReplacementsWhenListIsEmptyInTextFormatForLEMMAABSENCE() throws Exception {
+        // Arrange — context with no suggested replacements (R004c scenario)
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        List<MisplacedLemmaContext> misplaced = List.of(
+                new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840));
+        LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                misplaced,
+                List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — "(none available)" appears under "Suggested replacements:" when list is empty
+        String output = outContent.toString();
+        assertTrue(output.contains("Suggested replacements:"), "output missing 'Suggested replacements:' label");
+        assertTrue(output.contains("(none available)"),
+                "output should show '(none available)' when suggested replacements list is empty, but got: " + output);
+    }
+
+    @Test
+    @DisplayName("should print not available message when LEMMA_ABSENCE context cannot be built in text format")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R009")
+    public void shouldPrintNotAvailableMessageWhenLEMMAABSENCEContextCannotBeBuiltInTextFormat() throws Exception {
+        // Arrange — resolver returns empty (e.g., placement diagnosis not available per R006)
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.empty());
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — "not available" message is shown instead of context section
+        String output = outContent.toString();
+        assertTrue(output.contains("Correction context: not available"),
+                "output should show 'Correction context: not available' when context cannot be built, but got: " + output);
+        assertTrue(output.contains("context could not be resolved for task task-014"),
+                "output should include the error reason with the task id, but got: " + output);
+    }
+
+    @Test
+    @DisplayName("should include sentence translation knowledgeTitle knowledgeInstructions topicLabel and cefrLevel in JSON correctionContext for LEMMA_ABSENCE")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R008")
+    public void shouldIncludeSentenceTranslationKnowledgeTitleKnowledgeInstructionsTopicLabelAndCefrLevelInJSONCorrectionContextForLEMMAABSENCE() throws Exception {
+        // Arrange — full context matching the R008 example for LEMMA_ABSENCE
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        RefinerEngine refinerEngine = mock(RefinerEngine.class);
+        AuditReportStore reportStore = mock(AuditReportStore.class);
+        CorrectionContextResolver resolver = mock(CorrectionContextResolver.class);
+
+        RefinementTask task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = buildPlan("audit-001", task);
+        AuditReport report = new AuditReport(null);
+
+        List<MisplacedLemmaContext> misplaced = List.of(
+                new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840));
+        LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                misplaced,
+                List.of());
+
+        when(planStore.load("plan-001")).thenReturn(Optional.of(plan));
+        when(reportStore.load("audit-001")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(context));
+
+        RefinerNextCmd cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json");
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        try {
+            // Act
+            cmd.next("plan-001");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — all string fields from R003/R008 are present in correctionContext
+        JsonNode ctx = new ObjectMapper().readTree(outContent.toString()).get("correctionContext");
+        assertEquals("She needs to negotiate the contract before Friday", ctx.get("sentence").asText());
+        assertEquals("Ella necesita negociar el contrato antes del viernes", ctx.get("translation").asText());
+        assertEquals("Affirmative sentences in the present simple", ctx.get("knowledgeTitle").asText());
+        assertEquals("Escribe la forma afirmativa", ctx.get("knowledgeInstructions").asText());
+        assertEquals("Present Simple", ctx.get("topicLabel").asText());
+        assertEquals("A1", ctx.get("cefrLevel").asText());
     }
 }

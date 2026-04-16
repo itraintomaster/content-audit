@@ -17,57 +17,102 @@ public class DefaultLemmaAbsenceConfigSentinelTest {
   @InjectMocks
   private DefaultLemmaAbsenceConfig sut;
 
+  /**
+   * Feature: Analisis de Ausencia de Lemas por Nivel CEFR
+   * Rule: El sistema define umbrales de alerta que determinan la cantidad maxima de lemas ausentes aceptables para cada nivel de prioridad antes de generar una alerta: | Prioridad | Umbral de alerta | |-----------|-----------------| | HIGH | 0 (cero tolerancia: cualquier lema de alta prioridad ausente genera alerta) | | MEDIUM | 3 (hasta 3 lemas de prioridad media ausentes antes de alerta) | | LOW | 10 (hasta 10 lemas de baja prioridad ausentes antes de alerta) | Estos umbrales se aplican por nivel CEFR. Si en A2 hay 2 lemas de prioridad HIGH ausentes, se genera una alerta de alta prioridad para A2.
+   */
   @Test
   @DisplayName("should have alert thresholds non-decreasing from high to low priority")
   @Tag("FEAT-LABS")
+  @Tag("F-LABS-R014")
   public void shouldHaveAlertThresholdsNondecreasingFromHighToLowPriority() {
   }
 
+  /**
+   * Feature: Analisis de Ausencia de Lemas por Nivel CEFR
+   * Rule: El sistema define umbrales de alerta que determinan la cantidad maxima de lemas ausentes aceptables para cada nivel de prioridad antes de generar una alerta: | Prioridad | Umbral de alerta | |-----------|-----------------| | HIGH | 0 (cero tolerancia: cualquier lema de alta prioridad ausente genera alerta) | | MEDIUM | 3 (hasta 3 lemas de prioridad media ausentes antes de alerta) | | LOW | 10 (hasta 10 lemas de baja prioridad ausentes antes de alerta) | Estos umbrales se aplican por nivel CEFR. Si en A2 hay 2 lemas de prioridad HIGH ausentes, se genera una alerta de alta prioridad para A2.
+   */
   @Test
   @DisplayName("should enforce zero tolerance for high priority alert threshold")
   @Tag("FEAT-LABS")
+  @Tag("F-LABS-R014")
   public void shouldEnforceZeroToleranceForHighPriorityAlertThreshold() {
   }
 
+  /**
+   * Feature: Analisis de Ausencia de Lemas por Nivel CEFR
+   * Rule: Cada nivel CEFR tiene configurado un **umbral de tolerancia** que define la cantidad maxima de lemas ausentes aceptables y un **porcentaje maximo** de ausencia respecto al total de lemas esperados: | Nivel | Umbral absoluto (lemas) | Porcentaje maximo | |-------|------------------------|-------------------| | A1 | 0 | 0% | | A2 | 2 | 5% | | B1 | 5 | 10% | | B2 | 8 | 15% | Los umbrales son **acumulativos**: un nivel excede su umbral si supera **cualquiera** de los dos limites (el absoluto o el porcentual). Ejemplo: si A2 tiene 1 lema ausente pero esto representa el 6% de sus lemas esperados, excede el umbral porcentual (5%) aunque no exceda el absoluto (2). Los niveles A1 y A2 tienen umbrales mas estrictos (especialmente A1 con cero tolerancia) porque la ausencia de vocabulario basico en niveles iniciales tiene consecuencias pedagogicas desproporcionadas. [ASSUMPTION] Se adoptan los umbrales de la configuracion por nivel (0, 2, 5, 8) en lugar de los umbrales globales (5, 10, 15, 20) que estaban en config.yaml. Los umbrales por nivel son mas estrictos y especificos, lo que permite una evaluacion mas precisa. Los umbrales globales probablemente eran una version simplificada anterior. Ver Doubt[DOUBT-DUAL-THRESHOLDS].
+   */
   @Test
   @DisplayName("should enforce A1 zero tolerance with both absolute and percentage thresholds at zero")
   @Tag("FEAT-LABS")
+  @Tag("F-LABS-R021")
   public void shouldEnforceA1ZeroToleranceWithBothAbsoluteAndPercentageThresholdsAtZero() {
   }
 
+  /**
+   * Feature: Analisis de Ausencia de Lemas por Nivel CEFR
+   * Rule: Para cada lema mal ubicado en una oracion (nivel esperado superior al de la oracion), se calcula un **descuento** proporcional a la distancia: descuento = 0.1 * (nivel esperado del lema - nivel de la oracion) La distancia se calcula como la diferencia en el orden numerico de los niveles CEFR (A1=1, A2=2, B1=3, B2=4). Solo se aplica cuando el nivel esperado es mayor que el de la oracion. Ejemplos: - Lema B2 en oracion A1: distancia = 4-1 = 3, descuento = 0.3 - Lema B1 en oracion A2: distancia = 3-2 = 1, descuento = 0.1 - Lema A1 en oracion B2: no se penaliza (vocabulario basico reutilizado) El factor de 0.1 por nivel de distancia es un valor fijo configurable via `getDiscountPerLevel()`.
+   */
   @Test
   @DisplayName("should have discount per level that limits max penalty to 0.3 for three-level distance")
   @Tag("FEAT-LABS")
+  @Tag("F-LABS-R018")
   public void shouldHaveDiscountPerLevelThatLimitsMaxPenaltyTo03ForThreelevelDistance() {
   }
 
+  /**
+   * Feature: Analisis de Ausencia de Lemas por Nivel CEFR
+   * Rule: Cada nivel CEFR tiene configurado un **umbral de tolerancia** que define la cantidad maxima de lemas ausentes aceptables y un **porcentaje maximo** de ausencia respecto al total de lemas esperados: | Nivel | Umbral absoluto (lemas) | Porcentaje maximo | |-------|------------------------|-------------------| | A1 | 0 | 0% | | A2 | 2 | 5% | | B1 | 5 | 10% | | B2 | 8 | 15% | Los umbrales son **acumulativos**: un nivel excede su umbral si supera **cualquiera** de los dos limites (el absoluto o el porcentual). Ejemplo: si A2 tiene 1 lema ausente pero esto representa el 6% de sus lemas esperados, excede el umbral porcentual (5%) aunque no exceda el absoluto (2). Los niveles A1 y A2 tienen umbrales mas estrictos (especialmente A1 con cero tolerancia) porque la ausencia de vocabulario basico en niveles iniciales tiene consecuencias pedagogicas desproporcionadas. [ASSUMPTION] Se adoptan los umbrales de la configuracion por nivel (0, 2, 5, 8) en lugar de los umbrales globales (5, 10, 15, 20) que estaban en config.yaml. Los umbrales por nivel son mas estrictos y especificos, lo que permite una evaluacion mas precisa. Los umbrales globales probablemente eran una version simplificada anterior. Ver Doubt[DOUBT-DUAL-THRESHOLDS].
+   */
   @Test
   @DisplayName("should return non-negative values for all thresholds and bounds")
   @Tag("FEAT-LABS")
+  @Tag("F-LABS-R021")
   public void shouldReturnNonnegativeValuesForAllThresholdsAndBounds() {
   }
 
+  /**
+   * Feature: Analisis de Ausencia de Lemas por Nivel CEFR
+   * Rule: El resultado del analisis limita la cantidad de lemas ausentes reportados por prioridad para evitar sobrecargar al creador de contenido: | Prioridad | Maximo de lemas reportados | |-----------|---------------------------| | HIGH | 20 | | MEDIUM | 30 | | LOW | 50 | Si hay mas lemas ausentes que el limite, se reportan los mas criticos (por impacto de ausencia y ranking COCA) y se indica la cantidad total para visibilidad. Ejemplo: "Se reportan 20 de 35 lemas ausentes de prioridad HIGH. Se muestran los de mayor impacto."
+   */
   @Test
   @DisplayName("should return positive report limits for all priority levels")
   @Tag("FEAT-LABS")
+  @Tag("F-LABS-R026")
   public void shouldReturnPositiveReportLimitsForAllPriorityLevels() {
   }
 
+  /**
+   * Feature: Analisis de Ausencia de Lemas por Nivel CEFR
+   * Rule: Cada nivel CEFR tiene configurado un **umbral de tolerancia** que define la cantidad maxima de lemas ausentes aceptables y un **porcentaje maximo** de ausencia respecto al total de lemas esperados: | Nivel | Umbral absoluto (lemas) | Porcentaje maximo | |-------|------------------------|-------------------| | A1 | 0 | 0% | | A2 | 2 | 5% | | B1 | 5 | 10% | | B2 | 8 | 15% | Los umbrales son **acumulativos**: un nivel excede su umbral si supera **cualquiera** de los dos limites (el absoluto o el porcentual). Ejemplo: si A2 tiene 1 lema ausente pero esto representa el 6% de sus lemas esperados, excede el umbral porcentual (5%) aunque no exceda el absoluto (2). Los niveles A1 y A2 tienen umbrales mas estrictos (especialmente A1 con cero tolerancia) porque la ausencia de vocabulario basico en niveles iniciales tiene consecuencias pedagogicas desproporcionadas. [ASSUMPTION] Se adoptan los umbrales de la configuracion por nivel (0, 2, 5, 8) en lugar de los umbrales globales (5, 10, 15, 20) que estaban en config.yaml. Los umbrales por nivel son mas estrictos y especificos, lo que permite una evaluacion mas precisa. Los umbrales globales probablemente eran una version simplificada anterior. Ver Doubt[DOUBT-DUAL-THRESHOLDS].
+   */
   @Test
   @DisplayName("should return percentage thresholds between 0 and 100 for all levels")
   @Tag("FEAT-LABS")
+  @Tag("F-LABS-R021")
   public void shouldReturnPercentageThresholdsBetween0And100ForAllLevels() {
   }
 
+  /**
+   * Feature: Analisis de Ausencia de Lemas por Nivel CEFR
+   * Rule: La puntuacion de cada nivel se calcula como la proporcion entre la cobertura actual y el coverage target del nivel: 1. Se calcula la **cobertura actual** del nivel: `1.0 - (ausencia ponderada por impact / total esperado)`. La ponderacion usa los impact scores de R008. 2. Si la cobertura alcanza o supera el coverage target -> **score = 1.0** (objetivo cumplido). 3. Si no -> **score = cobertura / target** (proporcion de avance hacia el objetivo). Ejemplo: A1 con cobertura 0.68 y target 0.95 -> score = 0.68 / 0.95 = 0.72. Cuando la cobertura alcance 0.95, el score sera 1.0. La **puntuacion global** es el promedio ponderado de las puntuaciones por nivel: | Nivel | Peso | |-------|------| | A1 | 2.0 | | A2 | 2.0 | | B1 | 1.0 | | B2 | 1.0 |
+   */
   @Test
   @DisplayName("should return positive level weights for all CEFR levels")
   @Tag("FEAT-LABS")
+  @Tag("F-LABS-R024")
   public void shouldReturnPositiveLevelWeightsForAllCEFRLevels() {
   }
 
+  /**
+   * Feature: Analisis de Ausencia de Lemas por Nivel CEFR
+   * Rule: Para cada lema mal ubicado en una oracion (nivel esperado superior al de la oracion), se calcula un **descuento** proporcional a la distancia: descuento = 0.1 * (nivel esperado del lema - nivel de la oracion) La distancia se calcula como la diferencia en el orden numerico de los niveles CEFR (A1=1, A2=2, B1=3, B2=4). Solo se aplica cuando el nivel esperado es mayor que el de la oracion. Ejemplos: - Lema B2 en oracion A1: distancia = 4-1 = 3, descuento = 0.3 - Lema B1 en oracion A2: distancia = 3-2 = 1, descuento = 0.1 - Lema A1 en oracion B2: no se penaliza (vocabulario basico reutilizado) El factor de 0.1 por nivel de distancia es un valor fijo configurable via `getDiscountPerLevel()`.
+   */
   @Test
   @DisplayName("should return discount per level between 0 exclusive and 1 exclusive")
   @Tag("FEAT-LABS")
+  @Tag("F-LABS-R018")
   public void shouldReturnDiscountPerLevelBetween0ExclusiveAnd1Exclusive() {
   }
 }

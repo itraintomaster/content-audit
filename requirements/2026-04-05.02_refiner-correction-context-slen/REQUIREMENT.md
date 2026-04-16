@@ -249,6 +249,7 @@ Las siguientes limitaciones son decisiones explicitas de alcance, no reglas de n
 journeys:
   - id: F-RCSL-J001
     name: LLM recibe contexto para corregir una oracion demasiado larga
+    testModule: audit-cli
     flow:
       - id: solicitar_tarea
         action: "El usuario ejecuta 'refiner next' y obtiene una tarea SENTENCE_LENGTH"
@@ -305,6 +306,7 @@ journeys:
 journeys:
   - id: F-RCSL-J002
     name: LLM recibe contexto para corregir una oracion demasiado corta
+    testModule: audit-cli
     flow:
       - id: solicitar_tarea
         action: "El usuario ejecuta 'refiner next' y obtiene una tarea SENTENCE_LENGTH cuyo quiz tiene una oracion mas corta que el rango esperado"
@@ -360,6 +362,7 @@ journeys:
 journeys:
   - id: F-RCSL-J003
     name: Contexto de correccion sin lemas sugeridos disponibles
+    testModule: audit-cli
     flow:
       - id: solicitar_tarea
         action: "El usuario ejecuta 'refiner next' y obtiene una tarea SENTENCE_LENGTH"

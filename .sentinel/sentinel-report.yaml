@@ -1,4 +1,4 @@
-generatedAt: 2026-04-12T03:16:34.479181Z
+generatedAt: 2026-04-16T15:41:16.779664Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -63,11 +63,93 @@ features:
       implementation: LemmaByLevelAbsenceAnalyzer
   journeysCoverage:
   - journeyId: F-DLABS-J001
-    state: NO_TESTS
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_elAssessmentEsOPTIMAL_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FDlabsJ001JourneyTest.path1_elAssessmentEsOPTIMAL_success(FDlabsJ001JourneyTest.java:24)\n\
+          \tat java...."
+        module: audit-domain
+        implementation: FDlabsJ001JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_elAssessmentEsACCEPTABLEONEEDSIMPROVEMENT_hayLemasAusentesEnElNivel_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FDlabsJ001JourneyTest.path2_elAssessmentEsACCEPTABLEONEEDSIMPROVEMENT_hayLemasAusentesEnElNivel_su..."
+        module: audit-domain
+        implementation: FDlabsJ001JourneyTest
+    - pathId: path-3
+      result: success
+      state: FAILING
+      tests:
+      - name: path3_elAssessmentEsACCEPTABLEONEEDSIMPROVEMENT_noHayLemasAusentesEnElNivel_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FDlabsJ001JourneyTest.path3_elAssessmentEsACCEPTABLEONEEDSIMPROVEMENT_noHayLemasAusentesEnElNivel_..."
+        module: audit-domain
+        implementation: FDlabsJ001JourneyTest
   - journeyId: F-DLABS-J002
-    state: NO_TESTS
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_elMilestoneAncestroExiste_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FDlabsJ002JourneyTest.path1_elMilestoneAncestroExiste_success(FDlabsJ002JourneyTest.java:24)\n\
+          \tat j..."
+        module: audit-domain
+        implementation: FDlabsJ002JourneyTest
+    - pathId: path-2
+      result: failure
+      state: FAILING
+      tests:
+      - name: path2_noSeEncuentraElMilestoneAncestroEstructuraDeArbolIncompleta_failure
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FDlabsJ002JourneyTest.path2_noSeEncuentraElMilestoneAncestroEstructuraDeArbolIncompleta_failure(FD..."
+        module: audit-domain
+        implementation: FDlabsJ002JourneyTest
   - journeyId: F-DLABS-J003
-    state: NO_TESTS
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_elDiagnosticoExisteEnElNodoCurso_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FDlabsJ003JourneyTest.path1_elDiagnosticoExisteEnElNodoCurso_success(FDlabsJ003JourneyTest.java:24..."
+        module: audit-domain
+        implementation: FDlabsJ003JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_elDiagnosticoNoExisteElAnalizadorNoSeEjecuto_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FDlabsJ003JourneyTest.path2_elDiagnosticoNoExisteElAnalizadorNoSeEjecuto_success(FDlabsJ003Journey..."
+        module: audit-domain
+        implementation: FDlabsJ003JourneyTest
 - id: FEAT-LREC
   state: IMPLEMENTING
   requirementFile: requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
@@ -174,15 +256,187 @@ features:
       implementation: LemmaRecurrenceAnalyzer
   journeysCoverage:
   - journeyId: F-LREC-J001
-    state: NO_TESTS
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_elCursoContieneOracionesProcesables_seEncontraronLemasDeContenidoSuficientesParaElAnalisis_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ001JourneyTest.path1_elCursoContieneOracionesProcesables_seEncontraronLemasDeContenidoSufici..."
+        module: audit-domain
+        implementation: FLrecJ001JourneyTest
+    - pathId: path-2
+      result: failure
+      state: FAILING
+      tests:
+      - name: path2_elCursoContieneOracionesProcesables_noSeEncontraronLemasDeContenidoEnElCurso_failure
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ001JourneyTest.path2_elCursoContieneOracionesProcesables_noSeEncontraronLemasDeContenidoEnEl..."
+        module: audit-domain
+        implementation: FLrecJ001JourneyTest
+    - pathId: path-3
+      result: failure
+      state: FAILING
+      tests:
+      - name: path3_elCursoNoContieneOracionesProcesables_failure
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ001JourneyTest.path3_elCursoNoContieneOracionesProcesables_failure(FLrecJ001JourneyTest.java..."
+        module: audit-domain
+        implementation: FLrecJ001JourneyTest
   - journeyId: F-LREC-J002
-    state: NO_TESTS
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_hayLemasSubexpuestosQueInvestigar_elLemaEstaConcentradoEnUnaUnicaSeccionDelCurso_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ002JourneyTest.path1_hayLemasSubexpuestosQueInvestigar_elLemaEstaConcentradoEnUnaUnicaSeccio..."
+        module: audit-domain
+        implementation: FLrecJ002JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_hayLemasSubexpuestosQueInvestigar_elLemaTienePocasAparicionesRepartidasPeroConBrechasMuyGrandes_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ002JourneyTest.path2_hayLemasSubexpuestosQueInvestigar_elLemaTienePocasAparicionesRepartidas..."
+        module: audit-domain
+        implementation: FLrecJ002JourneyTest
+    - pathId: path-3
+      result: success
+      state: FAILING
+      tests:
+      - name: path3_noHayLemasSubexpuestosLaPuntuacionBajaSeDebeASobreexposicion_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ002JourneyTest.path3_noHayLemasSubexpuestosLaPuntuacionBajaSeDebeASobreexposicion_success(FL..."
+        module: audit-domain
+        implementation: FLrecJ002JourneyTest
   - journeyId: F-LREC-J003
-    state: NO_TESTS
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_hayLemasSobreexpuestosQueInvestigar_laSobreexposicionEsInherenteAlIdiomaYAlNivelDelCurso_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ003JourneyTest.path1_hayLemasSobreexpuestosQueInvestigar_laSobreexposicionEsInherenteAlIdiom..."
+        module: audit-domain
+        implementation: FLrecJ003JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_hayLemasSobreexpuestosQueInvestigar_laSobreexposicionIndicaFaltaDeVariedadLexica_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ003JourneyTest.path2_hayLemasSobreexpuestosQueInvestigar_laSobreexposicionIndicaFaltaDeVarie..."
+        module: audit-domain
+        implementation: FLrecJ003JourneyTest
+    - pathId: path-3
+      result: success
+      state: FAILING
+      tests:
+      - name: path3_noHayLemasSobreexpuestos_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ003JourneyTest.path3_noHayLemasSobreexpuestos_success(FLrecJ003JourneyTest.java:42)\n\
+          \tat java..."
+        module: audit-domain
+        implementation: FLrecJ003JourneyTest
   - journeyId: F-LREC-J004
-    state: NO_TESTS
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_seEncuentranLemasNormalesConDesviacionEstandarAlta_laIrregularidadEsSignificativaYElUsuarioDecideCorregirla_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ004JourneyTest.path1_seEncuentranLemasNormalesConDesviacionEstandarAlta_laIrregularidadEsSig..."
+        module: audit-domain
+        implementation: FLrecJ004JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_seEncuentranLemasNormalesConDesviacionEstandarAlta_laIrregularidadEsMenorONoJustificaCambiosEnElContenido_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ004JourneyTest.path2_seEncuentranLemasNormalesConDesviacionEstandarAlta_laIrregularidadEsMen..."
+        module: audit-domain
+        implementation: FLrecJ004JourneyTest
+    - pathId: path-3
+      result: success
+      state: FAILING
+      tests:
+      - name: path3_todosLosLemasNormalesTienenDesviacionEstandarRazonable_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ004JourneyTest.path3_todosLosLemasNormalesTienenDesviacionEstandarRazonable_success(FLrecJ00..."
+        module: audit-domain
+        implementation: FLrecJ004JourneyTest
   - journeyId: F-LREC-J005
-    state: NO_TESTS
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_laPuntuacionMejoroSignificativamente_losLemasAjustadosAhoraTienenExposicionNormalYLaMejoraEsSuficiente_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ005JourneyTest.path1_laPuntuacionMejoroSignificativamente_losLemasAjustadosAhoraTienenExposi..."
+        module: audit-domain
+        implementation: FLrecJ005JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_laPuntuacionMejoroSignificativamente_algunosLemasMejoraronPeroOtrosSiguenSiendoProblematicos_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ005JourneyTest.path2_laPuntuacionMejoroSignificativamente_algunosLemasMejoraronPeroOtrosSigu..."
+        module: audit-domain
+        implementation: FLrecJ005JourneyTest
+    - pathId: path-3
+      result: success
+      state: FAILING
+      tests:
+      - name: path3_laPuntuacionNoMejoroOEmpeoro_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ005JourneyTest.path3_laPuntuacionNoMejoroOEmpeoro_success(FLrecJ005JourneyTest.java:42)\n\
+          \tat ..."
+        module: audit-domain
+        implementation: FLrecJ005JourneyTest
 - id: FEAT-DCOCA
   state: DRAFT
   requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
@@ -203,249 +457,295 @@ features:
     state: NO_TESTS
   journeysCoverage:
   - journeyId: F-DCOCA-J001
-    state: NO_TESTS
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_elDiagnosticoExisteEnElNodoCurso_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FDcocaJ001JourneyTest.path1_elDiagnosticoExisteEnElNodoCurso_success(FDcocaJ001JourneyTest.java:24..."
+        module: audit-domain
+        implementation: FDcocaJ001JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_elDiagnosticoNoExisteElAnalizadorNoSeEjecuto_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FDcocaJ001JourneyTest.path2_elDiagnosticoNoExisteElAnalizadorNoSeEjecuto_success(FDcocaJ001Journey..."
+        module: audit-domain
+        implementation: FDcocaJ001JourneyTest
   - journeyId: F-DCOCA-J002
-    state: NO_TESTS
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_elMilestoneAncestroExiste_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FDcocaJ002JourneyTest.path1_elMilestoneAncestroExiste_success(FDcocaJ002JourneyTest.java:24)\n\
+          \tat j..."
+        module: audit-domain
+        implementation: FDcocaJ002JourneyTest
+    - pathId: path-2
+      result: failure
+      state: FAILING
+      tests:
+      - name: path2_noSeEncuentraElMilestoneAncestro_failure
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FDcocaJ002JourneyTest.path2_noSeEncuentraElMilestoneAncestro_failure(FDcocaJ002JourneyTest.java:32..."
+        module: audit-domain
+        implementation: FDcocaJ002JourneyTest
 - id: FEAT-COURSE
-  state: IMPLEMENTED
+  state: IMPLEMENTING
   requirementFile: requirements/2026-03-15.01_course-structure/REQUIREMENT.md
-  patchFile: requirements/2026-03-15.01_course-structure/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-COURSE-R001
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a valid course directory, when load is called, then returns CourseEntity\
         \ with 5-level hierarchy including ROOT node"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R002
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a course with ordered milestones and topics, when load is called,\
         \ then child order matches parent children lists"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R003
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a loaded course, when saved and reloaded, then the result is semantically\
         \ equivalent to the original"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R004
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a course directory with quiz templates, when load is called, then\
         \ every knowledge has at least one quiz template"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R005
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a course directory with consistent IDs, when load is called, then\
         \ all child ID references resolve to existing entities"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R006
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given validator rejects course with duplicate IDs, when save is called,\
         \ then CourseValidationException propagates"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given a course directory with unique IDs, when load is called, then no\
         \ duplicate IDs exist across any hierarchy level"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R007
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a valid directory structure, when load is called, then each directory\
         \ level contains its expected descriptor file"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R008
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given validator rejects course with broken parent references, when save\
         \ is called, then CourseValidationException propagates"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given a loaded course, when inspecting parent references, then each child\
         \ parentId matches its actual parent id"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R009
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a null course entity, when save is called, then an exception is\
         \ thrown"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given a course with all required fields populated, when load is called,\
         \ then all mandatory fields are non-null"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R010
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a course with empty string and null field values, when saved and\
         \ reloaded, then empty and null values are preserved exactly"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R011
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given quiz templates with dual id and oidId fields, when load is called,\
         \ then both fields contain the same value"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R012
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given quiz templates with numberDouble format values, when saved to JSON,\
         \ then numeric fields preserve MongoDB Extended JSON format"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R013
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a loaded course, when inspecting order fields, then milestones\
         \ topics and knowledges have sequential 1-based order within their parent"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R014
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a valid course entity, when save is called, then validator is invoked\
         \ and no exception is thrown"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given an invalid course entity, when save is called, then validator throws\
         \ CourseValidationException"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R015
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given validator rejects milestone with no topics, when save is called,\
         \ then CourseValidationException propagates"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given a milestone with empty children list, when load is called, then\
         \ validation rejects the course with a descriptive error"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R016
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given entities with labels, when saved to disk, then directory names\
         \ are deterministic slugs derived from the labels"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   journeysCoverage:
   - journeyId: F-COURSE-J001
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a course directory with full hierarchy, when loading step by step,\
         \ then all levels are resolved with correct hierarchy order and validation"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - journeyId: F-COURSE-J002
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a course entity with validator passing, when save is called, then\
         \ no exception is thrown"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given a course in memory, when saving to a target directory, then the\
         \ directory structure and JSON files are written correctly"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - journeyId: F-COURSE-J003
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a course loaded from files, when saved to a new directory and reloaded,\
         \ then the reloaded course equals the original"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - journeyId: F-COURSE-J004
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a loaded course, when navigating from ROOT to milestones to topics\
         \ to knowledges to quizzes, then each level is accessible and correctly ordered"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - journeyId: F-COURSE-J005
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a loaded course, when a knowledge label is modified and the course\
         \ is saved and reloaded, then the change is reflected and unmodified data\
         \ remains intact"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - journeyId: F-COURSE-J006
-    state: PASSING
+    state: FAILING
     tests:
     - name: "Given a nonexistent path or missing descriptor or malformed JSON, when\
         \ load is called, then a descriptive error is thrown and no partial course\
         \ is returned"
       implemented: true
-      passing: true
+      passing: false
       module: course-infrastructure
       implementation: FileSystemCourseRepository
 - id: FEAT-COCA
@@ -1469,50 +1769,207 @@ features:
       implementation: LemmaByLevelAbsenceAnalyzer
   journeysCoverage:
   - journeyId: F-LABS-J001
-    state: PASSING
-    tests:
-    - name: "full lifecycle: course with full coverage produces OPTIMAL assessment\
-        \ and score 1.0"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: LemmaByLevelAbsenceAnalyzer
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_elAnalisisSeCompletaExitosamente_elAssessmentEsOPTIMALYTodosLosNivelesEstanDentroDeLosUmbrales_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ001JourneyTest.path1_elAnalisisSeCompletaExitosamente_elAssessmentEsOPTIMALYTodosLosNivelesE..."
+        module: audit-domain
+        implementation: FLabsJ001JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_elAnalisisSeCompletaExitosamente_hayNivelesQueExcedenLosUmbralesDeLemasAusentes_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ001JourneyTest.path2_elAnalisisSeCompletaExitosamente_hayNivelesQueExcedenLosUmbralesDeLemas..."
+        module: audit-domain
+        implementation: FLabsJ001JourneyTest
+    - pathId: path-3
+      result: failure
+      state: FAILING
+      tests:
+      - name: path3_noSeDisponeDelCatalogoDeVocabularioEsperadoParaLosNivelesDelCurso_failure
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ001JourneyTest.path3_noSeDisponeDelCatalogoDeVocabularioEsperadoParaLosNivelesDelCurso_failu..."
+        module: audit-domain
+        implementation: FLabsJ001JourneyTest
+    - pathId: path-4
+      result: failure
+      state: FAILING
+      tests:
+      - name: path4_elCursoNoContieneOracionesProcesadasLinguisticamente_failure
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ001JourneyTest.path4_elCursoNoContieneOracionesProcesadasLinguisticamente_failure(FLabsJ001J..."
+        module: audit-domain
+        implementation: FLabsJ001JourneyTest
   - journeyId: F-LABS-J002
-    state: PASSING
-    tests:
-    - name: "full lifecycle: course with completely absent HIGH priority lemmas in\
-        \ A1 produces NEEDS_IMPROVEMENT"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: LemmaByLevelAbsenceAnalyzer
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_hayLemasQueNoAparecenEnNingunNivelDelCurso_losLemasAusentesSonCriticosParaLaComunicacionBasicaDelNivel_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ002JourneyTest.path1_hayLemasQueNoAparecenEnNingunNivelDelCurso_losLemasAusentesSonCriticosP..."
+        module: audit-domain
+        implementation: FLabsJ002JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_hayLemasQueNoAparecenEnNingunNivelDelCurso_losLemasAusentesSonRelevantesPeroNoUrgentes_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ002JourneyTest.path2_hayLemasQueNoAparecenEnNingunNivelDelCurso_losLemasAusentesSonRelevante..."
+        module: audit-domain
+        implementation: FLabsJ002JourneyTest
+    - pathId: path-3
+      result: success
+      state: FAILING
+      tests:
+      - name: path3_losLemasAusentesAparecenEnOtrosNivelesPeroNoEnElEsperado_losLemasAusentesSonCriticosParaLaComunicacionBasicaDelNivel_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ002JourneyTest.path3_losLemasAusentesAparecenEnOtrosNivelesPeroNoEnElEsperado_losLemasAusent..."
+        module: audit-domain
+        implementation: FLabsJ002JourneyTest
+    - pathId: path-4
+      result: success
+      state: FAILING
+      tests:
+      - name: path4_losLemasAusentesAparecenEnOtrosNivelesPeroNoEnElEsperado_losLemasAusentesSonRelevantesPeroNoUrgentes_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ002JourneyTest.path4_losLemasAusentesAparecenEnOtrosNivelesPeroNoEnElEsperado_losLemasAusent..."
+        module: audit-domain
+        implementation: FLabsJ002JourneyTest
   - journeyId: F-LABS-J003
-    state: PASSING
-    tests:
-    - name: "full lifecycle: course with lemmas appearing too late produces INTRODUCE_EARLIER\
-        \ recommendations"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: LemmaByLevelAbsenceAnalyzer
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_elLemaApareceUnSoloNivelDespuesDelEsperadoPorEjemploA2EsperadoApareceEnB1_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ003JourneyTest.path1_elLemaApareceUnSoloNivelDespuesDelEsperadoPorEjemploA2EsperadoApareceEn..."
+        module: audit-domain
+        implementation: FLabsJ003JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_elLemaApareceDosOMasNivelesDespuesDelEsperadoPorEjemploA1EsperadoApareceEnB2_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ003JourneyTest.path2_elLemaApareceDosOMasNivelesDespuesDelEsperadoPorEjemploA1EsperadoAparec..."
+        module: audit-domain
+        implementation: FLabsJ003JourneyTest
   - journeyId: F-LABS-J004
-    state: PASSING
-    tests:
-    - name: "full lifecycle: course with misplaced lemmas in sentences reflects distance\
-        \ discounts in scores"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: LemmaByLevelAbsenceAnalyzer
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_hayOracionesConScoresPorDebajoDe08_losLemasDesplazadosSonDeNivelesMuyDistantesPorEjemploLemasA1EnOracionesB2_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ004JourneyTest.path1_hayOracionesConScoresPorDebajoDe08_losLemasDesplazadosSonDeNivelesMuyDi..."
+        module: audit-domain
+        implementation: FLabsJ004JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_hayOracionesConScoresPorDebajoDe08_losLemasDesplazadosEstanAUnSoloNivelDeDistancia_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ004JourneyTest.path2_hayOracionesConScoresPorDebajoDe08_losLemasDesplazadosEstanAUnSoloNivel..."
+        module: audit-domain
+        implementation: FLabsJ004JourneyTest
+    - pathId: path-3
+      result: success
+      state: FAILING
+      tests:
+      - name: path3_todasLasOracionesTienenScoresAceptables08OSuperior_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ004JourneyTest.path3_todasLasOracionesTienenScoresAceptables08OSuperior_success(FLabsJ004Jou..."
+        module: audit-domain
+        implementation: FLabsJ004JourneyTest
   - journeyId: F-LABS-J005
-    state: PASSING
-    tests:
-    - name: "full lifecycle: course with multiple levels exceeding thresholds produces\
-        \ prioritized recommendations"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: LemmaByLevelAbsenceAnalyzer
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_hayRecomendacionesDePrioridadHIGH_elVolumenEsManejable_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ005JourneyTest.path1_hayRecomendacionesDePrioridadHIGH_elVolumenEsManejable_success(FLabsJ00..."
+        module: audit-domain
+        implementation: FLabsJ005JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_hayRecomendacionesDePrioridadHIGH_elVolumenEsAlto_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ005JourneyTest.path2_hayRecomendacionesDePrioridadHIGH_elVolumenEsAlto_success(FLabsJ005Jour..."
+        module: audit-domain
+        implementation: FLabsJ005JourneyTest
+    - pathId: path-3
+      result: success
+      state: FAILING
+      tests:
+      - name: path3_soloHayRecomendacionesDePrioridadMEDIUMOLOW_elVolumenEsManejable_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ005JourneyTest.path3_soloHayRecomendacionesDePrioridadMEDIUMOLOW_elVolumenEsManejable_succes..."
+        module: audit-domain
+        implementation: FLabsJ005JourneyTest
+    - pathId: path-4
+      result: success
+      state: FAILING
+      tests:
+      - name: path4_soloHayRecomendacionesDePrioridadMEDIUMOLOW_elVolumenEsAlto_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ005JourneyTest.path4_soloHayRecomendacionesDePrioridadMEDIUMOLOW_elVolumenEsAlto_success(FLa..."
+        module: audit-domain
+        implementation: FLabsJ005JourneyTest
 - id: FEAT-CLI
   state: IMPLEMENTING
   requirementFile: requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
@@ -1857,7 +2314,41 @@ features:
     state: NO_TESTS
   journeysCoverage:
   - journeyId: F-DSLEN-J001
-    state: NO_TESTS
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_elDiagnosticoExisteQuizFueEvaluado_deltaEsPositivoOracionDemasiadoLarga_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FDslenJ001JourneyTest.path1_elDiagnosticoExisteQuizFueEvaluado_deltaEsPositivoOracionDemasiadoLarg..."
+        module: audit-domain
+        implementation: FDslenJ001JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_elDiagnosticoExisteQuizFueEvaluado_deltaEsNegativoOracionDemasiadoCorta_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FDslenJ001JourneyTest.path2_elDiagnosticoExisteQuizFueEvaluado_deltaEsNegativoOracionDemasiadoCort..."
+        module: audit-domain
+        implementation: FDslenJ001JourneyTest
+    - pathId: path-3
+      result: success
+      state: FAILING
+      tests:
+      - name: path3_elDiagnosticoNoExisteQuizExcluidoPorNoSerOracion_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditdomain.FDslenJ001JourneyTest.path3_elDiagnosticoNoExisteQuizExcluidoPorNoSerOracion_success(FDslenJ001Jou..."
+        module: audit-domain
+        implementation: FDslenJ001JourneyTest
 - id: FEAT-SLEN
   state: IMPLEMENTING
   requirementFile: requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
@@ -2030,6 +2521,303 @@ features:
     state: NO_TESTS
   - journeyId: F-LCOUNT-J005
     state: NO_TESTS
+- id: FEAT-RCLA
+  state: IMPLEMENTING
+  requirementFile: requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
+  rulesCoverage:
+  - ruleId: F-RCLA-R001
+    state: NO_TESTS
+  - ruleId: F-RCLA-R002
+    state: NO_TESTS
+  - ruleId: F-RCLA-R003
+    state: PASSING
+    tests:
+    - name: should resolve context with all fields populated from quiz diagnosis and
+        ancestor entities
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should populate sentence and translation from AuditableQuiz entity on
+        the quiz node
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge
+        on knowledge ancestor
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should populate topicLabel from AuditableTopic on topic ancestor
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should populate cefrLevel from milestone ancestor
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should set taskId from the RefinementTask id
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+  - ruleId: F-RCLA-R004
+    state: PASSING
+    tests:
+    - name: should populate misplacedLemmas from LemmaPlacementDiagnosis on quiz node
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should map MisplacedLemma fields to MisplacedLemmaContext fields correctly
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should include expectedLevel and quizLevel in each MisplacedLemmaContext
+        entry
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should include cocaRank as null in MisplacedLemmaContext when not available
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+  - ruleId: F-RCLA-R004b
+    state: PASSING
+    tests:
+    - name: should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas in suggestedLemmas
+        and exclude APPEARS_TOO_EARLY
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should order suggested lemmas by COCA rank ascending with lowest rank
+        first
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should place lemmas without COCA rank after lemmas with COCA rank in suggestedLemmas
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should map AbsentLemma fields to SuggestedLemma fields correctly
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should limit suggested lemmas to 10 when more than 10 qualify after filtering
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+  - ruleId: F-RCLA-R004c
+    state: PASSING
+    tests:
+    - name: should return context with empty suggested lemmas when milestone has no
+        LemmaAbsenceLevelDiagnosis
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should return context with empty suggested lemmas when milestone ancestor
+        is not found
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should return context with empty suggested lemmas when all absent lemmas
+        are APPEARS_TOO_EARLY
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+  - ruleId: F-RCLA-R005
+    state: PASSING
+    tests:
+    - name: should return empty when quiz node is not found in the audit tree
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should return empty when task nodeTarget does not match any node target
+        in the tree
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+    - name: should locate the correct quiz node when multiple quiz nodes exist in
+        the tree
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+  - ruleId: F-RCLA-R006
+    state: PASSING
+    tests:
+    - name: should return empty when quiz node has no LemmaPlacementDiagnosis
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: LemmaAbsenceContextResolver
+  - ruleId: F-RCLA-R007
+    state: PASSING
+    tests:
+    - name: should delegate to sentenceLengthResolver when task diagnosis is SENTENCE_LENGTH
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DispatchingCorrectionContextResolver
+    - name: should delegate to lemmaAbsenceResolver when task diagnosis is LEMMA_ABSENCE
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DispatchingCorrectionContextResolver
+    - name: should return empty for unsupported diagnosis kind COCA_BUCKETS
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DispatchingCorrectionContextResolver
+    - name: should return empty for unsupported diagnosis kind LEMMA_RECURRENCE
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DispatchingCorrectionContextResolver
+    - name: should propagate empty from delegate when delegate returns empty
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DispatchingCorrectionContextResolver
+    - name: should resolve correction context when task diagnosis is LEMMA_ABSENCE
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+  - ruleId: F-RCLA-R008
+    state: PASSING
+    tests:
+    - name: should include correctionContext with misplacedLemmas array in JSON for
+        LEMMA_ABSENCE task
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should include misplacedLemmas with lemma pos expectedLevel quizLevel
+        and cocaRank in JSON correctionContext
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should include suggestedLemmas array in JSON correctionContext for LEMMA_ABSENCE
+        task
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should set correctionContext to null and include correctionContextError
+        in JSON for LEMMA_ABSENCE when resolver returns empty
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should include sentence translation knowledgeTitle knowledgeInstructions
+        topicLabel and cefrLevel in JSON correctionContext for LEMMA_ABSENCE
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+  - ruleId: F-RCLA-R009
+    state: PASSING
+    tests:
+    - name: should print correction context section with misplaced lemmas in text
+        format for LEMMA_ABSENCE task
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should print numbered misplaced lemmas list with expected and found levels
+        in text format
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should print suggested replacements in text format for LEMMA_ABSENCE task
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should print none available for suggested replacements when list is empty
+        in text format for LEMMA_ABSENCE
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+    - name: should print not available message when LEMMA_ABSENCE context cannot be
+        built in text format
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerNextCmd
+  journeysCoverage:
+  - journeyId: F-RCLA-J001
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_elLemmaPlacementDiagnosisExisteYTieneAlMenosUnMisplacedLemma_hayLemasAusentesDeTipoCOMPLETELYABSENTOAPPEARSTOOLATEDisponibles_success
+        implemented: true
+        passing: true
+        module: audit-domain
+        implementation: FRclaJ001JourneyTest
+    - pathId: path-2
+      result: success
+      state: PASSING
+      tests:
+      - name: path2_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_elLemmaPlacementDiagnosisExisteYTieneAlMenosUnMisplacedLemma_noHayLemasSugeridosDisponibles_success
+        implemented: true
+        passing: true
+        module: audit-domain
+        implementation: FRclaJ001JourneyTest
+    - pathId: path-3
+      result: failure
+      state: PASSING
+      tests:
+      - name: path3_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_elLemmaPlacementDiagnosisNoEstaDisponible_failure
+        implemented: true
+        passing: true
+        module: audit-domain
+        implementation: FRclaJ001JourneyTest
+    - pathId: path-4
+      result: failure
+      state: PASSING
+      tests:
+      - name: path4_elReporteNoSeEncuentraOElNodoQuizNoExisteEnElArbol_failure
+        implemented: true
+        passing: true
+        module: audit-domain
+        implementation: FRclaJ001JourneyTest
+  - journeyId: F-RCLA-J002
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_success
+        implemented: true
+        passing: true
+        module: audit-domain
+        implementation: FRclaJ002JourneyTest
 - id: FEAT-RCSL
   state: IMPLEMENTED
   requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
@@ -2042,47 +2830,47 @@ features:
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should populate sentence and translation from AuditableQuiz entity on
         the quiz node
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge
         on knowledge ancestor
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should populate topicLabel from AuditableTopic on topic ancestor
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should populate cefrLevel tokenCount targetMin targetMax and delta from
         SentenceLengthDiagnosis
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should resolve context with negative delta for a sentence shorter than
         target range
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should resolve context with zero delta when sentence is within target
         range
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should set taskId from the RefinementTask id
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
   - ruleId: F-RCSL-R002
     state: PASSING
     tests:
@@ -2090,19 +2878,19 @@ features:
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should return empty when task nodeTarget does not match any node target
         in the tree
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should locate the correct quiz node when multiple quiz nodes exist in
         the tree
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
   - ruleId: F-RCSL-R003
     state: PASSING
     tests:
@@ -2111,34 +2899,34 @@ features:
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should order suggested lemmas by COCA rank ascending with lowest rank
         first
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should place lemmas without COCA rank after lemmas with COCA rank
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should map AbsentLemma fields to SuggestedLemma fields correctly
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should return empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should return suggested lemmas from the milestone ancestor of the quiz
         node
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
   - ruleId: F-RCSL-R004
     state: PASSING
     tests:
@@ -2147,19 +2935,19 @@ features:
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should return context with empty suggested lemmas when milestone ancestor
         is not found
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
     - name: should return context with empty suggested lemmas when absent lemmas list
         is empty
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
   - ruleId: F-RCSL-R005
     state: PASSING
     tests:
@@ -2167,7 +2955,7 @@ features:
       implemented: true
       passing: true
       module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
+      implementation: SentenceLengthContextResolver
   - ruleId: F-RCSL-R006
     state: PASSING
     tests:
@@ -2176,24 +2964,7 @@ features:
       passing: true
       module: audit-cli
       implementation: RefinerNextCmd
-    - name: should not resolve correction context when task diagnosis is LEMMA_ABSENCE
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
     - name: should not resolve correction context when task diagnosis is COCA_BUCKETS
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should not include correctionContext field in JSON output for LEMMA_ABSENCE
-        task
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should not include correction context section in text output for non SENTENCE_LENGTH
-        task
       implemented: true
       passing: true
       module: audit-cli
@@ -2292,88 +3063,114 @@ features:
       implementation: RefinerNextCmd
   journeysCoverage:
   - journeyId: F-RCSL-J001
-    state: PASSING
-    tests:
-    - name: should resolve context with all fields populated from quiz diagnosis and
-        ancestor entities
-      implemented: true
-      passing: true
-      module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
-    - name: should resolve correction context when task diagnosis is SENTENCE_LENGTH
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should include correctionContext object in JSON when context resolves
-        successfully
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should set correctionContext to null and include correctionContextError
-        when audit report not found
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should print correction context section with all fields in text format
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should format positive delta with plus sign in text output tokens line
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_hayLemasAusentesDeTipoCOMPLETELYABSENTOAPPEARSTOOLATEDisponibles_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ001JourneyTest.path1_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_hayLemasAusen..."
+        module: audit-cli
+        implementation: FRcslJ001JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_noHayLemasSugeridosDisponibles_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ001JourneyTest.path2_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_noHayLemasSug..."
+        module: audit-cli
+        implementation: FRcslJ001JourneyTest
+    - pathId: path-3
+      result: failure
+      state: FAILING
+      tests:
+      - name: path3_elReporteNoSeEncuentraOElNodoQuizNoExisteEnElArbol_failure
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ001JourneyTest.path3_elReporteNoSeEncuentraOElNodoQuizNoExisteEnElArbol_failure(FRcslJ001Journe..."
+        module: audit-cli
+        implementation: FRcslJ001JourneyTest
   - journeyId: F-RCSL-J002
-    state: PASSING
-    tests:
-    - name: should resolve context with negative delta for a sentence shorter than
-        target range
-      implemented: true
-      passing: true
-      module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
-    - name: should format negative delta without plus sign in text output tokens line
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_elReporteYElNodoQuizSeLocalizanCorrectamente_hayLemasSugeridosDisponibles_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ002JourneyTest.path1_elReporteYElNodoQuizSeLocalizanCorrectamente_hayLemasSugeridosDisponibles_..."
+        module: audit-cli
+        implementation: FRcslJ002JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_elReporteYElNodoQuizSeLocalizanCorrectamente_noHayLemasSugeridos_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ002JourneyTest.path2_elReporteYElNodoQuizSeLocalizanCorrectamente_noHayLemasSugeridos_success(F..."
+        module: audit-cli
+        implementation: FRcslJ002JourneyTest
+    - pathId: path-3
+      result: failure
+      state: FAILING
+      tests:
+      - name: path3_noSePuedeLocalizarElReporteOElNodo_failure
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ002JourneyTest.path3_noSePuedeLocalizarElReporteOElNodo_failure(FRcslJ002JourneyTest.java:41)\n\
+          \t..."
+        module: audit-cli
+        implementation: FRcslJ002JourneyTest
   - journeyId: F-RCSL-J003
-    state: PASSING
-    tests:
-    - name: should return context with empty suggested lemmas when milestone has no
-        LemmaAbsenceLevelDiagnosis
-      implemented: true
-      passing: true
-      module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
-    - name: should return context with empty suggested lemmas when milestone ancestor
-        is not found
-      implemented: true
-      passing: true
-      module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
-    - name: should return context with empty suggested lemmas when absent lemmas list
-        is empty
-      implemented: true
-      passing: true
-      module: refiner-domain
-      implementation: DefaultCorrectionContextResolver
-    - name: should output empty suggestedLemmas array in JSON when context has no
-        suggested lemmas
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should print none available for suggested lemmas when list is empty in
-        text format
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
+    state: FAILING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: FAILING
+      tests:
+      - name: path1_elMilestoneExistePeroSuLemmaAbsenceLevelDiagnosisIndicaQueTodosLosLemasEsperadosEstanPresentesNoHayAusencias_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ003JourneyTest.path1_elMilestoneExistePeroSuLemmaAbsenceLevelDiagnosisIndicaQueTodosLosLemasEsp..."
+        module: audit-cli
+        implementation: FRcslJ003JourneyTest
+    - pathId: path-2
+      result: success
+      state: FAILING
+      tests:
+      - name: path2_elMilestoneExistePeroTodasLasAusenciasSonDeTipoAPPEARSTOOEARLYExcluidasPorR003_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ003JourneyTest.path2_elMilestoneExistePeroTodasLasAusenciasSonDeTipoAPPEARSTOOEARLYExcluidasPor..."
+        module: audit-cli
+        implementation: FRcslJ003JourneyTest
+    - pathId: path-3
+      result: success
+      state: FAILING
+      tests:
+      - name: path3_noSeEncuentraElMilestoneAncestroEstructuraIncompleta_success
+        implemented: true
+        passing: false
+        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
+          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ003JourneyTest.path3_noSeEncuentraElMilestoneAncestroEstructuraIncompleta_success(FRcslJ003Jour..."
+        module: audit-cli
+        implementation: FRcslJ003JourneyTest
 elements:
 - module: audit-domain
   status: EXISTS
@@ -6482,6 +7279,42 @@ elements:
       status: EXISTS
     - name: suggestedLemmas
       status: EXISTS
+  - name: MisplacedLemmaContext
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/MisplacedLemmaContext.java
+    fields:
+    - name: lemma
+      status: EXISTS
+    - name: pos
+      status: EXISTS
+    - name: expectedLevel
+      status: EXISTS
+    - name: quizLevel
+      status: EXISTS
+    - name: cocaRank
+      status: EXISTS
+  - name: LemmaAbsenceCorrectionContext
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceCorrectionContext.java
+    fields:
+    - name: taskId
+      status: EXISTS
+    - name: sentence
+      status: EXISTS
+    - name: translation
+      status: EXISTS
+    - name: knowledgeTitle
+      status: EXISTS
+    - name: knowledgeInstructions
+      status: EXISTS
+    - name: topicLabel
+      status: EXISTS
+    - name: cefrLevel
+      status: EXISTS
+    - name: misplacedLemmas
+      status: EXISTS
+    - name: suggestedLemmas
+      status: EXISTS
   interfaces:
   - name: RefinerEngine
     status: EXISTS
@@ -6505,12 +7338,15 @@ elements:
     status: EXISTS
     filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/CorrectionContextResolver.java
     methods:
-    - signature: "resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>"
+    - signature: "resolve(AuditReport report, RefinementTask task): Optional<T>"
       status: EXISTS
-  implementations:
-  - name: DefaultCorrectionContextResolver
+  - name: CorrectionContext
     status: EXISTS
-    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/DefaultCorrectionContextResolver.java
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/CorrectionContext.java
+  implementations:
+  - name: SentenceLengthContextResolver
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolver.java
     tests:
     - name: should resolve context with all fields populated from quiz diagnosis and
         ancestor entities
@@ -6571,7 +7407,7 @@ elements:
     testCleanViews:
     - |
       test: "should resolve context with all fields populated from quiz diagnosis and ancestor entities"
-      trace: FEAT-RCSL / F-RCSL-R001 / F-RCSL-J001
+      trace: FEAT-RCSL / F-RCSL-R001
 
       given:
         quiz = AuditableQuiz("The cat sat.", List.of(), "quiz-1", null, null, "El gato se sentó.")
@@ -6903,7 +7739,7 @@ elements:
         lemmas.get(0).getLemma() == "jump"
     - |
       test: "should return context with empty suggested lemmas when milestone has no LemmaAbsenceLevelDiagnosis"
-      trace: FEAT-RCSL / F-RCSL-R004 / F-RCSL-J003
+      trace: FEAT-RCSL / F-RCSL-R004
 
       given:
         quiz = AuditableQuiz("A sentence.", List.of(), "quiz-15", null, null, null)
@@ -6923,7 +7759,7 @@ elements:
         result.get().getSuggestedLemmas().isEmpty() is true
     - |
       test: "should return context with empty suggested lemmas when milestone ancestor is not found"
-      trace: FEAT-RCSL / F-RCSL-R004 / F-RCSL-J003
+      trace: FEAT-RCSL / F-RCSL-R004
 
       given:
         quiz = AuditableQuiz("A sentence.", List.of(), "quiz-16", null, null, null)
@@ -6943,7 +7779,7 @@ elements:
         result.get().getSuggestedLemmas().isEmpty() is true
     - |
       test: "should return context with empty suggested lemmas when absent lemmas list is empty"
-      trace: FEAT-RCSL / F-RCSL-R004 / F-RCSL-J003
+      trace: FEAT-RCSL / F-RCSL-R004
 
       given:
         quiz = AuditableQuiz("A sentence.", List.of(), "quiz-17", null, null, null)
@@ -6984,7 +7820,7 @@ elements:
         result.get().getSuggestedLemmas().size() == 10
     - |
       test: "should resolve context with negative delta for a sentence shorter than target range"
-      trace: FEAT-RCSL / F-RCSL-R001 / F-RCSL-J002
+      trace: FEAT-RCSL / F-RCSL-R001
 
       given:
         quiz = AuditableQuiz("Go.", List.of(), "quiz-19", null, null, null)
@@ -7043,6 +7879,605 @@ elements:
       then:
         result.isPresent() is true
         result.get().getTaskId() == "my-specific-task-id"
+  - name: LemmaAbsenceContextResolver
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolver.java
+    tests:
+    - name: should resolve context with all fields populated from quiz diagnosis and
+        ancestor entities
+      status: MISSING
+    - name: should populate sentence and translation from AuditableQuiz entity on
+        the quiz node
+      status: MISSING
+    - name: should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge
+        on knowledge ancestor
+      status: MISSING
+    - name: should populate topicLabel from AuditableTopic on topic ancestor
+      status: MISSING
+    - name: should populate cefrLevel from milestone ancestor
+      status: MISSING
+    - name: should populate misplacedLemmas from LemmaPlacementDiagnosis on quiz node
+      status: MISSING
+    - name: should map MisplacedLemma fields to MisplacedLemmaContext fields correctly
+      status: MISSING
+    - name: should include expectedLevel and quizLevel in each MisplacedLemmaContext
+        entry
+      status: MISSING
+    - name: should include cocaRank as null in MisplacedLemmaContext when not available
+      status: MISSING
+    - name: should return empty when quiz node is not found in the audit tree
+      status: MISSING
+    - name: should return empty when task nodeTarget does not match any node target
+        in the tree
+      status: MISSING
+    - name: should locate the correct quiz node when multiple quiz nodes exist in
+        the tree
+      status: MISSING
+    - name: should return empty when quiz node has no LemmaPlacementDiagnosis
+      status: MISSING
+    - name: should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas in suggestedLemmas
+        and exclude APPEARS_TOO_EARLY
+      status: MISSING
+    - name: should order suggested lemmas by COCA rank ascending with lowest rank
+        first
+      status: MISSING
+    - name: should place lemmas without COCA rank after lemmas with COCA rank in suggestedLemmas
+      status: MISSING
+    - name: should map AbsentLemma fields to SuggestedLemma fields correctly
+      status: MISSING
+    - name: should limit suggested lemmas to 10 when more than 10 qualify after filtering
+      status: MISSING
+    - name: should return context with empty suggested lemmas when milestone has no
+        LemmaAbsenceLevelDiagnosis
+      status: MISSING
+    - name: should return context with empty suggested lemmas when milestone ancestor
+        is not found
+      status: MISSING
+    - name: should return context with empty suggested lemmas when all absent lemmas
+        are APPEARS_TOO_EARLY
+      status: MISSING
+    - name: should set taskId from the RefinementTask id
+      status: MISSING
+    testCleanViews:
+    - |
+      test: "should resolve context with all fields populated from quiz diagnosis and ancestor entities"
+      trace: FEAT-RCLA / F-RCLA-R003
+
+      given:
+        quiz = AuditableQuiz("The cat sat.", List.of(), "quiz-la-1", null, null, "El gato se sentó.")
+        knowledge = AuditableKnowledge(List.of(), "Animals", "Complete the sentence.", true, "know-la-1", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-1", "Basic Animals", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-1", "A1", null)
+        ml = buildMisplacedLemma("cat", "NOUN", CefrLevel.A2, CefrLevel.A1, 300)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of(ml))
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-1")
+        result = sut.resolve(report, task)
+        ctx = result.get()
+
+      then:
+        result.isPresent() is true
+        ctx.getTaskId() == "task-la-1"
+        ctx.getSentence() == "The cat sat."
+        ctx.getTranslation() == "El gato se sentó."
+        ctx.getKnowledgeTitle() == "Animals"
+        ctx.getKnowledgeInstructions() == "Complete the sentence."
+        ctx.getTopicLabel() == "Basic Animals"
+        ctx.getMisplacedLemmas() is not null
+        ctx.getSuggestedLemmas() is not null
+    - |
+      test: "should populate sentence and translation from AuditableQuiz entity on the quiz node"
+      trace: FEAT-RCLA / F-RCLA-R003
+
+      given:
+        quiz = AuditableQuiz("I love learning.", List.of(), "quiz-la-2", null, null, "Me encanta aprender.")
+        knowledge = AuditableKnowledge(List.of(), "Feelings", "Complete.", true, "know-la-2", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-2", "Emotions", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-2", "A1", null)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of())
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-2")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getSentence() == "I love learning."
+        result.get().getTranslation() == "Me encanta aprender."
+    - |
+      test: "should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge on knowledge ancestor"
+      trace: FEAT-RCLA / F-RCLA-R003
+
+      given:
+        quiz = AuditableQuiz("He reads.", List.of(), "quiz-la-3", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Reading Skills", "Choose the correct word.", true, "know-la-3", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-3", "Skills", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-3", "A2", null)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of())
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A2, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-3")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getKnowledgeTitle() == "Reading Skills"
+        result.get().getKnowledgeInstructions() == "Choose the correct word."
+    - |
+      test: "should populate topicLabel from AuditableTopic on topic ancestor"
+      trace: FEAT-RCLA / F-RCLA-R003
+
+      given:
+        quiz = AuditableQuiz("She sings.", List.of(), "quiz-la-4", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Music", "Complete.", true, "know-la-4", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-4", "Arts and Culture", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-4", "B1", null)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of())
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.B1, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-4")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getTopicLabel() == "Arts and Culture"
+    - |
+      test: "should populate cefrLevel from milestone ancestor"
+      trace: FEAT-RCLA / F-RCLA-R003
+
+      given:
+        quiz = AuditableQuiz("They run fast.", List.of(), "quiz-la-5", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Sports", "Complete.", true, "know-la-5", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-5", "Activities", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-5", "B2", null)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of())
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.B2, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-5")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getCefrLevel() == CefrLevel.B2
+    - |
+      test: "should populate misplacedLemmas from LemmaPlacementDiagnosis on quiz node"
+      trace: FEAT-RCLA / F-RCLA-R004
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-la-6", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-la-6", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-6", "T6", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-6", "A1", null)
+        ml1 = buildMisplacedLemma("dog", "NOUN", CefrLevel.A2, CefrLevel.A1, 200)
+        ml2 = buildMisplacedLemma("run", "VERB", CefrLevel.A2, CefrLevel.A1, 400)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of(ml1, ml2))
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-6")
+        result = sut.resolve(report, task)
+        misplacedLemmas = result.get().getMisplacedLemmas()
+
+      then:
+        result.isPresent() is true
+        misplacedLemmas is not null
+        misplacedLemmas.size() == 2
+    - |
+      test: "should map MisplacedLemma fields to MisplacedLemmaContext fields correctly"
+      trace: FEAT-RCLA / F-RCLA-R004
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-la-7", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-la-7", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-7", "T7", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-7", "A1", null)
+        ml = buildMisplacedLemma("house", "NOUN", CefrLevel.A2, CefrLevel.A1, 350)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of(ml))
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-7")
+        result = sut.resolve(report, task)
+        ctx = result.get().getMisplacedLemmas().get(0)
+
+      then:
+        result.isPresent() is true
+        ctx.getLemma() == "house"
+        ctx.getPos() == "NOUN"
+        ctx.getCocaRank() == 350
+    - |
+      test: "should include expectedLevel and quizLevel in each MisplacedLemmaContext entry"
+      trace: FEAT-RCLA / F-RCLA-R004
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-la-8", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-la-8", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-8", "T8", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-8", "A1", null)
+        ml = buildMisplacedLemma("book", "NOUN", CefrLevel.A2, CefrLevel.A1, 100)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of(ml))
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-8")
+        result = sut.resolve(report, task)
+        ctx = result.get().getMisplacedLemmas().get(0)
+
+      then:
+        result.isPresent() is true
+        ctx.getExpectedLevel() == CefrLevel.A2
+        ctx.getQuizLevel() == CefrLevel.A1
+    - |
+      test: "should include cocaRank as null in MisplacedLemmaContext when not available"
+      trace: FEAT-RCLA / F-RCLA-R004
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-la-9", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-la-9", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-9", "T9", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-9", "A1", null)
+        ml = buildMisplacedLemma("unknown", "NOUN", CefrLevel.A2, CefrLevel.A1, 0)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of(ml))
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-9")
+        result = sut.resolve(report, task)
+        ctx = result.get().getMisplacedLemmas().get(0)
+
+      then:
+        result.isPresent() is true
+        ctx.getCocaRank() == 0
+    - |
+      test: "should return empty when quiz node is not found in the audit tree"
+      trace: FEAT-RCLA / F-RCLA-R005
+
+      given:
+        quiz = AuditableQuiz("Hello.", List.of(), "quiz-la-10", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "Greetings", "Complete.", true, "know-la-10", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-10", "Social", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-10", "A1", null)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of())
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("nonexistent-quiz-id")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isEmpty() is true
+    - |
+      test: "should return empty when task nodeTarget does not match any node target in the tree"
+      trace: FEAT-RCLA / F-RCLA-R005
+
+      given:
+        quiz = AuditableQuiz("Hello.", List.of(), "quiz-la-11", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-la-11", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-11", "T11", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-11", "A1", null)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of())
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = RefinementTask("task-la-11", AuditTarget.KNOWLEDGE, "quiz-la-11", "label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        result = sut.resolve(report, task)
+
+      then:
+        result.isEmpty() is true
+    - |
+      test: "should locate the correct quiz node when multiple quiz nodes exist in the tree"
+      trace: FEAT-RCLA / F-RCLA-R005
+
+      given:
+        knowledge = AuditableKnowledge(List.of(), "Mixed", "Do it.", true, "know-la-12", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-12", "Topic 12", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-12", "A1", null)
+        quiz1 = AuditableQuiz("First sentence.", List.of(), "quiz-la-12a", null, null, null)
+        quiz2 = AuditableQuiz("Second sentence.", List.of(), "quiz-la-12b", null, null, null)
+        ml = buildMisplacedLemma("tree", "NOUN", CefrLevel.A2, CefrLevel.A1, 600)
+        diag1 = buildQuizDiagnosesWithPlacement(List.of())
+        diag2 = buildQuizDiagnosesWithPlacement(List.of(ml))
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of())
+        courseNode = buildCourseNode()
+        milestoneNode = buildMilestoneNode(courseNode, milestone, milestoneDiag)
+        topicNode = buildTopicNode(milestoneNode, topic)
+        knowledgeNode = buildKnowledgeNode(topicNode, knowledge)
+        report = AuditReport(courseNode)
+        task = buildTask("quiz-la-12b")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getSentence() == "Second sentence."
+        result.get().getMisplacedLemmas().size() == 1
+    - |
+      test: "should return empty when quiz node has no LemmaPlacementDiagnosis"
+      trace: FEAT-RCLA / F-RCLA-R006
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-la-13", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-la-13", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-13", "T13", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-13", "A1", null)
+        quizDiag = buildQuizDiagnosesNoPlacement()
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-13")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isEmpty() is true
+    - |
+      test: "should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas in suggestedLemmas and exclude APPEARS_TOO_EARLY"
+      trace: FEAT-RCLA / F-RCLA-R004b
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-la-14", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-la-14", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-14", "T14", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-14", "A1", null)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of())
+        absentLemmas = List.of(buildAbsentLemma("walk", "VERB", AbsenceType.COMPLETELY_ABSENT, 100), buildAbsentLemma("run", "VERB", AbsenceType.APPEARS_TOO_LATE, 200), buildAbsentLemma("fly", "VERB", AbsenceType.APPEARS_TOO_EARLY, 300))
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, absentLemmas)
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-14")
+        result = sut.resolve(report, task)
+        lemmas = result.get().getSuggestedLemmas()
+
+      then:
+        result.isPresent() is true
+        lemmas.size() == 2
+        lemmas.stream().noneMatch(l -> l.getReason().equals("APPEARS_TOO_EARLY")) is true
+        lemmas.stream().anyMatch(l -> l.getLemma().equals("walk")) is true
+        lemmas.stream().anyMatch(l -> l.getLemma().equals("run")) is true
+    - |
+      test: "should order suggested lemmas by COCA rank ascending with lowest rank first"
+      trace: FEAT-RCLA / F-RCLA-R004b
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-la-15", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-la-15", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-15", "T15", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-15", "A1", null)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of())
+        absentLemmas = List.of(buildAbsentLemma("dog", "NOUN", AbsenceType.COMPLETELY_ABSENT, 500), buildAbsentLemma("cat", "NOUN", AbsenceType.COMPLETELY_ABSENT, 200), buildAbsentLemma("bird", "NOUN", AbsenceType.APPEARS_TOO_LATE, 350))
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, absentLemmas)
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-15")
+        result = sut.resolve(report, task)
+        lemmas = result.get().getSuggestedLemmas()
+
+      then:
+        result.isPresent() is true
+        lemmas.size() == 3
+        lemmas.get(0).getLemma() == "cat"
+        lemmas.get(1).getLemma() == "bird"
+        lemmas.get(2).getLemma() == "dog"
+    - |
+      test: "should place lemmas without COCA rank after lemmas with COCA rank in suggestedLemmas"
+      trace: FEAT-RCLA / F-RCLA-R004b
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-la-16", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-la-16", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-16", "T16", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-16", "A1", null)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of())
+        absentLemmas = List.of(buildAbsentLemma("unknown", "NOUN", AbsenceType.COMPLETELY_ABSENT, 0), buildAbsentLemma("table", "NOUN", AbsenceType.COMPLETELY_ABSENT, 150), buildAbsentLemma("chair", "NOUN", AbsenceType.APPEARS_TOO_LATE, 0))
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, absentLemmas)
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-16")
+        result = sut.resolve(report, task)
+        lemmas = result.get().getSuggestedLemmas()
+
+      then:
+        result.isPresent() is true
+        lemmas.size() == 3
+        lemmas.get(0).getLemma() == "table"
+        lemmas.get(1).getCocaRank() == 0 || lemmas.get(2).getCocaRank() == 0 is true
+    - |
+      test: "should map AbsentLemma fields to SuggestedLemma fields correctly"
+      trace: FEAT-RCLA / F-RCLA-R004b
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-la-17", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-la-17", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-17", "T17", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-17", "A1", null)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of())
+        absentLemmas = List.of(buildAbsentLemma("house", "NOUN", AbsenceType.COMPLETELY_ABSENT, 250))
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, absentLemmas)
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-17")
+        result = sut.resolve(report, task)
+        lemmas = result.get().getSuggestedLemmas()
+        sl = lemmas.get(0)
+
+      then:
+        result.isPresent() is true
+        lemmas.size() == 1
+        sl.getLemma() == "house"
+        sl.getPos() == "NOUN"
+        sl.getReason() == "COMPLETELY_ABSENT"
+        sl.getCocaRank() == 250
+    - |
+      test: "should limit suggested lemmas to 10 when more than 10 qualify after filtering"
+      trace: FEAT-RCLA / F-RCLA-R004b
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-la-18", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-la-18", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-18", "T18", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-18", "A1", null)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of())
+        absentLemmas = ArrayList<>()
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, absentLemmas)
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-18")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getSuggestedLemmas().size() == 10
+    - |
+      test: "should return context with empty suggested lemmas when milestone has no LemmaAbsenceLevelDiagnosis"
+      trace: FEAT-RCLA / F-RCLA-R004c
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-la-19", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-la-19", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-19", "T19", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-19", "A1", null)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of())
+        milestoneDiag = DefaultLevelDiagnoses()
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-19")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getSuggestedLemmas().isEmpty() is true
+    - |
+      test: "should return context with empty suggested lemmas when milestone ancestor is not found"
+      trace: FEAT-RCLA / F-RCLA-R004c
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-la-20", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-la-20", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-20", "T20", null)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of())
+        courseNode = buildCourseNode()
+        topicNode = buildTopicNode(courseNode, topic)
+        knowledgeNode = buildKnowledgeNode(topicNode, knowledge)
+        report = AuditReport(courseNode)
+        task = buildTask("quiz-la-20")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getSuggestedLemmas().isEmpty() is true
+    - |
+      test: "should return context with empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY"
+      trace: FEAT-RCLA / F-RCLA-R004c
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-la-21", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-la-21", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-21", "T21", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-21", "A1", null)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of())
+        absentLemmas = List.of(buildAbsentLemma("advanced", "ADJ", AbsenceType.APPEARS_TOO_EARLY, 1000), buildAbsentLemma("complex", "ADJ", AbsenceType.APPEARS_TOO_EARLY, 2000))
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, absentLemmas)
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = buildTask("quiz-la-21")
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getSuggestedLemmas().isEmpty() is true
+    - |
+      test: "should set taskId from the RefinementTask id"
+      trace: FEAT-RCLA / F-RCLA-R003
+
+      given:
+        quiz = AuditableQuiz("A sentence.", List.of(), "quiz-la-22", null, null, null)
+        knowledge = AuditableKnowledge(List.of(), "T", "D.", true, "know-la-22", null, null)
+        topic = AuditableTopic(List.of(), "topic-la-22", "T22", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-22", "A1", null)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of())
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = RefinementTask("my-specific-task-id-la", AuditTarget.QUIZ, "quiz-la-22", "label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is true
+        result.get().getTaskId() == "my-specific-task-id-la"
+  - name: DispatchingCorrectionContextResolver
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/DispatchingCorrectionContextResolver.java
+    tests:
+    - name: should delegate to sentenceLengthResolver when task diagnosis is SENTENCE_LENGTH
+      status: MISSING
+    - name: should delegate to lemmaAbsenceResolver when task diagnosis is LEMMA_ABSENCE
+      status: MISSING
+    - name: should return empty for unsupported diagnosis kind COCA_BUCKETS
+      status: MISSING
+    - name: should return empty for unsupported diagnosis kind LEMMA_RECURRENCE
+      status: MISSING
+    - name: should propagate empty from delegate when delegate returns empty
+      status: MISSING
+    testCleanViews:
+    - |
+      test: "should delegate to sentenceLengthResolver when task diagnosis is SENTENCE_LENGTH"
+      trace: FEAT-RCLA / F-RCLA-R007
+
+      given:
+        report = buildEmptyReport()
+        task = buildTask(DiagnosisKind.SENTENCE_LENGTH)
+        result = sut.resolve(report, task)
+
+      then:
+        result.isEmpty() is true
+    - |
+      test: "should delegate to lemmaAbsenceResolver when task diagnosis is LEMMA_ABSENCE"
+      trace: FEAT-RCLA / F-RCLA-R007
+
+      given:
+        report = buildEmptyReport()
+        task = buildTask(DiagnosisKind.LEMMA_ABSENCE)
+        result = sut.resolve(report, task)
+
+      then:
+        result.isEmpty() is true
+    - |
+      test: "should return empty for unsupported diagnosis kind COCA_BUCKETS"
+      trace: FEAT-RCLA / F-RCLA-R007
+
+      given:
+        report = buildEmptyReport()
+        task = buildTask(DiagnosisKind.COCA_BUCKETS)
+        result = sut.resolve(report, task)
+
+      then:
+        result.isEmpty() is true
+    - |
+      test: "should return empty for unsupported diagnosis kind LEMMA_RECURRENCE"
+      trace: FEAT-RCLA / F-RCLA-R007
+
+      given:
+        report = buildEmptyReport()
+        task = buildTask(DiagnosisKind.LEMMA_RECURRENCE)
+        result = sut.resolve(report, task)
+
+      then:
+        result.isEmpty() is true
+    - |
+      test: "should propagate empty from delegate when delegate returns empty"
+      trace: FEAT-RCLA / F-RCLA-R007
+
+      given:
+        report = buildEmptyReport()
+        task = buildTask(DiagnosisKind.SENTENCE_LENGTH)
+        result = sut.resolve(report, task)
+
+      then:
+        result.isPresent() is false
 - module: audit-application
   status: EXISTS
   interfaces:
@@ -7994,15 +9429,7 @@ elements:
     tests:
     - name: should resolve correction context when task diagnosis is SENTENCE_LENGTH
       status: MISSING
-    - name: should not resolve correction context when task diagnosis is LEMMA_ABSENCE
-      status: MISSING
     - name: should not resolve correction context when task diagnosis is COCA_BUCKETS
-      status: MISSING
-    - name: should not include correctionContext field in JSON output for LEMMA_ABSENCE
-        task
-      status: MISSING
-    - name: should not include correction context section in text output for non SENTENCE_LENGTH
-        task
       status: MISSING
     - name: should include correctionContext object in JSON when context resolves
         successfully
@@ -8045,6 +9472,37 @@ elements:
     - name: should print correction context section in table format for SENTENCE_LENGTH
         task
       status: MISSING
+    - name: should resolve correction context when task diagnosis is LEMMA_ABSENCE
+      status: MISSING
+    - name: should include correctionContext with misplacedLemmas array in JSON for
+        LEMMA_ABSENCE task
+      status: MISSING
+    - name: should include misplacedLemmas with lemma pos expectedLevel quizLevel
+        and cocaRank in JSON correctionContext
+      status: MISSING
+    - name: should include suggestedLemmas array in JSON correctionContext for LEMMA_ABSENCE
+        task
+      status: MISSING
+    - name: should set correctionContext to null and include correctionContextError
+        in JSON for LEMMA_ABSENCE when resolver returns empty
+      status: MISSING
+    - name: should print correction context section with misplaced lemmas in text
+        format for LEMMA_ABSENCE task
+      status: MISSING
+    - name: should print numbered misplaced lemmas list with expected and found levels
+        in text format
+      status: MISSING
+    - name: should print suggested replacements in text format for LEMMA_ABSENCE task
+      status: MISSING
+    - name: should print none available for suggested replacements when list is empty
+        in text format for LEMMA_ABSENCE
+      status: MISSING
+    - name: should print not available message when LEMMA_ABSENCE context cannot be
+        built in text format
+      status: MISSING
+    - name: should include sentence translation knowledgeTitle knowledgeInstructions
+        topicLabel and cefrLevel in JSON correctionContext for LEMMA_ABSENCE
+      status: MISSING
     testCleanViews:
     - |
       test: "should resolve correction context when task diagnosis is SENTENCE_LENGTH"
@@ -8072,28 +9530,6 @@ elements:
       then:
         verify: resolver.resolve(report, task)
     - |
-      test: "should not resolve correction context when task diagnosis is LEMMA_ABSENCE"
-      trace: FEAT-RCSL / F-RCSL-R006
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-002", DiagnosisKind.LEMMA_ABSENCE)
-        plan = buildPlan("audit-001", task)
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-
-      when:
-        sut.next("plan-001")
-
-      then:
-        verify: reportStore.load(any()) x 0
-        verify: resolver.resolve(any(), any()) x 0
-    - |
       test: "should not resolve correction context when task diagnosis is COCA_BUCKETS"
       trace: FEAT-RCSL / F-RCSL-R006
 
@@ -8115,55 +9551,6 @@ elements:
       then:
         verify: reportStore.load(any()) x 0
         verify: resolver.resolve(any(), any()) x 0
-    - |
-      test: "should not include correctionContext field in JSON output for LEMMA_ABSENCE task"
-      trace: FEAT-RCSL / F-RCSL-R006
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-004", DiagnosisKind.LEMMA_ABSENCE)
-        plan = buildPlan("audit-001", task)
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        output = outContent.toString()
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        output.contains("correctionContext") is false
-    - |
-      test: "should not include correction context section in text output for non SENTENCE_LENGTH task"
-      trace: FEAT-RCSL / F-RCSL-R006
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-005", DiagnosisKind.LEMMA_ABSENCE)
-        plan = buildPlan("audit-001", task)
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        output = outContent.toString()
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        output.contains("Correction context") is false
-        output.contains("LEMMA_ABSENCE") is true
     - |
       test: "should include correctionContext object in JSON when context resolves successfully"
       trace: FEAT-RCSL / F-RCSL-R007 / F-RCSL-J001
@@ -8643,6 +10030,377 @@ elements:
         output.contains("Sentence:") is true
         output.contains("She plays tennis every afternoon with her friends") is true
         output.contains("15 (target: 5-8, delta: +7)") is true
+    - |
+      test: "should resolve correction context when task diagnosis is LEMMA_ABSENCE"
+      trace: FEAT-RCLA / F-RCLA-R007
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840))
+        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.next("plan-001")
+
+      then:
+        verify: resolver.resolve(report, task)
+    - |
+      test: "should include correctionContext with misplacedLemmas array in JSON for LEMMA_ABSENCE task"
+      trace: FEAT-RCLA / F-RCLA-R008
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840), new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205))
+        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        root = ObjectMapper().readTree(outContent.toString())
+        misplacedLemmas = root.get("correctionContext").get("misplacedLemmas")
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        root.has("correctionContext") is true
+        root.get("correctionContext").isNull() is false
+        misplacedLemmas is not null
+        misplacedLemmas.isArray() is true
+        misplacedLemmas.size() == 2
+    - |
+      test: "should include misplacedLemmas with lemma pos expectedLevel quizLevel and cocaRank in JSON correctionContext"
+      trace: FEAT-RCLA / F-RCLA-R008
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840), new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205))
+        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        misplacedLemmas = ObjectMapper().readTree(outContent.toString()).get("correctionContext").get("misplacedLemmas")
+        first = misplacedLemmas.get(0)
+        second = misplacedLemmas.get(1)
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        first.get("lemma").asText() == "negotiate"
+        first.get("pos").asText() == "VERB"
+        first.get("expectedLevel").asText() == "B2"
+        first.get("quizLevel").asText() == "A1"
+        first.get("cocaRank").asInt() == 2840
+        second.get("lemma").asText() == "contract"
+        second.get("pos").asText() == "NOUN"
+        second.get("expectedLevel").asText() == "B1"
+        second.get("quizLevel").asText() == "A1"
+        second.get("cocaRank").asInt() == 1205
+    - |
+      test: "should include suggestedLemmas array in JSON correctionContext for LEMMA_ABSENCE task"
+      trace: FEAT-RCLA / F-RCLA-R008
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840))
+        suggested = List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52), new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89), new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201))
+        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, suggested)
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        suggestedLemmas = ObjectMapper().readTree(outContent.toString()).get("correctionContext").get("suggestedLemmas")
+        first = suggestedLemmas.get(0)
+        second = suggestedLemmas.get(1)
+        third = suggestedLemmas.get(2)
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        suggestedLemmas is not null
+        suggestedLemmas.isArray() is true
+        suggestedLemmas.size() == 3
+        first.get("lemma").asText() == "like"
+        first.get("pos").asText() == "VERB"
+        first.get("reason").asText() == "COMPLETELY_ABSENT"
+        first.get("cocaRank").asInt() == 52
+        second.get("lemma").asText() == "want"
+        second.get("reason").asText() == "APPEARS_TOO_LATE"
+        third.get("lemma").asText() == "big"
+        third.get("pos").asText() == "ADJ"
+        third.get("cocaRank").asInt() == 201
+    - |
+      test: "should set correctionContext to null and include correctionContextError in JSON for LEMMA_ABSENCE when resolver returns empty"
+      trace: FEAT-RCLA / F-RCLA-R008
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        root = ObjectMapper().readTree(outContent.toString())
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.empty()
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        root.has("correctionContext") is true
+        root.get("correctionContext").isNull() is true
+        root.has("correctionContextError") is true
+        root.get("correctionContextError").asText().isBlank() is false
+    - |
+      test: "should print correction context section with misplaced lemmas in text format for LEMMA_ABSENCE task"
+      trace: FEAT-RCLA / F-RCLA-R009
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840))
+        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        output = outContent.toString()
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        output.contains("Correction context:") is true
+        output.contains("Sentence:") is true
+        output.contains("She needs to negotiate the contract before Friday") is true
+        output.contains("Translation:") is true
+        output.contains("Ella necesita negociar el contrato antes del viernes") is true
+        output.contains("Knowledge:") is true
+        output.contains("Affirmative sentences in the present simple") is true
+        output.contains("Instructions:") is true
+        output.contains("Escribe la forma afirmativa") is true
+        output.contains("Topic:") is true
+        output.contains("Present Simple") is true
+        output.contains("CEFR Level:") is true
+        output.contains("A1") is true
+        output.contains("Misplaced lemmas:") is true
+    - |
+      test: "should print numbered misplaced lemmas list with expected and found levels in text format"
+      trace: FEAT-RCLA / F-RCLA-R009
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840), new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205))
+        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        output = outContent.toString()
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        output.contains("1. negotiate (VERB) - expected B2, found in A1 [COCA #2840]") is true
+        output.contains("2. contract (NOUN) - expected B1, found in A1 [COCA #1205]") is true
+    - |
+      test: "should print suggested replacements in text format for LEMMA_ABSENCE task"
+      trace: FEAT-RCLA / F-RCLA-R009
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840))
+        suggested = List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52), new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89), new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201))
+        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, suggested)
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        output = outContent.toString()
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        output.contains("Suggested replacements:") is true
+        output.contains("1. like (VERB) - COMPLETELY_ABSENT [COCA #52]") is true
+        output.contains("2. want (VERB) - APPEARS_TOO_LATE [COCA #89]") is true
+        output.contains("3. big (ADJ) - COMPLETELY_ABSENT [COCA #201]") is true
+    - |
+      test: "should print none available for suggested replacements when list is empty in text format for LEMMA_ABSENCE"
+      trace: FEAT-RCLA / F-RCLA-R009
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840))
+        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        output = outContent.toString()
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        output.contains("Suggested replacements:") is true
+        output.contains("(none available)") is true
+    - |
+      test: "should print not available message when LEMMA_ABSENCE context cannot be built in text format"
+      trace: FEAT-RCLA / F-RCLA-R009
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        output = outContent.toString()
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.empty()
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        output.contains("Correction context: not available") is true
+        output.contains("context could not be resolved for task task-014") is true
+    - |
+      test: "should include sentence translation knowledgeTitle knowledgeInstructions topicLabel and cefrLevel in JSON correctionContext for LEMMA_ABSENCE"
+      trace: FEAT-RCLA / F-RCLA-R008
+
+      given:
+        planStore = mock(RefinementPlanStore.class)
+        refinerEngine = mock(RefinerEngine.class)
+        reportStore = mock(AuditReportStore.class)
+        resolver = mock(CorrectionContextResolver.class)
+        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
+        plan = buildPlan("audit-001", task)
+        report = AuditReport(null)
+        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840))
+        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, List.of())
+        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
+        originalOut = System.out
+        outContent = ByteArrayOutputStream()
+        ctx = ObjectMapper().readTree(outContent.toString()).get("correctionContext")
+
+      mock:
+        planStore.load("plan-001") -> Optional.of(plan)
+        reportStore.load("audit-001") -> Optional.of(report)
+        resolver.resolve(report, task) -> Optional.of(context)
+
+      when:
+        sut.setOut(new PrintStream(outContent))
+
+      then:
+        ctx.get("sentence").asText() == "She needs to negotiate the contract before Friday"
+        ctx.get("translation").asText() == "Ella necesita negociar el contrato antes del viernes"
+        ctx.get("knowledgeTitle").asText() == "Affirmative sentences in the present simple"
+        ctx.get("knowledgeInstructions").asText() == "Escribe la forma afirmativa"
+        ctx.get("topicLabel").asText() == "Present Simple"
+        ctx.get("cefrLevel").asText() == "A1"
   - name: RefinerListCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RefinerListCmd.java
@@ -9075,10 +10833,10 @@ elements:
     status: EXISTS
     filePath: audit-infrastructure/src/main/java/com/learney/contentaudit/auditinfrastructure/FileSystemRefinementPlanStore.java
 testSummary:
-  total: 319
+  total: 354
   passing: 59
   failing: 0
-  notImplemented: 260
+  notImplemented: 295
 patterns:
 - id: declared-1
   pattern: Strategy
@@ -9733,6 +11491,18 @@ patterns:
     nodeId: interface-refiner-domain-CorrectionContextResolver
   confidence: 0.9
 - id: stereo-53
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: CorrectionContext is a port
+  involvedElements:
+  - type: interface
+    moduleName: refiner-domain
+    elementName: CorrectionContext
+    nodeId: interface-refiner-domain-CorrectionContext
+  confidence: 0.9
+- id: stereo-54
   pattern: Enum
   category: architectural
   source: detected
@@ -9744,7 +11514,7 @@ patterns:
     elementName: DiagnosisKind
     nodeId: model-refiner-domain-DiagnosisKind
   confidence: 0.95
-- id: stereo-54
+- id: stereo-55
   pattern: Enum
   category: architectural
   source: detected
@@ -9756,7 +11526,7 @@ patterns:
     elementName: RefinementTaskStatus
     nodeId: model-refiner-domain-RefinementTaskStatus
   confidence: 0.95
-- id: stereo-55
+- id: stereo-56
   pattern: Entity
   category: architectural
   source: detected
@@ -9768,7 +11538,7 @@ patterns:
     elementName: RefinementTask
     nodeId: model-refiner-domain-RefinementTask
   confidence: 0.8
-- id: stereo-56
+- id: stereo-57
   pattern: Entity
   category: architectural
   source: detected
@@ -9780,7 +11550,7 @@ patterns:
     elementName: RefinementPlan
     nodeId: model-refiner-domain-RefinementPlan
   confidence: 0.8
-- id: stereo-57
+- id: stereo-58
   pattern: Value Object
   category: architectural
   source: detected
@@ -9792,7 +11562,7 @@ patterns:
     elementName: SuggestedLemma
     nodeId: model-refiner-domain-SuggestedLemma
   confidence: 0.75
-- id: stereo-58
+- id: stereo-59
   pattern: Value Object
   category: architectural
   source: detected
@@ -9804,7 +11574,31 @@ patterns:
     elementName: SentenceLengthCorrectionContext
     nodeId: model-refiner-domain-SentenceLengthCorrectionContext
   confidence: 0.75
-- id: stereo-59
+- id: stereo-60
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: MisplacedLemmaContext is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: refiner-domain
+    elementName: MisplacedLemmaContext
+    nodeId: model-refiner-domain-MisplacedLemmaContext
+  confidence: 0.75
+- id: stereo-61
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: LemmaAbsenceCorrectionContext is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: refiner-domain
+    elementName: LemmaAbsenceCorrectionContext
+    nodeId: model-refiner-domain-LemmaAbsenceCorrectionContext
+  confidence: 0.75
+- id: stereo-62
   pattern: Service
   category: architectural
   source: detected
@@ -9816,7 +11610,7 @@ patterns:
     elementName: AuditRunner
     nodeId: interface-audit-application-AuditRunner
   confidence: 0.9
-- id: stereo-60
+- id: stereo-63
   pattern: Port
   category: architectural
   source: detected
@@ -9828,7 +11622,7 @@ patterns:
     elementName: CourseMapper
     nodeId: interface-audit-application-CourseMapper
   confidence: 0.9
-- id: stereo-61
+- id: stereo-64
   pattern: Service
   category: architectural
   source: detected
@@ -9840,7 +11634,7 @@ patterns:
     elementName: AnalyzerRegistry
     nodeId: interface-audit-application-AnalyzerRegistry
   confidence: 0.9
-- id: stereo-62
+- id: stereo-65
   pattern: Port
   category: architectural
   source: detected
@@ -9852,7 +11646,7 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: stereo-63
+- id: stereo-66
   pattern: Port
   category: architectural
   source: detected
@@ -9864,7 +11658,7 @@ patterns:
     elementName: AnalyzerListCommand
     nodeId: interface-audit-cli-AnalyzerListCommand
   confidence: 0.9
-- id: stereo-64
+- id: stereo-67
   pattern: Port
   category: architectural
   source: detected
@@ -9876,7 +11670,7 @@ patterns:
     elementName: AnalyzerConfigCommand
     nodeId: interface-audit-cli-AnalyzerConfigCommand
   confidence: 0.9
-- id: stereo-65
+- id: stereo-68
   pattern: Port
   category: architectural
   source: detected
@@ -9888,7 +11682,7 @@ patterns:
     elementName: AnalyzerStatsCommand
     nodeId: interface-audit-cli-AnalyzerStatsCommand
   confidence: 0.9
-- id: stereo-66
+- id: stereo-69
   pattern: Port
   category: architectural
   source: detected
@@ -9900,7 +11694,7 @@ patterns:
     elementName: RefinerPlanCommand
     nodeId: interface-audit-cli-RefinerPlanCommand
   confidence: 0.9
-- id: stereo-67
+- id: stereo-70
   pattern: Port
   category: architectural
   source: detected
@@ -9912,7 +11706,7 @@ patterns:
     elementName: RefinerNextCommand
     nodeId: interface-audit-cli-RefinerNextCommand
   confidence: 0.9
-- id: stereo-68
+- id: stereo-71
   pattern: Port
   category: architectural
   source: detected
@@ -9924,7 +11718,7 @@ patterns:
     elementName: RefinerListCommand
     nodeId: interface-audit-cli-RefinerListCommand
   confidence: 0.9
-- id: stereo-70
+- id: stereo-73
   pattern: Value Object
   category: architectural
   source: detected
@@ -9936,7 +11730,7 @@ patterns:
     elementName: NlpTokenizerConfig
     nodeId: model-nlp-infrastructure-NlpTokenizerConfig
   confidence: 0.75
-- id: anti-71
+- id: anti-74
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -9948,7 +11742,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-72
+- id: anti-75
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -9960,7 +11754,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: anti-73
+- id: anti-76
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -9972,7 +11766,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: anti-74
+- id: anti-77
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -9984,7 +11778,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: anti-75
+- id: anti-78
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -9996,7 +11790,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: anti-76
+- id: anti-79
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10008,7 +11802,7 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: anti-77
+- id: anti-80
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10020,7 +11814,7 @@ patterns:
     elementName: NodeDiagnoses
     nodeId: interface-audit-domain-NodeDiagnoses
   confidence: 0.9
-- id: anti-78
+- id: anti-81
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10032,7 +11826,7 @@ patterns:
     elementName: CourseDiagnoses
     nodeId: interface-audit-domain-CourseDiagnoses
   confidence: 0.9
-- id: anti-79
+- id: anti-82
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10044,7 +11838,7 @@ patterns:
     elementName: LevelDiagnoses
     nodeId: interface-audit-domain-LevelDiagnoses
   confidence: 0.9
-- id: anti-80
+- id: anti-83
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10056,7 +11850,7 @@ patterns:
     elementName: TopicDiagnoses
     nodeId: interface-audit-domain-TopicDiagnoses
   confidence: 0.9
-- id: anti-81
+- id: anti-84
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10068,7 +11862,7 @@ patterns:
     elementName: KnowledgeDiagnoses
     nodeId: interface-audit-domain-KnowledgeDiagnoses
   confidence: 0.9
-- id: anti-82
+- id: anti-85
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10080,7 +11874,7 @@ patterns:
     elementName: QuizDiagnoses
     nodeId: interface-audit-domain-QuizDiagnoses
   confidence: 0.9
-- id: anti-83
+- id: anti-86
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -10092,7 +11886,7 @@ patterns:
     elementName: audit-domain
     nodeId: module-audit-domain
   confidence: 0.85
-- id: anti-84
+- id: anti-87
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -10104,7 +11898,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.8
-- id: anti-85
+- id: anti-88
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -10116,7 +11910,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.8
-- id: anti-86
+- id: anti-89
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10128,7 +11922,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-87
+- id: anti-90
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -10140,7 +11934,7 @@ patterns:
     elementName: course-domain
     nodeId: module-course-domain
   confidence: 0.85
-- id: anti-88
+- id: anti-91
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10152,7 +11946,31 @@ patterns:
     elementName: RefinerEngine
     nodeId: interface-refiner-domain-RefinerEngine
   confidence: 0.9
-- id: anti-89
+- id: anti-92
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: CorrectionContextResolver has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: refiner-domain
+    elementName: CorrectionContextResolver
+    nodeId: interface-refiner-domain-CorrectionContextResolver
+  confidence: 0.9
+- id: anti-93
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: CorrectionContext has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: refiner-domain
+    elementName: CorrectionContext
+    nodeId: interface-refiner-domain-CorrectionContext
+  confidence: 0.9
+- id: anti-94
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -10164,7 +11982,7 @@ patterns:
     elementName: audit-application
     nodeId: module-audit-application
   confidence: 0.85
-- id: anti-90
+- id: anti-95
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10176,7 +11994,7 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: anti-91
+- id: anti-96
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10188,7 +12006,7 @@ patterns:
     elementName: AnalyzerListCommand
     nodeId: interface-audit-cli-AnalyzerListCommand
   confidence: 0.9
-- id: anti-92
+- id: anti-97
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10200,7 +12018,7 @@ patterns:
     elementName: AnalyzerConfigCommand
     nodeId: interface-audit-cli-AnalyzerConfigCommand
   confidence: 0.9
-- id: anti-93
+- id: anti-98
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10212,7 +12030,7 @@ patterns:
     elementName: AnalyzerStatsCommand
     nodeId: interface-audit-cli-AnalyzerStatsCommand
   confidence: 0.9
-- id: anti-94
+- id: anti-99
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10224,7 +12042,7 @@ patterns:
     elementName: RefinerPlanCommand
     nodeId: interface-audit-cli-RefinerPlanCommand
   confidence: 0.9
-- id: anti-95
+- id: anti-100
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10236,7 +12054,7 @@ patterns:
     elementName: RefinerNextCommand
     nodeId: interface-audit-cli-RefinerNextCommand
   confidence: 0.9
-- id: anti-96
+- id: anti-101
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -10248,7 +12066,7 @@ patterns:
     elementName: RefinerListCommand
     nodeId: interface-audit-cli-RefinerListCommand
   confidence: 0.9
-- id: anti-97
+- id: anti-102
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -10260,7 +12078,7 @@ patterns:
     elementName: audit-cli
     nodeId: module-audit-cli
   confidence: 0.85
-- id: anti-98
+- id: anti-103
   pattern: Orphan Interface
   category: anti-pattern
   source: detected

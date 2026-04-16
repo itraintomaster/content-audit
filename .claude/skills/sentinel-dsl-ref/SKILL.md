@@ -84,7 +84,9 @@ packages:
 models:
   - name: string              # PascalCase (e.g., "Order", "OrderStatus")
     type: record|enum|exception # record = Java record, enum = Java enum, exception = RuntimeException subclass
+    visibility: public|internal # Default: public. "internal" = package-private Java class
     extends: string            # Optional supertype (default: RuntimeException for exceptions)
+    implements: [string]        # Optional: interfaces this model implements (marker interfaces, sealed hierarchies)
     message: string            # Optional message template for exceptions (uses String.format with field values)
     fields:
       - name: string           # camelCase for records, UPPER_CASE for enum constants
@@ -108,7 +110,9 @@ Exception example:
 interfaces:
   - name: string              # PascalCase (e.g., "OrderRepository")
     stereotype: string         # Free-text label: "port", "gateway", "repository", etc.
+    visibility: public|internal # Default: public. "internal" = package-private interface
     sealed: boolean            # true = only declared implementations allowed
+    typeParameters: [string]   # Optional generic type parameters (e.g., ["T extends Bound"])
     exposes:
       - signature: string      # "methodName(Type arg): ReturnType"
         throws: [string]       # Optional exception types
@@ -124,12 +128,15 @@ interfaces:
 - `_change: "delete"` on a signature removes that single method from the interface without deleting the whole interface
 - `patch propose` does NOT validate signatures — malformed signatures pass proposal but fail during `sentinel generate`
 
+When `typeParameters` is set, method signatures can reference the type variables (e.g. `resolve(Report r): Optional<T>`). Implementations specify the concrete type via `implements: ["InterfaceName<ConcreteType>"]`.
+
 ## Implementation
 
 ```yaml
 implementations:
   - name: string              # PascalCase (e.g., "PostgresOrderAdapter")
     implements: [string]       # Interfaces this class implements (always an array)
+    visibility: public|internal # Default: internal (package-private). "public" = accessible cross-module
     externalImplements:        # External framework/library interfaces (FQN with generics)
       - string                 # e.g., "java.util.concurrent.Callable<Integer>"
     requiresInject:            # Constructor-injected dependencies
@@ -140,6 +147,16 @@ implementations:
 ```
 
 **`externalImplements`** — Use when the implementation class must implement an interface from an external framework or the JDK (e.g., picocli's `Callable<Integer>`, Spring's `InitializingBean`, Jackson's `Serializer<T>`). These are NOT validated against sentinel interfaces and are passed through to the generated class declaration as-is. Always use the fully-qualified name.
+
+### Visibility Defaults
+
+| Component | Default | Meaning |
+|---|---|---|
+| Model | `public` | Accessible from any module |
+| Interface | `public` | Accessible from any module |
+| Implementation | `internal` | Package-private (same module only) |
+
+Implementations are internal by default — external modules depend on interfaces, not concrete classes. Use `visibility: "public"` on an implementation only when it must be instantiated from another module (e.g., CLI wiring, factory classes).
 
 ## External Dependencies (root-level)
 

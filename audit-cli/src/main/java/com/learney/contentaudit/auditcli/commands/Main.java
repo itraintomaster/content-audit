@@ -39,7 +39,9 @@ import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore;
 import com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
-import com.learney.contentaudit.refinerdomain.DefaultCorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.DispatchingCorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.LemmaAbsenceContextResolver;
+import com.learney.contentaudit.refinerdomain.SentenceLengthContextResolver;
 import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
 import com.learney.contentaudit.refinerdomain.RefinerEngine;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
@@ -68,7 +70,7 @@ import java.util.Map;
 /**
  * CLI entry point. Manually assembles all dependencies and runs the audit.
  */
-public class Main {
+class Main {
 
     public static void main(String[] args) {
         // Infrastructure layer
@@ -189,7 +191,10 @@ public class Main {
         // Refiner commands
         RefinerEngine refinerEngine = new DefaultRefinerEngine();
         RefinementPlanStore refinementPlanStore = new FileSystemRefinementPlanStore();
-        CorrectionContextResolver correctionContextResolver = new DefaultCorrectionContextResolver();
+        SentenceLengthContextResolver sentenceLengthContextResolver = new SentenceLengthContextResolver();
+        LemmaAbsenceContextResolver lemmaAbsenceContextResolver = new LemmaAbsenceContextResolver();
+        CorrectionContextResolver correctionContextResolver = new DispatchingCorrectionContextResolver(
+                sentenceLengthContextResolver, lemmaAbsenceContextResolver);
 
         picocli.CommandLine refinerGroup = new picocli.CommandLine(new RefinerCmd());
         refinerGroup.addSubcommand("plan", new picocli.CommandLine(

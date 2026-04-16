@@ -28,13 +28,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-public class DefaultCorrectionContextResolverTest {
+public class SentenceLengthContextResolverTest {
 
-    private DefaultCorrectionContextResolver sut;
+    private SentenceLengthContextResolver sut;
 
     @BeforeEach
     void setUp() {
-        sut = new DefaultCorrectionContextResolver();
+        sut = new SentenceLengthContextResolver();
     }
 
     // ------------------------------------------------------------------
@@ -171,7 +171,6 @@ public class DefaultCorrectionContextResolverTest {
     @DisplayName("should resolve context with all fields populated from quiz diagnosis and ancestor entities")
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R001")
-    @Tag("F-RCSL-J001")
     public void shouldResolveContextWithAllFieldsPopulatedFromQuizDiagnosisAndAncestorEntities() {
         AuditableQuiz quiz = new AuditableQuiz("The cat sat.", List.of(), "quiz-1", null, null, "El gato se sentó.");
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete the sentence.", true, "know-1", null, null);
@@ -601,7 +600,6 @@ public class DefaultCorrectionContextResolverTest {
     @DisplayName("should return context with empty suggested lemmas when milestone has no LemmaAbsenceLevelDiagnosis")
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R004")
-    @Tag("F-RCSL-J003")
     public void shouldReturnContextWithEmptySuggestedLemmasWhenMilestoneHasNoLemmaAbsenceLevelDiagnosis(
             ) {
         AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-15", null, null, null);
@@ -629,7 +627,6 @@ public class DefaultCorrectionContextResolverTest {
     @DisplayName("should return context with empty suggested lemmas when milestone ancestor is not found")
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R004")
-    @Tag("F-RCSL-J003")
     public void shouldReturnContextWithEmptySuggestedLemmasWhenMilestoneAncestorIsNotFound() {
         // Build a shallow tree: COURSE → TOPIC → KNOWLEDGE → QUIZ (no MILESTONE level)
         AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-16", null, null, null);
@@ -657,7 +654,6 @@ public class DefaultCorrectionContextResolverTest {
     @DisplayName("should return context with empty suggested lemmas when absent lemmas list is empty")
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R004")
-    @Tag("F-RCSL-J003")
     public void shouldReturnContextWithEmptySuggestedLemmasWhenAbsentLemmasListIsEmpty() {
         AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-17", null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-17", null, null);
@@ -714,7 +710,6 @@ public class DefaultCorrectionContextResolverTest {
     @DisplayName("should resolve context with negative delta for a sentence shorter than target range")
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R001")
-    @Tag("F-RCSL-J002")
     public void shouldResolveContextWithNegativeDeltaForASentenceShorterThanTargetRange() {
         AuditableQuiz quiz = new AuditableQuiz("Go.", List.of(), "quiz-19", null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-19", null, null);

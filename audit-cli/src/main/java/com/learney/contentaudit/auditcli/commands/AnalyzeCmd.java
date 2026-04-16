@@ -59,7 +59,7 @@ import picocli.CommandLine.Parameters;
                 "  CONTENT_AUDIT_CONTENT_FOLDER=db/english-course content-audit analyze",
         }
 )
-public final class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
+final class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
     private final AuditRunner auditRunner;
 
     private final FormatterRegistry formatterRegistry;

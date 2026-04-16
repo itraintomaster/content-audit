@@ -1,0 +1,41 @@
+code: __proposal__
+description: "FEAT-RCLA: Add generics to CorrectionContextResolver and implements
+  CorrectionContext on context records. Uses new DSL features: typeParameters on interfaces
+  and implements on models."
+modules:
+- name: refiner-domain
+  models:
+  - name: SentenceLengthCorrectionContext
+    type: record
+    implements:
+    - CorrectionContext
+    _change: modify
+  - name: LemmaAbsenceCorrectionContext
+    type: record
+    implements:
+    - CorrectionContext
+    _change: modify
+  interfaces:
+  - name: CorrectionContextResolver
+    typeParameters:
+    - "T extends CorrectionContext"
+    exposes:
+    - signature: "resolve(AuditReport report, RefinementTask task): Optional<CorrectionContext>"
+      _change: delete
+    - signature: "resolve(AuditReport report, RefinementTask task): Optional<T>"
+      _change: add
+    _change: modify
+  implementations:
+  - name: SentenceLengthContextResolver
+    implements:
+    - "CorrectionContextResolver<SentenceLengthCorrectionContext>"
+    _change: modify
+  - name: LemmaAbsenceContextResolver
+    implements:
+    - "CorrectionContextResolver<LemmaAbsenceCorrectionContext>"
+    _change: modify
+  - name: DispatchingCorrectionContextResolver
+    implements:
+    - "CorrectionContextResolver<CorrectionContext>"
+    _change: modify
+  _change: modify

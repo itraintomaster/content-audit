@@ -18,7 +18,8 @@ You are a Sentinel Developer Agent implementing code within a **Sentinel-governe
 ## CRITICAL RULES
 
 1. **You work within ONE module.** The user will tell you which module to implement. You may ONLY create or modify files inside that module's directory.
-2. **Never modify `@Generated` files.** Files with `@Generated(value = "com.sentinel.engine.CodeGenerator")` or the header `SENTINEL MANAGED FILE` are owned by Sentinel and will be overwritten on regeneration. These are your contracts — read them, don't edit them.
+2. **Never modify `@Generated` files.** Files with `@Generated(value = "com.sentinel.engine.CodeGenerator")` or the header `SENTINEL MANAGED FILE` are owned by Sentinel and will be overwritten on regeneration. These are your contracts — read them, don't edit them. If a `@Generated` file does not compile or has incorrect types/visibility, the problem is in `sentinel.yaml` — not in the generated file. Do NOT remove the `@Generated` annotation, change field types, add `implements` clauses, or adjust visibility. Escalate to `@architect` with type `interface_change` or `missing_field`.
+   **Visibility defaults:** Implementations are package-private by default. Interfaces and models are public. If a generated class lacks `public`, that is intentional — the architect must add `visibility: "public"` in `sentinel.yaml` if cross-module access is needed.
 3. **Never edit `sentinel.yaml`.** Architecture changes go through the architect agent (`@architect`). If you need a contract change, escalate (see below).
 4. **Constructor injection only.** Never use `new` to instantiate dependencies. Use the dependencies declared in `requiresInject` via constructor injection.
 5. **Respect module boundaries.** You can only import from modules listed in `dependsOn`. Never import from modules outside your declared dependencies.
@@ -33,6 +34,7 @@ If you encounter ANY of these situations, **STOP implementation of that componen
 3. A method signature requires types from packages you are not allowed to access
 4. You need to modify a generated contract to satisfy a requirement
 5. An implementation class needs to implement an interface that is NOT listed in its `implements:` field in `sentinel.yaml`. This applies to **any** interface added directly in Java source — whether from the JDK (`Callable<Integer>`, `Runnable`), a third-party library, or another sentinel module — if it is not already present in the `implements:` list. The list must be complete: `sentinel generate` uses it to decide whether to preserve your code. If you add `implements` in Java but not in the YAML, the next regeneration will strip it.
+6. You have attempted the same compilation fix or implementation **3 times** and it still fails. Do not retry indefinitely — emit an ESCALATION with `type: repeated_failure`.
 
 Do NOT attempt to continue with workarounds. Return the ESCALATION and let the architect resolve the architecture problem.
 
@@ -176,6 +178,9 @@ If you find yourself writing any of these patterns, STOP and emit an ESCALATION 
 - You do NOT create in-memory alternatives to avoid importing restricted packages
 - You do NOT implement partial/degraded functionality with TODO comments about needing architecture changes
 - You do NOT implement `handwrittenTests` — that's the test-writer agent's job (`@test-writer`). If asked to implement handwritten test stubs, delegate to `@test-writer`.
+- You do NOT remove `@Generated` annotations to bypass `sentinel verify` errors
+- You do NOT modify generated file signatures (types, visibility, implements) to make code compile
+- You do NOT create test files — that's the test-writer agent's job (`@test-writer`)
 
 ---
 
@@ -398,6 +403,8 @@ Domain module for the refinement workflow. Defines the plan/task model and ports
 - `RefinementPlan` — id: String, sourceAuditId: String, createdAt: Instant, tasks: List<RefinementTask>
 - `SuggestedLemma` — lemma: String, pos: String, reason: String, cocaRank: Integer
 - `SentenceLengthCorrectionContext` — taskId: String, sentence: String, translation: String, knowledgeTitle: String, knowledgeInstructions: String, topicLabel: String, cefrLevel: CefrLevel, tokenCount: int, targetMin: int, targetMax: int, delta: int, suggestedLemmas: List<SuggestedLemma>
+- `MisplacedLemmaContext` — lemma: String, pos: String, expectedLevel: CefrLevel, quizLevel: CefrLevel, cocaRank: Integer
+- `LemmaAbsenceCorrectionContext` — taskId: String, sentence: String, translation: String, knowledgeTitle: String, knowledgeInstructions: String, topicLabel: String, cefrLevel: CefrLevel, misplacedLemmas: List<MisplacedLemmaContext>, suggestedLemmas: List<SuggestedLemma>
 
 **Interfaces (contracts):**
 
@@ -409,12 +416,18 @@ Domain module for the refinement workflow. Defines the plan/task model and ports
   - `load(String id): Optional<RefinementPlan>`
   - `loadLatest(): Optional<RefinementPlan>`
 - `CorrectionContextResolver`
-  - `resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>`
+  - `resolve(AuditReport report, RefinementTask task): Optional<T>`
+- `CorrectionContext`
 
 **Implementations (your work):**
 
-- `DefaultCorrectionContextResolver` implements CorrectionContextResolver
+- `SentenceLengthContextResolver` implements CorrectionContextResolver<SentenceLengthCorrectionContext>
   Tests: should resolve context with all fields populated from quiz diagnosis and ancestor entities, should populate sentence and translation from AuditableQuiz entity on the quiz node, should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge on knowledge ancestor, should populate topicLabel from AuditableTopic on topic ancestor, should populate cefrLevel tokenCount targetMin targetMax and delta from SentenceLengthDiagnosis, should return empty when quiz node is not found in the audit tree, should return empty when task nodeTarget does not match any node target in the tree, should locate the correct quiz node when multiple quiz nodes exist in the tree, should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas and exclude APPEARS_TOO_EARLY, should order suggested lemmas by COCA rank ascending with lowest rank first, should place lemmas without COCA rank after lemmas with COCA rank, should map AbsentLemma fields to SuggestedLemma fields correctly, should return empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY, should return suggested lemmas from the milestone ancestor of the quiz node, should return context with empty suggested lemmas when milestone has no LemmaAbsenceLevelDiagnosis, should return context with empty suggested lemmas when milestone ancestor is not found, should return context with empty suggested lemmas when absent lemmas list is empty, should limit suggested lemmas to 10 when more than 10 qualify after filtering, should resolve context with negative delta for a sentence shorter than target range, should resolve context with zero delta when sentence is within target range, should set taskId from the RefinementTask id
+- `LemmaAbsenceContextResolver` implements CorrectionContextResolver<LemmaAbsenceCorrectionContext>
+  Tests: should resolve context with all fields populated from quiz diagnosis and ancestor entities, should populate sentence and translation from AuditableQuiz entity on the quiz node, should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge on knowledge ancestor, should populate topicLabel from AuditableTopic on topic ancestor, should populate cefrLevel from milestone ancestor, should populate misplacedLemmas from LemmaPlacementDiagnosis on quiz node, should map MisplacedLemma fields to MisplacedLemmaContext fields correctly, should include expectedLevel and quizLevel in each MisplacedLemmaContext entry, should include cocaRank as null in MisplacedLemmaContext when not available, should return empty when quiz node is not found in the audit tree, should return empty when task nodeTarget does not match any node target in the tree, should locate the correct quiz node when multiple quiz nodes exist in the tree, should return empty when quiz node has no LemmaPlacementDiagnosis, should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas in suggestedLemmas and exclude APPEARS_TOO_EARLY, should order suggested lemmas by COCA rank ascending with lowest rank first, should place lemmas without COCA rank after lemmas with COCA rank in suggestedLemmas, should map AbsentLemma fields to SuggestedLemma fields correctly, should limit suggested lemmas to 10 when more than 10 qualify after filtering, should return context with empty suggested lemmas when milestone has no LemmaAbsenceLevelDiagnosis, should return context with empty suggested lemmas when milestone ancestor is not found, should return context with empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY, should set taskId from the RefinementTask id
+- `DispatchingCorrectionContextResolver` implements CorrectionContextResolver<CorrectionContext>
+  Inject: sentenceLengthResolver: SentenceLengthContextResolver, lemmaAbsenceResolver: LemmaAbsenceContextResolver
+  Tests: should delegate to sentenceLengthResolver when task diagnosis is SENTENCE_LENGTH, should delegate to lemmaAbsenceResolver when task diagnosis is LEMMA_ABSENCE, should return empty for unsupported diagnosis kind COCA_BUCKETS, should return empty for unsupported diagnosis kind LEMMA_RECURRENCE, should propagate empty from delegate when delegate returns empty
 
 #### audit-application
 

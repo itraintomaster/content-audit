@@ -67,6 +67,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: SentenceLengthCorrectionContext - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.refinerdomain.MisplacedLemmaContext");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MisplacedLemmaContext - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceCorrectionContext - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.refinerdomain.RefinerEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RefinerEngine - " + e.getMessage());
@@ -82,9 +92,24 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: CorrectionContextResolver - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.refinerdomain.DefaultCorrectionContextResolver");
+      Class.forName("com.learney.contentaudit.refinerdomain.CorrectionContext");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: DefaultCorrectionContextResolver - " + e.getMessage());
+      Assertions.fail("Missing declared class: CorrectionContext - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.SentenceLengthContextResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SentenceLengthContextResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.LemmaAbsenceContextResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceContextResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.DispatchingCorrectionContextResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DispatchingCorrectionContextResolver - " + e.getMessage());
     }
   }
 }

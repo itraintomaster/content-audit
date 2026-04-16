@@ -2,12 +2,13 @@
 name: test-writer
 description: >
   Sentinel Test Writer Agent. Invoke to implement the body of a single
-  handwrittenTest stub. Reads requirements, rules, and journeys referenced
-  by @Tag to produce requirement-faithful test code. Never reads production code (TDD).
+  test stub — either a handwrittenTest or a journey path test. Reads
+  requirements, rules, and journeys referenced by @Tag to produce
+  requirement-faithful test code. Never reads production code (TDD).
 model: sonnet
 color: orange
 tools: [Read, Edit, Write, Bash, Glob, Grep, Task]
-skills: [sentinel-test]
+skills: [sentinel-test, sentinel-journey-test]
 ---
 
 <!-- SENTINEL MANAGED FILE - DO NOT EDIT -->
@@ -26,6 +27,10 @@ You bridge the gap between QA-designed test names and working test code. The `@q
 4. **Never modify annotations.** Do not change `@Generated`, `@DisplayName`, `@Tag`, or `@Test` annotations that Sentinel generated.
 5. **Never rename test methods.** The Java method name is canonical — Sentinel derives it from the test name in `sentinel.yaml`. Renaming causes duplicate stub insertion and `@Test is not a repeatable annotation` errors.
 6. **Never create new test files or methods.** Only implement the body of existing stubs (replace `throw new UnsupportedOperationException("Not implemented yet")`).
+7. **Never remove @Generated from test stubs.** The `@Generated` annotation on the test class is Sentinel's ownership marker. Removing it causes `sentinel verify` failures and the stub will be re-created on next generation.
+8. **Never modify production @Generated files.** If a generated interface, model, or contract does not match what your test needs, escalate — do not edit the generated source.
+9. **Never move test files to other modules.** Each test stub belongs to the module declared in `sentinel.yaml`. If a test needs types from another module, the architecture must be adjusted by `@architect`, not by moving files.
+10. **Escalation limit: 3 attempts.** If the test does not compile after 3 attempts, STOP and escalate with `type: repeated_failure`.
 
 ## Context Checklist
 
@@ -34,7 +39,7 @@ Before implementing a test, you MUST read these sources in order:
 1. **`sentinel.yaml`** — find the implementation, its `handwrittenTests`, and their `traceability` (feature, rule, journey references)
 2. **REQUIREMENT.md** — search for requirement files: `requirements/*/REQUIREMENT.md`
 3. **The specific business rule** referenced by `@Tag` (e.g., `F-RCSL-R001`). Extract: expected behavior, constraints, error message, severity
-4. **The specific user journey** referenced by `@Tag` (if any). Extract: step sequence, preconditions, expected outcomes
+4. **The specific user journey** referenced by `@Tag` (if any). Extract: step sequence, preconditions, expected outcomes. If the test has a `@Tag("path-N")`, it covers a specific path through the journey flow graph — follow only that path's decisions and outcome
 5. **The test stub file** — `src/test/java/.../ImplTest.java`. Find the method to implement
 6. **Models and interfaces** from dependency modules — needed to construct fixtures with correct field names, types, and constructors
 7. **The implementation class declaration** (NOT its body) — needed to know constructor parameters for mocking setup. Read only the class signature and constructor, not the method implementations.
@@ -160,8 +165,22 @@ ESCALATION:
 - `missing_model`: A model referenced in the requirement has no generated class
 - `missing_constructor`: A record's constructor uses `int` for a field that should be nullable `Integer` — you cannot pass `null`
 - `missing_test_support`: A sealed interface prevents creating test doubles
+- `generated_file_mismatch`: A generated file has types, visibility, or structure that prevents the test from compiling — escalate to `@architect` to fix the DSL definition
 
 Do NOT attempt workarounds. Return the ESCALATION and let the architect resolve the architecture problem.
+
+## Journey Tests (path-level)
+
+If the test file is a **journey test** (class name ends with `JourneyTest`, located in the `journeys` package), the workflow differs:
+
+1. **Identify the journey** — read the class-level `@Tag` to find the journey code (e.g., `F-CART-J001`). Open REQUIREMENT.md and locate the journey's flow graph.
+2. **Identify the path** — read the method-level `@Tag("path-N")` and `@DisplayName`. The display name shows which nodes and decisions this path traverses.
+3. **Implement as multi-step** — each node in the path becomes a step in the test. State from one step feeds the next. At `gate` nodes, assert the referenced rules.
+4. **Assert the terminal result** — the path ends with `success` or `failure`. The test must verify the corresponding outcome.
+
+Journey tests are integration tests, not unit tests. Mock only external boundaries (HTTP clients, databases), not internal services. Use the `sentinel-journey-test` skill for detailed guidance and examples.
+
+**IMPORTANT:** Never add `traceability: { journey: JOURNEY-ID }` to an implementation test (`handwrittenTests` in sentinel.yaml) when the journey has a `flow` graph. Flow journeys are tested exclusively through journey test classes. This produces a validation error. Use `traceability: { rule: RULE-ID }` for impl tests instead.
 
 ## What you do NOT do
 
@@ -173,6 +192,9 @@ Do NOT attempt workarounds. Return the ESCALATION and let the architect resolve 
 - You do NOT write production code — that's `@developer`'s job
 - You do NOT make architectural changes — that's `@architect`'s job
 - You do NOT create requirements — that's `@analyst`'s job
+- You do NOT remove `@Generated` annotations from stubs or any file
+- You do NOT modify production `@Generated` files to make tests compile
+- You do NOT move test files to other modules to gain visibility to types
 
 ---
 
@@ -181,6 +203,422 @@ Do NOT attempt workarounds. Return the ESCALATION and let the architect resolve 
 **System:** ContentAudit
 **Architecture:** hexagonal
 **Package:** com.learney.contentaudit
+
+### Features & Requirements
+
+**F-DLABS** — Diagnosticos Tipados para el Analizador de Ausencia de Lemas
+
+Rules:
+- [ ] `F-DLABS-R001` — Interfaz sellada AnalyzerDiagnosis (critical)
+- [ ] `F-DLABS-R002` — Mapa de diagnosticos en el nodo de auditoria (critical)
+- [ ] `F-DLABS-R003` — Acceso tipado a diagnosticos (critical)
+- [ ] `F-DLABS-R004` — Registro de diagnostico a nivel curso: LemmaAbsenceCourseDiagnosis (critical)
+- [ ] `F-DLABS-R005` — Registro de diagnostico a nivel milestone: LemmaAbsenceLevelDiagnosis (critical)
+- [ ] `F-DLABS-R006` — Registro auxiliar AbsentLemma (critical)
+- [ ] `F-DLABS-R007` — Registro de diagnostico a nivel topic: LemmaPlacementDiagnosis (critical)
+- [ ] `F-DLABS-R008` — Reutilizacion de LemmaPlacementDiagnosis en knowledge (critical)
+- [ ] `F-DLABS-R009` — Reutilizacion de LemmaPlacementDiagnosis en quiz (critical)
+- [ ] `F-DLABS-R010` — Registro auxiliar MisplacedLemma (critical)
+- [ ] `F-DLABS-R011` — Navegacion hacia nodos ancestros (critical)
+- [ ] `F-DLABS-R012` — Combinacion de navegacion y acceso tipado (major)
+- [ ] `F-DLABS-R013` — Migracion del formateador de detalle de lemma-absence (major)
+- [ ] `F-DLABS-R014` — Eliminacion del mapa generico para lemma-absence (major)
+
+Journeys:
+- [ ] `F-DLABS-J001` — Consultar diagnosticos tipados del analizador lemma-absence (0/3 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+  - [ ] path-3 → success
+- [ ] `F-DLABS-J002` — Navegar desde un quiz hacia el diagnostico de su milestone ancestro (0/2 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → failure
+- [ ] `F-DLABS-J003` — Formatear informe de ausencia de lemas usando diagnosticos tipados (0/2 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+
+**F-LREC** — Analisis de Recurrencia de Lemas por Repeticion Espaciada
+
+Rules:
+- [ ] `F-LREC-R001` — Asignacion de posicion global a cada palabra (critical)
+- [ ] `F-LREC-R002` — Orden de procesamiento determinista (critical)
+- [ ] `F-LREC-R003` — Filtrado de palabras de contenido (critical)
+- [ ] `F-LREC-R004` — Registro de posiciones por lema (critical)
+- [ ] `F-LREC-R005` — Seleccion de los lemas mas frecuentes (top N) (critical)
+- [ ] `F-LREC-R006` — Exclusion de lemas con menos de 2 apariciones (major)
+- [ ] `F-LREC-R007` — Calculo de intervalo medio y desviacion estandar (critical)
+- [ ] `F-LREC-R008` — Clasificacion de exposicion de cada lema (critical)
+- [ ] `F-LREC-R009` — Resumen de exposicion (major)
+- [ ] `F-LREC-R010` — Puntuacion general del analisis (overall score) (critical)
+- [ ] `F-LREC-R011` — La desviacion estandar es informativa, no participa en el scoring (major)
+- [ ] `F-LREC-R012` — Estructura del resultado por lema (major)
+- [ ] `F-LREC-R013` — Estructura del resultado global (major)
+- [ ] `F-LREC-R014` — Parametros configurables del analisis (major)
+- [ ] `F-LREC-R015` — Nombre del analizador en el informe (major)
+
+Journeys:
+- [ ] `F-LREC-J001` — Auditar la recurrencia de vocabulario de un curso completo (0/3 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → failure
+  - [ ] path-3 → failure
+- [ ] `F-LREC-J002` — Identificar lemas sub-expuestos que el estudiante podria olvidar (0/3 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+  - [ ] path-3 → success
+- [ ] `F-LREC-J003` — Identificar lemas sobre-expuestos que saturan al estudiante (0/3 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+  - [ ] path-3 → success
+- [ ] `F-LREC-J004` — Detectar lemas con distribucion irregular usando la desviacion estandar (0/3 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+  - [ ] path-3 → success
+- [ ] `F-LREC-J005` — Comparar la recurrencia antes y despues de ajustar el contenido (0/3 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+  - [ ] path-3 → success
+
+**F-DCOCA** — Diagnosticos Tipados para el Analizador de Distribucion COCA
+
+Rules:
+- [ ] `F-DCOCA-R001` — Registro de diagnostico a nivel curso: CocaProgressionDiagnosis (critical)
+- [ ] `F-DCOCA-R002` — Registro de diagnostico a nivel milestone: CocaBucketsLevelDiagnosis (critical)
+- [ ] `F-DCOCA-R003` — Registro de diagnostico a nivel topic: CocaBucketsTopicDiagnosis (critical)
+- [ ] `F-DCOCA-R004` — Ausencia de diagnostico en niveles knowledge y quiz (major)
+- [ ] `F-DCOCA-R005` — Nuevos metodos en las interfaces de diagnostico por nivel (critical)
+- [ ] `F-DCOCA-R006` — Migracion del formateador de detalle de coca-buckets (major)
+- [ ] `F-DCOCA-R007` — Eliminacion del mapa generico para coca-buckets (major)
+
+Journeys:
+- [ ] `F-DCOCA-J001` — Formatear informe de distribucion COCA usando diagnosticos tipados (0/2 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+- [ ] `F-DCOCA-J002` — Consultar diagnosticos COCA desde el futuro refiner (0/2 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → failure
+
+**F-COURSE** — Modelo de Dominio y Persistencia de Estructura de Curso
+
+Rules:
+- [x] `F-COURSE-R001` — Jerarquia estricta de 5 niveles (critical)
+- [x] `F-COURSE-R002` — Orden significativo de hijos (critical)
+- [x] `F-COURSE-R003` — Idempotencia semantica lectura-escritura (critical)
+- [x] `F-COURSE-R004` — Cada knowledge debe tener quiz templates (major)
+- [x] `F-COURSE-R005` — Consistencia de IDs entre niveles (critical)
+- [x] `F-COURSE-R006` — Identificadores unicos (critical)
+- [x] `F-COURSE-R007` — Correspondencia directorio-entidad (major)
+- [x] `F-COURSE-R008` — Integridad referencial parent-child (critical)
+- [x] `F-COURSE-R009` — Campos obligatorios por entidad (critical)
+- [x] `F-COURSE-R010` — Preservacion de campos vacios y valores por defecto (major)
+- [x] `F-COURSE-R011` — Doble ID en Quiz Templates (major)
+- [x] `F-COURSE-R012` — Formato numerico MongoDB Extended JSON (major)
+- [x] `F-COURSE-R013` — Orden jerarquico explicito (critical)
+- [x] `F-COURSE-R014` — Comportamiento ante datos inconsistentes durante la carga (critical)
+- [x] `F-COURSE-R015` — Cada milestone debe tener al menos un topic (major)
+- [x] `F-COURSE-R016` — Generacion determinista de slugs desde el label (major)
+
+Journeys:
+- [x] `F-COURSE-J001` — Cargar un curso completo desde archivos (11 steps)
+- [x] `F-COURSE-J002` — Escribir un curso completo a archivos (9 steps)
+- [x] `F-COURSE-J003` — Verificar idempotencia lectura-escritura (5 steps)
+- [x] `F-COURSE-J004` — Navegar la estructura del curso en memoria (8 steps)
+- [x] `F-COURSE-J005` — Modificar datos de contenido y persistir cambios (5 steps)
+- [x] `F-COURSE-J006` — Manejo de errores durante la carga (5 steps)
+
+**F-COCA** — Analisis de Distribucion de Vocabulario por Frecuencia COCA
+
+Rules:
+- [ ] `F-COCA-R001` — Clasificacion de tokens en bandas de frecuencia (critical)
+- [ ] `F-COCA-R002` — Banda abierta (top4k) (major)
+- [ ] `F-COCA-R003` — Configuracion de bandas de frecuencia (major)
+- [ ] `F-COCA-R004` — Tokens sin ranking de frecuencia (major)
+- [ ] `F-COCA-R005` — Calculo de distribucion porcentual (critical)
+- [ ] `F-COCA-R006` — Los datos de frecuencia provienen de procesamiento linguistico previo (critical)
+- [ ] `F-COCA-R007` — Evaluacion de estado por banda (assessment) (critical)
+- [ ] `F-COCA-R008` — Semantica de la direccionalidad (atLeast / atMost) (critical)
+- [ ] `F-COCA-R009` — Tolerancias optimalRange y adequateRange (major)
+- [ ] `F-COCA-R010` — Puntuacion por banda individual (bucket score) (critical)
+- [ ] `F-COCA-R011` — Puntuacion por trimestre (quarter score) (critical)
+- [ ] `F-COCA-R012` — Puntuacion por nivel (critical)
+- [ ] `F-COCA-R013` — Puntuacion general del curso (overall score) (critical)
+- [ ] `F-COCA-R014` — Dos estrategias de analisis (major)
+- [ ] `F-COCA-R015` — Interpolacion lineal de trimestres intermedios (critical)
+- [ ] `F-COCA-R016` — Herencia de direccionalidad en trimestres interpolados (major)
+- [ ] `F-COCA-R017` — Asignacion de contenido a trimestres (major)
+- [ ] `F-COCA-R018` — Configuracion de objetivos por trimestre (critical)
+- [ ] `F-COCA-R019` — Estrategia levels usa objetivos de nivel directamente (major)
+- [ ] `F-COCA-R020` — Progresion esperada por banda de frecuencia (major)
+- [ ] `F-COCA-R021` — Algoritmo de evaluacion de progresion real (critical)
+- [ ] `F-COCA-R022` — Progresion evalua solo niveles con datos (major)
+- [ ] `F-COCA-R023` — Margen de cambio significativo en progresion (minor)
+- [ ] `F-COCA-R024` — Resultado de la evaluacion de progresion (major)
+- [ ] `F-COCA-R025` — Acumulacion de conteos de tokens por banda (critical)
+- [ ] `F-COCA-R026` — Distribucion porcentual por nodo de la jerarquia (critical)
+- [ ] `F-COCA-R027` — Score solo donde existen targets definidos (critical)
+- [ ] `F-COCA-R028` — Informacion por banda en cada nodo (major)
+- [ ] `F-COCA-R029` — Contrato de agregacion polimorfica (major)
+- [ ] `F-COCA-R030` — Generacion de directivas de mejora (major)
+- [ ] `F-COCA-R031` — Rango de frecuencia en directivas (major)
+- [ ] `F-COCA-R032` — Directivas se generan solo para bandas fuera de rango (major)
+- [ ] `F-COCA-R033` — Directivas a nivel de trimestre (estrategia quarters) (minor)
+- [ ] `F-COCA-R034` — Contenido de las directivas de mejora (minor)
+
+Journeys:
+- [ ] `F-COCA-J001` — Auditar la distribucion de vocabulario de un curso completo (11 steps)
+- [ ] `F-COCA-J002` — Consultar la distribucion de vocabulario de un nivel especifico (6 steps)
+- [ ] `F-COCA-J003` — Evaluar la progresion de vocabulario entre niveles (7 steps)
+- [ ] `F-COCA-J004` — Usar las directivas de mejora para corregir el contenido (7 steps)
+- [ ] `F-COCA-J005` — Navegar la jerarquia para localizar problemas de vocabulario (7 steps)
+- [ ] `F-COCA-J006` — Comparar resultados entre estrategia levels y quarters (5 steps)
+
+**F-NLP** — Evolucion del Tokenizador NLP para Tokenizacion Rica con Datos Linguisticos
+
+Rules:
+- [ ] `F-NLP-R001` — Campos obligatorios del token enriquecido (critical)
+- [ ] `F-NLP-R002` — Campos opcionales del token enriquecido (minor)
+- [ ] `F-NLP-R003` — Lematizacion produce la forma base del token (critical)
+- [ ] `F-NLP-R004` — Etiquetas POS usan el esquema Universal Dependencies (critical)
+- [ ] `F-NLP-R005` — El token enriquecido reemplaza a la representacion de cadena de texto (critical)
+- [ ] `F-NLP-R006` — Nueva operacion de tokenizacion enriquecida (critical)
+- [ ] `F-NLP-R007` — Compatibilidad con analizadores existentes que usan conteo de tokens (major)
+- [x] `F-NLP-R008` — Procesamiento de multiples oraciones en lote (major)
+- [ ] `F-NLP-R009` — El tokenizador es un servicio del dominio, no un analizador (major)
+- [x] `F-NLP-R010` — El mapeo del curso debe utilizar la tokenizacion enriquecida (critical)
+- [ ] `F-NLP-R011` — El ranking de frecuencia se obtiene del lema, no de la forma flexionada (critical)
+- [ ] `F-NLP-R012` — Mapeo de etiquetas POS para busqueda de frecuencia (critical)
+- [ ] `F-NLP-R013` — Estrategia de busqueda de frecuencia en tres niveles (critical)
+- [ ] `F-NLP-R014` — Estructura de los datos de frecuencia COCA (major)
+- [ ] `F-NLP-R015` — Los datos de frecuencia se cargan una sola vez al inicio (major)
+- [ ] `F-NLP-R016` — El ranking de frecuencia retornado es el ranking del lema (major)
+- [ ] `F-NLP-R017` — SpaCy como motor de procesamiento linguistico (critical)
+- [ ] `F-NLP-R018` — Comunicacion con el proceso Python via archivos JSON (major)
+- [ ] `F-NLP-R019` — El proceso Python integra lematizacion y busqueda de frecuencia (critical)
+- [ ] `F-NLP-R020` — Requisitos del entorno de ejecucion (major)
+- [ ] `F-NLP-R021` — La ruta del script Python y de los datos COCA es configurable (minor)
+- [ ] `F-NLP-R022` — El procesamiento es sincrono (minor)
+- [ ] `F-NLP-R023` — Cache en memoria de tokens enriquecidos por oracion (major)
+- [ ] `F-NLP-R024` — El cache usa la oracion completa como clave (minor)
+- [ ] `F-NLP-R025` — Cache persistente opcional en disco (minor)
+- [ ] `F-NLP-R026` — El cache del CachedNlpTokenizer debe evolucionar (major)
+- [ ] `F-NLP-R027` — Volumetria del cache (minor)
+- [ ] `F-NLP-R028` — Tokens sin ranking de frecuencia (major)
+- [ ] `F-NLP-R029` — Fallo del proceso Python (critical)
+- [ ] `F-NLP-R030` — Fallback cuando SpaCy no esta disponible (major)
+- [ ] `F-NLP-R031` — Timeout del proceso Python (major)
+- [ ] `F-NLP-R032` — Errores de tokens individuales no detienen el lote completo (major)
+- [ ] `F-NLP-R033` — Signos de puntuacion y espacios no participan como tokens linguisticos (minor)
+
+Journeys:
+- [ ] `F-NLP-J001` — Auditar un curso con tokenizacion enriquecida (8 steps)
+- [ ] `F-NLP-J002` — El usuario no tiene SpaCy instalado (7 steps)
+- [ ] `F-NLP-J003` — Diagnosticar problemas de tokenizacion en una oracion especifica (6 steps)
+
+**F-LABS** — Analisis de Ausencia de Lemas por Nivel CEFR
+
+Rules:
+- [ ] `F-LABS-R001` — Obtencion de lemas esperados por nivel (critical)
+- [ ] `F-LABS-R002` — Obtencion de lemas presentes por nivel (critical)
+- [ ] `F-LABS-R003` — Calculo de lemas ausentes por nivel (critical)
+- [ ] `F-LABS-R004` — Busqueda de lemas ausentes en otros niveles (critical)
+- [ ] `F-LABS-R005` — Exclusion de frases multipalabra del EVP (major)
+- [ ] `F-LABS-R006` — Tipos de ausencia (critical)
+- [ ] `F-LABS-R007` — Algoritmo de clasificacion de ausencia (critical)
+- [ ] `F-LABS-R008` — Puntuacion de impacto por tipo de ausencia (major)
+- [ ] `F-LABS-R009` — APPEARS_TOO_LATE es mas grave que APPEARS_TOO_EARLY (major)
+- [ ] `F-LABS-R010` — Un lema presente en su nivel esperado no es ausente (critical)
+- [x] `F-LABS-R011` — Asignacion de prioridad por frecuencia COCA (critical)
+- [ ] `F-LABS-R012` — Enriquecimiento de informacion de lemas ausentes (major)
+- [ ] `F-LABS-R013` — Lemas sin ranking COCA disponible (major)
+- [x] `F-LABS-R014` — Umbrales de alerta por prioridad (major)
+- [ ] `F-LABS-R015` — Consistencia de etiquetas POS entre EVP y procesamiento linguistico (major)
+- [ ] `F-LABS-R016` — Lemas funcionales criticos (major)
+- [ ] `F-LABS-R017` — Identificacion de lemas mal ubicados en una oracion (major)
+- [x] `F-LABS-R018` — Descuento por distancia de nivel (major)
+- [ ] `F-LABS-R019` — Calculo de score por oracion (critical)
+- [ ] `F-LABS-R020` — Oraciones sin lemas mal ubicados (minor)
+- [x] `F-LABS-R021` — Umbrales de tolerancia por nivel CEFR (critical)
+- [ ] `F-LABS-R022` — Categorias de assessment global (critical)
+- [ ] `F-LABS-R023` — Metricas por nivel (critical)
+- [x] `F-LABS-R024` — Puntuacion por nivel relativa al coverage target (critical)
+- [x] `F-LABS-R032` — Coverage targets configurables por nivel (critical)
+- [x] `F-LABS-R025` — Umbrales de assessment global (major)
+- [x] `F-LABS-R026` — Limites de reporte por prioridad (minor)
+- [ ] `F-LABS-R027` — Generacion de recomendaciones por nivel (major)
+- [ ] `F-LABS-R028` — Tipos de accion en recomendaciones (major)
+- [ ] `F-LABS-R029` — Prioridad de las recomendaciones (major)
+- [ ] `F-LABS-R030` — Nivel de esfuerzo estimado (minor)
+- [ ] `F-LABS-R031` — Nombre del analizador en el informe (major)
+
+Journeys:
+- [ ] `F-LABS-J001` — Auditar la ausencia de vocabulario de un curso completo (0/4 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+  - [ ] path-3 → failure
+  - [ ] path-4 → failure
+- [ ] `F-LABS-J002` — Investigar lemas completamente ausentes de alta prioridad (0/4 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+  - [ ] path-3 → success
+  - [ ] path-4 → success
+- [ ] `F-LABS-J003` — Corregir lemas que aparecen demasiado tarde (0/2 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+- [ ] `F-LABS-J004` — Revisar el impacto por oracion de los lemas mal ubicados (0/3 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+  - [ ] path-3 → success
+- [ ] `F-LABS-J005` — Planificar mejoras de contenido a partir de las recomendaciones (0/4 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+  - [ ] path-3 → success
+  - [ ] path-4 → success
+
+**F-CLI** — Punto de Entrada CLI para Ejecucion de Auditoria
+
+Rules:
+- [x] `F-CLI-R001` — Ejecucion de auditoria de extremo a extremo (critical)
+- [ ] `F-CLI-R002` — Argumento obligatorio: ruta del curso (critical)
+- [ ] `F-CLI-R003` — Presentacion del resultado en consola (major)
+- [ ] `F-CLI-R004` — Codigo de salida (major)
+- [ ] `F-CLI-R005` — Metodo publico en la capa de aplicacion (critical)
+- [ ] `F-CLI-R006` — Ensamblaje de dependencias (major)
+
+Journeys:
+- [x] `F-CLI-J001` — Ejecutar auditoria de un curso desde la terminal (8 steps)
+- [ ] `F-CLI-J002` — Error por ruta invalida (3 steps)
+- [ ] `F-CLI-J003` — Error durante la auditoria (4 steps)
+
+**F-KTLEN** — Analisis de Longitud de Titulos e Instrucciones de Knowledge
+
+Rules:
+- [x] `F-KTLEN-R001` — Limite maximo de longitud de titulo (critical)
+- [x] `F-KTLEN-R002` — Sistema de pesos por caracter para titulos (critical)
+- [x] `F-KTLEN-R003` — Puntuacion de longitud de titulo (critical)
+- [ ] `F-KTLEN-R004` — Los pesos de caracteres no son configurables (minor)
+- [x] `F-KTLEN-R005` — Limites de longitud de instrucciones (critical)
+- [x] `F-KTLEN-R006` — Puntuacion de longitud de instrucciones (critical)
+- [ ] `F-KTLEN-R007` — Los limites de instrucciones no son configurables (minor)
+- [x] `F-KTLEN-R008` — Nombres de los analizadores en el informe (major)
+
+Journeys:
+- [ ] `F-KTLEN-J001` — Auditar la longitud de titulos e instrucciones de un curso completo (6 steps)
+- [ ] `F-KTLEN-J002` — Identificar knowledges con titulos demasiado largos (5 steps)
+- [x] `F-KTLEN-J003` — Identificar knowledges con instrucciones excesivamente largas (5 steps)
+- [ ] `F-KTLEN-J004` — Comparar problemas de titulos vs instrucciones por nivel (5 steps)
+
+**F-DSLEN** — Diagnosticos Tipados para el Analizador de Longitud de Oraciones
+
+Rules:
+- [ ] `F-DSLEN-R001` — Registro de diagnostico a nivel quiz: SentenceLengthDiagnosis (critical)
+- [ ] `F-DSLEN-R002` — Ausencia de diagnostico en quizzes excluidos (major)
+- [ ] `F-DSLEN-R003` — Ausencia de diagnostico en niveles superiores (major)
+- [ ] `F-DSLEN-R004` — Nuevo metodo en la interfaz QuizDiagnoses (critical)
+
+Journeys:
+- [ ] `F-DSLEN-J001` — Consultar diagnostico de longitud desde el refiner para corregir una oracion (0/3 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+  - [ ] path-3 → success
+
+**F-SLEN** — Analisis de Longitud de Oraciones por Nivel CEFR
+
+Rules:
+- [x] `F-SLEN-R001` — Exclusion de quizzes que no son oraciones (critical)
+- [x] `F-SLEN-R002` — Puntuacion por quiz (oracion individual) (critical)
+- [x] `F-SLEN-R009` — Margen de tolerancia fijo de 4 tokens (minor)
+- [x] `F-SLEN-R012` — Rangos objetivo configurables por nivel (major)
+- [ ] `F-SLEN-R013` — La longitud se mide en tokens linguisticos (critical)
+- [ ] `F-SLEN-R003` — Puntuacion por knowledge (agregacion de la plataforma) (critical)
+- [ ] `F-SLEN-R004` — Puntuacion por topic (agregacion de la plataforma) (critical)
+- [ ] `F-SLEN-R005` — Puntuacion por nivel (agregacion de la plataforma) (critical)
+- [ ] `F-SLEN-R008` — Puntuacion general del curso (agregacion de la plataforma) (critical)
+- [ ] `F-SLEN-R016` — Puntuaciones disponibles en cada nivel de la jerarquia (agregacion de la plataforma) (major)
+- [ ] `F-SLEN-R006` — Calculo del promedio de longitud por nivel (critical)
+- [ ] `F-SLEN-R007` — Evaluacion de estado por nivel (critical)
+- [ ] `F-SLEN-R010` — Evaluacion de progresion entre niveles (major)
+- [ ] `F-SLEN-R011` — Progresion evalua solo niveles con datos (major)
+- [ ] `F-SLEN-R014` — Generacion de recomendaciones por nivel (minor)
+- [ ] `F-SLEN-R015` — Registro de estadisticas por nivel (major)
+
+Journeys:
+- [ ] `F-SLEN-J001` — Auditar la longitud de oraciones de un curso completo (8 steps)
+- [ ] `F-SLEN-J002` — Consultar el detalle de un nivel especifico (5 steps)
+- [ ] `F-SLEN-J003` — Identificar problemas de progresion entre niveles (7 steps)
+- [ ] `F-SLEN-J004` — Navegar la jerarquia para localizar problemas de longitud (6 steps)
+- [ ] `F-SLEN-J005` — Ajustar rangos objetivo para un curso distinto (5 steps)
+
+**F-LCOUNT** — Analisis de Conteo de Apariciones de Lemas EVP
+
+Rules:
+- [ ] `F-LCOUNT-R001` — Conteo de apariciones por lema esperado (critical)
+- [ ] `F-LCOUNT-R002` — El conteo abarca todo el curso, no solo el nivel del lema (critical)
+- [ ] `F-LCOUNT-R003` — Clasificacion de lemas por nivel de exposicion (critical)
+- [ ] `F-LCOUNT-R004` — Los lemas esperados se obtienen del catalogo EVP (critical)
+- [ ] `F-LCOUNT-R005` — Los datos de lematizacion provienen de procesamiento linguistico previo (critical)
+- [ ] `F-LCOUNT-R006` — Puntuacion individual por lema (critical)
+- [ ] `F-LCOUNT-R007` — Puntuacion por oracion (quiz) (critical)
+- [ ] `F-LCOUNT-R008` — Puntuacion general del analisis (overall score) (critical)
+- [ ] `F-LCOUNT-R009` — Exclusion de quizzes que no son oraciones (critical)
+- [ ] `F-LCOUNT-R010` — Resultado detallado por lema (major)
+- [ ] `F-LCOUNT-R011` — Agregacion a traves de la jerarquia (provista por la plataforma) (critical)
+- [ ] `F-LCOUNT-R012` — Nombre del analizador en el informe (major)
+- [ ] `F-LCOUNT-R013` — Los umbrales de exposicion no son configurables en esta version (minor)
+
+Journeys:
+- [ ] `F-LCOUNT-J001` — Auditar el conteo de apariciones de lemas EVP de un curso completo (8 steps)
+- [ ] `F-LCOUNT-J002` — Identificar lemas con exposicion insuficiente (5 steps)
+- [ ] `F-LCOUNT-J003` — Localizar problemas de exposicion en la jerarquia del curso (6 steps)
+- [ ] `F-LCOUNT-J004` — Comparar exposicion de vocabulario entre niveles (5 steps)
+- [ ] `F-LCOUNT-J005` — Revisar lemas sobre-expuestos para optimizar el contenido (5 steps)
+
+**F-RCLA** — Re-routing y Contexto de Correccion para LEMMA_ABSENCE en el Refiner
+
+Rules:
+- [ ] `F-RCLA-R001` — Las tareas LEMMA_ABSENCE deben apuntar a QUIZ, no a MILESTONE ni COURSE (critical)
+- [ ] `F-RCLA-R002` — El analyzer no se modifica (major)
+- [x] `F-RCLA-R003` — Estructura del contexto de correccion para LEMMA_ABSENCE (critical)
+- [x] `F-RCLA-R004` — Estructura de cada lema fuera de nivel (critical)
+- [x] `F-RCLA-R004b` — Obtencion de lemas sugeridos como candidatos de reemplazo (critical)
+- [x] `F-RCLA-R004c` — Contexto sin lemas sugeridos (major)
+- [x] `F-RCLA-R005` — Resolucion del nodo quiz desde una tarea de refinamiento (critical)
+- [x] `F-RCLA-R006` — Contexto cuando el diagnostico de placement no esta disponible (major)
+- [x] `F-RCLA-R007` — El comando refiner next incluye el contexto de correccion para tareas LEMMA_ABSENCE (critical)
+- [ ] `F-RCLA-R008` — Formato JSON del contexto de correccion (critical)
+- [ ] `F-RCLA-R009` — Formato texto del contexto de correccion (major)
+
+Journeys:
+- [ ] `F-RCLA-J001` — LLM recibe contexto para corregir un quiz con vocabulario fuera de nivel (0/4 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+  - [ ] path-3 → failure
+  - [ ] path-4 → failure
+- [ ] `F-RCLA-J002` — El plan de refinamiento ya no contiene tareas LEMMA_ABSENCE de milestone (0/1 paths)
+  - [ ] path-1 → success
+
+**F-RCSL** — Contexto de Correccion para SENTENCE_LENGTH en el Refiner
+
+Rules:
+- [x] `F-RCSL-R001` — Estructura del contexto de correccion para SENTENCE_LENGTH (critical)
+- [x] `F-RCSL-R002` — Resolucion del nodo quiz desde una tarea de refinamiento (critical)
+- [x] `F-RCSL-R003` — Obtencion de lemas sugeridos desde el milestone ancestro (critical)
+- [x] `F-RCSL-R004` — Contexto sin lemas sugeridos (major)
+- [x] `F-RCSL-R005` — Limite de lemas sugeridos (minor)
+- [ ] `F-RCSL-R006` — El comando refiner next incluye el contexto de correccion para tareas SENTENCE_LENGTH (critical)
+- [ ] `F-RCSL-R007` — Formato JSON del contexto de correccion (critical)
+- [ ] `F-RCSL-R008` — Formato texto del contexto de correccion (major)
+
+Journeys:
+- [ ] `F-RCSL-J001` — LLM recibe contexto para corregir una oracion demasiado larga (0/3 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+  - [ ] path-3 → failure
+- [ ] `F-RCSL-J002` — LLM recibe contexto para corregir una oracion demasiado corta (0/3 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+  - [ ] path-3 → failure
+- [ ] `F-RCSL-J003` — Contexto de correccion sin lemas sugeridos disponibles (0/3 paths)
+  - [ ] path-1 → success
+  - [ ] path-2 → success
+  - [ ] path-3 → success
 
 ### Modules
 
@@ -402,6 +840,8 @@ Domain module for the refinement workflow. Defines the plan/task model and ports
 - `RefinementPlan` — id: String, sourceAuditId: String, createdAt: Instant, tasks: List<RefinementTask>
 - `SuggestedLemma` — lemma: String, pos: String, reason: String, cocaRank: Integer
 - `SentenceLengthCorrectionContext` — taskId: String, sentence: String, translation: String, knowledgeTitle: String, knowledgeInstructions: String, topicLabel: String, cefrLevel: CefrLevel, tokenCount: int, targetMin: int, targetMax: int, delta: int, suggestedLemmas: List<SuggestedLemma>
+- `MisplacedLemmaContext` — lemma: String, pos: String, expectedLevel: CefrLevel, quizLevel: CefrLevel, cocaRank: Integer
+- `LemmaAbsenceCorrectionContext` — taskId: String, sentence: String, translation: String, knowledgeTitle: String, knowledgeInstructions: String, topicLabel: String, cefrLevel: CefrLevel, misplacedLemmas: List<MisplacedLemmaContext>, suggestedLemmas: List<SuggestedLemma>
 
 **Interfaces (contracts):**
 
@@ -413,13 +853,14 @@ Domain module for the refinement workflow. Defines the plan/task model and ports
   - `load(String id): Optional<RefinementPlan>`
   - `loadLatest(): Optional<RefinementPlan>`
 - `CorrectionContextResolver`
-  - `resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>`
+  - `resolve(AuditReport report, RefinementTask task): Optional<T>`
+- `CorrectionContext`
 
 **Implementations:**
 
-- `DefaultCorrectionContextResolver` implements CorrectionContextResolver
+- `SentenceLengthContextResolver` implements CorrectionContextResolver<SentenceLengthCorrectionContext>
   **Handwritten Tests:**
-    - `should resolve context with all fields populated from quiz diagnosis and ancestor entities` → FEAT-RCSL/F-RCSL-R001/F-RCSL-J001
+    - `should resolve context with all fields populated from quiz diagnosis and ancestor entities` → FEAT-RCSL/F-RCSL-R001
     - `should populate sentence and translation from AuditableQuiz entity on the quiz node` → FEAT-RCSL/F-RCSL-R001
     - `should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge on knowledge ancestor` → FEAT-RCSL/F-RCSL-R001
     - `should populate topicLabel from AuditableTopic on topic ancestor` → FEAT-RCSL/F-RCSL-R001
@@ -433,13 +874,45 @@ Domain module for the refinement workflow. Defines the plan/task model and ports
     - `should map AbsentLemma fields to SuggestedLemma fields correctly` → FEAT-RCSL/F-RCSL-R003
     - `should return empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY` → FEAT-RCSL/F-RCSL-R003
     - `should return suggested lemmas from the milestone ancestor of the quiz node` → FEAT-RCSL/F-RCSL-R003
-    - `should return context with empty suggested lemmas when milestone has no LemmaAbsenceLevelDiagnosis` → FEAT-RCSL/F-RCSL-R004/F-RCSL-J003
-    - `should return context with empty suggested lemmas when milestone ancestor is not found` → FEAT-RCSL/F-RCSL-R004/F-RCSL-J003
-    - `should return context with empty suggested lemmas when absent lemmas list is empty` → FEAT-RCSL/F-RCSL-R004/F-RCSL-J003
+    - `should return context with empty suggested lemmas when milestone has no LemmaAbsenceLevelDiagnosis` → FEAT-RCSL/F-RCSL-R004
+    - `should return context with empty suggested lemmas when milestone ancestor is not found` → FEAT-RCSL/F-RCSL-R004
+    - `should return context with empty suggested lemmas when absent lemmas list is empty` → FEAT-RCSL/F-RCSL-R004
     - `should limit suggested lemmas to 10 when more than 10 qualify after filtering` → FEAT-RCSL/F-RCSL-R005
-    - `should resolve context with negative delta for a sentence shorter than target range` → FEAT-RCSL/F-RCSL-R001/F-RCSL-J002
+    - `should resolve context with negative delta for a sentence shorter than target range` → FEAT-RCSL/F-RCSL-R001
     - `should resolve context with zero delta when sentence is within target range` → FEAT-RCSL/F-RCSL-R001
     - `should set taskId from the RefinementTask id` → FEAT-RCSL/F-RCSL-R001
+- `LemmaAbsenceContextResolver` implements CorrectionContextResolver<LemmaAbsenceCorrectionContext>
+  **Handwritten Tests:**
+    - `should resolve context with all fields populated from quiz diagnosis and ancestor entities` → FEAT-RCLA/F-RCLA-R003
+    - `should populate sentence and translation from AuditableQuiz entity on the quiz node` → FEAT-RCLA/F-RCLA-R003
+    - `should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge on knowledge ancestor` → FEAT-RCLA/F-RCLA-R003
+    - `should populate topicLabel from AuditableTopic on topic ancestor` → FEAT-RCLA/F-RCLA-R003
+    - `should populate cefrLevel from milestone ancestor` → FEAT-RCLA/F-RCLA-R003
+    - `should populate misplacedLemmas from LemmaPlacementDiagnosis on quiz node` → FEAT-RCLA/F-RCLA-R004
+    - `should map MisplacedLemma fields to MisplacedLemmaContext fields correctly` → FEAT-RCLA/F-RCLA-R004
+    - `should include expectedLevel and quizLevel in each MisplacedLemmaContext entry` → FEAT-RCLA/F-RCLA-R004
+    - `should include cocaRank as null in MisplacedLemmaContext when not available` → FEAT-RCLA/F-RCLA-R004
+    - `should return empty when quiz node is not found in the audit tree` → FEAT-RCLA/F-RCLA-R005
+    - `should return empty when task nodeTarget does not match any node target in the tree` → FEAT-RCLA/F-RCLA-R005
+    - `should locate the correct quiz node when multiple quiz nodes exist in the tree` → FEAT-RCLA/F-RCLA-R005
+    - `should return empty when quiz node has no LemmaPlacementDiagnosis` → FEAT-RCLA/F-RCLA-R006
+    - `should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas in suggestedLemmas and exclude APPEARS_TOO_EARLY` → FEAT-RCLA/F-RCLA-R004b
+    - `should order suggested lemmas by COCA rank ascending with lowest rank first` → FEAT-RCLA/F-RCLA-R004b
+    - `should place lemmas without COCA rank after lemmas with COCA rank in suggestedLemmas` → FEAT-RCLA/F-RCLA-R004b
+    - `should map AbsentLemma fields to SuggestedLemma fields correctly` → FEAT-RCLA/F-RCLA-R004b
+    - `should limit suggested lemmas to 10 when more than 10 qualify after filtering` → FEAT-RCLA/F-RCLA-R004b
+    - `should return context with empty suggested lemmas when milestone has no LemmaAbsenceLevelDiagnosis` → FEAT-RCLA/F-RCLA-R004c
+    - `should return context with empty suggested lemmas when milestone ancestor is not found` → FEAT-RCLA/F-RCLA-R004c
+    - `should return context with empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY` → FEAT-RCLA/F-RCLA-R004c
+    - `should set taskId from the RefinementTask id` → FEAT-RCLA/F-RCLA-R003
+- `DispatchingCorrectionContextResolver` implements CorrectionContextResolver<CorrectionContext>
+  Inject: sentenceLengthResolver: SentenceLengthContextResolver, lemmaAbsenceResolver: LemmaAbsenceContextResolver
+  **Handwritten Tests:**
+    - `should delegate to sentenceLengthResolver when task diagnosis is SENTENCE_LENGTH` → FEAT-RCLA/F-RCLA-R007
+    - `should delegate to lemmaAbsenceResolver when task diagnosis is LEMMA_ABSENCE` → FEAT-RCLA/F-RCLA-R007
+    - `should return empty for unsupported diagnosis kind COCA_BUCKETS` → FEAT-RCLA/F-RCLA-R007
+    - `should return empty for unsupported diagnosis kind LEMMA_RECURRENCE` → FEAT-RCLA/F-RCLA-R007
+    - `should propagate empty from delegate when delegate returns empty` → FEAT-RCLA/F-RCLA-R007
 
 #### audit-application
 

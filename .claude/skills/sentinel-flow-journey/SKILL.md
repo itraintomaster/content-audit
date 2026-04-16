@@ -153,3 +153,16 @@ The framework validates flow graphs automatically:
 3. **Use `gate` to link rules.** If a step validates something, reference the rule ID. This enables traceability and visualization.
 4. **Keep graphs focused.** If a journey has more than ~10 nodes, consider splitting.
 5. **The first node is the entry point.** No explicit `start` field needed.
+
+## Test Generation from Journeys
+
+Every flow-based journey automatically generates a **test class** with one test method per enumerated path. This has implications for how you write journeys:
+
+1. **Every step must be testable.** If a step says "User goes to the store physically", it cannot be automated. Write steps that the system can execute or verify.
+2. **Decisions create paths.** Each combination of decision outcomes produces a separate test method. 3 decisions with 2 outcomes each = 8 paths. Keep decision count reasonable.
+3. **Gate rules are asserted.** When a step has `gate: [RULE-ID]`, the test is expected to verify that rule at that point in the flow.
+4. **Terminal results define success/failure.** Each path's test method asserts the outcome declared by the terminal node.
+
+Coverage is **path-level**: a journey is only fully covered when all its paths are tested.
+
+**Validation rule:** Once a journey has a `flow` graph, implementation tests cannot reference it via `traceability.journey`. Only the auto-generated journey test class counts as coverage. This means converting a linear journey to a flow journey is a breaking change for any existing tests that reference it.

@@ -1,0 +1,9 @@
+code: __proposal__
+description: Set IAuditEngine visibility to public for cross-module access from audit-application
+modules:
+- name: audit-domain
+  implementations:
+  - name: IAuditEngine
+    visibility: public
+    _change: modify
+  _change: modify

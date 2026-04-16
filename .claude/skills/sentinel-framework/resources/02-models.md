@@ -1080,6 +1080,7 @@ new SuggestedLemma(String lemma, String pos, String reason, Integer cocaRank)
 
 **Package:** `com.learney.contentaudit.refinerdomain`
 **Type:** record
+**Implements:** `CorrectionContext`
 
 | Field | Type | Notes |
 |-------|------|-------|
@@ -1099,6 +1100,47 @@ new SuggestedLemma(String lemma, String pos, String reason, Integer cocaRank)
 **Generated constructor:**
 ```java
 new SentenceLengthCorrectionContext(String taskId, String sentence, String translation, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, int tokenCount, int targetMin, int targetMax, int delta, List<SuggestedLemma> suggestedLemmas)
+```
+
+#### MisplacedLemmaContext
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `lemma` | `String` |  |
+| `pos` | `String` |  |
+| `expectedLevel` | `CefrLevel` |  |
+| `quizLevel` | `CefrLevel` |  |
+| `cocaRank` | `Integer` |  |
+
+**Generated constructor:**
+```java
+new MisplacedLemmaContext(String lemma, String pos, CefrLevel expectedLevel, CefrLevel quizLevel, Integer cocaRank)
+```
+
+#### LemmaAbsenceCorrectionContext
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** record
+**Implements:** `CorrectionContext`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `taskId` | `String` |  |
+| `sentence` | `String` |  |
+| `translation` | `String` |  |
+| `knowledgeTitle` | `String` |  |
+| `knowledgeInstructions` | `String` |  |
+| `topicLabel` | `String` |  |
+| `cefrLevel` | `CefrLevel` |  |
+| `misplacedLemmas` | `List<MisplacedLemmaContext>` | Import `java.util.List` |
+| `suggestedLemmas` | `List<SuggestedLemma>` | Import `java.util.List` |
+
+**Generated constructor:**
+```java
+new LemmaAbsenceCorrectionContext(String taskId, String sentence, String translation, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas, List<SuggestedLemma> suggestedLemmas)
 ```
 
 ### Module: audit-cli

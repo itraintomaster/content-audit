@@ -1,0 +1,41 @@
+code: __proposal__
+description: Set visibility to public on 7 implementations that are instantiated cross-module
+  from audit-cli Main.java
+modules:
+- name: vocabulary-infrastructure
+  packages:
+  - name: evp
+    visibility: internal
+    implementations:
+    - name: FileSystemEvpCatalog
+      visibility: public
+      _change: modify
+    _change: modify
+  _change: modify
+- name: course-infrastructure
+  implementations:
+  - name: FileSystemCourseRepository
+    visibility: public
+    _change: modify
+  _change: modify
+- name: audit-infrastructure
+  implementations:
+  - name: FileSystemAuditReportStore
+    visibility: public
+    _change: modify
+  - name: FileSystemRefinementPlanStore
+    visibility: public
+    _change: modify
+  _change: modify
+- name: refiner-domain
+  implementations:
+  - name: DispatchingCorrectionContextResolver
+    visibility: public
+    _change: modify
+  - name: LemmaAbsenceContextResolver
+    visibility: public
+    _change: modify
+  - name: SentenceLengthContextResolver
+    visibility: public
+    _change: modify
+  _change: modify

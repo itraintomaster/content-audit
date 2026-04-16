@@ -117,3 +117,12 @@ Each test name should map to a specific business rule or journey when possible.
 Sentinel derives Java method names from the `handwrittenTests` `name` field using camelCase conversion. These names are **canonical**. If a test method is renamed, `sentinel generate` will not find it and will reinsert a duplicate stub, causing `@Test is not a repeatable annotation` compilation errors.
 
 **Never rename generated test method stubs. Only implement their body.**
+
+## Important: Flow Journey Traceability
+
+**Do NOT use `traceability.journey` on handwrittenTests when the journey has a `flow` graph.**
+
+Flow-based journeys are tested exclusively through auto-generated journey test classes (`*JourneyTest.java`). Adding `journey: JOURNEY-ID` in an implementation test's traceability when that journey has a flow will cause a **validation error**.
+
+Use `traceability.journey` only for linear journeys (those with `steps` only, no `flow`).
+For flow journeys, use `traceability.rule` to link to specific business rules instead.

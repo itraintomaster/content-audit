@@ -346,11 +346,13 @@ Examples:
 
 **Package:** `com.learney.contentaudit.refinerdomain`
 
-**Implemented by:** DefaultCorrectionContextResolver (refiner-domain)
-
 | Method | Throws |
 |--------|--------|
-| `resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>` | (none) |
+| `resolve(AuditReport report, RefinementTask task): Optional<T>` | (none) |
+
+#### CorrectionContext (port)
+
+**Package:** `com.learney.contentaudit.refinerdomain`
 
 ### Module: audit-application
 

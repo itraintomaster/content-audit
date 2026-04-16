@@ -1,0 +1,13 @@
+code: __proposal__
+description: "Set IScoreAggregator visibility to public so sub-package implementations\
+  \ (CocaTokenAccumulationAggregator in coca, LemmaAbsenceScoreAggregator in labs)\
+  \ can access it"
+modules:
+- name: audit-domain
+  implementations:
+  - name: IScoreAggregator
+    visibility: public
+    implements:
+    - ScoreAggregator
+    _change: modify
+  _change: modify

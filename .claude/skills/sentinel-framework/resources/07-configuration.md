@@ -60,7 +60,9 @@ Java mapping: module `domain` + package `analyzers` → `com.example.domain.anal
 models:
   - name: "ModelName"           # Class name (PascalCase)
     type: record                 # record | enum | exception
+    visibility: "public"         # public (default) | internal (package-private)
     extends: "RuntimeException"  # Optional supertype (exception only, default: RuntimeException)
+    implements: ["Interface"]     # Optional: interfaces this model implements (marker interfaces, sealed hierarchies)
     message: "Not found: %s"     # Optional message template (exception only, %s from fields)
     fields:
       - name: "fieldName"        # Field name (camelCase)
@@ -73,11 +75,15 @@ models:
 interfaces:
   - name: "InterfaceName"       # Interface name (PascalCase)
     stereotype: "OutboundPort"   # InboundPort | OutboundPort | (custom)
+    visibility: "public"          # public (default) | internal (package-private)
     sealed: true                  # sealed interface ... permits ...
+    typeParameters: ["T extends Bound"]  # Optional generic type parameters
     exposes:
       - signature: "method(Type param): ReturnType"
         throws: ["ExceptionType"] # Optional checked exceptions
 ```
+
+When `typeParameters` is set, method signatures can reference the type variables (e.g. `resolve(Report r): Optional<T>`). Implementations specify the concrete type via `implements: ["InterfaceName<ConcreteType>"]`.
 
 ## Implementation Schema
 
@@ -85,6 +91,9 @@ interfaces:
 implementations:
   - name: "ClassName"            # Implementation class name
     implements: ["Interface"]     # Interfaces to implement
+    visibility: "internal"        # internal/package-private (default) | public
+    externalImplements:            # External framework/library interfaces (FQN)
+      - "java.util.concurrent.Callable<Integer>"
     types: ["Repository"]         # Framework annotations to apply
     requiresInject:               # Constructor dependencies
       - name: "depName"
@@ -96,6 +105,8 @@ implementations:
           feature: "FEAT-001"
           rule: "RULE-001"
 ```
+
+**Visibility defaults:** Models and interfaces default to `public`. Implementations default to `internal` (package-private). Use `visibility: "public"` on an implementation only when cross-module instantiation is needed.
 
 ## Handwritten Test Schema
 
@@ -171,10 +182,14 @@ features:
 
 ## External Definitions
 
-Each requirement lives in its own dated folder. `sentinel.yaml` references them individually:
+Each requirement lives in its own dated folder under `requirements/`.
+
+**Auto-discovery:** The engine automatically scans `requirements/*/` for `REQUIREMENT.md` (or `requirement.yaml`) files. No explicit `definitions:` entries are needed.
+
+**Explicit mode:** You can optionally list specific files via `definitions:` for fine-grained control:
 
 ```yaml
-# sentinel.yaml
+# sentinel.yaml (optional — auto-discovered if omitted)
 definitions:
   - requirements/2026-02-19.01_user-registration/REQUIREMENT.md
   - requirements/2026-02-19.02_payment-processing/REQUIREMENT.md

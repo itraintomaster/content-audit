@@ -1,0 +1,219 @@
+code: __proposal__
+description: "FEAT-RCLA: Add correction context architecture for LEMMA_ABSENCE quiz\
+  \ tasks. Introduces CorrectionContext marker interface, MisplacedLemmaContext projection\
+  \ model, LemmaAbsenceCorrectionContext record, dispatching resolver pattern (SentenceLengthContextResolver\
+  \ + LemmaAbsenceContextResolver + DispatchingCorrectionContextResolver), and updates\
+  \ CorrectionContextResolver return type to Optional<CorrectionContext>. Note: records\
+  \ implementing CorrectionContext and generic type parameters on interfaces are not\
+  \ expressible in the current DSL — these will be added manually in code until sentinel\
+  \ supports them."
+modules:
+- name: refiner-domain
+  models:
+  - name: MisplacedLemmaContext
+    type: record
+    fields:
+    - name: lemma
+      type: String
+      description: Base form of the misplaced word
+    - name: pos
+      type: String
+      description: "Part of speech (e.g., VERB, NOUN)"
+    - name: expectedLevel
+      type: CefrLevel
+      description: CEFR level where this word belongs per EVP (always higher than
+        quizLevel)
+    - name: quizLevel
+      type: CefrLevel
+      description: CEFR level of the quiz where the word was found
+    - name: cocaRank
+      type: Integer
+      description: COCA frequency ranking (nullable)
+    _change: add
+  - name: LemmaAbsenceCorrectionContext
+    type: record
+    fields:
+    - name: taskId
+      type: String
+      description: Identifier of the refinement task
+    - name: sentence
+      type: String
+      description: Current quiz sentence as plain text
+    - name: translation
+      type: String
+      description: Spanish translation of the sentence
+    - name: knowledgeTitle
+      type: String
+      description: Title of the parent knowledge
+    - name: knowledgeInstructions
+      type: String
+      description: Instructions of the exercise
+    - name: topicLabel
+      type: String
+      description: Label of the parent topic
+    - name: cefrLevel
+      type: CefrLevel
+      description: CEFR level determined by milestone ancestor
+    - name: misplacedLemmas
+      type: List<MisplacedLemmaContext>
+      description: Words in the quiz whose expected CEFR level is higher than the
+        quiz level
+    - name: suggestedLemmas
+      type: List<SuggestedLemma>
+      description: Absent lemmas from the level that could serve as replacements (reuses
+        existing SuggestedLemma model)
+    _change: add
+  interfaces:
+  - name: CorrectionContext
+    stereotype: port
+    sealed: false
+    _change: add
+  - name: CorrectionContextResolver
+    sealed: false
+    exposes:
+    - signature: "resolve(AuditReport report, RefinementTask task): Optional<SentenceLengthCorrectionContext>"
+      _change: delete
+    - signature: "resolve(AuditReport report, RefinementTask task): Optional<CorrectionContext>"
+      _change: add
+    _change: modify
+  implementations:
+  - name: DefaultCorrectionContextResolver
+    _change: delete
+  - name: SentenceLengthContextResolver
+    handwrittenTests:
+    - name: should resolve context with all fields populated from quiz diagnosis and
+        ancestor entities
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+      _change: add
+    - name: should populate sentence and translation from AuditableQuiz entity on
+        the quiz node
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+      _change: add
+    - name: should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge
+        on knowledge ancestor
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+      _change: add
+    - name: should populate topicLabel from AuditableTopic on topic ancestor
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+      _change: add
+    - name: should populate cefrLevel tokenCount targetMin targetMax and delta from
+        SentenceLengthDiagnosis
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+      _change: add
+    - name: should return empty when quiz node is not found in the audit tree
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R002
+      _change: add
+    - name: should return empty when task nodeTarget does not match any node target
+        in the tree
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R002
+      _change: add
+    - name: should locate the correct quiz node when multiple quiz nodes exist in
+        the tree
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R002
+      _change: add
+    - name: should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas and
+        exclude APPEARS_TOO_EARLY
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R003
+      _change: add
+    - name: should order suggested lemmas by COCA rank ascending with lowest rank
+        first
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R003
+      _change: add
+    - name: should place lemmas without COCA rank after lemmas with COCA rank
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R003
+      _change: add
+    - name: should map AbsentLemma fields to SuggestedLemma fields correctly
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R003
+      _change: add
+    - name: should return empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R003
+      _change: add
+    - name: should return suggested lemmas from the milestone ancestor of the quiz
+        node
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R003
+      _change: add
+    - name: should return context with empty suggested lemmas when milestone has no
+        LemmaAbsenceLevelDiagnosis
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R004
+      _change: add
+    - name: should return context with empty suggested lemmas when milestone ancestor
+        is not found
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R004
+      _change: add
+    - name: should return context with empty suggested lemmas when absent lemmas list
+        is empty
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R004
+      _change: add
+    - name: should limit suggested lemmas to 10 when more than 10 qualify after filtering
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R005
+      _change: add
+    - name: should resolve context with negative delta for a sentence shorter than
+        target range
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+      _change: add
+    - name: should resolve context with zero delta when sentence is within target
+        range
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+      _change: add
+    - name: should set taskId from the RefinementTask id
+      traceability:
+        feature: FEAT-RCSL
+        rule: F-RCSL-R001
+      _change: add
+    implements:
+    - CorrectionContextResolver
+    _change: add
+  - name: LemmaAbsenceContextResolver
+    implements:
+    - CorrectionContextResolver
+    _change: add
+  - name: DispatchingCorrectionContextResolver
+    requiresInject:
+    - name: sentenceLengthResolver
+      type: SentenceLengthContextResolver
+    - name: lemmaAbsenceResolver
+      type: LemmaAbsenceContextResolver
+    implements:
+    - CorrectionContextResolver
+    _change: add
+  _change: modify

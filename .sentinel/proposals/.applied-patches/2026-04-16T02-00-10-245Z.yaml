@@ -1,0 +1,46 @@
+code: __proposal__
+features:
+- id: FEAT-RCLA
+  journeys:
+  - id: F-RCLA-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+  - id: F-RCLA-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+- id: F-LREC
+  journeys:
+  - id: F-LREC-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.lrec
+  - id: F-LREC-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.lrec
+  - id: F-LREC-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.lrec
+  - id: F-LREC-J004
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.lrec
+  - id: F-LREC-J005
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.lrec
+- id: FEAT-DLABS
+  journeys:
+  - id: F-DLABS-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain
+  - id: F-DLABS-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain
+  - id: F-DLABS-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain

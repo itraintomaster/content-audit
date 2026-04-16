@@ -1,0 +1,82 @@
+code: __proposal__
+description: "Set visibility: public on 18 implementations across audit-domain and\
+  \ audit-application that are instantiated from Main.java in audit-cli (cross-module\
+  \ wiring). Fixes regression where generator changed from defaulting public to defaulting\
+  \ package-private."
+modules:
+- name: audit-domain
+  implementations:
+  - name: KnowledgeInstructionsLengthAnalyzer
+    visibility: public
+    _change: modify
+  - name: KnowledgeTitleLengthAnalyzer
+    visibility: public
+    _change: modify
+  - name: SentenceLengthAnalyzer
+    visibility: public
+    _change: modify
+  packages:
+  - name: coca
+    visibility: internal
+    implementations:
+    - name: CocaBucketsAnalyzer
+      visibility: public
+      _change: modify
+    - name: DefaultTokenClassifier
+      visibility: public
+      _change: modify
+    - name: DefaultProgressionEvaluator
+      visibility: public
+      _change: modify
+    - name: DefaultImprovementPlanner
+      visibility: public
+      _change: modify
+    _change: modify
+  - name: lrec
+    visibility: internal
+    implementations:
+    - name: LemmaRecurrenceAnalyzer
+      visibility: public
+      _change: modify
+    - name: DefaultContentWordFilter
+      visibility: public
+      _change: modify
+    - name: DefaultIntervalCalculator
+      visibility: public
+      _change: modify
+    - name: DefaultExposureClassifier
+      visibility: public
+      _change: modify
+    _change: modify
+  - name: labs
+    visibility: internal
+    implementations:
+    - name: LemmaByLevelAbsenceAnalyzer
+      visibility: public
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: CourseToAuditableMapper
+    visibility: public
+    _change: modify
+  - name: DefaultAuditRunner
+    visibility: public
+    _change: modify
+  - name: DefaultSentenceLengthConfig
+    visibility: public
+    _change: modify
+  - name: DefaultCocaBucketsConfig
+    visibility: public
+    _change: modify
+  - name: DefaultLemmaRecurrenceConfig
+    visibility: public
+    _change: modify
+  - name: DefaultLemmaAbsenceConfig
+    visibility: public
+    _change: modify
+  - name: DefaultAnalyzerRegistry
+    visibility: public
+    _change: modify
+  _change: modify

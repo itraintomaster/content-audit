@@ -5,7 +5,7 @@ import com.learney.contentaudit.auditdomain.AuditReport;
 import java.util.List;
 import java.util.Map;
 
-public final class RawJsonReportFormatter implements RawReportFormatter {
+public class RawJsonReportFormatter implements RawReportFormatter {
 
     @Override
     public String format(AuditReport report) {

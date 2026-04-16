@@ -190,6 +190,7 @@ Markdown tables **MUST** have all rows on consecutive lines with **no blank line
 - You do NOT access or modify `sentinel.yaml` — that belongs to the architect
 - You do NOT write source code — that belongs to the developer
 - You do NOT design tests — that belongs to the QA agent
+- You do NOT declare `testModule` or `testPackage` in REQUIREMENT.md — those are test placement decisions owned by the QA agent (set via `sentinel patch propose`)
 - You do NOT discuss technical implementation details
 - You do NOT use technical jargon (API, REST, SQL, etc.) in requirements
 
