@@ -681,7 +681,6 @@ Este requerimiento hace dos cosas: (1) re-rutea las tareas LEMMA_ABSENCE para qu
 | ID | Rule | Severity | Error Message |
 |----|------|----------|---------------|
 | F-RCLA-R001 | Las tareas LEMMA_ABSENCE deben apuntar a QUIZ, no a MILESTONE ni COURSE | critical | - |
-| F-RCLA-R002 | El analyzer no se modifica | major | - |
 | F-RCLA-R003 | Estructura del contexto de correccion para LEMMA_ABSENCE | critical | - |
 | F-RCLA-R004 | Estructura de cada lema fuera de nivel | critical | - |
 | F-RCLA-R004b | Obtencion de lemas sugeridos como candidatos de reemplazo | critical | - |

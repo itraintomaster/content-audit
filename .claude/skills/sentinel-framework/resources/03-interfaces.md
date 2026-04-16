@@ -325,6 +325,8 @@ Examples:
 
 **Package:** `com.learney.contentaudit.refinerdomain`
 
+**Implemented by:** DefaultRefinerEngine (refiner-domain)
+
 | Method | Throws |
 |--------|--------|
 | `plan(AuditReport report, String auditId): RefinementPlan` | (none) |

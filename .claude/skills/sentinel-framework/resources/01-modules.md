@@ -97,7 +97,7 @@ project-root/
 | Scope | internal |
 | Models | 8 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext) |
 | Interfaces | 4 (RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext) |
-| Implementations | 3 (SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver) |
+| Implementations | 4 (SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine) |
 | Packages | 0 |
 
 ### audit-application

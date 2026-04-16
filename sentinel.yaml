@@ -2714,6 +2714,31 @@ modules:
         rule: F-RCLA-R007
     implements:
     - CorrectionContextResolver<CorrectionContext>
+  - name: DefaultRefinerEngine
+    visibility: public
+    handwrittenTests:
+    - name: should include LEMMA_ABSENCE tasks targeting QUIZ when quiz has lemma-absence
+        score below 1.0
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R001
+    - name: should not include LEMMA_ABSENCE tasks targeting MILESTONE or COURSE in
+        the refinement plan
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R001
+    - name: should not generate LEMMA_ABSENCE task for quiz with lemma-absence score
+        equal to 1.0
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R001
+    - name: should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE
+        and COURSE level after re-routing
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R001
+    implements:
+    - RefinerEngine
   scope: internal
 - name: audit-application
   dependsOn:
@@ -9191,14 +9216,6 @@ features:
       \ y sigue siendo consumida por otros features (FEAT-RCSL la usa para `suggestedLemmas`\
       \ en el contexto de SENTENCE_LENGTH)."
     validation: AUTO_VALIDATED
-  - id: F-RCLA-R002
-    name: El analyzer no se modifica
-    severity: major
-    description: "El `LemmaByLevelAbsenceAnalyzer` continua escribiendo scores y diagnosticos\
-      \ en todos los niveles del arbol (quiz, knowledge, topic, milestone, course)\
-      \ exactamente como antes. Este requerimiento solo cambia que nodos selecciona\
-      \ el motor del refiner para generar tareas. El analyzer es agnositco al refiner."
-    validation: AUTO_VALIDATED
   - id: F-RCLA-R003
     name: Estructura del contexto de correccion para LEMMA_ABSENCE
     severity: critical
@@ -9458,7 +9475,6 @@ features:
       then: verificar_tareas
       gate:
       - F-RCLA-R001
-      - F-RCLA-R002
     - id: verificar_tareas
       action: El usuario lista las tareas del plan. Las tareas LEMMA_ABSENCE apuntan
         exclusivamente a nodos QUIZ. No aparecen tareas LEMMA_ABSENCE con target MILESTONE
@@ -9472,8 +9488,6 @@ features:
         \ course, con toda su informacion intacta. El cambio solo afecto al plan de\
         \ refinamiento, no al reporte"
       result: success
-      gate:
-      - F-RCLA-R002
   doubts:
   - id: DOUBT-EMPTY-MISPLACED
     question: Quiz con score < 1.0 pero sin MisplacedLemma

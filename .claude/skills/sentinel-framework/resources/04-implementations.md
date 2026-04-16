@@ -242,6 +242,12 @@ public DispatchingCorrectionContextResolver(SentenceLengthContextResolver senten
 }
 ```
 
+#### DefaultRefinerEngine
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+
+**Implements:** RefinerEngine
+
 ### Module: audit-application
 
 #### CourseToAuditableMapper

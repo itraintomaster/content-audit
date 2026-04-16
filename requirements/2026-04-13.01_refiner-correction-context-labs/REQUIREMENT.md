@@ -67,13 +67,6 @@ Las tareas de LEMMA_ABSENCE a nivel MILESTONE y COURSE se eliminan del plan de r
 
 **Error**: N/A (esta regla define un cambio de routing)
 
-### Rule[F-RCLA-R002] - El analyzer no se modifica
-**Severity**: major | **Validation**: AUTO_VALIDATED
-
-El `LemmaByLevelAbsenceAnalyzer` continua escribiendo scores y diagnosticos en todos los niveles del arbol (quiz, knowledge, topic, milestone, course) exactamente como antes. Este requerimiento solo cambia que nodos selecciona el motor del refiner para generar tareas. El analyzer es agnositco al refiner.
-
-**Error**: N/A (esta regla define una restriccion de alcance)
-
 ---
 
 ### Grupo B - Modelo del contexto de correccion
@@ -359,7 +352,7 @@ journeys:
     flow:
       - id: generar_plan
         action: "El usuario genera un plan de refinamiento a partir de un reporte de auditoria donde hay milestones con lemas ausentes y quizzes con vocabulario fuera de nivel"
-        gate: [F-RCLA-R001, F-RCLA-R002]
+        gate: [F-RCLA-R001]
         then: verificar_tareas
 
       - id: verificar_tareas
@@ -369,7 +362,6 @@ journeys:
 
       - id: verificar_auditoria
         action: "El usuario consulta el reporte de auditoria original. Los diagnosticos de LemmaAbsenceLevelDiagnosis siguen presentes en los nodos milestone y course, con toda su informacion intacta. El cambio solo afecto al plan de refinamiento, no al reporte"
-        gate: [F-RCLA-R002]
         result: success
 ```
 

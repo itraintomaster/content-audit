@@ -428,6 +428,8 @@ Domain module for the refinement workflow. Defines the plan/task model and ports
 - `DispatchingCorrectionContextResolver` implements CorrectionContextResolver<CorrectionContext>
   Inject: sentenceLengthResolver: SentenceLengthContextResolver, lemmaAbsenceResolver: LemmaAbsenceContextResolver
   Tests: should delegate to sentenceLengthResolver when task diagnosis is SENTENCE_LENGTH, should delegate to lemmaAbsenceResolver when task diagnosis is LEMMA_ABSENCE, should return empty for unsupported diagnosis kind COCA_BUCKETS, should return empty for unsupported diagnosis kind LEMMA_RECURRENCE, should propagate empty from delegate when delegate returns empty
+- `DefaultRefinerEngine` implements RefinerEngine
+  Tests: should include LEMMA_ABSENCE tasks targeting QUIZ when quiz has lemma-absence score below 1.0, should not include LEMMA_ABSENCE tasks targeting MILESTONE or COURSE in the refinement plan, should not generate LEMMA_ABSENCE task for quiz with lemma-absence score equal to 1.0, should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE and COURSE level after re-routing
 
 #### audit-application
 

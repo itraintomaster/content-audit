@@ -111,5 +111,10 @@ public class SentinelArchitectureTest {
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DispatchingCorrectionContextResolver - " + e.getMessage());
     }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.DefaultRefinerEngine");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultRefinerEngine - " + e.getMessage());
+    }
   }
 }

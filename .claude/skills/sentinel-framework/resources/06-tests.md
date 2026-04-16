@@ -158,6 +158,13 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should return empty for unsupported diagnosis kind LEMMA_RECURRENCE → FEAT-RCLA/F-RCLA-R007
 - should propagate empty from delegate when delegate returns empty → FEAT-RCLA/F-RCLA-R007
 
+### DefaultRefinerEngine (refiner-domain)
+
+- should include LEMMA_ABSENCE tasks targeting QUIZ when quiz has lemma-absence score below 1.0 → FEAT-RCLA/F-RCLA-R001
+- should not include LEMMA_ABSENCE tasks targeting MILESTONE or COURSE in the refinement plan → FEAT-RCLA/F-RCLA-R001
+- should not generate LEMMA_ABSENCE task for quiz with lemma-absence score equal to 1.0 → FEAT-RCLA/F-RCLA-R001
+- should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE and COURSE level after re-routing → FEAT-RCLA/F-RCLA-R001
+
 ### CourseToAuditableMapper (audit-application)
 
 - Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse → F-NLP/F-NLP-R010

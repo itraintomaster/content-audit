@@ -21,8 +21,8 @@ import java.util.Optional;
  * <ul>
  *   <li>QUIZ nodes  — sentence-length (and any other quiz-level analyzers)</li>
  *   <li>KNOWLEDGE nodes — knowledge-title-length, knowledge-instructions-length</li>
- *   <li>COURSE nodes — lemma-absence, coca-buckets-distribution (course-level)</li>
- *   <li>MILESTONE nodes — lemma-absence, coca-buckets-distribution (level-level)</li>
+ *   <li>COURSE nodes — coca-buckets-distribution, lemma-recurrence (course-level)</li>
+ *   <li>MILESTONE nodes — coca-buckets-distribution, lemma-recurrence (level-level)</li>
  *   <li>TOPIC nodes — skipped (only aggregated scores)</li>
  * </ul>
  *
@@ -42,7 +42,6 @@ public class DefaultRefinerEngine implements RefinerEngine {
 
     // Analyzer names that are meaningful at COURSE / MILESTONE level
     private static final List<String> COURSE_LEVEL_ANALYZERS = List.of(
-            "lemma-absence",
             "coca-buckets-distribution",
             "lemma-recurrence"
     );

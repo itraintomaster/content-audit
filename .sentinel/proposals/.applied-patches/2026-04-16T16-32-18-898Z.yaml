@@ -1,0 +1,33 @@
+code: __proposal__
+description: "Fix DefaultRefinerEngine: set implements to RefinerEngine and visibility\
+  \ to public"
+modules:
+- name: refiner-domain
+  implementations:
+  - name: DefaultRefinerEngine
+    visibility: public
+    handwrittenTests:
+    - name: should include LEMMA_ABSENCE tasks targeting QUIZ when quiz has lemma-absence
+        score below 1.0
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R001
+    - name: should not include LEMMA_ABSENCE tasks targeting MILESTONE or COURSE in
+        the refinement plan
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R001
+    - name: should not generate LEMMA_ABSENCE task for quiz with lemma-absence score
+        equal to 1.0
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R001
+    - name: should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE
+        and COURSE level after re-routing
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R001
+    implements:
+    - RefinerEngine
+    _change: modify
+  _change: modify

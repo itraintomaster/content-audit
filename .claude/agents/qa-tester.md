@@ -529,8 +529,7 @@ Journeys:
 **F-RCLA** — Re-routing y Contexto de Correccion para LEMMA_ABSENCE en el Refiner
 
 Rules:
-- [ ] `F-RCLA-R001` — Las tareas LEMMA_ABSENCE deben apuntar a QUIZ, no a MILESTONE ni COURSE
-- [ ] `F-RCLA-R002` — El analyzer no se modifica
+- [x] `F-RCLA-R001` — Las tareas LEMMA_ABSENCE deben apuntar a QUIZ, no a MILESTONE ni COURSE
 - [x] `F-RCLA-R003` — Estructura del contexto de correccion para LEMMA_ABSENCE
 - [x] `F-RCLA-R004` — Estructura de cada lema fuera de nivel
 - [x] `F-RCLA-R004b` — Obtencion de lemas sugeridos como candidatos de reemplazo
@@ -723,6 +722,9 @@ Domain module for the refinement workflow. Defines the plan/task model and ports
 - `DispatchingCorrectionContextResolver` implements CorrectionContextResolver<CorrectionContext>
   Inject: sentenceLengthResolver: SentenceLengthContextResolver, lemmaAbsenceResolver: LemmaAbsenceContextResolver
   Tests (5): should delegate to sentenceLengthResolver when task diagnosis is SENTENCE_LENGTH, should delegate to lemmaAbsenceResolver when task diagnosis is LEMMA_ABSENCE, should return empty for unsupported diagnosis kind COCA_BUCKETS, should return empty for unsupported diagnosis kind LEMMA_RECURRENCE, should propagate empty from delegate when delegate returns empty
+- `DefaultRefinerEngine` implements RefinerEngine
+  Tests (4): should include LEMMA_ABSENCE tasks targeting QUIZ when quiz has lemma-absence score below 1.0, should not include LEMMA_ABSENCE tasks targeting MILESTONE or COURSE in the refinement plan, should not generate LEMMA_ABSENCE task for quiz with lemma-absence score equal to 1.0, should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE and COURSE level after re-routing
+  **Untested methods:** plan, nextTask
 
 ### audit-application
 

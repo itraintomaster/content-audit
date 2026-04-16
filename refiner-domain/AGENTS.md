@@ -198,6 +198,17 @@ Methods:
 - should return empty for unsupported diagnosis kind LEMMA_RECURRENCE → FEAT-RCLA/F-RCLA-R007
 - should propagate empty from delegate when delegate returns empty → FEAT-RCLA/F-RCLA-R007
 
+### DefaultRefinerEngine
+
+**Implements:** RefinerEngine
+
+**Tests that must pass:**
+
+- should include LEMMA_ABSENCE tasks targeting QUIZ when quiz has lemma-absence score below 1.0 → FEAT-RCLA/F-RCLA-R001
+- should not include LEMMA_ABSENCE tasks targeting MILESTONE or COURSE in the refinement plan → FEAT-RCLA/F-RCLA-R001
+- should not generate LEMMA_ABSENCE task for quiz with lemma-absence score equal to 1.0 → FEAT-RCLA/F-RCLA-R001
+- should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE and COURSE level after re-routing → FEAT-RCLA/F-RCLA-R001
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.

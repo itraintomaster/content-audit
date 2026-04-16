@@ -1,4 +1,4 @@
-generatedAt: 2026-04-16T15:41:16.779664Z
+generatedAt: 2026-04-16T19:19:02.049202Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -63,91 +63,75 @@ features:
       implementation: LemmaByLevelAbsenceAnalyzer
   journeysCoverage:
   - journeyId: F-DLABS-J001
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_elAssessmentEsOPTIMAL_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FDlabsJ001JourneyTest.path1_elAssessmentEsOPTIMAL_success(FDlabsJ001JourneyTest.java:24)\n\
-          \tat java...."
         module: audit-domain
         implementation: FDlabsJ001JourneyTest
     - pathId: path-2
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_elAssessmentEsACCEPTABLEONEEDSIMPROVEMENT_hayLemasAusentesEnElNivel_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FDlabsJ001JourneyTest.path2_elAssessmentEsACCEPTABLEONEEDSIMPROVEMENT_hayLemasAusentesEnElNivel_su..."
         module: audit-domain
         implementation: FDlabsJ001JourneyTest
     - pathId: path-3
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path3_elAssessmentEsACCEPTABLEONEEDSIMPROVEMENT_noHayLemasAusentesEnElNivel_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FDlabsJ001JourneyTest.path3_elAssessmentEsACCEPTABLEONEEDSIMPROVEMENT_noHayLemasAusentesEnElNivel_..."
         module: audit-domain
         implementation: FDlabsJ001JourneyTest
   - journeyId: F-DLABS-J002
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_elMilestoneAncestroExiste_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FDlabsJ002JourneyTest.path1_elMilestoneAncestroExiste_success(FDlabsJ002JourneyTest.java:24)\n\
-          \tat j..."
         module: audit-domain
         implementation: FDlabsJ002JourneyTest
     - pathId: path-2
       result: failure
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_noSeEncuentraElMilestoneAncestroEstructuraDeArbolIncompleta_failure
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FDlabsJ002JourneyTest.path2_noSeEncuentraElMilestoneAncestroEstructuraDeArbolIncompleta_failure(FD..."
         module: audit-domain
         implementation: FDlabsJ002JourneyTest
   - journeyId: F-DLABS-J003
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_elDiagnosticoExisteEnElNodoCurso_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FDlabsJ003JourneyTest.path1_elDiagnosticoExisteEnElNodoCurso_success(FDlabsJ003JourneyTest.java:24..."
         module: audit-domain
         implementation: FDlabsJ003JourneyTest
     - pathId: path-2
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_elDiagnosticoNoExisteElAnalizadorNoSeEjecuto_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FDlabsJ003JourneyTest.path2_elDiagnosticoNoExisteElAnalizadorNoSeEjecuto_success(FDlabsJ003Journey..."
         module: audit-domain
         implementation: FDlabsJ003JourneyTest
 - id: FEAT-LREC
@@ -256,185 +240,153 @@ features:
       implementation: LemmaRecurrenceAnalyzer
   journeysCoverage:
   - journeyId: F-LREC-J001
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_elCursoContieneOracionesProcesables_seEncontraronLemasDeContenidoSuficientesParaElAnalisis_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ001JourneyTest.path1_elCursoContieneOracionesProcesables_seEncontraronLemasDeContenidoSufici..."
         module: audit-domain
         implementation: FLrecJ001JourneyTest
     - pathId: path-2
       result: failure
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_elCursoContieneOracionesProcesables_noSeEncontraronLemasDeContenidoEnElCurso_failure
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ001JourneyTest.path2_elCursoContieneOracionesProcesables_noSeEncontraronLemasDeContenidoEnEl..."
         module: audit-domain
         implementation: FLrecJ001JourneyTest
     - pathId: path-3
       result: failure
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path3_elCursoNoContieneOracionesProcesables_failure
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ001JourneyTest.path3_elCursoNoContieneOracionesProcesables_failure(FLrecJ001JourneyTest.java..."
         module: audit-domain
         implementation: FLrecJ001JourneyTest
   - journeyId: F-LREC-J002
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_hayLemasSubexpuestosQueInvestigar_elLemaEstaConcentradoEnUnaUnicaSeccionDelCurso_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ002JourneyTest.path1_hayLemasSubexpuestosQueInvestigar_elLemaEstaConcentradoEnUnaUnicaSeccio..."
         module: audit-domain
         implementation: FLrecJ002JourneyTest
     - pathId: path-2
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_hayLemasSubexpuestosQueInvestigar_elLemaTienePocasAparicionesRepartidasPeroConBrechasMuyGrandes_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ002JourneyTest.path2_hayLemasSubexpuestosQueInvestigar_elLemaTienePocasAparicionesRepartidas..."
         module: audit-domain
         implementation: FLrecJ002JourneyTest
     - pathId: path-3
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path3_noHayLemasSubexpuestosLaPuntuacionBajaSeDebeASobreexposicion_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ002JourneyTest.path3_noHayLemasSubexpuestosLaPuntuacionBajaSeDebeASobreexposicion_success(FL..."
         module: audit-domain
         implementation: FLrecJ002JourneyTest
   - journeyId: F-LREC-J003
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_hayLemasSobreexpuestosQueInvestigar_laSobreexposicionEsInherenteAlIdiomaYAlNivelDelCurso_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ003JourneyTest.path1_hayLemasSobreexpuestosQueInvestigar_laSobreexposicionEsInherenteAlIdiom..."
         module: audit-domain
         implementation: FLrecJ003JourneyTest
     - pathId: path-2
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_hayLemasSobreexpuestosQueInvestigar_laSobreexposicionIndicaFaltaDeVariedadLexica_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ003JourneyTest.path2_hayLemasSobreexpuestosQueInvestigar_laSobreexposicionIndicaFaltaDeVarie..."
         module: audit-domain
         implementation: FLrecJ003JourneyTest
     - pathId: path-3
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path3_noHayLemasSobreexpuestos_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ003JourneyTest.path3_noHayLemasSobreexpuestos_success(FLrecJ003JourneyTest.java:42)\n\
-          \tat java..."
         module: audit-domain
         implementation: FLrecJ003JourneyTest
   - journeyId: F-LREC-J004
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_seEncuentranLemasNormalesConDesviacionEstandarAlta_laIrregularidadEsSignificativaYElUsuarioDecideCorregirla_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ004JourneyTest.path1_seEncuentranLemasNormalesConDesviacionEstandarAlta_laIrregularidadEsSig..."
         module: audit-domain
         implementation: FLrecJ004JourneyTest
     - pathId: path-2
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_seEncuentranLemasNormalesConDesviacionEstandarAlta_laIrregularidadEsMenorONoJustificaCambiosEnElContenido_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ004JourneyTest.path2_seEncuentranLemasNormalesConDesviacionEstandarAlta_laIrregularidadEsMen..."
         module: audit-domain
         implementation: FLrecJ004JourneyTest
     - pathId: path-3
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path3_todosLosLemasNormalesTienenDesviacionEstandarRazonable_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ004JourneyTest.path3_todosLosLemasNormalesTienenDesviacionEstandarRazonable_success(FLrecJ00..."
         module: audit-domain
         implementation: FLrecJ004JourneyTest
   - journeyId: F-LREC-J005
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_laPuntuacionMejoroSignificativamente_losLemasAjustadosAhoraTienenExposicionNormalYLaMejoraEsSuficiente_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ005JourneyTest.path1_laPuntuacionMejoroSignificativamente_losLemasAjustadosAhoraTienenExposi..."
         module: audit-domain
         implementation: FLrecJ005JourneyTest
     - pathId: path-2
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_laPuntuacionMejoroSignificativamente_algunosLemasMejoraronPeroOtrosSiguenSiendoProblematicos_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ005JourneyTest.path2_laPuntuacionMejoroSignificativamente_algunosLemasMejoraronPeroOtrosSigu..."
         module: audit-domain
         implementation: FLrecJ005JourneyTest
     - pathId: path-3
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path3_laPuntuacionNoMejoroOEmpeoro_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLrecJ005JourneyTest.path3_laPuntuacionNoMejoroOEmpeoro_success(FLrecJ005JourneyTest.java:42)\n\
-          \tat ..."
         module: audit-domain
         implementation: FLrecJ005JourneyTest
 - id: FEAT-DCOCA
@@ -457,295 +409,286 @@ features:
     state: NO_TESTS
   journeysCoverage:
   - journeyId: F-DCOCA-J001
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_elDiagnosticoExisteEnElNodoCurso_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FDcocaJ001JourneyTest.path1_elDiagnosticoExisteEnElNodoCurso_success(FDcocaJ001JourneyTest.java:24..."
         module: audit-domain
         implementation: FDcocaJ001JourneyTest
     - pathId: path-2
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_elDiagnosticoNoExisteElAnalizadorNoSeEjecuto_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FDcocaJ001JourneyTest.path2_elDiagnosticoNoExisteElAnalizadorNoSeEjecuto_success(FDcocaJ001Journey..."
         module: audit-domain
         implementation: FDcocaJ001JourneyTest
   - journeyId: F-DCOCA-J002
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_elMilestoneAncestroExiste_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FDcocaJ002JourneyTest.path1_elMilestoneAncestroExiste_success(FDcocaJ002JourneyTest.java:24)\n\
-          \tat j..."
         module: audit-domain
         implementation: FDcocaJ002JourneyTest
     - pathId: path-2
       result: failure
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_noSeEncuentraElMilestoneAncestro_failure
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FDcocaJ002JourneyTest.path2_noSeEncuentraElMilestoneAncestro_failure(FDcocaJ002JourneyTest.java:32..."
         module: audit-domain
         implementation: FDcocaJ002JourneyTest
 - id: FEAT-COURSE
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: requirements/2026-03-15.01_course-structure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COURSE-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a valid course directory, when load is called, then returns CourseEntity\
         \ with 5-level hierarchy including ROOT node"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course with ordered milestones and topics, when load is called,\
         \ then child order matches parent children lists"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a loaded course, when saved and reloaded, then the result is semantically\
         \ equivalent to the original"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course directory with quiz templates, when load is called, then\
         \ every knowledge has at least one quiz template"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course directory with consistent IDs, when load is called, then\
         \ all child ID references resolve to existing entities"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given validator rejects course with duplicate IDs, when save is called,\
         \ then CourseValidationException propagates"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given a course directory with unique IDs, when load is called, then no\
         \ duplicate IDs exist across any hierarchy level"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R007
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a valid directory structure, when load is called, then each directory\
         \ level contains its expected descriptor file"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R008
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given validator rejects course with broken parent references, when save\
         \ is called, then CourseValidationException propagates"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given a loaded course, when inspecting parent references, then each child\
         \ parentId matches its actual parent id"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R009
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a null course entity, when save is called, then an exception is\
         \ thrown"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given a course with all required fields populated, when load is called,\
         \ then all mandatory fields are non-null"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R010
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course with empty string and null field values, when saved and\
         \ reloaded, then empty and null values are preserved exactly"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R011
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given quiz templates with dual id and oidId fields, when load is called,\
         \ then both fields contain the same value"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R012
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given quiz templates with numberDouble format values, when saved to JSON,\
         \ then numeric fields preserve MongoDB Extended JSON format"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R013
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a loaded course, when inspecting order fields, then milestones\
         \ topics and knowledges have sequential 1-based order within their parent"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R014
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a valid course entity, when save is called, then validator is invoked\
         \ and no exception is thrown"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given an invalid course entity, when save is called, then validator throws\
         \ CourseValidationException"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R015
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given validator rejects milestone with no topics, when save is called,\
         \ then CourseValidationException propagates"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given a milestone with empty children list, when load is called, then\
         \ validation rejects the course with a descriptive error"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - ruleId: F-COURSE-R016
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given entities with labels, when saved to disk, then directory names\
         \ are deterministic slugs derived from the labels"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   journeysCoverage:
   - journeyId: F-COURSE-J001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course directory with full hierarchy, when loading step by step,\
         \ then all levels are resolved with correct hierarchy order and validation"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - journeyId: F-COURSE-J002
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course entity with validator passing, when save is called, then\
         \ no exception is thrown"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
     - name: "Given a course in memory, when saving to a target directory, then the\
         \ directory structure and JSON files are written correctly"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - journeyId: F-COURSE-J003
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a course loaded from files, when saved to a new directory and reloaded,\
         \ then the reloaded course equals the original"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - journeyId: F-COURSE-J004
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a loaded course, when navigating from ROOT to milestones to topics\
         \ to knowledges to quizzes, then each level is accessible and correctly ordered"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - journeyId: F-COURSE-J005
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a loaded course, when a knowledge label is modified and the course\
         \ is saved and reloaded, then the change is reflected and unmodified data\
         \ remains intact"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
   - journeyId: F-COURSE-J006
-    state: FAILING
+    state: PASSING
     tests:
     - name: "Given a nonexistent path or missing descriptor or malformed JSON, when\
         \ load is called, then a descriptive error is thrown and no partial course\
         \ is returned"
       implemented: true
-      passing: false
+      passing: true
       module: course-infrastructure
       implementation: FileSystemCourseRepository
 - id: FEAT-COCA
@@ -1769,205 +1712,171 @@ features:
       implementation: LemmaByLevelAbsenceAnalyzer
   journeysCoverage:
   - journeyId: F-LABS-J001
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_elAnalisisSeCompletaExitosamente_elAssessmentEsOPTIMALYTodosLosNivelesEstanDentroDeLosUmbrales_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ001JourneyTest.path1_elAnalisisSeCompletaExitosamente_elAssessmentEsOPTIMALYTodosLosNivelesE..."
         module: audit-domain
         implementation: FLabsJ001JourneyTest
     - pathId: path-2
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_elAnalisisSeCompletaExitosamente_hayNivelesQueExcedenLosUmbralesDeLemasAusentes_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ001JourneyTest.path2_elAnalisisSeCompletaExitosamente_hayNivelesQueExcedenLosUmbralesDeLemas..."
         module: audit-domain
         implementation: FLabsJ001JourneyTest
     - pathId: path-3
       result: failure
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path3_noSeDisponeDelCatalogoDeVocabularioEsperadoParaLosNivelesDelCurso_failure
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ001JourneyTest.path3_noSeDisponeDelCatalogoDeVocabularioEsperadoParaLosNivelesDelCurso_failu..."
         module: audit-domain
         implementation: FLabsJ001JourneyTest
     - pathId: path-4
       result: failure
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path4_elCursoNoContieneOracionesProcesadasLinguisticamente_failure
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ001JourneyTest.path4_elCursoNoContieneOracionesProcesadasLinguisticamente_failure(FLabsJ001J..."
         module: audit-domain
         implementation: FLabsJ001JourneyTest
   - journeyId: F-LABS-J002
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_hayLemasQueNoAparecenEnNingunNivelDelCurso_losLemasAusentesSonCriticosParaLaComunicacionBasicaDelNivel_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ002JourneyTest.path1_hayLemasQueNoAparecenEnNingunNivelDelCurso_losLemasAusentesSonCriticosP..."
         module: audit-domain
         implementation: FLabsJ002JourneyTest
     - pathId: path-2
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_hayLemasQueNoAparecenEnNingunNivelDelCurso_losLemasAusentesSonRelevantesPeroNoUrgentes_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ002JourneyTest.path2_hayLemasQueNoAparecenEnNingunNivelDelCurso_losLemasAusentesSonRelevante..."
         module: audit-domain
         implementation: FLabsJ002JourneyTest
     - pathId: path-3
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path3_losLemasAusentesAparecenEnOtrosNivelesPeroNoEnElEsperado_losLemasAusentesSonCriticosParaLaComunicacionBasicaDelNivel_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ002JourneyTest.path3_losLemasAusentesAparecenEnOtrosNivelesPeroNoEnElEsperado_losLemasAusent..."
         module: audit-domain
         implementation: FLabsJ002JourneyTest
     - pathId: path-4
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path4_losLemasAusentesAparecenEnOtrosNivelesPeroNoEnElEsperado_losLemasAusentesSonRelevantesPeroNoUrgentes_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ002JourneyTest.path4_losLemasAusentesAparecenEnOtrosNivelesPeroNoEnElEsperado_losLemasAusent..."
         module: audit-domain
         implementation: FLabsJ002JourneyTest
   - journeyId: F-LABS-J003
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_elLemaApareceUnSoloNivelDespuesDelEsperadoPorEjemploA2EsperadoApareceEnB1_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ003JourneyTest.path1_elLemaApareceUnSoloNivelDespuesDelEsperadoPorEjemploA2EsperadoApareceEn..."
         module: audit-domain
         implementation: FLabsJ003JourneyTest
     - pathId: path-2
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_elLemaApareceDosOMasNivelesDespuesDelEsperadoPorEjemploA1EsperadoApareceEnB2_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ003JourneyTest.path2_elLemaApareceDosOMasNivelesDespuesDelEsperadoPorEjemploA1EsperadoAparec..."
         module: audit-domain
         implementation: FLabsJ003JourneyTest
   - journeyId: F-LABS-J004
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_hayOracionesConScoresPorDebajoDe08_losLemasDesplazadosSonDeNivelesMuyDistantesPorEjemploLemasA1EnOracionesB2_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ004JourneyTest.path1_hayOracionesConScoresPorDebajoDe08_losLemasDesplazadosSonDeNivelesMuyDi..."
         module: audit-domain
         implementation: FLabsJ004JourneyTest
     - pathId: path-2
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_hayOracionesConScoresPorDebajoDe08_losLemasDesplazadosEstanAUnSoloNivelDeDistancia_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ004JourneyTest.path2_hayOracionesConScoresPorDebajoDe08_losLemasDesplazadosEstanAUnSoloNivel..."
         module: audit-domain
         implementation: FLabsJ004JourneyTest
     - pathId: path-3
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path3_todasLasOracionesTienenScoresAceptables08OSuperior_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ004JourneyTest.path3_todasLasOracionesTienenScoresAceptables08OSuperior_success(FLabsJ004Jou..."
         module: audit-domain
         implementation: FLabsJ004JourneyTest
   - journeyId: F-LABS-J005
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_hayRecomendacionesDePrioridadHIGH_elVolumenEsManejable_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ005JourneyTest.path1_hayRecomendacionesDePrioridadHIGH_elVolumenEsManejable_success(FLabsJ00..."
         module: audit-domain
         implementation: FLabsJ005JourneyTest
     - pathId: path-2
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_hayRecomendacionesDePrioridadHIGH_elVolumenEsAlto_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ005JourneyTest.path2_hayRecomendacionesDePrioridadHIGH_elVolumenEsAlto_success(FLabsJ005Jour..."
         module: audit-domain
         implementation: FLabsJ005JourneyTest
     - pathId: path-3
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path3_soloHayRecomendacionesDePrioridadMEDIUMOLOW_elVolumenEsManejable_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ005JourneyTest.path3_soloHayRecomendacionesDePrioridadMEDIUMOLOW_elVolumenEsManejable_succes..."
         module: audit-domain
         implementation: FLabsJ005JourneyTest
     - pathId: path-4
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path4_soloHayRecomendacionesDePrioridadMEDIUMOLOW_elVolumenEsAlto_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FLabsJ005JourneyTest.path4_soloHayRecomendacionesDePrioridadMEDIUMOLOW_elVolumenEsAlto_success(FLa..."
         module: audit-domain
         implementation: FLabsJ005JourneyTest
 - id: FEAT-CLI
@@ -2314,39 +2223,33 @@ features:
     state: NO_TESTS
   journeysCoverage:
   - journeyId: F-DSLEN-J001
-    state: FAILING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path1_elDiagnosticoExisteQuizFueEvaluado_deltaEsPositivoOracionDemasiadoLarga_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FDslenJ001JourneyTest.path1_elDiagnosticoExisteQuizFueEvaluado_deltaEsPositivoOracionDemasiadoLarg..."
         module: audit-domain
         implementation: FDslenJ001JourneyTest
     - pathId: path-2
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path2_elDiagnosticoExisteQuizFueEvaluado_deltaEsNegativoOracionDemasiadoCorta_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FDslenJ001JourneyTest.path2_elDiagnosticoExisteQuizFueEvaluado_deltaEsNegativoOracionDemasiadoCort..."
         module: audit-domain
         implementation: FDslenJ001JourneyTest
     - pathId: path-3
       result: success
-      state: FAILING
+      state: DECLARED
       tests:
       - name: path3_elDiagnosticoNoExisteQuizExcluidoPorNoSerOracion_success
-        implemented: true
+        implemented: false
         passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditdomain.FDslenJ001JourneyTest.path3_elDiagnosticoNoExisteQuizExcluidoPorNoSerOracion_success(FDslenJ001Jou..."
         module: audit-domain
         implementation: FDslenJ001JourneyTest
 - id: FEAT-SLEN
@@ -2522,13 +2425,36 @@ features:
   - journeyId: F-LCOUNT-J005
     state: NO_TESTS
 - id: FEAT-RCLA
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLA-R001
-    state: NO_TESTS
-  - ruleId: F-RCLA-R002
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should include LEMMA_ABSENCE tasks targeting QUIZ when quiz has lemma-absence
+        score below 1.0
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultRefinerEngine
+    - name: should not include LEMMA_ABSENCE tasks targeting MILESTONE or COURSE in
+        the refinement plan
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultRefinerEngine
+    - name: should not generate LEMMA_ABSENCE task for quiz with lemma-absence score
+        equal to 1.0
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultRefinerEngine
+    - name: should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE
+        and COURSE level after re-routing
+      implemented: true
+      passing: true
+      module: refiner-domain
+      implementation: DefaultRefinerEngine
   - ruleId: F-RCLA-R003
     state: PASSING
     tests:
@@ -3063,114 +2989,41 @@ features:
       implementation: RefinerNextCmd
   journeysCoverage:
   - journeyId: F-RCSL-J001
-    state: FAILING
+    state: NO_TESTS
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
-      tests:
-      - name: path1_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_hayLemasAusentesDeTipoCOMPLETELYABSENTOAPPEARSTOOLATEDisponibles_success
-        implemented: true
-        passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ001JourneyTest.path1_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_hayLemasAusen..."
-        module: audit-cli
-        implementation: FRcslJ001JourneyTest
+      state: NO_TESTS
     - pathId: path-2
       result: success
-      state: FAILING
-      tests:
-      - name: path2_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_noHayLemasSugeridosDisponibles_success
-        implemented: true
-        passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ001JourneyTest.path2_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_noHayLemasSug..."
-        module: audit-cli
-        implementation: FRcslJ001JourneyTest
+      state: NO_TESTS
     - pathId: path-3
       result: failure
-      state: FAILING
-      tests:
-      - name: path3_elReporteNoSeEncuentraOElNodoQuizNoExisteEnElArbol_failure
-        implemented: true
-        passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ001JourneyTest.path3_elReporteNoSeEncuentraOElNodoQuizNoExisteEnElArbol_failure(FRcslJ001Journe..."
-        module: audit-cli
-        implementation: FRcslJ001JourneyTest
+      state: NO_TESTS
   - journeyId: F-RCSL-J002
-    state: FAILING
+    state: NO_TESTS
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
-      tests:
-      - name: path1_elReporteYElNodoQuizSeLocalizanCorrectamente_hayLemasSugeridosDisponibles_success
-        implemented: true
-        passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ002JourneyTest.path1_elReporteYElNodoQuizSeLocalizanCorrectamente_hayLemasSugeridosDisponibles_..."
-        module: audit-cli
-        implementation: FRcslJ002JourneyTest
+      state: NO_TESTS
     - pathId: path-2
       result: success
-      state: FAILING
-      tests:
-      - name: path2_elReporteYElNodoQuizSeLocalizanCorrectamente_noHayLemasSugeridos_success
-        implemented: true
-        passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ002JourneyTest.path2_elReporteYElNodoQuizSeLocalizanCorrectamente_noHayLemasSugeridos_success(F..."
-        module: audit-cli
-        implementation: FRcslJ002JourneyTest
+      state: NO_TESTS
     - pathId: path-3
       result: failure
-      state: FAILING
-      tests:
-      - name: path3_noSePuedeLocalizarElReporteOElNodo_failure
-        implemented: true
-        passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ002JourneyTest.path3_noSePuedeLocalizarElReporteOElNodo_failure(FRcslJ002JourneyTest.java:41)\n\
-          \t..."
-        module: audit-cli
-        implementation: FRcslJ002JourneyTest
+      state: NO_TESTS
   - journeyId: F-RCSL-J003
-    state: FAILING
+    state: NO_TESTS
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: FAILING
-      tests:
-      - name: path1_elMilestoneExistePeroSuLemmaAbsenceLevelDiagnosisIndicaQueTodosLosLemasEsperadosEstanPresentesNoHayAusencias_success
-        implemented: true
-        passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ003JourneyTest.path1_elMilestoneExistePeroSuLemmaAbsenceLevelDiagnosisIndicaQueTodosLosLemasEsp..."
-        module: audit-cli
-        implementation: FRcslJ003JourneyTest
+      state: NO_TESTS
     - pathId: path-2
       result: success
-      state: FAILING
-      tests:
-      - name: path2_elMilestoneExistePeroTodasLasAusenciasSonDeTipoAPPEARSTOOEARLYExcluidasPorR003_success
-        implemented: true
-        passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ003JourneyTest.path2_elMilestoneExistePeroTodasLasAusenciasSonDeTipoAPPEARSTOOEARLYExcluidasPor..."
-        module: audit-cli
-        implementation: FRcslJ003JourneyTest
+      state: NO_TESTS
     - pathId: path-3
       result: success
-      state: FAILING
-      tests:
-      - name: path3_noSeEncuentraElMilestoneAncestroEstructuraIncompleta_success
-        implemented: true
-        passing: false
-        failureMessage: "java.lang.UnsupportedOperationException: Not implemented\
-          \ yet\n\tat com.learney.contentaudit.auditcli.FRcslJ003JourneyTest.path3_noSeEncuentraElMilestoneAncestroEstructuraIncompleta_success(FRcslJ003Jour..."
-        module: audit-cli
-        implementation: FRcslJ003JourneyTest
+      state: NO_TESTS
 elements:
 - module: audit-domain
   status: EXISTS
@@ -8478,6 +8331,82 @@ elements:
 
       then:
         result.isPresent() is false
+  - name: DefaultRefinerEngine
+    status: EXISTS
+    filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/DefaultRefinerEngine.java
+    tests:
+    - name: should include LEMMA_ABSENCE tasks targeting QUIZ when quiz has lemma-absence
+        score below 1.0
+      status: MISSING
+    - name: should not include LEMMA_ABSENCE tasks targeting MILESTONE or COURSE in
+        the refinement plan
+      status: MISSING
+    - name: should not generate LEMMA_ABSENCE task for quiz with lemma-absence score
+        equal to 1.0
+      status: MISSING
+    - name: should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE
+        and COURSE level after re-routing
+      status: MISSING
+    testCleanViews:
+    - |
+      test: "should include LEMMA_ABSENCE tasks targeting QUIZ when quiz has lemma-absence score below 1.0"
+      trace: FEAT-RCLA / F-RCLA-R001
+
+      given:
+        report = buildTreeWithQuizLemmaAbsenceScore(0.7)
+        plan = sut.plan(report, "audit-001")
+        lemmaAbsenceTasks = plan.getTasks().stream().filter(t -> t.getDiagnosisKind() == DiagnosisKind.LEMMA_ABSENCE).toList()
+
+      then:
+        lemmaAbsenceTasks.size() == 1
+        lemmaAbsenceTasks.get(0).getNodeTarget() == AuditTarget.QUIZ
+    - |
+      test: "should not include LEMMA_ABSENCE tasks targeting MILESTONE or COURSE in the refinement plan"
+      trace: FEAT-RCLA / F-RCLA-R001
+
+      given:
+        courseNode = buildNode(AuditTarget.COURSE, "course-1", "My Course", Map.of("lemma-absence", 0.6))
+        milestoneNode = buildNode(AuditTarget.MILESTONE, "ms-1", "Milestone A1", Map.of("lemma-absence", 0.5))
+        topicNode = buildNode(AuditTarget.TOPIC, "topic-1", "Topic 1", Collections.emptyMap())
+        knowledgeNode = buildNode(AuditTarget.KNOWLEDGE, "knowledge-1", "Knowledge 1", Collections.emptyMap())
+        quizNode = buildNode(AuditTarget.QUIZ, "quiz-1", "Quiz 1", Map.of("lemma-absence", 1.0))
+        report = AuditReport(courseNode)
+        plan = sut.plan(report, "audit-002")
+        lemmaAbsenceCount = plan.getTasks().stream().filter(t -> t.getDiagnosisKind() == DiagnosisKind.LEMMA_ABSENCE).count()
+
+      then:
+        lemmaAbsenceCount == 0
+    - |
+      test: "should not generate LEMMA_ABSENCE task for quiz with lemma-absence score equal to 1.0"
+      trace: FEAT-RCLA / F-RCLA-R001
+
+      given:
+        report = buildTreeWithQuizLemmaAbsenceScore(1.0)
+        plan = sut.plan(report, "audit-003")
+        lemmaAbsenceCount = plan.getTasks().stream().filter(t -> t.getDiagnosisKind() == DiagnosisKind.LEMMA_ABSENCE).count()
+
+      then:
+        lemmaAbsenceCount == 0
+    - |
+      test: "should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE and COURSE level after re-routing"
+      trace: FEAT-RCLA / F-RCLA-R001
+
+      given:
+        courseNode = buildNode(AuditTarget.COURSE, "course-1", "My Course", Map.of("coca-buckets-distribution", 0.6, "lemma-recurrence", 0.7))
+        milestoneNode = buildNode(AuditTarget.MILESTONE, "ms-1", "Milestone A1", Map.of("coca-buckets-distribution", 0.5, "lemma-recurrence", 0.8))
+        topicNode = buildNode(AuditTarget.TOPIC, "topic-1", "Topic 1", Collections.emptyMap())
+        knowledgeNode = buildNode(AuditTarget.KNOWLEDGE, "knowledge-1", "Knowledge 1", Collections.emptyMap())
+        quizNode = buildNode(AuditTarget.QUIZ, "quiz-1", "Quiz 1", Map.of("lemma-absence", 1.0))
+        report = AuditReport(courseNode)
+        plan = sut.plan(report, "audit-004")
+        cocaTaskCount = plan.getTasks().stream().filter(t -> t.getDiagnosisKind() == DiagnosisKind.COCA_BUCKETS).count()
+        lrecTaskCount = plan.getTasks().stream().filter(t -> t.getDiagnosisKind() == DiagnosisKind.LEMMA_RECURRENCE).count()
+        lemmaAbsenceCount = plan.getTasks().stream().filter(t -> t.getDiagnosisKind() == DiagnosisKind.LEMMA_ABSENCE).count()
+
+      then:
+        cocaTaskCount > 0 is true
+        lrecTaskCount > 0 is true
+        lemmaAbsenceCount == 0
 - module: audit-application
   status: EXISTS
   interfaces:
@@ -10833,10 +10762,10 @@ elements:
     status: EXISTS
     filePath: audit-infrastructure/src/main/java/com/learney/contentaudit/auditinfrastructure/FileSystemRefinementPlanStore.java
 testSummary:
-  total: 354
+  total: 358
   passing: 59
   failing: 0
-  notImplemented: 295
+  notImplemented: 299
 patterns:
 - id: declared-1
   pattern: Strategy
@@ -11939,18 +11868,6 @@ patterns:
   category: anti-pattern
   source: detected
   severity: warning
-  description: RefinerEngine has no implementations
-  involvedElements:
-  - type: interface
-    moduleName: refiner-domain
-    elementName: RefinerEngine
-    nodeId: interface-refiner-domain-RefinerEngine
-  confidence: 0.9
-- id: anti-92
-  pattern: Orphan Interface
-  category: anti-pattern
-  source: detected
-  severity: warning
   description: CorrectionContextResolver has no implementations
   involvedElements:
   - type: interface
@@ -11958,7 +11875,7 @@ patterns:
     elementName: CorrectionContextResolver
     nodeId: interface-refiner-domain-CorrectionContextResolver
   confidence: 0.9
-- id: anti-93
+- id: anti-92
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -11970,7 +11887,7 @@ patterns:
     elementName: CorrectionContext
     nodeId: interface-refiner-domain-CorrectionContext
   confidence: 0.9
-- id: anti-94
+- id: anti-93
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -11982,7 +11899,7 @@ patterns:
     elementName: audit-application
     nodeId: module-audit-application
   confidence: 0.85
-- id: anti-95
+- id: anti-94
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -11994,7 +11911,7 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: anti-96
+- id: anti-95
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12006,7 +11923,7 @@ patterns:
     elementName: AnalyzerListCommand
     nodeId: interface-audit-cli-AnalyzerListCommand
   confidence: 0.9
-- id: anti-97
+- id: anti-96
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12018,7 +11935,7 @@ patterns:
     elementName: AnalyzerConfigCommand
     nodeId: interface-audit-cli-AnalyzerConfigCommand
   confidence: 0.9
-- id: anti-98
+- id: anti-97
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12030,7 +11947,7 @@ patterns:
     elementName: AnalyzerStatsCommand
     nodeId: interface-audit-cli-AnalyzerStatsCommand
   confidence: 0.9
-- id: anti-99
+- id: anti-98
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12042,7 +11959,7 @@ patterns:
     elementName: RefinerPlanCommand
     nodeId: interface-audit-cli-RefinerPlanCommand
   confidence: 0.9
-- id: anti-100
+- id: anti-99
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12054,7 +11971,7 @@ patterns:
     elementName: RefinerNextCommand
     nodeId: interface-audit-cli-RefinerNextCommand
   confidence: 0.9
-- id: anti-101
+- id: anti-100
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12066,7 +11983,7 @@ patterns:
     elementName: RefinerListCommand
     nodeId: interface-audit-cli-RefinerListCommand
   confidence: 0.9
-- id: anti-102
+- id: anti-101
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -12078,7 +11995,7 @@ patterns:
     elementName: audit-cli
     nodeId: module-audit-cli
   confidence: 0.85
-- id: anti-103
+- id: anti-102
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
