@@ -1,0 +1,12 @@
+code: __proposal__
+features:
+- id: FEAT-DCOCA
+  journeys:
+  - id: F-DCOCA-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.formatting
+  - id: F-DCOCA-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain

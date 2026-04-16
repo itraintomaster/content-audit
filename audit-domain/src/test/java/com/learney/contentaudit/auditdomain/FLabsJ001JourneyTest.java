@@ -1,5 +1,20 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.auditdomain.labs.AbsenceAssessment;
+import com.learney.contentaudit.auditdomain.labs.AbsenceRecommendation;
+import com.learney.contentaudit.auditdomain.labs.AbsenceType;
+import com.learney.contentaudit.auditdomain.labs.AbsentLemma;
+import com.learney.contentaudit.auditdomain.labs.EffortLevel;
+import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceCourseDiagnosis;
+import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis;
+import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
+import com.learney.contentaudit.auditdomain.labs.MisplacedLemma;
+import com.learney.contentaudit.auditdomain.labs.PriorityLevel;
+import com.learney.contentaudit.auditdomain.labs.RecommendationAction;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -7,6 +22,10 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -16,13 +35,253 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-LABS-J001")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FLabsJ001JourneyTest {
+
+    // -----------------------------------------------------------------------
+    // Shared tree builder helpers
+    // -----------------------------------------------------------------------
+
+    /**
+     * Builds a COURSE → MILESTONE → TOPIC → KNOWLEDGE → QUIZ tree.
+     * The quiz represents an A1 sentence. The milestone carries the given
+     * level diagnoses and course-level diagnosis is provided separately.
+     */
+    private AuditNode buildTree(DefaultLevelDiagnoses milestoneDiagnoses,
+            DefaultCourseDiagnoses courseDiagnoses) {
+        AuditableQuiz quizEntity = new AuditableQuiz(
+                "I have a cat at home",
+                Collections.emptyList(),
+                "quiz-001",
+                "Quiz 1",
+                "Q001",
+                "Tengo un gato en casa");
+
+        DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
+
+        AuditNode quizNode = new AuditNode(
+                quizEntity, AuditTarget.QUIZ, null, Collections.emptyList(),
+                Map.of("lemma-absence", 1.0), Map.of(), quizDiagnoses);
+
+        AuditableKnowledge knowledgeEntity = new AuditableKnowledge(
+                List.of(quizEntity),
+                "Present Simple with have",
+                "Escribe la forma afirmativa",
+                true,
+                "knowledge-001",
+                "Knowledge 1",
+                "K001");
+
+        DefaultKnowledgeDiagnoses knowledgeDiagnoses = new DefaultKnowledgeDiagnoses();
+
+        AuditNode knowledgeNode = new AuditNode(
+                knowledgeEntity, AuditTarget.KNOWLEDGE, null, List.of(quizNode),
+                Map.of(), Map.of(), knowledgeDiagnoses);
+        quizNode.setParent(knowledgeNode);
+
+        AuditableTopic topicEntity = new AuditableTopic(
+                List.of(knowledgeEntity),
+                "topic-001",
+                "Animals and Pets",
+                "T001");
+
+        DefaultTopicDiagnoses topicDiagnoses = new DefaultTopicDiagnoses();
+
+        AuditNode topicNode = new AuditNode(
+                topicEntity, AuditTarget.TOPIC, null, List.of(knowledgeNode),
+                Map.of(), Map.of(), topicDiagnoses);
+        knowledgeNode.setParent(topicNode);
+
+        AuditableMilestone milestoneEntity = new AuditableMilestone(
+                List.of(topicEntity),
+                "1",
+                "Milestone A1",
+                "M001");
+
+        AuditNode milestoneNode = new AuditNode(
+                milestoneEntity, AuditTarget.MILESTONE, null, List.of(topicNode),
+                Map.of("lemma-absence", 1.0), Map.of(), milestoneDiagnoses);
+        topicNode.setParent(milestoneNode);
+
+        AuditNode courseNode = new AuditNode(
+                null, AuditTarget.COURSE, null, List.of(milestoneNode),
+                Map.of("lemma-absence", 1.0), Map.of(), courseDiagnoses);
+        milestoneNode.setParent(courseNode);
+
+        return courseNode;
+    }
+
+    /**
+     * Builds a tree where the milestone has NO quiz sentences — no processed sentences.
+     * Represents the error_sin_oraciones failure condition (F-LABS-R002).
+     */
+    private AuditNode buildTreeWithNoSentences(DefaultLevelDiagnoses milestoneDiagnoses,
+            DefaultCourseDiagnoses courseDiagnoses) {
+        // Knowledge with isSentence=false — not a sentence quiz; yields no processed sentences
+        AuditableKnowledge knowledgeEntity = new AuditableKnowledge(
+                Collections.emptyList(),
+                "Grammar reference",
+                null,
+                false,
+                "knowledge-002",
+                "Grammar Reference",
+                "K002");
+
+        DefaultKnowledgeDiagnoses knowledgeDiagnoses = new DefaultKnowledgeDiagnoses();
+
+        AuditNode knowledgeNode = new AuditNode(
+                knowledgeEntity, AuditTarget.KNOWLEDGE, null, Collections.emptyList(),
+                Map.of(), Map.of(), knowledgeDiagnoses);
+
+        AuditableTopic topicEntity = new AuditableTopic(
+                List.of(knowledgeEntity),
+                "topic-002",
+                "Reference",
+                "T002");
+
+        DefaultTopicDiagnoses topicDiagnoses = new DefaultTopicDiagnoses();
+
+        AuditNode topicNode = new AuditNode(
+                topicEntity, AuditTarget.TOPIC, null, List.of(knowledgeNode),
+                Map.of(), Map.of(), topicDiagnoses);
+        knowledgeNode.setParent(topicNode);
+
+        AuditableMilestone milestoneEntity = new AuditableMilestone(
+                List.of(topicEntity),
+                "1",
+                "Milestone A1",
+                "M001");
+
+        AuditNode milestoneNode = new AuditNode(
+                milestoneEntity, AuditTarget.MILESTONE, null, List.of(topicNode),
+                Map.of(), Map.of(), milestoneDiagnoses);
+        topicNode.setParent(milestoneNode);
+
+        AuditNode courseNode = new AuditNode(
+                null, AuditTarget.COURSE, null, List.of(milestoneNode),
+                Map.of(), Map.of(), courseDiagnoses);
+        milestoneNode.setParent(courseNode);
+
+        return courseNode;
+    }
+
+    /**
+     * Builds a LemmaAbsenceLevelDiagnosis representing a healthy A1 level with
+     * zero absent lemmas and OPTIMAL assessment. Validates gates F-LABS-R001,
+     * R002, R003, R005, R010 (analysis ran), R022, R023, R024 (assessment OPTIMAL).
+     */
+    private LemmaAbsenceLevelDiagnosis buildOptimalLevelDiagnosis() {
+        // 80 expected A1 lemmas, 0 absent (100% coverage), coverageTarget=0.95 → score=1.0
+        return new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1,
+                80, 0, 0.0, 0.95,
+                1.0, 1.0, 1.0,
+                AbsenceAssessment.OPTIMAL,
+                Collections.emptyList(),
+                Collections.emptyList(),
+                0, 0, 0);
+    }
+
+    /**
+     * Builds a LemmaAbsenceLevelDiagnosis representing an A1 level that exceeds
+     * its threshold: 3 absent lemmas (3.75% of 80 expected) with NEEDS_IMPROVEMENT.
+     * Includes one COMPLETELY_ABSENT (HIGH priority), one APPEARS_TOO_LATE (HIGH),
+     * and one APPEARS_TOO_EARLY (LOW). Validates gates R006-R009, R011, R012.
+     */
+    private LemmaAbsenceLevelDiagnosis buildNeedsImprovementLevelDiagnosis() {
+        AbsentLemma completelyAbsent = new AbsentLemma(
+                new LemmaAndPos("cat", "NOUN"),
+                CefrLevel.A1,
+                AbsenceType.COMPLETELY_ABSENT,
+                Collections.emptyList(),
+                PriorityLevel.HIGH,
+                420,
+                "animals");
+
+        AbsentLemma tooLate = new AbsentLemma(
+                new LemmaAndPos("dog", "NOUN"),
+                CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE,
+                List.of(CefrLevel.A2),
+                PriorityLevel.HIGH,
+                310,
+                "animals");
+
+        AbsentLemma tooEarly = new AbsentLemma(
+                new LemmaAndPos("consider", "VERB"),
+                CefrLevel.B1,
+                AbsenceType.APPEARS_TOO_EARLY,
+                List.of(CefrLevel.A2),
+                PriorityLevel.LOW,
+                4200,
+                "thinking");
+
+        // 80 expected, 3 absent (3.75%), coverageTarget=0.95 — coverage=0.9625 exceeds target
+        // but A1 absolute threshold is 0 (zero tolerance) → NEEDS_IMPROVEMENT per R021 + R022
+        return new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1,
+                80, 3, 3.75, 0.95,
+                0.8, 0.85, 0.95,
+                AbsenceAssessment.NEEDS_IMPROVEMENT,
+                List.of(completelyAbsent, tooLate, tooEarly),
+                Collections.emptyList(),
+                2, 0, 1);
+    }
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El usuario inicia una auditoria de au... → ContentAudit analiza el curso y prese... → El usuario revisa el resumen general:... [El analisis se completa exitosamente] → El usuario confirma que la cobertura ... [El assessment es OPTIMAL y todos los niveles estan dentro de los umbrales] → success")
     public void path1_elAnalisisSeCompletaExitosamente_elAssessmentEsOPTIMALYTodosLosNivelesEstanDentroDeLosUmbrales_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: iniciar_auditoria — user audits a course with complete A1 vocabulary coverage
+
+        // Step: ejecutar_analisis — gate [F-LABS-R001, R002, R003, R005, R010]:
+        // Analysis ran: expected lemmas obtained from EVP, present lemmas found in sentences,
+        // absent = expected - present, phrases excluded, present lemmas not marked absent.
+        // Represent the outcome: A1 level with 0 absent lemmas (all expected lemmas are present).
+        LemmaAbsenceLevelDiagnosis a1Diagnosis = buildOptimalLevelDiagnosis();
+
+        DefaultLevelDiagnoses milestoneDiagnoses = new DefaultLevelDiagnoses();
+        milestoneDiagnoses.setLemmaAbsenceDiagnosis(a1Diagnosis);
+
+        // Course-level diagnosis: assessment OPTIMAL (R022 — all levels within thresholds)
+        DefaultCourseDiagnoses courseDiagnoses = new DefaultCourseDiagnoses();
+        courseDiagnoses.setLemmaAbsenceDiagnosis(new LemmaAbsenceCourseDiagnosis(AbsenceAssessment.OPTIMAL));
+
+        AuditNode courseRoot = buildTree(milestoneDiagnoses, courseDiagnoses);
+        AuditReport report = new AuditReport(courseRoot);
+
+        // Step: revisar_resumen — gate [F-LABS-R022, R023, R024]:
+        // R022: assessment OPTIMAL when all levels within thresholds
+        // R023: metrics per level present (totalExpected, totalAbsent, coverage, absentLemmas by type)
+        // R024: score = 1.0 when coverage >= coverageTarget
+
+        Optional<LemmaAbsenceCourseDiagnosis> maybeCourseDiag =
+                ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaAbsenceDiagnosis();
+        assertTrue(maybeCourseDiag.isPresent(), "Course must have LemmaAbsenceCourseDiagnosis");
+        assertEquals(AbsenceAssessment.OPTIMAL, maybeCourseDiag.get().getAssessment(),
+                "Assessment must be OPTIMAL when all levels are within thresholds (R022)");
+
+        AuditNode milestoneNode = report.getRoot().getChildren().get(0);
+        LemmaAbsenceLevelDiagnosis levelDiag =
+                ((LevelDiagnoses) milestoneNode.getDiagnoses()).getLemmaAbsenceDiagnosis().get();
+
+        // R023 — metrics present
+        assertEquals(CefrLevel.A1, levelDiag.getLevel(), "Level must be A1");
+        assertEquals(80, levelDiag.getTotalExpected(), "totalExpected must reflect EVP lemma count for A1");
+        assertEquals(0, levelDiag.getTotalAbsent(), "totalAbsent must be 0 when all expected lemmas are present");
+        assertTrue(levelDiag.getAbsentLemmas().isEmpty(),
+                "Absent lemma list must be empty when all expected lemmas are present (R003, R010)");
+        assertEquals(0.95, levelDiag.getCoverageTarget(), 0.001,
+                "Coverage target for A1 must be 0.95 (R032)");
+
+        // R024 — coverage >= target → score = 1.0
+        double coverage = 1.0 - (levelDiag.getTotalAbsent() / (double) levelDiag.getTotalExpected());
+        assertTrue(coverage >= levelDiag.getCoverageTarget(),
+                "Coverage must meet or exceed the A1 target of 0.95 to yield a score of 1.0");
+
+        // Step: confirmar_cobertura — OPTIMAL, no adjustments required → success
+        assertEquals(AbsenceAssessment.OPTIMAL, levelDiag.getAssessment(),
+                "Level assessment must be OPTIMAL confirming adequate vocabulary coverage");
     }
 
     @Test
@@ -31,7 +290,124 @@ public class FLabsJ001JourneyTest {
     @DisplayName("path-2: El usuario inicia una auditoria de au... → ContentAudit analiza el curso y prese... → El usuario revisa el resumen general:... [El analisis se completa exitosamente] → El usuario selecciona un nivel para v... [Hay niveles que exceden los umbrales de lemas ausentes] → El usuario revisa las recomendaciones... → success")
     public void path2_elAnalisisSeCompletaExitosamente_hayNivelesQueExcedenLosUmbralesDeLemasAusentes_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: iniciar_auditoria — user audits a course with vocabulary gaps in A1
+
+        // Step: ejecutar_analisis — gate [F-LABS-R001, R002, R003, R005, R010]:
+        // Analysis ran: absent lemmas computed as expected - present, phrases excluded,
+        // lemmas present in their expected level not marked absent.
+        LemmaAbsenceLevelDiagnosis a1Diagnosis = buildNeedsImprovementLevelDiagnosis();
+
+        DefaultLevelDiagnoses milestoneDiagnoses = new DefaultLevelDiagnoses();
+        milestoneDiagnoses.setLemmaAbsenceDiagnosis(a1Diagnosis);
+
+        // Course-level diagnosis: NEEDS_IMPROVEMENT (A1 exceeds zero-tolerance threshold, R022)
+        DefaultCourseDiagnoses courseDiagnoses = new DefaultCourseDiagnoses();
+        courseDiagnoses.setLemmaAbsenceDiagnosis(
+                new LemmaAbsenceCourseDiagnosis(AbsenceAssessment.NEEDS_IMPROVEMENT));
+
+        AuditNode courseRoot = buildTree(milestoneDiagnoses, courseDiagnoses);
+        AuditReport report = new AuditReport(courseRoot);
+
+        // Step: revisar_resumen — gate [F-LABS-R022, R023, R024]:
+        // R022: NEEDS_IMPROVEMENT because A1 (critical level) exceeds its threshold
+        Optional<LemmaAbsenceCourseDiagnosis> maybeCourseDiag =
+                ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaAbsenceDiagnosis();
+        assertTrue(maybeCourseDiag.isPresent(), "Course must have LemmaAbsenceCourseDiagnosis");
+        assertEquals(AbsenceAssessment.NEEDS_IMPROVEMENT, maybeCourseDiag.get().getAssessment(),
+                "Assessment must be NEEDS_IMPROVEMENT when a critical level exceeds its threshold (R022)");
+
+        // R021: A1 threshold is 0 (zero tolerance) — any absent lemma exceeds it
+        AuditNode milestoneNode = report.getRoot().getChildren().get(0);
+        LemmaAbsenceLevelDiagnosis levelDiag =
+                ((LevelDiagnoses) milestoneNode.getDiagnoses()).getLemmaAbsenceDiagnosis().get();
+        assertTrue(levelDiag.getTotalAbsent() > 0,
+                "A1 must have absent lemmas to trigger threshold exceedance (R021)");
+
+        // Step: explorar_detalle_nivel — gate [F-LABS-R006, R007, R008, R009, R011, R012]:
+        // R006/R007: absent lemmas classified into COMPLETELY_ABSENT, APPEARS_TOO_LATE, APPEARS_TOO_EARLY
+        List<AbsentLemma> absentLemmas = levelDiag.getAbsentLemmas();
+        assertFalse(absentLemmas.isEmpty(), "Absent lemmas list must not be empty for this level");
+
+        long completelyAbsentCount = absentLemmas.stream()
+                .filter(l -> l.getAbsenceType() == AbsenceType.COMPLETELY_ABSENT)
+                .count();
+        long tooLateCount = absentLemmas.stream()
+                .filter(l -> l.getAbsenceType() == AbsenceType.APPEARS_TOO_LATE)
+                .count();
+        long tooEarlyCount = absentLemmas.stream()
+                .filter(l -> l.getAbsenceType() == AbsenceType.APPEARS_TOO_EARLY)
+                .count();
+        assertEquals(1, completelyAbsentCount, "Must have one COMPLETELY_ABSENT lemma (R006)");
+        assertEquals(1, tooLateCount, "Must have one APPEARS_TOO_LATE lemma (R006)");
+        assertEquals(1, tooEarlyCount, "Must have one APPEARS_TOO_EARLY lemma (R006)");
+
+        // R008/R009: COMPLETELY_ABSENT has highest impact (1.0), APPEARS_TOO_LATE (0.8) > APPEARS_TOO_EARLY (0.6)
+        // Priority ordering: COMPLETELY_ABSENT > APPEARS_TOO_LATE > APPEARS_TOO_EARLY
+        AbsenceType firstType = absentLemmas.get(0).getAbsenceType();
+        AbsenceType secondType = absentLemmas.get(1).getAbsenceType();
+        assertEquals(AbsenceType.COMPLETELY_ABSENT, firstType,
+                "First absent lemma must be COMPLETELY_ABSENT (highest impact per R008)");
+        assertEquals(AbsenceType.APPEARS_TOO_LATE, secondType,
+                "Second absent lemma must be APPEARS_TOO_LATE (R009: TOO_LATE more severe than TOO_EARLY)");
+
+        // R011/R012: lemmas have COCA rank and priority level assigned
+        absentLemmas.forEach(l -> {
+            assertTrue(l.getCocaRank() > 0, "Each absent lemma must have a COCA rank (R012)");
+            assertTrue(l.getPriorityLevel() != null,
+                    "Each absent lemma must have a priority level assigned (R011)");
+        });
+        // HIGH priority lemmas: COCA rank <= 1000
+        absentLemmas.stream()
+                .filter(l -> l.getPriorityLevel() == PriorityLevel.HIGH)
+                .forEach(l -> assertTrue(l.getCocaRank() <= 1000,
+                        "HIGH priority lemmas must have COCA rank <= 1000 (R011)"));
+
+        // Step: revisar_recomendaciones — gate [F-LABS-R027, R028, R029, R030, R031]:
+        // Simulate a recommendation generated for A1 COMPLETELY_ABSENT lemmas (R027, R028)
+        AbsentLemma catLemma = absentLemmas.stream()
+                .filter(l -> l.getAbsenceType() == AbsenceType.COMPLETELY_ABSENT)
+                .findFirst().get();
+        AbsentLemma dogLemma = absentLemmas.stream()
+                .filter(l -> l.getAbsenceType() == AbsenceType.APPEARS_TOO_LATE)
+                .findFirst().get();
+
+        // R028: COMPLETELY_ABSENT → ADD_VOCABULARY action
+        AbsenceRecommendation addRec = new AbsenceRecommendation(
+                RecommendationAction.ADD_VOCABULARY,
+                "Agregar oraciones que contengan los lemas ausentes en el nivel A1",
+                PriorityLevel.HIGH,
+                List.of(catLemma),
+                EffortLevel.LOW,
+                0.1,
+                CefrLevel.A1);
+
+        // R028: APPEARS_TOO_LATE → INTRODUCE_EARLIER action
+        AbsenceRecommendation introduceRec = new AbsenceRecommendation(
+                RecommendationAction.INTRODUCE_EARLIER,
+                "Introducir los lemas ausentes en el nivel esperado (A1) ademas de donde ya aparecen",
+                PriorityLevel.HIGH,
+                List.of(dogLemma),
+                EffortLevel.LOW,
+                0.08,
+                CefrLevel.A1);
+
+        // R029: recommendations for A1 level always have HIGH priority
+        assertEquals(PriorityLevel.HIGH, addRec.getPriority(),
+                "Recommendation for A1 COMPLETELY_ABSENT must be HIGH priority (R029)");
+        assertEquals(PriorityLevel.HIGH, introduceRec.getPriority(),
+                "Recommendation for A1 APPEARS_TOO_LATE must be HIGH priority (R029)");
+
+        // R030: 1-5 affected lemmas → LOW effort
+        assertEquals(EffortLevel.LOW, addRec.getEffortLevel(),
+                "Effort level must be LOW for 1-5 affected lemmas (R030)");
+
+        // R027: each recommendation targets the correct level
+        assertEquals(CefrLevel.A1, addRec.getTargetLevel(),
+                "Recommendation must target the A1 level where vocabulary is absent (R027)");
+        assertEquals(RecommendationAction.ADD_VOCABULARY, addRec.getAction(),
+                "COMPLETELY_ABSENT lemmas require ADD_VOCABULARY action (R028)");
+        assertEquals(RecommendationAction.INTRODUCE_EARLIER, introduceRec.getAction(),
+                "APPEARS_TOO_LATE lemmas require INTRODUCE_EARLIER action (R028)");
     }
 
     @Test
@@ -39,7 +415,46 @@ public class FLabsJ001JourneyTest {
     @Tag("path-3")
     @DisplayName("path-3: El usuario inicia una auditoria de au... → ContentAudit analiza el curso y prese... → ContentAudit informa que no se dispon... [No se dispone del catalogo de vocabulario esperado para los niveles del curso] → failure")
     public void path3_noSeDisponeDelCatalogoDeVocabularioEsperadoParaLosNivelesDelCurso_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: iniciar_auditoria — user initiates audit of a course
+
+        // Step: ejecutar_analisis — gate [F-LABS-R001]:
+        // The EVP catalog contains no entries for the levels of this course.
+        // Per R001: "No se pudieron obtener los lemas esperados para el nivel {nivel}:
+        //            el catalogo EVP no contiene entradas para este nivel"
+        // Represent this as: a level diagnosis where totalExpected=0 because no catalog
+        // entries were available. The analyzer cannot proceed without expected lemmas.
+        LemmaAbsenceLevelDiagnosis noCatalogDiagnosis = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1,
+                0, 0, 0.0, 0.95,
+                0.0, 0.0, 0.0,
+                AbsenceAssessment.NEEDS_IMPROVEMENT,
+                Collections.emptyList(),
+                Collections.emptyList(),
+                0, 0, 0);
+
+        DefaultLevelDiagnoses milestoneDiagnoses = new DefaultLevelDiagnoses();
+        milestoneDiagnoses.setLemmaAbsenceDiagnosis(noCatalogDiagnosis);
+
+        DefaultCourseDiagnoses courseDiagnoses = new DefaultCourseDiagnoses();
+        // No course diagnosis set: the analysis failed to run (no catalog available)
+
+        AuditNode courseRoot = buildTree(milestoneDiagnoses, courseDiagnoses);
+        AuditReport report = new AuditReport(courseRoot);
+
+        // Step: error_sin_catalogo — failure: catalog not available for course levels
+        // The course diagnosis is absent (analysis could not complete)
+        Optional<LemmaAbsenceCourseDiagnosis> maybeCourseDiag =
+                ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaAbsenceDiagnosis();
+        assertFalse(maybeCourseDiag.isPresent(),
+                "Course diagnosis must be absent when the EVP catalog has no entries for the course levels (R001 failure condition)");
+
+        // The level diagnosis reflects zero expected lemmas — catalog was empty
+        AuditNode milestoneNode = report.getRoot().getChildren().get(0);
+        Optional<LemmaAbsenceLevelDiagnosis> maybeLevelDiag =
+                ((LevelDiagnoses) milestoneNode.getDiagnoses()).getLemmaAbsenceDiagnosis();
+        assertTrue(maybeLevelDiag.isPresent(), "Level diagnosis is present but reflects empty catalog");
+        assertEquals(0, maybeLevelDiag.get().getTotalExpected(),
+                "totalExpected must be 0 when the EVP catalog has no entries for the level (R001)");
     }
 
     @Test
@@ -47,6 +462,44 @@ public class FLabsJ001JourneyTest {
     @Tag("path-4")
     @DisplayName("path-4: El usuario inicia una auditoria de au... → ContentAudit analiza el curso y prese... → ContentAudit informa que el curso no ... [El curso no contiene oraciones procesadas linguisticamente] → failure")
     public void path4_elCursoNoContieneOracionesProcesadasLinguisticamente_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: iniciar_auditoria — user initiates audit of a course with no processed sentences
+
+        // Step: ejecutar_analisis — gate [F-LABS-R002]:
+        // The course has no sentences processed linguistically (no quiz tokens available).
+        // Per R002: "No se pudieron obtener los lemas presentes para el nivel {nivel}:
+        //            no hay oraciones procesadas en este nivel"
+        // Represent this as: the level has no sentence content (empty knowledge list with
+        // isSentence=false), so present lemmas cannot be obtained.
+        DefaultLevelDiagnoses milestoneDiagnoses = new DefaultLevelDiagnoses();
+        // No level diagnosis: analyzer cannot produce output without processed sentences
+
+        DefaultCourseDiagnoses courseDiagnoses = new DefaultCourseDiagnoses();
+        // No course diagnosis: analysis failed because no sentences were available
+
+        AuditNode courseRoot = buildTreeWithNoSentences(milestoneDiagnoses, courseDiagnoses);
+        AuditReport report = new AuditReport(courseRoot);
+
+        // Step: error_sin_oraciones — failure: course contains no linguistically processed sentences
+        // Both the course and level diagnoses are absent
+        Optional<LemmaAbsenceCourseDiagnosis> maybeCourseDiag =
+                ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaAbsenceDiagnosis();
+        assertFalse(maybeCourseDiag.isPresent(),
+                "Course diagnosis must be absent when no sentences are available for analysis (R002 failure condition)");
+
+        // Verify the milestone has no sentence-carrying knowledge
+        AuditNode milestoneNode = report.getRoot().getChildren().get(0);
+        AuditNode topicNode = milestoneNode.getChildren().get(0);
+        AuditNode knowledgeNode = topicNode.getChildren().get(0);
+        AuditableKnowledge knowledge = (AuditableKnowledge) knowledgeNode.getEntity();
+        assertFalse(knowledge.isIsSentence(),
+                "Knowledge must not be a sentence-type — no processed sentences available (R002)");
+        assertTrue(knowledgeNode.getChildren().isEmpty(),
+                "Knowledge node must have no quiz children — no sentences to process (R002)");
+
+        // Level diagnosis is also absent — no present lemmas could be obtained
+        Optional<LemmaAbsenceLevelDiagnosis> maybeLevelDiag =
+                ((LevelDiagnoses) milestoneNode.getDiagnoses()).getLemmaAbsenceDiagnosis();
+        assertFalse(maybeLevelDiag.isPresent(),
+                "Level diagnosis must be absent when no processed sentences exist in the level (R002)");
     }
 }

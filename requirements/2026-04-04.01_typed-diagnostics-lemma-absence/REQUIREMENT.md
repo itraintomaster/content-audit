@@ -287,6 +287,7 @@ Otros analizadores que aun no hayan sido migrados pueden seguir usando el mapa g
 journeys:
   - id: F-DLABS-J001
     name: Consultar diagnosticos tipados del analizador lemma-absence
+    testModule: audit-domain
     flow:
       - id: ejecutar_auditoria
         action: "El usuario ejecuta una auditoria de un curso en ContentAudit"
@@ -331,6 +332,7 @@ journeys:
 journeys:
   - id: F-DLABS-J002
     name: Navegar desde un quiz hacia el diagnostico de su milestone ancestro
+    testModule: audit-domain
     flow:
       - id: identificar_quiz_problematico
         action: "El consumidor (por ejemplo, el futuro refiner) identifica un quiz con lemas mal ubicados a partir de su LemmaPlacementDiagnosis"
@@ -367,6 +369,7 @@ journeys:
 journeys:
   - id: F-DLABS-J003
     name: Formatear informe de ausencia de lemas usando diagnosticos tipados
+    testModule: audit-cli
     flow:
       - id: iniciar_formateo
         action: "El formateador de detalle de lemma-absence recibe el arbol de auditoria para generar el informe"

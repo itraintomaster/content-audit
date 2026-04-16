@@ -1,5 +1,12 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.auditdomain.coca.AssessmentState;
+import com.learney.contentaudit.auditdomain.coca.BucketResult;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsLevelDiagnosis;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -7,6 +14,10 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -16,12 +27,88 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-DCOCA-J002")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FDcocaJ002JourneyTest {
+
+    /**
+     * Builds a minimal quiz AuditNode with the given parent node.
+     */
+    private AuditNode buildQuizNode(AuditNode parent) {
+        AuditableQuiz quizEntity = new AuditableQuiz(
+                "The manager negotiated a new contract last week",
+                Collections.emptyList(),
+                "quiz-001", "Quiz 1", "Q001", "El gerente negoció un nuevo contrato");
+        DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
+        return new AuditNode(
+                quizEntity, AuditTarget.QUIZ, parent, Collections.emptyList(),
+                Map.of(), Map.of(), quizDiagnoses);
+    }
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El refiner identifica un quiz que nec... → El refiner navega desde el quiz hasta... → El refiner obtiene el CocaBucketsLeve... [El milestone ancestro existe] → El refiner cruza la informacion de di... → success")
     public void path1_elMilestoneAncestroExiste_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: identificar_quiz_problematico — refiner identifies a quiz requiring correction
+        // Build a CocaBucketsLevelDiagnosis on the milestone (gate F-DCOCA-R002, F-DCOCA-R005)
+        BucketResult top1kBucket = new BucketResult(
+                "top1k", 120, 60.0, 50.0, 0.9, AssessmentState.OPTIMAL);
+        BucketResult top2kBucket = new BucketResult(
+                "top2k", 60, 30.0, 30.0, 1.0, AssessmentState.OPTIMAL);
+        BucketResult top4kBucket = new BucketResult(
+                "top4k", 20, 10.0, 20.0, 0.5, AssessmentState.DEFICIENT);
+        List<BucketResult> buckets = List.of(top1kBucket, top2kBucket, top4kBucket);
+
+        CocaBucketsLevelDiagnosis levelDiagnosis =
+                new CocaBucketsLevelDiagnosis(200, buckets, Collections.emptyList());
+
+        DefaultLevelDiagnoses levelDiagnoses = new DefaultLevelDiagnoses();
+        levelDiagnoses.setCocaBucketsDiagnosis(levelDiagnosis);
+
+        // Build the milestone node carrying the diagnosis
+        AuditableMilestone milestoneEntity = new AuditableMilestone(
+                Collections.emptyList(), "milestone-001", "Level A1", "A1");
+        AuditNode milestoneNode = new AuditNode(
+                milestoneEntity, AuditTarget.MILESTONE, null, Collections.emptyList(),
+                Map.of(), Map.of(), levelDiagnoses);
+
+        // Build the quiz node as a descendant of the milestone
+        AuditNode quizNode = buildQuizNode(milestoneNode);
+
+        // Step: navegar_a_milestone — refiner navigates from quiz up to its milestone ancestor
+        // (FEAT-DLABS R011: ancestor() walks the parent chain)
+        Optional<AuditNode> maybeMilestone = quizNode.ancestor(AuditTarget.MILESTONE);
+        assertTrue(maybeMilestone.isPresent(), "Milestone ancestor must be found in the tree");
+
+        // Step: obtener_diagnostico_nivel — gate [F-DCOCA-R002, F-DCOCA-R005]:
+        // LevelDiagnoses.getCocaBucketsDiagnosis() must return the typed diagnosis
+        AuditNode foundMilestone = maybeMilestone.get();
+        assertTrue(foundMilestone.getDiagnoses() instanceof LevelDiagnoses,
+                "Milestone node must carry LevelDiagnoses");
+        LevelDiagnoses ld = (LevelDiagnoses) foundMilestone.getDiagnoses();
+        Optional<CocaBucketsLevelDiagnosis> maybeDiag = ld.getCocaBucketsDiagnosis();
+        assertTrue(maybeDiag.isPresent(),
+                "CocaBucketsLevelDiagnosis must be present on the milestone node");
+
+        // Step: cruzar_con_otros_diagnosticos — refiner reads diagnosis fields to cross with
+        // other analyzer data (success: all fields are accessible via typed getters)
+        CocaBucketsLevelDiagnosis diag = maybeDiag.get();
+        assertEquals(200, diag.getTotalTokens(),
+                "totalTokens must reflect the number of tokens classified at this level");
+        assertEquals(3, diag.getBuckets().size(),
+                "buckets list must contain one entry per frequency band");
+
+        BucketResult firstBucket = diag.getBuckets().get(0);
+        assertEquals("top1k", firstBucket.getBandName(),
+                "first bucket bandName must match the configured band");
+        assertEquals(120, firstBucket.getCount(),
+                "first bucket count must match the classified token count");
+        assertEquals(60.0, firstBucket.getPercentage(), 0.001,
+                "first bucket percentage must match the distribution share");
+        assertEquals(AssessmentState.OPTIMAL, firstBucket.getAssessment(),
+                "first bucket assessment must reflect the evaluation against the target");
+
+        BucketResult deficientBucket = diag.getBuckets().get(2);
+        assertEquals(AssessmentState.DEFICIENT, deficientBucket.getAssessment(),
+                "deficient bucket must expose its assessment so the refiner can prioritize it");
     }
 
     @Test
@@ -29,6 +116,15 @@ public class FDcocaJ002JourneyTest {
     @Tag("path-2")
     @DisplayName("path-2: El refiner identifica un quiz que nec... → El refiner navega desde el quiz hasta... → El sistema informa que no se pudo nav... [No se encuentra el milestone ancestro] → failure")
     public void path2_noSeEncuentraElMilestoneAncestro_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: identificar_quiz_problematico — refiner identifies a quiz requiring correction,
+        // but the tree is incomplete: the quiz has no parent chain reaching a milestone node
+        AuditNode quizNode = buildQuizNode(null); // no parent → ancestor() will find nothing
+
+        // Step: navegar_a_milestone — refiner attempts to navigate to the milestone ancestor
+        Optional<AuditNode> maybeMilestone = quizNode.ancestor(AuditTarget.MILESTONE);
+
+        // Step: error_navegacion — system reports it could not navigate to the milestone
+        assertFalse(maybeMilestone.isPresent(),
+                "ancestor() must return empty when the quiz has no milestone in its parent chain");
     }
 }

@@ -4710,6 +4710,8 @@ features:
       action: "La cobertura de vocabulario es adecuada, el consumidor no necesita\
         \ profundizar"
       result: success
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.journeys
   - id: F-DLABS-J002
     name: Navegar desde un quiz hacia el diagnostico de su milestone ancestro
     validation: AUTO_VALIDATED
@@ -4748,6 +4750,8 @@ features:
       action: El sistema informa que no se pudo navegar al milestone ancestro desde
         el quiz
       result: failure
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.journeys
   - id: F-DLABS-J003
     name: Formatear informe de ausencia de lemas usando diagnosticos tipados
     validation: AUTO_VALIDATED
@@ -4797,6 +4801,8 @@ features:
       action: El formateador omite la seccion de ausencia de lemas porque el analizador
         no produjo diagnosticos
       result: success
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
   doubts:
   - id: DOUBT-COEXISTENCE
     question: Coexistencia del mapa generico y el mapa de diagnosticos
@@ -5547,6 +5553,8 @@ features:
       action: El formateador omite la seccion de distribucion COCA porque el analizador
         no produjo diagnosticos
       result: success
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.formatting
   - id: F-DCOCA-J002
     name: Consultar diagnosticos COCA desde el futuro refiner
     validation: AUTO_VALIDATED
@@ -5579,6 +5587,8 @@ features:
       action: El sistema informa que no se pudo navegar al milestone ancestro desde
         el quiz
       result: failure
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain
   doubts:
   - id: DOUBT-BUCKET-SUMMARY
     question: Tipo separado para buckets de topic vs BucketResult reutilizado

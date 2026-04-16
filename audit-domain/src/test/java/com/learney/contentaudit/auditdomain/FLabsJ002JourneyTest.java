@@ -1,5 +1,16 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.auditdomain.labs.AbsenceAssessment;
+import com.learney.contentaudit.auditdomain.labs.AbsenceType;
+import com.learney.contentaudit.auditdomain.labs.AbsentLemma;
+import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceCourseDiagnosis;
+import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis;
+import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
+import com.learney.contentaudit.auditdomain.labs.PriorityLevel;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -7,6 +18,10 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -16,13 +31,151 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-LABS-J002")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FLabsJ002JourneyTest {
+
+    // -----------------------------------------------------------------------
+    // Shared tree builder helper
+    // -----------------------------------------------------------------------
+
+    /**
+     * Builds a COURSE → MILESTONE → TOPIC → KNOWLEDGE → QUIZ tree with the
+     * given milestone and course diagnoses attached. Milestone id "1" maps to A1.
+     */
+    private AuditNode buildTree(DefaultLevelDiagnoses milestoneDiagnoses,
+            DefaultCourseDiagnoses courseDiagnoses) {
+        AuditableQuiz quizEntity = new AuditableQuiz(
+                "The cat is at home",
+                Collections.emptyList(),
+                "quiz-001",
+                "Quiz 1",
+                "Q001",
+                "El gato esta en casa");
+
+        AuditNode quizNode = new AuditNode(
+                quizEntity, AuditTarget.QUIZ, null, Collections.emptyList(),
+                Map.of("lemma-absence", 1.0), Map.of(), new DefaultQuizDiagnoses());
+
+        AuditableKnowledge knowledgeEntity = new AuditableKnowledge(
+                List.of(quizEntity),
+                "Present Simple with be",
+                "Escribe la forma afirmativa",
+                true,
+                "knowledge-001",
+                "Knowledge 1",
+                "K001");
+
+        AuditNode knowledgeNode = new AuditNode(
+                knowledgeEntity, AuditTarget.KNOWLEDGE, null, List.of(quizNode),
+                Map.of(), Map.of(), new DefaultKnowledgeDiagnoses());
+        quizNode.setParent(knowledgeNode);
+
+        AuditableTopic topicEntity = new AuditableTopic(
+                List.of(knowledgeEntity),
+                "topic-001",
+                "Daily Life",
+                "T001");
+
+        AuditNode topicNode = new AuditNode(
+                topicEntity, AuditTarget.TOPIC, null, List.of(knowledgeNode),
+                Map.of(), Map.of(), new DefaultTopicDiagnoses());
+        knowledgeNode.setParent(topicNode);
+
+        AuditableMilestone milestoneEntity = new AuditableMilestone(
+                List.of(topicEntity),
+                "1",
+                "Milestone A1",
+                "M001");
+
+        AuditNode milestoneNode = new AuditNode(
+                milestoneEntity, AuditTarget.MILESTONE, null, List.of(topicNode),
+                Map.of("lemma-absence", 0.7), Map.of(), milestoneDiagnoses);
+        topicNode.setParent(milestoneNode);
+
+        AuditNode courseNode = new AuditNode(
+                null, AuditTarget.COURSE, null, List.of(milestoneNode),
+                Map.of("lemma-absence", 0.7), Map.of(), courseDiagnoses);
+        milestoneNode.setParent(courseNode);
+
+        return courseNode;
+    }
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El usuario revisa el resultado de la ... → El usuario consulta el detalle de un ... → El usuario examina la lista de lemas ... [Hay lemas que no aparecen en ningun nivel del curso] → El usuario evalua el impacto comunica... → El usuario decide agregar oraciones c... [Los lemas ausentes son criticos para la comunicacion basica del nivel] → success")
     public void path1_hayLemasQueNoAparecenEnNingunNivelDelCurso_losLemasAusentesSonCriticosParaLaComunicacionBasicaDelNivel_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: revisar_assessment — course assessment is NEEDS_IMPROVEMENT
+        DefaultCourseDiagnoses courseDiagnoses = new DefaultCourseDiagnoses();
+        courseDiagnoses.setLemmaAbsenceDiagnosis(
+                new LemmaAbsenceCourseDiagnosis(AbsenceAssessment.NEEDS_IMPROVEMENT));
+
+        // Step: consultar_nivel_critico — A1 level has HIGH-priority COMPLETELY_ABSENT lemmas.
+        // COMPLETELY_ABSENT means presentInLevels is empty — lemma does not appear anywhere.
+        AbsentLemma haveAbsent = new AbsentLemma(
+                new LemmaAndPos("have", "VERB"),
+                CefrLevel.A1,
+                AbsenceType.COMPLETELY_ABSENT,
+                Collections.emptyList(),   // not found in any level
+                PriorityLevel.HIGH,
+                230,                       // COCA rank <= 1000 → HIGH priority (R011)
+                "possession");
+
+        AbsentLemma homeAbsent = new AbsentLemma(
+                new LemmaAndPos("home", "NOUN"),
+                CefrLevel.A1,
+                AbsenceType.COMPLETELY_ABSENT,
+                Collections.emptyList(),   // not found in any level
+                PriorityLevel.HIGH,
+                520,
+                "places");
+
+        // Step: revisar_completamente_ausentes — lemmas have COCA rank, category, and no foundInLevels.
+        LemmaAbsenceLevelDiagnosis a1Diagnosis = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1,
+                80, 2, 2.5, 0.95,
+                0.7, 1.0, 1.0,
+                AbsenceAssessment.NEEDS_IMPROVEMENT,
+                List.of(haveAbsent, homeAbsent),
+                Collections.emptyList(),
+                2, 0, 0);
+
+        DefaultLevelDiagnoses milestoneDiagnoses = new DefaultLevelDiagnoses();
+        milestoneDiagnoses.setLemmaAbsenceDiagnosis(a1Diagnosis);
+
+        AuditNode courseRoot = buildTree(milestoneDiagnoses, courseDiagnoses);
+        AuditReport report = new AuditReport(courseRoot);
+
+        // Assert: assessment is NEEDS_IMPROVEMENT (revisar_assessment step)
+        Optional<LemmaAbsenceCourseDiagnosis> maybeCourseDiag =
+                ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaAbsenceDiagnosis();
+        assertTrue(maybeCourseDiag.isPresent(), "Course must have LemmaAbsenceCourseDiagnosis");
+        assertEquals(AbsenceAssessment.NEEDS_IMPROVEMENT, maybeCourseDiag.get().getAssessment(),
+                "Assessment must be NEEDS_IMPROVEMENT to trigger investigation (journey start)");
+
+        AuditNode milestoneNode = report.getRoot().getChildren().get(0);
+        LemmaAbsenceLevelDiagnosis levelDiag =
+                ((LevelDiagnoses) milestoneNode.getDiagnoses()).getLemmaAbsenceDiagnosis().get();
+
+        // Assert: all absent lemmas are COMPLETELY_ABSENT (branch: lemas que no aparecen en ningun nivel)
+        List<AbsentLemma> absentLemmas = levelDiag.getAbsentLemmas();
+        assertFalse(absentLemmas.isEmpty(), "Must have absent lemmas to investigate");
+        assertTrue(absentLemmas.stream().allMatch(l -> l.getAbsenceType() == AbsenceType.COMPLETELY_ABSENT),
+                "All absent lemmas must be COMPLETELY_ABSENT for this path (no foundInLevels)");
+        assertTrue(absentLemmas.stream().allMatch(l -> l.getPresentInLevels().isEmpty()),
+                "COMPLETELY_ABSENT lemmas must not appear in any level (empty presentInLevels)");
+
+        // Assert: lemmas are HIGH priority and have low COCA rank → critical for basic communication
+        assertTrue(absentLemmas.stream().allMatch(l -> l.getPriorityLevel() == PriorityLevel.HIGH),
+                "All absent lemmas must be HIGH priority to be critical for basic communication (R011)");
+        assertTrue(absentLemmas.stream().allMatch(l -> l.getCocaRank() <= 1000),
+                "Critical lemmas must have COCA rank <= 1000 (R011 HIGH priority bound)");
+
+        // Step: decidir_accion → agregar_contenido (success)
+        // User decides to add sentences with these critical absent lemmas in the A1 level.
+        assertEquals(2, levelDiag.getHighPriorityCount(),
+                "highPriorityCount must reflect the 2 critical COMPLETELY_ABSENT lemmas");
+        assertEquals(CefrLevel.A1, levelDiag.getLevel(),
+                "Level must be A1 — the critical level being investigated");
     }
 
     @Test
@@ -31,7 +184,81 @@ public class FLabsJ002JourneyTest {
     @DisplayName("path-2: El usuario revisa el resultado de la ... → El usuario consulta el detalle de un ... → El usuario examina la lista de lemas ... [Hay lemas que no aparecen en ningun nivel del curso] → El usuario evalua el impacto comunica... → El usuario agrega los lemas a una lis... [Los lemas ausentes son relevantes pero no urgentes] → success")
     public void path2_hayLemasQueNoAparecenEnNingunNivelDelCurso_losLemasAusentesSonRelevantesPeroNoUrgentes_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: revisar_assessment — course assessment is NEEDS_IMPROVEMENT
+        DefaultCourseDiagnoses courseDiagnoses = new DefaultCourseDiagnoses();
+        courseDiagnoses.setLemmaAbsenceDiagnosis(
+                new LemmaAbsenceCourseDiagnosis(AbsenceAssessment.NEEDS_IMPROVEMENT));
+
+        // Step: consultar_nivel_critico — A1 level has MEDIUM/LOW-priority COMPLETELY_ABSENT lemmas.
+        // These are COMPLETELY_ABSENT (not found anywhere) but with higher COCA rank → not urgent.
+        AbsentLemma considerAbsent = new AbsentLemma(
+                new LemmaAndPos("consider", "VERB"),
+                CefrLevel.A1,
+                AbsenceType.COMPLETELY_ABSENT,
+                Collections.emptyList(),   // not found in any level
+                PriorityLevel.MEDIUM,
+                1800,                      // COCA rank > 1000 → MEDIUM priority (R011)
+                "thinking");
+
+        AbsentLemma opportunityAbsent = new AbsentLemma(
+                new LemmaAndPos("opportunity", "NOUN"),
+                CefrLevel.A1,
+                AbsenceType.COMPLETELY_ABSENT,
+                Collections.emptyList(),   // not found in any level
+                PriorityLevel.LOW,
+                4200,                      // COCA rank > 3000 → LOW priority (R011)
+                "events");
+
+        // Step: revisar_completamente_ausentes — lemmas are COMPLETELY_ABSENT but not critical
+        LemmaAbsenceLevelDiagnosis a1Diagnosis = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1,
+                80, 2, 2.5, 0.95,
+                0.75, 1.0, 1.0,
+                AbsenceAssessment.NEEDS_IMPROVEMENT,
+                List.of(considerAbsent, opportunityAbsent),
+                Collections.emptyList(),
+                0, 1, 1);
+
+        DefaultLevelDiagnoses milestoneDiagnoses = new DefaultLevelDiagnoses();
+        milestoneDiagnoses.setLemmaAbsenceDiagnosis(a1Diagnosis);
+
+        AuditNode courseRoot = buildTree(milestoneDiagnoses, courseDiagnoses);
+        AuditReport report = new AuditReport(courseRoot);
+
+        // Assert: assessment is NEEDS_IMPROVEMENT (revisar_assessment step)
+        Optional<LemmaAbsenceCourseDiagnosis> maybeCourseDiag =
+                ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaAbsenceDiagnosis();
+        assertTrue(maybeCourseDiag.isPresent(), "Course must have LemmaAbsenceCourseDiagnosis");
+        assertEquals(AbsenceAssessment.NEEDS_IMPROVEMENT, maybeCourseDiag.get().getAssessment(),
+                "Assessment must be NEEDS_IMPROVEMENT to trigger investigation (journey start)");
+
+        AuditNode milestoneNode = report.getRoot().getChildren().get(0);
+        LemmaAbsenceLevelDiagnosis levelDiag =
+                ((LevelDiagnoses) milestoneNode.getDiagnoses()).getLemmaAbsenceDiagnosis().get();
+
+        // Assert: all absent lemmas are COMPLETELY_ABSENT (branch: lemas que no aparecen en ningun nivel)
+        List<AbsentLemma> absentLemmas = levelDiag.getAbsentLemmas();
+        assertFalse(absentLemmas.isEmpty(), "Must have absent lemmas to investigate");
+        assertTrue(absentLemmas.stream().allMatch(l -> l.getAbsenceType() == AbsenceType.COMPLETELY_ABSENT),
+                "All absent lemmas must be COMPLETELY_ABSENT for this path (no foundInLevels)");
+        assertTrue(absentLemmas.stream().allMatch(l -> l.getPresentInLevels().isEmpty()),
+                "COMPLETELY_ABSENT lemmas must not appear in any level (empty presentInLevels)");
+
+        // Assert: lemmas are MEDIUM or LOW priority → relevant but not urgent
+        assertTrue(absentLemmas.stream().allMatch(
+                l -> l.getPriorityLevel() == PriorityLevel.MEDIUM || l.getPriorityLevel() == PriorityLevel.LOW),
+                "All absent lemmas must be MEDIUM or LOW priority — relevant but not urgent (R011)");
+        assertTrue(absentLemmas.stream().allMatch(l -> l.getCocaRank() > 1000),
+                "Non-critical lemmas must have COCA rank > 1000 (R011: outside HIGH priority bound)");
+
+        // Step: decidir_accion → priorizar_para_despues (success)
+        // User adds lemmas to a pending corrections list, prioritized by impact.
+        assertEquals(0, levelDiag.getHighPriorityCount(),
+                "highPriorityCount must be 0 — no critical lemmas require immediate action");
+        assertEquals(1, levelDiag.getMediumPriorityCount(),
+                "mediumPriorityCount must reflect the MEDIUM priority absent lemma");
+        assertEquals(1, levelDiag.getLowPriorityCount(),
+                "lowPriorityCount must reflect the LOW priority absent lemma");
     }
 
     @Test
@@ -40,7 +267,80 @@ public class FLabsJ002JourneyTest {
     @DisplayName("path-3: El usuario revisa el resultado de la ... → El usuario consulta el detalle de un ... → El usuario examina los lemas que apar... [Los lemas ausentes aparecen en otros niveles pero no en el esperado] → El usuario evalua el impacto comunica... → El usuario decide agregar oraciones c... [Los lemas ausentes son criticos para la comunicacion basica del nivel] → success")
     public void path3_losLemasAusentesAparecenEnOtrosNivelesPeroNoEnElEsperado_losLemasAusentesSonCriticosParaLaComunicacionBasicaDelNivel_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: revisar_assessment — course assessment is NEEDS_IMPROVEMENT
+        DefaultCourseDiagnoses courseDiagnoses = new DefaultCourseDiagnoses();
+        courseDiagnoses.setLemmaAbsenceDiagnosis(
+                new LemmaAbsenceCourseDiagnosis(AbsenceAssessment.NEEDS_IMPROVEMENT));
+
+        // Step: consultar_nivel_critico — A1 level has HIGH-priority APPEARS_TOO_LATE lemmas.
+        // APPEARS_TOO_LATE means presentInLevels is non-empty — lemma appears in a higher level.
+        AbsentLemma goTooLate = new AbsentLemma(
+                new LemmaAndPos("go", "VERB"),
+                CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE,
+                List.of(CefrLevel.A2),     // appears in A2 instead of expected A1
+                PriorityLevel.HIGH,
+                180,                       // COCA rank <= 1000 → HIGH priority (R011)
+                "movement");
+
+        AbsentLemma eatTooLate = new AbsentLemma(
+                new LemmaAndPos("eat", "VERB"),
+                CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE,
+                List.of(CefrLevel.B1),     // appears in B1 instead of expected A1
+                PriorityLevel.HIGH,
+                640,                       // COCA rank <= 1000 → HIGH priority (R011)
+                "food");
+
+        // Step: revisar_mal_ubicados — lemmas appear in other levels, not in expected level.
+        // The user verifies where they are found and the distance to the expected level.
+        LemmaAbsenceLevelDiagnosis a1Diagnosis = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1,
+                80, 2, 2.5, 0.95,
+                1.0, 0.7, 1.0,
+                AbsenceAssessment.NEEDS_IMPROVEMENT,
+                List.of(goTooLate, eatTooLate),
+                Collections.emptyList(),
+                2, 0, 0);
+
+        DefaultLevelDiagnoses milestoneDiagnoses = new DefaultLevelDiagnoses();
+        milestoneDiagnoses.setLemmaAbsenceDiagnosis(a1Diagnosis);
+
+        AuditNode courseRoot = buildTree(milestoneDiagnoses, courseDiagnoses);
+        AuditReport report = new AuditReport(courseRoot);
+
+        // Assert: assessment is NEEDS_IMPROVEMENT (revisar_assessment step)
+        Optional<LemmaAbsenceCourseDiagnosis> maybeCourseDiag =
+                ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaAbsenceDiagnosis();
+        assertTrue(maybeCourseDiag.isPresent(), "Course must have LemmaAbsenceCourseDiagnosis");
+        assertEquals(AbsenceAssessment.NEEDS_IMPROVEMENT, maybeCourseDiag.get().getAssessment(),
+                "Assessment must be NEEDS_IMPROVEMENT to trigger investigation (journey start)");
+
+        AuditNode milestoneNode = report.getRoot().getChildren().get(0);
+        LemmaAbsenceLevelDiagnosis levelDiag =
+                ((LevelDiagnoses) milestoneNode.getDiagnoses()).getLemmaAbsenceDiagnosis().get();
+
+        // Assert: all absent lemmas are APPEARS_TOO_LATE
+        // (branch: lemas ausentes aparecen en otros niveles pero no en el esperado)
+        List<AbsentLemma> absentLemmas = levelDiag.getAbsentLemmas();
+        assertFalse(absentLemmas.isEmpty(), "Must have absent lemmas to investigate");
+        assertTrue(absentLemmas.stream().allMatch(l -> l.getAbsenceType() == AbsenceType.APPEARS_TOO_LATE),
+                "All absent lemmas must be APPEARS_TOO_LATE for this path (appear in other levels)");
+        assertTrue(absentLemmas.stream().allMatch(l -> !l.getPresentInLevels().isEmpty()),
+                "APPEARS_TOO_LATE lemmas must have non-empty presentInLevels indicating where they are found");
+
+        // Assert: lemmas are HIGH priority and have low COCA rank → critical for basic communication
+        assertTrue(absentLemmas.stream().allMatch(l -> l.getPriorityLevel() == PriorityLevel.HIGH),
+                "All absent lemmas must be HIGH priority to be critical for basic communication (R011)");
+        assertTrue(absentLemmas.stream().allMatch(l -> l.getCocaRank() <= 1000),
+                "Critical lemmas must have COCA rank <= 1000 (R011 HIGH priority bound)");
+
+        // Step: decidir_accion → agregar_contenido (success)
+        // User decides to add sentences introducing these critical misplaced lemmas at A1 level.
+        assertEquals(2, levelDiag.getHighPriorityCount(),
+                "highPriorityCount must reflect the 2 critical APPEARS_TOO_LATE lemmas");
+        assertEquals(CefrLevel.A1, levelDiag.getLevel(),
+                "Level must be A1 — the critical level where lemmas must be introduced earlier");
     }
 
     @Test
@@ -49,6 +349,81 @@ public class FLabsJ002JourneyTest {
     @DisplayName("path-4: El usuario revisa el resultado de la ... → El usuario consulta el detalle de un ... → El usuario examina los lemas que apar... [Los lemas ausentes aparecen en otros niveles pero no en el esperado] → El usuario evalua el impacto comunica... → El usuario agrega los lemas a una lis... [Los lemas ausentes son relevantes pero no urgentes] → success")
     public void path4_losLemasAusentesAparecenEnOtrosNivelesPeroNoEnElEsperado_losLemasAusentesSonRelevantesPeroNoUrgentes_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: revisar_assessment — course assessment is NEEDS_IMPROVEMENT
+        DefaultCourseDiagnoses courseDiagnoses = new DefaultCourseDiagnoses();
+        courseDiagnoses.setLemmaAbsenceDiagnosis(
+                new LemmaAbsenceCourseDiagnosis(AbsenceAssessment.NEEDS_IMPROVEMENT));
+
+        // Step: consultar_nivel_critico — A1 level has MEDIUM/LOW-priority APPEARS_TOO_LATE lemmas.
+        // These appear in other levels but are not critical enough to require immediate action.
+        AbsentLemma environmentTooLate = new AbsentLemma(
+                new LemmaAndPos("environment", "NOUN"),
+                CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE,
+                List.of(CefrLevel.B1),     // appears in B1, expected in A1 (2-level distance)
+                PriorityLevel.MEDIUM,
+                2400,                      // COCA rank 1001-3000 → MEDIUM priority (R011)
+                "nature");
+
+        AbsentLemma achievementTooLate = new AbsentLemma(
+                new LemmaAndPos("achievement", "NOUN"),
+                CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE,
+                List.of(CefrLevel.B2),     // appears in B2, expected in A1 (3-level distance)
+                PriorityLevel.LOW,
+                3800,                      // COCA rank > 3000 → LOW priority (R011)
+                "success");
+
+        // Step: revisar_mal_ubicados — user verifies where lemmas appear and the distance to expected level.
+        LemmaAbsenceLevelDiagnosis a1Diagnosis = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1,
+                80, 2, 2.5, 0.95,
+                1.0, 0.75, 1.0,
+                AbsenceAssessment.NEEDS_IMPROVEMENT,
+                List.of(environmentTooLate, achievementTooLate),
+                Collections.emptyList(),
+                0, 1, 1);
+
+        DefaultLevelDiagnoses milestoneDiagnoses = new DefaultLevelDiagnoses();
+        milestoneDiagnoses.setLemmaAbsenceDiagnosis(a1Diagnosis);
+
+        AuditNode courseRoot = buildTree(milestoneDiagnoses, courseDiagnoses);
+        AuditReport report = new AuditReport(courseRoot);
+
+        // Assert: assessment is NEEDS_IMPROVEMENT (revisar_assessment step)
+        Optional<LemmaAbsenceCourseDiagnosis> maybeCourseDiag =
+                ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaAbsenceDiagnosis();
+        assertTrue(maybeCourseDiag.isPresent(), "Course must have LemmaAbsenceCourseDiagnosis");
+        assertEquals(AbsenceAssessment.NEEDS_IMPROVEMENT, maybeCourseDiag.get().getAssessment(),
+                "Assessment must be NEEDS_IMPROVEMENT to trigger investigation (journey start)");
+
+        AuditNode milestoneNode = report.getRoot().getChildren().get(0);
+        LemmaAbsenceLevelDiagnosis levelDiag =
+                ((LevelDiagnoses) milestoneNode.getDiagnoses()).getLemmaAbsenceDiagnosis().get();
+
+        // Assert: all absent lemmas are APPEARS_TOO_LATE
+        // (branch: lemas ausentes aparecen en otros niveles pero no en el esperado)
+        List<AbsentLemma> absentLemmas = levelDiag.getAbsentLemmas();
+        assertFalse(absentLemmas.isEmpty(), "Must have absent lemmas to investigate");
+        assertTrue(absentLemmas.stream().allMatch(l -> l.getAbsenceType() == AbsenceType.APPEARS_TOO_LATE),
+                "All absent lemmas must be APPEARS_TOO_LATE for this path (appear in other levels)");
+        assertTrue(absentLemmas.stream().allMatch(l -> !l.getPresentInLevels().isEmpty()),
+                "APPEARS_TOO_LATE lemmas must have non-empty presentInLevels indicating where they are found");
+
+        // Assert: lemmas are MEDIUM or LOW priority → relevant but not urgent
+        assertTrue(absentLemmas.stream().allMatch(
+                l -> l.getPriorityLevel() == PriorityLevel.MEDIUM || l.getPriorityLevel() == PriorityLevel.LOW),
+                "All absent lemmas must be MEDIUM or LOW priority — relevant but not urgent (R011)");
+        assertTrue(absentLemmas.stream().allMatch(l -> l.getCocaRank() > 1000),
+                "Non-critical lemmas must have COCA rank > 1000 (R011: outside HIGH priority bound)");
+
+        // Step: decidir_accion → priorizar_para_despues (success)
+        // User adds lemmas to a pending corrections list, prioritized by impact.
+        assertEquals(0, levelDiag.getHighPriorityCount(),
+                "highPriorityCount must be 0 — no critical lemmas require immediate action");
+        assertEquals(1, levelDiag.getMediumPriorityCount(),
+                "mediumPriorityCount must reflect the MEDIUM priority absent lemma");
+        assertEquals(1, levelDiag.getLowPriorityCount(),
+                "lowPriorityCount must reflect the LOW priority absent lemma");
     }
 }

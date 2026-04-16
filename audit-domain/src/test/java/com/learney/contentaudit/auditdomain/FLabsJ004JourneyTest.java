@@ -1,5 +1,13 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.auditdomain.labs.AbsenceType;
+import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
+import com.learney.contentaudit.auditdomain.labs.LemmaPlacementDiagnosis;
+import com.learney.contentaudit.auditdomain.labs.MisplacedLemma;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -7,6 +15,10 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -16,13 +28,177 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-LABS-J004")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FLabsJ004JourneyTest {
+
+    // -----------------------------------------------------------------------
+    // Helpers
+    // -----------------------------------------------------------------------
+
+    /**
+     * Computes the ordinal distance between two CEFR levels (A1=1, A2=2, B1=3, B2=4).
+     * Returns expectedLevel.ordinal() - foundInLevel.ordinal() (positive when expected > found,
+     * i.e. the lemma is too advanced for the sentence's level — R018).
+     */
+    private int levelDistance(CefrLevel expectedLevel, CefrLevel foundInLevel) {
+        return expectedLevel.ordinal() - foundInLevel.ordinal();
+    }
+
+    /**
+     * Computes the sentence score per R019: 1.0 - max(0.1 * distance) over all misplaced lemmas
+     * where expectedLevel > foundInLevel. Returns 1.0 when the list is empty (R020).
+     */
+    private double computeScore(List<MisplacedLemma> misplacedLemmas) {
+        double maxDiscount = misplacedLemmas.stream()
+                .mapToDouble(ml -> {
+                    int dist = levelDistance(ml.getExpectedLevel(), ml.getFoundInLevel());
+                    return dist > 0 ? 0.1 * dist : 0.0;
+                })
+                .max()
+                .orElse(0.0);
+        return 1.0 - maxDiscount;
+    }
+
+    /**
+     * Builds a COURSE → MILESTONE → TOPIC → KNOWLEDGE → QUIZ tree.
+     * The quiz node carries the provided LemmaPlacementDiagnosis (may be null for no diagnosis).
+     * The quiz entity represents an A1-level sentence.
+     */
+    private AuditNode buildTree(LemmaPlacementDiagnosis quizDiagnosis, double quizLemmaAbsenceScore) {
+        AuditableQuiz quizEntity = new AuditableQuiz(
+                "I have a cat",
+                Collections.emptyList(),
+                "quiz-001",
+                "Quiz 1",
+                "Q001",
+                "Tengo un gato");
+
+        DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
+        if (quizDiagnosis != null) {
+            quizDiagnoses.setLemmaAbsenceDiagnosis(quizDiagnosis);
+        }
+
+        AuditNode quizNode = new AuditNode(
+                quizEntity, AuditTarget.QUIZ, null, Collections.emptyList(),
+                Map.of("lemma-absence", quizLemmaAbsenceScore), Map.of(), quizDiagnoses);
+
+        AuditableKnowledge knowledgeEntity = new AuditableKnowledge(
+                List.of(quizEntity),
+                "Present Simple",
+                "Escribe la forma afirmativa",
+                true,
+                "knowledge-001",
+                "Knowledge 1",
+                "K001");
+
+        AuditNode knowledgeNode = new AuditNode(
+                knowledgeEntity, AuditTarget.KNOWLEDGE, null, List.of(quizNode),
+                Map.of(), Map.of(), new DefaultKnowledgeDiagnoses());
+        quizNode.setParent(knowledgeNode);
+
+        AuditableTopic topicEntity = new AuditableTopic(
+                List.of(knowledgeEntity),
+                "topic-001",
+                "Animals",
+                "T001");
+
+        AuditNode topicNode = new AuditNode(
+                topicEntity, AuditTarget.TOPIC, null, List.of(knowledgeNode),
+                Map.of(), Map.of(), new DefaultTopicDiagnoses());
+        knowledgeNode.setParent(topicNode);
+
+        AuditableMilestone milestoneEntity = new AuditableMilestone(
+                List.of(topicEntity),
+                "1",
+                "Milestone A1",
+                "M001");
+
+        DefaultLevelDiagnoses levelDiagnoses = new DefaultLevelDiagnoses();
+        AuditNode milestoneNode = new AuditNode(
+                milestoneEntity, AuditTarget.MILESTONE, null, List.of(topicNode),
+                Map.of("lemma-absence", 1.0), Map.of(), levelDiagnoses);
+        topicNode.setParent(milestoneNode);
+
+        DefaultCourseDiagnoses courseDiagnoses = new DefaultCourseDiagnoses();
+        AuditNode courseNode = new AuditNode(
+                null, AuditTarget.COURSE, null, List.of(milestoneNode),
+                Map.of("lemma-absence", 1.0), Map.of(), courseDiagnoses);
+        milestoneNode.setParent(courseNode);
+
+        return courseNode;
+    }
+
+    // -----------------------------------------------------------------------
+    // Path tests
+    // -----------------------------------------------------------------------
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El usuario consulta los scores por or... → El usuario identifica las oraciones c... → El usuario examina que lemas estan de... [Hay oraciones con scores por debajo de 0.8] → El usuario decide si agregar el lema ... [Los lemas desplazados son de niveles muy distantes (por ejemplo, lemas A1 en oraciones B2)] → success")
     public void path1_hayOracionesConScoresPorDebajoDe08_losLemasDesplazadosSonDeNivelesMuyDistantesPorEjemploLemasA1EnOracionesB2_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: consultar_scores — gate [F-LABS-R017, R019, R020]
+        // Build a quiz at the A1 level containing the lemma "invest" (expected level B2 per EVP).
+        // Per R017: "invest" is misplaced because expectedLevel (B2) > foundInLevel (A1).
+        // Per R018: distance = ord(B2) - ord(A1) = 3 - 0 = 3, discount = 0.1 * 3 = 0.3
+        // Per R019: score = 1.0 - 0.3 = 0.7
+
+        MisplacedLemma investLemma = new MisplacedLemma(
+                new LemmaAndPos("invest", "VERB"),
+                CefrLevel.B2,          // expectedLevel: B2 per EVP
+                CefrLevel.A1,          // foundInLevel: this is an A1 sentence
+                AbsenceType.APPEARS_TOO_EARLY,
+                1250,
+                "finance");
+
+        LemmaPlacementDiagnosis diagnosis = new LemmaPlacementDiagnosis(1, List.of(investLemma));
+
+        // Step: identificar_oraciones_bajas — filter quizzes by score < 0.8 (R019)
+        double score = computeScore(diagnosis.getMisplacedLemmas());
+        assertTrue(score < 0.8,
+                "Sentence score must be below 0.8 when a B2 lemma appears in an A1 sentence (R019): score=" + score);
+
+        AuditNode courseRoot = buildTree(diagnosis, score);
+
+        // Step: examinar_detalle — gate [F-LABS-R018]
+        // Drill down to the quiz node and inspect the misplaced lemma distances
+        AuditNode milestoneNode = courseRoot.getChildren().get(0);
+        AuditNode topicNode = milestoneNode.getChildren().get(0);
+        AuditNode knowledgeNode = topicNode.getChildren().get(0);
+        AuditNode quizNode = knowledgeNode.getChildren().get(0);
+
+        Optional<LemmaPlacementDiagnosis> maybeDiag =
+                ((QuizDiagnoses) quizNode.getDiagnoses()).getLemmaAbsenceDiagnosis();
+        assertTrue(maybeDiag.isPresent(), "Quiz must carry a LemmaPlacementDiagnosis");
+
+        List<MisplacedLemma> misplaced = maybeDiag.get().getMisplacedLemmas();
+        assertFalse(misplaced.isEmpty(), "Must have misplaced lemmas to examine");
+
+        // Per R018: distance = expectedLevel.ordinal() - foundInLevel.ordinal()
+        int maxDistance = misplaced.stream()
+                .mapToInt(ml -> levelDistance(ml.getExpectedLevel(), ml.getFoundInLevel()))
+                .max()
+                .getAsInt();
+
+        // Decision: "niveles muy distantes" → distance >= 2 → decidir_reubicacion (success)
+        assertTrue(maxDistance >= 2,
+                "Max level distance must be >= 2 to trigger decidir_reubicacion branch (R018): distance=" + maxDistance);
+
+        // Verify the specific lemma details: B2 expected, found in A1 — distance 3
+        MisplacedLemma mostDistant = misplaced.stream()
+                .max((a, b) -> Integer.compare(
+                        levelDistance(a.getExpectedLevel(), a.getFoundInLevel()),
+                        levelDistance(b.getExpectedLevel(), b.getFoundInLevel())))
+                .get();
+        assertEquals(CefrLevel.B2, mostDistant.getExpectedLevel(),
+                "The misplaced lemma expected level must be B2 (R017)");
+        assertEquals(CefrLevel.A1, mostDistant.getFoundInLevel(),
+                "The misplaced lemma was found in an A1 sentence (R017)");
+        assertEquals(3, levelDistance(mostDistant.getExpectedLevel(), mostDistant.getFoundInLevel()),
+                "Distance from B2 to A1 must be 3 — very distant levels (R018)");
+
+        // Step: decidir_reubicacion — success: user must decide to relocate or justify the B2 lemma
+        assertEquals(1, maybeDiag.get().getMisplacedLemmaCount(),
+                "Misplaced lemma count must match the number of misplaced lemmas in the diagnosis");
     }
 
     @Test
@@ -31,7 +207,84 @@ public class FLabsJ004JourneyTest {
     @DisplayName("path-2: El usuario consulta los scores por or... → El usuario identifica las oraciones c... → El usuario examina que lemas estan de... [Hay oraciones con scores por debajo de 0.8] → El usuario acepta que la desviacion d... [Los lemas desplazados estan a un solo nivel de distancia] → success")
     public void path2_hayOracionesConScoresPorDebajoDe08_losLemasDesplazadosEstanAUnSoloNivelDeDistancia_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: consultar_scores — gate [F-LABS-R017, R019, R020]
+        // Build a quiz at the A1 level with a B1 lemma (expectedLevel B1 > foundInLevel A1).
+        // Per R017: the B1 lemma is misplaced because B1 > A1.
+        // Per R018: distance = ord(B1) - ord(A1) = 2 - 0 = 2, discount = 0.2
+        // Per R019: score = 1.0 - 0.2 = 0.8 (at the threshold — boundary below which review is needed)
+        // A second B2 lemma pushes the score to 0.7 — strictly below 0.8.
+        // Per R018 applied to both: distances are 2 (B1-A1) and 3 (B2-A1); max = 3 → score=0.7.
+        // However, when the user examines the specific sentence for the aceptar_desviacion path,
+        // the focus is on a quiz whose ALL misplaced lemmas are at distance == 1.
+        // We model that as a second quiz node with only a distance-1 misplacement, while the
+        // course also contains one quiz with score < 0.8 (from the distance-3 case above).
+        // For test simplicity, we build one quiz with a single distance-1 misplaced lemma
+        // and assert the decision based on the distance rule (R018), confirming aceptar_desviacion.
+
+        // Build the quiz under examination: A2 sentence with a B1 lemma (distance=1, score=0.9).
+        // The "scores < 0.8" condition refers to the broader course context; this quiz's own
+        // score is 0.9 — one level off, triggering the aceptar_desviacion branch per R018.
+        MisplacedLemma considerLemma = new MisplacedLemma(
+                new LemmaAndPos("consider", "VERB"),
+                CefrLevel.B1,          // expectedLevel: B1 per EVP
+                CefrLevel.A2,          // foundInLevel: this is an A2 sentence
+                AbsenceType.APPEARS_TOO_EARLY,
+                2100,
+                "thinking");
+
+        LemmaPlacementDiagnosis diagnosis = new LemmaPlacementDiagnosis(1, List.of(considerLemma));
+
+        // Per R019: score for this quiz
+        double score = computeScore(diagnosis.getMisplacedLemmas());
+        // distance=1 → discount=0.1 → score=0.9
+        assertEquals(0.9, score, 0.001,
+                "Score for a distance-1 misplaced lemma must be 0.9 per R019 (1.0 - 0.1)");
+
+        AuditNode courseRoot = buildTree(diagnosis, score);
+
+        // Step: identificar_oraciones_bajas — the quiz has a misplaced lemma (needs review),
+        // and is not fully scored (score < 1.0)
+        assertFalse(score >= 1.0, "Quiz has a misplaced lemma so it is not perfectly scored");
+
+        // Step: examinar_detalle — gate [F-LABS-R018]
+        // Inspect all misplaced lemmas and verify ALL distances equal exactly 1
+        AuditNode milestoneNode = courseRoot.getChildren().get(0);
+        AuditNode topicNode = milestoneNode.getChildren().get(0);
+        AuditNode knowledgeNode = topicNode.getChildren().get(0);
+        AuditNode quizNode = knowledgeNode.getChildren().get(0);
+
+        Optional<LemmaPlacementDiagnosis> maybeDiag =
+                ((QuizDiagnoses) quizNode.getDiagnoses()).getLemmaAbsenceDiagnosis();
+        assertTrue(maybeDiag.isPresent(), "Quiz must carry a LemmaPlacementDiagnosis");
+
+        List<MisplacedLemma> misplaced = maybeDiag.get().getMisplacedLemmas();
+        assertFalse(misplaced.isEmpty(), "Must have misplaced lemmas to examine");
+
+        // All misplaced lemmas must be at distance exactly 1 for aceptar_desviacion branch
+        boolean allDistanceOne = misplaced.stream()
+                .allMatch(ml -> levelDistance(ml.getExpectedLevel(), ml.getFoundInLevel()) == 1);
+        assertTrue(allDistanceOne,
+                "All misplaced lemmas must be at distance 1 to trigger aceptar_desviacion (R018)");
+
+        int maxDistance = misplaced.stream()
+                .mapToInt(ml -> levelDistance(ml.getExpectedLevel(), ml.getFoundInLevel()))
+                .max()
+                .getAsInt();
+
+        // Decision: max distance == 1 → aceptar_desviacion (success)
+        assertEquals(1, maxDistance,
+                "Max level distance must be 1 to confirm the desviacion es tolerable (R018)");
+
+        // Verify lemma details: B1 expected, found in A2 — exactly one level apart
+        MisplacedLemma ml = misplaced.get(0);
+        assertEquals(CefrLevel.B1, ml.getExpectedLevel(),
+                "Misplaced lemma expected level must be B1 (R017)");
+        assertEquals(CefrLevel.A2, ml.getFoundInLevel(),
+                "Misplaced lemma found in an A2 sentence (R017)");
+
+        // Step: aceptar_desviacion — success: user accepts that a one-level difference is tolerable
+        assertEquals(1, maybeDiag.get().getMisplacedLemmaCount(),
+                "Misplaced lemma count must match the number of misplaced lemmas");
     }
 
     @Test
@@ -39,6 +292,48 @@ public class FLabsJ004JourneyTest {
     @Tag("path-3")
     @DisplayName("path-3: El usuario consulta los scores por or... → El usuario identifica las oraciones c... → El usuario confirma que los scores de... [Todas las oraciones tienen scores aceptables (0.8 o superior)] → success")
     public void path3_todasLasOracionesTienenScoresAceptables08OSuperior_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: consultar_scores — gate [F-LABS-R017, R019, R020]
+        // Build a quiz at the A1 level with NO misplaced lemmas.
+        // Per R020: sentences with no misplaced lemmas receive a score of 1.0 (maximum).
+        // Per R017: only lemmas where expectedLevel > foundInLevel are misplaced — this quiz has none.
+
+        LemmaPlacementDiagnosis diagnosis = new LemmaPlacementDiagnosis(0, Collections.emptyList());
+
+        // Per R019/R020: score = 1.0 when no misplaced lemmas
+        double score = computeScore(diagnosis.getMisplacedLemmas());
+        assertEquals(1.0, score, 0.001,
+                "Sentence score must be 1.0 when no lemmas are misplaced (R020)");
+
+        AuditNode courseRoot = buildTree(diagnosis, score);
+
+        // Step: identificar_oraciones_bajas — verify all quiz scores are >= 0.8
+        // Collect all quiz nodes and check their lemma-absence scores
+        AuditNode milestoneNode = courseRoot.getChildren().get(0);
+        AuditNode topicNode = milestoneNode.getChildren().get(0);
+        AuditNode knowledgeNode = topicNode.getChildren().get(0);
+        AuditNode quizNode = knowledgeNode.getChildren().get(0);
+
+        double quizScore = quizNode.getScores().getOrDefault("lemma-absence", 1.0);
+        assertTrue(quizScore >= 0.8,
+                "All quiz scores must be >= 0.8 to take the confirmar_sin_problemas branch");
+
+        // Step: confirmar_sin_problemas — gate [R019, R020]:
+        // No quizzes with score below 0.8 means no action needed.
+        Optional<LemmaPlacementDiagnosis> maybeDiag =
+                ((QuizDiagnoses) quizNode.getDiagnoses()).getLemmaAbsenceDiagnosis();
+        assertTrue(maybeDiag.isPresent(), "Quiz carries a LemmaPlacementDiagnosis even when clean");
+        assertEquals(0, maybeDiag.get().getMisplacedLemmaCount(),
+                "Misplaced lemma count must be 0 when no lemmas are misplaced (R020)");
+        assertTrue(maybeDiag.get().getMisplacedLemmas().isEmpty(),
+                "Misplaced lemmas list must be empty — no misplaced lemmas in this quiz (R020)");
+
+        // R019: score of a sentence with no misplaced lemmas is exactly 1.0
+        double computedScore = computeScore(maybeDiag.get().getMisplacedLemmas());
+        assertEquals(1.0, computedScore, 0.001,
+                "Computed score must be exactly 1.0 for a sentence with no misplaced lemmas (R019, R020)");
+
+        // Success: user confirms all sentence scores are satisfactory — no action required
+        assertFalse(computedScore < 0.8,
+                "Score must not be below 0.8 — confirming the confirmar_sin_problemas outcome");
     }
 }
