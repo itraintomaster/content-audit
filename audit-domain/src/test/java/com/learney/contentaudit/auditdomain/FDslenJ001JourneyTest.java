@@ -1,5 +1,8 @@
 package com.learney.contentaudit.auditdomain;
 
+import java.util.Collections;
+import java.util.Map;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -7,6 +10,10 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -16,13 +23,66 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-DSLEN-J001")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FDslenJ001JourneyTest {
+
+    /**
+     * Builds a quiz node carrying the given diagnoses, with a minimal quiz entity.
+     */
+    private AuditNode buildQuizNode(DefaultQuizDiagnoses quizDiagnoses) {
+        AuditableQuiz quizEntity = new AuditableQuiz(
+                "She needs to negotiate the contract before the deadline on Friday morning",
+                Collections.emptyList(),
+                "quiz-001",
+                "Quiz 1",
+                "Q001",
+                "Ella necesita negociar el contrato antes del viernes");
+
+        return new AuditNode(
+                quizEntity, AuditTarget.QUIZ, null, Collections.emptyList(),
+                Map.of("sentence-length", 0.0), Map.of(), quizDiagnoses);
+    }
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El refiner identifica un quiz con pun... → El refiner solicita el SentenceLength... → El refiner examina el diagnostico: le... [El diagnostico existe (quiz fue evaluado)] → El refiner sabe que la oracion excede... [Delta es positivo (oracion demasiado larga)] → El refiner combina el diagnostico de ... → success")
     public void path1_elDiagnosticoExisteQuizFueEvaluado_deltaEsPositivoOracionDemasiadoLarga_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: identificar_quiz — refiner identifies a quiz with a low sentence-length score
+        // A1 quiz, range 5-8, tokenCount=18 → delta=10 (18-8), toleranceMargin=4
+        // This is the exact example from F-DSLEN-R001.
+        SentenceLengthDiagnosis diagnosis = new SentenceLengthDiagnosis(18, 5, 8, CefrLevel.A1, 10, 4);
+
+        DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
+        quizDiagnoses.setSentenceLengthDiagnosis(diagnosis);
+
+        AuditNode quizNode = buildQuizNode(quizDiagnoses);
+
+        // Step: obtener_diagnostico — gate [F-DSLEN-R001, F-DSLEN-R004]:
+        // QuizDiagnoses exposes getSentenceLengthDiagnosis(); diagnosis must be present
+        assertTrue(quizNode.getDiagnoses() instanceof QuizDiagnoses,
+                "Quiz node must carry QuizDiagnoses");
+        QuizDiagnoses qd = (QuizDiagnoses) quizNode.getDiagnoses();
+        Optional<SentenceLengthDiagnosis> maybeDiag = qd.getSentenceLengthDiagnosis();
+        assertTrue(maybeDiag.isPresent(), "SentenceLengthDiagnosis must be present on a scored quiz node");
+
+        // Step: analizar_desviacion — refiner reads all fields; delta is positive → too long
+        SentenceLengthDiagnosis diag = maybeDiag.get();
+        assertEquals(18, diag.getTokenCount(), "tokenCount must reflect the actual sentence length");
+        assertEquals(5, diag.getTargetMin(), "targetMin must match A1 lower bound");
+        assertEquals(8, diag.getTargetMax(), "targetMax must match A1 upper bound");
+        assertEquals(CefrLevel.A1, diag.getCefrLevel(), "cefrLevel must be A1");
+        assertEquals(4, diag.getToleranceMargin(), "toleranceMargin must be 4");
+        assertTrue(diag.getDelta() > 0, "delta must be positive — sentence is too long");
+
+        // tokenCount exceeds targetMax by exactly delta tokens (F-DSLEN-R001 delta formula)
+        assertEquals(diag.getTokenCount() - diag.getTargetMax(), diag.getDelta(),
+                "delta must equal tokenCount - targetMax when sentence exceeds the range");
+
+        // Step: decidir_acortar — refiner computes tokens to remove to enter the range
+        // (cruzar_con_otros — success)
+        int tokensToRemove = diag.getDelta();
+        assertEquals(10, tokensToRemove,
+                "Refiner must know it needs to remove 10 tokens to bring the sentence into range");
     }
 
     @Test
@@ -31,7 +91,38 @@ public class FDslenJ001JourneyTest {
     @DisplayName("path-2: El refiner identifica un quiz con pun... → El refiner solicita el SentenceLength... → El refiner examina el diagnostico: le... [El diagnostico existe (quiz fue evaluado)] → El refiner sabe que la oracion esta p... [Delta es negativo (oracion demasiado corta)] → El refiner combina el diagnostico de ... → success")
     public void path2_elDiagnosticoExisteQuizFueEvaluado_deltaEsNegativoOracionDemasiadoCorta_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: identificar_quiz — refiner identifies a quiz with a low sentence-length score
+        // A2 quiz, range 8-14, tokenCount=4 → delta=-4 (4-8), toleranceMargin=4
+        SentenceLengthDiagnosis diagnosis = new SentenceLengthDiagnosis(4, 8, 14, CefrLevel.A2, -4, 4);
+
+        DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
+        quizDiagnoses.setSentenceLengthDiagnosis(diagnosis);
+
+        AuditNode quizNode = buildQuizNode(quizDiagnoses);
+
+        // Step: obtener_diagnostico — gate [F-DSLEN-R001, F-DSLEN-R004]:
+        // diagnosis must be present on this scored quiz node
+        QuizDiagnoses qd = (QuizDiagnoses) quizNode.getDiagnoses();
+        Optional<SentenceLengthDiagnosis> maybeDiag = qd.getSentenceLengthDiagnosis();
+        assertTrue(maybeDiag.isPresent(), "SentenceLengthDiagnosis must be present on a scored quiz node");
+
+        // Step: analizar_desviacion — refiner reads all fields; delta is negative → too short
+        SentenceLengthDiagnosis diag = maybeDiag.get();
+        assertEquals(4, diag.getTokenCount(), "tokenCount must reflect the actual sentence length");
+        assertEquals(8, diag.getTargetMin(), "targetMin must match A2 lower bound");
+        assertEquals(14, diag.getTargetMax(), "targetMax must match A2 upper bound");
+        assertEquals(CefrLevel.A2, diag.getCefrLevel(), "cefrLevel must be A2");
+        assertTrue(diag.getDelta() < 0, "delta must be negative — sentence is too short");
+
+        // delta equals tokenCount - targetMin when below the range (F-DSLEN-R001 delta formula)
+        assertEquals(diag.getTokenCount() - diag.getTargetMin(), diag.getDelta(),
+                "delta must equal tokenCount - targetMin when sentence is below the range");
+
+        // Step: decidir_alargar — refiner computes tokens to add to reach the range
+        // (cruzar_con_otros — success)
+        int tokensToAdd = Math.abs(diag.getDelta());
+        assertEquals(4, tokensToAdd,
+                "Refiner must know it needs to add 4 tokens to bring the sentence into range");
     }
 
     @Test
@@ -39,6 +130,23 @@ public class FDslenJ001JourneyTest {
     @Tag("path-3")
     @DisplayName("path-3: El refiner identifica un quiz con pun... → El refiner solicita el SentenceLength... → El refiner omite el quiz porque no fu... [El diagnostico no existe (quiz excluido por no ser oracion)] → success")
     public void path3_elDiagnosticoNoExisteQuizExcluidoPorNoSerOracion_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: identificar_quiz — refiner encounters a quiz that was excluded by the analyzer
+        // (F-DSLEN-R002: quizzes that are not sentences receive no SentenceLengthDiagnosis)
+        DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
+        // no setSentenceLengthDiagnosis — the quiz was excluded; no diagnosis was emitted
+
+        AuditNode quizNode = buildQuizNode(quizDiagnoses);
+
+        // Step: obtener_diagnostico — gate [F-DSLEN-R004]:
+        // QuizDiagnoses.getSentenceLengthDiagnosis() must return empty for an excluded quiz
+        assertTrue(quizNode.getDiagnoses() instanceof QuizDiagnoses,
+                "Quiz node must carry QuizDiagnoses");
+        QuizDiagnoses qd = (QuizDiagnoses) quizNode.getDiagnoses();
+        Optional<SentenceLengthDiagnosis> maybeDiag = qd.getSentenceLengthDiagnosis();
+        assertFalse(maybeDiag.isPresent(),
+                "SentenceLengthDiagnosis must be absent for a quiz excluded by the analyzer");
+
+        // Step: omitir_quiz — refiner omits the quiz because it was not evaluated
+        // (success: the empty Optional signals the refiner to skip this quiz)
     }
 }
