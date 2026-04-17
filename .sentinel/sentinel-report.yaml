@@ -1,4 +1,4 @@
-generatedAt: 2026-04-16T23:59:40.650099Z
+generatedAt: 2026-04-17T12:28:13.517404Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -3295,44 +3295,63 @@ elements:
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerSentinelTest.java
     - name: should return knowledge-title-length as analyzer name
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should return KNOWLEDGE as audit target
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should score 0.0 for knowledge with null title
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should score 0.0 for knowledge with empty title
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should score 1.0 for knowledge with title within limit
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should score 1.0 for knowledge with title at exactly 28 weighted chars
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should score 1.0 for title fitting with weighted length 5.1
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should score 1.0 for zero-weight special chars title
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should score 1.0 for mixed-weight title with weighted length 2.7
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should score 0.75 for title of weighted length 35
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should score 0.5 for title of weighted length 42
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should score 0.0 for title of weighted length 56
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should score 0.0 for title of weighted length 70
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should complete without error when onQuiz is called
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should complete without error when onMilestone is called
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should complete without error when onTopic is called
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should complete without error when onCourseComplete is called
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should return two correctly scored items for two knowledges with different
         title lengths
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     - name: should return empty list when no knowledges have been processed
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzerTest.java
     testCleanViews:
     - |
       test: "should return knowledge-title-length as analyzer name"
@@ -3665,38 +3684,54 @@ elements:
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerSentinelTest.java
     - name: should return knowledge-instructions-length as analyzer name
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should return KNOWLEDGE as audit target
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should score 1.0 for knowledge with null instructions
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should score 1.0 for knowledge with empty instructions
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should score 1.0 for instructions exactly at soft limit of 70 chars
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should score 1.0 for instructions of 30 chars within soft limit
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should score 0.5 for instructions of 71 chars just above soft limit
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should score 0.5 for instructions exactly at hard limit of 100 chars
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should score 0.5 for instructions of 85 chars between soft and hard limits
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should score 0.0 for instructions of 101 chars just above hard limit
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should score 0.0 for instructions of 200 chars well above hard limit
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should complete without error when onQuiz is called
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should complete without error when onMilestone is called
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should complete without error when onTopic is called
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should complete without error when onCourseComplete is called
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     - name: should produce correct scores for three knowledges with different instruction
         lengths
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzerTest.java
     testCleanViews:
     - |
       test: "should return knowledge-instructions-length as analyzer name"
@@ -3906,45 +3941,65 @@ elements:
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzer.java
     tests:
     - name: should exclude quiz when milestoneId is null
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should exclude quiz when milestoneId is non-numeric
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should exclude quiz when no target range configured for level
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should score only sentence quizzes when processing mixed knowledge types
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should return sentence-length as analyzer name
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should return QUIZ as audit target
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should score 1.0 for quiz within A1 range
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should score 0.75 for quiz 1 token above A1 max
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should score 0.25 for quiz 3 tokens below A1 min
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should score 1.0 for quiz exactly at A1 minimum boundary
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should score 1.0 for quiz exactly at A1 maximum boundary
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should score 0.0 for quiz 4 tokens above A1 max at tolerance boundary
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should exclude non-sentence knowledge quiz from results
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should score 1.0 for B2 level quiz within range
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should score 0.0 for quiz exactly at tolerance boundary
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should score 0.5 for quiz 2 tokens above A1 max
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should complete without error when onTopic is called
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should complete without error when onCourseComplete is called
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should produce correct scores for full milestone-knowledge-quiz sequence
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     - name: should exclude non-sentence quizzes from scoring
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzerTest.java
     testCleanViews:
     - |
       test: "should exclude quiz when milestoneId is null"
@@ -4263,19 +4318,24 @@ elements:
     tests:
     - name: "Given a LemmaRecurrenceAnalyzer, when getName is called, then returns\
         \ lemma-recurrence"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     - name: "Given a LemmaRecurrenceAnalyzer, when getTarget is called, then returns\
         \ COURSE"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     - name: "Given an AuditableKnowledge and AuditContext, when onKnowledge is called,\
         \ then completes without error"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     - name: "Given an AuditableTopic and AuditContext, when onTopic is called, then\
         \ completes without error"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     - name: "Given an AuditableMilestone and AuditContext, when onMilestone is called,\
         \ then completes without error"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     testCleanViews:
     - |
       test: "Given a LemmaRecurrenceAnalyzer, when getName is called, then returns lemma-recurrence"
@@ -4473,238 +4533,340 @@ elements:
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzer.java
     tests:
     - name: should return lemma-absence as analyzer name
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should return COURSE as audit target
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should return description text
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should return empty results when no data processed
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should obtain expected lemmas for each CEFR level from EVP catalog
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should exclude multi-word phrases from expected lemmas
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should exclude non-content words from expected lemmas
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should include critical functional pronoun I in A1 expected lemmas despite
         filter rejection
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should include critical functional auxiliary be in A2 expected lemmas
         despite filter rejection
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should not apply critical functional override for B1 level
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should not apply critical functional override for B2 level
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should include all critical pronouns auxiliaries prepositions and connectors
         in A1
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should collect present lemmas from quiz tokens per level
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should collect present lemmas separately for each CEFR level
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should count a lemma as present only once per level even if it appears
         multiple times
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should skip null tokens and tokens with null lemma during collection
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should skip quiz when tokens list is null
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should skip quiz when current level is null
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should mark lemma as absent when not present in its expected level
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should not mark lemma as absent when present in its expected level
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should consider LemmaAndPos pair for absence not just lemma string
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should not mark lemma as absent when present in expected level even if
         also in other levels
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should find levels where absent lemma appears for cross-level classification
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should return empty presentInLevels when lemma not found in any level
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should classify as COMPLETELY_ABSENT when lemma not in any level
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should classify as APPEARS_TOO_LATE when lemma only in later levels
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should classify as APPEARS_TOO_EARLY when lemma only in earlier levels
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should classify as APPEARS_TOO_EARLY when lemma in both earlier and later
         levels
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should enumerate exactly three absence types
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assign impact 1.0 to COMPLETELY_ABSENT
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assign impact 0.8 to APPEARS_TOO_LATE
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assign impact 0.6 to APPEARS_TOO_EARLY
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should have APPEARS_TOO_LATE impact greater than APPEARS_TOO_EARLY impact
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assign HIGH priority for COCA rank 500
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assign HIGH priority for COCA rank at boundary 1000
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assign MEDIUM priority for COCA rank 1500
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assign MEDIUM priority for COCA rank at boundary 3000
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assign LOW priority for COCA rank 4000
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assign LOW priority for COCA rank at boundary 5000
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should default to LOW priority when no COCA rank available
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should enrich absent lemma with COCA rank and semantic category and priority
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should handle null semantic category gracefully during enrichment
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should treat same lemma with different POS as different entries
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should trigger alert when HIGH priority absent lemmas exceed zero threshold
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should trigger alert when MEDIUM priority absent lemmas exceed threshold
         of 3
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should trigger alert when LOW priority absent lemmas exceed threshold
         of 10
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should not trigger alert when count is exactly at threshold
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should not discount lemma correctly placed at its expected level in sentence
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should not consider non-EVP lemma as misplaced in sentence
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should apply 0.1 discount per level of distance for misplaced lemma
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should score 0.9 for sentence with 1-level distance misplaced lemma
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should score 0.8 for sentence with 2-level distance misplaced lemma
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should score 0.7 for sentence with 3-level distance misplaced lemma which
         is minimum
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should use maximum discount among all misplaced lemmas in sentence
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should score 1.0 for sentence with no misplaced lemmas
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should score 1.0 for sentence containing only non-EVP lemmas
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should exceed threshold when absent count exceeds absolute threshold
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should exceed threshold when absence percentage exceeds percentage threshold
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should not exceed threshold when both absolute and percentage are within
         limits
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should enforce zero tolerance for A1 level
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assess OPTIMAL when all levels within thresholds
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assess ACCEPTABLE when non-critical level exceeds but critical
         levels pass
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assess NEEDS_IMPROVEMENT when A1 exceeds its threshold
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assess NEEDS_IMPROVEMENT when A2 exceeds its threshold
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assess NEEDS_IMPROVEMENT when total HIGH priority exceeds critical
         threshold
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should compute level metrics with totalExpected totalAbsent absencePercentage
         and score
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should compute weighted global score with A1 A2 weight 2.0 and B1 B2 weight
         1.0
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should return global score 1.0 for course with perfect coverage
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should limit HIGH priority absent lemmas to 20 in report
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should limit MEDIUM priority absent lemmas to 30 in report
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should limit LOW priority absent lemmas to 50 in report
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should not generate recommendation for level within its threshold
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should map COMPLETELY_ABSENT to ADD_VOCABULARY recommendation
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should map APPEARS_TOO_LATE to INTRODUCE_EARLIER recommendation
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: "full lifecycle: course with full coverage produces OPTIMAL assessment\
         \ and score 1.0"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: "full lifecycle: course with completely absent HIGH priority lemmas in\
         \ A1 produces NEEDS_IMPROVEMENT"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: "full lifecycle: course with lemmas appearing too late produces INTRODUCE_EARLIER\
         \ recommendations"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: "full lifecycle: course with misplaced lemmas in sentences reflects distance\
         \ discounts in scores"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: "full lifecycle: course with multiple levels exceeding thresholds produces\
         \ prioritized recommendations"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should map APPEARS_TOO_EARLY to REMOVE_FROM_LEVEL recommendation
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assign HIGH recommendation priority for A1 level
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assign HIGH recommendation priority for A2 level
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assign MEDIUM recommendation priority for B1 with HIGH priority
         lemmas
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assign MEDIUM recommendation priority for B1 with MEDIUM priority
         lemmas
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assign LOW recommendation priority for B2 with LOW priority lemmas
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should assign MEDIUM recommendation priority for B2 with MEDIUM priority
         lemmas
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should estimate LOW effort for 1 absent lemma
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should estimate LOW effort for 5 absent lemmas
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should estimate MEDIUM effort for 6 absent lemmas
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should estimate MEDIUM effort for 15 absent lemmas
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should estimate HIGH effort for 16 absent lemmas
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should estimate HIGH effort for 20 absent lemmas
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should complete without error when onTopic is called
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should complete without error when onKnowledge is called
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should emit LemmaAbsenceCourseDiagnosis with assessment on CourseDiagnoses
         node after onCourseComplete
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should emit LemmaAbsenceLevelDiagnosis with coverage metrics on LevelDiagnoses
         milestone nodes
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should include typed AbsentLemma entries with lemma pos absenceType and
         priority in level diagnosis
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should emit LemmaPlacementDiagnosis on TopicDiagnoses topic nodes with
         misplacedLemmaCount
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should emit LemmaPlacementDiagnosis with misplacedLemmas list on knowledge
         and quiz nodes
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should populate MisplacedLemma with lemmaAndPos expectedLevel and foundInLevel
         on quiz diagnosis
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should not write lemma-absence data to untyped metadata map after migration
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should return empty Optional from getLemmaAbsenceDiagnosis when analyzer
         did not run
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     testCleanViews:
     - |
       test: "should return lemma-absence as analyzer name"
@@ -7059,60 +7221,81 @@ elements:
     tests:
     - name: should resolve context with all fields populated from quiz diagnosis and
         ancestor entities
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should populate sentence and translation from AuditableQuiz entity on
         the quiz node
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge
         on knowledge ancestor
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should populate topicLabel from AuditableTopic on topic ancestor
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should populate cefrLevel tokenCount targetMin targetMax and delta from
         SentenceLengthDiagnosis
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should return empty when quiz node is not found in the audit tree
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should return empty when task nodeTarget does not match any node target
         in the tree
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should locate the correct quiz node when multiple quiz nodes exist in
         the tree
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas and
         exclude APPEARS_TOO_EARLY
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should order suggested lemmas by COCA rank ascending with lowest rank
         first
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should place lemmas without COCA rank after lemmas with COCA rank
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should map AbsentLemma fields to SuggestedLemma fields correctly
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should return empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should return suggested lemmas from the milestone ancestor of the quiz
         node
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should return context with empty suggested lemmas when milestone has no
         LemmaAbsenceLevelDiagnosis
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should return context with empty suggested lemmas when milestone ancestor
         is not found
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should return context with empty suggested lemmas when absent lemmas list
         is empty
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should limit suggested lemmas to 10 when more than 10 qualify after filtering
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should resolve context with negative delta for a sentence shorter than
         target range
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should resolve context with zero delta when sentence is within target
         range
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     - name: should set taskId from the RefinementTask id
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/SentenceLengthContextResolverTest.java
     testCleanViews:
     - |
       test: "should resolve context with all fields populated from quiz diagnosis and ancestor entities"
@@ -7594,59 +7777,81 @@ elements:
     tests:
     - name: should resolve context with all fields populated from quiz diagnosis and
         ancestor entities
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should populate sentence and translation from AuditableQuiz entity on
         the quiz node
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge
         on knowledge ancestor
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should populate topicLabel from AuditableTopic on topic ancestor
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should populate cefrLevel from milestone ancestor
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should populate misplacedLemmas from LemmaPlacementDiagnosis on quiz node
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should map MisplacedLemma fields to MisplacedLemmaContext fields correctly
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should include expectedLevel and quizLevel in each MisplacedLemmaContext
         entry
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should include cocaRank as null in MisplacedLemmaContext when not available
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should return empty when quiz node is not found in the audit tree
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should return empty when task nodeTarget does not match any node target
         in the tree
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should locate the correct quiz node when multiple quiz nodes exist in
         the tree
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should return empty when quiz node has no LemmaPlacementDiagnosis
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas in suggestedLemmas
         and exclude APPEARS_TOO_EARLY
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should order suggested lemmas by COCA rank ascending with lowest rank
         first
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should place lemmas without COCA rank after lemmas with COCA rank in suggestedLemmas
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should map AbsentLemma fields to SuggestedLemma fields correctly
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should limit suggested lemmas to 10 when more than 10 qualify after filtering
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should return context with empty suggested lemmas when milestone has no
         LemmaAbsenceLevelDiagnosis
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should return context with empty suggested lemmas when milestone ancestor
         is not found
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should return context with empty suggested lemmas when all absent lemmas
         are APPEARS_TOO_EARLY
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     - name: should set taskId from the RefinementTask id
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/LemmaAbsenceContextResolverTest.java
     testCleanViews:
     - |
       test: "should resolve context with all fields populated from quiz diagnosis and ancestor entities"
@@ -8122,15 +8327,20 @@ elements:
     filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/DispatchingCorrectionContextResolver.java
     tests:
     - name: should delegate to sentenceLengthResolver when task diagnosis is SENTENCE_LENGTH
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/DispatchingCorrectionContextResolverTest.java
     - name: should delegate to lemmaAbsenceResolver when task diagnosis is LEMMA_ABSENCE
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/DispatchingCorrectionContextResolverTest.java
     - name: should return empty for unsupported diagnosis kind COCA_BUCKETS
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/DispatchingCorrectionContextResolverTest.java
     - name: should return empty for unsupported diagnosis kind LEMMA_RECURRENCE
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/DispatchingCorrectionContextResolverTest.java
     - name: should propagate empty from delegate when delegate returns empty
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/DispatchingCorrectionContextResolverTest.java
     testCleanViews:
     - |
       test: "should delegate to sentenceLengthResolver when task diagnosis is SENTENCE_LENGTH"
@@ -8193,16 +8403,20 @@ elements:
     tests:
     - name: should include LEMMA_ABSENCE tasks targeting QUIZ when quiz has lemma-absence
         score below 1.0
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/DefaultRefinerEngineTest.java
     - name: should not include LEMMA_ABSENCE tasks targeting MILESTONE or COURSE in
         the refinement plan
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/DefaultRefinerEngineTest.java
     - name: should not generate LEMMA_ABSENCE task for quiz with lemma-absence score
         equal to 1.0
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/DefaultRefinerEngineTest.java
     - name: should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE
         and COURSE level after re-routing
-      status: MISSING
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/DefaultRefinerEngineTest.java
     testCleanViews:
     - |
       test: "should include LEMMA_ABSENCE tasks targeting QUIZ when quiz has lemma-absence score below 1.0"
@@ -8295,13 +8509,16 @@ elements:
     tests:
     - name: "Given a course with quizzes, when map is called, then analyzeTokensBatch\
         \ is invoked and returns an AuditableCourse"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/CourseToAuditableMapperTest.java
     - name: "Given a course with no milestones, when map is called, then returns an\
         \ AuditableCourse without error"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/CourseToAuditableMapperTest.java
     - name: "Given nlpTokenizer throws exception during batch processing, when map\
         \ is called, then exception propagates"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/CourseToAuditableMapperTest.java
     testCleanViews:
     - |
       test: "Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse"
@@ -8380,28 +8597,36 @@ elements:
     tests:
     - name: "Given a valid course path, when runAudit is called, then returns the\
         \ audit report from the full chain"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
     - name: "Given a valid course path, when runAudit is called, then courseRepository\
         \ load is invoked with the path"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
     - name: "Given a valid course path, when runAudit is called, then courseToAuditableMapper\
         \ map is invoked with the loaded entity"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
     - name: "Given a valid course path, when runAudit is called, then contentAudit\
         \ audit is invoked with the mapped auditable course"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
     - name: "Given courseRepository throws an exception, when runAudit is called,\
         \ then the exception propagates"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
     - name: "Given courseToAuditableMapper throws an exception, when runAudit is called,\
         \ then the exception propagates"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
     - name: "Given contentAudit throws an exception, when runAudit is called, then\
         \ the exception propagates"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
     - name: "Given a course with no milestones, when runAudit is called, then returns\
         \ the report from contentAudit"
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
     testCleanViews:
     - |
       test: "Given a valid course path, when runAudit is called, then returns the audit report from the full chain"
@@ -8544,98 +8769,143 @@ elements:
       status: EXISTS
       testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigSentinelTest.java
     - name: should return absolute threshold 0 for A1
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return absolute threshold 2 for A2
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return absolute threshold 5 for B1
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return absolute threshold 8 for B2
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return percentage threshold 0.0 for A1
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return percentage threshold 5.0 for A2
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return percentage threshold 10.0 for B1
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return percentage threshold 15.0 for B2
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return level weight 2.0 for A1
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return level weight 2.0 for A2
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return level weight 1.0 for B1
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return level weight 1.0 for B2
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return high priority bound of 1000
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return medium priority bound of 3000
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return low priority bound of 5000
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return high priority alert threshold of 0
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return medium priority alert threshold of 3
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return low priority alert threshold of 10
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return critical absence threshold of 10
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return acceptable absence threshold of 5
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return high report limit of 20
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return medium report limit of 30
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return low report limit of 50
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return discount per level of 0.1
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should have absolute thresholds increasing from A1 to B2
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should have percentage thresholds increasing from A1 to B2
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should have priority bounds ordered high less than medium less than low
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should weight critical levels A1 and A2 higher than B1 and B2
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should have report limits increasing from high to low priority
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should have critical absence threshold greater than acceptable absence
         threshold
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should have alert thresholds non-decreasing from high to low priority
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should enforce zero tolerance for high priority alert threshold
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should enforce A1 zero tolerance with both absolute and percentage thresholds
         at zero
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should have discount per level that limits max penalty to 0.3 for three-level
         distance
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return non-negative values for all thresholds and bounds
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return positive report limits for all priority levels
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return percentage thresholds between 0 and 100 for all levels
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return positive level weights for all CEFR levels
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return discount per level between 0 exclusive and 1 exclusive
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return coverage target 0.95 for A1
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return coverage target 0.85 for A2
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return coverage target 0.70 for B1
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return coverage target 0.55 for B2
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should have coverage targets decreasing from A1 to B2
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     - name: should return coverage targets between 0 and 1 for all levels
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultLemmaAbsenceConfigTest.java
     testCleanViews:
     - |
       test: "should return absolute threshold 0 for A1"
@@ -9213,81 +9483,109 @@ elements:
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmd.java
     tests:
     - name: should resolve correction context when task diagnosis is SENTENCE_LENGTH
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should not resolve correction context when task diagnosis is COCA_BUCKETS
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should include correctionContext object in JSON when context resolves
         successfully
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should include sentence translation knowledgeTitle knowledgeInstructions
         topicLabel and cefrLevel in JSON correctionContext
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should include targetRange with min and max and delta in JSON correctionContext
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should include suggestedLemmas array with lemma pos reason and cocaRank
         in JSON correctionContext
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should set correctionContext to null and include correctionContextError
         when audit report not found
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should set correctionContext to null and include correctionContextError
         when sourceAuditId is blank
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should set correctionContext to null and include correctionContextError
         when resolver returns empty
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should output empty suggestedLemmas array in JSON when context has no
         suggested lemmas
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should print correction context section with all fields in text format
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should print numbered suggested lemmas list with lemma pos reason and
         COCA rank in text format
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should print none available for suggested lemmas when list is empty in
         text format
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should format positive delta with plus sign in text output tokens line
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should format negative delta without plus sign in text output tokens line
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should print not available message with error reason when context cannot
         be built in text format
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should print correction context section in table format for SENTENCE_LENGTH
         task
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should resolve correction context when task diagnosis is LEMMA_ABSENCE
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should include correctionContext with misplacedLemmas array in JSON for
         LEMMA_ABSENCE task
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should include misplacedLemmas with lemma pos expectedLevel quizLevel
         and cocaRank in JSON correctionContext
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should include suggestedLemmas array in JSON correctionContext for LEMMA_ABSENCE
         task
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should set correctionContext to null and include correctionContextError
         in JSON for LEMMA_ABSENCE when resolver returns empty
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should print correction context section with misplaced lemmas in text
         format for LEMMA_ABSENCE task
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should print numbered misplaced lemmas list with expected and found levels
         in text format
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should print suggested replacements in text format for LEMMA_ABSENCE task
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should print none available for suggested replacements when list is empty
         in text format for LEMMA_ABSENCE
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should print not available message when LEMMA_ABSENCE context cannot be
         built in text format
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     - name: should include sentence translation knowledgeTitle knowledgeInstructions
         topicLabel and cefrLevel in JSON correctionContext for LEMMA_ABSENCE
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
     testCleanViews:
     - |
       test: "should resolve correction context when task diagnosis is SENTENCE_LENGTH"
@@ -10436,7 +10734,8 @@ elements:
     filePath: audit-infrastructure/src/main/java/com/learney/contentaudit/auditinfrastructure/FileSystemAuditReportStore.java
     tests:
     - name: should save an AuditReport and load it back with identical content
-      status: MISSING
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemAuditReportStoreTest.java
     testCleanViews:
     - |
       test: "should save an AuditReport and load it back with identical content"
@@ -10619,9 +10918,9 @@ elements:
     filePath: audit-infrastructure/src/main/java/com/learney/contentaudit/auditinfrastructure/FileSystemRefinementPlanStore.java
 testSummary:
   total: 358
-  passing: 59
+  passing: 358
   failing: 0
-  notImplemented: 299
+  notImplemented: 0
 patterns:
 - id: declared-1
   pattern: Strategy
