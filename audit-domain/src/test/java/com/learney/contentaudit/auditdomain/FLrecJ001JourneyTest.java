@@ -1,5 +1,14 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import com.learney.contentaudit.auditdomain.lrec.DefaultExposureClassifier;
+import com.learney.contentaudit.auditdomain.lrec.DefaultIntervalCalculator;
+import com.learney.contentaudit.auditdomain.lrec.ExposureStatus;
+import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzer;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -7,6 +16,11 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -16,29 +30,260 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-LREC-J001")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FLrecJ001JourneyTest {
+
+    // -----------------------------------------------------------------------
+    // Inline config: overExposed=2.0, subExposed=100.0, top=10
+    // This keeps interval arithmetic simple in the test fixtures.
+    // With cat appearing at positions [1, 5], meanInterval=4.0 which is
+    // NORMAL (2 < 4 <= 100).
+    // -----------------------------------------------------------------------
+    private static final LemmaRecurrenceConfig TEST_CONFIG = new LemmaRecurrenceConfig() {
+        @Override
+        public int getTop() {
+            return 10;
+        }
+
+        @Override
+        public double getSubExposedThreshold() {
+            return 100.0;
+        }
+
+        @Override
+        public double getOverExposedThreshold() {
+            return 2.0;
+        }
+
+        @Override
+        public Map<String, Object> describe() {
+            return Map.of("top", 10, "subExposed", 100.0, "overExposed", 2.0);
+        }
+    };
+
+    // -----------------------------------------------------------------------
+    // Helper: build an AuditNode wrapping an AuditableQuiz
+    // -----------------------------------------------------------------------
+    private AuditNode buildQuizNode(AuditableQuiz quiz) {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.QUIZ);
+        node.setEntity(quiz);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        return node;
+    }
+
+    // Helper: build the root (COURSE) node used as argument to onCourseComplete
+    private AuditNode buildCourseNode() {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.COURSE);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        return node;
+    }
+
+    // Helper: build a non-content DET token (does not pass ContentWordFilter)
+    private NlpToken detToken(String text) {
+        return new NlpToken(text, text, "DET", 0, true, false);
+    }
+
+    // Helper: build a content NOUN token
+    private NlpToken nounToken(String text, String lemma) {
+        return new NlpToken(text, lemma, "NOUN", 500, false, false);
+    }
+
+    // Helper: build a content VERB token
+    private NlpToken verbToken(String text, String lemma) {
+        return new NlpToken(text, lemma, "VERB", 800, false, false);
+    }
+
     @Test
     @Order(1)
     @Tag("path-1")
+    @Tag("F-LREC-R001")
+    @Tag("F-LREC-R002")
+    @Tag("F-LREC-R003")
+    @Tag("F-LREC-R004")
+    @Tag("F-LREC-R005")
+    @Tag("F-LREC-R006")
+    @Tag("F-LREC-R007")
+    @Tag("F-LREC-R008")
+    @Tag("F-LREC-R009")
+    @Tag("F-LREC-R010")
+    @Tag("F-LREC-R012")
+    @Tag("F-LREC-R013")
+    @Tag("F-LREC-R014")
+    @Tag("F-LREC-R015")
     @DisplayName("path-1: El usuario inicia una auditoria de re... → El sistema recorre la jerarquia del c... → El sistema filtra las palabras de con... [El curso contiene oraciones procesables] → El sistema selecciona los 2000 lemas ... → El sistema calcula el intervalo medio... [Se encontraron lemas de contenido suficientes para el analisis] → El sistema clasifica cada lema como n... → El sistema calcula la puntuacion gene... → El usuario recibe el resultado global... → success")
     public void path1_elCursoContieneOracionesProcesables_seEncontraronLemasDeContenidoSuficientesParaElAnalisis_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // ----------------------------------------------------------------
+        // Arrange (R001, R002): build two quiz nodes simulating a course
+        // with two A1 sentences processed in deterministic CEFR order.
+        //
+        // Quiz-1 tokens: [cat(NOUN)] → global positions: cat=1
+        // Quiz-2 tokens: [the(DET), the(DET), the(DET), cat(NOUN)] → positions: the=2,3,4; cat=5
+        //
+        // Content words per R003: only NOUN/VERB/ADJ/ADV pass DefaultContentWordFilter.
+        // Per R004: lemma "cat" is registered at positions [1, 5].
+        // Per R006: count=2, so ≥2 appearances → included.
+        // With TEST_CONFIG (overExposed=2.0, subExposed=100.0):
+        //   meanInterval = 5 - 1 = 4.0 → NORMAL (2 < 4 <= 100) per R008.
+        // ----------------------------------------------------------------
+
+        LemmaRecurrenceAnalyzer analyzer = new LemmaRecurrenceAnalyzer(
+                new DefaultContentWordFilter(),
+                TEST_CONFIG,
+                new DefaultIntervalCalculator(),
+                new DefaultExposureClassifier()
+        );
+
+        // Quiz-1: single NOUN token "cat"
+        AuditableQuiz quiz1 = new AuditableQuiz(
+                "cat",
+                List.of(nounToken("cat", "cat")),
+                "q1", "Quiz 1", "A1-Q1", null
+        );
+
+        // Quiz-2: three DET filler tokens, then NOUN "cat"
+        AuditableQuiz quiz2 = new AuditableQuiz(
+                "the the the cat",
+                List.of(detToken("the"), detToken("the"), detToken("the"), nounToken("cat", "cat")),
+                "q2", "Quiz 2", "A1-Q2", null
+        );
+
+        AuditNode quizNode1 = buildQuizNode(quiz1);
+        AuditNode quizNode2 = buildQuizNode(quiz2);
+        AuditNode rootNode = buildCourseNode();
+
+        // ----------------------------------------------------------------
+        // Act: drive the analyzer callbacks in deterministic CEFR order (R001, R002)
+        // ----------------------------------------------------------------
+        analyzer.onQuiz(quizNode1);   // cat at global position 1
+        analyzer.onQuiz(quizNode2);   // the=2,3,4; cat=5
+        analyzer.onCourseComplete(rootNode);  // R007, R008, R009, R010
+
+        // ----------------------------------------------------------------
+        // Assert path-1 success gates
+        // ----------------------------------------------------------------
+
+        // R015: analyzer identified as "lemma-recurrence" in scores map
+        assertTrue(rootNode.getScores().containsKey("lemma-recurrence"),
+                "R015: 'lemma-recurrence' key must be present in course scores");
+
+        // R010: overallScore is between 0.0 and 1.0
+        double overallScore = rootNode.getScores().get("lemma-recurrence");
+        assertTrue(overallScore >= 0.0 && overallScore <= 1.0,
+                "R010: overallScore must be in [0.0, 1.0], was: " + overallScore);
+
+        // R010: 'cat' is NORMAL → normalCount=1, totalCount=1 → overallScore=1.0
+        assertEquals(1.0, overallScore, 0.01,
+                "R010: all analysed lemmas are NORMAL so overallScore must be 1.0");
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
+    @Tag("F-LREC-R001")
+    @Tag("F-LREC-R003")
+    @Tag("F-LREC-R005")
+    @Tag("F-LREC-R010")
     @DisplayName("path-2: El usuario inicia una auditoria de re... → El sistema recorre la jerarquia del c... → El sistema filtra las palabras de con... [El curso contiene oraciones procesables] → El sistema selecciona los 2000 lemas ... → El sistema informa al usuario que no ... [No se encontraron lemas de contenido en el curso] → failure")
     public void path2_elCursoContieneOracionesProcesables_noSeEncontraronLemasDeContenidoEnElCurso_failure(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // ----------------------------------------------------------------
+        // Arrange: course with processable sentences (R001 — global positions
+        // ARE assigned to all tokens), but NO token passes the content word
+        // filter (R003). All tokens are DET (non-content) or PUNCT.
+        //
+        // Per R005: no lemmas are registered → top-N selection yields empty set.
+        // Per R010: totalCount=0 → overallScore=0.0.
+        // ----------------------------------------------------------------
+
+        LemmaRecurrenceAnalyzer analyzer = new LemmaRecurrenceAnalyzer(
+                new DefaultContentWordFilter(),
+                TEST_CONFIG,
+                new DefaultIntervalCalculator(),
+                new DefaultExposureClassifier()
+        );
+
+        // Quiz with only non-content tokens (DET/PUNCT)
+        NlpToken punct = new NlpToken(".", ".", "PUNCT", 0, false, true);
+        AuditableQuiz quiz1 = new AuditableQuiz(
+                "the the.",
+                List.of(detToken("the"), detToken("the"), punct),
+                "q1", "Quiz 1", "A1-Q1", null
+        );
+        AuditableQuiz quiz2 = new AuditableQuiz(
+                "a the.",
+                List.of(detToken("a"), detToken("the"), punct),
+                "q2", "Quiz 2", "A1-Q2", null
+        );
+
+        AuditNode quizNode1 = buildQuizNode(quiz1);
+        AuditNode quizNode2 = buildQuizNode(quiz2);
+        AuditNode rootNode = buildCourseNode();
+
+        // ----------------------------------------------------------------
+        // Act: sentences ARE processed (R001: positions assigned), but no
+        // content words are registered (R003 filter excludes all)
+        // ----------------------------------------------------------------
+        analyzer.onQuiz(quizNode1);
+        analyzer.onQuiz(quizNode2);
+        analyzer.onCourseComplete(rootNode);
+
+        // ----------------------------------------------------------------
+        // Assert path-2 failure: no content lemmas → overallScore = 0.0 (R010)
+        // ----------------------------------------------------------------
+
+        // R015: key still present (analyzer ran to completion)
+        assertTrue(rootNode.getScores().containsKey("lemma-recurrence"),
+                "R015: 'lemma-recurrence' key must be present even when no content lemmas found");
+
+        // R010: totalCount=0 → overallScore=0.0
+        double overallScore = rootNode.getScores().get("lemma-recurrence");
+        assertEquals(0.0, overallScore, 0.001,
+                "R010: no content lemmas found → overallScore must be 0.0");
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
+    @Tag("F-LREC-R001")
+    @Tag("F-LREC-R010")
     @DisplayName("path-3: El usuario inicia una auditoria de re... → El sistema recorre la jerarquia del c... → El sistema informa al usuario que el ... [El curso no contiene oraciones procesables] → failure")
     public void path3_elCursoNoContieneOracionesProcesables_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // ----------------------------------------------------------------
+        // Arrange: course with NO processable sentences at all.
+        // onQuiz is never called → globalPosition stays at 0 (R001: no tokens).
+        // onCourseComplete is called on an empty root node.
+        // ----------------------------------------------------------------
+
+        LemmaRecurrenceAnalyzer analyzer = new LemmaRecurrenceAnalyzer(
+                new DefaultContentWordFilter(),
+                TEST_CONFIG,
+                new DefaultIntervalCalculator(),
+                new DefaultExposureClassifier()
+        );
+
+        AuditNode rootNode = buildCourseNode();
+
+        // ----------------------------------------------------------------
+        // Act: no onQuiz calls → no tokens processed
+        // ----------------------------------------------------------------
+        analyzer.onCourseComplete(rootNode);
+
+        // ----------------------------------------------------------------
+        // Assert path-3 failure: no sentences → overallScore = 0.0 (R010)
+        // ----------------------------------------------------------------
+
+        // R015: key present (analyzer completes without error)
+        assertTrue(rootNode.getScores().containsKey("lemma-recurrence"),
+                "R015: 'lemma-recurrence' key must be present even when course has no sentences");
+
+        // R010: no analysed lemmas → overallScore = 0.0
+        double overallScore = rootNode.getScores().get("lemma-recurrence");
+        assertEquals(0.0, overallScore, 0.001,
+                "R010: no processable sentences → overallScore must be 0.0");
     }
 }

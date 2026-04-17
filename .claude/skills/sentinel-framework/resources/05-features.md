@@ -98,13 +98,7 @@ enabling JUnit 5 tag-based filtering (e.g., run only tests for `FEAT-001`).
 
 - **F-LREC-J001**: Auditar la recurrencia de vocabulario de un curso completo
 
-- **F-LREC-J002**: Identificar lemas sub-expuestos que el estudiante podria olvidar
-
-- **F-LREC-J003**: Identificar lemas sobre-expuestos que saturan al estudiante
-
 - **F-LREC-J004**: Detectar lemas con distribucion irregular usando la desviacion estandar
-
-- **F-LREC-J005**: Comparar la recurrencia antes y despues de ajustar el contenido
 
 ### FEAT-DCOCA: Diagnosticos Tipados para el Analizador de Distribucion COCA [F-DCOCA]
 
