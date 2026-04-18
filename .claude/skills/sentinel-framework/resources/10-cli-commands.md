@@ -95,6 +95,9 @@ Exposes granular, read-only queries over the architecture. Used by agents to exp
 # List all modules with descriptions, component counts, and dependency info
 java -jar sentinel-core.jar tool listModules --root /path/to/project
 
+# Same, but annotated with per-module untested implementations and a coverage section
+java -jar sentinel-core.jar tool listModules --with-coverage --root /path/to/project
+
 # Read full architecture with test definitions stripped (significantly smaller output)
 java -jar sentinel-core.jar tool readArchitectureNoTests --root /path/to/project
 
@@ -107,10 +110,11 @@ java -jar sentinel-core.jar tool describeComponent --root /path/to/project --nam
 
 **Context Strategy for Agents:**
 1. Start with `listModules` — gives you the map (modules, components, test counts)
-2. Use `inspectModule` to dive into relevant modules and their dependency contracts
-3. Use `describeComponent` for full details on a specific model/interface/implementation
-4. Use `readArchitectureNoTests` only if you need the full structural picture
-5. Avoid reading the full `sentinel.yaml` unless you specifically need test definitions
+2. Use `listModules --with-coverage` when you need to identify uncovered rules/journeys or untested methods
+3. Use `inspectModule` to dive into relevant modules and their dependency contracts
+4. Use `describeComponent` for full details on a specific model/interface/implementation
+5. Use `readArchitectureNoTests` only if you need the full structural picture
+6. Avoid reading the full `sentinel.yaml` unless you specifically need test definitions
 
 ## Error Recovery
 

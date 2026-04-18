@@ -17,27 +17,47 @@ public class KnowledgeTitleLengthAnalyzerSentinelTest {
   @InjectMocks
   private KnowledgeTitleLengthAnalyzer sut;
 
+  /**
+   * Feature: Analisis de Longitud de Titulos e Instrucciones de Knowledge
+   * Rule: Cada knowledge recibe una puntuacion entre 0.0 y 1.0 que refleja la adecuacion de la longitud de su titulo. Las condiciones se evaluan en el siguiente orden de prioridad: 1. **Titulo nulo o vacio**: la puntuacion es 0.0. Todo knowledge debe tener un titulo; la ausencia de titulo se considera un defecto grave. Esta condicion se evalua antes que cualquier calculo de longitud ponderada. 2. **Longitud ponderada dentro del limite** (menor o igual a 28): la puntuacion es 1.0. 3. **Longitud ponderada excede el limite**: la puntuacion disminuye linealmente hasta alcanzar 0.0 al siguiente entero: - `score = max(0.0, 1.0 - (longitudPonderada - limiteMaximo) / margenDegradacion)` - Donde `limiteMaximo = 28` y `margenDegradacion = 1` (configurable, por defecto 1). - Esto significa que a 29 caracteres ponderados la puntuacion es 0.0, replicando el comportamiento binario de la referencia pero permitiendo credito parcial para valores fraccionarios entre 28 y 29 (ej: 28.5 → 0.5). Ejemplo para limite maximo de 28, margen de degradacion 1: | Longitud ponderada | 0 (vacio) | 15  | 28  | 28.5 | 29  | |--------------------|-----------|-----|-----|------|-----| | Puntuacion         | 0.0       | 1.0 | 1.0 | 0.50 | 0.0 |
+   */
   @Test
   @DisplayName("should score 0.5 for title of weighted length 28.5")
-  @Tag("F-KTLEN")
+  @Tag("FEAT-KTLEN")
+  @Tag("F-KTLEN-R003")
   public void shouldScore05ForTitleOfWeightedLength285() {
   }
 
+  /**
+   * Feature: Analisis de Longitud de Titulos e Instrucciones de Knowledge
+   * Rule: Cada knowledge recibe una puntuacion entre 0.0 y 1.0 que refleja la adecuacion de la longitud de su titulo. Las condiciones se evaluan en el siguiente orden de prioridad: 1. **Titulo nulo o vacio**: la puntuacion es 0.0. Todo knowledge debe tener un titulo; la ausencia de titulo se considera un defecto grave. Esta condicion se evalua antes que cualquier calculo de longitud ponderada. 2. **Longitud ponderada dentro del limite** (menor o igual a 28): la puntuacion es 1.0. 3. **Longitud ponderada excede el limite**: la puntuacion disminuye linealmente hasta alcanzar 0.0 al siguiente entero: - `score = max(0.0, 1.0 - (longitudPonderada - limiteMaximo) / margenDegradacion)` - Donde `limiteMaximo = 28` y `margenDegradacion = 1` (configurable, por defecto 1). - Esto significa que a 29 caracteres ponderados la puntuacion es 0.0, replicando el comportamiento binario de la referencia pero permitiendo credito parcial para valores fraccionarios entre 28 y 29 (ej: 28.5 → 0.5). Ejemplo para limite maximo de 28, margen de degradacion 1: | Longitud ponderada | 0 (vacio) | 15  | 28  | 28.5 | 29  | |--------------------|-----------|-----|-----|------|-----| | Puntuacion         | 0.0       | 1.0 | 1.0 | 0.50 | 0.0 |
+   */
   @Test
   @DisplayName("should score 0.0 for title of weighted length 29")
-  @Tag("F-KTLEN")
+  @Tag("FEAT-KTLEN")
+  @Tag("F-KTLEN-R003")
   public void shouldScore00ForTitleOfWeightedLength29() {
   }
 
+  /**
+   * Feature: Analisis de Longitud de Titulos e Instrucciones de Knowledge
+   * Rule: Cada knowledge recibe una puntuacion entre 0.0 y 1.0 que refleja la adecuacion de la longitud de su titulo. Las condiciones se evaluan en el siguiente orden de prioridad: 1. **Titulo nulo o vacio**: la puntuacion es 0.0. Todo knowledge debe tener un titulo; la ausencia de titulo se considera un defecto grave. Esta condicion se evalua antes que cualquier calculo de longitud ponderada. 2. **Longitud ponderada dentro del limite** (menor o igual a 28): la puntuacion es 1.0. 3. **Longitud ponderada excede el limite**: la puntuacion disminuye linealmente hasta alcanzar 0.0 al siguiente entero: - `score = max(0.0, 1.0 - (longitudPonderada - limiteMaximo) / margenDegradacion)` - Donde `limiteMaximo = 28` y `margenDegradacion = 1` (configurable, por defecto 1). - Esto significa que a 29 caracteres ponderados la puntuacion es 0.0, replicando el comportamiento binario de la referencia pero permitiendo credito parcial para valores fraccionarios entre 28 y 29 (ej: 28.5 → 0.5). Ejemplo para limite maximo de 28, margen de degradacion 1: | Longitud ponderada | 0 (vacio) | 15  | 28  | 28.5 | 29  | |--------------------|-----------|-----|-----|------|-----| | Puntuacion         | 0.0       | 1.0 | 1.0 | 0.50 | 0.0 |
+   */
   @Test
   @DisplayName("should score 0.0 for title of weighted length 35")
-  @Tag("F-KTLEN")
+  @Tag("FEAT-KTLEN")
+  @Tag("F-KTLEN-R003")
   public void shouldScore00ForTitleOfWeightedLength35() {
   }
 
+  /**
+   * Feature: Analisis de Longitud de Titulos e Instrucciones de Knowledge
+   * Rule: Cada knowledge recibe una puntuacion entre 0.0 y 1.0 que refleja la adecuacion de la longitud de su titulo. Las condiciones se evaluan en el siguiente orden de prioridad: 1. **Titulo nulo o vacio**: la puntuacion es 0.0. Todo knowledge debe tener un titulo; la ausencia de titulo se considera un defecto grave. Esta condicion se evalua antes que cualquier calculo de longitud ponderada. 2. **Longitud ponderada dentro del limite** (menor o igual a 28): la puntuacion es 1.0. 3. **Longitud ponderada excede el limite**: la puntuacion disminuye linealmente hasta alcanzar 0.0 al siguiente entero: - `score = max(0.0, 1.0 - (longitudPonderada - limiteMaximo) / margenDegradacion)` - Donde `limiteMaximo = 28` y `margenDegradacion = 1` (configurable, por defecto 1). - Esto significa que a 29 caracteres ponderados la puntuacion es 0.0, replicando el comportamiento binario de la referencia pero permitiendo credito parcial para valores fraccionarios entre 28 y 29 (ej: 28.5 → 0.5). Ejemplo para limite maximo de 28, margen de degradacion 1: | Longitud ponderada | 0 (vacio) | 15  | 28  | 28.5 | 29  | |--------------------|-----------|-----|-----|------|-----| | Puntuacion         | 0.0       | 1.0 | 1.0 | 0.50 | 0.0 |
+   */
   @Test
   @DisplayName("should score 0.0 for title well beyond limit at weighted length 70")
-  @Tag("F-KTLEN")
+  @Tag("FEAT-KTLEN")
+  @Tag("F-KTLEN-R003")
   public void shouldScore00ForTitleWellBeyondLimitAtWeightedLength70() {
   }
 }

@@ -19,54 +19,84 @@ public class DefaultContentWordFilterSentinelTest {
   @InjectMocks
   private DefaultContentWordFilter sut;
 
+  /**
+   * Feature: Analisis de Recurrencia de Lemas por Repeticion Espaciada
+   * Rule: Solo las **palabras de contenido** se incluyen en el analisis de recurrencia. Una palabra de contenido es un token cuya etiqueta POS (part-of-speech) corresponde a una de las siguientes categorias gramaticales: sustantivo (NOUN), verbo (VERB), adjetivo (ADJ) o adverbio (ADV). Todas las demas categorias (determinantes, preposiciones, pronombres, conjunciones, puntuacion, simbolos, etc.) se excluyen del analisis de recurrencia. Estos tokens SI participan en el conteo de posicion global (R001), pero NO se registran en el mapa de posiciones por lema. El filtrado se aplica usando la etiqueta POS del token enriquecido proveniente del procesamiento linguistico (FEAT-NLP). Los tokens sin etiqueta POS o con etiqueta desconocida se excluyen del analisis.
+   */
   @Test
   @DisplayName("Given a NOUN token, when isContentWord is called, then returns true")
-  @Tag("F-LREC")
+  @Tag("FEAT-LREC")
+  @Tag("F-LREC-R003")
   public void givenANOUNTokenWhenIsContentWordIsCalledThenReturnsTrue() {
     NlpToken nounToken = new NlpToken("cat", "cat", "NOUN", 100, false, false);
     boolean result = sut.isContentWord(nounToken);
     Assertions.assertEquals(true, result);
   }
 
+  /**
+   * Feature: Analisis de Recurrencia de Lemas por Repeticion Espaciada
+   * Rule: Solo las **palabras de contenido** se incluyen en el analisis de recurrencia. Una palabra de contenido es un token cuya etiqueta POS (part-of-speech) corresponde a una de las siguientes categorias gramaticales: sustantivo (NOUN), verbo (VERB), adjetivo (ADJ) o adverbio (ADV). Todas las demas categorias (determinantes, preposiciones, pronombres, conjunciones, puntuacion, simbolos, etc.) se excluyen del analisis de recurrencia. Estos tokens SI participan en el conteo de posicion global (R001), pero NO se registran en el mapa de posiciones por lema. El filtrado se aplica usando la etiqueta POS del token enriquecido proveniente del procesamiento linguistico (FEAT-NLP). Los tokens sin etiqueta POS o con etiqueta desconocida se excluyen del analisis.
+   */
   @Test
   @DisplayName("Given a VERB token, when isContentWord is called, then returns true")
-  @Tag("F-LREC")
+  @Tag("FEAT-LREC")
+  @Tag("F-LREC-R003")
   public void givenAVERBTokenWhenIsContentWordIsCalledThenReturnsTrue() {
     NlpToken verbToken = new NlpToken("running", "run", "VERB", 50, false, false);
     boolean result = sut.isContentWord(verbToken);
     Assertions.assertEquals(true, result);
   }
 
+  /**
+   * Feature: Analisis de Recurrencia de Lemas por Repeticion Espaciada
+   * Rule: Solo las **palabras de contenido** se incluyen en el analisis de recurrencia. Una palabra de contenido es un token cuya etiqueta POS (part-of-speech) corresponde a una de las siguientes categorias gramaticales: sustantivo (NOUN), verbo (VERB), adjetivo (ADJ) o adverbio (ADV). Todas las demas categorias (determinantes, preposiciones, pronombres, conjunciones, puntuacion, simbolos, etc.) se excluyen del analisis de recurrencia. Estos tokens SI participan en el conteo de posicion global (R001), pero NO se registran en el mapa de posiciones por lema. El filtrado se aplica usando la etiqueta POS del token enriquecido proveniente del procesamiento linguistico (FEAT-NLP). Los tokens sin etiqueta POS o con etiqueta desconocida se excluyen del analisis.
+   */
   @Test
   @DisplayName("Given an ADJ token, when isContentWord is called, then returns true")
-  @Tag("F-LREC")
+  @Tag("FEAT-LREC")
+  @Tag("F-LREC-R003")
   public void givenAnADJTokenWhenIsContentWordIsCalledThenReturnsTrue() {
     NlpToken adjToken = new NlpToken("big", "big", "ADJ", 200, false, false);
     boolean result = sut.isContentWord(adjToken);
     Assertions.assertEquals(true, result);
   }
 
+  /**
+   * Feature: Analisis de Recurrencia de Lemas por Repeticion Espaciada
+   * Rule: Solo las **palabras de contenido** se incluyen en el analisis de recurrencia. Una palabra de contenido es un token cuya etiqueta POS (part-of-speech) corresponde a una de las siguientes categorias gramaticales: sustantivo (NOUN), verbo (VERB), adjetivo (ADJ) o adverbio (ADV). Todas las demas categorias (determinantes, preposiciones, pronombres, conjunciones, puntuacion, simbolos, etc.) se excluyen del analisis de recurrencia. Estos tokens SI participan en el conteo de posicion global (R001), pero NO se registran en el mapa de posiciones por lema. El filtrado se aplica usando la etiqueta POS del token enriquecido proveniente del procesamiento linguistico (FEAT-NLP). Los tokens sin etiqueta POS o con etiqueta desconocida se excluyen del analisis.
+   */
   @Test
   @DisplayName("Given an ADV token, when isContentWord is called, then returns true")
-  @Tag("F-LREC")
+  @Tag("FEAT-LREC")
+  @Tag("F-LREC-R003")
   public void givenAnADVTokenWhenIsContentWordIsCalledThenReturnsTrue() {
     NlpToken advToken = new NlpToken("quickly", "quickly", "ADV", 300, false, false);
     boolean result = sut.isContentWord(advToken);
     Assertions.assertEquals(true, result);
   }
 
+  /**
+   * Feature: Analisis de Recurrencia de Lemas por Repeticion Espaciada
+   * Rule: Solo las **palabras de contenido** se incluyen en el analisis de recurrencia. Una palabra de contenido es un token cuya etiqueta POS (part-of-speech) corresponde a una de las siguientes categorias gramaticales: sustantivo (NOUN), verbo (VERB), adjetivo (ADJ) o adverbio (ADV). Todas las demas categorias (determinantes, preposiciones, pronombres, conjunciones, puntuacion, simbolos, etc.) se excluyen del analisis de recurrencia. Estos tokens SI participan en el conteo de posicion global (R001), pero NO se registran en el mapa de posiciones por lema. El filtrado se aplica usando la etiqueta POS del token enriquecido proveniente del procesamiento linguistico (FEAT-NLP). Los tokens sin etiqueta POS o con etiqueta desconocida se excluyen del analisis.
+   */
   @Test
   @DisplayName("Given a DET token, when isContentWord is called, then returns false")
-  @Tag("F-LREC")
+  @Tag("FEAT-LREC")
+  @Tag("F-LREC-R003")
   public void givenADETTokenWhenIsContentWordIsCalledThenReturnsFalse() {
     NlpToken detToken = new NlpToken("the", "the", "DET", 1, true, false);
     boolean result = sut.isContentWord(detToken);
     Assertions.assertEquals(false, result);
   }
 
+  /**
+   * Feature: Analisis de Recurrencia de Lemas por Repeticion Espaciada
+   * Rule: Solo las **palabras de contenido** se incluyen en el analisis de recurrencia. Una palabra de contenido es un token cuya etiqueta POS (part-of-speech) corresponde a una de las siguientes categorias gramaticales: sustantivo (NOUN), verbo (VERB), adjetivo (ADJ) o adverbio (ADV). Todas las demas categorias (determinantes, preposiciones, pronombres, conjunciones, puntuacion, simbolos, etc.) se excluyen del analisis de recurrencia. Estos tokens SI participan en el conteo de posicion global (R001), pero NO se registran en el mapa de posiciones por lema. El filtrado se aplica usando la etiqueta POS del token enriquecido proveniente del procesamiento linguistico (FEAT-NLP). Los tokens sin etiqueta POS o con etiqueta desconocida se excluyen del analisis.
+   */
   @Test
   @DisplayName("Given a PUNCT token, when isContentWord is called, then returns false")
-  @Tag("F-LREC")
+  @Tag("FEAT-LREC")
+  @Tag("F-LREC-R003")
   public void givenAPUNCTTokenWhenIsContentWordIsCalledThenReturnsFalse() {
     NlpToken punctToken = new NlpToken(".", ".", "PUNCT", 0, false, true);
     boolean result = sut.isContentWord(punctToken);

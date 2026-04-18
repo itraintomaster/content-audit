@@ -169,6 +169,36 @@ Acting on assumptions about what Sentinel "should" generate, without reading the
 
 If your task falls outside your column, delegate to the correct agent.
 
+## Orchestration Guardrails
+
+These rules apply to the **orchestrator** (the agent coordinating specialized agents on behalf of the user). They exist because forced-tag traceability propagates downstream silently — catching it at the orchestration layer is the last line of defense before tests reach `@test-writer`.
+
+### OG1 - Traceability doubts are blocking
+
+When `@qa-tester` reports doubts about rule-to-test traceability — or when you notice forced "closest rule" tagging in a proposed patch — **pause and resolve with the user** before advancing to `@test-writer`. Forced traceability propagates downstream and produces tests that claim to verify rules they do not actually verify.
+
+### OG2 - Respect validator failures on handwrittenTests
+
+`sentinel patch propose` and `sentinel generate` cross-reference every `handwrittenTests[].traceability` against `REQUIREMENT.md`. When the validator rejects a patch with an error like:
+
+```
+Handwritten test "shouldXxx" on implementation "YyyZzz" references rule
+'F-REVBYP-R099' which does not exist in FEAT-REVBYP (available: F-REVBYP-R001..F-REVBYP-R014).
+```
+
+**Do NOT** ask `@qa-tester` to re-tag to the "closest" rule. The validator caught a real problem — resolve it at the source:
+
+1. **Rule was deleted from `REQUIREMENT.md`** → mark the test `_change: delete` via `@qa-tester`.
+2. **Test is valid but no existing rule covers it** → route to `@analyst` to add the rule, then re-propose via `@qa-tester`.
+3. **Test is mis-tagged** → route to `@qa-tester` to re-tag to the real rule (or drop).
+4. **Test verifies internal wiring, not a rule** → drop the test. Pattern-level invariants belong in ArchUnit, not in `handwrittenTests`.
+
+Forcing a tag to make the validator pass is precisely what OG1 prohibits.
+
+### OG3 - Handle `inconsistent_traceability` escalations
+
+When `@test-writer` escalates with `type: inconsistent_traceability`, the test body it was asked to implement does not actually verify the rule its `@Tag` claims. Do NOT instruct it to implement anyway. Route the escalation to `@qa-tester` for re-design (re-tag, drop the test, or propose a new rule via `@analyst`) and surface the decision to the user.
+
 ## Module Map
 
 ### audit-domain
@@ -861,6 +891,33 @@ Cuando el refiner identifica una tarea de tipo SENTENCE_LENGTH, actualmente mues
 - **F-RCSL-J001**: LLM recibe contexto para corregir una oracion demasiado larga
 - **F-RCSL-J002**: LLM recibe contexto para corregir una oracion demasiado corta
 - **F-RCSL-J003**: Contexto de correccion sin lemas sugeridos disponibles
+
+### FEAT-REVBYP: Fase de revision (bypass skeleton) - aplicacion de cambios a elementos del curso [F-REVBYP]
+
+Hoy la pipeline de ContentAudit cubre tres fases: `analyze` produce un reporte de auditoria, `refiner plan` genera un plan de tareas a partir del reporte, y `refiner next` resuelve el contexto de correccion de la proxima tarea. Lo que falta es la fase que efectivamente **aplica** un cambio a un elemento del curso en base a ese contexto.
+
+Este requerimiento define esa fase, llamada **revision**. El alcance es deliberadamente minimo: se construye el esqueleto end-to-end con componentes **bypass** (identidad, auto-aprobacion) para validar que la pipeline completa funciona — que una tarea se puede tomar, construir su propuesta de revision, persistirla como artefacto auditable, aprobarla, y reescribir el curso modificado al disco. Ninguna logica real de revision (AI, reglas, transformaciones) entra en esta iteracion. Esas estrategias se enchufaran en requerimientos futuros.
+
+**Rules:**
+
+- **F-REVBYP-R001**: Estructura de la RevisionProposal (critical) — Para cada tarea de revision, el sistema debe poder construir una `RevisionProposal` que representa el cambio propuesto sobre un elemento del curso. La propuesta contiene los siguientes datos: | Campo | Tipo | Descripcion | |-------|------|-------------| | proposalId | Texto | Identificador unico de la propuesta (generado por el sistema) | | taskId | Texto | Identificador de la `RefinementTask` que origino la revision | | planId | Texto | Identificador del `RefinementPlan` al que pertenece la tarea | | sourceAuditId | Texto | Identificador del `AuditReport` del que se derivo el plan | | diagnosisKind | Enum | Tipo de diagnostico de la tarea (SENTENCE_LENGTH, LEMMA_ABSENCE, etc.) | | nodeTarget | Enum | Nivel del nodo objetivo (QUIZ, KNOWLEDGE, TOPIC, MILESTONE, COURSE) | | nodeId | Texto | Identificador del nodo objetivo en el arbol de auditoria | | elementBefore | Snapshot del elemento | Estado actual del elemento del curso antes de la revision | | elementAfter | Snapshot del elemento | Estado propuesto del elemento del curso despues de la revision | | rationale | Texto | Justificacion textual de la revision (puede ser una cadena fija en el caso bypass, e.g., "bypass: identity revision") | | reviserKind | Texto | Identificador del Reviser que produjo la propuesta (en esta iteracion siempre "bypass") | | createdAt | Fecha/hora | Timestamp de creacion de la propuesta | El `elementBefore` y `elementAfter` son capturas del elemento del curso afectado (por ejemplo, un quiz). Sirven para trazabilidad, diff, y reproduccion de la revision. [ASSUMPTION] La forma concreta del snapshot (documento completo, subset relevante) es una decision de arquitectura. Razon: la propuesta debe ser auto-contenida para poder re-ejecutarla o auditarla sin depender del estado actual del curso.
+- **F-REVBYP-R002**: En el caso bypass, elementBefore y elementAfter son semanticamente equivalentes (critical) — Cuando el Reviser activo es el bypass (identidad), el `elementAfter` de la propuesta debe ser semanticamente equivalente al `elementBefore`. Semanticamente equivalente significa que, luego de aplicar la propuesta y releer el curso desde disco, el elemento afectado es indistinguible del original segun los criterios de igualdad definidos en FEAT-CSTRUCT (idempotencia de persistencia, R003).
+- **F-REVBYP-R003**: El Reviser es pluggable por DiagnosisKind (critical) — El componente que genera una `RevisionProposal` a partir de un `CorrectionContext` y el elemento actual se llama **Reviser**. El sistema debe permitir registrar multiples Revisers, cada uno asociado a uno o mas `DiagnosisKind`. Al iniciar una revision, se selecciona el Reviser correspondiente al `diagnosisKind` de la tarea. Este patron es analogo al de `CorrectionContextResolver` / `DispatchingCorrectionContextResolver` en el refiner: un despachador central consulta a sus Revisers registrados y delega en el que maneja el diagnostico correspondiente.
+- **F-REVBYP-R004**: Existe un Reviser bypass que actua como baseline por defecto (critical) — Debe existir un Reviser llamado **bypass** que: 1. Acepta tareas de cualquier `DiagnosisKind`. 2. Devuelve una `RevisionProposal` cuyo `elementAfter` es identico al `elementBefore` (revision identidad). 3. Produce un `rationale` constante (por ejemplo, "bypass: identity revision"). 4. Se usa como Reviser por defecto cuando no hay un Reviser especifico registrado para un `DiagnosisKind`, o cuando se selecciona explicitamente. En esta iteracion, el Reviser bypass es el unico registrado. El despachador lo elige siempre.
+- **F-REVBYP-R005**: Si no hay Reviser aplicable, la revision no se realiza (major) — Si el despachador no encuentra ningun Reviser que maneje el `DiagnosisKind` de la tarea (ni siquiera el bypass), el sistema debe informar que la revision no puede realizarse y no modificar ni la propuesta, ni la tarea, ni el curso en disco. En el base case esto no ocurre (el bypass acepta todo), pero la regla queda declarada para iteraciones futuras donde los Revisers especificos puedan no cubrir todos los diagnosticos.
+- **F-REVBYP-R006**: El Validator decide si una propuesta se aplica (critical) — Antes de aplicarse al curso, una `RevisionProposal` pasa por un **RevisionValidator**. El validator examina la propuesta y devuelve uno de dos veredictos: - **APPROVED**: la propuesta puede aplicarse al curso. - **REJECTED**: la propuesta no se aplica; se registra el motivo en la propuesta y el curso queda sin modificar.
+- **F-REVBYP-R007**: Existe un Validator bypass que auto-aprueba toda propuesta (critical) — Debe existir un validator llamado **bypass** cuyo veredicto es siempre APPROVED. En esta iteracion es el unico validator registrado y se usa por defecto.
+- **F-REVBYP-R008**: Cada propuesta se persiste como artefacto bajo .content-audit/revisions/ (critical) — Toda `RevisionProposal` generada (sea aprobada o rechazada) debe persistirse como un artefacto en el workdir de la aplicacion, bajo el subdirectorio `.content-audit/revisions/`. La persistencia del artefacto es parte esencial del flujo: ocurre **aunque** el Reviser sea bypass y el contenido no cambie, porque el objetivo del artefacto es dejar trazabilidad del intento de revision. [ASSUMPTION] El directorio `.content-audit/` es el workdir de la aplicacion (contiene ya `audits/` y `plans/`). No debe confundirse con `.sentinel/`, que es el directorio del framework. Razon: mantener la separacion entre artefactos generados por el framework y artefactos generados por el dominio.
+- **F-REVBYP-R009**: Organizacion de los artefactos de propuesta (major) — Los artefactos de propuesta se organizan dentro de `.content-audit/revisions/` de forma que sean facilmente navegables por plan y por tarea. La estructura concreta es: ``` .content-audit/revisions/ <planId>/ <proposalId>.<ext> ``` Donde: - `<planId>` agrupa todas las propuestas derivadas del mismo `RefinementPlan`. - `<proposalId>` identifica de forma unica la propuesta. La convencion es `<taskId>-<timestamp>` para permitir que una misma tarea genere multiples propuestas en ejecuciones sucesivas (por ejemplo, si el operador re-ejecuta la revision con un Reviser distinto). La iteracion actual no aprovecha esa repeticion, pero el formato lo habilita. La extension concreta del archivo (`.json`, `.yaml`, etc.) queda como decision de arquitectura.
+- **F-REVBYP-R010**: El artefacto es suficiente para reconstruir la decision (major) — El contenido del artefacto persistido debe incluir, como minimo, toda la informacion de la `RevisionProposal` (R001) mas el veredicto del validator (APPROVED / REJECTED) y el motivo del rechazo si corresponde. Un lector del artefacto debe poder responder sin consultar otras fuentes: 1. Que tarea se intento corregir. 2. Que plan y auditoria la originaron. 3. Cual era el estado del elemento antes y el propuesto despues. 4. Quien (que Reviser) produjo la propuesta. 5. Si se aprobo o no, y por que. 6. Cuando se genero.
+- **F-REVBYP-R011**: Una propuesta aprobada se aplica al curso en disco (critical) — Cuando el validator aprueba una propuesta, el sistema debe aplicarla al curso en disco. Aplicar significa: 1. Cargar el curso actual desde `./db/english-course/` usando `CourseRepository` (FEAT-CSTRUCT). 2. Sustituir el elemento identificado por `nodeId` / `nodeTarget` por el `elementAfter` de la propuesta. 3. Persistir el curso modificado de vuelta a `./db/english-course/` usando `CourseRepository`. En el caso bypass, como el `elementAfter` es identico al `elementBefore`, el curso escrito es semanticamente equivalente al original. Esto no elimina el paso de escritura: la pipeline ejecuta el write-back de todas formas.
+- **F-REVBYP-R012**: Una propuesta rechazada no modifica el curso (critical) — Cuando el validator rechaza una propuesta, el sistema **no** debe cargar ni escribir el curso. El artefacto queda persistido con el veredicto REJECTED (R010) y el curso en disco permanece sin modificaciones.
+- **F-REVBYP-R013**: El estado de la tarea refleja el resultado de la revision (major) — Al finalizar el flujo de revision, el estado de la `RefinementTask` correspondiente debe actualizarse segun el resultado: - Si la propuesta fue aprobada y aplicada al curso con exito, la tarea queda marcada como completada (estado DONE del modelo existente en el refiner). - Si la propuesta fue rechazada por el validator, la tarea permanece en su estado previo (tipicamente PENDING). - Si ocurrio una falla al aplicar la propuesta al curso (ver R014), la tarea permanece en su estado previo. [ASSUMPTION] El nombre exacto del estado "DONE" y la mecanica del cambio de estado dependen del modelo existente del refiner. Razon: esta regla describe la intencion funcional (la tarea queda cerrada cuando la revision tuvo efecto), no el detalle del estado.
+- **F-REVBYP-R014**: El artefacto se persiste antes de aplicar al curso (major) — El orden del flujo es: (1) generar propuesta, (2) validar, (3) **persistir el artefacto**, (4) aplicar al curso si fue aprobada. El artefacto queda persistido aunque la aplicacion al curso falle. Esto garantiza que siempre hay un registro del intento de revision, incluso si el write-back del curso falla. Si la escritura del curso falla despues de que el artefacto ya fue persistido, queda una inconsistencia temporal: el artefacto declara APPROVED + aplicacion intentada, pero el curso no refleja el cambio. En esta iteracion esa inconsistencia se acepta como conocida; la recuperacion/rollback es un tema para una iteracion futura (ver DOUBT-ATOMICITY).
+
+**Journeys:**
+
+- **F-REVBYP-J001**: Revision bypass end-to-end de una tarea
 
 ## Boundaries
 

@@ -15,7 +15,7 @@ Filesystem persistence adapters for audit reports
 
 **Tests that must pass:**
 
-- should save an AuditReport and load it back with identical content → FEAT-STORE/F-STORE-R001
+- should save an AuditReport and load it back with identical content
 
 ### FileSystemRefinementPlanStore
 

@@ -27,79 +27,79 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 
 ### KnowledgeTitleLengthAnalyzer (audit-domain)
 
-- should score 0.5 for title of weighted length 28.5 → F-KTLEN/F-KTLEN-R003
-- should score 0.0 for title of weighted length 29 → F-KTLEN/F-KTLEN-R003
-- should score 0.0 for title of weighted length 35 → F-KTLEN/F-KTLEN-R003
-- should score 0.0 for title well beyond limit at weighted length 70 → F-KTLEN/F-KTLEN-R003
-- should return knowledge-title-length as analyzer name → F-KTLEN/F-KTLEN-R008
-- should return KNOWLEDGE as audit target → F-KTLEN/F-KTLEN-R008
-- should score 0.0 for knowledge with null title → F-KTLEN/F-KTLEN-R003
-- should score 0.0 for knowledge with empty title → F-KTLEN/F-KTLEN-R003
-- should score 1.0 for knowledge with title within limit → F-KTLEN/F-KTLEN-R003
-- should score 1.0 for knowledge with title at exactly 28 weighted chars → F-KTLEN/F-KTLEN-R001
-- should score 1.0 for title fitting with weighted length 5.1 → F-KTLEN/F-KTLEN-R002
-- should score 1.0 for zero-weight special chars title → F-KTLEN/F-KTLEN-R002
-- should score 1.0 for mixed-weight title with weighted length 2.7 → F-KTLEN/F-KTLEN-R002
-- should score 0.75 for title of weighted length 35 → F-KTLEN/F-KTLEN-R003
-- should score 0.5 for title of weighted length 42 → F-KTLEN/F-KTLEN-R003
-- should score 0.0 for title of weighted length 56 → F-KTLEN/F-KTLEN-R003
-- should score 0.0 for title of weighted length 70 → F-KTLEN/F-KTLEN-R003
-- should complete without error when onQuiz is called → F-KTLEN/F-KTLEN-R008
-- should complete without error when onMilestone is called → F-KTLEN
-- should complete without error when onTopic is called → F-KTLEN
-- should complete without error when onCourseComplete is called → F-KTLEN
-- should return two correctly scored items for two knowledges with different title lengths → F-KTLEN/F-KTLEN-R003
-- should return empty list when no knowledges have been processed → F-KTLEN/F-KTLEN-R003
+- should score 0.5 for title of weighted length 28.5 → FEAT-KTLEN/F-KTLEN-R003
+- should score 0.0 for title of weighted length 29 → FEAT-KTLEN/F-KTLEN-R003
+- should score 0.0 for title of weighted length 35 → FEAT-KTLEN/F-KTLEN-R003
+- should score 0.0 for title well beyond limit at weighted length 70 → FEAT-KTLEN/F-KTLEN-R003
+- should return knowledge-title-length as analyzer name → FEAT-KTLEN/F-KTLEN-R008
+- should return KNOWLEDGE as audit target → FEAT-KTLEN/F-KTLEN-R008
+- should score 0.0 for knowledge with null title → FEAT-KTLEN/F-KTLEN-R003
+- should score 0.0 for knowledge with empty title → FEAT-KTLEN/F-KTLEN-R003
+- should score 1.0 for knowledge with title within limit → FEAT-KTLEN/F-KTLEN-R003
+- should score 1.0 for knowledge with title at exactly 28 weighted chars → FEAT-KTLEN/F-KTLEN-R001
+- should score 1.0 for title fitting with weighted length 5.1 → FEAT-KTLEN/F-KTLEN-R002
+- should score 1.0 for zero-weight special chars title → FEAT-KTLEN/F-KTLEN-R002
+- should score 1.0 for mixed-weight title with weighted length 2.7 → FEAT-KTLEN/F-KTLEN-R002
+- should score 0.75 for title of weighted length 35 → FEAT-KTLEN/F-KTLEN-R003
+- should score 0.5 for title of weighted length 42 → FEAT-KTLEN/F-KTLEN-R003
+- should score 0.0 for title of weighted length 56 → FEAT-KTLEN/F-KTLEN-R003
+- should score 0.0 for title of weighted length 70 → FEAT-KTLEN/F-KTLEN-R003
+- should complete without error when onQuiz is called → FEAT-KTLEN/F-KTLEN-R008
+- should complete without error when onMilestone is called → FEAT-KTLEN/F-KTLEN-R008
+- should complete without error when onTopic is called → FEAT-KTLEN/F-KTLEN-R008
+- should complete without error when onCourseComplete is called → FEAT-KTLEN/F-KTLEN-R008
+- should return two correctly scored items for two knowledges with different title lengths → FEAT-KTLEN/F-KTLEN-R003
+- should return empty list when no knowledges have been processed → FEAT-KTLEN/F-KTLEN-R003
 
 ### KnowledgeInstructionsLengthAnalyzer (audit-domain)
 
-- should score 1.0 for instructions exactly at soft limit of 70 weighted chars → F-KTLEN/F-KTLEN-R005
-- should score 1.0 for instructions of 30 weighted chars within soft limit → F-KTLEN/F-KTLEN-R006
-- should score 0.5 for instructions of 71 weighted chars just above soft limit → F-KTLEN/F-KTLEN-R005
-- should score 0.5 for instructions exactly at hard limit of 100 weighted chars → F-KTLEN/F-KTLEN-R005
-- should score 0.5 for instructions of 85 weighted chars between soft and hard limits → F-KTLEN/F-KTLEN-R006
-- should score 0.0 for instructions of 101 weighted chars just above hard limit → F-KTLEN/F-KTLEN-R005
-- should score 0.0 for instructions of 200 weighted chars well above hard limit → F-KTLEN/F-KTLEN-R006
-- should use weighted character length not plain string length for scoring instructions → F-KTLEN/F-KTLEN-R005/F-KTLEN-J003
-- should return knowledge-instructions-length as analyzer name → F-KTLEN/F-KTLEN-R008
-- should return KNOWLEDGE as audit target → F-KTLEN/F-KTLEN-R008
-- should score 1.0 for knowledge with null instructions → F-KTLEN/F-KTLEN-R006
-- should score 1.0 for knowledge with empty instructions → F-KTLEN/F-KTLEN-R006
-- should score 1.0 for instructions exactly at soft limit of 70 chars → F-KTLEN/F-KTLEN-R005
-- should score 1.0 for instructions of 30 chars within soft limit → F-KTLEN/F-KTLEN-R006
-- should score 0.5 for instructions of 71 chars just above soft limit → F-KTLEN/F-KTLEN-R005
-- should score 0.5 for instructions exactly at hard limit of 100 chars → F-KTLEN/F-KTLEN-R005
-- should score 0.5 for instructions of 85 chars between soft and hard limits → F-KTLEN/F-KTLEN-R006
-- should score 0.0 for instructions of 101 chars just above hard limit → F-KTLEN/F-KTLEN-R005
-- should score 0.0 for instructions of 200 chars well above hard limit → F-KTLEN/F-KTLEN-R006
-- should complete without error when onQuiz is called → F-KTLEN
-- should complete without error when onMilestone is called → F-KTLEN
-- should complete without error when onTopic is called → F-KTLEN
-- should complete without error when onCourseComplete is called → F-KTLEN
-- should produce correct scores for three knowledges with different instruction lengths → F-KTLEN/F-KTLEN-R006
+- should score 1.0 for instructions exactly at soft limit of 70 weighted chars → FEAT-KTLEN/F-KTLEN-R005
+- should score 1.0 for instructions of 30 weighted chars within soft limit → FEAT-KTLEN/F-KTLEN-R006
+- should score 0.5 for instructions of 71 weighted chars just above soft limit → FEAT-KTLEN/F-KTLEN-R005
+- should score 0.5 for instructions exactly at hard limit of 100 weighted chars → FEAT-KTLEN/F-KTLEN-R005
+- should score 0.5 for instructions of 85 weighted chars between soft and hard limits → FEAT-KTLEN/F-KTLEN-R006
+- should score 0.0 for instructions of 101 weighted chars just above hard limit → FEAT-KTLEN/F-KTLEN-R005
+- should score 0.0 for instructions of 200 weighted chars well above hard limit → FEAT-KTLEN/F-KTLEN-R006
+- should use weighted character length not plain string length for scoring instructions → FEAT-KTLEN/F-KTLEN-R005/F-KTLEN-J003
+- should return knowledge-instructions-length as analyzer name → FEAT-KTLEN/F-KTLEN-R008
+- should return KNOWLEDGE as audit target → FEAT-KTLEN/F-KTLEN-R008
+- should score 1.0 for knowledge with null instructions → FEAT-KTLEN/F-KTLEN-R006
+- should score 1.0 for knowledge with empty instructions → FEAT-KTLEN/F-KTLEN-R006
+- should score 1.0 for instructions exactly at soft limit of 70 chars → FEAT-KTLEN/F-KTLEN-R005
+- should score 1.0 for instructions of 30 chars within soft limit → FEAT-KTLEN/F-KTLEN-R006
+- should score 0.5 for instructions of 71 chars just above soft limit → FEAT-KTLEN/F-KTLEN-R005
+- should score 0.5 for instructions exactly at hard limit of 100 chars → FEAT-KTLEN/F-KTLEN-R005
+- should score 0.5 for instructions of 85 chars between soft and hard limits → FEAT-KTLEN/F-KTLEN-R006
+- should score 0.0 for instructions of 101 chars just above hard limit → FEAT-KTLEN/F-KTLEN-R005
+- should score 0.0 for instructions of 200 chars well above hard limit → FEAT-KTLEN/F-KTLEN-R006
+- should complete without error when onQuiz is called → FEAT-KTLEN/F-KTLEN-R008
+- should complete without error when onMilestone is called → FEAT-KTLEN/F-KTLEN-R008
+- should complete without error when onTopic is called → FEAT-KTLEN/F-KTLEN-R008
+- should complete without error when onCourseComplete is called → FEAT-KTLEN/F-KTLEN-R008
+- should produce correct scores for three knowledges with different instruction lengths → FEAT-KTLEN/F-KTLEN-R006
 
 ### SentenceLengthAnalyzer (audit-domain)
 
-- should exclude quiz when milestoneId is null → F-SLEN/F-SLEN-R001
-- should exclude quiz when milestoneId is non-numeric → F-SLEN/F-SLEN-R001
-- should exclude quiz when no target range configured for level → F-SLEN/F-SLEN-R012
-- should score only sentence quizzes when processing mixed knowledge types → F-SLEN/F-SLEN-R001
-- should return sentence-length as analyzer name → F-SLEN
-- should return QUIZ as audit target → F-SLEN
-- should score 1.0 for quiz within A1 range → F-SLEN/F-SLEN-R002
-- should score 0.75 for quiz 1 token above A1 max → F-SLEN/F-SLEN-R002
-- should score 0.25 for quiz 3 tokens below A1 min → F-SLEN/F-SLEN-R002
-- should score 1.0 for quiz exactly at A1 minimum boundary → F-SLEN/F-SLEN-R002
-- should score 1.0 for quiz exactly at A1 maximum boundary → F-SLEN/F-SLEN-R002
-- should score 0.0 for quiz 4 tokens above A1 max at tolerance boundary → F-SLEN/F-SLEN-R009
-- should exclude non-sentence knowledge quiz from results → F-SLEN/F-SLEN-R001
-- should score 1.0 for B2 level quiz within range → F-SLEN/F-SLEN-R012
-- should score 0.0 for quiz exactly at tolerance boundary → F-SLEN/F-SLEN-R009
-- should score 0.5 for quiz 2 tokens above A1 max → F-SLEN/F-SLEN-R002
-- should complete without error when onTopic is called → F-SLEN
-- should complete without error when onCourseComplete is called → F-SLEN
-- should produce correct scores for full milestone-knowledge-quiz sequence → F-SLEN/F-SLEN-R002
-- should exclude non-sentence quizzes from scoring → F-SLEN/F-SLEN-R001
+- should exclude quiz when milestoneId is null → FEAT-SLEN/F-SLEN-R001
+- should exclude quiz when milestoneId is non-numeric → FEAT-SLEN/F-SLEN-R001
+- should exclude quiz when no target range configured for level → FEAT-SLEN/F-SLEN-R012
+- should score only sentence quizzes when processing mixed knowledge types → FEAT-SLEN/F-SLEN-R001
+- should return sentence-length as analyzer name → FEAT-SLEN/F-SLEN-R001
+- should return QUIZ as audit target → FEAT-SLEN/F-SLEN-R001
+- should score 1.0 for quiz within A1 range → FEAT-SLEN/F-SLEN-R002
+- should score 0.75 for quiz 1 token above A1 max → FEAT-SLEN/F-SLEN-R002
+- should score 0.25 for quiz 3 tokens below A1 min → FEAT-SLEN/F-SLEN-R002
+- should score 1.0 for quiz exactly at A1 minimum boundary → FEAT-SLEN/F-SLEN-R002
+- should score 1.0 for quiz exactly at A1 maximum boundary → FEAT-SLEN/F-SLEN-R002
+- should score 0.0 for quiz 4 tokens above A1 max at tolerance boundary → FEAT-SLEN/F-SLEN-R009
+- should exclude non-sentence knowledge quiz from results → FEAT-SLEN/F-SLEN-R001
+- should score 1.0 for B2 level quiz within range → FEAT-SLEN/F-SLEN-R012
+- should score 0.0 for quiz exactly at tolerance boundary → FEAT-SLEN/F-SLEN-R009
+- should score 0.5 for quiz 2 tokens above A1 max → FEAT-SLEN/F-SLEN-R002
+- should complete without error when onTopic is called → FEAT-SLEN/F-SLEN-R001
+- should complete without error when onCourseComplete is called → FEAT-SLEN/F-SLEN-R001
+- should produce correct scores for full milestone-knowledge-quiz sequence → FEAT-SLEN/F-SLEN-R002
+- should exclude non-sentence quizzes from scoring → FEAT-SLEN/F-SLEN-R001
 
 ### SentenceLengthContextResolver (refiner-domain)
 
@@ -167,20 +167,20 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 
 ### CourseToAuditableMapper (audit-application)
 
-- Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse → F-NLP/F-NLP-R010
-- Given a course with no milestones, when map is called, then returns an AuditableCourse without error → F-NLP/F-NLP-R010
-- Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates → F-NLP/F-NLP-R008
+- Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse → FEAT-NLP/F-NLP-R010
+- Given a course with no milestones, when map is called, then returns an AuditableCourse without error → FEAT-NLP/F-NLP-R010
+- Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates → FEAT-NLP/F-NLP-R008
 
 ### DefaultAuditRunner (audit-application)
 
-- Given a valid course path, when runAudit is called, then returns the audit report from the full chain → F-CLI/F-CLI-R001/F-CLI-J001
-- Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path → F-CLI/F-CLI-R001
-- Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity → F-CLI/F-CLI-R001
-- Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course → F-CLI/F-CLI-R001
-- Given courseRepository throws an exception, when runAudit is called, then the exception propagates → F-CLI/F-CLI-R001
-- Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates → F-CLI/F-CLI-R001
-- Given contentAudit throws an exception, when runAudit is called, then the exception propagates → F-CLI/F-CLI-R001
-- Given a course with no milestones, when runAudit is called, then returns the report from contentAudit → F-CLI/F-CLI-R001
+- Given a valid course path, when runAudit is called, then returns the audit report from the full chain → FEAT-CLI/F-CLI-R001/F-CLI-J001
+- Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path → FEAT-CLI/F-CLI-R001
+- Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity → FEAT-CLI/F-CLI-R001
+- Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course → FEAT-CLI/F-CLI-R001
+- Given courseRepository throws an exception, when runAudit is called, then the exception propagates → FEAT-CLI/F-CLI-R001
+- Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates → FEAT-CLI/F-CLI-R001
+- Given contentAudit throws an exception, when runAudit is called, then the exception propagates → FEAT-CLI/F-CLI-R001
+- Given a course with no milestones, when runAudit is called, then returns the report from contentAudit → FEAT-CLI/F-CLI-R001
 
 ### DefaultLemmaAbsenceConfig (audit-application)
 
@@ -272,5 +272,5 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 
 ### FileSystemAuditReportStore (audit-infrastructure)
 
-- should save an AuditReport and load it back with identical content → FEAT-STORE/F-STORE-R001
+- should save an AuditReport and load it back with identical content
 

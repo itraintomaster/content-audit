@@ -1,0 +1,20 @@
+code: FEAT-REVBYP
+description: Remove 6 duplicate root-level implementations from revision-domain; keep
+  only the package-scoped versions inside the 'engine' package to resolve sentinel
+  generate conflicts.
+modules:
+- name: revision-domain
+  implementations:
+  - name: IdentityReviser
+    _change: delete
+  - name: AutoApproveValidator
+    _change: delete
+  - name: DefaultRevisionValidatorResult
+    _change: delete
+  - name: DispatchingReviser
+    _change: delete
+  - name: DefaultCourseElementLocator
+    _change: delete
+  - name: DefaultRevisionEngine
+    _change: delete
+  _change: modify

@@ -28,6 +28,8 @@ Returns a compact summary of every module: name, description, dependsOn, allowed
 
 ```bash
 java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar tool listModules --root .
+# With coverage annotations (for QA / test-writer workflows):
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar tool listModules --with-coverage --root .
 ```
 
 **Output format:**
@@ -56,6 +58,8 @@ java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core
   implementations: BookingAdapter (implements BookingService)
   tests: 6
 ```
+
+**With `--with-coverage`** the output additionally includes, per module, an `untestedImplementations:` block listing impls with uncovered interface methods (or flagged as `NO TESTS`), plus a final `## coverage` section mapping every feature → rules / journeys / paths to `[covered]` or `[uncovered]`. Use this when you need to decide which rules or journeys still need test coverage.
 
 ### inspectModule
 
@@ -104,4 +108,6 @@ java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core
 | Exploring packages within a module | `inspectModule` (shows full YAML including packages) |
 | Need full picture minus test noise | `readArchitectureNoTests` |
 | Need test definitions (QA agent) | `inspectModule --include-tests` |
+| Find uncovered rules / journeys / paths | `listModules --with-coverage` |
+| Identify implementations with uncovered methods | `listModules --with-coverage` |
 | Need raw sentinel.yaml | `Read sentinel.yaml` (last resort) |

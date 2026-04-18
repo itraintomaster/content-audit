@@ -38,10 +38,13 @@ packages:
   - name: string              # lowercase Java identifier (e.g., "analyzers", "validation")
     description: string        # What this package is responsible for
     visibility: public|internal|private  # Default: internal
+    allowedClients: [string]   # Optional: narrow a public package to a specific list of consumer modules
     models: [Model]            # Models in this package
     interfaces: [Interface]    # Interfaces in this package
     implementations: [Implementation]  # Implementations in this package
 ```
+
+**`allowedClients` on a package** — only meaningful when `visibility: "public"`. Narrows the public package's reach from "every module that can see the owning module" down to the listed modules. Generates an additional ArchUnit rule. Use this when one module exposes multiple public packages but each is meant for a different consumer (e.g., an `api` package consumed only by the CLI, a `spi` package consumed only by plugin authors).
 
 **Visibility:**
 - `public` — Accessible from any module (exported API of this module)
@@ -77,6 +80,26 @@ packages:
         requiresInject:
           - { name: "discountRepository", type: "DiscountRepository" }
 ```
+
+**Relocate (cross-scope move).** Moving an element from the module root into a package (or between packages) is **not** a primitive — it is `_change: "delete"` at the old scope plus `_change: "add"` at the new scope, in the same patch:
+
+```yaml
+modules:
+  - name: "domain"
+    _change: "modify"
+    implementations:
+      - name: "OrderAnalyzer"
+        _change: "delete"          # remove from module root
+    packages:
+      - name: "analyzers"
+        _change: "modify"           # or "add" if the package is new
+        implementations:
+          - name: "OrderAnalyzer"
+            _change: "add"          # re-add at the new location
+            implements: ["Analyzer"]
+```
+
+Merge-by-name is **scoped**: a root-level `OrderAnalyzer` and `analyzers.OrderAnalyzer` are distinct entries. `patch propose` does not detect duplicate-name collisions across scopes — the conflict only surfaces at `sentinel generate` time. Always emit the delete + add pair explicitly when relocating.
 
 ## Model
 
@@ -232,3 +255,84 @@ patterns:
 - Sequence diagrams capture ALL execution paths (flows through injected interfaces are visible; flows through locally instantiated classes are not)
 - The architecture is explicit about what operations exist
 - Tests can target each path independently through the contract
+
+## Visibility Toolbox
+
+Two orthogonal axes govern every visibility decision:
+
+- **Java visibility** (public class vs. package-private) — controlled by `visibility` on interfaces and implementations.
+- **Cross-module accessibility** (JPMS-style qualified exports) — controlled by `visibility` on packages and `allowedClients` on modules **or packages**.
+
+A type can be a `public` class in Java but unreachable from another module if its package is `internal`. Both axes must be considered for every public-facing declaration.
+
+| Concern | Tool | Element | Default | Values |
+|---------|------|---------|---------|--------|
+| Which modules can depend on this module | `allowedClients: [module]` | module | open to all | list of modules |
+| Which modules can reach a public package (per-package gate) | `allowedClients: [module]` | package | open to all that can see the module | list of modules |
+| Is this package reachable from other modules | `visibility` | package | `internal` | `public` / `internal` / `private` |
+| Can sibling packages in the same module access it | `visibility: "private"` | package | — | `private` forbids even the module root |
+| Is this type a public class in Java | `visibility` | implementation | `internal` (package-private) | `public` / `internal` |
+| Is this type a public interface in Java | `visibility` | interface | `public` | `public` / `internal` |
+| Which methods of the interface are callable | `exposes: [signature]` | interface | all listed | explicit subset |
+| Who may implement this interface | `sealed: true` + permits | interface | open | sealed + permits list |
+| How does outside code construct instances without seeing the constructor | `stereotype: "factory"` + `patterns: [Factory]` | interface + module | — | declarative |
+| What sealed / marker types does a model belong to | `implements: [Interface]` | model | none | list (sealed hierarchies, marker types) |
+
+## Common Patterns
+
+One-line summaries. See the architect agent's **Pattern Catalog** for full shape, when-to-apply criteria, and canonical examples.
+
+- **Public Port, Hidden Adapter** — public interface at module root + package-private implementation in a restricted package. Default for hexagonal modules with a single adapter.
+- **Factory Seam** — `stereotype: "factory"` interface in module root + one public implementation inside an internal package whose other members are package-private.
+- **Config Record** — public record collecting wiring inputs; nullable optional fields, required mandatory fields. Pair with Factory Seam when wiring takes >3–4 inputs.
+- **Strategy Registry by Key** — `Map<Key, Strategy>` injected into a dispatcher with a fallback strategy. Use when the plugin point is indexed by a runtime value.
+- **Sealed Polymorphism** — `sealed: true` interface with explicit permits. Closed set, compiler exhaustiveness, no plugin need.
+- **Module Façade** — module exposes exactly one interface plus its factory; everything else internal. Single-purpose infrastructural modules.
+- **Internal Utility Package** — `visibility: "private"` package containing support types the module root cannot access.
+- **Qualified Export** — `allowedClients: [consumer-module]` on a module **or** on a `public` package, scoping the surface to a specific consumer. Use the package-level form to expose different parts of one module to different consumers.
+
+## Factory Seam — Worked Example
+
+The factory seam is the canonical mechanism for hiding a graph of collaborators behind a single one-call instantiation point. It assembles four pieces consistently:
+
+1. A `stereotype: "factory"` interface in the **module root** (cross-module surface).
+2. A `patterns: [{type: Factory, ...}]` declaration in the module (binds factory to product).
+3. A `visibility: "internal"` package containing the engine's internals.
+4. **One** `visibility: "public"` implementation in that package (the seam) plus several package-private collaborators around it.
+
+```yaml
+modules:
+  - name: "nlp-infrastructure"
+    description: "NLP tokenization adapter"
+    interfaces:
+      - name: "NlpTokenizerFactory"
+        stereotype: "factory"
+        exposes:
+          - signature: "create(NlpConfig config): NlpTokenizer"
+      - name: "NlpTokenizer"
+        exposes:
+          - signature: "tokenize(String text): List<Token>"
+    models:
+      - name: "NlpConfig"        # Config Record — public carrier
+        fields:
+          - { name: "language", type: "String" }
+          - { name: "modelPath", type: "String" }
+    patterns:
+      - type: "Factory"
+        interface: "NlpTokenizerFactory"
+        implementations: ["SpacyNlpTokenizerFactory"]
+    packages:
+      - name: "spacy"
+        visibility: "internal"          # engine hidden from other modules
+        implementations:
+          - name: "SpacyNlpTokenizerFactory"
+            visibility: "public"          # the one seam — public class
+            implements: ["NlpTokenizerFactory"]
+          - name: "SpacyTokenizer"        # collaborator — package-private
+            implements: ["NlpTokenizer"]
+          - name: "SpacyModelLoader"      # collaborator — package-private
+            requiresInject:
+              - { name: "config", type: "NlpConfig" }
+```
+
+**Why this works:** External modules see exactly two interfaces (`NlpTokenizerFactory`, `NlpTokenizer`) plus the `NlpConfig` carrier. They cannot import `SpacyTokenizer` or `SpacyModelLoader` (same-package only). They cannot construct a `SpacyNlpTokenizerFactory` from the wrong place — the package is `internal`. The composition root calls `new SpacyNlpTokenizerFactory().create(config)`; everyone else asks for `NlpTokenizerFactory` by injection. P2, P4, and P5 are all satisfied by this single shape.

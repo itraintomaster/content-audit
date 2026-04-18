@@ -61,10 +61,10 @@ public IAuditEngine(List<ContentAnalyzer> contentAnalyzers, ScoreAggregator scor
 
 **Tests that must pass:** 4
 
-- should score 0.5 for title of weighted length 28.5 [F-KTLEN/F-KTLEN-R003]
-- should score 0.0 for title of weighted length 29 [F-KTLEN/F-KTLEN-R003]
-- should score 0.0 for title of weighted length 35 [F-KTLEN/F-KTLEN-R003]
-- should score 0.0 for title well beyond limit at weighted length 70 [F-KTLEN/F-KTLEN-R003]
+- should score 0.5 for title of weighted length 28.5 [FEAT-KTLEN/F-KTLEN-R003]
+- should score 0.0 for title of weighted length 29 [FEAT-KTLEN/F-KTLEN-R003]
+- should score 0.0 for title of weighted length 35 [FEAT-KTLEN/F-KTLEN-R003]
+- should score 0.0 for title well beyond limit at weighted length 70 [FEAT-KTLEN/F-KTLEN-R003]
 
 #### KnowledgeInstructionsLengthAnalyzer
 
@@ -74,14 +74,14 @@ public IAuditEngine(List<ContentAnalyzer> contentAnalyzers, ScoreAggregator scor
 
 **Tests that must pass:** 8
 
-- should score 1.0 for instructions exactly at soft limit of 70 weighted chars [F-KTLEN/F-KTLEN-R005]
-- should score 1.0 for instructions of 30 weighted chars within soft limit [F-KTLEN/F-KTLEN-R006]
-- should score 0.5 for instructions of 71 weighted chars just above soft limit [F-KTLEN/F-KTLEN-R005]
-- should score 0.5 for instructions exactly at hard limit of 100 weighted chars [F-KTLEN/F-KTLEN-R005]
-- should score 0.5 for instructions of 85 weighted chars between soft and hard limits [F-KTLEN/F-KTLEN-R006]
-- should score 0.0 for instructions of 101 weighted chars just above hard limit [F-KTLEN/F-KTLEN-R005]
-- should score 0.0 for instructions of 200 weighted chars well above hard limit [F-KTLEN/F-KTLEN-R006]
-- should use weighted character length not plain string length for scoring instructions [F-KTLEN/F-KTLEN-R005]
+- should score 1.0 for instructions exactly at soft limit of 70 weighted chars [FEAT-KTLEN/F-KTLEN-R005]
+- should score 1.0 for instructions of 30 weighted chars within soft limit [FEAT-KTLEN/F-KTLEN-R006]
+- should score 0.5 for instructions of 71 weighted chars just above soft limit [FEAT-KTLEN/F-KTLEN-R005]
+- should score 0.5 for instructions exactly at hard limit of 100 weighted chars [FEAT-KTLEN/F-KTLEN-R005]
+- should score 0.5 for instructions of 85 weighted chars between soft and hard limits [FEAT-KTLEN/F-KTLEN-R006]
+- should score 0.0 for instructions of 101 weighted chars just above hard limit [FEAT-KTLEN/F-KTLEN-R005]
+- should score 0.0 for instructions of 200 weighted chars well above hard limit [FEAT-KTLEN/F-KTLEN-R006]
+- should use weighted character length not plain string length for scoring instructions [FEAT-KTLEN/F-KTLEN-R005]
 
 #### SentenceLengthAnalyzer
 

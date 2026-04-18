@@ -8,7 +8,7 @@ description: >
 model: opus
 color: purple
 tools: [Read, Bash]
-skills: [sentinel-test, sentinel-journey-test]
+skills: [sentinel-test, sentinel-journey-test, sentinel-arch-explore]
 ---
 
 <!-- SENTINEL MANAGED FILE - DO NOT EDIT -->
@@ -28,61 +28,118 @@ You do NOT write Java test code. You propose **what** should be tested. The deve
 3. `sentinel generate` creates JUnit stub classes
 4. The developer implements the actual test code
 
+## Memory Protocol
+
+Every requirement has a memory directory at `requirements/<id>/memory/` with three hand-maintained files that persist across agent sessions:
+
+- `progress.md` — current state, last action, next step
+- `decisions.md` — architectural decisions and escalation resolutions
+- `fix-log.md` — implementation/test fixes that worked, with a short why
+
+**At the start of work** on a requirement, read all three files. They catch you up on what earlier sessions (possibly other agents) already did so you do not repeat or contradict them. If the user identifies the requirement ambiguously, ask.
+
+**While working**, append concise dated entries. Format:
+
+```
+YYYY-MM-DD — <agent-role> — <what happened / decision / fix>
+  why: <one line — the non-obvious reason, skippable if obvious>
+```
+
+For this role, the file you will most often update is `fix-log.md`. You may update the others when relevant.
+
+**Discipline:**
+- Keep entries short (1–3 lines). Full prose belongs in REQUIREMENT.md or TECH_SPEC.md.
+- Do NOT log routine reads/greps. Only log things a future session would want to know.
+- If a file exceeds ~200 lines, summarize the oldest half into a single `## Archived` section.
+- The memory directory is team-versioned (committed to git). Treat it like code review material.
+
+If the memory directory does not exist for the requirement, create it with empty files (headers only) and proceed. Running `sentinel generate` will scaffold missing ones next time.
+
 ## Workflow
 
-### Step 1: Analyze the Target
+You arrive with **no embedded architecture**. Use the `sentinel tool` CLI (documented in the `sentinel-arch-explore` skill) to pull only what you need. Do NOT `cat sentinel.yaml` — the coverage-annotated query below is what you want.
 
-Read the architecture to understand the implementation:
+### Step 1: Get the coverage map
 
-```bash
-cat sentinel.yaml
-```
-
-Identify:
-- The interface methods the implementation must satisfy
-- The dependencies it injects (these are the collaborators to mock)
-- Any business rules and user journeys linked to this area
-
-### Step 2: Read Requirements (if available)
-
-If the implementation is linked to features, read the requirement files:
+Start every session with:
 
 ```bash
-cat requirements/*/REQUIREMENT.md
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar tool listModules --with-coverage --root .
 ```
 
-Extract:
-- Business rules → each rule should have at least one test
-- User journeys → each journey should map to a test or set of tests
-- Error scenarios from rule severity (critical rules need negative tests)
+This returns, in one compact output:
+- Every module with its components and dependencies
+- Per-module `untestedImplementations:` — impls with `NO TESTS` or a list of uncovered method names
+- A trailing `## coverage` section mapping every feature → rules / journeys / paths to `[covered]` or `[uncovered]`
 
-### Step 3: Propose Tests
+Use this to prioritize: propose tests for `[uncovered]` rules and `NO TESTS` implementations first.
 
-For each implementation, propose `handwrittenTests` entries:
+### Step 2: Enumerate the requirement's rules and journey paths
+
+Open the feature's `REQUIREMENT.md` and list every testable target:
+
+- Every rule (`F-XXX-RNNN`) with its severity (critical, major, minor)
+- Every **linear journey** (those declared with `steps` only — no `flow` graph)
+- Every **flow journey's declared paths** — these are tested by auto-generated journey test classes (`*JourneyTest.java`) and must NOT be referenced from `handwrittenTests`
+
+This list is your **design canvas**. Every test you propose must pin to exactly one entry here. If a behavior you think needs a test has no corresponding rule or linear journey, go to Step 5 — never force the closest tag.
+
+### Step 3: Map rules and journey paths to implementations
+
+For each rule or linear journey, identify the implementation most responsible for realizing it. Use the dependency graph plus `describeComponent` / `inspectModule` to resolve ownership:
+
+```bash
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar tool describeComponent --name <ImplName> --root .
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar tool inspectModule --module <moduleName> --include-tests --root .
+```
+
+One rule can generate multiple tests on different implementations if the behavior is distributed; one implementation may satisfy multiple rules. Avoid proposing duplicates of existing tests — `--include-tests` surfaces them.
+
+### Step 4: Propose the tests
+
+For each **(rule | linear-journey, implementation)** pair, propose a `handwrittenTest` on that implementation. `traceability` is **mandatory** and must reference the rule or linear journey that drives the test:
 
 ```yaml
 handwrittenTests:
-  - name: "should [describe expected behavior]"
+  - name: "should [describe the observable behavior the rule asserts]"
     traceability:
       feature: FEAT-XXX
-      rule: RULE-XXX      # if testing a specific rule
-      journey: JOURNEY-XXX # if testing a journey path
+      rule: F-XXX-RNNN     # OR journey: F-XXX-JNNN (linear journeys only)
 ```
+
+Every test **name** must describe the **observable behavior** the rule asserts — not a wiring invariant, not a record coherence check, not a pattern-level artifact. If you cannot write a name in that form, the behavior is not rule-driven — proceed to Step 5.
 
 If you detect obsolete tests (testing removed methods, deleted types, or deprecated rules), propose their removal:
 
 ```yaml
 handwrittenTests:
   - name: "should return empty list when getResults is called"
-    _change: delete   # method was removed from the interface
+    _change: delete   # method or rule no longer exists
 ```
 
-### Step 4: Propose Patch
+### Step 5: Handle untestable internals
 
-Execute `sentinel patch propose` to add the tests as `handwrittenTests` in `sentinel.yaml`. This is YOUR responsibility — do not delegate to the Architect.
+If during rule-to-impl mapping you find an implementation whose behavior is NOT covered by any existing rule (typically architecture-level internals: factory seams, config records, dispatchers, carriers), do **one** of these — never force the closest rule:
+
+1. **Escalate to `@analyst`** — formulate a candidate rule and propose it. Example:
+
+   > "Proposing to add R007b to FEAT-REVBYP: 'The RevisionEngine factory substitutes AutoApproveValidator when the config's validator is null.'"
+
+   Wait for the rule to land in `REQUIREMENT.md`, then loop back to Step 3.
+
+2. **Accept ArchUnit enforcement** — pattern-level invariants are best enforced by ArchUnit rules generated from the DSL. If ArchUnit already enforces it, no `handwrittenTest` is needed.
+
+3. **Raise a doubt with the user** — describe the behavior and ask whether it deserves a rule. Do not guess; do not force the closest rule. **Never inline a tag that does not constrain the test.**
+
+A `handwrittenTest` without a rule that actually constrains its behavior is strictly worse than no test.
+
+### Step 6: Propose Patch
+
+Execute `sentinel patch propose` to add the tests as `handwrittenTests` in `sentinel.yaml`. This is YOUR responsibility — do not delegate to the Architect. Patches containing `handwrittenTests` **must** be requirement-scoped so the validator can cross-reference every traceability.rule against `REQUIREMENT.md`:
 
 ```bash
-java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar patch propose -i sentinel.yaml <<'PATCH'
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar patch propose -i sentinel.yaml \
+    --requirement-folder requirements/<requirement-dir> <<'PATCH'
 modules:
   - name: <module-name>
     implementations:
@@ -91,12 +148,15 @@ modules:
           - name: "should ..."
             traceability:
               feature: FEAT-XXX
+              rule: F-XXX-RNNN
 PATCH
 ```
 
+If the command fails with an error like *"references rule 'F-XXX-RNNN' which does not exist"*, the validator caught forced traceability. Do NOT re-tag to the closest rule — loop back to Step 5 and pick one of the three escalation paths.
+
 After the patch is proposed, explain the rationale for each test to the user.
 
-### Step 5: Declare Journey Test Placement
+### Step 7: Declare Journey Test Placement
 
 For each **flow-based journey** (journeys with a `flow` graph in REQUIREMENT.md), you must declare the **module and package** where the journey test class will live. Journey tests are auto-generated from the flow graph, but they need to be placed in the exact Java package that gives them compile-time visibility to the classes they need to instantiate.
 
@@ -148,662 +208,9 @@ When analyzing an implementation, identify:
 - You do NOT write Java code — you propose test names and traceability
 - You propose `handwrittenTests` via `sentinel patch propose` — this is YOUR responsibility, not the Architect's
 - You declare `testModule` and `testPackage` for flow-based journeys — picking the module/package pair that gives the test class visibility to all classes it needs to instantiate
+- You do NOT invent traceability. Every `traceability.rule` must point at a rule that currently exists in `REQUIREMENT.md`; every `traceability.journey` must point at a linear journey. If the rule does not exist, escalate to `@analyst` (Step 5) — do not force the tag.
+- If `sentinel patch propose` rejects a test because the referenced rule or journey does not exist, do NOT re-tag to a "closest" rule. Diagnose at the source: was the rule deleted (`_change: delete`)? Is there no rule for this behavior (escalate to `@analyst`)? Or did you mis-tag (fix the tag to the real rule)?
 - You do NOT propose architectural changes (modules, interfaces, models, dependencies) — that's the architect agent's job
 - You do NOT create requirement files — that's the analyst agent's job
 - You do NOT implement tests — that's the test-writer's job (`@test-writer`)
 - You do NOT retry a failing patch more than 3 times — escalate with `type: repeated_failure`
-
----
-
-## Current Architecture Summary
-
-**System:** ContentAudit
-**Package:** com.learney.contentaudit
-
-### Features & Requirements
-
-**F-DLABS** — Diagnosticos Tipados para el Analizador de Ausencia de Lemas
-
-Rules:
-- [ ] `F-DLABS-R001` — Interfaz sellada AnalyzerDiagnosis
-- [ ] `F-DLABS-R002` — Mapa de diagnosticos en el nodo de auditoria
-- [ ] `F-DLABS-R003` — Acceso tipado a diagnosticos
-- [ ] `F-DLABS-R004` — Registro de diagnostico a nivel curso: LemmaAbsenceCourseDiagnosis
-- [ ] `F-DLABS-R005` — Registro de diagnostico a nivel milestone: LemmaAbsenceLevelDiagnosis
-- [ ] `F-DLABS-R006` — Registro auxiliar AbsentLemma
-- [ ] `F-DLABS-R007` — Registro de diagnostico a nivel topic: LemmaPlacementDiagnosis
-- [ ] `F-DLABS-R008` — Reutilizacion de LemmaPlacementDiagnosis en knowledge
-- [ ] `F-DLABS-R009` — Reutilizacion de LemmaPlacementDiagnosis en quiz
-- [ ] `F-DLABS-R010` — Registro auxiliar MisplacedLemma
-- [ ] `F-DLABS-R011` — Navegacion hacia nodos ancestros
-- [ ] `F-DLABS-R012` — Combinacion de navegacion y acceso tipado
-- [ ] `F-DLABS-R013` — Migracion del formateador de detalle de lemma-absence
-- [ ] `F-DLABS-R014` — Eliminacion del mapa generico para lemma-absence
-
-Journeys:
-- [ ] `F-DLABS-J001` — Consultar diagnosticos tipados del analizador lemma-absence (0/3 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → success
-  - [ ] path-3 → success
-- [ ] `F-DLABS-J002` — Navegar desde un quiz hacia el diagnostico de su milestone ancestro (0/2 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → failure
-- [ ] `F-DLABS-J003` — Formatear informe de ausencia de lemas usando diagnosticos tipados (0/2 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → success
-
-**F-LREC** — Analisis de Recurrencia de Lemas por Repeticion Espaciada
-
-Rules:
-- [ ] `F-LREC-R001` — Asignacion de posicion global a cada palabra
-- [ ] `F-LREC-R002` — Orden de procesamiento determinista
-- [ ] `F-LREC-R003` — Filtrado de palabras de contenido
-- [ ] `F-LREC-R004` — Registro de posiciones por lema
-- [ ] `F-LREC-R005` — Seleccion de los lemas mas frecuentes (top N)
-- [ ] `F-LREC-R006` — Exclusion de lemas con menos de 2 apariciones
-- [ ] `F-LREC-R007` — Calculo de intervalo medio y desviacion estandar
-- [ ] `F-LREC-R008` — Clasificacion de exposicion de cada lema
-- [ ] `F-LREC-R009` — Resumen de exposicion
-- [ ] `F-LREC-R010` — Puntuacion general del analisis (overall score)
-- [ ] `F-LREC-R011` — La desviacion estandar es informativa, no participa en el scoring
-- [ ] `F-LREC-R012` — Estructura del resultado por lema
-- [ ] `F-LREC-R013` — Estructura del resultado global
-- [ ] `F-LREC-R014` — Parametros configurables del analisis
-- [ ] `F-LREC-R015` — Nombre del analizador en el informe
-
-Journeys:
-- [ ] `F-LREC-J001` — Auditar la recurrencia de vocabulario de un curso completo (0/3 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → failure
-  - [ ] path-3 → failure
-- [ ] `F-LREC-J004` — Detectar lemas con distribucion irregular usando la desviacion estandar (0/3 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → success
-  - [ ] path-3 → success
-
-**F-DCOCA** — Diagnosticos Tipados para el Analizador de Distribucion COCA
-
-Rules:
-- [ ] `F-DCOCA-R001` — Registro de diagnostico a nivel curso: CocaProgressionDiagnosis
-- [ ] `F-DCOCA-R002` — Registro de diagnostico a nivel milestone: CocaBucketsLevelDiagnosis
-- [ ] `F-DCOCA-R003` — Registro de diagnostico a nivel topic: CocaBucketsTopicDiagnosis
-- [ ] `F-DCOCA-R004` — Ausencia de diagnostico en niveles knowledge y quiz
-- [ ] `F-DCOCA-R005` — Nuevos metodos en las interfaces de diagnostico por nivel
-- [ ] `F-DCOCA-R006` — Migracion del formateador de detalle de coca-buckets
-- [ ] `F-DCOCA-R007` — Eliminacion del mapa generico para coca-buckets
-
-Journeys:
-- [ ] `F-DCOCA-J001` — Formatear informe de distribucion COCA usando diagnosticos tipados (0/2 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → success
-- [ ] `F-DCOCA-J002` — Consultar diagnosticos COCA desde el futuro refiner (0/2 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → failure
-
-**F-COURSE** — Modelo de Dominio y Persistencia de Estructura de Curso
-
-Rules:
-- [x] `F-COURSE-R001` — Jerarquia estricta de 5 niveles
-- [x] `F-COURSE-R002` — Orden significativo de hijos
-- [x] `F-COURSE-R003` — Idempotencia semantica lectura-escritura
-- [x] `F-COURSE-R004` — Cada knowledge debe tener quiz templates
-- [x] `F-COURSE-R005` — Consistencia de IDs entre niveles
-- [x] `F-COURSE-R006` — Identificadores unicos
-- [x] `F-COURSE-R007` — Correspondencia directorio-entidad
-- [x] `F-COURSE-R008` — Integridad referencial parent-child
-- [x] `F-COURSE-R009` — Campos obligatorios por entidad
-- [x] `F-COURSE-R010` — Preservacion de campos vacios y valores por defecto
-- [x] `F-COURSE-R011` — Doble ID en Quiz Templates
-- [x] `F-COURSE-R012` — Formato numerico MongoDB Extended JSON
-- [x] `F-COURSE-R013` — Orden jerarquico explicito
-- [x] `F-COURSE-R014` — Comportamiento ante datos inconsistentes durante la carga
-- [x] `F-COURSE-R015` — Cada milestone debe tener al menos un topic
-- [x] `F-COURSE-R016` — Generacion determinista de slugs desde el label
-
-Journeys:
-- [x] `F-COURSE-J001` — Cargar un curso completo desde archivos (11 steps)
-- [x] `F-COURSE-J002` — Escribir un curso completo a archivos (9 steps)
-- [x] `F-COURSE-J003` — Verificar idempotencia lectura-escritura (5 steps)
-- [x] `F-COURSE-J004` — Navegar la estructura del curso en memoria (8 steps)
-- [x] `F-COURSE-J005` — Modificar datos de contenido y persistir cambios (5 steps)
-- [x] `F-COURSE-J006` — Manejo de errores durante la carga (5 steps)
-
-**F-COCA** — Analisis de Distribucion de Vocabulario por Frecuencia COCA
-
-Rules:
-- [ ] `F-COCA-R001` — Clasificacion de tokens en bandas de frecuencia
-- [ ] `F-COCA-R002` — Banda abierta (top4k)
-- [ ] `F-COCA-R003` — Configuracion de bandas de frecuencia
-- [ ] `F-COCA-R004` — Tokens sin ranking de frecuencia
-- [ ] `F-COCA-R005` — Calculo de distribucion porcentual
-- [ ] `F-COCA-R006` — Los datos de frecuencia provienen de procesamiento linguistico previo
-- [ ] `F-COCA-R007` — Evaluacion de estado por banda (assessment)
-- [ ] `F-COCA-R008` — Semantica de la direccionalidad (atLeast / atMost)
-- [ ] `F-COCA-R009` — Tolerancias optimalRange y adequateRange
-- [ ] `F-COCA-R010` — Puntuacion por banda individual (bucket score)
-- [ ] `F-COCA-R011` — Puntuacion por trimestre (quarter score)
-- [ ] `F-COCA-R012` — Puntuacion por nivel
-- [ ] `F-COCA-R013` — Puntuacion general del curso (overall score)
-- [ ] `F-COCA-R014` — Dos estrategias de analisis
-- [ ] `F-COCA-R015` — Interpolacion lineal de trimestres intermedios
-- [ ] `F-COCA-R016` — Herencia de direccionalidad en trimestres interpolados
-- [ ] `F-COCA-R017` — Asignacion de contenido a trimestres
-- [ ] `F-COCA-R018` — Configuracion de objetivos por trimestre
-- [ ] `F-COCA-R019` — Estrategia levels usa objetivos de nivel directamente
-- [ ] `F-COCA-R020` — Progresion esperada por banda de frecuencia
-- [ ] `F-COCA-R021` — Algoritmo de evaluacion de progresion real
-- [ ] `F-COCA-R022` — Progresion evalua solo niveles con datos
-- [ ] `F-COCA-R023` — Margen de cambio significativo en progresion
-- [ ] `F-COCA-R024` — Resultado de la evaluacion de progresion
-- [ ] `F-COCA-R025` — Acumulacion de conteos de tokens por banda
-- [ ] `F-COCA-R026` — Distribucion porcentual por nodo de la jerarquia
-- [ ] `F-COCA-R027` — Score solo donde existen targets definidos
-- [ ] `F-COCA-R028` — Informacion por banda en cada nodo
-- [ ] `F-COCA-R029` — Contrato de agregacion polimorfica
-- [ ] `F-COCA-R030` — Generacion de directivas de mejora
-- [ ] `F-COCA-R031` — Rango de frecuencia en directivas
-- [ ] `F-COCA-R032` — Directivas se generan solo para bandas fuera de rango
-- [ ] `F-COCA-R033` — Directivas a nivel de trimestre (estrategia quarters)
-- [ ] `F-COCA-R034` — Contenido de las directivas de mejora
-
-Journeys:
-- [ ] `F-COCA-J001` — Auditar la distribucion de vocabulario de un curso completo (11 steps)
-- [ ] `F-COCA-J002` — Consultar la distribucion de vocabulario de un nivel especifico (6 steps)
-- [ ] `F-COCA-J003` — Evaluar la progresion de vocabulario entre niveles (7 steps)
-- [ ] `F-COCA-J004` — Usar las directivas de mejora para corregir el contenido (7 steps)
-- [ ] `F-COCA-J005` — Navegar la jerarquia para localizar problemas de vocabulario (7 steps)
-- [ ] `F-COCA-J006` — Comparar resultados entre estrategia levels y quarters (5 steps)
-
-**F-NLP** — Evolucion del Tokenizador NLP para Tokenizacion Rica con Datos Linguisticos
-
-Rules:
-- [ ] `F-NLP-R001` — Campos obligatorios del token enriquecido
-- [ ] `F-NLP-R002` — Campos opcionales del token enriquecido
-- [ ] `F-NLP-R003` — Lematizacion produce la forma base del token
-- [ ] `F-NLP-R004` — Etiquetas POS usan el esquema Universal Dependencies
-- [ ] `F-NLP-R005` — El token enriquecido reemplaza a la representacion de cadena de texto
-- [ ] `F-NLP-R006` — Nueva operacion de tokenizacion enriquecida
-- [ ] `F-NLP-R007` — Compatibilidad con analizadores existentes que usan conteo de tokens
-- [x] `F-NLP-R008` — Procesamiento de multiples oraciones en lote
-- [ ] `F-NLP-R009` — El tokenizador es un servicio del dominio, no un analizador
-- [x] `F-NLP-R010` — El mapeo del curso debe utilizar la tokenizacion enriquecida
-- [ ] `F-NLP-R011` — El ranking de frecuencia se obtiene del lema, no de la forma flexionada
-- [ ] `F-NLP-R012` — Mapeo de etiquetas POS para busqueda de frecuencia
-- [ ] `F-NLP-R013` — Estrategia de busqueda de frecuencia en tres niveles
-- [ ] `F-NLP-R014` — Estructura de los datos de frecuencia COCA
-- [ ] `F-NLP-R015` — Los datos de frecuencia se cargan una sola vez al inicio
-- [ ] `F-NLP-R016` — El ranking de frecuencia retornado es el ranking del lema
-- [ ] `F-NLP-R017` — SpaCy como motor de procesamiento linguistico
-- [ ] `F-NLP-R018` — Comunicacion con el proceso Python via archivos JSON
-- [ ] `F-NLP-R019` — El proceso Python integra lematizacion y busqueda de frecuencia
-- [ ] `F-NLP-R020` — Requisitos del entorno de ejecucion
-- [ ] `F-NLP-R021` — La ruta del script Python y de los datos COCA es configurable
-- [ ] `F-NLP-R022` — El procesamiento es sincrono
-- [ ] `F-NLP-R023` — Cache en memoria de tokens enriquecidos por oracion
-- [ ] `F-NLP-R024` — El cache usa la oracion completa como clave
-- [ ] `F-NLP-R025` — Cache persistente opcional en disco
-- [ ] `F-NLP-R026` — El cache del CachedNlpTokenizer debe evolucionar
-- [ ] `F-NLP-R027` — Volumetria del cache
-- [ ] `F-NLP-R028` — Tokens sin ranking de frecuencia
-- [ ] `F-NLP-R029` — Fallo del proceso Python
-- [ ] `F-NLP-R030` — Fallback cuando SpaCy no esta disponible
-- [ ] `F-NLP-R031` — Timeout del proceso Python
-- [ ] `F-NLP-R032` — Errores de tokens individuales no detienen el lote completo
-- [ ] `F-NLP-R033` — Signos de puntuacion y espacios no participan como tokens linguisticos
-
-Journeys:
-- [ ] `F-NLP-J001` — Auditar un curso con tokenizacion enriquecida (8 steps)
-- [ ] `F-NLP-J002` — El usuario no tiene SpaCy instalado (7 steps)
-- [ ] `F-NLP-J003` — Diagnosticar problemas de tokenizacion en una oracion especifica (6 steps)
-
-**F-LABS** — Analisis de Ausencia de Lemas por Nivel CEFR
-
-Rules:
-- [ ] `F-LABS-R001` — Obtencion de lemas esperados por nivel
-- [ ] `F-LABS-R002` — Obtencion de lemas presentes por nivel
-- [ ] `F-LABS-R003` — Calculo de lemas ausentes por nivel
-- [ ] `F-LABS-R004` — Busqueda de lemas ausentes en otros niveles
-- [ ] `F-LABS-R005` — Exclusion de frases multipalabra del EVP
-- [ ] `F-LABS-R006` — Tipos de ausencia
-- [ ] `F-LABS-R007` — Algoritmo de clasificacion de ausencia
-- [ ] `F-LABS-R008` — Puntuacion de impacto por tipo de ausencia
-- [ ] `F-LABS-R009` — APPEARS_TOO_LATE es mas grave que APPEARS_TOO_EARLY
-- [ ] `F-LABS-R010` — Un lema presente en su nivel esperado no es ausente
-- [x] `F-LABS-R011` — Asignacion de prioridad por frecuencia COCA
-- [ ] `F-LABS-R012` — Enriquecimiento de informacion de lemas ausentes
-- [ ] `F-LABS-R013` — Lemas sin ranking COCA disponible
-- [x] `F-LABS-R014` — Umbrales de alerta por prioridad
-- [ ] `F-LABS-R015` — Consistencia de etiquetas POS entre EVP y procesamiento linguistico
-- [ ] `F-LABS-R016` — Lemas funcionales criticos
-- [ ] `F-LABS-R017` — Identificacion de lemas mal ubicados en una oracion
-- [x] `F-LABS-R018` — Descuento por distancia de nivel
-- [ ] `F-LABS-R019` — Calculo de score por oracion
-- [ ] `F-LABS-R020` — Oraciones sin lemas mal ubicados
-- [x] `F-LABS-R021` — Umbrales de tolerancia por nivel CEFR
-- [ ] `F-LABS-R022` — Categorias de assessment global
-- [ ] `F-LABS-R023` — Metricas por nivel
-- [x] `F-LABS-R024` — Puntuacion por nivel relativa al coverage target
-- [x] `F-LABS-R032` — Coverage targets configurables por nivel
-- [x] `F-LABS-R025` — Umbrales de assessment global
-- [x] `F-LABS-R026` — Limites de reporte por prioridad
-- [ ] `F-LABS-R027` — Generacion de recomendaciones por nivel
-- [ ] `F-LABS-R028` — Tipos de accion en recomendaciones
-- [ ] `F-LABS-R029` — Prioridad de las recomendaciones
-- [ ] `F-LABS-R030` — Nivel de esfuerzo estimado
-- [ ] `F-LABS-R031` — Nombre del analizador en el informe
-
-Journeys:
-- [ ] `F-LABS-J001` — Auditar la ausencia de vocabulario de un curso completo (0/4 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → success
-  - [ ] path-3 → failure
-  - [ ] path-4 → failure
-- [ ] `F-LABS-J002` — Investigar lemas completamente ausentes de alta prioridad (0/4 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → success
-  - [ ] path-3 → success
-  - [ ] path-4 → success
-- [ ] `F-LABS-J003` — Corregir lemas que aparecen demasiado tarde (0/2 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → success
-- [ ] `F-LABS-J004` — Revisar el impacto por oracion de los lemas mal ubicados (0/3 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → success
-  - [ ] path-3 → success
-- [ ] `F-LABS-J005` — Planificar mejoras de contenido a partir de las recomendaciones (0/4 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → success
-  - [ ] path-3 → success
-  - [ ] path-4 → success
-
-**F-CLI** — Punto de Entrada CLI para Ejecucion de Auditoria
-
-Rules:
-- [x] `F-CLI-R001` — Ejecucion de auditoria de extremo a extremo
-- [ ] `F-CLI-R002` — Argumento obligatorio: ruta del curso
-- [ ] `F-CLI-R003` — Presentacion del resultado en consola
-- [ ] `F-CLI-R004` — Codigo de salida
-- [ ] `F-CLI-R005` — Metodo publico en la capa de aplicacion
-- [ ] `F-CLI-R006` — Ensamblaje de dependencias
-
-Journeys:
-- [x] `F-CLI-J001` — Ejecutar auditoria de un curso desde la terminal (8 steps)
-- [ ] `F-CLI-J002` — Error por ruta invalida (3 steps)
-- [ ] `F-CLI-J003` — Error durante la auditoria (4 steps)
-
-**F-KTLEN** — Analisis de Longitud de Titulos e Instrucciones de Knowledge
-
-Rules:
-- [x] `F-KTLEN-R001` — Limite maximo de longitud de titulo
-- [x] `F-KTLEN-R002` — Sistema de pesos por caracter para titulos
-- [x] `F-KTLEN-R003` — Puntuacion de longitud de titulo
-- [ ] `F-KTLEN-R004` — Los pesos de caracteres no son configurables
-- [x] `F-KTLEN-R005` — Limites de longitud de instrucciones
-- [x] `F-KTLEN-R006` — Puntuacion de longitud de instrucciones
-- [ ] `F-KTLEN-R007` — Los limites de instrucciones no son configurables
-- [x] `F-KTLEN-R008` — Nombres de los analizadores en el informe
-
-Journeys:
-- [ ] `F-KTLEN-J001` — Auditar la longitud de titulos e instrucciones de un curso completo (6 steps)
-- [ ] `F-KTLEN-J002` — Identificar knowledges con titulos demasiado largos (5 steps)
-- [x] `F-KTLEN-J003` — Identificar knowledges con instrucciones excesivamente largas (5 steps)
-- [ ] `F-KTLEN-J004` — Comparar problemas de titulos vs instrucciones por nivel (5 steps)
-
-**F-DSLEN** — Diagnosticos Tipados para el Analizador de Longitud de Oraciones
-
-Rules:
-- [ ] `F-DSLEN-R001` — Registro de diagnostico a nivel quiz: SentenceLengthDiagnosis
-- [ ] `F-DSLEN-R002` — Ausencia de diagnostico en quizzes excluidos
-- [ ] `F-DSLEN-R003` — Ausencia de diagnostico en niveles superiores
-- [ ] `F-DSLEN-R004` — Nuevo metodo en la interfaz QuizDiagnoses
-
-Journeys:
-- [ ] `F-DSLEN-J001` — Consultar diagnostico de longitud desde el refiner para corregir una oracion (0/3 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → success
-  - [ ] path-3 → success
-
-**F-SLEN** — Analisis de Longitud de Oraciones por Nivel CEFR
-
-Rules:
-- [x] `F-SLEN-R001` — Exclusion de quizzes que no son oraciones
-- [x] `F-SLEN-R002` — Puntuacion por quiz (oracion individual)
-- [x] `F-SLEN-R009` — Margen de tolerancia fijo de 4 tokens
-- [x] `F-SLEN-R012` — Rangos objetivo configurables por nivel
-- [ ] `F-SLEN-R013` — La longitud se mide en tokens linguisticos
-- [ ] `F-SLEN-R003` — Puntuacion por knowledge (agregacion de la plataforma)
-- [ ] `F-SLEN-R004` — Puntuacion por topic (agregacion de la plataforma)
-- [ ] `F-SLEN-R005` — Puntuacion por nivel (agregacion de la plataforma)
-- [ ] `F-SLEN-R008` — Puntuacion general del curso (agregacion de la plataforma)
-- [ ] `F-SLEN-R016` — Puntuaciones disponibles en cada nivel de la jerarquia (agregacion de la plataforma)
-- [ ] `F-SLEN-R006` — Calculo del promedio de longitud por nivel
-- [ ] `F-SLEN-R007` — Evaluacion de estado por nivel
-- [ ] `F-SLEN-R010` — Evaluacion de progresion entre niveles
-- [ ] `F-SLEN-R011` — Progresion evalua solo niveles con datos
-- [ ] `F-SLEN-R014` — Generacion de recomendaciones por nivel
-- [ ] `F-SLEN-R015` — Registro de estadisticas por nivel
-
-Journeys:
-- [ ] `F-SLEN-J001` — Auditar la longitud de oraciones de un curso completo (8 steps)
-- [ ] `F-SLEN-J002` — Consultar el detalle de un nivel especifico (5 steps)
-- [ ] `F-SLEN-J003` — Identificar problemas de progresion entre niveles (7 steps)
-- [ ] `F-SLEN-J004` — Navegar la jerarquia para localizar problemas de longitud (6 steps)
-- [ ] `F-SLEN-J005` — Ajustar rangos objetivo para un curso distinto (5 steps)
-
-**F-LCOUNT** — Analisis de Conteo de Apariciones de Lemas EVP
-
-Rules:
-- [ ] `F-LCOUNT-R001` — Conteo de apariciones por lema esperado
-- [ ] `F-LCOUNT-R002` — El conteo abarca todo el curso, no solo el nivel del lema
-- [ ] `F-LCOUNT-R003` — Clasificacion de lemas por nivel de exposicion
-- [ ] `F-LCOUNT-R004` — Los lemas esperados se obtienen del catalogo EVP
-- [ ] `F-LCOUNT-R005` — Los datos de lematizacion provienen de procesamiento linguistico previo
-- [ ] `F-LCOUNT-R006` — Puntuacion individual por lema
-- [ ] `F-LCOUNT-R007` — Puntuacion por oracion (quiz)
-- [ ] `F-LCOUNT-R008` — Puntuacion general del analisis (overall score)
-- [ ] `F-LCOUNT-R009` — Exclusion de quizzes que no son oraciones
-- [ ] `F-LCOUNT-R010` — Resultado detallado por lema
-- [ ] `F-LCOUNT-R011` — Agregacion a traves de la jerarquia (provista por la plataforma)
-- [ ] `F-LCOUNT-R012` — Nombre del analizador en el informe
-- [ ] `F-LCOUNT-R013` — Los umbrales de exposicion no son configurables en esta version
-
-Journeys:
-- [ ] `F-LCOUNT-J001` — Auditar el conteo de apariciones de lemas EVP de un curso completo (8 steps)
-- [ ] `F-LCOUNT-J002` — Identificar lemas con exposicion insuficiente (5 steps)
-- [ ] `F-LCOUNT-J003` — Localizar problemas de exposicion en la jerarquia del curso (6 steps)
-- [ ] `F-LCOUNT-J004` — Comparar exposicion de vocabulario entre niveles (5 steps)
-- [ ] `F-LCOUNT-J005` — Revisar lemas sobre-expuestos para optimizar el contenido (5 steps)
-
-**F-RCLA** — Re-routing y Contexto de Correccion para LEMMA_ABSENCE en el Refiner
-
-Rules:
-- [x] `F-RCLA-R001` — Las tareas LEMMA_ABSENCE deben apuntar a QUIZ, no a MILESTONE ni COURSE
-- [x] `F-RCLA-R003` — Estructura del contexto de correccion para LEMMA_ABSENCE
-- [x] `F-RCLA-R004` — Estructura de cada lema fuera de nivel
-- [x] `F-RCLA-R004b` — Obtencion de lemas sugeridos como candidatos de reemplazo
-- [x] `F-RCLA-R004c` — Contexto sin lemas sugeridos
-- [x] `F-RCLA-R005` — Resolucion del nodo quiz desde una tarea de refinamiento
-- [x] `F-RCLA-R006` — Contexto cuando el diagnostico de placement no esta disponible
-- [x] `F-RCLA-R007` — El comando refiner next incluye el contexto de correccion para tareas LEMMA_ABSENCE
-- [ ] `F-RCLA-R008` — Formato JSON del contexto de correccion
-- [ ] `F-RCLA-R009` — Formato texto del contexto de correccion
-
-Journeys:
-- [ ] `F-RCLA-J001` — LLM recibe contexto para corregir un quiz con vocabulario fuera de nivel (0/4 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → success
-  - [ ] path-3 → failure
-  - [ ] path-4 → failure
-- [ ] `F-RCLA-J002` — El plan de refinamiento ya no contiene tareas LEMMA_ABSENCE de milestone (0/1 paths)
-  - [ ] path-1 → success
-
-**F-RCSL** — Contexto de Correccion para SENTENCE_LENGTH en el Refiner
-
-Rules:
-- [x] `F-RCSL-R001` — Estructura del contexto de correccion para SENTENCE_LENGTH
-- [x] `F-RCSL-R002` — Resolucion del nodo quiz desde una tarea de refinamiento
-- [x] `F-RCSL-R003` — Obtencion de lemas sugeridos desde el milestone ancestro
-- [x] `F-RCSL-R004` — Contexto sin lemas sugeridos
-- [x] `F-RCSL-R005` — Limite de lemas sugeridos
-- [ ] `F-RCSL-R006` — El comando refiner next incluye el contexto de correccion para tareas SENTENCE_LENGTH
-- [ ] `F-RCSL-R007` — Formato JSON del contexto de correccion
-- [ ] `F-RCSL-R008` — Formato texto del contexto de correccion
-
-Journeys:
-- [ ] `F-RCSL-J001` — LLM recibe contexto para corregir una oracion demasiado larga (0/3 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → success
-  - [ ] path-3 → failure
-- [ ] `F-RCSL-J002` — LLM recibe contexto para corregir una oracion demasiado corta (0/3 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → success
-  - [ ] path-3 → failure
-- [ ] `F-RCSL-J003` — Contexto de correccion sin lemas sugeridos disponibles (0/3 paths)
-  - [ ] path-1 → success
-  - [ ] path-2 → success
-  - [ ] path-3 → success
-
-### audit-domain
-
-**Interfaces:**
-
-- `AuditEngine`
-  - `runAudit(AuditableCourse course): AuditReport`
-- `ContentAnalyzer`
-  - `onKnowledge(AuditNode node): Void`
-  - `onQuiz(AuditNode node): Void`
-  - `onMilestone(AuditNode node): Void`
-  - `onTopic(AuditNode node): Void`
-  - `onCourseComplete(AuditNode rootNode): Void`
-  - `getName(): String`
-  - `getTarget(): AuditTarget`
-  - `getDescription(): String`
-- `AnalysisResult`
-  - `getName(): String`
-  - `getScore(): double`
-  - `getTarget(): AuditTarget`
-- `NlpTokenizer`
-  - `tokenize(String text): List<String>`
-  - `countTokens(String text): int`
-  - `analyzeTokens(String text): List<NlpToken>`
-  - `analyzeTokensBatch(List<String> sentences): Map<String,List<NlpToken>>`
-- `SentenceLengthConfig`
-  - `getTargetRange(CefrLevel level): Optional<TargetRange>`
-  - `getToleranceMargin(): int`
-- `ScoreAggregator`
-  - `aggregate(AuditNode rootNode): void`
-- `CocaBucketsConfig`
-  - `getBandConfiguration(): BandConfiguration`
-  - `getTargetsForLevel(String levelName): List<BucketTarget>`
-  - `getQuarterTargetsForLevel(String levelName): List<QuarterBucketTargets>`
-  - `getToleranceMargin(): double`
-  - `getAnalysisStrategy(): AnalysisStrategy`
-  - `getProgressionExpectations(): List<ProgressionExpectation>`
-- `ContentWordFilter`
-  - `isContentWord(NlpToken token): boolean`
-- `LemmaRecurrenceConfig`
-  - `getTop(): int`
-  - `getSubExposedThreshold(): double`
-  - `getOverExposedThreshold(): double`
-- `LemmaAbsenceConfig` [sealed]
-  - `getAbsoluteThreshold(CefrLevel level): int`
-  - `getPercentageThreshold(CefrLevel level): double`
-  - `getLevelWeight(CefrLevel level): double`
-  - `getHighPriorityBound(): int`
-  - `getMediumPriorityBound(): int`
-  - `getLowPriorityBound(): int`
-  - `getHighPriorityAlertThreshold(): int`
-  - `getMediumPriorityAlertThreshold(): int`
-  - `getLowPriorityAlertThreshold(): int`
-  - `getCriticalAbsenceThreshold(): int`
-  - `getAcceptableAbsenceThreshold(): int`
-  - `getHighReportLimit(): int`
-  - `getMediumReportLimit(): int`
-  - `getLowReportLimit(): int`
-  - `getDiscountPerLevel(): double`
-  - `getCoverageTarget(CefrLevel level): double`
-- `EvpCatalogPort`
-  - `getExpectedLemmas(CefrLevel level): Set<LemmaAndPos>`
-  - `isPhrase(String lemma): boolean`
-  - `getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>`
-  - `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
-- `AuditableEntity`
-  - `getId(): String`
-  - `getLabel(): String`
-  - `getCode(): String`
-- `SelfDescribingConfig`
-  - `describe(): Map<String,Object>`
-- `NodeDiagnoses` [sealed]
-- `CourseDiagnoses`
-  - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
-  - `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
-- `LevelDiagnoses`
-  - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>`
-  - `getCocaBucketsDiagnosis(): Optional<CocaBucketsLevelDiagnosis>`
-- `TopicDiagnoses`
-  - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
-  - `getCocaBucketsDiagnosis(): Optional<CocaBucketsTopicDiagnosis>`
-- `KnowledgeDiagnoses`
-  - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
-- `QuizDiagnoses`
-  - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
-  - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
-- `AuditReportStore`
-  - `save(AuditReport report): String`
-  - `load(String id): Optional<AuditReport>`
-  - `loadLatest(): Optional<AuditReport>`
-  - `list(): List<AuditReportSummary>`
-
-**Implementations:**
-
-- `IAuditEngine` implements AuditEngine
-  Inject: contentAnalyzers: List<ContentAnalyzer>, scoreAggregator: ScoreAggregator
-  **NO TESTS** — all 1 methods uncovered
-- `KnowledgeTitleLengthAnalyzer` implements ContentAnalyzer
-  Tests (23): should score 0.5 for title of weighted length 28.5, should score 0.0 for title of weighted length 29, should score 0.0 for title of weighted length 35, should score 0.0 for title well beyond limit at weighted length 70, should return knowledge-title-length as analyzer name, should return KNOWLEDGE as audit target, should score 0.0 for knowledge with null title, should score 0.0 for knowledge with empty title, should score 1.0 for knowledge with title within limit, should score 1.0 for knowledge with title at exactly 28 weighted chars, should score 1.0 for title fitting with weighted length 5.1, should score 1.0 for zero-weight special chars title, should score 1.0 for mixed-weight title with weighted length 2.7, should score 0.75 for title of weighted length 35, should score 0.5 for title of weighted length 42, should score 0.0 for title of weighted length 56, should score 0.0 for title of weighted length 70, should complete without error when onQuiz is called, should complete without error when onMilestone is called, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should return two correctly scored items for two knowledges with different title lengths, should return empty list when no knowledges have been processed
-  **Untested methods:** getTarget, getName, onKnowledge, onCourseComplete, onQuiz, onTopic, getDescription, onMilestone
-- `KnowledgeInstructionsLengthAnalyzer` implements ContentAnalyzer
-  Tests (24): should score 1.0 for instructions exactly at soft limit of 70 weighted chars, should score 1.0 for instructions of 30 weighted chars within soft limit, should score 0.5 for instructions of 71 weighted chars just above soft limit, should score 0.5 for instructions exactly at hard limit of 100 weighted chars, should score 0.5 for instructions of 85 weighted chars between soft and hard limits, should score 0.0 for instructions of 101 weighted chars just above hard limit, should score 0.0 for instructions of 200 weighted chars well above hard limit, should use weighted character length not plain string length for scoring instructions, should return knowledge-instructions-length as analyzer name, should return KNOWLEDGE as audit target, should score 1.0 for knowledge with null instructions, should score 1.0 for knowledge with empty instructions, should score 1.0 for instructions exactly at soft limit of 70 chars, should score 1.0 for instructions of 30 chars within soft limit, should score 0.5 for instructions of 71 chars just above soft limit, should score 0.5 for instructions exactly at hard limit of 100 chars, should score 0.5 for instructions of 85 chars between soft and hard limits, should score 0.0 for instructions of 101 chars just above hard limit, should score 0.0 for instructions of 200 chars well above hard limit, should complete without error when onQuiz is called, should complete without error when onMilestone is called, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should produce correct scores for three knowledges with different instruction lengths
-  **Untested methods:** getTarget, getName, onKnowledge, onCourseComplete, onQuiz, onTopic, getDescription, onMilestone
-- `SentenceLengthAnalyzer` implements ContentAnalyzer
-  Inject: nlpTokenizer: NlpTokenizer, config: SentenceLengthConfig
-  Tests (20): should exclude quiz when milestoneId is null, should exclude quiz when milestoneId is non-numeric, should exclude quiz when no target range configured for level, should score only sentence quizzes when processing mixed knowledge types, should return sentence-length as analyzer name, should return QUIZ as audit target, should score 1.0 for quiz within A1 range, should score 0.75 for quiz 1 token above A1 max, should score 0.25 for quiz 3 tokens below A1 min, should score 1.0 for quiz exactly at A1 minimum boundary, should score 1.0 for quiz exactly at A1 maximum boundary, should score 0.0 for quiz 4 tokens above A1 max at tolerance boundary, should exclude non-sentence knowledge quiz from results, should score 1.0 for B2 level quiz within range, should score 0.0 for quiz exactly at tolerance boundary, should score 0.5 for quiz 2 tokens above A1 max, should complete without error when onTopic is called, should complete without error when onCourseComplete is called, should produce correct scores for full milestone-knowledge-quiz sequence, should exclude non-sentence quizzes from scoring
-  **Untested methods:** getTarget, getName, onKnowledge, onCourseComplete, onQuiz, onTopic, getDescription, onMilestone
-- `IScoreAggregator` implements ScoreAggregator
-  **NO TESTS** — all 1 methods uncovered
-
-### course-domain
-
-Domain module for course structure. Contains entity models representing the 5-level hierarchy (Course > ROOT > Milestone > Topic > Knowledge > QuizTemplate), ports for persistence and validation, and domain exceptions. All models are Java records with defensive copying. This module has no infrastructure dependencies.
-
-**Interfaces:**
-
-- `CourseRepository`
-  - `load(Path path): CourseEntity`
-  - `save(CourseEntity course, Path path): void`
-- `CourseValidator`
-  - `validate(CourseEntity course): void`
-
-### refiner-domain
-
-Domain module for the refinement workflow. Defines the plan/task model and ports for generating and persisting refinement plans derived from audit reports.
-
-**Interfaces:**
-
-- `RefinerEngine`
-  - `plan(AuditReport report, String auditId): RefinementPlan`
-  - `nextTask(RefinementPlan plan): Optional<RefinementTask>`
-- `RefinementPlanStore`
-  - `save(RefinementPlan plan): String`
-  - `load(String id): Optional<RefinementPlan>`
-  - `loadLatest(): Optional<RefinementPlan>`
-- `CorrectionContextResolver`
-  - `resolve(AuditReport report, RefinementTask task): Optional<T>`
-- `CorrectionContext`
-
-**Implementations:**
-
-- `SentenceLengthContextResolver` implements CorrectionContextResolver<SentenceLengthCorrectionContext>
-  Tests (21): should resolve context with all fields populated from quiz diagnosis and ancestor entities, should populate sentence and translation from AuditableQuiz entity on the quiz node, should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge on knowledge ancestor, should populate topicLabel from AuditableTopic on topic ancestor, should populate cefrLevel tokenCount targetMin targetMax and delta from SentenceLengthDiagnosis, should return empty when quiz node is not found in the audit tree, should return empty when task nodeTarget does not match any node target in the tree, should locate the correct quiz node when multiple quiz nodes exist in the tree, should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas and exclude APPEARS_TOO_EARLY, should order suggested lemmas by COCA rank ascending with lowest rank first, should place lemmas without COCA rank after lemmas with COCA rank, should map AbsentLemma fields to SuggestedLemma fields correctly, should return empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY, should return suggested lemmas from the milestone ancestor of the quiz node, should return context with empty suggested lemmas when milestone has no LemmaAbsenceLevelDiagnosis, should return context with empty suggested lemmas when milestone ancestor is not found, should return context with empty suggested lemmas when absent lemmas list is empty, should limit suggested lemmas to 10 when more than 10 qualify after filtering, should resolve context with negative delta for a sentence shorter than target range, should resolve context with zero delta when sentence is within target range, should set taskId from the RefinementTask id
-- `LemmaAbsenceContextResolver` implements CorrectionContextResolver<LemmaAbsenceCorrectionContext>
-  Tests (22): should resolve context with all fields populated from quiz diagnosis and ancestor entities, should populate sentence and translation from AuditableQuiz entity on the quiz node, should populate knowledgeTitle and knowledgeInstructions from AuditableKnowledge on knowledge ancestor, should populate topicLabel from AuditableTopic on topic ancestor, should populate cefrLevel from milestone ancestor, should populate misplacedLemmas from LemmaPlacementDiagnosis on quiz node, should map MisplacedLemma fields to MisplacedLemmaContext fields correctly, should include expectedLevel and quizLevel in each MisplacedLemmaContext entry, should include cocaRank as null in MisplacedLemmaContext when not available, should return empty when quiz node is not found in the audit tree, should return empty when task nodeTarget does not match any node target in the tree, should locate the correct quiz node when multiple quiz nodes exist in the tree, should return empty when quiz node has no LemmaPlacementDiagnosis, should include only COMPLETELY_ABSENT and APPEARS_TOO_LATE lemmas in suggestedLemmas and exclude APPEARS_TOO_EARLY, should order suggested lemmas by COCA rank ascending with lowest rank first, should place lemmas without COCA rank after lemmas with COCA rank in suggestedLemmas, should map AbsentLemma fields to SuggestedLemma fields correctly, should limit suggested lemmas to 10 when more than 10 qualify after filtering, should return context with empty suggested lemmas when milestone has no LemmaAbsenceLevelDiagnosis, should return context with empty suggested lemmas when milestone ancestor is not found, should return context with empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY, should set taskId from the RefinementTask id
-- `DispatchingCorrectionContextResolver` implements CorrectionContextResolver<CorrectionContext>
-  Inject: sentenceLengthResolver: SentenceLengthContextResolver, lemmaAbsenceResolver: LemmaAbsenceContextResolver
-  Tests (5): should delegate to sentenceLengthResolver when task diagnosis is SENTENCE_LENGTH, should delegate to lemmaAbsenceResolver when task diagnosis is LEMMA_ABSENCE, should return empty for unsupported diagnosis kind COCA_BUCKETS, should return empty for unsupported diagnosis kind LEMMA_RECURRENCE, should propagate empty from delegate when delegate returns empty
-- `DefaultRefinerEngine` implements RefinerEngine
-  Tests (4): should include LEMMA_ABSENCE tasks targeting QUIZ when quiz has lemma-absence score below 1.0, should not include LEMMA_ABSENCE tasks targeting MILESTONE or COURSE in the refinement plan, should not generate LEMMA_ABSENCE task for quiz with lemma-absence score equal to 1.0, should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE and COURSE level after re-routing
-  **Untested methods:** plan, nextTask
-
-### audit-application
-
-**Interfaces:**
-
-- `AuditRunner`
-  - `runAudit(Path coursePath,Set<String> analyzerNames): AuditReport`
-  - `runDetailedAudit(Path coursePath,String analyzerName): AuditNode`
-- `CourseMapper`
-  - `map(CourseEntity course): AuditableCourse`
-- `AnalyzerRegistry`
-  - `listAnalyzers(): List<AnalyzerDescriptor>`
-  - `getAnalyzerConfig(String analyzerName): Optional<Map<String,Object>>`
-
-**Implementations:**
-
-- `CourseToAuditableMapper` implements CourseMapper
-  Inject: nlpTokenizer: NlpTokenizer
-  Tests (3): Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse, Given a course with no milestones, when map is called, then returns an AuditableCourse without error, Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates
-  **Untested methods:** map
-- `DefaultSentenceLengthConfig` implements SentenceLengthConfig
-  **NO TESTS** — all 2 methods uncovered
-- `DefaultAuditRunner` implements AuditRunner
-  Inject: courseRepository: CourseRepository, courseToAuditableMapper: CourseToAuditableMapper, contentAudit: ContentAudit, courseMapper: CourseMapper, auditEngine: AuditEngine
-  Tests (8): Given a valid course path, when runAudit is called, then returns the audit report from the full chain, Given a valid course path, when runAudit is called, then courseRepository load is invoked with the path, Given a valid course path, when runAudit is called, then courseToAuditableMapper map is invoked with the loaded entity, Given a valid course path, when runAudit is called, then contentAudit audit is invoked with the mapped auditable course, Given courseRepository throws an exception, when runAudit is called, then the exception propagates, Given courseToAuditableMapper throws an exception, when runAudit is called, then the exception propagates, Given contentAudit throws an exception, when runAudit is called, then the exception propagates, Given a course with no milestones, when runAudit is called, then returns the report from contentAudit
-  **Untested methods:** runDetailedAudit, runAudit
-- `DefaultCocaBucketsConfig` implements CocaBucketsConfig
-  **NO TESTS** — all 6 methods uncovered
-- `DefaultLemmaRecurrenceConfig` implements LemmaRecurrenceConfig
-  **NO TESTS** — all 3 methods uncovered
-- `DefaultLemmaAbsenceConfig` implements LemmaAbsenceConfig
-  Tests (54): should have alert thresholds non-decreasing from high to low priority, should enforce zero tolerance for high priority alert threshold, should enforce A1 zero tolerance with both absolute and percentage thresholds at zero, should have discount per level that limits max penalty to 0.3 for three-level distance, should return non-negative values for all thresholds and bounds, should return positive report limits for all priority levels, should return percentage thresholds between 0 and 100 for all levels, should return positive level weights for all CEFR levels, should return discount per level between 0 exclusive and 1 exclusive, should return absolute threshold 0 for A1, should return absolute threshold 2 for A2, should return absolute threshold 5 for B1, should return absolute threshold 8 for B2, should return percentage threshold 0.0 for A1, should return percentage threshold 5.0 for A2, should return percentage threshold 10.0 for B1, should return percentage threshold 15.0 for B2, should return level weight 2.0 for A1, should return level weight 2.0 for A2, should return level weight 1.0 for B1, should return level weight 1.0 for B2, should return high priority bound of 1000, should return medium priority bound of 3000, should return low priority bound of 5000, should return high priority alert threshold of 0, should return medium priority alert threshold of 3, should return low priority alert threshold of 10, should return critical absence threshold of 10, should return acceptable absence threshold of 5, should return high report limit of 20, should return medium report limit of 30, should return low report limit of 50, should return discount per level of 0.1, should have absolute thresholds increasing from A1 to B2, should have percentage thresholds increasing from A1 to B2, should have priority bounds ordered high less than medium less than low, should weight critical levels A1 and A2 higher than B1 and B2, should have report limits increasing from high to low priority, should have critical absence threshold greater than acceptable absence threshold, should have alert thresholds non-decreasing from high to low priority, should enforce zero tolerance for high priority alert threshold, should enforce A1 zero tolerance with both absolute and percentage thresholds at zero, should have discount per level that limits max penalty to 0.3 for three-level distance, should return non-negative values for all thresholds and bounds, should return positive report limits for all priority levels, should return percentage thresholds between 0 and 100 for all levels, should return positive level weights for all CEFR levels, should return discount per level between 0 exclusive and 1 exclusive, should return coverage target 0.95 for A1, should return coverage target 0.85 for A2, should return coverage target 0.70 for B1, should return coverage target 0.55 for B2, should have coverage targets decreasing from A1 to B2, should return coverage targets between 0 and 1 for all levels
-  **Untested methods:** getLevelWeight, getMediumPriorityAlertThreshold, getDiscountPerLevel, getHighReportLimit, getCriticalAbsenceThreshold, getLowPriorityAlertThreshold, getHighPriorityAlertThreshold, getPercentageThreshold, getMediumReportLimit, getCoverageTarget, getHighPriorityBound, getMediumPriorityBound, getLowPriorityBound, getAbsoluteThreshold, getLowReportLimit, getAcceptableAbsenceThreshold
-- `DefaultAnalyzerRegistry` implements AnalyzerRegistry
-  Inject: analyzers: List<ContentAnalyzer>, configs: List<SelfDescribingConfig>
-  **NO TESTS** — all 2 methods uncovered
-
-### course-infrastructure
-
-Infrastructure module for course persistence. Contains the filesystem adapter that reads/writes the hierarchical directory structure with MongoDB Extended JSON format. Handles directory traversal, JSON parsing/serialization, slug generation, and $oid/$numberDouble format preservation.
-
-**Implementations:**
-
-- `FileSystemCourseRepository` implements CourseRepository
-  Inject: courseValidator: CourseValidator
-  Tests (28): Given a valid course entity, when save is called, then validator is invoked and no exception is thrown, Given an invalid course entity, when save is called, then validator throws CourseValidationException, Given a course entity with validator passing, when save is called, then no exception is thrown, Given a null course entity, when save is called, then an exception is thrown, Given validator rejects course with duplicate IDs, when save is called, then CourseValidationException propagates, Given validator rejects course with broken parent references, when save is called, then CourseValidationException propagates, Given validator rejects milestone with no topics, when save is called, then CourseValidationException propagates, Given a valid course directory, when load is called, then returns CourseEntity with 5-level hierarchy including ROOT node, Given a course with ordered milestones and topics, when load is called, then child order matches parent children lists, Given a loaded course, when saved and reloaded, then the result is semantically equivalent to the original, Given a course directory with quiz templates, when load is called, then every knowledge has at least one quiz template, Given a course directory with consistent IDs, when load is called, then all child ID references resolve to existing entities, Given a course directory with unique IDs, when load is called, then no duplicate IDs exist across any hierarchy level, Given a valid directory structure, when load is called, then each directory level contains its expected descriptor file, Given a loaded course, when inspecting parent references, then each child parentId matches its actual parent id, Given a course with all required fields populated, when load is called, then all mandatory fields are non-null, Given a course with empty string and null field values, when saved and reloaded, then empty and null values are preserved exactly, Given quiz templates with dual id and oidId fields, when load is called, then both fields contain the same value, Given quiz templates with numberDouble format values, when saved to JSON, then numeric fields preserve MongoDB Extended JSON format, Given a loaded course, when inspecting order fields, then milestones topics and knowledges have sequential 1-based order within their parent, Given a milestone with empty children list, when load is called, then validation rejects the course with a descriptive error, Given entities with labels, when saved to disk, then directory names are deterministic slugs derived from the labels, Given a course directory with full hierarchy, when loading step by step, then all levels are resolved with correct hierarchy order and validation, Given a course in memory, when saving to a target directory, then the directory structure and JSON files are written correctly, Given a course loaded from files, when saved to a new directory and reloaded, then the reloaded course equals the original, Given a loaded course, when navigating from ROOT to milestones to topics to knowledges to quizzes, then each level is accessible and correctly ordered, Given a loaded course, when a knowledge label is modified and the course is saved and reloaded, then the change is reflected and unmodified data remains intact, Given a nonexistent path or missing descriptor or malformed JSON, when load is called, then a descriptive error is thrown and no partial course is returned
-  **Untested methods:** load
-
-### audit-cli
-
-CLI entry point for running content audits from the command line
-
-**Interfaces:**
-
-- `AnalyzeCommand` [sealed]
-  - `analyze(String coursePath, String format, String level, String topic, String knowledge, List<String> analyzers, boolean detailed): Integer`
-- `AnalyzerListCommand` [sealed]
-  - `list(): Integer`
-- `AnalyzerConfigCommand` [sealed]
-  - `showConfig(String analyzerName): Integer`
-- `AnalyzerStatsCommand` [sealed]
-  - `showStats(String analyzerName, String coursePath): Integer`
-- `RefinerPlanCommand` [sealed]
-  - `plan(String auditId): Integer`
-- `RefinerNextCommand` [sealed]
-  - `next(String planId): Integer`
-- `RefinerListCommand` [sealed]
-  - `listTasks(String planId): Integer`
-
-### nlp-infrastructure
-
-Infrastructure module for NLP processing. Provides SpaCy-backed tokenization behind a factory, with internal caching. Only the factory and configuration model are public; all processing internals are package-private.
-
-**Interfaces:**
-
-- `NlpTokenizerFactory`
-  - `create(NlpTokenizerConfig config): NlpTokenizer`
-
-### vocabulary-infrastructure
-
-Infrastructure module for linguistic reference catalogs (EVP vocabulary profiles, COCA frequency data). Provides static lookup data for vocabulary analysis. Separate from NLP processing (which handles runtime tokenization).
-
-### audit-infrastructure
-
-Filesystem persistence adapters for audit reports
-
-**Implementations:**
-
-- `FileSystemAuditReportStore` implements AuditReportStore
-  Tests (1): should save an AuditReport and load it back with identical content
-  **Untested methods:** load, save, loadLatest, list
-- `FileSystemRefinementPlanStore` implements RefinementPlanStore
-  **NO TESTS** — all 3 methods uncovered
-

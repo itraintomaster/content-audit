@@ -1,0 +1,298 @@
+code: __proposal__
+modules:
+- name: revision-domain
+  packages:
+  - name: engine
+    visibility: internal
+    implementations:
+    - name: DefaultRevisionEngineFactory
+      handwrittenTests:
+      - name: should wire engine with all config fields provided
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R003
+      - name: should substitute AutoApproveValidator when validator is null
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R007
+      - name: should substitute DefaultCourseElementLocator when elementLocator is
+          null
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R011
+      - name: should compose DispatchingReviser with IdentityReviser fallback when
+          revisers map is empty
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R004
+      - name: should register a custom reviser by DiagnosisKind in the dispatcher
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R003
+      - name: should throw when artifactStore is null
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R008
+      - name: should throw when courseRepository is null
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R011
+    - name: DispatchingReviser
+      handwrittenTests:
+      - name: should dispatch to the reviser registered for the task's DiagnosisKind
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R003
+      - name: should fall back to IdentityReviser when no specific reviser handles
+          the DiagnosisKind
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R004
+      - name: handles returns true for any DiagnosisKind when fallback is IdentityReviser
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R004
+      - name: reviserKind of the produced proposal reflects the reviser that handled
+          it
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R001
+    - name: IdentityReviser
+      handwrittenTests:
+      - name: should return a proposal with elementAfter semantically equal to elementBefore
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R002
+      - name: "should produce rationale 'bypass: identity revision'"
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R004
+      - name: handles returns true for every DiagnosisKind
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R004
+      - name: reviserKind returns 'bypass'
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R004
+      - name: "proposal carries taskId, planId, sourceAuditId, diagnosisKind, nodeTarget\
+          \ and nodeId from the task"
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R001
+      - name: proposal generates proposalId as <taskId>-<timestamp>
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R009
+      - name: proposal createdAt is populated with a non-null Instant
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R001
+    - name: AutoApproveValidator
+      handwrittenTests:
+      - name: should always return verdict APPROVED regardless of proposal content
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R007
+      - name: rejectionReason should be empty when verdict is APPROVED
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R007
+    - name: DefaultRevisionValidatorResult
+      handwrittenTests:
+      - name: should expose the verdict passed to the constructor
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R006
+      - name: rejectionReason should be present when verdict is REJECTED
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R006
+      - name: rejectionReason should be empty when verdict is APPROVED
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R006
+    - name: DefaultCourseElementLocator
+      handwrittenTests:
+      - name: snapshot returns a CourseElementSnapshot when nodeTarget=QUIZ and the
+          quiz exists in the course
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R011
+      - name: snapshot returns Optional.empty when nodeTarget=QUIZ and the quiz id
+          is unknown
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R011
+      - name: "snapshot returns Optional.empty for non-QUIZ nodeTarget values (KNOWLEDGE,\
+          \ TOPIC, MILESTONE, COURSE)"
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R011
+      - name: replace returns a CourseEntity with the target quiz swapped by the replacement
+          snapshot
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R011
+      - name: "replace preserves all other quizzes, knowledges, topics and milestones\
+          \ untouched"
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R011
+    - name: DefaultRevisionEngine
+      handwrittenTests:
+      - name: returns CONTEXT_UNAVAILABLE and does not persist artifact when the CorrectionContext
+          cannot be resolved
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R012
+      - name: returns ELEMENT_NOT_FOUND and does not persist artifact when the target
+          node is not present in the course
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R012
+      - name: returns REJECTED and persists the artifact without writing the course
+          when validator rejects
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R012
+      - name: rejected outcome leaves the RefinementTask in its previous status
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R013
+      - name: returns APPROVED_APPLIED and persists artifact then writes course when
+          validator approves and course write succeeds
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R011
+      - name: approved+applied outcome marks the RefinementTask as COMPLETED
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R013
+      - name: persists artifact strictly before invoking CourseRepository.save (R014
+          ordering)
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R014
+      - name: returns APPROVED_APPLY_FAILED and leaves task status unchanged when
+          CourseRepository.save throws after artifact is persisted
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R014
+      - name: artifact produced on rejection has verdict REJECTED and carries rejectionReason
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R010
+      - name: artifact produced on approval has verdict APPROVED and null rejectionReason
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R010
+      - name: "artifact contains the full RevisionProposal (before, after, rationale,\
+          \ reviserKind, timestamps)"
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R010
+- name: audit-infrastructure
+  implementations:
+  - name: FileSystemRevisionArtifactStore
+    handwrittenTests:
+    - name: save writes artifact under .content-audit/revisions/<planId>/<proposalId>
+      traceability:
+        feature: FEAT-REVBYP
+        rule: F-REVBYP-R009
+    - name: save returns the proposalId used as the file name
+      traceability:
+        feature: FEAT-REVBYP
+        rule: F-REVBYP-R008
+    - name: save creates the planId subdirectory if it does not exist
+      traceability:
+        feature: FEAT-REVBYP
+        rule: F-REVBYP-R009
+    - name: load round-trips an artifact saved under the same planId and proposalId
+      traceability:
+        feature: FEAT-REVBYP
+        rule: F-REVBYP-R010
+    - name: load returns Optional.empty when the artifact file does not exist
+      traceability:
+        feature: FEAT-REVBYP
+        rule: F-REVBYP-R010
+    - name: loaded artifact preserves every field of the original RevisionProposal
+        and verdict
+      traceability:
+        feature: FEAT-REVBYP
+        rule: F-REVBYP-R010
+    - name: listByPlan returns all artifacts for the given planId in deterministic
+        order
+      traceability:
+        feature: FEAT-REVBYP
+        rule: F-REVBYP-R009
+    - name: listByPlan returns an empty list when no artifacts exist for the plan
+      traceability:
+        feature: FEAT-REVBYP
+        rule: F-REVBYP-R009
+    - name: concurrent saves for the same taskId produce distinct files via <taskId>-<timestamp>
+        proposalId
+      traceability:
+        feature: FEAT-REVBYP
+        rule: F-REVBYP-R009
+    - name: "artifact written to disk is self-contained (includes proposal, verdict,\
+        \ rejectionReason, outcome)"
+      traceability:
+        feature: FEAT-REVBYP
+        rule: F-REVBYP-R010
+- name: audit-cli
+  packages:
+  - name: commands
+    visibility: internal
+    implementations:
+    - name: RefinerReviseCmd
+      handwrittenTests:
+      - name: should delegate to the injected RevisionEngine.revise with the parsed
+          planId and taskId
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R003
+      - name: should exit with code 0 when outcome kind is APPROVED_APPLIED
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R011
+      - name: should exit with non-zero code when outcome kind is REJECTED
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R012
+      - name: should exit with non-zero code when outcome kind is CONTEXT_UNAVAILABLE
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R005
+      - name: should exit with non-zero code when outcome kind is ELEMENT_NOT_FOUND
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R005
+      - name: should exit with non-zero code when outcome kind is NO_REVISER
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R005
+      - name: should exit with non-zero code when outcome kind is APPROVED_APPLY_FAILED
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R014
+      - name: should print artifact path and outcome summary on APPROVED_APPLIED
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R008
+      - name: should print rejection reason on REJECTED outcome
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R006
+      - name: should print the errorMessage of the RevisionOutcome on every failure
+          outcome
+        traceability:
+          feature: FEAT-REVBYP
+          rule: F-REVBYP-R005
+features:
+- id: FEAT-REVBYP
+  journeys:
+  - id: F-REVBYP-J001
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.engine

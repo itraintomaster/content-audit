@@ -19,6 +19,8 @@ Tests in Sentinel follow a **handwritten stub** model:
 
 ## Declaring Tests in sentinel.yaml
 
+`handwrittenTests` is the declaration mechanism for any test that both needs a generated stub **and** traces to the requirement. Tests that verify internal wiring, record structure, or pattern-level invariants without a rule-level justification do not belong here — see *Traceability rules* below.
+
 Add tests under an implementation's `handwrittenTests` field:
 
 ```yaml
@@ -30,10 +32,11 @@ implementations:
       - { name: paymentGateway, type: PaymentGateway }
     handwrittenTests:
       - name: "should save booking and charge payment"
-        traceability: { feature: FEAT-BOOKING, rule: RULE-PAYMENT }
+        traceability: { feature: FEAT-BOOKING, rule: F-BOOKING-R001 }
       - name: "should reject booking when payment fails"
-        traceability: { feature: FEAT-BOOKING, rule: RULE-PAYMENT-FAIL }
-      - name: "should find booking by id"
+        traceability: { feature: FEAT-BOOKING, rule: F-BOOKING-R002 }
+      - name: "full checkout: select, pay, confirm"
+        traceability: { feature: FEAT-BOOKING, journey: F-BOOKING-J001 }
 ```
 
 ### Fields
@@ -41,10 +44,34 @@ implementations:
 | Field | Required | Description |
 |-------|----------|-------------|
 | `name` | Yes | Descriptive test name (becomes `@DisplayName` and method name) |
-| `traceability` | No | Links to feature/rule/journey for coverage tracking |
+| `traceability` | **Yes** | Links to feature + (rule or linear journey). See *Traceability rules* below. |
 | `className` | No | Override the default class name (default: `{ImplName}Test`) |
 | `methodName` | No | Override the default method name (default: camelCase of name) |
 | `_change` | No | `delete` to remove an obsolete test from the architecture |
+
+### Traceability rules
+
+Every `handwrittenTest` **must** declare `traceability` with one of these shapes:
+
+- `{ feature: FEAT-XXX, rule: F-XXX-RNNN }` — links to a business rule
+- `{ feature: FEAT-XXX, journey: F-XXX-JNNN }` — links to a **linear** journey (declared with `steps` only, no `flow` graph)
+
+Flow-based journeys are tested by auto-generated journey test classes and **must not** be referenced from `handwrittenTests` (see *Flow Journey Traceability* below).
+
+**If a test has no clean trace** to an existing rule or linear journey, do NOT declare it as a `handwrittenTest`. Follow the escalation path in `qa-tester.md`:
+
+1. **Propose a new rule** to `@analyst`, wait for it to land in `REQUIREMENT.md`, then declare the test.
+2. **Accept ArchUnit enforcement** — pattern-level invariants are best enforced by ArchUnit from the DSL.
+3. **Raise a doubt** asking the user whether the behavior deserves a rule.
+
+**Forcing a "closest" rule is prohibited.** Every `traceability.rule` must point at a rule that currently exists in `REQUIREMENT.md`; every `traceability.journey` must point at a linear journey. `sentinel patch propose` and `sentinel generate` reject patches that reference missing features, rules, or journeys — with an error like:
+
+```
+Handwritten test "shouldXxx" on implementation "YyyZzz" references rule
+'F-REVBYP-R099' which does not exist in FEAT-REVBYP (available: F-REVBYP-R001..F-REVBYP-R014).
+```
+
+Resolve by re-tagging to a real rule, removing via `_change: delete`, or asking `@analyst` to add the rule. **Never re-tag to the "closest" rule** to make the validator pass.
 
 ### Removing Obsolete Tests
 

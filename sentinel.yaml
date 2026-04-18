@@ -386,105 +386,108 @@ modules:
       target: KnowledgeTitleLengthAnalyzer
       type: unit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R003
       _change: add
     - name: should score 0.0 for title of weighted length 29
       target: KnowledgeTitleLengthAnalyzer
       type: unit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R003
       _change: add
     - name: should score 0.0 for title of weighted length 35
       target: KnowledgeTitleLengthAnalyzer
       type: unit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R003
       _change: add
     - name: should score 0.0 for title well beyond limit at weighted length 70
       target: KnowledgeTitleLengthAnalyzer
       type: unit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R003
       _change: add
     visibility: public
     handwrittenTests:
     - name: should return knowledge-title-length as analyzer name
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R008
     - name: should return KNOWLEDGE as audit target
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R008
     - name: should score 0.0 for knowledge with null title
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R003
     - name: should score 0.0 for knowledge with empty title
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R003
     - name: should score 1.0 for knowledge with title within limit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R003
     - name: should score 1.0 for knowledge with title at exactly 28 weighted chars
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R001
     - name: should score 1.0 for title fitting with weighted length 5.1
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R002
     - name: should score 1.0 for zero-weight special chars title
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R002
     - name: should score 1.0 for mixed-weight title with weighted length 2.7
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R002
     - name: should score 0.75 for title of weighted length 35
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R003
     - name: should score 0.5 for title of weighted length 42
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R003
     - name: should score 0.0 for title of weighted length 56
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R003
     - name: should score 0.0 for title of weighted length 70
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R003
     - name: should complete without error when onQuiz is called
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R008
     - name: should complete without error when onMilestone is called
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
+        rule: F-KTLEN-R008
     - name: should complete without error when onTopic is called
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
+        rule: F-KTLEN-R008
     - name: should complete without error when onCourseComplete is called
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
+        rule: F-KTLEN-R008
     - name: should return two correctly scored items for two knowledges with different
         title lengths
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R003
     - name: should return empty list when no knowledges have been processed
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R003
     implements:
     - ContentAnalyzer
@@ -495,14 +498,14 @@ modules:
       target: KnowledgeInstructionsLengthAnalyzer
       type: unit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R005
       _change: add
     - name: should score 1.0 for instructions of 30 weighted chars within soft limit
       target: KnowledgeInstructionsLengthAnalyzer
       type: unit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R006
       _change: add
     - name: should score 0.5 for instructions of 71 weighted chars just above soft
@@ -510,7 +513,7 @@ modules:
       target: KnowledgeInstructionsLengthAnalyzer
       type: unit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R005
       _change: add
     - name: should score 0.5 for instructions exactly at hard limit of 100 weighted
@@ -518,7 +521,7 @@ modules:
       target: KnowledgeInstructionsLengthAnalyzer
       type: unit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R005
       _change: add
     - name: should score 0.5 for instructions of 85 weighted chars between soft and
@@ -526,7 +529,7 @@ modules:
       target: KnowledgeInstructionsLengthAnalyzer
       type: unit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R006
       _change: add
     - name: should score 0.0 for instructions of 101 weighted chars just above hard
@@ -534,7 +537,7 @@ modules:
       target: KnowledgeInstructionsLengthAnalyzer
       type: unit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R005
       _change: add
     - name: should score 0.0 for instructions of 200 weighted chars well above hard
@@ -542,7 +545,7 @@ modules:
       target: KnowledgeInstructionsLengthAnalyzer
       type: unit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R006
       _change: add
     - name: should use weighted character length not plain string length for scoring
@@ -550,7 +553,7 @@ modules:
       target: KnowledgeInstructionsLengthAnalyzer
       type: unit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R005
         journey: F-KTLEN-J003
       _change: add
@@ -558,64 +561,68 @@ modules:
     handwrittenTests:
     - name: should return knowledge-instructions-length as analyzer name
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R008
     - name: should return KNOWLEDGE as audit target
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R008
     - name: should score 1.0 for knowledge with null instructions
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R006
     - name: should score 1.0 for knowledge with empty instructions
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R006
     - name: should score 1.0 for instructions exactly at soft limit of 70 chars
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R005
     - name: should score 1.0 for instructions of 30 chars within soft limit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R006
     - name: should score 0.5 for instructions of 71 chars just above soft limit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R005
     - name: should score 0.5 for instructions exactly at hard limit of 100 chars
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R005
     - name: should score 0.5 for instructions of 85 chars between soft and hard limits
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R006
     - name: should score 0.0 for instructions of 101 chars just above hard limit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R005
     - name: should score 0.0 for instructions of 200 chars well above hard limit
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R006
     - name: should complete without error when onQuiz is called
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
+        rule: F-KTLEN-R008
     - name: should complete without error when onMilestone is called
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
+        rule: F-KTLEN-R008
     - name: should complete without error when onTopic is called
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
+        rule: F-KTLEN-R008
     - name: should complete without error when onCourseComplete is called
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
+        rule: F-KTLEN-R008
     - name: should produce correct scores for three knowledges with different instruction
         lengths
       traceability:
-        feature: F-KTLEN
+        feature: FEAT-KTLEN
         rule: F-KTLEN-R006
     implements:
     - ContentAnalyzer
@@ -629,79 +636,83 @@ modules:
     handwrittenTests:
     - name: should exclude quiz when milestoneId is null
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R001
     - name: should exclude quiz when milestoneId is non-numeric
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R001
     - name: should exclude quiz when no target range configured for level
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R012
     - name: should score only sentence quizzes when processing mixed knowledge types
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R001
     - name: should return sentence-length as analyzer name
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
+        rule: F-SLEN-R001
     - name: should return QUIZ as audit target
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
+        rule: F-SLEN-R001
     - name: should score 1.0 for quiz within A1 range
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R002
     - name: should score 0.75 for quiz 1 token above A1 max
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R002
     - name: should score 0.25 for quiz 3 tokens below A1 min
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R002
     - name: should score 1.0 for quiz exactly at A1 minimum boundary
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R002
     - name: should score 1.0 for quiz exactly at A1 maximum boundary
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R002
     - name: should score 0.0 for quiz 4 tokens above A1 max at tolerance boundary
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R009
     - name: should exclude non-sentence knowledge quiz from results
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R001
     - name: should score 1.0 for B2 level quiz within range
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R012
     - name: should score 0.0 for quiz exactly at tolerance boundary
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R009
     - name: should score 0.5 for quiz 2 tokens above A1 max
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R002
     - name: should complete without error when onTopic is called
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
+        rule: F-SLEN-R001
     - name: should complete without error when onCourseComplete is called
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
+        rule: F-SLEN-R001
     - name: should produce correct scores for full milestone-knowledge-quiz sequence
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R002
     - name: should exclude non-sentence quizzes from scoring
       traceability:
-        feature: F-SLEN
+        feature: FEAT-SLEN
         rule: F-SLEN-R001
     implements:
     - ContentAnalyzer
@@ -1113,19 +1124,28 @@ modules:
       - name: "Given a LemmaRecurrenceAnalyzer, when getName is called, then returns\
           \ lemma-recurrence"
         traceability:
-          feature: F-LREC
+          feature: FEAT-LREC
           rule: F-LREC-R015
       - name: "Given a LemmaRecurrenceAnalyzer, when getTarget is called, then returns\
           \ COURSE"
         traceability:
-          feature: F-LREC
+          feature: FEAT-LREC
           rule: F-LREC-R013
       - name: "Given an AuditableKnowledge and AuditContext, when onKnowledge is called,\
           \ then completes without error"
+        traceability:
+          feature: FEAT-LREC
+          rule: F-LREC-R002
       - name: "Given an AuditableTopic and AuditContext, when onTopic is called, then\
           \ completes without error"
+        traceability:
+          feature: FEAT-LREC
+          rule: F-LREC-R002
       - name: "Given an AuditableMilestone and AuditContext, when onMilestone is called,\
           \ then completes without error"
+        traceability:
+          feature: FEAT-LREC
+          rule: F-LREC-R002
       implements:
       - ContentAnalyzer
     - name: DefaultContentWordFilter
@@ -1148,7 +1168,7 @@ modules:
             isPunct: false
         type: unit
         traceability:
-          feature: F-LREC
+          feature: FEAT-LREC
           rule: F-LREC-R003
         assert:
           returns: true
@@ -1170,7 +1190,7 @@ modules:
             isPunct: false
         type: unit
         traceability:
-          feature: F-LREC
+          feature: FEAT-LREC
           rule: F-LREC-R003
         assert:
           returns: true
@@ -1192,7 +1212,7 @@ modules:
             isPunct: false
         type: unit
         traceability:
-          feature: F-LREC
+          feature: FEAT-LREC
           rule: F-LREC-R003
         assert:
           returns: true
@@ -1214,7 +1234,7 @@ modules:
             isPunct: false
         type: unit
         traceability:
-          feature: F-LREC
+          feature: FEAT-LREC
           rule: F-LREC-R003
         assert:
           returns: true
@@ -1236,7 +1256,7 @@ modules:
             isPunct: false
         type: unit
         traceability:
-          feature: F-LREC
+          feature: FEAT-LREC
           rule: F-LREC-R003
         assert:
           returns: false
@@ -1258,7 +1278,7 @@ modules:
             isPunct: true
         type: unit
         traceability:
-          feature: F-LREC
+          feature: FEAT-LREC
           rule: F-LREC-R003
         assert:
           returns: false
@@ -1276,7 +1296,7 @@ modules:
           - "[10, 110]"
         type: unit
         traceability:
-          feature: F-LREC
+          feature: FEAT-LREC
           rule: F-LREC-R007
         assert:
           returns: 100.0
@@ -1289,7 +1309,7 @@ modules:
           - "[0, 100, 200, 300]"
         type: unit
         traceability:
-          feature: F-LREC
+          feature: FEAT-LREC
           rule: F-LREC-R007
         assert:
           returns: 100.0
@@ -1303,7 +1323,7 @@ modules:
           - 100.0
         type: unit
         traceability:
-          feature: F-LREC
+          feature: FEAT-LREC
           rule: F-LREC-R007
         assert:
           returns: 0.0
@@ -1317,7 +1337,7 @@ modules:
           - 100.0
         type: unit
         traceability:
-          feature: F-LREC
+          feature: FEAT-LREC
           rule: F-LREC-R007
         assert:
           returns: 0.0
@@ -1867,27 +1887,27 @@ modules:
           \ and score 1.0"
         traceability:
           feature: FEAT-LABS
-          journey: F-LABS-J001
+          rule: F-LABS-R022
       - name: "full lifecycle: course with completely absent HIGH priority lemmas\
           \ in A1 produces NEEDS_IMPROVEMENT"
         traceability:
           feature: FEAT-LABS
-          journey: F-LABS-J002
+          rule: F-LABS-R022
       - name: "full lifecycle: course with lemmas appearing too late produces INTRODUCE_EARLIER\
           \ recommendations"
         traceability:
           feature: FEAT-LABS
-          journey: F-LABS-J003
+          rule: F-LABS-R028
       - name: "full lifecycle: course with misplaced lemmas in sentences reflects\
           \ distance discounts in scores"
         traceability:
           feature: FEAT-LABS
-          journey: F-LABS-J004
+          rule: F-LABS-R018
       - name: "full lifecycle: course with multiple levels exceeding thresholds produces\
           \ prioritized recommendations"
         traceability:
           feature: FEAT-LABS
-          journey: F-LABS-J005
+          rule: F-LABS-R029
       - name: should map APPEARS_TOO_EARLY to REMOVE_FROM_LEVEL recommendation
         traceability:
           feature: FEAT-LABS
@@ -1955,12 +1975,12 @@ modules:
           node after onCourseComplete
         traceability:
           feature: FEAT-DLABS
-          rule: "F-DLABS-R002, F-DLABS-R004"
+          rule: F-DLABS-R004
       - name: should emit LemmaAbsenceLevelDiagnosis with coverage metrics on LevelDiagnoses
           milestone nodes
         traceability:
           feature: FEAT-DLABS
-          rule: "F-DLABS-R002, F-DLABS-R005"
+          rule: F-DLABS-R005
       - name: should include typed AbsentLemma entries with lemma pos absenceType
           and priority in level diagnosis
         traceability:
@@ -1970,12 +1990,12 @@ modules:
           misplacedLemmaCount
         traceability:
           feature: FEAT-DLABS
-          rule: "F-DLABS-R002, F-DLABS-R007"
+          rule: F-DLABS-R007
       - name: should emit LemmaPlacementDiagnosis with misplacedLemmas list on knowledge
           and quiz nodes
         traceability:
           feature: FEAT-DLABS
-          rule: "F-DLABS-R008, F-DLABS-R009"
+          rule: F-DLABS-R008
       - name: should populate MisplacedLemma with lemmaAndPos expectedLevel and foundInLevel
           on quiz diagnosis
         traceability:
@@ -2779,17 +2799,17 @@ modules:
     - name: "Given a course with quizzes, when map is called, then analyzeTokensBatch\
         \ is invoked and returns an AuditableCourse"
       traceability:
-        feature: F-NLP
+        feature: FEAT-NLP
         rule: F-NLP-R010
     - name: "Given a course with no milestones, when map is called, then returns an\
         \ AuditableCourse without error"
       traceability:
-        feature: F-NLP
+        feature: FEAT-NLP
         rule: F-NLP-R010
     - name: "Given nlpTokenizer throws exception during batch processing, when map\
         \ is called, then exception propagates"
       traceability:
-        feature: F-NLP
+        feature: FEAT-NLP
         rule: F-NLP-R008
     implements:
     - CourseMapper
@@ -2818,43 +2838,43 @@ modules:
     - name: "Given a valid course path, when runAudit is called, then returns the\
         \ audit report from the full chain"
       traceability:
-        feature: F-CLI
+        feature: FEAT-CLI
         rule: F-CLI-R001
         journey: F-CLI-J001
     - name: "Given a valid course path, when runAudit is called, then courseRepository\
         \ load is invoked with the path"
       traceability:
-        feature: F-CLI
+        feature: FEAT-CLI
         rule: F-CLI-R001
     - name: "Given a valid course path, when runAudit is called, then courseToAuditableMapper\
         \ map is invoked with the loaded entity"
       traceability:
-        feature: F-CLI
+        feature: FEAT-CLI
         rule: F-CLI-R001
     - name: "Given a valid course path, when runAudit is called, then contentAudit\
         \ audit is invoked with the mapped auditable course"
       traceability:
-        feature: F-CLI
+        feature: FEAT-CLI
         rule: F-CLI-R001
     - name: "Given courseRepository throws an exception, when runAudit is called,\
         \ then the exception propagates"
       traceability:
-        feature: F-CLI
+        feature: FEAT-CLI
         rule: F-CLI-R001
     - name: "Given courseToAuditableMapper throws an exception, when runAudit is called,\
         \ then the exception propagates"
       traceability:
-        feature: F-CLI
+        feature: FEAT-CLI
         rule: F-CLI-R001
     - name: "Given contentAudit throws an exception, when runAudit is called, then\
         \ the exception propagates"
       traceability:
-        feature: F-CLI
+        feature: FEAT-CLI
         rule: F-CLI-R001
     - name: "Given a course with no milestones, when runAudit is called, then returns\
         \ the report from contentAudit"
       traceability:
-        feature: F-CLI
+        feature: FEAT-CLI
         rule: F-CLI-R001
     implements:
     - AuditRunner
@@ -4434,10 +4454,7 @@ modules:
     visibility: public
     handwrittenTests:
     - name: should save an AuditReport and load it back with identical content
-      traceability:
-        feature: FEAT-STORE
-        rule: F-STORE-R001
-      _change: add
+      _change: delete
     implements:
     - AuditReportStore
   - name: FileSystemRefinementPlanStore

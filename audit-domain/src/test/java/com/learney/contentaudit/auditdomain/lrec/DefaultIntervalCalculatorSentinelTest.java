@@ -18,33 +18,53 @@ public class DefaultIntervalCalculatorSentinelTest {
   @InjectMocks
   private DefaultIntervalCalculator sut;
 
+  /**
+   * Feature: Analisis de Recurrencia de Lemas por Repeticion Espaciada
+   * Rule: Para cada lema seleccionado con al menos 2 apariciones, se calcula: 1. **Intervalos entre apariciones consecutivas**: dada la lista ordenada de posiciones [p1, p2, p3, ..., pn], los intervalos son [p2-p1, p3-p2, ..., pn-pn-1]. 2. **Intervalo medio (meanInterval)**: el promedio aritmetico de los intervalos calculados. - meanInterval = suma(intervalos) / cantidad(intervalos) 3. **Desviacion estandar del intervalo (stdDevInterval)**: la desviacion estandar poblacional de los intervalos. - stdDevInterval = sqrt(suma((intervalo_i - meanInterval)^2) / cantidad(intervalos)) Ejemplo para el lema "cat" con posiciones [10, 45, 120, 500]: - Intervalos: [35, 75, 380] - meanInterval: (35 + 75 + 380) / 3 = 163.3 - stdDevInterval: sqrt(((35-163.3)^2 + (75-163.3)^2 + (380-163.3)^2) / 3) = 154.7 El uso de desviacion estandar poblacional (dividiendo por N, no por N-1) es consistente con la implementacion de referencia.
+   */
   @Test
   @DisplayName("Given positions [10, 110], when calculateMeanInterval is called, then returns 100.0")
-  @Tag("F-LREC")
+  @Tag("FEAT-LREC")
+  @Tag("F-LREC-R007")
   public void givenPositions10110WhenCalculateMeanIntervalIsCalledThenReturns1000() {
     Object result = sut.calculateMeanInterval("[10, 110]");
     Assertions.assertEquals(100.0, result);
   }
 
+  /**
+   * Feature: Analisis de Recurrencia de Lemas por Repeticion Espaciada
+   * Rule: Para cada lema seleccionado con al menos 2 apariciones, se calcula: 1. **Intervalos entre apariciones consecutivas**: dada la lista ordenada de posiciones [p1, p2, p3, ..., pn], los intervalos son [p2-p1, p3-p2, ..., pn-pn-1]. 2. **Intervalo medio (meanInterval)**: el promedio aritmetico de los intervalos calculados. - meanInterval = suma(intervalos) / cantidad(intervalos) 3. **Desviacion estandar del intervalo (stdDevInterval)**: la desviacion estandar poblacional de los intervalos. - stdDevInterval = sqrt(suma((intervalo_i - meanInterval)^2) / cantidad(intervalos)) Ejemplo para el lema "cat" con posiciones [10, 45, 120, 500]: - Intervalos: [35, 75, 380] - meanInterval: (35 + 75 + 380) / 3 = 163.3 - stdDevInterval: sqrt(((35-163.3)^2 + (75-163.3)^2 + (380-163.3)^2) / 3) = 154.7 El uso de desviacion estandar poblacional (dividiendo por N, no por N-1) es consistente con la implementacion de referencia.
+   */
   @Test
   @DisplayName("Given positions [0, 100, 200, 300], when calculateMeanInterval is called, then returns 100.0")
-  @Tag("F-LREC")
+  @Tag("FEAT-LREC")
+  @Tag("F-LREC-R007")
   public void givenPositions0100200300WhenCalculateMeanIntervalIsCalledThenReturns1000() {
     Object result = sut.calculateMeanInterval("[0, 100, 200, 300]");
     Assertions.assertEquals(100.0, result);
   }
 
+  /**
+   * Feature: Analisis de Recurrencia de Lemas por Repeticion Espaciada
+   * Rule: Para cada lema seleccionado con al menos 2 apariciones, se calcula: 1. **Intervalos entre apariciones consecutivas**: dada la lista ordenada de posiciones [p1, p2, p3, ..., pn], los intervalos son [p2-p1, p3-p2, ..., pn-pn-1]. 2. **Intervalo medio (meanInterval)**: el promedio aritmetico de los intervalos calculados. - meanInterval = suma(intervalos) / cantidad(intervalos) 3. **Desviacion estandar del intervalo (stdDevInterval)**: la desviacion estandar poblacional de los intervalos. - stdDevInterval = sqrt(suma((intervalo_i - meanInterval)^2) / cantidad(intervalos)) Ejemplo para el lema "cat" con posiciones [10, 45, 120, 500]: - Intervalos: [35, 75, 380] - meanInterval: (35 + 75 + 380) / 3 = 163.3 - stdDevInterval: sqrt(((35-163.3)^2 + (75-163.3)^2 + (380-163.3)^2) / 3) = 154.7 El uso de desviacion estandar poblacional (dividiendo por N, no por N-1) es consistente con la implementacion de referencia.
+   */
   @Test
   @DisplayName("Given positions [10, 110] and mean 100.0, when calculateStdDevInterval is called, then returns 0.0")
-  @Tag("F-LREC")
+  @Tag("FEAT-LREC")
+  @Tag("F-LREC-R007")
   public void givenPositions10110AndMean1000WhenCalculateStdDevIntervalIsCalledThenReturns00() {
     Object result = sut.calculateStdDevInterval("[10, 110]", 100.0);
     Assertions.assertEquals(0.0, result);
   }
 
+  /**
+   * Feature: Analisis de Recurrencia de Lemas por Repeticion Espaciada
+   * Rule: Para cada lema seleccionado con al menos 2 apariciones, se calcula: 1. **Intervalos entre apariciones consecutivas**: dada la lista ordenada de posiciones [p1, p2, p3, ..., pn], los intervalos son [p2-p1, p3-p2, ..., pn-pn-1]. 2. **Intervalo medio (meanInterval)**: el promedio aritmetico de los intervalos calculados. - meanInterval = suma(intervalos) / cantidad(intervalos) 3. **Desviacion estandar del intervalo (stdDevInterval)**: la desviacion estandar poblacional de los intervalos. - stdDevInterval = sqrt(suma((intervalo_i - meanInterval)^2) / cantidad(intervalos)) Ejemplo para el lema "cat" con posiciones [10, 45, 120, 500]: - Intervalos: [35, 75, 380] - meanInterval: (35 + 75 + 380) / 3 = 163.3 - stdDevInterval: sqrt(((35-163.3)^2 + (75-163.3)^2 + (380-163.3)^2) / 3) = 154.7 El uso de desviacion estandar poblacional (dividiendo por N, no por N-1) es consistente con la implementacion de referencia.
+   */
   @Test
   @DisplayName("Given positions [0, 100, 200, 300] and mean 100.0, when calculateStdDevInterval is called, then returns 0.0")
-  @Tag("F-LREC")
+  @Tag("FEAT-LREC")
+  @Tag("F-LREC-R007")
   public void givenPositions0100200300AndMean1000WhenCalculateStdDevIntervalIsCalledThenReturns00(
       ) {
     Object result = sut.calculateStdDevInterval("[0, 100, 200, 300]", 100.0);

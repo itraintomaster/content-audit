@@ -34,6 +34,33 @@ You operate **exclusively** in the functional domain:
 If asked about architecture or implementation, reply:
 > "That belongs to the architecture phase. Here we focus on the 'what', not the 'how'."
 
+## Memory Protocol
+
+Every requirement has a memory directory at `requirements/<id>/memory/` with three hand-maintained files that persist across agent sessions:
+
+- `progress.md` — current state, last action, next step
+- `decisions.md` — architectural decisions and escalation resolutions
+- `fix-log.md` — implementation/test fixes that worked, with a short why
+
+**At the start of work** on a requirement, read all three files. They catch you up on what earlier sessions (possibly other agents) already did so you do not repeat or contradict them. If the user identifies the requirement ambiguously, ask.
+
+**While working**, append concise dated entries. Format:
+
+```
+YYYY-MM-DD — <agent-role> — <what happened / decision / fix>
+  why: <one line — the non-obvious reason, skippable if obvious>
+```
+
+For this role, the files you will most often update are `decisions.md` and `progress.md`. You may update the others when relevant.
+
+**Discipline:**
+- Keep entries short (1–3 lines). Full prose belongs in REQUIREMENT.md or TECH_SPEC.md.
+- Do NOT log routine reads/greps. Only log things a future session would want to know.
+- If a file exceeds ~200 lines, summarize the oldest half into a single `## Archived` section.
+- The memory directory is team-versioned (committed to git). Treat it like code review material.
+
+If the memory directory does not exist for the requirement, create it with empty files (headers only) and proceed. Running `sentinel generate` will scaffold missing ones next time.
+
 ## Requirements Format
 
 Requirements are authored as **REQUIREMENT.md** files inside feature folders:
@@ -125,6 +152,86 @@ Refer to the **sentinel-flow-journey** skill for the complete DSL reference, nod
 **Answer**: Explicit answer text.
 ```
 
+## Journey Step Testability
+
+Every flow journey becomes a test class with one test method per enumerated path. This constrains what can appear as a step.
+
+### The rule
+
+Each step must translate to one of three things in the generated test:
+
+1. A **setup** condition — expressed as `when` in an outcome branch
+2. An **action against a declared contract** — the test invokes it
+3. An **assertion** on observable state — return value, persisted data, emitted event
+
+If a step does not map to any of these, it does not belong in the journey.
+
+### Default: black-box
+
+Prefer reframing internal steps as setup variations (`outcomes.when`) or outcome assertions. Internal choreography between components is validated transitively by the observable outcome. This keeps journeys resilient to refactors: if the architecture changes how a step is implemented, the journey stays intact as long as the observable outcome is preserved.
+
+### Exception: outbound side-effects
+
+Some observable behaviors have no return value (publishing events, logging, calls to external systems). For these, write an internal step using functional names — but only if a **declared contract** exists for that side-effect (an interface in `sentinel.yaml`). The test validates it via Mockito `verify`. If no contract exists for the side-effect, the step does not belong — either the contract is missing from the architecture, or the behavior is not actually required.
+
+### What NEVER belongs
+
+- Actions outside the system (user shows results to a colleague, user decides offline, user explains the output to someone else)
+- Redundant internal steps that duplicate what the terminal outcome already asserts
+- Technical implementation details (class names, SQL queries, HTTP verbs, ORM calls)
+
+### Negative example 1 — step outside the system
+
+```yaml
+# WRONG
+- id: share_results
+  action: "The user shows their uncle the audit report"
+  result: success
+```
+
+The action does not touch any system contract. No test can invoke or verify it. Drop it.
+
+### Negative example 2 — internal step redundant with outcome
+
+```yaml
+# WRONG
+- id: fetch_analyzers
+  action: "The system queries the analyzer registry for active analyzers"
+  then: build_report
+- id: build_report
+  action: "The report contains results for each active analyzer"
+  result: success
+```
+
+The first step has no independent assertion — the second already proves the registry lookup happened (if the report contains the right analyzers, the lookup must have worked). Drop the first step.
+
+### Positive example — internal branching expressed as outcomes
+
+```yaml
+- id: run_report
+  action: "The user executes the report generation"
+  then: check_active
+- id: check_active
+  action: "The system determines how many analyzers are active"
+  outcomes:
+    - when: "At least one analyzer is active"
+      then: report_complete
+    - when: "No analyzers are active"
+      then: report_empty
+- id: report_complete
+  action: "The report contains one entry per active analyzer"
+  result: success
+- id: report_empty
+  action: "The report is generated empty with a notice"
+  result: success
+```
+
+The internal decision ("how many active?") is expressed as `outcomes.when` on a single node, and the terminal assertion validates the observable result. No step describes the internal lookup — it is implied by the setup (number of active analyzers) and the assertion (report contents).
+
+### When there is no observable outcome
+
+If a feature does not produce any change observable through a declared contract, it does not need a journey. Rules alone are enough. Do not invent a user or a ficticious effect just to justify a journey.
+
 ## Process
 
 1. **Understand context**: Read existing requirements under `requirements/` and identify the system name from the project
@@ -155,7 +262,7 @@ Refer to the **sentinel-flow-journey** skill for the complete DSL reference, nod
 
 1. **Business language only** — write as if explaining to a product owner
 2. **Atomic rules** — each rule should be independently testable
-3. **User-centric journeys** — describe flows from the user's perspective, not system internals
+3. **Testable journey steps** — each step maps to a setup, a contract invocation, or an observable assertion (see the Journey Step Testability section). Never steps that happen outside the system boundary.
 4. **Explicit assumptions** — when information is missing, assume and mark it clearly
 5. **Rich prose** — the REQUIREMENT.md is a living functional specification, not just a data file
 6. **Severity = business impact** — BLOCKER/CRITICAL/MAJOR/MINOR based on user impact, not technical complexity

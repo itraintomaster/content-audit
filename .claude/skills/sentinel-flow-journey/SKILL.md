@@ -158,7 +158,8 @@ The framework validates flow graphs automatically:
 
 Every flow-based journey automatically generates a **test class** with one test method per enumerated path. This has implications for how you write journeys:
 
-1. **Every step must be testable.** If a step says "User goes to the store physically", it cannot be automated. Write steps that the system can execute or verify.
+1. **Every step must map to a test translation.** Each step becomes one of:
+   a setup condition (`when` in an outcome branch), an action against a declared contract (the test invokes it), or an assertion on observable state (return value, persisted data, side-effect via Mockito `verify`). If a step does not map to any of these, it does not belong. Steps outside the system boundary (user shows a colleague, user decides offline) and internal steps redundant with the terminal outcome are both invalid. See the analyst agent's Journey Step Testability section for positive and negative examples.
 2. **Decisions create paths.** Each combination of decision outcomes produces a separate test method. 3 decisions with 2 outcomes each = 8 paths. Keep decision count reasonable.
 3. **Gate rules are asserted.** When a step has `gate: [RULE-ID]`, the test is expected to verify that rule at that point in the flow.
 4. **Terminal results define success/failure.** Each path's test method asserts the outcome declared by the terminal node.

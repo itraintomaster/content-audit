@@ -17,51 +17,92 @@ public class KnowledgeInstructionsLengthAnalyzerSentinelTest {
   @InjectMocks
   private KnowledgeInstructionsLengthAnalyzer sut;
 
+  /**
+   * Feature: Analisis de Longitud de Titulos e Instrucciones de Knowledge
+   * Rule: Las instrucciones de cada knowledge se evaluan contra dos umbrales de longitud ponderada: | Parametro | Valor | Significado | |-----------|-------|-------------| | Limite suave (soft limit) | 70 caracteres ponderados | Las instrucciones empiezan a ser largas | | Limite duro (hard limit) | 100 caracteres ponderados | Las instrucciones son definitivamente demasiado largas | La longitud se calcula usando el mismo sistema de pesos por caracter definido en R002 para titulos. Esto alinea el calculo con la implementacion de referencia, que usa longitud ponderada tanto para titulos como para instrucciones.
+   */
   @Test
   @DisplayName("should score 1.0 for instructions exactly at soft limit of 70 weighted chars")
-  @Tag("F-KTLEN")
+  @Tag("FEAT-KTLEN")
+  @Tag("F-KTLEN-R005")
   public void shouldScore10ForInstructionsExactlyAtSoftLimitOf70WeightedChars() {
   }
 
+  /**
+   * Feature: Analisis de Longitud de Titulos e Instrucciones de Knowledge
+   * Rule: Cada knowledge recibe una puntuacion entre 0.0 y 1.0 para la longitud de sus instrucciones, basada en un sistema de tres niveles: | Condicion | Puntuacion | Significado | |-----------|-----------|-------------| | Instrucciones nulas o vacias | 1.0 | No se penaliza la ausencia de instrucciones | | Longitud ponderada <= limite suave (70) | 1.0 | Instrucciones adecuadas | | Longitud ponderada > limite suave (70) y <= limite duro (100) | 0.5 | Instrucciones aceptables pero largas | | Longitud ponderada > limite duro (100) | 0.0 | Instrucciones demasiado largas | El scoring discreto (tres niveles) en lugar de lineal refleja la naturaleza de la evaluacion: no hay una diferencia gradual entre "adecuado" y "largo", sino umbrales claros donde la legibilidad cambia. 70 caracteres ponderados es aproximadamente una linea de texto en la interfaz; 100 caracteres ponderados fuerza al texto a ocupar multiples lineas en la mayoria de dispositivos.
+   */
   @Test
   @DisplayName("should score 1.0 for instructions of 30 weighted chars within soft limit")
-  @Tag("F-KTLEN")
+  @Tag("FEAT-KTLEN")
+  @Tag("F-KTLEN-R006")
   public void shouldScore10ForInstructionsOf30WeightedCharsWithinSoftLimit() {
   }
 
+  /**
+   * Feature: Analisis de Longitud de Titulos e Instrucciones de Knowledge
+   * Rule: Las instrucciones de cada knowledge se evaluan contra dos umbrales de longitud ponderada: | Parametro | Valor | Significado | |-----------|-------|-------------| | Limite suave (soft limit) | 70 caracteres ponderados | Las instrucciones empiezan a ser largas | | Limite duro (hard limit) | 100 caracteres ponderados | Las instrucciones son definitivamente demasiado largas | La longitud se calcula usando el mismo sistema de pesos por caracter definido en R002 para titulos. Esto alinea el calculo con la implementacion de referencia, que usa longitud ponderada tanto para titulos como para instrucciones.
+   */
   @Test
   @DisplayName("should score 0.5 for instructions of 71 weighted chars just above soft limit")
-  @Tag("F-KTLEN")
+  @Tag("FEAT-KTLEN")
+  @Tag("F-KTLEN-R005")
   public void shouldScore05ForInstructionsOf71WeightedCharsJustAboveSoftLimit() {
   }
 
+  /**
+   * Feature: Analisis de Longitud de Titulos e Instrucciones de Knowledge
+   * Rule: Las instrucciones de cada knowledge se evaluan contra dos umbrales de longitud ponderada: | Parametro | Valor | Significado | |-----------|-------|-------------| | Limite suave (soft limit) | 70 caracteres ponderados | Las instrucciones empiezan a ser largas | | Limite duro (hard limit) | 100 caracteres ponderados | Las instrucciones son definitivamente demasiado largas | La longitud se calcula usando el mismo sistema de pesos por caracter definido en R002 para titulos. Esto alinea el calculo con la implementacion de referencia, que usa longitud ponderada tanto para titulos como para instrucciones.
+   */
   @Test
   @DisplayName("should score 0.5 for instructions exactly at hard limit of 100 weighted chars")
-  @Tag("F-KTLEN")
+  @Tag("FEAT-KTLEN")
+  @Tag("F-KTLEN-R005")
   public void shouldScore05ForInstructionsExactlyAtHardLimitOf100WeightedChars() {
   }
 
+  /**
+   * Feature: Analisis de Longitud de Titulos e Instrucciones de Knowledge
+   * Rule: Cada knowledge recibe una puntuacion entre 0.0 y 1.0 para la longitud de sus instrucciones, basada en un sistema de tres niveles: | Condicion | Puntuacion | Significado | |-----------|-----------|-------------| | Instrucciones nulas o vacias | 1.0 | No se penaliza la ausencia de instrucciones | | Longitud ponderada <= limite suave (70) | 1.0 | Instrucciones adecuadas | | Longitud ponderada > limite suave (70) y <= limite duro (100) | 0.5 | Instrucciones aceptables pero largas | | Longitud ponderada > limite duro (100) | 0.0 | Instrucciones demasiado largas | El scoring discreto (tres niveles) en lugar de lineal refleja la naturaleza de la evaluacion: no hay una diferencia gradual entre "adecuado" y "largo", sino umbrales claros donde la legibilidad cambia. 70 caracteres ponderados es aproximadamente una linea de texto en la interfaz; 100 caracteres ponderados fuerza al texto a ocupar multiples lineas en la mayoria de dispositivos.
+   */
   @Test
   @DisplayName("should score 0.5 for instructions of 85 weighted chars between soft and hard limits")
-  @Tag("F-KTLEN")
+  @Tag("FEAT-KTLEN")
+  @Tag("F-KTLEN-R006")
   public void shouldScore05ForInstructionsOf85WeightedCharsBetweenSoftAndHardLimits() {
   }
 
+  /**
+   * Feature: Analisis de Longitud de Titulos e Instrucciones de Knowledge
+   * Rule: Las instrucciones de cada knowledge se evaluan contra dos umbrales de longitud ponderada: | Parametro | Valor | Significado | |-----------|-------|-------------| | Limite suave (soft limit) | 70 caracteres ponderados | Las instrucciones empiezan a ser largas | | Limite duro (hard limit) | 100 caracteres ponderados | Las instrucciones son definitivamente demasiado largas | La longitud se calcula usando el mismo sistema de pesos por caracter definido en R002 para titulos. Esto alinea el calculo con la implementacion de referencia, que usa longitud ponderada tanto para titulos como para instrucciones.
+   */
   @Test
   @DisplayName("should score 0.0 for instructions of 101 weighted chars just above hard limit")
-  @Tag("F-KTLEN")
+  @Tag("FEAT-KTLEN")
+  @Tag("F-KTLEN-R005")
   public void shouldScore00ForInstructionsOf101WeightedCharsJustAboveHardLimit() {
   }
 
+  /**
+   * Feature: Analisis de Longitud de Titulos e Instrucciones de Knowledge
+   * Rule: Cada knowledge recibe una puntuacion entre 0.0 y 1.0 para la longitud de sus instrucciones, basada en un sistema de tres niveles: | Condicion | Puntuacion | Significado | |-----------|-----------|-------------| | Instrucciones nulas o vacias | 1.0 | No se penaliza la ausencia de instrucciones | | Longitud ponderada <= limite suave (70) | 1.0 | Instrucciones adecuadas | | Longitud ponderada > limite suave (70) y <= limite duro (100) | 0.5 | Instrucciones aceptables pero largas | | Longitud ponderada > limite duro (100) | 0.0 | Instrucciones demasiado largas | El scoring discreto (tres niveles) en lugar de lineal refleja la naturaleza de la evaluacion: no hay una diferencia gradual entre "adecuado" y "largo", sino umbrales claros donde la legibilidad cambia. 70 caracteres ponderados es aproximadamente una linea de texto en la interfaz; 100 caracteres ponderados fuerza al texto a ocupar multiples lineas en la mayoria de dispositivos.
+   */
   @Test
   @DisplayName("should score 0.0 for instructions of 200 weighted chars well above hard limit")
-  @Tag("F-KTLEN")
+  @Tag("FEAT-KTLEN")
+  @Tag("F-KTLEN-R006")
   public void shouldScore00ForInstructionsOf200WeightedCharsWellAboveHardLimit() {
   }
 
+  /**
+   * Feature: Analisis de Longitud de Titulos e Instrucciones de Knowledge
+   * Rule: Las instrucciones de cada knowledge se evaluan contra dos umbrales de longitud ponderada: | Parametro | Valor | Significado | |-----------|-------|-------------| | Limite suave (soft limit) | 70 caracteres ponderados | Las instrucciones empiezan a ser largas | | Limite duro (hard limit) | 100 caracteres ponderados | Las instrucciones son definitivamente demasiado largas | La longitud se calcula usando el mismo sistema de pesos por caracter definido en R002 para titulos. Esto alinea el calculo con la implementacion de referencia, que usa longitud ponderada tanto para titulos como para instrucciones.
+   * Journey: Identificar knowledges con instrucciones excesivamente largas
+   */
   @Test
   @DisplayName("should use weighted character length not plain string length for scoring instructions")
-  @Tag("F-KTLEN")
+  @Tag("FEAT-KTLEN")
+  @Tag("F-KTLEN-R005")
   public void shouldUseWeightedCharacterLengthNotPlainStringLengthForScoringInstructions() {
   }
 }

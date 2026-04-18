@@ -716,3 +716,32 @@ Este requerimiento hace dos cosas: (1) re-rutea las tareas LEMMA_ABSENCE para qu
 
 - **F-RCSL-J003**: Contexto de correccion sin lemas sugeridos disponibles
 
+### FEAT-REVBYP: Fase de revision (bypass skeleton) - aplicacion de cambios a elementos del curso [F-REVBYP]
+
+> Hoy la pipeline de ContentAudit cubre tres fases: `analyze` produce un reporte de auditoria, `refiner plan` genera un plan de tareas a partir del reporte, y `refiner next` resuelve el contexto de correccion de la proxima tarea. Lo que falta es la fase que efectivamente **aplica** un cambio a un elemento del curso en base a ese contexto.
+
+Este requerimiento define esa fase, llamada **revision**. El alcance es deliberadamente minimo: se construye el esqueleto end-to-end con componentes **bypass** (identidad, auto-aprobacion) para validar que la pipeline completa funciona — que una tarea se puede tomar, construir su propuesta de revision, persistirla como artefacto auditable, aprobarla, y reescribir el curso modificado al disco. Ninguna logica real de revision (AI, reglas, transformaciones) entra en esta iteracion. Esas estrategias se enchufaran en requerimientos futuros.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-REVBYP-R001 | Estructura de la RevisionProposal | critical | - |
+| F-REVBYP-R002 | En el caso bypass, elementBefore y elementAfter son semanticamente equivalentes | critical | - |
+| F-REVBYP-R003 | El Reviser es pluggable por DiagnosisKind | critical | - |
+| F-REVBYP-R004 | Existe un Reviser bypass que actua como baseline por defecto | critical | - |
+| F-REVBYP-R005 | Si no hay Reviser aplicable, la revision no se realiza | major | No hay Reviser registrado para el diagnostico '{diagnosisKind}' |
+| F-REVBYP-R006 | El Validator decide si una propuesta se aplica | critical | - |
+| F-REVBYP-R007 | Existe un Validator bypass que auto-aprueba toda propuesta | critical | - |
+| F-REVBYP-R008 | Cada propuesta se persiste como artefacto bajo .content-audit/revisions/ | critical | No se pudo persistir la propuesta de revision '{proposalId}' bajo .content-audit/revisions/ |
+| F-REVBYP-R009 | Organizacion de los artefactos de propuesta | major | - |
+| F-REVBYP-R010 | El artefacto es suficiente para reconstruir la decision | major | - |
+| F-REVBYP-R011 | Una propuesta aprobada se aplica al curso en disco | critical | No se pudo aplicar la propuesta de revision '{proposalId}' al curso |
+| F-REVBYP-R012 | Una propuesta rechazada no modifica el curso | critical | - |
+| F-REVBYP-R013 | El estado de la tarea refleja el resultado de la revision | major | - |
+| F-REVBYP-R014 | El artefacto se persiste antes de aplicar al curso | major | La propuesta '{proposalId}' fue aprobada y persistida como artefacto, pero la escritura del curso fallo |
+
+**User Journeys:**
+
+- **F-REVBYP-J001**: Revision bypass end-to-end de una tarea
+

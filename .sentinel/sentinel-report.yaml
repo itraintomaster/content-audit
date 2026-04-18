@@ -1,4 +1,4 @@
-generatedAt: 2026-04-17T12:28:13.517404Z
+generatedAt: 2026-04-18T16:28:47.225035Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -20,9 +20,23 @@ features:
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R004
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should emit LemmaAbsenceCourseDiagnosis with assessment on CourseDiagnoses
+        node after onCourseComplete
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R005
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should emit LemmaAbsenceLevelDiagnosis with coverage metrics on LevelDiagnoses
+        milestone nodes
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R006
     state: PASSING
     tests:
@@ -33,9 +47,23 @@ features:
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R007
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should emit LemmaPlacementDiagnosis on TopicDiagnoses topic nodes with
+        misplacedLemmaCount
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R008
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should emit LemmaPlacementDiagnosis with misplacedLemmas list on knowledge
+        and quiz nodes
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-DLABS-R009
     state: NO_TESTS
   - ruleId: F-DLABS-R010
@@ -99,7 +127,26 @@ features:
   - ruleId: F-LREC-R001
     state: NO_TESTS
   - ruleId: F-LREC-R002
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given an AuditableKnowledge and AuditContext, when onKnowledge is called,\
+        \ then completes without error"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
+    - name: "Given an AuditableTopic and AuditContext, when onTopic is called, then\
+        \ completes without error"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
+    - name: "Given an AuditableMilestone and AuditContext, when onMilestone is called,\
+        \ then completes without error"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-LREC-R003
     state: PASSING
     tests:
@@ -1090,6 +1137,12 @@ features:
       passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
+    - name: "full lifecycle: course with misplaced lemmas in sentences reflects distance\
+        \ discounts in scores"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
     - name: should have discount per level that limits max penalty to 0.3 for three-level
         distance
       implemented: true
@@ -1270,6 +1323,18 @@ features:
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should assess NEEDS_IMPROVEMENT when A2 exceeds its threshold
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: "full lifecycle: course with full coverage produces OPTIMAL assessment\
+        \ and score 1.0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: "full lifecycle: course with completely absent HIGH priority lemmas in\
+        \ A1 produces NEEDS_IMPROVEMENT"
       implemented: true
       passing: true
       module: audit-domain
@@ -1459,6 +1524,12 @@ features:
       passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
+    - name: "full lifecycle: course with lemmas appearing too late produces INTRODUCE_EARLIER\
+        \ recommendations"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
     - name: should map APPEARS_TOO_EARLY to REMOVE_FROM_LEVEL recommendation
       implemented: true
       passing: true
@@ -1467,6 +1538,12 @@ features:
   - ruleId: F-LABS-R029
     state: PASSING
     tests:
+    - name: "full lifecycle: course with multiple levels exceeding thresholds produces\
+        \ prioritized recommendations"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
     - name: should assign HIGH recommendation priority for A1 level
       implemented: true
       passing: true
@@ -2039,12 +2116,47 @@ features:
       passing: true
       module: audit-domain
       implementation: KnowledgeTitleLengthAnalyzer
+    - name: should complete without error when onMilestone is called
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+    - name: should complete without error when onTopic is called
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
+    - name: should complete without error when onCourseComplete is called
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeTitleLengthAnalyzer
     - name: should return knowledge-instructions-length as analyzer name
       implemented: true
       passing: true
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
     - name: should return KNOWLEDGE as audit target
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: should complete without error when onQuiz is called
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: should complete without error when onMilestone is called
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: should complete without error when onTopic is called
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: KnowledgeInstructionsLengthAnalyzer
+    - name: should complete without error when onCourseComplete is called
       implemented: true
       passing: true
       module: audit-domain
@@ -2130,7 +2242,27 @@ features:
       passing: true
       module: audit-domain
       implementation: SentenceLengthAnalyzer
+    - name: should return sentence-length as analyzer name
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+    - name: should return QUIZ as audit target
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
     - name: should exclude non-sentence knowledge quiz from results
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+    - name: should complete without error when onTopic is called
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceLengthAnalyzer
+    - name: should complete without error when onCourseComplete is called
       implemented: true
       passing: true
       module: audit-domain
@@ -2279,6 +2411,38 @@ features:
   - journeyId: F-LCOUNT-J004
     state: NO_TESTS
   - journeyId: F-LCOUNT-J005
+    state: NO_TESTS
+- id: FEAT-REVBYP
+  state: DRAFT
+  requirementFile: requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
+  rulesCoverage:
+  - ruleId: F-REVBYP-R001
+    state: NO_TESTS
+  - ruleId: F-REVBYP-R002
+    state: NO_TESTS
+  - ruleId: F-REVBYP-R003
+    state: NO_TESTS
+  - ruleId: F-REVBYP-R004
+    state: NO_TESTS
+  - ruleId: F-REVBYP-R005
+    state: NO_TESTS
+  - ruleId: F-REVBYP-R006
+    state: NO_TESTS
+  - ruleId: F-REVBYP-R007
+    state: NO_TESTS
+  - ruleId: F-REVBYP-R008
+    state: NO_TESTS
+  - ruleId: F-REVBYP-R009
+    state: NO_TESTS
+  - ruleId: F-REVBYP-R010
+    state: NO_TESTS
+  - ruleId: F-REVBYP-R011
+    state: NO_TESTS
+  - ruleId: F-REVBYP-R012
+    state: NO_TESTS
+  - ruleId: F-REVBYP-R013
+    state: NO_TESTS
+  - ruleId: F-REVBYP-R014
     state: NO_TESTS
 - id: FEAT-RCLA
   state: IMPLEMENTED
@@ -4410,7 +4574,7 @@ elements:
     testCleanViews:
     - |
       test: "Given a NOUN token, when isContentWord is called, then returns true"
-      trace: F-LREC
+      trace: FEAT-LREC / F-LREC-R003
 
       given:
         nounToken = NlpToken("cat", "cat", "NOUN", 100, false, false)
@@ -4420,7 +4584,7 @@ elements:
         result == true
     - |
       test: "Given a VERB token, when isContentWord is called, then returns true"
-      trace: F-LREC
+      trace: FEAT-LREC / F-LREC-R003
 
       given:
         verbToken = NlpToken("running", "run", "VERB", 50, false, false)
@@ -4430,7 +4594,7 @@ elements:
         result == true
     - |
       test: "Given an ADJ token, when isContentWord is called, then returns true"
-      trace: F-LREC
+      trace: FEAT-LREC / F-LREC-R003
 
       given:
         adjToken = NlpToken("big", "big", "ADJ", 200, false, false)
@@ -4440,7 +4604,7 @@ elements:
         result == true
     - |
       test: "Given an ADV token, when isContentWord is called, then returns true"
-      trace: F-LREC
+      trace: FEAT-LREC / F-LREC-R003
 
       given:
         advToken = NlpToken("quickly", "quickly", "ADV", 300, false, false)
@@ -4450,7 +4614,7 @@ elements:
         result == true
     - |
       test: "Given a DET token, when isContentWord is called, then returns false"
-      trace: F-LREC
+      trace: FEAT-LREC / F-LREC-R003
 
       given:
         detToken = NlpToken("the", "the", "DET", 1, true, false)
@@ -4460,7 +4624,7 @@ elements:
         result == false
     - |
       test: "Given a PUNCT token, when isContentWord is called, then returns false"
-      trace: F-LREC
+      trace: FEAT-LREC / F-LREC-R003
 
       given:
         punctToken = NlpToken(".", ".", "PUNCT", 0, false, true)
@@ -4491,7 +4655,7 @@ elements:
     testCleanViews:
     - |
       test: "Given positions [10, 110], when calculateMeanInterval is called, then returns 100.0"
-      trace: F-LREC
+      trace: FEAT-LREC / F-LREC-R007
 
       given:
         result = sut.calculateMeanInterval("[10, 110]")
@@ -4500,7 +4664,7 @@ elements:
         result == 100.0
     - |
       test: "Given positions [0, 100, 200, 300], when calculateMeanInterval is called, then returns 100.0"
-      trace: F-LREC
+      trace: FEAT-LREC / F-LREC-R007
 
       given:
         result = sut.calculateMeanInterval("[0, 100, 200, 300]")
@@ -4509,7 +4673,7 @@ elements:
         result == 100.0
     - |
       test: "Given positions [10, 110] and mean 100.0, when calculateStdDevInterval is called, then returns 0.0"
-      trace: F-LREC
+      trace: FEAT-LREC / F-LREC-R007
 
       given:
         result = sut.calculateStdDevInterval("[10, 110]", 100.0)
@@ -4518,7 +4682,7 @@ elements:
         result == 0.0
     - |
       test: "Given positions [0, 100, 200, 300] and mean 100.0, when calculateStdDevInterval is called, then returns 0.0"
-      trace: F-LREC
+      trace: FEAT-LREC / F-LREC-R007
 
       given:
         result = sut.calculateStdDevInterval("[0, 100, 200, 300]", 100.0)
