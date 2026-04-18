@@ -448,6 +448,14 @@ Examples:
 |--------|--------|
 | `listTasks(String planId): Integer` | (none) |
 
+#### RefinerReviseCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `revise(String planId, String taskId): Integer` | (none) |
+
 #### ReportFormatter (package: formatting)
 
 **Package:** `com.learney.contentaudit.auditcli.formatting`
@@ -531,4 +539,70 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `create(NlpTokenizerConfig config): NlpTokenizer` | (none) |
+
+### Module: revision-domain
+
+#### Reviser (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `propose(RefinementTask task, CorrectionContext context, CourseElementSnapshot before): RevisionProposal` | (none) |
+| `handles(DiagnosisKind kind): boolean` | (none) |
+| `reviserKind(): String` | (none) |
+
+#### RevisionValidator (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `validate(RevisionProposal proposal): RevisionValidatorResult` | (none) |
+
+#### RevisionValidatorResult
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `verdict(): RevisionVerdict` | (none) |
+| `rejectionReason(): Optional<String>` | (none) |
+
+#### RevisionArtifactStore (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+**Implemented by:** FileSystemRevisionArtifactStore (audit-infrastructure)
+
+| Method | Throws |
+|--------|--------|
+| `save(RevisionArtifact artifact): String` | (none) |
+| `load(String planId, String proposalId): Optional<RevisionArtifact>` | (none) |
+| `listByPlan(String planId): List<RevisionArtifact>` | (none) |
+
+#### CourseElementLocator (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `snapshot(CourseEntity course, AuditTarget target, String nodeId): Optional<CourseElementSnapshot>` | (none) |
+| `replace(CourseEntity course, CourseElementSnapshot replacement): CourseEntity` | (none) |
+
+#### RevisionEngine (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `revise(String planId, String taskId, Path coursePath): RevisionOutcome` | (none) |
+
+#### RevisionEngineFactory (factory)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `create(RevisionEngineConfig config): RevisionEngine` | (none) |
 

@@ -1,0 +1,706 @@
+<!-- SENTINEL MANAGED FILE - DO NOT EDIT -->
+# Module: revision-domain (isolated)
+
+**This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
+
+Domain module for the revision phase of the refinement pipeline. Consumes refiner-domain (task and CorrectionContext) and course-domain (course entities and the CourseRepository port owned by the caller). Exposes the Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator ports plus a RevisionEngineFactory seam that assembles a configured RevisionEngine. The bypass baseline (IdentityReviser + AutoApproveValidator + DefaultCourseElementLocator + DispatchingReviser + DefaultRevisionEngine) lives behind the factory; external modules only see the factory class and the carrier records.
+
+## Models
+
+### RevisionVerdict (`enum`)
+
+| Field | Type |
+|-------|------|
+| APPROVED | `null` |
+| REJECTED | `null` |
+
+### RevisionOutcomeKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| APPROVED_APPLIED | `null` |
+| APPROVED_APPLY_FAILED | `null` |
+| REJECTED | `null` |
+| NO_REVISER | `null` |
+| CONTEXT_UNAVAILABLE | `null` |
+| ELEMENT_NOT_FOUND | `null` |
+
+### CourseElementSnapshot (`record`)
+
+| Field | Type |
+|-------|------|
+| nodeTarget | `AuditTarget` |
+| nodeId | `String` |
+| quiz | `QuizTemplateEntity` |
+
+### RevisionProposal (`record`)
+
+| Field | Type |
+|-------|------|
+| proposalId | `String` |
+| taskId | `String` |
+| planId | `String` |
+| sourceAuditId | `String` |
+| diagnosisKind | `DiagnosisKind` |
+| nodeTarget | `AuditTarget` |
+| nodeId | `String` |
+| elementBefore | `CourseElementSnapshot` |
+| elementAfter | `CourseElementSnapshot` |
+| rationale | `String` |
+| reviserKind | `String` |
+| createdAt | `Instant` |
+
+### RevisionArtifact (`record`)
+
+| Field | Type |
+|-------|------|
+| proposal | `RevisionProposal` |
+| verdict | `RevisionVerdict` |
+| rejectionReason | `String` |
+| outcome | `RevisionOutcomeKind` |
+
+### RevisionOutcome (`record`)
+
+| Field | Type |
+|-------|------|
+| kind | `RevisionOutcomeKind` |
+| artifact | `RevisionArtifact` |
+| errorMessage | `String` |
+
+### RevisionEngineConfig (`record`)
+
+| Field | Type |
+|-------|------|
+| revisers | `Map<DiagnosisKind,Reviser>` |
+| validator | `RevisionValidator` |
+| artifactStore | `RevisionArtifactStore` |
+| courseRepository | `CourseRepository` |
+| elementLocator | `CourseElementLocator` |
+| refinementPlanStore | `RefinementPlanStore` |
+| auditReportStore | `AuditReportStore` |
+| contextResolver | `CorrectionContextResolver<CorrectionContext>` |
+
+## Interfaces
+
+### Reviser (port)
+
+Methods:
+
+- `propose(RefinementTask task, CorrectionContext context, CourseElementSnapshot before): RevisionProposal`
+- `handles(DiagnosisKind kind): boolean`
+- `reviserKind(): String`
+
+### RevisionValidator (port)
+
+Methods:
+
+- `validate(RevisionProposal proposal): RevisionValidatorResult`
+
+### RevisionValidatorResult
+
+Methods:
+
+- `verdict(): RevisionVerdict`
+- `rejectionReason(): Optional<String>`
+
+### RevisionArtifactStore (port)
+
+Methods:
+
+- `save(RevisionArtifact artifact): String`
+- `load(String planId, String proposalId): Optional<RevisionArtifact>`
+- `listByPlan(String planId): List<RevisionArtifact>`
+
+### CourseElementLocator (port)
+
+Methods:
+
+- `snapshot(CourseEntity course, AuditTarget target, String nodeId): Optional<CourseElementSnapshot>`
+- `replace(CourseEntity course, CourseElementSnapshot replacement): CourseEntity`
+
+### RevisionEngine (port)
+
+Methods:
+
+- `revise(String planId, String taskId, Path coursePath): RevisionOutcome`
+
+### RevisionEngineFactory (factory)
+
+Methods:
+
+- `create(RevisionEngineConfig config): RevisionEngine`
+
+## Dependency Contracts
+
+The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
+
+### From audit-domain
+
+## Models
+
+### AuditReport (`record`)
+
+| Field | Type |
+|-------|------|
+| root | `AuditNode` |
+
+### AuditableCourse (`record`)
+
+| Field | Type |
+|-------|------|
+| milestones | `List<AuditableMilestone>` |
+
+### AuditableKnowledge (`record`)
+
+| Field | Type |
+|-------|------|
+| quizzes | `List<AuditableQuiz>` |
+| title | `String` |
+| instructions | `String` |
+| isSentence | `boolean` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
+
+### AuditableTopic (`record`)
+
+| Field | Type |
+|-------|------|
+| knowledge | `List<AuditableKnowledge>` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
+
+### AuditableMilestone (`record`)
+
+| Field | Type |
+|-------|------|
+| topics | `List<AuditableTopic>` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
+
+### AuditableQuiz (`record`)
+
+| Field | Type |
+|-------|------|
+| sentence | `String` |
+| tokens | `List<NlpToken>` |
+| id | `String` |
+| label | `String` |
+| code | `String` |
+| translation | `String` |
+
+### CefrLevel (`enum`)
+
+| Field | Type |
+|-------|------|
+| A1 | `null` |
+| A2 | `null` |
+| B1 | `null` |
+| B2 | `null` |
+
+### TargetRange (`record`)
+
+| Field | Type |
+|-------|------|
+| level | `CefrLevel` |
+| minTokens | `int` |
+| maxTokens | `int` |
+
+### AuditTarget (`enum`)
+
+| Field | Type |
+|-------|------|
+| QUIZ | `null` |
+| KNOWLEDGE | `null` |
+| TOPIC | `null` |
+| MILESTONE | `null` |
+| COURSE | `null` |
+
+### NlpToken (`record`)
+
+| Field | Type |
+|-------|------|
+| text | `String` |
+| lemma | `String` |
+| posTag | `String` |
+| frequencyRank | `Integer` |
+| isStop | `boolean` |
+| isPunct | `boolean` |
+
+### AnalyzerDescriptor (`record`)
+
+| Field | Type |
+|-------|------|
+| name | `String` |
+| description | `String` |
+| target | `AuditTarget` |
+
+### AuditNode (`record`)
+
+| Field | Type |
+|-------|------|
+| entity | `AuditableEntity` |
+| target | `AuditTarget` |
+| parent | `AuditNode` |
+| children | `List<AuditNode>` |
+| scores | `Map<String,Double>` |
+| metadata | `Map<String,Object>` |
+| diagnoses | `NodeDiagnoses` |
+
+### SentenceLengthDiagnosis (`record`)
+
+| Field | Type |
+|-------|------|
+| tokenCount | `int` |
+| targetMin | `int` |
+| targetMax | `int` |
+| cefrLevel | `CefrLevel` |
+| delta | `int` |
+| toleranceMargin | `int` |
+
+### AuditReportSummary (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| timestamp | `Instant` |
+| courseName | `String` |
+| overallScore | `double` |
+
+### AuditEngine (port)
+
+Methods:
+
+- `runAudit(AuditableCourse course): AuditReport`
+
+### ContentAnalyzer (port)
+
+Methods:
+
+- `onKnowledge(AuditNode node): Void`
+- `onQuiz(AuditNode node): Void`
+- `onMilestone(AuditNode node): Void`
+- `onTopic(AuditNode node): Void`
+- `onCourseComplete(AuditNode rootNode): Void`
+- `getName(): String`
+- `getTarget(): AuditTarget`
+- `getDescription(): String`
+
+### AnalysisResult (port)
+
+Methods:
+
+- `getName(): String`
+- `getScore(): double`
+- `getTarget(): AuditTarget`
+
+### NlpTokenizer (port)
+
+Methods:
+
+- `tokenize(String text): List<String>`
+- `countTokens(String text): int`
+- `analyzeTokens(String text): List<NlpToken>`
+- `analyzeTokensBatch(List<String> sentences): Map<String,List<NlpToken>>`
+
+### SentenceLengthConfig (port)
+
+Methods:
+
+- `getTargetRange(CefrLevel level): Optional<TargetRange>`
+- `getToleranceMargin(): int`
+
+### ScoreAggregator (port)
+
+Methods:
+
+- `aggregate(AuditNode rootNode): void`
+
+### CocaBucketsConfig (port)
+
+Methods:
+
+- `getBandConfiguration(): BandConfiguration`
+- `getTargetsForLevel(String levelName): List<BucketTarget>`
+- `getQuarterTargetsForLevel(String levelName): List<QuarterBucketTargets>`
+- `getToleranceMargin(): double`
+- `getAnalysisStrategy(): AnalysisStrategy`
+- `getProgressionExpectations(): List<ProgressionExpectation>`
+
+### ContentWordFilter (port)
+
+Methods:
+
+- `isContentWord(NlpToken token): boolean`
+
+### LemmaRecurrenceConfig (port)
+
+Methods:
+
+- `getTop(): int`
+- `getSubExposedThreshold(): double`
+- `getOverExposedThreshold(): double`
+
+### LemmaAbsenceConfig (port) [sealed]
+
+Methods:
+
+- `getAbsoluteThreshold(CefrLevel level): int`
+- `getPercentageThreshold(CefrLevel level): double`
+- `getLevelWeight(CefrLevel level): double`
+- `getHighPriorityBound(): int`
+- `getMediumPriorityBound(): int`
+- `getLowPriorityBound(): int`
+- `getHighPriorityAlertThreshold(): int`
+- `getMediumPriorityAlertThreshold(): int`
+- `getLowPriorityAlertThreshold(): int`
+- `getCriticalAbsenceThreshold(): int`
+- `getAcceptableAbsenceThreshold(): int`
+- `getHighReportLimit(): int`
+- `getMediumReportLimit(): int`
+- `getLowReportLimit(): int`
+- `getDiscountPerLevel(): double`
+- `getCoverageTarget(CefrLevel level): double`
+
+### EvpCatalogPort (port)
+
+Methods:
+
+- `getExpectedLemmas(CefrLevel level): Set<LemmaAndPos>`
+- `isPhrase(String lemma): boolean`
+- `getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>`
+- `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
+
+### AuditableEntity (port)
+
+Methods:
+
+- `getId(): String`
+- `getLabel(): String`
+- `getCode(): String`
+
+### SelfDescribingConfig (port)
+
+Methods:
+
+- `describe(): Map<String,Object>`
+
+### NodeDiagnoses (port) [sealed]
+
+### CourseDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
+- `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
+
+### LevelDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceLevelDiagnosis>`
+- `getCocaBucketsDiagnosis(): Optional<CocaBucketsLevelDiagnosis>`
+
+### TopicDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+- `getCocaBucketsDiagnosis(): Optional<CocaBucketsTopicDiagnosis>`
+
+### KnowledgeDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+
+### QuizDiagnoses (port)
+
+Methods:
+
+- `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
+- `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
+
+### AuditReportStore (port)
+
+Methods:
+
+- `save(AuditReport report): String`
+- `load(String id): Optional<AuditReport>`
+- `loadLatest(): Optional<AuditReport>`
+- `list(): List<AuditReportSummary>`
+
+### From refiner-domain
+
+## Models
+
+### DiagnosisKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| SENTENCE_LENGTH | `null` |
+| LEMMA_ABSENCE | `null` |
+| COCA_BUCKETS | `null` |
+| LEMMA_RECURRENCE | `null` |
+| KNOWLEDGE_TITLE_LENGTH | `null` |
+| KNOWLEDGE_INSTRUCTIONS_LENGTH | `null` |
+
+### RefinementTaskStatus (`enum`)
+
+| Field | Type |
+|-------|------|
+| PENDING | `null` |
+| COMPLETED | `null` |
+| SKIPPED | `null` |
+
+### RefinementTask (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| nodeTarget | `AuditTarget` |
+| nodeId | `String` |
+| nodeLabel | `String` |
+| diagnosisKind | `DiagnosisKind` |
+| priority | `int` |
+| status | `RefinementTaskStatus` |
+
+### RefinementPlan (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| sourceAuditId | `String` |
+| createdAt | `Instant` |
+| tasks | `List<RefinementTask>` |
+
+### SuggestedLemma (`record`)
+
+| Field | Type |
+|-------|------|
+| lemma | `String` |
+| pos | `String` |
+| reason | `String` |
+| cocaRank | `Integer` |
+
+### SentenceLengthCorrectionContext (`record`)
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| sentence | `String` |
+| translation | `String` |
+| knowledgeTitle | `String` |
+| knowledgeInstructions | `String` |
+| topicLabel | `String` |
+| cefrLevel | `CefrLevel` |
+| tokenCount | `int` |
+| targetMin | `int` |
+| targetMax | `int` |
+| delta | `int` |
+| suggestedLemmas | `List<SuggestedLemma>` |
+
+### MisplacedLemmaContext (`record`)
+
+| Field | Type |
+|-------|------|
+| lemma | `String` |
+| pos | `String` |
+| expectedLevel | `CefrLevel` |
+| quizLevel | `CefrLevel` |
+| cocaRank | `Integer` |
+
+### LemmaAbsenceCorrectionContext (`record`)
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| sentence | `String` |
+| translation | `String` |
+| knowledgeTitle | `String` |
+| knowledgeInstructions | `String` |
+| topicLabel | `String` |
+| cefrLevel | `CefrLevel` |
+| misplacedLemmas | `List<MisplacedLemmaContext>` |
+| suggestedLemmas | `List<SuggestedLemma>` |
+
+### RefinerEngine (port)
+
+Methods:
+
+- `plan(AuditReport report, String auditId): RefinementPlan`
+- `nextTask(RefinementPlan plan): Optional<RefinementTask>`
+
+### RefinementPlanStore (port)
+
+Methods:
+
+- `save(RefinementPlan plan): String`
+- `load(String id): Optional<RefinementPlan>`
+- `loadLatest(): Optional<RefinementPlan>`
+
+### CorrectionContextResolver<T extends CorrectionContext> (port)
+
+Methods:
+
+- `resolve(AuditReport report, RefinementTask task): Optional<T>`
+
+### CorrectionContext (port)
+
+### From course-domain
+
+## Models
+
+### NodeKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| ROOT | `null` |
+| MILESTONE | `null` |
+| TOPIC | `null` |
+| KNOWLEDGE | `null` |
+
+### SentencePartKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| TEXT | `null` |
+| CLOZE | `null` |
+
+### CourseEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| title | `String` |
+| knowledgeIds | `List<String>` |
+| root | `RootNodeEntity` |
+| slug | `String` |
+
+### RootNodeEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| code | `String` |
+| kind | `NodeKind` |
+| label | `String` |
+| children | `List<String>` |
+| milestones | `List<MilestoneEntity>` |
+
+### MilestoneEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| code | `String` |
+| kind | `NodeKind` |
+| label | `String` |
+| oldId | `String` |
+| parentId | `String` |
+| children | `List<String>` |
+| order | `int` |
+| slug | `String` |
+| topics | `List<TopicEntity>` |
+
+### TopicEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| code | `String` |
+| kind | `NodeKind` |
+| label | `String` |
+| oldId | `String` |
+| parentId | `String` |
+| children | `List<String>` |
+| ruleIds | `List<String>` |
+| order | `int` |
+| slug | `String` |
+| knowledges | `List<KnowledgeEntity>` |
+
+### KnowledgeEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| code | `String` |
+| kind | `NodeKind` |
+| label | `String` |
+| oldId | `String` |
+| parentId | `String` |
+| isRule | `boolean` |
+| instructions | `String` |
+| order | `int` |
+| slug | `String` |
+| quizTemplates | `List<QuizTemplateEntity>` |
+
+### QuizTemplateEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| oidId | `String` |
+| kind | `String` |
+| knowledgeId | `String` |
+| title | `String` |
+| instructions | `String` |
+| translation | `String` |
+| theoryId | `String` |
+| topicName | `String` |
+| form | `FormEntity` |
+| difficulty | `double` |
+| retries | `double` |
+| noScoreRetries | `double` |
+| code | `String` |
+| audioUrl | `String` |
+| imageUrl | `String` |
+| answerAudioUrl | `String` |
+| answerImageUrl | `String` |
+| miniTheory | `String` |
+| successMessage | `String` |
+
+### FormEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| kind | `String` |
+| incidence | `double` |
+| label | `String` |
+| name | `String` |
+| sentenceParts | `List<SentencePartEntity>` |
+
+### SentencePartEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| kind | `SentencePartKind` |
+| text | `String` |
+| options | `List<String>` |
+
+### CourseValidationException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `Error al cargar el curso desde '%s': %s. La carga fue abortada.`
+
+| Field | Type |
+|-------|------|
+| path | `String` |
+| detail | `String` |
+
+### CourseRepository (port)
+
+Methods:
+
+- `load(Path path): CourseEntity`
+- `save(CourseEntity course, Path path): void`
+
+### CourseValidator (service)
+
+Methods:
+
+- `validate(CourseEntity course): void`
+

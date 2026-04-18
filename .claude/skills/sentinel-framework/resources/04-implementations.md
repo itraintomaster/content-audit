@@ -544,6 +544,18 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 |------|------|
 | `refinementPlanStore` | `RefinementPlanStore` |
 
+#### RefinerReviseCmd (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** RefinerReviseCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `revisionEngine` | `RevisionEngine` |
+
 #### TextReportFormatter (package: formatting)
 
 **Package:** `com.learney.contentaudit.auditcli.formatting`
@@ -698,4 +710,76 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Implements:** RefinementPlanStore
 
 **Framework types:** Repository
+
+#### FileSystemRevisionArtifactStore
+
+**Package:** `com.learney.contentaudit.auditinfrastructure`
+
+**Implements:** RevisionArtifactStore
+
+**Framework types:** Repository
+
+### Module: revision-domain
+
+#### DefaultRevisionEngineFactory (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** public
+**Implements:** RevisionEngineFactory
+
+#### IdentityReviser (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** public
+**Implements:** Reviser
+
+#### AutoApproveValidator (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** public
+**Implements:** RevisionValidator
+
+#### DefaultRevisionValidatorResult (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** public
+**Implements:** RevisionValidatorResult
+
+#### DispatchingReviser (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** public
+**Implements:** Reviser
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `byKind` | `Map<DiagnosisKind,Reviser>` |
+| `fallback` | `IdentityReviser` |
+
+#### DefaultCourseElementLocator (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** public
+**Implements:** CourseElementLocator
+
+#### DefaultRevisionEngine (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** public
+**Implements:** RevisionEngine
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `refinementPlanStore` | `RefinementPlanStore` |
+| `auditReportStore` | `AuditReportStore` |
+| `contextResolver` | `CorrectionContextResolver<CorrectionContext>` |
+| `reviser` | `Reviser` |
+| `validator` | `RevisionValidator` |
+| `artifactStore` | `RevisionArtifactStore` |
+| `courseRepository` | `CourseRepository` |
+| `elementLocator` | `CourseElementLocator` |
 

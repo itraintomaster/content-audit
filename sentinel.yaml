@@ -2769,6 +2769,7 @@ modules:
   - nlp-infrastructure
   - vocabulary-infrastructure
   - audit-infrastructure
+  - revision-domain
   interfaces:
   - name: AuditRunner
     stereotype: service
@@ -3739,6 +3740,7 @@ modules:
   - vocabulary-infrastructure
   - audit-infrastructure
   - refiner-domain
+  - revision-domain
   interfaces:
   - name: AnalyzeCommand
     stereotype: port
@@ -3776,6 +3778,11 @@ modules:
     sealed: true
     exposes:
     - signature: "listTasks(String planId): Integer"
+  - name: RefinerReviseCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "revise(String planId, String taskId): Integer"
   patterns:
   - type: Strategy
     implementations:
@@ -4057,6 +4064,16 @@ modules:
       - java.util.concurrent.Callable<Integer>
       implements:
       - RefinerListCommand
+    - name: RefinerReviseCmd
+      requiresInject:
+      - name: revisionEngine
+        type: RevisionEngine
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - RefinerReviseCommand
   - name: formatting
     description: "Internal formatting infrastructure — report transformers, view models,\
       \ formatters, and drill-down resolution"
@@ -4447,6 +4464,7 @@ modules:
   dependsOn:
   - audit-domain
   - refiner-domain
+  - revision-domain
   implementations:
   - name: FileSystemAuditReportStore
     types:
@@ -4463,7 +4481,266 @@ modules:
     visibility: public
     implements:
     - RefinementPlanStore
+  - name: FileSystemRevisionArtifactStore
+    types:
+    - Repository
+    visibility: public
+    implements:
+    - RevisionArtifactStore
   scope: internal
+- name: revision-domain
+  description: Domain module for the revision phase of the refinement pipeline. Consumes
+    refiner-domain (task and CorrectionContext) and course-domain (course entities
+    and the CourseRepository port owned by the caller). Exposes the Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator
+    ports plus a RevisionEngineFactory seam that assembles a configured RevisionEngine.
+    The bypass baseline (IdentityReviser + AutoApproveValidator + DefaultCourseElementLocator
+    + DispatchingReviser + DefaultRevisionEngine) lives behind the factory; external
+    modules only see the factory class and the carrier records.
+  dependsOn:
+  - audit-domain
+  - refiner-domain
+  - course-domain
+  models:
+  - name: RevisionVerdict
+    type: enum
+    fields:
+    - name: APPROVED
+    - name: REJECTED
+  - name: RevisionOutcomeKind
+    type: enum
+    fields:
+    - name: APPROVED_APPLIED
+      description: Proposal approved and course rewritten (R011)
+    - name: APPROVED_APPLY_FAILED
+      description: "Proposal approved, artifact persisted, course write failed (R014,\
+        \ DOUBT-ATOMICITY)"
+    - name: REJECTED
+      description: Proposal rejected by validator; course untouched (R012)
+    - name: NO_REVISER
+      description: No Reviser accepts the DiagnosisKind (R005)
+    - name: CONTEXT_UNAVAILABLE
+      description: CorrectionContext could not be resolved from the audit report
+    - name: ELEMENT_NOT_FOUND
+      description: Target element (nodeTarget+nodeId) not present in the loaded course
+  - name: CourseElementSnapshot
+    type: record
+    fields:
+    - name: nodeTarget
+      type: AuditTarget
+      description: QUIZ/KNOWLEDGE/TOPIC/MILESTONE/COURSE
+    - name: nodeId
+      type: String
+      description: Identifier of the targeted node
+    - name: quiz
+      type: QuizTemplateEntity
+      description: Full quiz snapshot when nodeTarget=QUIZ; null otherwise
+  - name: RevisionProposal
+    type: record
+    fields:
+    - name: proposalId
+      type: String
+      description: "Unique id, convention <taskId>-<timestamp> (R009)"
+    - name: taskId
+      type: String
+      description: Originating RefinementTask id
+    - name: planId
+      type: String
+      description: Owning RefinementPlan id
+    - name: sourceAuditId
+      type: String
+      description: AuditReport that produced the plan
+    - name: diagnosisKind
+      type: DiagnosisKind
+      description: Diagnosis that drove the revision
+    - name: nodeTarget
+      type: AuditTarget
+    - name: nodeId
+      type: String
+    - name: elementBefore
+      type: CourseElementSnapshot
+      description: Element state before the revision (R001)
+    - name: elementAfter
+      type: CourseElementSnapshot
+      description: Proposed element state; equals elementBefore in bypass (R002)
+    - name: rationale
+      type: String
+      description: "Human-readable justification; 'bypass: identity revision' in bypass\
+        \ (R004)"
+    - name: reviserKind
+      type: String
+      description: Reviser identifier; 'bypass' in this iteration
+    - name: createdAt
+      type: Instant
+  - name: RevisionArtifact
+    type: record
+    fields:
+    - name: proposal
+      type: RevisionProposal
+    - name: verdict
+      type: RevisionVerdict
+      description: APPROVED/REJECTED (R006)
+    - name: rejectionReason
+      type: String
+      description: Populated when verdict=REJECTED; null when APPROVED (R010)
+    - name: outcome
+      type: RevisionOutcomeKind
+      description: Final flow outcome including course-write failures (R014)
+  - name: RevisionOutcome
+    type: record
+    fields:
+    - name: kind
+      type: RevisionOutcomeKind
+    - name: artifact
+      type: RevisionArtifact
+      description: Persisted artifact; null for pre-proposal aborts
+    - name: errorMessage
+      type: String
+      description: Human-readable message for failure outcomes
+  - name: RevisionEngineConfig
+    type: record
+    fields:
+    - name: revisers
+      type: "Map<DiagnosisKind,Reviser>"
+      description: Per-DiagnosisKind Revisers (R003). May be empty; factory adds IdentityReviser
+        as the catch-all fallback (R004).
+    - name: validator
+      type: RevisionValidator
+      description: Optional; factory uses AutoApproveValidator when null (R007)
+    - name: artifactStore
+      type: RevisionArtifactStore
+      description: Required; no default (needs filesystem root)
+    - name: courseRepository
+      type: CourseRepository
+      description: Required; caller owns course IO wiring
+    - name: elementLocator
+      type: CourseElementLocator
+      description: Optional; factory uses DefaultCourseElementLocator when null
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+      description: Required; needed to load/save the task
+    - name: auditReportStore
+      type: AuditReportStore
+      description: Required; needed to resolve the CorrectionContext
+    - name: contextResolver
+      type: CorrectionContextResolver<CorrectionContext>
+      description: Required; caller owns the resolver registry
+  interfaces:
+  - name: Reviser
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "propose(RefinementTask task, CorrectionContext context, CourseElementSnapshot\
+        \ before): RevisionProposal"
+    - signature: "handles(DiagnosisKind kind): boolean"
+    - signature: "reviserKind(): String"
+  - name: RevisionValidator
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "validate(RevisionProposal proposal): RevisionValidatorResult"
+  - name: RevisionValidatorResult
+    sealed: false
+    exposes:
+    - signature: "verdict(): RevisionVerdict"
+    - signature: "rejectionReason(): Optional<String>"
+  - name: RevisionArtifactStore
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "save(RevisionArtifact artifact): String"
+    - signature: "load(String planId, String proposalId): Optional<RevisionArtifact>"
+    - signature: "listByPlan(String planId): List<RevisionArtifact>"
+  - name: CourseElementLocator
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "snapshot(CourseEntity course, AuditTarget target, String nodeId):\
+        \ Optional<CourseElementSnapshot>"
+    - signature: "replace(CourseEntity course, CourseElementSnapshot replacement):\
+        \ CourseEntity"
+  - name: RevisionEngine
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "revise(String planId, String taskId, Path coursePath): RevisionOutcome"
+  - name: RevisionEngineFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(RevisionEngineConfig config): RevisionEngine"
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultRevisionEngineFactory
+    suppressed: false
+    interface: RevisionEngineFactory
+  packages:
+  - name: engine
+    description: "Revision engine internals. Only DefaultRevisionEngineFactory is\
+      \ public; every other class (DispatchingReviser, IdentityReviser, AutoApproveValidator,\
+      \ DefaultRevisionValidatorResult, DefaultCourseElementLocator, DefaultRevisionEngine)\
+      \ is package-private. External modules wire a RevisionEngine by calling factory.create(config)."
+    visibility: public
+    implementations:
+    - name: DefaultRevisionEngineFactory
+      types:
+      - Component
+      visibility: public
+      implements:
+      - RevisionEngineFactory
+    - name: IdentityReviser
+      types:
+      - Component
+      implements:
+      - Reviser
+    - name: AutoApproveValidator
+      types:
+      - Component
+      implements:
+      - RevisionValidator
+    - name: DefaultRevisionValidatorResult
+      implements:
+      - RevisionValidatorResult
+    - name: DispatchingReviser
+      requiresInject:
+      - name: byKind
+        type: "Map<DiagnosisKind,Reviser>"
+        description: Revisers registered per DiagnosisKind (R003)
+      - name: fallback
+        type: IdentityReviser
+        description: Bypass fallback covering unmatched DiagnosisKinds (R004)
+      types:
+      - Component
+      implements:
+      - Reviser
+    - name: DefaultCourseElementLocator
+      types:
+      - Component
+      implements:
+      - CourseElementLocator
+    - name: DefaultRevisionEngine
+      requiresInject:
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: contextResolver
+        type: CorrectionContextResolver<CorrectionContext>
+      - name: reviser
+        type: Reviser
+        description: Normally a DispatchingReviser
+      - name: validator
+        type: RevisionValidator
+      - name: artifactStore
+        type: RevisionArtifactStore
+      - name: courseRepository
+        type: CourseRepository
+      - name: elementLocator
+        type: CourseElementLocator
+      types:
+      - Component
+      implements:
+      - RevisionEngine
 features:
 - id: FEAT-DLABS
   name: Diagnosticos Tipados para el Analizador de Ausencia de Lemas
@@ -9746,6 +10023,356 @@ features:
         \ pero mezcla un bugfix con una nueva funcionalidad."
     answer: "Opcion B: Corregir como parte de esta feature. Reduce el numero de iteraciones\
       \ pero mezcla un bugfix con una nueva funcionalidad."
+- id: FEAT-REVBYP
+  name: Fase de revision (bypass skeleton) - aplicacion de cambios a elementos del
+    curso
+  description: |-
+    Hoy la pipeline de ContentAudit cubre tres fases: `analyze` produce un reporte de auditoria, `refiner plan` genera un plan de tareas a partir del reporte, y `refiner next` resuelve el contexto de correccion de la proxima tarea. Lo que falta es la fase que efectivamente **aplica** un cambio a un elemento del curso en base a ese contexto.
+
+    Este requerimiento define esa fase, llamada **revision**. El alcance es deliberadamente minimo: se construye el esqueleto end-to-end con componentes **bypass** (identidad, auto-aprobacion) para validar que la pipeline completa funciona — que una tarea se puede tomar, construir su propuesta de revision, persistirla como artefacto auditable, aprobarla, y reescribir el curso modificado al disco. Ninguna logica real de revision (AI, reglas, transformaciones) entra en esta iteracion. Esas estrategias se enchufaran en requerimientos futuros.
+  code: F-REVBYP
+  rules:
+  - id: F-REVBYP-R001
+    name: Estructura de la RevisionProposal
+    severity: critical
+    description: "Para cada tarea de revision, el sistema debe poder construir una\
+      \ `RevisionProposal` que representa el cambio propuesto sobre un elemento del\
+      \ curso. La propuesta contiene los siguientes datos: | Campo | Tipo | Descripcion\
+      \ | |-------|------|-------------| | proposalId | Texto | Identificador unico\
+      \ de la propuesta (generado por el sistema) | | taskId | Texto | Identificador\
+      \ de la `RefinementTask` que origino la revision | | planId | Texto | Identificador\
+      \ del `RefinementPlan` al que pertenece la tarea | | sourceAuditId | Texto |\
+      \ Identificador del `AuditReport` del que se derivo el plan | | diagnosisKind\
+      \ | Enum | Tipo de diagnostico de la tarea (SENTENCE_LENGTH, LEMMA_ABSENCE,\
+      \ etc.) | | nodeTarget | Enum | Nivel del nodo objetivo (QUIZ, KNOWLEDGE, TOPIC,\
+      \ MILESTONE, COURSE) | | nodeId | Texto | Identificador del nodo objetivo en\
+      \ el arbol de auditoria | | elementBefore | Snapshot del elemento | Estado actual\
+      \ del elemento del curso antes de la revision | | elementAfter | Snapshot del\
+      \ elemento | Estado propuesto del elemento del curso despues de la revision\
+      \ | | rationale | Texto | Justificacion textual de la revision (puede ser una\
+      \ cadena fija en el caso bypass, e.g., \"bypass: identity revision\") | | reviserKind\
+      \ | Texto | Identificador del Reviser que produjo la propuesta (en esta iteracion\
+      \ siempre \"bypass\") | | createdAt | Fecha/hora | Timestamp de creacion de\
+      \ la propuesta | El `elementBefore` y `elementAfter` son capturas del elemento\
+      \ del curso afectado (por ejemplo, un quiz). Sirven para trazabilidad, diff,\
+      \ y reproduccion de la revision. [ASSUMPTION] La forma concreta del snapshot\
+      \ (documento completo, subset relevante) es una decision de arquitectura. Razon:\
+      \ la propuesta debe ser auto-contenida para poder re-ejecutarla o auditarla\
+      \ sin depender del estado actual del curso."
+    validation: AUTO_VALIDATED
+  - id: F-REVBYP-R002
+    name: "En el caso bypass, elementBefore y elementAfter son semanticamente equivalentes"
+    severity: critical
+    description: "Cuando el Reviser activo es el bypass (identidad), el `elementAfter`\
+      \ de la propuesta debe ser semanticamente equivalente al `elementBefore`. Semanticamente\
+      \ equivalente significa que, luego de aplicar la propuesta y releer el curso\
+      \ desde disco, el elemento afectado es indistinguible del original segun los\
+      \ criterios de igualdad definidos en FEAT-CSTRUCT (idempotencia de persistencia,\
+      \ R003)."
+    validation: AUTO_VALIDATED
+  - id: F-REVBYP-R003
+    name: El Reviser es pluggable por DiagnosisKind
+    severity: critical
+    description: "El componente que genera una `RevisionProposal` a partir de un `CorrectionContext`\
+      \ y el elemento actual se llama **Reviser**. El sistema debe permitir registrar\
+      \ multiples Revisers, cada uno asociado a uno o mas `DiagnosisKind`. Al iniciar\
+      \ una revision, se selecciona el Reviser correspondiente al `diagnosisKind`\
+      \ de la tarea. Este patron es analogo al de `CorrectionContextResolver` / `DispatchingCorrectionContextResolver`\
+      \ en el refiner: un despachador central consulta a sus Revisers registrados\
+      \ y delega en el que maneja el diagnostico correspondiente."
+    validation: AUTO_VALIDATED
+  - id: F-REVBYP-R004
+    name: Existe un Reviser bypass que actua como baseline por defecto
+    severity: critical
+    description: "Debe existir un Reviser llamado **bypass** que: 1. Acepta tareas\
+      \ de cualquier `DiagnosisKind`. 2. Devuelve una `RevisionProposal` cuyo `elementAfter`\
+      \ es identico al `elementBefore` (revision identidad). 3. Produce un `rationale`\
+      \ constante (por ejemplo, \"bypass: identity revision\"). 4. Se usa como Reviser\
+      \ por defecto cuando no hay un Reviser especifico registrado para un `DiagnosisKind`,\
+      \ o cuando se selecciona explicitamente. En esta iteracion, el Reviser bypass\
+      \ es el unico registrado. El despachador lo elige siempre."
+    validation: AUTO_VALIDATED
+  - id: F-REVBYP-R005
+    name: "Si no hay Reviser aplicable, la revision no se realiza"
+    severity: major
+    description: "Si el despachador no encuentra ningun Reviser que maneje el `DiagnosisKind`\
+      \ de la tarea (ni siquiera el bypass), el sistema debe informar que la revision\
+      \ no puede realizarse y no modificar ni la propuesta, ni la tarea, ni el curso\
+      \ en disco. En el base case esto no ocurre (el bypass acepta todo), pero la\
+      \ regla queda declarada para iteraciones futuras donde los Revisers especificos\
+      \ puedan no cubrir todos los diagnosticos."
+    errorMessage: "No hay Reviser registrado para el diagnostico '{diagnosisKind}'"
+    validation: AUTO_VALIDATED
+  - id: F-REVBYP-R006
+    name: El Validator decide si una propuesta se aplica
+    severity: critical
+    description: "Antes de aplicarse al curso, una `RevisionProposal` pasa por un\
+      \ **RevisionValidator**. El validator examina la propuesta y devuelve uno de\
+      \ dos veredictos: - **APPROVED**: la propuesta puede aplicarse al curso. - **REJECTED**:\
+      \ la propuesta no se aplica; se registra el motivo en la propuesta y el curso\
+      \ queda sin modificar."
+    validation: AUTO_VALIDATED
+  - id: F-REVBYP-R007
+    name: Existe un Validator bypass que auto-aprueba toda propuesta
+    severity: critical
+    description: Debe existir un validator llamado **bypass** cuyo veredicto es siempre
+      APPROVED. En esta iteracion es el unico validator registrado y se usa por defecto.
+    validation: AUTO_VALIDATED
+  - id: F-REVBYP-R008
+    name: Cada propuesta se persiste como artefacto bajo .content-audit/revisions/
+    severity: critical
+    description: "Toda `RevisionProposal` generada (sea aprobada o rechazada) debe\
+      \ persistirse como un artefacto en el workdir de la aplicacion, bajo el subdirectorio\
+      \ `.content-audit/revisions/`. La persistencia del artefacto es parte esencial\
+      \ del flujo: ocurre **aunque** el Reviser sea bypass y el contenido no cambie,\
+      \ porque el objetivo del artefacto es dejar trazabilidad del intento de revision.\
+      \ [ASSUMPTION] El directorio `.content-audit/` es el workdir de la aplicacion\
+      \ (contiene ya `audits/` y `plans/`). No debe confundirse con `.sentinel/`,\
+      \ que es el directorio del framework. Razon: mantener la separacion entre artefactos\
+      \ generados por el framework y artefactos generados por el dominio."
+    errorMessage: "No se pudo persistir la propuesta de revision '{proposalId}' bajo\
+      \ .content-audit/revisions/"
+    validation: AUTO_VALIDATED
+  - id: F-REVBYP-R009
+    name: Organizacion de los artefactos de propuesta
+    severity: major
+    description: "Los artefactos de propuesta se organizan dentro de `.content-audit/revisions/`\
+      \ de forma que sean facilmente navegables por plan y por tarea. La estructura\
+      \ concreta es: ``` .content-audit/revisions/ <planId>/ <proposalId>.<ext> ```\
+      \ Donde: - `<planId>` agrupa todas las propuestas derivadas del mismo `RefinementPlan`.\
+      \ - `<proposalId>` identifica de forma unica la propuesta. La convencion es\
+      \ `<taskId>-<timestamp>` para permitir que una misma tarea genere multiples\
+      \ propuestas en ejecuciones sucesivas (por ejemplo, si el operador re-ejecuta\
+      \ la revision con un Reviser distinto). La iteracion actual no aprovecha esa\
+      \ repeticion, pero el formato lo habilita. La extension concreta del archivo\
+      \ (`.json`, `.yaml`, etc.) queda como decision de arquitectura."
+    validation: AUTO_VALIDATED
+  - id: F-REVBYP-R010
+    name: El artefacto es suficiente para reconstruir la decision
+    severity: major
+    description: "El contenido del artefacto persistido debe incluir, como minimo,\
+      \ toda la informacion de la `RevisionProposal` (R001) mas el veredicto del validator\
+      \ (APPROVED / REJECTED) y el motivo del rechazo si corresponde. Un lector del\
+      \ artefacto debe poder responder sin consultar otras fuentes: 1. Que tarea se\
+      \ intento corregir. 2. Que plan y auditoria la originaron. 3. Cual era el estado\
+      \ del elemento antes y el propuesto despues. 4. Quien (que Reviser) produjo\
+      \ la propuesta. 5. Si se aprobo o no, y por que. 6. Cuando se genero."
+    validation: AUTO_VALIDATED
+  - id: F-REVBYP-R011
+    name: Una propuesta aprobada se aplica al curso en disco
+    severity: critical
+    description: "Cuando el validator aprueba una propuesta, el sistema debe aplicarla\
+      \ al curso en disco. Aplicar significa: 1. Cargar el curso actual desde `./db/english-course/`\
+      \ usando `CourseRepository` (FEAT-CSTRUCT). 2. Sustituir el elemento identificado\
+      \ por `nodeId` / `nodeTarget` por el `elementAfter` de la propuesta. 3. Persistir\
+      \ el curso modificado de vuelta a `./db/english-course/` usando `CourseRepository`.\
+      \ En el caso bypass, como el `elementAfter` es identico al `elementBefore`,\
+      \ el curso escrito es semanticamente equivalente al original. Esto no elimina\
+      \ el paso de escritura: la pipeline ejecuta el write-back de todas formas."
+    errorMessage: "No se pudo aplicar la propuesta de revision '{proposalId}' al curso"
+    validation: AUTO_VALIDATED
+  - id: F-REVBYP-R012
+    name: Una propuesta rechazada no modifica el curso
+    severity: critical
+    description: "Cuando el validator rechaza una propuesta, el sistema **no** debe\
+      \ cargar ni escribir el curso. El artefacto queda persistido con el veredicto\
+      \ REJECTED (R010) y el curso en disco permanece sin modificaciones."
+    validation: AUTO_VALIDATED
+  - id: F-REVBYP-R013
+    name: El estado de la tarea refleja el resultado de la revision
+    severity: major
+    description: "Al finalizar el flujo de revision, el estado de la `RefinementTask`\
+      \ correspondiente debe actualizarse segun el resultado: - Si la propuesta fue\
+      \ aprobada y aplicada al curso con exito, la tarea queda marcada como completada\
+      \ (estado DONE del modelo existente en el refiner). - Si la propuesta fue rechazada\
+      \ por el validator, la tarea permanece en su estado previo (tipicamente PENDING).\
+      \ - Si ocurrio una falla al aplicar la propuesta al curso (ver R014), la tarea\
+      \ permanece en su estado previo. [ASSUMPTION] El nombre exacto del estado \"\
+      DONE\" y la mecanica del cambio de estado dependen del modelo existente del\
+      \ refiner. Razon: esta regla describe la intencion funcional (la tarea queda\
+      \ cerrada cuando la revision tuvo efecto), no el detalle del estado."
+    validation: AUTO_VALIDATED
+  - id: F-REVBYP-R014
+    name: El artefacto se persiste antes de aplicar al curso
+    severity: major
+    description: "El orden del flujo es: (1) generar propuesta, (2) validar, (3) **persistir\
+      \ el artefacto**, (4) aplicar al curso si fue aprobada. El artefacto queda persistido\
+      \ aunque la aplicacion al curso falle. Esto garantiza que siempre hay un registro\
+      \ del intento de revision, incluso si el write-back del curso falla. Si la escritura\
+      \ del curso falla despues de que el artefacto ya fue persistido, queda una inconsistencia\
+      \ temporal: el artefacto declara APPROVED + aplicacion intentada, pero el curso\
+      \ no refleja el cambio. En esta iteracion esa inconsistencia se acepta como\
+      \ conocida; la recuperacion/rollback es un tema para una iteracion futura (ver\
+      \ DOUBT-ATOMICITY)."
+    errorMessage: "La propuesta '{proposalId}' fue aprobada y persistida como artefacto,\
+      \ pero la escritura del curso fallo"
+    validation: AUTO_VALIDATED
+  journeys:
+  - id: F-REVBYP-J001
+    name: Revision bypass end-to-end de una tarea
+    validation: AUTO_VALIDATED
+    flow:
+    - id: iniciar_revision
+      action: El operador inicia una revision para una tarea del plan identificada
+        por su taskId
+      then: resolver_contexto
+    - id: resolver_contexto
+      action: El sistema resuelve el CorrectionContext de la tarea usando la infraestructura
+        existente (FEAT-RCSL / FEAT-RCLA)
+      outcomes:
+      - when: El contexto se resuelve correctamente
+        then: cargar_elemento
+      - when: "El contexto no puede resolverse (reporte de auditoria no encontrado,\
+          \ diagnostico no disponible)"
+        then: abortar_sin_contexto
+    - id: cargar_elemento
+      action: El sistema carga el elemento actual del curso identificado por nodeTarget/nodeId
+        usando CourseRepository
+      outcomes:
+      - when: El elemento existe en el curso cargado
+        then: elegir_reviser
+      - when: El elemento no se encuentra en el curso
+        then: abortar_elemento_no_encontrado
+    - id: elegir_reviser
+      action: El despachador selecciona el Reviser para el diagnosisKind de la tarea.
+        En esta iteracion siempre resuelve al Reviser bypass
+      outcomes:
+      - when: Hay un Reviser aplicable (bypass como fallback)
+        then: generar_propuesta
+      - when: No hay ningun Reviser registrado para el diagnostico
+        then: abortar_sin_reviser
+      gate:
+      - F-REVBYP-R003
+      - F-REVBYP-R004
+      - F-REVBYP-R005
+    - id: generar_propuesta
+      action: "El Reviser bypass genera una RevisionProposal donde elementAfter es\
+        \ igual a elementBefore, con rationale 'bypass: identity revision'"
+      then: validar_propuesta
+      gate:
+      - F-REVBYP-R001
+      - F-REVBYP-R002
+      - F-REVBYP-R004
+    - id: validar_propuesta
+      action: El RevisionValidator evalua la propuesta
+      outcomes:
+      - when: El validator aprueba la propuesta (bypass siempre aprueba)
+        then: persistir_artefacto_aprobado
+      - when: El validator rechaza la propuesta
+        then: persistir_artefacto_rechazado
+      gate:
+      - F-REVBYP-R006
+      - F-REVBYP-R007
+    - id: persistir_artefacto_aprobado
+      action: El sistema escribe el artefacto de la propuesta bajo .content-audit/revisions/<planId>/<proposalId>
+        con veredicto APPROVED
+      then: aplicar_curso
+      gate:
+      - F-REVBYP-R008
+      - F-REVBYP-R009
+      - F-REVBYP-R010
+      - F-REVBYP-R014
+    - id: aplicar_curso
+      action: El sistema sustituye el elemento en el curso cargado por elementAfter
+        y persiste el curso via CourseRepository a ./db/english-course/
+      outcomes:
+      - when: La escritura del curso fue exitosa
+        then: marcar_tarea_completada
+      - when: La escritura del curso fallo
+        then: fallo_aplicacion
+      gate:
+      - F-REVBYP-R011
+    - id: marcar_tarea_completada
+      action: El sistema actualiza el estado de la RefinementTask a completado
+      result: success
+      gate:
+      - F-REVBYP-R013
+    - id: persistir_artefacto_rechazado
+      action: El sistema escribe el artefacto con veredicto REJECTED y el motivo;
+        el curso en disco no se toca
+      result: failure
+      gate:
+      - F-REVBYP-R008
+      - F-REVBYP-R010
+      - F-REVBYP-R012
+      - F-REVBYP-R013
+    - id: fallo_aplicacion
+      action: El artefacto queda persistido como APPROVED pero el curso no pudo reescribirse;
+        la tarea permanece en su estado previo
+      result: failure
+      gate:
+      - F-REVBYP-R014
+    - id: abortar_sin_contexto
+      action: El sistema informa que la revision no puede iniciarse porque el contexto
+        de correccion no esta disponible
+      result: failure
+    - id: abortar_elemento_no_encontrado
+      action: El sistema informa que el elemento objetivo no existe en el curso cargado
+      result: failure
+    - id: abortar_sin_reviser
+      action: El sistema informa que no hay Reviser registrado para el diagnostico
+      result: failure
+      gate:
+      - F-REVBYP-R005
+  doubts:
+  - id: DOUBT-BYPASS-WRITE
+    question: El Reviser bypass debe igual escribir el curso a disco?
+    options:
+    - label: "Opcion A: Saltar el write-back cuando before == after. Evita I/O innecesario."
+    - label: "Opcion B: Ejecutar el write-back igual. Lo que se esta validando es\
+        \ la **pipeline**, no el contenido."
+    answer: Opcion B. El proposito del bypass es validar que la ruta de persistencia
+      del curso funciona end-to-end. Saltar el write-back por optimizacion dejaria
+      esa ruta sin ejercicio. La idempotencia de `CourseRepository` (FEAT-CSTRUCT
+      R003) garantiza que reescribir un curso tal cual es inocuo.
+  - id: DOUBT-ATOMICITY
+    question: Que pasa si el artefacto se persiste pero el curso falla al escribirse?
+    options:
+    - label: "Opcion A: Rollback del artefacto si falla la escritura del curso. Requiere\
+        \ diseno transaccional."
+    - label: "Opcion B: Dejar el artefacto con un estado adicional \"APPLICATION_FAILED\"\
+        \ y no reintentar automaticamente. Se inspecciona a mano."
+    - label: "Opcion C: Reintentar la aplicacion un numero acotado de veces antes\
+        \ de marcar como fallo."
+    answer: En esta iteracion se declara como limitacion conocida. R014 deja el artefacto
+      en estado APPROVED + escritura intentada + fallo reportado. La tarea permanece
+      sin cerrar. La decision concreta se toma en un requerimiento futuro cuando exista
+      logica de revision real.
+  - id: DOUBT-CLI-SURFACE
+    question: Agregar un comando `refiner revise <taskId>` en esta iteracion?
+    options:
+    - label: "Opcion A: Incluir el comando CLI en esta iteracion. Sin un punto de\
+        \ entrada no hay forma end-to-end de validar la pipeline."
+    - label: "Opcion B: Posponerlo a una iteracion siguiente. Dejar solo el componente\
+        \ de dominio en este requerimiento."
+    answer: "Opcion A. El objetivo de esta iteracion es probar la pipeline end-to-end.\
+      \ Sin un disparador, no hay \"end-to-end\" observable. El comando concreto y\
+      \ su formato son decisiones de arquitectura/UX, pero la existencia de **algun**\
+      \ punto de entrada operable por el usuario es parte del alcance funcional."
+  - id: DOUBT-MULTIPLE-REVISIONS
+    question: Puede una misma tarea generar multiples propuestas?
+    options:
+    - label: "Opcion A: Permitir multiples propuestas por tarea. Los artefactos se\
+        \ acumulan, la ultima aprobada manda sobre el curso."
+    - label: "Opcion B: Una sola propuesta por tarea. Re-ejecutar sobreescribe el\
+        \ artefacto anterior."
+    answer: "Opcion A. No se fuerza unicidad de propuesta por tarea. En esta iteracion\
+      \ no se explota (el bypass produce siempre la misma propuesta), pero futuras\
+      \ iteraciones con distintos Revisers se beneficiaran de poder comparar propuestas\
+      \ sucesivas de una misma tarea. El ultimo artefacto APPROVED es el que refleja\
+      \ el estado actual del curso."
+  - id: DOUBT-SNAPSHOT-SHAPE
+    question: Forma concreta de elementBefore / elementAfter
+    options:
+    - label: "Opcion A: Snapshot completo del elemento (por ejemplo, el `QuizTemplateEntity`\
+        \ entero)."
+    - label: "Opcion B: Solo el subset de campos que la propuesta modifica (util para\
+        \ diffs chicos)."
+    - label: "Opcion C: Representacion generica aplicable a cualquier `NodeKind` del\
+        \ curso."
+    answer: Pendiente para arquitectura. Funcionalmente la regla pide "suficiente
+      para reconstruir la decision" (R010); la forma concreta se deja para que el
+      arquitecto la defina alineada con los tipos ya existentes en `course-domain`.
 language:
   name: java
   version: 17

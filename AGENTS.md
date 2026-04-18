@@ -51,6 +51,7 @@ The following interfaces are `sealed`. Only the listed classes may implement the
 - `RefinerPlanCommand` permits: (none declared)
 - `RefinerNextCommand` permits: (none declared)
 - `RefinerListCommand` permits: (none declared)
+- `RefinerReviseCommand` permits: (none declared)
 
 ## Rule C - Dependency Injection
 
@@ -231,7 +232,7 @@ Domain module for the refinement workflow. Defines the plan/task model and ports
 
 ### audit-application
 
-**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure
+**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain
 
 **Interfaces:** AuditRunner, CourseMapper, AnalyzerRegistry
 
@@ -249,9 +250,9 @@ Infrastructure module for course persistence. Contains the filesystem adapter th
 
 CLI entry point for running content audits from the command line
 
-**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain
+**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain
 
-**Interfaces:** AnalyzeCommand, AnalyzerListCommand, AnalyzerConfigCommand, AnalyzerStatsCommand, RefinerPlanCommand, RefinerNextCommand, RefinerListCommand
+**Interfaces:** AnalyzeCommand, AnalyzerListCommand, AnalyzerConfigCommand, AnalyzerStatsCommand, RefinerPlanCommand, RefinerNextCommand, RefinerListCommand, RefinerReviseCommand
 
 ### nlp-infrastructure
 
@@ -273,9 +274,19 @@ Infrastructure module for linguistic reference catalogs (EVP vocabulary profiles
 
 Filesystem persistence adapters for audit reports
 
-**Depends on:** audit-domain, refiner-domain
+**Depends on:** audit-domain, refiner-domain, revision-domain
 
-**Implementations:** FileSystemAuditReportStore, FileSystemRefinementPlanStore
+**Implementations:** FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore
+
+### revision-domain
+
+Domain module for the revision phase of the refinement pipeline. Consumes refiner-domain (task and CorrectionContext) and course-domain (course entities and the CourseRepository port owned by the caller). Exposes the Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator ports plus a RevisionEngineFactory seam that assembles a configured RevisionEngine. The bypass baseline (IdentityReviser + AutoApproveValidator + DefaultCourseElementLocator + DispatchingReviser + DefaultRevisionEngine) lives behind the factory; external modules only see the factory class and the carrier records.
+
+**Depends on:** audit-domain, refiner-domain, course-domain
+
+**Models:** RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig
+
+**Interfaces:** Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory
 
 ## Features & Business Rules
 
@@ -926,10 +937,11 @@ Este requerimiento define esa fase, llamada **revision**. El alcance es delibera
 | audit-domain | (none) |
 | course-domain | (none) |
 | refiner-domain | audit-domain |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain |
 | course-infrastructure | course-domain |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain |
 | nlp-infrastructure | audit-domain |
 | vocabulary-infrastructure | audit-domain |
-| audit-infrastructure | audit-domain, refiner-domain |
+| audit-infrastructure | audit-domain, refiner-domain, revision-domain |
+| revision-domain | audit-domain, refiner-domain, course-domain |
 

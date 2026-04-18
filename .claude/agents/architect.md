@@ -417,12 +417,13 @@ A type can be a `public` class in Java but unreachable from another module if it
 | audit-domain | — | AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore | IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator | coca [internal], lrec [internal], labs [internal] |
 | course-domain | — | CourseRepository, CourseValidator | — | — |
 | refiner-domain | audit-domain | RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext | SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine | — |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure | AuditRunner, CourseMapper, AnalyzerRegistry | CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry | — |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain | AuditRunner, CourseMapper, AnalyzerRegistry | CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry | — |
 | course-infrastructure | course-domain | — | FileSystemCourseRepository | — |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain | AnalyzeCommand, AnalyzerListCommand, AnalyzerConfigCommand, AnalyzerStatsCommand, RefinerPlanCommand, RefinerNextCommand, RefinerListCommand | — | commands [internal], formatting [internal] |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain | AnalyzeCommand, AnalyzerListCommand, AnalyzerConfigCommand, AnalyzerStatsCommand, RefinerPlanCommand, RefinerNextCommand, RefinerListCommand, RefinerReviseCommand | — | commands [internal], formatting [internal] |
 | nlp-infrastructure | audit-domain | NlpTokenizerFactory | — | spacy [public] |
 | vocabulary-infrastructure | audit-domain | — | — | evp [internal], coca [internal] |
-| audit-infrastructure | audit-domain, refiner-domain | — | FileSystemAuditReportStore, FileSystemRefinementPlanStore | — |
+| audit-infrastructure | audit-domain, refiner-domain, revision-domain | — | FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore | — |
+| revision-domain | audit-domain, refiner-domain, course-domain | Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory | — | engine [public] |
 
 ### Boundaries
 
@@ -431,10 +432,11 @@ A type can be a `public` class in Java but unreachable from another module if it
 | audit-domain | (none) |
 | course-domain | (none) |
 | refiner-domain | audit-domain |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain |
 | course-infrastructure | course-domain |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain |
 | nlp-infrastructure | audit-domain |
 | vocabulary-infrastructure | audit-domain |
-| audit-infrastructure | audit-domain, refiner-domain |
+| audit-infrastructure | audit-domain, refiner-domain, revision-domain |
+| revision-domain | audit-domain, refiner-domain, course-domain |
 

@@ -53,6 +53,10 @@ project-root/
 │   ├── pom.xml            # Module POM (generated)
 │   ├── src/main/java/     # Production code
 │   └── src/test/java/     # Test code
+├── revision-domain/
+│   ├── pom.xml            # Module POM (generated)
+│   ├── src/main/java/     # Production code
+│   └── src/test/java/     # Test code
 ```
 
 ## Declared Modules
@@ -105,7 +109,7 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditapplication` |
-| Depends On | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure |
+| Depends On | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 0 |
@@ -135,11 +139,11 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditcli` |
-| Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain |
+| Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 0 |
-| Interfaces | 7 (AnalyzeCommand, AnalyzerListCommand, AnalyzerConfigCommand, AnalyzerStatsCommand, RefinerPlanCommand, RefinerNextCommand, RefinerListCommand) |
+| Interfaces | 8 (AnalyzeCommand, AnalyzerListCommand, AnalyzerConfigCommand, AnalyzerStatsCommand, RefinerPlanCommand, RefinerNextCommand, RefinerListCommand, RefinerReviseCommand) |
 | Implementations | 0 |
 | Packages | 2 (commands [internal], formatting [internal]) |
 
@@ -180,13 +184,28 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditinfrastructure` |
-| Depends On | audit-domain, refiner-domain |
+| Depends On | audit-domain, refiner-domain, revision-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
 | Models | 0 |
 | Interfaces | 0 |
-| Implementations | 2 (FileSystemAuditReportStore, FileSystemRefinementPlanStore) |
+| Implementations | 3 (FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore) |
 | Packages | 0 |
+
+### revision-domain
+
+> Domain module for the revision phase of the refinement pipeline. Consumes refiner-domain (task and CorrectionContext) and course-domain (course entities and the CourseRepository port owned by the caller). Exposes the Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator ports plus a RevisionEngineFactory seam that assembles a configured RevisionEngine. The bypass baseline (IdentityReviser + AutoApproveValidator + DefaultCourseElementLocator + DispatchingReviser + DefaultRevisionEngine) lives behind the factory; external modules only see the factory class and the carrier records.
+
+| Property | Value |
+|----------|-------|
+| Package | `com.learney.contentaudit.revisiondomain` |
+| Depends On | audit-domain, refiner-domain, course-domain |
+| Allowed Clients | (unrestricted) |
+| Scope | public |
+| Models | 7 (RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig) |
+| Interfaces | 7 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory) |
+| Implementations | 0 |
+| Packages | 1 (engine [public]) |
 
 ## Dependency Graph
 
@@ -201,6 +220,7 @@ audit-application ──depends──> course-infrastructure
 audit-application ──depends──> nlp-infrastructure
 audit-application ──depends──> vocabulary-infrastructure
 audit-application ──depends──> audit-infrastructure
+audit-application ──depends──> revision-domain
 course-infrastructure ──depends──> course-domain
 audit-cli ──depends──> audit-application
 audit-cli ──depends──> audit-domain
@@ -210,10 +230,15 @@ audit-cli ──depends──> nlp-infrastructure
 audit-cli ──depends──> vocabulary-infrastructure
 audit-cli ──depends──> audit-infrastructure
 audit-cli ──depends──> refiner-domain
+audit-cli ──depends──> revision-domain
 nlp-infrastructure ──depends──> audit-domain
 vocabulary-infrastructure ──depends──> audit-domain
 audit-infrastructure ──depends──> audit-domain
 audit-infrastructure ──depends──> refiner-domain
+audit-infrastructure ──depends──> revision-domain
+revision-domain ──depends──> audit-domain
+revision-domain ──depends──> refiner-domain
+revision-domain ──depends──> course-domain
 ```
 
 ## Access Control Matrix
@@ -223,12 +248,13 @@ audit-infrastructure ──depends──> refiner-domain
 | audit-domain | (none) | (any) |
 | course-domain | (none) | (any) |
 | refiner-domain | audit-domain | (any) |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure | (any) |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain | (any) |
 | course-infrastructure | course-domain | (any) |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain | (any) |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain | (any) |
 | nlp-infrastructure | audit-domain | (any) |
 | vocabulary-infrastructure | audit-domain | (any) |
-| audit-infrastructure | audit-domain, refiner-domain | (any) |
+| audit-infrastructure | audit-domain, refiner-domain, revision-domain | (any) |
+| revision-domain | audit-domain, refiner-domain, course-domain | (any) |
 
 ## Enforcement Mechanisms
 

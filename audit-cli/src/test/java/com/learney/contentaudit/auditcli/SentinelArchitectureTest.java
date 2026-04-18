@@ -31,7 +31,7 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceModuleBoundaries() {
     JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.classes().that().resideInAPackage("..auditcli..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditcli..", "..auditapplication..", "..auditdomain..", "..coursedomain..", "..refinerdomain..", "..courseinfrastructure..", "..nlpinfrastructure..", "..vocabularyinfrastructure..", "..auditinfrastructure..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+    ArchRuleDefinition.classes().that().resideInAPackage("..auditcli..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditcli..", "..auditapplication..", "..auditdomain..", "..coursedomain..", "..refinerdomain..", "..courseinfrastructure..", "..nlpinfrastructure..", "..vocabularyinfrastructure..", "..auditinfrastructure..", "..revisiondomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
   }
 
   @Test
@@ -82,6 +82,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.RefinerListCommand");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RefinerListCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.RefinerReviseCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RefinerReviseCommand - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.commands.Main");
@@ -137,6 +142,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.commands.RefinerListCmd");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RefinerListCmd - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.RefinerReviseCmd");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RefinerReviseCmd - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.formatting.ReportViewModel");

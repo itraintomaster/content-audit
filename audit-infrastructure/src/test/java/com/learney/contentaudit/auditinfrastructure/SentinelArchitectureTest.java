@@ -31,7 +31,7 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceModuleBoundaries() {
     JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.classes().that().resideInAPackage("..auditinfrastructure..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditinfrastructure..", "..auditdomain..", "..refinerdomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+    ArchRuleDefinition.classes().that().resideInAPackage("..auditinfrastructure..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditinfrastructure..", "..auditdomain..", "..refinerdomain..", "..revisiondomain..", "..coursedomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
   }
 
   @Test
@@ -45,6 +45,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: FileSystemRefinementPlanStore - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditinfrastructure.FileSystemRevisionArtifactStore");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FileSystemRevisionArtifactStore - " + e.getMessage());
     }
   }
 }

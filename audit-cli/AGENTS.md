@@ -49,6 +49,12 @@ Methods:
 
 - `listTasks(String planId): Integer`
 
+### RefinerReviseCommand (port) [sealed]
+
+Methods:
+
+- `revise(String planId, String taskId): Integer`
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
@@ -662,4 +668,129 @@ Methods:
 Methods:
 
 - `create(NlpTokenizerConfig config): NlpTokenizer`
+
+### From revision-domain
+
+## Models
+
+### RevisionVerdict (`enum`)
+
+| Field | Type |
+|-------|------|
+| APPROVED | `null` |
+| REJECTED | `null` |
+
+### RevisionOutcomeKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| APPROVED_APPLIED | `null` |
+| APPROVED_APPLY_FAILED | `null` |
+| REJECTED | `null` |
+| NO_REVISER | `null` |
+| CONTEXT_UNAVAILABLE | `null` |
+| ELEMENT_NOT_FOUND | `null` |
+
+### CourseElementSnapshot (`record`)
+
+| Field | Type |
+|-------|------|
+| nodeTarget | `AuditTarget` |
+| nodeId | `String` |
+| quiz | `QuizTemplateEntity` |
+
+### RevisionProposal (`record`)
+
+| Field | Type |
+|-------|------|
+| proposalId | `String` |
+| taskId | `String` |
+| planId | `String` |
+| sourceAuditId | `String` |
+| diagnosisKind | `DiagnosisKind` |
+| nodeTarget | `AuditTarget` |
+| nodeId | `String` |
+| elementBefore | `CourseElementSnapshot` |
+| elementAfter | `CourseElementSnapshot` |
+| rationale | `String` |
+| reviserKind | `String` |
+| createdAt | `Instant` |
+
+### RevisionArtifact (`record`)
+
+| Field | Type |
+|-------|------|
+| proposal | `RevisionProposal` |
+| verdict | `RevisionVerdict` |
+| rejectionReason | `String` |
+| outcome | `RevisionOutcomeKind` |
+
+### RevisionOutcome (`record`)
+
+| Field | Type |
+|-------|------|
+| kind | `RevisionOutcomeKind` |
+| artifact | `RevisionArtifact` |
+| errorMessage | `String` |
+
+### RevisionEngineConfig (`record`)
+
+| Field | Type |
+|-------|------|
+| revisers | `Map<DiagnosisKind,Reviser>` |
+| validator | `RevisionValidator` |
+| artifactStore | `RevisionArtifactStore` |
+| courseRepository | `CourseRepository` |
+| elementLocator | `CourseElementLocator` |
+| refinementPlanStore | `RefinementPlanStore` |
+| auditReportStore | `AuditReportStore` |
+| contextResolver | `CorrectionContextResolver<CorrectionContext>` |
+
+### Reviser (port)
+
+Methods:
+
+- `propose(RefinementTask task, CorrectionContext context, CourseElementSnapshot before): RevisionProposal`
+- `handles(DiagnosisKind kind): boolean`
+- `reviserKind(): String`
+
+### RevisionValidator (port)
+
+Methods:
+
+- `validate(RevisionProposal proposal): RevisionValidatorResult`
+
+### RevisionValidatorResult
+
+Methods:
+
+- `verdict(): RevisionVerdict`
+- `rejectionReason(): Optional<String>`
+
+### RevisionArtifactStore (port)
+
+Methods:
+
+- `save(RevisionArtifact artifact): String`
+- `load(String planId, String proposalId): Optional<RevisionArtifact>`
+- `listByPlan(String planId): List<RevisionArtifact>`
+
+### CourseElementLocator (port)
+
+Methods:
+
+- `snapshot(CourseEntity course, AuditTarget target, String nodeId): Optional<CourseElementSnapshot>`
+- `replace(CourseEntity course, CourseElementSnapshot replacement): CourseEntity`
+
+### RevisionEngine (port)
+
+Methods:
+
+- `revise(String planId, String taskId, Path coursePath): RevisionOutcome`
+
+### RevisionEngineFactory (factory)
+
+Methods:
+
+- `create(RevisionEngineConfig config): RevisionEngine`
 

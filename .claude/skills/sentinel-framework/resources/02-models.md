@@ -1314,3 +1314,134 @@ new LemmaAbsenceCorrectionContext(String taskId, String sentence, String transla
 new NlpTokenizerConfig(String pythonScriptPath, String cocaDataPath, int timeoutSeconds)
 ```
 
+### Module: revision-domain
+
+#### RevisionVerdict
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `APPROVED` | `null` |  |
+| `REJECTED` | `null` |  |
+
+**Generated constructor:**
+```java
+new RevisionVerdict(null APPROVED, null REJECTED)
+```
+
+#### RevisionOutcomeKind
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `APPROVED_APPLIED` | `null` |  |
+| `APPROVED_APPLY_FAILED` | `null` |  |
+| `REJECTED` | `null` |  |
+| `NO_REVISER` | `null` |  |
+| `CONTEXT_UNAVAILABLE` | `null` |  |
+| `ELEMENT_NOT_FOUND` | `null` |  |
+
+**Generated constructor:**
+```java
+new RevisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NO_REVISER, null CONTEXT_UNAVAILABLE, null ELEMENT_NOT_FOUND)
+```
+
+#### CourseElementSnapshot
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `nodeTarget` | `AuditTarget` |  |
+| `nodeId` | `String` |  |
+| `quiz` | `QuizTemplateEntity` |  |
+
+**Generated constructor:**
+```java
+new CourseElementSnapshot(AuditTarget nodeTarget, String nodeId, QuizTemplateEntity quiz)
+```
+
+#### RevisionProposal
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `proposalId` | `String` |  |
+| `taskId` | `String` |  |
+| `planId` | `String` |  |
+| `sourceAuditId` | `String` |  |
+| `diagnosisKind` | `DiagnosisKind` |  |
+| `nodeTarget` | `AuditTarget` |  |
+| `nodeId` | `String` |  |
+| `elementBefore` | `CourseElementSnapshot` |  |
+| `elementAfter` | `CourseElementSnapshot` |  |
+| `rationale` | `String` |  |
+| `reviserKind` | `String` |  |
+| `createdAt` | `Instant` |  |
+
+**Generated constructor:**
+```java
+new RevisionProposal(String proposalId, String taskId, String planId, String sourceAuditId, DiagnosisKind diagnosisKind, AuditTarget nodeTarget, String nodeId, CourseElementSnapshot elementBefore, CourseElementSnapshot elementAfter, String rationale, String reviserKind, Instant createdAt)
+```
+
+#### RevisionArtifact
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `proposal` | `RevisionProposal` |  |
+| `verdict` | `RevisionVerdict` |  |
+| `rejectionReason` | `String` |  |
+| `outcome` | `RevisionOutcomeKind` |  |
+
+**Generated constructor:**
+```java
+new RevisionArtifact(RevisionProposal proposal, RevisionVerdict verdict, String rejectionReason, RevisionOutcomeKind outcome)
+```
+
+#### RevisionOutcome
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `kind` | `RevisionOutcomeKind` |  |
+| `artifact` | `RevisionArtifact` |  |
+| `errorMessage` | `String` |  |
+
+**Generated constructor:**
+```java
+new RevisionOutcome(RevisionOutcomeKind kind, RevisionArtifact artifact, String errorMessage)
+```
+
+#### RevisionEngineConfig
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `revisers` | `Map<DiagnosisKind,Reviser>` |  |
+| `validator` | `RevisionValidator` |  |
+| `artifactStore` | `RevisionArtifactStore` |  |
+| `courseRepository` | `CourseRepository` |  |
+| `elementLocator` | `CourseElementLocator` |  |
+| `refinementPlanStore` | `RefinementPlanStore` |  |
+| `auditReportStore` | `AuditReportStore` |  |
+| `contextResolver` | `CorrectionContextResolver<CorrectionContext>` |  |
+
+**Generated constructor:**
+```java
+new RevisionEngineConfig(Map<DiagnosisKind,Reviser> revisers, RevisionValidator validator, RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, CorrectionContextResolver<CorrectionContext> contextResolver)
+```
+

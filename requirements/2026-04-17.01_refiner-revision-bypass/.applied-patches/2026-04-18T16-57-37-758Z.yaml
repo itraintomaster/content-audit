@@ -1,0 +1,346 @@
+code: FEAT-REVBYP
+description: "Introduce revision-domain module for the revision phase (bypass skeleton).\
+  \ Public contract at module root (Reviser, RevisionValidator, RevisionValidatorResult,\
+  \ RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory\
+  \ + carrier records). Engine internals encapsulated in a public 'engine' package\
+  \ where only DefaultRevisionEngineFactory is public cross-module; DispatchingReviser,\
+  \ IdentityReviser, AutoApproveValidator, DefaultRevisionValidatorResult, DefaultCourseElementLocator,\
+  \ DefaultRevisionEngine are package-private. Adds FileSystemRevisionArtifactStore\
+  \ to audit-infrastructure and RefinerReviseCommand/RefinerReviseCmd CLI entry point."
+modules:
+- name: revision-domain
+  description: Domain module for the revision phase of the refinement pipeline. Consumes
+    refiner-domain (task and CorrectionContext) and course-domain (course entities
+    and the CourseRepository port owned by the caller). Exposes the Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator
+    ports plus a RevisionEngineFactory seam that assembles a configured RevisionEngine.
+    The bypass baseline (IdentityReviser + AutoApproveValidator + DefaultCourseElementLocator
+    + DispatchingReviser + DefaultRevisionEngine) lives behind the factory; external
+    modules only see the factory class and the carrier records.
+  dependsOn:
+  - audit-domain
+  - refiner-domain
+  - course-domain
+  models:
+  - name: RevisionVerdict
+    type: enum
+    fields:
+    - name: APPROVED
+    - name: REJECTED
+    _change: add
+  - name: RevisionOutcomeKind
+    type: enum
+    fields:
+    - name: APPROVED_APPLIED
+      description: Proposal approved and course rewritten (R011)
+    - name: APPROVED_APPLY_FAILED
+      description: "Proposal approved, artifact persisted, course write failed (R014,\
+        \ DOUBT-ATOMICITY)"
+    - name: REJECTED
+      description: Proposal rejected by validator; course untouched (R012)
+    - name: NO_REVISER
+      description: No Reviser accepts the DiagnosisKind (R005)
+    - name: CONTEXT_UNAVAILABLE
+      description: CorrectionContext could not be resolved from the audit report
+    - name: ELEMENT_NOT_FOUND
+      description: Target element (nodeTarget+nodeId) not present in the loaded course
+    _change: add
+  - name: CourseElementSnapshot
+    type: record
+    fields:
+    - name: nodeTarget
+      type: AuditTarget
+      description: QUIZ/KNOWLEDGE/TOPIC/MILESTONE/COURSE
+    - name: nodeId
+      type: String
+      description: Identifier of the targeted node
+    - name: quiz
+      type: QuizTemplateEntity
+      description: Full quiz snapshot when nodeTarget=QUIZ; null otherwise
+    _change: add
+  - name: RevisionProposal
+    type: record
+    fields:
+    - name: proposalId
+      type: String
+      description: "Unique id, convention <taskId>-<timestamp> (R009)"
+    - name: taskId
+      type: String
+      description: Originating RefinementTask id
+    - name: planId
+      type: String
+      description: Owning RefinementPlan id
+    - name: sourceAuditId
+      type: String
+      description: AuditReport that produced the plan
+    - name: diagnosisKind
+      type: DiagnosisKind
+      description: Diagnosis that drove the revision
+    - name: nodeTarget
+      type: AuditTarget
+    - name: nodeId
+      type: String
+    - name: elementBefore
+      type: CourseElementSnapshot
+      description: Element state before the revision (R001)
+    - name: elementAfter
+      type: CourseElementSnapshot
+      description: Proposed element state; equals elementBefore in bypass (R002)
+    - name: rationale
+      type: String
+      description: "Human-readable justification; 'bypass: identity revision' in bypass\
+        \ (R004)"
+    - name: reviserKind
+      type: String
+      description: Reviser identifier; 'bypass' in this iteration
+    - name: createdAt
+      type: Instant
+    _change: add
+  - name: RevisionArtifact
+    type: record
+    fields:
+    - name: proposal
+      type: RevisionProposal
+    - name: verdict
+      type: RevisionVerdict
+      description: APPROVED/REJECTED (R006)
+    - name: rejectionReason
+      type: String
+      description: Populated when verdict=REJECTED; null when APPROVED (R010)
+    - name: outcome
+      type: RevisionOutcomeKind
+      description: Final flow outcome including course-write failures (R014)
+    _change: add
+  - name: RevisionOutcome
+    type: record
+    fields:
+    - name: kind
+      type: RevisionOutcomeKind
+    - name: artifact
+      type: RevisionArtifact
+      description: Persisted artifact; null for pre-proposal aborts
+    - name: errorMessage
+      type: String
+      description: Human-readable message for failure outcomes
+    _change: add
+  - name: RevisionEngineConfig
+    type: record
+    fields:
+    - name: revisers
+      type: "Map<DiagnosisKind,Reviser>"
+      description: Per-DiagnosisKind Revisers (R003). May be empty; factory adds IdentityReviser
+        as the catch-all fallback (R004).
+    - name: validator
+      type: RevisionValidator
+      description: Optional; factory uses AutoApproveValidator when null (R007)
+    - name: artifactStore
+      type: RevisionArtifactStore
+      description: Required; no default (needs filesystem root)
+    - name: courseRepository
+      type: CourseRepository
+      description: Required; caller owns course IO wiring
+    - name: elementLocator
+      type: CourseElementLocator
+      description: Optional; factory uses DefaultCourseElementLocator when null
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+      description: Required; needed to load/save the task
+    - name: auditReportStore
+      type: AuditReportStore
+      description: Required; needed to resolve the CorrectionContext
+    - name: contextResolver
+      type: CorrectionContextResolver<CorrectionContext>
+      description: Required; caller owns the resolver registry
+    _change: add
+  interfaces:
+  - name: Reviser
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "propose(RefinementTask task, CorrectionContext context, CourseElementSnapshot\
+        \ before): RevisionProposal"
+    - signature: "handles(DiagnosisKind kind): boolean"
+    - signature: "reviserKind(): String"
+    _change: add
+  - name: RevisionValidator
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "validate(RevisionProposal proposal): RevisionValidatorResult"
+    _change: add
+  - name: RevisionValidatorResult
+    sealed: false
+    exposes:
+    - signature: "verdict(): RevisionVerdict"
+    - signature: "rejectionReason(): Optional<String>"
+    _change: add
+  - name: RevisionArtifactStore
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "save(RevisionArtifact artifact): String"
+    - signature: "load(String planId, String proposalId): Optional<RevisionArtifact>"
+    - signature: "listByPlan(String planId): List<RevisionArtifact>"
+    _change: add
+  - name: CourseElementLocator
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "snapshot(CourseEntity course, AuditTarget target, String nodeId):\
+        \ Optional<CourseElementSnapshot>"
+    - signature: "replace(CourseEntity course, CourseElementSnapshot replacement):\
+        \ CourseEntity"
+    _change: add
+  - name: RevisionEngine
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "revise(String planId, String taskId, Path coursePath): RevisionOutcome"
+    _change: add
+  - name: RevisionEngineFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(RevisionEngineConfig config): RevisionEngine"
+    _change: add
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultRevisionEngineFactory
+    suppressed: false
+    interface: RevisionEngineFactory
+  packages:
+  - name: engine
+    description: "Revision engine internals. Only DefaultRevisionEngineFactory is\
+      \ public; every other class (DispatchingReviser, IdentityReviser, AutoApproveValidator,\
+      \ DefaultRevisionValidatorResult, DefaultCourseElementLocator, DefaultRevisionEngine)\
+      \ is package-private. External modules wire a RevisionEngine by calling factory.create(config)."
+    visibility: public
+    implementations:
+    - name: DefaultRevisionEngineFactory
+      types:
+      - Component
+      visibility: public
+      implements:
+      - RevisionEngineFactory
+      _change: add
+    - name: IdentityReviser
+      types:
+      - Component
+      implements:
+      - Reviser
+      _change: add
+    - name: AutoApproveValidator
+      types:
+      - Component
+      implements:
+      - RevisionValidator
+      _change: add
+    - name: DefaultRevisionValidatorResult
+      implements:
+      - RevisionValidatorResult
+      _change: add
+    - name: DispatchingReviser
+      requiresInject:
+      - name: byKind
+        type: "Map<DiagnosisKind,Reviser>"
+        description: Revisers registered per DiagnosisKind (R003)
+      - name: fallback
+        type: IdentityReviser
+        description: Bypass fallback covering unmatched DiagnosisKinds (R004)
+      types:
+      - Component
+      implements:
+      - Reviser
+      _change: add
+    - name: DefaultCourseElementLocator
+      types:
+      - Component
+      implements:
+      - CourseElementLocator
+      _change: add
+    - name: DefaultRevisionEngine
+      requiresInject:
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: contextResolver
+        type: CorrectionContextResolver<CorrectionContext>
+      - name: reviser
+        type: Reviser
+        description: Normally a DispatchingReviser
+      - name: validator
+        type: RevisionValidator
+      - name: artifactStore
+        type: RevisionArtifactStore
+      - name: courseRepository
+        type: CourseRepository
+      - name: elementLocator
+        type: CourseElementLocator
+      types:
+      - Component
+      implements:
+      - RevisionEngine
+      _change: add
+    _change: add
+  _change: add
+- name: audit-infrastructure
+  dependsOn:
+  - audit-domain
+  - refiner-domain
+  - revision-domain
+  implementations:
+  - name: FileSystemRevisionArtifactStore
+    types:
+    - Repository
+    visibility: public
+    implements:
+    - RevisionArtifactStore
+    _change: add
+  _change: modify
+- name: audit-application
+  dependsOn:
+  - audit-domain
+  - course-domain
+  - refiner-domain
+  - course-infrastructure
+  - nlp-infrastructure
+  - vocabulary-infrastructure
+  - audit-infrastructure
+  - revision-domain
+  _change: modify
+- name: audit-cli
+  dependsOn:
+  - audit-application
+  - audit-domain
+  - course-domain
+  - course-infrastructure
+  - nlp-infrastructure
+  - vocabulary-infrastructure
+  - audit-infrastructure
+  - refiner-domain
+  - revision-domain
+  interfaces:
+  - name: RefinerReviseCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "revise(String planId, String taskId): Integer"
+    _change: add
+  packages:
+  - name: commands
+    visibility: internal
+    implementations:
+    - name: RefinerReviseCmd
+      requiresInject:
+      - name: revisionEngine
+        type: RevisionEngine
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - RefinerReviseCommand
+      _change: add
+    _change: modify
+  _change: modify
