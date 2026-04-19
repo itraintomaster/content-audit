@@ -466,6 +466,7 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `auditReportStore` | `AuditReportStore` |
 | `refinementPlanStore` | `RefinementPlanStore` |
 | `analyzerRegistry` | `AnalyzerRegistry` |
+| `correctionContextResolver` | `CorrectionContextResolver` |
 
 #### DeleteCmd (package: commands)
 

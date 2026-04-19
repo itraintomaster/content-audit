@@ -168,12 +168,12 @@ En este caso, el sistema indica que el contexto no esta disponible.
 
 ---
 
-### Grupo C - Integracion con el comando refiner next
+### Grupo C - Integracion con el comando que muestra una tarea individual
 
-### Rule[F-RCLA-R007] - El comando refiner next incluye el contexto de correccion para tareas LEMMA_ABSENCE
+### Rule[F-RCLA-R007] - El comando que muestra una tarea individual incluye el contexto de correccion para tareas LEMMA_ABSENCE
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-Cuando el comando `refiner next` muestra una tarea de tipo LEMMA_ABSENCE, debe incluir el contexto de correccion ademas de los datos basicos de la tarea. Esto aplica tanto al formato texto como al formato JSON.
+Cuando el comando `get task` (o la combinacion de filtros equivalente: `get tasks --status pending --sort priority --limit 1`) muestra una tarea de tipo LEMMA_ABSENCE, debe incluir el contexto de correccion ademas de los datos basicos de la tarea. Esto aplica tanto al formato texto como al formato JSON.
 
 Dado que ahora las tareas LEMMA_ABSENCE apuntan a QUIZ (por R001), el target mostrado sera QUIZ en lugar de MILESTONE o COURSE.
 
@@ -182,7 +182,7 @@ Dado que ahora las tareas LEMMA_ABSENCE apuntan a QUIZ (por R001), el target mos
 ### Rule[F-RCLA-R008] - Formato JSON del contexto de correccion
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-En formato JSON, el contexto de correccion se incluye como un campo `correctionContext` en la salida existente del comando `refiner next`. Ejemplo:
+En formato JSON, el contexto de correccion se incluye como un campo `correctionContext` en la salida existente de los comandos `get task` y `get tasks` (cuando muestran una tarea individual o el primer match de un filtro, e.g., `get tasks --status pending --sort priority --limit 1`). Ejemplo:
 
 ```
 {
@@ -222,7 +222,7 @@ Si el contexto de correccion no puede construirse (por ejemplo, porque el report
 ### Rule[F-RCLA-R009] - Formato texto del contexto de correccion
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
-En formato texto, el contexto de correccion se muestra debajo de los datos basicos de la tarea, separado visualmente. Ejemplo:
+En formato texto, el contexto de correccion se muestra debajo de los datos basicos de la tarea, separado visualmente. Aplica tanto a `get task` como a `get tasks` cuando devuelven una tarea individual (e.g., `get tasks --status pending --sort priority --limit 1`). Ejemplo:
 
 ```
 Next task (#1 of 42):
@@ -286,7 +286,7 @@ journeys:
         then: solicitar_tarea
 
       - id: solicitar_tarea
-        action: "El usuario ejecuta 'refiner next' y obtiene una tarea LEMMA_ABSENCE con target QUIZ"
+        action: "El usuario ejecuta 'content-audit get tasks --status pending --sort priority --limit 1' y obtiene una tarea LEMMA_ABSENCE con target QUIZ"
         then: verificar_auditoria
 
       - id: verificar_auditoria

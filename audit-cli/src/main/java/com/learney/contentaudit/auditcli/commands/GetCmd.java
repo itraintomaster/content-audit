@@ -1,4 +1,9 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
+import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
+import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
+import com.learney.contentaudit.refinerdomain.SuggestedLemma;
 
 import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
 import com.learney.contentaudit.auditcli.GetCommand;
@@ -74,6 +79,8 @@ final class GetCmd implements GetCommand, Callable<Integer> {
 
     private final AnalyzerRegistry analyzerRegistry;
 
+    private final CorrectionContextResolver correctionContextResolver;
+
     /** Injected by Main to enable full plan listing and audit-level queries. */
     private Path baseDir;
 
@@ -114,10 +121,11 @@ final class GetCmd implements GetCommand, Callable<Integer> {
     private String diagnosisArg;
 
     public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore,
-            AnalyzerRegistry analyzerRegistry) {
+            AnalyzerRegistry analyzerRegistry, CorrectionContextResolver correctionContextResolver) {
         this.auditReportStore = auditReportStore;
         this.refinementPlanStore = refinementPlanStore;
         this.analyzerRegistry = analyzerRegistry;
+        this.correctionContextResolver = correctionContextResolver;
     }
 
     /** Called by Main to inject the resolved working directory (needed for plan listing). */
@@ -485,12 +493,12 @@ final class GetCmd implements GetCommand, Callable<Integer> {
 
         return switch (formatName) {
             case "json" -> printTaskListJson(plan, tasks);
-            case "table" -> printTaskListTable(tasks);
-            default -> printTaskListText(tasks);
+            case "table" -> printTaskListTable(plan, tasks);
+            default -> printTaskListText(plan, tasks);
         };
     }
 
-    private int printTaskListText(List<RefinementTask> tasks) {
+    private int printTaskListText(RefinementPlan plan, List<RefinementTask> tasks) {
         System.out.printf("%-10s  %-10s  %-11s  %-23s  %s%n", "ID", "Status", "Target", "Node", "Diagnosis");
         System.out.println("──────────  ──────────  ───────────  ───────────────────────  ──────────────────────");
         for (RefinementTask t : tasks) {
@@ -500,11 +508,17 @@ final class GetCmd implements GetCommand, Callable<Integer> {
                     targetLabel(t.getNodeTarget()),
                     truncate(t.getNodeLabel(), 23),
                     t.getDiagnosisKind());
+            if (needsCorrectionContext(t)) {
+                CorrectionContextResult ctx = resolveContext(plan, t);
+                System.out.println();
+                printContextText(t, ctx);
+                System.out.println();
+            }
         }
         return 0;
     }
 
-    private int printTaskListTable(List<RefinementTask> tasks) {
+    private int printTaskListTable(RefinementPlan plan, List<RefinementTask> tasks) {
         System.out.println("┌────────────┬────────────┬───────────┬─────────────────────────┬────────────────────────────────┐");
         System.out.println("│ ID         │ Status     │ Target    │ Node                    │ Diagnosis                      │");
         System.out.println("├────────────┼────────────┼───────────┼─────────────────────────┼────────────────────────────────┤");
@@ -517,6 +531,14 @@ final class GetCmd implements GetCommand, Callable<Integer> {
                     t.getDiagnosisKind());
         }
         System.out.println("└────────────┴────────────┴───────────┴─────────────────────────┴────────────────────────────────┘");
+        for (RefinementTask t : tasks) {
+            if (needsCorrectionContext(t)) {
+                CorrectionContextResult ctx = resolveContext(plan, t);
+                System.out.println();
+                System.out.println("Task " + t.getId() + ":");
+                printContextText(t, ctx);
+            }
+        }
         return 0;
     }
 
@@ -537,6 +559,10 @@ final class GetCmd implements GetCommand, Callable<Integer> {
                 m.put("nodeId", t.getNodeId());
                 m.put("nodeLabel", t.getNodeLabel());
                 m.put("diagnosis", t.getDiagnosisKind() != null ? t.getDiagnosisKind().name() : null);
+                if (needsCorrectionContext(t)) {
+                    CorrectionContextResult ctx = resolveContext(plan, t);
+                    addContextToJsonMap(m, ctx);
+                }
                 return m;
             }).collect(Collectors.toList()));
             System.out.println(om.writeValueAsString(output));
@@ -555,7 +581,234 @@ final class GetCmd implements GetCommand, Callable<Integer> {
         System.out.println("Target:    " + targetLabel(task.getNodeTarget()));
         System.out.println("Node:      " + task.getNodeLabel() + " (id: " + task.getNodeId() + ")");
         System.out.println("Diagnosis: " + task.getDiagnosisKind());
+        if (needsCorrectionContext(task)) {
+            Optional<RefinementPlan> planOpt = refinementPlanStore.load(planId);
+            if (planOpt.isPresent()) {
+                CorrectionContextResult ctx = resolveContext(planOpt.get(), task);
+                System.out.println();
+                printContextText(task, ctx);
+            } else {
+                System.out.println();
+                System.out.println("  Correction context: not available (plan '" + planId + "' not found)");
+            }
+        }
         return 0;
+    }
+
+    // -------------------------------------------------------------------------
+    // Correction context resolution helpers
+    // -------------------------------------------------------------------------
+
+    /** True only for diagnoses that have a defined correction context shape. */
+    private static boolean needsCorrectionContext(RefinementTask task) {
+        return task.getDiagnosisKind() == DiagnosisKind.SENTENCE_LENGTH
+                || task.getDiagnosisKind() == DiagnosisKind.LEMMA_ABSENCE;
+    }
+
+    /** Resolves the correction context for a task, capturing any error reason. */
+    private CorrectionContextResult resolveContext(RefinementPlan plan, RefinementTask task) {
+        String sourceAuditId = plan.getSourceAuditId();
+        if (sourceAuditId == null || sourceAuditId.isBlank()) {
+            return CorrectionContextResult.error("no sourceAuditId on plan");
+        }
+        Optional<AuditReport> reportOpt = auditReportStore.load(sourceAuditId);
+        if (reportOpt.isEmpty()) {
+            return CorrectionContextResult.error("audit report '" + sourceAuditId + "' not found");
+        }
+        Optional<?> contextOpt = correctionContextResolver.resolve(reportOpt.get(), task);
+        if (contextOpt.isEmpty()) {
+            return CorrectionContextResult.error("context could not be resolved for task " + task.getId());
+        }
+        Object ctx = contextOpt.get();
+        if (ctx instanceof SentenceLengthCorrectionContext slCtx) {
+            return CorrectionContextResult.sentenceLength(slCtx);
+        } else if (ctx instanceof LemmaAbsenceCorrectionContext laCtx) {
+            return CorrectionContextResult.lemmaAbsence(laCtx);
+        }
+        return CorrectionContextResult.error("unexpected context type for task " + task.getId());
+    }
+
+    /** Appends correctionContext (or correctionContext=null + correctionContextError) to a task JSON map. */
+    private void addContextToJsonMap(Map<String, Object> m, CorrectionContextResult ctx) {
+        if (ctx.slContext != null) {
+            m.put("correctionContext", buildSentenceLengthContextMap(ctx.slContext));
+        } else if (ctx.laContext != null) {
+            m.put("correctionContext", buildLemmaAbsenceContextMap(ctx.laContext));
+        } else {
+            m.put("correctionContext", null);
+            m.put("correctionContextError", ctx.error != null ? ctx.error : "unknown reason");
+        }
+    }
+
+    /** Prints the correction context in text format below a task entry. */
+    private void printContextText(RefinementTask task, CorrectionContextResult ctx) {
+        if (ctx.slContext != null) {
+            printSentenceLengthContextText(ctx.slContext);
+        } else if (ctx.laContext != null) {
+            printLemmaAbsenceContextText(ctx.laContext);
+        } else {
+            System.out.println("  Correction context: not available ("
+                    + (ctx.error != null ? ctx.error : "unknown reason") + ")");
+        }
+    }
+
+    private void printSentenceLengthContextText(SentenceLengthCorrectionContext ctx) {
+        System.out.println("  Correction context:");
+        System.out.println("    Sentence:     " + nullToEmpty(ctx.getSentence()));
+        System.out.println("    Translation:  " + nullToEmpty(ctx.getTranslation()));
+        System.out.println("    Knowledge:    " + nullToEmpty(ctx.getKnowledgeTitle()));
+        System.out.println("    Instructions: " + nullToEmpty(ctx.getKnowledgeInstructions()));
+        System.out.println("    Topic:        " + nullToEmpty(ctx.getTopicLabel()));
+        System.out.println("    CEFR Level:   " + (ctx.getCefrLevel() != null ? ctx.getCefrLevel().name() : ""));
+        String deltaStr = ctx.getDelta() > 0 ? "+" + ctx.getDelta()
+                : (ctx.getDelta() < 0 ? String.valueOf(ctx.getDelta()) : "0");
+        System.out.println("    Tokens:       " + ctx.getTokenCount()
+                + " (target: " + ctx.getTargetMin() + "-" + ctx.getTargetMax()
+                + ", delta: " + deltaStr + ")");
+        System.out.println("    Suggested lemmas:");
+        List<SuggestedLemma> lemmas = ctx.getSuggestedLemmas();
+        if (lemmas == null || lemmas.isEmpty()) {
+            System.out.println("      (none available)");
+        } else {
+            for (int i = 0; i < lemmas.size(); i++) {
+                SuggestedLemma l = lemmas.get(i);
+                String cocaPart = l.getCocaRank() > 0 ? " [COCA #" + l.getCocaRank() + "]" : "";
+                System.out.println("      " + (i + 1) + ". " + nullToEmpty(l.getLemma())
+                        + " (" + nullToEmpty(l.getPos()) + ") - " + nullToEmpty(l.getReason())
+                        + cocaPart);
+            }
+        }
+    }
+
+    private void printLemmaAbsenceContextText(LemmaAbsenceCorrectionContext ctx) {
+        System.out.println("  Correction context:");
+        System.out.println("    Sentence:     " + nullToEmpty(ctx.getSentence()));
+        System.out.println("    Translation:  " + nullToEmpty(ctx.getTranslation()));
+        System.out.println("    Knowledge:    " + nullToEmpty(ctx.getKnowledgeTitle()));
+        System.out.println("    Instructions: " + nullToEmpty(ctx.getKnowledgeInstructions()));
+        System.out.println("    Topic:        " + nullToEmpty(ctx.getTopicLabel()));
+        System.out.println("    CEFR Level:   " + (ctx.getCefrLevel() != null ? ctx.getCefrLevel().name() : ""));
+        System.out.println("    Misplaced lemmas:");
+        List<MisplacedLemmaContext> misplaced = ctx.getMisplacedLemmas();
+        if (misplaced == null || misplaced.isEmpty()) {
+            System.out.println("      (none available)");
+        } else {
+            for (int i = 0; i < misplaced.size(); i++) {
+                MisplacedLemmaContext ml = misplaced.get(i);
+                String cocaPart = ml.getCocaRank() > 0 ? " [COCA #" + ml.getCocaRank() + "]" : "";
+                System.out.println("      " + (i + 1) + ". " + nullToEmpty(ml.getLemma())
+                        + " (" + nullToEmpty(ml.getPos()) + ") - expected "
+                        + (ml.getExpectedLevel() != null ? ml.getExpectedLevel().name() : "")
+                        + ", found in "
+                        + (ml.getQuizLevel() != null ? ml.getQuizLevel().name() : "")
+                        + cocaPart);
+            }
+        }
+        System.out.println("    Suggested replacements:");
+        List<SuggestedLemma> lemmas = ctx.getSuggestedLemmas();
+        if (lemmas == null || lemmas.isEmpty()) {
+            System.out.println("      (none available)");
+        } else {
+            for (int i = 0; i < lemmas.size(); i++) {
+                SuggestedLemma l = lemmas.get(i);
+                String cocaPart = l.getCocaRank() > 0 ? " [COCA #" + l.getCocaRank() + "]" : "";
+                System.out.println("      " + (i + 1) + ". " + nullToEmpty(l.getLemma())
+                        + " (" + nullToEmpty(l.getPos()) + ") - " + nullToEmpty(l.getReason())
+                        + cocaPart);
+            }
+        }
+    }
+
+    private Map<String, Object> buildSentenceLengthContextMap(SentenceLengthCorrectionContext ctx) {
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("sentence", ctx.getSentence());
+        map.put("translation", ctx.getTranslation());
+        map.put("knowledgeTitle", ctx.getKnowledgeTitle());
+        map.put("knowledgeInstructions", ctx.getKnowledgeInstructions());
+        map.put("topicLabel", ctx.getTopicLabel());
+        map.put("cefrLevel", ctx.getCefrLevel() != null ? ctx.getCefrLevel().name() : null);
+        map.put("tokenCount", ctx.getTokenCount());
+        Map<String, Object> targetRange = new LinkedHashMap<>();
+        targetRange.put("min", ctx.getTargetMin());
+        targetRange.put("max", ctx.getTargetMax());
+        map.put("targetRange", targetRange);
+        map.put("delta", ctx.getDelta());
+        List<SuggestedLemma> lemmas = ctx.getSuggestedLemmas();
+        map.put("suggestedLemmas", lemmas == null ? List.of() : lemmas.stream()
+                .map(l -> {
+                    Map<String, Object> lm = new LinkedHashMap<>();
+                    lm.put("lemma", l.getLemma());
+                    lm.put("pos", l.getPos());
+                    lm.put("reason", l.getReason());
+                    lm.put("cocaRank", l.getCocaRank());
+                    return lm;
+                })
+                .collect(Collectors.toList()));
+        return map;
+    }
+
+    private Map<String, Object> buildLemmaAbsenceContextMap(LemmaAbsenceCorrectionContext ctx) {
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("sentence", ctx.getSentence());
+        map.put("translation", ctx.getTranslation());
+        map.put("knowledgeTitle", ctx.getKnowledgeTitle());
+        map.put("knowledgeInstructions", ctx.getKnowledgeInstructions());
+        map.put("topicLabel", ctx.getTopicLabel());
+        map.put("cefrLevel", ctx.getCefrLevel() != null ? ctx.getCefrLevel().name() : null);
+        List<MisplacedLemmaContext> misplaced = ctx.getMisplacedLemmas();
+        map.put("misplacedLemmas", misplaced == null ? List.of() : misplaced.stream()
+                .map(ml -> {
+                    Map<String, Object> mm = new LinkedHashMap<>();
+                    mm.put("lemma", ml.getLemma());
+                    mm.put("pos", ml.getPos());
+                    mm.put("expectedLevel", ml.getExpectedLevel() != null ? ml.getExpectedLevel().name() : null);
+                    mm.put("quizLevel", ml.getQuizLevel() != null ? ml.getQuizLevel().name() : null);
+                    mm.put("cocaRank", ml.getCocaRank());
+                    return mm;
+                })
+                .collect(Collectors.toList()));
+        List<SuggestedLemma> lemmas = ctx.getSuggestedLemmas();
+        map.put("suggestedLemmas", lemmas == null ? List.of() : lemmas.stream()
+                .map(l -> {
+                    Map<String, Object> lm = new LinkedHashMap<>();
+                    lm.put("lemma", l.getLemma());
+                    lm.put("pos", l.getPos());
+                    lm.put("reason", l.getReason());
+                    lm.put("cocaRank", l.getCocaRank());
+                    return lm;
+                })
+                .collect(Collectors.toList()));
+        return map;
+    }
+
+    /** Value object holding the result of a context resolution attempt. */
+    private static final class CorrectionContextResult {
+        final SentenceLengthCorrectionContext slContext;
+        final LemmaAbsenceCorrectionContext laContext;
+        final String error;
+
+        private CorrectionContextResult(SentenceLengthCorrectionContext sl,
+                LemmaAbsenceCorrectionContext la, String err) {
+            this.slContext = sl;
+            this.laContext = la;
+            this.error = err;
+        }
+
+        static CorrectionContextResult sentenceLength(SentenceLengthCorrectionContext ctx) {
+            return new CorrectionContextResult(ctx, null, null);
+        }
+
+        static CorrectionContextResult lemmaAbsence(LemmaAbsenceCorrectionContext ctx) {
+            return new CorrectionContextResult(null, ctx, null);
+        }
+
+        static CorrectionContextResult error(String reason) {
+            return new CorrectionContextResult(null, null, reason);
+        }
+    }
+
+    private static String nullToEmpty(String s) {
+        return s != null ? s : "";
     }
 
     // -------------------------------------------------------------------------

@@ -681,7 +681,7 @@ Este requerimiento hace dos cosas: (1) re-rutea las tareas LEMMA_ABSENCE para qu
 | F-RCLA-R004c | Contexto sin lemas sugeridos | major | - |
 | F-RCLA-R005 | Resolucion del nodo quiz desde una tarea de refinamiento | critical | No se pudo cargar el reporte de auditoria '{sourceAuditId}' necesario para construir el contexto de correccion |
 | F-RCLA-R006 | Contexto cuando el diagnostico de placement no esta disponible | major | No se pudo obtener el diagnostico de placement de lemas para el quiz '{nodeId}' |
-| F-RCLA-R007 | El comando refiner next incluye el contexto de correccion para tareas LEMMA_ABSENCE | critical | - |
+| F-RCLA-R007 | El comando que muestra una tarea individual incluye el contexto de correccion para tareas LEMMA_ABSENCE | critical | - |
 | F-RCLA-R008 | Formato JSON del contexto de correccion | critical | No se pudo construir el contexto de correccion: {motivo} |
 | F-RCLA-R009 | Formato texto del contexto de correccion | major | - |
 
@@ -704,7 +704,7 @@ Este requerimiento hace dos cosas: (1) re-rutea las tareas LEMMA_ABSENCE para qu
 | F-RCSL-R003 | Obtencion de lemas sugeridos desde el milestone ancestro | critical | - |
 | F-RCSL-R004 | Contexto sin lemas sugeridos | major | - |
 | F-RCSL-R005 | Limite de lemas sugeridos | minor | - |
-| F-RCSL-R006 | El comando refiner next incluye el contexto de correccion para tareas SENTENCE_LENGTH | critical | - |
+| F-RCSL-R006 | El comando que muestra una tarea individual incluye el contexto de correccion para tareas SENTENCE_LENGTH | critical | - |
 | F-RCSL-R007 | Formato JSON del contexto de correccion | critical | No se pudo construir el contexto de correccion: {motivo} |
 | F-RCSL-R008 | Formato texto del contexto de correccion | major | - |
 

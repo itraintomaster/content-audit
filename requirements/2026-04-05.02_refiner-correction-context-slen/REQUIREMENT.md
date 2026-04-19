@@ -138,12 +138,12 @@ La lista de lemas sugeridos se limita a un maximo de 10 elementos. Este limite m
 
 ---
 
-### Grupo B - Integracion con el comando refiner next
+### Grupo B - Integracion con el comando que muestra una tarea individual
 
-### Rule[F-RCSL-R006] - El comando refiner next incluye el contexto de correccion para tareas SENTENCE_LENGTH
+### Rule[F-RCSL-R006] - El comando que muestra una tarea individual incluye el contexto de correccion para tareas SENTENCE_LENGTH
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-Cuando el comando `refiner next` muestra una tarea de tipo SENTENCE_LENGTH, debe incluir el contexto de correccion ademas de los datos basicos de la tarea. Esto aplica tanto al formato texto como al formato JSON.
+Cuando el comando `get task` (o la combinacion de filtros equivalente: `get tasks --status pending --sort priority --limit 1`) muestra una tarea de tipo SENTENCE_LENGTH, debe incluir el contexto de correccion ademas de los datos basicos de la tarea. Esto aplica tanto al formato texto como al formato JSON.
 
 Para tareas de otros tipos de diagnostico (LEMMA_ABSENCE, COCA_BUCKETS, etc.), el comando continua mostrando solo los datos basicos de la tarea como hasta ahora. El contexto de correccion es especifico de SENTENCE_LENGTH en esta iteracion.
 
@@ -152,7 +152,7 @@ Para tareas de otros tipos de diagnostico (LEMMA_ABSENCE, COCA_BUCKETS, etc.), e
 ### Rule[F-RCSL-R007] - Formato JSON del contexto de correccion
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-En formato JSON, el contexto de correccion se incluye como un campo adicional `correctionContext` en la salida existente del comando `refiner next`. Ejemplo:
+En formato JSON, el contexto de correccion se incluye como un campo adicional `correctionContext` en la salida existente de los comandos `get task` y `get tasks` (cuando muestran una tarea individual o el primer match de un filtro, e.g., `get tasks --status pending --sort priority --limit 1`). Ejemplo:
 
 ```
 {
@@ -194,7 +194,7 @@ Si el contexto de correccion no puede construirse (por ejemplo, porque el report
 ### Rule[F-RCSL-R008] - Formato texto del contexto de correccion
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
-En formato texto, el contexto de correccion se muestra debajo de los datos basicos de la tarea, separado visualmente. Ejemplo:
+En formato texto, el contexto de correccion se muestra debajo de los datos basicos de la tarea, separado visualmente. Aplica tanto a `get task` como a `get tasks` cuando devuelven una tarea individual (e.g., `get tasks --status pending --sort priority --limit 1`). Ejemplo:
 
 ```
 Next task (#1 of 42):
@@ -252,7 +252,7 @@ journeys:
     testModule: audit-cli
     flow:
       - id: solicitar_tarea
-        action: "El usuario ejecuta 'refiner next' y obtiene una tarea SENTENCE_LENGTH"
+        action: "El usuario ejecuta 'content-audit get tasks --status pending --sort priority --limit 1' y obtiene una tarea SENTENCE_LENGTH"
         then: verificar_auditoria
 
       - id: verificar_auditoria
@@ -309,7 +309,7 @@ journeys:
     testModule: audit-cli
     flow:
       - id: solicitar_tarea
-        action: "El usuario ejecuta 'refiner next' y obtiene una tarea SENTENCE_LENGTH cuyo quiz tiene una oracion mas corta que el rango esperado"
+        action: "El usuario ejecuta 'content-audit get tasks --status pending --sort priority --limit 1' y obtiene una tarea SENTENCE_LENGTH cuyo quiz tiene una oracion mas corta que el rango esperado"
         then: verificar_auditoria
 
       - id: verificar_auditoria
@@ -365,7 +365,7 @@ journeys:
     testModule: audit-cli
     flow:
       - id: solicitar_tarea
-        action: "El usuario ejecuta 'refiner next' y obtiene una tarea SENTENCE_LENGTH"
+        action: "El usuario ejecuta 'content-audit get tasks --status pending --sort priority --limit 1' y obtiene una tarea SENTENCE_LENGTH"
         then: localizar_quiz
 
       - id: localizar_quiz

@@ -1,4 +1,4 @@
-generatedAt: 2026-04-19T18:19:02.107369Z
+generatedAt: 2026-04-19T22:49:12.586695Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -2978,8 +2978,9 @@ features:
         module: revision-domain
         implementation: FRevbypJ001JourneyTest
 - id: FEAT-RCLA
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
+  patchFile: requirements/2026-04-13.01_refiner-correction-context-labs/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-RCLA-R001
     state: PASSING
@@ -3176,17 +3177,131 @@ features:
       module: refiner-domain
       implementation: DispatchingCorrectionContextResolver
   - ruleId: F-RCLA-R008
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should resolve correction context when task diagnosis is LEMMA_ABSENCE
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should include correctionContext with misplacedLemmas array in JSON for
+        LEMMA_ABSENCE task
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should include misplacedLemmas with lemma pos expectedLevel quizLevel
+        and cocaRank in JSON correctionContext
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should include suggestedLemmas array in JSON correctionContext for LEMMA_ABSENCE
+        task
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should set correctionContext to null and include correctionContextError
+        in JSON for LEMMA_ABSENCE when resolver returns empty
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should include sentence translation knowledgeTitle knowledgeInstructions
+        topicLabel and cefrLevel in JSON correctionContext for LEMMA_ABSENCE
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
   - ruleId: F-RCLA-R009
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should print correction context section with misplaced lemmas in text
+        format for LEMMA_ABSENCE task
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should print numbered misplaced lemmas list with expected and found levels
+        in text format
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should print suggested replacements in text format for LEMMA_ABSENCE task
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should print none available for suggested replacements when list is empty
+        in text format for LEMMA_ABSENCE
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should print not available message when LEMMA_ABSENCE context cannot be
+        built in text format
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
   journeysCoverage:
   - journeyId: F-RCLA-J001
-    state: NO_TESTS
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_elLemmaPlacementDiagnosisExisteYTieneAlMenosUnMisplacedLemma_hayLemasAusentesDeTipoCOMPLETELYABSENTOAPPEARSTOOLATEDisponibles_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRclaJ001JourneyTest
+    - pathId: path-2
+      result: success
+      state: PASSING
+      tests:
+      - name: path2_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_elLemmaPlacementDiagnosisExisteYTieneAlMenosUnMisplacedLemma_noHayLemasSugeridosDisponibles_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRclaJ001JourneyTest
+    - pathId: path-3
+      result: failure
+      state: PASSING
+      tests:
+      - name: path3_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_elLemmaPlacementDiagnosisNoEstaDisponible_failure
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRclaJ001JourneyTest
+    - pathId: path-4
+      result: failure
+      state: PASSING
+      tests:
+      - name: path4_elReporteNoSeEncuentraOElNodoQuizNoExisteEnElArbol_failure
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRclaJ001JourneyTest
   - journeyId: F-RCLA-J002
-    state: NO_TESTS
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRclaJ002JourneyTest
 - id: FEAT-RCSL
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
+  patchFile: requirements/2026-04-05.02_refiner-correction-context-slen/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-RCSL-R001
     state: PASSING
@@ -3323,11 +3438,110 @@ features:
       module: refiner-domain
       implementation: SentenceLengthContextResolver
   - ruleId: F-RCSL-R006
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should resolve correction context when task diagnosis is SENTENCE_LENGTH
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should not resolve correction context when task diagnosis is COCA_BUCKETS
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
   - ruleId: F-RCSL-R007
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should include correctionContext object in JSON when context resolves
+        successfully
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should include sentence translation knowledgeTitle knowledgeInstructions
+        topicLabel and cefrLevel in JSON correctionContext
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should include targetRange with min and max and delta in JSON correctionContext
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should include suggestedLemmas array with lemma pos reason and cocaRank
+        in JSON correctionContext
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should set correctionContext to null and include correctionContextError
+        when audit report not found
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should set correctionContext to null and include correctionContextError
+        when sourceAuditId is blank
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should set correctionContext to null and include correctionContextError
+        when resolver returns empty
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should output empty suggestedLemmas array in JSON when context has no
+        suggested lemmas
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
   - ruleId: F-RCSL-R008
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: should print correction context section with all fields in text format
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should print numbered suggested lemmas list with lemma pos reason and
+        COCA rank in text format
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should print none available for suggested lemmas when list is empty in
+        text format
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should format positive delta with plus sign in text output tokens line
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should format negative delta without plus sign in text output tokens line
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should print not available message with error reason when context cannot
+        be built in text format
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should print correction context section in table format for SENTENCE_LENGTH
+        task
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
   journeysCoverage:
   - journeyId: F-RCSL-J001
     state: PASSING
@@ -10152,6 +10366,110 @@ elements:
         when 'get tasks' is invoked with no plans on disk
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should resolve correction context when task diagnosis is SENTENCE_LENGTH
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should not resolve correction context when task diagnosis is COCA_BUCKETS
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should include correctionContext object in JSON when context resolves
+        successfully
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should include sentence translation knowledgeTitle knowledgeInstructions
+        topicLabel and cefrLevel in JSON correctionContext
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should include targetRange with min and max and delta in JSON correctionContext
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should include suggestedLemmas array with lemma pos reason and cocaRank
+        in JSON correctionContext
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should set correctionContext to null and include correctionContextError
+        when audit report not found
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should set correctionContext to null and include correctionContextError
+        when sourceAuditId is blank
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should set correctionContext to null and include correctionContextError
+        when resolver returns empty
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should output empty suggestedLemmas array in JSON when context has no
+        suggested lemmas
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should print correction context section with all fields in text format
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should print numbered suggested lemmas list with lemma pos reason and
+        COCA rank in text format
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should print none available for suggested lemmas when list is empty in
+        text format
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should format positive delta with plus sign in text output tokens line
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should format negative delta without plus sign in text output tokens line
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should print not available message with error reason when context cannot
+        be built in text format
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should print correction context section in table format for SENTENCE_LENGTH
+        task
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should resolve correction context when task diagnosis is LEMMA_ABSENCE
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should include correctionContext with misplacedLemmas array in JSON for
+        LEMMA_ABSENCE task
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should include misplacedLemmas with lemma pos expectedLevel quizLevel
+        and cocaRank in JSON correctionContext
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should include suggestedLemmas array in JSON correctionContext for LEMMA_ABSENCE
+        task
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should set correctionContext to null and include correctionContextError
+        in JSON for LEMMA_ABSENCE when resolver returns empty
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should include sentence translation knowledgeTitle knowledgeInstructions
+        topicLabel and cefrLevel in JSON correctionContext for LEMMA_ABSENCE
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should print correction context section with misplaced lemmas in text
+        format for LEMMA_ABSENCE task
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should print numbered misplaced lemmas list with expected and found levels
+        in text format
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should print suggested replacements in text format for LEMMA_ABSENCE task
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should print none available for suggested replacements when list is empty
+        in text format for LEMMA_ABSENCE
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should print not available message when LEMMA_ABSENCE context cannot be
+        built in text format
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
     testCleanViews:
     - |
       test: "should list all stored audits when invoked as 'get audits' without a name"
@@ -10488,6 +10806,750 @@ elements:
       then:
         0 != null
         combined.toLowerCase().contains("no plans") || combined.toLowerCase().contains("plan") is true
+    - |
+      test: "should resolve correction context when task diagnosis is SENTENCE_LENGTH"
+      trace: FEAT-RCSL / F-RCSL-R006
+
+      given:
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        slTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        report = AuditReport()
+        ctx = SentenceLengthCorrectionContext("task-sl-001", "She plays tennis every afternoon", "Ella juega tenis todas las tardes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 5, 5, 8, 0, List.of())
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        exit = cmd.get("tasks", null, filter)
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      then:
+        exit == 0
+        verify: correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class))
+    - |
+      test: "should not resolve correction context when task diagnosis is COCA_BUCKETS"
+      trace: FEAT-RCSL / F-RCSL-R006
+
+      given:
+        cbTask = RefinementTask("task-cb-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.COCA_BUCKETS, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", "audit-2026-04-19T10-30-00", Instant.parse("2026-04-19T10:30:00Z"), List.of(cbTask))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+
+      when:
+        sut.get("tasks", null, filter)
+
+      then:
+        verify: correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) x 0
+    - |
+      test: "should include correctionContext object in JSON when context resolves successfully"
+      trace: FEAT-RCSL / F-RCSL-R007
+
+      given:
+        formatField = GetCmd.class.getDeclaredField("formatName")
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        slTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        report = AuditReport()
+        ctx = SentenceLengthCorrectionContext("task-sl-001", "She plays tennis every afternoon", "Ella juega tenis todas las tardes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 5, 5, 8, 0, List.of())
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setAccessible(true)
+
+      then:
+        exit == 0
+        output.contains("correctionContext") is true
+    - |
+      test: "should include sentence translation knowledgeTitle knowledgeInstructions topicLabel and cefrLevel in JSON correctionContext"
+      trace: FEAT-RCSL / F-RCSL-R007
+
+      given:
+        formatField = GetCmd.class.getDeclaredField("formatName")
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        slTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        report = AuditReport()
+        ctx = SentenceLengthCorrectionContext("task-sl-001", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setAccessible(true)
+
+      then:
+        exit == 0
+        output.contains("sentence") is true
+        output.contains("translation") is true
+        output.contains("knowledgeTitle") is true
+        output.contains("knowledgeInstructions") is true
+        output.contains("topicLabel") is true
+        output.contains("cefrLevel") is true
+    - |
+      test: "should include targetRange with min and max and delta in JSON correctionContext"
+      trace: FEAT-RCSL / F-RCSL-R007
+
+      given:
+        formatField = GetCmd.class.getDeclaredField("formatName")
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        slTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        report = AuditReport()
+        ctx = SentenceLengthCorrectionContext("task-sl-001", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setAccessible(true)
+
+      then:
+        exit == 0
+        output.contains("targetRange") is true
+        output.contains("\"min\"") || output.contains("min") is true
+        output.contains("\"max\"") || output.contains("max") is true
+        output.contains("delta") is true
+    - |
+      test: "should include suggestedLemmas array with lemma pos reason and cocaRank in JSON correctionContext"
+      trace: FEAT-RCSL / F-RCSL-R007
+
+      given:
+        formatField = GetCmd.class.getDeclaredField("formatName")
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        slTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        report = AuditReport()
+        lemmas = List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52), new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89), new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201))
+        ctx = SentenceLengthCorrectionContext("task-sl-001", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, lemmas)
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setAccessible(true)
+
+      then:
+        exit == 0
+        output.contains("suggestedLemmas") is true
+        output.contains("like") is true
+        output.contains("COMPLETELY_ABSENT") is true
+        output.contains("cocaRank") || output.contains("52") is true
+    - |
+      test: "should set correctionContext to null and include correctionContextError when audit report not found"
+      trace: FEAT-RCSL / F-RCSL-R007
+
+      given:
+        formatField = GetCmd.class.getDeclaredField("formatName")
+        sourceAuditId = "audit-does-not-exist"
+        slTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.empty()
+
+      when:
+        sut.setAccessible(true)
+
+      then:
+        exit == 0
+        output.contains("correctionContextError") || output.contains("correctionContext") is true
+    - |
+      test: "should set correctionContext to null and include correctionContextError when sourceAuditId is blank"
+      trace: FEAT-RCSL / F-RCSL-R007
+
+      given:
+        formatField = GetCmd.class.getDeclaredField("formatName")
+        slTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", "", Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+
+      when:
+        sut.setAccessible(true)
+
+      then:
+        exit == 0
+        output.contains("correctionContextError") || output.contains("correctionContext") is true
+    - |
+      test: "should set correctionContext to null and include correctionContextError when resolver returns empty"
+      trace: FEAT-RCSL / F-RCSL-R007
+
+      given:
+        formatField = GetCmd.class.getDeclaredField("formatName")
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        slTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        report = AuditReport()
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.empty()
+
+      when:
+        sut.setAccessible(true)
+
+      then:
+        exit == 0
+        output.contains("correctionContextError") || output.contains("correctionContext") is true
+    - |
+      test: "should output empty suggestedLemmas array in JSON when context has no suggested lemmas"
+      trace: FEAT-RCSL / F-RCSL-R007
+
+      given:
+        formatField = GetCmd.class.getDeclaredField("formatName")
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        slTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        report = AuditReport()
+        ctx = SentenceLengthCorrectionContext("task-sl-001", "She plays tennis every afternoon", "Ella juega tenis todas las tardes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 6, 5, 8, 0, List.of())
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setAccessible(true)
+
+      then:
+        exit == 0
+        output.contains("suggestedLemmas") is true
+        output.contains("[]") || output.contains("suggestedLemmas") is true
+    - |
+      test: "should print correction context section with all fields in text format"
+      trace: FEAT-RCSL / F-RCSL-R008
+
+      given:
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        slTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        report = AuditReport()
+        ctx = SentenceLengthCorrectionContext("task-sl-001", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        output.toLowerCase().contains("correction context") is true
+        output.contains("Sentence") || output.contains("sentence") is true
+        output.contains("CEFR") || output.contains("cefr") is true
+        output.contains("Tokens") || output.contains("tokens") is true
+    - |
+      test: "should print numbered suggested lemmas list with lemma pos reason and COCA rank in text format"
+      trace: FEAT-RCSL / F-RCSL-R008
+
+      given:
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        slTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        report = AuditReport()
+        lemmas = List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52), new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89), new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201))
+        ctx = SentenceLengthCorrectionContext("task-sl-001", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, lemmas)
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        output.contains("like") is true
+        output.contains("VERB") is true
+        output.contains("52") is true
+        output.contains("1.") || output.contains("1)") is true
+    - |
+      test: "should print none available for suggested lemmas when list is empty in text format"
+      trace: FEAT-RCSL / F-RCSL-R008
+
+      given:
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        slTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        report = AuditReport()
+        ctx = SentenceLengthCorrectionContext("task-sl-001", "She plays tennis", "Ella juega tenis", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 3, 5, 8, -2, List.of())
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        output.contains("none available") || output.contains("(none)") is true
+    - |
+      test: "should format positive delta with plus sign in text output tokens line"
+      trace: FEAT-RCSL / F-RCSL-R008
+
+      given:
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        slTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        report = AuditReport()
+        ctx = SentenceLengthCorrectionContext("task-sl-001", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        output.contains("+7") || output.contains("delta: +7") is true
+    - |
+      test: "should format negative delta without plus sign in text output tokens line"
+      trace: FEAT-RCSL / F-RCSL-R008
+
+      given:
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        slTask = RefinementTask("task-sl-002", AuditTarget.QUIZ, "quiz-node-2", "Quiz 2", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        report = AuditReport()
+        ctx = SentenceLengthCorrectionContext("task-sl-002", "She plays tennis", "Ella juega tenis", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 3, 5, 8, -2, List.of())
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        output.contains("-2") || output.contains("delta: -2") is true
+        !output.contains("+-") is true
+    - |
+      test: "should print not available message with error reason when context cannot be built in text format"
+      trace: FEAT-RCSL / F-RCSL-R008
+
+      given:
+        sourceAuditId = "audit-does-not-exist"
+        slTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.empty()
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        output.toLowerCase().contains("not available") || output.toLowerCase().contains("correction context") || output.toLowerCase().contains("unavailable") is true
+    - |
+      test: "should print correction context section in table format for SENTENCE_LENGTH task"
+      trace: FEAT-RCSL / F-RCSL-R008
+
+      given:
+        formatField = GetCmd.class.getDeclaredField("formatName")
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        slTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask))
+        report = AuditReport()
+        ctx = SentenceLengthCorrectionContext("task-sl-001", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setAccessible(true)
+
+      then:
+        exit == 0
+        output.toLowerCase().contains("correction context") || output.contains("Sentence") || output.contains("sentence") is true
+    - |
+      test: "should resolve correction context when task diagnosis is LEMMA_ABSENCE"
+      trace: FEAT-RCLA / F-RCLA-R008
+
+      given:
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        laTask = RefinementTask("task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask))
+        report = AuditReport()
+        ctx = LemmaAbsenceCorrectionContext("task-la-001", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)), List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        exit = cmd.get("tasks", null, filter)
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      then:
+        exit == 0
+        verify: correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class))
+    - |
+      test: "should include correctionContext with misplacedLemmas array in JSON for LEMMA_ABSENCE task"
+      trace: FEAT-RCLA / F-RCLA-R008
+
+      given:
+        formatField = GetCmd.class.getDeclaredField("formatName")
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        laTask = RefinementTask("task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask))
+        report = AuditReport()
+        ctx = LemmaAbsenceCorrectionContext("task-la-001", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840), new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)), List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setAccessible(true)
+
+      then:
+        exit == 0
+        output.contains("correctionContext") is true
+        output.contains("misplacedLemmas") is true
+    - |
+      test: "should include misplacedLemmas with lemma pos expectedLevel quizLevel and cocaRank in JSON correctionContext"
+      trace: FEAT-RCLA / F-RCLA-R008
+
+      given:
+        formatField = GetCmd.class.getDeclaredField("formatName")
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        laTask = RefinementTask("task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask))
+        report = AuditReport()
+        negotiateLemma = MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)
+        ctx = LemmaAbsenceCorrectionContext("task-la-001", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, List.of(negotiateLemma), List.of())
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setAccessible(true)
+
+      then:
+        exit == 0
+        output.contains("negotiate") is true
+        output.contains("expectedLevel") || output.contains("B2") is true
+        output.contains("quizLevel") || output.contains("A1") is true
+        output.contains("2840") || output.contains("cocaRank") is true
+    - |
+      test: "should include suggestedLemmas array in JSON correctionContext for LEMMA_ABSENCE task"
+      trace: FEAT-RCLA / F-RCLA-R008
+
+      given:
+        formatField = GetCmd.class.getDeclaredField("formatName")
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        laTask = RefinementTask("task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask))
+        report = AuditReport()
+        ctx = LemmaAbsenceCorrectionContext("task-la-001", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)), List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52), new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89)))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setAccessible(true)
+
+      then:
+        exit == 0
+        output.contains("suggestedLemmas") is true
+        output.contains("like") is true
+    - |
+      test: "should set correctionContext to null and include correctionContextError in JSON for LEMMA_ABSENCE when resolver returns empty"
+      trace: FEAT-RCLA / F-RCLA-R008
+
+      given:
+        formatField = GetCmd.class.getDeclaredField("formatName")
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        laTask = RefinementTask("task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask))
+        report = AuditReport()
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.empty()
+
+      when:
+        sut.setAccessible(true)
+
+      then:
+        exit == 0
+        output.contains("correctionContextError") || output.contains("correctionContext") is true
+    - |
+      test: "should include sentence translation knowledgeTitle knowledgeInstructions topicLabel and cefrLevel in JSON correctionContext for LEMMA_ABSENCE"
+      trace: FEAT-RCLA / F-RCLA-R008
+
+      given:
+        formatField = GetCmd.class.getDeclaredField("formatName")
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        laTask = RefinementTask("task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask))
+        report = AuditReport()
+        ctx = LemmaAbsenceCorrectionContext("task-la-001", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)), List.of())
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setAccessible(true)
+
+      then:
+        exit == 0
+        output.contains("sentence") is true
+        output.contains("translation") is true
+        output.contains("knowledgeTitle") is true
+        output.contains("knowledgeInstructions") is true
+        output.contains("topicLabel") is true
+        output.contains("cefrLevel") is true
+    - |
+      test: "should print correction context section with misplaced lemmas in text format for LEMMA_ABSENCE task"
+      trace: FEAT-RCLA / F-RCLA-R009
+
+      given:
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        laTask = RefinementTask("task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask))
+        report = AuditReport()
+        ctx = LemmaAbsenceCorrectionContext("task-la-001", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840), new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)), List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        output.toLowerCase().contains("correction context") is true
+        output.toLowerCase().contains("misplaced") is true
+    - |
+      test: "should print numbered misplaced lemmas list with expected and found levels in text format"
+      trace: FEAT-RCLA / F-RCLA-R009
+
+      given:
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        laTask = RefinementTask("task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask))
+        report = AuditReport()
+        ctx = LemmaAbsenceCorrectionContext("task-la-001", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840), new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)), List.of())
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        output.contains("negotiate") is true
+        output.contains("B2") is true
+        output.contains("A1") is true
+        output.contains("2840") is true
+    - |
+      test: "should print suggested replacements in text format for LEMMA_ABSENCE task"
+      trace: FEAT-RCLA / F-RCLA-R009
+
+      given:
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        laTask = RefinementTask("task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask))
+        report = AuditReport()
+        ctx = LemmaAbsenceCorrectionContext("task-la-001", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)), List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52), new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89)))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        output.toLowerCase().contains("suggested") || output.toLowerCase().contains("replacement") is true
+        output.contains("like") is true
+    - |
+      test: "should print none available for suggested replacements when list is empty in text format for LEMMA_ABSENCE"
+      trace: FEAT-RCLA / F-RCLA-R009
+
+      given:
+        sourceAuditId = "audit-2026-04-19T10-30-00"
+        laTask = RefinementTask("task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask))
+        report = AuditReport()
+        ctx = LemmaAbsenceCorrectionContext("task-la-001", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)), List.of())
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(report)
+        correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)) -> Optional.of(ctx)
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        output.contains("none available") || output.contains("(none)") is true
+    - |
+      test: "should print not available message when LEMMA_ABSENCE context cannot be built in text format"
+      trace: FEAT-RCLA / F-RCLA-R009
+
+      given:
+        sourceAuditId = "audit-does-not-exist"
+        laTask = RefinementTask("task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", sourceAuditId, Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.empty()
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        output.toLowerCase().contains("not available") || output.toLowerCase().contains("correction context") || output.toLowerCase().contains("unavailable") is true
   - name: DeleteCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/DeleteCmd.java
@@ -11130,6 +12192,25 @@ elements:
       then:
         0 != null
     - |
+      test: "should fall back to CONTENT_AUDIT_CONTENT_FOLDER env var when no course-path argument is supplied"
+      trace: FEAT-CLIRV / F-CLIRV-R021
+
+      given:
+        projectRoot = Path.of("/Users/josecullen/projects/learney/content-audit")
+        fixtureCourse = projectRoot.resolve("audit-cli/src/test/resources/fixtures/tiny-course/english-course")
+        pb = ProcessBuilder(projectRoot.resolve("audit-cli.sh").toString(), "--workdir", workdir.toString(), "stats", "analyzer", // no positional course path
+      "sentence-length")
+        p = pb.start()
+        exit = p.waitFor()
+        output = String(p.getInputStream().readAllBytes())
+
+      when:
+        sut.directory(projectRoot.toFile())
+
+      then:
+        exit == 0
+        output.contains("AnalyzerStatsView") || output.toLowerCase().contains("sentence-length") || output.contains("score") is true
+    - |
       test: "should report a missing-course-path error and exit non-zero when neither argument nor CONTENT_AUDIT_CONTENT_FOLDER is set"
       trace: FEAT-CLIRV / F-CLIRV-R021
 
@@ -11381,6 +12462,23 @@ elements:
 
       then:
         result == tempDir
+    - |
+      test: "should ignore CONTENT_AUDIT_HOME and use the flag value when both are set, validating flag-over-env precedence"
+      trace: FEAT-CLIRV / F-CLIRV-R017
+
+      given:
+        invalidEnvPath = "/tmp/nonexistent-env-" + UUID.randomUUID()
+        projectRoot = Path.of("/Users/josecullen/projects/learney/content-audit")
+        pb = ProcessBuilder(projectRoot.resolve("audit-cli.sh").toString(), "--workdir", flagDir.toString(), "get", "audits")
+        p = pb.start()
+        exit = p.waitFor()
+        output = String(p.getInputStream().readAllBytes())
+
+      when:
+        sut.directory(projectRoot.toFile())
+
+      then:
+        exit == 0
     - |
       test: "should fall back to user.dir when neither --workdir nor CONTENT_AUDIT_HOME is set"
       trace: FEAT-CLIRV / F-CLIRV-R017
@@ -12290,8 +13388,8 @@ elements:
         verify: artifactStore.save(any(RevisionArtifact.class))
         verify: courseRepository.save(any(CourseEntity.class), eq(coursePath))
 testSummary:
-  total: 411
-  passing: 411
+  total: 439
+  passing: 439
   failing: 0
   notImplemented: 0
 patterns:

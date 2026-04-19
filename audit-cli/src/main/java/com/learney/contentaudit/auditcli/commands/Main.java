@@ -268,7 +268,8 @@ class Main {
         cmd.addSubcommand("stats", new picocli.CommandLine(statsAnalyzerCmd));
 
         // get — inject baseDir for plan listing and path-based operations
-        GetCmd getCmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry);
+        GetCmd getCmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
+                correctionContextResolver);
         getCmd.setBaseDir(baseDir);
         cmd.addSubcommand("get", new picocli.CommandLine(getCmd));
 

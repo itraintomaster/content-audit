@@ -3982,168 +3982,6 @@ modules:
         traceability:
           feature: FEAT-CLIRV
           rule: F-CLIRV-R012
-      - name: should resolve correction context when task diagnosis is SENTENCE_LENGTH
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R006
-        _change: add
-      - name: should not resolve correction context when task diagnosis is COCA_BUCKETS
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R006
-        _change: add
-      - name: should include correctionContext object in JSON when context resolves
-          successfully
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should include sentence translation knowledgeTitle knowledgeInstructions
-          topicLabel and cefrLevel in JSON correctionContext
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should include targetRange with min and max and delta in JSON correctionContext
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should include suggestedLemmas array with lemma pos reason and cocaRank
-          in JSON correctionContext
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should set correctionContext to null and include correctionContextError
-          when audit report not found
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should set correctionContext to null and include correctionContextError
-          when sourceAuditId is blank
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should set correctionContext to null and include correctionContextError
-          when resolver returns empty
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should output empty suggestedLemmas array in JSON when context has no
-          suggested lemmas
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should print correction context section with all fields in text format
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R008
-        _change: add
-      - name: should print numbered suggested lemmas list with lemma pos reason and
-          COCA rank in text format
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R008
-        _change: add
-      - name: should print none available for suggested lemmas when list is empty
-          in text format
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R008
-        _change: add
-      - name: should format positive delta with plus sign in text output tokens line
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R008
-        _change: add
-      - name: should format negative delta without plus sign in text output tokens
-          line
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R008
-        _change: add
-      - name: should print not available message with error reason when context cannot
-          be built in text format
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R008
-        _change: add
-      - name: should print correction context section in table format for SENTENCE_LENGTH
-          task
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R008
-        _change: add
-      - name: should resolve correction context when task diagnosis is LEMMA_ABSENCE
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R008
-        _change: add
-      - name: should include correctionContext with misplacedLemmas array in JSON
-          for LEMMA_ABSENCE task
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R008
-        _change: add
-      - name: should include misplacedLemmas with lemma pos expectedLevel quizLevel
-          and cocaRank in JSON correctionContext
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R008
-        _change: add
-      - name: should include suggestedLemmas array in JSON correctionContext for LEMMA_ABSENCE
-          task
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R008
-        _change: add
-      - name: should set correctionContext to null and include correctionContextError
-          in JSON for LEMMA_ABSENCE when resolver returns empty
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R008
-        _change: add
-      - name: should include sentence translation knowledgeTitle knowledgeInstructions
-          topicLabel and cefrLevel in JSON correctionContext for LEMMA_ABSENCE
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R008
-        _change: add
-      - name: should print correction context section with misplaced lemmas in text
-          format for LEMMA_ABSENCE task
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R009
-        _change: add
-      - name: should print numbered misplaced lemmas list with expected and found
-          levels in text format
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R009
-        _change: add
-      - name: should print suggested replacements in text format for LEMMA_ABSENCE
-          task
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R009
-        _change: add
-      - name: should print none available for suggested replacements when list is
-          empty in text format for LEMMA_ABSENCE
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R009
-        _change: add
-      - name: should print not available message when LEMMA_ABSENCE context cannot
-          be built in text format
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R009
-        _change: add
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -9981,8 +9819,7 @@ features:
       \ quiz '{nodeId}'"
     validation: AUTO_VALIDATED
   - id: F-RCLA-R007
-    name: El comando que muestra una tarea individual incluye el contexto de correccion
-      para tareas LEMMA_ABSENCE
+    name: El comando que muestra una tarea individual incluye el contexto de correccion para tareas LEMMA_ABSENCE
     severity: critical
     description: "Cuando el comando `get task` (o la combinacion de filtros equivalente:\
       \ `get tasks --status pending --sort priority --limit 1`) muestra una tarea\
@@ -10125,8 +9962,6 @@ features:
       gate:
       - F-RCLA-R006
       - F-RCLA-R008
-    testModule: audit-cli
-    testPackage: com.learney.contentaudit.journeys
   - id: F-RCLA-J002
     name: El plan de refinamiento ya no contiene tareas LEMMA_ABSENCE de milestone
     validation: AUTO_VALIDATED
@@ -10151,8 +9986,6 @@ features:
         \ course, con toda su informacion intacta. El cambio solo afecto al plan de\
         \ refinamiento, no al reporte"
       result: success
-    testModule: audit-cli
-    testPackage: com.learney.contentaudit.journeys
   doubts:
   - id: DOUBT-EMPTY-MISPLACED
     question: Quiz con score < 1.0 pero sin MisplacedLemma

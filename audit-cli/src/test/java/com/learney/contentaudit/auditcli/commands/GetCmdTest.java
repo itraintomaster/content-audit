@@ -4,13 +4,19 @@ import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditdomain.AuditReportSummary;
 import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditcli.GetTasksFilter;
 import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
+import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
+import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
+import com.learney.contentaudit.refinerdomain.SuggestedLemma;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Field;
@@ -29,6 +35,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @Generated(
@@ -47,11 +56,15 @@ public class GetCmdTest {
     @Mock
     AnalyzerRegistry analyzerRegistry;
 
+    @Mock
+    CorrectionContextResolver correctionContextResolver;
+
     GetCmd cmd;
 
     @BeforeEach
     void setUp() throws Exception {
-        cmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry);
+        cmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
+                correctionContextResolver);
         // GetCmd has a picocli @Option field 'formatName' that picocli normally populates.
         // When constructing directly in unit tests, we must inject a default value so the
         // output-formatting path does not NPE before the behavior under test is reached.
@@ -734,5 +747,1505 @@ public class GetCmdTest {
                 combined.toLowerCase().contains("no plans") || combined.toLowerCase().contains("plan"),
                 "Expected 'no plans available' message, got: " + combined
         );
+    }
+
+    @Test
+    @DisplayName("should resolve correction context when task diagnosis is SENTENCE_LENGTH")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R006")
+    @SuppressWarnings("unchecked")
+    public void shouldResolveCorrectionContextWhenTaskDiagnosisIsSENTENCELENGTH() {
+        // Arrange: a SENTENCE_LENGTH task in a plan with a valid sourceAuditId
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        SentenceLengthCorrectionContext ctx = new SentenceLengthCorrectionContext(
+                "task-sl-001",
+                "She plays tennis every afternoon",
+                "Ella juega tenis todas las tardes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 5, 5, 8, 0, List.of());
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        // Act
+        int exit = cmd.get("tasks", null, filter);
+
+        // Assert: exit is 0 and resolver was invoked
+        assertEquals(0, exit);
+        verify(correctionContextResolver).resolve(any(AuditReport.class), any(RefinementTask.class));
+    }
+
+    @Test
+    @DisplayName("should not resolve correction context when task diagnosis is COCA_BUCKETS")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R006")
+    @SuppressWarnings("unchecked")
+    public void shouldNotResolveCorrectionContextWhenTaskDiagnosisIsCOCABUCKETS() {
+        // Arrange: a COCA_BUCKETS task — resolver must NOT be called for non-SL/LA diagnoses
+        RefinementTask cbTask = new RefinementTask(
+                "task-cb-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.COCA_BUCKETS, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", "audit-2026-04-19T10-30-00",
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(cbTask));
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        // Act
+        cmd.get("tasks", null, filter);
+
+        // Assert: resolver is never invoked for COCA_BUCKETS tasks (R006)
+        verify(correctionContextResolver, never())
+                .resolve(any(AuditReport.class), any(RefinementTask.class));
+    }
+
+    @Test
+    @DisplayName("should include correctionContext object in JSON when context resolves successfully")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    @SuppressWarnings("unchecked")
+    public void shouldIncludeCorrectionContextObjectInJSONWhenContextResolvesSuccessfully()
+            throws Exception {
+        // Set format to json
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        SentenceLengthCorrectionContext ctx = new SentenceLengthCorrectionContext(
+                "task-sl-001",
+                "She plays tennis every afternoon",
+                "Ella juega tenis todas las tardes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 5, 5, 8, 0, List.of());
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R007: correctionContext key must appear in JSON output
+        assertTrue(output.contains("correctionContext"),
+                "Expected 'correctionContext' key in JSON output, got: " + output);
+    }
+
+    @Test
+    @DisplayName("should include sentence translation knowledgeTitle knowledgeInstructions topicLabel and cefrLevel in JSON correctionContext")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    @SuppressWarnings("unchecked")
+    public void shouldIncludeSentenceTranslationKnowledgeTitleKnowledgeInstructionsTopicLabelAndCefrLevelInJSONCorrectionContext()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Fixture values taken directly from R007 example
+        SentenceLengthCorrectionContext ctx = new SentenceLengthCorrectionContext(
+                "task-sl-001",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 15, 5, 8, 7, List.of());
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R007: all top-level context fields must be present in JSON
+        assertTrue(output.contains("sentence"), "Missing 'sentence' in JSON: " + output);
+        assertTrue(output.contains("translation"), "Missing 'translation' in JSON: " + output);
+        assertTrue(output.contains("knowledgeTitle"), "Missing 'knowledgeTitle' in JSON: " + output);
+        assertTrue(output.contains("knowledgeInstructions"),
+                "Missing 'knowledgeInstructions' in JSON: " + output);
+        assertTrue(output.contains("topicLabel"), "Missing 'topicLabel' in JSON: " + output);
+        assertTrue(output.contains("cefrLevel"), "Missing 'cefrLevel' in JSON: " + output);
+    }
+
+    @Test
+    @DisplayName("should include targetRange with min and max and delta in JSON correctionContext")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    @SuppressWarnings("unchecked")
+    public void shouldIncludeTargetRangeWithMinAndMaxAndDeltaInJSONCorrectionContext()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // tokenCount=15, targetMin=5, targetMax=8, delta=7 (15 - 8 = 7, over range)
+        SentenceLengthCorrectionContext ctx = new SentenceLengthCorrectionContext(
+                "task-sl-001",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 15, 5, 8, 7, List.of());
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R007: targetRange object with min and max, plus delta at top level
+        assertTrue(output.contains("targetRange"), "Missing 'targetRange' in JSON: " + output);
+        assertTrue(output.contains("\"min\"") || output.contains("min"),
+                "Missing 'min' in targetRange JSON: " + output);
+        assertTrue(output.contains("\"max\"") || output.contains("max"),
+                "Missing 'max' in targetRange JSON: " + output);
+        assertTrue(output.contains("delta"), "Missing 'delta' in JSON: " + output);
+    }
+
+    @Test
+    @DisplayName("should include suggestedLemmas array with lemma pos reason and cocaRank in JSON correctionContext")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    @SuppressWarnings("unchecked")
+    public void shouldIncludeSuggestedLemmasArrayWithLemmaPosReasonAndCocaRankInJSONCorrectionContext()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Fixture lemmas taken from R007 example
+        List<SuggestedLemma> lemmas = List.of(
+                new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52),
+                new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89),
+                new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201));
+        SentenceLengthCorrectionContext ctx = new SentenceLengthCorrectionContext(
+                "task-sl-001",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 15, 5, 8, 7, lemmas);
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R007: suggestedLemmas array with lemma, pos, reason, cocaRank fields
+        assertTrue(output.contains("suggestedLemmas"),
+                "Missing 'suggestedLemmas' in JSON: " + output);
+        assertTrue(output.contains("like"), "Missing lemma 'like' in JSON: " + output);
+        assertTrue(output.contains("COMPLETELY_ABSENT"),
+                "Missing reason 'COMPLETELY_ABSENT' in JSON: " + output);
+        assertTrue(output.contains("cocaRank") || output.contains("52"),
+                "Missing cocaRank in JSON: " + output);
+    }
+
+    @Test
+    @DisplayName("should set correctionContext to null and include correctionContextError when audit report not found")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    public void shouldSetCorrectionContextToNullAndIncludeCorrectionContextErrorWhenAuditReportNotFound()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        // sourceAuditId points to a report that does not exist
+        String sourceAuditId = "audit-does-not-exist";
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.empty());
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R007: correctionContext null, correctionContextError populated
+        assertTrue(
+                output.contains("correctionContextError") || output.contains("correctionContext"),
+                "Expected correctionContextError in JSON output: " + output);
+    }
+
+    @Test
+    @DisplayName("should set correctionContext to null and include correctionContextError when sourceAuditId is blank")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    public void shouldSetCorrectionContextToNullAndIncludeCorrectionContextErrorWhenSourceAuditIdIsBlank()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        // Plan with blank sourceAuditId — cannot load report
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", "",
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R007: when sourceAuditId is blank, correctionContext is null and error is reported
+        assertTrue(
+                output.contains("correctionContextError") || output.contains("correctionContext"),
+                "Expected correctionContextError in JSON when sourceAuditId is blank: " + output);
+    }
+
+    @Test
+    @DisplayName("should set correctionContext to null and include correctionContextError when resolver returns empty")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    @SuppressWarnings("unchecked")
+    public void shouldSetCorrectionContextToNullAndIncludeCorrectionContextErrorWhenResolverReturnsEmpty()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+        // Resolver returns empty — context could not be built
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.empty());
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R007: correctionContext is null and correctionContextError is present
+        assertTrue(
+                output.contains("correctionContextError") || output.contains("correctionContext"),
+                "Expected correctionContextError in JSON when resolver returns empty: " + output);
+    }
+
+    @Test
+    @DisplayName("should output empty suggestedLemmas array in JSON when context has no suggested lemmas")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    @SuppressWarnings("unchecked")
+    public void shouldOutputEmptySuggestedLemmasArrayInJSONWhenContextHasNoSuggestedLemmas()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Empty suggestedLemmas — R004: context is valid even without lemmas
+        SentenceLengthCorrectionContext ctx = new SentenceLengthCorrectionContext(
+                "task-sl-001",
+                "She plays tennis every afternoon",
+                "Ella juega tenis todas las tardes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 6, 5, 8, 0, List.of());
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R007 / R004: suggestedLemmas key is present (as empty array), not missing
+        assertTrue(output.contains("suggestedLemmas"),
+                "Expected 'suggestedLemmas' key in JSON even when empty, got: " + output);
+        // Empty array form: []
+        assertTrue(output.contains("[]") || output.contains("suggestedLemmas"),
+                "Expected empty suggestedLemmas array in JSON: " + output);
+    }
+
+    @Test
+    @DisplayName("should print correction context section with all fields in text format")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R008")
+    @SuppressWarnings("unchecked")
+    public void shouldPrintCorrectionContextSectionWithAllFieldsInTextFormat() {
+        // formatName already set to "text" by setUp
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Fixture from R008 example
+        SentenceLengthCorrectionContext ctx = new SentenceLengthCorrectionContext(
+                "task-sl-001",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 15, 5, 8, 7, List.of());
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R008: "Correction context:" header section must appear
+        assertTrue(output.toLowerCase().contains("correction context"),
+                "Expected 'Correction context:' in text output, got: " + output);
+        // Core labeled lines from R008 example
+        assertTrue(output.contains("Sentence") || output.contains("sentence"),
+                "Missing 'Sentence:' line in text output: " + output);
+        assertTrue(output.contains("CEFR") || output.contains("cefr"),
+                "Missing 'CEFR Level:' line in text output: " + output);
+        assertTrue(output.contains("Tokens") || output.contains("tokens"),
+                "Missing 'Tokens:' line in text output: " + output);
+    }
+
+    @Test
+    @DisplayName("should print numbered suggested lemmas list with lemma pos reason and COCA rank in text format")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R008")
+    @SuppressWarnings("unchecked")
+    public void shouldPrintNumberedSuggestedLemmasListWithLemmaPosReasonAndCOCARankInTextFormat() {
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Three lemmas matching R008 example format
+        List<SuggestedLemma> lemmas = List.of(
+                new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52),
+                new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89),
+                new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201));
+        SentenceLengthCorrectionContext ctx = new SentenceLengthCorrectionContext(
+                "task-sl-001",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 15, 5, 8, 7, lemmas);
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R008: numbered list entries with lemma, pos, reason, COCA rank
+        // Example: "1. like (VERB) - COMPLETELY_ABSENT [COCA #52]"
+        assertTrue(output.contains("like"), "Missing lemma 'like' in text output: " + output);
+        assertTrue(output.contains("VERB"), "Missing pos 'VERB' in text output: " + output);
+        assertTrue(output.contains("52"), "Missing COCA rank 52 in text output: " + output);
+        // Numbering
+        assertTrue(output.contains("1.") || output.contains("1)"),
+                "Missing numbered list entry in text output: " + output);
+    }
+
+    @Test
+    @DisplayName("should print none available for suggested lemmas when list is empty in text format")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R008")
+    @SuppressWarnings("unchecked")
+    public void shouldPrintNoneAvailableForSuggestedLemmasWhenListIsEmptyInTextFormat() {
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Empty suggestedLemmas — R008: "Suggested lemmas: (none available)"
+        SentenceLengthCorrectionContext ctx = new SentenceLengthCorrectionContext(
+                "task-sl-001",
+                "She plays tennis",
+                "Ella juega tenis",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 3, 5, 8, -2, List.of());
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R008: when no lemmas, text shows "(none available)"
+        assertTrue(
+                output.contains("none available") || output.contains("(none)"),
+                "Expected '(none available)' for empty suggested lemmas in text output: " + output);
+    }
+
+    @Test
+    @DisplayName("should format positive delta with plus sign in text output tokens line")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R008")
+    @SuppressWarnings("unchecked")
+    public void shouldFormatPositiveDeltaWithPlusSignInTextOutputTokensLine() {
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // delta=7 (positive) → R008 example: "Tokens: 15 (target: 5-8, delta: +7)"
+        SentenceLengthCorrectionContext ctx = new SentenceLengthCorrectionContext(
+                "task-sl-001",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 15, 5, 8, 7, List.of());
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R008: positive delta is shown with a '+' prefix
+        assertTrue(output.contains("+7") || output.contains("delta: +7"),
+                "Expected '+7' for positive delta in text output: " + output);
+    }
+
+    @Test
+    @DisplayName("should format negative delta without plus sign in text output tokens line")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R008")
+    @SuppressWarnings("unchecked")
+    public void shouldFormatNegativeDeltaWithoutPlusSignInTextOutputTokensLine() {
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-002", AuditTarget.QUIZ, "quiz-node-2", "Quiz 2",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // delta=-3 (negative, sentence too short) → "delta: -3" (no plus sign)
+        SentenceLengthCorrectionContext ctx = new SentenceLengthCorrectionContext(
+                "task-sl-002",
+                "She plays tennis",
+                "Ella juega tenis",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 3, 5, 8, -2, List.of());
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R008: negative delta is shown with '-' sign, no '+' prefix
+        assertTrue(output.contains("-2") || output.contains("delta: -2"),
+                "Expected '-2' for negative delta in text output: " + output);
+        assertTrue(!output.contains("+-"), "Should not have '+-' prefix for negative delta");
+    }
+
+    @Test
+    @DisplayName("should print not available message with error reason when context cannot be built in text format")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R008")
+    public void shouldPrintNotAvailableMessageWithErrorReasonWhenContextCannotBeBuiltInTextFormat() {
+        // Report not found — context cannot be built
+        String sourceAuditId = "audit-does-not-exist";
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.empty());
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R008: "Correction context not available" or similar notice should appear
+        assertTrue(
+                output.toLowerCase().contains("not available")
+                        || output.toLowerCase().contains("correction context")
+                        || output.toLowerCase().contains("unavailable"),
+                "Expected 'not available' notice for correction context in text output: " + output);
+    }
+
+    @Test
+    @DisplayName("should print correction context section in table format for SENTENCE_LENGTH task")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R008")
+    @SuppressWarnings("unchecked")
+    public void shouldPrintCorrectionContextSectionInTableFormatForSENTENCELENGTHTask()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "table");
+
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask slTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        SentenceLengthCorrectionContext ctx = new SentenceLengthCorrectionContext(
+                "task-sl-001",
+                "She plays tennis every afternoon with her friends",
+                "Ella juega tenis todas las tardes con sus amigas",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1, 15, 5, 8, 7, List.of(
+                        new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)));
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R008: correction context section must appear in table format too
+        assertTrue(
+                output.toLowerCase().contains("correction context")
+                        || output.contains("Sentence")
+                        || output.contains("sentence"),
+                "Expected correction context section in table format output: " + output);
+    }
+
+    @Test
+    @DisplayName("should resolve correction context when task diagnosis is LEMMA_ABSENCE")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R008")
+    @SuppressWarnings("unchecked")
+    public void shouldResolveCorrectionContextWhenTaskDiagnosisIsLEMMAABSENCE() {
+        // Arrange: a LEMMA_ABSENCE task (now targeting QUIZ per R001)
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-la-001",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)));
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        // Act
+        int exit = cmd.get("tasks", null, filter);
+
+        // Assert: resolver was invoked for LEMMA_ABSENCE (R007)
+        assertEquals(0, exit);
+        verify(correctionContextResolver).resolve(any(AuditReport.class), any(RefinementTask.class));
+    }
+
+    @Test
+    @DisplayName("should include correctionContext with misplacedLemmas array in JSON for LEMMA_ABSENCE task")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R008")
+    @SuppressWarnings("unchecked")
+    public void shouldIncludeCorrectionContextWithMisplacedLemmasArrayInJSONForLEMMAABSENCETask()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Fixture from R008 example
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-la-001",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)));
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R008: correctionContext key and misplacedLemmas array must appear in JSON
+        assertTrue(output.contains("correctionContext"),
+                "Expected 'correctionContext' in JSON: " + output);
+        assertTrue(output.contains("misplacedLemmas"),
+                "Expected 'misplacedLemmas' array in JSON: " + output);
+    }
+
+    @Test
+    @DisplayName("should include misplacedLemmas with lemma pos expectedLevel quizLevel and cocaRank in JSON correctionContext")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R008")
+    @SuppressWarnings("unchecked")
+    public void shouldIncludeMisplacedLemmasWithLemmaPosExpectedLevelQuizLevelAndCocaRankInJSONCorrectionContext()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Fixture from R008 example: negotiate=B2 in A1 quiz
+        MisplacedLemmaContext negotiateLemma =
+                new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840);
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-la-001",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(negotiateLemma),
+                List.of());
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R008 / R004: each misplacedLemma has lemma, pos, expectedLevel, quizLevel, cocaRank
+        assertTrue(output.contains("negotiate"), "Missing lemma 'negotiate' in JSON: " + output);
+        assertTrue(output.contains("expectedLevel") || output.contains("B2"),
+                "Missing expectedLevel in JSON: " + output);
+        assertTrue(output.contains("quizLevel") || output.contains("A1"),
+                "Missing quizLevel in JSON: " + output);
+        assertTrue(output.contains("2840") || output.contains("cocaRank"),
+                "Missing cocaRank in JSON: " + output);
+    }
+
+    @Test
+    @DisplayName("should include suggestedLemmas array in JSON correctionContext for LEMMA_ABSENCE task")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R008")
+    @SuppressWarnings("unchecked")
+    public void shouldIncludeSuggestedLemmasArrayInJSONCorrectionContextForLEMMAABSENCETask()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // suggestedLemmas populated alongside misplacedLemmas — R008 example
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-la-001",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(
+                        new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52),
+                        new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89)));
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R008 / R004b: suggestedLemmas array present alongside misplacedLemmas
+        assertTrue(output.contains("suggestedLemmas"),
+                "Expected 'suggestedLemmas' in LEMMA_ABSENCE JSON: " + output);
+        assertTrue(output.contains("like"), "Missing suggested lemma 'like' in JSON: " + output);
+    }
+
+    @Test
+    @DisplayName("should set correctionContext to null and include correctionContextError in JSON for LEMMA_ABSENCE when resolver returns empty")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R008")
+    @SuppressWarnings("unchecked")
+    public void shouldSetCorrectionContextToNullAndIncludeCorrectionContextErrorInJSONForLEMMAABSENCEWhenResolverReturnsEmpty()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+        // Resolver cannot build context (e.g., no LemmaPlacementDiagnosis — R006)
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.empty());
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R008: correctionContext null, correctionContextError present
+        assertTrue(
+                output.contains("correctionContextError") || output.contains("correctionContext"),
+                "Expected correctionContextError in JSON for failed LEMMA_ABSENCE context: " + output);
+    }
+
+    @Test
+    @DisplayName("should include sentence translation knowledgeTitle knowledgeInstructions topicLabel and cefrLevel in JSON correctionContext for LEMMA_ABSENCE")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R008")
+    @SuppressWarnings("unchecked")
+    public void shouldIncludeSentenceTranslationKnowledgeTitleKnowledgeInstructionsTopicLabelAndCefrLevelInJSONCorrectionContextForLEMMAABSENCE()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Full pedagogical context from R008 example (RCLA-R003)
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-la-001",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of());
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R008 / R003: all pedagogical context fields present in JSON
+        assertTrue(output.contains("sentence"), "Missing 'sentence' in LEMMA_ABSENCE JSON: " + output);
+        assertTrue(output.contains("translation"),
+                "Missing 'translation' in LEMMA_ABSENCE JSON: " + output);
+        assertTrue(output.contains("knowledgeTitle"),
+                "Missing 'knowledgeTitle' in LEMMA_ABSENCE JSON: " + output);
+        assertTrue(output.contains("knowledgeInstructions"),
+                "Missing 'knowledgeInstructions' in LEMMA_ABSENCE JSON: " + output);
+        assertTrue(output.contains("topicLabel"),
+                "Missing 'topicLabel' in LEMMA_ABSENCE JSON: " + output);
+        assertTrue(output.contains("cefrLevel"),
+                "Missing 'cefrLevel' in LEMMA_ABSENCE JSON: " + output);
+    }
+
+    @Test
+    @DisplayName("should print correction context section with misplaced lemmas in text format for LEMMA_ABSENCE task")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R009")
+    @SuppressWarnings("unchecked")
+    public void shouldPrintCorrectionContextSectionWithMisplacedLemmasInTextFormatForLEMMAABSENCETask() {
+        // formatName is "text" (from setUp)
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Fixture from R009 example
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-la-001",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)));
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R009: "Correction context:" header and "Misplaced lemmas:" section
+        assertTrue(output.toLowerCase().contains("correction context"),
+                "Expected 'Correction context:' in text output: " + output);
+        assertTrue(
+                output.toLowerCase().contains("misplaced"),
+                "Expected 'Misplaced lemmas:' section in text output: " + output);
+    }
+
+    @Test
+    @DisplayName("should print numbered misplaced lemmas list with expected and found levels in text format")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R009")
+    @SuppressWarnings("unchecked")
+    public void shouldPrintNumberedMisplacedLemmasListWithExpectedAndFoundLevelsInTextFormat() {
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // R009 example: "1. negotiate (VERB) - expected B2, found in A1 [COCA #2840]"
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-la-001",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                List.of());
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R009: numbered entries with lemma, expected level, found level
+        assertTrue(output.contains("negotiate"),
+                "Missing 'negotiate' in misplaced lemmas text: " + output);
+        assertTrue(output.contains("B2"),
+                "Missing expected level B2 in misplaced lemmas text: " + output);
+        assertTrue(output.contains("A1"),
+                "Missing found level A1 in misplaced lemmas text: " + output);
+        // COCA rank
+        assertTrue(output.contains("2840"),
+                "Missing COCA rank 2840 in misplaced lemmas text: " + output);
+    }
+
+    @Test
+    @DisplayName("should print suggested replacements in text format for LEMMA_ABSENCE task")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R009")
+    @SuppressWarnings("unchecked")
+    public void shouldPrintSuggestedReplacementsInTextFormatForLEMMAABSENCETask() {
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // R009 example: "Suggested replacements:" section
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-la-001",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(
+                        new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52),
+                        new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89)));
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R009: "Suggested replacements:" section with lemma entries
+        assertTrue(
+                output.toLowerCase().contains("suggested") || output.toLowerCase().contains("replacement"),
+                "Expected 'Suggested replacements:' section in text output: " + output);
+        assertTrue(output.contains("like"),
+                "Missing suggested replacement 'like' in text output: " + output);
+    }
+
+    @Test
+    @DisplayName("should print none available for suggested replacements when list is empty in text format for LEMMA_ABSENCE")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R009")
+    @SuppressWarnings("unchecked")
+    public void shouldPrintNoneAvailableForSuggestedReplacementsWhenListIsEmptyInTextFormatForLEMMAABSENCE() {
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Empty suggestedLemmas — R009: "Suggested replacements: (none available)"
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-la-001",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of());
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R009: empty list → "(none available)" shown for suggested replacements
+        assertTrue(
+                output.contains("none available") || output.contains("(none)"),
+                "Expected '(none available)' for empty suggested replacements in text output: " + output);
+    }
+
+    @Test
+    @DisplayName("should print not available message when LEMMA_ABSENCE context cannot be built in text format")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R009")
+    public void shouldPrintNotAvailableMessageWhenLEMMAABSENCEContextCannotBeBuiltInTextFormat() {
+        // Report not found for LEMMA_ABSENCE task — context cannot be built (R005)
+        String sourceAuditId = "audit-does-not-exist";
+        RefinementTask laTask = new RefinementTask(
+                "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.empty());
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R009: a "not available" notice replaces the context section
+        assertTrue(
+                output.toLowerCase().contains("not available")
+                        || output.toLowerCase().contains("correction context")
+                        || output.toLowerCase().contains("unavailable"),
+                "Expected 'not available' notice for LEMMA_ABSENCE context in text output: " + output);
     }
 }
