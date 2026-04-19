@@ -26,16 +26,31 @@ class DispatchingReviser implements Reviser {
     @Override
     public RevisionProposal propose(RefinementTask task, CorrectionContext context,
             CourseElementSnapshot before) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        DiagnosisKind kind = task.getDiagnosisKind();
+        Reviser registered = byKind.get(kind);
+        if (registered != null) {
+            return registered.propose(task, context, before);
+        }
+        if (fallback != null) {
+            return fallback.propose(task, context, before);
+        }
+        throw new UnsupportedOperationException(
+                "No Reviser registered for DiagnosisKind " + kind + " and no fallback configured");
     }
 
     @Override
     public boolean handles(DiagnosisKind kind) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (byKind.containsKey(kind)) {
+            return true;
+        }
+        if (fallback != null) {
+            return fallback.handles(kind);
+        }
+        return false;
     }
 
     @Override
     public String reviserKind() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return "dispatching";
     }
 }

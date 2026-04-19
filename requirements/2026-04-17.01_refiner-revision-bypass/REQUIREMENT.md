@@ -358,7 +358,7 @@ La regla R014 fija el orden: primero se persiste el artefacto, despues se aplica
 Opciones para iteraciones futuras:
 
 - [ ] Opcion A: Rollback del artefacto si falla la escritura del curso. Requiere diseno transaccional.
-- [ ] Opcion B: Dejar el artefacto con un estado adicional "APPLICATION_FAILED" y no reintentar automaticamente. Se inspecciona a mano.
+- [x] Opcion B: Dejar el artefacto con un estado adicional "APPLICATION_FAILED" y no reintentar automaticamente. Se inspecciona a mano.
 - [ ] Opcion C: Reintentar la aplicacion un numero acotado de veces antes de marcar como fallo.
 
 **Answer**: En esta iteracion se declara como limitacion conocida. R014 deja el artefacto en estado APPROVED + escritura intentada + fallo reportado. La tarea permanece sin cerrar. La decision concreta se toma en un requerimiento futuro cuando exista logica de revision real.
@@ -388,7 +388,7 @@ La convencion de `<proposalId> = <taskId>-<timestamp>` (R009) habilita tecnicame
 
 Los campos `elementBefore` y `elementAfter` de la propuesta (R001) representan el estado del elemento. Opciones:
 
-- [ ] Opcion A: Snapshot completo del elemento (por ejemplo, el `QuizTemplateEntity` entero).
+- [x] Opcion A: Snapshot completo del elemento (por ejemplo, el `QuizTemplateEntity` entero).
 - [ ] Opcion B: Solo el subset de campos que la propuesta modifica (util para diffs chicos).
 - [ ] Opcion C: Representacion generica aplicable a cualquier `NodeKind` del curso.
 

@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import javax.annotation.processing.Generated;
 
 import com.learney.contentaudit.auditapplication.AuditRunner;
 import com.learney.contentaudit.auditcli.AnalyzeCommand;

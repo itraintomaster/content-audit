@@ -3,6 +3,7 @@ package com.learney.contentaudit.revisiondomain;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
+import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import java.util.Map;

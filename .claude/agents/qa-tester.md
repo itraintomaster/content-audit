@@ -135,7 +135,16 @@ A `handwrittenTest` without a rule that actually constrains its behavior is stri
 
 ### Step 6: Propose Patch
 
-Execute `sentinel patch propose` to add the tests as `handwrittenTests` in `sentinel.yaml`. This is YOUR responsibility — do not delegate to the Architect. Patches containing `handwrittenTests` **must** be requirement-scoped so the validator can cross-reference every traceability.rule against `REQUIREMENT.md`:
+Execute `sentinel patch propose` to add the tests as `handwrittenTests` in `sentinel.yaml`, and — for every flow-based journey — the `testModule` / `testPackage` placement fields on the journey in the **same patch**. This is YOUR responsibility — do not delegate to the Architect. Patches containing `handwrittenTests` **must** be requirement-scoped so the validator can cross-reference every traceability.rule against `REQUIREMENT.md`. The `features[].journeys[]` block with `testModule`/`testPackage` rides on the same `--requirement-folder` call — one atomic patch is easier to review and avoids intermediate states where `handwrittenTests` land but journey placement is still missing.
+
+**How to choose `testModule` / `testPackage`:**
+
+1. Identify which classes the journey test needs to instantiate (models, services, ports)
+2. Find the Java package where those classes live
+3. Pick the module that contains that package (and whose `dependsOn` transitively covers all journey participants)
+4. Declare both `testModule` and `testPackage` — never leave either unset
+
+**Why the exact package matters:** In Java, package-private classes and members are only visible within the **same package** — not in sub-packages. A test in `com.acme.domain.booking.journeys` CANNOT access package-private types in `com.acme.domain.booking`. The test must be in `com.acme.domain.booking` itself. Do NOT rely on the generator fallbacks (module root / first module) — both yield broken placement.
 
 ```bash
 java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar patch propose -i sentinel.yaml \
@@ -149,30 +158,6 @@ modules:
             traceability:
               feature: FEAT-XXX
               rule: F-XXX-RNNN
-PATCH
-```
-
-If the command fails with an error like *"references rule 'F-XXX-RNNN' which does not exist"*, the validator caught forced traceability. Do NOT re-tag to the closest rule — loop back to Step 5 and pick one of the three escalation paths.
-
-After the patch is proposed, explain the rationale for each test to the user.
-
-### Step 7: Declare Journey Test Placement
-
-For each **flow-based journey** (journeys with a `flow` graph in REQUIREMENT.md), you must declare the **module and package** where the journey test class will live. Journey tests are auto-generated from the flow graph, but they need to be placed in the exact Java package that gives them compile-time visibility to the classes they need to instantiate.
-
-**Why the exact package matters:** In Java, package-private classes and members are only visible within the **same package** — not in sub-packages. A test in `com.acme.domain.booking.journeys` CANNOT access package-private types in `com.acme.domain.booking`. The test must be in `com.acme.domain.booking` itself.
-
-**How to choose:**
-
-1. Identify which classes the journey test needs to instantiate (models, services, ports)
-2. Find the Java package where those classes live
-3. Pick the module that contains that package (and whose `dependsOn` transitively covers all journey participants)
-4. Declare both `testModule` and `testPackage`
-
-Propose via patch:
-
-```bash
-java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar patch propose -i sentinel.yaml <<'PATCH'
 features:
   - id: FEAT-XXX
     journeys:
@@ -182,7 +167,32 @@ features:
 PATCH
 ```
 
-If `testPackage` is not set, the generator falls back to the module's root package. If `testModule` is also not set, it falls back to the first module.
+If the command fails with an error like *"references rule 'F-XXX-RNNN' which does not exist"*, the validator caught forced traceability. Do NOT re-tag to the closest rule — loop back to Step 5 and pick one of the three escalation paths.
+
+**Important — `propose` is not `apply`:** `sentinel patch propose` only validates the patch file and writes it under `.sentinel/proposals/` (or the requirement folder). It does NOT modify `sentinel.yaml`. Reports like *"X additions, Y modifications"* describe the patch contents, not the repo state. Always describe your output to the user as *proposed* and tie any *applied* claim to Step 7's verification, not to propose's exit code.
+
+After the patch is proposed, explain the rationale for each test to the user.
+
+### Step 7: Verify post-apply
+
+After the user runs `sentinel patch apply` on your proposal, verify that every field you proposed actually landed in `sentinel.yaml`. Past versions of `sentinel patch apply` have silently dropped certain field changes (see the `.bugs/` entry on silent no-ops for feature/journey refs). Until the engine guarantees loud failure on every silent drop, this verification is **your** defense-in-depth responsibility. If any field is missing, escalate to the user **before** handing off to `@test-writer` — downstream agents operate on the assumption that the patch was fully applied.
+
+**Minimum checks (run with `grep` on `sentinel.yaml`):**
+
+1. For each `handwrittenTest` in your patch: grep its `name` under the expected implementation block — confirm the test name and `traceability.rule` both landed.
+2. For each journey that got `testModule` / `testPackage`: grep those lines under the journey id — confirm both fields are present with the exact values you proposed.
+3. If a field is missing in `sentinel.yaml` but was in the applied patch, emit an escalation:
+
+```yaml
+type: apply_silent_drop
+patch: <path-to-archived-patch-in-.applied-patches/>
+missing_fields:
+  - location: features[FEAT-XXX].journeys[JOURNEY-ID].testModule
+    expected: <module-name>
+    actual: <null | wrong value>
+```
+
+Do not attempt to re-apply or patch around a silent drop yourself — the discrepancy between `propose` (accepted) and `apply` (partial) is a framework bug, not a QA bug. Flag it and stop.
 
 ## Test Design Principles
 
@@ -207,7 +217,7 @@ When analyzing an implementation, identify:
 
 - You do NOT write Java code — you propose test names and traceability
 - You propose `handwrittenTests` via `sentinel patch propose` — this is YOUR responsibility, not the Architect's
-- You declare `testModule` and `testPackage` for flow-based journeys — picking the module/package pair that gives the test class visibility to all classes it needs to instantiate
+- You **MUST** declare both `testModule` and `testPackage` for every flow-based journey — do not rely on generator fallbacks (module root / first module) since they yield broken placement and no package-private visibility
 - You do NOT invent traceability. Every `traceability.rule` must point at a rule that currently exists in `REQUIREMENT.md`; every `traceability.journey` must point at a linear journey. If the rule does not exist, escalate to `@analyst` (Step 5) — do not force the tag.
 - If `sentinel patch propose` rejects a test because the referenced rule or journey does not exist, do NOT re-tag to a "closest" rule. Diagnose at the source: was the rule deleted (`_change: delete`)? Is there no rule for this behavior (escalate to `@analyst`)? Or did you mis-tag (fix the tag to the real rule)?
 - You do NOT propose architectural changes (modules, interfaces, models, dependencies) — that's the architect agent's job

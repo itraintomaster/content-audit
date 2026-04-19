@@ -1,4 +1,5 @@
 package com.learney.contentaudit.refinerdomain;
+import javax.annotation.processing.Generated;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;

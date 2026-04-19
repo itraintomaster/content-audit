@@ -1,4 +1,5 @@
 package com.learney.contentaudit.vocabularyinfrastructure.evp;
+import javax.annotation.processing.Generated;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

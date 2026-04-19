@@ -274,3 +274,9 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 
 - should save an AuditReport and load it back with identical content
 
+### FileSystemRevisionArtifactStore (audit-infrastructure)
+
+- Given a RevisionArtifact, when save is called, then a file is written under .content-audit/revisions/ → FEAT-REVBYP/F-REVBYP-R008
+- Given an artifact for plan P1 and proposal PR1, when save is called, then the file path is .content-audit/revisions/P1/PR1.<ext> → FEAT-REVBYP/F-REVBYP-R009
+- Given a persisted artifact, when load is called, then all RevisionProposal fields plus verdict and rejectionReason are recoverable → FEAT-REVBYP/F-REVBYP-R010
+

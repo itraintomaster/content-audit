@@ -1,4 +1,4 @@
-generatedAt: 2026-04-18T16:28:47.225035Z
+generatedAt: 2026-04-19T02:43:54.761583Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -91,35 +91,77 @@ features:
       implementation: LemmaByLevelAbsenceAnalyzer
   journeysCoverage:
   - journeyId: F-DLABS-J001
-    state: NO_TESTS
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path1_elAssessmentEsOPTIMAL_success
+        implemented: true
+        passing: true
+        module: audit-domain
+        implementation: FDlabsJ001JourneyTest
     - pathId: path-2
       result: success
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path2_elAssessmentEsACCEPTABLEONEEDSIMPROVEMENT_hayLemasAusentesEnElNivel_success
+        implemented: true
+        passing: true
+        module: audit-domain
+        implementation: FDlabsJ001JourneyTest
     - pathId: path-3
       result: success
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path3_elAssessmentEsACCEPTABLEONEEDSIMPROVEMENT_noHayLemasAusentesEnElNivel_success
+        implemented: true
+        passing: true
+        module: audit-domain
+        implementation: FDlabsJ001JourneyTest
   - journeyId: F-DLABS-J002
-    state: NO_TESTS
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path1_elMilestoneAncestroExiste_success
+        implemented: true
+        passing: true
+        module: audit-domain
+        implementation: FDlabsJ002JourneyTest
     - pathId: path-2
       result: failure
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path2_noSeEncuentraElMilestoneAncestroEstructuraDeArbolIncompleta_failure
+        implemented: true
+        passing: true
+        module: audit-domain
+        implementation: FDlabsJ002JourneyTest
   - journeyId: F-DLABS-J003
-    state: NO_TESTS
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path1_elDiagnosticoExisteEnElNodoCurso_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FDlabsJ003JourneyTest
     - pathId: path-2
       result: success
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path2_elDiagnosticoNoExisteElAnalizadorNoSeEjecuto_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FDlabsJ003JourneyTest
 - id: FEAT-LREC
   state: IMPLEMENTING
   requirementFile: requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
@@ -245,65 +287,9 @@ features:
       implementation: LemmaRecurrenceAnalyzer
   journeysCoverage:
   - journeyId: F-LREC-J001
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: success
-      state: PASSING
-      tests:
-      - name: path1_elCursoContieneOracionesProcesables_seEncontraronLemasDeContenidoSuficientesParaElAnalisis_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLrecJ001JourneyTest
-    - pathId: path-2
-      result: failure
-      state: PASSING
-      tests:
-      - name: path2_elCursoContieneOracionesProcesables_noSeEncontraronLemasDeContenidoEnElCurso_failure
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLrecJ001JourneyTest
-    - pathId: path-3
-      result: failure
-      state: PASSING
-      tests:
-      - name: path3_elCursoNoContieneOracionesProcesables_failure
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLrecJ001JourneyTest
+    state: NO_TESTS
   - journeyId: F-LREC-J004
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: success
-      state: PASSING
-      tests:
-      - name: path1_seEncuentranLemasNormalesConDesviacionEstandarAlta_laIrregularidadEsSignificativaYElUsuarioDecideCorregirla_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLrecJ004JourneyTest
-    - pathId: path-2
-      result: success
-      state: PASSING
-      tests:
-      - name: path2_seEncuentranLemasNormalesConDesviacionEstandarAlta_laIrregularidadEsMenorONoJustificaCambiosEnElContenido_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLrecJ004JourneyTest
-    - pathId: path-3
-      result: success
-      state: PASSING
-      tests:
-      - name: path3_todosLosLemasNormalesTienenDesviacionEstandarRazonable_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLrecJ004JourneyTest
+    state: NO_TESTS
 - id: FEAT-DCOCA
   state: IMPLEMENTING
   requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
@@ -324,14 +310,26 @@ features:
     state: NO_TESTS
   journeysCoverage:
   - journeyId: F-DCOCA-J001
-    state: NO_TESTS
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path1_elDiagnosticoExisteEnElNodoCurso_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FDcocaJ001JourneyTest
     - pathId: path-2
       result: success
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path2_elDiagnosticoNoExisteElAnalizadorNoSeEjecuto_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FDcocaJ001JourneyTest
   - journeyId: F-DCOCA-J002
     state: PASSING
     pathsCoverage:
@@ -777,7 +775,7 @@ features:
   - journeyId: F-NLP-J003
     state: NO_TESTS
 - id: FEAT-LABS
-  state: IMPLEMENTED
+  state: IMPLEMENTING
   requirementFile: requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LABS-R001
@@ -1645,173 +1643,15 @@ features:
       implementation: LemmaByLevelAbsenceAnalyzer
   journeysCoverage:
   - journeyId: F-LABS-J001
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: success
-      state: PASSING
-      tests:
-      - name: path1_elAnalisisSeCompletaExitosamente_elAssessmentEsOPTIMALYTodosLosNivelesEstanDentroDeLosUmbrales_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ001JourneyTest
-    - pathId: path-2
-      result: success
-      state: PASSING
-      tests:
-      - name: path2_elAnalisisSeCompletaExitosamente_hayNivelesQueExcedenLosUmbralesDeLemasAusentes_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ001JourneyTest
-    - pathId: path-3
-      result: failure
-      state: PASSING
-      tests:
-      - name: path3_noSeDisponeDelCatalogoDeVocabularioEsperadoParaLosNivelesDelCurso_failure
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ001JourneyTest
-    - pathId: path-4
-      result: failure
-      state: PASSING
-      tests:
-      - name: path4_elCursoNoContieneOracionesProcesadasLinguisticamente_failure
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ001JourneyTest
+    state: NO_TESTS
   - journeyId: F-LABS-J002
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: success
-      state: PASSING
-      tests:
-      - name: path1_hayLemasQueNoAparecenEnNingunNivelDelCurso_losLemasAusentesSonCriticosParaLaComunicacionBasicaDelNivel_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ002JourneyTest
-    - pathId: path-2
-      result: success
-      state: PASSING
-      tests:
-      - name: path2_hayLemasQueNoAparecenEnNingunNivelDelCurso_losLemasAusentesSonRelevantesPeroNoUrgentes_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ002JourneyTest
-    - pathId: path-3
-      result: success
-      state: PASSING
-      tests:
-      - name: path3_losLemasAusentesAparecenEnOtrosNivelesPeroNoEnElEsperado_losLemasAusentesSonCriticosParaLaComunicacionBasicaDelNivel_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ002JourneyTest
-    - pathId: path-4
-      result: success
-      state: PASSING
-      tests:
-      - name: path4_losLemasAusentesAparecenEnOtrosNivelesPeroNoEnElEsperado_losLemasAusentesSonRelevantesPeroNoUrgentes_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ002JourneyTest
+    state: NO_TESTS
   - journeyId: F-LABS-J003
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: success
-      state: PASSING
-      tests:
-      - name: path1_elLemaApareceUnSoloNivelDespuesDelEsperadoPorEjemploA2EsperadoApareceEnB1_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ003JourneyTest
-    - pathId: path-2
-      result: success
-      state: PASSING
-      tests:
-      - name: path2_elLemaApareceDosOMasNivelesDespuesDelEsperadoPorEjemploA1EsperadoApareceEnB2_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ003JourneyTest
+    state: NO_TESTS
   - journeyId: F-LABS-J004
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: success
-      state: PASSING
-      tests:
-      - name: path1_hayOracionesConScoresPorDebajoDe08_losLemasDesplazadosSonDeNivelesMuyDistantesPorEjemploLemasA1EnOracionesB2_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ004JourneyTest
-    - pathId: path-2
-      result: success
-      state: PASSING
-      tests:
-      - name: path2_hayOracionesConScoresPorDebajoDe08_losLemasDesplazadosEstanAUnSoloNivelDeDistancia_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ004JourneyTest
-    - pathId: path-3
-      result: success
-      state: PASSING
-      tests:
-      - name: path3_todasLasOracionesTienenScoresAceptables08OSuperior_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ004JourneyTest
+    state: NO_TESTS
   - journeyId: F-LABS-J005
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: success
-      state: PASSING
-      tests:
-      - name: path1_hayRecomendacionesDePrioridadHIGH_elVolumenEsManejable_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ005JourneyTest
-    - pathId: path-2
-      result: success
-      state: PASSING
-      tests:
-      - name: path2_hayRecomendacionesDePrioridadHIGH_elVolumenEsAlto_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ005JourneyTest
-    - pathId: path-3
-      result: success
-      state: PASSING
-      tests:
-      - name: path3_soloHayRecomendacionesDePrioridadMEDIUMOLOW_elVolumenEsManejable_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ005JourneyTest
-    - pathId: path-4
-      result: success
-      state: PASSING
-      tests:
-      - name: path4_soloHayRecomendacionesDePrioridadMEDIUMOLOW_elVolumenEsAlto_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FLabsJ005JourneyTest
+    state: NO_TESTS
 - id: FEAT-CLI
   state: IMPLEMENTING
   requirementFile: requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
@@ -2178,7 +2018,7 @@ features:
   - journeyId: F-KTLEN-J004
     state: NO_TESTS
 - id: FEAT-DSLEN
-  state: IMPLEMENTING
+  state: DRAFT
   requirementFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DSLEN-R001
@@ -2191,35 +2031,7 @@ features:
     state: NO_TESTS
   journeysCoverage:
   - journeyId: F-DSLEN-J001
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: success
-      state: PASSING
-      tests:
-      - name: path1_elDiagnosticoExisteQuizFueEvaluado_deltaEsPositivoOracionDemasiadoLarga_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FDslenJ001JourneyTest
-    - pathId: path-2
-      result: success
-      state: PASSING
-      tests:
-      - name: path2_elDiagnosticoExisteQuizFueEvaluado_deltaEsNegativoOracionDemasiadoCorta_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FDslenJ001JourneyTest
-    - pathId: path-3
-      result: success
-      state: PASSING
-      tests:
-      - name: path3_elDiagnosticoNoExisteQuizExcluidoPorNoSerOracion_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FDslenJ001JourneyTest
+    state: NO_TESTS
 - id: FEAT-SLEN
   state: IMPLEMENTING
   requirementFile: requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
@@ -2413,39 +2225,219 @@ features:
   - journeyId: F-LCOUNT-J005
     state: NO_TESTS
 - id: FEAT-REVBYP
-  state: DRAFT
+  state: IMPLEMENTED
   requirementFile: requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVBYP-R001
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given a CorrectionContext, when propose is called, then it returns a\
+        \ RevisionProposal with all R001 fields populated"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: IdentityReviser
   - ruleId: F-REVBYP-R002
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given any before snapshot, when propose is called, then elementAfter\
+        \ equals elementBefore"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: IdentityReviser
   - ruleId: F-REVBYP-R003
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given a Reviser registered for SENTENCE_LENGTH, when propose is called\
+        \ with a SENTENCE_LENGTH task, then the registered Reviser handles it"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DispatchingReviser
   - ruleId: F-REVBYP-R004
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given a RevisionEngineConfig with an empty revisers map, when create\
+        \ is called, then the produced engine uses IdentityReviser as fallback"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultRevisionEngineFactory
+    - name: "Given any DiagnosisKind, when handles is called, then it returns true"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: IdentityReviser
+    - name: "Given a proposal generated by IdentityReviser, then rationale equals\
+        \ 'bypass: identity revision' and reviserKind equals 'bypass'"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: IdentityReviser
+    - name: "Given no Reviser registered for a DiagnosisKind, when propose is called,\
+        \ then the IdentityReviser fallback handles it"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DispatchingReviser
   - ruleId: F-REVBYP-R005
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given neither a registered Reviser nor a fallback, when handles is queried\
+        \ for an unknown DiagnosisKind, then it returns false"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DispatchingReviser
   - ruleId: F-REVBYP-R006
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given an approved result, when rejectionReason is queried, then it returns\
+        \ Optional.empty"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: AutoApproveValidator
   - ruleId: F-REVBYP-R007
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given any RevisionProposal, when validate is called, then it returns\
+        \ a RevisionValidatorResult with verdict APPROVED"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: AutoApproveValidator
   - ruleId: F-REVBYP-R008
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given a RevisionArtifact, when save is called, then a file is written\
+        \ under .content-audit/revisions/"
+      implemented: true
+      passing: true
+      module: audit-infrastructure
+      implementation: FileSystemRevisionArtifactStore
   - ruleId: F-REVBYP-R009
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given an artifact for plan P1 and proposal PR1, when save is called,\
+        \ then the file path is .content-audit/revisions/P1/PR1.<ext>"
+      implemented: true
+      passing: true
+      module: audit-infrastructure
+      implementation: FileSystemRevisionArtifactStore
   - ruleId: F-REVBYP-R010
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given a persisted artifact, when load is called, then all RevisionProposal\
+        \ fields plus verdict and rejectionReason are recoverable"
+      implemented: true
+      passing: true
+      module: audit-infrastructure
+      implementation: FileSystemRevisionArtifactStore
   - ruleId: F-REVBYP-R011
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given an APPROVED proposal, when revise runs, then CourseRepository saves\
+        \ the updated course"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultRevisionEngine
   - ruleId: F-REVBYP-R012
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given a REJECTED proposal, when revise runs, then CourseRepository is\
+        \ never asked to save"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultRevisionEngine
   - ruleId: F-REVBYP-R013
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given a RevisionEngine that returns APPROVED_APPLIED, when revise is\
+        \ invoked with planId and taskId, then it delegates to engine.revise and returns\
+        \ exit code 0"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RefinerReviseCmd
+    - name: "Given an APPROVED proposal applied successfully, when revise finishes,\
+        \ then the RefinementTask transitions to DONE"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultRevisionEngine
   - ruleId: F-REVBYP-R014
-    state: NO_TESTS
+    state: PASSING
+    tests:
+    - name: "Given revise succeeds end-to-end, then artifactStore.save is invoked\
+        \ before courseRepository.save"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultRevisionEngine
+  journeysCoverage:
+  - journeyId: F-REVBYP-J001
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_elContextoSeResuelveCorrectamente_elElementoExisteEnElCursoCargado_hayUnReviserAplicableBypassComoFallback_success
+        implemented: true
+        passing: true
+        module: revision-domain
+        implementation: FRevbypJ001JourneyTest
+    - pathId: path-2
+      result: failure
+      state: PASSING
+      tests:
+      - name: path2_elContextoSeResuelveCorrectamente_elElementoExisteEnElCursoCargado_hayUnReviserAplicableBypassComoFallback_failure
+        implemented: true
+        passing: true
+        module: revision-domain
+        implementation: FRevbypJ001JourneyTest
+    - pathId: path-3
+      result: failure
+      state: PASSING
+      tests:
+      - name: path3_elContextoSeResuelveCorrectamente_elElementoExisteEnElCursoCargado_hayUnReviserAplicableBypassComoFallback_failure
+        implemented: true
+        passing: true
+        module: revision-domain
+        implementation: FRevbypJ001JourneyTest
+    - pathId: path-4
+      result: failure
+      state: PASSING
+      tests:
+      - name: path4_elContextoSeResuelveCorrectamente_elElementoExisteEnElCursoCargado_noHayNingunReviserRegistradoParaElDiagnostico_failure
+        implemented: true
+        passing: true
+        module: revision-domain
+        implementation: FRevbypJ001JourneyTest
+    - pathId: path-5
+      result: failure
+      state: PASSING
+      tests:
+      - name: path5_elContextoSeResuelveCorrectamente_elElementoNoSeEncuentraEnElCurso_failure
+        implemented: true
+        passing: true
+        module: revision-domain
+        implementation: FRevbypJ001JourneyTest
+    - pathId: path-6
+      result: failure
+      state: PASSING
+      tests:
+      - name: path6_elContextoNoPuedeResolverseReporteDeAuditoriaNoEncontradoDiagnosticoNoDisponible_failure
+        implemented: true
+        passing: true
+        module: revision-domain
+        implementation: FRevbypJ001JourneyTest
 - id: FEAT-RCLA
-  state: IMPLEMENTED
+  state: IMPLEMENTING
   requirementFile: requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLA-R001
@@ -2714,58 +2706,11 @@ features:
       implementation: RefinerNextCmd
   journeysCoverage:
   - journeyId: F-RCLA-J001
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: success
-      state: PASSING
-      tests:
-      - name: path1_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_elLemmaPlacementDiagnosisExisteYTieneAlMenosUnMisplacedLemma_hayLemasAusentesDeTipoCOMPLETELYABSENTOAPPEARSTOOLATEDisponibles_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FRclaJ001JourneyTest
-    - pathId: path-2
-      result: success
-      state: PASSING
-      tests:
-      - name: path2_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_elLemmaPlacementDiagnosisExisteYTieneAlMenosUnMisplacedLemma_noHayLemasSugeridosDisponibles_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FRclaJ001JourneyTest
-    - pathId: path-3
-      result: failure
-      state: PASSING
-      tests:
-      - name: path3_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_elLemmaPlacementDiagnosisNoEstaDisponible_failure
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FRclaJ001JourneyTest
-    - pathId: path-4
-      result: failure
-      state: PASSING
-      tests:
-      - name: path4_elReporteNoSeEncuentraOElNodoQuizNoExisteEnElArbol_failure
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FRclaJ001JourneyTest
+    state: NO_TESTS
   - journeyId: F-RCLA-J002
-    state: PASSING
-    pathsCoverage:
-    - pathId: path-1
-      result: success
-      state: PASSING
-      tests:
-      - name: path1_success
-        implemented: true
-        passing: true
-        module: audit-domain
-        implementation: FRclaJ002JourneyTest
+    state: NO_TESTS
 - id: FEAT-RCSL
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCSL-R001
@@ -3009,41 +2954,95 @@ features:
       implementation: RefinerNextCmd
   journeysCoverage:
   - journeyId: F-RCSL-J001
-    state: NO_TESTS
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path1_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_hayLemasAusentesDeTipoCOMPLETELYABSENTOAPPEARSTOOLATEDisponibles_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRcslJ001JourneyTest
     - pathId: path-2
       result: success
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path2_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_noHayLemasSugeridosDisponibles_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRcslJ001JourneyTest
     - pathId: path-3
       result: failure
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path3_elReporteNoSeEncuentraOElNodoQuizNoExisteEnElArbol_failure
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRcslJ001JourneyTest
   - journeyId: F-RCSL-J002
-    state: NO_TESTS
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path1_elReporteYElNodoQuizSeLocalizanCorrectamente_hayLemasSugeridosDisponibles_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRcslJ002JourneyTest
     - pathId: path-2
       result: success
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path2_elReporteYElNodoQuizSeLocalizanCorrectamente_noHayLemasSugeridos_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRcslJ002JourneyTest
     - pathId: path-3
       result: failure
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path3_noSePuedeLocalizarElReporteOElNodo_failure
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRcslJ002JourneyTest
   - journeyId: F-RCSL-J003
-    state: NO_TESTS
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path1_elMilestoneExistePeroSuLemmaAbsenceLevelDiagnosisIndicaQueTodosLosLemasEsperadosEstanPresentesNoHayAusencias_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRcslJ003JourneyTest
     - pathId: path-2
       result: success
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path2_elMilestoneExistePeroTodasLasAusenciasSonDeTipoAPPEARSTOOEARLYExcluidasPorR003_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRcslJ003JourneyTest
     - pathId: path-3
       result: success
-      state: NO_TESTS
+      state: PASSING
+      tests:
+      - name: path3_noSeEncuentraElMilestoneAncestroEstructuraIncompleta_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRcslJ003JourneyTest
 elements:
 - module: audit-domain
   status: EXISTS
@@ -9614,6 +9613,12 @@ elements:
     methods:
     - signature: "listTasks(String planId): Integer"
       status: EXISTS
+  - name: RefinerReviseCommand
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/RefinerReviseCommand.java
+    methods:
+    - signature: "revise(String planId, String taskId): Integer"
+      status: EXISTS
   implementations:
   - name: Main
     status: EXISTS
@@ -10651,6 +10656,32 @@ elements:
   - name: RefinerListCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RefinerListCmd.java
+  - name: RefinerReviseCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RefinerReviseCmd.java
+    tests:
+    - name: "Given a RevisionEngine that returns APPROVED_APPLIED, when revise is\
+        \ invoked with planId and taskId, then it delegates to engine.revise and returns\
+        \ exit code 0"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerReviseCmdTest.java
+    testCleanViews:
+    - |
+      test: "Given a RevisionEngine that returns APPROVED_APPLIED, when revise is invoked with planId and taskId, then it delegates to engine.revise and returns exit code 0"
+      trace: FEAT-REVBYP / F-REVBYP-R013
+
+      given:
+        revisionEngine = mock(RevisionEngine.class)
+        approvedOutcome = RevisionOutcome(RevisionOutcomeKind.APPROVED_APPLIED, null, null)
+        cmd = RefinerReviseCmd(revisionEngine)
+        exitCode = cmd.revise("plan-001", "task-001")
+
+      mock:
+        revisionEngine.revise(eq("plan-001"), eq("task-001"), any(Path.class)) -> approvedOutcome
+
+      then:
+        exitCode == 0
+        verify: revisionEngine.revise(eq("plan-001"), eq("task-001"), any(Path.class))
   - name: TextReportFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/TextReportFormatter.java
@@ -11080,9 +11111,640 @@ elements:
   - name: FileSystemRefinementPlanStore
     status: EXISTS
     filePath: audit-infrastructure/src/main/java/com/learney/contentaudit/auditinfrastructure/FileSystemRefinementPlanStore.java
+  - name: FileSystemRevisionArtifactStore
+    status: EXISTS
+    filePath: audit-infrastructure/src/main/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStore.java
+    tests:
+    - name: "Given a RevisionArtifact, when save is called, then a file is written\
+        \ under .content-audit/revisions/"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStoreTest.java
+    - name: "Given an artifact for plan P1 and proposal PR1, when save is called,\
+        \ then the file path is .content-audit/revisions/P1/PR1.<ext>"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStoreTest.java
+    - name: "Given a persisted artifact, when load is called, then all RevisionProposal\
+        \ fields plus verdict and rejectionReason are recoverable"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStoreTest.java
+    testCleanViews:
+    - |
+      test: "Given a RevisionArtifact, when save is called, then a file is written under .content-audit/revisions/"
+      trace: FEAT-REVBYP / F-REVBYP-R008
+
+      given:
+        store = storeFor(tempDir)
+        artifact = buildArtifact("plan-001", "task-001-20260418T100000Z")
+        returnedId = store.save(artifact)
+        revisionsRoot = tempDir.resolve(".content-audit/revisions")
+
+      then:
+        Files.isDirectory(revisionsRoot) is true
+        fileCount > 0 is true
+        returnedId is not null
+        returnedId.isBlank() is false
+    - |
+      test: "Given an artifact for plan P1 and proposal PR1, when save is called, then the file path is .content-audit/revisions/P1/PR1.<ext>"
+      trace: FEAT-REVBYP / F-REVBYP-R009
+
+      given:
+        planId = "plan-P1"
+        proposalId = "task-001-20260418T100000Z"
+        store = storeFor(tempDir)
+        artifact = buildArtifact(planId, proposalId)
+        planDir = tempDir.resolve(".content-audit/revisions/" + planId)
+
+      when:
+        sut.save(artifact)
+
+      then:
+        Files.isDirectory(planDir) is true
+    - |
+      test: "Given a persisted artifact, when load is called, then all RevisionProposal fields plus verdict and rejectionReason are recoverable"
+      trace: FEAT-REVBYP / F-REVBYP-R010
+
+      given:
+        planId = "plan-001"
+        proposalId = "task-001-20260418T100000Z"
+        store = storeFor(tempDir)
+        original = buildArtifact(planId, proposalId)
+        loadedOpt = store.load(planId, proposalId)
+        loaded = loadedOpt.get()
+        loadedProposal = loaded.getProposal()
+        loadedBefore = loadedProposal.getElementBefore()
+        loadedAfter = loadedProposal.getElementAfter()
+
+      when:
+        sut.save(original)
+
+      then:
+        loadedOpt.isPresent() is true
+        loaded.getVerdict() == RevisionVerdict.APPROVED
+        loaded.getRejectionReason() is null
+        loadedProposal is not null
+        loadedProposal.getProposalId() == proposalId
+        loadedProposal.getTaskId() == "task-001"
+        loadedProposal.getPlanId() == planId
+        loadedProposal.getSourceAuditId() == "audit-001"
+        loadedProposal.getDiagnosisKind() == DiagnosisKind.SENTENCE_LENGTH
+        loadedProposal.getNodeTarget() == AuditTarget.QUIZ
+        loadedProposal.getNodeId() == "quiz-node-001"
+        loadedProposal.getRationale() == "bypass: identity revision"
+        loadedProposal.getReviserKind() == "bypass"
+        loadedProposal.getCreatedAt() == Instant.parse("2026-04-18T10:00:00Z")
+        loadedBefore is not null
+        loadedBefore.getNodeTarget() == AuditTarget.QUIZ
+        loadedBefore.getNodeId() == "quiz-node-001"
+        loadedAfter is not null
+        loadedAfter.getNodeTarget() == AuditTarget.QUIZ
+        loadedAfter.getNodeId() == "quiz-node-001"
+- module: revision-domain
+  status: EXISTS
+  models:
+  - name: RevisionVerdict
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/RevisionVerdict.java
+    fields:
+    - name: APPROVED
+      status: EXISTS
+    - name: REJECTED
+      status: EXISTS
+  - name: RevisionOutcomeKind
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/RevisionOutcomeKind.java
+    fields:
+    - name: APPROVED_APPLIED
+      status: EXISTS
+    - name: APPROVED_APPLY_FAILED
+      status: EXISTS
+    - name: REJECTED
+      status: EXISTS
+    - name: NO_REVISER
+      status: EXISTS
+    - name: CONTEXT_UNAVAILABLE
+      status: EXISTS
+    - name: ELEMENT_NOT_FOUND
+      status: EXISTS
+  - name: CourseElementSnapshot
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/CourseElementSnapshot.java
+    fields:
+    - name: nodeTarget
+      status: EXISTS
+    - name: nodeId
+      status: EXISTS
+    - name: quiz
+      status: EXISTS
+  - name: RevisionProposal
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/RevisionProposal.java
+    fields:
+    - name: proposalId
+      status: EXISTS
+    - name: taskId
+      status: EXISTS
+    - name: planId
+      status: EXISTS
+    - name: sourceAuditId
+      status: EXISTS
+    - name: diagnosisKind
+      status: EXISTS
+    - name: nodeTarget
+      status: EXISTS
+    - name: nodeId
+      status: EXISTS
+    - name: elementBefore
+      status: EXISTS
+    - name: elementAfter
+      status: EXISTS
+    - name: rationale
+      status: EXISTS
+    - name: reviserKind
+      status: EXISTS
+    - name: createdAt
+      status: EXISTS
+  - name: RevisionArtifact
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/RevisionArtifact.java
+    fields:
+    - name: proposal
+      status: EXISTS
+    - name: verdict
+      status: EXISTS
+    - name: rejectionReason
+      status: EXISTS
+    - name: outcome
+      status: EXISTS
+  - name: RevisionOutcome
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/RevisionOutcome.java
+    fields:
+    - name: kind
+      status: EXISTS
+    - name: artifact
+      status: EXISTS
+    - name: errorMessage
+      status: EXISTS
+  - name: RevisionEngineConfig
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/RevisionEngineConfig.java
+    fields:
+    - name: revisers
+      status: EXISTS
+    - name: validator
+      status: EXISTS
+    - name: artifactStore
+      status: EXISTS
+    - name: courseRepository
+      status: EXISTS
+    - name: elementLocator
+      status: EXISTS
+    - name: refinementPlanStore
+      status: EXISTS
+    - name: auditReportStore
+      status: EXISTS
+    - name: contextResolver
+      status: EXISTS
+  interfaces:
+  - name: Reviser
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/Reviser.java
+    methods:
+    - signature: "propose(RefinementTask task, CorrectionContext context, CourseElementSnapshot\
+        \ before): RevisionProposal"
+      status: EXISTS
+    - signature: "handles(DiagnosisKind kind): boolean"
+      status: EXISTS
+    - signature: "reviserKind(): String"
+      status: EXISTS
+  - name: RevisionValidator
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/RevisionValidator.java
+    methods:
+    - signature: "validate(RevisionProposal proposal): RevisionValidatorResult"
+      status: EXISTS
+  - name: RevisionValidatorResult
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/RevisionValidatorResult.java
+    methods:
+    - signature: "verdict(): RevisionVerdict"
+      status: EXISTS
+    - signature: "rejectionReason(): Optional<String>"
+      status: EXISTS
+  - name: RevisionArtifactStore
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/RevisionArtifactStore.java
+    methods:
+    - signature: "save(RevisionArtifact artifact): String"
+      status: EXISTS
+    - signature: "load(String planId, String proposalId): Optional<RevisionArtifact>"
+      status: EXISTS
+    - signature: "listByPlan(String planId): List<RevisionArtifact>"
+      status: EXISTS
+  - name: CourseElementLocator
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/CourseElementLocator.java
+    methods:
+    - signature: "snapshot(CourseEntity course, AuditTarget target, String nodeId):\
+        \ Optional<CourseElementSnapshot>"
+      status: EXISTS
+    - signature: "replace(CourseEntity course, CourseElementSnapshot replacement):\
+        \ CourseEntity"
+      status: EXISTS
+  - name: RevisionEngine
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/RevisionEngine.java
+    methods:
+    - signature: "revise(String planId, String taskId, Path coursePath): RevisionOutcome"
+      status: EXISTS
+  - name: RevisionEngineFactory
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/RevisionEngineFactory.java
+    methods:
+    - signature: "create(RevisionEngineConfig config): RevisionEngine"
+      status: EXISTS
+  implementations:
+  - name: DefaultRevisionEngineFactory
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/DefaultRevisionEngineFactory.java
+    tests:
+    - name: "Given a RevisionEngineConfig with an empty revisers map, when create\
+        \ is called, then the produced engine uses IdentityReviser as fallback"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultRevisionEngineFactoryTest.java
+    testCleanViews:
+    - |
+      test: "Given a RevisionEngineConfig with an empty revisers map, when create is called, then the produced engine uses IdentityReviser as fallback"
+      trace: FEAT-REVBYP / F-REVBYP-R004
+
+      given:
+        config = RevisionEngineConfig(// empty revisers — factory must add IdentityReviser fallback (R004)
+      Map.of(), // validator: factory uses AutoApproveValidator default (R007)
+      null, mock(RevisionArtifactStore.class), mock(CourseRepository.class), // elementLocator: factory uses DefaultCourseElementLocator default
+      null, mock(RefinementPlanStore.class), mock(AuditReportStore.class), mock(CorrectionContextResolver.class))
+        factory = DefaultRevisionEngineFactory()
+        engine = factory.create(config)
+        fallback = IdentityReviser()
+
+      then:
+        engine is not null
+  - name: IdentityReviser
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/IdentityReviser.java
+    tests:
+    - name: "Given a CorrectionContext, when propose is called, then it returns a\
+        \ RevisionProposal with all R001 fields populated"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/IdentityReviserTest.java
+    - name: "Given any before snapshot, when propose is called, then elementAfter\
+        \ equals elementBefore"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/IdentityReviserTest.java
+    - name: "Given any DiagnosisKind, when handles is called, then it returns true"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/IdentityReviserTest.java
+    - name: "Given a proposal generated by IdentityReviser, then rationale equals\
+        \ 'bypass: identity revision' and reviserKind equals 'bypass'"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/IdentityReviserTest.java
+    testCleanViews:
+    - |
+      test: "Given a CorrectionContext, when propose is called, then it returns a RevisionProposal with all R001 fields populated"
+      trace: FEAT-REVBYP / F-REVBYP-R001
+
+      given:
+        task = buildTask(DiagnosisKind.SENTENCE_LENGTH)
+        before = buildSnapshot()
+        proposal = sut.propose(task, null, before)
+
+      then:
+        proposal is not null
+        proposal.getProposalId() is not null
+        proposal.getTaskId() is not null
+        proposal.getPlanId() is not null
+        proposal.getSourceAuditId() is not null
+        proposal.getDiagnosisKind() is not null
+        proposal.getNodeTarget() is not null
+        proposal.getNodeId() is not null
+        proposal.getElementBefore() is not null
+        proposal.getElementAfter() is not null
+        proposal.getRationale() is not null
+        proposal.getReviserKind() is not null
+        proposal.getCreatedAt() is not null
+    - |
+      test: "Given any before snapshot, when propose is called, then elementAfter equals elementBefore"
+      trace: FEAT-REVBYP / F-REVBYP-R002
+
+      given:
+        task = buildTask(DiagnosisKind.LEMMA_ABSENCE)
+        before = buildSnapshot()
+        proposal = sut.propose(task, null, before)
+
+      then:
+        proposal.getElementAfter() == before
+    - |
+      test: "Given a proposal generated by IdentityReviser, then rationale equals 'bypass: identity revision' and reviserKind equals 'bypass'"
+      trace: FEAT-REVBYP / F-REVBYP-R004
+
+      given:
+        task = buildTask(DiagnosisKind.SENTENCE_LENGTH)
+        before = buildSnapshot()
+        proposal = sut.propose(task, null, before)
+
+      then:
+        proposal.getRationale() == "bypass: identity revision"
+        proposal.getReviserKind() == "bypass"
+  - name: AutoApproveValidator
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/AutoApproveValidator.java
+    tests:
+    - name: "Given any RevisionProposal, when validate is called, then it returns\
+        \ a RevisionValidatorResult with verdict APPROVED"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/AutoApproveValidatorTest.java
+    - name: "Given an approved result, when rejectionReason is queried, then it returns\
+        \ Optional.empty"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/AutoApproveValidatorTest.java
+    testCleanViews:
+    - |
+      test: "Given any RevisionProposal, when validate is called, then it returns a RevisionValidatorResult with verdict APPROVED"
+      trace: FEAT-REVBYP / F-REVBYP-R007
+
+      given:
+        validator = AutoApproveValidator()
+        proposal = anyProposal()
+        result = validator.validate(proposal)
+
+      then:
+        result.verdict() == RevisionVerdict.APPROVED
+    - |
+      test: "Given an approved result, when rejectionReason is queried, then it returns Optional.empty"
+      trace: FEAT-REVBYP / F-REVBYP-R006
+
+      given:
+        validator = AutoApproveValidator()
+        proposal = anyProposal()
+        result = validator.validate(proposal)
+
+      then:
+        result.rejectionReason() == Optional.empty()
+  - name: DefaultRevisionValidatorResult
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/DefaultRevisionValidatorResult.java
+  - name: DispatchingReviser
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/DispatchingReviser.java
+    tests:
+    - name: "Given a Reviser registered for SENTENCE_LENGTH, when propose is called\
+        \ with a SENTENCE_LENGTH task, then the registered Reviser handles it"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DispatchingReviserTest.java
+    - name: "Given no Reviser registered for a DiagnosisKind, when propose is called,\
+        \ then the IdentityReviser fallback handles it"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DispatchingReviserTest.java
+    - name: "Given neither a registered Reviser nor a fallback, when handles is queried\
+        \ for an unknown DiagnosisKind, then it returns false"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DispatchingReviserTest.java
+    testCleanViews:
+    - |
+      test: "Given a Reviser registered for SENTENCE_LENGTH, when propose is called with a SENTENCE_LENGTH task, then the registered Reviser handles it"
+      trace: FEAT-REVBYP / F-REVBYP-R003
+
+      given:
+        sentenceLengthReviser = mock(Reviser.class)
+        task = mock(RefinementTask.class)
+        snapshot = mock(CourseElementSnapshot.class)
+        expectedProposal = mock(RevisionProposal.class)
+        fallback = mock(IdentityReviser.class)
+        dispatcher = DispatchingReviser(Map.of(DiagnosisKind.SENTENCE_LENGTH, sentenceLengthReviser), fallback)
+        actual = dispatcher.propose(task, null, snapshot)
+
+      mock:
+        task.getDiagnosisKind() -> DiagnosisKind.SENTENCE_LENGTH
+        sentenceLengthReviser.handles(DiagnosisKind.SENTENCE_LENGTH) -> true
+        sentenceLengthReviser.propose(eq(task), any(), eq(snapshot)) -> expectedProposal
+
+      then:
+        assertSame(expectedProposal)
+        verify: sentenceLengthReviser.propose(eq(task), any(), eq(snapshot))
+    - |
+      test: "Given no Reviser registered for a DiagnosisKind, when propose is called, then the IdentityReviser fallback handles it"
+      trace: FEAT-REVBYP / F-REVBYP-R004
+
+      given:
+        task = mock(RefinementTask.class)
+        snapshot = mock(CourseElementSnapshot.class)
+        fallbackProposal = mock(RevisionProposal.class)
+        fallback = mock(IdentityReviser.class)
+        dispatcher = DispatchingReviser(Map.of(), fallback)
+        actual = dispatcher.propose(task, null, snapshot)
+
+      mock:
+        task.getDiagnosisKind() -> DiagnosisKind.COCA_BUCKETS
+        fallback.handles(DiagnosisKind.COCA_BUCKETS) -> true
+        fallback.propose(eq(task), any(), eq(snapshot)) -> fallbackProposal
+
+      then:
+        assertSame(fallbackProposal)
+        verify: fallback.propose(eq(task), any(), eq(snapshot))
+    - |
+      test: "Given neither a registered Reviser nor a fallback, when handles is queried for an unknown DiagnosisKind, then it returns false"
+      trace: FEAT-REVBYP / F-REVBYP-R005
+
+      given:
+        dispatcher = DispatchingReviser(Map.of(), null)
+
+      then:
+        dispatcher.handles(DiagnosisKind.SENTENCE_LENGTH) is false
+  - name: DefaultCourseElementLocator
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/DefaultCourseElementLocator.java
+  - name: DefaultRevisionEngine
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/DefaultRevisionEngine.java
+    tests:
+    - name: "Given an APPROVED proposal, when revise runs, then CourseRepository saves\
+        \ the updated course"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultRevisionEngineTest.java
+    - name: "Given a REJECTED proposal, when revise runs, then CourseRepository is\
+        \ never asked to save"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultRevisionEngineTest.java
+    - name: "Given an APPROVED proposal applied successfully, when revise finishes,\
+        \ then the RefinementTask transitions to DONE"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultRevisionEngineTest.java
+    - name: "Given revise succeeds end-to-end, then artifactStore.save is invoked\
+        \ before courseRepository.save"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultRevisionEngineTest.java
+    testCleanViews:
+    - |
+      test: "Given an APPROVED proposal, when revise runs, then CourseRepository saves the updated course"
+      trace: FEAT-REVBYP / F-REVBYP-R011
+
+      given:
+        planId = "plan-001"
+        taskId = "task-001"
+        auditId = "audit-001"
+        nodeId = "quiz-001"
+        coursePath = Path.of("./db/english-course")
+        task = RefinementTask(taskId, AuditTarget.QUIZ, nodeId, "Quiz about verbs", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan(planId, auditId, Instant.now(), List.of(task))
+        auditReport = mock(AuditReport.class)
+        context = mock(CorrectionContext.class)
+        course = mock(CourseEntity.class)
+        snapshot = CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null)
+        proposal = RevisionProposal(taskId + "-123456", taskId, planId, auditId, DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId, snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now())
+        validatorResult = mock(RevisionValidatorResult.class)
+        engine = buildEngine()
+        outcome = engine.revise(planId, taskId, coursePath)
+
+      mock:
+        validatorResult.verdict() -> RevisionVerdict.APPROVED
+        validatorResult.rejectionReason() -> Optional.empty()
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        auditReportStore.load(auditId) -> Optional.of(auditReport)
+        contextResolver.resolve(eq(auditReport), eq(task)) -> Optional.of(context)
+        courseRepository.load(coursePath) -> course
+        elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId) -> Optional.of(snapshot)
+        reviser.handles(DiagnosisKind.SENTENCE_LENGTH) -> true
+        reviser.propose(task, context, snapshot) -> proposal
+        validator.validate(proposal) -> validatorResult
+        artifactStore.save(any(RevisionArtifact.class)) -> ".content-audit/revisions/" + planId + "/" + proposal.getProposalId()
+        elementLocator.replace(eq(course), eq(snapshot)) -> course
+
+      then:
+        outcome.getKind() == RevisionOutcomeKind.APPROVED_APPLIED
+        verify: courseRepository.save(any(CourseEntity.class), eq(coursePath))
+    - |
+      test: "Given a REJECTED proposal, when revise runs, then CourseRepository is never asked to save"
+      trace: FEAT-REVBYP / F-REVBYP-R012
+
+      given:
+        planId = "plan-002"
+        taskId = "task-002"
+        auditId = "audit-002"
+        nodeId = "quiz-002"
+        coursePath = Path.of("./db/english-course")
+        task = RefinementTask(taskId, AuditTarget.QUIZ, nodeId, "Quiz about adjectives", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan(planId, auditId, Instant.now(), List.of(task))
+        auditReport = mock(AuditReport.class)
+        context = mock(CorrectionContext.class)
+        course = mock(CourseEntity.class)
+        snapshot = CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null)
+        proposal = RevisionProposal(taskId + "-123456", taskId, planId, auditId, DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId, snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now())
+        validatorResult = mock(RevisionValidatorResult.class)
+        engine = buildEngine()
+        outcome = engine.revise(planId, taskId, coursePath)
+
+      mock:
+        validatorResult.verdict() -> RevisionVerdict.REJECTED
+        validatorResult.rejectionReason() -> Optional.of("validation failed")
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        auditReportStore.load(auditId) -> Optional.of(auditReport)
+        contextResolver.resolve(eq(auditReport), eq(task)) -> Optional.of(context)
+        courseRepository.load(coursePath) -> course
+        elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId) -> Optional.of(snapshot)
+        reviser.handles(DiagnosisKind.SENTENCE_LENGTH) -> true
+        reviser.propose(task, context, snapshot) -> proposal
+        validator.validate(proposal) -> validatorResult
+        artifactStore.save(any(RevisionArtifact.class)) -> ".content-audit/revisions/" + planId + "/" + proposal.getProposalId()
+
+      then:
+        outcome.getKind() == RevisionOutcomeKind.REJECTED
+        verify: courseRepository.save(any(CourseEntity.class), any(Path.class)) x 0
+    - |
+      test: "Given an APPROVED proposal applied successfully, when revise finishes, then the RefinementTask transitions to DONE"
+      trace: FEAT-REVBYP / F-REVBYP-R013
+
+      given:
+        planId = "plan-003"
+        taskId = "task-003"
+        auditId = "audit-003"
+        nodeId = "quiz-003"
+        coursePath = Path.of("./db/english-course")
+        task = RefinementTask(taskId, AuditTarget.QUIZ, nodeId, "Quiz about nouns", DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan(planId, auditId, Instant.now(), List.of(task))
+        auditReport = mock(AuditReport.class)
+        context = mock(CorrectionContext.class)
+        course = mock(CourseEntity.class)
+        snapshot = CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null)
+        proposal = RevisionProposal(taskId + "-789012", taskId, planId, auditId, DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId, snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now())
+        validatorResult = mock(RevisionValidatorResult.class)
+        engine = buildEngine()
+        planCaptor = ArgumentCaptor.forClass(RefinementPlan.class)
+        savedPlan = planCaptor.getValue()
+        savedTask = savedPlan.getTasks().stream().filter(t -> taskId.equals(t.getId())).findFirst().orElseThrow(() -> new AssertionError("Task " + taskId + " not found in saved plan"))
+
+      mock:
+        validatorResult.verdict() -> RevisionVerdict.APPROVED
+        validatorResult.rejectionReason() -> Optional.empty()
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        auditReportStore.load(auditId) -> Optional.of(auditReport)
+        contextResolver.resolve(eq(auditReport), eq(task)) -> Optional.of(context)
+        courseRepository.load(coursePath) -> course
+        elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId) -> Optional.of(snapshot)
+        reviser.handles(DiagnosisKind.LEMMA_ABSENCE) -> true
+        reviser.propose(task, context, snapshot) -> proposal
+        validator.validate(proposal) -> validatorResult
+        artifactStore.save(any(RevisionArtifact.class)) -> ".content-audit/revisions/" + planId + "/" + proposal.getProposalId()
+        elementLocator.replace(eq(course), eq(snapshot)) -> course
+
+      when:
+        sut.revise(planId, taskId, coursePath)
+
+      then:
+        savedTask.getStatus() == RefinementTaskStatus.COMPLETED
+        verify: refinementPlanStore.save(planCaptor.capture())
+    - |
+      test: "Given revise succeeds end-to-end, then artifactStore.save is invoked before courseRepository.save"
+      trace: FEAT-REVBYP / F-REVBYP-R014
+
+      given:
+        planId = "plan-004"
+        taskId = "task-004"
+        auditId = "audit-004"
+        nodeId = "quiz-004"
+        coursePath = Path.of("./db/english-course")
+        task = RefinementTask(taskId, AuditTarget.QUIZ, nodeId, "Quiz about prepositions", DiagnosisKind.SENTENCE_LENGTH, 3, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan(planId, auditId, Instant.now(), List.of(task))
+        auditReport = mock(AuditReport.class)
+        context = mock(CorrectionContext.class)
+        course = mock(CourseEntity.class)
+        snapshot = CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null)
+        proposal = RevisionProposal(taskId + "-345678", taskId, planId, auditId, DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId, snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now())
+        validatorResult = mock(RevisionValidatorResult.class)
+        engine = buildEngine()
+        order = inOrder(artifactStore, courseRepository)
+
+      mock:
+        validatorResult.verdict() -> RevisionVerdict.APPROVED
+        validatorResult.rejectionReason() -> Optional.empty()
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        auditReportStore.load(auditId) -> Optional.of(auditReport)
+        contextResolver.resolve(eq(auditReport), eq(task)) -> Optional.of(context)
+        courseRepository.load(coursePath) -> course
+        elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId) -> Optional.of(snapshot)
+        reviser.handles(DiagnosisKind.SENTENCE_LENGTH) -> true
+        reviser.propose(task, context, snapshot) -> proposal
+        validator.validate(proposal) -> validatorResult
+        artifactStore.save(any(RevisionArtifact.class)) -> ".content-audit/revisions/" + planId + "/" + proposal.getProposalId()
+        elementLocator.replace(eq(course), eq(snapshot)) -> course
+
+      when:
+        sut.revise(planId, taskId, coursePath)
+
+      then:
+        verify: artifactStore.save(any(RevisionArtifact.class))
+        verify: courseRepository.save(any(CourseEntity.class), eq(coursePath))
 testSummary:
-  total: 358
-  passing: 358
+  total: 376
+  passing: 376
   failing: 0
   notImplemented: 0
 patterns:
@@ -11150,7 +11812,23 @@ patterns:
     elementName: SpacyNlpTokenizerFactory
     nodeId: impl-nlp-infrastructure-SpacyNlpTokenizerFactory
   confidence: 1.0
-- id: stereo-4
+- id: declared-4
+  pattern: Factory
+  category: gof
+  source: declared
+  severity: info
+  description: Declared Factory pattern in revision-domain
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: RevisionEngineFactory
+    nodeId: interface-revision-domain-RevisionEngineFactory
+  - type: implementation
+    moduleName: revision-domain
+    elementName: DefaultRevisionEngineFactory
+    nodeId: impl-revision-domain-DefaultRevisionEngineFactory
+  confidence: 1.0
+- id: stereo-5
   pattern: Port
   category: architectural
   source: detected
@@ -11162,7 +11840,7 @@ patterns:
     elementName: AuditEngine
     nodeId: interface-audit-domain-AuditEngine
   confidence: 0.9
-- id: stereo-5
+- id: stereo-6
   pattern: Port
   category: architectural
   source: detected
@@ -11174,7 +11852,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.9
-- id: stereo-6
+- id: stereo-7
   pattern: Port
   category: architectural
   source: detected
@@ -11186,7 +11864,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: stereo-7
+- id: stereo-8
   pattern: Port
   category: architectural
   source: detected
@@ -11198,7 +11876,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: stereo-8
+- id: stereo-9
   pattern: Port
   category: architectural
   source: detected
@@ -11210,7 +11888,7 @@ patterns:
     elementName: SentenceLengthConfig
     nodeId: interface-audit-domain-SentenceLengthConfig
   confidence: 0.9
-- id: stereo-9
+- id: stereo-10
   pattern: Port
   category: architectural
   source: detected
@@ -11222,7 +11900,7 @@ patterns:
     elementName: ScoreAggregator
     nodeId: interface-audit-domain-ScoreAggregator
   confidence: 0.9
-- id: stereo-10
+- id: stereo-11
   pattern: Port
   category: architectural
   source: detected
@@ -11234,7 +11912,7 @@ patterns:
     elementName: CocaBucketsConfig
     nodeId: interface-audit-domain-CocaBucketsConfig
   confidence: 0.9
-- id: stereo-11
+- id: stereo-12
   pattern: Port
   category: architectural
   source: detected
@@ -11246,7 +11924,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: stereo-12
+- id: stereo-13
   pattern: Port
   category: architectural
   source: detected
@@ -11258,7 +11936,7 @@ patterns:
     elementName: LemmaRecurrenceConfig
     nodeId: interface-audit-domain-LemmaRecurrenceConfig
   confidence: 0.9
-- id: stereo-13
+- id: stereo-14
   pattern: Port
   category: architectural
   source: detected
@@ -11270,7 +11948,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.9
-- id: stereo-14
+- id: stereo-15
   pattern: Port
   category: architectural
   source: detected
@@ -11282,7 +11960,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: stereo-15
+- id: stereo-16
   pattern: Port
   category: architectural
   source: detected
@@ -11294,7 +11972,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: stereo-16
+- id: stereo-17
   pattern: Port
   category: architectural
   source: detected
@@ -11306,7 +11984,7 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: stereo-17
+- id: stereo-18
   pattern: Port
   category: architectural
   source: detected
@@ -11318,7 +11996,7 @@ patterns:
     elementName: NodeDiagnoses
     nodeId: interface-audit-domain-NodeDiagnoses
   confidence: 0.9
-- id: stereo-18
+- id: stereo-19
   pattern: Port
   category: architectural
   source: detected
@@ -11330,7 +12008,7 @@ patterns:
     elementName: CourseDiagnoses
     nodeId: interface-audit-domain-CourseDiagnoses
   confidence: 0.9
-- id: stereo-19
+- id: stereo-20
   pattern: Port
   category: architectural
   source: detected
@@ -11342,7 +12020,7 @@ patterns:
     elementName: LevelDiagnoses
     nodeId: interface-audit-domain-LevelDiagnoses
   confidence: 0.9
-- id: stereo-20
+- id: stereo-21
   pattern: Port
   category: architectural
   source: detected
@@ -11354,7 +12032,7 @@ patterns:
     elementName: TopicDiagnoses
     nodeId: interface-audit-domain-TopicDiagnoses
   confidence: 0.9
-- id: stereo-21
+- id: stereo-22
   pattern: Port
   category: architectural
   source: detected
@@ -11366,7 +12044,7 @@ patterns:
     elementName: KnowledgeDiagnoses
     nodeId: interface-audit-domain-KnowledgeDiagnoses
   confidence: 0.9
-- id: stereo-22
+- id: stereo-23
   pattern: Port
   category: architectural
   source: detected
@@ -11378,7 +12056,7 @@ patterns:
     elementName: QuizDiagnoses
     nodeId: interface-audit-domain-QuizDiagnoses
   confidence: 0.9
-- id: stereo-23
+- id: stereo-24
   pattern: Port
   category: architectural
   source: detected
@@ -11390,7 +12068,7 @@ patterns:
     elementName: AuditReportStore
     nodeId: interface-audit-domain-AuditReportStore
   confidence: 0.9
-- id: stereo-24
+- id: stereo-25
   pattern: Value Object
   category: architectural
   source: detected
@@ -11402,7 +12080,7 @@ patterns:
     elementName: AuditReport
     nodeId: model-audit-domain-AuditReport
   confidence: 0.75
-- id: stereo-25
+- id: stereo-26
   pattern: Value Object
   category: architectural
   source: detected
@@ -11414,7 +12092,7 @@ patterns:
     elementName: AuditableCourse
     nodeId: model-audit-domain-AuditableCourse
   confidence: 0.75
-- id: stereo-26
+- id: stereo-27
   pattern: Entity
   category: architectural
   source: detected
@@ -11426,7 +12104,7 @@ patterns:
     elementName: AuditableKnowledge
     nodeId: model-audit-domain-AuditableKnowledge
   confidence: 0.8
-- id: stereo-27
+- id: stereo-28
   pattern: Entity
   category: architectural
   source: detected
@@ -11438,7 +12116,7 @@ patterns:
     elementName: AuditableTopic
     nodeId: model-audit-domain-AuditableTopic
   confidence: 0.8
-- id: stereo-28
+- id: stereo-29
   pattern: Entity
   category: architectural
   source: detected
@@ -11450,7 +12128,7 @@ patterns:
     elementName: AuditableMilestone
     nodeId: model-audit-domain-AuditableMilestone
   confidence: 0.8
-- id: stereo-29
+- id: stereo-30
   pattern: Entity
   category: architectural
   source: detected
@@ -11462,7 +12140,7 @@ patterns:
     elementName: AuditableQuiz
     nodeId: model-audit-domain-AuditableQuiz
   confidence: 0.8
-- id: stereo-30
+- id: stereo-31
   pattern: Enum
   category: architectural
   source: detected
@@ -11474,7 +12152,7 @@ patterns:
     elementName: CefrLevel
     nodeId: model-audit-domain-CefrLevel
   confidence: 0.95
-- id: stereo-31
+- id: stereo-32
   pattern: Value Object
   category: architectural
   source: detected
@@ -11486,7 +12164,7 @@ patterns:
     elementName: TargetRange
     nodeId: model-audit-domain-TargetRange
   confidence: 0.75
-- id: stereo-32
+- id: stereo-33
   pattern: Enum
   category: architectural
   source: detected
@@ -11498,7 +12176,7 @@ patterns:
     elementName: AuditTarget
     nodeId: model-audit-domain-AuditTarget
   confidence: 0.95
-- id: stereo-33
+- id: stereo-34
   pattern: Value Object
   category: architectural
   source: detected
@@ -11510,7 +12188,7 @@ patterns:
     elementName: NlpToken
     nodeId: model-audit-domain-NlpToken
   confidence: 0.75
-- id: stereo-34
+- id: stereo-35
   pattern: Value Object
   category: architectural
   source: detected
@@ -11522,7 +12200,7 @@ patterns:
     elementName: AnalyzerDescriptor
     nodeId: model-audit-domain-AnalyzerDescriptor
   confidence: 0.75
-- id: stereo-35
+- id: stereo-36
   pattern: Value Object
   category: architectural
   source: detected
@@ -11534,7 +12212,7 @@ patterns:
     elementName: AuditNode
     nodeId: model-audit-domain-AuditNode
   confidence: 0.75
-- id: stereo-36
+- id: stereo-37
   pattern: Value Object
   category: architectural
   source: detected
@@ -11546,7 +12224,7 @@ patterns:
     elementName: SentenceLengthDiagnosis
     nodeId: model-audit-domain-SentenceLengthDiagnosis
   confidence: 0.75
-- id: stereo-37
+- id: stereo-38
   pattern: Entity
   category: architectural
   source: detected
@@ -11558,7 +12236,7 @@ patterns:
     elementName: AuditReportSummary
     nodeId: model-audit-domain-AuditReportSummary
   confidence: 0.8
-- id: stereo-38
+- id: stereo-39
   pattern: Port
   category: architectural
   source: detected
@@ -11570,7 +12248,7 @@ patterns:
     elementName: CourseRepository
     nodeId: interface-course-domain-CourseRepository
   confidence: 0.9
-- id: stereo-39
+- id: stereo-40
   pattern: Service
   category: architectural
   source: detected
@@ -11582,7 +12260,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: stereo-40
+- id: stereo-41
   pattern: Enum
   category: architectural
   source: detected
@@ -11594,7 +12272,7 @@ patterns:
     elementName: NodeKind
     nodeId: model-course-domain-NodeKind
   confidence: 0.95
-- id: stereo-41
+- id: stereo-42
   pattern: Enum
   category: architectural
   source: detected
@@ -11606,7 +12284,7 @@ patterns:
     elementName: SentencePartKind
     nodeId: model-course-domain-SentencePartKind
   confidence: 0.95
-- id: stereo-42
+- id: stereo-43
   pattern: Entity
   category: architectural
   source: detected
@@ -11618,7 +12296,7 @@ patterns:
     elementName: CourseEntity
     nodeId: model-course-domain-CourseEntity
   confidence: 0.8
-- id: stereo-43
+- id: stereo-44
   pattern: Entity
   category: architectural
   source: detected
@@ -11630,7 +12308,7 @@ patterns:
     elementName: RootNodeEntity
     nodeId: model-course-domain-RootNodeEntity
   confidence: 0.8
-- id: stereo-44
+- id: stereo-45
   pattern: Entity
   category: architectural
   source: detected
@@ -11642,7 +12320,7 @@ patterns:
     elementName: MilestoneEntity
     nodeId: model-course-domain-MilestoneEntity
   confidence: 0.8
-- id: stereo-45
+- id: stereo-46
   pattern: Entity
   category: architectural
   source: detected
@@ -11654,7 +12332,7 @@ patterns:
     elementName: TopicEntity
     nodeId: model-course-domain-TopicEntity
   confidence: 0.8
-- id: stereo-46
+- id: stereo-47
   pattern: Entity
   category: architectural
   source: detected
@@ -11666,7 +12344,7 @@ patterns:
     elementName: KnowledgeEntity
     nodeId: model-course-domain-KnowledgeEntity
   confidence: 0.8
-- id: stereo-47
+- id: stereo-48
   pattern: Entity
   category: architectural
   source: detected
@@ -11678,7 +12356,7 @@ patterns:
     elementName: QuizTemplateEntity
     nodeId: model-course-domain-QuizTemplateEntity
   confidence: 0.8
-- id: stereo-48
+- id: stereo-49
   pattern: Value Object
   category: architectural
   source: detected
@@ -11690,7 +12368,7 @@ patterns:
     elementName: FormEntity
     nodeId: model-course-domain-FormEntity
   confidence: 0.75
-- id: stereo-49
+- id: stereo-50
   pattern: Value Object
   category: architectural
   source: detected
@@ -11702,7 +12380,7 @@ patterns:
     elementName: SentencePartEntity
     nodeId: model-course-domain-SentencePartEntity
   confidence: 0.75
-- id: stereo-50
+- id: stereo-51
   pattern: Port
   category: architectural
   source: detected
@@ -11714,7 +12392,7 @@ patterns:
     elementName: RefinerEngine
     nodeId: interface-refiner-domain-RefinerEngine
   confidence: 0.9
-- id: stereo-51
+- id: stereo-52
   pattern: Port
   category: architectural
   source: detected
@@ -11726,7 +12404,7 @@ patterns:
     elementName: RefinementPlanStore
     nodeId: interface-refiner-domain-RefinementPlanStore
   confidence: 0.9
-- id: stereo-52
+- id: stereo-53
   pattern: Port
   category: architectural
   source: detected
@@ -11738,7 +12416,7 @@ patterns:
     elementName: CorrectionContextResolver
     nodeId: interface-refiner-domain-CorrectionContextResolver
   confidence: 0.9
-- id: stereo-53
+- id: stereo-54
   pattern: Port
   category: architectural
   source: detected
@@ -11750,7 +12428,7 @@ patterns:
     elementName: CorrectionContext
     nodeId: interface-refiner-domain-CorrectionContext
   confidence: 0.9
-- id: stereo-54
+- id: stereo-55
   pattern: Enum
   category: architectural
   source: detected
@@ -11762,7 +12440,7 @@ patterns:
     elementName: DiagnosisKind
     nodeId: model-refiner-domain-DiagnosisKind
   confidence: 0.95
-- id: stereo-55
+- id: stereo-56
   pattern: Enum
   category: architectural
   source: detected
@@ -11774,7 +12452,7 @@ patterns:
     elementName: RefinementTaskStatus
     nodeId: model-refiner-domain-RefinementTaskStatus
   confidence: 0.95
-- id: stereo-56
+- id: stereo-57
   pattern: Entity
   category: architectural
   source: detected
@@ -11786,7 +12464,7 @@ patterns:
     elementName: RefinementTask
     nodeId: model-refiner-domain-RefinementTask
   confidence: 0.8
-- id: stereo-57
+- id: stereo-58
   pattern: Entity
   category: architectural
   source: detected
@@ -11798,7 +12476,7 @@ patterns:
     elementName: RefinementPlan
     nodeId: model-refiner-domain-RefinementPlan
   confidence: 0.8
-- id: stereo-58
+- id: stereo-59
   pattern: Value Object
   category: architectural
   source: detected
@@ -11810,7 +12488,7 @@ patterns:
     elementName: SuggestedLemma
     nodeId: model-refiner-domain-SuggestedLemma
   confidence: 0.75
-- id: stereo-59
+- id: stereo-60
   pattern: Value Object
   category: architectural
   source: detected
@@ -11822,7 +12500,7 @@ patterns:
     elementName: SentenceLengthCorrectionContext
     nodeId: model-refiner-domain-SentenceLengthCorrectionContext
   confidence: 0.75
-- id: stereo-60
+- id: stereo-61
   pattern: Value Object
   category: architectural
   source: detected
@@ -11834,7 +12512,7 @@ patterns:
     elementName: MisplacedLemmaContext
     nodeId: model-refiner-domain-MisplacedLemmaContext
   confidence: 0.75
-- id: stereo-61
+- id: stereo-62
   pattern: Value Object
   category: architectural
   source: detected
@@ -11846,7 +12524,7 @@ patterns:
     elementName: LemmaAbsenceCorrectionContext
     nodeId: model-refiner-domain-LemmaAbsenceCorrectionContext
   confidence: 0.75
-- id: stereo-62
+- id: stereo-63
   pattern: Service
   category: architectural
   source: detected
@@ -11858,7 +12536,7 @@ patterns:
     elementName: AuditRunner
     nodeId: interface-audit-application-AuditRunner
   confidence: 0.9
-- id: stereo-63
+- id: stereo-64
   pattern: Port
   category: architectural
   source: detected
@@ -11870,7 +12548,7 @@ patterns:
     elementName: CourseMapper
     nodeId: interface-audit-application-CourseMapper
   confidence: 0.9
-- id: stereo-64
+- id: stereo-65
   pattern: Service
   category: architectural
   source: detected
@@ -11882,7 +12560,7 @@ patterns:
     elementName: AnalyzerRegistry
     nodeId: interface-audit-application-AnalyzerRegistry
   confidence: 0.9
-- id: stereo-65
+- id: stereo-66
   pattern: Port
   category: architectural
   source: detected
@@ -11894,7 +12572,7 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: stereo-66
+- id: stereo-67
   pattern: Port
   category: architectural
   source: detected
@@ -11906,7 +12584,7 @@ patterns:
     elementName: AnalyzerListCommand
     nodeId: interface-audit-cli-AnalyzerListCommand
   confidence: 0.9
-- id: stereo-67
+- id: stereo-68
   pattern: Port
   category: architectural
   source: detected
@@ -11918,7 +12596,7 @@ patterns:
     elementName: AnalyzerConfigCommand
     nodeId: interface-audit-cli-AnalyzerConfigCommand
   confidence: 0.9
-- id: stereo-68
+- id: stereo-69
   pattern: Port
   category: architectural
   source: detected
@@ -11930,7 +12608,7 @@ patterns:
     elementName: AnalyzerStatsCommand
     nodeId: interface-audit-cli-AnalyzerStatsCommand
   confidence: 0.9
-- id: stereo-69
+- id: stereo-70
   pattern: Port
   category: architectural
   source: detected
@@ -11942,7 +12620,7 @@ patterns:
     elementName: RefinerPlanCommand
     nodeId: interface-audit-cli-RefinerPlanCommand
   confidence: 0.9
-- id: stereo-70
+- id: stereo-71
   pattern: Port
   category: architectural
   source: detected
@@ -11954,7 +12632,7 @@ patterns:
     elementName: RefinerNextCommand
     nodeId: interface-audit-cli-RefinerNextCommand
   confidence: 0.9
-- id: stereo-71
+- id: stereo-72
   pattern: Port
   category: architectural
   source: detected
@@ -11967,6 +12645,18 @@ patterns:
     nodeId: interface-audit-cli-RefinerListCommand
   confidence: 0.9
 - id: stereo-73
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: RefinerReviseCommand is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: RefinerReviseCommand
+    nodeId: interface-audit-cli-RefinerReviseCommand
+  confidence: 0.9
+- id: stereo-75
   pattern: Value Object
   category: architectural
   source: detected
@@ -11978,7 +12668,151 @@ patterns:
     elementName: NlpTokenizerConfig
     nodeId: model-nlp-infrastructure-NlpTokenizerConfig
   confidence: 0.75
-- id: anti-74
+- id: stereo-76
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: Reviser is a port
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: Reviser
+    nodeId: interface-revision-domain-Reviser
+  confidence: 0.9
+- id: stereo-77
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: RevisionValidator is a port
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: RevisionValidator
+    nodeId: interface-revision-domain-RevisionValidator
+  confidence: 0.9
+- id: stereo-78
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: RevisionArtifactStore is a port
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: RevisionArtifactStore
+    nodeId: interface-revision-domain-RevisionArtifactStore
+  confidence: 0.9
+- id: stereo-79
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: CourseElementLocator is a port
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: CourseElementLocator
+    nodeId: interface-revision-domain-CourseElementLocator
+  confidence: 0.9
+- id: stereo-80
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: RevisionEngine is a port
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: RevisionEngine
+    nodeId: interface-revision-domain-RevisionEngine
+  confidence: 0.9
+- id: stereo-82
+  pattern: Enum
+  category: architectural
+  source: detected
+  severity: info
+  description: RevisionVerdict is an enum
+  involvedElements:
+  - type: model
+    moduleName: revision-domain
+    elementName: RevisionVerdict
+    nodeId: model-revision-domain-RevisionVerdict
+  confidence: 0.95
+- id: stereo-83
+  pattern: Enum
+  category: architectural
+  source: detected
+  severity: info
+  description: RevisionOutcomeKind is an enum
+  involvedElements:
+  - type: model
+    moduleName: revision-domain
+    elementName: RevisionOutcomeKind
+    nodeId: model-revision-domain-RevisionOutcomeKind
+  confidence: 0.95
+- id: stereo-84
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: CourseElementSnapshot is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: revision-domain
+    elementName: CourseElementSnapshot
+    nodeId: model-revision-domain-CourseElementSnapshot
+  confidence: 0.75
+- id: stereo-85
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: RevisionProposal is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: revision-domain
+    elementName: RevisionProposal
+    nodeId: model-revision-domain-RevisionProposal
+  confidence: 0.75
+- id: stereo-86
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: RevisionArtifact is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: revision-domain
+    elementName: RevisionArtifact
+    nodeId: model-revision-domain-RevisionArtifact
+  confidence: 0.75
+- id: stereo-87
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: RevisionOutcome is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: revision-domain
+    elementName: RevisionOutcome
+    nodeId: model-revision-domain-RevisionOutcome
+  confidence: 0.75
+- id: stereo-88
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: RevisionEngineConfig is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: revision-domain
+    elementName: RevisionEngineConfig
+    nodeId: model-revision-domain-RevisionEngineConfig
+  confidence: 0.75
+- id: anti-89
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -11990,7 +12824,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-75
+- id: anti-90
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12002,7 +12836,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: anti-76
+- id: anti-91
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12014,7 +12848,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: anti-77
+- id: anti-92
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12026,7 +12860,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: anti-78
+- id: anti-93
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12038,7 +12872,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: anti-79
+- id: anti-94
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12050,7 +12884,7 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: anti-80
+- id: anti-95
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12062,7 +12896,7 @@ patterns:
     elementName: NodeDiagnoses
     nodeId: interface-audit-domain-NodeDiagnoses
   confidence: 0.9
-- id: anti-81
+- id: anti-96
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12074,7 +12908,7 @@ patterns:
     elementName: CourseDiagnoses
     nodeId: interface-audit-domain-CourseDiagnoses
   confidence: 0.9
-- id: anti-82
+- id: anti-97
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12086,7 +12920,7 @@ patterns:
     elementName: LevelDiagnoses
     nodeId: interface-audit-domain-LevelDiagnoses
   confidence: 0.9
-- id: anti-83
+- id: anti-98
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12098,7 +12932,7 @@ patterns:
     elementName: TopicDiagnoses
     nodeId: interface-audit-domain-TopicDiagnoses
   confidence: 0.9
-- id: anti-84
+- id: anti-99
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12110,7 +12944,7 @@ patterns:
     elementName: KnowledgeDiagnoses
     nodeId: interface-audit-domain-KnowledgeDiagnoses
   confidence: 0.9
-- id: anti-85
+- id: anti-100
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12122,7 +12956,7 @@ patterns:
     elementName: QuizDiagnoses
     nodeId: interface-audit-domain-QuizDiagnoses
   confidence: 0.9
-- id: anti-86
+- id: anti-101
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -12134,7 +12968,7 @@ patterns:
     elementName: audit-domain
     nodeId: module-audit-domain
   confidence: 0.85
-- id: anti-87
+- id: anti-102
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -12146,7 +12980,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.8
-- id: anti-88
+- id: anti-103
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -12158,7 +12992,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.8
-- id: anti-89
+- id: anti-104
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12170,7 +13004,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-90
+- id: anti-105
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -12182,7 +13016,7 @@ patterns:
     elementName: course-domain
     nodeId: module-course-domain
   confidence: 0.85
-- id: anti-91
+- id: anti-106
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12194,7 +13028,7 @@ patterns:
     elementName: CorrectionContextResolver
     nodeId: interface-refiner-domain-CorrectionContextResolver
   confidence: 0.9
-- id: anti-92
+- id: anti-107
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12206,7 +13040,7 @@ patterns:
     elementName: CorrectionContext
     nodeId: interface-refiner-domain-CorrectionContext
   confidence: 0.9
-- id: anti-93
+- id: anti-108
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -12218,7 +13052,7 @@ patterns:
     elementName: audit-application
     nodeId: module-audit-application
   confidence: 0.85
-- id: anti-94
+- id: anti-109
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12230,7 +13064,7 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: anti-95
+- id: anti-110
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12242,7 +13076,7 @@ patterns:
     elementName: AnalyzerListCommand
     nodeId: interface-audit-cli-AnalyzerListCommand
   confidence: 0.9
-- id: anti-96
+- id: anti-111
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12254,7 +13088,7 @@ patterns:
     elementName: AnalyzerConfigCommand
     nodeId: interface-audit-cli-AnalyzerConfigCommand
   confidence: 0.9
-- id: anti-97
+- id: anti-112
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12266,7 +13100,7 @@ patterns:
     elementName: AnalyzerStatsCommand
     nodeId: interface-audit-cli-AnalyzerStatsCommand
   confidence: 0.9
-- id: anti-98
+- id: anti-113
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12278,7 +13112,7 @@ patterns:
     elementName: RefinerPlanCommand
     nodeId: interface-audit-cli-RefinerPlanCommand
   confidence: 0.9
-- id: anti-99
+- id: anti-114
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12290,7 +13124,7 @@ patterns:
     elementName: RefinerNextCommand
     nodeId: interface-audit-cli-RefinerNextCommand
   confidence: 0.9
-- id: anti-100
+- id: anti-115
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12302,19 +13136,31 @@ patterns:
     elementName: RefinerListCommand
     nodeId: interface-audit-cli-RefinerListCommand
   confidence: 0.9
-- id: anti-101
+- id: anti-116
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: RefinerReviseCommand has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: RefinerReviseCommand
+    nodeId: interface-audit-cli-RefinerReviseCommand
+  confidence: 0.9
+- id: anti-117
   pattern: God Module
   category: anti-pattern
   source: detected
   severity: warning
-  description: "audit-cli is too large: 7 interfaces"
+  description: "audit-cli is too large: 8 interfaces"
   involvedElements:
   - type: module
     moduleName: audit-cli
     elementName: audit-cli
     nodeId: module-audit-cli
   confidence: 0.85
-- id: anti-102
+- id: anti-118
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12326,3 +13172,87 @@ patterns:
     elementName: NlpTokenizerFactory
     nodeId: interface-nlp-infrastructure-NlpTokenizerFactory
   confidence: 0.9
+- id: anti-119
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: Reviser has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: Reviser
+    nodeId: interface-revision-domain-Reviser
+  confidence: 0.9
+- id: anti-120
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: RevisionValidator has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: RevisionValidator
+    nodeId: interface-revision-domain-RevisionValidator
+  confidence: 0.9
+- id: anti-121
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: RevisionValidatorResult has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: RevisionValidatorResult
+    nodeId: interface-revision-domain-RevisionValidatorResult
+  confidence: 0.9
+- id: anti-122
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: CourseElementLocator has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: CourseElementLocator
+    nodeId: interface-revision-domain-CourseElementLocator
+  confidence: 0.9
+- id: anti-123
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: RevisionEngine has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: RevisionEngine
+    nodeId: interface-revision-domain-RevisionEngine
+  confidence: 0.9
+- id: anti-124
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: RevisionEngineFactory has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: RevisionEngineFactory
+    nodeId: interface-revision-domain-RevisionEngineFactory
+  confidence: 0.9
+- id: anti-125
+  pattern: God Module
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: "revision-domain is too large: 7 interfaces"
+  involvedElements:
+  - type: module
+    moduleName: revision-domain
+    elementName: revision-domain
+    nodeId: module-revision-domain
+  confidence: 0.85

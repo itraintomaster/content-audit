@@ -27,7 +27,7 @@ public class DefaultIntervalCalculatorSentinelTest {
   @Tag("FEAT-LREC")
   @Tag("F-LREC-R007")
   public void givenPositions10110WhenCalculateMeanIntervalIsCalledThenReturns1000() {
-    Object result = sut.calculateMeanInterval("[10, 110]");
+    double result = sut.calculateMeanInterval("[10, 110]");
     Assertions.assertEquals(100.0, result);
   }
 
@@ -40,7 +40,7 @@ public class DefaultIntervalCalculatorSentinelTest {
   @Tag("FEAT-LREC")
   @Tag("F-LREC-R007")
   public void givenPositions0100200300WhenCalculateMeanIntervalIsCalledThenReturns1000() {
-    Object result = sut.calculateMeanInterval("[0, 100, 200, 300]");
+    double result = sut.calculateMeanInterval("[0, 100, 200, 300]");
     Assertions.assertEquals(100.0, result);
   }
 
@@ -53,7 +53,7 @@ public class DefaultIntervalCalculatorSentinelTest {
   @Tag("FEAT-LREC")
   @Tag("F-LREC-R007")
   public void givenPositions10110AndMean1000WhenCalculateStdDevIntervalIsCalledThenReturns00() {
-    Object result = sut.calculateStdDevInterval("[10, 110]", 100.0);
+    double result = sut.calculateStdDevInterval("[10, 110]", 100.0);
     Assertions.assertEquals(0.0, result);
   }
 
@@ -67,7 +67,7 @@ public class DefaultIntervalCalculatorSentinelTest {
   @Tag("F-LREC-R007")
   public void givenPositions0100200300AndMean1000WhenCalculateStdDevIntervalIsCalledThenReturns00(
       ) {
-    Object result = sut.calculateStdDevInterval("[0, 100, 200, 300]", 100.0);
+    double result = sut.calculateStdDevInterval("[0, 100, 200, 300]", 100.0);
     Assertions.assertEquals(0.0, result);
   }
 }

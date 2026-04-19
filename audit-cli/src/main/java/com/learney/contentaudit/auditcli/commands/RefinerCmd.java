@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import javax.annotation.processing.Generated;
 import java.util.concurrent.Callable;
 
 import picocli.CommandLine;

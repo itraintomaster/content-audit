@@ -1,16 +1,31 @@
 package com.learney.contentaudit.revisiondomain.engine;
 
+import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
+import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.revisiondomain.CourseElementLocator;
-import com.learney.contentaudit.revisiondomain.Reviser;
+import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
+import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.RevisionEngine;
 import com.learney.contentaudit.revisiondomain.RevisionOutcome;
+import com.learney.contentaudit.revisiondomain.RevisionOutcomeKind;
+import com.learney.contentaudit.revisiondomain.RevisionProposal;
 import com.learney.contentaudit.revisiondomain.RevisionValidator;
+import com.learney.contentaudit.revisiondomain.RevisionValidatorResult;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.Reviser;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -51,6 +66,89 @@ class DefaultRevisionEngine implements RevisionEngine {
 
     @Override
     public RevisionOutcome revise(String planId, String taskId, Path coursePath) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step 1: Load plan and find task
+        RefinementPlan plan = refinementPlanStore.load(planId)
+                .orElseThrow(() -> new IllegalArgumentException("Plan not found: " + planId));
+        RefinementTask task = plan.getTasks().stream()
+                .filter(t -> taskId.equals(t.getId()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Task not found: " + taskId));
+
+        // Step 2: Resolve CorrectionContext — load audit report first
+        Optional<AuditReport> auditReportOpt = auditReportStore.load(plan.getSourceAuditId());
+        if (auditReportOpt.isEmpty()) {
+            return new RevisionOutcome(RevisionOutcomeKind.CONTEXT_UNAVAILABLE, null,
+                    "Audit report not found: " + plan.getSourceAuditId());
+        }
+        AuditReport auditReport = auditReportOpt.get();
+
+        Optional<CorrectionContext> contextOpt = contextResolver.resolve(auditReport, task);
+        if (contextOpt.isEmpty()) {
+            return new RevisionOutcome(RevisionOutcomeKind.CONTEXT_UNAVAILABLE, null,
+                    "CorrectionContext could not be resolved for task: " + taskId);
+        }
+        CorrectionContext context = contextOpt.get();
+
+        // Step 3: Load course and locate element
+        CourseEntity course = courseRepository.load(coursePath);
+        Optional<CourseElementSnapshot> snapshotOpt =
+                elementLocator.snapshot(course, task.getNodeTarget(), task.getNodeId());
+        if (snapshotOpt.isEmpty()) {
+            return new RevisionOutcome(RevisionOutcomeKind.ELEMENT_NOT_FOUND, null,
+                    "Element not found in course: " + task.getNodeId());
+        }
+        CourseElementSnapshot snapshot = snapshotOpt.get();
+
+        // Step 4: Check reviser handles this diagnosis kind
+        if (!reviser.handles(task.getDiagnosisKind())) {
+            return new RevisionOutcome(RevisionOutcomeKind.NO_REVISER, null,
+                    "No reviser handles diagnosis kind: " + task.getDiagnosisKind());
+        }
+
+        // Step 5: Generate proposal
+        RevisionProposal proposal = reviser.propose(task, context, snapshot);
+
+        // Step 6: Validate proposal
+        RevisionValidatorResult validatorResult = validator.validate(proposal);
+        RevisionVerdict verdict = validatorResult.verdict();
+        String rejectionReason = validatorResult.rejectionReason().orElse(null);
+
+        // Step 7: Build and persist artifact (BEFORE course write — R014)
+        RevisionArtifact artifact = new RevisionArtifact(
+                proposal,
+                verdict,
+                rejectionReason,
+                verdict == RevisionVerdict.APPROVED ? RevisionOutcomeKind.APPROVED_APPLIED : RevisionOutcomeKind.REJECTED
+        );
+        artifactStore.save(artifact);
+
+        // Step 8: If REJECTED — return without touching course or task (R012)
+        if (verdict == RevisionVerdict.REJECTED) {
+            return new RevisionOutcome(RevisionOutcomeKind.REJECTED, artifact,
+                    rejectionReason);
+        }
+
+        // Step 9: APPROVED — apply proposal to course (R011)
+        CourseEntity updatedCourse = elementLocator.replace(course, proposal.getElementAfter());
+        try {
+            courseRepository.save(updatedCourse, coursePath);
+        } catch (Exception e) {
+            // Course write failed — artifact was already saved (R014/DOUBT-ATOMICITY)
+            return new RevisionOutcome(RevisionOutcomeKind.APPROVED_APPLY_FAILED, artifact,
+                    "Course write failed: " + e.getMessage());
+        }
+
+        // Step 10: Transition task to COMPLETED (R013)
+        task.setStatus(RefinementTaskStatus.COMPLETED);
+        List<RefinementTask> updatedTasks = new ArrayList<>(plan.getTasks());
+        int taskIndex = updatedTasks.indexOf(task);
+        if (taskIndex >= 0) {
+            updatedTasks.set(taskIndex, task);
+        }
+        RefinementPlan updatedPlan = new RefinementPlan(
+                plan.getId(), plan.getSourceAuditId(), plan.getCreatedAt(), updatedTasks);
+        refinementPlanStore.save(updatedPlan);
+
+        return new RevisionOutcome(RevisionOutcomeKind.APPROVED_APPLIED, artifact, null);
     }
 }

@@ -1,4 +1,5 @@
 package com.learney.contentaudit.courseinfrastructure;
+import javax.annotation.processing.Generated;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.coursedomain.CourseEntity;

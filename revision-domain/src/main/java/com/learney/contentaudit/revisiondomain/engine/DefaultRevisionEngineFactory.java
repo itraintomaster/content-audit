@@ -1,8 +1,11 @@
 package com.learney.contentaudit.revisiondomain.engine;
 
+import com.learney.contentaudit.revisiondomain.CourseElementLocator;
 import com.learney.contentaudit.revisiondomain.RevisionEngine;
 import com.learney.contentaudit.revisiondomain.RevisionEngineConfig;
 import com.learney.contentaudit.revisiondomain.RevisionEngineFactory;
+import com.learney.contentaudit.revisiondomain.RevisionValidator;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -12,6 +15,28 @@ import javax.annotation.processing.Generated;
 public class DefaultRevisionEngineFactory implements RevisionEngineFactory {
     @Override
     public RevisionEngine create(RevisionEngineConfig config) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        IdentityReviser identityReviser = new IdentityReviser();
+
+        Map revisers = config.getRevisers() != null ? config.getRevisers() : Map.of();
+        DispatchingReviser dispatcher = new DispatchingReviser(revisers, identityReviser);
+
+        RevisionValidator validator = config.getValidator() != null
+                ? config.getValidator()
+                : new AutoApproveValidator();
+
+        CourseElementLocator elementLocator = config.getElementLocator() != null
+                ? config.getElementLocator()
+                : new DefaultCourseElementLocator();
+
+        return new DefaultRevisionEngine(
+                config.getRefinementPlanStore(),
+                config.getAuditReportStore(),
+                config.getContextResolver(),
+                dispatcher,
+                validator,
+                config.getArtifactStore(),
+                config.getCourseRepository(),
+                elementLocator
+        );
     }
 }

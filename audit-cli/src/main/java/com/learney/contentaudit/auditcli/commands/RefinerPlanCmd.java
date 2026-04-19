@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import javax.annotation.processing.Generated;
 
 import com.learney.contentaudit.auditcli.RefinerPlanCommand;
 import com.learney.contentaudit.auditdomain.AuditReport;

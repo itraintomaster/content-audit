@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.formatting;
+import javax.annotation.processing.Generated;
 
 import com.learney.contentaudit.auditdomain.AuditableEntity;
 import java.util.List;

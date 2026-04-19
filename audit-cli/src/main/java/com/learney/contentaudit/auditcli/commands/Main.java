@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import javax.annotation.processing.Generated;
 
 import com.learney.contentaudit.auditapplication.CourseToAuditableMapper;
 import com.learney.contentaudit.auditapplication.DefaultAuditRunner;
@@ -45,6 +46,15 @@ import com.learney.contentaudit.refinerdomain.SentenceLengthContextResolver;
 import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
 import com.learney.contentaudit.refinerdomain.RefinerEngine;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
+import com.learney.contentaudit.auditinfrastructure.FileSystemRevisionArtifactStore;
+import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.refinerdomain.CorrectionContext;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.revisiondomain.RevisionEngine;
+import com.learney.contentaudit.revisiondomain.RevisionEngineConfig;
+import com.learney.contentaudit.revisiondomain.Reviser;
+import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
+import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory;
 import com.learney.contentaudit.auditcli.formatting.AnalyzerStatsTransformer;
 import com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter;
 import com.learney.contentaudit.auditcli.formatting.DefaultAnalyzerStatsTransformer;
@@ -204,6 +214,20 @@ class Main {
                         correctionContextResolver)));
         refinerGroup.addSubcommand("list", new picocli.CommandLine(
                 new RefinerListCmd(refinementPlanStore)));
+
+        // Revision phase (FEAT-REVBYP): bypass skeleton wired via factory.
+        RevisionArtifactStore revisionArtifactStore = new FileSystemRevisionArtifactStore();
+        RevisionEngineConfig revisionEngineConfig = new RevisionEngineConfig();
+        revisionEngineConfig.setRevisers(new HashMap<DiagnosisKind, Reviser>());
+        revisionEngineConfig.setArtifactStore(revisionArtifactStore);
+        revisionEngineConfig.setCourseRepository((CourseRepository) courseRepository);
+        revisionEngineConfig.setRefinementPlanStore(refinementPlanStore);
+        revisionEngineConfig.setAuditReportStore(auditReportStore);
+        revisionEngineConfig.setContextResolver(correctionContextResolver);
+        RevisionEngine revisionEngine = new DefaultRevisionEngineFactory().create(revisionEngineConfig);
+        refinerGroup.addSubcommand("revise", new picocli.CommandLine(
+                new RefinerReviseCmd(revisionEngine)));
+
         cmd.addSubcommand("refiner", refinerGroup);
 
         int exitCode = cmd.execute(args);
