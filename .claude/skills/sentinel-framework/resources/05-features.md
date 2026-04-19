@@ -745,3 +745,45 @@ Este requerimiento define esa fase, llamada **revision**. El alcance es delibera
 
 - **F-REVBYP-J001**: Revision bypass end-to-end de una tarea
 
+### FEAT-CLIRV: CLI restructure to kubectl-style verb-resource grammar [F-CLIRV]
+
+> The `content-audit` CLI evolved feature-by-feature into a tree of subcommand groups (`refiner plan`, `refiner next`, `refiner list`, `refiner revise`, `analyzer list`, `analyzer config`, `analyzer stats`) plus the standalone `analyze`. This shape has produced several recurring problems in actual operator use, and adding more capabilities on top of it would amplify them. This requirement specifies a one-shot restructure of the CLI surface into a kubectl-style **verb-then-resource** grammar so that future features land naturally instead of accreting another subcommand group per concern.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-CLIRV-R001 | `get` is read-only and returns one or many | critical | No <resource> found with id '<id>' |
+| F-CLIRV-R002 | `delete` removes exactly one resource by id, on `audit` and `plan` only | critical | Cannot delete <resource>: id is required |
+| F-CLIRV-R003 | `prune` performs bulk cleanup under an explicit retention policy | critical | Cannot prune <resource>: --keep N is required |
+| F-CLIRV-R004 | `analyze`, `plan`, `revise`, `config` are preserved as domain verbs | major | - |
+| F-CLIRV-R005 | Recognized resources | critical | Unknown resource '<name>'. Known resources: audits, plans, tasks, analyzers |
+| F-CLIRV-R006 | Singular and plural resource names are interchangeable | major | - |
+| F-CLIRV-R007 | Resource ids are presented uniformly across verbs | minor | - |
+| F-CLIRV-R008 | `get tasks` filters by plan, status, target, diagnosis, and result count | critical | Invalid value for --status: '<value>'. Allowed: pending, completed, skipped |
+| F-CLIRV-R009 | `--limit 0` yields an empty result, not an error | minor | Invalid value for --limit: must be zero or positive |
+| F-CLIRV-R010 | When a referenced source resource does not exist, the request fails clearly | major | <Resource> '<id>' not found |
+| F-CLIRV-R011 | Empty result sets are reported, not silenced | minor | - |
+| F-CLIRV-R012 | `get tasks` without `--plan` resolves to the most recent plan | major | No plans available. Run 'content-audit plan' to create one. |
+| F-CLIRV-R013 | `analyze` is a top-level verb that creates an audit | critical | - |
+| F-CLIRV-R014 | `plan` is a top-level verb that creates a refinement plan | critical | Audit '<id>' not found |
+| F-CLIRV-R015 | `revise` operates on a task, scoped to a plan | critical | No plans available. Run 'content-audit plan' first. |
+| F-CLIRV-R016 | `config` operates on an analyzer | major | Analyzer '<name>' not found. Run 'content-audit get analyzers' to see available analyzers. |
+| F-CLIRV-R021 | `stats` is a top-level verb that introspects a single analyzer's behavior on a course | major | Analyzer '<name>' not found. Run 'content-audit get analyzers' to see available analyzers. |
+| F-CLIRV-R017 | The CLI accepts an external override for the workdir via `--workdir` flag and `CONTENT_AUDIT_HOME` env var | critical | The configured workdir override '<path>' is not a writable directory |
+| F-CLIRV-R018 | The course content path is independent of the workdir override | major | - |
+| F-CLIRV-R019 | No domain logic changes | critical | - |
+| F-CLIRV-R020 | No backwards-compatibility shims | major | - |
+
+**User Journeys:**
+
+- **F-CLIRV-J001**: Full happy-path pipeline end-to-end with the new grammar
+
+- **F-CLIRV-J002**: Reading a single resource by id, present and absent
+
+- **F-CLIRV-J003**: Deleting a resource, present and absent
+
+- **F-CLIRV-J004**: Singular and plural forms produce the same result
+
+- **F-CLIRV-J005**: Sandbox workdir override redirects all artifact I/O
+

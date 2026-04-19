@@ -1,0 +1,11 @@
+code: FEAT-CLIRV
+modules:
+- name: audit-cli
+  implementations:
+  - name: AnalyzeCmd
+    handwrittenTests:
+    - name: "should be registered as a top-level subcommand of content-audit (verb\
+        \ relocated, semantics unchanged)"
+      traceability:
+        feature: FEAT-CLIRV
+        rule: F-CLIRV-R013

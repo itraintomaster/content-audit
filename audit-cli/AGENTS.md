@@ -5,6 +5,19 @@
 
 CLI entry point for running content audits from the command line
 
+## Models
+
+### GetTasksFilter (`record`)
+
+| Field | Type |
+|-------|------|
+| planId | `Optional<String>` |
+| status | `Optional<String>` |
+| sortByPriority | `boolean` |
+| limit | `Optional<Integer>` |
+| target | `Optional<AuditTarget>` |
+| diagnosisKind | `Optional<DiagnosisKind>` |
+
 ## Interfaces
 
 ### AnalyzeCommand (port) [sealed]
@@ -13,47 +26,47 @@ Methods:
 
 - `analyze(String coursePath, String format, String level, String topic, String knowledge, List<String> analyzers, boolean detailed): Integer`
 
-### AnalyzerListCommand (port) [sealed]
+### GetCommand (port) [sealed]
 
 Methods:
 
-- `list(): Integer`
+- `get(String resource, String name, GetTasksFilter filter): Integer`
 
-### AnalyzerConfigCommand (port) [sealed]
-
-Methods:
-
-- `showConfig(String analyzerName): Integer`
-
-### AnalyzerStatsCommand (port) [sealed]
+### DeleteCommand (port) [sealed]
 
 Methods:
 
-- `showStats(String analyzerName, String coursePath): Integer`
+- `delete(String resource, String id): Integer`
 
-### RefinerPlanCommand (port) [sealed]
+### PruneCommand (port) [sealed]
+
+Methods:
+
+- `prune(String resource, int keep): Integer`
+
+### PlanCommand (port) [sealed]
 
 Methods:
 
 - `plan(String auditId): Integer`
 
-### RefinerNextCommand (port) [sealed]
+### ReviseCommand (port) [sealed]
 
 Methods:
 
-- `next(String planId): Integer`
+- `revise(String taskId, String planId): Integer`
 
-### RefinerListCommand (port) [sealed]
-
-Methods:
-
-- `listTasks(String planId): Integer`
-
-### RefinerReviseCommand (port) [sealed]
+### ConfigAnalyzerCommand (port) [sealed]
 
 Methods:
 
-- `revise(String planId, String taskId): Integer`
+- `showConfig(String analyzerName): Integer`
+
+### StatsAnalyzerCommand (port) [sealed]
+
+Methods:
+
+- `showStats(String analyzerName, String coursePath): Integer`
 
 ## Dependency Contracts
 

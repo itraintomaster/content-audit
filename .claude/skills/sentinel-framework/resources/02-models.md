@@ -1145,6 +1145,25 @@ new LemmaAbsenceCorrectionContext(String taskId, String sentence, String transla
 
 ### Module: audit-cli
 
+#### GetTasksFilter
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `planId` | `Optional<String>` |  |
+| `status` | `Optional<String>` |  |
+| `sortByPriority` | `boolean` |  |
+| `limit` | `Optional<Integer>` |  |
+| `target` | `Optional<AuditTarget>` |  |
+| `diagnosisKind` | `Optional<DiagnosisKind>` |  |
+
+**Generated constructor:**
+```java
+new GetTasksFilter(Optional<String> planId, Optional<String> status, boolean sortByPriority, Optional<Integer> limit, Optional<AuditTarget> target, Optional<DiagnosisKind> diagnosisKind)
+```
+
 #### ReportViewModel (package: formatting)
 
 **Package:** `com.learney.contentaudit.auditcli.formatting`
@@ -1295,6 +1314,16 @@ new LemmaAbsenceCorrectionContext(String taskId, String sentence, String transla
 | `label` | `String` |
 | `score` | `double` |
 | `level` | `String` |
+
+#### InvalidWorkdirException (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `path` | `String` |
 
 ### Module: nlp-infrastructure
 

@@ -400,31 +400,31 @@ Examples:
 |--------|--------|
 | `analyze(String coursePath, String format, String level, String topic, String knowledge, List<String> analyzers, boolean detailed): Integer` | (none) |
 
-#### AnalyzerListCommand [SEALED] (port)
+#### GetCommand [SEALED] (port)
 
 **Package:** `com.learney.contentaudit.auditcli`
 
 | Method | Throws |
 |--------|--------|
-| `list(): Integer` | (none) |
+| `get(String resource, String name, GetTasksFilter filter): Integer` | (none) |
 
-#### AnalyzerConfigCommand [SEALED] (port)
-
-**Package:** `com.learney.contentaudit.auditcli`
-
-| Method | Throws |
-|--------|--------|
-| `showConfig(String analyzerName): Integer` | (none) |
-
-#### AnalyzerStatsCommand [SEALED] (port)
+#### DeleteCommand [SEALED] (port)
 
 **Package:** `com.learney.contentaudit.auditcli`
 
 | Method | Throws |
 |--------|--------|
-| `showStats(String analyzerName, String coursePath): Integer` | (none) |
+| `delete(String resource, String id): Integer` | (none) |
 
-#### RefinerPlanCommand [SEALED] (port)
+#### PruneCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `prune(String resource, int keep): Integer` | (none) |
+
+#### PlanCommand [SEALED] (port)
 
 **Package:** `com.learney.contentaudit.auditcli`
 
@@ -432,29 +432,29 @@ Examples:
 |--------|--------|
 | `plan(String auditId): Integer` | (none) |
 
-#### RefinerNextCommand [SEALED] (port)
+#### ReviseCommand [SEALED] (port)
 
 **Package:** `com.learney.contentaudit.auditcli`
 
 | Method | Throws |
 |--------|--------|
-| `next(String planId): Integer` | (none) |
+| `revise(String taskId, String planId): Integer` | (none) |
 
-#### RefinerListCommand [SEALED] (port)
-
-**Package:** `com.learney.contentaudit.auditcli`
-
-| Method | Throws |
-|--------|--------|
-| `listTasks(String planId): Integer` | (none) |
-
-#### RefinerReviseCommand [SEALED] (port)
+#### ConfigAnalyzerCommand [SEALED] (port)
 
 **Package:** `com.learney.contentaudit.auditcli`
 
 | Method | Throws |
 |--------|--------|
-| `revise(String planId, String taskId): Integer` | (none) |
+| `showConfig(String analyzerName): Integer` | (none) |
+
+#### StatsAnalyzerCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `showStats(String analyzerName, String coursePath): Integer` | (none) |
 
 #### ReportFormatter (package: formatting)
 
@@ -529,6 +529,15 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `format(String analyzerName,AuditNode rootNode,String outputFormat): String` | (none) |
+
+#### WorkdirResolver (package: bootstrap) [SEALED]
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `resolve(String flagValue): Path` | (none) |
 
 ### Module: nlp-infrastructure
 

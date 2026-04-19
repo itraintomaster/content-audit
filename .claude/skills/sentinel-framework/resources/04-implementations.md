@@ -453,17 +453,78 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `detailedFormatters` | `Map<String,DetailedFormatter>` |
 | `auditReportStore` | `AuditReportStore` |
 
-#### AnalyzerCmd (package: commands)
+#### GetCmd (package: commands)
 
 **Package:** `com.learney.contentaudit.auditcli.commands`
 **Visibility:** internal
-**Implements:** 
+**Implements:** GetCommand
 
-#### AnalyzerListCmd (package: commands)
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `auditReportStore` | `AuditReportStore` |
+| `refinementPlanStore` | `RefinementPlanStore` |
+| `analyzerRegistry` | `AnalyzerRegistry` |
+
+#### DeleteCmd (package: commands)
 
 **Package:** `com.learney.contentaudit.auditcli.commands`
 **Visibility:** internal
-**Implements:** AnalyzerListCommand
+**Implements:** DeleteCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `auditReportStore` | `AuditReportStore` |
+| `refinementPlanStore` | `RefinementPlanStore` |
+
+#### PruneCmd (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** PruneCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `auditReportStore` | `AuditReportStore` |
+| `refinementPlanStore` | `RefinementPlanStore` |
+
+#### PlanCmd (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** PlanCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `auditReportStore` | `AuditReportStore` |
+| `refinerEngine` | `RefinerEngine` |
+| `refinementPlanStore` | `RefinementPlanStore` |
+
+#### ReviseCmd (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** ReviseCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `revisionEngine` | `RevisionEngine` |
+| `refinementPlanStore` | `RefinementPlanStore` |
+
+#### ConfigAnalyzerCmd (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** ConfigAnalyzerCommand
 
 **Constructor dependencies:**
 
@@ -471,23 +532,11 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 |------|------|
 | `analyzerRegistry` | `AnalyzerRegistry` |
 
-#### AnalyzerConfigCmd (package: commands)
+#### StatsAnalyzerCmd (package: commands)
 
 **Package:** `com.learney.contentaudit.auditcli.commands`
 **Visibility:** internal
-**Implements:** AnalyzerConfigCommand
-
-**Constructor dependencies:**
-
-| Name | Type |
-|------|------|
-| `analyzerRegistry` | `AnalyzerRegistry` |
-
-#### AnalyzerStatsCmd (package: commands)
-
-**Package:** `com.learney.contentaudit.auditcli.commands`
-**Visibility:** internal
-**Implements:** AnalyzerStatsCommand
+**Implements:** StatsAnalyzerCommand
 
 **Constructor dependencies:**
 
@@ -496,65 +545,6 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `analyzerRegistry` | `AnalyzerRegistry` |
 | `analyzerStatsTransformer` | `AnalyzerStatsTransformer` |
 | `auditRunner` | `AuditRunner` |
-
-#### RefinerCmd (package: commands)
-
-**Package:** `com.learney.contentaudit.auditcli.commands`
-**Visibility:** internal
-**Implements:** 
-
-#### RefinerPlanCmd (package: commands)
-
-**Package:** `com.learney.contentaudit.auditcli.commands`
-**Visibility:** internal
-**Implements:** RefinerPlanCommand
-
-**Constructor dependencies:**
-
-| Name | Type |
-|------|------|
-| `auditReportStore` | `AuditReportStore` |
-| `refinerEngine` | `RefinerEngine` |
-| `refinementPlanStore` | `RefinementPlanStore` |
-
-#### RefinerNextCmd (package: commands)
-
-**Package:** `com.learney.contentaudit.auditcli.commands`
-**Visibility:** internal
-**Implements:** RefinerNextCommand
-
-**Constructor dependencies:**
-
-| Name | Type |
-|------|------|
-| `refinementPlanStore` | `RefinementPlanStore` |
-| `refinerEngine` | `RefinerEngine` |
-| `auditReportStore` | `AuditReportStore` |
-| `correctionContextResolver` | `CorrectionContextResolver` |
-
-#### RefinerListCmd (package: commands)
-
-**Package:** `com.learney.contentaudit.auditcli.commands`
-**Visibility:** internal
-**Implements:** RefinerListCommand
-
-**Constructor dependencies:**
-
-| Name | Type |
-|------|------|
-| `refinementPlanStore` | `RefinementPlanStore` |
-
-#### RefinerReviseCmd (package: commands)
-
-**Package:** `com.learney.contentaudit.auditcli.commands`
-**Visibility:** internal
-**Implements:** RefinerReviseCommand
-
-**Constructor dependencies:**
-
-| Name | Type |
-|------|------|
-| `revisionEngine` | `RevisionEngine` |
 
 #### TextReportFormatter (package: formatting)
 
@@ -633,6 +623,12 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Package:** `com.learney.contentaudit.auditcli.formatting`
 **Visibility:** internal
 **Implements:** DetailedFormatter
+
+#### DefaultWorkdirResolver (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+**Implements:** WorkdirResolver
 
 ### Module: nlp-infrastructure
 

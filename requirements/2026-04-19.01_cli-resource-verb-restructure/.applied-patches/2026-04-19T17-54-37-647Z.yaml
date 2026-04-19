@@ -1,0 +1,24 @@
+code: FEAT-CLIRV
+description: "Extend GetTasksFilter with two optional enum fields (target, diagnosisKind)\
+  \ to carry the --target/--diagnosis flag values from picocli into GetCmd.get().\
+  \ These filters were preserved on the deleted refiner next command and were accidentally\
+  \ dropped during the kubectl-style migration; surfacing them on the GetTasksFilter\
+  \ carrier restores the prior workflow under the new grammar (R008)."
+modules:
+- name: audit-cli
+  models:
+  - name: GetTasksFilter
+    type: record
+    fields:
+    - name: target
+      type: Optional<AuditTarget>
+      description: Restrict to tasks whose nodeTarget matches this AuditTarget enum
+        value; absent = no filter (R008)
+      _change: add
+    - name: diagnosisKind
+      type: Optional<DiagnosisKind>
+      description: Restrict to tasks whose diagnosisKind matches this DiagnosisKind
+        enum value; absent = no filter (R008)
+      _change: add
+    _change: modify
+  _change: modify

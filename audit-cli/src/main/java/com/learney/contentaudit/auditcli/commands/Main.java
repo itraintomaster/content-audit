@@ -4,6 +4,10 @@ import javax.annotation.processing.Generated;
 import com.learney.contentaudit.auditapplication.CourseToAuditableMapper;
 import com.learney.contentaudit.auditapplication.DefaultAuditRunner;
 import com.learney.contentaudit.auditapplication.DefaultSentenceLengthConfig;
+import com.learney.contentaudit.auditapplication.DefaultAnalyzerRegistry;
+import com.learney.contentaudit.auditapplication.DefaultCocaBucketsConfig;
+import com.learney.contentaudit.auditapplication.DefaultLemmaRecurrenceConfig;
+import com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.IAuditEngine;
 import com.learney.contentaudit.auditdomain.IScoreAggregator;
@@ -14,15 +18,13 @@ import com.learney.contentaudit.auditdomain.ScoreAggregator;
 import com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer;
 import com.learney.contentaudit.auditdomain.SentenceLengthConfig;
 import com.learney.contentaudit.auditdomain.CocaBucketsConfig;
+import com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig;
+import com.learney.contentaudit.auditdomain.LemmaAbsenceConfig;
+import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
 import com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer;
 import com.learney.contentaudit.auditdomain.coca.DefaultTokenClassifier;
 import com.learney.contentaudit.auditdomain.coca.DefaultProgressionEvaluator;
 import com.learney.contentaudit.auditdomain.coca.DefaultImprovementPlanner;
-import com.learney.contentaudit.auditapplication.DefaultCocaBucketsConfig;
-import com.learney.contentaudit.auditapplication.DefaultLemmaRecurrenceConfig;
-import com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig;
-import com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig;
-import com.learney.contentaudit.auditdomain.LemmaAbsenceConfig;
 import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzer;
 import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
 import com.learney.contentaudit.auditdomain.lrec.DefaultIntervalCalculator;
@@ -32,13 +34,13 @@ import com.learney.contentaudit.vocabularyinfrastructure.evp.FileSystemEvpCatalo
 import com.learney.contentaudit.nlpinfrastructure.NlpTokenizerConfig;
 import com.learney.contentaudit.nlpinfrastructure.spacy.SpacyNlpTokenizerFactory;
 import com.learney.contentaudit.coursedomain.CourseValidator;
+import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.courseinfrastructure.CourseValidatorImpl;
-import com.learney.contentaudit.auditapplication.DefaultAnalyzerRegistry;
-import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
 import com.learney.contentaudit.courseinfrastructure.FileSystemCourseRepository;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore;
 import com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore;
+import com.learney.contentaudit.auditinfrastructure.FileSystemRevisionArtifactStore;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.DispatchingCorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceContextResolver;
@@ -46,15 +48,13 @@ import com.learney.contentaudit.refinerdomain.SentenceLengthContextResolver;
 import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
 import com.learney.contentaudit.refinerdomain.RefinerEngine;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
-import com.learney.contentaudit.auditinfrastructure.FileSystemRevisionArtifactStore;
-import com.learney.contentaudit.coursedomain.CourseRepository;
-import com.learney.contentaudit.refinerdomain.CorrectionContext;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.revisiondomain.RevisionEngine;
 import com.learney.contentaudit.revisiondomain.RevisionEngineConfig;
 import com.learney.contentaudit.revisiondomain.Reviser;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory;
+import com.learney.contentaudit.auditcli.bootstrap.DefaultWorkdirResolver;
 import com.learney.contentaudit.auditcli.formatting.AnalyzerStatsTransformer;
 import com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter;
 import com.learney.contentaudit.auditcli.formatting.DefaultAnalyzerStatsTransformer;
@@ -73,62 +73,99 @@ import com.learney.contentaudit.auditcli.formatting.TableReportFormatter;
 import com.learney.contentaudit.auditcli.formatting.TextReportFormatter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * CLI entry point. Manually assembles all dependencies and runs the audit.
+ * CLI entry point. Resolves the workdir, manually assembles all dependencies,
+ * and runs the command via picocli.
+ *
+ * The --workdir flag is parsed manually before picocli runs, as it must be
+ * resolved before any FileSystem*Store is constructed (R017, Q5 architectural decision).
  */
 class Main {
 
     public static void main(String[] args) {
-        // Infrastructure layer
+        // ----------------------------------------------------------------
+        // Step 1: Parse --workdir from args manually, before picocli.
+        // Strip it from the args array before passing to picocli.
+        // ----------------------------------------------------------------
+        String workdirFlagValue = null;
+        List<String> remainingArgs = new ArrayList<>(Arrays.asList(args));
+        for (int i = 0; i < remainingArgs.size(); i++) {
+            String arg = remainingArgs.get(i);
+            if ("--workdir".equals(arg)) {
+                if (i + 1 < remainingArgs.size()) {
+                    workdirFlagValue = remainingArgs.get(i + 1);
+                    remainingArgs.remove(i + 1);
+                    remainingArgs.remove(i);
+                }
+                break;
+            } else if (arg.startsWith("--workdir=")) {
+                workdirFlagValue = arg.substring("--workdir=".length());
+                remainingArgs.remove(i);
+                break;
+            }
+        }
+
+        // ----------------------------------------------------------------
+        // Step 2: Resolve workdir — fail fast if an explicit override is invalid (R017)
+        // ----------------------------------------------------------------
+        Path baseDir;
+        try {
+            DefaultWorkdirResolver workdirResolver = new DefaultWorkdirResolver();
+            baseDir = workdirResolver.resolve(workdirFlagValue);
+        } catch (com.learney.contentaudit.auditcli.bootstrap.InvalidWorkdirException e) {
+            System.err.println("Error: " + e.getMessage());
+            System.exit(1);
+            return; // unreachable, but makes the compiler happy
+        }
+
+        // ----------------------------------------------------------------
+        // Step 3: Infrastructure layer
+        // ----------------------------------------------------------------
         CourseValidator courseValidator = new CourseValidatorImpl();
         FileSystemCourseRepository courseRepository = new FileSystemCourseRepository(courseValidator);
 
-        // NLP tokenizer via SpaCy factory
-        // Resolve paths relative to project root
         String projectRoot = System.getProperty("user.dir");
         NlpTokenizerConfig nlpConfig = new NlpTokenizerConfig(
                 projectRoot + "/analysis/recursos-compartidos/spacy/sample_processor.py",
                 projectRoot + "/../ittm/pipeline/src/main/resources/vocabulary/lemmas_20k_words.txt",
-                300  // timeout 5 minutes
+                300
         );
         NlpTokenizer nlpTokenizer = new SpacyNlpTokenizerFactory().create(nlpConfig);
 
-        // Application layer
+        // ----------------------------------------------------------------
+        // Step 4: Application layer
+        // ----------------------------------------------------------------
         SentenceLengthConfig sentenceLengthConfig = new DefaultSentenceLengthConfig();
         CourseToAuditableMapper courseToAuditableMapper = new CourseToAuditableMapper(nlpTokenizer);
 
-        // Domain: analyzers
         SentenceLengthAnalyzer sentenceLengthAnalyzer = new SentenceLengthAnalyzer(sentenceLengthConfig);
         KnowledgeTitleLengthAnalyzer knowledgeTitleLengthAnalyzer = new KnowledgeTitleLengthAnalyzer();
         KnowledgeInstructionsLengthAnalyzer knowledgeInstructionsLengthAnalyzer =
                 new KnowledgeInstructionsLengthAnalyzer();
 
-        // COCA Buckets Distribution analyzer
         CocaBucketsConfig cocaBucketsConfig = new DefaultCocaBucketsConfig();
         CocaBucketsAnalyzer cocaBucketsAnalyzer = new CocaBucketsAnalyzer(
-                nlpTokenizer,
-                cocaBucketsConfig,
+                nlpTokenizer, cocaBucketsConfig,
                 new DefaultTokenClassifier(),
                 new DefaultProgressionEvaluator(),
                 new DefaultImprovementPlanner()
         );
 
-        // Lemma Recurrence analyzer
         LemmaRecurrenceConfig lemmaRecurrenceConfig = new DefaultLemmaRecurrenceConfig();
         LemmaRecurrenceAnalyzer lemmaRecurrenceAnalyzer = new LemmaRecurrenceAnalyzer(
-                new DefaultContentWordFilter(),
-                lemmaRecurrenceConfig,
-                new DefaultIntervalCalculator(),
-                new DefaultExposureClassifier()
+                new DefaultContentWordFilter(), lemmaRecurrenceConfig,
+                new DefaultIntervalCalculator(), new DefaultExposureClassifier()
         );
 
-        // Lemma Absence analyzer
         LemmaAbsenceConfig lemmaAbsenceConfig = new DefaultLemmaAbsenceConfig();
-        Path evpCatalogPath = Paths.get(projectRoot, "analysis/recursos-compartidos/enriched_vocabulary_catalog.json");
+        Path evpCatalogPath = Paths.get(projectRoot,
+                "analysis/recursos-compartidos/enriched_vocabulary_catalog.json");
         FileSystemEvpCatalog evpCatalog = new FileSystemEvpCatalog(evpCatalogPath);
         LemmaByLevelAbsenceAnalyzer lemmaAbsenceAnalyzer = new LemmaByLevelAbsenceAnalyzer(
                 evpCatalog, new DefaultContentWordFilter(), lemmaAbsenceConfig);
@@ -142,16 +179,17 @@ class Main {
                 lemmaAbsenceAnalyzer
         );
 
-        // Domain: aggregator and engine
-        ScoreAggregator scoreAggregator = new com.learney.contentaudit.auditdomain.labs.LemmaAbsenceScoreAggregator();
+        ScoreAggregator scoreAggregator =
+                new com.learney.contentaudit.auditdomain.labs.LemmaAbsenceScoreAggregator();
         IAuditEngine auditEngine = new IAuditEngine(contentAnalyzers, scoreAggregator);
 
-        // Application: runner (with analyzer list for filtering support)
         DefaultAuditRunner auditRunner = new DefaultAuditRunner(
                 courseRepository, courseToAuditableMapper, auditEngine,
                 contentAnalyzers, scoreAggregator);
 
-        // CLI layer: formatters, transformer, and registry
+        // ----------------------------------------------------------------
+        // Step 5: CLI formatting
+        // ----------------------------------------------------------------
         DrillDownResolver drillDownResolver = new DefaultDrillDownResolver();
         Map<String, ReportFormatter> formatters = new HashMap<>();
         formatters.put("text", new TextReportFormatter(drillDownResolver));
@@ -162,7 +200,6 @@ class Main {
         ReportViewModelTransformer viewModelTransformer = new DefaultReportViewModelTransformer();
         RawReportFormatter rawReportFormatter = new RawJsonReportFormatter();
 
-        // Analyzer introspection
         List<SelfDescribingConfig> describableConfigs = List.of(
                 (SelfDescribingConfig) sentenceLengthConfig,
                 (SelfDescribingConfig) cocaBucketsConfig,
@@ -172,51 +209,26 @@ class Main {
                 contentAnalyzers, describableConfigs);
         AnalyzerStatsTransformer analyzerStatsTransformer = new DefaultAnalyzerStatsTransformer();
 
-        // Audit persistence
-        AuditReportStore auditReportStore = new FileSystemAuditReportStore();
-
-        // Detailed formatters for --detailed mode
         Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
         detailedFormatters.put("lemma-absence", new LemmaAbsenceDetailedFormatter());
         detailedFormatters.put("coca-buckets-distribution", new CocaBucketsDetailedFormatter());
 
-        // Wire picocli command tree
-        ContentAuditCmd rootCmd = new ContentAuditCmd();
-        picocli.CommandLine cmd = new picocli.CommandLine(rootCmd);
+        // ----------------------------------------------------------------
+        // Step 6: Persistence stores — all constructed with resolved baseDir
+        // ----------------------------------------------------------------
+        AuditReportStore auditReportStore = new FileSystemAuditReportStore(baseDir);
+        RefinementPlanStore refinementPlanStore = new FileSystemRefinementPlanStore(baseDir);
+        RevisionArtifactStore revisionArtifactStore = new FileSystemRevisionArtifactStore(baseDir);
 
-        cmd.addSubcommand("analyze", new picocli.CommandLine(
-                new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
-                        rawReportFormatter, drillDownResolver, detailedFormatters,
-                        auditReportStore)));
-
-        picocli.CommandLine analyzerGroup = new picocli.CommandLine(new AnalyzerCmd());
-        analyzerGroup.addSubcommand("list", new picocli.CommandLine(
-                new AnalyzerListCmd(analyzerRegistry)));
-        analyzerGroup.addSubcommand("config", new picocli.CommandLine(
-                new AnalyzerConfigCmd(analyzerRegistry)));
-        analyzerGroup.addSubcommand("stats", new picocli.CommandLine(
-                new AnalyzerStatsCmd(analyzerRegistry, analyzerStatsTransformer, auditRunner)));
-        cmd.addSubcommand("analyzer", analyzerGroup);
-
-        // Refiner commands
+        // ----------------------------------------------------------------
+        // Step 7: Refiner + Revision engines
+        // ----------------------------------------------------------------
         RefinerEngine refinerEngine = new DefaultRefinerEngine();
-        RefinementPlanStore refinementPlanStore = new FileSystemRefinementPlanStore();
         SentenceLengthContextResolver sentenceLengthContextResolver = new SentenceLengthContextResolver();
         LemmaAbsenceContextResolver lemmaAbsenceContextResolver = new LemmaAbsenceContextResolver();
         CorrectionContextResolver correctionContextResolver = new DispatchingCorrectionContextResolver(
                 sentenceLengthContextResolver, lemmaAbsenceContextResolver);
 
-        picocli.CommandLine refinerGroup = new picocli.CommandLine(new RefinerCmd());
-        refinerGroup.addSubcommand("plan", new picocli.CommandLine(
-                new RefinerPlanCmd(auditReportStore, refinerEngine, refinementPlanStore)));
-        refinerGroup.addSubcommand("next", new picocli.CommandLine(
-                new RefinerNextCmd(refinementPlanStore, refinerEngine, auditReportStore,
-                        correctionContextResolver)));
-        refinerGroup.addSubcommand("list", new picocli.CommandLine(
-                new RefinerListCmd(refinementPlanStore)));
-
-        // Revision phase (FEAT-REVBYP): bypass skeleton wired via factory.
-        RevisionArtifactStore revisionArtifactStore = new FileSystemRevisionArtifactStore();
         RevisionEngineConfig revisionEngineConfig = new RevisionEngineConfig();
         revisionEngineConfig.setRevisers(new HashMap<DiagnosisKind, Reviser>());
         revisionEngineConfig.setArtifactStore(revisionArtifactStore);
@@ -225,12 +237,55 @@ class Main {
         revisionEngineConfig.setAuditReportStore(auditReportStore);
         revisionEngineConfig.setContextResolver(correctionContextResolver);
         RevisionEngine revisionEngine = new DefaultRevisionEngineFactory().create(revisionEngineConfig);
-        refinerGroup.addSubcommand("revise", new picocli.CommandLine(
-                new RefinerReviseCmd(revisionEngine)));
 
-        cmd.addSubcommand("refiner", refinerGroup);
+        // ----------------------------------------------------------------
+        // Step 8: Build the new FLAT command tree (R020: no refiner/analyzer groups)
+        // ----------------------------------------------------------------
+        ContentAuditCmd rootCmd = new ContentAuditCmd();
+        picocli.CommandLine cmd = new picocli.CommandLine(rootCmd);
 
-        int exitCode = cmd.execute(args);
+        // analyze
+        cmd.addSubcommand("analyze", new picocli.CommandLine(
+                new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
+                        rawReportFormatter, drillDownResolver, detailedFormatters,
+                        auditReportStore)));
+
+        // plan
+        cmd.addSubcommand("plan", new picocli.CommandLine(
+                new PlanCmd(auditReportStore, refinerEngine, refinementPlanStore)));
+
+        // revise
+        ReviseCmd reviseCmd = new ReviseCmd(revisionEngine, refinementPlanStore);
+        cmd.addSubcommand("revise", new picocli.CommandLine(reviseCmd));
+
+        // config
+        ConfigAnalyzerCmd configAnalyzerCmd = new ConfigAnalyzerCmd(analyzerRegistry);
+        cmd.addSubcommand("config", new picocli.CommandLine(configAnalyzerCmd));
+
+        // stats
+        StatsAnalyzerCmd statsAnalyzerCmd = new StatsAnalyzerCmd(
+                analyzerRegistry, analyzerStatsTransformer, auditRunner);
+        cmd.addSubcommand("stats", new picocli.CommandLine(statsAnalyzerCmd));
+
+        // get — inject baseDir for plan listing and path-based operations
+        GetCmd getCmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry);
+        getCmd.setBaseDir(baseDir);
+        cmd.addSubcommand("get", new picocli.CommandLine(getCmd));
+
+        // delete — inject baseDir for filesystem-level removal
+        DeleteCmd deleteCmd = new DeleteCmd(auditReportStore, refinementPlanStore);
+        deleteCmd.setBaseDir(baseDir);
+        cmd.addSubcommand("delete", new picocli.CommandLine(deleteCmd));
+
+        // prune — inject baseDir for filesystem-level removal
+        PruneCmd pruneCmd = new PruneCmd(auditReportStore, refinementPlanStore);
+        pruneCmd.setBaseDir(baseDir);
+        cmd.addSubcommand("prune", new picocli.CommandLine(pruneCmd));
+
+        // ----------------------------------------------------------------
+        // Step 9: Execute
+        // ----------------------------------------------------------------
+        int exitCode = cmd.execute(remainingArgs.toArray(new String[0]));
         System.exit(exitCode);
     }
 }

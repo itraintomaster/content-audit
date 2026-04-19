@@ -47,46 +47,57 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackageBootstrapVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..auditcli..", "java..").should().dependOnClassesThat().resideInAPackage("..auditcli.bootstrap..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.GetTasksFilter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: GetTasksFilter - " + e.getMessage());
+    }
     try {
       Class.forName("com.learney.contentaudit.auditcli.AnalyzeCommand");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AnalyzeCommand - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.AnalyzerListCommand");
+      Class.forName("com.learney.contentaudit.auditcli.GetCommand");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: AnalyzerListCommand - " + e.getMessage());
+      Assertions.fail("Missing declared class: GetCommand - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.AnalyzerConfigCommand");
+      Class.forName("com.learney.contentaudit.auditcli.DeleteCommand");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: AnalyzerConfigCommand - " + e.getMessage());
+      Assertions.fail("Missing declared class: DeleteCommand - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.AnalyzerStatsCommand");
+      Class.forName("com.learney.contentaudit.auditcli.PruneCommand");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: AnalyzerStatsCommand - " + e.getMessage());
+      Assertions.fail("Missing declared class: PruneCommand - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.RefinerPlanCommand");
+      Class.forName("com.learney.contentaudit.auditcli.PlanCommand");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: RefinerPlanCommand - " + e.getMessage());
+      Assertions.fail("Missing declared class: PlanCommand - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.RefinerNextCommand");
+      Class.forName("com.learney.contentaudit.auditcli.ReviseCommand");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: RefinerNextCommand - " + e.getMessage());
+      Assertions.fail("Missing declared class: ReviseCommand - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.RefinerListCommand");
+      Class.forName("com.learney.contentaudit.auditcli.ConfigAnalyzerCommand");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: RefinerListCommand - " + e.getMessage());
+      Assertions.fail("Missing declared class: ConfigAnalyzerCommand - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.RefinerReviseCommand");
+      Class.forName("com.learney.contentaudit.auditcli.StatsAnalyzerCommand");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: RefinerReviseCommand - " + e.getMessage());
+      Assertions.fail("Missing declared class: StatsAnalyzerCommand - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.commands.Main");
@@ -104,49 +115,39 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: AnalyzeCmd - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.commands.AnalyzerCmd");
+      Class.forName("com.learney.contentaudit.auditcli.commands.GetCmd");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: AnalyzerCmd - " + e.getMessage());
+      Assertions.fail("Missing declared class: GetCmd - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.commands.AnalyzerListCmd");
+      Class.forName("com.learney.contentaudit.auditcli.commands.DeleteCmd");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: AnalyzerListCmd - " + e.getMessage());
+      Assertions.fail("Missing declared class: DeleteCmd - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.commands.AnalyzerConfigCmd");
+      Class.forName("com.learney.contentaudit.auditcli.commands.PruneCmd");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: AnalyzerConfigCmd - " + e.getMessage());
+      Assertions.fail("Missing declared class: PruneCmd - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.commands.AnalyzerStatsCmd");
+      Class.forName("com.learney.contentaudit.auditcli.commands.PlanCmd");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: AnalyzerStatsCmd - " + e.getMessage());
+      Assertions.fail("Missing declared class: PlanCmd - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.commands.RefinerCmd");
+      Class.forName("com.learney.contentaudit.auditcli.commands.ReviseCmd");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: RefinerCmd - " + e.getMessage());
+      Assertions.fail("Missing declared class: ReviseCmd - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.commands.RefinerPlanCmd");
+      Class.forName("com.learney.contentaudit.auditcli.commands.ConfigAnalyzerCmd");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: RefinerPlanCmd - " + e.getMessage());
+      Assertions.fail("Missing declared class: ConfigAnalyzerCmd - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditcli.commands.RefinerNextCmd");
+      Class.forName("com.learney.contentaudit.auditcli.commands.StatsAnalyzerCmd");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: RefinerNextCmd - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.commands.RefinerListCmd");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: RefinerListCmd - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.auditcli.commands.RefinerReviseCmd");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: RefinerReviseCmd - " + e.getMessage());
+      Assertions.fail("Missing declared class: StatsAnalyzerCmd - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.formatting.ReportViewModel");
@@ -292,6 +293,21 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: CocaBucketsDetailedFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.InvalidWorkdirException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: InvalidWorkdirException - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.WorkdirResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: WorkdirResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultWorkdirResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultWorkdirResolver - " + e.getMessage());
     }
   }
 }

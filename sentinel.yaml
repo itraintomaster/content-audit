@@ -3741,6 +3741,33 @@ modules:
   - audit-infrastructure
   - refiner-domain
   - revision-domain
+  models:
+  - name: GetTasksFilter
+    type: record
+    fields:
+    - name: planId
+      type: Optional<String>
+      description: "Restrict to tasks belonging to this plan id; if empty, the most\
+        \ recent plan is used (R012)"
+    - name: status
+      type: Optional<String>
+      description: "Restrict to tasks whose status matches this value, case-insensitive\
+        \ (pending/completed/skipped) — R008"
+    - name: sortByPriority
+      type: boolean
+      description: "If true, order results by ascending task priority — R008"
+    - name: limit
+      type: Optional<Integer>
+      description: Cap the result count after filter+sort; 0 yields empty (R009);
+        negative is rejected
+    - name: target
+      type: Optional<AuditTarget>
+      description: Restrict to tasks whose nodeTarget matches this AuditTarget enum
+        value; absent = no filter (R008)
+    - name: diagnosisKind
+      type: Optional<DiagnosisKind>
+      description: Restrict to tasks whose diagnosisKind matches this DiagnosisKind
+        enum value; absent = no filter (R008)
   interfaces:
   - name: AnalyzeCommand
     stereotype: port
@@ -3748,41 +3775,41 @@ modules:
     exposes:
     - signature: "analyze(String coursePath, String format, String level, String topic,\
         \ String knowledge, List<String> analyzers, boolean detailed): Integer"
-  - name: AnalyzerListCommand
+  - name: GetCommand
     stereotype: port
     sealed: true
     exposes:
-    - signature: "list(): Integer"
-  - name: AnalyzerConfigCommand
+    - signature: "get(String resource, String name, GetTasksFilter filter): Integer"
+  - name: DeleteCommand
     stereotype: port
     sealed: true
     exposes:
-    - signature: "showConfig(String analyzerName): Integer"
-  - name: AnalyzerStatsCommand
+    - signature: "delete(String resource, String id): Integer"
+  - name: PruneCommand
     stereotype: port
     sealed: true
     exposes:
-    - signature: "showStats(String analyzerName, String coursePath): Integer"
-  - name: RefinerPlanCommand
+    - signature: "prune(String resource, int keep): Integer"
+  - name: PlanCommand
     stereotype: port
     sealed: true
     exposes:
     - signature: "plan(String auditId): Integer"
-  - name: RefinerNextCommand
+  - name: ReviseCommand
     stereotype: port
     sealed: true
     exposes:
-    - signature: "next(String planId): Integer"
-  - name: RefinerListCommand
+    - signature: "revise(String taskId, String planId): Integer"
+  - name: ConfigAnalyzerCommand
     stereotype: port
     sealed: true
     exposes:
-    - signature: "listTasks(String planId): Integer"
-  - name: RefinerReviseCommand
+    - signature: "showConfig(String analyzerName): Integer"
+  - name: StatsAnalyzerCommand
     stereotype: port
     sealed: true
     exposes:
-    - signature: "revise(String planId, String taskId): Integer"
+    - signature: "showStats(String analyzerName, String coursePath): Integer"
   patterns:
   - type: Strategy
     implementations:
@@ -3804,6 +3831,17 @@ modules:
     - name: ContentAuditCmd
       types:
       - Component
+      handwrittenTests:
+      - name: should fail with picocli 'unknown subcommand' when invoked with the
+          removed 'refiner' subcommand
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R020
+      - name: should fail with picocli 'unknown subcommand' when invoked with the
+          removed 'analyzer' subcommand
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R020
       externalImplements:
       - java.util.concurrent.Callable<Integer>
     - name: AnalyzeCmd
@@ -3828,32 +3866,342 @@ modules:
       - java.util.concurrent.Callable<Integer>
       implements:
       - AnalyzeCommand
-    - name: AnalyzerCmd
+      handwrittenTests:
+      - name: "should be registered as a top-level subcommand of content-audit (verb\
+          \ relocated, semantics unchanged)"
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R013
+    - name: GetCmd
+      requiresInject:
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: analyzerRegistry
+        type: AnalyzerRegistry
       types:
       - Component
+      handwrittenTests:
+      - name: should list all stored audits when invoked as 'get audits' without a
+          name
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R001
+      - name: should return the single matching audit and exit zero when invoked as
+          'get audit <id>' with an existing id
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R001
+      - name: should report 'No audits found with id' and exit non-zero when invoked
+          as 'get audit <id>' with an unknown id
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R001
+      - name: should reject the request and list known resources when called with
+          an unknown resource name
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R005
+      - name: should treat singular 'audit' and plural 'audits' as equivalent when
+          listing
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R006
+      - name: should treat singular 'plan' and plural 'plans' as equivalent when addressing
+          one by id
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R006
+      - name: should print an audit id that can subsequently be passed back as 'get
+          audit <id>' to retrieve the same resource
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R007
+      - name: should restrict tasks to the named plan when 'get tasks --plan <id>'
+          is supplied
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R008
+      - name: should restrict tasks to the matching status when 'get tasks --status
+          pending' is supplied
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R008
+      - name: should sort tasks by ascending priority when 'get tasks --sort priority'
+          is supplied
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R008
+      - name: should cap the result count when 'get tasks --limit N' is supplied
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R008
+      - name: should return only the highest-priority pending task when --status pending
+          --sort priority --limit 1 are combined
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R008
+      - name: should reject --status with an invalid value and exit non-zero with
+          the allowed-values message
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R008
+      - name: should return zero tasks and exit zero when --limit 0 is supplied
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R009
+      - name: should reject --limit with a negative value and exit non-zero
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R009
+      - name: should report 'Plan <id> not found' and exit non-zero without falling
+          back when 'get tasks --plan <unknown-id>' is supplied
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R010
+      - name: should print 'No audits found.' and exit zero when no audits exist at
+          all
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R011
+      - name: should print 'No tasks found.' and exit zero when filters match zero
+          tasks
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R011
+      - name: should resolve to the most recent plan when 'get tasks' is invoked without
+          --plan
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R012
+      - name: should report 'No plans available' and exit non-zero without auto-creating
+          when 'get tasks' is invoked with no plans on disk
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R012
       externalImplements:
       - java.util.concurrent.Callable<Integer>
-    - name: AnalyzerListCmd
+      implements:
+      - GetCommand
+    - name: DeleteCmd
+      requiresInject:
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      types:
+      - Component
+      handwrittenTests:
+      - name: should remove a single plan by id and report success when 'delete plan
+          <id>' is invoked with an existing id
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R002
+      - name: should remove a single audit by id when 'delete audit <id>' is invoked
+          and no plan references that audit
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R002
+      - name: should reject 'delete <resource>' without an id and exit non-zero with
+          'id is required'
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R002
+      - name: should reject 'delete task <id>' with the not-supported error since
+          delete operates on audit and plan only
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R002
+      - name: should reject 'delete analyzer <id>' since analyzers are not deletable
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R002
+      - name: should refuse 'delete audit <id>' and list dependent plan ids when at
+          least one plan references the audit
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R002
+      - name: should report 'No plans found with id' and exit non-zero when 'delete
+          plan <unknown-id>' is invoked
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R010
+      - name: should reject the request when 'delete' is called with an unknown resource
+          name
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R005
+      - name: should treat singular 'audit' and plural 'audits' as equivalent when
+          invoked as 'delete <form> <id>'
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R006
+      - name: should reject 'delete task' as a non-supported operation that would
+          mutate a plan in place
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R019
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - DeleteCommand
+    - name: PruneCmd
+      requiresInject:
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      types:
+      - Component
+      handwrittenTests:
+      - name: should keep the N most recent audits and remove the rest when 'prune
+          audits --keep N' is invoked
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R003
+      - name: should keep the N most recent plans and remove the rest when 'prune
+          plans --keep N' is invoked
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R003
+      - name: should keep all resources and remove zero when --keep N is greater than
+          the total count
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R003
+      - name: should reject negative values for --keep and exit non-zero
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R003
+      - name: should accept --keep 0 and remove every stored resource of the named
+          type
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R003
+      - name: should reject prune when called with an unknown resource name
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R005
+      - name: should treat singular 'audit' and plural 'audits' as equivalent when
+          invoked as 'prune <form> --keep N'
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R006
+      - name: "should report 'Kept 0 audits, removed 0' explicitly and exit zero when\
+          \ no audits exist on disk"
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R011
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - PruneCommand
+    - name: PlanCmd
+      requiresInject:
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: refinerEngine
+        type: RefinerEngine
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      types:
+      - Component
+      handwrittenTests:
+      - name: should derive a plan from the most recent audit and print the new plan
+          id when 'plan' is invoked without --audit
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R014
+      - name: should derive a plan from the named audit and print the new plan id
+          when 'plan --audit <id>' is invoked
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R014
+      - name: should report 'No audits available' and exit non-zero when 'plan' is
+          invoked with no audits on disk and no --audit flag
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R014
+      - name: should report 'Audit <id> not found' and exit non-zero when --audit
+          references an unknown id
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R014
+      - name: "should preserve the existing refiner-plan behavior under the new top-level\
+          \ placement (verb relocated, semantics unchanged)"
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R004
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - PlanCommand
+    - name: ReviseCmd
+      requiresInject:
+      - name: revisionEngine
+        type: RevisionEngine
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      types:
+      - Component
+      handwrittenTests:
+      - name: should resolve the task in the most recent plan when 'revise task <id>'
+          is invoked without --plan
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R015
+      - name: should resolve the task in the named plan when 'revise task <id> --plan
+          <plan-id>' is invoked with an existing plan id
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R015
+      - name: should report 'No plans available' and exit non-zero when no plans exist
+          regardless of --plan
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R015
+      - name: should report 'Plan <id> not found' and exit non-zero when --plan references
+          an unknown plan id
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R015
+      - name: should report 'Task <task-id> not found in plan <plan-id>' naming the
+          resolved plan when the task id is absent from the resolved plan
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R015
+      - name: should report 'Task <task-id> not found in plan <plan-id>' naming the
+          explicitly supplied plan when --plan was used and the task is absent
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R015
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - ReviseCommand
+    - name: ConfigAnalyzerCmd
       requiresInject:
       - name: analyzerRegistry
         type: AnalyzerRegistry
       types:
       - Component
+      handwrittenTests:
+      - name: should print the analyzer's configuration in the existing shape when
+          'config analyzer <name>' is invoked with a known analyzer
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R016
+      - name: should report 'Analyzer <name> not found' and exit non-zero when 'config
+          analyzer <name>' is invoked with an unknown analyzer
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R016
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
-      - AnalyzerListCommand
-    - name: AnalyzerConfigCmd
-      requiresInject:
-      - name: analyzerRegistry
-        type: AnalyzerRegistry
-      types:
-      - Component
-      externalImplements:
-      - java.util.concurrent.Callable<Integer>
-      implements:
-      - AnalyzerConfigCommand
-    - name: AnalyzerStatsCmd
+      - ConfigAnalyzerCommand
+    - name: StatsAnalyzerCmd
       requiresInject:
       - name: analyzerRegistry
         type: AnalyzerRegistry
@@ -3863,224 +4211,31 @@ modules:
         type: AuditRunner
       types:
       - Component
-      externalImplements:
-      - java.util.concurrent.Callable<Integer>
-      implements:
-      - AnalyzerStatsCommand
-    - name: RefinerCmd
-      types:
-      - Component
-      externalImplements:
-      - java.util.concurrent.Callable<Integer>
-    - name: RefinerPlanCmd
-      requiresInject:
-      - name: auditReportStore
-        type: AuditReportStore
-      - name: refinerEngine
-        type: RefinerEngine
-      - name: refinementPlanStore
-        type: RefinementPlanStore
-      types:
-      - Component
-      externalImplements:
-      - java.util.concurrent.Callable<Integer>
-      implements:
-      - RefinerPlanCommand
-    - name: RefinerNextCmd
-      requiresInject:
-      - name: refinementPlanStore
-        type: RefinementPlanStore
-      - name: refinerEngine
-        type: RefinerEngine
-      - name: auditReportStore
-        type: AuditReportStore
-      - name: correctionContextResolver
-        type: CorrectionContextResolver
-      types:
-      - Component
       handwrittenTests:
-      - name: should resolve correction context when task diagnosis is SENTENCE_LENGTH
+      - name: should run the analyzer over the supplied course path and render the
+          stats view when invoked with a known analyzer
         traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R006
-        _change: add
-      - name: should not resolve correction context when task diagnosis is COCA_BUCKETS
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R021
+      - name: should report 'Analyzer <name> not found' and exit non-zero when invoked
+          with an unknown analyzer
         traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R006
-        _change: add
-      - name: should include correctionContext object in JSON when context resolves
-          successfully
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R021
+      - name: should fall back to CONTENT_AUDIT_CONTENT_FOLDER env var when no course-path
+          argument is supplied
         traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should include sentence translation knowledgeTitle knowledgeInstructions
-          topicLabel and cefrLevel in JSON correctionContext
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R021
+      - name: should report a missing-course-path error and exit non-zero when neither
+          argument nor CONTENT_AUDIT_CONTENT_FOLDER is set
         traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should include targetRange with min and max and delta in JSON correctionContext
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should include suggestedLemmas array with lemma pos reason and cocaRank
-          in JSON correctionContext
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should set correctionContext to null and include correctionContextError
-          when audit report not found
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should set correctionContext to null and include correctionContextError
-          when sourceAuditId is blank
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should set correctionContext to null and include correctionContextError
-          when resolver returns empty
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should output empty suggestedLemmas array in JSON when context has no
-          suggested lemmas
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R007
-        _change: add
-      - name: should print correction context section with all fields in text format
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R008
-        _change: add
-      - name: should print numbered suggested lemmas list with lemma pos reason and
-          COCA rank in text format
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R008
-        _change: add
-      - name: should print none available for suggested lemmas when list is empty
-          in text format
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R008
-        _change: add
-      - name: should format positive delta with plus sign in text output tokens line
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R008
-        _change: add
-      - name: should format negative delta without plus sign in text output tokens
-          line
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R008
-        _change: add
-      - name: should print not available message with error reason when context cannot
-          be built in text format
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R008
-        _change: add
-      - name: should print correction context section in table format for SENTENCE_LENGTH
-          task
-        traceability:
-          feature: FEAT-RCSL
-          rule: F-RCSL-R008
-        _change: add
-      - name: should resolve correction context when task diagnosis is LEMMA_ABSENCE
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R007
-      - name: should include correctionContext with misplacedLemmas array in JSON
-          for LEMMA_ABSENCE task
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R008
-      - name: should include misplacedLemmas with lemma pos expectedLevel quizLevel
-          and cocaRank in JSON correctionContext
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R008
-      - name: should include suggestedLemmas array in JSON correctionContext for LEMMA_ABSENCE
-          task
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R008
-      - name: should set correctionContext to null and include correctionContextError
-          in JSON for LEMMA_ABSENCE when resolver returns empty
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R008
-      - name: should print correction context section with misplaced lemmas in text
-          format for LEMMA_ABSENCE task
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R009
-      - name: should print numbered misplaced lemmas list with expected and found
-          levels in text format
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R009
-      - name: should print suggested replacements in text format for LEMMA_ABSENCE
-          task
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R009
-      - name: should print none available for suggested replacements when list is
-          empty in text format for LEMMA_ABSENCE
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R009
-      - name: should print not available message when LEMMA_ABSENCE context cannot
-          be built in text format
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R009
-      - name: should include sentence translation knowledgeTitle knowledgeInstructions
-          topicLabel and cefrLevel in JSON correctionContext for LEMMA_ABSENCE
-        traceability:
-          feature: FEAT-RCLA
-          rule: F-RCLA-R008
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R021
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
-      - RefinerNextCommand
-    - name: RefinerListCmd
-      requiresInject:
-      - name: refinementPlanStore
-        type: RefinementPlanStore
-      types:
-      - Component
-      externalImplements:
-      - java.util.concurrent.Callable<Integer>
-      implements:
-      - RefinerListCommand
-    - name: RefinerReviseCmd
-      requiresInject:
-      - name: revisionEngine
-        type: RevisionEngine
-      types:
-      - Component
-      handwrittenTests:
-      - name: "Given a RevisionEngine that returns APPROVED_APPLIED, when revise is\
-          \ invoked with planId and taskId, then it delegates to engine.revise and\
-          \ returns exit code 0"
-        traceability:
-          feature: FEAT-REVBYP
-          rule: F-REVBYP-R013
-      externalImplements:
-      - java.util.concurrent.Callable<Integer>
-      implements:
-      - RefinerReviseCommand
+      - StatsAnalyzerCommand
   - name: formatting
     description: "Internal formatting infrastructure — report transformers, view models,\
       \ formatters, and drill-down resolution"
@@ -4382,6 +4537,63 @@ modules:
       visibility: public
       implements:
       - DetailedFormatter
+  - name: bootstrap
+    description: "CLI bootstrap concerns — workdir resolution from --workdir flag,\
+      \ CONTENT_AUDIT_HOME env var, or user.dir fallback (R017). Public package because\
+      \ Main (in the commands package) and external test launchers both need to resolve\
+      \ a workdir before constructing the persistence stores."
+    visibility: internal
+    models:
+    - name: InvalidWorkdirException
+      type: exception
+      fields:
+      - name: path
+        type: String
+        description: The override value that failed validation
+      message: The configured workdir override '%s' is not a writable directory
+      extends: RuntimeException
+    interfaces:
+    - name: WorkdirResolver
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "resolve(String flagValue): Path"
+    implementations:
+    - name: DefaultWorkdirResolver
+      visibility: public
+      handwrittenTests:
+      - name: should return the flag value when --workdir is provided and points to
+          an existing writable directory
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R017
+      - name: "should ignore CONTENT_AUDIT_HOME and use the flag value when both are\
+          \ set, validating flag-over-env precedence"
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R017
+      - name: should fall back to user.dir when neither --workdir nor CONTENT_AUDIT_HOME
+          is set
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R017
+      - name: should throw InvalidWorkdirException naming the override path when --workdir
+          points to a non-existent directory
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R017
+      - name: should throw InvalidWorkdirException naming the override path when --workdir
+          points to a regular file (not a directory)
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R017
+      - name: should not validate or interfere with the course content folder path
+          (workdir override is decoupled from course path)
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R018
+      implements:
+      - WorkdirResolver
 - name: nlp-infrastructure
   description: "Infrastructure module for NLP processing. Provides SpaCy-backed tokenization\
     \ behind a factory, with internal caching. Only the factory and configuration\
@@ -10472,6 +10684,518 @@ features:
     answer: Pendiente para arquitectura. Funcionalmente la regla pide "suficiente
       para reconstruir la decision" (R010); la forma concreta se deja para que el
       arquitecto la defina alineada con los tipos ya existentes en `course-domain`.
+- id: FEAT-CLIRV
+  name: CLI restructure to kubectl-style verb-resource grammar
+  description: "The `content-audit` CLI evolved feature-by-feature into a tree of\
+    \ subcommand groups (`refiner plan`, `refiner next`, `refiner list`, `refiner\
+    \ revise`, `analyzer list`, `analyzer config`, `analyzer stats`) plus the standalone\
+    \ `analyze`. This shape has produced several recurring problems in actual operator\
+    \ use, and adding more capabilities on top of it would amplify them. This requirement\
+    \ specifies a one-shot restructure of the CLI surface into a kubectl-style **verb-then-resource**\
+    \ grammar so that future features land naturally instead of accreting another\
+    \ subcommand group per concern."
+  code: F-CLIRV
+  rules:
+  - id: F-CLIRV-R001
+    name: '`get` is read-only and returns one or many'
+    severity: critical
+    description: "The `get` verb only reads from persistent storage. It never creates,\
+      \ mutates, or deletes any resource. When invoked without a `<name>` argument,\
+      \ `get` enumerates all instances of the resource. When invoked with a `<name>`,\
+      \ `get` returns the single matching instance. If no matching instance exists,\
+      \ `get` exits with a non-zero status and an error explaining that the named\
+      \ resource was not found."
+    errorMessage: No <resource> found with id '<id>'
+    validation: AUTO_VALIDATED
+  - id: F-CLIRV-R002
+    name: "`delete` removes exactly one resource by id, on `audit` and `plan` only"
+    severity: critical
+    description: "The `delete` verb removes a single resource identified by its id.\
+      \ The id is mandatory; `delete <resource>` without an id is rejected. After\
+      \ a successful delete, subsequent `get <resource> <id>` for the same id returns\
+      \ the \"not found\" error of R001. Bulk removal is never performed by `delete`\
+      \ — that is the role of `prune`. `delete` operates **only** on `audit` and `plan`.\
+      \ It does not operate on `task`: there is no `delete task <id>` command in this\
+      \ iteration. Tasks are derived state inside a plan; mutating a plan in place\
+      \ would be a domain change forbidden by R019. To remove a task, the operator\
+      \ deletes (or regenerates) the owning plan. Invoking `delete task <id>` must\
+      \ be rejected with a usage error. `delete` also does not operate on `analyzer`:\
+      \ analyzers are static registry entries, not stored artifacts. `delete audit\
+      \ <id>` does **not** cascade. If any stored plan references the named audit\
+      \ via its `sourceAuditId`, the delete must fail with a non-zero exit code and\
+      \ an error that lists the dependent plan ids so the operator can address them\
+      \ explicitly. The operator is expected to delete (or `prune`) the dependent\
+      \ plans first and then re-issue the audit delete. There is no `--cascade` flag\
+      \ in this iteration; refusal is the chosen failure mode (consistent with `delete`\
+      \ removing \"exactly one resource by id\" — silently removing N also is the\
+      \ contract violation)."
+    errorMessage: "Cannot delete <resource>: id is required"
+    validation: VALIDATED
+  - id: F-CLIRV-R003
+    name: '`prune` performs bulk cleanup under an explicit retention policy'
+    severity: critical
+    description: "The `prune` verb removes multiple resources at once according to\
+      \ a retention flag. In this iteration the only supported retention policy is\
+      \ `--keep N`, which keeps the **N most recent** resources of the named type\
+      \ and removes the rest. Recency is determined by the resource's creation timestamp\
+      \ (`createdAt` for plans; the audit id timestamp for audits). The flag is mandatory;\
+      \ `prune <resource>` without `--keep` is rejected."
+    errorMessage: "Cannot prune <resource>: --keep N is required"
+    validation: AUTO_VALIDATED
+  - id: F-CLIRV-R004
+    name: "`analyze`, `plan`, `revise`, `config` are preserved as domain verbs"
+    severity: major
+    description: "The verbs `analyze`, `plan`, `revise`, and `config` are first-class\
+      \ verbs of the CLI. They are not subsumed under a generic `create` verb. Their\
+      \ existing behavior is preserved as currently specified by the features they\
+      \ belong to (FEAT-CLI for `analyze`, FEAT-REVBYP for `revise`, the existing\
+      \ refiner-plan behavior for `plan`, and the existing analyzer-config behavior\
+      \ for `config`). The only change introduced by this requirement is their **placement**\
+      \ in the command tree (top-level instead of nested under `refiner` / `analyzer`),\
+      \ and the explicit shape of their first argument (`revise task <id>`, `config\
+      \ analyzer <id>`)."
+    validation: AUTO_VALIDATED
+  - id: F-CLIRV-R005
+    name: Recognized resources
+    severity: critical
+    description: "The CLI recognizes exactly four resources: `audits`, `plans`, `tasks`,\
+      \ `analyzers`. Any other resource name passed to `get`, `delete`, or `prune`\
+      \ is rejected with an error that lists the recognized resources. Future resources\
+      \ are out of scope for this iteration."
+    errorMessage: "Unknown resource '<name>'. Known resources: audits, plans, tasks,\
+      \ analyzers"
+    validation: AUTO_VALIDATED
+  - id: F-CLIRV-R006
+    name: Singular and plural resource names are interchangeable
+    severity: major
+    description: "For every recognized resource, the singular and plural forms are\
+      \ accepted interchangeably by `get`, `delete`, and `prune`. `get audit` is equivalent\
+      \ to `get audits`; `get plan <id>` is equivalent to `get plans <id>`; `delete\
+      \ audits <id>` is equivalent to `delete audit <id>`. This mirrors `kubectl get\
+      \ pod` / `kubectl get pods`. The chosen form does not change the output: when\
+      \ a name is provided, exactly one instance is returned; when no name is provided,\
+      \ a list is returned."
+    validation: AUTO_VALIDATED
+  - id: F-CLIRV-R007
+    name: Resource ids are presented uniformly across verbs
+    severity: minor
+    description: "The id used to address a resource in `get <resource> <id>`, `delete\
+      \ <resource> <id>`, or as the source argument in `--audit <id>` / `--plan <id>`\
+      \ is the same id that the corresponding creator verb prints when it produces\
+      \ the resource (the audit timestamp id from `analyze`, the plan id from `plan`,\
+      \ the task id from a plan's task list). An operator can copy any printed id\
+      \ and use it directly with any of the read or delete verbs."
+    validation: AUTO_VALIDATED
+  - id: F-CLIRV-R008
+    name: "`get tasks` filters by plan, status, target, diagnosis, and result count"
+    severity: critical
+    description: "`get tasks` accepts the following optional flags, each of which\
+      \ narrows the result set independently: | Flag | Effect | |------|--------|\
+      \ | `--plan <id>` | Restrict the result to tasks belonging to the named plan.\
+      \ If absent, the most recently created plan is used. | | `--status pending\\\
+      |completed\\|skipped` | Restrict the result to tasks whose status matches the\
+      \ given value (case-insensitive). | | `--target <enum>` (short: `-t <enum>`)\
+      \ | Restrict the result to tasks whose `nodeTarget` matches the named `AuditTarget`\
+      \ enum value (QUIZ, KNOWLEDGE, TOPIC, MILESTONE, COURSE). Parsing is case-insensitive.\
+      \ If the value is not a valid enum, the command fails with a clear error listing\
+      \ the allowed values. If absent, no target filter is applied. | | `--diagnosis\
+      \ <enum>` (short: `-d <enum>`) | Restrict the result to tasks whose `diagnosisKind`\
+      \ matches the named `DiagnosisKind` enum value (SENTENCE_LENGTH, LEMMA_ABSENCE,\
+      \ COCA_BUCKETS, etc. — the canonical list lives in the audit / refiner domain;\
+      \ this rule references it by name only). Parsing is case-insensitive. If the\
+      \ value is not a valid enum, the command fails with a clear error listing the\
+      \ allowed values. If absent, no diagnosis filter is applied. | | `--sort priority`\
+      \ | Order the result by ascending task priority. If absent, the natural order\
+      \ from the plan is used. | | `--limit N` | Return at most N tasks after filtering\
+      \ and sorting. `N` must be a non-negative integer. | Combinations are conjunctive.\
+      \ Examples: - `get tasks --status pending --sort priority --limit 1` returns\
+      \ the single highest-priority pending task in the most recent plan. This combination\
+      \ is the explicit replacement for the removed `refiner next` command — the user\
+      \ has confirmed no alias is added. - `get tasks --target QUIZ --diagnosis LEMMA_ABSENCE\
+      \ --status pending --sort priority --limit 1` returns the single highest-priority\
+      \ pending task whose target is `QUIZ` and whose diagnosis is `LEMMA_ABSENCE`.\
+      \ This is the direct migration of the old `refiner next -t QUIZ -d LEMMA_ABSENCE`\
+      \ invocation; `--target` and `--diagnosis` (with their short forms `-t` / `-d`)\
+      \ preserve the two filters that the prior command exposed."
+    errorMessage: "Invalid value for --status: '<value>'. Allowed: pending, completed,\
+      \ skipped"
+    validation: AUTO_VALIDATED
+  - id: F-CLIRV-R009
+    name: "`--limit 0` yields an empty result, not an error"
+    severity: minor
+    description: "`get tasks --limit 0` returns zero tasks. This is treated as a valid\
+      \ request (the operator wants to suppress output), not as a usage error. The\
+      \ exit status is zero. Negative values for `--limit` are rejected."
+    errorMessage: "Invalid value for --limit: must be zero or positive"
+    validation: AUTO_VALIDATED
+  - id: F-CLIRV-R010
+    name: "When a referenced source resource does not exist, the request fails clearly"
+    severity: major
+    description: "When a `get tasks --plan <id>` references a plan id that does not\
+      \ exist, the command fails with a non-zero exit code and an explicit \"plan\
+      \ not found\" message. It must not silently fall back to a different plan. The\
+      \ same principle applies to any flag that selects a source artifact (`plan --audit\
+      \ <id>` for a non-existent audit, etc.)."
+    errorMessage: <Resource> '<id>' not found
+    validation: AUTO_VALIDATED
+  - id: F-CLIRV-R011
+    name: "Empty result sets are reported, not silenced"
+    severity: minor
+    description: "When a list operation matches zero resources (no audits exist, no\
+      \ tasks match the filter, no plans match the prune scope, etc.), the CLI prints\
+      \ an explicit human-readable line stating that the result is empty, and exits\
+      \ with status zero. Empty is not an error. The intent is to distinguish \"the\
+      \ system found nothing\" from \"the system did not understand the request\"."
+    validation: AUTO_VALIDATED
+  - id: F-CLIRV-R012
+    name: '`get tasks` without `--plan` resolves to the most recent plan'
+    severity: major
+    description: "When `get tasks` is invoked without `--plan`, the most recently\
+      \ created plan (by creation timestamp) is used as the implicit source. If no\
+      \ plan exists at all, the command exits with a non-zero status and an explicit\
+      \ message indicating that no plans are available. It must not auto-create one."
+    errorMessage: No plans available. Run 'content-audit plan' to create one.
+    validation: AUTO_VALIDATED
+  - id: F-CLIRV-R013
+    name: '`analyze` is a top-level verb that creates an audit'
+    severity: critical
+    description: "`content-audit analyze [course-path]` runs the audit pipeline against\
+      \ the given course path (or the path resolved by the existing course-path resolution\
+      \ rules of FEAT-CLI), persists the resulting audit report under `.content-audit/audits/`,\
+      \ and prints the assigned audit id to standard error or standard output as it\
+      \ does today. The functional behavior of the audit run itself is unchanged;\
+      \ only the placement of the verb at the top of the command tree is asserted\
+      \ here."
+    validation: AUTO_VALIDATED
+  - id: F-CLIRV-R014
+    name: '`plan` is a top-level verb that creates a refinement plan'
+    severity: critical
+    description: "`content-audit plan` derives a refinement plan from an audit report\
+      \ and persists it under `.content-audit/plans/`. The audit source can be selected\
+      \ with `--audit <id>`; if the flag is absent, the most recent audit is used.\
+      \ The plan id assigned by the system is printed on success. The behavior of\
+      \ the planning logic itself is unchanged from the existing refiner-plan command;\
+      \ only its placement at the top level is asserted here."
+    errorMessage: Audit '<id>' not found
+    validation: AUTO_VALIDATED
+  - id: F-CLIRV-R015
+    name: "`revise` operates on a task, scoped to a plan"
+    severity: critical
+    description: "`content-audit revise task <task-id>` runs the revision workflow\
+      \ defined by FEAT-REVBYP against the named task. The task id is the same id\
+      \ reported by `get tasks` and by the plan-task listings. Task ids are sequential\
+      \ **within** a plan (`task-001`, `task-002`, ...) and are not globally unique\
+      \ across plans. The owning plan is resolved as follows: 1. **Default — no `--plan`\
+      \ flag.** The most recently created plan (by creation timestamp) is used as\
+      \ the implicit source. This mirrors the `get tasks` default of R012, so an operator\
+      \ who just ran `get tasks --status pending --sort priority --limit 1` can copy\
+      \ the printed task id directly into `revise task <id>` without restating which\
+      \ plan it belongs to. 2. **Explicit — `--plan <plan-id>` flag.** The named plan\
+      \ is used as the source. This is the disambiguator for cases where the operator\
+      \ wants to revise a task in an older plan (e.g. they are still working through\
+      \ a backlog of plans). Failure modes: - If no plan exists at all (regardless\
+      \ of whether `--plan` was supplied), the command exits with a non-zero status\
+      \ and the message: **\"No plans available. Run 'content-audit plan' first.\"\
+      ** - If `--plan <id>` references a plan that does not exist, the command exits\
+      \ with a non-zero status and the message: **\"Plan '<id>' not found\"**. - If\
+      \ the task id does not match any task in the resolved plan, the command exits\
+      \ with a non-zero status and the message: **\"Task '<task-id>' not found in\
+      \ plan '<plan-id>'\"** (where `<plan-id>` is the resolved plan id, whether default\
+      \ or explicit, so the operator can see *which* plan was searched). The semantics\
+      \ of the revision itself, the artifact persistence, the validator verdict and\
+      \ the exit code mapping defined by FEAT-REVBYP are preserved unchanged."
+    errorMessage: No plans available. Run 'content-audit plan' first.
+    validation: VALIDATED
+  - id: F-CLIRV-R016
+    name: '`config` operates on an analyzer'
+    severity: major
+    description: "`content-audit config analyzer <analyzer-name>` shows the configuration\
+      \ of the named analyzer in the same shape produced by the existing analyzer-config\
+      \ command. The analyzer name is the canonical name reported by `get analyzers`.\
+      \ If the analyzer is not registered, the command exits with a non-zero status\
+      \ and lists the available analyzers in the error output. Configuration mutation\
+      \ is out of scope for this iteration; only the read shape is required."
+    errorMessage: Analyzer '<name>' not found. Run 'content-audit get analyzers' to
+      see available analyzers.
+    validation: AUTO_VALIDATED
+  - id: F-CLIRV-R021
+    name: '`stats` is a top-level verb that introspects a single analyzer''s behavior
+      on a course'
+    severity: major
+    description: "`content-audit stats analyzer <analyzer-name> [course-path]` runs\
+      \ the per-analyzer statistics rendering against the named analyzer over the\
+      \ named course (or the path resolved by the existing course-path resolution\
+      \ rules). The functional behavior is preserved verbatim from the existing `analyzer\
+      \ stats <name> [course]` command — the same statistics view, the same input\
+      \ resolution, the same exit-code semantics. The only change is the **placement**\
+      \ of the verb at the top of the command tree (`stats analyzer ...` instead of\
+      \ `analyzer stats ...`), which is consistent with the verb-then-resource grammar\
+      \ of this restructure. `stats` is kept as a first-class domain verb instead\
+      \ of being folded into `get analyzer <id>` because the two answer different\
+      \ questions: `get analyzer <id>` reads static registry/config information (the\
+      \ analyzer's identity), while `stats analyzer <id> [course]` runs the analyzer\
+      \ over a course and renders behavioral metrics. They are not the same shape\
+      \ and conflating them would be a regression. This is the same reason `analyze`\
+      \ was kept distinct from `create audit` (R004 / R013). If the named analyzer\
+      \ is not registered, the command fails with the same \"analyzer not found\"\
+      \ treatment as R016. If the course path cannot be resolved, the command fails\
+      \ with the same treatment as `analyze`."
+    errorMessage: Analyzer '<name>' not found. Run 'content-audit get analyzers' to
+      see available analyzers.
+    validation: VALIDATED
+  - id: F-CLIRV-R017
+    name: The CLI accepts an external override for the workdir via `--workdir` flag
+      and `CONTENT_AUDIT_HOME` env var
+    severity: critical
+    description: "The CLI must support two external mechanisms by which the caller\
+      \ can redirect the location of the `.content-audit/` workdir (which contains\
+      \ `audits/`, `plans/`, and `revisions/`) without modifying the binary: 1. A\
+      \ **global `--workdir <path>` flag** at the root of the command, accepted before\
+      \ the verb (e.g. `content-audit --workdir /tmp/sandbox analyze ...`). The flag\
+      \ is documented in `--help` and is per-invocation. 2. An **environment variable\
+      \ `CONTENT_AUDIT_HOME`** read at CLI startup. Useful for test scripts and shell\
+      \ sessions that want to redirect every invocation without retyping the flag.\
+      \ The chosen value must be resolved **before** any storage adapter is constructed,\
+      \ so that all three filesystem stores (`FileSystemAuditReportStore`, `FileSystemRefinementPlanStore`,\
+      \ `FileSystemRevisionArtifactStore`) are pointed at the same resolved root.\
+      \ **Precedence**, from highest to lowest: 1. The `--workdir <path>` flag, if\
+      \ present on the command line. 2. The `CONTENT_AUDIT_HOME` environment variable,\
+      \ if set and non-empty. 3. The default fallback: `.content-audit/` resolved\
+      \ relative to `System.getProperty(\"user.dir\")`, which is the operator's current\
+      \ working directory. This preserves the historical behavior. The required behavior,\
+      \ regardless of which mechanism supplied the value: 1. If an override is provided\
+      \ (via flag or env var), every read or write performed by the CLI against `.content-audit/...`\
+      \ resolves under the override path. No artifact is read from or written to any\
+      \ other location. 2. If no override is provided, the CLI falls back to `user.dir`\
+      \ per item 3 above. 3. The override applies uniformly to all three stores in\
+      \ a single CLI invocation. It is not possible for the audit store to honor the\
+      \ override while the plan store ignores it — they share one resolved root. 4.\
+      \ If the resolved override path does not exist or is not a writable directory,\
+      \ the CLI exits with a non-zero status and a clear error **before** any store\
+      \ is constructed. It does not silently fall back to `user.dir`; an explicit\
+      \ override that turns out to be invalid is an operator mistake to surface, not\
+      \ to mask. **Rationale**: this enables real shell-level end-to-end tests of\
+      \ the CLI against fixture courses without polluting the developer's actual `.content-audit/`\
+      \ directory. Two mechanisms cover the two real workflows: per-invocation tests\
+      \ use `--workdir`, while shell sessions and test harnesses that run many commands\
+      \ use `CONTENT_AUDIT_HOME`. The precedence (flag > env > default) mirrors how\
+      \ kubectl handles `KUBECONFIG` vs `--kubeconfig`."
+    errorMessage: The configured workdir override '<path>' is not a writable directory
+    validation: VALIDATED
+  - id: F-CLIRV-R018
+    name: The course content path is independent of the workdir override
+    severity: major
+    description: "The override defined in R017 applies only to the `.content-audit/`\
+      \ workdir (where audits, plans, and revisions are stored). It does **not** redirect\
+      \ the location of the course content folder that `analyze` reads (the path that\
+      \ today is supplied by the positional argument or by `CONTENT_AUDIT_CONTENT_FOLDER`).\
+      \ The two are deliberately decoupled so a sandbox test can point the workdir\
+      \ at a temp directory while still reading a fixture course from a stable location."
+    validation: AUTO_VALIDATED
+  - id: F-CLIRV-R019
+    name: No domain logic changes
+    severity: critical
+    description: "This requirement is exclusively a CLI surface restructure. It does\
+      \ not change anything about how audits are computed, how plans are generated,\
+      \ how correction contexts are resolved, how revisions are produced or applied,\
+      \ or how artifacts are stored on disk. The mapping of new verb to existing behavior\
+      \ is one-to-one. If any rule above appears to imply a domain change, that implication\
+      \ is unintended and the existing domain behavior wins."
+    validation: VALIDATED
+  - id: F-CLIRV-R020
+    name: No backwards-compatibility shims
+    severity: major
+    description: "The old `refiner ...` and `analyzer ...` command groups are removed\
+      \ without leaving deprecation aliases or pass-through shims. Invoking `content-audit\
+      \ refiner plan` (or `content-audit analyzer list`, `content-audit analyzer config\
+      \ <name>`, `content-audit analyzer stats <name> ...`) after this restructure\
+      \ must fail with the standard \"unknown command\" message produced by the CLI\
+      \ parser, the same as any other typo. The user has explicitly confirmed there\
+      \ are no external callers that would be broken. This rule removes the **paths**\
+      \ `refiner *` and `analyzer *`, not the underlying capabilities. Each capability\
+      \ is re-homed under the new grammar by R013–R016 and R021. In particular, `stats`\
+      \ survives the dissolution of the `analyzer` group as a top-level domain verb\
+      \ (R021); the only thing that goes away is the `analyzer stats` command path,\
+      \ not the feature."
+    validation: VALIDATED
+  journeys:
+  - id: F-CLIRV-J001
+    name: Full happy-path pipeline end-to-end with the new grammar
+    validation: AUTO_VALIDATED
+    flow:
+    - id: run_analyze
+      action: The operator invokes 'content-audit analyze <course-path>' against a
+        course
+      then: list_audits
+      gate:
+      - F-CLIRV-R013
+    - id: list_audits
+      action: The operator invokes 'content-audit get audits' and the system lists
+        all stored audits including the one just produced
+      then: create_plan
+      gate:
+      - F-CLIRV-R001
+      - F-CLIRV-R005
+      - F-CLIRV-R013
+    - id: create_plan
+      action: The operator invokes 'content-audit plan' and the system derives a plan
+        from the most recent audit and prints the new plan id
+      then: list_plans
+      gate:
+      - F-CLIRV-R014
+    - id: list_plans
+      action: The operator invokes 'content-audit get plans' and the system lists
+        all stored plans including the one just produced
+      then: list_tasks
+      gate:
+      - F-CLIRV-R001
+      - F-CLIRV-R005
+    - id: list_tasks
+      action: The operator invokes 'content-audit get tasks --status pending --sort
+        priority --limit 1' against the most recent plan and the system returns the
+        single highest-priority pending task
+      then: revise_task
+      gate:
+      - F-CLIRV-R008
+      - F-CLIRV-R009
+      - F-CLIRV-R012
+    - id: revise_task
+      action: The operator invokes 'content-audit revise task <task-id>' with the
+        id printed in the previous step and the revision workflow runs end-to-end
+        as defined by FEAT-REVBYP
+      then: prune_plans
+      gate:
+      - F-CLIRV-R015
+    - id: prune_plans
+      action: "The operator invokes 'content-audit prune plans --keep 1' and the system\
+        \ retains only the most recently created plan, removing older ones from .content-audit/plans/"
+      result: success
+      gate:
+      - F-CLIRV-R003
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-CLIRV-J002
+    name: "Reading a single resource by id, present and absent"
+    validation: AUTO_VALIDATED
+    flow:
+    - id: invoke_get
+      action: The operator invokes 'content-audit get audit <id>' for some id
+      outcomes:
+      - when: The id matches a stored audit
+        then: return_one
+      - when: No stored audit matches the id
+        then: return_not_found
+      gate:
+      - F-CLIRV-R001
+    - id: return_one
+      action: The system returns the single matching audit and exits with status zero
+      result: success
+    - id: return_not_found
+      action: The system reports that no audit was found with the given id and exits
+        with non-zero status
+      result: failure
+      gate:
+      - F-CLIRV-R001
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-CLIRV-J003
+    name: "Deleting a resource, present and absent"
+    validation: AUTO_VALIDATED
+    flow:
+    - id: invoke_delete
+      action: The operator invokes 'content-audit delete plan <id>' for some id
+      outcomes:
+      - when: The id matches a stored plan
+        then: confirm_removed
+      - when: No stored plan matches the id
+        then: report_not_found
+      gate:
+      - F-CLIRV-R002
+    - id: confirm_removed
+      action: A subsequent 'content-audit get plan <id>' for the same id reports that
+        no plan was found
+      result: success
+      gate:
+      - F-CLIRV-R001
+      - F-CLIRV-R002
+    - id: report_not_found
+      action: The system reports that no plan was found with the given id and exits
+        with non-zero status
+      result: failure
+      gate:
+      - F-CLIRV-R002
+      - F-CLIRV-R010
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-CLIRV-J004
+    name: Singular and plural forms produce the same result
+    validation: AUTO_VALIDATED
+    flow:
+    - id: invoke_form
+      action: "The operator invokes the same logical request once using the singular\
+        \ resource form and once using the plural form (e.g. 'get audit' vs 'get audits',\
+        \ 'get plan <id>' vs 'get plans <id>')"
+      outcomes:
+      - when: The request is a list (no name argument)
+        then: same_list
+      - when: The request addresses one resource by id
+        then: same_one
+      gate:
+      - F-CLIRV-R006
+    - id: same_list
+      action: The system returns the same list under both forms
+      result: success
+      gate:
+      - F-CLIRV-R001
+      - F-CLIRV-R006
+    - id: same_one
+      action: The system returns the same single resource under both forms
+      result: success
+      gate:
+      - F-CLIRV-R001
+      - F-CLIRV-R006
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-CLIRV-J005
+    name: Sandbox workdir override redirects all artifact I/O
+    validation: VALIDATED
+    flow:
+    - id: configure_workdir
+      action: The operator configures an external workdir override pointing to a sandbox
+        directory before invoking the CLI
+      outcomes:
+      - when: The override path exists and is writable
+        then: run_pipeline_in_sandbox
+      - when: The override path is not a writable directory
+        then: report_workdir_invalid
+      - when: No override is configured
+        then: run_pipeline_in_user_dir
+      gate:
+      - F-CLIRV-R017
+    - id: run_pipeline_in_sandbox
+      action: "The operator invokes 'content-audit analyze ... ; content-audit plan\
+        \ ; content-audit get plans' in sequence; every artifact (audit, plan) is\
+        \ written under the sandbox path's '.content-audit/' subtree and the user.dir's\
+        \ '.content-audit/' subtree is left untouched"
+      result: success
+      gate:
+      - F-CLIRV-R017
+      - F-CLIRV-R018
+    - id: run_pipeline_in_user_dir
+      action: "The operator runs the same sequence without an override; every artifact\
+        \ is written under user.dir's '.content-audit/' subtree, which is the production\
+        \ fallback"
+      result: success
+      gate:
+      - F-CLIRV-R017
+    - id: report_workdir_invalid
+      action: The system reports that the configured override path is not a writable
+        directory and exits with non-zero status before any store is constructed
+      result: failure
+      gate:
+      - F-CLIRV-R017
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
 language:
   name: java
   version: 17

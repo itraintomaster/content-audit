@@ -1,0 +1,470 @@
+code: FEAT-CLIRV
+description: "Restructure audit-cli to kubectl-style verb-resource grammar (FEAT-CLIRV).\
+  \ Remove the refiner/analyzer subcommand groups and their interfaces; introduce\
+  \ flat verb-shaped command interfaces (GetCommand, DeleteCommand, PruneCommand,\
+  \ PlanCommand, ReviseCommand, plus renamed ConfigAnalyzerCommand and StatsAnalyzerCommand);\
+  \ add a workdir resolver in a new public bootstrap package so Main can construct\
+  \ FileSystem*Store instances with a resolved baseDir.; Revise ReviseCommand signature\
+  \ to carry an optional plan id (revise(String taskId, String planId): Integer).\
+  \ Task ids are sequential per plan ('task-%03d') and not unique across plans, so\
+  \ the operator must be able to disambiguate via --plan when needed; a null/blank\
+  \ planId means 'use the latest plan' to preserve the common-case kubectl-style 'revise\
+  \ task <id>' UX.; Restructure audit-cli to kubectl-style verb-resource grammar (FEAT-CLIRV).\
+  \ Remove the refiner/analyzer subcommand groups and their interfaces; introduce\
+  \ flat verb-shaped command interfaces (GetCommand, DeleteCommand, PruneCommand,\
+  \ PlanCommand, ReviseCommand, plus renamed ConfigAnalyzerCommand and StatsAnalyzerCommand);\
+  \ add a workdir resolver in a new public bootstrap package so Main can construct\
+  \ FileSystem*Store instances with a resolved baseDir. ReviseCommand carries an optional\
+  \ planId because task ids are sequential per plan and not unique across plans.;\
+  \ Restructure audit-cli to kubectl-style verb-resource grammar (FEAT-CLIRV). Remove\
+  \ the refiner/analyzer subcommand groups and their interfaces; introduce flat verb-shaped\
+  \ command interfaces (GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand,\
+  \ plus renamed ConfigAnalyzerCommand and StatsAnalyzerCommand); add a workdir resolver\
+  \ in a new public bootstrap package so Main can construct FileSystem*Store instances\
+  \ with a resolved baseDir. ReviseCommand carries an optional planId because task\
+  \ ids are sequential per plan and not unique across plans."
+modules:
+- name: audit-cli
+  description: CLI entry point for running content audits from the command line
+  models:
+  - name: GetTasksFilter
+    type: record
+    fields:
+    - name: planId
+      type: Optional<String>
+      description: "Restrict to tasks belonging to this plan id; if empty, the most\
+        \ recent plan is used (R012)"
+    - name: status
+      type: Optional<String>
+      description: "Restrict to tasks whose status matches this value, case-insensitive\
+        \ (pending/completed/skipped) — R008"
+    - name: sortByPriority
+      type: boolean
+      description: "If true, order results by ascending task priority — R008"
+    - name: limit
+      type: Optional<Integer>
+      description: Cap the result count after filter+sort; 0 yields empty (R009);
+        negative is rejected
+    _change: add
+  interfaces:
+  - name: AnalyzerListCommand
+    sealed: false
+    _change: delete
+  - name: AnalyzerConfigCommand
+    sealed: false
+    _change: delete
+  - name: AnalyzerStatsCommand
+    sealed: false
+    _change: delete
+  - name: RefinerPlanCommand
+    sealed: false
+    _change: delete
+  - name: RefinerNextCommand
+    sealed: false
+    _change: delete
+  - name: RefinerListCommand
+    sealed: false
+    _change: delete
+  - name: RefinerReviseCommand
+    sealed: false
+    _change: delete
+  - name: GetCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "get(String resource, String name, GetTasksFilter filter): Integer"
+    _change: add
+  - name: DeleteCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "delete(String resource, String id): Integer"
+    _change: add
+  - name: PruneCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "prune(String resource, int keep): Integer"
+    _change: add
+  - name: PlanCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "plan(String auditId): Integer"
+    _change: add
+  - name: ReviseCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "revise(String taskId, String planId): Integer"
+    _change: add
+  - name: ConfigAnalyzerCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "showConfig(String analyzerName): Integer"
+    _change: add
+  - name: StatsAnalyzerCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "showStats(String analyzerName, String coursePath): Integer"
+    _change: add
+  packages:
+  - name: commands
+    visibility: internal
+    implementations:
+    - name: ContentAuditCmd
+      handwrittenTests:
+      - name: should fail with picocli 'unknown subcommand' when invoked with the
+          removed 'refiner' subcommand
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R020
+      - name: should fail with picocli 'unknown subcommand' when invoked with the
+          removed 'analyzer' subcommand
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R020
+    - name: GetCmd
+      handwrittenTests:
+      - name: should list all stored audits when invoked as 'get audits' without a
+          name
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R001
+      - name: should return the single matching audit and exit zero when invoked as
+          'get audit <id>' with an existing id
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R001
+      - name: should report 'No audits found with id' and exit non-zero when invoked
+          as 'get audit <id>' with an unknown id
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R001
+      - name: should reject the request and list known resources when called with
+          an unknown resource name
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R005
+      - name: should treat singular 'audit' and plural 'audits' as equivalent when
+          listing
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R006
+      - name: should treat singular 'plan' and plural 'plans' as equivalent when addressing
+          one by id
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R006
+      - name: should print an audit id that can subsequently be passed back as 'get
+          audit <id>' to retrieve the same resource
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R007
+      - name: should restrict tasks to the named plan when 'get tasks --plan <id>'
+          is supplied
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R008
+      - name: should restrict tasks to the matching status when 'get tasks --status
+          pending' is supplied
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R008
+      - name: should sort tasks by ascending priority when 'get tasks --sort priority'
+          is supplied
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R008
+      - name: should cap the result count when 'get tasks --limit N' is supplied
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R008
+      - name: should return only the highest-priority pending task when --status pending
+          --sort priority --limit 1 are combined
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R008
+      - name: should reject --status with an invalid value and exit non-zero with
+          the allowed-values message
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R008
+      - name: should return zero tasks and exit zero when --limit 0 is supplied
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R009
+      - name: should reject --limit with a negative value and exit non-zero
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R009
+      - name: should report 'Plan <id> not found' and exit non-zero without falling
+          back when 'get tasks --plan <unknown-id>' is supplied
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R010
+      - name: should print 'No audits found.' and exit zero when no audits exist at
+          all
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R011
+      - name: should print 'No tasks found.' and exit zero when filters match zero
+          tasks
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R011
+      - name: should resolve to the most recent plan when 'get tasks' is invoked without
+          --plan
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R012
+      - name: should report 'No plans available' and exit non-zero without auto-creating
+          when 'get tasks' is invoked with no plans on disk
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R012
+    - name: DeleteCmd
+      handwrittenTests:
+      - name: should remove a single plan by id and report success when 'delete plan
+          <id>' is invoked with an existing id
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R002
+      - name: should remove a single audit by id when 'delete audit <id>' is invoked
+          and no plan references that audit
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R002
+      - name: should reject 'delete <resource>' without an id and exit non-zero with
+          'id is required'
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R002
+      - name: should reject 'delete task <id>' with the not-supported error since
+          delete operates on audit and plan only
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R002
+      - name: should reject 'delete analyzer <id>' since analyzers are not deletable
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R002
+      - name: should refuse 'delete audit <id>' and list dependent plan ids when at
+          least one plan references the audit
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R002
+      - name: should report 'No plans found with id' and exit non-zero when 'delete
+          plan <unknown-id>' is invoked
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R010
+      - name: should reject the request when 'delete' is called with an unknown resource
+          name
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R005
+      - name: should treat singular 'audit' and plural 'audits' as equivalent when
+          invoked as 'delete <form> <id>'
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R006
+      - name: should reject 'delete task' as a non-supported operation that would
+          mutate a plan in place
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R019
+    - name: PruneCmd
+      handwrittenTests:
+      - name: should keep the N most recent audits and remove the rest when 'prune
+          audits --keep N' is invoked
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R003
+      - name: should keep the N most recent plans and remove the rest when 'prune
+          plans --keep N' is invoked
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R003
+      - name: should keep all resources and remove zero when --keep N is greater than
+          the total count
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R003
+      - name: should reject negative values for --keep and exit non-zero
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R003
+      - name: should accept --keep 0 and remove every stored resource of the named
+          type
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R003
+      - name: should reject prune when called with an unknown resource name
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R005
+      - name: should treat singular 'audit' and plural 'audits' as equivalent when
+          invoked as 'prune <form> --keep N'
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R006
+      - name: "should report 'Kept 0 audits, removed 0' explicitly and exit zero when\
+          \ no audits exist on disk"
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R011
+    - name: PlanCmd
+      handwrittenTests:
+      - name: should derive a plan from the most recent audit and print the new plan
+          id when 'plan' is invoked without --audit
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R014
+      - name: should derive a plan from the named audit and print the new plan id
+          when 'plan --audit <id>' is invoked
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R014
+      - name: should report 'No audits available' and exit non-zero when 'plan' is
+          invoked with no audits on disk and no --audit flag
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R014
+      - name: should report 'Audit <id> not found' and exit non-zero when --audit
+          references an unknown id
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R014
+      - name: "should preserve the existing refiner-plan behavior under the new top-level\
+          \ placement (verb relocated, semantics unchanged)"
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R004
+    - name: ReviseCmd
+      handwrittenTests:
+      - name: should resolve the task in the most recent plan when 'revise task <id>'
+          is invoked without --plan
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R015
+      - name: should resolve the task in the named plan when 'revise task <id> --plan
+          <plan-id>' is invoked with an existing plan id
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R015
+      - name: should report 'No plans available' and exit non-zero when no plans exist
+          regardless of --plan
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R015
+      - name: should report 'Plan <id> not found' and exit non-zero when --plan references
+          an unknown plan id
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R015
+      - name: should report 'Task <task-id> not found in plan <plan-id>' naming the
+          resolved plan when the task id is absent from the resolved plan
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R015
+      - name: should report 'Task <task-id> not found in plan <plan-id>' naming the
+          explicitly supplied plan when --plan was used and the task is absent
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R015
+    - name: ConfigAnalyzerCmd
+      handwrittenTests:
+      - name: should print the analyzer's configuration in the existing shape when
+          'config analyzer <name>' is invoked with a known analyzer
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R016
+      - name: should report 'Analyzer <name> not found' and exit non-zero when 'config
+          analyzer <name>' is invoked with an unknown analyzer
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R016
+    - name: StatsAnalyzerCmd
+      handwrittenTests:
+      - name: should run the analyzer over the supplied course path and render the
+          stats view when invoked with a known analyzer
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R021
+      - name: should report 'Analyzer <name> not found' and exit non-zero when invoked
+          with an unknown analyzer
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R021
+      - name: should fall back to CONTENT_AUDIT_CONTENT_FOLDER env var when no course-path
+          argument is supplied
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R021
+      - name: should report a missing-course-path error and exit non-zero when neither
+          argument nor CONTENT_AUDIT_CONTENT_FOLDER is set
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R021
+  - name: bootstrap
+    visibility: internal
+    implementations:
+    - name: DefaultWorkdirResolver
+      handwrittenTests:
+      - name: should return the flag value when --workdir is provided and points to
+          an existing writable directory
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R017
+      - name: "should ignore CONTENT_AUDIT_HOME and use the flag value when both are\
+          \ set, validating flag-over-env precedence"
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R017
+      - name: should fall back to user.dir when neither --workdir nor CONTENT_AUDIT_HOME
+          is set
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R017
+      - name: should throw InvalidWorkdirException naming the override path when --workdir
+          points to a non-existent directory
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R017
+      - name: should throw InvalidWorkdirException naming the override path when --workdir
+          points to a regular file (not a directory)
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R017
+      - name: should not validate or interfere with the course content folder path
+          (workdir override is decoupled from course path)
+        traceability:
+          feature: FEAT-CLIRV
+          rule: F-CLIRV-R018
+  _change: modify
+features:
+- id: FEAT-CLIRV
+  journeys:
+  - id: F-CLIRV-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-CLIRV-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-CLIRV-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-CLIRV-J004
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-CLIRV-J005
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys

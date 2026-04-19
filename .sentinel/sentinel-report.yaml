@@ -1,4 +1,4 @@
-generatedAt: 2026-04-19T02:43:54.761583Z
+generatedAt: 2026-04-19T18:19:02.107369Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -162,6 +162,554 @@ features:
         passing: true
         module: audit-cli
         implementation: FDlabsJ003JourneyTest
+- id: FEAT-CLIRV
+  state: IMPLEMENTED
+  requirementFile: requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
+  patchFile: requirements/2026-04-19.01_cli-resource-verb-restructure/architectural_patch.yaml
+  rulesCoverage:
+  - ruleId: F-CLIRV-R001
+    state: PASSING
+    tests:
+    - name: should list all stored audits when invoked as 'get audits' without a name
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should return the single matching audit and exit zero when invoked as
+        'get audit <id>' with an existing id
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should report 'No audits found with id' and exit non-zero when invoked
+        as 'get audit <id>' with an unknown id
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+  - ruleId: F-CLIRV-R002
+    state: PASSING
+    tests:
+    - name: should remove a single plan by id and report success when 'delete plan
+        <id>' is invoked with an existing id
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DeleteCmd
+    - name: should remove a single audit by id when 'delete audit <id>' is invoked
+        and no plan references that audit
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DeleteCmd
+    - name: should reject 'delete <resource>' without an id and exit non-zero with
+        'id is required'
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DeleteCmd
+    - name: should reject 'delete task <id>' with the not-supported error since delete
+        operates on audit and plan only
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DeleteCmd
+    - name: should reject 'delete analyzer <id>' since analyzers are not deletable
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DeleteCmd
+    - name: should refuse 'delete audit <id>' and list dependent plan ids when at
+        least one plan references the audit
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DeleteCmd
+  - ruleId: F-CLIRV-R003
+    state: PASSING
+    tests:
+    - name: should keep the N most recent audits and remove the rest when 'prune audits
+        --keep N' is invoked
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: PruneCmd
+    - name: should keep the N most recent plans and remove the rest when 'prune plans
+        --keep N' is invoked
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: PruneCmd
+    - name: should keep all resources and remove zero when --keep N is greater than
+        the total count
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: PruneCmd
+    - name: should reject negative values for --keep and exit non-zero
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: PruneCmd
+    - name: should accept --keep 0 and remove every stored resource of the named type
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: PruneCmd
+  - ruleId: F-CLIRV-R004
+    state: PASSING
+    tests:
+    - name: "should preserve the existing refiner-plan behavior under the new top-level\
+        \ placement (verb relocated, semantics unchanged)"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: PlanCmd
+  - ruleId: F-CLIRV-R005
+    state: PASSING
+    tests:
+    - name: should reject the request and list known resources when called with an
+        unknown resource name
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should reject the request when 'delete' is called with an unknown resource
+        name
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DeleteCmd
+    - name: should reject prune when called with an unknown resource name
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: PruneCmd
+  - ruleId: F-CLIRV-R006
+    state: PASSING
+    tests:
+    - name: should treat singular 'audit' and plural 'audits' as equivalent when listing
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should treat singular 'plan' and plural 'plans' as equivalent when addressing
+        one by id
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should treat singular 'audit' and plural 'audits' as equivalent when invoked
+        as 'delete <form> <id>'
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DeleteCmd
+    - name: should treat singular 'audit' and plural 'audits' as equivalent when invoked
+        as 'prune <form> --keep N'
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: PruneCmd
+  - ruleId: F-CLIRV-R007
+    state: PASSING
+    tests:
+    - name: should print an audit id that can subsequently be passed back as 'get
+        audit <id>' to retrieve the same resource
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+  - ruleId: F-CLIRV-R008
+    state: PASSING
+    tests:
+    - name: should restrict tasks to the named plan when 'get tasks --plan <id>' is
+        supplied
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should restrict tasks to the matching status when 'get tasks --status
+        pending' is supplied
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should sort tasks by ascending priority when 'get tasks --sort priority'
+        is supplied
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should cap the result count when 'get tasks --limit N' is supplied
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should return only the highest-priority pending task when --status pending
+        --sort priority --limit 1 are combined
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should reject --status with an invalid value and exit non-zero with the
+        allowed-values message
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+  - ruleId: F-CLIRV-R009
+    state: PASSING
+    tests:
+    - name: should return zero tasks and exit zero when --limit 0 is supplied
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should reject --limit with a negative value and exit non-zero
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+  - ruleId: F-CLIRV-R010
+    state: PASSING
+    tests:
+    - name: should report 'Plan <id> not found' and exit non-zero without falling
+        back when 'get tasks --plan <unknown-id>' is supplied
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should report 'No plans found with id' and exit non-zero when 'delete
+        plan <unknown-id>' is invoked
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DeleteCmd
+  - ruleId: F-CLIRV-R011
+    state: PASSING
+    tests:
+    - name: should print 'No audits found.' and exit zero when no audits exist at
+        all
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should print 'No tasks found.' and exit zero when filters match zero tasks
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: "should report 'Kept 0 audits, removed 0' explicitly and exit zero when\
+        \ no audits exist on disk"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: PruneCmd
+  - ruleId: F-CLIRV-R012
+    state: PASSING
+    tests:
+    - name: should resolve to the most recent plan when 'get tasks' is invoked without
+        --plan
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: should report 'No plans available' and exit non-zero without auto-creating
+        when 'get tasks' is invoked with no plans on disk
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+  - ruleId: F-CLIRV-R013
+    state: PASSING
+    tests:
+    - name: "should be registered as a top-level subcommand of content-audit (verb\
+        \ relocated, semantics unchanged)"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: AnalyzeCmd
+  - ruleId: F-CLIRV-R014
+    state: PASSING
+    tests:
+    - name: should derive a plan from the most recent audit and print the new plan
+        id when 'plan' is invoked without --audit
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: PlanCmd
+    - name: should derive a plan from the named audit and print the new plan id when
+        'plan --audit <id>' is invoked
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: PlanCmd
+    - name: should report 'No audits available' and exit non-zero when 'plan' is invoked
+        with no audits on disk and no --audit flag
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: PlanCmd
+    - name: should report 'Audit <id> not found' and exit non-zero when --audit references
+        an unknown id
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: PlanCmd
+  - ruleId: F-CLIRV-R015
+    state: PASSING
+    tests:
+    - name: should resolve the task in the most recent plan when 'revise task <id>'
+        is invoked without --plan
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ReviseCmd
+    - name: should resolve the task in the named plan when 'revise task <id> --plan
+        <plan-id>' is invoked with an existing plan id
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ReviseCmd
+    - name: should report 'No plans available' and exit non-zero when no plans exist
+        regardless of --plan
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ReviseCmd
+    - name: should report 'Plan <id> not found' and exit non-zero when --plan references
+        an unknown plan id
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ReviseCmd
+    - name: should report 'Task <task-id> not found in plan <plan-id>' naming the
+        resolved plan when the task id is absent from the resolved plan
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ReviseCmd
+    - name: should report 'Task <task-id> not found in plan <plan-id>' naming the
+        explicitly supplied plan when --plan was used and the task is absent
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ReviseCmd
+  - ruleId: F-CLIRV-R016
+    state: PASSING
+    tests:
+    - name: should print the analyzer's configuration in the existing shape when 'config
+        analyzer <name>' is invoked with a known analyzer
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ConfigAnalyzerCmd
+    - name: should report 'Analyzer <name> not found' and exit non-zero when 'config
+        analyzer <name>' is invoked with an unknown analyzer
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ConfigAnalyzerCmd
+  - ruleId: F-CLIRV-R021
+    state: PASSING
+    tests:
+    - name: should run the analyzer over the supplied course path and render the stats
+        view when invoked with a known analyzer
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: StatsAnalyzerCmd
+    - name: should report 'Analyzer <name> not found' and exit non-zero when invoked
+        with an unknown analyzer
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: StatsAnalyzerCmd
+    - name: should fall back to CONTENT_AUDIT_CONTENT_FOLDER env var when no course-path
+        argument is supplied
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: StatsAnalyzerCmd
+    - name: should report a missing-course-path error and exit non-zero when neither
+        argument nor CONTENT_AUDIT_CONTENT_FOLDER is set
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: StatsAnalyzerCmd
+  - ruleId: F-CLIRV-R017
+    state: PASSING
+    tests:
+    - name: should return the flag value when --workdir is provided and points to
+        an existing writable directory
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultWorkdirResolver
+    - name: "should ignore CONTENT_AUDIT_HOME and use the flag value when both are\
+        \ set, validating flag-over-env precedence"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultWorkdirResolver
+    - name: should fall back to user.dir when neither --workdir nor CONTENT_AUDIT_HOME
+        is set
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultWorkdirResolver
+    - name: should throw InvalidWorkdirException naming the override path when --workdir
+        points to a non-existent directory
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultWorkdirResolver
+    - name: should throw InvalidWorkdirException naming the override path when --workdir
+        points to a regular file (not a directory)
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultWorkdirResolver
+  - ruleId: F-CLIRV-R018
+    state: PASSING
+    tests:
+    - name: should not validate or interfere with the course content folder path (workdir
+        override is decoupled from course path)
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultWorkdirResolver
+  - ruleId: F-CLIRV-R019
+    state: PASSING
+    tests:
+    - name: should reject 'delete task' as a non-supported operation that would mutate
+        a plan in place
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DeleteCmd
+  - ruleId: F-CLIRV-R020
+    state: PASSING
+    tests:
+    - name: should fail with picocli 'unknown subcommand' when invoked with the removed
+        'refiner' subcommand
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ContentAuditCmd
+    - name: should fail with picocli 'unknown subcommand' when invoked with the removed
+        'analyzer' subcommand
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ContentAuditCmd
+  journeysCoverage:
+  - journeyId: F-CLIRV-J001
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FClirvJ001JourneyTest
+  - journeyId: F-CLIRV-J002
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_theIdMatchesAStoredAudit_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FClirvJ002JourneyTest
+    - pathId: path-2
+      result: failure
+      state: PASSING
+      tests:
+      - name: path2_noStoredAuditMatchesTheId_failure
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FClirvJ002JourneyTest
+  - journeyId: F-CLIRV-J003
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_theIdMatchesAStoredPlan_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FClirvJ003JourneyTest
+    - pathId: path-2
+      result: failure
+      state: PASSING
+      tests:
+      - name: path2_noStoredPlanMatchesTheId_failure
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FClirvJ003JourneyTest
+  - journeyId: F-CLIRV-J004
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_theRequestIsAListNoNameArgument_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FClirvJ004JourneyTest
+    - pathId: path-2
+      result: success
+      state: PASSING
+      tests:
+      - name: path2_theRequestAddressesOneResourceById_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FClirvJ004JourneyTest
+  - journeyId: F-CLIRV-J005
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_theOverridePathExistsAndIsWritable_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FClirvJ005JourneyTest
+    - pathId: path-2
+      result: failure
+      state: PASSING
+      tests:
+      - name: path2_theOverridePathIsNotAWritableDirectory_failure
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FClirvJ005JourneyTest
+    - pathId: path-3
+      result: success
+      state: PASSING
+      tests:
+      - name: path3_noOverrideIsConfigured_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FClirvJ005JourneyTest
 - id: FEAT-LREC
   state: IMPLEMENTING
   requirementFile: requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
@@ -2356,13 +2904,6 @@ features:
   - ruleId: F-REVBYP-R013
     state: PASSING
     tests:
-    - name: "Given a RevisionEngine that returns APPROVED_APPLIED, when revise is\
-        \ invoked with planId and taskId, then it delegates to engine.revise and returns\
-        \ exit code 0"
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerReviseCmd
     - name: "Given an APPROVED proposal applied successfully, when revise finishes,\
         \ then the RefinementTask transitions to DONE"
       implemented: true
@@ -2634,83 +3175,17 @@ features:
       passing: true
       module: refiner-domain
       implementation: DispatchingCorrectionContextResolver
-    - name: should resolve correction context when task diagnosis is LEMMA_ABSENCE
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
   - ruleId: F-RCLA-R008
-    state: PASSING
-    tests:
-    - name: should include correctionContext with misplacedLemmas array in JSON for
-        LEMMA_ABSENCE task
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should include misplacedLemmas with lemma pos expectedLevel quizLevel
-        and cocaRank in JSON correctionContext
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should include suggestedLemmas array in JSON correctionContext for LEMMA_ABSENCE
-        task
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should set correctionContext to null and include correctionContextError
-        in JSON for LEMMA_ABSENCE when resolver returns empty
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should include sentence translation knowledgeTitle knowledgeInstructions
-        topicLabel and cefrLevel in JSON correctionContext for LEMMA_ABSENCE
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
+    state: NO_TESTS
   - ruleId: F-RCLA-R009
-    state: PASSING
-    tests:
-    - name: should print correction context section with misplaced lemmas in text
-        format for LEMMA_ABSENCE task
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should print numbered misplaced lemmas list with expected and found levels
-        in text format
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should print suggested replacements in text format for LEMMA_ABSENCE task
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should print none available for suggested replacements when list is empty
-        in text format for LEMMA_ABSENCE
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should print not available message when LEMMA_ABSENCE context cannot be
-        built in text format
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
+    state: NO_TESTS
   journeysCoverage:
   - journeyId: F-RCLA-J001
     state: NO_TESTS
   - journeyId: F-RCLA-J002
     state: NO_TESTS
 - id: FEAT-RCSL
-  state: IMPLEMENTED
+  state: IMPLEMENTING
   requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCSL-R001
@@ -2848,110 +3323,11 @@ features:
       module: refiner-domain
       implementation: SentenceLengthContextResolver
   - ruleId: F-RCSL-R006
-    state: PASSING
-    tests:
-    - name: should resolve correction context when task diagnosis is SENTENCE_LENGTH
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should not resolve correction context when task diagnosis is COCA_BUCKETS
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
+    state: NO_TESTS
   - ruleId: F-RCSL-R007
-    state: PASSING
-    tests:
-    - name: should include correctionContext object in JSON when context resolves
-        successfully
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should include sentence translation knowledgeTitle knowledgeInstructions
-        topicLabel and cefrLevel in JSON correctionContext
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should include targetRange with min and max and delta in JSON correctionContext
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should include suggestedLemmas array with lemma pos reason and cocaRank
-        in JSON correctionContext
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should set correctionContext to null and include correctionContextError
-        when audit report not found
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should set correctionContext to null and include correctionContextError
-        when sourceAuditId is blank
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should set correctionContext to null and include correctionContextError
-        when resolver returns empty
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should output empty suggestedLemmas array in JSON when context has no
-        suggested lemmas
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
+    state: NO_TESTS
   - ruleId: F-RCSL-R008
-    state: PASSING
-    tests:
-    - name: should print correction context section with all fields in text format
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should print numbered suggested lemmas list with lemma pos reason and
-        COCA rank in text format
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should print none available for suggested lemmas when list is empty in
-        text format
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should format positive delta with plus sign in text output tokens line
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should format negative delta without plus sign in text output tokens line
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should print not available message with error reason when context cannot
-        be built in text format
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
-    - name: should print correction context section in table format for SENTENCE_LENGTH
-        task
-      implemented: true
-      passing: true
-      module: audit-cli
-      implementation: RefinerNextCmd
+    state: NO_TESTS
   journeysCoverage:
   - journeyId: F-RCSL-J001
     state: PASSING
@@ -9569,6 +9945,23 @@ elements:
         throws CourseValidationException: sut.save(emptyMilestoneCourse, Path.of("/tmp/test-empty-milestone-output"))
 - module: audit-cli
   status: EXISTS
+  models:
+  - name: GetTasksFilter
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/GetTasksFilter.java
+    fields:
+    - name: planId
+      status: EXISTS
+    - name: status
+      status: EXISTS
+    - name: sortByPriority
+      status: EXISTS
+    - name: limit
+      status: EXISTS
+    - name: target
+      status: EXISTS
+    - name: diagnosisKind
+      status: EXISTS
   interfaces:
   - name: AnalyzeCommand
     status: EXISTS
@@ -9577,47 +9970,47 @@ elements:
     - signature: "analyze(String coursePath, String format, String level, String topic,\
         \ String knowledge, List<String> analyzers, boolean detailed): Integer"
       status: EXISTS
-  - name: AnalyzerListCommand
+  - name: GetCommand
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerListCommand.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/GetCommand.java
     methods:
-    - signature: "list(): Integer"
+    - signature: "get(String resource, String name, GetTasksFilter filter): Integer"
       status: EXISTS
-  - name: AnalyzerConfigCommand
+  - name: DeleteCommand
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerConfigCommand.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/DeleteCommand.java
     methods:
-    - signature: "showConfig(String analyzerName): Integer"
+    - signature: "delete(String resource, String id): Integer"
       status: EXISTS
-  - name: AnalyzerStatsCommand
+  - name: PruneCommand
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzerStatsCommand.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/PruneCommand.java
     methods:
-    - signature: "showStats(String analyzerName, String coursePath): Integer"
+    - signature: "prune(String resource, int keep): Integer"
       status: EXISTS
-  - name: RefinerPlanCommand
+  - name: PlanCommand
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/RefinerPlanCommand.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/PlanCommand.java
     methods:
     - signature: "plan(String auditId): Integer"
       status: EXISTS
-  - name: RefinerNextCommand
+  - name: ReviseCommand
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/RefinerNextCommand.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ReviseCommand.java
     methods:
-    - signature: "next(String planId): Integer"
+    - signature: "revise(String taskId, String planId): Integer"
       status: EXISTS
-  - name: RefinerListCommand
+  - name: ConfigAnalyzerCommand
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/RefinerListCommand.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ConfigAnalyzerCommand.java
     methods:
-    - signature: "listTasks(String planId): Integer"
+    - signature: "showConfig(String analyzerName): Integer"
       status: EXISTS
-  - name: RefinerReviseCommand
+  - name: StatsAnalyzerCommand
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/RefinerReviseCommand.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/StatsAnalyzerCommand.java
     methods:
-    - signature: "revise(String planId, String taskId): Integer"
+    - signature: "showStats(String analyzerName, String coursePath): Integer"
       status: EXISTS
   implementations:
   - name: Main
@@ -9626,1062 +10019,1132 @@ elements:
   - name: ContentAuditCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/ContentAuditCmd.java
+    tests:
+    - name: should fail with picocli 'unknown subcommand' when invoked with the removed
+        'refiner' subcommand
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ContentAuditCmdTest.java
+    - name: should fail with picocli 'unknown subcommand' when invoked with the removed
+        'analyzer' subcommand
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ContentAuditCmdTest.java
+    testCleanViews:
+    - |
+      test: "should fail with picocli 'unknown subcommand' when invoked with the removed 'refiner' subcommand"
+      trace: FEAT-CLIRV / F-CLIRV-R020
+
+      given:
+        errCapture = ByteArrayOutputStream()
+        commandLine = buildBareCommandLine(errCapture)
+        exitCode = commandLine.execute("refiner", "plan")
+        errOutput = errCapture.toString()
+
+      then:
+        0 != null
+        errOutput.contains("Unmatched") || errOutput.contains("Unknown") || errOutput.contains("refiner") is true
+    - |
+      test: "should fail with picocli 'unknown subcommand' when invoked with the removed 'analyzer' subcommand"
+      trace: FEAT-CLIRV / F-CLIRV-R020
+
+      given:
+        errCapture = ByteArrayOutputStream()
+        commandLine = buildBareCommandLine(errCapture)
+        exitCode = commandLine.execute("analyzer", "list")
+        errOutput = errCapture.toString()
+
+      then:
+        0 != null
+        errOutput.contains("Unmatched") || errOutput.contains("Unknown") || errOutput.contains("analyzer") is true
   - name: AnalyzeCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmd.java
-  - name: AnalyzerCmd
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/AnalyzerCmd.java
-  - name: AnalyzerListCmd
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/AnalyzerListCmd.java
-  - name: AnalyzerConfigCmd
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/AnalyzerConfigCmd.java
-  - name: AnalyzerStatsCmd
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/AnalyzerStatsCmd.java
-  - name: RefinerCmd
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RefinerCmd.java
-  - name: RefinerPlanCmd
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RefinerPlanCmd.java
-  - name: RefinerNextCmd
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmd.java
     tests:
-    - name: should resolve correction context when task diagnosis is SENTENCE_LENGTH
+    - name: "should be registered as a top-level subcommand of content-audit (verb\
+        \ relocated, semantics unchanged)"
       status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should not resolve correction context when task diagnosis is COCA_BUCKETS
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should include correctionContext object in JSON when context resolves
-        successfully
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should include sentence translation knowledgeTitle knowledgeInstructions
-        topicLabel and cefrLevel in JSON correctionContext
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should include targetRange with min and max and delta in JSON correctionContext
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should include suggestedLemmas array with lemma pos reason and cocaRank
-        in JSON correctionContext
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should set correctionContext to null and include correctionContextError
-        when audit report not found
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should set correctionContext to null and include correctionContextError
-        when sourceAuditId is blank
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should set correctionContext to null and include correctionContextError
-        when resolver returns empty
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should output empty suggestedLemmas array in JSON when context has no
-        suggested lemmas
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should print correction context section with all fields in text format
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should print numbered suggested lemmas list with lemma pos reason and
-        COCA rank in text format
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should print none available for suggested lemmas when list is empty in
-        text format
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should format positive delta with plus sign in text output tokens line
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should format negative delta without plus sign in text output tokens line
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should print not available message with error reason when context cannot
-        be built in text format
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should print correction context section in table format for SENTENCE_LENGTH
-        task
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should resolve correction context when task diagnosis is LEMMA_ABSENCE
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should include correctionContext with misplacedLemmas array in JSON for
-        LEMMA_ABSENCE task
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should include misplacedLemmas with lemma pos expectedLevel quizLevel
-        and cocaRank in JSON correctionContext
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should include suggestedLemmas array in JSON correctionContext for LEMMA_ABSENCE
-        task
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should set correctionContext to null and include correctionContextError
-        in JSON for LEMMA_ABSENCE when resolver returns empty
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should print correction context section with misplaced lemmas in text
-        format for LEMMA_ABSENCE task
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should print numbered misplaced lemmas list with expected and found levels
-        in text format
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should print suggested replacements in text format for LEMMA_ABSENCE task
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should print none available for suggested replacements when list is empty
-        in text format for LEMMA_ABSENCE
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should print not available message when LEMMA_ABSENCE context cannot be
-        built in text format
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
-    - name: should include sentence translation knowledgeTitle knowledgeInstructions
-        topicLabel and cefrLevel in JSON correctionContext for LEMMA_ABSENCE
-      status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerNextCmdTest.java
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmdTest.java
     testCleanViews:
     - |
-      test: "should resolve correction context when task diagnosis is SENTENCE_LENGTH"
-      trace: FEAT-RCSL / F-RCSL-R006 / F-RCSL-J001
+      test: "should be registered as a top-level subcommand of content-audit (verb relocated, semantics unchanged)"
+      trace: FEAT-CLIRV / F-CLIRV-R013
 
       given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-001", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        context = SentenceLengthCorrectionContext("task-001", "She plays tennis every day.", "Ella juega tenis todos los dias.", "Present Simple Affirmative", "Write the affirmative form.", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.next("plan-001")
+        annotation = AnalyzeCmd.class.getAnnotation(Command.class)
 
       then:
-        verify: resolver.resolve(report, task)
-    - |
-      test: "should not resolve correction context when task diagnosis is COCA_BUCKETS"
-      trace: FEAT-RCSL / F-RCSL-R006
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-003", DiagnosisKind.COCA_BUCKETS)
-        plan = buildPlan("audit-001", task)
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-
-      when:
-        sut.next("plan-001")
-
-      then:
-        verify: reportStore.load(any()) x 0
-        verify: resolver.resolve(any(), any()) x 0
-    - |
-      test: "should include correctionContext object in JSON when context resolves successfully"
-      trace: FEAT-RCSL / F-RCSL-R007 / F-RCSL-J001
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        root = ObjectMapper().readTree(outContent.toString())
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        root.has("correctionContext") is true
-        root.get("correctionContext").isNull() is false
-        root.get("correctionContext").isObject() is true
-        root.has("correctionContextError") is false
-    - |
-      test: "should include sentence translation knowledgeTitle knowledgeInstructions topicLabel and cefrLevel in JSON correctionContext"
-      trace: FEAT-RCSL / F-RCSL-R007
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        ctx = ObjectMapper().readTree(outContent.toString()).get("correctionContext")
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        ctx.get("sentence").asText() == "She plays tennis every afternoon with her friends"
-        ctx.get("translation").asText() == "Ella juega tenis todas las tardes con sus amigas"
-        ctx.get("knowledgeTitle").asText() == "Affirmative sentences in the present simple"
-        ctx.get("knowledgeInstructions").asText() == "Escribe la forma afirmativa"
-        ctx.get("topicLabel").asText() == "Present Simple"
-        ctx.get("cefrLevel").asText() == "A1"
-    - |
-      test: "should include targetRange with min and max and delta in JSON correctionContext"
-      trace: FEAT-RCSL / F-RCSL-R007
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        ctx = ObjectMapper().readTree(outContent.toString()).get("correctionContext")
-        targetRange = ctx.get("targetRange")
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        ctx.get("tokenCount").asInt() == 15
-        ctx.get("delta").asInt() == 7
-        targetRange is not null
-        targetRange.isObject() is true
-        targetRange.get("min").asInt() == 5
-        targetRange.get("max").asInt() == 8
-    - |
-      test: "should include suggestedLemmas array with lemma pos reason and cocaRank in JSON correctionContext"
-      trace: FEAT-RCSL / F-RCSL-R007
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        lemmas = List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52), new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89), new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201))
-        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, lemmas)
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        suggestedLemmas = ObjectMapper().readTree(outContent.toString()).get("correctionContext").get("suggestedLemmas")
-        first = suggestedLemmas.get(0)
-        second = suggestedLemmas.get(1)
-        third = suggestedLemmas.get(2)
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        suggestedLemmas is not null
-        suggestedLemmas.isArray() is true
-        suggestedLemmas.size() == 3
-        first.get("lemma").asText() == "like"
-        first.get("pos").asText() == "VERB"
-        first.get("reason").asText() == "COMPLETELY_ABSENT"
-        first.get("cocaRank").asInt() == 52
-        second.get("lemma").asText() == "want"
-        second.get("pos").asText() == "VERB"
-        second.get("reason").asText() == "APPEARS_TOO_LATE"
-        second.get("cocaRank").asInt() == 89
-        third.get("lemma").asText() == "big"
-        third.get("pos").asText() == "ADJ"
-        third.get("reason").asText() == "COMPLETELY_ABSENT"
-        third.get("cocaRank").asInt() == 201
-    - |
-      test: "should set correctionContext to null and include correctionContextError when audit report not found"
-      trace: FEAT-RCSL / F-RCSL-R007 / F-RCSL-J001
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("audit-missing", task)
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        root = ObjectMapper().readTree(outContent.toString())
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-missing") -> Optional.empty()
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        root.has("correctionContext") is true
-        root.get("correctionContext").isNull() is true
-        root.has("correctionContextError") is true
-        root.get("correctionContextError").asText().isBlank() is false
-    - |
-      test: "should set correctionContext to null and include correctionContextError when sourceAuditId is blank"
-      trace: FEAT-RCSL / F-RCSL-R007
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("", task)
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        root = ObjectMapper().readTree(outContent.toString())
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        root.has("correctionContext") is true
-        root.get("correctionContext").isNull() is true
-        root.has("correctionContextError") is true
-        root.get("correctionContextError").asText().isBlank() is false
-    - |
-      test: "should set correctionContext to null and include correctionContextError when resolver returns empty"
-      trace: FEAT-RCSL / F-RCSL-R007
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        root = ObjectMapper().readTree(outContent.toString())
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.empty()
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        root.has("correctionContext") is true
-        root.get("correctionContext").isNull() is true
-        root.has("correctionContextError") is true
-        root.get("correctionContextError").asText().isBlank() is false
-    - |
-      test: "should output empty suggestedLemmas array in JSON when context has no suggested lemmas"
-      trace: FEAT-RCSL / F-RCSL-R007 / F-RCSL-J003
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        suggestedLemmas = ObjectMapper().readTree(outContent.toString()).get("correctionContext").get("suggestedLemmas")
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        suggestedLemmas is not null
-        suggestedLemmas.isArray() is true
-        suggestedLemmas.size() == 0
-    - |
-      test: "should print correction context section with all fields in text format"
-      trace: FEAT-RCSL / F-RCSL-R008 / F-RCSL-J001
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        output = outContent.toString()
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        output.contains("Correction context:") is true
-        output.contains("Sentence:") is true
-        output.contains("She plays tennis every afternoon with her friends") is true
-        output.contains("Translation:") is true
-        output.contains("Ella juega tenis todas las tardes con sus amigas") is true
-        output.contains("Knowledge:") is true
-        output.contains("Affirmative sentences in the present simple") is true
-        output.contains("Instructions:") is true
-        output.contains("Escribe la forma afirmativa") is true
-        output.contains("Topic:") is true
-        output.contains("Present Simple") is true
-        output.contains("CEFR Level:") is true
-        output.contains("A1") is true
-        output.contains("Tokens:") is true
-        output.contains("15 (target: 5-8, delta: +7)") is true
-        output.contains("Suggested lemmas:") is true
-    - |
-      test: "should print numbered suggested lemmas list with lemma pos reason and COCA rank in text format"
-      trace: FEAT-RCSL / F-RCSL-R008
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        lemmas = List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52), new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89), new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201))
-        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, lemmas)
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        output = outContent.toString()
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        output.contains("1. like (VERB) - COMPLETELY_ABSENT [COCA #52]") is true
-        output.contains("2. want (VERB) - APPEARS_TOO_LATE [COCA #89]") is true
-        output.contains("3. big (ADJ) - COMPLETELY_ABSENT [COCA #201]") is true
-    - |
-      test: "should print none available for suggested lemmas when list is empty in text format"
-      trace: FEAT-RCSL / F-RCSL-R008 / F-RCSL-J003
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        output = outContent.toString()
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        output.contains("Suggested lemmas:") is true
-        output.contains("(none available)") is true
-    - |
-      test: "should format positive delta with plus sign in text output tokens line"
-      trace: FEAT-RCSL / F-RCSL-R008 / F-RCSL-J001
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        output = outContent.toString()
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        output.contains("delta: +7") is true
-    - |
-      test: "should format negative delta without plus sign in text output tokens line"
-      trace: FEAT-RCSL / F-RCSL-R008 / F-RCSL-J002
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        context = SentenceLengthCorrectionContext("task-014", "She plays", "Ella juega", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 5, 8, 12, -3, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        output = outContent.toString()
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        output.contains("delta: -3") is true
-        output.contains("delta: +-3") is false
-    - |
-      test: "should print not available message with error reason when context cannot be built in text format"
-      trace: FEAT-RCSL / F-RCSL-R008
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        output = outContent.toString()
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.empty()
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        output.contains("Correction context: not available") is true
-        output.contains("context could not be resolved for task task-014") is true
-    - |
-      test: "should print correction context section in table format for SENTENCE_LENGTH task"
-      trace: FEAT-RCSL / F-RCSL-R008
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.SENTENCE_LENGTH)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        context = SentenceLengthCorrectionContext("task-014", "She plays tennis every afternoon with her friends", "Ella juega tenis todas las tardes con sus amigas", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, 15, 5, 8, 7, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "table")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        output = outContent.toString()
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        output.contains("SENTENCE_LENGTH") is true
-        output.contains("Correction context:") is true
-        output.contains("Sentence:") is true
-        output.contains("She plays tennis every afternoon with her friends") is true
-        output.contains("15 (target: 5-8, delta: +7)") is true
-    - |
-      test: "should resolve correction context when task diagnosis is LEMMA_ABSENCE"
-      trace: FEAT-RCLA / F-RCLA-R007
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840))
-        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.next("plan-001")
-
-      then:
-        verify: resolver.resolve(report, task)
-    - |
-      test: "should include correctionContext with misplacedLemmas array in JSON for LEMMA_ABSENCE task"
-      trace: FEAT-RCLA / F-RCLA-R008
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840), new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205))
-        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        root = ObjectMapper().readTree(outContent.toString())
-        misplacedLemmas = root.get("correctionContext").get("misplacedLemmas")
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        root.has("correctionContext") is true
-        root.get("correctionContext").isNull() is false
-        misplacedLemmas is not null
-        misplacedLemmas.isArray() is true
-        misplacedLemmas.size() == 2
-    - |
-      test: "should include misplacedLemmas with lemma pos expectedLevel quizLevel and cocaRank in JSON correctionContext"
-      trace: FEAT-RCLA / F-RCLA-R008
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840), new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205))
-        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        misplacedLemmas = ObjectMapper().readTree(outContent.toString()).get("correctionContext").get("misplacedLemmas")
-        first = misplacedLemmas.get(0)
-        second = misplacedLemmas.get(1)
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        first.get("lemma").asText() == "negotiate"
-        first.get("pos").asText() == "VERB"
-        first.get("expectedLevel").asText() == "B2"
-        first.get("quizLevel").asText() == "A1"
-        first.get("cocaRank").asInt() == 2840
-        second.get("lemma").asText() == "contract"
-        second.get("pos").asText() == "NOUN"
-        second.get("expectedLevel").asText() == "B1"
-        second.get("quizLevel").asText() == "A1"
-        second.get("cocaRank").asInt() == 1205
-    - |
-      test: "should include suggestedLemmas array in JSON correctionContext for LEMMA_ABSENCE task"
-      trace: FEAT-RCLA / F-RCLA-R008
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840))
-        suggested = List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52), new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89), new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201))
-        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, suggested)
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        suggestedLemmas = ObjectMapper().readTree(outContent.toString()).get("correctionContext").get("suggestedLemmas")
-        first = suggestedLemmas.get(0)
-        second = suggestedLemmas.get(1)
-        third = suggestedLemmas.get(2)
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        suggestedLemmas is not null
-        suggestedLemmas.isArray() is true
-        suggestedLemmas.size() == 3
-        first.get("lemma").asText() == "like"
-        first.get("pos").asText() == "VERB"
-        first.get("reason").asText() == "COMPLETELY_ABSENT"
-        first.get("cocaRank").asInt() == 52
-        second.get("lemma").asText() == "want"
-        second.get("reason").asText() == "APPEARS_TOO_LATE"
-        third.get("lemma").asText() == "big"
-        third.get("pos").asText() == "ADJ"
-        third.get("cocaRank").asInt() == 201
-    - |
-      test: "should set correctionContext to null and include correctionContextError in JSON for LEMMA_ABSENCE when resolver returns empty"
-      trace: FEAT-RCLA / F-RCLA-R008
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        root = ObjectMapper().readTree(outContent.toString())
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.empty()
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        root.has("correctionContext") is true
-        root.get("correctionContext").isNull() is true
-        root.has("correctionContextError") is true
-        root.get("correctionContextError").asText().isBlank() is false
-    - |
-      test: "should print correction context section with misplaced lemmas in text format for LEMMA_ABSENCE task"
-      trace: FEAT-RCLA / F-RCLA-R009
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840))
-        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        output = outContent.toString()
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        output.contains("Correction context:") is true
-        output.contains("Sentence:") is true
-        output.contains("She needs to negotiate the contract before Friday") is true
-        output.contains("Translation:") is true
-        output.contains("Ella necesita negociar el contrato antes del viernes") is true
-        output.contains("Knowledge:") is true
-        output.contains("Affirmative sentences in the present simple") is true
-        output.contains("Instructions:") is true
-        output.contains("Escribe la forma afirmativa") is true
-        output.contains("Topic:") is true
-        output.contains("Present Simple") is true
-        output.contains("CEFR Level:") is true
-        output.contains("A1") is true
-        output.contains("Misplaced lemmas:") is true
-    - |
-      test: "should print numbered misplaced lemmas list with expected and found levels in text format"
-      trace: FEAT-RCLA / F-RCLA-R009
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840), new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205))
-        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        output = outContent.toString()
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        output.contains("1. negotiate (VERB) - expected B2, found in A1 [COCA #2840]") is true
-        output.contains("2. contract (NOUN) - expected B1, found in A1 [COCA #1205]") is true
-    - |
-      test: "should print suggested replacements in text format for LEMMA_ABSENCE task"
-      trace: FEAT-RCLA / F-RCLA-R009
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840))
-        suggested = List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52), new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89), new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201))
-        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, suggested)
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        output = outContent.toString()
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        output.contains("Suggested replacements:") is true
-        output.contains("1. like (VERB) - COMPLETELY_ABSENT [COCA #52]") is true
-        output.contains("2. want (VERB) - APPEARS_TOO_LATE [COCA #89]") is true
-        output.contains("3. big (ADJ) - COMPLETELY_ABSENT [COCA #201]") is true
-    - |
-      test: "should print none available for suggested replacements when list is empty in text format for LEMMA_ABSENCE"
-      trace: FEAT-RCLA / F-RCLA-R009
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840))
-        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        output = outContent.toString()
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        output.contains("Suggested replacements:") is true
-        output.contains("(none available)") is true
-    - |
-      test: "should print not available message when LEMMA_ABSENCE context cannot be built in text format"
-      trace: FEAT-RCLA / F-RCLA-R009
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "text")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        output = outContent.toString()
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.empty()
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        output.contains("Correction context: not available") is true
-        output.contains("context could not be resolved for task task-014") is true
-    - |
-      test: "should include sentence translation knowledgeTitle knowledgeInstructions topicLabel and cefrLevel in JSON correctionContext for LEMMA_ABSENCE"
-      trace: FEAT-RCLA / F-RCLA-R008
-
-      given:
-        planStore = mock(RefinementPlanStore.class)
-        refinerEngine = mock(RefinerEngine.class)
-        reportStore = mock(AuditReportStore.class)
-        resolver = mock(CorrectionContextResolver.class)
-        task = buildTask("task-014", DiagnosisKind.LEMMA_ABSENCE)
-        plan = buildPlan("audit-001", task)
-        report = AuditReport(null)
-        misplaced = List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840))
-        context = LemmaAbsenceCorrectionContext("task-014", "She needs to negotiate the contract before Friday", "Ella necesita negociar el contrato antes del viernes", "Affirmative sentences in the present simple", "Escribe la forma afirmativa", "Present Simple", CefrLevel.A1, misplaced, List.of())
-        cmd = buildCmd(planStore, refinerEngine, reportStore, resolver, "json")
-        originalOut = System.out
-        outContent = ByteArrayOutputStream()
-        ctx = ObjectMapper().readTree(outContent.toString()).get("correctionContext")
-
-      mock:
-        planStore.load("plan-001") -> Optional.of(plan)
-        reportStore.load("audit-001") -> Optional.of(report)
-        resolver.resolve(report, task) -> Optional.of(context)
-
-      when:
-        sut.setOut(new PrintStream(outContent))
-
-      then:
-        ctx.get("sentence").asText() == "She needs to negotiate the contract before Friday"
-        ctx.get("translation").asText() == "Ella necesita negociar el contrato antes del viernes"
-        ctx.get("knowledgeTitle").asText() == "Affirmative sentences in the present simple"
-        ctx.get("knowledgeInstructions").asText() == "Escribe la forma afirmativa"
-        ctx.get("topicLabel").asText() == "Present Simple"
-        ctx.get("cefrLevel").asText() == "A1"
-  - name: RefinerListCmd
+        annotation is not null
+        annotation.name() == "analyze"
+  - name: GetCmd
     status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RefinerListCmd.java
-  - name: RefinerReviseCmd
-    status: EXISTS
-    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RefinerReviseCmd.java
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/GetCmd.java
     tests:
-    - name: "Given a RevisionEngine that returns APPROVED_APPLIED, when revise is\
-        \ invoked with planId and taskId, then it delegates to engine.revise and returns\
-        \ exit code 0"
+    - name: should list all stored audits when invoked as 'get audits' without a name
       status: EXISTS
-      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RefinerReviseCmdTest.java
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should return the single matching audit and exit zero when invoked as
+        'get audit <id>' with an existing id
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should report 'No audits found with id' and exit non-zero when invoked
+        as 'get audit <id>' with an unknown id
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should reject the request and list known resources when called with an
+        unknown resource name
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should treat singular 'audit' and plural 'audits' as equivalent when listing
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should treat singular 'plan' and plural 'plans' as equivalent when addressing
+        one by id
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should print an audit id that can subsequently be passed back as 'get
+        audit <id>' to retrieve the same resource
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should restrict tasks to the named plan when 'get tasks --plan <id>' is
+        supplied
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should restrict tasks to the matching status when 'get tasks --status
+        pending' is supplied
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should sort tasks by ascending priority when 'get tasks --sort priority'
+        is supplied
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should cap the result count when 'get tasks --limit N' is supplied
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should return only the highest-priority pending task when --status pending
+        --sort priority --limit 1 are combined
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should reject --status with an invalid value and exit non-zero with the
+        allowed-values message
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should return zero tasks and exit zero when --limit 0 is supplied
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should reject --limit with a negative value and exit non-zero
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should report 'Plan <id> not found' and exit non-zero without falling
+        back when 'get tasks --plan <unknown-id>' is supplied
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should print 'No audits found.' and exit zero when no audits exist at
+        all
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should print 'No tasks found.' and exit zero when filters match zero tasks
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should resolve to the most recent plan when 'get tasks' is invoked without
+        --plan
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should report 'No plans available' and exit non-zero without auto-creating
+        when 'get tasks' is invoked with no plans on disk
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
     testCleanViews:
     - |
-      test: "Given a RevisionEngine that returns APPROVED_APPLIED, when revise is invoked with planId and taskId, then it delegates to engine.revise and returns exit code 0"
-      trace: FEAT-REVBYP / F-REVBYP-R013
+      test: "should list all stored audits when invoked as 'get audits' without a name"
+      trace: FEAT-CLIRV / F-CLIRV-R001
 
       given:
-        revisionEngine = mock(RevisionEngine.class)
-        approvedOutcome = RevisionOutcome(RevisionOutcomeKind.APPROVED_APPLIED, null, null)
-        cmd = RefinerReviseCmd(revisionEngine)
-        exitCode = cmd.revise("plan-001", "task-001")
+        summary = AuditReportSummary("2026-04-19T10-30-00", Instant.parse("2026-04-19T10:30:00Z"), "English Course", 0.82)
+        exit = cmd.get("audits", null, null)
 
       mock:
-        revisionEngine.revise(eq("plan-001"), eq("task-001"), any(Path.class)) -> approvedOutcome
+        auditReportStore.list() -> List.of(summary)
+
+      then:
+        exit == 0
+    - |
+      test: "should return the single matching audit and exit zero when invoked as 'get audit <id>' with an existing id"
+      trace: FEAT-CLIRV / F-CLIRV-R001
+
+      given:
+        auditId = "2026-04-19T10-30-00"
+        report = AuditReport()
+        exit = cmd.get("audit", auditId, null)
+
+      mock:
+        auditReportStore.load(auditId) -> Optional.of(report)
+
+      then:
+        exit == 0
+    - |
+      test: "should report 'No audits found with id' and exit non-zero when invoked as 'get audit <id>' with an unknown id"
+      trace: FEAT-CLIRV / F-CLIRV-R001
+
+      given:
+        unknownId = "unknown-audit-id"
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        combined = outBuf.toString() + errBuf.toString()
+
+      mock:
+        auditReportStore.load(unknownId) -> Optional.empty()
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+
+      then:
+        0 != null
+        combined.toLowerCase().contains("not found") || combined.contains(unknownId) is true
+    - |
+      test: "should reject the request and list known resources when called with an unknown resource name"
+      trace: FEAT-CLIRV / F-CLIRV-R005
+
+      given:
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        combined = outBuf.toString() + errBuf.toString()
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+
+      then:
+        0 != null
+        combined.contains("audits") || combined.contains("Unknown") is true
+    - |
+      test: "should treat singular 'audit' and plural 'audits' as equivalent when listing"
+      trace: FEAT-CLIRV / F-CLIRV-R006
+
+      given:
+        summary = AuditReportSummary("2026-04-19T10-30-00", Instant.parse("2026-04-19T10:30:00Z"), "English Course", 0.82)
+        exitPlural = cmd.get("audits", null, null)
+        exitSingular = cmd.get("audit", null, null)
+
+      mock:
+        auditReportStore.list() -> List.of(summary)
+
+      then:
+        exitSingular == exitPlural
+    - |
+      test: "should treat singular 'plan' and plural 'plans' as equivalent when addressing one by id"
+      trace: FEAT-CLIRV / F-CLIRV-R006
+
+      given:
+        planId = "plan-2026-04-19"
+        plan = RefinementPlan(planId, "2026-04-19T10-30-00", Instant.parse("2026-04-19T10:30:00Z"), List.of())
+        exitPlural = cmd.get("plans", planId, null)
+        exitSingular = cmd.get("plan", planId, null)
+
+      mock:
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+
+      then:
+        exitSingular == exitPlural
+    - |
+      test: "should print an audit id that can subsequently be passed back as 'get audit <id>' to retrieve the same resource"
+      trace: FEAT-CLIRV / F-CLIRV-R007
+
+      given:
+        auditId = "2026-04-19T10-30-00"
+        summary = AuditReportSummary(auditId, Instant.parse("2026-04-19T10:30:00Z"), "English Course", 0.85)
+        report = AuditReport()
+        listExit = cmd.get("audits", null, null)
+        getByIdExit = cmd.get("audit", auditId, null)
+
+      mock:
+        auditReportStore.list() -> List.of(summary)
+        auditReportStore.load(auditId) -> Optional.of(report)
+
+      then:
+        listExit == 0
+        getByIdExit == 0
+    - |
+      test: "should restrict tasks to the named plan when 'get tasks --plan <id>' is supplied"
+      trace: FEAT-CLIRV / F-CLIRV-R008
+
+      given:
+        planId = "plan-2026-04-19"
+        task = RefinementTask("task-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan(planId, "2026-04-19T10-30-00", Instant.parse("2026-04-19T10:30:00Z"), List.of(task))
+        filter = GetTasksFilter(Optional.of(planId), Optional.empty(), false, Optional.empty(), Optional.empty(), Optional.empty())
+        exit = cmd.get("tasks", null, filter)
+
+      mock:
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+
+      then:
+        exit == 0
+    - |
+      test: "should restrict tasks to the matching status when 'get tasks --status pending' is supplied"
+      trace: FEAT-CLIRV / F-CLIRV-R008
+
+      given:
+        pendingTask = RefinementTask("task-001", AuditTarget.KNOWLEDGE, "knowledge-node-1", "Knowledge 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        completedTask = RefinementTask("task-002", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.COMPLETED)
+        plan = RefinementPlan("plan-2026-04-19", "2026-04-19T10-30-00", Instant.parse("2026-04-19T10:30:00Z"), List.of(pendingTask, completedTask))
+        filter = GetTasksFilter(Optional.empty(), Optional.of("pending"), false, Optional.empty(), Optional.empty(), Optional.empty())
+        exit = cmd.get("tasks", null, filter)
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+
+      then:
+        exit == 0
+    - |
+      test: "should sort tasks by ascending priority when 'get tasks --sort priority' is supplied"
+      trace: FEAT-CLIRV / F-CLIRV-R008
+
+      given:
+        highPriority = RefinementTask("task-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.COCA_BUCKETS, 1, RefinementTaskStatus.PENDING)
+        lowPriority = RefinementTask("task-002", AuditTarget.KNOWLEDGE, "knowledge-node-1", "Knowledge 1", DiagnosisKind.SENTENCE_LENGTH, 3, RefinementTaskStatus.PENDING)
+        midPriority = RefinementTask("task-003", AuditTarget.TOPIC, "topic-node-1", "Topic 1", DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", "2026-04-19T10-30-00", Instant.parse("2026-04-19T10:30:00Z"), List.of(lowPriority, highPriority, midPriority))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), true, Optional.empty(), Optional.empty(), Optional.empty())
+        exit = cmd.get("tasks", null, filter)
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+
+      then:
+        exit == 0
+    - |
+      test: "should cap the result count when 'get tasks --limit N' is supplied"
+      trace: FEAT-CLIRV / F-CLIRV-R008
+
+      given:
+        task1 = RefinementTask("task-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        task2 = RefinementTask("task-002", AuditTarget.KNOWLEDGE, "knowledge-node-1", "Knowledge 1", DiagnosisKind.SENTENCE_LENGTH, 2, RefinementTaskStatus.PENDING)
+        task3 = RefinementTask("task-003", AuditTarget.TOPIC, "topic-node-1", "Topic 1", DiagnosisKind.COCA_BUCKETS, 3, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", "2026-04-19T10-30-00", Instant.parse("2026-04-19T10:30:00Z"), List.of(task1, task2, task3))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(2), Optional.empty(), Optional.empty())
+        exit = cmd.get("tasks", null, filter)
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+
+      then:
+        exit == 0
+    - |
+      test: "should return only the highest-priority pending task when --status pending --sort priority --limit 1 are combined"
+      trace: FEAT-CLIRV / F-CLIRV-R008
+
+      given:
+        pendingHigh = RefinementTask("task-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        pendingLow = RefinementTask("task-002", AuditTarget.KNOWLEDGE, "knowledge-node-1", "Knowledge 1", DiagnosisKind.SENTENCE_LENGTH, 3, RefinementTaskStatus.PENDING)
+        completed = RefinementTask("task-003", AuditTarget.TOPIC, "topic-node-1", "Topic 1", DiagnosisKind.COCA_BUCKETS, 2, RefinementTaskStatus.COMPLETED)
+        plan = RefinementPlan("plan-2026-04-19", "2026-04-19T10-30-00", Instant.parse("2026-04-19T10:30:00Z"), List.of(pendingHigh, pendingLow, completed))
+        filter = GetTasksFilter(Optional.empty(), Optional.of("pending"), true, Optional.of(1), Optional.empty(), Optional.empty())
+        exit = cmd.get("tasks", null, filter)
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+
+      then:
+        exit == 0
+    - |
+      test: "should reject --status with an invalid value and exit non-zero with the allowed-values message"
+      trace: FEAT-CLIRV / F-CLIRV-R008
+
+      given:
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        combined = outBuf.toString() + errBuf.toString()
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+
+      then:
+        0 != null
+        combined.contains("pending") || combined.contains("Allowed") || combined.contains("invalid") is true
+    - |
+      test: "should return zero tasks and exit zero when --limit 0 is supplied"
+      trace: FEAT-CLIRV / F-CLIRV-R009
+
+      given:
+        task = RefinementTask("task-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-04-19", "2026-04-19T10-30-00", Instant.parse("2026-04-19T10:30:00Z"), List.of(task))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(0), Optional.empty(), Optional.empty())
+        exit = cmd.get("tasks", null, filter)
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+
+      then:
+        exit == 0
+    - |
+      test: "should reject --limit with a negative value and exit non-zero"
+      trace: FEAT-CLIRV / F-CLIRV-R009
+
+      given:
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(-1), Optional.empty(), Optional.empty())
+        exit = cmd.get("tasks", null, filter)
+
+      then:
+        0 != null
+    - |
+      test: "should report 'Plan <id> not found' and exit non-zero without falling back when 'get tasks --plan <unknown-id>' is supplied"
+      trace: FEAT-CLIRV / F-CLIRV-R010
+
+      given:
+        unknownPlanId = "plan-does-not-exist"
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        combined = outBuf.toString() + errBuf.toString()
+
+      mock:
+        refinementPlanStore.load(unknownPlanId) -> Optional.empty()
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+
+      then:
+        0 != null
+        combined.contains(unknownPlanId) || combined.toLowerCase().contains("not found") is true
+    - |
+      test: "should print 'No audits found.' and exit zero when no audits exist at all"
+      trace: FEAT-CLIRV / F-CLIRV-R011
+
+      given:
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+        combined = outBuf.toString() + errBuf.toString()
+
+      mock:
+        auditReportStore.list() -> List.of()
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        combined.toLowerCase().contains("no") && combined.toLowerCase().contains("audit") is true
+    - |
+      test: "should print 'No tasks found.' and exit zero when filters match zero tasks"
+      trace: FEAT-CLIRV / F-CLIRV-R011
+
+      given:
+        completedTask = RefinementTask("task-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.COMPLETED)
+        plan = RefinementPlan("plan-2026-04-19", "2026-04-19T10-30-00", Instant.parse("2026-04-19T10:30:00Z"), List.of(completedTask))
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+        combined = outBuf.toString() + errBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        combined.toLowerCase().contains("no") && combined.toLowerCase().contains("task") is true
+    - |
+      test: "should resolve to the most recent plan when 'get tasks' is invoked without --plan"
+      trace: FEAT-CLIRV / F-CLIRV-R012
+
+      given:
+        task = RefinementTask("task-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        latestPlan = RefinementPlan("plan-latest", "2026-04-19T10-30-00", Instant.parse("2026-04-19T10:30:00Z"), List.of(task))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.empty(), Optional.empty(), Optional.empty())
+        exit = cmd.get("tasks", null, filter)
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(latestPlan)
+
+      then:
+        exit == 0
+    - |
+      test: "should report 'No plans available' and exit non-zero without auto-creating when 'get tasks' is invoked with no plans on disk"
+      trace: FEAT-CLIRV / F-CLIRV-R012
+
+      given:
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        combined = outBuf.toString() + errBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.empty()
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+
+      then:
+        0 != null
+        combined.toLowerCase().contains("no plans") || combined.toLowerCase().contains("plan") is true
+  - name: DeleteCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/DeleteCmd.java
+    tests:
+    - name: should remove a single plan by id and report success when 'delete plan
+        <id>' is invoked with an existing id
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DeleteCmdTest.java
+    - name: should remove a single audit by id when 'delete audit <id>' is invoked
+        and no plan references that audit
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DeleteCmdTest.java
+    - name: should reject 'delete <resource>' without an id and exit non-zero with
+        'id is required'
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DeleteCmdTest.java
+    - name: should reject 'delete task <id>' with the not-supported error since delete
+        operates on audit and plan only
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DeleteCmdTest.java
+    - name: should reject 'delete analyzer <id>' since analyzers are not deletable
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DeleteCmdTest.java
+    - name: should refuse 'delete audit <id>' and list dependent plan ids when at
+        least one plan references the audit
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DeleteCmdTest.java
+    - name: should report 'No plans found with id' and exit non-zero when 'delete
+        plan <unknown-id>' is invoked
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DeleteCmdTest.java
+    - name: should reject the request when 'delete' is called with an unknown resource
+        name
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DeleteCmdTest.java
+    - name: should treat singular 'audit' and plural 'audits' as equivalent when invoked
+        as 'delete <form> <id>'
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DeleteCmdTest.java
+    - name: should reject 'delete task' as a non-supported operation that would mutate
+        a plan in place
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DeleteCmdTest.java
+    testCleanViews:
+    - |
+      test: "should remove a single plan by id and report success when 'delete plan <id>' is invoked with an existing id"
+      trace: FEAT-CLIRV / F-CLIRV-R002
+
+      given:
+        planId = "2026-04-19T10-30-00"
+        plan = RefinementPlan(planId, "2026-04-19T09-00-00", Instant.parse("2026-04-19T10:30:00Z"), List.of())
+        exit = cmd.delete("plan", planId)
+        planFile = tempDir.resolve(".content-audit").resolve("plans").resolve("plan-" + planId + ".json")
+
+      mock:
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+
+      when:
+        sut.setBaseDir(tempDir)
+
+      then:
+        exit == 0
+        Files.exists(planFile) is false
+    - |
+      test: "should remove a single audit by id when 'delete audit <id>' is invoked and no plan references that audit"
+      trace: FEAT-CLIRV / F-CLIRV-R002
+
+      given:
+        auditId = "2026-04-19T08-00-00"
+        exit = cmd.delete("audit", auditId)
+        auditFile = tempDir.resolve(".content-audit").resolve("audits").resolve("audit-" + auditId + ".json")
+
+      when:
+        sut.setBaseDir(tempDir)
+
+      then:
+        exit == 0
+        Files.exists(auditFile) is false
+    - |
+      test: "should reject 'delete <resource>' without an id and exit non-zero with 'id is required'"
+      trace: FEAT-CLIRV / F-CLIRV-R002
+
+      given:
+        exit = cmd.delete("audit", null)
+
+      then:
+        0 != null
+    - |
+      test: "should reject 'delete task <id>' with the not-supported error since delete operates on audit and plan only"
+      trace: FEAT-CLIRV / F-CLIRV-R002
+
+      given:
+        exit = cmd.delete("task", "task-001")
+
+      then:
+        0 != null
+    - |
+      test: "should reject 'delete analyzer <id>' since analyzers are not deletable"
+      trace: FEAT-CLIRV / F-CLIRV-R002
+
+      given:
+        exit = cmd.delete("analyzer", "sentence-length")
+
+      then:
+        0 != null
+    - |
+      test: "should refuse 'delete audit <id>' and list dependent plan ids when at least one plan references the audit"
+      trace: FEAT-CLIRV / F-CLIRV-R002
+
+      given:
+        auditId = "2026-04-19T09-00-00"
+        planId = "2026-04-19T10-00-00"
+        exit = cmd.delete("audit", auditId)
+        auditFile = tempDir.resolve(".content-audit").resolve("audits").resolve("audit-" + auditId + ".json")
+
+      when:
+        sut.setBaseDir(tempDir)
+
+      then:
+        0 != null
+        Files.exists(auditFile) is true
+    - |
+      test: "should report 'No plans found with id' and exit non-zero when 'delete plan <unknown-id>' is invoked"
+      trace: FEAT-CLIRV / F-CLIRV-R010
+
+      given:
+        unknownPlanId = "plan-does-not-exist"
+        exit = cmd.delete("plan", unknownPlanId)
+
+      mock:
+        refinementPlanStore.load(unknownPlanId) -> Optional.empty()
+
+      then:
+        0 != null
+    - |
+      test: "should reject the request when 'delete' is called with an unknown resource name"
+      trace: FEAT-CLIRV / F-CLIRV-R005
+
+      given:
+        exit = cmd.delete("widget", "some-id")
+
+      then:
+        0 != null
+    - |
+      test: "should treat singular 'audit' and plural 'audits' as equivalent when invoked as 'delete <form> <id>'"
+      trace: FEAT-CLIRV / F-CLIRV-R006
+
+      given:
+        auditId1 = "2026-04-19T10-00-00"
+        auditId2 = "2026-04-19T11-00-00"
+        exitSingular = cmd.delete("audit", auditId1)
+        exitPlural = cmd.delete("audits", auditId2)
+
+      when:
+        sut.setBaseDir(tempDir)
+
+      then:
+        exitSingular == 0
+        exitPlural == 0
+        exitPlural == exitSingular
+    - |
+      test: "should reject 'delete task' as a non-supported operation that would mutate a plan in place"
+      trace: FEAT-CLIRV / F-CLIRV-R019
+
+      given:
+        exit = cmd.delete("task", "task-001")
+
+      then:
+        0 != null
+  - name: PruneCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/PruneCmd.java
+    tests:
+    - name: should keep the N most recent audits and remove the rest when 'prune audits
+        --keep N' is invoked
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PruneCmdTest.java
+    - name: should keep the N most recent plans and remove the rest when 'prune plans
+        --keep N' is invoked
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PruneCmdTest.java
+    - name: should keep all resources and remove zero when --keep N is greater than
+        the total count
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PruneCmdTest.java
+    - name: should reject negative values for --keep and exit non-zero
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PruneCmdTest.java
+    - name: should accept --keep 0 and remove every stored resource of the named type
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PruneCmdTest.java
+    - name: should reject prune when called with an unknown resource name
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PruneCmdTest.java
+    - name: should treat singular 'audit' and plural 'audits' as equivalent when invoked
+        as 'prune <form> --keep N'
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PruneCmdTest.java
+    - name: "should report 'Kept 0 audits, removed 0' explicitly and exit zero when\
+        \ no audits exist on disk"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PruneCmdTest.java
+    testCleanViews:
+    - |
+      test: "should keep the N most recent audits and remove the rest when 'prune audits --keep N' is invoked"
+      trace: FEAT-CLIRV / F-CLIRV-R003
+
+      given:
+        exit = cmd.prune("audits", 1)
+        newestFile = tempDir.resolve(".content-audit").resolve("audits").resolve("audit-2026-04-19T10-00-00.json")
+
+      when:
+        sut.setBaseDir(tempDir)
+
+      then:
+        exit == 0
+        countAuditFiles(tempDir) == 1
+        Files.exists(newestFile) is true
+    - |
+      test: "should keep the N most recent plans and remove the rest when 'prune plans --keep N' is invoked"
+      trace: FEAT-CLIRV / F-CLIRV-R003
+
+      given:
+        exit = cmd.prune("plans", 1)
+        newestPlanFile = tempDir.resolve(".content-audit").resolve("plans").resolve("plan-plan-c.json")
+
+      when:
+        sut.setBaseDir(tempDir)
+
+      then:
+        exit == 0
+        countPlanFiles(tempDir) == 1
+        Files.exists(newestPlanFile) is true
+    - |
+      test: "should keep all resources and remove zero when --keep N is greater than the total count"
+      trace: FEAT-CLIRV / F-CLIRV-R003
+
+      given:
+        exit = cmd.prune("audits", 5)
+
+      when:
+        sut.setBaseDir(tempDir)
+
+      then:
+        exit == 0
+        countAuditFiles(tempDir) == 2
+    - |
+      test: "should reject negative values for --keep and exit non-zero"
+      trace: FEAT-CLIRV / F-CLIRV-R003
+
+      given:
+        exit = cmd.prune("audits", -1)
+
+      then:
+        0 != null
+    - |
+      test: "should accept --keep 0 and remove every stored resource of the named type"
+      trace: FEAT-CLIRV / F-CLIRV-R003
+
+      given:
+        exit = cmd.prune("audits", 0)
+
+      when:
+        sut.setBaseDir(tempDir)
+
+      then:
+        exit == 0
+        countAuditFiles(tempDir) == 0
+    - |
+      test: "should reject prune when called with an unknown resource name"
+      trace: FEAT-CLIRV / F-CLIRV-R005
+
+      given:
+        exit = cmd.prune("widget", 1)
+
+      then:
+        0 != null
+    - |
+      test: "should treat singular 'audit' and plural 'audits' as equivalent when invoked as 'prune <form> --keep N'"
+      trace: FEAT-CLIRV / F-CLIRV-R006
+
+      given:
+        exitSingular = cmd.prune("audit", 1)
+
+      when:
+        sut.setBaseDir(tempDir)
+
+      then:
+        exitSingular == 0
+        countAuditFiles(tempDir) == 1
+    - |
+      test: "should report 'Kept 0 audits, removed 0' explicitly and exit zero when no audits exist on disk"
+      trace: FEAT-CLIRV / F-CLIRV-R011
+
+      given:
+        exit = cmd.prune("audits", 5)
+
+      when:
+        sut.setBaseDir(tempDir)
+
+      then:
+        exit == 0
+  - name: PlanCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/PlanCmd.java
+    tests:
+    - name: should derive a plan from the most recent audit and print the new plan
+        id when 'plan' is invoked without --audit
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PlanCmdTest.java
+    - name: should derive a plan from the named audit and print the new plan id when
+        'plan --audit <id>' is invoked
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PlanCmdTest.java
+    - name: should report 'No audits available' and exit non-zero when 'plan' is invoked
+        with no audits on disk and no --audit flag
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PlanCmdTest.java
+    - name: should report 'Audit <id> not found' and exit non-zero when --audit references
+        an unknown id
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PlanCmdTest.java
+    - name: "should preserve the existing refiner-plan behavior under the new top-level\
+        \ placement (verb relocated, semantics unchanged)"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PlanCmdTest.java
+    testCleanViews:
+    - |
+      test: "should derive a plan from the most recent audit and print the new plan id when 'plan' is invoked without --audit"
+      trace: FEAT-CLIRV / F-CLIRV-R014
+
+      given:
+        auditId = "2026-04-19T10-00-00"
+        summary = AuditReportSummary(auditId, Instant.parse("2026-04-19T10:00:00Z"), "Test Course", 0.75)
+        report = AuditReport(null)
+        plan = RefinementPlan("plan-001", auditId, Instant.now(), List.of())
+        exit = planCmd.plan(null)
+
+      mock:
+        auditReportStore.list() -> List.of(summary)
+        auditReportStore.load(auditId) -> Optional.of(report)
+        refinerEngine.plan(report, auditId) -> plan
+        refinementPlanStore.save(plan) -> "plan-001"
+
+      then:
+        exit == 0
+        verify: refinementPlanStore.save(plan)
+    - |
+      test: "should derive a plan from the named audit and print the new plan id when 'plan --audit <id>' is invoked"
+      trace: FEAT-CLIRV / F-CLIRV-R014
+
+      given:
+        auditId = "2026-04-18T09-00-00"
+        report = AuditReport(null)
+        plan = RefinementPlan("plan-002", auditId, Instant.now(), List.of())
+        exit = planCmd.plan(auditId)
+
+      mock:
+        auditReportStore.load(auditId) -> Optional.of(report)
+        refinerEngine.plan(report, auditId) -> plan
+        refinementPlanStore.save(plan) -> "plan-002"
+
+      then:
+        exit == 0
+        verify: auditReportStore.load(auditId)
+        verify: refinementPlanStore.save(plan)
+    - |
+      test: "should report 'No audits available' and exit non-zero when 'plan' is invoked with no audits on disk and no --audit flag"
+      trace: FEAT-CLIRV / F-CLIRV-R014
+
+      given:
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      mock:
+        auditReportStore.list() -> List.of()
+        auditReportStore.loadLatest() -> Optional.empty()
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+    - |
+      test: "should report 'Audit <id> not found' and exit non-zero when --audit references an unknown id"
+      trace: FEAT-CLIRV / F-CLIRV-R014
+
+      given:
+        unknownAuditId = "2026-01-01T00-00-00"
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      mock:
+        auditReportStore.load(unknownAuditId) -> Optional.empty()
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+    - |
+      test: "should preserve the existing refiner-plan behavior under the new top-level placement (verb relocated, semantics unchanged)"
+      trace: FEAT-CLIRV / F-CLIRV-R004
+
+      given:
+        auditId = "2026-04-19T12-00-00"
+        report = AuditReport(null)
+        plan = RefinementPlan("plan-r004", auditId, Instant.now(), List.of())
+        exit = planCmd.plan(auditId)
+
+      mock:
+        auditReportStore.load(auditId) -> Optional.of(report)
+        refinerEngine.plan(report, auditId) -> plan
+        refinementPlanStore.save(plan) -> "plan-r004"
+
+      then:
+        exit == 0
+        verify: refinerEngine.plan(report, auditId)
+        verify: refinementPlanStore.save(plan)
+  - name: ReviseCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/ReviseCmd.java
+    tests:
+    - name: should resolve the task in the most recent plan when 'revise task <id>'
+        is invoked without --plan
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ReviseCmdTest.java
+    - name: should resolve the task in the named plan when 'revise task <id> --plan
+        <plan-id>' is invoked with an existing plan id
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ReviseCmdTest.java
+    - name: should report 'No plans available' and exit non-zero when no plans exist
+        regardless of --plan
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ReviseCmdTest.java
+    - name: should report 'Plan <id> not found' and exit non-zero when --plan references
+        an unknown plan id
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ReviseCmdTest.java
+    - name: should report 'Task <task-id> not found in plan <plan-id>' naming the
+        resolved plan when the task id is absent from the resolved plan
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ReviseCmdTest.java
+    - name: should report 'Task <task-id> not found in plan <plan-id>' naming the
+        explicitly supplied plan when --plan was used and the task is absent
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ReviseCmdTest.java
+    testCleanViews:
+    - |
+      test: "should resolve the task in the most recent plan when 'revise task <id>' is invoked without --plan"
+      trace: FEAT-CLIRV / F-CLIRV-R015
+
+      given:
+        taskId = "task-001"
+        planId = "plan-latest"
+        task = task(taskId)
+        latestPlan = plan(planId, "audit-001", List.of(task))
+        outcome = RevisionOutcome(RevisionOutcomeKind.APPROVED_APPLIED, null, null)
+        exit = reviseCmd.revise(taskId, null)
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(latestPlan)
+        revisionEngine.revise(eq(planId), eq(taskId), any(Path.class)) -> outcome
+
+      then:
+        exit == 0
+        verify: refinementPlanStore.loadLatest()
+        verify: revisionEngine.revise(eq(planId), eq(taskId), any(Path.class))
+    - |
+      test: "should resolve the task in the named plan when 'revise task <id> --plan <plan-id>' is invoked with an existing plan id"
+      trace: FEAT-CLIRV / F-CLIRV-R015
+
+      given:
+        taskId = "task-002"
+        planId = "plan-explicit"
+        task = task(taskId)
+        namedPlan = plan(planId, "audit-002", List.of(task))
+        outcome = RevisionOutcome(RevisionOutcomeKind.APPROVED_APPLIED, null, null)
+        exit = reviseCmd.revise(taskId, planId)
+
+      mock:
+        refinementPlanStore.load(planId) -> Optional.of(namedPlan)
+        revisionEngine.revise(eq(planId), eq(taskId), any(Path.class)) -> outcome
+
+      then:
+        exit == 0
+        verify: refinementPlanStore.load(planId)
+        verify: revisionEngine.revise(eq(planId), eq(taskId), any(Path.class))
+    - |
+      test: "should report 'No plans available' and exit non-zero when no plans exist regardless of --plan"
+      trace: FEAT-CLIRV / F-CLIRV-R015
+
+      given:
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.empty()
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+    - |
+      test: "should report 'Plan <id> not found' and exit non-zero when --plan references an unknown plan id"
+      trace: FEAT-CLIRV / F-CLIRV-R015
+
+      given:
+        unknownPlanId = "plan-ghost"
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      mock:
+        refinementPlanStore.load(unknownPlanId) -> Optional.empty()
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+    - |
+      test: "should report 'Task <task-id> not found in plan <plan-id>' naming the resolved plan when the task id is absent from the resolved plan"
+      trace: FEAT-CLIRV / F-CLIRV-R015
+
+      given:
+        missingTaskId = "task-999"
+        planId = "plan-recent"
+        existingTask = task("task-001")
+        recentPlan = plan(planId, "audit-003", List.of(existingTask))
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(recentPlan)
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+    - |
+      test: "should report 'Task <task-id> not found in plan <plan-id>' naming the explicitly supplied plan when --plan was used and the task is absent"
+      trace: FEAT-CLIRV / F-CLIRV-R015
+
+      given:
+        missingTaskId = "task-888"
+        explicitPlanId = "plan-explicit-no-task"
+        existingTask = task("task-001")
+        explicitPlan = plan(explicitPlanId, "audit-004", List.of(existingTask))
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      mock:
+        refinementPlanStore.load(explicitPlanId) -> Optional.of(explicitPlan)
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+  - name: ConfigAnalyzerCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/ConfigAnalyzerCmd.java
+    tests:
+    - name: should print the analyzer's configuration in the existing shape when 'config
+        analyzer <name>' is invoked with a known analyzer
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ConfigAnalyzerCmdTest.java
+    - name: should report 'Analyzer <name> not found' and exit non-zero when 'config
+        analyzer <name>' is invoked with an unknown analyzer
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ConfigAnalyzerCmdTest.java
+    testCleanViews:
+    - |
+      test: "should print the analyzer's configuration in the existing shape when 'config analyzer <name>' is invoked with a known analyzer"
+      trace: FEAT-CLIRV / F-CLIRV-R016
+
+      given:
+        analyzerName = "sentence-length"
+        cmd = ConfigAnalyzerCmd(analyzerRegistry)
+        exitCode = cmd.showConfig(analyzerName)
+
+      mock:
+        analyzerRegistry.getAnalyzerConfig(analyzerName) -> Optional.of(Map.of("maxSentenceLength", 25, "weight", 1.0))
 
       then:
         exitCode == 0
-        verify: revisionEngine.revise(eq("plan-001"), eq("task-001"), any(Path.class))
+    - |
+      test: "should report 'Analyzer <name> not found' and exit non-zero when 'config analyzer <name>' is invoked with an unknown analyzer"
+      trace: FEAT-CLIRV / F-CLIRV-R016
+
+      given:
+        analyzerName = "does-not-exist"
+        cmd = ConfigAnalyzerCmd(analyzerRegistry)
+        exitCode = cmd.showConfig(analyzerName)
+
+      mock:
+        analyzerRegistry.getAnalyzerConfig(analyzerName) -> Optional.empty()
+
+      then:
+        exitCode == 1
+  - name: StatsAnalyzerCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/StatsAnalyzerCmd.java
+    tests:
+    - name: should run the analyzer over the supplied course path and render the stats
+        view when invoked with a known analyzer
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/StatsAnalyzerCmdTest.java
+    - name: should report 'Analyzer <name> not found' and exit non-zero when invoked
+        with an unknown analyzer
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/StatsAnalyzerCmdTest.java
+    - name: should fall back to CONTENT_AUDIT_CONTENT_FOLDER env var when no course-path
+        argument is supplied
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/StatsAnalyzerCmdTest.java
+    - name: should report a missing-course-path error and exit non-zero when neither
+        argument nor CONTENT_AUDIT_CONTENT_FOLDER is set
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/StatsAnalyzerCmdTest.java
+    testCleanViews:
+    - |
+      test: "should run the analyzer over the supplied course path and render the stats view when invoked with a known analyzer"
+      trace: FEAT-CLIRV / F-CLIRV-R021
+
+      given:
+        analyzerName = "sentence-length"
+        coursePath = "/tmp/fixture-course"
+        descriptor = AnalyzerDescriptor(analyzerName, "Checks sentence length", AuditTarget.KNOWLEDGE)
+        minimalReport = AuditReport(mockAuditNode)
+        statsView = AnalyzerStatsView(analyzerName, "Checks sentence length", 0.85, Collections.emptyMap(), Collections.emptyList(), Collections.emptyMap(), Collections.emptyMap(), 10)
+        cmd = StatsAnalyzerCmd(analyzerRegistry, analyzerStatsTransformer, auditRunner)
+        exitCode = cmd.showStats(analyzerName, coursePath)
+
+      mock:
+        analyzerRegistry.listAnalyzers() -> List.of(descriptor)
+        analyzerRegistry.getAnalyzerConfig(analyzerName) -> java.util.Optional.of(Map.of("maxSentenceLength", 25))
+        auditRunner.runAudit(any(), any()) -> minimalReport
+        auditRunner.runDetailedAudit(any(), anyString()) -> mockAuditNode
+        analyzerStatsTransformer.transform(any(), anyString(), any()) -> statsView
+
+      then:
+        exitCode == 0
+    - |
+      test: "should report 'Analyzer <name> not found' and exit non-zero when invoked with an unknown analyzer"
+      trace: FEAT-CLIRV / F-CLIRV-R021
+
+      given:
+        cmd = StatsAnalyzerCmd(analyzerRegistry, analyzerStatsTransformer, auditRunner)
+        exitCode = cmd.showStats("no-such-analyzer", "/tmp/fixture-course")
+
+      mock:
+        analyzerRegistry.listAnalyzers() -> Collections.emptyList()
+        analyzerRegistry.getAnalyzerConfig(anyString()) -> java.util.Optional.empty()
+
+      then:
+        0 != null
+    - |
+      test: "should report a missing-course-path error and exit non-zero when neither argument nor CONTENT_AUDIT_CONTENT_FOLDER is set"
+      trace: FEAT-CLIRV / F-CLIRV-R021
+
+      given:
+        analyzerName = "sentence-length"
+        descriptor = AnalyzerDescriptor(analyzerName, "Checks sentence length", AuditTarget.KNOWLEDGE)
+        cmd = StatsAnalyzerCmd(analyzerRegistry, analyzerStatsTransformer, auditRunner)
+        exitCode = cmd.showStats(analyzerName, null)
+
+      mock:
+        analyzerRegistry.listAnalyzers() -> List.of(descriptor)
+        analyzerRegistry.getAnalyzerConfig(anyString()) -> java.util.Optional.of(Map.of("maxSentenceLength", 25))
+
+      then:
+        0 != null
   - name: TextReportFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/TextReportFormatter.java
@@ -10879,6 +11342,90 @@ elements:
   - name: CocaBucketsDetailedFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/CocaBucketsDetailedFormatter.java
+  - name: DefaultWorkdirResolver
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/bootstrap/DefaultWorkdirResolver.java
+    tests:
+    - name: should return the flag value when --workdir is provided and points to
+        an existing writable directory
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultWorkdirResolverTest.java
+    - name: "should ignore CONTENT_AUDIT_HOME and use the flag value when both are\
+        \ set, validating flag-over-env precedence"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultWorkdirResolverTest.java
+    - name: should fall back to user.dir when neither --workdir nor CONTENT_AUDIT_HOME
+        is set
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultWorkdirResolverTest.java
+    - name: should throw InvalidWorkdirException naming the override path when --workdir
+        points to a non-existent directory
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultWorkdirResolverTest.java
+    - name: should throw InvalidWorkdirException naming the override path when --workdir
+        points to a regular file (not a directory)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultWorkdirResolverTest.java
+    - name: should not validate or interfere with the course content folder path (workdir
+        override is decoupled from course path)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultWorkdirResolverTest.java
+    testCleanViews:
+    - |
+      test: "should return the flag value when --workdir is provided and points to an existing writable directory"
+      trace: FEAT-CLIRV / F-CLIRV-R017
+
+      given:
+        resolver = DefaultWorkdirResolver()
+        result = resolver.resolve(tempDir.toString())
+
+      then:
+        result == tempDir
+    - |
+      test: "should fall back to user.dir when neither --workdir nor CONTENT_AUDIT_HOME is set"
+      trace: FEAT-CLIRV / F-CLIRV-R017
+
+      given:
+        resolver = DefaultWorkdirResolver()
+        expectedDefault = Path.of(System.getProperty("user.dir"))
+        result = resolver.resolve(null)
+
+      then:
+        result == expectedDefault
+    - |
+      test: "should throw InvalidWorkdirException naming the override path when --workdir points to a non-existent directory"
+      trace: FEAT-CLIRV / F-CLIRV-R017
+
+      given:
+        resolver = DefaultWorkdirResolver()
+        nonExistentPath = tempDir.resolve("nonexistent-subdir").toString()
+        ex = assertThrows(InvalidWorkdirException.class, () -> resolver.resolve(nonExistentPath))
+
+      then:
+        ex.getMessage().contains(nonExistentPath) is true
+    - |
+      test: "should throw InvalidWorkdirException naming the override path when --workdir points to a regular file (not a directory)"
+      trace: FEAT-CLIRV / F-CLIRV-R017
+
+      given:
+        resolver = DefaultWorkdirResolver()
+        regularFile = Files.createTempFile(tempDir, "not-a-dir", ".txt")
+        ex = assertThrows(InvalidWorkdirException.class, () -> resolver.resolve(regularFile.toString()))
+
+      then:
+        ex.getMessage().contains(regularFile.toString()) is true
+    - |
+      test: "should not validate or interfere with the course content folder path (workdir override is decoupled from course path)"
+      trace: FEAT-CLIRV / F-CLIRV-R018
+
+      given:
+        resolver = DefaultWorkdirResolver()
+        result = resolver.resolve(tempDir.toString())
+        methodCount = java.util.Arrays.stream(WorkdirResolver.class.getMethods()).filter(m -> !m.getDeclaringClass().equals(Object.class)).count()
+
+      then:
+        result == tempDir
+        methodCount == 1
 - module: nlp-infrastructure
   status: EXISTS
   models:
@@ -11743,8 +12290,8 @@ elements:
         verify: artifactStore.save(any(RevisionArtifact.class))
         verify: courseRepository.save(any(CourseEntity.class), eq(coursePath))
 testSummary:
-  total: 376
-  passing: 376
+  total: 411
+  passing: 411
   failing: 0
   notImplemented: 0
 patterns:
@@ -12577,86 +13124,98 @@ patterns:
   category: architectural
   source: detected
   severity: info
-  description: AnalyzerListCommand is a port
+  description: GetCommand is a port
   involvedElements:
   - type: interface
     moduleName: audit-cli
-    elementName: AnalyzerListCommand
-    nodeId: interface-audit-cli-AnalyzerListCommand
+    elementName: GetCommand
+    nodeId: interface-audit-cli-GetCommand
   confidence: 0.9
 - id: stereo-68
   pattern: Port
   category: architectural
   source: detected
   severity: info
-  description: AnalyzerConfigCommand is a port
+  description: DeleteCommand is a port
   involvedElements:
   - type: interface
     moduleName: audit-cli
-    elementName: AnalyzerConfigCommand
-    nodeId: interface-audit-cli-AnalyzerConfigCommand
+    elementName: DeleteCommand
+    nodeId: interface-audit-cli-DeleteCommand
   confidence: 0.9
 - id: stereo-69
   pattern: Port
   category: architectural
   source: detected
   severity: info
-  description: AnalyzerStatsCommand is a port
+  description: PruneCommand is a port
   involvedElements:
   - type: interface
     moduleName: audit-cli
-    elementName: AnalyzerStatsCommand
-    nodeId: interface-audit-cli-AnalyzerStatsCommand
+    elementName: PruneCommand
+    nodeId: interface-audit-cli-PruneCommand
   confidence: 0.9
 - id: stereo-70
   pattern: Port
   category: architectural
   source: detected
   severity: info
-  description: RefinerPlanCommand is a port
+  description: PlanCommand is a port
   involvedElements:
   - type: interface
     moduleName: audit-cli
-    elementName: RefinerPlanCommand
-    nodeId: interface-audit-cli-RefinerPlanCommand
+    elementName: PlanCommand
+    nodeId: interface-audit-cli-PlanCommand
   confidence: 0.9
 - id: stereo-71
   pattern: Port
   category: architectural
   source: detected
   severity: info
-  description: RefinerNextCommand is a port
+  description: ReviseCommand is a port
   involvedElements:
   - type: interface
     moduleName: audit-cli
-    elementName: RefinerNextCommand
-    nodeId: interface-audit-cli-RefinerNextCommand
+    elementName: ReviseCommand
+    nodeId: interface-audit-cli-ReviseCommand
   confidence: 0.9
 - id: stereo-72
   pattern: Port
   category: architectural
   source: detected
   severity: info
-  description: RefinerListCommand is a port
+  description: ConfigAnalyzerCommand is a port
   involvedElements:
   - type: interface
     moduleName: audit-cli
-    elementName: RefinerListCommand
-    nodeId: interface-audit-cli-RefinerListCommand
+    elementName: ConfigAnalyzerCommand
+    nodeId: interface-audit-cli-ConfigAnalyzerCommand
   confidence: 0.9
 - id: stereo-73
   pattern: Port
   category: architectural
   source: detected
   severity: info
-  description: RefinerReviseCommand is a port
+  description: StatsAnalyzerCommand is a port
   involvedElements:
   - type: interface
     moduleName: audit-cli
-    elementName: RefinerReviseCommand
-    nodeId: interface-audit-cli-RefinerReviseCommand
+    elementName: StatsAnalyzerCommand
+    nodeId: interface-audit-cli-StatsAnalyzerCommand
   confidence: 0.9
-- id: stereo-75
+- id: stereo-74
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: GetTasksFilter is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-cli
+    elementName: GetTasksFilter
+    nodeId: model-audit-cli-GetTasksFilter
+  confidence: 0.75
+- id: stereo-76
   pattern: Value Object
   category: architectural
   source: detected
@@ -12668,7 +13227,7 @@ patterns:
     elementName: NlpTokenizerConfig
     nodeId: model-nlp-infrastructure-NlpTokenizerConfig
   confidence: 0.75
-- id: stereo-76
+- id: stereo-77
   pattern: Port
   category: architectural
   source: detected
@@ -12680,7 +13239,7 @@ patterns:
     elementName: Reviser
     nodeId: interface-revision-domain-Reviser
   confidence: 0.9
-- id: stereo-77
+- id: stereo-78
   pattern: Port
   category: architectural
   source: detected
@@ -12692,7 +13251,7 @@ patterns:
     elementName: RevisionValidator
     nodeId: interface-revision-domain-RevisionValidator
   confidence: 0.9
-- id: stereo-78
+- id: stereo-79
   pattern: Port
   category: architectural
   source: detected
@@ -12704,7 +13263,7 @@ patterns:
     elementName: RevisionArtifactStore
     nodeId: interface-revision-domain-RevisionArtifactStore
   confidence: 0.9
-- id: stereo-79
+- id: stereo-80
   pattern: Port
   category: architectural
   source: detected
@@ -12716,7 +13275,7 @@ patterns:
     elementName: CourseElementLocator
     nodeId: interface-revision-domain-CourseElementLocator
   confidence: 0.9
-- id: stereo-80
+- id: stereo-81
   pattern: Port
   category: architectural
   source: detected
@@ -12728,7 +13287,7 @@ patterns:
     elementName: RevisionEngine
     nodeId: interface-revision-domain-RevisionEngine
   confidence: 0.9
-- id: stereo-82
+- id: stereo-83
   pattern: Enum
   category: architectural
   source: detected
@@ -12740,7 +13299,7 @@ patterns:
     elementName: RevisionVerdict
     nodeId: model-revision-domain-RevisionVerdict
   confidence: 0.95
-- id: stereo-83
+- id: stereo-84
   pattern: Enum
   category: architectural
   source: detected
@@ -12752,7 +13311,7 @@ patterns:
     elementName: RevisionOutcomeKind
     nodeId: model-revision-domain-RevisionOutcomeKind
   confidence: 0.95
-- id: stereo-84
+- id: stereo-85
   pattern: Value Object
   category: architectural
   source: detected
@@ -12764,7 +13323,7 @@ patterns:
     elementName: CourseElementSnapshot
     nodeId: model-revision-domain-CourseElementSnapshot
   confidence: 0.75
-- id: stereo-85
+- id: stereo-86
   pattern: Value Object
   category: architectural
   source: detected
@@ -12776,7 +13335,7 @@ patterns:
     elementName: RevisionProposal
     nodeId: model-revision-domain-RevisionProposal
   confidence: 0.75
-- id: stereo-86
+- id: stereo-87
   pattern: Value Object
   category: architectural
   source: detected
@@ -12788,7 +13347,7 @@ patterns:
     elementName: RevisionArtifact
     nodeId: model-revision-domain-RevisionArtifact
   confidence: 0.75
-- id: stereo-87
+- id: stereo-88
   pattern: Value Object
   category: architectural
   source: detected
@@ -12800,7 +13359,7 @@ patterns:
     elementName: RevisionOutcome
     nodeId: model-revision-domain-RevisionOutcome
   confidence: 0.75
-- id: stereo-88
+- id: stereo-89
   pattern: Value Object
   category: architectural
   source: detected
@@ -12812,7 +13371,7 @@ patterns:
     elementName: RevisionEngineConfig
     nodeId: model-revision-domain-RevisionEngineConfig
   confidence: 0.75
-- id: anti-89
+- id: anti-90
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12824,7 +13383,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-90
+- id: anti-91
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12836,7 +13395,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: anti-91
+- id: anti-92
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12848,7 +13407,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: anti-92
+- id: anti-93
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12860,7 +13419,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: anti-93
+- id: anti-94
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12872,7 +13431,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: anti-94
+- id: anti-95
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12884,7 +13443,7 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: anti-95
+- id: anti-96
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12896,7 +13455,7 @@ patterns:
     elementName: NodeDiagnoses
     nodeId: interface-audit-domain-NodeDiagnoses
   confidence: 0.9
-- id: anti-96
+- id: anti-97
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12908,7 +13467,7 @@ patterns:
     elementName: CourseDiagnoses
     nodeId: interface-audit-domain-CourseDiagnoses
   confidence: 0.9
-- id: anti-97
+- id: anti-98
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12920,7 +13479,7 @@ patterns:
     elementName: LevelDiagnoses
     nodeId: interface-audit-domain-LevelDiagnoses
   confidence: 0.9
-- id: anti-98
+- id: anti-99
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12932,7 +13491,7 @@ patterns:
     elementName: TopicDiagnoses
     nodeId: interface-audit-domain-TopicDiagnoses
   confidence: 0.9
-- id: anti-99
+- id: anti-100
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12944,7 +13503,7 @@ patterns:
     elementName: KnowledgeDiagnoses
     nodeId: interface-audit-domain-KnowledgeDiagnoses
   confidence: 0.9
-- id: anti-100
+- id: anti-101
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -12956,7 +13515,7 @@ patterns:
     elementName: QuizDiagnoses
     nodeId: interface-audit-domain-QuizDiagnoses
   confidence: 0.9
-- id: anti-101
+- id: anti-102
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -12968,7 +13527,7 @@ patterns:
     elementName: audit-domain
     nodeId: module-audit-domain
   confidence: 0.85
-- id: anti-102
+- id: anti-103
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -12980,7 +13539,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.8
-- id: anti-103
+- id: anti-104
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -12992,7 +13551,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.8
-- id: anti-104
+- id: anti-105
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -13004,7 +13563,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-105
+- id: anti-106
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -13016,7 +13575,7 @@ patterns:
     elementName: course-domain
     nodeId: module-course-domain
   confidence: 0.85
-- id: anti-106
+- id: anti-107
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -13028,7 +13587,7 @@ patterns:
     elementName: CorrectionContextResolver
     nodeId: interface-refiner-domain-CorrectionContextResolver
   confidence: 0.9
-- id: anti-107
+- id: anti-108
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -13040,7 +13599,7 @@ patterns:
     elementName: CorrectionContext
     nodeId: interface-refiner-domain-CorrectionContext
   confidence: 0.9
-- id: anti-108
+- id: anti-109
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -13052,7 +13611,7 @@ patterns:
     elementName: audit-application
     nodeId: module-audit-application
   confidence: 0.85
-- id: anti-109
+- id: anti-110
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -13064,91 +13623,91 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: anti-110
-  pattern: Orphan Interface
-  category: anti-pattern
-  source: detected
-  severity: warning
-  description: AnalyzerListCommand has no implementations
-  involvedElements:
-  - type: interface
-    moduleName: audit-cli
-    elementName: AnalyzerListCommand
-    nodeId: interface-audit-cli-AnalyzerListCommand
-  confidence: 0.9
 - id: anti-111
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
   severity: warning
-  description: AnalyzerConfigCommand has no implementations
+  description: GetCommand has no implementations
   involvedElements:
   - type: interface
     moduleName: audit-cli
-    elementName: AnalyzerConfigCommand
-    nodeId: interface-audit-cli-AnalyzerConfigCommand
+    elementName: GetCommand
+    nodeId: interface-audit-cli-GetCommand
   confidence: 0.9
 - id: anti-112
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
   severity: warning
-  description: AnalyzerStatsCommand has no implementations
+  description: DeleteCommand has no implementations
   involvedElements:
   - type: interface
     moduleName: audit-cli
-    elementName: AnalyzerStatsCommand
-    nodeId: interface-audit-cli-AnalyzerStatsCommand
+    elementName: DeleteCommand
+    nodeId: interface-audit-cli-DeleteCommand
   confidence: 0.9
 - id: anti-113
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
   severity: warning
-  description: RefinerPlanCommand has no implementations
+  description: PruneCommand has no implementations
   involvedElements:
   - type: interface
     moduleName: audit-cli
-    elementName: RefinerPlanCommand
-    nodeId: interface-audit-cli-RefinerPlanCommand
+    elementName: PruneCommand
+    nodeId: interface-audit-cli-PruneCommand
   confidence: 0.9
 - id: anti-114
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
   severity: warning
-  description: RefinerNextCommand has no implementations
+  description: PlanCommand has no implementations
   involvedElements:
   - type: interface
     moduleName: audit-cli
-    elementName: RefinerNextCommand
-    nodeId: interface-audit-cli-RefinerNextCommand
+    elementName: PlanCommand
+    nodeId: interface-audit-cli-PlanCommand
   confidence: 0.9
 - id: anti-115
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
   severity: warning
-  description: RefinerListCommand has no implementations
+  description: ReviseCommand has no implementations
   involvedElements:
   - type: interface
     moduleName: audit-cli
-    elementName: RefinerListCommand
-    nodeId: interface-audit-cli-RefinerListCommand
+    elementName: ReviseCommand
+    nodeId: interface-audit-cli-ReviseCommand
   confidence: 0.9
 - id: anti-116
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
   severity: warning
-  description: RefinerReviseCommand has no implementations
+  description: ConfigAnalyzerCommand has no implementations
   involvedElements:
   - type: interface
     moduleName: audit-cli
-    elementName: RefinerReviseCommand
-    nodeId: interface-audit-cli-RefinerReviseCommand
+    elementName: ConfigAnalyzerCommand
+    nodeId: interface-audit-cli-ConfigAnalyzerCommand
   confidence: 0.9
 - id: anti-117
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: StatsAnalyzerCommand has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: StatsAnalyzerCommand
+    nodeId: interface-audit-cli-StatsAnalyzerCommand
+  confidence: 0.9
+- id: anti-118
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -13160,7 +13719,7 @@ patterns:
     elementName: audit-cli
     nodeId: module-audit-cli
   confidence: 0.85
-- id: anti-118
+- id: anti-119
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -13172,7 +13731,7 @@ patterns:
     elementName: NlpTokenizerFactory
     nodeId: interface-nlp-infrastructure-NlpTokenizerFactory
   confidence: 0.9
-- id: anti-119
+- id: anti-120
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -13184,7 +13743,7 @@ patterns:
     elementName: Reviser
     nodeId: interface-revision-domain-Reviser
   confidence: 0.9
-- id: anti-120
+- id: anti-121
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -13196,7 +13755,7 @@ patterns:
     elementName: RevisionValidator
     nodeId: interface-revision-domain-RevisionValidator
   confidence: 0.9
-- id: anti-121
+- id: anti-122
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -13208,7 +13767,7 @@ patterns:
     elementName: RevisionValidatorResult
     nodeId: interface-revision-domain-RevisionValidatorResult
   confidence: 0.9
-- id: anti-122
+- id: anti-123
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -13220,7 +13779,7 @@ patterns:
     elementName: CourseElementLocator
     nodeId: interface-revision-domain-CourseElementLocator
   confidence: 0.9
-- id: anti-123
+- id: anti-124
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -13232,7 +13791,7 @@ patterns:
     elementName: RevisionEngine
     nodeId: interface-revision-domain-RevisionEngine
   confidence: 0.9
-- id: anti-124
+- id: anti-125
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -13244,7 +13803,7 @@ patterns:
     elementName: RevisionEngineFactory
     nodeId: interface-revision-domain-RevisionEngineFactory
   confidence: 0.9
-- id: anti-125
+- id: anti-126
   pattern: God Module
   category: anti-pattern
   source: detected

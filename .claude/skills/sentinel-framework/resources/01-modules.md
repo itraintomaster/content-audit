@@ -142,10 +142,10 @@ project-root/
 | Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 0 |
-| Interfaces | 8 (AnalyzeCommand, AnalyzerListCommand, AnalyzerConfigCommand, AnalyzerStatsCommand, RefinerPlanCommand, RefinerNextCommand, RefinerListCommand, RefinerReviseCommand) |
+| Models | 1 (GetTasksFilter) |
+| Interfaces | 8 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand) |
 | Implementations | 0 |
-| Packages | 2 (commands [internal], formatting [internal]) |
+| Packages | 3 (commands [internal], formatting [internal], bootstrap [internal]) |
 
 ### nlp-infrastructure
 
