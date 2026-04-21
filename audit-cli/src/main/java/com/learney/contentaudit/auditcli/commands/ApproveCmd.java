@@ -18,7 +18,19 @@ import picocli.CommandLine.Parameters;
 @Command(
         name = "approve",
         description = "Approve a proposal.%n%nUsage: content-audit approve proposal <proposal-id> [--plan <plan-id>] [--note \"...\"]",
-        mixinStandardHelpOptions = true
+        mixinStandardHelpOptions = true,
+        footer = {
+                "",
+                "Examples:",
+                "  # Approve a pending proposal (looks it up across plans)",
+                "  content-audit approve proposal task-062-1776783052841",
+                "",
+                "  # Approve with a decision note",
+                "  content-audit approve proposal task-062-1776783052841 --note \"looks good\"",
+                "",
+                "  # Scope the lookup to a specific plan (faster on large workdirs)",
+                "  content-audit approve proposal task-062-1776783052841 --plan 2026-04-19T22-28-10",
+        }
 )
 final class ApproveCmd implements ApproveCommand, Callable<Integer> {
     private final ProposalDecisionService decisionService;

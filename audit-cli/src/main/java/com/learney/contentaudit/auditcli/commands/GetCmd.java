@@ -874,10 +874,17 @@ final class GetCmd implements GetCommand, Callable<Integer> {
         }
 
         if (artifacts.isEmpty()) {
-            System.out.println("No proposals found.");
+            if ("json".equals(formatName)) {
+                System.out.println("[]");
+            } else {
+                System.out.println("No proposals found.");
+            }
             return 0;
         }
 
+        if ("json".equals(formatName)) {
+            return printProposalsJson(artifacts);
+        }
         printProposalList(artifacts);
         return 0;
     }
@@ -900,6 +907,9 @@ final class GetCmd implements GetCommand, Callable<Integer> {
             return 1;
         }
 
+        if ("json".equals(formatName)) {
+            return printProposalsJson(List.of(artifactOpt.get()));
+        }
         printProposalOne(artifactOpt.get());
         return 0;
     }
@@ -933,22 +943,140 @@ final class GetCmd implements GetCommand, Callable<Integer> {
     }
 
     private void printProposalOne(RevisionArtifact artifact) {
-        String proposalId = artifact.getProposal() != null ? artifact.getProposal().getProposalId() : "(unknown)";
-        String planId = artifact.getProposal() != null ? artifact.getProposal().getPlanId() : "(unknown)";
-        String taskId = artifact.getProposal() != null ? artifact.getProposal().getTaskId() : "(unknown)";
+        var proposal = artifact.getProposal();
+        String proposalId = proposal != null ? proposal.getProposalId() : "(unknown)";
+        String planId = proposal != null ? proposal.getPlanId() : "(unknown)";
+        String taskId = proposal != null ? proposal.getTaskId() : "(unknown)";
         String verdict = artifact.getVerdict() != null ? artifact.getVerdict().name() : "UNKNOWN";
-        System.out.println("Proposal ID: " + proposalId);
-        System.out.println("Plan ID:     " + planId);
-        System.out.println("Task ID:     " + taskId);
-        System.out.println("Verdict:     " + verdict);
+        System.out.println("Proposal ID:    " + proposalId);
+        System.out.println("Plan ID:        " + planId);
+        System.out.println("Task ID:        " + taskId);
+        System.out.println("Verdict:        " + verdict);
+        if (proposal != null) {
+            if (proposal.getSourceAuditId() != null) {
+                System.out.println("Source Audit:   " + proposal.getSourceAuditId());
+            }
+            if (proposal.getDiagnosisKind() != null) {
+                System.out.println("Diagnosis Kind: " + proposal.getDiagnosisKind());
+            }
+            if (proposal.getNodeTarget() != null) {
+                System.out.println("Node Target:    " + proposal.getNodeTarget());
+            }
+            if (proposal.getNodeId() != null) {
+                System.out.println("Node ID:        " + proposal.getNodeId());
+            }
+            if (proposal.getReviserKind() != null) {
+                System.out.println("Reviser:        " + proposal.getReviserKind());
+            }
+            if (proposal.getRationale() != null) {
+                System.out.println("Rationale:      " + proposal.getRationale());
+            }
+            if (proposal.getCreatedAt() != null) {
+                System.out.println("Created At:     " + proposal.getCreatedAt());
+            }
+        }
         if (artifact.getDecisionNote() != null) {
-            System.out.println("Note:        " + artifact.getDecisionNote());
+            System.out.println("Note:           " + artifact.getDecisionNote());
         }
         if (artifact.getRejectionReason() != null) {
-            System.out.println("Reason:      " + artifact.getRejectionReason());
+            System.out.println("Reason:         " + artifact.getRejectionReason());
         }
         if (artifact.getDecidedAt() != null) {
-            System.out.println("Decided At:  " + artifact.getDecidedAt());
+            System.out.println("Decided At:     " + artifact.getDecidedAt());
+        }
+        if (proposal != null) {
+            var before = proposal.getElementBefore();
+            var after = proposal.getElementAfter();
+            System.out.println();
+            System.out.println("─ Element Before ──────────────");
+            printSnapshotSummary(before);
+            System.out.println();
+            System.out.println("─ Element After ───────────────");
+            if (snapshotsEquivalent(before, after)) {
+                System.out.println("  (unchanged — identical to Element Before)");
+            } else {
+                printSnapshotSummary(after);
+            }
+            System.out.println();
+            System.out.println("(Tip: use -f json for the full serialized artifact.)");
+        }
+    }
+
+    private void printSnapshotSummary(
+            com.learney.contentaudit.revisiondomain.CourseElementSnapshot snapshot) {
+        if (snapshot == null) {
+            System.out.println("  (null)");
+            return;
+        }
+        String target = snapshot.getNodeTarget() != null ? snapshot.getNodeTarget().name() : "?";
+        String nodeId = snapshot.getNodeId() != null ? snapshot.getNodeId() : "?";
+        System.out.println("  Node:         " + target + " " + nodeId);
+        var quiz = snapshot.getQuiz();
+        if (quiz == null) {
+            System.out.println("  (no quiz payload)");
+            return;
+        }
+        if (quiz.getId() != null) System.out.println("  Quiz ID:      " + quiz.getId());
+        if (quiz.getKind() != null) System.out.println("  Kind:         " + quiz.getKind());
+        if (quiz.getTitle() != null && !quiz.getTitle().isBlank()) {
+            System.out.println("  Title:        " + quiz.getTitle());
+        }
+        if (quiz.getInstructions() != null && !quiz.getInstructions().isBlank()) {
+            System.out.println("  Instructions: " + quiz.getInstructions());
+        }
+        String sentence = renderSentence(quiz);
+        if (sentence != null) {
+            System.out.println("  Sentence:     " + sentence);
+        }
+        if (quiz.getTranslation() != null && !quiz.getTranslation().isBlank()) {
+            System.out.println("  Translation:  " + quiz.getTranslation());
+        }
+    }
+
+    private String renderSentence(com.learney.contentaudit.coursedomain.QuizTemplateEntity quiz) {
+        if (quiz.getForm() == null || quiz.getForm().getSentenceParts() == null) return null;
+        StringBuilder sb = new StringBuilder();
+        for (var part : quiz.getForm().getSentenceParts()) {
+            if (sb.length() > 0) sb.append(' ');
+            switch (part.getKind()) {
+                case TEXT -> sb.append(part.getText() != null ? part.getText() : "");
+                case CLOZE -> {
+                    var opts = part.getOptions();
+                    sb.append('[')
+                      .append(opts == null || opts.isEmpty() ? "___" : String.join("/", opts))
+                      .append(']');
+                }
+                default -> sb.append(part.getText() != null ? part.getText() : "?");
+            }
+        }
+        return sb.toString();
+    }
+
+    private boolean snapshotsEquivalent(
+            com.learney.contentaudit.revisiondomain.CourseElementSnapshot a,
+            com.learney.contentaudit.revisiondomain.CourseElementSnapshot b) {
+        if (a == null || b == null) return a == b;
+        try {
+            ObjectMapper om = new ObjectMapper();
+            om.registerModule(new JavaTimeModule());
+            om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            return om.writeValueAsString(a).equals(om.writeValueAsString(b));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private int printProposalsJson(List<RevisionArtifact> artifacts) {
+        try {
+            ObjectMapper om = new ObjectMapper();
+            om.registerModule(new JavaTimeModule());
+            om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            om.enable(SerializationFeature.INDENT_OUTPUT);
+            System.out.println(om.writeValueAsString(artifacts));
+            return 0;
+        } catch (Exception e) {
+            System.err.println("Error formatting JSON: " + e.getMessage());
+            return 1;
         }
     }
 

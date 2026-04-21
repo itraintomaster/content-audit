@@ -17,7 +17,19 @@ import picocli.CommandLine.Parameters;
 @Command(
         name = "reject",
         description = "Reject a proposal.%n%nUsage: content-audit reject proposal <proposal-id> [--plan <plan-id>] [--reason \"...\"]",
-        mixinStandardHelpOptions = true
+        mixinStandardHelpOptions = true,
+        footer = {
+                "",
+                "Examples:",
+                "  # Reject a pending proposal (course is left untouched, task returns to PENDING)",
+                "  content-audit reject proposal task-062-1776783052841",
+                "",
+                "  # Reject with a reason recorded on the artifact",
+                "  content-audit reject proposal task-062-1776783052841 --reason \"too aggressive\"",
+                "",
+                "  # Scope the lookup to a specific plan",
+                "  content-audit reject proposal task-062-1776783052841 --plan 2026-04-19T22-28-10",
+        }
 )
 final class RejectCmd implements RejectCommand, Callable<Integer> {
     private final ProposalDecisionService decisionService;
