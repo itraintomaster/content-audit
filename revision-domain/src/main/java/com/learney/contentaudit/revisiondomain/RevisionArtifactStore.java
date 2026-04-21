@@ -14,4 +14,10 @@ public interface RevisionArtifactStore {
     Optional<RevisionArtifact> load(String planId, String proposalId);
 
     List<RevisionArtifact> listByPlan(String planId);
+
+    Optional<RevisionArtifact> findByProposalId(String proposalId, Optional<String> planId);
+
+    boolean hasPendingProposalForTask(String planId, String taskId);
+
+    List<RevisionArtifact> list();
 }

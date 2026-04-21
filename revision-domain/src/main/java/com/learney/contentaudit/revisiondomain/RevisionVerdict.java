@@ -9,5 +9,7 @@ import javax.annotation.processing.Generated;
 public enum RevisionVerdict {
     APPROVED,
 
-    REJECTED
+    REJECTED,
+
+    PENDING_APPROVAL
 }

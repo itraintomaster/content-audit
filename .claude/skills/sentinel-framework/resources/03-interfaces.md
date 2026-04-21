@@ -456,6 +456,22 @@ Examples:
 |--------|--------|
 | `showStats(String analyzerName, String coursePath): Integer` | (none) |
 
+#### ApproveCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `approve(String resource, String proposalId, String planId, String note): Integer` | (none) |
+
+#### RejectCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `reject(String resource, String proposalId, String planId, String reason): Integer` | (none) |
+
 #### ReportFormatter (package: formatting)
 
 **Package:** `com.learney.contentaudit.auditcli.formatting`
@@ -539,6 +555,15 @@ Examples:
 |--------|--------|
 | `resolve(String flagValue): Path` | (none) |
 
+#### ApprovalModeResolver (package: bootstrap) [SEALED]
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `resolve(String envValue): ApprovalMode` | (none) |
+
 ### Module: nlp-infrastructure
 
 #### NlpTokenizerFactory (factory)
@@ -589,6 +614,9 @@ Examples:
 | `save(RevisionArtifact artifact): String` | (none) |
 | `load(String planId, String proposalId): Optional<RevisionArtifact>` | (none) |
 | `listByPlan(String planId): List<RevisionArtifact>` | (none) |
+| `findByProposalId(String proposalId, Optional<String> planId): Optional<RevisionArtifact>` | (none) |
+| `hasPendingProposalForTask(String planId, String taskId): boolean` | (none) |
+| `list(): List<RevisionArtifact>` | (none) |
 
 #### CourseElementLocator (port)
 
@@ -614,4 +642,29 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `create(RevisionEngineConfig config): RevisionEngine` | (none) |
+
+#### RevisionValidatorFactory (factory)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `create(ApprovalMode mode): RevisionValidator` | (none) |
+
+#### ProposalDecisionService (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `approve(String proposalId, Optional<String> planId, Optional<String> note, Path coursePath): ProposalDecisionOutcome` | (none) |
+| `reject(String proposalId, Optional<String> planId, Optional<String> reason): ProposalDecisionOutcome` | (none) |
+
+#### ProposalDecisionServiceFactory (factory)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `create(RevisionEngineConfig config): ProposalDecisionService` | (none) |
 

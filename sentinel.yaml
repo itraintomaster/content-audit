@@ -1299,7 +1299,7 @@ modules:
           feature: FEAT-LREC
           rule: F-LREC-R007
         assert:
-          returns: 100.0
+          returns: 100
       - name: "Given positions [0, 100, 200, 300], when calculateMeanInterval is called,\
           \ then returns 100.0"
         target: DefaultIntervalCalculator
@@ -1312,7 +1312,7 @@ modules:
           feature: FEAT-LREC
           rule: F-LREC-R007
         assert:
-          returns: 100.0
+          returns: 100
       - name: "Given positions [10, 110] and mean 100.0, when calculateStdDevInterval\
           \ is called, then returns 0.0"
         target: DefaultIntervalCalculator
@@ -1320,13 +1320,13 @@ modules:
           method: calculateStdDevInterval
           args:
           - "[10, 110]"
-          - 100.0
+          - 100
         type: unit
         traceability:
           feature: FEAT-LREC
           rule: F-LREC-R007
         assert:
-          returns: 0.0
+          returns: 0
       - name: "Given positions [0, 100, 200, 300] and mean 100.0, when calculateStdDevInterval\
           \ is called, then returns 0.0"
         target: DefaultIntervalCalculator
@@ -1334,13 +1334,13 @@ modules:
           method: calculateStdDevInterval
           args:
           - "[0, 100, 200, 300]"
-          - 100.0
+          - 100
         type: unit
         traceability:
           feature: FEAT-LREC
           rule: F-LREC-R007
         assert:
-          returns: 0.0
+          returns: 0
       visibility: public
       implements:
       - IntervalCalculator
@@ -3810,6 +3810,18 @@ modules:
     sealed: true
     exposes:
     - signature: "showStats(String analyzerName, String coursePath): Integer"
+  - name: ApproveCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "approve(String resource, String proposalId, String planId, String\
+        \ note): Integer"
+  - name: RejectCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "reject(String resource, String proposalId, String planId, String\
+        \ reason): Integer"
   patterns:
   - type: Strategy
     implementations:
@@ -3882,6 +3894,9 @@ modules:
         type: AnalyzerRegistry
       - name: correctionContextResolver
         type: CorrectionContextResolver
+      - name: revisionArtifactStore
+        type: RevisionArtifactStore
+        description: Needed for the new 'proposal'/'proposals' resource branch (R002/R003/F-REVAPR)
       types:
       - Component
       handwrittenTests:
@@ -4144,6 +4159,57 @@ modules:
           feature: FEAT-RCLA
           rule: F-RCLA-R009
         _change: add
+      - name: "Given 'get proposals' without filters, when invoked, then it lists\
+          \ every persisted artifact across all plan directories and exits zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R002
+      - name: "Given 'get proposals --plan <planId>', when invoked, then the listing\
+          \ is restricted to artifacts belonging to that plan"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R003
+      - name: "Given 'get proposals --status pending', when invoked, then the listing\
+          \ includes only artifacts with verdict PENDING_APPROVAL"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R003
+      - name: "Given 'get proposals --status approved', when invoked, then the listing\
+          \ includes only artifacts with verdict APPROVED"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R003
+      - name: "Given 'get proposals --status rejected', when invoked, then the listing\
+          \ includes only artifacts with verdict REJECTED"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R003
+      - name: "Given 'get proposals --plan <planId> --status <s>', when invoked, then\
+          \ both filters are applied conjunctively"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R003
+      - name: "Given 'get proposals --status invalid', when invoked, then the CLI\
+          \ reports 'Invalid value for --status' listing the allowed values and exits\
+          \ non-zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R003
+      - name: "Given 'get proposal <id>' with a known id, when invoked, then the single\
+          \ artifact is printed and exit is zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R002
+      - name: "Given 'get proposal <id> --plan <planId>', when invoked, then the direct\
+          \ plan-scoped lookup returns the artifact"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R002
+      - name: "Given 'get proposal <id>' with an unknown id, when invoked, then the\
+          \ CLI prints 'No proposal found with id' and exits non-zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R002
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -4206,6 +4272,12 @@ modules:
         traceability:
           feature: FEAT-CLIRV
           rule: F-CLIRV-R019
+      - name: "Given 'delete proposal <id>' is invoked, when the CLI dispatches, then\
+          \ it fails with an unknown/unsupported resource error (proposals are not\
+          \ deletable in this iteration)"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R004
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -4257,6 +4329,12 @@ modules:
         traceability:
           feature: FEAT-CLIRV
           rule: F-CLIRV-R011
+      - name: "Given 'prune proposals --keep N' is invoked, when the CLI dispatches,\
+          \ then it fails with an unknown/unsupported resource error (proposals are\
+          \ not prunable in this iteration)"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R004
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -4340,6 +4418,13 @@ modules:
         traceability:
           feature: FEAT-CLIRV
           rule: F-CLIRV-R015
+      - name: "Given revise runs in human mode and the engine returns PENDING_APPROVAL_PERSISTED,\
+          \ when the command finishes, then stdout contains the assigned proposalId\
+          \ in a form suitable for copy-paste to 'approve proposal <id>' / 'reject\
+          \ proposal <id>'"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R016
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -4400,6 +4485,110 @@ modules:
       - java.util.concurrent.Callable<Integer>
       implements:
       - StatsAnalyzerCommand
+    - name: ApproveCmd
+      requiresInject:
+      - name: decisionService
+        type: ProposalDecisionService
+      types:
+      - Component
+      handwrittenTests:
+      - name: "Given 'approve proposal <id>' on a PENDING_APPROVAL proposal, when\
+          \ invoked, then decisionService.approve is called with APPROVED verdict\
+          \ and the CLI exits zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R011
+      - name: "Given 'approve proposal <id> --plan <planId>', when invoked, then the\
+          \ plan scope is forwarded to decisionService.approve"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R011
+      - name: "Given 'approve proposal <id> --note \"...\"', when invoked, then the\
+          \ note text is forwarded to decisionService.approve"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R011
+      - name: "Given 'approve plan <id>', when invoked, then the CLI rejects with\
+          \ an unknown-resource error and exits non-zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R015
+      - name: "Given 'approve audit <id>', when invoked, then the CLI rejects with\
+          \ an unknown-resource error and exits non-zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R015
+      - name: "Given 'approve proposal' without an id, when invoked, then the CLI\
+          \ reports a usage error and exits non-zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R011
+      - name: "Given decisionService returns NOT_FOUND, when approve is invoked, then\
+          \ the CLI prints 'No proposal found with id' and exits non-zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R002
+      - name: "Given decisionService returns ALREADY_DECIDED, when approve is invoked,\
+          \ then the CLI prints the already-decided error and exits non-zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R013
+      - name: "Given decisionService returns APPROVED_APPLY_FAILED, when approve is\
+          \ invoked, then the CLI prints the apply-failed message and exits non-zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R011
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - ApproveCommand
+    - name: RejectCmd
+      requiresInject:
+      - name: decisionService
+        type: ProposalDecisionService
+      types:
+      - Component
+      handwrittenTests:
+      - name: "Given 'reject proposal <id>' on a PENDING_APPROVAL proposal, when invoked,\
+          \ then decisionService.reject is called with REJECTED verdict and the CLI\
+          \ exits zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R012
+      - name: "Given 'reject proposal <id> --plan <planId>', when invoked, then the\
+          \ plan scope is forwarded to decisionService.reject"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R012
+      - name: "Given 'reject proposal <id> --reason \"...\"', when invoked, then the\
+          \ reason text is forwarded to decisionService.reject"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R012
+      - name: "Given 'reject plan <id>', when invoked, then the CLI rejects with an\
+          \ unknown-resource error and exits non-zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R015
+      - name: "Given 'reject proposal' without an id, when invoked, then the CLI reports\
+          \ a usage error and exits non-zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R012
+      - name: "Given decisionService returns NOT_FOUND, when reject is invoked, then\
+          \ the CLI prints 'No proposal found with id' and exits non-zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R002
+      - name: "Given decisionService returns ALREADY_DECIDED, when reject is invoked,\
+          \ then the CLI prints the already-decided error and exits non-zero"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R013
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - RejectCommand
   - name: formatting
     description: "Internal formatting infrastructure — report transformers, view models,\
       \ formatters, and drill-down resolution"
@@ -4716,12 +4905,26 @@ modules:
         description: The override value that failed validation
       message: The configured workdir override '%s' is not a writable directory
       extends: RuntimeException
+    - name: InvalidApprovalModeException
+      type: exception
+      fields:
+      - name: value
+        type: String
+        description: The raw env-var value that failed parsing
+      message: "Invalid value for CONTENT_AUDIT_APPROVAL_MODE: '%s'. Allowed: auto,\
+        \ human"
+      extends: RuntimeException
     interfaces:
     - name: WorkdirResolver
       stereotype: port
       sealed: true
       exposes:
       - signature: "resolve(String flagValue): Path"
+    - name: ApprovalModeResolver
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "resolve(String envValue): ApprovalMode"
     implementations:
     - name: DefaultWorkdirResolver
       visibility: public
@@ -4758,6 +4961,43 @@ modules:
           rule: F-CLIRV-R018
       implements:
       - WorkdirResolver
+    - name: DefaultApprovalModeResolver
+      visibility: public
+      handwrittenTests:
+      - name: "Given a null env value, when resolve is called, then it returns AUTO"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R005
+      - name: "Given an empty-string env value, when resolve is called, then it returns\
+          \ AUTO"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R005
+      - name: "Given env value 'auto', when resolve is called, then it returns AUTO"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R005
+      - name: "Given env value 'AUTO' in any casing, when resolve is called, then\
+          \ it returns AUTO (case-insensitive)"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R005
+      - name: "Given env value 'human', when resolve is called, then it returns HUMAN"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R005
+      - name: "Given env value 'HUMAN' in any casing, when resolve is called, then\
+          \ it returns HUMAN (case-insensitive)"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R005
+      - name: "Given an unrecognized env value, when resolve is called, then it throws\
+          \ InvalidApprovalModeException listing the allowed values"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R005
+      implements:
+      - ApprovalModeResolver
 - name: nlp-infrastructure
   description: "Infrastructure module for NLP processing. Provides SpaCy-backed tokenization\
     \ behind a factory, with internal caching. Only the factory and configuration\
@@ -4884,6 +5124,63 @@ modules:
       traceability:
         feature: FEAT-REVBYP
         rule: F-REVBYP-R010
+    - name: "Given artifacts saved under multiple plan directories, when findByProposalId(id,\
+        \ Optional.empty()) is called, then it scans subdirectories and returns the\
+        \ matching artifact"
+      traceability:
+        feature: FEAT-REVAPR
+        rule: F-REVAPR-R002
+    - name: "Given no artifact matches the id, when findByProposalId(id, Optional.empty())\
+        \ is called, then it returns Optional.empty"
+      traceability:
+        feature: FEAT-REVAPR
+        rule: F-REVAPR-R002
+    - name: "Given an artifact saved under plan P1, when findByProposalId(id, Optional.of(P1))\
+        \ is called, then it takes the direct path and returns the artifact"
+      traceability:
+        feature: FEAT-REVAPR
+        rule: F-REVAPR-R002
+    - name: "Given no artifact under plan P1 with that id, when findByProposalId(id,\
+        \ Optional.of(P1)) is called, then it returns Optional.empty"
+      traceability:
+        feature: FEAT-REVAPR
+        rule: F-REVAPR-R002
+    - name: "Given a PENDING_APPROVAL artifact whose taskId matches, when hasPendingProposalForTask\
+        \ is called, then it returns true"
+      traceability:
+        feature: FEAT-REVAPR
+        rule: F-REVAPR-R009
+    - name: "Given only an APPROVED artifact exists for the task, when hasPendingProposalForTask\
+        \ is called, then it returns false"
+      traceability:
+        feature: FEAT-REVAPR
+        rule: F-REVAPR-R009
+    - name: "Given only a REJECTED artifact exists for the task, when hasPendingProposalForTask\
+        \ is called, then it returns false"
+      traceability:
+        feature: FEAT-REVAPR
+        rule: F-REVAPR-R009
+    - name: "Given no artifact exists for the task, when hasPendingProposalForTask\
+        \ is called, then it returns false"
+      traceability:
+        feature: FEAT-REVAPR
+        rule: F-REVAPR-R009
+    - name: "Given artifacts saved under multiple plan directories, when list() is\
+        \ called, then it returns all of them across all plans"
+      traceability:
+        feature: FEAT-REVAPR
+        rule: F-REVAPR-R002
+    - name: "Given the revisions directory is empty or missing, when list() is called,\
+        \ then it returns an empty list"
+      traceability:
+        feature: FEAT-REVAPR
+        rule: F-REVAPR-R002
+    - name: "Given the store is constructed with a non-default baseDir, when save\
+        \ is called, then the artifact file lands under <baseDir>/.content-audit/revisions/<planId>/<proposalId>.*\
+        \ and NOT under System.getProperty('user.dir')"
+      traceability:
+        feature: FEAT-REVAPR
+        rule: F-REVAPR-R017
     implements:
     - RevisionArtifactStore
   scope: internal
@@ -4905,6 +5202,9 @@ modules:
     fields:
     - name: APPROVED
     - name: REJECTED
+    - name: PENDING_APPROVAL
+      description: The validator has deferred the decision to a human operator (R007).
+        The artifact is persisted but the course is not written.
   - name: RevisionOutcomeKind
     type: enum
     fields:
@@ -4921,6 +5221,11 @@ modules:
       description: CorrectionContext could not be resolved from the audit report
     - name: ELEMENT_NOT_FOUND
       description: Target element (nodeTarget+nodeId) not present in the loaded course
+    - name: PENDING_APPROVAL_PERSISTED
+      description: Proposal persisted with PENDING_APPROVAL; course untouched (R008)
+    - name: ALREADY_PENDING_DECISION
+      description: revise rejected because the task already has a pending proposal
+        (R010)
   - name: CourseElementSnapshot
     type: record
     fields:
@@ -4984,6 +5289,15 @@ modules:
     - name: outcome
       type: RevisionOutcomeKind
       description: Final flow outcome including course-write failures (R014)
+    - name: decidedAt
+      type: Instant
+      description: Timestamp when the verdict transitioned from PENDING_APPROVAL to
+        APPROVED/REJECTED; null while pending or for auto-mode artifacts that never
+        passed through PENDING_APPROVAL
+    - name: decisionNote
+      type: String
+      description: "Free-text note attached by the operator on approve/reject (R011\
+        \ --note, R012 --reason); null if not provided"
   - name: RevisionOutcome
     type: record
     fields:
@@ -5023,6 +5337,39 @@ modules:
     - name: contextResolver
       type: CorrectionContextResolver<CorrectionContext>
       description: Required; caller owns the resolver registry
+  - name: ApprovalMode
+    type: enum
+    fields:
+    - name: AUTO
+      description: "Bypass validator — auto-approves every proposal (R005, inherited\
+        \ from FEAT-REVBYP R007)"
+    - name: HUMAN
+      description: Human validator — every proposal becomes PENDING_APPROVAL (R005/R007)
+  - name: ProposalDecisionOutcomeKind
+    type: enum
+    fields:
+    - name: APPROVED_APPLIED
+      description: Proposal approved and course rewritten (R011)
+    - name: APPROVED_APPLY_FAILED
+      description: "Proposal approved and artifact rewritten, but course write failed\
+        \ (R011 step 6, DOUBT-ATOMICITY)"
+    - name: REJECTED
+      description: Proposal rejected; course untouched (R012)
+    - name: NOT_FOUND
+      description: No proposal matches the supplied id (R002/R011/R012)
+    - name: ALREADY_DECIDED
+      description: Proposal exists but its verdict is not PENDING_APPROVAL (R013)
+  - name: ProposalDecisionOutcome
+    type: record
+    fields:
+    - name: kind
+      type: ProposalDecisionOutcomeKind
+    - name: artifact
+      type: RevisionArtifact
+      description: The artifact after the decision (APPROVED/REJECTED); null for NOT_FOUND
+    - name: errorMessage
+      type: String
+      description: Human-readable message for NOT_FOUND/ALREADY_DECIDED/APPROVED_APPLY_FAILED
   interfaces:
   - name: Reviser
     stereotype: port
@@ -5049,6 +5396,9 @@ modules:
     - signature: "save(RevisionArtifact artifact): String"
     - signature: "load(String planId, String proposalId): Optional<RevisionArtifact>"
     - signature: "listByPlan(String planId): List<RevisionArtifact>"
+    - signature: "findByProposalId(String proposalId, Optional<String> planId): Optional<RevisionArtifact>"
+    - signature: "hasPendingProposalForTask(String planId, String taskId): boolean"
+    - signature: "list(): List<RevisionArtifact>"
   - name: CourseElementLocator
     stereotype: port
     sealed: false
@@ -5067,19 +5417,42 @@ modules:
     sealed: false
     exposes:
     - signature: "create(RevisionEngineConfig config): RevisionEngine"
+  - name: RevisionValidatorFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(ApprovalMode mode): RevisionValidator"
+  - name: ProposalDecisionService
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "approve(String proposalId, Optional<String> planId, Optional<String>\
+        \ note, Path coursePath): ProposalDecisionOutcome"
+    - signature: "reject(String proposalId, Optional<String> planId, Optional<String>\
+        \ reason): ProposalDecisionOutcome"
+  - name: ProposalDecisionServiceFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(RevisionEngineConfig config): ProposalDecisionService"
   patterns:
   - type: Factory
     implementations:
-    - DefaultRevisionEngineFactory
+    - DefaultRevisionValidatorFactory
     suppressed: false
-    interface: RevisionEngineFactory
+    interface: RevisionValidatorFactory
+  - type: Factory
+    implementations:
+    - DefaultProposalDecisionServiceFactory
+    suppressed: false
+    interface: ProposalDecisionServiceFactory
   packages:
   - name: engine
     description: "Revision engine internals. Only DefaultRevisionEngineFactory is\
       \ public; every other class (DispatchingReviser, IdentityReviser, AutoApproveValidator,\
       \ DefaultRevisionValidatorResult, DefaultCourseElementLocator, DefaultRevisionEngine)\
       \ is package-private. External modules wire a RevisionEngine by calling factory.create(config)."
-    visibility: public
+    visibility: internal
     implementations:
     - name: DefaultRevisionEngineFactory
       types:
@@ -5212,8 +5585,162 @@ modules:
         traceability:
           feature: FEAT-REVBYP
           rule: F-REVBYP-R014
+      - name: "Given the human validator emits PENDING_APPROVAL, when revise runs,\
+          \ then the artifact is persisted with PENDING_APPROVAL and CourseRepository\
+          \ is never asked to save"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R008
+      - name: "Given the human validator emits PENDING_APPROVAL, when revise finishes,\
+          \ then the outcome kind is PENDING_APPROVAL_PERSISTED and the RefinementTask\
+          \ stays PENDING"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R009
+      - name: "Given the task already has a PENDING_APPROVAL proposal, when revise\
+          \ runs, then the outcome is ALREADY_PENDING_DECISION and no new artifact\
+          \ is persisted"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R010
       implements:
       - RevisionEngine
+    - name: HumanApprovalValidator
+      types:
+      - Component
+      handwrittenTests:
+      - name: "Given any RevisionProposal, when validate is called, then it returns\
+          \ a RevisionValidatorResult with verdict PENDING_APPROVAL"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R007
+      - name: "Given a PENDING_APPROVAL result, when rejectionReason is queried, then\
+          \ it returns Optional.empty"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R007
+      - name: "Given any RevisionProposal, when validate is called in human mode,\
+          \ then the verdict field on the returned result is literally the PENDING_APPROVAL\
+          \ enum value (new vocabulary)"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R001
+      implements:
+      - RevisionValidator
+    - name: DefaultRevisionValidatorFactory
+      types:
+      - Component
+      visibility: public
+      handwrittenTests:
+      - name: "Given ApprovalMode.AUTO, when create is called, then it returns an\
+          \ AutoApproveValidator instance (exactly one validator active for the invocation)"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R006
+      - name: "Given ApprovalMode.HUMAN, when create is called, then it returns a\
+          \ HumanApprovalValidator instance (exactly one validator active for the\
+          \ invocation)"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R006
+      implements:
+      - RevisionValidatorFactory
+    - name: DefaultProposalDecisionServiceFactory
+      types:
+      - Component
+      visibility: public
+      implements:
+      - ProposalDecisionServiceFactory
+    - name: DefaultProposalDecisionService
+      requiresInject:
+      - name: artifactStore
+        type: RevisionArtifactStore
+      - name: courseRepository
+        type: CourseRepository
+      - name: elementLocator
+        type: CourseElementLocator
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+        description: Needed to clear the task back to PENDING on reject (R014) and
+          close it as DONE on approve
+      types:
+      - Component
+      handwrittenTests:
+      - name: "Given a PENDING_APPROVAL artifact, when approve is called, then the\
+          \ artifact is rewritten with verdict APPROVED and decidedAt set"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R011
+      - name: "Given a PENDING_APPROVAL artifact, when approve is called, then the\
+          \ course is loaded and saved with elementAfter applied via CourseRepository"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R011
+      - name: "Given approve succeeds and the course is applied, then the associated\
+          \ RefinementTask transitions to DONE"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R014
+      - name: "Given approve is called with a --note, then the persisted artifact's\
+          \ decisionNote carries that note"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R011
+      - name: "Given no proposal matches the supplied id, when approve is called,\
+          \ then the outcome is NOT_FOUND and no artifact or course is written"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R011
+      - name: "Given a proposal whose verdict is already APPROVED, when approve is\
+          \ called again, then the outcome is ALREADY_DECIDED and no side effects\
+          \ occur"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R013
+      - name: "Given a proposal whose verdict is already REJECTED, when approve is\
+          \ called, then the outcome is ALREADY_DECIDED and no side effects occur"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R013
+      - name: "Given approve rewrites the artifact to APPROVED but the course write\
+          \ fails, then the artifact keeps APPROVED with decidedAt and the task does\
+          \ not advance to DONE"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R014
+      - name: "Given a PENDING_APPROVAL artifact, when reject is called, then the\
+          \ artifact is rewritten with verdict REJECTED and decisionNote carrying\
+          \ the --reason"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R012
+      - name: "Given a PENDING_APPROVAL artifact, when reject is called, then CourseRepository\
+          \ is never asked to load or save the course"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R012
+      - name: "Given reject succeeds, then the associated RefinementTask returns to\
+          \ its previous state (typically PENDING)"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R014
+      - name: "Given no proposal matches the supplied id, when reject is called, then\
+          \ the outcome is NOT_FOUND and no artifact or course is written"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R012
+      - name: "Given a proposal whose verdict is already APPROVED, when reject is\
+          \ called, then the outcome is ALREADY_DECIDED and no side effects occur"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R013
+      - name: "Given a proposal whose verdict is already REJECTED, when reject is\
+          \ called, then the outcome is ALREADY_DECIDED and no side effects occur"
+        traceability:
+          feature: FEAT-REVAPR
+          rule: F-REVAPR-R013
+      implements:
+      - ProposalDecisionService
 features:
 - id: FEAT-DLABS
   name: Diagnosticos Tipados para el Analizador de Ausencia de Lemas
@@ -11380,6 +11907,576 @@ features:
       - F-CLIRV-R017
     testModule: audit-cli
     testPackage: com.learney.contentaudit.auditcli.journeys
+- id: FEAT-REVAPR
+  name: Fase de revision con aprobacion humana
+  description: |-
+    FEAT-REVBYP introdujo la fase de **revision** como un flujo sincronico end-to-end: en una sola invocacion de `revise task <id>`, el sistema genera una propuesta, la valida, la persiste como artefacto y la aplica al curso. En esa iteracion el validator era el **bypass** (auto-aprueba todo), de modo que la aprobacion no involucraba al operador.
+
+    Este requerimiento introduce un **modo de aprobacion humana**: la revision se parte en dos fases separadas por un estado persistido de "pendiente de aprobacion". El operador corre primero `revise task <id>`, que produce la propuesta y la deja esperando decision; luego inspecciona el artefacto y corre `approve proposal <id>` o `reject proposal <id>` para decidir. Solo al aprobarse se reescribe el curso. El rechazo devuelve la tarea al estado previo sin tocar el curso.
+
+    El objetivo es validar que la pipeline de revision soporta un **punto de corte operativo** entre la generacion de la propuesta y su aplicacion, sin introducir todavia logica de revision real ni workflows multi-etapa.
+  code: F-REVAPR
+  rules:
+  - id: F-REVAPR-R001
+    name: Se agrega `PENDING_APPROVAL` al vocabulario de veredictos
+    severity: critical
+    description: "El vocabulario del `RevisionValidator` de FEAT-REVBYP (R006) se\
+      \ extiende con un tercer veredicto: - **APPROVED**: la propuesta puede aplicarse\
+      \ al curso (ya existente). - **REJECTED**: la propuesta no se aplica (ya existente).\
+      \ - **PENDING_APPROVAL** (nuevo): la propuesta queda registrada pero el sistema\
+      \ no decide en el momento. La decision se difiere a una fase operativa posterior\
+      \ (`approve proposal <id>` / `reject proposal <id>`). El artefacto persistido\
+      \ despues de la fase de propuesta (R008 de FEAT-REVBYP) puede llevar cualquiera\
+      \ de los tres veredictos. La cadena persistida + decidida diferida nunca deja\
+      \ el veredicto sin resolver una vez que el operador decide."
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R002
+    name: '`proposal` es un recurso de primera clase en la CLI'
+    severity: critical
+    description: "El artefacto de revision persistido bajo `.content-audit/revisions/<planId>/<proposalId>.*`\
+      \ (FEAT-REVBYP R008-R010) se vuelve un recurso direccionable del sistema, siguiendo\
+      \ la gramatica de FEAT-CLIRV (R005/R006): - Se reconoce como resource name valido\
+      \ en `get` (singular `proposal` / plural `proposals`). - El id usado para direccionar\
+      \ una propuesta es el `proposalId` que el sistema asigna al crearla (FEAT-REVBYP\
+      \ R001). Ese mismo id es el que aparece en `get proposals` y el que se le pasa\
+      \ a `approve proposal <id>` / `reject proposal <id>`. - `get proposals` lista\
+      \ todas las propuestas conocidas por el sistema. `get proposal <id>` devuelve\
+      \ una sola. En ausencia, el comando falla con el mismo patron de \"not found\"\
+      \ de FEAT-CLIRV R001."
+    errorMessage: No proposal found with id '<id>'
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R003
+    name: Filtros soportados en `get proposals`
+    severity: major
+    description: "`get proposals` acepta, como minimo, los siguientes filtros opcionales\
+      \ (combinables de forma conjuntiva, siguiendo el patron de FEAT-CLIRV R008):\
+      \ | Flag | Efecto | |------|--------| | `--plan <id>` | Restringe el resultado\
+      \ a las propuestas cuyo `planId` coincide con el dado. Si esta ausente, no se\
+      \ aplica filtro por plan. | | `--status pending\\|approved\\|rejected` | Restringe\
+      \ por veredicto persistido en el artefacto. `pending` corresponde a `PENDING_APPROVAL`;\
+      \ `approved` a `APPROVED`; `rejected` a `REJECTED`. Parsing case-insensitive.\
+      \ | Otros filtros (por taskId, por diagnosisKind, por reviserKind, por rango\
+      \ de fechas) quedan como evolucion futura, fuera de alcance en esta iteracion.\
+      \ La decision de ofrecer filtros extra no es bloqueante para la funcionalidad\
+      \ core."
+    errorMessage: "Invalid value for --status: '<value>'. Allowed: pending, approved,\
+      \ rejected"
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R004
+    name: '`delete` y `prune` sobre `proposal` quedan fuera de alcance'
+    severity: minor
+    description: "Esta iteracion **no** agrega `delete proposal <id>` ni `prune proposals\
+      \ --keep N`. La razon es que las propuestas son artefactos de auditoria: eliminarlas\
+      \ borraria la traza de intentos de revision. Si el operador quiere limpiar el\
+      \ historial, hoy lo puede hacer a mano sobre el filesystem; en una iteracion\
+      \ futura se puede considerar ofrecer `prune proposals` con una politica de retencion\
+      \ explicita."
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R005
+    name: El modo de aprobacion se selecciona por variable de entorno
+    severity: critical
+    description: "El validator activo se determina al arranque de la CLI leyendo la\
+      \ variable de entorno `CONTENT_AUDIT_APPROVAL_MODE`. Los valores reconocidos\
+      \ son: - `auto`: el validator del bypass (FEAT-REVBYP R007). Cada propuesta\
+      \ se marca `APPROVED` sincronicamente y se aplica al curso en la misma invocacion\
+      \ de `revise task <id>` (comportamiento de FEAT-REVBYP). - `human`: el validator\
+      \ humano (nuevo). Cada propuesta se marca `PENDING_APPROVAL`, se persiste, y\
+      \ la decision se toma mas tarde con `approve proposal <id>` / `reject proposal\
+      \ <id>`. Propiedades requeridas: 1. El modo se resuelve **antes** de construir\
+      \ el `RevisionValidator`. Todas las invocaciones de la misma CLI en un mismo\
+      \ proceso ven el mismo modo. 2. Parsing case-insensitive (`AUTO`, `auto`, `Auto`\
+      \ son equivalentes; idem `human`). 3. Si el valor no es reconocido, la CLI falla\
+      \ al arranque con un mensaje explicito listando los valores admitidos, antes\
+      \ de ejecutar cualquier verbo. 4. No existe un flag de linea de comando que\
+      \ cambie este modo por invocacion. La seleccion es **externa al proceso**, deliberadamente,\
+      \ para evitar que distintos operadores trabajen con modos distintos sin saberlo.\
+      \ 5. El valor por defecto (que se aplica cuando la variable no esta seteada\
+      \ o esta vacia) queda abierto (ver DOUBT-APPROVAL-MODE-DEFAULT)."
+    errorMessage: "Invalid value for CONTENT_AUDIT_APPROVAL_MODE: '<value>'. Allowed:\
+      \ auto, human"
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R006
+    name: Hay exactamente un validator activo por invocacion
+    severity: major
+    description: "Durante una invocacion de la CLI no se componen ni encadenan varios\
+      \ validators: solo esta activo el seleccionado por R005. Esto descarta explicitamente,\
+      \ en esta iteracion, escenarios como \"aplicar el validator humano solo para\
+      \ ciertos `DiagnosisKind` y el auto para el resto\", o \"una cadena de validators\
+      \ que deben aprobar en secuencia\". La composicion declarativa de validators\
+      \ es un feature futuro explicitamente fuera de alcance (ver Limitaciones)."
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R007
+    name: El validator humano emite `PENDING_APPROVAL`
+    severity: critical
+    description: "Cuando el modo activo es `human`, el validator examina cada `RevisionProposal`\
+      \ y emite veredicto `PENDING_APPROVAL`. No aprueba ni rechaza: deja la decision\
+      \ para la fase de aprobacion. Este validator no inspecciona la semantica de\
+      \ la propuesta (no compara `elementBefore` vs `elementAfter`, no valida coherencia):\
+      \ devuelve siempre `PENDING_APPROVAL` para todas las propuestas que recibe.\
+      \ Analogo al validator `bypass` de FEAT-REVBYP R007 pero con otro veredicto."
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R008
+    name: Artefacto persistido con `PENDING_APPROVAL`
+    severity: critical
+    description: "Cuando el validator emite `PENDING_APPROVAL`, el sistema persiste\
+      \ el artefacto de la propuesta bajo `.content-audit/revisions/<planId>/<proposalId>.*`\
+      \ (siguiendo FEAT-REVBYP R008-R010) con el veredicto `PENDING_APPROVAL` registrado.\
+      \ No se toca el curso en disco. El orden del flujo es analogo a FEAT-REVBYP\
+      \ R014: (1) generar propuesta, (2) validar (el validator humano emite PENDING_APPROVAL),\
+      \ (3) persistir el artefacto, (4) **no** aplicar al curso. El artefacto resultante\
+      \ cumple los requisitos de contenido minimo de FEAT-REVBYP R010 (datos suficientes\
+      \ para reconstruir la decision una vez tomada)."
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R009
+    name: La tarea queda en estado "esperando aprobacion"
+    severity: critical
+    description: "Al finalizar la fase de propuesta en modo humano, la `RefinementTask`\
+      \ asociada queda marcada con un estado que indique \"propuesta emitida, esperando\
+      \ decision del operador\". El nombre concreto del estado (reusar uno existente\
+      \ del modelo del refiner, agregar uno nuevo como `AWAITING_APPROVAL`, o usar\
+      \ un flag ortogonal) es una decision de arquitectura (ver DOUBT-AWAITING-STATE).\
+      \ La intencion funcional es: 1. La tarea **no** esta DONE (todavia no hubo efecto\
+      \ sobre el curso). 2. La tarea **no** esta PENDING (ya hay una propuesta emitida\
+      \ y persistida; volver a correrle `revise task <id>` no deberia generar una\
+      \ nueva propuesta en silencio). 3. El estado es observable: `get tasks --status\
+      \ ...` debe poder distinguir tareas \"esperando aprobacion\" de las que estan\
+      \ PENDING o DONE."
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R010
+    name: Re-revisar una tarea con propuesta pendiente es un error
+    severity: major
+    description: "Si una `RefinementTask` ya tiene una `RevisionProposal` asociada\
+      \ en estado `PENDING_APPROVAL`, una nueva invocacion de `revise task <id>` sobre\
+      \ la misma tarea **no** debe generar en silencio otra propuesta pendiente. El\
+      \ comportamiento por defecto propuesto es **rechazar la invocacion** con un\
+      \ error explicito que identifica la propuesta pendiente y pide al operador que\
+      \ la decida primero (o que, eventualmente en el futuro, la supersea explicitamente\
+      \ con un flag). Se prohibe la acumulacion silenciosa de propuestas pendientes\
+      \ sobre la misma tarea. La pregunta de si un flag futuro (`--supersede`, `--force`)\
+      \ deberia reemplazar la propuesta pendiente anterior por una nueva queda abierta\
+      \ (ver DOUBT-SUPERSEDE). La decision segura por defecto para esta iteracion\
+      \ es: rechazar."
+    errorMessage: Task '<task-id>' in plan '<plan-id>' already has a pending proposal
+      '<proposalId>'. Decide it with 'approve proposal <proposalId>' or 'reject proposal
+      <proposalId>' first.
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R011
+    name: '`approve proposal <id>` aprueba una propuesta pendiente y aplica al curso'
+    severity: critical
+    description: "El verbo `approve` opera sobre el recurso `proposal`: ``` content-audit\
+      \ approve proposal <proposal-id> [--note \"<text>\"] ``` Comportamiento: 1.\
+      \ El sistema localiza la propuesta por `proposal-id` bajo `.content-audit/revisions/`.\
+      \ 2. Si no existe, falla con el error de R002 (\"No proposal found with id ...\"\
+      ). 3. Si existe pero su veredicto actual **no** es `PENDING_APPROVAL`, la invocacion\
+      \ se rechaza con un error que identifica el veredicto actual (ver R013, idempotencia).\
+      \ 4. Si el veredicto es `PENDING_APPROVAL`, el sistema transiciona el artefacto\
+      \ al veredicto `APPROVED` (el mecanismo concreto — reescribir el artefacto en\
+      \ sitio o appendear un registro de decision separado — es una decision de arquitectura;\
+      \ ver DOUBT-ARTIFACT-DECISION-RECORD) y dispara la aplicacion al curso usando\
+      \ la misma mecanica de FEAT-REVBYP R011: cargar el curso via `CourseRepository`,\
+      \ sustituir `elementBefore` por `elementAfter`, persistir el curso modificado.\
+      \ 5. En caso de exito, la `RefinementTask` asociada pasa a DONE (FEAT-REVBYP\
+      \ R013). 6. En caso de falla al aplicar al curso, se sigue el precedente de\
+      \ FEAT-REVBYP R014: el registro de decision queda como `APPROVED + aplicacion\
+      \ intentada + fallo reportado`; la tarea **no** avanza a DONE. La inconsistencia\
+      \ temporal (artefacto aprobado + curso sin actualizar) se acepta como limitacion\
+      \ conocida, heredada de FEAT-REVBYP DOUBT-ATOMICITY. 7. El flag opcional `--note\
+      \ \"<text>\"` adjunta un texto libre al registro de decision (util para trazabilidad:\
+      \ \"aprobado tras revision manual del quiz X\"). No es obligatorio. No modifica\
+      \ la semantica de la decision."
+    errorMessage: No proposal found with id '<id>'
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R012
+    name: '`reject proposal <id>` rechaza una propuesta pendiente sin tocar el curso'
+    severity: critical
+    description: "El verbo `reject` opera sobre el recurso `proposal`: ``` content-audit\
+      \ reject proposal <proposal-id> [--reason \"<text>\"] ``` Comportamiento: 1.\
+      \ El sistema localiza la propuesta por `proposal-id` bajo `.content-audit/revisions/`.\
+      \ 2. Si no existe, falla con el error de R002. 3. Si existe pero su veredicto\
+      \ actual **no** es `PENDING_APPROVAL`, la invocacion se rechaza (ver R013).\
+      \ 4. Si el veredicto es `PENDING_APPROVAL`, el sistema transiciona el artefacto\
+      \ al veredicto `REJECTED`. **No** se carga ni se escribe el curso (analogo a\
+      \ FEAT-REVBYP R012). 5. La `RefinementTask` asociada vuelve al estado que tenia\
+      \ antes de que se emitiera la propuesta (tipicamente PENDING; ver R014). 6.\
+      \ El flag opcional `--reason \"<text>\"` adjunta un texto libre al registro\
+      \ de decision, documentando por que se rechazo. No es obligatorio en esta iteracion,\
+      \ pero se recomienda al operador por trazabilidad."
+    errorMessage: No proposal found with id '<id>'
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R013
+    name: "Decidir dos veces la misma propuesta es un error, no un no-op"
+    severity: major
+    description: "Intentar `approve proposal <id>` o `reject proposal <id>` sobre\
+      \ una propuesta cuyo veredicto persistido **no** es `PENDING_APPROVAL` (ya fue\
+      \ decidida: esta `APPROVED` o `REJECTED`, o incluso `APPROVED + aplicacion fallida`)\
+      \ debe fallar con un error explicito. No es un no-op silencioso, ni se sobreescribe\
+      \ la decision anterior. La razon es proteger la trazabilidad: una propuesta\
+      \ ya decidida ya tuvo (o no) efecto sobre el curso; reescribirla despues genera\
+      \ incoherencia entre el artefacto y la historia real. Si el operador necesita\
+      \ emitir una decision distinta a la registrada, el camino correcto es **iterar\
+      \ el ciclo**: (1) volver a invocar `revise task <id>` para generar una nueva\
+      \ propuesta sobre la misma tarea (si la politica de re-revision lo permite;\
+      \ ver R010), (2) decidir la nueva propuesta."
+    errorMessage: "Cannot <approve|reject> proposal '<id>': its current verdict is\
+      \ '<verdict>', not PENDING_APPROVAL"
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R014
+    name: Transiciones de estado de la tarea bajo el flujo aprobado
+    severity: critical
+    description: "El estado de la `RefinementTask` refleja en todo momento el estado\
+      \ de la revision, segun la siguiente tabla: | Momento | Estado de la tarea |\
+      \ |---------|--------------------| | Antes de `revise task <id>` | El estado\
+      \ previo (tipicamente PENDING) | | Despues de `revise task <id>` en modo auto\
+      \ + aprobado + aplicado | DONE (heredado de FEAT-REVBYP R013) | | Despues de\
+      \ `revise task <id>` en modo auto + aprobado + fallo al aplicar | Estado previo\
+      \ (heredado de FEAT-REVBYP R014) | | Despues de `revise task <id>` en modo human\
+      \ (propuesta PENDING_APPROVAL emitida y persistida) | \"Esperando aprobacion\"\
+      \ (ver R009 y DOUBT-AWAITING-STATE) | | Despues de `approve proposal <id>` +\
+      \ aplicado al curso con exito | DONE | | Despues de `approve proposal <id>`\
+      \ + fallo al aplicar al curso | \"Esperando aprobacion\" sigue siendo el estado\
+      \ (la propuesta esta APPROVED pero la tarea no avanzo a DONE; heredado de FEAT-REVBYP\
+      \ R014) | | Despues de `reject proposal <id>` | Estado previo (tipicamente PENDING)\
+      \ | La regla busca que, para un observador externo que corra `get tasks`, nunca\
+      \ haya una tarea que diga estar DONE sin que el curso refleje el cambio, y nunca\
+      \ haya una tarea que diga estar PENDING cuando existe una propuesta pendiente\
+      \ no decidida. Si el estado previo no era PENDING (la tarea habia sido skipeada,\
+      \ por ejemplo), se preserva."
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R015
+    name: '`approve` y `reject` solo operan sobre el recurso `proposal`'
+    severity: major
+    description: "Los verbos `approve` y `reject` son **especificos del recurso `proposal`**\
+      \ en esta iteracion. Invocarlos sobre otro recurso (`approve plan <id>`, `reject\
+      \ audit <id>`, etc.) se rechaza con el mismo patron de \"unknown resource\"\
+      \ de FEAT-CLIRV R005. La gramatica general sigue siendo kubectl-style (verbo-recurso),\
+      \ pero no todos los verbos aplican a todos los recursos. Si en iteraciones futuras\
+      \ aparecen otros recursos sujetos a aprobacion (por ejemplo, un `PipelineConfig`\
+      \ como recurso), esta regla se revisa. Por ahora, el scope es unico."
+    errorMessage: "Unknown resource '<name>' for verb 'approve' / 'reject'. Supported:\
+      \ proposal"
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R016
+    name: El id de la propuesta impreso por `revise task <id>` en modo humano se puede
+      copiar a `approve` / `reject`
+    severity: major
+    description: "Analogo a FEAT-CLIRV R007 (\"resource ids are presented uniformly\
+      \ across verbs\"): cuando `revise task <id>` corre en modo humano y emite una\
+      \ propuesta `PENDING_APPROVAL`, la CLI debe imprimir de forma inequivoca el\
+      \ `proposalId` asignado, de modo que el operador lo pueda copiar directamente\
+      \ a la siguiente invocacion `approve proposal <proposalId>` o `reject proposal\
+      \ <proposalId>`. El mismo id tambien se muestra en `get proposals` y `get proposal\
+      \ <id>`."
+    validation: AUTO_VALIDATED
+  - id: F-REVAPR-R017
+    name: El workdir override de FEAT-CLIRV R017 aplica a las propuestas
+    severity: major
+    description: "Las operaciones `get proposals`, `get proposal <id>`, `approve proposal\
+      \ <id>`, `reject proposal <id>` y la persistencia de propuestas durante `revise\
+      \ task <id>` deben respetar el mismo mecanismo de override del workdir definido\
+      \ en FEAT-CLIRV R017 (`--workdir` flag y `CONTENT_AUDIT_HOME` env var, con precedencia\
+      \ flag > env > default). Todas las propuestas leidas/escritas por una invocacion\
+      \ de la CLI viven bajo el `.content-audit/revisions/` resuelto por ese mecanismo,\
+      \ nunca por dos paths distintos dentro de la misma invocacion."
+    validation: AUTO_VALIDATED
+  journeys:
+  - id: F-REVAPR-J001
+    name: "Flujo humano end-to-end: propuesta -> aprobacion -> aplicado"
+    validation: AUTO_VALIDATED
+    flow:
+    - id: configurar_modo_humano
+      action: La CLI arranca con CONTENT_AUDIT_APPROVAL_MODE=human configurada en
+        el entorno; el validator activo es el humano
+      then: iniciar_revision
+      gate:
+      - F-REVAPR-R005
+      - F-REVAPR-R006
+    - id: iniciar_revision
+      action: El operador invoca 'content-audit revise task <id>' sobre una tarea
+        PENDING del plan mas reciente
+      then: generar_propuesta
+    - id: generar_propuesta
+      action: El Reviser bypass genera una RevisionProposal con elementAfter igual
+        a elementBefore (FEAT-REVBYP R001/R002/R004)
+      then: validar_humano
+    - id: validar_humano
+      action: El validator humano emite veredicto PENDING_APPROVAL para la propuesta
+      then: persistir_artefacto_pendiente
+      gate:
+      - F-REVAPR-R001
+      - F-REVAPR-R007
+    - id: persistir_artefacto_pendiente
+      action: El sistema persiste el artefacto bajo .content-audit/revisions/<planId>/<proposalId>
+        con veredicto PENDING_APPROVAL; no toca el curso
+      then: marcar_tarea_esperando
+      gate:
+      - F-REVAPR-R008
+      - F-REVAPR-R016
+    - id: marcar_tarea_esperando
+      action: La tarea asociada queda marcada como 'esperando aprobacion'; la CLI
+        imprime el proposalId asignado
+      then: operador_inspecciona
+      gate:
+      - F-REVAPR-R009
+      - F-REVAPR-R014
+      - F-REVAPR-R016
+    - id: operador_inspecciona
+      action: El operador invoca 'content-audit get proposal <proposalId>' y la CLI
+        devuelve el artefacto completo con veredicto PENDING_APPROVAL
+      then: operador_aprueba
+      gate:
+      - F-REVAPR-R002
+    - id: operador_aprueba
+      action: El operador invoca 'content-audit approve proposal <proposalId>'; el
+        sistema verifica que el veredicto actual es PENDING_APPROVAL
+      then: transicionar_a_aprobado
+      gate:
+      - F-REVAPR-R011
+      - F-REVAPR-R013
+    - id: transicionar_a_aprobado
+      action: El sistema transiciona el veredicto de la propuesta a APPROVED
+      then: aplicar_curso
+      gate:
+      - F-REVAPR-R011
+    - id: aplicar_curso
+      action: "El sistema carga el curso via CourseRepository, sustituye el elemento\
+        \ identificado por elementAfter, y persiste el curso modificado (FEAT-REVBYP\
+        \ R011)"
+      outcomes:
+      - when: La escritura del curso fue exitosa
+        then: tarea_done
+      - when: La escritura del curso fallo
+        then: fallo_aplicacion
+    - id: tarea_done
+      action: El sistema marca la RefinementTask como DONE
+      result: success
+      gate:
+      - F-REVAPR-R014
+    - id: fallo_aplicacion
+      action: El sistema reporta que la propuesta fue aprobada pero el curso no pudo
+        reescribirse; la tarea permanece en 'esperando aprobacion'
+      result: failure
+      gate:
+      - F-REVAPR-R011
+      - F-REVAPR-R014
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-REVAPR-J002
+    name: "Flujo humano end-to-end: propuesta -> rechazo -> tarea vuelve a PENDING"
+    validation: AUTO_VALIDATED
+    flow:
+    - id: configurar_modo_humano
+      action: La CLI arranca con CONTENT_AUDIT_APPROVAL_MODE=human configurada en
+        el entorno
+      then: iniciar_revision
+      gate:
+      - F-REVAPR-R005
+    - id: iniciar_revision
+      action: El operador invoca 'content-audit revise task <id>' sobre una tarea
+        PENDING
+      then: emitir_pendiente
+    - id: emitir_pendiente
+      action: "El validator humano emite PENDING_APPROVAL, el sistema persiste el\
+        \ artefacto y la tarea queda 'esperando aprobacion'"
+      then: operador_rechaza
+      gate:
+      - F-REVAPR-R007
+      - F-REVAPR-R008
+      - F-REVAPR-R009
+    - id: operador_rechaza
+      action: El operador invoca 'content-audit reject proposal <proposalId> --reason
+        "<text>"'; el sistema verifica que el veredicto actual es PENDING_APPROVAL
+      then: transicionar_a_rechazado
+      gate:
+      - F-REVAPR-R012
+      - F-REVAPR-R013
+    - id: transicionar_a_rechazado
+      action: El sistema transiciona el veredicto a REJECTED; el curso en disco no
+        se toca
+      then: tarea_vuelve_pending
+      gate:
+      - F-REVAPR-R012
+    - id: tarea_vuelve_pending
+      action: La RefinementTask vuelve a su estado previo a la propuesta (tipicamente
+        PENDING)
+      result: success
+      gate:
+      - F-REVAPR-R014
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-REVAPR-J003
+    name: Decidir dos veces la misma propuesta es un error
+    validation: AUTO_VALIDATED
+    flow:
+    - id: invocar_decision
+      action: El operador invoca 'content-audit approve proposal <proposalId>' o 'content-audit
+        reject proposal <proposalId>' sobre una propuesta
+      outcomes:
+      - when: El veredicto actual es PENDING_APPROVAL
+        then: procesar_decision
+      - when: El veredicto actual ya es APPROVED o REJECTED
+        then: rechazar_por_veredicto
+      - when: La propuesta no existe
+        then: rechazar_no_encontrada
+      gate:
+      - F-REVAPR-R011
+      - F-REVAPR-R012
+    - id: procesar_decision
+      action: "El sistema procesa la decision (aprobar aplica al curso, rechazar no\
+        \ lo toca) y el artefacto queda con el nuevo veredicto"
+      result: success
+      gate:
+      - F-REVAPR-R011
+      - F-REVAPR-R012
+    - id: rechazar_por_veredicto
+      action: El sistema reporta que la propuesta ya fue decidida y exit con estado
+        no-cero; el artefacto no se modifica
+      result: failure
+      gate:
+      - F-REVAPR-R013
+    - id: rechazar_no_encontrada
+      action: El sistema reporta que la propuesta no existe y exit con estado no-cero
+      result: failure
+      gate:
+      - F-REVAPR-R002
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-REVAPR-J004
+    name: Re-revisar una tarea con propuesta pendiente es un error
+    validation: AUTO_VALIDATED
+    flow:
+    - id: invocar_revise
+      action: El operador invoca 'content-audit revise task <taskId>' en modo humano
+      outcomes:
+      - when: La tarea no tiene propuesta pendiente
+        then: generar_nueva_propuesta
+      - when: La tarea ya tiene una propuesta en PENDING_APPROVAL
+        then: rechazar_por_pendiente
+      gate:
+      - F-REVAPR-R005
+    - id: generar_nueva_propuesta
+      action: "El sistema genera una nueva propuesta, la persiste como PENDING_APPROVAL\
+        \ y marca la tarea como 'esperando aprobacion'"
+      result: success
+      gate:
+      - F-REVAPR-R007
+      - F-REVAPR-R008
+      - F-REVAPR-R009
+    - id: rechazar_por_pendiente
+      action: El sistema reporta que ya existe una propuesta pendiente para esa tarea
+        y pide al operador que la decida primero; exit con estado no-cero; el artefacto
+        existente no se toca
+      result: failure
+      gate:
+      - F-REVAPR-R010
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-REVAPR-J005
+    name: Listar propuestas por plan y por estado
+    validation: AUTO_VALIDATED
+    flow:
+    - id: invocar_get
+      action: "El operador invoca 'content-audit get proposals' con cero o mas filtros\
+        \ (--plan <id>, --status pending|approved|rejected)"
+      outcomes:
+      - when: "Los filtros son validos (si hay --status, el valor es pending, approved\
+          \ o rejected)"
+        then: devolver_lista
+      - when: El valor de --status no es uno de los tres permitidos
+        then: rechazar_status_invalido
+      gate:
+      - F-REVAPR-R002
+      - F-REVAPR-R003
+    - id: devolver_lista
+      action: "El sistema devuelve la lista de propuestas que coinciden con los filtros,\
+        \ con su proposalId, planId, taskId y veredicto actual; si no hay coincidencias,\
+        \ imprime una linea explicita de lista vacia y exit cero (patron de FEAT-CLIRV\
+        \ R011)"
+      result: success
+      gate:
+      - F-REVAPR-R002
+      - F-REVAPR-R003
+    - id: rechazar_status_invalido
+      action: El sistema reporta que el valor de --status no es valido y lista los
+        permitidos; exit no-cero
+      result: failure
+      gate:
+      - F-REVAPR-R003
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  doubts:
+  - id: DOUBT-ARTIFACT-DECISION-RECORD
+    question: Como se registra la decision sobre el artefacto?
+    options:
+    - label: "Opcion A: Reescribir en sitio el archivo del artefacto, actualizando\
+        \ el campo `verdict` de `PENDING_APPROVAL` al nuevo valor. Simple, pero pierde\
+        \ la traza de la existencia del estado pendiente previo."
+    - label: "Opcion B: Dejar el artefacto original intacto (con `PENDING_APPROVAL`)\
+        \ y appendear un archivo de \"decision record\" separado bajo el mismo `<proposalId>`\
+        \ (por ejemplo `<proposalId>.decision.json`) con el veredicto final, el actor\
+        \ (si se modelara), el timestamp y el `--note` / `--reason`. Preserva la historia\
+        \ a costa de mas archivos."
+    - label: "Opcion C: Un formato tipo append-only log dentro del mismo archivo (lista\
+        \ de eventos: `[created, decided]`). Mas complejo."
+    answer: Pendiente. La regla funcional (R011/R012/R013) requiere que el veredicto
+      final sea recuperable; la forma del almacenamiento es decision de arquitectura.
+  - id: DOUBT-APPROVAL-MODE-DEFAULT
+    question: Valor por defecto de `CONTENT_AUDIT_APPROVAL_MODE` cuando la variable
+      no esta seteada
+    options:
+    - label: "Opcion A: Default `auto`. Preserva el comportamiento historico de FEAT-REVBYP:\
+        \ scripts, ejemplos y tests existentes siguen funcionando sin setear nada.\
+        \ El modo humano es opt-in explicito. Seguro para no romper expectativas de\
+        \ usuarios actuales."
+    - label: "Opcion B: Default `human`. Fuerza a los usuarios a declarar explicitamente\
+        \ si quieren modo auto. Mas seguro desde el punto de vista de \"nada se aplica\
+        \ al curso sin revision humana\", pero rompe el flujo actual."
+    - label: "Opcion C: No hay default — si la variable no esta seteada, la CLI falla\
+        \ al arranque pidiendo explicitamente el valor. Cero ambiguedad, maximo costo\
+        \ operativo."
+    answer: "Opcion A. Cuando `CONTENT_AUDIT_APPROVAL_MODE` no esta seteada o esta\
+      \ vacia, el sistema usa `auto` (validator bypass de FEAT-REVBYP). Esto preserva\
+      \ el comportamiento historico: scripts, tests y flujos automatizados existentes\
+      \ siguen funcionando sin cambios. El modo `human` es opt-in explicito via la\
+      \ variable de entorno."
+  - id: DOUBT-SUPERSEDE
+    question: "Re-revisar una tarea con propuesta pendiente: rechazar o superseder?"
+    options:
+    - label: "Opcion A (por defecto en esta iteracion): Solo rechazar. El operador\
+        \ debe decidir (aprobar/rechazar) la propuesta pendiente antes de poder generar\
+        \ otra. Mas seguro, no pierde trazas en silencio."
+    - label: "Opcion B: Agregar un flag `--supersede` que marque la propuesta pendiente\
+        \ anterior como `REJECTED --reason \"superseded by <new-proposalId>\"` y genere\
+        \ la nueva. Util si el operador cambio de opinion sobre el Reviser/contexto\
+        \ y quiere empezar de cero sin pasar por el verbo `reject`."
+    answer: En esta iteracion se adopta Opcion A. Opcion B queda como mejora futura
+      cuando aparezcan varios Revisers reales y la re-ejecucion sea mas comun.
+  - id: DOUBT-AWAITING-STATE
+    question: Como se representa "esperando aprobacion" en el modelo de estados de
+      la tarea?
+    options:
+    - label: "Opcion A: Agregar un nuevo valor al enum `RefinementTaskStatus` (por\
+        \ ejemplo `AWAITING_APPROVAL`). Claro y explicito; requiere migrar lectores\
+        \ existentes."
+    - label: "Opcion B: Dejar la tarea en PENDING y representar la existencia de propuesta\
+        \ pendiente con un campo adicional (o derivado de la existencia del artefacto).\
+        \ Minimiza el cambio al enum pero complica la semantica de PENDING."
+    - label: "Opcion C: Reusar un estado existente (`IN_PROGRESS` si existe) con un\
+        \ flag auxiliar."
+    answer: Pendiente. La regla funcional pide distinguirlo observablemente de PENDING
+      y DONE; la representacion concreta es decision del arquitecto alineada con el
+      modelo existente del refiner.
+  - id: DOUBT-PROPOSAL-LOOKUP
+    question: "Busqueda de propuesta por id: plano o por directorio de plan?"
+    options:
+    - label: "Opcion A: Aceptar el barrido de subdirectorios. Simple; el numero de\
+        \ planes en la practica es acotado."
+    - label: "Opcion B: Agregar un flag opcional `--plan <id>` a estos verbos para\
+        \ acelerar la busqueda. Util si crece el volumen."
+    - label: "Opcion C: Indice auxiliar en `.content-audit/revisions/` (por ejemplo\
+        \ un archivo `index.json`) que mapea `proposalId -> planId`. Mas complejo,\
+        \ requiere mantenimiento."
+    answer: "Pendiente. La regla funcional solo exige que el id sea suficiente (R002,\
+      \ R007 de FEAT-CLIRV); el mecanismo de lookup es decision de arquitectura."
 language:
   name: java
   version: 17

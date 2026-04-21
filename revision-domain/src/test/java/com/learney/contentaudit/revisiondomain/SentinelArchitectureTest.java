@@ -35,6 +35,12 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackageEngineVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..revisiondomain..", "java..").should().dependOnClassesThat().resideInAPackage("..revisiondomain.engine..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.revisiondomain.RevisionVerdict");
@@ -72,6 +78,21 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: RevisionEngineConfig - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.revisiondomain.ApprovalMode");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ApprovalMode - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.ProposalDecisionOutcomeKind");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ProposalDecisionOutcomeKind - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.ProposalDecisionOutcome");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ProposalDecisionOutcome - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.revisiondomain.Reviser");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: Reviser - " + e.getMessage());
@@ -107,6 +128,21 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: RevisionEngineFactory - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.revisiondomain.RevisionValidatorFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RevisionValidatorFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.ProposalDecisionService");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ProposalDecisionService - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.ProposalDecisionServiceFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ProposalDecisionServiceFactory - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultRevisionEngineFactory - " + e.getMessage());
@@ -140,6 +176,26 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultRevisionEngine - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.engine.HumanApprovalValidator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: HumanApprovalValidator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultRevisionValidatorFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultRevisionValidatorFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultProposalDecisionServiceFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultProposalDecisionServiceFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultProposalDecisionService");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultProposalDecisionService - " + e.getMessage());
     }
   }
 }

@@ -54,7 +54,14 @@ import com.learney.contentaudit.revisiondomain.RevisionEngineConfig;
 import com.learney.contentaudit.revisiondomain.Reviser;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory;
+import com.learney.contentaudit.revisiondomain.engine.DefaultProposalDecisionServiceFactory;
+import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionValidatorFactory;
+import com.learney.contentaudit.revisiondomain.ApprovalMode;
+import com.learney.contentaudit.revisiondomain.ProposalDecisionService;
+import com.learney.contentaudit.revisiondomain.RevisionValidator;
+import com.learney.contentaudit.auditcli.bootstrap.DefaultApprovalModeResolver;
 import com.learney.contentaudit.auditcli.bootstrap.DefaultWorkdirResolver;
+import com.learney.contentaudit.auditcli.bootstrap.InvalidApprovalModeException;
 import com.learney.contentaudit.auditcli.formatting.AnalyzerStatsTransformer;
 import com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter;
 import com.learney.contentaudit.auditcli.formatting.DefaultAnalyzerStatsTransformer;
@@ -109,6 +116,19 @@ class Main {
                 remainingArgs.remove(i);
                 break;
             }
+        }
+
+        // ----------------------------------------------------------------
+        // Step 2a: Resolve CONTENT_AUDIT_APPROVAL_MODE env var — fail fast if invalid (R005)
+        // ----------------------------------------------------------------
+        ApprovalMode approvalMode;
+        try {
+            String approvalModeEnv = System.getenv("CONTENT_AUDIT_APPROVAL_MODE");
+            approvalMode = new DefaultApprovalModeResolver().resolve(approvalModeEnv);
+        } catch (InvalidApprovalModeException e) {
+            System.err.println("Error: " + e.getMessage());
+            System.exit(1);
+            return;
         }
 
         // ----------------------------------------------------------------
@@ -229,6 +249,8 @@ class Main {
         CorrectionContextResolver correctionContextResolver = new DispatchingCorrectionContextResolver(
                 sentenceLengthContextResolver, lemmaAbsenceContextResolver);
 
+        RevisionValidator revisionValidator = new DefaultRevisionValidatorFactory().create(approvalMode);
+
         RevisionEngineConfig revisionEngineConfig = new RevisionEngineConfig();
         revisionEngineConfig.setRevisers(new HashMap<DiagnosisKind, Reviser>());
         revisionEngineConfig.setArtifactStore(revisionArtifactStore);
@@ -236,7 +258,17 @@ class Main {
         revisionEngineConfig.setRefinementPlanStore(refinementPlanStore);
         revisionEngineConfig.setAuditReportStore(auditReportStore);
         revisionEngineConfig.setContextResolver(correctionContextResolver);
+        revisionEngineConfig.setValidator(revisionValidator);
         RevisionEngine revisionEngine = new DefaultRevisionEngineFactory().create(revisionEngineConfig);
+
+        ProposalDecisionService proposalDecisionService;
+        try {
+            proposalDecisionService =
+                    new DefaultProposalDecisionServiceFactory().create(revisionEngineConfig);
+        } catch (UnsupportedOperationException e) {
+            // DefaultProposalDecisionServiceFactory not yet implemented; approve/reject will not work
+            proposalDecisionService = null;
+        }
 
         // ----------------------------------------------------------------
         // Step 8: Build the new FLAT command tree (R020: no refiner/analyzer groups)
@@ -258,6 +290,15 @@ class Main {
         ReviseCmd reviseCmd = new ReviseCmd(revisionEngine, refinementPlanStore);
         cmd.addSubcommand("revise", new picocli.CommandLine(reviseCmd));
 
+        // approve / reject — only available when ProposalDecisionService could be constructed
+        if (proposalDecisionService != null) {
+            ApproveCmd approveCmd = new ApproveCmd(proposalDecisionService);
+            cmd.addSubcommand("approve", new picocli.CommandLine(approveCmd));
+
+            RejectCmd rejectCmd = new RejectCmd(proposalDecisionService);
+            cmd.addSubcommand("reject", new picocli.CommandLine(rejectCmd));
+        }
+
         // config
         ConfigAnalyzerCmd configAnalyzerCmd = new ConfigAnalyzerCmd(analyzerRegistry);
         cmd.addSubcommand("config", new picocli.CommandLine(configAnalyzerCmd));
@@ -267,10 +308,11 @@ class Main {
                 analyzerRegistry, analyzerStatsTransformer, auditRunner);
         cmd.addSubcommand("stats", new picocli.CommandLine(statsAnalyzerCmd));
 
-        // get — inject baseDir for plan listing and path-based operations
+        // get — inject baseDir for plan listing and path-based operations; revisionArtifactStore for proposals
         GetCmd getCmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
                 correctionContextResolver);
         getCmd.setBaseDir(baseDir);
+        getCmd.setRevisionArtifactStore(revisionArtifactStore);
         cmd.addSubcommand("get", new picocli.CommandLine(getCmd));
 
         // delete — inject baseDir for filesystem-level removal

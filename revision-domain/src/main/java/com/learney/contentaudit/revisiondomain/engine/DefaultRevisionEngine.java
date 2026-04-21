@@ -82,6 +82,12 @@ class DefaultRevisionEngine implements RevisionEngine {
         }
         AuditReport auditReport = auditReportOpt.get();
 
+        // Step 2b: Guard — if task already has a pending proposal, reject the revise (R010)
+        if (artifactStore.hasPendingProposalForTask(planId, taskId)) {
+            return new RevisionOutcome(RevisionOutcomeKind.ALREADY_PENDING_DECISION, null,
+                    "Task already has a pending proposal awaiting decision: " + taskId);
+        }
+
         Optional<CorrectionContext> contextOpt = contextResolver.resolve(auditReport, task);
         if (contextOpt.isEmpty()) {
             return new RevisionOutcome(RevisionOutcomeKind.CONTEXT_UNAVAILABLE, null,
@@ -107,6 +113,9 @@ class DefaultRevisionEngine implements RevisionEngine {
 
         // Step 5: Generate proposal
         RevisionProposal proposal = reviser.propose(task, context, snapshot);
+        // The Reviser may not know the real planId/sourceAuditId — the engine does, so overwrite.
+        proposal.setPlanId(planId);
+        proposal.setSourceAuditId(plan.getSourceAuditId());
 
         // Step 6: Validate proposal
         RevisionValidatorResult validatorResult = validator.validate(proposal);
@@ -114,13 +123,29 @@ class DefaultRevisionEngine implements RevisionEngine {
         String rejectionReason = validatorResult.rejectionReason().orElse(null);
 
         // Step 7: Build and persist artifact (BEFORE course write — R014)
+        RevisionOutcomeKind artifactOutcomeKind;
+        if (verdict == RevisionVerdict.APPROVED) {
+            artifactOutcomeKind = RevisionOutcomeKind.APPROVED_APPLIED;
+        } else if (verdict == RevisionVerdict.PENDING_APPROVAL) {
+            artifactOutcomeKind = RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED;
+        } else {
+            artifactOutcomeKind = RevisionOutcomeKind.REJECTED;
+        }
         RevisionArtifact artifact = new RevisionArtifact(
                 proposal,
                 verdict,
                 rejectionReason,
-                verdict == RevisionVerdict.APPROVED ? RevisionOutcomeKind.APPROVED_APPLIED : RevisionOutcomeKind.REJECTED
+                artifactOutcomeKind,
+                null,
+                null
         );
         artifactStore.save(artifact);
+
+        // Step 7b: If PENDING_APPROVAL — persist artifact, save plan unchanged, do NOT touch course or task (R008/R009)
+        if (verdict == RevisionVerdict.PENDING_APPROVAL) {
+            refinementPlanStore.save(plan);
+            return new RevisionOutcome(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, artifact, null);
+        }
 
         // Step 8: If REJECTED — return without touching course or task (R012)
         if (verdict == RevisionVerdict.REJECTED) {

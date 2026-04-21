@@ -17,6 +17,10 @@ import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import com.learney.contentaudit.revisiondomain.RevisionArtifact;
+import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
+import com.learney.contentaudit.revisiondomain.RevisionProposal;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Field;
@@ -59,12 +63,16 @@ public class GetCmdTest {
     @Mock
     CorrectionContextResolver correctionContextResolver;
 
+    @Mock
+    RevisionArtifactStore revisionArtifactStore;
+
     GetCmd cmd;
 
     @BeforeEach
     void setUp() throws Exception {
         cmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
                 correctionContextResolver);
+        cmd.setRevisionArtifactStore(revisionArtifactStore);
         // GetCmd has a picocli @Option field 'formatName' that picocli normally populates.
         // When constructing directly in unit tests, we must inject a default value so the
         // output-formatting path does not NPE before the behavior under test is reached.
@@ -2247,5 +2255,357 @@ public class GetCmdTest {
                         || output.toLowerCase().contains("correction context")
                         || output.toLowerCase().contains("unavailable"),
                 "Expected 'not available' notice for LEMMA_ABSENCE context in text output: " + output);
+    }
+
+    // -----------------------------------------------------------------------
+    // F-REVAPR-R002 / R003 — proposal and proposals resource
+    // -----------------------------------------------------------------------
+
+    @Test
+    @DisplayName("Given 'get proposals' without filters, when invoked, then it lists every persisted artifact across all plan directories and exits zero")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R002")
+    public void givenGetProposalsWithoutFiltersWhenInvokedThenItListsEveryPersistedArtifactAcrossAllPlanDirectoriesAndExitsZero() {
+        // Arrange: two artifacts across two different plans
+        RevisionProposal proposal1 = new RevisionProposal();
+        proposal1.setProposalId("task-001-20260420T100000");
+        proposal1.setPlanId("plan-alpha");
+        proposal1.setTaskId("task-001");
+
+        RevisionProposal proposal2 = new RevisionProposal();
+        proposal2.setProposalId("task-002-20260420T110000");
+        proposal2.setPlanId("plan-beta");
+        proposal2.setTaskId("task-002");
+
+        RevisionArtifact artifact1 = new RevisionArtifact();
+        artifact1.setProposal(proposal1);
+        artifact1.setVerdict(RevisionVerdict.PENDING_APPROVAL);
+
+        RevisionArtifact artifact2 = new RevisionArtifact();
+        artifact2.setProposal(proposal2);
+        artifact2.setVerdict(RevisionVerdict.APPROVED);
+
+        when(revisionArtifactStore.list()).thenReturn(List.of(artifact1, artifact2));
+
+        // Act: 'get proposals' — no id, no filters
+        GetTasksFilter noFilter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.empty(), Optional.empty(), Optional.empty());
+        int exit = cmd.get("proposals", null, noFilter);
+
+        // Assert: R002 — list all; exit zero
+        assertEquals(0, exit);
+    }
+
+    @Test
+    @DisplayName("Given 'get proposals --plan <planId>', when invoked, then the listing is restricted to artifacts belonging to that plan")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R003")
+    public void givenGetProposalsPlanPlanIdWhenInvokedThenTheListingIsRestrictedToArtifactsBelongingToThatPlan() {
+        // Arrange: two artifacts in plan-alpha, one in plan-beta
+        RevisionProposal propA1 = new RevisionProposal();
+        propA1.setProposalId("task-001-20260420T100000");
+        propA1.setPlanId("plan-alpha");
+        propA1.setTaskId("task-001");
+
+        RevisionProposal propA2 = new RevisionProposal();
+        propA2.setProposalId("task-002-20260420T100001");
+        propA2.setPlanId("plan-alpha");
+        propA2.setTaskId("task-002");
+
+        RevisionArtifact artifactA1 = new RevisionArtifact();
+        artifactA1.setProposal(propA1);
+        artifactA1.setVerdict(RevisionVerdict.PENDING_APPROVAL);
+
+        RevisionArtifact artifactA2 = new RevisionArtifact();
+        artifactA2.setProposal(propA2);
+        artifactA2.setVerdict(RevisionVerdict.APPROVED);
+
+        when(revisionArtifactStore.listByPlan("plan-alpha"))
+                .thenReturn(List.of(artifactA1, artifactA2));
+
+        // Act: 'get proposals --plan plan-alpha'
+        GetTasksFilter planFilter = new GetTasksFilter(
+                Optional.of("plan-alpha"), Optional.empty(), false,
+                Optional.empty(), Optional.empty(), Optional.empty());
+        int exit = cmd.get("proposals", null, planFilter);
+
+        // Assert: R003 — filter by plan, exit zero
+        assertEquals(0, exit);
+    }
+
+    @Test
+    @DisplayName("Given 'get proposals --status pending', when invoked, then the listing includes only artifacts with verdict PENDING_APPROVAL")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R003")
+    public void givenGetProposalsStatusPendingWhenInvokedThenTheListingIncludesOnlyArtifactsWithVerdictPENDINGAPPROVAL() {
+        // Arrange: mix of pending and approved artifacts
+        RevisionProposal pendingProposal = new RevisionProposal();
+        pendingProposal.setProposalId("task-001-20260420T100000");
+        pendingProposal.setPlanId("plan-alpha");
+        pendingProposal.setTaskId("task-001");
+
+        RevisionProposal approvedProposal = new RevisionProposal();
+        approvedProposal.setProposalId("task-002-20260420T110000");
+        approvedProposal.setPlanId("plan-alpha");
+        approvedProposal.setTaskId("task-002");
+
+        RevisionArtifact pendingArtifact = new RevisionArtifact();
+        pendingArtifact.setProposal(pendingProposal);
+        pendingArtifact.setVerdict(RevisionVerdict.PENDING_APPROVAL);
+
+        RevisionArtifact approvedArtifact = new RevisionArtifact();
+        approvedArtifact.setProposal(approvedProposal);
+        approvedArtifact.setVerdict(RevisionVerdict.APPROVED);
+
+        when(revisionArtifactStore.list()).thenReturn(List.of(pendingArtifact, approvedArtifact));
+
+        // Act: 'get proposals --status pending'
+        GetTasksFilter statusFilter = new GetTasksFilter(
+                Optional.empty(), Optional.of("pending"), false,
+                Optional.empty(), Optional.empty(), Optional.empty());
+        int exit = cmd.get("proposals", null, statusFilter);
+
+        // Assert: R003 — 'pending' maps to PENDING_APPROVAL; exit zero
+        assertEquals(0, exit);
+    }
+
+    @Test
+    @DisplayName("Given 'get proposals --status approved', when invoked, then the listing includes only artifacts with verdict APPROVED")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R003")
+    public void givenGetProposalsStatusApprovedWhenInvokedThenTheListingIncludesOnlyArtifactsWithVerdictAPPROVED() {
+        // Arrange: mix of pending and approved artifacts
+        RevisionProposal pendingProposal = new RevisionProposal();
+        pendingProposal.setProposalId("task-001-20260420T100000");
+        pendingProposal.setPlanId("plan-alpha");
+        pendingProposal.setTaskId("task-001");
+
+        RevisionProposal approvedProposal = new RevisionProposal();
+        approvedProposal.setProposalId("task-002-20260420T110000");
+        approvedProposal.setPlanId("plan-alpha");
+        approvedProposal.setTaskId("task-002");
+
+        RevisionArtifact pendingArtifact = new RevisionArtifact();
+        pendingArtifact.setProposal(pendingProposal);
+        pendingArtifact.setVerdict(RevisionVerdict.PENDING_APPROVAL);
+
+        RevisionArtifact approvedArtifact = new RevisionArtifact();
+        approvedArtifact.setProposal(approvedProposal);
+        approvedArtifact.setVerdict(RevisionVerdict.APPROVED);
+
+        when(revisionArtifactStore.list()).thenReturn(List.of(pendingArtifact, approvedArtifact));
+
+        // Act: 'get proposals --status approved'
+        GetTasksFilter statusFilter = new GetTasksFilter(
+                Optional.empty(), Optional.of("approved"), false,
+                Optional.empty(), Optional.empty(), Optional.empty());
+        int exit = cmd.get("proposals", null, statusFilter);
+
+        // Assert: R003 — 'approved' maps to APPROVED; exit zero
+        assertEquals(0, exit);
+    }
+
+    @Test
+    @DisplayName("Given 'get proposals --status rejected', when invoked, then the listing includes only artifacts with verdict REJECTED")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R003")
+    public void givenGetProposalsStatusRejectedWhenInvokedThenTheListingIncludesOnlyArtifactsWithVerdictREJECTED() {
+        // Arrange: mix of rejected and pending artifacts
+        RevisionProposal rejectedProposal = new RevisionProposal();
+        rejectedProposal.setProposalId("task-001-20260420T100000");
+        rejectedProposal.setPlanId("plan-alpha");
+        rejectedProposal.setTaskId("task-001");
+
+        RevisionProposal pendingProposal = new RevisionProposal();
+        pendingProposal.setProposalId("task-002-20260420T110000");
+        pendingProposal.setPlanId("plan-alpha");
+        pendingProposal.setTaskId("task-002");
+
+        RevisionArtifact rejectedArtifact = new RevisionArtifact();
+        rejectedArtifact.setProposal(rejectedProposal);
+        rejectedArtifact.setVerdict(RevisionVerdict.REJECTED);
+
+        RevisionArtifact pendingArtifact = new RevisionArtifact();
+        pendingArtifact.setProposal(pendingProposal);
+        pendingArtifact.setVerdict(RevisionVerdict.PENDING_APPROVAL);
+
+        when(revisionArtifactStore.list()).thenReturn(List.of(rejectedArtifact, pendingArtifact));
+
+        // Act: 'get proposals --status rejected'
+        GetTasksFilter statusFilter = new GetTasksFilter(
+                Optional.empty(), Optional.of("rejected"), false,
+                Optional.empty(), Optional.empty(), Optional.empty());
+        int exit = cmd.get("proposals", null, statusFilter);
+
+        // Assert: R003 — 'rejected' maps to REJECTED; exit zero
+        assertEquals(0, exit);
+    }
+
+    @Test
+    @DisplayName("Given 'get proposals --plan <planId> --status <s>', when invoked, then both filters are applied conjunctively")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R003")
+    public void givenGetProposalsPlanPlanIdStatusSWhenInvokedThenBothFiltersAreAppliedConjunctively() {
+        // Arrange: one pending artifact in plan-alpha, one approved artifact also in plan-alpha
+        RevisionProposal pendingProp = new RevisionProposal();
+        pendingProp.setProposalId("task-001-20260420T100000");
+        pendingProp.setPlanId("plan-alpha");
+        pendingProp.setTaskId("task-001");
+
+        RevisionProposal approvedProp = new RevisionProposal();
+        approvedProp.setProposalId("task-002-20260420T110000");
+        approvedProp.setPlanId("plan-alpha");
+        approvedProp.setTaskId("task-002");
+
+        RevisionArtifact pendingArtifact = new RevisionArtifact();
+        pendingArtifact.setProposal(pendingProp);
+        pendingArtifact.setVerdict(RevisionVerdict.PENDING_APPROVAL);
+
+        RevisionArtifact approvedArtifact = new RevisionArtifact();
+        approvedArtifact.setProposal(approvedProp);
+        approvedArtifact.setVerdict(RevisionVerdict.APPROVED);
+
+        when(revisionArtifactStore.listByPlan("plan-alpha"))
+                .thenReturn(List.of(pendingArtifact, approvedArtifact));
+
+        // Act: 'get proposals --plan plan-alpha --status pending' — conjunctive filter
+        GetTasksFilter combinedFilter = new GetTasksFilter(
+                Optional.of("plan-alpha"), Optional.of("pending"), false,
+                Optional.empty(), Optional.empty(), Optional.empty());
+        int exit = cmd.get("proposals", null, combinedFilter);
+
+        // Assert: R003 conjunctive filter (plan AND status); exit zero
+        assertEquals(0, exit);
+    }
+
+    @Test
+    @DisplayName("Given 'get proposals --status invalid', when invoked, then the CLI reports 'Invalid value for --status' listing the allowed values and exits non-zero")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R003")
+    public void givenGetProposalsStatusInvalidWhenInvokedThenTheCLIReportsInvalidValueForStatusListingTheAllowedValuesAndExitsNonzero() {
+        // Arrange: capture stderr/stdout to inspect error message
+        ByteArrayOutputStream errBuf = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        System.setErr(new PrintStream(errBuf));
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+
+        // Act: 'get proposals --status bogus-value'
+        int exit;
+        try {
+            GetTasksFilter invalidStatusFilter = new GetTasksFilter(
+                    Optional.empty(), Optional.of("bogus-value"), false,
+                    Optional.empty(), Optional.empty(), Optional.empty());
+            exit = cmd.get("proposals", null, invalidStatusFilter);
+        } finally {
+            System.setErr(originalErr);
+            System.setOut(originalOut);
+        }
+
+        // Assert: R003 — invalid --status → non-zero exit; message lists allowed values
+        assertNotEquals(0, exit);
+        String combined = outBuf.toString() + errBuf.toString();
+        assertTrue(
+                combined.contains("pending") || combined.contains("approved") || combined.contains("rejected")
+                        || combined.contains("Allowed") || combined.contains("Invalid"),
+                "Expected allowed-values message for invalid --status on proposals, got: " + combined);
+    }
+
+    @Test
+    @DisplayName("Given 'get proposal <id>' with a known id, when invoked, then the single artifact is printed and exit is zero")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R002")
+    public void givenGetProposalIdWithAKnownIdWhenInvokedThenTheSingleArtifactIsPrintedAndExitIsZero() {
+        // Arrange: an artifact that can be looked up by proposalId without a planId hint
+        String proposalId = "task-001-20260420T100000";
+
+        RevisionProposal proposal = new RevisionProposal();
+        proposal.setProposalId(proposalId);
+        proposal.setPlanId("plan-alpha");
+        proposal.setTaskId("task-001");
+
+        RevisionArtifact artifact = new RevisionArtifact();
+        artifact.setProposal(proposal);
+        artifact.setVerdict(RevisionVerdict.PENDING_APPROVAL);
+
+        when(revisionArtifactStore.findByProposalId(proposalId, Optional.empty()))
+                .thenReturn(Optional.of(artifact));
+
+        // Act: 'get proposal <id>' — singular resource with id, no --plan
+        GetTasksFilter noFilter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.empty(), Optional.empty(), Optional.empty());
+        int exit = cmd.get("proposal", proposalId, noFilter);
+
+        // Assert: R002 — known id → exit zero (artifact printed)
+        assertEquals(0, exit);
+    }
+
+    @Test
+    @DisplayName("Given 'get proposal <id> --plan <planId>', when invoked, then the direct plan-scoped lookup returns the artifact")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R002")
+    public void givenGetProposalIdPlanPlanIdWhenInvokedThenTheDirectPlanscopedLookupReturnsTheArtifact() {
+        // Arrange: an artifact under a known plan, addressable by (proposalId, planId)
+        String proposalId = "task-001-20260420T100000";
+        String planId = "plan-alpha";
+
+        RevisionProposal proposal = new RevisionProposal();
+        proposal.setProposalId(proposalId);
+        proposal.setPlanId(planId);
+        proposal.setTaskId("task-001");
+
+        RevisionArtifact artifact = new RevisionArtifact();
+        artifact.setProposal(proposal);
+        artifact.setVerdict(RevisionVerdict.PENDING_APPROVAL);
+
+        when(revisionArtifactStore.findByProposalId(proposalId, Optional.of(planId)))
+                .thenReturn(Optional.of(artifact));
+
+        // Act: 'get proposal <id> --plan plan-alpha' — plan-scoped direct lookup
+        GetTasksFilter planFilter = new GetTasksFilter(
+                Optional.of(planId), Optional.empty(), false,
+                Optional.empty(), Optional.empty(), Optional.empty());
+        int exit = cmd.get("proposal", proposalId, planFilter);
+
+        // Assert: R002 — plan-scoped lookup returns artifact; exit zero
+        assertEquals(0, exit);
+    }
+
+    @Test
+    @DisplayName("Given 'get proposal <id>' with an unknown id, when invoked, then the CLI prints 'No proposal found with id' and exits non-zero")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R002")
+    public void givenGetProposalIdWithAnUnknownIdWhenInvokedThenTheCLIPrintsNoProposalFoundWithIdAndExitsNonzero() {
+        // Arrange: proposalId that does not exist in the store
+        String unknownId = "task-999-99999999T000000";
+        when(revisionArtifactStore.findByProposalId(unknownId, Optional.empty()))
+                .thenReturn(Optional.empty());
+
+        ByteArrayOutputStream errBuf = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        System.setErr(new PrintStream(errBuf));
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            GetTasksFilter noFilter = new GetTasksFilter(
+                    Optional.empty(), Optional.empty(), false,
+                    Optional.empty(), Optional.empty(), Optional.empty());
+            exit = cmd.get("proposal", unknownId, noFilter);
+        } finally {
+            System.setErr(originalErr);
+            System.setOut(originalOut);
+        }
+
+        // Assert: R002 — not found → non-zero exit; message says "not found"
+        assertNotEquals(0, exit);
+        String combined = outBuf.toString() + errBuf.toString();
+        assertTrue(
+                combined.toLowerCase().contains("not found") || combined.contains(unknownId),
+                "Expected 'not found' message or the id in output, got: " + combined);
     }
 }

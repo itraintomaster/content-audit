@@ -1325,6 +1325,16 @@ new GetTasksFilter(Optional<String> planId, Optional<String> status, boolean sor
 |-------|------|
 | `path` | `String` |
 
+#### InvalidApprovalModeException (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `value` | `String` |
+
 ### Module: nlp-infrastructure
 
 #### NlpTokenizerConfig
@@ -1354,10 +1364,11 @@ new NlpTokenizerConfig(String pythonScriptPath, String cocaDataPath, int timeout
 |-------|------|-------|
 | `APPROVED` | `null` |  |
 | `REJECTED` | `null` |  |
+| `PENDING_APPROVAL` | `null` |  |
 
 **Generated constructor:**
 ```java
-new RevisionVerdict(null APPROVED, null REJECTED)
+new RevisionVerdict(null APPROVED, null REJECTED, null PENDING_APPROVAL)
 ```
 
 #### RevisionOutcomeKind
@@ -1373,10 +1384,12 @@ new RevisionVerdict(null APPROVED, null REJECTED)
 | `NO_REVISER` | `null` |  |
 | `CONTEXT_UNAVAILABLE` | `null` |  |
 | `ELEMENT_NOT_FOUND` | `null` |  |
+| `PENDING_APPROVAL_PERSISTED` | `null` |  |
+| `ALREADY_PENDING_DECISION` | `null` |  |
 
 **Generated constructor:**
 ```java
-new RevisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NO_REVISER, null CONTEXT_UNAVAILABLE, null ELEMENT_NOT_FOUND)
+new RevisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NO_REVISER, null CONTEXT_UNAVAILABLE, null ELEMENT_NOT_FOUND, null PENDING_APPROVAL_PERSISTED, null ALREADY_PENDING_DECISION)
 ```
 
 #### CourseElementSnapshot
@@ -1431,10 +1444,12 @@ new RevisionProposal(String proposalId, String taskId, String planId, String sou
 | `verdict` | `RevisionVerdict` |  |
 | `rejectionReason` | `String` |  |
 | `outcome` | `RevisionOutcomeKind` |  |
+| `decidedAt` | `Instant` |  |
+| `decisionNote` | `String` |  |
 
 **Generated constructor:**
 ```java
-new RevisionArtifact(RevisionProposal proposal, RevisionVerdict verdict, String rejectionReason, RevisionOutcomeKind outcome)
+new RevisionArtifact(RevisionProposal proposal, RevisionVerdict verdict, String rejectionReason, RevisionOutcomeKind outcome, Instant decidedAt, String decisionNote)
 ```
 
 #### RevisionOutcome
@@ -1472,5 +1487,54 @@ new RevisionOutcome(RevisionOutcomeKind kind, RevisionArtifact artifact, String 
 **Generated constructor:**
 ```java
 new RevisionEngineConfig(Map<DiagnosisKind,Reviser> revisers, RevisionValidator validator, RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, CorrectionContextResolver<CorrectionContext> contextResolver)
+```
+
+#### ApprovalMode
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `AUTO` | `null` |  |
+| `HUMAN` | `null` |  |
+
+**Generated constructor:**
+```java
+new ApprovalMode(null AUTO, null HUMAN)
+```
+
+#### ProposalDecisionOutcomeKind
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `APPROVED_APPLIED` | `null` |  |
+| `APPROVED_APPLY_FAILED` | `null` |  |
+| `REJECTED` | `null` |  |
+| `NOT_FOUND` | `null` |  |
+| `ALREADY_DECIDED` | `null` |  |
+
+**Generated constructor:**
+```java
+new ProposalDecisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NOT_FOUND, null ALREADY_DECIDED)
+```
+
+#### ProposalDecisionOutcome
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `kind` | `ProposalDecisionOutcomeKind` |  |
+| `artifact` | `RevisionArtifact` |  |
+| `errorMessage` | `String` |  |
+
+**Generated constructor:**
+```java
+new ProposalDecisionOutcome(ProposalDecisionOutcomeKind kind, RevisionArtifact artifact, String errorMessage)
 ```
 

@@ -164,6 +164,14 @@ final class ReviseCmd implements ReviseCommand, Callable<Integer> {
                 }
                 yield 1;
             }
+            case PENDING_APPROVAL_PERSISTED -> {
+                System.out.println("Revision proposal pending approval: " + (outcome.getArtifact() != null && outcome.getArtifact().getProposal() != null ? outcome.getArtifact().getProposal().getProposalId() : "(unknown)"));
+                yield 0;
+            }
+            case ALREADY_PENDING_DECISION -> {
+                System.err.println("Task " + taskId + " already has a pending proposal awaiting approval.");
+                yield 1;
+            }
         };
     }
 }

@@ -251,4 +251,21 @@ public class DeleteCmdTest {
         assertNotEquals(0, exit,
                 "Expected non-zero exit when 'delete task' is invoked (R002 + R019: not supported)");
     }
+
+    @Test
+    @DisplayName("Given 'delete proposal <id>' is invoked, when the CLI dispatches, then it fails with an unknown/unsupported resource error (proposals are not deletable in this iteration)")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R004")
+    public void givenDeleteProposalIdIsInvokedWhenTheCLIDispatchesThenItFailsWithAnUnknownunsupportedResourceErrorProposalsAreNotDeletableInThisIteration() {
+        // Arrange — "proposal" is not a supported resource for delete (R004: delete proposal
+        // is explicitly out of scope; only audit and plan are deletable via this verb)
+        String proposalId = "task-001-2026-04-20T10-00-00";
+
+        // Act — invoke delete with the "proposal" resource name
+        int exit = cmd.delete("proposal", proposalId);
+
+        // Assert — non-zero exit; delete does not operate on proposals (R004 + FEAT-CLIRV R002/R020)
+        assertNotEquals(0, exit,
+                "Expected non-zero exit when 'delete proposal <id>' is invoked (F-REVAPR-R004: not deletable in this iteration)");
+    }
 }

@@ -302,4 +302,164 @@ public class DefaultRevisionEngineTest {
         order.verify(artifactStore).save(any(RevisionArtifact.class));
         order.verify(courseRepository).save(any(CourseEntity.class), eq(coursePath));
     }
+
+    @Test
+    @DisplayName("Given the human validator emits PENDING_APPROVAL, when revise runs, then the artifact is persisted with PENDING_APPROVAL and CourseRepository is never asked to save")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R008")
+    public void givenTheHumanValidatorEmitsPENDINGAPPROVALWhenReviseRunsThenTheArtifactIsPersistedWithPENDINGAPPROVALAndCourseRepositoryIsNeverAskedToSave() {
+        // Arrange
+        String planId = "plan-008";
+        String taskId = "task-008";
+        String auditId = "audit-008";
+        String nodeId = "quiz-008";
+        Path coursePath = Path.of("./db/english-course");
+
+        RefinementTask task = new RefinementTask(
+                taskId, AuditTarget.QUIZ, nodeId, "Quiz about tenses",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING
+        );
+        RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
+
+        AuditReport auditReport = mock(AuditReport.class);
+        CorrectionContext context = mock(CorrectionContext.class);
+        CourseEntity course = mock(CourseEntity.class);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+
+        RevisionProposal proposal = new RevisionProposal(
+                taskId + "-100800", taskId, planId, auditId,
+                DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId,
+                snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
+        );
+
+        RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
+        when(validatorResult.verdict()).thenReturn(RevisionVerdict.PENDING_APPROVAL);
+        when(validatorResult.rejectionReason()).thenReturn(Optional.empty());
+
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(auditId)).thenReturn(Optional.of(auditReport));
+        when(contextResolver.resolve(eq(auditReport), eq(task))).thenReturn(Optional.of(context));
+        when(courseRepository.load(coursePath)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId)).thenReturn(Optional.of(snapshot));
+        when(reviser.handles(DiagnosisKind.SENTENCE_LENGTH)).thenReturn(true);
+        when(reviser.propose(task, context, snapshot)).thenReturn(proposal);
+        when(validator.validate(proposal)).thenReturn(validatorResult);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(".content-audit/revisions/" + planId + "/" + proposal.getProposalId());
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // Act
+        engine.revise(planId, taskId, coursePath);
+
+        // Assert – R008: artifactStore.save called with artifact having PENDING_APPROVAL verdict
+        ArgumentCaptor<RevisionArtifact> artifactCaptor = ArgumentCaptor.forClass(RevisionArtifact.class);
+        verify(artifactStore).save(artifactCaptor.capture());
+        assertEquals(RevisionVerdict.PENDING_APPROVAL, artifactCaptor.getValue().getVerdict(),
+                "Artifact must be persisted with PENDING_APPROVAL verdict");
+
+        // Assert – R008: courseRepository.save must NEVER be called
+        verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
+    }
+
+    @Test
+    @DisplayName("Given the human validator emits PENDING_APPROVAL, when revise finishes, then the outcome kind is PENDING_APPROVAL_PERSISTED and the RefinementTask stays PENDING")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R009")
+    public void givenTheHumanValidatorEmitsPENDINGAPPROVALWhenReviseFinishesThenTheOutcomeKindIsPENDINGAPPROVALPERSISTEDAndTheRefinementTaskStaysPENDING() {
+        // Arrange
+        String planId = "plan-009";
+        String taskId = "task-009";
+        String auditId = "audit-009";
+        String nodeId = "quiz-009";
+        Path coursePath = Path.of("./db/english-course");
+
+        RefinementTask task = new RefinementTask(
+                taskId, AuditTarget.QUIZ, nodeId, "Quiz about conditionals",
+                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING
+        );
+        RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
+
+        AuditReport auditReport = mock(AuditReport.class);
+        CorrectionContext context = mock(CorrectionContext.class);
+        CourseEntity course = mock(CourseEntity.class);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+
+        RevisionProposal proposal = new RevisionProposal(
+                taskId + "-100900", taskId, planId, auditId,
+                DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
+                snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
+        );
+
+        RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
+        when(validatorResult.verdict()).thenReturn(RevisionVerdict.PENDING_APPROVAL);
+        when(validatorResult.rejectionReason()).thenReturn(Optional.empty());
+
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(auditId)).thenReturn(Optional.of(auditReport));
+        when(contextResolver.resolve(eq(auditReport), eq(task))).thenReturn(Optional.of(context));
+        when(courseRepository.load(coursePath)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId)).thenReturn(Optional.of(snapshot));
+        when(reviser.handles(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        when(reviser.propose(task, context, snapshot)).thenReturn(proposal);
+        when(validator.validate(proposal)).thenReturn(validatorResult);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(".content-audit/revisions/" + planId + "/" + proposal.getProposalId());
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // Act
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+
+        // Assert – R009: outcome kind is PENDING_APPROVAL_PERSISTED
+        assertEquals(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, outcome.getKind(),
+                "Outcome kind must be PENDING_APPROVAL_PERSISTED when validator emits PENDING_APPROVAL");
+
+        // Assert – R009: task must NOT be COMPLETED (not transitioned to DONE) — the plan is saved with PENDING status
+        ArgumentCaptor<RefinementPlan> planCaptor = ArgumentCaptor.forClass(RefinementPlan.class);
+        verify(refinementPlanStore).save(planCaptor.capture());
+        RefinementTask savedTask = planCaptor.getValue().getTasks().stream()
+                .filter(t -> taskId.equals(t.getId()))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("Task " + taskId + " not found in saved plan"));
+        assertEquals(RefinementTaskStatus.PENDING, savedTask.getStatus(),
+                "Task must stay PENDING when validator emits PENDING_APPROVAL (not DONE/COMPLETED)");
+    }
+
+    @Test
+    @DisplayName("Given the task already has a PENDING_APPROVAL proposal, when revise runs, then the outcome is ALREADY_PENDING_DECISION and no new artifact is persisted")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R010")
+    public void givenTheTaskAlreadyHasAPENDINGAPPROVALProposalWhenReviseRunsThenTheOutcomeIsALREADYPENDINGDECISIONAndNoNewArtifactIsPersisted() {
+        // Arrange
+        String planId = "plan-010";
+        String taskId = "task-010";
+        String auditId = "audit-010";
+        String nodeId = "quiz-010";
+        Path coursePath = Path.of("./db/english-course");
+
+        RefinementTask task = new RefinementTask(
+                taskId, AuditTarget.QUIZ, nodeId, "Quiz about modals",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING
+        );
+        RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
+
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(auditId)).thenReturn(Optional.of(mock(AuditReport.class)));
+        // Pre-condition: a PENDING_APPROVAL proposal already exists for this task
+        when(artifactStore.hasPendingProposalForTask(planId, taskId)).thenReturn(true);
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // Act
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+
+        // Assert – R010: outcome kind is ALREADY_PENDING_DECISION
+        assertEquals(RevisionOutcomeKind.ALREADY_PENDING_DECISION, outcome.getKind(),
+                "Outcome must be ALREADY_PENDING_DECISION when task already has a pending proposal");
+
+        // Assert – R010: neither reviser nor validator invoked, no new artifact persisted, course never touched
+        verify(reviser, never()).propose(any(), any(), any());
+        verify(validator, never()).validate(any());
+        verify(artifactStore, never()).save(any(RevisionArtifact.class));
+        verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
+    }
 }

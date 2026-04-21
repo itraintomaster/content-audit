@@ -1,0 +1,308 @@
+code: FEAT-REVAPR
+description: "FEAT-REVAPR: human approval phase for the revision pipeline. Extends\
+  \ the RevisionVerdict vocabulary with PENDING_APPROVAL, introduces a HumanApprovalValidator\
+  \ and a factory seam that picks it from an ApprovalMode, adds a ProposalDecisionService\
+  \ for the decide phase (approve/reject), extends RevisionArtifactStore with proposalId\
+  \ lookup and 'has pending proposal' predicates, and surfaces the new capabilities\
+  \ in the CLI via sealed ApproveCommand/RejectCommand plus proposal resource reads\
+  \ in GetCommand."
+modules:
+- name: revision-domain
+  models:
+  - name: RevisionVerdict
+    type: record
+    fields:
+    - name: PENDING_APPROVAL
+      description: The validator has deferred the decision to a human operator (R007).
+        The artifact is persisted but the course is not written.
+      _change: add
+    _change: modify
+  - name: RevisionOutcomeKind
+    type: record
+    fields:
+    - name: PENDING_APPROVAL_PERSISTED
+      description: Proposal persisted with PENDING_APPROVAL; course untouched (R008)
+      _change: add
+    - name: ALREADY_PENDING_DECISION
+      description: revise rejected because the task already has a pending proposal
+        (R010)
+      _change: add
+    _change: modify
+  - name: RevisionArtifact
+    type: record
+    fields:
+    - name: decidedAt
+      type: Instant
+      description: Timestamp when the verdict transitioned from PENDING_APPROVAL to
+        APPROVED/REJECTED; null while pending or for auto-mode artifacts that never
+        passed through PENDING_APPROVAL
+      _change: add
+    - name: decisionNote
+      type: String
+      description: "Free-text note attached by the operator on approve/reject (R011\
+        \ --note, R012 --reason); null if not provided"
+      _change: add
+    _change: modify
+  - name: ApprovalMode
+    type: enum
+    fields:
+    - name: AUTO
+      description: "Bypass validator — auto-approves every proposal (R005, inherited\
+        \ from FEAT-REVBYP R007)"
+    - name: HUMAN
+      description: Human validator — every proposal becomes PENDING_APPROVAL (R005/R007)
+    _change: add
+  - name: ProposalDecisionOutcomeKind
+    type: enum
+    fields:
+    - name: APPROVED_APPLIED
+      description: Proposal approved and course rewritten (R011)
+    - name: APPROVED_APPLY_FAILED
+      description: "Proposal approved and artifact rewritten, but course write failed\
+        \ (R011 step 6, DOUBT-ATOMICITY)"
+    - name: REJECTED
+      description: Proposal rejected; course untouched (R012)
+    - name: NOT_FOUND
+      description: No proposal matches the supplied id (R002/R011/R012)
+    - name: ALREADY_DECIDED
+      description: Proposal exists but its verdict is not PENDING_APPROVAL (R013)
+    _change: add
+  - name: ProposalDecisionOutcome
+    type: record
+    fields:
+    - name: kind
+      type: ProposalDecisionOutcomeKind
+    - name: artifact
+      type: RevisionArtifact
+      description: The artifact after the decision (APPROVED/REJECTED); null for NOT_FOUND
+    - name: errorMessage
+      type: String
+      description: Human-readable message for NOT_FOUND/ALREADY_DECIDED/APPROVED_APPLY_FAILED
+    _change: add
+  interfaces:
+  - name: RevisionArtifactStore
+    sealed: false
+    exposes:
+    - signature: "findByProposalId(String proposalId, Optional<String> planId): Optional<RevisionArtifact>"
+      _change: add
+    - signature: "hasPendingProposalForTask(String planId, String taskId): boolean"
+      _change: add
+    - signature: "list(): List<RevisionArtifact>"
+      _change: add
+    _change: modify
+  - name: RevisionValidatorFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(ApprovalMode mode): RevisionValidator"
+    _change: add
+  - name: ProposalDecisionService
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "approve(String proposalId, Optional<String> planId, Optional<String>\
+        \ note, Path coursePath): ProposalDecisionOutcome"
+    - signature: "reject(String proposalId, Optional<String> planId, Optional<String>\
+        \ reason): ProposalDecisionOutcome"
+    _change: add
+  - name: ProposalDecisionServiceFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(RevisionEngineConfig config): ProposalDecisionService"
+    _change: add
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultRevisionValidatorFactory
+    suppressed: false
+    interface: RevisionValidatorFactory
+  - type: Factory
+    implementations:
+    - DefaultProposalDecisionServiceFactory
+    suppressed: false
+    interface: ProposalDecisionServiceFactory
+  packages:
+  - name: engine
+    visibility: internal
+    implementations:
+    - name: HumanApprovalValidator
+      types:
+      - Component
+      implements:
+      - RevisionValidator
+      _change: add
+    - name: DefaultRevisionValidatorFactory
+      types:
+      - Component
+      visibility: public
+      implements:
+      - RevisionValidatorFactory
+      _change: add
+    - name: DefaultProposalDecisionServiceFactory
+      types:
+      - Component
+      visibility: public
+      implements:
+      - ProposalDecisionServiceFactory
+      _change: add
+    - name: DefaultProposalDecisionService
+      requiresInject:
+      - name: artifactStore
+        type: RevisionArtifactStore
+      - name: courseRepository
+        type: CourseRepository
+      - name: elementLocator
+        type: CourseElementLocator
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+        description: Needed to clear the task back to PENDING on reject (R014) and
+          close it as DONE on approve
+      types:
+      - Component
+      implements:
+      - ProposalDecisionService
+      _change: add
+    - name: DefaultRevisionEngine
+      requiresInject:
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: contextResolver
+        type: CorrectionContextResolver<CorrectionContext>
+      - name: reviser
+        type: Reviser
+        description: Normally a DispatchingReviser
+      - name: validator
+        type: RevisionValidator
+      - name: artifactStore
+        type: RevisionArtifactStore
+      - name: courseRepository
+        type: CourseRepository
+      - name: elementLocator
+        type: CourseElementLocator
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-infrastructure
+  implementations:
+  - name: FileSystemRevisionArtifactStore
+    implements:
+    - RevisionArtifactStore
+    _change: modify
+  _change: modify
+- name: audit-cli
+  interfaces:
+  - name: ApproveCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "approve(String resource, String proposalId, String planId, String\
+        \ note): Integer"
+    _change: add
+  - name: RejectCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "reject(String resource, String proposalId, String planId, String\
+        \ reason): Integer"
+    _change: add
+  packages:
+  - name: bootstrap
+    visibility: internal
+    models:
+    - name: InvalidApprovalModeException
+      type: exception
+      fields:
+      - name: value
+        type: String
+        description: The raw env-var value that failed parsing
+      message: "Invalid value for CONTENT_AUDIT_APPROVAL_MODE: '%s'. Allowed: auto,\
+        \ human"
+      _change: add
+      extends: RuntimeException
+    interfaces:
+    - name: ApprovalModeResolver
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "resolve(String envValue): ApprovalMode"
+      _change: add
+    implementations:
+    - name: DefaultApprovalModeResolver
+      visibility: public
+      implements:
+      - ApprovalModeResolver
+      _change: add
+    _change: modify
+  - name: commands
+    visibility: internal
+    implementations:
+    - name: ApproveCmd
+      requiresInject:
+      - name: decisionService
+        type: ProposalDecisionService
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - ApproveCommand
+      _change: add
+    - name: RejectCmd
+      requiresInject:
+      - name: decisionService
+        type: ProposalDecisionService
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - RejectCommand
+      _change: add
+    - name: GetCmd
+      requiresInject:
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: analyzerRegistry
+        type: AnalyzerRegistry
+      - name: correctionContextResolver
+        type: CorrectionContextResolver
+      - name: revisionArtifactStore
+        type: RevisionArtifactStore
+        description: Needed for the new 'proposal'/'proposals' resource branch (R002/R003/F-REVAPR)
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - GetCommand
+      _change: modify
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-REVAPR
+  journeys:
+  - id: F-REVAPR-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-REVAPR-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-REVAPR-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-REVAPR-J004
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys
+  - id: F-REVAPR-J005
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.journeys

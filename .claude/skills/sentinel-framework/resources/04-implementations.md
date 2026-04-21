@@ -467,6 +467,7 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `refinementPlanStore` | `RefinementPlanStore` |
 | `analyzerRegistry` | `AnalyzerRegistry` |
 | `correctionContextResolver` | `CorrectionContextResolver` |
+| `revisionArtifactStore` | `RevisionArtifactStore` |
 
 #### DeleteCmd (package: commands)
 
@@ -546,6 +547,30 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `analyzerRegistry` | `AnalyzerRegistry` |
 | `analyzerStatsTransformer` | `AnalyzerStatsTransformer` |
 | `auditRunner` | `AuditRunner` |
+
+#### ApproveCmd (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** ApproveCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `decisionService` | `ProposalDecisionService` |
+
+#### RejectCmd (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** RejectCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `decisionService` | `ProposalDecisionService` |
 
 #### TextReportFormatter (package: formatting)
 
@@ -630,6 +655,12 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Package:** `com.learney.contentaudit.auditcli.bootstrap`
 **Visibility:** internal
 **Implements:** WorkdirResolver
+
+#### DefaultApprovalModeResolver (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+**Implements:** ApprovalModeResolver
 
 ### Module: nlp-infrastructure
 
@@ -721,31 +752,31 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 #### DefaultRevisionEngineFactory (package: engine)
 
 **Package:** `com.learney.contentaudit.revisiondomain.engine`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** RevisionEngineFactory
 
 #### IdentityReviser (package: engine)
 
 **Package:** `com.learney.contentaudit.revisiondomain.engine`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** Reviser
 
 #### AutoApproveValidator (package: engine)
 
 **Package:** `com.learney.contentaudit.revisiondomain.engine`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** RevisionValidator
 
 #### DefaultRevisionValidatorResult (package: engine)
 
 **Package:** `com.learney.contentaudit.revisiondomain.engine`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** RevisionValidatorResult
 
 #### DispatchingReviser (package: engine)
 
 **Package:** `com.learney.contentaudit.revisiondomain.engine`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** Reviser
 
 **Constructor dependencies:**
@@ -758,13 +789,13 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 #### DefaultCourseElementLocator (package: engine)
 
 **Package:** `com.learney.contentaudit.revisiondomain.engine`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** CourseElementLocator
 
 #### DefaultRevisionEngine (package: engine)
 
 **Package:** `com.learney.contentaudit.revisiondomain.engine`
-**Visibility:** public
+**Visibility:** internal
 **Implements:** RevisionEngine
 
 **Constructor dependencies:**
@@ -779,4 +810,37 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `artifactStore` | `RevisionArtifactStore` |
 | `courseRepository` | `CourseRepository` |
 | `elementLocator` | `CourseElementLocator` |
+
+#### HumanApprovalValidator (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** RevisionValidator
+
+#### DefaultRevisionValidatorFactory (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** RevisionValidatorFactory
+
+#### DefaultProposalDecisionServiceFactory (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** ProposalDecisionServiceFactory
+
+#### DefaultProposalDecisionService (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** ProposalDecisionService
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `artifactStore` | `RevisionArtifactStore` |
+| `courseRepository` | `CourseRepository` |
+| `elementLocator` | `CourseElementLocator` |
+| `refinementPlanStore` | `RefinementPlanStore` |
 

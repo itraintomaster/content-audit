@@ -419,11 +419,11 @@ A type can be a `public` class in Java but unreachable from another module if it
 | refiner-domain | audit-domain | RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext | SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine | — |
 | audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain | AuditRunner, CourseMapper, AnalyzerRegistry | CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry | — |
 | course-infrastructure | course-domain | — | FileSystemCourseRepository | — |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain | AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand | — | commands [internal], formatting [internal], bootstrap [internal] |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain | AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand | — | commands [internal], formatting [internal], bootstrap [internal] |
 | nlp-infrastructure | audit-domain | NlpTokenizerFactory | — | spacy [public] |
 | vocabulary-infrastructure | audit-domain | — | — | evp [internal], coca [internal] |
 | audit-infrastructure | audit-domain, refiner-domain, revision-domain | — | FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore | — |
-| revision-domain | audit-domain, refiner-domain, course-domain | Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory | — | engine [public] |
+| revision-domain | audit-domain, refiner-domain, course-domain | Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory | — | engine [internal] |
 
 ### Boundaries
 

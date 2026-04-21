@@ -279,4 +279,15 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - Given a RevisionArtifact, when save is called, then a file is written under .content-audit/revisions/ → FEAT-REVBYP/F-REVBYP-R008
 - Given an artifact for plan P1 and proposal PR1, when save is called, then the file path is .content-audit/revisions/P1/PR1.<ext> → FEAT-REVBYP/F-REVBYP-R009
 - Given a persisted artifact, when load is called, then all RevisionProposal fields plus verdict and rejectionReason are recoverable → FEAT-REVBYP/F-REVBYP-R010
+- Given artifacts saved under multiple plan directories, when findByProposalId(id, Optional.empty()) is called, then it scans subdirectories and returns the matching artifact → FEAT-REVAPR/F-REVAPR-R002
+- Given no artifact matches the id, when findByProposalId(id, Optional.empty()) is called, then it returns Optional.empty → FEAT-REVAPR/F-REVAPR-R002
+- Given an artifact saved under plan P1, when findByProposalId(id, Optional.of(P1)) is called, then it takes the direct path and returns the artifact → FEAT-REVAPR/F-REVAPR-R002
+- Given no artifact under plan P1 with that id, when findByProposalId(id, Optional.of(P1)) is called, then it returns Optional.empty → FEAT-REVAPR/F-REVAPR-R002
+- Given a PENDING_APPROVAL artifact whose taskId matches, when hasPendingProposalForTask is called, then it returns true → FEAT-REVAPR/F-REVAPR-R009
+- Given only an APPROVED artifact exists for the task, when hasPendingProposalForTask is called, then it returns false → FEAT-REVAPR/F-REVAPR-R009
+- Given only a REJECTED artifact exists for the task, when hasPendingProposalForTask is called, then it returns false → FEAT-REVAPR/F-REVAPR-R009
+- Given no artifact exists for the task, when hasPendingProposalForTask is called, then it returns false → FEAT-REVAPR/F-REVAPR-R009
+- Given artifacts saved under multiple plan directories, when list() is called, then it returns all of them across all plans → FEAT-REVAPR/F-REVAPR-R002
+- Given the revisions directory is empty or missing, when list() is called, then it returns an empty list → FEAT-REVAPR/F-REVAPR-R002
+- Given the store is constructed with a non-default baseDir, when save is called, then the artifact file lands under <baseDir>/.content-audit/revisions/<planId>/<proposalId>.* and NOT under System.getProperty('user.dir') → FEAT-REVAPR/F-REVAPR-R017
 

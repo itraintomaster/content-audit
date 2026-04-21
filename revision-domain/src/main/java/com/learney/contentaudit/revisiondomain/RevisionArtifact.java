@@ -1,5 +1,6 @@
 package com.learney.contentaudit.revisiondomain;
 
+import java.time.Instant;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -16,15 +17,22 @@ public class RevisionArtifact {
 
     private RevisionOutcomeKind outcome;
 
+    private Instant decidedAt;
+
+    private String decisionNote;
+
     public RevisionArtifact() {
     }
 
     public RevisionArtifact(RevisionProposal proposal, RevisionVerdict verdict,
-            String rejectionReason, RevisionOutcomeKind outcome) {
+            String rejectionReason, RevisionOutcomeKind outcome, Instant decidedAt,
+            String decisionNote) {
         this.proposal = proposal;
         this.verdict = verdict;
         this.rejectionReason = rejectionReason;
         this.outcome = outcome;
+        this.decidedAt = decidedAt;
+        this.decisionNote = decisionNote;
     }
 
     public RevisionProposal getProposal() {
@@ -59,6 +67,22 @@ public class RevisionArtifact {
         this.outcome = outcome;
     }
 
+    public Instant getDecidedAt() {
+        return this.decidedAt;
+    }
+
+    public void setDecidedAt(Instant decidedAt) {
+        this.decidedAt = decidedAt;
+    }
+
+    public String getDecisionNote() {
+        return this.decisionNote;
+    }
+
+    public void setDecisionNote(String decisionNote) {
+        this.decisionNote = decisionNote;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,11 +91,13 @@ public class RevisionArtifact {
         return Objects.equals(this.proposal, that.proposal)
                     && Objects.equals(this.verdict, that.verdict)
                     && Objects.equals(this.rejectionReason, that.rejectionReason)
-                    && Objects.equals(this.outcome, that.outcome);
+                    && Objects.equals(this.outcome, that.outcome)
+                    && Objects.equals(this.decidedAt, that.decidedAt)
+                    && Objects.equals(this.decisionNote, that.decisionNote);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(proposal, verdict, rejectionReason, outcome);
+        return Objects.hash(proposal, verdict, rejectionReason, outcome, decidedAt, decisionNote);
     }
 }

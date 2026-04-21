@@ -143,7 +143,7 @@ project-root/
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 1 (GetTasksFilter) |
-| Interfaces | 8 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand) |
+| Interfaces | 10 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand) |
 | Implementations | 0 |
 | Packages | 3 (commands [internal], formatting [internal], bootstrap [internal]) |
 
@@ -202,10 +202,10 @@ project-root/
 | Depends On | audit-domain, refiner-domain, course-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 7 (RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig) |
-| Interfaces | 7 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory) |
+| Models | 10 (RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome) |
+| Interfaces | 10 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory) |
 | Implementations | 0 |
-| Packages | 1 (engine [public]) |
+| Packages | 1 (engine [internal]) |
 
 ## Dependency Graph
 

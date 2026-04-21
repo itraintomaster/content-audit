@@ -100,6 +100,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: StatsAnalyzerCommand - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.ApproveCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ApproveCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.RejectCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RejectCommand - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.commands.Main");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: Main - " + e.getMessage());
@@ -148,6 +158,16 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.commands.StatsAnalyzerCmd");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: StatsAnalyzerCmd - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.ApproveCmd");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ApproveCmd - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.RejectCmd");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RejectCmd - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.formatting.ReportViewModel");
@@ -300,14 +320,29 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: InvalidWorkdirException - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.InvalidApprovalModeException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: InvalidApprovalModeException - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.WorkdirResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: WorkdirResolver - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.ApprovalModeResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ApprovalModeResolver - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultWorkdirResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultWorkdirResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultApprovalModeResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultApprovalModeResolver - " + e.getMessage());
     }
   }
 }

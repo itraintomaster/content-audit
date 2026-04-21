@@ -1,24 +1,20 @@
 {
-  "_id": {
-    "$oid": "aaaaaaaaaaaaaaaaaaaaaaaa"
+  "_id" : {
+    "$oid" : "aaaaaaaaaaaaaaaaaaaaaaaa"
   },
-  "title": "english-course",
-  "knowledgeIds": [
-    {
-      "$oid": "aaaaaaaaaaaaaaaaaaaaaaab"
-    }
-  ],
-  "root": {
-    "_id": {
-      "$oid": "aaaaaaaaaaaaaaaaaaaaaaac"
+  "title" : "english-course",
+  "knowledgeIds" : [ {
+    "$oid" : "aaaaaaaaaaaaaaaaaaaaaaab"
+  } ],
+  "root" : {
+    "_id" : {
+      "$oid" : "aaaaaaaaaaaaaaaaaaaaaaac"
     },
-    "code": "root",
-    "kind": "ROOT",
-    "label": "English Course (Tiny Fixture)",
-    "children": [
-      {
-        "$oid": "aaaaaaaaaaaaaaaaaaaaaaad"
-      }
-    ]
+    "code" : "root",
+    "kind" : "ROOT",
+    "label" : "English Course (Tiny Fixture)",
+    "children" : [ {
+      "$oid" : "aaaaaaaaaaaaaaaaaaaaaaad"
+    } ]
   }
 }

@@ -762,6 +762,7 @@ Methods:
 |-------|------|
 | APPROVED | `null` |
 | REJECTED | `null` |
+| PENDING_APPROVAL | `null` |
 
 ### RevisionOutcomeKind (`enum`)
 
@@ -773,6 +774,8 @@ Methods:
 | NO_REVISER | `null` |
 | CONTEXT_UNAVAILABLE | `null` |
 | ELEMENT_NOT_FOUND | `null` |
+| PENDING_APPROVAL_PERSISTED | `null` |
+| ALREADY_PENDING_DECISION | `null` |
 
 ### CourseElementSnapshot (`record`)
 
@@ -807,6 +810,8 @@ Methods:
 | verdict | `RevisionVerdict` |
 | rejectionReason | `String` |
 | outcome | `RevisionOutcomeKind` |
+| decidedAt | `Instant` |
+| decisionNote | `String` |
 
 ### RevisionOutcome (`record`)
 
@@ -828,6 +833,31 @@ Methods:
 | refinementPlanStore | `RefinementPlanStore` |
 | auditReportStore | `AuditReportStore` |
 | contextResolver | `CorrectionContextResolver<CorrectionContext>` |
+
+### ApprovalMode (`enum`)
+
+| Field | Type |
+|-------|------|
+| AUTO | `null` |
+| HUMAN | `null` |
+
+### ProposalDecisionOutcomeKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| APPROVED_APPLIED | `null` |
+| APPROVED_APPLY_FAILED | `null` |
+| REJECTED | `null` |
+| NOT_FOUND | `null` |
+| ALREADY_DECIDED | `null` |
+
+### ProposalDecisionOutcome (`record`)
+
+| Field | Type |
+|-------|------|
+| kind | `ProposalDecisionOutcomeKind` |
+| artifact | `RevisionArtifact` |
+| errorMessage | `String` |
 
 ### Reviser (port)
 
@@ -857,6 +887,9 @@ Methods:
 - `save(RevisionArtifact artifact): String`
 - `load(String planId, String proposalId): Optional<RevisionArtifact>`
 - `listByPlan(String planId): List<RevisionArtifact>`
+- `findByProposalId(String proposalId, Optional<String> planId): Optional<RevisionArtifact>`
+- `hasPendingProposalForTask(String planId, String taskId): boolean`
+- `list(): List<RevisionArtifact>`
 
 ### CourseElementLocator (port)
 
@@ -876,4 +909,23 @@ Methods:
 Methods:
 
 - `create(RevisionEngineConfig config): RevisionEngine`
+
+### RevisionValidatorFactory (factory)
+
+Methods:
+
+- `create(ApprovalMode mode): RevisionValidator`
+
+### ProposalDecisionService (port)
+
+Methods:
+
+- `approve(String proposalId, Optional<String> planId, Optional<String> note, Path coursePath): ProposalDecisionOutcome`
+- `reject(String proposalId, Optional<String> planId, Optional<String> reason): ProposalDecisionOutcome`
+
+### ProposalDecisionServiceFactory (factory)
+
+Methods:
+
+- `create(RevisionEngineConfig config): ProposalDecisionService`
 

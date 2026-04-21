@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -63,7 +64,77 @@ public class FileSystemRevisionArtifactStoreTest {
                 proposal,
                 RevisionVerdict.APPROVED,
                 null,   // rejectionReason is null when APPROVED (R010)
-                RevisionOutcomeKind.APPROVED_APPLIED
+                RevisionOutcomeKind.APPROVED_APPLIED,
+                null,   // decidedAt — null for auto-approved (not separately recorded)
+                null    // decisionNote — null for auto-approved
+        );
+    }
+
+    /**
+     * Builds a PENDING_APPROVAL artifact for a given planId / proposalId / taskId.
+     * Used in FEAT-REVAPR tests (R009) to verify hasPendingProposalForTask.
+     */
+    private static RevisionArtifact buildPendingArtifact(String planId, String proposalId, String taskId) {
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(
+                AuditTarget.QUIZ,
+                "quiz-node-001",
+                null
+        );
+        RevisionProposal proposal = new RevisionProposal(
+                proposalId,
+                taskId,
+                planId,
+                "audit-001",
+                DiagnosisKind.SENTENCE_LENGTH,
+                AuditTarget.QUIZ,
+                "quiz-node-001",
+                snapshot,
+                snapshot,
+                "bypass: identity revision",
+                "human",
+                Instant.parse("2026-04-20T10:00:00Z")
+        );
+        return new RevisionArtifact(
+                proposal,
+                RevisionVerdict.PENDING_APPROVAL,
+                null,   // rejectionReason — null for PENDING_APPROVAL
+                RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED,
+                null,   // decidedAt — not yet decided
+                null    // decisionNote — not yet decided
+        );
+    }
+
+    /**
+     * Builds a REJECTED artifact for a given planId / proposalId / taskId.
+     * Used in FEAT-REVAPR tests (R009) to verify hasPendingProposalForTask returns false.
+     */
+    private static RevisionArtifact buildRejectedArtifact(String planId, String proposalId, String taskId) {
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(
+                AuditTarget.QUIZ,
+                "quiz-node-001",
+                null
+        );
+        RevisionProposal proposal = new RevisionProposal(
+                proposalId,
+                taskId,
+                planId,
+                "audit-001",
+                DiagnosisKind.SENTENCE_LENGTH,
+                AuditTarget.QUIZ,
+                "quiz-node-001",
+                snapshot,
+                snapshot,
+                "bypass: identity revision",
+                "human",
+                Instant.parse("2026-04-20T10:00:00Z")
+        );
+        return new RevisionArtifact(
+                proposal,
+                RevisionVerdict.REJECTED,
+                "not relevant",
+                RevisionOutcomeKind.REJECTED,
+                Instant.parse("2026-04-20T11:00:00Z"),
+                "rejected in test"
         );
     }
 
@@ -207,5 +278,251 @@ public class FileSystemRevisionArtifactStoreTest {
                 "elementAfter.nodeTarget must round-trip correctly");
         assertEquals("quiz-node-001", loadedAfter.getNodeId(),
                 "elementAfter.nodeId must round-trip correctly");
+    }
+
+    @Test
+    @DisplayName("Given artifacts saved under multiple plan directories, when findByProposalId(id, Optional.empty()) is called, then it scans subdirectories and returns the matching artifact")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R002")
+    public void givenArtifactsSavedUnderMultiplePlanDirectoriesWhenFindByProposalIdidOptionalemptyIsCalledThenItScansSubdirectoriesAndReturnsTheMatchingArtifact(
+            @TempDir Path tempDir) {
+        // Arrange — seed two artifacts in two different plan directories
+        RevisionArtifactStore store = storeFor(tempDir);
+        String planA = "plan-alpha";
+        String planB = "plan-beta";
+        String targetProposalId = "task-xyz-20260420T100000Z";
+        String otherProposalId  = "task-abc-20260420T090000Z";
+
+        store.save(buildArtifact(planA, otherProposalId));
+        store.save(buildArtifact(planB, targetProposalId));
+
+        // Act — scan without plan hint (Optional.empty())
+        Optional<RevisionArtifact> result = store.findByProposalId(targetProposalId, Optional.empty());
+
+        // Assert — the artifact from planB is found (R002: proposalId is globally addressable)
+        assertTrue(result.isPresent(),
+                "findByProposalId with Optional.empty() must find the artifact by scanning all plan subdirs (F-REVAPR-R002)");
+        assertEquals(targetProposalId, result.get().getProposal().getProposalId(),
+                "returned artifact must have the requested proposalId");
+        assertEquals(planB, result.get().getProposal().getPlanId(),
+                "returned artifact must belong to the correct plan");
+    }
+
+    @Test
+    @DisplayName("Given no artifact matches the id, when findByProposalId(id, Optional.empty()) is called, then it returns Optional.empty")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R002")
+    public void givenNoArtifactMatchesTheIdWhenFindByProposalIdidOptionalemptyIsCalledThenItReturnsOptionalempty(
+            @TempDir Path tempDir) {
+        // Arrange — seed an artifact with a different proposalId
+        RevisionArtifactStore store = storeFor(tempDir);
+        store.save(buildArtifact("plan-001", "task-aaa-20260420T100000Z"));
+
+        // Act — search for a proposalId that was never saved
+        Optional<RevisionArtifact> result = store.findByProposalId("task-nonexistent-20260420T100000Z", Optional.empty());
+
+        // Assert — must return empty (R002: "No proposal found with id '<id>'" semantics)
+        assertFalse(result.isPresent(),
+                "findByProposalId must return Optional.empty() when no artifact matches the id (F-REVAPR-R002)");
+    }
+
+    @Test
+    @DisplayName("Given an artifact saved under plan P1, when findByProposalId(id, Optional.of(P1)) is called, then it takes the direct path and returns the artifact")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R002")
+    public void givenAnArtifactSavedUnderPlanP1WhenFindByProposalIdidOptionalofP1IsCalledThenItTakesTheDirectPathAndReturnsTheArtifact(
+            @TempDir Path tempDir) {
+        // Arrange — artifact saved under plan-P1
+        RevisionArtifactStore store = storeFor(tempDir);
+        String planId = "plan-P1";
+        String proposalId = "task-001-20260420T100000Z";
+        store.save(buildArtifact(planId, proposalId));
+
+        // Also save a decoy under a different plan to confirm the direct path is used
+        store.save(buildArtifact("plan-P2", "task-002-20260420T110000Z"));
+
+        // Act — provide plan hint so direct path is taken (DOUBT-PROPOSAL-LOOKUP Opcion B)
+        Optional<RevisionArtifact> result = store.findByProposalId(proposalId, Optional.of(planId));
+
+        // Assert — artifact is returned via direct path (R002)
+        assertTrue(result.isPresent(),
+                "findByProposalId with plan hint must find the artifact via direct path (F-REVAPR-R002)");
+        assertEquals(proposalId, result.get().getProposal().getProposalId(),
+                "returned artifact must have the requested proposalId");
+        assertEquals(planId, result.get().getProposal().getPlanId(),
+                "returned artifact must belong to plan-P1");
+    }
+
+    @Test
+    @DisplayName("Given no artifact under plan P1 with that id, when findByProposalId(id, Optional.of(P1)) is called, then it returns Optional.empty")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R002")
+    public void givenNoArtifactUnderPlanP1WithThatIdWhenFindByProposalIdidOptionalofP1IsCalledThenItReturnsOptionalempty(
+            @TempDir Path tempDir) {
+        // Arrange — save an artifact under plan-P1 but with a different proposalId;
+        // also save the target proposalId under plan-P2 so it exists elsewhere
+        RevisionArtifactStore store = storeFor(tempDir);
+        String planId = "plan-P1";
+        String targetProposalId = "task-target-20260420T100000Z";
+        store.save(buildArtifact(planId, "task-other-20260420T090000Z"));
+        store.save(buildArtifact("plan-P2", targetProposalId));
+
+        // Act — plan hint points to plan-P1, where the target proposalId does NOT exist
+        Optional<RevisionArtifact> result = store.findByProposalId(targetProposalId, Optional.of(planId));
+
+        // Assert — must return empty because the direct path (plan-P1/target) is absent (R002)
+        assertFalse(result.isPresent(),
+                "findByProposalId with plan hint must return Optional.empty() when id is absent under that plan (F-REVAPR-R002)");
+    }
+
+    @Test
+    @DisplayName("Given a PENDING_APPROVAL artifact whose taskId matches, when hasPendingProposalForTask is called, then it returns true")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R009")
+    public void givenAPENDINGAPPROVALArtifactWhoseTaskIdMatchesWhenHasPendingProposalForTaskIsCalledThenItReturnsTrue(
+            @TempDir Path tempDir) {
+        // Arrange — save a PENDING_APPROVAL artifact for task-001 under plan-001
+        RevisionArtifactStore store = storeFor(tempDir);
+        String planId = "plan-001";
+        String taskId = "task-001";
+        String proposalId = taskId + "-20260420T100000Z";
+        store.save(buildPendingArtifact(planId, proposalId, taskId));
+
+        // Act
+        boolean result = store.hasPendingProposalForTask(planId, taskId);
+
+        // Assert — R009: task must appear as "awaiting approval" when a PENDING_APPROVAL artifact exists
+        assertTrue(result,
+                "hasPendingProposalForTask must return true when a PENDING_APPROVAL artifact exists for the task (F-REVAPR-R009)");
+    }
+
+    @Test
+    @DisplayName("Given only an APPROVED artifact exists for the task, when hasPendingProposalForTask is called, then it returns false")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R009")
+    public void givenOnlyAnAPPROVEDArtifactExistsForTheTaskWhenHasPendingProposalForTaskIsCalledThenItReturnsFalse(
+            @TempDir Path tempDir) {
+        // Arrange — save an APPROVED artifact for task-001 (no pending proposal)
+        RevisionArtifactStore store = storeFor(tempDir);
+        String planId = "plan-001";
+        String taskId = "task-001";
+        store.save(buildArtifact(planId, taskId + "-20260420T100000Z"));
+
+        // Act
+        boolean result = store.hasPendingProposalForTask(planId, taskId);
+
+        // Assert — APPROVED artifacts must not cause hasPendingProposalForTask to return true (R009)
+        assertFalse(result,
+                "hasPendingProposalForTask must return false when only an APPROVED artifact exists for the task (F-REVAPR-R009)");
+    }
+
+    @Test
+    @DisplayName("Given only a REJECTED artifact exists for the task, when hasPendingProposalForTask is called, then it returns false")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R009")
+    public void givenOnlyAREJECTEDArtifactExistsForTheTaskWhenHasPendingProposalForTaskIsCalledThenItReturnsFalse(
+            @TempDir Path tempDir) {
+        // Arrange — save a REJECTED artifact for task-002
+        RevisionArtifactStore store = storeFor(tempDir);
+        String planId = "plan-001";
+        String taskId = "task-002";
+        store.save(buildRejectedArtifact(planId, taskId + "-20260420T100000Z", taskId));
+
+        // Act
+        boolean result = store.hasPendingProposalForTask(planId, taskId);
+
+        // Assert — REJECTED artifacts must not count as pending (R009)
+        assertFalse(result,
+                "hasPendingProposalForTask must return false when only a REJECTED artifact exists for the task (F-REVAPR-R009)");
+    }
+
+    @Test
+    @DisplayName("Given no artifact exists for the task, when hasPendingProposalForTask is called, then it returns false")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R009")
+    public void givenNoArtifactExistsForTheTaskWhenHasPendingProposalForTaskIsCalledThenItReturnsFalse(
+            @TempDir Path tempDir) {
+        // Arrange — completely empty store (no artifacts saved at all)
+        RevisionArtifactStore store = storeFor(tempDir);
+
+        // Act — query for a task that has never had any proposal
+        boolean result = store.hasPendingProposalForTask("plan-001", "task-ghost");
+
+        // Assert — must return false when no artifact exists for the task (R009)
+        assertFalse(result,
+                "hasPendingProposalForTask must return false when no artifact exists for the task (F-REVAPR-R009)");
+    }
+
+    @Test
+    @DisplayName("Given artifacts saved under multiple plan directories, when list() is called, then it returns all of them across all plans")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R002")
+    public void givenArtifactsSavedUnderMultiplePlanDirectoriesWhenListIsCalledThenItReturnsAllOfThemAcrossAllPlans(
+            @TempDir Path tempDir) {
+        // Arrange — three artifacts across two plans
+        RevisionArtifactStore store = storeFor(tempDir);
+        store.save(buildArtifact("plan-alpha", "task-a-20260420T100000Z"));
+        store.save(buildArtifact("plan-alpha", "task-b-20260420T110000Z"));
+        store.save(buildArtifact("plan-beta",  "task-c-20260420T120000Z"));
+
+        // Act
+        List<RevisionArtifact> all = store.list();
+
+        // Assert — list() must aggregate artifacts from all plan subdirectories (R002)
+        assertEquals(3, all.size(),
+                "list() must return all artifacts across all plan directories (F-REVAPR-R002)");
+    }
+
+    @Test
+    @DisplayName("Given the revisions directory is empty or missing, when list() is called, then it returns an empty list")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R002")
+    public void givenTheRevisionsDirectoryIsEmptyOrMissingWhenListIsCalledThenItReturnsAnEmptyList(
+            @TempDir Path tempDir) {
+        // Arrange — fresh store with no artifacts saved (revisions directory never created)
+        RevisionArtifactStore store = storeFor(tempDir);
+
+        // Act
+        List<RevisionArtifact> all = store.list();
+
+        // Assert — must return empty list, not throw (R002: get proposals with no data returns empty)
+        assertNotNull(all, "list() must never return null (F-REVAPR-R002)");
+        assertTrue(all.isEmpty(),
+                "list() must return an empty list when no artifacts have been saved (F-REVAPR-R002)");
+    }
+
+    @Test
+    @DisplayName("Given the store is constructed with a non-default baseDir, when save is called, then the artifact file lands under <baseDir>/.content-audit/revisions/<planId>/<proposalId>.* and NOT under System.getProperty('user.dir')")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R017")
+    public void givenTheStoreIsConstructedWithANondefaultBaseDirWhenSaveIsCalledThenTheArtifactFileLandsUnderBaseDircontentauditrevisionsplanIdproposalIdAndNOTUnderSystemgetPropertyuserdir(
+            @TempDir Path tempDir) throws IOException {
+        // Arrange — construct the store with an explicit baseDir (not via storeFor which overrides user.dir)
+        RevisionArtifactStore store = new FileSystemRevisionArtifactStore(tempDir);
+        String planId = "plan-r017";
+        String proposalId = "task-r017-20260420T100000Z";
+        RevisionArtifact artifact = buildArtifact(planId, proposalId);
+
+        // Act
+        store.save(artifact);
+
+        // Assert — file must exist under tempDir/.content-audit/revisions/<planId>/ (R017)
+        Path expectedPlanDir = tempDir.resolve(".content-audit/revisions/" + planId);
+        assertTrue(Files.isDirectory(expectedPlanDir),
+                "Plan directory must be created under the overridden baseDir (F-REVAPR-R017)");
+
+        try (Stream<Path> files = Files.list(expectedPlanDir)) {
+            boolean hasProposalFile = files
+                    .filter(Files::isRegularFile)
+                    .anyMatch(p -> p.getFileName().toString().startsWith(proposalId));
+            assertTrue(hasProposalFile,
+                    "Artifact file must land under <baseDir>/.content-audit/revisions/<planId>/<proposalId>.* (F-REVAPR-R017)");
+        }
+
+        // Assert — file must NOT exist under System.getProperty("user.dir")
+        Path userDirRevisions = Path.of(System.getProperty("user.dir"))
+                .resolve(".content-audit/revisions/" + planId);
+        assertFalse(Files.isDirectory(userDirRevisions),
+                "Artifact must NOT be written under user.dir when an explicit baseDir is provided (F-REVAPR-R017)");
     }
 }

@@ -1,4 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.revisiondomain.RevisionArtifact;
+import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
@@ -71,7 +74,7 @@ import picocli.CommandLine.Parameters;
         }
 )
 final class GetCmd implements GetCommand, Callable<Integer> {
-    private static final Set<String> VALID_RESOURCES = Set.of("audits", "plans", "tasks", "analyzers");
+    private static final Set<String> VALID_RESOURCES = Set.of("audits", "plans", "tasks", "analyzers", "proposals");
 
     private final AuditReportStore auditReportStore;
 
@@ -83,6 +86,9 @@ final class GetCmd implements GetCommand, Callable<Integer> {
 
     /** Injected by Main to enable full plan listing and audit-level queries. */
     private Path baseDir;
+
+    /** Injected by Main (or via setter) to enable proposal/proposals resource queries. */
+    private RevisionArtifactStore revisionArtifactStore;
 
     @Parameters(index = "0", description = "Resource type: audits, plans, tasks, analyzers")
     private String resource;
@@ -133,6 +139,11 @@ final class GetCmd implements GetCommand, Callable<Integer> {
         this.baseDir = baseDir;
     }
 
+    /** Called by Main to inject the RevisionArtifactStore (needed for proposal/proposals resource). */
+    void setRevisionArtifactStore(RevisionArtifactStore revisionArtifactStore) {
+        this.revisionArtifactStore = revisionArtifactStore;
+    }
+
     @Override
     public Integer call() {
         Optional<AuditTarget> targetOpt = Optional.empty();
@@ -171,12 +182,12 @@ final class GetCmd implements GetCommand, Callable<Integer> {
     @Override
     public int get(String resource, String name, GetTasksFilter filter) {
         if (resource == null || resource.isBlank()) {
-            System.err.println("Error: resource is required. Known resources: audits, plans, tasks, analyzers");
+            System.err.println("Error: resource is required. Known resources: audits, plans, tasks, analyzers, proposals");
             return 1;
         }
         String normalized = normalizeResource(resource);
         if (normalized == null) {
-            System.err.println("Unknown resource '" + resource + "'. Known resources: audits, plans, tasks, analyzers");
+            System.err.println("Unknown resource '" + resource + "'. Known resources: audits, plans, tasks, analyzers, proposals");
             return 1;
         }
 
@@ -185,8 +196,9 @@ final class GetCmd implements GetCommand, Callable<Integer> {
             case "plans" -> handlePlans(name, filter);
             case "tasks" -> handleTasks(name, filter);
             case "analyzers" -> handleAnalyzers(name, filter);
+            case "proposals" -> handleProposals(name, filter);
             default -> {
-                System.err.println("Unknown resource '" + resource + "'. Known resources: audits, plans, tasks, analyzers");
+                System.err.println("Unknown resource '" + resource + "'. Known resources: audits, plans, tasks, analyzers, proposals");
                 yield 1;
             }
         };
@@ -202,6 +214,7 @@ final class GetCmd implements GetCommand, Callable<Integer> {
             case "plan", "plans" -> "plans";
             case "task", "tasks" -> "tasks";
             case "analyzer", "analyzers" -> "analyzers";
+            case "proposal", "proposals" -> "proposals";
             default -> null;
         };
     }
@@ -809,6 +822,134 @@ final class GetCmd implements GetCommand, Callable<Integer> {
 
     private static String nullToEmpty(String s) {
         return s != null ? s : "";
+    }
+
+    // -------------------------------------------------------------------------
+    // Proposals
+    // -------------------------------------------------------------------------
+
+    private static final Set<String> VALID_PROPOSAL_STATUSES = Set.of("pending", "approved", "rejected");
+
+    private int handleProposals(String name, GetTasksFilter filter) {
+        // Validate --status if provided (different allowed values from tasks)
+        String statusVal = null;
+        if (filter != null && filter.getStatus().isPresent()) {
+            statusVal = filter.getStatus().get().toLowerCase(Locale.ROOT);
+            if (!VALID_PROPOSAL_STATUSES.contains(statusVal)) {
+                System.err.println("Invalid value for --status: '" + filter.getStatus().get()
+                        + "'. Allowed: pending, approved, rejected");
+                return 1;
+            }
+        }
+
+        if (name == null || name.isBlank()) {
+            // List mode
+            return handleProposalList(filter, statusVal);
+        } else {
+            // Get single proposal by id
+            return handleProposalOne(name, filter);
+        }
+    }
+
+    private int handleProposalList(GetTasksFilter filter, String statusVal) {
+        if (revisionArtifactStore == null) {
+            System.out.println("No proposals found.");
+            return 0;
+        }
+
+        List<RevisionArtifact> artifacts;
+        // R003 — if --plan is specified, use listByPlan; otherwise use list()
+        if (filter != null && filter.getPlanId().isPresent() && !filter.getPlanId().get().isBlank()) {
+            artifacts = revisionArtifactStore.listByPlan(filter.getPlanId().get());
+        } else {
+            artifacts = revisionArtifactStore.list();
+        }
+
+        // R003 — filter by --status if provided
+        if (statusVal != null) {
+            RevisionVerdict targetVerdict = mapStatusToVerdict(statusVal);
+            artifacts = artifacts.stream()
+                    .filter(a -> targetVerdict.equals(a.getVerdict()))
+                    .collect(java.util.stream.Collectors.toList());
+        }
+
+        if (artifacts.isEmpty()) {
+            System.out.println("No proposals found.");
+            return 0;
+        }
+
+        printProposalList(artifacts);
+        return 0;
+    }
+
+    private int handleProposalOne(String proposalId, GetTasksFilter filter) {
+        if (revisionArtifactStore == null) {
+            System.err.println("No proposal found with id '" + proposalId + "'");
+            return 1;
+        }
+
+        Optional<String> planIdOpt = (filter != null && filter.getPlanId().isPresent())
+                ? filter.getPlanId()
+                : Optional.empty();
+
+        Optional<RevisionArtifact> artifactOpt =
+                revisionArtifactStore.findByProposalId(proposalId, planIdOpt);
+
+        if (artifactOpt.isEmpty()) {
+            System.err.println("No proposal found with id '" + proposalId + "'");
+            return 1;
+        }
+
+        printProposalOne(artifactOpt.get());
+        return 0;
+    }
+
+    private RevisionVerdict mapStatusToVerdict(String status) {
+        return switch (status) {
+            case "pending" -> RevisionVerdict.PENDING_APPROVAL;
+            case "approved" -> RevisionVerdict.APPROVED;
+            case "rejected" -> RevisionVerdict.REJECTED;
+            default -> throw new IllegalArgumentException("Unknown status: " + status);
+        };
+    }
+
+    private void printProposalList(List<RevisionArtifact> artifacts) {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC);
+        System.out.printf("%-40s  %-10s  %-10s  %-19s%n", "Proposal ID", "Plan", "Verdict", "Created At");
+        System.out.println("────────────────────────────────────────  ──────────  ──────────  ───────────────────");
+        for (RevisionArtifact a : artifacts) {
+            String proposalId = a.getProposal() != null ? a.getProposal().getProposalId() : "(unknown)";
+            String planId = a.getProposal() != null ? a.getProposal().getPlanId() : "(unknown)";
+            String verdict = a.getVerdict() != null ? a.getVerdict().name() : "UNKNOWN";
+            String createdAt = a.getProposal() != null && a.getProposal().getCreatedAt() != null
+                    ? fmt.format(a.getProposal().getCreatedAt())
+                    : "";
+            System.out.printf("%-40s  %-10s  %-10s  %-19s%n",
+                    truncate(proposalId, 40),
+                    truncate(planId, 10),
+                    verdict,
+                    createdAt);
+        }
+    }
+
+    private void printProposalOne(RevisionArtifact artifact) {
+        String proposalId = artifact.getProposal() != null ? artifact.getProposal().getProposalId() : "(unknown)";
+        String planId = artifact.getProposal() != null ? artifact.getProposal().getPlanId() : "(unknown)";
+        String taskId = artifact.getProposal() != null ? artifact.getProposal().getTaskId() : "(unknown)";
+        String verdict = artifact.getVerdict() != null ? artifact.getVerdict().name() : "UNKNOWN";
+        System.out.println("Proposal ID: " + proposalId);
+        System.out.println("Plan ID:     " + planId);
+        System.out.println("Task ID:     " + taskId);
+        System.out.println("Verdict:     " + verdict);
+        if (artifact.getDecisionNote() != null) {
+            System.out.println("Note:        " + artifact.getDecisionNote());
+        }
+        if (artifact.getRejectionReason() != null) {
+            System.out.println("Reason:      " + artifact.getRejectionReason());
+        }
+        if (artifact.getDecidedAt() != null) {
+            System.out.println("Decided At:  " + artifact.getDecidedAt());
+        }
     }
 
     // -------------------------------------------------------------------------

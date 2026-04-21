@@ -1,4 +1,4 @@
-generatedAt: 2026-04-19T22:49:12.586695Z
+generatedAt: 2026-04-21T11:42:12.186068Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -2564,6 +2564,639 @@ features:
       module: audit-domain
       implementation: KnowledgeInstructionsLengthAnalyzer
   - journeyId: F-KTLEN-J004
+    state: NO_TESTS
+- id: FEAT-REVAPR
+  state: IMPLEMENTED
+  requirementFile: requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
+  rulesCoverage:
+  - ruleId: F-REVAPR-R001
+    state: PASSING
+    tests:
+    - name: "Given any RevisionProposal, when validate is called in human mode, then\
+        \ the verdict field on the returned result is literally the PENDING_APPROVAL\
+        \ enum value (new vocabulary)"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: HumanApprovalValidator
+  - ruleId: F-REVAPR-R002
+    state: PASSING
+    tests:
+    - name: "Given 'get proposals' without filters, when invoked, then it lists every\
+        \ persisted artifact across all plan directories and exits zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: "Given 'get proposal <id>' with a known id, when invoked, then the single\
+        \ artifact is printed and exit is zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: "Given 'get proposal <id> --plan <planId>', when invoked, then the direct\
+        \ plan-scoped lookup returns the artifact"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: "Given 'get proposal <id>' with an unknown id, when invoked, then the\
+        \ CLI prints 'No proposal found with id' and exits non-zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: "Given decisionService returns NOT_FOUND, when approve is invoked, then\
+        \ the CLI prints 'No proposal found with id' and exits non-zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ApproveCmd
+    - name: "Given decisionService returns NOT_FOUND, when reject is invoked, then\
+        \ the CLI prints 'No proposal found with id' and exits non-zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RejectCmd
+    - name: "Given artifacts saved under multiple plan directories, when findByProposalId(id,\
+        \ Optional.empty()) is called, then it scans subdirectories and returns the\
+        \ matching artifact"
+      implemented: true
+      passing: true
+      module: audit-infrastructure
+      implementation: FileSystemRevisionArtifactStore
+    - name: "Given no artifact matches the id, when findByProposalId(id, Optional.empty())\
+        \ is called, then it returns Optional.empty"
+      implemented: true
+      passing: true
+      module: audit-infrastructure
+      implementation: FileSystemRevisionArtifactStore
+    - name: "Given an artifact saved under plan P1, when findByProposalId(id, Optional.of(P1))\
+        \ is called, then it takes the direct path and returns the artifact"
+      implemented: true
+      passing: true
+      module: audit-infrastructure
+      implementation: FileSystemRevisionArtifactStore
+    - name: "Given no artifact under plan P1 with that id, when findByProposalId(id,\
+        \ Optional.of(P1)) is called, then it returns Optional.empty"
+      implemented: true
+      passing: true
+      module: audit-infrastructure
+      implementation: FileSystemRevisionArtifactStore
+    - name: "Given artifacts saved under multiple plan directories, when list() is\
+        \ called, then it returns all of them across all plans"
+      implemented: true
+      passing: true
+      module: audit-infrastructure
+      implementation: FileSystemRevisionArtifactStore
+    - name: "Given the revisions directory is empty or missing, when list() is called,\
+        \ then it returns an empty list"
+      implemented: true
+      passing: true
+      module: audit-infrastructure
+      implementation: FileSystemRevisionArtifactStore
+  - ruleId: F-REVAPR-R003
+    state: PASSING
+    tests:
+    - name: "Given 'get proposals --plan <planId>', when invoked, then the listing\
+        \ is restricted to artifacts belonging to that plan"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: "Given 'get proposals --status pending', when invoked, then the listing\
+        \ includes only artifacts with verdict PENDING_APPROVAL"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: "Given 'get proposals --status approved', when invoked, then the listing\
+        \ includes only artifacts with verdict APPROVED"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: "Given 'get proposals --status rejected', when invoked, then the listing\
+        \ includes only artifacts with verdict REJECTED"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: "Given 'get proposals --plan <planId> --status <s>', when invoked, then\
+        \ both filters are applied conjunctively"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+    - name: "Given 'get proposals --status invalid', when invoked, then the CLI reports\
+        \ 'Invalid value for --status' listing the allowed values and exits non-zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
+  - ruleId: F-REVAPR-R004
+    state: PASSING
+    tests:
+    - name: "Given 'delete proposal <id>' is invoked, when the CLI dispatches, then\
+        \ it fails with an unknown/unsupported resource error (proposals are not deletable\
+        \ in this iteration)"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DeleteCmd
+    - name: "Given 'prune proposals --keep N' is invoked, when the CLI dispatches,\
+        \ then it fails with an unknown/unsupported resource error (proposals are\
+        \ not prunable in this iteration)"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: PruneCmd
+  - ruleId: F-REVAPR-R005
+    state: PASSING
+    tests:
+    - name: "Given a null env value, when resolve is called, then it returns AUTO"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultApprovalModeResolver
+    - name: "Given an empty-string env value, when resolve is called, then it returns\
+        \ AUTO"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultApprovalModeResolver
+    - name: "Given env value 'auto', when resolve is called, then it returns AUTO"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultApprovalModeResolver
+    - name: "Given env value 'AUTO' in any casing, when resolve is called, then it\
+        \ returns AUTO (case-insensitive)"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultApprovalModeResolver
+    - name: "Given env value 'human', when resolve is called, then it returns HUMAN"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultApprovalModeResolver
+    - name: "Given env value 'HUMAN' in any casing, when resolve is called, then it\
+        \ returns HUMAN (case-insensitive)"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultApprovalModeResolver
+    - name: "Given an unrecognized env value, when resolve is called, then it throws\
+        \ InvalidApprovalModeException listing the allowed values"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultApprovalModeResolver
+  - ruleId: F-REVAPR-R006
+    state: PASSING
+    tests:
+    - name: "Given ApprovalMode.AUTO, when create is called, then it returns an AutoApproveValidator\
+        \ instance (exactly one validator active for the invocation)"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultRevisionValidatorFactory
+    - name: "Given ApprovalMode.HUMAN, when create is called, then it returns a HumanApprovalValidator\
+        \ instance (exactly one validator active for the invocation)"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultRevisionValidatorFactory
+  - ruleId: F-REVAPR-R007
+    state: PASSING
+    tests:
+    - name: "Given any RevisionProposal, when validate is called, then it returns\
+        \ a RevisionValidatorResult with verdict PENDING_APPROVAL"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: HumanApprovalValidator
+    - name: "Given a PENDING_APPROVAL result, when rejectionReason is queried, then\
+        \ it returns Optional.empty"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: HumanApprovalValidator
+  - ruleId: F-REVAPR-R008
+    state: PASSING
+    tests:
+    - name: "Given the human validator emits PENDING_APPROVAL, when revise runs, then\
+        \ the artifact is persisted with PENDING_APPROVAL and CourseRepository is\
+        \ never asked to save"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultRevisionEngine
+  - ruleId: F-REVAPR-R009
+    state: PASSING
+    tests:
+    - name: "Given a PENDING_APPROVAL artifact whose taskId matches, when hasPendingProposalForTask\
+        \ is called, then it returns true"
+      implemented: true
+      passing: true
+      module: audit-infrastructure
+      implementation: FileSystemRevisionArtifactStore
+    - name: "Given only an APPROVED artifact exists for the task, when hasPendingProposalForTask\
+        \ is called, then it returns false"
+      implemented: true
+      passing: true
+      module: audit-infrastructure
+      implementation: FileSystemRevisionArtifactStore
+    - name: "Given only a REJECTED artifact exists for the task, when hasPendingProposalForTask\
+        \ is called, then it returns false"
+      implemented: true
+      passing: true
+      module: audit-infrastructure
+      implementation: FileSystemRevisionArtifactStore
+    - name: "Given no artifact exists for the task, when hasPendingProposalForTask\
+        \ is called, then it returns false"
+      implemented: true
+      passing: true
+      module: audit-infrastructure
+      implementation: FileSystemRevisionArtifactStore
+    - name: "Given the human validator emits PENDING_APPROVAL, when revise finishes,\
+        \ then the outcome kind is PENDING_APPROVAL_PERSISTED and the RefinementTask\
+        \ stays PENDING"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultRevisionEngine
+  - ruleId: F-REVAPR-R010
+    state: PASSING
+    tests:
+    - name: "Given the task already has a PENDING_APPROVAL proposal, when revise runs,\
+        \ then the outcome is ALREADY_PENDING_DECISION and no new artifact is persisted"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultRevisionEngine
+  - ruleId: F-REVAPR-R011
+    state: PASSING
+    tests:
+    - name: "Given 'approve proposal <id>' on a PENDING_APPROVAL proposal, when invoked,\
+        \ then decisionService.approve is called with APPROVED verdict and the CLI\
+        \ exits zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ApproveCmd
+    - name: "Given 'approve proposal <id> --plan <planId>', when invoked, then the\
+        \ plan scope is forwarded to decisionService.approve"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ApproveCmd
+    - name: "Given 'approve proposal <id> --note \"...\"', when invoked, then the\
+        \ note text is forwarded to decisionService.approve"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ApproveCmd
+    - name: "Given 'approve proposal' without an id, when invoked, then the CLI reports\
+        \ a usage error and exits non-zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ApproveCmd
+    - name: "Given decisionService returns APPROVED_APPLY_FAILED, when approve is\
+        \ invoked, then the CLI prints the apply-failed message and exits non-zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ApproveCmd
+    - name: "Given a PENDING_APPROVAL artifact, when approve is called, then the artifact\
+        \ is rewritten with verdict APPROVED and decidedAt set"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultProposalDecisionService
+    - name: "Given a PENDING_APPROVAL artifact, when approve is called, then the course\
+        \ is loaded and saved with elementAfter applied via CourseRepository"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultProposalDecisionService
+    - name: "Given approve is called with a --note, then the persisted artifact's\
+        \ decisionNote carries that note"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultProposalDecisionService
+    - name: "Given no proposal matches the supplied id, when approve is called, then\
+        \ the outcome is NOT_FOUND and no artifact or course is written"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultProposalDecisionService
+  - ruleId: F-REVAPR-R012
+    state: PASSING
+    tests:
+    - name: "Given 'reject proposal <id>' on a PENDING_APPROVAL proposal, when invoked,\
+        \ then decisionService.reject is called with REJECTED verdict and the CLI\
+        \ exits zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RejectCmd
+    - name: "Given 'reject proposal <id> --plan <planId>', when invoked, then the\
+        \ plan scope is forwarded to decisionService.reject"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RejectCmd
+    - name: "Given 'reject proposal <id> --reason \"...\"', when invoked, then the\
+        \ reason text is forwarded to decisionService.reject"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RejectCmd
+    - name: "Given 'reject proposal' without an id, when invoked, then the CLI reports\
+        \ a usage error and exits non-zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RejectCmd
+    - name: "Given a PENDING_APPROVAL artifact, when reject is called, then the artifact\
+        \ is rewritten with verdict REJECTED and decisionNote carrying the --reason"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultProposalDecisionService
+    - name: "Given a PENDING_APPROVAL artifact, when reject is called, then CourseRepository\
+        \ is never asked to load or save the course"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultProposalDecisionService
+    - name: "Given no proposal matches the supplied id, when reject is called, then\
+        \ the outcome is NOT_FOUND and no artifact or course is written"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultProposalDecisionService
+  - ruleId: F-REVAPR-R013
+    state: PASSING
+    tests:
+    - name: "Given decisionService returns ALREADY_DECIDED, when approve is invoked,\
+        \ then the CLI prints the already-decided error and exits non-zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ApproveCmd
+    - name: "Given decisionService returns ALREADY_DECIDED, when reject is invoked,\
+        \ then the CLI prints the already-decided error and exits non-zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RejectCmd
+    - name: "Given a proposal whose verdict is already APPROVED, when approve is called\
+        \ again, then the outcome is ALREADY_DECIDED and no side effects occur"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultProposalDecisionService
+    - name: "Given a proposal whose verdict is already REJECTED, when approve is called,\
+        \ then the outcome is ALREADY_DECIDED and no side effects occur"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultProposalDecisionService
+    - name: "Given a proposal whose verdict is already APPROVED, when reject is called,\
+        \ then the outcome is ALREADY_DECIDED and no side effects occur"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultProposalDecisionService
+    - name: "Given a proposal whose verdict is already REJECTED, when reject is called,\
+        \ then the outcome is ALREADY_DECIDED and no side effects occur"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultProposalDecisionService
+  - ruleId: F-REVAPR-R014
+    state: PASSING
+    tests:
+    - name: "Given approve succeeds and the course is applied, then the associated\
+        \ RefinementTask transitions to DONE"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultProposalDecisionService
+    - name: "Given approve rewrites the artifact to APPROVED but the course write\
+        \ fails, then the artifact keeps APPROVED with decidedAt and the task does\
+        \ not advance to DONE"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultProposalDecisionService
+    - name: "Given reject succeeds, then the associated RefinementTask returns to\
+        \ its previous state (typically PENDING)"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultProposalDecisionService
+  - ruleId: F-REVAPR-R015
+    state: PASSING
+    tests:
+    - name: "Given 'approve plan <id>', when invoked, then the CLI rejects with an\
+        \ unknown-resource error and exits non-zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ApproveCmd
+    - name: "Given 'approve audit <id>', when invoked, then the CLI rejects with an\
+        \ unknown-resource error and exits non-zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ApproveCmd
+    - name: "Given 'reject plan <id>', when invoked, then the CLI rejects with an\
+        \ unknown-resource error and exits non-zero"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: RejectCmd
+  - ruleId: F-REVAPR-R016
+    state: PASSING
+    tests:
+    - name: "Given revise runs in human mode and the engine returns PENDING_APPROVAL_PERSISTED,\
+        \ when the command finishes, then stdout contains the assigned proposalId\
+        \ in a form suitable for copy-paste to 'approve proposal <id>' / 'reject proposal\
+        \ <id>'"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: ReviseCmd
+  - ruleId: F-REVAPR-R017
+    state: PASSING
+    tests:
+    - name: "Given the store is constructed with a non-default baseDir, when save\
+        \ is called, then the artifact file lands under <baseDir>/.content-audit/revisions/<planId>/<proposalId>.*\
+        \ and NOT under System.getProperty('user.dir')"
+      implemented: true
+      passing: true
+      module: audit-infrastructure
+      implementation: FileSystemRevisionArtifactStore
+  journeysCoverage:
+  - journeyId: F-REVAPR-J001
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_laEscrituraDelCursoFueExitosa_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRevaprJ001JourneyTest
+    - pathId: path-2
+      result: failure
+      state: PASSING
+      tests:
+      - name: path2_laEscrituraDelCursoFallo_failure
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRevaprJ001JourneyTest
+  - journeyId: F-REVAPR-J002
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRevaprJ002JourneyTest
+  - journeyId: F-REVAPR-J003
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_elVeredictoActualEsPENDINGAPPROVAL_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRevaprJ003JourneyTest
+    - pathId: path-2
+      result: failure
+      state: PASSING
+      tests:
+      - name: path2_elVeredictoActualYaEsAPPROVEDOREJECTED_failure
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRevaprJ003JourneyTest
+    - pathId: path-3
+      result: failure
+      state: PASSING
+      tests:
+      - name: path3_laPropuestaNoExiste_failure
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRevaprJ003JourneyTest
+  - journeyId: F-REVAPR-J004
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_laTareaNoTienePropuestaPendiente_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRevaprJ004JourneyTest
+    - pathId: path-2
+      result: failure
+      state: PASSING
+      tests:
+      - name: path2_laTareaYaTieneUnaPropuestaEnPENDINGAPPROVAL_failure
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRevaprJ004JourneyTest
+  - journeyId: F-REVAPR-J005
+    state: PASSING
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: PASSING
+      tests:
+      - name: path1_losFiltrosSonValidosSiHayStatusElValorEsPendingApprovedORejected_success
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRevaprJ005JourneyTest
+    - pathId: path-2
+      result: failure
+      state: PASSING
+      tests:
+      - name: path2_elValorDeStatusNoEsUnoDeLosTresPermitidos_failure
+        implemented: true
+        passing: true
+        module: audit-cli
+        implementation: FRevaprJ005JourneyTest
+- id: FEAT-LAPS
+  state: DRAFT
+  requirementFile: requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
+  rulesCoverage:
+  - ruleId: F-LAPS-R001
+    state: NO_TESTS
+  - ruleId: F-LAPS-R002
+    state: NO_TESTS
+  - ruleId: F-LAPS-R003
+    state: NO_TESTS
+  - ruleId: F-LAPS-R004
+    state: NO_TESTS
+  - ruleId: F-LAPS-R005
+    state: NO_TESTS
+  - ruleId: F-LAPS-R006
+    state: NO_TESTS
+  - ruleId: F-LAPS-R007
+    state: NO_TESTS
+  - ruleId: F-LAPS-R008
+    state: NO_TESTS
+  - ruleId: F-LAPS-R009
+    state: NO_TESTS
+  - ruleId: F-LAPS-R010
+    state: NO_TESTS
+  - ruleId: F-LAPS-R011
+    state: NO_TESTS
+  - ruleId: F-LAPS-R012
+    state: NO_TESTS
+  - ruleId: F-LAPS-R013
+    state: NO_TESTS
+  - ruleId: F-LAPS-R014
+    state: NO_TESTS
+  - ruleId: F-LAPS-R015
+    state: NO_TESTS
+  - ruleId: F-LAPS-R016
+    state: NO_TESTS
+  - ruleId: F-LAPS-R017
+    state: NO_TESTS
+  journeysCoverage:
+  - journeyId: F-LAPS-J001
+    state: NO_TESTS
+  - journeyId: F-LAPS-J002
+    state: NO_TESTS
+  - journeyId: F-LAPS-J003
+    state: NO_TESTS
+  - journeyId: F-LAPS-J004
+    state: NO_TESTS
+  - journeyId: F-LAPS-J005
     state: NO_TESTS
 - id: FEAT-DSLEN
   state: DRAFT
@@ -10226,6 +10859,20 @@ elements:
     methods:
     - signature: "showStats(String analyzerName, String coursePath): Integer"
       status: EXISTS
+  - name: ApproveCommand
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/ApproveCommand.java
+    methods:
+    - signature: "approve(String resource, String proposalId, String planId, String\
+        \ note): Integer"
+      status: EXISTS
+  - name: RejectCommand
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/RejectCommand.java
+    methods:
+    - signature: "reject(String resource, String proposalId, String planId, String\
+        \ reason): Integer"
+      status: EXISTS
   implementations:
   - name: Main
     status: EXISTS
@@ -10468,6 +11115,46 @@ elements:
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
     - name: should print not available message when LEMMA_ABSENCE context cannot be
         built in text format
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: "Given 'get proposals' without filters, when invoked, then it lists every\
+        \ persisted artifact across all plan directories and exits zero"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: "Given 'get proposals --plan <planId>', when invoked, then the listing\
+        \ is restricted to artifacts belonging to that plan"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: "Given 'get proposals --status pending', when invoked, then the listing\
+        \ includes only artifacts with verdict PENDING_APPROVAL"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: "Given 'get proposals --status approved', when invoked, then the listing\
+        \ includes only artifacts with verdict APPROVED"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: "Given 'get proposals --status rejected', when invoked, then the listing\
+        \ includes only artifacts with verdict REJECTED"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: "Given 'get proposals --plan <planId> --status <s>', when invoked, then\
+        \ both filters are applied conjunctively"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: "Given 'get proposals --status invalid', when invoked, then the CLI reports\
+        \ 'Invalid value for --status' listing the allowed values and exits non-zero"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: "Given 'get proposal <id>' with a known id, when invoked, then the single\
+        \ artifact is printed and exit is zero"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: "Given 'get proposal <id> --plan <planId>', when invoked, then the direct\
+        \ plan-scoped lookup returns the artifact"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: "Given 'get proposal <id>' with an unknown id, when invoked, then the\
+        \ CLI prints 'No proposal found with id' and exits non-zero"
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
     testCleanViews:
@@ -11550,6 +12237,203 @@ elements:
       then:
         exit == 0
         output.toLowerCase().contains("not available") || output.toLowerCase().contains("correction context") || output.toLowerCase().contains("unavailable") is true
+    - |
+      test: "Given 'get proposals' without filters, when invoked, then it lists every persisted artifact across all plan directories and exits zero"
+      trace: FEAT-REVAPR / F-REVAPR-R002
+
+      given:
+        proposal1 = RevisionProposal()
+        proposal2 = RevisionProposal()
+        artifact1 = RevisionArtifact()
+        artifact2 = RevisionArtifact()
+        noFilter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.empty(), Optional.empty(), Optional.empty())
+        exit = cmd.get("proposals", null, noFilter)
+
+      mock:
+        revisionArtifactStore.list() -> List.of(artifact1, artifact2)
+
+      when:
+        sut.setProposalId("task-001-20260420T100000")
+
+      then:
+        exit == 0
+    - |
+      test: "Given 'get proposals --plan <planId>', when invoked, then the listing is restricted to artifacts belonging to that plan"
+      trace: FEAT-REVAPR / F-REVAPR-R003
+
+      given:
+        propA1 = RevisionProposal()
+        propA2 = RevisionProposal()
+        artifactA1 = RevisionArtifact()
+        artifactA2 = RevisionArtifact()
+        planFilter = GetTasksFilter(Optional.of("plan-alpha"), Optional.empty(), false, Optional.empty(), Optional.empty(), Optional.empty())
+        exit = cmd.get("proposals", null, planFilter)
+
+      mock:
+        revisionArtifactStore.listByPlan("plan-alpha") -> List.of(artifactA1, artifactA2)
+
+      when:
+        sut.setProposalId("task-001-20260420T100000")
+
+      then:
+        exit == 0
+    - |
+      test: "Given 'get proposals --status pending', when invoked, then the listing includes only artifacts with verdict PENDING_APPROVAL"
+      trace: FEAT-REVAPR / F-REVAPR-R003
+
+      given:
+        pendingProposal = RevisionProposal()
+        approvedProposal = RevisionProposal()
+        pendingArtifact = RevisionArtifact()
+        approvedArtifact = RevisionArtifact()
+        statusFilter = GetTasksFilter(Optional.empty(), Optional.of("pending"), false, Optional.empty(), Optional.empty(), Optional.empty())
+        exit = cmd.get("proposals", null, statusFilter)
+
+      mock:
+        revisionArtifactStore.list() -> List.of(pendingArtifact, approvedArtifact)
+
+      when:
+        sut.setProposalId("task-001-20260420T100000")
+
+      then:
+        exit == 0
+    - |
+      test: "Given 'get proposals --status approved', when invoked, then the listing includes only artifacts with verdict APPROVED"
+      trace: FEAT-REVAPR / F-REVAPR-R003
+
+      given:
+        pendingProposal = RevisionProposal()
+        approvedProposal = RevisionProposal()
+        pendingArtifact = RevisionArtifact()
+        approvedArtifact = RevisionArtifact()
+        statusFilter = GetTasksFilter(Optional.empty(), Optional.of("approved"), false, Optional.empty(), Optional.empty(), Optional.empty())
+        exit = cmd.get("proposals", null, statusFilter)
+
+      mock:
+        revisionArtifactStore.list() -> List.of(pendingArtifact, approvedArtifact)
+
+      when:
+        sut.setProposalId("task-001-20260420T100000")
+
+      then:
+        exit == 0
+    - |
+      test: "Given 'get proposals --status rejected', when invoked, then the listing includes only artifacts with verdict REJECTED"
+      trace: FEAT-REVAPR / F-REVAPR-R003
+
+      given:
+        rejectedProposal = RevisionProposal()
+        pendingProposal = RevisionProposal()
+        rejectedArtifact = RevisionArtifact()
+        pendingArtifact = RevisionArtifact()
+        statusFilter = GetTasksFilter(Optional.empty(), Optional.of("rejected"), false, Optional.empty(), Optional.empty(), Optional.empty())
+        exit = cmd.get("proposals", null, statusFilter)
+
+      mock:
+        revisionArtifactStore.list() -> List.of(rejectedArtifact, pendingArtifact)
+
+      when:
+        sut.setProposalId("task-001-20260420T100000")
+
+      then:
+        exit == 0
+    - |
+      test: "Given 'get proposals --plan <planId> --status <s>', when invoked, then both filters are applied conjunctively"
+      trace: FEAT-REVAPR / F-REVAPR-R003
+
+      given:
+        pendingProp = RevisionProposal()
+        approvedProp = RevisionProposal()
+        pendingArtifact = RevisionArtifact()
+        approvedArtifact = RevisionArtifact()
+        combinedFilter = GetTasksFilter(Optional.of("plan-alpha"), Optional.of("pending"), false, Optional.empty(), Optional.empty(), Optional.empty())
+        exit = cmd.get("proposals", null, combinedFilter)
+
+      mock:
+        revisionArtifactStore.listByPlan("plan-alpha") -> List.of(pendingArtifact, approvedArtifact)
+
+      when:
+        sut.setProposalId("task-001-20260420T100000")
+
+      then:
+        exit == 0
+    - |
+      test: "Given 'get proposals --status invalid', when invoked, then the CLI reports 'Invalid value for --status' listing the allowed values and exits non-zero"
+      trace: FEAT-REVAPR / F-REVAPR-R003
+
+      given:
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        combined = outBuf.toString() + errBuf.toString()
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+
+      then:
+        0 != null
+        combined.contains("pending") || combined.contains("approved") || combined.contains("rejected") || combined.contains("Allowed") || combined.contains("Invalid") is true
+    - |
+      test: "Given 'get proposal <id>' with a known id, when invoked, then the single artifact is printed and exit is zero"
+      trace: FEAT-REVAPR / F-REVAPR-R002
+
+      given:
+        proposalId = "task-001-20260420T100000"
+        proposal = RevisionProposal()
+        artifact = RevisionArtifact()
+        noFilter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.empty(), Optional.empty(), Optional.empty())
+        exit = cmd.get("proposal", proposalId, noFilter)
+
+      mock:
+        revisionArtifactStore.findByProposalId(proposalId, Optional.empty()) -> Optional.of(artifact)
+
+      when:
+        sut.setProposalId(proposalId)
+
+      then:
+        exit == 0
+    - |
+      test: "Given 'get proposal <id> --plan <planId>', when invoked, then the direct plan-scoped lookup returns the artifact"
+      trace: FEAT-REVAPR / F-REVAPR-R002
+
+      given:
+        proposalId = "task-001-20260420T100000"
+        planId = "plan-alpha"
+        proposal = RevisionProposal()
+        artifact = RevisionArtifact()
+        planFilter = GetTasksFilter(Optional.of(planId), Optional.empty(), false, Optional.empty(), Optional.empty(), Optional.empty())
+        exit = cmd.get("proposal", proposalId, planFilter)
+
+      mock:
+        revisionArtifactStore.findByProposalId(proposalId, Optional.of(planId)) -> Optional.of(artifact)
+
+      when:
+        sut.setProposalId(proposalId)
+
+      then:
+        exit == 0
+    - |
+      test: "Given 'get proposal <id>' with an unknown id, when invoked, then the CLI prints 'No proposal found with id' and exits non-zero"
+      trace: FEAT-REVAPR / F-REVAPR-R002
+
+      given:
+        unknownId = "task-999-99999999T000000"
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        combined = outBuf.toString() + errBuf.toString()
+
+      mock:
+        revisionArtifactStore.findByProposalId(unknownId, Optional.empty()) -> Optional.empty()
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+
+      then:
+        0 != null
+        combined.toLowerCase().contains("not found") || combined.contains(unknownId) is true
   - name: DeleteCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/DeleteCmd.java
@@ -11591,6 +12475,11 @@ elements:
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DeleteCmdTest.java
     - name: should reject 'delete task' as a non-supported operation that would mutate
         a plan in place
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DeleteCmdTest.java
+    - name: "Given 'delete proposal <id>' is invoked, when the CLI dispatches, then\
+        \ it fails with an unknown/unsupported resource error (proposals are not deletable\
+        \ in this iteration)"
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DeleteCmdTest.java
     testCleanViews:
@@ -11719,6 +12608,16 @@ elements:
 
       then:
         0 != null
+    - |
+      test: "Given 'delete proposal <id>' is invoked, when the CLI dispatches, then it fails with an unknown/unsupported resource error (proposals are not deletable in this iteration)"
+      trace: FEAT-REVAPR / F-REVAPR-R004
+
+      given:
+        proposalId = "task-001-2026-04-20T10-00-00"
+        exit = cmd.delete("proposal", proposalId)
+
+      then:
+        0 != null
   - name: PruneCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/PruneCmd.java
@@ -11750,6 +12649,11 @@ elements:
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PruneCmdTest.java
     - name: "should report 'Kept 0 audits, removed 0' explicitly and exit zero when\
         \ no audits exist on disk"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PruneCmdTest.java
+    - name: "Given 'prune proposals --keep N' is invoked, when the CLI dispatches,\
+        \ then it fails with an unknown/unsupported resource error (proposals are\
+        \ not prunable in this iteration)"
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/PruneCmdTest.java
     testCleanViews:
@@ -11852,6 +12756,15 @@ elements:
 
       then:
         exit == 0
+    - |
+      test: "Given 'prune proposals --keep N' is invoked, when the CLI dispatches, then it fails with an unknown/unsupported resource error (proposals are not prunable in this iteration)"
+      trace: FEAT-REVAPR / F-REVAPR-R004
+
+      given:
+        exit = cmd.prune("proposals", 1)
+
+      then:
+        0 != null
   - name: PlanCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/PlanCmd.java
@@ -11991,6 +12904,12 @@ elements:
         explicitly supplied plan when --plan was used and the task is absent
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ReviseCmdTest.java
+    - name: "Given revise runs in human mode and the engine returns PENDING_APPROVAL_PERSISTED,\
+        \ when the command finishes, then stdout contains the assigned proposalId\
+        \ in a form suitable for copy-paste to 'approve proposal <id>' / 'reject proposal\
+        \ <id>'"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ReviseCmdTest.java
     testCleanViews:
     - |
       test: "should resolve the task in the most recent plan when 'revise task <id>' is invoked without --plan"
@@ -12093,6 +13012,37 @@ elements:
 
       when:
         sut.setErr(new PrintStream(errBuf))
+    - |
+      test: "Given revise runs in human mode and the engine returns PENDING_APPROVAL_PERSISTED, when the command finishes, then stdout contains the assigned proposalId in a form suitable for copy-paste to 'approve proposal <id>' / 'reject proposal <id>'"
+      trace: FEAT-REVAPR / F-REVAPR-R016
+
+      given:
+        taskId = "task-007"
+        planId = "plan-human-001"
+        proposalId = "task-007-20260420T123000Z"
+        task = task(taskId)
+        latestPlan = plan(planId, "audit-007", List.of(task))
+        snapshot = CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null)
+        proposal = RevisionProposal(proposalId, taskId, planId, "audit-007", DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, "quiz-001", snapshot, snapshot, "human approval pending", "bypass", Instant.parse("2026-04-20T12:30:00Z"))
+        artifact = RevisionArtifact(proposal, RevisionVerdict.PENDING_APPROVAL, // rejectionReason: null when PENDING_APPROVAL
+      null, RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, // decidedAt: null — not yet decided
+      null, // decisionNote: null — not yet decided
+      null)
+        outcome = RevisionOutcome(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, artifact, null)
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        stdoutOutput = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(latestPlan)
+        revisionEngine.revise(eq(planId), eq(taskId), any(Path.class)) -> outcome
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        stdoutOutput.contains(proposalId) is true
   - name: ConfigAnalyzerCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/ConfigAnalyzerCmd.java
@@ -12226,6 +13176,301 @@ elements:
 
       then:
         0 != null
+  - name: ApproveCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/ApproveCmd.java
+    tests:
+    - name: "Given 'approve proposal <id>' on a PENDING_APPROVAL proposal, when invoked,\
+        \ then decisionService.approve is called with APPROVED verdict and the CLI\
+        \ exits zero"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ApproveCmdTest.java
+    - name: "Given 'approve proposal <id> --plan <planId>', when invoked, then the\
+        \ plan scope is forwarded to decisionService.approve"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ApproveCmdTest.java
+    - name: "Given 'approve proposal <id> --note \"...\"', when invoked, then the\
+        \ note text is forwarded to decisionService.approve"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ApproveCmdTest.java
+    - name: "Given 'approve plan <id>', when invoked, then the CLI rejects with an\
+        \ unknown-resource error and exits non-zero"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ApproveCmdTest.java
+    - name: "Given 'approve audit <id>', when invoked, then the CLI rejects with an\
+        \ unknown-resource error and exits non-zero"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ApproveCmdTest.java
+    - name: "Given 'approve proposal' without an id, when invoked, then the CLI reports\
+        \ a usage error and exits non-zero"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ApproveCmdTest.java
+    - name: "Given decisionService returns NOT_FOUND, when approve is invoked, then\
+        \ the CLI prints 'No proposal found with id' and exits non-zero"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ApproveCmdTest.java
+    - name: "Given decisionService returns ALREADY_DECIDED, when approve is invoked,\
+        \ then the CLI prints the already-decided error and exits non-zero"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ApproveCmdTest.java
+    - name: "Given decisionService returns APPROVED_APPLY_FAILED, when approve is\
+        \ invoked, then the CLI prints the apply-failed message and exits non-zero"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/ApproveCmdTest.java
+    testCleanViews:
+    - |
+      test: "Given 'approve proposal <id>' on a PENDING_APPROVAL proposal, when invoked, then decisionService.approve is called with APPROVED verdict and the CLI exits zero"
+      trace: FEAT-REVAPR / F-REVAPR-R011
+
+      given:
+        proposalId = "task-001-1713600000000"
+        outcome = ProposalDecisionOutcome(ProposalDecisionOutcomeKind.APPROVED_APPLIED, null, null)
+        exit = approveCmd.approve("proposal", proposalId, null, null)
+
+      mock:
+        decisionService.approve(eq(proposalId), eq(Optional.empty()), eq(Optional.empty()), any(Path.class)) -> outcome
+
+      then:
+        exit == 0
+        verify: decisionService.approve(eq(proposalId), eq(Optional.empty()), eq(Optional.empty()), any(Path.class))
+    - |
+      test: "Given 'approve proposal <id> --plan <planId>', when invoked, then the plan scope is forwarded to decisionService.approve"
+      trace: FEAT-REVAPR / F-REVAPR-R011
+
+      given:
+        proposalId = "task-002-1713600001000"
+        planId = "plan-explicit"
+        outcome = ProposalDecisionOutcome(ProposalDecisionOutcomeKind.APPROVED_APPLIED, null, null)
+        exit = approveCmd.approve("proposal", proposalId, planId, null)
+
+      mock:
+        decisionService.approve(eq(proposalId), eq(Optional.of(planId)), eq(Optional.empty()), any(Path.class)) -> outcome
+
+      then:
+        exit == 0
+        verify: decisionService.approve(eq(proposalId), eq(Optional.of(planId)), eq(Optional.empty()), any(Path.class))
+    - |
+      test: "Given 'approve proposal <id> --note \"...\"', when invoked, then the note text is forwarded to decisionService.approve"
+      trace: FEAT-REVAPR / F-REVAPR-R011
+
+      given:
+        proposalId = "task-003-1713600002000"
+        note = "approved after manual review of quiz structure"
+        outcome = ProposalDecisionOutcome(ProposalDecisionOutcomeKind.APPROVED_APPLIED, null, null)
+        exit = approveCmd.approve("proposal", proposalId, null, note)
+
+      mock:
+        decisionService.approve(eq(proposalId), eq(Optional.empty()), eq(Optional.of(note)), any(Path.class)) -> outcome
+
+      then:
+        exit == 0
+        verify: decisionService.approve(eq(proposalId), eq(Optional.empty()), eq(Optional.of(note)), any(Path.class))
+    - |
+      test: "Given 'approve plan <id>', when invoked, then the CLI rejects with an unknown-resource error and exits non-zero"
+      trace: FEAT-REVAPR / F-REVAPR-R015
+
+      given:
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+    - |
+      test: "Given 'approve audit <id>', when invoked, then the CLI rejects with an unknown-resource error and exits non-zero"
+      trace: FEAT-REVAPR / F-REVAPR-R015
+
+      given:
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+    - |
+      test: "Given 'approve proposal' without an id, when invoked, then the CLI reports a usage error and exits non-zero"
+      trace: FEAT-REVAPR / F-REVAPR-R011
+
+      given:
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+    - |
+      test: "Given decisionService returns NOT_FOUND, when approve is invoked, then the CLI prints 'No proposal found with id' and exits non-zero"
+      trace: FEAT-REVAPR / F-REVAPR-R002
+
+      given:
+        proposalId = "task-999-1713699999000"
+        errorMsg = "No proposal found with id '" + proposalId + "'"
+        outcome = ProposalDecisionOutcome(ProposalDecisionOutcomeKind.NOT_FOUND, null, errorMsg)
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      mock:
+        decisionService.approve(eq(proposalId), any(), any(), any(Path.class)) -> outcome
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+    - |
+      test: "Given decisionService returns ALREADY_DECIDED, when approve is invoked, then the CLI prints the already-decided error and exits non-zero"
+      trace: FEAT-REVAPR / F-REVAPR-R013
+
+      given:
+        proposalId = "task-010-1713600010000"
+        errorMsg = "Cannot approve proposal '" + proposalId + "': its current verdict is 'APPROVED', not PENDING_APPROVAL"
+        outcome = ProposalDecisionOutcome(ProposalDecisionOutcomeKind.ALREADY_DECIDED, null, errorMsg)
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      mock:
+        decisionService.approve(eq(proposalId), any(), any(), any(Path.class)) -> outcome
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+    - |
+      test: "Given decisionService returns APPROVED_APPLY_FAILED, when approve is invoked, then the CLI prints the apply-failed message and exits non-zero"
+      trace: FEAT-REVAPR / F-REVAPR-R011
+
+      given:
+        proposalId = "task-020-1713600020000"
+        errorMsg = "Proposal '" + proposalId + "' was approved and persisted, but the course write failed"
+        outcome = ProposalDecisionOutcome(ProposalDecisionOutcomeKind.APPROVED_APPLY_FAILED, null, errorMsg)
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      mock:
+        decisionService.approve(eq(proposalId), any(), any(), any(Path.class)) -> outcome
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+  - name: RejectCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/RejectCmd.java
+    tests:
+    - name: "Given 'reject proposal <id>' on a PENDING_APPROVAL proposal, when invoked,\
+        \ then decisionService.reject is called with REJECTED verdict and the CLI\
+        \ exits zero"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RejectCmdTest.java
+    - name: "Given 'reject proposal <id> --plan <planId>', when invoked, then the\
+        \ plan scope is forwarded to decisionService.reject"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RejectCmdTest.java
+    - name: "Given 'reject proposal <id> --reason \"...\"', when invoked, then the\
+        \ reason text is forwarded to decisionService.reject"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RejectCmdTest.java
+    - name: "Given 'reject plan <id>', when invoked, then the CLI rejects with an\
+        \ unknown-resource error and exits non-zero"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RejectCmdTest.java
+    - name: "Given 'reject proposal' without an id, when invoked, then the CLI reports\
+        \ a usage error and exits non-zero"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RejectCmdTest.java
+    - name: "Given decisionService returns NOT_FOUND, when reject is invoked, then\
+        \ the CLI prints 'No proposal found with id' and exits non-zero"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RejectCmdTest.java
+    - name: "Given decisionService returns ALREADY_DECIDED, when reject is invoked,\
+        \ then the CLI prints the already-decided error and exits non-zero"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/RejectCmdTest.java
+    testCleanViews:
+    - |
+      test: "Given 'reject proposal <id>' on a PENDING_APPROVAL proposal, when invoked, then decisionService.reject is called with REJECTED verdict and the CLI exits zero"
+      trace: FEAT-REVAPR / F-REVAPR-R012
+
+      given:
+        proposalId = "prop-001"
+        exit = rejectCmd.reject("proposal", proposalId, null, null)
+
+      mock:
+        decisionService.reject(eq(proposalId), eq(Optional.empty()), eq(Optional.empty())) -> outcome(ProposalDecisionOutcomeKind.REJECTED)
+
+      then:
+        exit == 0
+        verify: decisionService.reject(eq(proposalId), eq(Optional.empty()), eq(Optional.empty()))
+        verify: decisionService.approve(any(), any(), any(), any()) x 0
+    - |
+      test: "Given 'reject proposal <id> --plan <planId>', when invoked, then the plan scope is forwarded to decisionService.reject"
+      trace: FEAT-REVAPR / F-REVAPR-R012
+
+      given:
+        proposalId = "prop-002"
+        planId = "plan-abc"
+        exit = rejectCmd.reject("proposal", proposalId, planId, null)
+
+      mock:
+        decisionService.reject(eq(proposalId), eq(Optional.of(planId)), eq(Optional.empty())) -> outcome(ProposalDecisionOutcomeKind.REJECTED)
+
+      then:
+        exit == 0
+        verify: decisionService.reject(eq(proposalId), eq(Optional.of(planId)), eq(Optional.empty()))
+    - |
+      test: "Given 'reject proposal <id> --reason \"...\"', when invoked, then the reason text is forwarded to decisionService.reject"
+      trace: FEAT-REVAPR / F-REVAPR-R012
+
+      given:
+        proposalId = "prop-003"
+        reason = "Content is factually incorrect"
+        exit = rejectCmd.reject("proposal", proposalId, null, reason)
+
+      mock:
+        decisionService.reject(eq(proposalId), eq(Optional.empty()), eq(Optional.of(reason))) -> outcome(ProposalDecisionOutcomeKind.REJECTED)
+
+      then:
+        exit == 0
+        verify: decisionService.reject(eq(proposalId), eq(Optional.empty()), eq(Optional.of(reason)))
+    - |
+      test: "Given 'reject plan <id>', when invoked, then the CLI rejects with an unknown-resource error and exits non-zero"
+      trace: FEAT-REVAPR / F-REVAPR-R015
+
+      given:
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+    - |
+      test: "Given 'reject proposal' without an id, when invoked, then the CLI reports a usage error and exits non-zero"
+      trace: FEAT-REVAPR / F-REVAPR-R012
+
+      given:
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+    - |
+      test: "Given decisionService returns NOT_FOUND, when reject is invoked, then the CLI prints 'No proposal found with id' and exits non-zero"
+      trace: FEAT-REVAPR / F-REVAPR-R002
+
+      given:
+        proposalId = "prop-ghost"
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      mock:
+        decisionService.reject(eq(proposalId), eq(Optional.empty()), eq(Optional.empty())) -> outcomeWithError(ProposalDecisionOutcomeKind.NOT_FOUND, "No proposal found with id '" + proposalId + "'")
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
+    - |
+      test: "Given decisionService returns ALREADY_DECIDED, when reject is invoked, then the CLI prints the already-decided error and exits non-zero"
+      trace: FEAT-REVAPR / F-REVAPR-R013
+
+      given:
+        proposalId = "prop-decided"
+        alreadyDecidedMsg = "Cannot reject proposal '" + proposalId + "': its current verdict is 'APPROVED', not PENDING_APPROVAL"
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+
+      mock:
+        decisionService.reject(eq(proposalId), eq(Optional.empty()), eq(Optional.empty())) -> outcomeWithError(ProposalDecisionOutcomeKind.ALREADY_DECIDED, alreadyDecidedMsg)
+
+      when:
+        sut.setErr(new PrintStream(errBuf))
   - name: TextReportFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/TextReportFormatter.java
@@ -12524,6 +13769,105 @@ elements:
       then:
         result == tempDir
         methodCount == 1
+  - name: DefaultApprovalModeResolver
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/bootstrap/DefaultApprovalModeResolver.java
+    tests:
+    - name: "Given a null env value, when resolve is called, then it returns AUTO"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultApprovalModeResolverTest.java
+    - name: "Given an empty-string env value, when resolve is called, then it returns\
+        \ AUTO"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultApprovalModeResolverTest.java
+    - name: "Given env value 'auto', when resolve is called, then it returns AUTO"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultApprovalModeResolverTest.java
+    - name: "Given env value 'AUTO' in any casing, when resolve is called, then it\
+        \ returns AUTO (case-insensitive)"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultApprovalModeResolverTest.java
+    - name: "Given env value 'human', when resolve is called, then it returns HUMAN"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultApprovalModeResolverTest.java
+    - name: "Given env value 'HUMAN' in any casing, when resolve is called, then it\
+        \ returns HUMAN (case-insensitive)"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultApprovalModeResolverTest.java
+    - name: "Given an unrecognized env value, when resolve is called, then it throws\
+        \ InvalidApprovalModeException listing the allowed values"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultApprovalModeResolverTest.java
+    testCleanViews:
+    - |
+      test: "Given a null env value, when resolve is called, then it returns AUTO"
+      trace: FEAT-REVAPR / F-REVAPR-R005
+
+      given:
+        resolver = DefaultApprovalModeResolver()
+
+      then:
+        resolver.resolve(null) == ApprovalMode.AUTO
+    - |
+      test: "Given an empty-string env value, when resolve is called, then it returns AUTO"
+      trace: FEAT-REVAPR / F-REVAPR-R005
+
+      given:
+        resolver = DefaultApprovalModeResolver()
+
+      then:
+        resolver.resolve("") == ApprovalMode.AUTO
+    - |
+      test: "Given env value 'auto', when resolve is called, then it returns AUTO"
+      trace: FEAT-REVAPR / F-REVAPR-R005
+
+      given:
+        resolver = DefaultApprovalModeResolver()
+
+      then:
+        resolver.resolve("auto") == ApprovalMode.AUTO
+    - |
+      test: "Given env value 'AUTO' in any casing, when resolve is called, then it returns AUTO (case-insensitive)"
+      trace: FEAT-REVAPR / F-REVAPR-R005
+
+      given:
+        resolver = DefaultApprovalModeResolver()
+
+      then:
+        resolver.resolve("AUTO") == ApprovalMode.AUTO
+        resolver.resolve("Auto") == ApprovalMode.AUTO
+        resolver.resolve("aUTO") == ApprovalMode.AUTO
+    - |
+      test: "Given env value 'human', when resolve is called, then it returns HUMAN"
+      trace: FEAT-REVAPR / F-REVAPR-R005
+
+      given:
+        resolver = DefaultApprovalModeResolver()
+
+      then:
+        resolver.resolve("human") == ApprovalMode.HUMAN
+    - |
+      test: "Given env value 'HUMAN' in any casing, when resolve is called, then it returns HUMAN (case-insensitive)"
+      trace: FEAT-REVAPR / F-REVAPR-R005
+
+      given:
+        resolver = DefaultApprovalModeResolver()
+
+      then:
+        resolver.resolve("HUMAN") == ApprovalMode.HUMAN
+        resolver.resolve("Human") == ApprovalMode.HUMAN
+    - |
+      test: "Given an unrecognized env value, when resolve is called, then it throws InvalidApprovalModeException listing the allowed values"
+      trace: FEAT-REVAPR / F-REVAPR-R005
+
+      given:
+        resolver = DefaultApprovalModeResolver()
+        ex = assertThrows(InvalidApprovalModeException.class, () -> resolver.resolve("invalid"))
+        message = ex.getMessage()
+
+      then:
+        message.contains("auto") is true
+        message.contains("human") is true
 - module: nlp-infrastructure
   status: EXISTS
   models:
@@ -12772,6 +14116,52 @@ elements:
         \ fields plus verdict and rejectionReason are recoverable"
       status: EXISTS
       testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStoreTest.java
+    - name: "Given artifacts saved under multiple plan directories, when findByProposalId(id,\
+        \ Optional.empty()) is called, then it scans subdirectories and returns the\
+        \ matching artifact"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStoreTest.java
+    - name: "Given no artifact matches the id, when findByProposalId(id, Optional.empty())\
+        \ is called, then it returns Optional.empty"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStoreTest.java
+    - name: "Given an artifact saved under plan P1, when findByProposalId(id, Optional.of(P1))\
+        \ is called, then it takes the direct path and returns the artifact"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStoreTest.java
+    - name: "Given no artifact under plan P1 with that id, when findByProposalId(id,\
+        \ Optional.of(P1)) is called, then it returns Optional.empty"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStoreTest.java
+    - name: "Given a PENDING_APPROVAL artifact whose taskId matches, when hasPendingProposalForTask\
+        \ is called, then it returns true"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStoreTest.java
+    - name: "Given only an APPROVED artifact exists for the task, when hasPendingProposalForTask\
+        \ is called, then it returns false"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStoreTest.java
+    - name: "Given only a REJECTED artifact exists for the task, when hasPendingProposalForTask\
+        \ is called, then it returns false"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStoreTest.java
+    - name: "Given no artifact exists for the task, when hasPendingProposalForTask\
+        \ is called, then it returns false"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStoreTest.java
+    - name: "Given artifacts saved under multiple plan directories, when list() is\
+        \ called, then it returns all of them across all plans"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStoreTest.java
+    - name: "Given the revisions directory is empty or missing, when list() is called,\
+        \ then it returns an empty list"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStoreTest.java
+    - name: "Given the store is constructed with a non-default baseDir, when save\
+        \ is called, then the artifact file lands under <baseDir>/.content-audit/revisions/<planId>/<proposalId>.*\
+        \ and NOT under System.getProperty('user.dir')"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemRevisionArtifactStoreTest.java
     testCleanViews:
     - |
       test: "Given a RevisionArtifact, when save is called, then a file is written under .content-audit/revisions/"
@@ -12843,6 +14233,168 @@ elements:
         loadedAfter is not null
         loadedAfter.getNodeTarget() == AuditTarget.QUIZ
         loadedAfter.getNodeId() == "quiz-node-001"
+    - |
+      test: "Given artifacts saved under multiple plan directories, when findByProposalId(id, Optional.empty()) is called, then it scans subdirectories and returns the matching artifact"
+      trace: FEAT-REVAPR / F-REVAPR-R002
+
+      given:
+        store = storeFor(tempDir)
+        planA = "plan-alpha"
+        planB = "plan-beta"
+        targetProposalId = "task-xyz-20260420T100000Z"
+        otherProposalId = "task-abc-20260420T090000Z"
+        result = store.findByProposalId(targetProposalId, Optional.empty())
+
+      when:
+        sut.save(buildArtifact(planA, otherProposalId))
+
+      then:
+        result.isPresent() is true
+        result.get().getProposal().getProposalId() == targetProposalId
+        result.get().getProposal().getPlanId() == planB
+    - |
+      test: "Given no artifact matches the id, when findByProposalId(id, Optional.empty()) is called, then it returns Optional.empty"
+      trace: FEAT-REVAPR / F-REVAPR-R002
+
+      given:
+        store = storeFor(tempDir)
+        result = store.findByProposalId("task-nonexistent-20260420T100000Z", Optional.empty())
+
+      when:
+        sut.save(buildArtifact("plan-001", "task-aaa-20260420T100000Z"))
+
+      then:
+        result.isPresent() is false
+    - |
+      test: "Given an artifact saved under plan P1, when findByProposalId(id, Optional.of(P1)) is called, then it takes the direct path and returns the artifact"
+      trace: FEAT-REVAPR / F-REVAPR-R002
+
+      given:
+        store = storeFor(tempDir)
+        planId = "plan-P1"
+        proposalId = "task-001-20260420T100000Z"
+        result = store.findByProposalId(proposalId, Optional.of(planId))
+
+      when:
+        sut.save(buildArtifact(planId, proposalId))
+
+      then:
+        result.isPresent() is true
+        result.get().getProposal().getProposalId() == proposalId
+        result.get().getProposal().getPlanId() == planId
+    - |
+      test: "Given no artifact under plan P1 with that id, when findByProposalId(id, Optional.of(P1)) is called, then it returns Optional.empty"
+      trace: FEAT-REVAPR / F-REVAPR-R002
+
+      given:
+        store = storeFor(tempDir)
+        planId = "plan-P1"
+        targetProposalId = "task-target-20260420T100000Z"
+        result = store.findByProposalId(targetProposalId, Optional.of(planId))
+
+      when:
+        sut.save(buildArtifact(planId, "task-other-20260420T090000Z"))
+
+      then:
+        result.isPresent() is false
+    - |
+      test: "Given a PENDING_APPROVAL artifact whose taskId matches, when hasPendingProposalForTask is called, then it returns true"
+      trace: FEAT-REVAPR / F-REVAPR-R009
+
+      given:
+        store = storeFor(tempDir)
+        planId = "plan-001"
+        taskId = "task-001"
+        proposalId = taskId + "-20260420T100000Z"
+        result = store.hasPendingProposalForTask(planId, taskId)
+
+      when:
+        sut.save(buildPendingArtifact(planId, proposalId, taskId))
+
+      then:
+        result is true
+    - |
+      test: "Given only an APPROVED artifact exists for the task, when hasPendingProposalForTask is called, then it returns false"
+      trace: FEAT-REVAPR / F-REVAPR-R009
+
+      given:
+        store = storeFor(tempDir)
+        planId = "plan-001"
+        taskId = "task-001"
+        result = store.hasPendingProposalForTask(planId, taskId)
+
+      when:
+        sut.save(buildArtifact(planId, taskId + "-20260420T100000Z"))
+
+      then:
+        result is false
+    - |
+      test: "Given only a REJECTED artifact exists for the task, when hasPendingProposalForTask is called, then it returns false"
+      trace: FEAT-REVAPR / F-REVAPR-R009
+
+      given:
+        store = storeFor(tempDir)
+        planId = "plan-001"
+        taskId = "task-002"
+        result = store.hasPendingProposalForTask(planId, taskId)
+
+      when:
+        sut.save(buildRejectedArtifact(planId, taskId + "-20260420T100000Z", taskId))
+
+      then:
+        result is false
+    - |
+      test: "Given no artifact exists for the task, when hasPendingProposalForTask is called, then it returns false"
+      trace: FEAT-REVAPR / F-REVAPR-R009
+
+      given:
+        store = storeFor(tempDir)
+        result = store.hasPendingProposalForTask("plan-001", "task-ghost")
+
+      then:
+        result is false
+    - |
+      test: "Given artifacts saved under multiple plan directories, when list() is called, then it returns all of them across all plans"
+      trace: FEAT-REVAPR / F-REVAPR-R002
+
+      given:
+        store = storeFor(tempDir)
+        all = store.list()
+
+      when:
+        sut.save(buildArtifact("plan-alpha", "task-a-20260420T100000Z"))
+
+      then:
+        all.size() == 3
+    - |
+      test: "Given the revisions directory is empty or missing, when list() is called, then it returns an empty list"
+      trace: FEAT-REVAPR / F-REVAPR-R002
+
+      given:
+        store = storeFor(tempDir)
+        all = store.list()
+
+      then:
+        all is not null
+        all.isEmpty() is true
+    - |
+      test: "Given the store is constructed with a non-default baseDir, when save is called, then the artifact file lands under <baseDir>/.content-audit/revisions/<planId>/<proposalId>.* and NOT under System.getProperty('user.dir')"
+      trace: FEAT-REVAPR / F-REVAPR-R017
+
+      given:
+        store = FileSystemRevisionArtifactStore(tempDir)
+        planId = "plan-r017"
+        proposalId = "task-r017-20260420T100000Z"
+        artifact = buildArtifact(planId, proposalId)
+        expectedPlanDir = tempDir.resolve(".content-audit/revisions/" + planId)
+        userDirRevisions = Path.of(System.getProperty("user.dir")).resolve(".content-audit/revisions/" + planId)
+
+      when:
+        sut.save(artifact)
+
+      then:
+        Files.isDirectory(expectedPlanDir) is true
+        Files.isDirectory(userDirRevisions) is false
 - module: revision-domain
   status: EXISTS
   models:
@@ -12853,6 +14405,8 @@ elements:
     - name: APPROVED
       status: EXISTS
     - name: REJECTED
+      status: EXISTS
+    - name: PENDING_APPROVAL
       status: EXISTS
   - name: RevisionOutcomeKind
     status: EXISTS
@@ -12869,6 +14423,10 @@ elements:
     - name: CONTEXT_UNAVAILABLE
       status: EXISTS
     - name: ELEMENT_NOT_FOUND
+      status: EXISTS
+    - name: PENDING_APPROVAL_PERSISTED
+      status: EXISTS
+    - name: ALREADY_PENDING_DECISION
       status: EXISTS
   - name: CourseElementSnapshot
     status: EXISTS
@@ -12920,6 +14478,10 @@ elements:
       status: EXISTS
     - name: outcome
       status: EXISTS
+    - name: decidedAt
+      status: EXISTS
+    - name: decisionNote
+      status: EXISTS
   - name: RevisionOutcome
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/RevisionOutcome.java
@@ -12949,6 +14511,38 @@ elements:
     - name: auditReportStore
       status: EXISTS
     - name: contextResolver
+      status: EXISTS
+  - name: ApprovalMode
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/ApprovalMode.java
+    fields:
+    - name: AUTO
+      status: EXISTS
+    - name: HUMAN
+      status: EXISTS
+  - name: ProposalDecisionOutcomeKind
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/ProposalDecisionOutcomeKind.java
+    fields:
+    - name: APPROVED_APPLIED
+      status: EXISTS
+    - name: APPROVED_APPLY_FAILED
+      status: EXISTS
+    - name: REJECTED
+      status: EXISTS
+    - name: NOT_FOUND
+      status: EXISTS
+    - name: ALREADY_DECIDED
+      status: EXISTS
+  - name: ProposalDecisionOutcome
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/ProposalDecisionOutcome.java
+    fields:
+    - name: kind
+      status: EXISTS
+    - name: artifact
+      status: EXISTS
+    - name: errorMessage
       status: EXISTS
   interfaces:
   - name: Reviser
@@ -12986,6 +14580,12 @@ elements:
       status: EXISTS
     - signature: "listByPlan(String planId): List<RevisionArtifact>"
       status: EXISTS
+    - signature: "findByProposalId(String proposalId, Optional<String> planId): Optional<RevisionArtifact>"
+      status: EXISTS
+    - signature: "hasPendingProposalForTask(String planId, String taskId): boolean"
+      status: EXISTS
+    - signature: "list(): List<RevisionArtifact>"
+      status: EXISTS
   - name: CourseElementLocator
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/CourseElementLocator.java
@@ -13007,6 +14607,28 @@ elements:
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/RevisionEngineFactory.java
     methods:
     - signature: "create(RevisionEngineConfig config): RevisionEngine"
+      status: EXISTS
+  - name: RevisionValidatorFactory
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/RevisionValidatorFactory.java
+    methods:
+    - signature: "create(ApprovalMode mode): RevisionValidator"
+      status: EXISTS
+  - name: ProposalDecisionService
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/ProposalDecisionService.java
+    methods:
+    - signature: "approve(String proposalId, Optional<String> planId, Optional<String>\
+        \ note, Path coursePath): ProposalDecisionOutcome"
+      status: EXISTS
+    - signature: "reject(String proposalId, Optional<String> planId, Optional<String>\
+        \ reason): ProposalDecisionOutcome"
+      status: EXISTS
+  - name: ProposalDecisionServiceFactory
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/ProposalDecisionServiceFactory.java
+    methods:
+    - signature: "create(RevisionEngineConfig config): ProposalDecisionService"
       status: EXISTS
   implementations:
   - name: DefaultRevisionEngineFactory
@@ -13227,6 +14849,20 @@ elements:
         \ before courseRepository.save"
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultRevisionEngineTest.java
+    - name: "Given the human validator emits PENDING_APPROVAL, when revise runs, then\
+        \ the artifact is persisted with PENDING_APPROVAL and CourseRepository is\
+        \ never asked to save"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultRevisionEngineTest.java
+    - name: "Given the human validator emits PENDING_APPROVAL, when revise finishes,\
+        \ then the outcome kind is PENDING_APPROVAL_PERSISTED and the RefinementTask\
+        \ stays PENDING"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultRevisionEngineTest.java
+    - name: "Given the task already has a PENDING_APPROVAL proposal, when revise runs,\
+        \ then the outcome is ALREADY_PENDING_DECISION and no new artifact is persisted"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultRevisionEngineTest.java
     testCleanViews:
     - |
       test: "Given an APPROVED proposal, when revise runs, then CourseRepository saves the updated course"
@@ -13387,9 +15023,603 @@ elements:
       then:
         verify: artifactStore.save(any(RevisionArtifact.class))
         verify: courseRepository.save(any(CourseEntity.class), eq(coursePath))
+    - |
+      test: "Given the human validator emits PENDING_APPROVAL, when revise runs, then the artifact is persisted with PENDING_APPROVAL and CourseRepository is never asked to save"
+      trace: FEAT-REVAPR / F-REVAPR-R008
+
+      given:
+        planId = "plan-008"
+        taskId = "task-008"
+        auditId = "audit-008"
+        nodeId = "quiz-008"
+        coursePath = Path.of("./db/english-course")
+        task = RefinementTask(taskId, AuditTarget.QUIZ, nodeId, "Quiz about tenses", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan(planId, auditId, Instant.now(), List.of(task))
+        auditReport = mock(AuditReport.class)
+        context = mock(CorrectionContext.class)
+        course = mock(CourseEntity.class)
+        snapshot = CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null)
+        proposal = RevisionProposal(taskId + "-100800", taskId, planId, auditId, DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId, snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now())
+        validatorResult = mock(RevisionValidatorResult.class)
+        engine = buildEngine()
+        artifactCaptor = ArgumentCaptor.forClass(RevisionArtifact.class)
+
+      mock:
+        validatorResult.verdict() -> RevisionVerdict.PENDING_APPROVAL
+        validatorResult.rejectionReason() -> Optional.empty()
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        auditReportStore.load(auditId) -> Optional.of(auditReport)
+        contextResolver.resolve(eq(auditReport), eq(task)) -> Optional.of(context)
+        courseRepository.load(coursePath) -> course
+        elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId) -> Optional.of(snapshot)
+        reviser.handles(DiagnosisKind.SENTENCE_LENGTH) -> true
+        reviser.propose(task, context, snapshot) -> proposal
+        validator.validate(proposal) -> validatorResult
+        artifactStore.save(any(RevisionArtifact.class)) -> ".content-audit/revisions/" + planId + "/" + proposal.getProposalId()
+
+      when:
+        sut.revise(planId, taskId, coursePath)
+
+      then:
+        artifactCaptor.getValue().getVerdict() == RevisionVerdict.PENDING_APPROVAL
+        verify: artifactStore.save(artifactCaptor.capture())
+        verify: courseRepository.save(any(CourseEntity.class), any(Path.class)) x 0
+    - |
+      test: "Given the human validator emits PENDING_APPROVAL, when revise finishes, then the outcome kind is PENDING_APPROVAL_PERSISTED and the RefinementTask stays PENDING"
+      trace: FEAT-REVAPR / F-REVAPR-R009
+
+      given:
+        planId = "plan-009"
+        taskId = "task-009"
+        auditId = "audit-009"
+        nodeId = "quiz-009"
+        coursePath = Path.of("./db/english-course")
+        task = RefinementTask(taskId, AuditTarget.QUIZ, nodeId, "Quiz about conditionals", DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan(planId, auditId, Instant.now(), List.of(task))
+        auditReport = mock(AuditReport.class)
+        context = mock(CorrectionContext.class)
+        course = mock(CourseEntity.class)
+        snapshot = CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null)
+        proposal = RevisionProposal(taskId + "-100900", taskId, planId, auditId, DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId, snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now())
+        validatorResult = mock(RevisionValidatorResult.class)
+        engine = buildEngine()
+        outcome = engine.revise(planId, taskId, coursePath)
+        planCaptor = ArgumentCaptor.forClass(RefinementPlan.class)
+        savedTask = planCaptor.getValue().getTasks().stream().filter(t -> taskId.equals(t.getId())).findFirst().orElseThrow(() -> new AssertionError("Task " + taskId + " not found in saved plan"))
+
+      mock:
+        validatorResult.verdict() -> RevisionVerdict.PENDING_APPROVAL
+        validatorResult.rejectionReason() -> Optional.empty()
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        auditReportStore.load(auditId) -> Optional.of(auditReport)
+        contextResolver.resolve(eq(auditReport), eq(task)) -> Optional.of(context)
+        courseRepository.load(coursePath) -> course
+        elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId) -> Optional.of(snapshot)
+        reviser.handles(DiagnosisKind.LEMMA_ABSENCE) -> true
+        reviser.propose(task, context, snapshot) -> proposal
+        validator.validate(proposal) -> validatorResult
+        artifactStore.save(any(RevisionArtifact.class)) -> ".content-audit/revisions/" + planId + "/" + proposal.getProposalId()
+
+      then:
+        outcome.getKind() == RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED
+        savedTask.getStatus() == RefinementTaskStatus.PENDING
+        verify: refinementPlanStore.save(planCaptor.capture())
+    - |
+      test: "Given the task already has a PENDING_APPROVAL proposal, when revise runs, then the outcome is ALREADY_PENDING_DECISION and no new artifact is persisted"
+      trace: FEAT-REVAPR / F-REVAPR-R010
+
+      given:
+        planId = "plan-010"
+        taskId = "task-010"
+        auditId = "audit-010"
+        nodeId = "quiz-010"
+        coursePath = Path.of("./db/english-course")
+        task = RefinementTask(taskId, AuditTarget.QUIZ, nodeId, "Quiz about modals", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan(planId, auditId, Instant.now(), List.of(task))
+        engine = buildEngine()
+        outcome = engine.revise(planId, taskId, coursePath)
+
+      mock:
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        auditReportStore.load(auditId) -> Optional.of(mock(AuditReport.class))
+        artifactStore.hasPendingProposalForTask(planId, taskId) -> true
+
+      then:
+        outcome.getKind() == RevisionOutcomeKind.ALREADY_PENDING_DECISION
+        verify: reviser.propose(any(), any(), any()) x 0
+        verify: validator.validate(any()) x 0
+        verify: artifactStore.save(any(RevisionArtifact.class)) x 0
+        verify: courseRepository.save(any(CourseEntity.class), any(Path.class)) x 0
+  - name: HumanApprovalValidator
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/HumanApprovalValidator.java
+    tests:
+    - name: "Given any RevisionProposal, when validate is called, then it returns\
+        \ a RevisionValidatorResult with verdict PENDING_APPROVAL"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/HumanApprovalValidatorTest.java
+    - name: "Given a PENDING_APPROVAL result, when rejectionReason is queried, then\
+        \ it returns Optional.empty"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/HumanApprovalValidatorTest.java
+    - name: "Given any RevisionProposal, when validate is called in human mode, then\
+        \ the verdict field on the returned result is literally the PENDING_APPROVAL\
+        \ enum value (new vocabulary)"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/HumanApprovalValidatorTest.java
+    testCleanViews:
+    - |
+      test: "Given any RevisionProposal, when validate is called, then it returns a RevisionValidatorResult with verdict PENDING_APPROVAL"
+      trace: FEAT-REVAPR / F-REVAPR-R007
+
+      given:
+        validator = HumanApprovalValidator()
+        proposal = anyProposal()
+        result = validator.validate(proposal)
+
+      then:
+        result.verdict() == RevisionVerdict.PENDING_APPROVAL
+    - |
+      test: "Given a PENDING_APPROVAL result, when rejectionReason is queried, then it returns Optional.empty"
+      trace: FEAT-REVAPR / F-REVAPR-R007
+
+      given:
+        validator = HumanApprovalValidator()
+        proposal = anyProposal()
+        result = validator.validate(proposal)
+
+      then:
+        result.rejectionReason().isEmpty() is true
+    - |
+      test: "Given any RevisionProposal, when validate is called in human mode, then the verdict field on the returned result is literally the PENDING_APPROVAL enum value (new vocabulary)"
+      trace: FEAT-REVAPR / F-REVAPR-R001
+
+      given:
+        validator = HumanApprovalValidator()
+        proposal = anyProposal()
+        result = validator.validate(proposal)
+
+      then:
+        assertSame(RevisionVerdict.PENDING_APPROVAL)
+        result.verdict().name() == "PENDING_APPROVAL"
+  - name: DefaultRevisionValidatorFactory
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/DefaultRevisionValidatorFactory.java
+    tests:
+    - name: "Given ApprovalMode.AUTO, when create is called, then it returns an AutoApproveValidator\
+        \ instance (exactly one validator active for the invocation)"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultRevisionValidatorFactoryTest.java
+    - name: "Given ApprovalMode.HUMAN, when create is called, then it returns a HumanApprovalValidator\
+        \ instance (exactly one validator active for the invocation)"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultRevisionValidatorFactoryTest.java
+    testCleanViews:
+    - |
+      test: "Given ApprovalMode.AUTO, when create is called, then it returns an AutoApproveValidator instance (exactly one validator active for the invocation)"
+      trace: FEAT-REVAPR / F-REVAPR-R006
+
+      given:
+        factory = DefaultRevisionValidatorFactory()
+        result = factory.create(ApprovalMode.AUTO)
+
+      then:
+        assertInstanceOf(AutoApproveValidator.class)
+    - |
+      test: "Given ApprovalMode.HUMAN, when create is called, then it returns a HumanApprovalValidator instance (exactly one validator active for the invocation)"
+      trace: FEAT-REVAPR / F-REVAPR-R006
+
+      given:
+        factory = DefaultRevisionValidatorFactory()
+        result = factory.create(ApprovalMode.HUMAN)
+
+      then:
+        assertInstanceOf(HumanApprovalValidator.class)
+  - name: DefaultProposalDecisionServiceFactory
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceFactory.java
+  - name: DefaultProposalDecisionService
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionService.java
+    tests:
+    - name: "Given a PENDING_APPROVAL artifact, when approve is called, then the artifact\
+        \ is rewritten with verdict APPROVED and decidedAt set"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceTest.java
+    - name: "Given a PENDING_APPROVAL artifact, when approve is called, then the course\
+        \ is loaded and saved with elementAfter applied via CourseRepository"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceTest.java
+    - name: "Given approve succeeds and the course is applied, then the associated\
+        \ RefinementTask transitions to DONE"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceTest.java
+    - name: "Given approve is called with a --note, then the persisted artifact's\
+        \ decisionNote carries that note"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceTest.java
+    - name: "Given no proposal matches the supplied id, when approve is called, then\
+        \ the outcome is NOT_FOUND and no artifact or course is written"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceTest.java
+    - name: "Given a proposal whose verdict is already APPROVED, when approve is called\
+        \ again, then the outcome is ALREADY_DECIDED and no side effects occur"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceTest.java
+    - name: "Given a proposal whose verdict is already REJECTED, when approve is called,\
+        \ then the outcome is ALREADY_DECIDED and no side effects occur"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceTest.java
+    - name: "Given approve rewrites the artifact to APPROVED but the course write\
+        \ fails, then the artifact keeps APPROVED with decidedAt and the task does\
+        \ not advance to DONE"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceTest.java
+    - name: "Given a PENDING_APPROVAL artifact, when reject is called, then the artifact\
+        \ is rewritten with verdict REJECTED and decisionNote carrying the --reason"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceTest.java
+    - name: "Given a PENDING_APPROVAL artifact, when reject is called, then CourseRepository\
+        \ is never asked to load or save the course"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceTest.java
+    - name: "Given reject succeeds, then the associated RefinementTask returns to\
+        \ its previous state (typically PENDING)"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceTest.java
+    - name: "Given no proposal matches the supplied id, when reject is called, then\
+        \ the outcome is NOT_FOUND and no artifact or course is written"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceTest.java
+    - name: "Given a proposal whose verdict is already APPROVED, when reject is called,\
+        \ then the outcome is ALREADY_DECIDED and no side effects occur"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceTest.java
+    - name: "Given a proposal whose verdict is already REJECTED, when reject is called,\
+        \ then the outcome is ALREADY_DECIDED and no side effects occur"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceTest.java
+    testCleanViews:
+    - |
+      test: "Given a PENDING_APPROVAL artifact, when approve is called, then the artifact is rewritten with verdict APPROVED and decidedAt set"
+      trace: FEAT-REVAPR / F-REVAPR-R011
+
+      given:
+        proposalId = "task-011a-100001"
+        taskId = "task-011a"
+        planId = "plan-011a"
+        coursePath = Path.of("./db/english-course")
+        artifact = buildArtifact(proposalId, taskId, planId, RevisionVerdict.PENDING_APPROVAL)
+        plan = buildPlanWithTask(planId, taskId, RefinementTaskStatus.PENDING)
+        course = mock(CourseEntity.class)
+        snapshot = artifact.getProposal().getElementAfter()
+        service = buildService()
+        outcome = service.approve(proposalId, Optional.of(planId), Optional.empty(), coursePath)
+        captor = ArgumentCaptor.forClass(RevisionArtifact.class)
+        saved = captor.getValue()
+
+      mock:
+        artifactStore.findByProposalId(eq(proposalId), any()) -> Optional.of(artifact)
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        courseRepository.load(coursePath) -> course
+        elementLocator.replace(eq(course), eq(snapshot)) -> course
+        artifactStore.save(any(RevisionArtifact.class)) -> ".content-audit/revisions/" + planId + "/" + proposalId
+
+      then:
+        saved.getVerdict() == RevisionVerdict.APPROVED
+        saved.getDecidedAt() is not null
+        verify: artifactStore.save(captor.capture())
+    - |
+      test: "Given a PENDING_APPROVAL artifact, when approve is called, then the course is loaded and saved with elementAfter applied via CourseRepository"
+      trace: FEAT-REVAPR / F-REVAPR-R011
+
+      given:
+        proposalId = "task-011b-100002"
+        taskId = "task-011b"
+        planId = "plan-011b"
+        coursePath = Path.of("./db/english-course")
+        artifact = buildArtifact(proposalId, taskId, planId, RevisionVerdict.PENDING_APPROVAL)
+        plan = buildPlanWithTask(planId, taskId, RefinementTaskStatus.PENDING)
+        course = mock(CourseEntity.class)
+        updatedCourse = mock(CourseEntity.class)
+        elementAfter = artifact.getProposal().getElementAfter()
+        service = buildService()
+
+      mock:
+        artifactStore.findByProposalId(eq(proposalId), any()) -> Optional.of(artifact)
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        courseRepository.load(coursePath) -> course
+        elementLocator.replace(eq(course), eq(elementAfter)) -> updatedCourse
+        artifactStore.save(any(RevisionArtifact.class)) -> ".content-audit/revisions/" + planId + "/" + proposalId
+
+      when:
+        sut.approve(proposalId, Optional.of(planId), Optional.empty(), coursePath)
+
+      then:
+        verify: courseRepository.load(coursePath)
+        verify: courseRepository.save(eq(updatedCourse), eq(coursePath))
+    - |
+      test: "Given approve succeeds and the course is applied, then the associated RefinementTask transitions to DONE"
+      trace: FEAT-REVAPR / F-REVAPR-R014
+
+      given:
+        proposalId = "task-014a-100003"
+        taskId = "task-014a"
+        planId = "plan-014a"
+        coursePath = Path.of("./db/english-course")
+        artifact = buildArtifact(proposalId, taskId, planId, RevisionVerdict.PENDING_APPROVAL)
+        plan = buildPlanWithTask(planId, taskId, RefinementTaskStatus.PENDING)
+        course = mock(CourseEntity.class)
+        snapshot = artifact.getProposal().getElementAfter()
+        service = buildService()
+        outcome = service.approve(proposalId, Optional.of(planId), Optional.empty(), coursePath)
+        planCaptor = ArgumentCaptor.forClass(RefinementPlan.class)
+        savedPlan = planCaptor.getValue()
+        savedTask = savedPlan.getTasks().stream().filter(t -> taskId.equals(t.getId())).findFirst().orElseThrow(() -> new AssertionError("Task " + taskId + " not found in saved plan"))
+
+      mock:
+        artifactStore.findByProposalId(eq(proposalId), any()) -> Optional.of(artifact)
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        courseRepository.load(coursePath) -> course
+        elementLocator.replace(eq(course), eq(snapshot)) -> course
+        artifactStore.save(any(RevisionArtifact.class)) -> ".content-audit/revisions/" + planId + "/" + proposalId
+
+      then:
+        savedTask.getStatus() == RefinementTaskStatus.COMPLETED
+        outcome.getKind() == ProposalDecisionOutcomeKind.APPROVED_APPLIED
+        verify: refinementPlanStore.save(planCaptor.capture())
+    - |
+      test: "Given approve is called with a --note, then the persisted artifact's decisionNote carries that note"
+      trace: FEAT-REVAPR / F-REVAPR-R011
+
+      given:
+        proposalId = "task-011c-100004"
+        taskId = "task-011c"
+        planId = "plan-011c"
+        coursePath = Path.of("./db/english-course")
+        operatorNote = "Approved after manual review of quiz X"
+        artifact = buildArtifact(proposalId, taskId, planId, RevisionVerdict.PENDING_APPROVAL)
+        plan = buildPlanWithTask(planId, taskId, RefinementTaskStatus.PENDING)
+        course = mock(CourseEntity.class)
+        snapshot = artifact.getProposal().getElementAfter()
+        service = buildService()
+        captor = ArgumentCaptor.forClass(RevisionArtifact.class)
+
+      mock:
+        artifactStore.findByProposalId(eq(proposalId), any()) -> Optional.of(artifact)
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        courseRepository.load(coursePath) -> course
+        elementLocator.replace(eq(course), eq(snapshot)) -> course
+        artifactStore.save(any(RevisionArtifact.class)) -> ".content-audit/revisions/" + planId + "/" + proposalId
+
+      when:
+        sut.approve(proposalId, Optional.of(planId), Optional.of(operatorNote), coursePath)
+
+      then:
+        captor.getValue().getDecisionNote() == operatorNote
+        verify: artifactStore.save(captor.capture())
+    - |
+      test: "Given no proposal matches the supplied id, when approve is called, then the outcome is NOT_FOUND and no artifact or course is written"
+      trace: FEAT-REVAPR / F-REVAPR-R011
+
+      given:
+        proposalId = "nonexistent-proposal-id"
+        coursePath = Path.of("./db/english-course")
+        service = buildService()
+        outcome = service.approve(proposalId, Optional.empty(), Optional.empty(), coursePath)
+
+      mock:
+        artifactStore.findByProposalId(eq(proposalId), any()) -> Optional.empty()
+
+      then:
+        outcome.getKind() == ProposalDecisionOutcomeKind.NOT_FOUND
+        verify: artifactStore.save(any(RevisionArtifact.class)) x 0
+        verify: courseRepository.save(any(CourseEntity.class), any(Path.class)) x 0
+    - |
+      test: "Given a proposal whose verdict is already APPROVED, when approve is called again, then the outcome is ALREADY_DECIDED and no side effects occur"
+      trace: FEAT-REVAPR / F-REVAPR-R013
+
+      given:
+        proposalId = "task-013a-100006"
+        taskId = "task-013a"
+        planId = "plan-013a"
+        coursePath = Path.of("./db/english-course")
+        artifact = buildArtifact(proposalId, taskId, planId, RevisionVerdict.APPROVED)
+        service = buildService()
+        outcome = service.approve(proposalId, Optional.of(planId), Optional.empty(), coursePath)
+
+      mock:
+        artifactStore.findByProposalId(eq(proposalId), any()) -> Optional.of(artifact)
+
+      then:
+        outcome.getKind() == ProposalDecisionOutcomeKind.ALREADY_DECIDED
+        verify: artifactStore.save(any(RevisionArtifact.class)) x 0
+        verify: courseRepository.save(any(CourseEntity.class), any(Path.class)) x 0
+        verify: refinementPlanStore.save(any(RefinementPlan.class)) x 0
+    - |
+      test: "Given a proposal whose verdict is already REJECTED, when approve is called, then the outcome is ALREADY_DECIDED and no side effects occur"
+      trace: FEAT-REVAPR / F-REVAPR-R013
+
+      given:
+        proposalId = "task-013b-100007"
+        taskId = "task-013b"
+        planId = "plan-013b"
+        coursePath = Path.of("./db/english-course")
+        artifact = buildArtifact(proposalId, taskId, planId, RevisionVerdict.REJECTED)
+        service = buildService()
+        outcome = service.approve(proposalId, Optional.of(planId), Optional.empty(), coursePath)
+
+      mock:
+        artifactStore.findByProposalId(eq(proposalId), any()) -> Optional.of(artifact)
+
+      then:
+        outcome.getKind() == ProposalDecisionOutcomeKind.ALREADY_DECIDED
+        verify: artifactStore.save(any(RevisionArtifact.class)) x 0
+        verify: courseRepository.save(any(CourseEntity.class), any(Path.class)) x 0
+        verify: refinementPlanStore.save(any(RefinementPlan.class)) x 0
+    - |
+      test: "Given approve rewrites the artifact to APPROVED but the course write fails, then the artifact keeps APPROVED with decidedAt and the task does not advance to DONE"
+      trace: FEAT-REVAPR / F-REVAPR-R014
+
+      given:
+        proposalId = "task-014b-100008"
+        taskId = "task-014b"
+        planId = "plan-014b"
+        coursePath = Path.of("./db/english-course")
+        artifact = buildArtifact(proposalId, taskId, planId, RevisionVerdict.PENDING_APPROVAL)
+        plan = buildPlanWithTask(planId, taskId, RefinementTaskStatus.PENDING)
+        course = mock(CourseEntity.class)
+        snapshot = artifact.getProposal().getElementAfter()
+        service = buildService()
+        outcome = service.approve(proposalId, Optional.of(planId), Optional.empty(), coursePath)
+        artifactCaptor = ArgumentCaptor.forClass(RevisionArtifact.class)
+
+      mock:
+        artifactStore.findByProposalId(eq(proposalId), any()) -> Optional.of(artifact)
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        courseRepository.load(coursePath) -> course
+        elementLocator.replace(eq(course), eq(snapshot)) -> course
+        artifactStore.save(any(RevisionArtifact.class)) -> ".content-audit/revisions/" + planId + "/" + proposalId
+        courseRepository.save(any(CourseEntity.class), eq(coursePath)) -> throws RuntimeException("Disk full")
+
+      then:
+        outcome.getKind() == ProposalDecisionOutcomeKind.APPROVED_APPLY_FAILED
+        artifactCaptor.getValue().getVerdict() == RevisionVerdict.APPROVED
+        artifactCaptor.getValue().getDecidedAt() is not null
+        verify: artifactStore.save(artifactCaptor.capture())
+        verify: refinementPlanStore.save(any(RefinementPlan.class)) x 0
+    - |
+      test: "Given a PENDING_APPROVAL artifact, when reject is called, then the artifact is rewritten with verdict REJECTED and decisionNote carrying the --reason"
+      trace: FEAT-REVAPR / F-REVAPR-R012
+
+      given:
+        proposalId = "task-012a-100009"
+        taskId = "task-012a"
+        planId = "plan-012a"
+        reason = "Content quality insufficient for this level"
+        artifact = buildArtifact(proposalId, taskId, planId, RevisionVerdict.PENDING_APPROVAL)
+        plan = buildPlanWithTask(planId, taskId, RefinementTaskStatus.PENDING)
+        service = buildService()
+        outcome = service.reject(proposalId, Optional.of(planId), Optional.of(reason))
+        captor = ArgumentCaptor.forClass(RevisionArtifact.class)
+        saved = captor.getValue()
+
+      mock:
+        artifactStore.findByProposalId(eq(proposalId), any()) -> Optional.of(artifact)
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        artifactStore.save(any(RevisionArtifact.class)) -> ".content-audit/revisions/" + planId + "/" + proposalId
+
+      then:
+        saved.getVerdict() == RevisionVerdict.REJECTED
+        saved.getDecisionNote() == reason
+        verify: artifactStore.save(captor.capture())
+    - |
+      test: "Given a PENDING_APPROVAL artifact, when reject is called, then CourseRepository is never asked to load or save the course"
+      trace: FEAT-REVAPR / F-REVAPR-R012
+
+      given:
+        proposalId = "task-012b-100010"
+        taskId = "task-012b"
+        planId = "plan-012b"
+        artifact = buildArtifact(proposalId, taskId, planId, RevisionVerdict.PENDING_APPROVAL)
+        plan = buildPlanWithTask(planId, taskId, RefinementTaskStatus.PENDING)
+        service = buildService()
+
+      mock:
+        artifactStore.findByProposalId(eq(proposalId), any()) -> Optional.of(artifact)
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        artifactStore.save(any(RevisionArtifact.class)) -> ".content-audit/revisions/" + planId + "/" + proposalId
+
+      when:
+        sut.reject(proposalId, Optional.of(planId), Optional.empty())
+
+      then:
+        verify: courseRepository.load(any(Path.class)) x 0
+        verify: courseRepository.save(any(CourseEntity.class), any(Path.class)) x 0
+    - |
+      test: "Given reject succeeds, then the associated RefinementTask returns to its previous state (typically PENDING)"
+      trace: FEAT-REVAPR / F-REVAPR-R014
+
+      given:
+        proposalId = "task-014c-100011"
+        taskId = "task-014c"
+        planId = "plan-014c"
+        artifact = buildArtifact(proposalId, taskId, planId, RevisionVerdict.PENDING_APPROVAL)
+        plan = buildPlanWithTask(planId, taskId, RefinementTaskStatus.PENDING)
+        service = buildService()
+        outcome = service.reject(proposalId, Optional.of(planId), Optional.empty())
+        planCaptor = ArgumentCaptor.forClass(RefinementPlan.class)
+        savedPlan = planCaptor.getValue()
+        savedTask = savedPlan.getTasks().stream().filter(t -> taskId.equals(t.getId())).findFirst().orElseThrow(() -> new AssertionError("Task " + taskId + " not found in saved plan"))
+
+      mock:
+        artifactStore.findByProposalId(eq(proposalId), any()) -> Optional.of(artifact)
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        artifactStore.save(any(RevisionArtifact.class)) -> ".content-audit/revisions/" + planId + "/" + proposalId
+
+      then:
+        outcome.getKind() == ProposalDecisionOutcomeKind.REJECTED
+        savedTask.getStatus() == RefinementTaskStatus.PENDING
+        verify: refinementPlanStore.save(planCaptor.capture())
+    - |
+      test: "Given no proposal matches the supplied id, when reject is called, then the outcome is NOT_FOUND and no artifact or course is written"
+      trace: FEAT-REVAPR / F-REVAPR-R012
+
+      given:
+        proposalId = "nonexistent-proposal-id-reject"
+        service = buildService()
+        outcome = service.reject(proposalId, Optional.empty(), Optional.empty())
+
+      mock:
+        artifactStore.findByProposalId(eq(proposalId), any()) -> Optional.empty()
+
+      then:
+        outcome.getKind() == ProposalDecisionOutcomeKind.NOT_FOUND
+        verify: artifactStore.save(any(RevisionArtifact.class)) x 0
+        verify: courseRepository.save(any(CourseEntity.class), any(Path.class)) x 0
+    - |
+      test: "Given a proposal whose verdict is already APPROVED, when reject is called, then the outcome is ALREADY_DECIDED and no side effects occur"
+      trace: FEAT-REVAPR / F-REVAPR-R013
+
+      given:
+        proposalId = "task-013c-100013"
+        taskId = "task-013c"
+        planId = "plan-013c"
+        artifact = buildArtifact(proposalId, taskId, planId, RevisionVerdict.APPROVED)
+        service = buildService()
+        outcome = service.reject(proposalId, Optional.of(planId), Optional.empty())
+
+      mock:
+        artifactStore.findByProposalId(eq(proposalId), any()) -> Optional.of(artifact)
+
+      then:
+        outcome.getKind() == ProposalDecisionOutcomeKind.ALREADY_DECIDED
+        verify: artifactStore.save(any(RevisionArtifact.class)) x 0
+        verify: courseRepository.save(any(CourseEntity.class), any(Path.class)) x 0
+        verify: refinementPlanStore.save(any(RefinementPlan.class)) x 0
+    - |
+      test: "Given a proposal whose verdict is already REJECTED, when reject is called, then the outcome is ALREADY_DECIDED and no side effects occur"
+      trace: FEAT-REVAPR / F-REVAPR-R013
+
+      given:
+        proposalId = "task-013d-100014"
+        taskId = "task-013d"
+        planId = "plan-013d"
+        artifact = buildArtifact(proposalId, taskId, planId, RevisionVerdict.REJECTED)
+        service = buildService()
+        outcome = service.reject(proposalId, Optional.of(planId), Optional.empty())
+
+      mock:
+        artifactStore.findByProposalId(eq(proposalId), any()) -> Optional.of(artifact)
+
+      then:
+        outcome.getKind() == ProposalDecisionOutcomeKind.ALREADY_DECIDED
+        verify: artifactStore.save(any(RevisionArtifact.class)) x 0
+        verify: courseRepository.save(any(CourseEntity.class), any(Path.class)) x 0
+        verify: refinementPlanStore.save(any(RefinementPlan.class)) x 0
 testSummary:
-  total: 439
-  passing: 439
+  total: 508
+  passing: 508
   failing: 0
   notImplemented: 0
 patterns:
@@ -13466,14 +15696,30 @@ patterns:
   involvedElements:
   - type: interface
     moduleName: revision-domain
-    elementName: RevisionEngineFactory
-    nodeId: interface-revision-domain-RevisionEngineFactory
+    elementName: RevisionValidatorFactory
+    nodeId: interface-revision-domain-RevisionValidatorFactory
   - type: implementation
     moduleName: revision-domain
-    elementName: DefaultRevisionEngineFactory
-    nodeId: impl-revision-domain-DefaultRevisionEngineFactory
+    elementName: DefaultRevisionValidatorFactory
+    nodeId: impl-revision-domain-DefaultRevisionValidatorFactory
   confidence: 1.0
-- id: stereo-5
+- id: declared-5
+  pattern: Factory
+  category: gof
+  source: declared
+  severity: info
+  description: Declared Factory pattern in revision-domain
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: ProposalDecisionServiceFactory
+    nodeId: interface-revision-domain-ProposalDecisionServiceFactory
+  - type: implementation
+    moduleName: revision-domain
+    elementName: DefaultProposalDecisionServiceFactory
+    nodeId: impl-revision-domain-DefaultProposalDecisionServiceFactory
+  confidence: 1.0
+- id: stereo-6
   pattern: Port
   category: architectural
   source: detected
@@ -13485,7 +15731,7 @@ patterns:
     elementName: AuditEngine
     nodeId: interface-audit-domain-AuditEngine
   confidence: 0.9
-- id: stereo-6
+- id: stereo-7
   pattern: Port
   category: architectural
   source: detected
@@ -13497,7 +15743,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.9
-- id: stereo-7
+- id: stereo-8
   pattern: Port
   category: architectural
   source: detected
@@ -13509,7 +15755,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: stereo-8
+- id: stereo-9
   pattern: Port
   category: architectural
   source: detected
@@ -13521,7 +15767,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: stereo-9
+- id: stereo-10
   pattern: Port
   category: architectural
   source: detected
@@ -13533,7 +15779,7 @@ patterns:
     elementName: SentenceLengthConfig
     nodeId: interface-audit-domain-SentenceLengthConfig
   confidence: 0.9
-- id: stereo-10
+- id: stereo-11
   pattern: Port
   category: architectural
   source: detected
@@ -13545,7 +15791,7 @@ patterns:
     elementName: ScoreAggregator
     nodeId: interface-audit-domain-ScoreAggregator
   confidence: 0.9
-- id: stereo-11
+- id: stereo-12
   pattern: Port
   category: architectural
   source: detected
@@ -13557,7 +15803,7 @@ patterns:
     elementName: CocaBucketsConfig
     nodeId: interface-audit-domain-CocaBucketsConfig
   confidence: 0.9
-- id: stereo-12
+- id: stereo-13
   pattern: Port
   category: architectural
   source: detected
@@ -13569,7 +15815,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: stereo-13
+- id: stereo-14
   pattern: Port
   category: architectural
   source: detected
@@ -13581,7 +15827,7 @@ patterns:
     elementName: LemmaRecurrenceConfig
     nodeId: interface-audit-domain-LemmaRecurrenceConfig
   confidence: 0.9
-- id: stereo-14
+- id: stereo-15
   pattern: Port
   category: architectural
   source: detected
@@ -13593,7 +15839,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.9
-- id: stereo-15
+- id: stereo-16
   pattern: Port
   category: architectural
   source: detected
@@ -13605,7 +15851,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: stereo-16
+- id: stereo-17
   pattern: Port
   category: architectural
   source: detected
@@ -13617,7 +15863,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: stereo-17
+- id: stereo-18
   pattern: Port
   category: architectural
   source: detected
@@ -13629,7 +15875,7 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: stereo-18
+- id: stereo-19
   pattern: Port
   category: architectural
   source: detected
@@ -13641,7 +15887,7 @@ patterns:
     elementName: NodeDiagnoses
     nodeId: interface-audit-domain-NodeDiagnoses
   confidence: 0.9
-- id: stereo-19
+- id: stereo-20
   pattern: Port
   category: architectural
   source: detected
@@ -13653,7 +15899,7 @@ patterns:
     elementName: CourseDiagnoses
     nodeId: interface-audit-domain-CourseDiagnoses
   confidence: 0.9
-- id: stereo-20
+- id: stereo-21
   pattern: Port
   category: architectural
   source: detected
@@ -13665,7 +15911,7 @@ patterns:
     elementName: LevelDiagnoses
     nodeId: interface-audit-domain-LevelDiagnoses
   confidence: 0.9
-- id: stereo-21
+- id: stereo-22
   pattern: Port
   category: architectural
   source: detected
@@ -13677,7 +15923,7 @@ patterns:
     elementName: TopicDiagnoses
     nodeId: interface-audit-domain-TopicDiagnoses
   confidence: 0.9
-- id: stereo-22
+- id: stereo-23
   pattern: Port
   category: architectural
   source: detected
@@ -13689,7 +15935,7 @@ patterns:
     elementName: KnowledgeDiagnoses
     nodeId: interface-audit-domain-KnowledgeDiagnoses
   confidence: 0.9
-- id: stereo-23
+- id: stereo-24
   pattern: Port
   category: architectural
   source: detected
@@ -13701,7 +15947,7 @@ patterns:
     elementName: QuizDiagnoses
     nodeId: interface-audit-domain-QuizDiagnoses
   confidence: 0.9
-- id: stereo-24
+- id: stereo-25
   pattern: Port
   category: architectural
   source: detected
@@ -13713,7 +15959,7 @@ patterns:
     elementName: AuditReportStore
     nodeId: interface-audit-domain-AuditReportStore
   confidence: 0.9
-- id: stereo-25
+- id: stereo-26
   pattern: Value Object
   category: architectural
   source: detected
@@ -13725,7 +15971,7 @@ patterns:
     elementName: AuditReport
     nodeId: model-audit-domain-AuditReport
   confidence: 0.75
-- id: stereo-26
+- id: stereo-27
   pattern: Value Object
   category: architectural
   source: detected
@@ -13737,7 +15983,7 @@ patterns:
     elementName: AuditableCourse
     nodeId: model-audit-domain-AuditableCourse
   confidence: 0.75
-- id: stereo-27
+- id: stereo-28
   pattern: Entity
   category: architectural
   source: detected
@@ -13749,7 +15995,7 @@ patterns:
     elementName: AuditableKnowledge
     nodeId: model-audit-domain-AuditableKnowledge
   confidence: 0.8
-- id: stereo-28
+- id: stereo-29
   pattern: Entity
   category: architectural
   source: detected
@@ -13761,7 +16007,7 @@ patterns:
     elementName: AuditableTopic
     nodeId: model-audit-domain-AuditableTopic
   confidence: 0.8
-- id: stereo-29
+- id: stereo-30
   pattern: Entity
   category: architectural
   source: detected
@@ -13773,7 +16019,7 @@ patterns:
     elementName: AuditableMilestone
     nodeId: model-audit-domain-AuditableMilestone
   confidence: 0.8
-- id: stereo-30
+- id: stereo-31
   pattern: Entity
   category: architectural
   source: detected
@@ -13785,7 +16031,7 @@ patterns:
     elementName: AuditableQuiz
     nodeId: model-audit-domain-AuditableQuiz
   confidence: 0.8
-- id: stereo-31
+- id: stereo-32
   pattern: Enum
   category: architectural
   source: detected
@@ -13797,7 +16043,7 @@ patterns:
     elementName: CefrLevel
     nodeId: model-audit-domain-CefrLevel
   confidence: 0.95
-- id: stereo-32
+- id: stereo-33
   pattern: Value Object
   category: architectural
   source: detected
@@ -13809,7 +16055,7 @@ patterns:
     elementName: TargetRange
     nodeId: model-audit-domain-TargetRange
   confidence: 0.75
-- id: stereo-33
+- id: stereo-34
   pattern: Enum
   category: architectural
   source: detected
@@ -13821,7 +16067,7 @@ patterns:
     elementName: AuditTarget
     nodeId: model-audit-domain-AuditTarget
   confidence: 0.95
-- id: stereo-34
+- id: stereo-35
   pattern: Value Object
   category: architectural
   source: detected
@@ -13833,7 +16079,7 @@ patterns:
     elementName: NlpToken
     nodeId: model-audit-domain-NlpToken
   confidence: 0.75
-- id: stereo-35
+- id: stereo-36
   pattern: Value Object
   category: architectural
   source: detected
@@ -13845,7 +16091,7 @@ patterns:
     elementName: AnalyzerDescriptor
     nodeId: model-audit-domain-AnalyzerDescriptor
   confidence: 0.75
-- id: stereo-36
+- id: stereo-37
   pattern: Value Object
   category: architectural
   source: detected
@@ -13857,7 +16103,7 @@ patterns:
     elementName: AuditNode
     nodeId: model-audit-domain-AuditNode
   confidence: 0.75
-- id: stereo-37
+- id: stereo-38
   pattern: Value Object
   category: architectural
   source: detected
@@ -13869,7 +16115,7 @@ patterns:
     elementName: SentenceLengthDiagnosis
     nodeId: model-audit-domain-SentenceLengthDiagnosis
   confidence: 0.75
-- id: stereo-38
+- id: stereo-39
   pattern: Entity
   category: architectural
   source: detected
@@ -13881,7 +16127,7 @@ patterns:
     elementName: AuditReportSummary
     nodeId: model-audit-domain-AuditReportSummary
   confidence: 0.8
-- id: stereo-39
+- id: stereo-40
   pattern: Port
   category: architectural
   source: detected
@@ -13893,7 +16139,7 @@ patterns:
     elementName: CourseRepository
     nodeId: interface-course-domain-CourseRepository
   confidence: 0.9
-- id: stereo-40
+- id: stereo-41
   pattern: Service
   category: architectural
   source: detected
@@ -13905,7 +16151,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: stereo-41
+- id: stereo-42
   pattern: Enum
   category: architectural
   source: detected
@@ -13917,7 +16163,7 @@ patterns:
     elementName: NodeKind
     nodeId: model-course-domain-NodeKind
   confidence: 0.95
-- id: stereo-42
+- id: stereo-43
   pattern: Enum
   category: architectural
   source: detected
@@ -13929,7 +16175,7 @@ patterns:
     elementName: SentencePartKind
     nodeId: model-course-domain-SentencePartKind
   confidence: 0.95
-- id: stereo-43
+- id: stereo-44
   pattern: Entity
   category: architectural
   source: detected
@@ -13941,7 +16187,7 @@ patterns:
     elementName: CourseEntity
     nodeId: model-course-domain-CourseEntity
   confidence: 0.8
-- id: stereo-44
+- id: stereo-45
   pattern: Entity
   category: architectural
   source: detected
@@ -13953,7 +16199,7 @@ patterns:
     elementName: RootNodeEntity
     nodeId: model-course-domain-RootNodeEntity
   confidence: 0.8
-- id: stereo-45
+- id: stereo-46
   pattern: Entity
   category: architectural
   source: detected
@@ -13965,7 +16211,7 @@ patterns:
     elementName: MilestoneEntity
     nodeId: model-course-domain-MilestoneEntity
   confidence: 0.8
-- id: stereo-46
+- id: stereo-47
   pattern: Entity
   category: architectural
   source: detected
@@ -13977,7 +16223,7 @@ patterns:
     elementName: TopicEntity
     nodeId: model-course-domain-TopicEntity
   confidence: 0.8
-- id: stereo-47
+- id: stereo-48
   pattern: Entity
   category: architectural
   source: detected
@@ -13989,7 +16235,7 @@ patterns:
     elementName: KnowledgeEntity
     nodeId: model-course-domain-KnowledgeEntity
   confidence: 0.8
-- id: stereo-48
+- id: stereo-49
   pattern: Entity
   category: architectural
   source: detected
@@ -14001,7 +16247,7 @@ patterns:
     elementName: QuizTemplateEntity
     nodeId: model-course-domain-QuizTemplateEntity
   confidence: 0.8
-- id: stereo-49
+- id: stereo-50
   pattern: Value Object
   category: architectural
   source: detected
@@ -14013,7 +16259,7 @@ patterns:
     elementName: FormEntity
     nodeId: model-course-domain-FormEntity
   confidence: 0.75
-- id: stereo-50
+- id: stereo-51
   pattern: Value Object
   category: architectural
   source: detected
@@ -14025,7 +16271,7 @@ patterns:
     elementName: SentencePartEntity
     nodeId: model-course-domain-SentencePartEntity
   confidence: 0.75
-- id: stereo-51
+- id: stereo-52
   pattern: Port
   category: architectural
   source: detected
@@ -14037,7 +16283,7 @@ patterns:
     elementName: RefinerEngine
     nodeId: interface-refiner-domain-RefinerEngine
   confidence: 0.9
-- id: stereo-52
+- id: stereo-53
   pattern: Port
   category: architectural
   source: detected
@@ -14049,7 +16295,7 @@ patterns:
     elementName: RefinementPlanStore
     nodeId: interface-refiner-domain-RefinementPlanStore
   confidence: 0.9
-- id: stereo-53
+- id: stereo-54
   pattern: Port
   category: architectural
   source: detected
@@ -14061,7 +16307,7 @@ patterns:
     elementName: CorrectionContextResolver
     nodeId: interface-refiner-domain-CorrectionContextResolver
   confidence: 0.9
-- id: stereo-54
+- id: stereo-55
   pattern: Port
   category: architectural
   source: detected
@@ -14073,7 +16319,7 @@ patterns:
     elementName: CorrectionContext
     nodeId: interface-refiner-domain-CorrectionContext
   confidence: 0.9
-- id: stereo-55
+- id: stereo-56
   pattern: Enum
   category: architectural
   source: detected
@@ -14085,7 +16331,7 @@ patterns:
     elementName: DiagnosisKind
     nodeId: model-refiner-domain-DiagnosisKind
   confidence: 0.95
-- id: stereo-56
+- id: stereo-57
   pattern: Enum
   category: architectural
   source: detected
@@ -14097,7 +16343,7 @@ patterns:
     elementName: RefinementTaskStatus
     nodeId: model-refiner-domain-RefinementTaskStatus
   confidence: 0.95
-- id: stereo-57
+- id: stereo-58
   pattern: Entity
   category: architectural
   source: detected
@@ -14109,7 +16355,7 @@ patterns:
     elementName: RefinementTask
     nodeId: model-refiner-domain-RefinementTask
   confidence: 0.8
-- id: stereo-58
+- id: stereo-59
   pattern: Entity
   category: architectural
   source: detected
@@ -14121,7 +16367,7 @@ patterns:
     elementName: RefinementPlan
     nodeId: model-refiner-domain-RefinementPlan
   confidence: 0.8
-- id: stereo-59
+- id: stereo-60
   pattern: Value Object
   category: architectural
   source: detected
@@ -14133,7 +16379,7 @@ patterns:
     elementName: SuggestedLemma
     nodeId: model-refiner-domain-SuggestedLemma
   confidence: 0.75
-- id: stereo-60
+- id: stereo-61
   pattern: Value Object
   category: architectural
   source: detected
@@ -14145,7 +16391,7 @@ patterns:
     elementName: SentenceLengthCorrectionContext
     nodeId: model-refiner-domain-SentenceLengthCorrectionContext
   confidence: 0.75
-- id: stereo-61
+- id: stereo-62
   pattern: Value Object
   category: architectural
   source: detected
@@ -14157,7 +16403,7 @@ patterns:
     elementName: MisplacedLemmaContext
     nodeId: model-refiner-domain-MisplacedLemmaContext
   confidence: 0.75
-- id: stereo-62
+- id: stereo-63
   pattern: Value Object
   category: architectural
   source: detected
@@ -14169,7 +16415,7 @@ patterns:
     elementName: LemmaAbsenceCorrectionContext
     nodeId: model-refiner-domain-LemmaAbsenceCorrectionContext
   confidence: 0.75
-- id: stereo-63
+- id: stereo-64
   pattern: Service
   category: architectural
   source: detected
@@ -14181,7 +16427,7 @@ patterns:
     elementName: AuditRunner
     nodeId: interface-audit-application-AuditRunner
   confidence: 0.9
-- id: stereo-64
+- id: stereo-65
   pattern: Port
   category: architectural
   source: detected
@@ -14193,7 +16439,7 @@ patterns:
     elementName: CourseMapper
     nodeId: interface-audit-application-CourseMapper
   confidence: 0.9
-- id: stereo-65
+- id: stereo-66
   pattern: Service
   category: architectural
   source: detected
@@ -14205,7 +16451,7 @@ patterns:
     elementName: AnalyzerRegistry
     nodeId: interface-audit-application-AnalyzerRegistry
   confidence: 0.9
-- id: stereo-66
+- id: stereo-67
   pattern: Port
   category: architectural
   source: detected
@@ -14217,7 +16463,7 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: stereo-67
+- id: stereo-68
   pattern: Port
   category: architectural
   source: detected
@@ -14229,7 +16475,7 @@ patterns:
     elementName: GetCommand
     nodeId: interface-audit-cli-GetCommand
   confidence: 0.9
-- id: stereo-68
+- id: stereo-69
   pattern: Port
   category: architectural
   source: detected
@@ -14241,7 +16487,7 @@ patterns:
     elementName: DeleteCommand
     nodeId: interface-audit-cli-DeleteCommand
   confidence: 0.9
-- id: stereo-69
+- id: stereo-70
   pattern: Port
   category: architectural
   source: detected
@@ -14253,7 +16499,7 @@ patterns:
     elementName: PruneCommand
     nodeId: interface-audit-cli-PruneCommand
   confidence: 0.9
-- id: stereo-70
+- id: stereo-71
   pattern: Port
   category: architectural
   source: detected
@@ -14265,7 +16511,7 @@ patterns:
     elementName: PlanCommand
     nodeId: interface-audit-cli-PlanCommand
   confidence: 0.9
-- id: stereo-71
+- id: stereo-72
   pattern: Port
   category: architectural
   source: detected
@@ -14277,7 +16523,7 @@ patterns:
     elementName: ReviseCommand
     nodeId: interface-audit-cli-ReviseCommand
   confidence: 0.9
-- id: stereo-72
+- id: stereo-73
   pattern: Port
   category: architectural
   source: detected
@@ -14289,7 +16535,7 @@ patterns:
     elementName: ConfigAnalyzerCommand
     nodeId: interface-audit-cli-ConfigAnalyzerCommand
   confidence: 0.9
-- id: stereo-73
+- id: stereo-74
   pattern: Port
   category: architectural
   source: detected
@@ -14301,7 +16547,31 @@ patterns:
     elementName: StatsAnalyzerCommand
     nodeId: interface-audit-cli-StatsAnalyzerCommand
   confidence: 0.9
-- id: stereo-74
+- id: stereo-75
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: ApproveCommand is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: ApproveCommand
+    nodeId: interface-audit-cli-ApproveCommand
+  confidence: 0.9
+- id: stereo-76
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: RejectCommand is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: RejectCommand
+    nodeId: interface-audit-cli-RejectCommand
+  confidence: 0.9
+- id: stereo-77
   pattern: Value Object
   category: architectural
   source: detected
@@ -14313,7 +16583,7 @@ patterns:
     elementName: GetTasksFilter
     nodeId: model-audit-cli-GetTasksFilter
   confidence: 0.75
-- id: stereo-76
+- id: stereo-79
   pattern: Value Object
   category: architectural
   source: detected
@@ -14325,7 +16595,7 @@ patterns:
     elementName: NlpTokenizerConfig
     nodeId: model-nlp-infrastructure-NlpTokenizerConfig
   confidence: 0.75
-- id: stereo-77
+- id: stereo-80
   pattern: Port
   category: architectural
   source: detected
@@ -14337,7 +16607,7 @@ patterns:
     elementName: Reviser
     nodeId: interface-revision-domain-Reviser
   confidence: 0.9
-- id: stereo-78
+- id: stereo-81
   pattern: Port
   category: architectural
   source: detected
@@ -14349,7 +16619,7 @@ patterns:
     elementName: RevisionValidator
     nodeId: interface-revision-domain-RevisionValidator
   confidence: 0.9
-- id: stereo-79
+- id: stereo-82
   pattern: Port
   category: architectural
   source: detected
@@ -14361,7 +16631,7 @@ patterns:
     elementName: RevisionArtifactStore
     nodeId: interface-revision-domain-RevisionArtifactStore
   confidence: 0.9
-- id: stereo-80
+- id: stereo-83
   pattern: Port
   category: architectural
   source: detected
@@ -14373,7 +16643,7 @@ patterns:
     elementName: CourseElementLocator
     nodeId: interface-revision-domain-CourseElementLocator
   confidence: 0.9
-- id: stereo-81
+- id: stereo-84
   pattern: Port
   category: architectural
   source: detected
@@ -14385,7 +16655,19 @@ patterns:
     elementName: RevisionEngine
     nodeId: interface-revision-domain-RevisionEngine
   confidence: 0.9
-- id: stereo-83
+- id: stereo-87
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: ProposalDecisionService is a port
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: ProposalDecisionService
+    nodeId: interface-revision-domain-ProposalDecisionService
+  confidence: 0.9
+- id: stereo-89
   pattern: Enum
   category: architectural
   source: detected
@@ -14397,7 +16679,7 @@ patterns:
     elementName: RevisionVerdict
     nodeId: model-revision-domain-RevisionVerdict
   confidence: 0.95
-- id: stereo-84
+- id: stereo-90
   pattern: Enum
   category: architectural
   source: detected
@@ -14409,7 +16691,7 @@ patterns:
     elementName: RevisionOutcomeKind
     nodeId: model-revision-domain-RevisionOutcomeKind
   confidence: 0.95
-- id: stereo-85
+- id: stereo-91
   pattern: Value Object
   category: architectural
   source: detected
@@ -14421,7 +16703,7 @@ patterns:
     elementName: CourseElementSnapshot
     nodeId: model-revision-domain-CourseElementSnapshot
   confidence: 0.75
-- id: stereo-86
+- id: stereo-92
   pattern: Value Object
   category: architectural
   source: detected
@@ -14433,7 +16715,7 @@ patterns:
     elementName: RevisionProposal
     nodeId: model-revision-domain-RevisionProposal
   confidence: 0.75
-- id: stereo-87
+- id: stereo-93
   pattern: Value Object
   category: architectural
   source: detected
@@ -14445,7 +16727,7 @@ patterns:
     elementName: RevisionArtifact
     nodeId: model-revision-domain-RevisionArtifact
   confidence: 0.75
-- id: stereo-88
+- id: stereo-94
   pattern: Value Object
   category: architectural
   source: detected
@@ -14457,7 +16739,7 @@ patterns:
     elementName: RevisionOutcome
     nodeId: model-revision-domain-RevisionOutcome
   confidence: 0.75
-- id: stereo-89
+- id: stereo-95
   pattern: Value Object
   category: architectural
   source: detected
@@ -14469,7 +16751,43 @@ patterns:
     elementName: RevisionEngineConfig
     nodeId: model-revision-domain-RevisionEngineConfig
   confidence: 0.75
-- id: anti-90
+- id: stereo-96
+  pattern: Enum
+  category: architectural
+  source: detected
+  severity: info
+  description: ApprovalMode is an enum
+  involvedElements:
+  - type: model
+    moduleName: revision-domain
+    elementName: ApprovalMode
+    nodeId: model-revision-domain-ApprovalMode
+  confidence: 0.95
+- id: stereo-97
+  pattern: Enum
+  category: architectural
+  source: detected
+  severity: info
+  description: ProposalDecisionOutcomeKind is an enum
+  involvedElements:
+  - type: model
+    moduleName: revision-domain
+    elementName: ProposalDecisionOutcomeKind
+    nodeId: model-revision-domain-ProposalDecisionOutcomeKind
+  confidence: 0.95
+- id: stereo-98
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: ProposalDecisionOutcome is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: revision-domain
+    elementName: ProposalDecisionOutcome
+    nodeId: model-revision-domain-ProposalDecisionOutcome
+  confidence: 0.75
+- id: anti-99
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14481,7 +16799,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-91
+- id: anti-100
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14493,7 +16811,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: anti-92
+- id: anti-101
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14505,7 +16823,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: anti-93
+- id: anti-102
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14517,7 +16835,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: anti-94
+- id: anti-103
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14529,7 +16847,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: anti-95
+- id: anti-104
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14541,7 +16859,7 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: anti-96
+- id: anti-105
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14553,7 +16871,7 @@ patterns:
     elementName: NodeDiagnoses
     nodeId: interface-audit-domain-NodeDiagnoses
   confidence: 0.9
-- id: anti-97
+- id: anti-106
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14565,7 +16883,7 @@ patterns:
     elementName: CourseDiagnoses
     nodeId: interface-audit-domain-CourseDiagnoses
   confidence: 0.9
-- id: anti-98
+- id: anti-107
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14577,7 +16895,7 @@ patterns:
     elementName: LevelDiagnoses
     nodeId: interface-audit-domain-LevelDiagnoses
   confidence: 0.9
-- id: anti-99
+- id: anti-108
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14589,7 +16907,7 @@ patterns:
     elementName: TopicDiagnoses
     nodeId: interface-audit-domain-TopicDiagnoses
   confidence: 0.9
-- id: anti-100
+- id: anti-109
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14601,7 +16919,7 @@ patterns:
     elementName: KnowledgeDiagnoses
     nodeId: interface-audit-domain-KnowledgeDiagnoses
   confidence: 0.9
-- id: anti-101
+- id: anti-110
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14613,7 +16931,7 @@ patterns:
     elementName: QuizDiagnoses
     nodeId: interface-audit-domain-QuizDiagnoses
   confidence: 0.9
-- id: anti-102
+- id: anti-111
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -14625,7 +16943,7 @@ patterns:
     elementName: audit-domain
     nodeId: module-audit-domain
   confidence: 0.85
-- id: anti-103
+- id: anti-112
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -14637,7 +16955,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.8
-- id: anti-104
+- id: anti-113
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -14649,7 +16967,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.8
-- id: anti-105
+- id: anti-114
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14661,7 +16979,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-106
+- id: anti-115
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -14673,7 +16991,7 @@ patterns:
     elementName: course-domain
     nodeId: module-course-domain
   confidence: 0.85
-- id: anti-107
+- id: anti-116
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14685,7 +17003,7 @@ patterns:
     elementName: CorrectionContextResolver
     nodeId: interface-refiner-domain-CorrectionContextResolver
   confidence: 0.9
-- id: anti-108
+- id: anti-117
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14697,7 +17015,7 @@ patterns:
     elementName: CorrectionContext
     nodeId: interface-refiner-domain-CorrectionContext
   confidence: 0.9
-- id: anti-109
+- id: anti-118
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -14709,7 +17027,7 @@ patterns:
     elementName: audit-application
     nodeId: module-audit-application
   confidence: 0.85
-- id: anti-110
+- id: anti-119
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14721,7 +17039,7 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: anti-111
+- id: anti-120
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14733,7 +17051,7 @@ patterns:
     elementName: GetCommand
     nodeId: interface-audit-cli-GetCommand
   confidence: 0.9
-- id: anti-112
+- id: anti-121
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14745,7 +17063,7 @@ patterns:
     elementName: DeleteCommand
     nodeId: interface-audit-cli-DeleteCommand
   confidence: 0.9
-- id: anti-113
+- id: anti-122
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14757,7 +17075,7 @@ patterns:
     elementName: PruneCommand
     nodeId: interface-audit-cli-PruneCommand
   confidence: 0.9
-- id: anti-114
+- id: anti-123
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14769,7 +17087,7 @@ patterns:
     elementName: PlanCommand
     nodeId: interface-audit-cli-PlanCommand
   confidence: 0.9
-- id: anti-115
+- id: anti-124
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14781,7 +17099,7 @@ patterns:
     elementName: ReviseCommand
     nodeId: interface-audit-cli-ReviseCommand
   confidence: 0.9
-- id: anti-116
+- id: anti-125
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14793,7 +17111,7 @@ patterns:
     elementName: ConfigAnalyzerCommand
     nodeId: interface-audit-cli-ConfigAnalyzerCommand
   confidence: 0.9
-- id: anti-117
+- id: anti-126
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14805,19 +17123,43 @@ patterns:
     elementName: StatsAnalyzerCommand
     nodeId: interface-audit-cli-StatsAnalyzerCommand
   confidence: 0.9
-- id: anti-118
+- id: anti-127
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: ApproveCommand has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: ApproveCommand
+    nodeId: interface-audit-cli-ApproveCommand
+  confidence: 0.9
+- id: anti-128
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: RejectCommand has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: RejectCommand
+    nodeId: interface-audit-cli-RejectCommand
+  confidence: 0.9
+- id: anti-129
   pattern: God Module
   category: anti-pattern
   source: detected
   severity: warning
-  description: "audit-cli is too large: 8 interfaces"
+  description: "audit-cli is too large: 10 interfaces"
   involvedElements:
   - type: module
     moduleName: audit-cli
     elementName: audit-cli
     nodeId: module-audit-cli
   confidence: 0.85
-- id: anti-119
+- id: anti-130
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14829,7 +17171,7 @@ patterns:
     elementName: NlpTokenizerFactory
     nodeId: interface-nlp-infrastructure-NlpTokenizerFactory
   confidence: 0.9
-- id: anti-120
+- id: anti-131
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14841,7 +17183,7 @@ patterns:
     elementName: Reviser
     nodeId: interface-revision-domain-Reviser
   confidence: 0.9
-- id: anti-121
+- id: anti-132
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14853,7 +17195,7 @@ patterns:
     elementName: RevisionValidator
     nodeId: interface-revision-domain-RevisionValidator
   confidence: 0.9
-- id: anti-122
+- id: anti-133
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14865,7 +17207,7 @@ patterns:
     elementName: RevisionValidatorResult
     nodeId: interface-revision-domain-RevisionValidatorResult
   confidence: 0.9
-- id: anti-123
+- id: anti-134
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14877,7 +17219,7 @@ patterns:
     elementName: CourseElementLocator
     nodeId: interface-revision-domain-CourseElementLocator
   confidence: 0.9
-- id: anti-124
+- id: anti-135
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14889,7 +17231,7 @@ patterns:
     elementName: RevisionEngine
     nodeId: interface-revision-domain-RevisionEngine
   confidence: 0.9
-- id: anti-125
+- id: anti-136
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -14901,12 +17243,48 @@ patterns:
     elementName: RevisionEngineFactory
     nodeId: interface-revision-domain-RevisionEngineFactory
   confidence: 0.9
-- id: anti-126
+- id: anti-137
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: RevisionValidatorFactory has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: RevisionValidatorFactory
+    nodeId: interface-revision-domain-RevisionValidatorFactory
+  confidence: 0.9
+- id: anti-138
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: ProposalDecisionService has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: ProposalDecisionService
+    nodeId: interface-revision-domain-ProposalDecisionService
+  confidence: 0.9
+- id: anti-139
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: ProposalDecisionServiceFactory has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: revision-domain
+    elementName: ProposalDecisionServiceFactory
+    nodeId: interface-revision-domain-ProposalDecisionServiceFactory
+  confidence: 0.9
+- id: anti-140
   pattern: God Module
   category: anti-pattern
   source: detected
   severity: warning
-  description: "revision-domain is too large: 7 interfaces"
+  description: "revision-domain is too large: 10 interfaces"
   involvedElements:
   - type: module
     moduleName: revision-domain

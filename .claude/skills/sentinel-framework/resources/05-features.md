@@ -787,3 +787,45 @@ Este requerimiento define esa fase, llamada **revision**. El alcance es delibera
 
 - **F-CLIRV-J005**: Sandbox workdir override redirects all artifact I/O
 
+### FEAT-REVAPR: Fase de revision con aprobacion humana [F-REVAPR]
+
+> FEAT-REVBYP introdujo la fase de **revision** como un flujo sincronico end-to-end: en una sola invocacion de `revise task <id>`, el sistema genera una propuesta, la valida, la persiste como artefacto y la aplica al curso. En esa iteracion el validator era el **bypass** (auto-aprueba todo), de modo que la aprobacion no involucraba al operador.
+
+Este requerimiento introduce un **modo de aprobacion humana**: la revision se parte en dos fases separadas por un estado persistido de "pendiente de aprobacion". El operador corre primero `revise task <id>`, que produce la propuesta y la deja esperando decision; luego inspecciona el artefacto y corre `approve proposal <id>` o `reject proposal <id>` para decidir. Solo al aprobarse se reescribe el curso. El rechazo devuelve la tarea al estado previo sin tocar el curso.
+
+El objetivo es validar que la pipeline de revision soporta un **punto de corte operativo** entre la generacion de la propuesta y su aplicacion, sin introducir todavia logica de revision real ni workflows multi-etapa.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-REVAPR-R001 | Se agrega `PENDING_APPROVAL` al vocabulario de veredictos | critical | - |
+| F-REVAPR-R002 | `proposal` es un recurso de primera clase en la CLI | critical | No proposal found with id '<id>' |
+| F-REVAPR-R003 | Filtros soportados en `get proposals` | major | Invalid value for --status: '<value>'. Allowed: pending, approved, rejected |
+| F-REVAPR-R004 | `delete` y `prune` sobre `proposal` quedan fuera de alcance | minor | - |
+| F-REVAPR-R005 | El modo de aprobacion se selecciona por variable de entorno | critical | Invalid value for CONTENT_AUDIT_APPROVAL_MODE: '<value>'. Allowed: auto, human |
+| F-REVAPR-R006 | Hay exactamente un validator activo por invocacion | major | - |
+| F-REVAPR-R007 | El validator humano emite `PENDING_APPROVAL` | critical | - |
+| F-REVAPR-R008 | Artefacto persistido con `PENDING_APPROVAL` | critical | - |
+| F-REVAPR-R009 | La tarea queda en estado "esperando aprobacion" | critical | - |
+| F-REVAPR-R010 | Re-revisar una tarea con propuesta pendiente es un error | major | Task '<task-id>' in plan '<plan-id>' already has a pending proposal '<proposalId>'. Decide it with 'approve proposal <proposalId>' or 'reject proposal <proposalId>' first. |
+| F-REVAPR-R011 | `approve proposal <id>` aprueba una propuesta pendiente y aplica al curso | critical | No proposal found with id '<id>' |
+| F-REVAPR-R012 | `reject proposal <id>` rechaza una propuesta pendiente sin tocar el curso | critical | No proposal found with id '<id>' |
+| F-REVAPR-R013 | Decidir dos veces la misma propuesta es un error, no un no-op | major | Cannot <approve|reject> proposal '<id>': its current verdict is '<verdict>', not PENDING_APPROVAL |
+| F-REVAPR-R014 | Transiciones de estado de la tarea bajo el flujo aprobado | critical | - |
+| F-REVAPR-R015 | `approve` y `reject` solo operan sobre el recurso `proposal` | major | Unknown resource '<name>' for verb 'approve' / 'reject'. Supported: proposal |
+| F-REVAPR-R016 | El id de la propuesta impreso por `revise task <id>` en modo humano se puede copiar a `approve` / `reject` | major | - |
+| F-REVAPR-R017 | El workdir override de FEAT-CLIRV R017 aplica a las propuestas | major | - |
+
+**User Journeys:**
+
+- **F-REVAPR-J001**: Flujo humano end-to-end: propuesta -> aprobacion -> aplicado
+
+- **F-REVAPR-J002**: Flujo humano end-to-end: propuesta -> rechazo -> tarea vuelve a PENDING
+
+- **F-REVAPR-J003**: Decidir dos veces la misma propuesta es un error
+
+- **F-REVAPR-J004**: Re-revisar una tarea con propuesta pendiente es un error
+
+- **F-REVAPR-J005**: Listar propuestas por plan y por estado
+

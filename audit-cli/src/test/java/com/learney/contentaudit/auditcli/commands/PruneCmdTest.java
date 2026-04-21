@@ -251,4 +251,23 @@ public class PruneCmdTest {
         assertEquals(0, exit,
                 "Expected success (0) when pruning an empty audit store (R011)");
     }
+
+    @Test
+    @DisplayName("Given 'prune proposals --keep N' is invoked, when the CLI dispatches, then it fails with an unknown/unsupported resource error (proposals are not prunable in this iteration)")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R004")
+    public void givenPruneProposalsKeepNIsInvokedWhenTheCLIDispatchesThenItFailsWithAnUnknownunsupportedResourceErrorProposalsAreNotPrunableInThisIteration() {
+        // Arrange — "proposals" is explicitly NOT a prunable resource in this iteration (F-REVAPR-R004:
+        // "delete proposal <id>" and "prune proposals --keep N" are out of scope; proposals are audit
+        // artefacts whose removal is deferred to a future iteration). PruneCmd only supports "audits"
+        // and "plans" (FEAT-CLIRV R003/R020).
+
+        // Act — attempt to prune the "proposals" resource with a valid --keep value
+        int exit = cmd.prune("proposals", 1);
+
+        // Assert — non-zero exit; "proposals" is rejected as an unsupported resource for prune (R004)
+        assertNotEquals(0, exit,
+                "Expected non-zero exit when 'prune proposals --keep N' is invoked: "
+                        + "'proposals' is not a prunable resource in this iteration (F-REVAPR-R004)");
+    }
 }

@@ -11,9 +11,13 @@ import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionEngine;
 import com.learney.contentaudit.revisiondomain.RevisionOutcome;
 import com.learney.contentaudit.revisiondomain.RevisionOutcomeKind;
+import com.learney.contentaudit.revisiondomain.RevisionProposal;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Field;
@@ -265,5 +269,74 @@ public class ReviseCmdTest {
         } finally {
             System.setErr(originalErr);
         }
+    }
+
+    @Test
+    @DisplayName("Given revise runs in human mode and the engine returns PENDING_APPROVAL_PERSISTED, when the command finishes, then stdout contains the assigned proposalId in a form suitable for copy-paste to 'approve proposal <id>' / 'reject proposal <id>'")
+    @Tag("FEAT-REVAPR")
+    @Tag("F-REVAPR-R016")
+    public void givenReviseRunsInHumanModeAndTheEngineReturnsPENDINGAPPROVALPERSISTEDWhenTheCommandFinishesThenStdoutContainsTheAssignedProposalIdInAFormSuitableForCopypasteToApproveProposalIdRejectProposalId() {
+        // Arrange — a plan with a single task exists
+        String taskId = "task-007";
+        String planId = "plan-human-001";
+        String proposalId = "task-007-20260420T123000Z";
+
+        RefinementTask task = task(taskId);
+        RefinementPlan latestPlan = plan(planId, "audit-007", List.of(task));
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(latestPlan));
+
+        // Build a RevisionProposal carrying the known proposalId
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null);
+        RevisionProposal proposal = new RevisionProposal(
+                proposalId,
+                taskId,
+                planId,
+                "audit-007",
+                DiagnosisKind.SENTENCE_LENGTH,
+                AuditTarget.QUIZ,
+                "quiz-001",
+                snapshot,
+                snapshot,
+                "human approval pending",
+                "bypass",
+                Instant.parse("2026-04-20T12:30:00Z")
+        );
+
+        // Build the artifact with verdict PENDING_APPROVAL (course untouched)
+        RevisionArtifact artifact = new RevisionArtifact(
+                proposal,
+                RevisionVerdict.PENDING_APPROVAL,
+                null,   // rejectionReason: null when PENDING_APPROVAL
+                RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED,
+                null,   // decidedAt: null — not yet decided
+                null    // decisionNote: null — not yet decided
+        );
+
+        RevisionOutcome outcome = new RevisionOutcome(
+                RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED,
+                artifact,
+                null
+        );
+        when(revisionEngine.revise(eq(planId), eq(taskId), any(Path.class))).thenReturn(outcome);
+
+        // Capture stdout
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            // Act — invoke revise without --plan (uses loadLatest)
+            exit = reviseCmd.revise(taskId, null);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — R016: stdout must contain the proposalId so the operator can copy-paste it
+        // to "approve proposal <id>" or "reject proposal <id>"
+        String stdoutOutput = outBuf.toString();
+        assertEquals(0, exit,
+                "PENDING_APPROVAL_PERSISTED outcome should exit 0 (propose phase succeeded)");
+        assertTrue(stdoutOutput.contains(proposalId),
+                "stdout must contain the proposalId '" + proposalId + "' for copy-paste, got: " + stdoutOutput);
     }
 }

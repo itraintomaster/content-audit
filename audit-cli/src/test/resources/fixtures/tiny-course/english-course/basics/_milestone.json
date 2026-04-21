@@ -1,17 +1,15 @@
 {
-  "_id": {
-    "$oid": "aaaaaaaaaaaaaaaaaaaaaaad"
+  "_id" : {
+    "$oid" : "aaaaaaaaaaaaaaaaaaaaaaad"
   },
-  "children": [
-    {
-      "$oid": "aaaaaaaaaaaaaaaaaaaaaaae"
-    }
-  ],
-  "code": "aaaaaaaaaaaaaaaaaaaaaaad",
-  "kind": "MILESTONE",
-  "label": "Basics",
-  "oldId": "00000000-0000-0000-0000-000000000001",
-  "parentId": {
-    "$oid": "aaaaaaaaaaaaaaaaaaaaaaac"
+  "children" : [ {
+    "$oid" : "aaaaaaaaaaaaaaaaaaaaaaae"
+  } ],
+  "code" : "aaaaaaaaaaaaaaaaaaaaaaad",
+  "kind" : "MILESTONE",
+  "label" : "Basics",
+  "oldId" : "00000000-0000-0000-0000-000000000001",
+  "parentId" : {
+    "$oid" : "aaaaaaaaaaaaaaaaaaaaaaac"
   }
 }

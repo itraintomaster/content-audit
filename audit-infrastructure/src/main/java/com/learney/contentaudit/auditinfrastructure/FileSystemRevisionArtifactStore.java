@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -148,4 +149,85 @@ public class FileSystemRevisionArtifactStore implements RevisionArtifactStore {
 
         return mapper;
     }
+
+    @Override
+    public Optional<RevisionArtifact> findByProposalId(String proposalId, Optional<String> planId) {
+        if (planId.isPresent()) {
+            // Direct path: look under <baseDir>/.content-audit/revisions/<planId>/<proposalId>.json
+            return load(planId.get(), proposalId);
+        }
+
+        // Scan path: iterate all plan subdirectories
+        Path revisionsDir = resolveRevisionsDir();
+        if (!Files.isDirectory(revisionsDir)) {
+            return Optional.empty();
+        }
+
+        List<Path> planDirs;
+        try (Stream<Path> stream = Files.list(revisionsDir)) {
+            planDirs = stream.filter(Files::isDirectory).sorted().toList();
+        } catch (IOException e) {
+            throw new AuditPersistenceException(
+                    "Failed to list plan directories under " + revisionsDir + ": " + e.getMessage(), e);
+        }
+
+        for (Path planDir : planDirs) {
+            Path candidate = planDir.resolve(proposalId + FILE_SUFFIX);
+            if (Files.exists(candidate)) {
+                return Optional.of(loadFromFile(candidate));
+            }
+        }
+
+        return Optional.empty();
+    }
+
+    @Override
+    public boolean hasPendingProposalForTask(String planId, String taskId) {
+        Path planDir = resolveRevisionsDir().resolve(planId);
+        if (!Files.isDirectory(planDir)) {
+            return false;
+        }
+
+        List<Path> files;
+        try (Stream<Path> stream = Files.list(planDir)) {
+            files = stream.filter(p -> p.getFileName().toString().endsWith(FILE_SUFFIX)).toList();
+        } catch (IOException e) {
+            throw new AuditPersistenceException(
+                    "Failed to list revision files for plan " + planId + ": " + e.getMessage(), e);
+        }
+
+        for (Path file : files) {
+            RevisionArtifact artifact = loadFromFile(file);
+            if (taskId.equals(artifact.getProposal().getTaskId())
+                    && RevisionVerdict.PENDING_APPROVAL == artifact.getVerdict()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public List<RevisionArtifact> list() {
+        Path revisionsDir = resolveRevisionsDir();
+        if (!Files.isDirectory(revisionsDir)) {
+            return new ArrayList<>();
+        }
+
+        List<Path> planDirs;
+        try (Stream<Path> stream = Files.list(revisionsDir)) {
+            planDirs = stream.filter(Files::isDirectory).sorted().toList();
+        } catch (IOException e) {
+            throw new AuditPersistenceException(
+                    "Failed to list plan directories under " + revisionsDir + ": " + e.getMessage(), e);
+        }
+
+        List<RevisionArtifact> all = new ArrayList<>();
+        for (Path planDir : planDirs) {
+            String dirPlanId = planDir.getFileName().toString();
+            all.addAll(listByPlan(dirPlanId));
+        }
+        return all;
+    }
+
 }

@@ -1,118 +1,154 @@
-[
-  {
-    "_id": {
-      "$oid": "bbbbbbbbbbbbbbbbbbbbbb01"
-    },
-    "id": "bbbbbbbbbbbbbbbbbbbbbb01",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "aaaaaaaaaaaaaaaaaaaaaaab"
-    },
-    "imageUrl": "",
-    "successMessage": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "answerAudioUrl": "",
-    "miniTheory": "",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Affirmative sentences in the present tense",
-    "instructions": "Write the affirmative form in the present tense.",
-    "form": {
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "I",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "walk"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(walk) to school.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE"
-    },
-    "theoryId": "basics.01.Present_Tense_Affirmative",
-    "answerImageUrl": "",
-    "translation": "I walk to school.",
-    "topicName": "Present Tense"
+[ {
+  "_id" : {
+    "$oid" : "bbbbbbbbbbbbbbbbbbbbbb01"
   },
-  {
-    "_id": {
-      "$oid": "bbbbbbbbbbbbbbbbbbbbbb02"
+  "id" : "bbbbbbbbbbbbbbbbbbbbbb01",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "aaaaaaaaaaaaaaaaaaaaaaab"
+  },
+  "title" : "Affirmative sentences in the present tense",
+  "instructions" : "Write the affirmative form in the present tense.",
+  "translation" : "I walk to school.",
+  "theoryId" : "basics.01.Present_Tense_Affirmative",
+  "topicName" : "Present Tense",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
     },
-    "id": "bbbbbbbbbbbbbbbbbbbbbb02",
-    "kind": "CLOZE",
-    "knowledgeId": {
-      "$oid": "aaaaaaaaaaaaaaaaaaaaaaab"
-    },
-    "imageUrl": "",
-    "successMessage": "",
-    "retries": {
-      "$numberDouble": "0.0"
-    },
-    "audioUrl": "",
-    "answerAudioUrl": "",
-    "miniTheory": "",
-    "code": "",
-    "difficulty": {
-      "$numberDouble": "0.0"
-    },
-    "noScoreRetries": {
-      "$numberDouble": "0.0"
-    },
-    "title": "Affirmative sentences in the present tense",
-    "instructions": "Write the affirmative form in the present tense.",
-    "form": {
-      "incidence": {
-        "$numberDouble": "1.0"
-      },
-      "label": "",
-      "name": "",
-      "sentenceParts": [
-        {
-          "kind": "TEXT",
-          "text": "She",
-          "options": null
-        },
-        {
-          "kind": "CLOZE",
-          "text": "",
-          "options": [
-            "reads"
-          ]
-        },
-        {
-          "kind": "TEXT",
-          "text": "(read) books.",
-          "options": null
-        }
-      ],
-      "kind": "CLOZE"
-    },
-    "theoryId": "basics.01.Present_Tense_Affirmative",
-    "answerImageUrl": "",
-    "translation": "She reads books.",
-    "topicName": "Present Tense"
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "walk" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(walk) to school.",
+      "options" : null
+    } ]
   }
-]
+}, {
+  "_id" : {
+    "$oid" : "bbbbbbbbbbbbbbbbbbbbbb02"
+  },
+  "id" : "bbbbbbbbbbbbbbbbbbbbbb02",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "aaaaaaaaaaaaaaaaaaaaaaab"
+  },
+  "title" : "Affirmative sentences in the present tense",
+  "instructions" : "Write the affirmative form in the present tense.",
+  "translation" : "She reads books.",
+  "theoryId" : "basics.01.Present_Tense_Affirmative",
+  "topicName" : "Present Tense",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "reads" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(read) books.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "bbbbbbbbbbbbbbbbbbbbbb03"
+  },
+  "id" : "bbbbbbbbbbbbbbbbbbbbbb03",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "aaaaaaaaaaaaaaaaaaaaaaab"
+  },
+  "title" : "Affirmative sentences in the present tense",
+  "instructions" : "Write the affirmative form in the present tense.",
+  "translation" : "Every morning my brother and I always walk together to the school near the library and then study mathematics and English and science with our very patient teacher.",
+  "theoryId" : "basics.01.Present_Tense_Affirmative",
+  "topicName" : "Present Tense",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "",
+  "answerImageUrl" : "",
+  "miniTheory" : "",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Every morning my brother and I always walk together to the school near the library and then",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "study" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(study) mathematics and English and science with our very patient teacher.",
+      "options" : null
+    } ]
+  }
+} ]
