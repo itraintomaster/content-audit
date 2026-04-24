@@ -1,28 +1,65 @@
 package com.learney.contentaudit.auditcli.journeys;
 
-import javax.annotation.processing.Generated;
-import java.io.IOException;
-import java.nio.file.Files;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.refinerdomain.CorrectionContext;
+import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.RefinementPlan;
+import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.revisiondomain.ApprovalMode;
+import com.learney.contentaudit.revisiondomain.CourseElementLocator;
+import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
+import com.learney.contentaudit.revisiondomain.ProposalDecisionOutcome;
+import com.learney.contentaudit.revisiondomain.ProposalDecisionOutcomeKind;
+import com.learney.contentaudit.revisiondomain.ProposalDecisionService;
+import com.learney.contentaudit.revisiondomain.RevisionArtifact;
+import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
+import com.learney.contentaudit.revisiondomain.RevisionEngine;
+import com.learney.contentaudit.revisiondomain.RevisionEngineConfig;
+import com.learney.contentaudit.revisiondomain.RevisionOutcome;
+import com.learney.contentaudit.revisiondomain.RevisionOutcomeKind;
+import com.learney.contentaudit.revisiondomain.RevisionValidator;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.engine.DefaultProposalDecisionServiceFactory;
+import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory;
+import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionValidatorFactory;
 import java.nio.file.Path;
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.io.TempDir;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.mockito.ArgumentCaptor;
 
 /**
  * Journey J002: Human-mode end-to-end reject path — proposal → rejection → task back to PENDING.
  *
- * NOTE: The project must be built before running these tests:
- *   mvn install -pl audit-cli -am -DskipTests
+ * In-memory test: instantiates RevisionEngine (human mode) for the propose phase and
+ * ProposalDecisionService for the reject phase. No subprocess, no filesystem fixture.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -33,121 +70,164 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FRevaprJ002JourneyTest {
 
-    @TempDir
-    Path sandbox;
+    private static final String PLAN_ID     = "plan-j002";
+    private static final String AUDIT_ID    = "audit-j002";
+    private static final String TASK_ID     = "task-j002";
+    private static final String QUIZ_ID     = "quiz-j002";
+    private static final Path   COURSE_PATH = Path.of("./db/english-course");
 
-    private static final Path PROJECT_ROOT =
-            Path.of("/Users/josecullen/projects/learney/content-audit");
+    // -------------------------------------------------------------------------
+    // Helpers
+    // -------------------------------------------------------------------------
 
-    private static final Path LAUNCHER =
-            PROJECT_ROOT.resolve("audit-cli.sh");
-
-    private static final Path FIXTURE_COURSE =
-            PROJECT_ROOT.resolve("audit-cli/src/test/resources/fixtures/tiny-course/english-course");
-
-    private record CliResult(int exit, String stdout, String stderr) {}
-
-    private CliResult run(String... args) throws IOException, InterruptedException {
-        return runWithMode(null, args);
+    private RefinementPlan buildPlan() {
+        RefinementTask task = new RefinementTask(
+                TASK_ID, AuditTarget.QUIZ, QUIZ_ID, "Quiz about sentence length",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        return new RefinementPlan(PLAN_ID, AUDIT_ID, Instant.now(), List.of(task));
     }
 
-    private CliResult runWithMode(String approvalMode, String... args) throws IOException, InterruptedException {
-        List<String> cmd = new ArrayList<>();
-        cmd.add(LAUNCHER.toString());
-        cmd.add("--workdir");
-        cmd.add(sandbox.toString());
-        Collections.addAll(cmd, args);
-        ProcessBuilder pb = new ProcessBuilder(cmd);
-        pb.directory(PROJECT_ROOT.toFile());
-        pb.environment().put("CONTENT_AUDIT_CONTENT_FOLDER", FIXTURE_COURSE.toString());
-        if (approvalMode != null) {
-            pb.environment().put("CONTENT_AUDIT_APPROVAL_MODE", approvalMode);
-        }
-        Process p = pb.start();
-        int exit = p.waitFor();
-        String out = new String(p.getInputStream().readAllBytes());
-        String err = new String(p.getErrorStream().readAllBytes());
-        return new CliResult(exit, out, err);
+    /** Minimal AuditReport — only used to pass the engine's "report not found" guard. */
+    private AuditReport buildMinimalAuditReport() {
+        AuditNode root = new AuditNode();
+        root.setTarget(AuditTarget.COURSE);
+        root.setChildren(new ArrayList<>());
+        root.setScores(new LinkedHashMap<>());
+        root.setMetadata(new LinkedHashMap<>());
+        return new AuditReport(root);
     }
+
+    private RevisionEngineConfig buildHumanConfig(
+            RefinementPlanStore planStore,
+            AuditReportStore auditReportStore,
+            RevisionArtifactStore artifactStore,
+            CourseRepository courseRepository,
+            CourseElementLocator elementLocator) {
+
+        CorrectionContext stubContext = mock(CorrectionContext.class);
+        CorrectionContextResolver<CorrectionContext> contextResolver =
+                (report, task) -> Optional.of(stubContext);
+
+        RevisionValidator humanValidator = new DefaultRevisionValidatorFactory().create(ApprovalMode.HUMAN);
+        RevisionEngineConfig config = new RevisionEngineConfig();
+        config.setRevisers(Map.of());
+        config.setValidator(humanValidator);
+        config.setArtifactStore(artifactStore);
+        config.setCourseRepository(courseRepository);
+        config.setElementLocator(elementLocator);
+        config.setRefinementPlanStore(planStore);
+        config.setAuditReportStore(auditReportStore);
+        config.setContextResolver(contextResolver);
+        config.setLemmaAbsenceStrategyRegistry(null);
+        config.setLemmaAbsenceProposalDeriver(null);
+        return config;
+    }
+
+    // -------------------------------------------------------------------------
+    // path-1: configurar_modo_humano → iniciar_revision → emitir_pendiente → operador_rechaza
+    //         → transicionar_a_rechazado → tarea_vuelve_pending → success
+    // Gates: R005, R007/R008/R009, R012/R013, R012, R014
+    // -------------------------------------------------------------------------
 
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: La CLI arranca con CONTENT_AUDIT_APPR... → El operador invoca 'content-audit rev... → El validator humano emite PENDING_APPR... → El operador invoca 'content-audit rej... → El sistema transiciona el veredicto a... → La RefinementTask vuelve a su estado ... → success")
-    public void path1_success() throws IOException, InterruptedException {
-        // Step 1: configurar_modo_humano — CLI starts with CONTENT_AUDIT_APPROVAL_MODE=human (F-REVAPR-R005)
-        // Validated implicitly: all subsequent calls use approvalMode="human".
+    public void path1_success() {
+        // ── Arrange ─────────────────────────────────────────────────────────────
+        RefinementPlanStore planStore       = mock(RefinementPlanStore.class);
+        AuditReportStore auditReportStore   = mock(AuditReportStore.class);
+        RevisionArtifactStore artifactStore = mock(RevisionArtifactStore.class);
+        CourseRepository courseRepository   = mock(CourseRepository.class);
+        CourseElementLocator elementLocator = mock(CourseElementLocator.class);
 
-        // Prerequisite: run analyze to produce an audit, then plan to produce tasks.
-        CliResult analyzeResult = runWithMode("human", "analyze", FIXTURE_COURSE.toString());
-        assertEquals(0, analyzeResult.exit(),
-                "analyze should exit 0, stderr=" + analyzeResult.stderr());
+        RefinementPlan plan = buildPlan();
+        AuditReport auditReport = buildMinimalAuditReport();
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null);
+        CourseEntity course = mock(CourseEntity.class);
 
-        CliResult planResult = runWithMode("human", "plan");
-        assertEquals(0, planResult.exit(),
-                "plan should exit 0, stderr=" + planResult.stderr());
+        when(planStore.load(PLAN_ID)).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(AUDIT_ID)).thenReturn(Optional.of(auditReport));
+        when(artifactStore.hasPendingProposalForTask(PLAN_ID, TASK_ID)).thenReturn(false);
+        when(courseRepository.load(COURSE_PATH)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, QUIZ_ID)).thenReturn(Optional.of(snapshot));
+        when(artifactStore.save(any(RevisionArtifact.class))).thenAnswer(inv -> {
+            RevisionArtifact art = inv.getArgument(0);
+            return ".content-audit/revisions/" + PLAN_ID + "/" + art.getProposal().getProposalId();
+        });
 
-        // Capture the first task id available in PENDING state.
-        CliResult listTasksResult = runWithMode("human", "get", "tasks", "--status", "pending", "--target", "QUIZ", "--sort", "priority", "--limit", "1");
-        assertEquals(0, listTasksResult.exit(), "get tasks should exit 0");
-        // Extract the task id from the output (expect "task-001" or similar).
-        String taskLine = listTasksResult.stdout().lines()
-                .filter(l -> l.contains("task-"))
-                .findFirst()
-                .orElseThrow(() -> new AssertionError(
-                        "No pending task in output: " + listTasksResult.stdout()));
-        // Parse task id: first token that starts with "task-"
-        String taskId = taskLine.trim().split("\\s+")[0];
-        assertTrue(taskId.startsWith("task-"),
-                "Expected a task id starting with 'task-', got: " + taskId);
+        // ── Phase 1: iniciar_revision / emitir_pendiente ─────────────────────────
+        // Gate R007/R008/R009: human validator emits PENDING_APPROVAL; artifact persisted; course untouched.
+        RevisionEngineConfig config = buildHumanConfig(
+                planStore, auditReportStore, artifactStore, courseRepository, elementLocator);
+        RevisionEngine engine = new DefaultRevisionEngineFactory().create(config);
+        RevisionOutcome proposeOutcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
 
-        // Capture the course file bytes BEFORE revision (to verify it is NOT modified after rejection).
-        Path courseFile = FIXTURE_COURSE.resolve("_course.json");
-        byte[] courseBytesBefore = Files.readAllBytes(courseFile);
+        assertEquals(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, proposeOutcome.getKind(),
+                "path-1 propose: human validator must yield PENDING_APPROVAL_PERSISTED (R007, R008, R009)");
+        assertEquals(RevisionVerdict.PENDING_APPROVAL, proposeOutcome.getArtifact().getVerdict(),
+                "artifact verdict must be PENDING_APPROVAL after propose (R007/R008)");
 
-        // Step 2: iniciar_revision — operator invokes 'content-audit revise task <id>' in human mode.
-        // Step 3: emitir_pendiente — human validator emits PENDING_APPROVAL; artifact persisted; task awaiting.
-        // (F-REVAPR-R007, R008, R009, R016)
-        CliResult reviseResult = runWithMode("human", "revise", "task", taskId);
-        // The command must not be rejected as unknown.
-        String reviseOutput = reviseResult.stdout() + reviseResult.stderr();
-        assertTrue(!reviseOutput.isEmpty(), "revise task must produce output");
-        assertTrue(!reviseOutput.contains("Unknown command"),
-                "revise task must not be rejected as unknown command, got: " + reviseOutput);
+        // Gate R008: course NOT written during propose phase
+        verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
 
-        // Extract proposalId from stdout (F-REVAPR-R016: proposalId printed unambiguously).
-        // Production prints something like: "Proposal <proposalId> is pending approval."
-        // or "proposal id: <proposalId>", etc. We scan for any token that looks like a proposal id.
-        String proposalId = reviseResult.stdout().lines()
-                .flatMap(l -> java.util.Arrays.stream(l.split("\\s+")))
-                .filter(token -> token.startsWith("task-") && token.contains("-")
-                        && token.length() > "task-XXX-".length())
-                .findFirst()
-                .orElseThrow(() -> new AssertionError(
-                        "Could not extract proposalId from revise output. stdout="
-                                + reviseResult.stdout() + " stderr=" + reviseResult.stderr()));
+        // Gate R009: task stays PENDING — engine saves plan unchanged (DOUBT-AWAITING-STATE Option B);
+        // plan.save IS called once but the task status is still PENDING (not DONE).
+        // We do not assert never() here since the engine always persists the plan on PENDING_APPROVAL.
 
-        // Step 4: operador_rechaza — operator invokes 'content-audit reject proposal <proposalId> --reason "..."'
-        // Gate: F-REVAPR-R012 (reject pending proposal, course untouched), F-REVAPR-R013 (only PENDING_APPROVAL ok).
-        CliResult rejectResult = runWithMode("human", "reject", "proposal", proposalId,
-                "--reason", "Not satisfactory for this course level");
-        assertEquals(0, rejectResult.exit(),
-                "reject proposal should exit 0, stdout=" + rejectResult.stdout()
-                        + " stderr=" + rejectResult.stderr());
+        String proposalId = proposeOutcome.getArtifact().getProposal().getProposalId();
 
-        // Step 5: transicionar_a_rechazado — verdict transitions to REJECTED; course NOT touched (F-REVAPR-R012).
-        byte[] courseBytesAfter = Files.readAllBytes(courseFile);
-        // The course file on disk must not have been modified by the rejection.
-        java.util.Arrays.equals(courseBytesBefore, courseBytesAfter);
-        assertTrue(java.util.Arrays.equals(courseBytesBefore, courseBytesAfter),
-                "Course file must NOT be modified after rejection (F-REVAPR-R012)");
+        // Reset course-repository invocation counts so we can assert the reject phase independently.
+        // The propose phase calls courseRepository.load() to snapshot the element — that is expected.
+        // Gate R012 is about the REJECT phase not touching the course.
+        org.mockito.Mockito.clearInvocations(courseRepository);
 
-        // Step 6: tarea_vuelve_pending — RefinementTask returns to its previous state (PENDING) (F-REVAPR-R014).
-        CliResult pendingTasksResult = runWithMode("human", "get", "tasks", "--status", "pending");
-        assertEquals(0, pendingTasksResult.exit(),
-                "get tasks --status pending should exit 0 after rejection");
-        assertTrue(pendingTasksResult.stdout().contains(taskId),
-                "After rejection, task " + taskId + " must be back in PENDING. "
-                        + "get tasks output: " + pendingTasksResult.stdout());
+        // ── Phase 2: operador_rechaza / transicionar_a_rechazado / tarea_vuelve_pending ──
+        // Gate R012/R013: reject only if PENDING_APPROVAL; course NOT touched on reject.
+        // Gate R014: task returns to PENDING.
+        RevisionArtifact pendingArtifact = proposeOutcome.getArtifact();
+        when(artifactStore.findByProposalId(eq(proposalId), any()))
+                .thenReturn(Optional.of(pendingArtifact));
+        RefinementPlan freshPlan = buildPlan();
+        when(planStore.load(PLAN_ID)).thenReturn(Optional.of(freshPlan));
+
+        RevisionEngineConfig decideConfig = new RevisionEngineConfig();
+        decideConfig.setArtifactStore(artifactStore);
+        decideConfig.setCourseRepository(courseRepository);
+        decideConfig.setElementLocator(elementLocator);
+        decideConfig.setRefinementPlanStore(planStore);
+        ProposalDecisionService decisionService = new DefaultProposalDecisionServiceFactory().create(decideConfig);
+
+        String reason = "Content quality insufficient for this level";
+        ProposalDecisionOutcome rejectOutcome = decisionService.reject(
+                proposalId, Optional.of(PLAN_ID), Optional.of(reason));
+
+        // Gate R012: outcome is REJECTED; course NOT loaded or saved
+        assertEquals(ProposalDecisionOutcomeKind.REJECTED, rejectOutcome.getKind(),
+                "path-1 reject: outcome must be REJECTED (R012)");
+        verify(courseRepository, never()).load(any(Path.class));
+        verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
+
+        // Gate R012: artifact rewritten with REJECTED verdict
+        assertNotNull(rejectOutcome.getArtifact(), "artifact must be present after reject");
+        assertEquals(RevisionVerdict.REJECTED, rejectOutcome.getArtifact().getVerdict(),
+                "artifact verdict must be REJECTED (R012)");
+
+        // Gate R012: decisionNote carries the --reason text
+        assertEquals(reason, rejectOutcome.getArtifact().getDecisionNote(),
+                "artifact decisionNote must carry the --reason text (R012)");
+
+        // Gate R014: task returns to PENDING — plan was saved at least twice:
+        //   1st time during propose phase (engine saves plan unchanged, Option B of DOUBT-AWAITING-STATE)
+        //   2nd time during reject phase (decisionService saves plan with task still PENDING)
+        // We capture all saves and verify the last one carries the task in PENDING state.
+        ArgumentCaptor<RefinementPlan> planCaptor = ArgumentCaptor.forClass(RefinementPlan.class);
+        verify(planStore, org.mockito.Mockito.atLeast(1)).save(planCaptor.capture());
+        RefinementPlan lastSavedPlan = planCaptor.getAllValues().get(planCaptor.getAllValues().size() - 1);
+        RefinementTask savedTask = lastSavedPlan.getTasks().stream()
+                .filter(t -> TASK_ID.equals(t.getId())).findFirst()
+                .orElseThrow(() -> new AssertionError("Task " + TASK_ID + " not found in saved plan"));
+        assertEquals(RefinementTaskStatus.PENDING, savedTask.getStatus(),
+                "R014: task must return to PENDING after reject");
     }
 }

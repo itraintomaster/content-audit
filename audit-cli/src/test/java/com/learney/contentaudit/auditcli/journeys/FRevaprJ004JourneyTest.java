@@ -1,34 +1,63 @@
 package com.learney.contentaudit.auditcli.journeys;
 
-import javax.annotation.processing.Generated;
-import java.io.IOException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.refinerdomain.CorrectionContext;
+import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.RefinementPlan;
+import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.revisiondomain.ApprovalMode;
+import com.learney.contentaudit.revisiondomain.CourseElementLocator;
+import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
+import com.learney.contentaudit.revisiondomain.RevisionArtifact;
+import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
+import com.learney.contentaudit.revisiondomain.RevisionEngine;
+import com.learney.contentaudit.revisiondomain.RevisionEngineConfig;
+import com.learney.contentaudit.revisiondomain.RevisionOutcome;
+import com.learney.contentaudit.revisiondomain.RevisionOutcomeKind;
+import com.learney.contentaudit.revisiondomain.RevisionValidator;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory;
+import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionValidatorFactory;
 import java.nio.file.Path;
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.io.TempDir;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Journey J004: Re-revisar una tarea con propuesta pendiente es un error.
+ * Journey J004: Re-revisar una tarea con propuesta pendiente es un error (F-REVAPR-R010).
  *
- * Covers F-REVAPR-R010: a second 'revise task <id>' on a task that already has a
- * PENDING_APPROVAL proposal must be rejected with an explicit error, not silently
- * create another pending proposal.
+ * In-memory test: invokes RevisionEngine (human mode) directly with a mocked
+ * RevisionArtifactStore. The store's hasPendingProposalForTask() response controls
+ * which path the engine takes.
  *
- * NOTE: The project must be built before running these tests:
- *   mvn install -pl audit-cli -am -DskipTests
- *
- * Both paths run with CONTENT_AUDIT_APPROVAL_MODE=human so the validator produces
- * PENDING_APPROVAL verdicts.
+ * Path-1: task has no pending proposal → generar_nueva_propuesta → PENDING_APPROVAL_PERSISTED (success).
+ * Path-2: task already has a pending proposal → rechazar_por_pendiente → ALREADY_PENDING_DECISION (failure).
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -39,132 +68,164 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FRevaprJ004JourneyTest {
 
-    @TempDir
-    Path sandbox;
+    private static final String PLAN_ID     = "plan-j004";
+    private static final String AUDIT_ID    = "audit-j004";
+    private static final String TASK_ID     = "task-j004";
+    private static final String QUIZ_ID     = "quiz-j004";
+    private static final Path   COURSE_PATH = Path.of("./db/english-course");
 
-    private static final Path PROJECT_ROOT =
-            Path.of("/Users/josecullen/projects/learney/content-audit");
+    // -------------------------------------------------------------------------
+    // Helpers
+    // -------------------------------------------------------------------------
 
-    private static final Path LAUNCHER =
-            PROJECT_ROOT.resolve("audit-cli.sh");
+    private RefinementPlan buildPlan() {
+        RefinementTask task = new RefinementTask(
+                TASK_ID, AuditTarget.QUIZ, QUIZ_ID, "Quiz about sentence length",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        return new RefinementPlan(PLAN_ID, AUDIT_ID, Instant.now(), List.of(task));
+    }
 
-    private static final Path FIXTURE_COURSE =
-            PROJECT_ROOT.resolve("audit-cli/src/test/resources/fixtures/tiny-course/english-course");
-
-    private record CliResult(int exit, String stdout, String stderr) {}
-
-    /**
-     * Runs the CLI with the given approval mode, pointing artifact I/O at the sandbox.
-     */
-    private CliResult run(String approvalMode, String... args) throws IOException, InterruptedException {
-        List<String> cmd = new ArrayList<>();
-        cmd.add(LAUNCHER.toString());
-        cmd.add("--workdir");
-        cmd.add(sandbox.toString());
-        Collections.addAll(cmd, args);
-        ProcessBuilder pb = new ProcessBuilder(cmd);
-        pb.directory(PROJECT_ROOT.toFile());
-        pb.environment().put("CONTENT_AUDIT_CONTENT_FOLDER", FIXTURE_COURSE.toString());
-        pb.environment().put("CONTENT_AUDIT_APPROVAL_MODE", approvalMode);
-        Process p = pb.start();
-        int exit = p.waitFor();
-        String out = new String(p.getInputStream().readAllBytes());
-        String err = new String(p.getErrorStream().readAllBytes());
-        return new CliResult(exit, out, err);
+    /** Minimal AuditReport — only used to pass the engine's "report not found" guard. */
+    private AuditReport buildMinimalAuditReport() {
+        AuditNode root = new AuditNode();
+        root.setTarget(AuditTarget.COURSE);
+        root.setChildren(new ArrayList<>());
+        root.setScores(new LinkedHashMap<>());
+        root.setMetadata(new LinkedHashMap<>());
+        return new AuditReport(root);
     }
 
     /**
-     * Seeds the sandbox with an audit + plan using auto mode (the factory is implemented for auto).
-     * Returns the id of the first pending task listed by 'get tasks --status pending'.
-     * Seeding uses auto mode because analyze/plan do not depend on the validator — but if the
-     * factory is constructed eagerly at startup, human mode would fail before reaching analyze.
-     * Using auto for seeding is safe: the plan and task ids are mode-independent artifacts.
+     * Builds a RevisionEngine wired for human-mode, with the caller-supplied
+     * artifactStore so tests can control hasPendingProposalForTask().
      */
-    private String seedAndGetTaskId() throws IOException, InterruptedException {
-        CliResult analyzeResult = run("auto", "analyze", FIXTURE_COURSE.toString());
-        assertEquals(0, analyzeResult.exit(),
-                "analyze must exit 0, stderr=" + analyzeResult.stderr());
+    private RevisionEngine buildHumanEngine(
+            RefinementPlanStore planStore,
+            AuditReportStore auditReportStore,
+            RevisionArtifactStore artifactStore,
+            CourseRepository courseRepository,
+            CourseElementLocator elementLocator) {
 
-        CliResult planResult = run("auto", "plan");
-        assertEquals(0, planResult.exit(),
-                "plan must exit 0, stderr=" + planResult.stderr());
+        // IdentityReviser does not inspect the context — any non-empty Optional satisfies the engine.
+        CorrectionContext stubContext = mock(CorrectionContext.class);
+        CorrectionContextResolver<CorrectionContext> contextResolver =
+                (report, task) -> Optional.of(stubContext);
 
-        CliResult tasksResult = run("auto", "get", "tasks", "--status", "pending", "--target", "QUIZ", "--sort", "priority", "--limit", "1");
-        assertEquals(0, tasksResult.exit(),
-                "get tasks must exit 0, stderr=" + tasksResult.stderr());
-
-        // The task id appears on the first non-header output line; "task-001" is expected for this fixture.
-        String taskId = tasksResult.stdout().lines()
-                .filter(l -> l.contains("task-"))
-                .findFirst()
-                .map(l -> {
-                    // Extract the token that starts with "task-"
-                    for (String token : l.split("\\s+")) {
-                        if (token.startsWith("task-")) return token;
-                    }
-                    return l.trim();
-                })
-                .orElseThrow(() -> new AssertionError(
-                        "No task id found in get tasks output: " + tasksResult.stdout()));
-        return taskId;
+        RevisionValidator humanValidator = new DefaultRevisionValidatorFactory().create(ApprovalMode.HUMAN);
+        RevisionEngineConfig config = new RevisionEngineConfig();
+        config.setRevisers(Map.of());
+        config.setValidator(humanValidator);
+        config.setArtifactStore(artifactStore);
+        config.setCourseRepository(courseRepository);
+        config.setElementLocator(elementLocator);
+        config.setRefinementPlanStore(planStore);
+        config.setAuditReportStore(auditReportStore);
+        config.setContextResolver(contextResolver);
+        config.setLemmaAbsenceStrategyRegistry(null);
+        config.setLemmaAbsenceProposalDeriver(null);
+        return new DefaultRevisionEngineFactory().create(config);
     }
+
+    // -------------------------------------------------------------------------
+    // path-1: La tarea NO tiene propuesta pendiente → generar_nueva_propuesta → success
+    // Gates: R005 (human mode), R007/R008/R009 (PENDING_APPROVAL emitted and persisted)
+    // -------------------------------------------------------------------------
 
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador invoca 'content-audit rev... → El sistema genera una nueva propuesta... [La tarea no tiene propuesta pendiente] → success")
-    public void path1_laTareaNoTienePropuestaPendiente_success() throws IOException, InterruptedException {
-        // Arrange: seed course → analyze → plan (F-REVAPR-R005 gate: human mode active)
-        String taskId = seedAndGetTaskId();
+    public void path1_laTareaNoTienePropuestaPendiente_success() {
+        // ── Arrange ─────────────────────────────────────────────────────────────
+        RefinementPlanStore planStore       = mock(RefinementPlanStore.class);
+        AuditReportStore auditReportStore   = mock(AuditReportStore.class);
+        RevisionArtifactStore artifactStore = mock(RevisionArtifactStore.class);
+        CourseRepository courseRepository   = mock(CourseRepository.class);
+        CourseElementLocator elementLocator = mock(CourseElementLocator.class);
 
-        // Act: invocar_revise — the task has no pending proposal yet (generar_nueva_propuesta node)
-        // Gate: F-REVAPR-R007 (human validator emits PENDING_APPROVAL),
-        //       F-REVAPR-R008 (artifact persisted with PENDING_APPROVAL),
-        //       F-REVAPR-R009 (task awaits approval)
-        CliResult reviseResult = run("human", "revise", "task", taskId);
+        RefinementPlan plan = buildPlan();
+        AuditReport auditReport = buildMinimalAuditReport();
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null);
+        CourseEntity course = mock(CourseEntity.class);
 
-        // Assert: result is success — exit 0 and proposalId printed (F-REVAPR-R016)
-        assertEquals(0, reviseResult.exit(),
-                "revise task on a task with no pending proposal must exit 0, "
-                        + "stdout=" + reviseResult.stdout()
-                        + " stderr=" + reviseResult.stderr());
-        // F-REVAPR-R016: the proposalId must be printed so the operator can copy it
-        String combined = reviseResult.stdout() + reviseResult.stderr();
-        assertTrue(combined.contains(taskId) || combined.toLowerCase().contains("proposal"),
-                "revise task output must reference the task or proposal, got: " + combined);
+        when(planStore.load(PLAN_ID)).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(AUDIT_ID)).thenReturn(Optional.of(auditReport));
+
+        // Gate: the task has NO pending proposal
+        when(artifactStore.hasPendingProposalForTask(PLAN_ID, TASK_ID)).thenReturn(false);
+
+        when(courseRepository.load(COURSE_PATH)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, QUIZ_ID)).thenReturn(Optional.of(snapshot));
+        when(artifactStore.save(any(RevisionArtifact.class))).thenAnswer(inv -> {
+            RevisionArtifact art = inv.getArgument(0);
+            return ".content-audit/revisions/" + PLAN_ID + "/" + art.getProposal().getProposalId();
+        });
+
+        RevisionEngine engine = buildHumanEngine(
+                planStore, auditReportStore, artifactStore, courseRepository, elementLocator);
+
+        // ── Act ─────────────────────────────────────────────────────────────────
+        // Node: invocar_revise [La tarea no tiene propuesta pendiente] → generar_nueva_propuesta
+        RevisionOutcome outcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
+
+        // ── Assert: success ──────────────────────────────────────────────────────
+        // Gate R005/R007/R008/R009: new proposal generated, persisted as PENDING_APPROVAL
+        assertEquals(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, outcome.getKind(),
+                "path-1: revise on a task with no pending proposal must yield PENDING_APPROVAL_PERSISTED (R007, R008, R009)");
+        assertNotNull(outcome.getArtifact(), "artifact must be present after successful propose (R008)");
+        assertEquals(RevisionVerdict.PENDING_APPROVAL, outcome.getArtifact().getVerdict(),
+                "artifact verdict must be PENDING_APPROVAL (R007/R008)");
+
+        // Gate R008: course NOT written during propose phase
+        verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
     }
+
+    // -------------------------------------------------------------------------
+    // path-2: La tarea YA tiene propuesta en PENDING_APPROVAL → rechazar_por_pendiente → failure
+    // Gate: R010 (re-revising a task with a pending proposal is an error, not silent)
+    // -------------------------------------------------------------------------
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador invoca 'content-audit rev... → El sistema reporta que ya existe una ... [La tarea ya tiene una propuesta en PENDING_APPROVAL] → failure")
-    public void path2_laTareaYaTieneUnaPropuestaEnPENDINGAPPROVAL_failure() throws IOException, InterruptedException {
-        // Arrange: seed course → analyze → plan, then run a FIRST revise to create a pending proposal
-        String taskId = seedAndGetTaskId();
+    public void path2_laTareaYaTieneUnaPropuestaEnPENDINGAPPROVAL_failure() {
+        // ── Arrange ─────────────────────────────────────────────────────────────
+        RefinementPlanStore planStore       = mock(RefinementPlanStore.class);
+        AuditReportStore auditReportStore   = mock(AuditReportStore.class);
+        RevisionArtifactStore artifactStore = mock(RevisionArtifactStore.class);
+        CourseRepository courseRepository   = mock(CourseRepository.class);
+        CourseElementLocator elementLocator = mock(CourseElementLocator.class);
 
-        CliResult firstRevise = run("human", "revise", "task", taskId);
-        assertEquals(0, firstRevise.exit(),
-                "first revise task must exit 0 to establish the PENDING_APPROVAL proposal, "
-                        + "stdout=" + firstRevise.stdout()
-                        + " stderr=" + firstRevise.stderr());
+        RefinementPlan plan = buildPlan();
+        AuditReport auditReport = buildMinimalAuditReport();
 
-        // Act: invocar_revise AGAIN — the task now has a PENDING_APPROVAL proposal
-        // Gate: F-REVAPR-R010 (rechazar_por_pendiente node)
-        CliResult secondRevise = run("human", "revise", "task", taskId);
+        when(planStore.load(PLAN_ID)).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(AUDIT_ID)).thenReturn(Optional.of(auditReport));
 
-        // Assert: result is failure — exit non-zero (F-REVAPR-R010)
-        assertNotEquals(0, secondRevise.exit(),
-                "second revise task on a task with a pending proposal must exit non-zero, "
-                        + "stdout=" + secondRevise.stdout()
-                        + " stderr=" + secondRevise.stderr());
+        // Gate R010: the task ALREADY has a pending proposal
+        when(artifactStore.hasPendingProposalForTask(PLAN_ID, TASK_ID)).thenReturn(true);
 
-        // F-REVAPR-R010 error message: references the task, signals a pending/awaiting decision
-        String errorOutput = secondRevise.stdout() + secondRevise.stderr();
-        assertTrue(
-                errorOutput.toLowerCase().contains("pending")
-                        || errorOutput.toLowerCase().contains("awaiting")
-                        || errorOutput.toLowerCase().contains("already"),
-                "error output must mention 'pending', 'awaiting', or 'already' per F-REVAPR-R010, got: "
-                        + errorOutput);
+        RevisionEngine engine = buildHumanEngine(
+                planStore, auditReportStore, artifactStore, courseRepository, elementLocator);
+
+        // ── Act ─────────────────────────────────────────────────────────────────
+        // Node: invocar_revise [La tarea ya tiene propuesta en PENDING_APPROVAL] → rechazar_por_pendiente
+        RevisionOutcome outcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
+
+        // ── Assert: failure ──────────────────────────────────────────────────────
+        // Gate R010: engine must refuse with ALREADY_PENDING_DECISION, not silently create another proposal
+        assertEquals(RevisionOutcomeKind.ALREADY_PENDING_DECISION, outcome.getKind(),
+                "path-2: re-revising a task with a pending proposal must yield ALREADY_PENDING_DECISION (R010)");
+
+        // Gate R010: no new artifact persisted; existing artifact not modified
+        verify(artifactStore, never()).save(any(RevisionArtifact.class));
+
+        // Gate R010: course NOT touched
+        verify(courseRepository, never()).load(any(Path.class));
+        verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
+
+        // Gate R010: plan NOT saved (task state unchanged)
+        verify(planStore, never()).save(any(RefinementPlan.class));
     }
 }

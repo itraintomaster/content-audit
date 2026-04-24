@@ -1,37 +1,50 @@
 package com.learney.contentaudit.auditcli.journeys;
 
-import javax.annotation.processing.Generated;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collections;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
+import com.learney.contentaudit.auditcli.GetCommand;
+import com.learney.contentaudit.auditcli.GetTasksFilter;
+import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
+import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
+import com.learney.contentaudit.revisiondomain.RevisionArtifact;
+import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
+import com.learney.contentaudit.revisiondomain.RevisionProposal;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
+import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.io.TempDir;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Journey J005: Listar propuestas por plan y por estado (F-REVAPR-R002, R003).
  *
- * NOTE: The project must be built before running these tests:
- *   mvn install -pl audit-cli -am -DskipTests
+ * In-memory test: constructs GetCmd via reflection (it is package-private in
+ * com.learney.contentaudit.auditcli.commands), injects a mock RevisionArtifactStore
+ * pre-populated with artifacts of three verdicts (PENDING_APPROVAL, APPROVED, REJECTED).
  *
- * Sandbox is seeded by running:
- *   1. analyze + plan  (creates a plan with tasks)
- *   2. revise task task-001 (human mode → PENDING_APPROVAL proposal A)
- *   3. approve proposal <A>  (proposal A transitions to APPROVED)
- *   4. revise task task-002 (human mode → PENDING_APPROVAL proposal B, left pending)
- *
- * This gives us one approved proposal and one pending proposal on the same plan,
- * which is the minimal fixture needed to distinguish the two status filters.
+ * Path-1: valid --status filter → devolver_lista (exit 0, only matching proposals shown).
+ * Path-2: invalid --status value → rechazar_status_invalido (exit non-zero, error lists allowed values).
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -42,157 +55,196 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FRevaprJ005JourneyTest {
 
-    @TempDir
-    Path sandbox;
+    private static final String PLAN_ID           = "plan-j005";
+    private static final String PENDING_PROPOSAL  = "task-j005-pending";
+    private static final String APPROVED_PROPOSAL = "task-j005-approved";
+    private static final String REJECTED_PROPOSAL = "task-j005-rejected";
 
-    private static final Path PROJECT_ROOT =
-            Path.of("/Users/josecullen/projects/learney/content-audit");
+    // GetCmd instance accessed via the GetCommand interface (constructed via reflection)
+    private GetCommand cmd;
+    private RevisionArtifactStore revisionArtifactStore;
 
-    private static final Path LAUNCHER =
-            PROJECT_ROOT.resolve("audit-cli.sh");
+    // -------------------------------------------------------------------------
+    // Fixture builders
+    // -------------------------------------------------------------------------
 
-    private static final Path FIXTURE_COURSE =
-            PROJECT_ROOT.resolve("audit-cli/src/test/resources/fixtures/tiny-course/english-course");
-
-    private record CliResult(int exit, String stdout, String stderr) {}
-
-    private CliResult run(String... args) throws IOException, InterruptedException {
-        return runWithEnv(null, args);
+    private RevisionProposal buildProposal(String proposalId, String planId) {
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-j005", null);
+        return new RevisionProposal(
+                proposalId, "task-j005", planId, "audit-j005",
+                DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, "quiz-j005",
+                snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now(), null);
     }
 
-    private CliResult runWithEnv(String approvalMode, String... args) throws IOException, InterruptedException {
-        List<String> cmd = new ArrayList<>();
-        cmd.add(LAUNCHER.toString());
-        cmd.add("--workdir");
-        cmd.add(sandbox.toString());
-        Collections.addAll(cmd, args);
-        ProcessBuilder pb = new ProcessBuilder(cmd);
-        pb.directory(PROJECT_ROOT.toFile());
-        pb.environment().put("CONTENT_AUDIT_CONTENT_FOLDER", FIXTURE_COURSE.toString());
-        if (approvalMode != null) {
-            pb.environment().put("CONTENT_AUDIT_APPROVAL_MODE", approvalMode);
+    private RevisionArtifact buildArtifact(String proposalId, String planId, RevisionVerdict verdict) {
+        return new RevisionArtifact(buildProposal(proposalId, planId), verdict, null, null, null, null);
+    }
+
+    // -------------------------------------------------------------------------
+    // Setup — build GetCmd via reflection to cross the package-private boundary
+    // -------------------------------------------------------------------------
+
+    @BeforeEach
+    void setUp() throws Exception {
+        AuditReportStore auditReportStore       = mock(AuditReportStore.class);
+        RefinementPlanStore refinementPlanStore  = mock(RefinementPlanStore.class);
+        AnalyzerRegistry analyzerRegistry        = mock(AnalyzerRegistry.class);
+        CorrectionContextResolver contextResolver = mock(CorrectionContextResolver.class);
+        revisionArtifactStore                    = mock(RevisionArtifactStore.class);
+
+        // GetCmd is package-private; instantiate via reflection
+        Class<?> getCmdClass = Class.forName(
+                "com.learney.contentaudit.auditcli.commands.GetCmd");
+        Constructor<?> ctor = getCmdClass.getDeclaredConstructor(
+                AuditReportStore.class,
+                RefinementPlanStore.class,
+                AnalyzerRegistry.class,
+                CorrectionContextResolver.class);
+        ctor.setAccessible(true);
+        Object getCmdInstance = ctor.newInstance(
+                auditReportStore, refinementPlanStore, analyzerRegistry, contextResolver);
+
+        // Inject formatName (picocli @Option default)
+        try {
+            Field formatField = getCmdClass.getDeclaredField("formatName");
+            formatField.setAccessible(true);
+            formatField.set(getCmdInstance, "text");
+        } catch (NoSuchFieldException ignored) {
+            // If the field name changes, tests will fail with NPE; update fix-log
         }
-        Process p = pb.start();
-        int exit = p.waitFor();
-        String out = new String(p.getInputStream().readAllBytes());
-        String err = new String(p.getErrorStream().readAllBytes());
-        return new CliResult(exit, out, err);
+
+        // Inject the RevisionArtifactStore via setRevisionArtifactStore setter
+        Method setStoreSetter = getCmdClass.getDeclaredMethod(
+                "setRevisionArtifactStore", RevisionArtifactStore.class);
+        setStoreSetter.setAccessible(true);
+        setStoreSetter.invoke(getCmdInstance, revisionArtifactStore);
+
+        cmd = (GetCommand) getCmdInstance;
+
+        // Seed the store with three artifacts — one per verdict
+        RevisionArtifact pendingArtifact  = buildArtifact(PENDING_PROPOSAL, PLAN_ID, RevisionVerdict.PENDING_APPROVAL);
+        RevisionArtifact approvedArtifact = buildArtifact(APPROVED_PROPOSAL, PLAN_ID, RevisionVerdict.APPROVED);
+        RevisionArtifact rejectedArtifact = buildArtifact(REJECTED_PROPOSAL, PLAN_ID, RevisionVerdict.REJECTED);
+
+        when(revisionArtifactStore.list()).thenReturn(
+                List.of(pendingArtifact, approvedArtifact, rejectedArtifact));
     }
 
-    /**
-     * Seeds the sandbox with one pending proposal. Fixture constraint: only quiz-level tasks
-     * (LEMMA_ABSENCE / SENTENCE_LENGTH) have a CorrectionContextResolver, so we pick the first
-     * QUIZ task from the plan and leave its proposal in PENDING_APPROVAL.
-     */
-    private SeedResult seedMixedProposals() throws IOException, InterruptedException {
-        CliResult analyzeResult = run("analyze", FIXTURE_COURSE.toString());
-        assertEquals(0, analyzeResult.exit(),
-                "analyze should exit 0, stderr=" + analyzeResult.stderr());
-
-        CliResult planResult = run("plan");
-        assertEquals(0, planResult.exit(),
-                "plan should exit 0, stderr=" + planResult.stderr());
-
-        // Pick the first QUIZ-target task (resolver-compatible).
-        CliResult tasksResult = run("get", "tasks", "--status", "pending", "--target", "QUIZ", "--limit", "1");
-        assertEquals(0, tasksResult.exit(),
-                "get tasks --target QUIZ should exit 0, stderr=" + tasksResult.stderr());
-        String taskId = tasksResult.stdout().lines()
-                .filter(l -> l.contains("task-"))
-                .findFirst()
-                .map(l -> {
-                    for (String tok : l.split("\\s+")) if (tok.startsWith("task-")) return tok;
-                    return l.trim();
-                })
-                .orElseThrow(() -> new AssertionError(
-                        "No QUIZ task in output: " + tasksResult.stdout()));
-
-        // Revise the QUIZ task in human mode → creates pending proposal.
-        CliResult reviseResult = runWithEnv("human", "revise", "task", taskId);
-        assertEquals(0, reviseResult.exit(),
-                "revise " + taskId + " should exit 0 in human mode, stderr=" + reviseResult.stderr()
-                + " stdout=" + reviseResult.stdout());
-        String proposalId = extractProposalId(reviseResult.stdout() + reviseResult.stderr());
-        assertTrue(proposalId != null && !proposalId.isBlank(),
-                "revise " + taskId + " must print a proposalId; got stdout=" + reviseResult.stdout()
-                + " stderr=" + reviseResult.stderr());
-
-        return new SeedResult(null, proposalId);
-    }
-
-    /** Extracts a proposalId from CLI output. Looks for a line containing "proposal" and an id-like token. */
-    private String extractProposalId(String output) {
-        // The CLI prints the proposal id prominently; try common patterns:
-        // "Proposal saved: <id>", "Pending proposal: <id>", or just a line with a known id format.
-        return output.lines()
-                .filter(l -> l.toLowerCase().contains("proposal"))
-                .flatMap(l -> java.util.Arrays.stream(l.split("\\s+")))
-                .filter(tok -> tok.matches("task-\\d{3}-.*") || tok.matches("[a-z0-9-]+-[0-9T:-]+"))
-                .findFirst()
-                .orElse(null);
-    }
-
-    private record SeedResult(String approvedProposalId, String pendingProposalId) {}
+    // -------------------------------------------------------------------------
+    // path-1: Los filtros son válidos → devolver_lista → success
+    // Gates: R002 (proposals is a first-class resource), R003 (--status filter works conjunctively)
+    // -------------------------------------------------------------------------
 
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador invoca 'content-audit get... → El sistema devuelve la lista de propu... [Los filtros son validos (si hay --status, el valor es pending, approved o rejected)] → success")
-    public void path1_losFiltrosSonValidosSiHayStatusElValorEsPendingApprovedORejected_success() throws IOException, InterruptedException {
-        // Gate: F-REVAPR-R002, R003 — get proposals with valid --status filter exits 0
-        // and returns only proposals matching that status.
+    public void path1_losFiltrosSonValidosSiHayStatusElValorEsPendingApprovedORejected_success() {
+        // ── Act / Assert 1: get proposals --status pending ───────────────────────
+        // Gate R002: 'proposals' is a recognised resource.
+        // Gate R003: --status pending maps to PENDING_APPROVAL verdict.
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit1;
+        try {
+            GetTasksFilter pendingFilter = new GetTasksFilter(
+                    Optional.empty(), Optional.of("pending"), false, Optional.empty(),
+                    Optional.empty(), Optional.empty());
+            exit1 = cmd.get("proposals", null, pendingFilter);
+        } finally {
+            System.setOut(originalOut);
+        }
+        String pendingOutput = outBuf.toString();
+        assertEquals(0, exit1, "get proposals --status pending must exit 0 (R003), stderr not captured here");
+        assertTrue(pendingOutput.contains(PENDING_PROPOSAL),
+                "get proposals --status pending must include the pending proposal '" + PENDING_PROPOSAL + "', got: " + pendingOutput);
+        assertTrue(!pendingOutput.contains(APPROVED_PROPOSAL),
+                "get proposals --status pending must NOT include the approved proposal, got: " + pendingOutput);
+        assertTrue(!pendingOutput.contains(REJECTED_PROPOSAL),
+                "get proposals --status pending must NOT include the rejected proposal, got: " + pendingOutput);
 
-        // Arrange: seed sandbox with one approved + one pending proposal.
-        SeedResult seed = seedMixedProposals();
+        // ── Act / Assert 2: get proposals --status approved ──────────────────────
+        // Gate R003: --status approved maps to APPROVED verdict.
+        outBuf.reset();
+        System.setOut(new PrintStream(outBuf));
+        int exit2;
+        try {
+            GetTasksFilter approvedFilter = new GetTasksFilter(
+                    Optional.empty(), Optional.of("approved"), false, Optional.empty(),
+                    Optional.empty(), Optional.empty());
+            exit2 = cmd.get("proposals", null, approvedFilter);
+        } finally {
+            System.setOut(originalOut);
+        }
+        String approvedOutput = outBuf.toString();
+        assertEquals(0, exit2, "get proposals --status approved must exit 0 (R003)");
+        assertTrue(approvedOutput.contains(APPROVED_PROPOSAL),
+                "get proposals --status approved must include the approved proposal '" + APPROVED_PROPOSAL + "', got: " + approvedOutput);
+        assertTrue(!approvedOutput.contains(PENDING_PROPOSAL),
+                "get proposals --status approved must NOT include the pending proposal, got: " + approvedOutput);
+        assertTrue(!approvedOutput.contains(REJECTED_PROPOSAL),
+                "get proposals --status approved must NOT include the rejected proposal, got: " + approvedOutput);
 
-        // Act 1: filter by --status pending → should list the pending proposal.
-        CliResult pendingResult = run("get", "proposals", "--status", "pending");
-        assertEquals(0, pendingResult.exit(),
-                "get proposals --status pending should exit 0, stderr=" + pendingResult.stderr());
-        assertTrue(pendingResult.stdout().contains(seed.pendingProposalId()),
-                "get proposals --status pending must include the pending proposal id "
-                + seed.pendingProposalId() + "; got: " + pendingResult.stdout());
-
-        // Act 2: filter by --status approved → must NOT include the pending proposal (no approved seeded).
-        CliResult approvedResult = run("get", "proposals", "--status", "approved");
-        assertEquals(0, approvedResult.exit(),
-                "get proposals --status approved should exit 0, stderr=" + approvedResult.stderr());
-        assertTrue(!approvedResult.stdout().contains(seed.pendingProposalId()),
-                "get proposals --status approved must NOT include the pending proposal id "
-                + seed.pendingProposalId() + "; got: " + approvedResult.stdout());
-
-        // Act 3: filter by --status rejected → should return empty list (no proposals were rejected),
-        //         but still exit 0 (F-CLIRV R011: empty list is not an error).
-        CliResult rejectedResult = run("get", "proposals", "--status", "rejected");
-        assertEquals(0, rejectedResult.exit(),
-                "get proposals --status rejected should exit 0 even when empty, stderr="
-                + rejectedResult.stderr());
+        // ── Act / Assert 3: get proposals --status rejected ──────────────────────
+        // Gate R003: --status rejected maps to REJECTED verdict; exit 0 even if list is non-empty.
+        outBuf.reset();
+        System.setOut(new PrintStream(outBuf));
+        int exit3;
+        try {
+            GetTasksFilter rejectedFilter = new GetTasksFilter(
+                    Optional.empty(), Optional.of("rejected"), false, Optional.empty(),
+                    Optional.empty(), Optional.empty());
+            exit3 = cmd.get("proposals", null, rejectedFilter);
+        } finally {
+            System.setOut(originalOut);
+        }
+        String rejectedOutput = outBuf.toString();
+        assertEquals(0, exit3, "get proposals --status rejected must exit 0 (R003)");
+        assertTrue(rejectedOutput.contains(REJECTED_PROPOSAL),
+                "get proposals --status rejected must include the rejected proposal '" + REJECTED_PROPOSAL + "', got: " + rejectedOutput);
+        assertTrue(!rejectedOutput.contains(APPROVED_PROPOSAL),
+                "get proposals --status rejected must NOT include the approved proposal, got: " + rejectedOutput);
     }
+
+    // -------------------------------------------------------------------------
+    // path-2: El valor de --status no es válido → rechazar_status_invalido → failure
+    // Gate: R003 error: "Invalid value for --status: '<value>'. Allowed: pending, approved, rejected"
+    // -------------------------------------------------------------------------
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador invoca 'content-audit get... → El sistema reporta que el valor de --... [El valor de --status no es uno de los tres permitidos] → failure")
-    public void path2_elValorDeStatusNoEsUnoDeLosTresPermitidos_failure() throws IOException, InterruptedException {
-        // Gate: F-REVAPR-R003 — get proposals with an unrecognized --status value exits non-zero
-        // and stderr lists the allowed values.
+    public void path2_elValorDeStatusNoEsUnoDeLosTresPermitidos_failure() {
+        // ── Arrange / Act ────────────────────────────────────────────────────────
+        // Gate R003: 'bogus' is not in {pending, approved, rejected} → non-zero exit + error message.
+        ByteArrayOutputStream errBuf = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        System.setErr(new PrintStream(errBuf));
 
-        // Act: invoke get proposals with an invalid status value.
-        CliResult result = run("get", "proposals", "--status", "bogus");
+        int exit;
+        try {
+            GetTasksFilter badFilter = new GetTasksFilter(
+                    Optional.empty(), Optional.of("bogus"), false, Optional.empty(),
+                    Optional.empty(), Optional.empty());
+            exit = cmd.get("proposals", null, badFilter);
+        } finally {
+            System.setErr(originalErr);
+        }
 
-        // Assert: non-zero exit code (filter validation fails before listing).
-        assertNotEquals(0, result.exit(),
-                "get proposals --status bogus should exit non-zero; stdout=" + result.stdout()
-                + " stderr=" + result.stderr());
+        // ── Assert: failure ──────────────────────────────────────────────────────
+        // Gate R003: non-zero exit on invalid --status value
+        assertNotEquals(0, exit,
+                "get proposals --status bogus must exit non-zero (R003)");
 
-        // Assert: error output mentions allowed values (R003 error message:
-        // "Invalid value for --status: 'bogus'. Allowed: pending, approved, rejected").
-        String errorOutput = result.stderr() + result.stdout();
+        // Gate R003: error message names the allowed values (pending, approved, rejected)
+        String errorOutput = errBuf.toString();
         assertTrue(errorOutput.toLowerCase().contains("pending"),
-                "error output must mention 'pending' among allowed values; got: " + errorOutput);
+                "R003 error must mention 'pending' among allowed values, got: " + errorOutput);
         assertTrue(errorOutput.toLowerCase().contains("approved"),
-                "error output must mention 'approved' among allowed values; got: " + errorOutput);
+                "R003 error must mention 'approved' among allowed values, got: " + errorOutput);
         assertTrue(errorOutput.toLowerCase().contains("rejected"),
-                "error output must mention 'rejected' among allowed values; got: " + errorOutput);
+                "R003 error must mention 'rejected' among allowed values, got: " + errorOutput);
     }
 }

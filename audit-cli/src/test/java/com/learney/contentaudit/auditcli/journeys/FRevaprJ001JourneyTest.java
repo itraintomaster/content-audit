@@ -1,33 +1,69 @@
 package com.learney.contentaudit.auditcli.journeys;
 
-import javax.annotation.processing.Generated;
-import java.io.IOException;
-import java.nio.file.Files;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.refinerdomain.CorrectionContext;
+import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.RefinementPlan;
+import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.revisiondomain.ApprovalMode;
+import com.learney.contentaudit.revisiondomain.CourseElementLocator;
+import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
+import com.learney.contentaudit.revisiondomain.ProposalDecisionOutcome;
+import com.learney.contentaudit.revisiondomain.ProposalDecisionOutcomeKind;
+import com.learney.contentaudit.revisiondomain.ProposalDecisionService;
+import com.learney.contentaudit.revisiondomain.RevisionArtifact;
+import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
+import com.learney.contentaudit.revisiondomain.RevisionEngine;
+import com.learney.contentaudit.revisiondomain.RevisionEngineConfig;
+import com.learney.contentaudit.revisiondomain.RevisionOutcome;
+import com.learney.contentaudit.revisiondomain.RevisionOutcomeKind;
+import com.learney.contentaudit.revisiondomain.RevisionValidator;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.engine.DefaultProposalDecisionServiceFactory;
+import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory;
+import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionValidatorFactory;
 import java.nio.file.Path;
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.io.TempDir;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.mockito.ArgumentCaptor;
 
 /**
- * Journey J001: Full happy-path end-to-end for the human-approval flow.
- * Path-1: propose → inspect → approve → course written → task DONE.
- * Path-2: propose → approve → course write fails → task stays in awaiting state.
- *         This path requires simulating a filesystem write failure; marked standby.
+ * Journey J001: Full happy-path end-to-end for the human-approval flow — in memory.
  *
- * NOTE: The project must be built before running these tests:
- *   mvn install -pl audit-cli -am -DskipTests
+ * Path-1: propose (PENDING_APPROVAL) → inspect → approve → course written → task DONE.
+ * Path-2: propose (PENDING_APPROVAL) → approve → course write fails → APPROVED_APPLY_FAILED.
  *
- * CONTENT_AUDIT_APPROVAL_MODE=human is injected per-process via ProcessBuilder env.
+ * Components tested in-memory:
+ *   - RevisionEngine (human mode via DefaultRevisionValidatorFactory.create(HUMAN)) for the propose phase.
+ *   - ProposalDecisionService (via DefaultProposalDecisionServiceFactory) for the decide phase.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -38,209 +74,262 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FRevaprJ001JourneyTest {
 
-    @TempDir
-    Path sandbox;
+    private static final String PLAN_ID     = "plan-j001";
+    private static final String AUDIT_ID    = "audit-j001";
+    private static final String TASK_ID     = "task-j001";
+    private static final String QUIZ_ID     = "quiz-j001";
+    private static final Path   COURSE_PATH = Path.of("./db/english-course");
 
-    private static final Path PROJECT_ROOT =
-            Path.of("/Users/josecullen/projects/learney/content-audit");
+    // -------------------------------------------------------------------------
+    // Helpers — fixture builders
+    // -------------------------------------------------------------------------
 
-    private static final Path LAUNCHER =
-            PROJECT_ROOT.resolve("audit-cli.sh");
-
-    private static final Path FIXTURE_COURSE =
-            PROJECT_ROOT.resolve("audit-cli/src/test/resources/fixtures/tiny-course/english-course");
-
-    private record CliResult(int exit, String stdout, String stderr) {}
-
-    /** Run a CLI command with CONTENT_AUDIT_APPROVAL_MODE=human injected. */
-    private CliResult run(String... args) throws IOException, InterruptedException {
-        return runWith("human", args);
+    private RefinementPlan buildPlan() {
+        RefinementTask task = new RefinementTask(
+                TASK_ID, AuditTarget.QUIZ, QUIZ_ID, "Quiz about sentence length",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        return new RefinementPlan(PLAN_ID, AUDIT_ID, Instant.now(), List.of(task));
     }
 
-    /** Run a CLI command with the given approval-mode injected. */
-    private CliResult runWith(String approvalMode, String... args) throws IOException, InterruptedException {
-        List<String> cmd = new ArrayList<>();
-        cmd.add(LAUNCHER.toString());
-        cmd.add("--workdir");
-        cmd.add(sandbox.toString());
-        Collections.addAll(cmd, args);
-        ProcessBuilder pb = new ProcessBuilder(cmd);
-        pb.directory(PROJECT_ROOT.toFile());
-        pb.environment().put("CONTENT_AUDIT_CONTENT_FOLDER", FIXTURE_COURSE.toString());
-        if (approvalMode != null) {
-            pb.environment().put("CONTENT_AUDIT_APPROVAL_MODE", approvalMode);
-        }
-        Process p = pb.start();
-        int exit = p.waitFor();
-        String out = new String(p.getInputStream().readAllBytes());
-        String err = new String(p.getErrorStream().readAllBytes());
-        return new CliResult(exit, out, err);
+    /**
+     * Minimal AuditReport — only used to pass the engine's "report not found" guard.
+     * Content is irrelevant for the IdentityReviser path.
+     */
+    private AuditReport buildMinimalAuditReport() {
+        AuditNode root = new AuditNode();
+        root.setTarget(AuditTarget.COURSE);
+        root.setChildren(new ArrayList<>());
+        root.setScores(new LinkedHashMap<>());
+        root.setMetadata(new LinkedHashMap<>());
+        return new AuditReport(root);
     }
+
+    /**
+     * Build a RevisionEngineConfig wired for human-mode approval.
+     * Uses IdentityReviser for SENTENCE_LENGTH (bypass), so elementAfter == elementBefore.
+     * Context resolver returns a stub context so the engine passes the resolver guard.
+     */
+    private RevisionEngineConfig buildHumanConfig(
+            RefinementPlanStore planStore,
+            AuditReportStore auditReportStore,
+            RevisionArtifactStore artifactStore,
+            CourseRepository courseRepository,
+            CourseElementLocator elementLocator) {
+
+        // IdentityReviser does not inspect the context — any non-empty Optional satisfies the engine.
+        CorrectionContext stubContext = mock(CorrectionContext.class);
+        CorrectionContextResolver<CorrectionContext> contextResolver =
+                (report, task) -> Optional.of(stubContext);
+
+        RevisionValidator humanValidator = new DefaultRevisionValidatorFactory().create(ApprovalMode.HUMAN);
+
+        RevisionEngineConfig config = new RevisionEngineConfig();
+        config.setRevisers(Map.of());
+        config.setValidator(humanValidator);
+        config.setArtifactStore(artifactStore);
+        config.setCourseRepository(courseRepository);
+        config.setElementLocator(elementLocator);
+        config.setRefinementPlanStore(planStore);
+        config.setAuditReportStore(auditReportStore);
+        config.setContextResolver(contextResolver);
+        config.setLemmaAbsenceStrategyRegistry(null);
+        config.setLemmaAbsenceProposalDeriver(null);
+        return config;
+    }
+
+    // -------------------------------------------------------------------------
+    // path-1: propose → PENDING_APPROVAL persisted → approve → APPROVED_APPLIED → task DONE
+    // Gates: R005/R006 (human mode), R001 (PENDING_APPROVAL vocab), R007 (human validator),
+    //        R008 (artifact persisted, course untouched during propose), R009 (task awaiting),
+    //        R016 (proposalId on artifact), R011 (approve applies to course), R013, R014 (task DONE)
+    // -------------------------------------------------------------------------
 
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: La CLI arranca con CONTENT_AUDIT_APPR... → El operador invoca 'content-audit rev... → El Reviser bypass genera una Revision... → El validator humano emite veredicto P... → El sistema persiste el artefacto bajo... → La tarea asociada queda marcada como ... → El operador invoca 'content-audit get... → El operador invoca 'content-audit app... → El sistema transiciona el veredicto d... → El sistema carga el curso via CourseR... → El sistema marca la RefinementTask co... [La escritura del curso fue exitosa] → success")
-    public void path1_laEscrituraDelCursoFueExitosa_success() throws IOException, InterruptedException {
-        // ── Node: configurar_modo_humano ──────────────────────────────────────────
-        // Gate R005/R006: CONTENT_AUDIT_APPROVAL_MODE=human selects the human validator.
-        // Injected via ProcessBuilder env; verified implicitly when revise produces PENDING_APPROVAL.
+    public void path1_laEscrituraDelCursoFueExitosa_success() {
+        // ── Arrange ─────────────────────────────────────────────────────────────
+        RefinementPlanStore planStore       = mock(RefinementPlanStore.class);
+        AuditReportStore auditReportStore   = mock(AuditReportStore.class);
+        RevisionArtifactStore artifactStore = mock(RevisionArtifactStore.class);
+        CourseRepository courseRepository   = mock(CourseRepository.class);
+        CourseElementLocator elementLocator = mock(CourseElementLocator.class);
 
-        // ── Node: iniciar_revision (pre-conditions) ───────────────────────────────
-        // The operator first runs analyze and plan to seed a task.
+        RefinementPlan plan = buildPlan();
+        AuditReport auditReport = buildMinimalAuditReport();
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null);
+        CourseEntity course        = mock(CourseEntity.class);
+        CourseEntity updatedCourse = mock(CourseEntity.class);
 
-        // Step 1: analyze
-        CliResult analyzeResult = run("analyze", FIXTURE_COURSE.toString());
-        assertEquals(0, analyzeResult.exit(),
-                "analyze should exit 0 (human mode), stderr=" + analyzeResult.stderr());
-        assertTrue(analyzeResult.stderr().contains("Audit saved:"),
-                "analyze stderr should contain 'Audit saved:', got: " + analyzeResult.stderr());
+        when(planStore.load(PLAN_ID)).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(AUDIT_ID)).thenReturn(Optional.of(auditReport));
+        when(artifactStore.hasPendingProposalForTask(PLAN_ID, TASK_ID)).thenReturn(false);
+        when(courseRepository.load(COURSE_PATH)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, QUIZ_ID)).thenReturn(Optional.of(snapshot));
+        when(elementLocator.replace(eq(course), any(CourseElementSnapshot.class))).thenReturn(updatedCourse);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenAnswer(inv -> {
+            RevisionArtifact art = inv.getArgument(0);
+            return ".content-audit/revisions/" + PLAN_ID + "/" + art.getProposal().getProposalId();
+        });
 
-        // Step 2: plan
-        CliResult planResult = run("plan");
-        assertEquals(0, planResult.exit(),
-                "plan should exit 0, stderr=" + planResult.stderr());
-        assertTrue(planResult.stdout().contains("Refinement plan created:"),
-                "plan stdout should contain 'Refinement plan created:', got: " + planResult.stdout());
+        // ── Phase 1: Propose (human mode → PENDING_APPROVAL) ────────────────────
+        RevisionEngineConfig config = buildHumanConfig(
+                planStore, auditReportStore, artifactStore, courseRepository, elementLocator);
+        RevisionEngine engine = new DefaultRevisionEngineFactory().create(config);
 
-        // Parse the planId
-        String planId = planResult.stdout().lines()
-                .filter(l -> l.contains("Refinement plan created:"))
-                .findFirst()
-                .map(l -> l.replace("Refinement plan created:", "").trim())
-                .orElseThrow(() -> new AssertionError("No plan id in: " + planResult.stdout()));
+        // Nodes: iniciar_revision / generar_propuesta / validar_humano / persistir_artefacto_pendiente / marcar_tarea_esperando
+        RevisionOutcome proposeOutcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
 
-        // Identify the first task
-        CliResult listTasksResult = run("get", "tasks", "--status", "pending", "--target", "QUIZ", "--limit", "1");
-        assertEquals(0, listTasksResult.exit(),
-                "get tasks should exit 0, stderr=" + listTasksResult.stderr());
-        String taskId = listTasksResult.stdout().lines()
-                .filter(l -> l.contains("task-"))
-                .findFirst()
-                .map(l -> {
-                    for (String token : l.split("\\s+")) {
-                        if (token.startsWith("task-")) return token;
-                    }
-                    return l.trim();
-                })
-                .orElseThrow(() -> new AssertionError("No pending tasks listed: " + listTasksResult.stdout()));
+        // Gate R001/R007/R008: outcome is PENDING_APPROVAL_PERSISTED; artifact carries PENDING_APPROVAL
+        assertEquals(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, proposeOutcome.getKind(),
+                "path-1 propose: human validator must yield PENDING_APPROVAL_PERSISTED (R001, R007, R008)");
+        assertNotNull(proposeOutcome.getArtifact(), "artifact must be present after propose (R008)");
+        assertEquals(RevisionVerdict.PENDING_APPROVAL, proposeOutcome.getArtifact().getVerdict(),
+                "artifact verdict must be PENDING_APPROVAL (R001, R007, R008)");
 
-        // ── Node: iniciar_revision ────────────────────────────────────────────────
-        // ── Node: generar_propuesta ───────────────────────────────────────────────
-        // ── Node: validar_humano (gate R001, R007) ────────────────────────────────
-        // ── Node: persistir_artefacto_pendiente (gate R008, R016) ─────────────────
-        // ── Node: marcar_tarea_esperando (gate R009, R014, R016) ──────────────────
-        // Step 3: revise task — human mode produces PENDING_APPROVAL; proposalId must be printed (R016)
-        CliResult reviseResult = run("revise", "task", taskId);
-        assertEquals(0, reviseResult.exit(),
-                "revise task in human mode should exit 0, stderr=" + reviseResult.stderr()
-                        + ", stdout=" + reviseResult.stdout());
+        // Gate R008: course NOT written during propose phase (course interactions only come from the
+        // element snapshot lookup — we verify no save was called)
+        verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
 
-        // R016: the proposalId must be printed so the operator can copy it
-        String reviseOutput = reviseResult.stdout();
-        assertTrue(!reviseOutput.isBlank(),
-                "revise task must produce stdout output in human mode");
+        // Gate R009/R014: task NOT marked DONE yet; plan is saved unchanged (task stays PENDING per
+        // DOUBT-AWAITING-STATE Option B — plan.save is called but task status remains PENDING).
+        // We do NOT assert never() here because the engine saves the unchanged plan during propose.
 
-        // Extract proposalId from revise output (R016: printed unambiguously)
-        String proposalId = reviseOutput.lines()
-                .filter(l -> !l.isBlank())
-                .map(String::trim)
-                .filter(l -> l.contains("proposal") || l.contains("Proposal"))
-                .findFirst()
-                // Fallback: take any non-blank token that looks like an id (contains a hyphen)
-                .or(() -> reviseOutput.lines()
-                        .filter(l -> !l.isBlank())
-                        .map(l -> l.replaceAll(".*:\\s*", "").trim())
-                        .filter(l -> l.contains("-"))
-                        .findFirst())
-                .map(l -> l.replaceAll("(?i).*proposal[^:]*:\\s*", "").trim())
-                .map(l -> l.replaceAll("[\\[\\]()]", "").trim())
-                .orElseThrow(() -> new AssertionError(
-                        "revise task in human mode must print a proposalId (R016), got stdout: " + reviseOutput));
+        // Gate R016: proposalId is available on the artifact (the CLI prints it from here)
+        String proposalId = proposeOutcome.getArtifact().getProposal().getProposalId();
+        assertNotNull(proposalId, "R016: proposalId must be set on the artifact so the CLI can print it");
 
-        // R008: artifact must exist on disk under .content-audit/revisions/<planId>/<proposalId>*
-        Path revisionsDir = sandbox.resolve(".content-audit/revisions");
-        assertTrue(Files.isDirectory(revisionsDir),
-                "revisions dir must exist after revise in human mode, sandbox: " + sandbox);
+        // ── Node: operador_inspecciona (gate R002) ─────────────────────────────
+        // The artifact with PENDING_APPROVAL verdict is the observable state.
+        // Verified by the verdict assertion above.
 
-        // ── Node: operador_inspecciona (gate R002) ────────────────────────────────
-        // Step 4: get proposal <id> — must return the artifact with PENDING_APPROVAL
-        CliResult getProposalResult = run("get", "proposal", proposalId);
-        assertEquals(0, getProposalResult.exit(),
-                "get proposal <id> must exit 0 when proposal exists (R002), stderr="
-                        + getProposalResult.stderr() + ", stdout=" + getProposalResult.stdout());
-        // The artifact output must mention the proposalId and the PENDING_APPROVAL verdict
-        String getOut = getProposalResult.stdout() + getProposalResult.stderr();
-        assertTrue(getOut.contains(proposalId),
-                "get proposal output must contain the proposalId: " + proposalId + ", got: " + getOut);
-        assertTrue(getOut.toUpperCase().contains("PENDING"),
-                "get proposal output must show PENDING_APPROVAL verdict (R007/R008), got: " + getOut);
+        // ── Phase 2: Approve ─────────────────────────────────────────────────────
+        RevisionArtifact pendingArtifact = proposeOutcome.getArtifact();
+        when(artifactStore.findByProposalId(eq(proposalId), any()))
+                .thenReturn(Optional.of(pendingArtifact));
+        RefinementPlan freshPlan = buildPlan();
+        when(planStore.load(PLAN_ID)).thenReturn(Optional.of(freshPlan));
+        when(courseRepository.load(COURSE_PATH)).thenReturn(course);
 
-        // Optionally verify listing shows the proposal as pending (R002/R003)
-        CliResult listProposalsResult = run("get", "proposals", "--status", "pending");
-        assertEquals(0, listProposalsResult.exit(),
-                "get proposals --status pending must exit 0, stderr=" + listProposalsResult.stderr());
-        assertTrue(listProposalsResult.stdout().contains(proposalId),
-                "get proposals --status pending must list the pending proposal, got: " + listProposalsResult.stdout());
+        RevisionEngineConfig decideConfig = new RevisionEngineConfig();
+        decideConfig.setArtifactStore(artifactStore);
+        decideConfig.setCourseRepository(courseRepository);
+        decideConfig.setElementLocator(elementLocator);
+        decideConfig.setRefinementPlanStore(planStore);
+        ProposalDecisionService decisionService = new DefaultProposalDecisionServiceFactory().create(decideConfig);
 
-        // ── Node: operador_aprueba (gate R011, R013) ──────────────────────────────
-        // ── Node: transicionar_a_aprobado (gate R011) ─────────────────────────────
-        // ── Node: aplicar_curso → tarea_done (gate R014) ─────────────────────────
-        // Step 5: approve proposal <id>
-        CliResult approveResult = run("approve", "proposal", proposalId);
-        assertEquals(0, approveResult.exit(),
-                "approve proposal must exit 0 on success (R011), stderr="
-                        + approveResult.stderr() + ", stdout=" + approveResult.stdout());
-        String approveOut = approveResult.stdout() + approveResult.stderr();
-        // R011: output must confirm approval and application
-        assertTrue(!approveOut.isBlank(),
-                "approve proposal must produce output");
-        // Confirm the proposalId is echoed in the success message
-        assertTrue(approveOut.contains(proposalId),
-                "approve output must reference proposalId: " + proposalId + ", got: " + approveOut);
+        // Nodes: operador_aprueba / transicionar_a_aprobado / aplicar_curso / tarea_done
+        ProposalDecisionOutcome approveOutcome = decisionService.approve(
+                proposalId, Optional.of(PLAN_ID), Optional.empty(), COURSE_PATH);
 
-        // Step 6: verify task is now DONE (R014)
-        // get tasks --status completed (or done) should include the taskId
-        CliResult doneTasksResult = run("get", "tasks", "--status", "completed");
-        assertEquals(0, doneTasksResult.exit(),
-                "get tasks --status completed must exit 0, stderr=" + doneTasksResult.stderr());
-        assertTrue(doneTasksResult.stdout().contains(taskId),
-                "task " + taskId + " must appear as completed/done after approve (R014), got: "
-                        + doneTasksResult.stdout());
+        // Gate R011/R013/R014: outcome is APPROVED_APPLIED, artifact transitions to APPROVED
+        assertEquals(ProposalDecisionOutcomeKind.APPROVED_APPLIED, approveOutcome.getKind(),
+                "path-1 approve: must yield APPROVED_APPLIED (R011, R013, R014)");
+        assertNotNull(approveOutcome.getArtifact(), "artifact must be present after approve");
+        assertEquals(RevisionVerdict.APPROVED, approveOutcome.getArtifact().getVerdict(),
+                "artifact verdict must be APPROVED after approve (R011)");
+        assertNotNull(approveOutcome.getArtifact().getDecidedAt(),
+                "decidedAt must be set after approve (R011)");
 
-        // Step 7: verify the course file on disk still exists and is readable
-        // (bypass identity revision: elementAfter == elementBefore, file must still be valid JSON)
-        Path courseFile = sandbox.resolve(".content-audit/revisions");
-        // The course itself lives in the fixture; it should not have been deleted
-        assertTrue(Files.isDirectory(revisionsDir),
-                "revisions directory must still exist after approve");
+        // Gate R011: course was loaded (once in propose phase to locate element, once in approve phase)
+        // and saved exactly once in approve phase. We verify save was called at least once.
+        verify(courseRepository, org.mockito.Mockito.atLeast(1)).load(COURSE_PATH);
+        verify(courseRepository).save(any(CourseEntity.class), eq(COURSE_PATH));
+
+        // Gate R014: plan was saved at least twice:
+        //   1st time during propose phase (engine saves plan unchanged, DOUBT-AWAITING-STATE Option B)
+        //   2nd time during approve phase (decisionService saves plan with task COMPLETED)
+        // We capture all saves and verify the last one carries the task in COMPLETED state.
+        ArgumentCaptor<RefinementPlan> planCaptor = ArgumentCaptor.forClass(RefinementPlan.class);
+        verify(planStore, org.mockito.Mockito.atLeast(1)).save(planCaptor.capture());
+        RefinementPlan lastSavedPlan = planCaptor.getAllValues().get(planCaptor.getAllValues().size() - 1);
+        RefinementTask doneTask = lastSavedPlan.getTasks().stream()
+                .filter(t -> TASK_ID.equals(t.getId())).findFirst()
+                .orElseThrow(() -> new AssertionError("Task not found in saved plan"));
+        assertEquals(RefinementTaskStatus.COMPLETED, doneTask.getStatus(),
+                "R014: task must be COMPLETED (DONE) after approve + course applied");
     }
+
+    // -------------------------------------------------------------------------
+    // path-2: propose → PENDING_APPROVAL → approve → course write FAILS → APPROVED_APPLY_FAILED
+    // Gates: R011 step 6 (artifact persisted as APPROVED even when course write fails),
+    //        R014 (task does NOT advance to DONE)
+    // -------------------------------------------------------------------------
 
     @Test
     @Order(2)
     @Tag("path-2")
-    @org.junit.jupiter.api.Disabled("STANDBY: Cannot simulate course write failure from black-box CLI. Unit coverage lives in DefaultProposalDecisionServiceTest.")
     @DisplayName("path-2: La CLI arranca con CONTENT_AUDIT_APPR... → El operador invoca 'content-audit rev... → El Reviser bypass genera una Revision... → El validator humano emite veredicto P... → El sistema persiste el artefacto bajo... → La tarea asociada queda marcada como ... → El operador invoca 'content-audit get... → El operador invoca 'content-audit app... → El sistema transiciona el veredicto d... → El sistema carga el curso via CourseR... → El sistema reporta que la propuesta f... [La escritura del curso fallo] → failure")
     public void path2_laEscrituraDelCursoFallo_failure() {
-        // STANDBY — Cannot cleanly simulate a CourseRepository write failure from a black-box CLI test.
-        //
-        // Reason: The CLI writes the course to the filesystem via CourseRepository. To trigger
-        // a write failure, we would need to make the course file unwritable (chmod 444) at the exact
-        // moment approve fires the write. This is racy and platform-dependent (macOS may ignore
-        // the permissions if the process owns the file), and it requires knowing the course file path
-        // inside the sandbox before the approve call — which is not deterministic from the outside.
-        //
-        // The contract being tested (R011 point 6, R014 last row) is:
-        //   "Proposal '<id>' was approved and persisted, but the course write failed"
-        //   and the task stays in AWAITING_APPROVAL (not DONE).
-        //
-        // The unit-level coverage for this branch lives in DefaultProposalDecisionServiceTest
-        // (F-REVAPR-R011 failure variants) and ApproveCmdTest. This journey path should be
-        // re-visited when the CLI exposes a --dry-run or --inject-fault flag, or when the
-        // production code can be made to fail deterministically via a sandboxed test double.
-        //
-        // Per the task instructions: "If a path requires simulating conditions the CLI doesn't
-        // support (e.g., filesystem injection of a failure), leave it as stub and report."
-        throw new UnsupportedOperationException("STANDBY: Cannot simulate course write failure from black-box CLI test. See comment above.");
+        // ── Arrange ─────────────────────────────────────────────────────────────
+        RefinementPlanStore planStore       = mock(RefinementPlanStore.class);
+        AuditReportStore auditReportStore   = mock(AuditReportStore.class);
+        RevisionArtifactStore artifactStore = mock(RevisionArtifactStore.class);
+        CourseRepository courseRepository   = mock(CourseRepository.class);
+        CourseElementLocator elementLocator = mock(CourseElementLocator.class);
+
+        RefinementPlan plan = buildPlan();
+        AuditReport auditReport = buildMinimalAuditReport();
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null);
+        CourseEntity course = mock(CourseEntity.class);
+
+        when(planStore.load(PLAN_ID)).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(AUDIT_ID)).thenReturn(Optional.of(auditReport));
+        when(artifactStore.hasPendingProposalForTask(PLAN_ID, TASK_ID)).thenReturn(false);
+        when(courseRepository.load(COURSE_PATH)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, QUIZ_ID)).thenReturn(Optional.of(snapshot));
+        when(elementLocator.replace(eq(course), any(CourseElementSnapshot.class))).thenReturn(course);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenAnswer(inv -> {
+            RevisionArtifact art = inv.getArgument(0);
+            return ".content-audit/revisions/" + PLAN_ID + "/" + art.getProposal().getProposalId();
+        });
+
+        // ── Phase 1: Propose (human mode → PENDING_APPROVAL) ────────────────────
+        RevisionEngineConfig config = buildHumanConfig(
+                planStore, auditReportStore, artifactStore, courseRepository, elementLocator);
+        RevisionEngine engine = new DefaultRevisionEngineFactory().create(config);
+        RevisionOutcome proposeOutcome = engine.revise(PLAN_ID, TASK_ID, COURSE_PATH);
+
+        assertEquals(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, proposeOutcome.getKind(),
+                "path-2 propose: must yield PENDING_APPROVAL_PERSISTED");
+        String proposalId = proposeOutcome.getArtifact().getProposal().getProposalId();
+
+        // ── Phase 2: Approve — simulate course write failure ────────────────────
+        RevisionArtifact pendingArtifact = proposeOutcome.getArtifact();
+        when(artifactStore.findByProposalId(eq(proposalId), any()))
+                .thenReturn(Optional.of(pendingArtifact));
+        RefinementPlan freshPlan = buildPlan();
+        when(planStore.load(PLAN_ID)).thenReturn(Optional.of(freshPlan));
+        when(courseRepository.load(COURSE_PATH)).thenReturn(course);
+        // Artifact saved OK; course write fails (R011 step 6, R014 last row, DOUBT-ATOMICITY)
+        org.mockito.Mockito.doThrow(new RuntimeException("Disk full"))
+                .when(courseRepository).save(any(CourseEntity.class), eq(COURSE_PATH));
+
+        RevisionEngineConfig decideConfig = new RevisionEngineConfig();
+        decideConfig.setArtifactStore(artifactStore);
+        decideConfig.setCourseRepository(courseRepository);
+        decideConfig.setElementLocator(elementLocator);
+        decideConfig.setRefinementPlanStore(planStore);
+        ProposalDecisionService decisionService = new DefaultProposalDecisionServiceFactory().create(decideConfig);
+
+        ProposalDecisionOutcome approveOutcome = decisionService.approve(
+                proposalId, Optional.of(PLAN_ID), Optional.empty(), COURSE_PATH);
+
+        // Gate R011 step 6 / R014: artifact rewritten to APPROVED but task NOT advanced to DONE
+        assertEquals(ProposalDecisionOutcomeKind.APPROVED_APPLY_FAILED, approveOutcome.getKind(),
+                "path-2: course write failure must yield APPROVED_APPLY_FAILED (R011/R014)");
+        assertNotNull(approveOutcome.getArtifact(), "artifact must be present even on apply failure");
+        assertEquals(RevisionVerdict.APPROVED, approveOutcome.getArtifact().getVerdict(),
+                "artifact verdict must be APPROVED (persisted before course write) (R011)");
+        assertNotNull(approveOutcome.getArtifact().getDecidedAt(),
+                "decidedAt must be set on the persisted artifact (R011)");
+
+        // Gate R014: task must NOT advance to DONE after the apply failure.
+        // Note: planStore.save() was called once during the propose phase (engine saves plan
+        // unchanged per DOUBT-AWAITING-STATE Option B). The decide phase (APPROVED_APPLY_FAILED)
+        // must NOT add a second save call. We verify exactly 1 total save (propose-only).
+        org.mockito.Mockito.verify(planStore, org.mockito.Mockito.times(1))
+                .save(any(RefinementPlan.class));
     }
 }

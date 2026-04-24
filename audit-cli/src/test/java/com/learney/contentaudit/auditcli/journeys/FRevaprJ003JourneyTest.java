@@ -1,29 +1,54 @@
 package com.learney.contentaudit.auditcli.journeys;
 
-import javax.annotation.processing.Generated;
-import java.io.IOException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.RefinementPlan;
+import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.revisiondomain.CourseElementLocator;
+import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
+import com.learney.contentaudit.revisiondomain.ProposalDecisionOutcome;
+import com.learney.contentaudit.revisiondomain.ProposalDecisionOutcomeKind;
+import com.learney.contentaudit.revisiondomain.ProposalDecisionService;
+import com.learney.contentaudit.revisiondomain.RevisionArtifact;
+import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
+import com.learney.contentaudit.revisiondomain.RevisionEngineConfig;
+import com.learney.contentaudit.revisiondomain.RevisionProposal;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.engine.DefaultProposalDecisionServiceFactory;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
+import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.io.TempDir;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Journey J003: Decidir dos veces la misma propuesta es un error (F-REVAPR-R013).
  *
- * NOTE: The project must be built before running these tests:
- *   mvn install -pl audit-cli -am -DskipTests
+ * In-memory test: uses ProposalDecisionService directly with mocked RevisionArtifactStore
+ * seeded to represent different verdicts. No subprocess, no filesystem.
  *
- * Each test takes ~5-30 seconds (JVM startup + processing).
+ * Path-1: proposal in PENDING_APPROVAL → approve → APPROVED_APPLIED (success).
+ * Path-2: proposal already APPROVED → approve again → ALREADY_DECIDED (failure).
+ * Path-3: proposal does not exist → approve → NOT_FOUND (failure).
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -34,147 +59,163 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FRevaprJ003JourneyTest {
 
-    @TempDir
-    Path sandbox;
+    private static final Path COURSE_PATH = Path.of("./db/english-course");
 
-    private static final Path PROJECT_ROOT =
-            Path.of("/Users/josecullen/projects/learney/content-audit");
+    // -------------------------------------------------------------------------
+    // Helpers
+    // -------------------------------------------------------------------------
 
-    private static final Path LAUNCHER =
-            PROJECT_ROOT.resolve("audit-cli.sh");
-
-    private static final Path FIXTURE_COURSE =
-            PROJECT_ROOT.resolve("audit-cli/src/test/resources/fixtures/tiny-course/english-course");
-
-    private record CliResult(int exit, String stdout, String stderr) {}
-
-    private CliResult run(String... args) throws IOException, InterruptedException {
-        List<String> cmd = new ArrayList<>();
-        cmd.add(LAUNCHER.toString());
-        cmd.add("--workdir");
-        cmd.add(sandbox.toString());
-        Collections.addAll(cmd, args);
-        ProcessBuilder pb = new ProcessBuilder(cmd);
-        pb.directory(PROJECT_ROOT.toFile());
-        pb.environment().put("CONTENT_AUDIT_CONTENT_FOLDER", FIXTURE_COURSE.toString());
-        pb.environment().put("CONTENT_AUDIT_APPROVAL_MODE", "human");
-        Process p = pb.start();
-        int exit = p.waitFor();
-        String out = new String(p.getInputStream().readAllBytes());
-        String err = new String(p.getErrorStream().readAllBytes());
-        return new CliResult(exit, out, err);
+    private RevisionProposal buildProposal(String proposalId, String taskId, String planId) {
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null);
+        return new RevisionProposal(
+                proposalId, taskId, planId, "audit-001",
+                DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, "quiz-001",
+                snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now(), null);
     }
 
-    /**
-     * Helper: run analyze → plan → revise the first pending task.
-     * Returns the proposalId printed by the CLI on stdout/stderr.
-     */
-    private String setupProposalPendingApproval() throws IOException, InterruptedException {
-        // Run analyze
-        CliResult analyzeResult = run("analyze", FIXTURE_COURSE.toString());
-        assertEquals(0, analyzeResult.exit(),
-                "analyze should exit 0, stderr=" + analyzeResult.stderr());
-
-        // Run plan
-        CliResult planResult = run("plan");
-        assertEquals(0, planResult.exit(),
-                "plan should exit 0, stderr=" + planResult.stderr());
-
-        // Get the first pending task id
-        CliResult listTasksResult = run("get", "tasks", "--status", "pending", "--target", "QUIZ", "--limit", "1");
-        assertEquals(0, listTasksResult.exit(),
-                "get tasks should exit 0, stderr=" + listTasksResult.stderr());
-        String taskLine = listTasksResult.stdout().lines()
-                .filter(l -> l.contains("task-"))
-                .findFirst()
-                .orElseThrow(() -> new AssertionError(
-                        "No task found in get tasks output: " + listTasksResult.stdout()));
-        // Extract task id: first token that starts with "task-"
-        String taskId = taskLine.trim().split("\\s+")[0];
-
-        // Run revise task — should emit PENDING_APPROVAL and print proposalId
-        CliResult reviseResult = run("revise", "task", taskId);
-        assertEquals(0, reviseResult.exit(),
-                "revise task should exit 0 in human mode, stderr=" + reviseResult.stderr()
-                        + " stdout=" + reviseResult.stdout());
-        String reviseOutput = reviseResult.stdout() + reviseResult.stderr();
-        assertTrue(reviseOutput.contains("proposal"),
-                "revise task output should mention proposal id, got: " + reviseOutput);
-
-        // Parse proposalId from revise output (look for a line containing "proposal" and an id token)
-        String proposalId = reviseOutput.lines()
-                .filter(l -> l.toLowerCase().contains("proposal"))
-                .flatMap(l -> java.util.Arrays.stream(l.split("\\s+")))
-                .filter(token -> !token.equalsIgnoreCase("proposal")
-                        && !token.equalsIgnoreCase("Proposal")
-                        && !token.isEmpty()
-                        && !token.equals(":")
-                        && token.matches("[a-zA-Z0-9_\\-.:T]+"))
-                .reduce((first, last) -> last)
-                .orElseThrow(() -> new AssertionError(
-                        "Could not parse proposalId from revise output: " + reviseOutput));
-        return proposalId;
+    private RevisionArtifact buildArtifact(String proposalId, String taskId, String planId,
+                                           RevisionVerdict verdict) {
+        return new RevisionArtifact(buildProposal(proposalId, taskId, planId), verdict, null, null, null, null);
     }
+
+    private RefinementPlan buildPlan(String planId, String taskId) {
+        RefinementTask task = new RefinementTask(
+                taskId, AuditTarget.QUIZ, "quiz-001", "Quiz about verbs",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        return new RefinementPlan(planId, "audit-001", Instant.now(), List.of(task));
+    }
+
+    private ProposalDecisionService buildService(RevisionArtifactStore artifactStore,
+                                                  CourseRepository courseRepository,
+                                                  CourseElementLocator elementLocator,
+                                                  RefinementPlanStore planStore) {
+        RevisionEngineConfig config = new RevisionEngineConfig();
+        config.setArtifactStore(artifactStore);
+        config.setCourseRepository(courseRepository);
+        config.setElementLocator(elementLocator);
+        config.setRefinementPlanStore(planStore);
+        return new DefaultProposalDecisionServiceFactory().create(config);
+    }
+
+    // -------------------------------------------------------------------------
+    // path-1: El veredicto actual es PENDING_APPROVAL → approve → success (APPROVED_APPLIED)
+    // Gates: R011 (approve pending proposal, applies to course), R013 (PENDING_APPROVAL is ok)
+    // -------------------------------------------------------------------------
 
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador invoca 'content-audit app... → El sistema procesa la decision (aprob... [El veredicto actual es PENDING_APPROVAL] → success")
-    public void path1_elVeredictoActualEsPENDINGAPPROVAL_success() throws IOException, InterruptedException {
-        // Step: invocar_decision — operator invokes approve on a PENDING_APPROVAL proposal (F-REVAPR-R011, R013)
-        // Setup: analyze → plan → revise to get a PENDING_APPROVAL proposal
-        String proposalId = setupProposalPendingApproval();
+    public void path1_elVeredictoActualEsPENDINGAPPROVAL_success() {
+        // ── Arrange ─────────────────────────────────────────────────────────────
+        String proposalId = "task-j003p1-001";
+        String taskId     = "task-j003p1";
+        String planId     = "plan-j003p1";
 
-        // Step: procesar_decision — system processes the decision (approve applies to course) → success
-        // [El veredicto actual es PENDING_APPROVAL] → approve should succeed
-        CliResult approveResult = run("approve", "proposal", proposalId);
-        assertEquals(0, approveResult.exit(),
-                "approve proposal on PENDING_APPROVAL should exit 0, stderr=" + approveResult.stderr()
-                        + " stdout=" + approveResult.stdout());
+        RevisionArtifactStore artifactStore = mock(RevisionArtifactStore.class);
+        CourseRepository courseRepository   = mock(CourseRepository.class);
+        CourseElementLocator elementLocator = mock(CourseElementLocator.class);
+        RefinementPlanStore planStore       = mock(RefinementPlanStore.class);
+
+        RevisionArtifact pendingArtifact = buildArtifact(proposalId, taskId, planId, RevisionVerdict.PENDING_APPROVAL);
+        RefinementPlan plan = buildPlan(planId, taskId);
+        CourseEntity course = mock(CourseEntity.class);
+
+        when(artifactStore.findByProposalId(eq(proposalId), any())).thenReturn(Optional.of(pendingArtifact));
+        when(planStore.load(planId)).thenReturn(Optional.of(plan));
+        when(courseRepository.load(COURSE_PATH)).thenReturn(course);
+        when(elementLocator.replace(eq(course), any(CourseElementSnapshot.class))).thenReturn(course);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(
+                ".content-audit/revisions/" + planId + "/" + proposalId);
+
+        ProposalDecisionService service = buildService(artifactStore, courseRepository, elementLocator, planStore);
+
+        // ── Act ─────────────────────────────────────────────────────────────────
+        // Node: invocar_decision [El veredicto actual es PENDING_APPROVAL] → procesar_decision → success
+        ProposalDecisionOutcome outcome = service.approve(proposalId, Optional.of(planId), Optional.empty(), COURSE_PATH);
+
+        // ── Assert: success ──────────────────────────────────────────────────────
+        // Gate R011: approving a PENDING_APPROVAL proposal succeeds
+        // Gate R013: the decision is processed (not rejected as ALREADY_DECIDED)
+        assertEquals(ProposalDecisionOutcomeKind.APPROVED_APPLIED, outcome.getKind(),
+                "path-1: approving a PENDING_APPROVAL proposal must yield APPROVED_APPLIED (R011, R013)");
     }
+
+    // -------------------------------------------------------------------------
+    // path-2: El veredicto actual ya es APPROVED o REJECTED → rechazar_por_veredicto → failure
+    // Gate: R013 (decidir dos veces es un error, no un no-op)
+    // -------------------------------------------------------------------------
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador invoca 'content-audit app... → El sistema reporta que la propuesta y... [El veredicto actual ya es APPROVED o REJECTED] → failure")
-    public void path2_elVeredictoActualYaEsAPPROVEDOREJECTED_failure() throws IOException, InterruptedException {
-        // Step: invocar_decision (first time) — setup PENDING_APPROVAL proposal then approve it once (F-REVAPR-R011)
-        String proposalId = setupProposalPendingApproval();
+    public void path2_elVeredictoActualYaEsAPPROVEDOREJECTED_failure() {
+        // ── Arrange ─────────────────────────────────────────────────────────────
+        String proposalId = "task-j003p2-002";
+        String taskId     = "task-j003p2";
+        String planId     = "plan-j003p2";
 
-        CliResult firstApprove = run("approve", "proposal", proposalId);
-        assertEquals(0, firstApprove.exit(),
-                "first approve should succeed, stderr=" + firstApprove.stderr()
-                        + " stdout=" + firstApprove.stdout());
+        RevisionArtifactStore artifactStore = mock(RevisionArtifactStore.class);
+        CourseRepository courseRepository   = mock(CourseRepository.class);
+        CourseElementLocator elementLocator = mock(CourseElementLocator.class);
+        RefinementPlanStore planStore       = mock(RefinementPlanStore.class);
 
-        // Step: rechazar_por_veredicto — invocar_decision a second time on the same proposal
-        // [El veredicto actual ya es APPROVED] → system must fail with ALREADY_DECIDED error (F-REVAPR-R013)
-        CliResult secondApprove = run("approve", "proposal", proposalId);
-        assertNotEquals(0, secondApprove.exit(),
-                "second approve on already-decided proposal must exit non-zero");
-        String secondOutput = secondApprove.stdout() + secondApprove.stderr();
-        assertTrue(
-                secondOutput.toLowerCase().contains("already")
-                        || secondOutput.toLowerCase().contains("verdict")
-                        || secondOutput.toLowerCase().contains("approved")
-                        || secondOutput.toLowerCase().contains("cannot"),
-                "second approve must mention the already-decided verdict, got: " + secondOutput);
+        // Already-decided artifact: verdict is APPROVED (simulate second invocation)
+        RevisionArtifact alreadyApproved = buildArtifact(proposalId, taskId, planId, RevisionVerdict.APPROVED);
+        when(artifactStore.findByProposalId(eq(proposalId), any())).thenReturn(Optional.of(alreadyApproved));
+
+        ProposalDecisionService service = buildService(artifactStore, courseRepository, elementLocator, planStore);
+
+        // ── Act ─────────────────────────────────────────────────────────────────
+        // Node: invocar_decision [El veredicto actual ya es APPROVED] → rechazar_por_veredicto → failure
+        ProposalDecisionOutcome outcome = service.approve(proposalId, Optional.of(planId), Optional.empty(), COURSE_PATH);
+
+        // ── Assert: failure ─────────────────────────────────────────────────────
+        // Gate R013: second approve on already-APPROVED proposal must be ALREADY_DECIDED, not a no-op
+        assertEquals(ProposalDecisionOutcomeKind.ALREADY_DECIDED, outcome.getKind(),
+                "path-2: approving an already-decided proposal must yield ALREADY_DECIDED (R013)");
+
+        // Gate R013: no write side effects (artifact not re-saved, course not touched, plan not updated)
+        verify(artifactStore, never()).save(any(RevisionArtifact.class));
+        verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
+        verify(planStore, never()).save(any(RefinementPlan.class));
     }
+
+    // -------------------------------------------------------------------------
+    // path-3: La propuesta no existe → rechazar_no_encontrada → failure
+    // Gate: R002 (no proposal found for the given id)
+    // -------------------------------------------------------------------------
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador invoca 'content-audit app... → El sistema reporta que la propuesta n... [La propuesta no existe] → failure")
-    public void path3_laPropuestaNoExiste_failure() throws IOException, InterruptedException {
-        // Step: invocar_decision — operator invokes approve on a proposal id that does not exist
-        // [La propuesta no existe] → system must fail with NOT_FOUND error (F-REVAPR-R002)
-        CliResult approveResult = run("approve", "proposal", "nonexistent-proposal-id-xyz");
-        assertNotEquals(0, approveResult.exit(),
-                "approve on nonexistent proposal must exit non-zero");
-        String output = approveResult.stdout() + approveResult.stderr();
-        assertTrue(
-                output.toLowerCase().contains("not found")
-                        || output.toLowerCase().contains("no proposal")
-                        || output.toLowerCase().contains("nonexistent-proposal-id-xyz"),
-                "output must mention not-found or the unknown id, got: " + output);
+    public void path3_laPropuestaNoExiste_failure() {
+        // ── Arrange ─────────────────────────────────────────────────────────────
+        String proposalId = "nonexistent-proposal-j003";
+
+        RevisionArtifactStore artifactStore = mock(RevisionArtifactStore.class);
+        CourseRepository courseRepository   = mock(CourseRepository.class);
+        CourseElementLocator elementLocator = mock(CourseElementLocator.class);
+        RefinementPlanStore planStore       = mock(RefinementPlanStore.class);
+
+        when(artifactStore.findByProposalId(eq(proposalId), any())).thenReturn(Optional.empty());
+
+        ProposalDecisionService service = buildService(artifactStore, courseRepository, elementLocator, planStore);
+
+        // ── Act ─────────────────────────────────────────────────────────────────
+        // Node: invocar_decision [La propuesta no existe] → rechazar_no_encontrada → failure
+        ProposalDecisionOutcome outcome = service.approve(proposalId, Optional.empty(), Optional.empty(), COURSE_PATH);
+
+        // ── Assert: failure ─────────────────────────────────────────────────────
+        // Gate R002: no proposal found for the given id
+        assertEquals(ProposalDecisionOutcomeKind.NOT_FOUND, outcome.getKind(),
+                "path-3: approving a nonexistent proposal must yield NOT_FOUND (R002)");
+
+        // Gate R002: no side effects (nothing written)
+        verify(artifactStore, never()).save(any(RevisionArtifact.class));
+        verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
+        verify(planStore, never()).save(any(RefinementPlan.class));
     }
 }
