@@ -35,13 +35,15 @@ public class RevisionProposal {
 
     private Instant createdAt;
 
+    private StrategyId strategyId;
+
     public RevisionProposal() {
     }
 
     public RevisionProposal(String proposalId, String taskId, String planId, String sourceAuditId,
             DiagnosisKind diagnosisKind, AuditTarget nodeTarget, String nodeId,
             CourseElementSnapshot elementBefore, CourseElementSnapshot elementAfter,
-            String rationale, String reviserKind, Instant createdAt) {
+            String rationale, String reviserKind, Instant createdAt, StrategyId strategyId) {
         this.proposalId = proposalId;
         this.taskId = taskId;
         this.planId = planId;
@@ -54,6 +56,7 @@ public class RevisionProposal {
         this.rationale = rationale;
         this.reviserKind = reviserKind;
         this.createdAt = createdAt;
+        this.strategyId = strategyId;
     }
 
     public String getProposalId() {
@@ -152,6 +155,14 @@ public class RevisionProposal {
         this.createdAt = createdAt;
     }
 
+    public StrategyId getStrategyId() {
+        return this.strategyId;
+    }
+
+    public void setStrategyId(StrategyId strategyId) {
+        this.strategyId = strategyId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -168,11 +179,12 @@ public class RevisionProposal {
                     && Objects.equals(this.elementAfter, that.elementAfter)
                     && Objects.equals(this.rationale, that.rationale)
                     && Objects.equals(this.reviserKind, that.reviserKind)
-                    && Objects.equals(this.createdAt, that.createdAt);
+                    && Objects.equals(this.createdAt, that.createdAt)
+                    && Objects.equals(this.strategyId, that.strategyId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(proposalId, taskId, planId, sourceAuditId, diagnosisKind, nodeTarget, nodeId, elementBefore, elementAfter, rationale, reviserKind, createdAt);
+        return Objects.hash(proposalId, taskId, planId, sourceAuditId, diagnosisKind, nodeTarget, nodeId, elementBefore, elementAfter, rationale, reviserKind, createdAt, strategyId);
     }
 }

@@ -325,6 +325,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: InvalidApprovalModeException - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.InvalidProposalStrategyException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: InvalidProposalStrategyException - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.WorkdirResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: WorkdirResolver - " + e.getMessage());
@@ -335,6 +340,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: ApprovalModeResolver - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.ProposalStrategySelector");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ProposalStrategySelector - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultWorkdirResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultWorkdirResolver - " + e.getMessage());
@@ -343,6 +353,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultApprovalModeResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultApprovalModeResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultProposalStrategySelector");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultProposalStrategySelector - " + e.getMessage());
     }
   }
 }

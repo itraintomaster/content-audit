@@ -59,10 +59,14 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver<Le
         AuditableEntity quizEntity = quizNode.getEntity();
         String sentence = null;
         String translation = null;
+        String quizSentence = null;
         if (quizEntity instanceof AuditableQuiz) {
             AuditableQuiz quiz = (AuditableQuiz) quizEntity;
-            sentence = quiz.getSentence();
+            sentence = (quiz.getSentences() != null && !quiz.getSentences().isEmpty())
+                    ? quiz.getSentences().get(0) : null;
             translation = quiz.getTranslation();
+            // FEAT-RCLAQS R001/R002: copied verbatim from carrier — no re-invocation of converter
+            quizSentence = quiz.getQuizSentence();
         }
 
         // Step 4: Navigate ancestors for knowledge title/instructions and topic label
@@ -139,6 +143,9 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver<Le
             }
         }
 
+        // FEAT-RCLAQS R001: quizSentence is propagated verbatim from the AuditableQuiz carrier.
+        // R002 (delegacion negativa): no re-invocation of the converter here; the value was
+        // already materialized by CourseToAuditableMapper in the same pass that built sentences.
         LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
                 task.getId(),
                 sentence,
@@ -148,7 +155,8 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver<Le
                 topicLabel,
                 cefrLevel,
                 misplacedLemmaContexts,
-                suggestedLemmas);
+                suggestedLemmas,
+                quizSentence);
 
         return Optional.of(context);
     }

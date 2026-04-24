@@ -31,6 +31,10 @@ public class RevisionEngineConfig {
 
     private CorrectionContextResolver<CorrectionContext> contextResolver;
 
+    private LemmaAbsenceProposalStrategyRegistry lemmaAbsenceStrategyRegistry;
+
+    private LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver;
+
     public RevisionEngineConfig() {
     }
 
@@ -38,7 +42,9 @@ public class RevisionEngineConfig {
             RevisionArtifactStore artifactStore, CourseRepository courseRepository,
             CourseElementLocator elementLocator, RefinementPlanStore refinementPlanStore,
             AuditReportStore auditReportStore,
-            CorrectionContextResolver<CorrectionContext> contextResolver) {
+            CorrectionContextResolver<CorrectionContext> contextResolver,
+            LemmaAbsenceProposalStrategyRegistry lemmaAbsenceStrategyRegistry,
+            LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver) {
         this.revisers = revisers;
         this.validator = validator;
         this.artifactStore = artifactStore;
@@ -47,6 +53,8 @@ public class RevisionEngineConfig {
         this.refinementPlanStore = refinementPlanStore;
         this.auditReportStore = auditReportStore;
         this.contextResolver = contextResolver;
+        this.lemmaAbsenceStrategyRegistry = lemmaAbsenceStrategyRegistry;
+        this.lemmaAbsenceProposalDeriver = lemmaAbsenceProposalDeriver;
     }
 
     public Map<DiagnosisKind, Reviser> getRevisers() {
@@ -113,6 +121,24 @@ public class RevisionEngineConfig {
         this.contextResolver = contextResolver;
     }
 
+    public LemmaAbsenceProposalStrategyRegistry getLemmaAbsenceStrategyRegistry() {
+        return this.lemmaAbsenceStrategyRegistry;
+    }
+
+    public void setLemmaAbsenceStrategyRegistry(
+            LemmaAbsenceProposalStrategyRegistry lemmaAbsenceStrategyRegistry) {
+        this.lemmaAbsenceStrategyRegistry = lemmaAbsenceStrategyRegistry;
+    }
+
+    public LemmaAbsenceProposalDeriver getLemmaAbsenceProposalDeriver() {
+        return this.lemmaAbsenceProposalDeriver;
+    }
+
+    public void setLemmaAbsenceProposalDeriver(
+            LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver) {
+        this.lemmaAbsenceProposalDeriver = lemmaAbsenceProposalDeriver;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -125,11 +151,13 @@ public class RevisionEngineConfig {
                     && Objects.equals(this.elementLocator, that.elementLocator)
                     && Objects.equals(this.refinementPlanStore, that.refinementPlanStore)
                     && Objects.equals(this.auditReportStore, that.auditReportStore)
-                    && Objects.equals(this.contextResolver, that.contextResolver);
+                    && Objects.equals(this.contextResolver, that.contextResolver)
+                    && Objects.equals(this.lemmaAbsenceStrategyRegistry, that.lemmaAbsenceStrategyRegistry)
+                    && Objects.equals(this.lemmaAbsenceProposalDeriver, that.lemmaAbsenceProposalDeriver);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(revisers, validator, artifactStore, courseRepository, elementLocator, refinementPlanStore, auditReportStore, contextResolver);
+        return Objects.hash(revisers, validator, artifactStore, courseRepository, elementLocator, refinementPlanStore, auditReportStore, contextResolver, lemmaAbsenceStrategyRegistry, lemmaAbsenceProposalDeriver);
     }
 }

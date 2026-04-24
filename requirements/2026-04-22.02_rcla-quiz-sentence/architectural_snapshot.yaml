@@ -1,0 +1,125 @@
+code: FEAT-RCLAQS
+description: "FEAT-RCLAQS: expose quizSentence (FEAT-QSENT DSL) on the LemmaAbsence\
+  \ CorrectionContext. The DSL is stamped once on AuditableQuiz during course-to-auditable\
+  \ mapping (same pass that derives the plain sentences list), and the LEMMA_ABSENCE\
+  \ resolver reads it from the AuditableQuiz like it already does with the plain sentence.\
+  \ No new cross-module dependency on refiner-domain; the QuizSentenceConverter stays\
+  \ injected only in CourseToAuditableMapper where it already lives (FEAT-QSENT R027)."
+modules:
+- name: audit-domain
+  models:
+  - name: AuditableQuiz
+    type: record
+    fields:
+    - name: quizSentence
+      type: String
+      description: "FEAT-QSENT DSL serialization of the original quiz FormEntity (R001/R002).\
+        \ Stamped eagerly by CourseToAuditableMapper in the same pass that fills `sentences`\
+        \ (FEAT-QSENT R027), guaranteeing quizSentence and sentences[0] are derived\
+        \ from the same FormEntity in the same derivation step (R003). Null only if\
+        \ the course predates FEAT-QSENT — never null for quizzes that pass the mapper."
+      _change: add
+    _change: modify
+  _change: modify
+- name: refiner-domain
+  models:
+  - name: LemmaAbsenceCorrectionContext
+    type: record
+    fields:
+    - name: quizSentence
+      type: String
+      description: FEAT-QSENT DSL of the original quiz (R001). Copied verbatim from
+        AuditableQuiz.quizSentence by LemmaAbsenceContextResolver; never recomputed
+        in this module. Coexists with `sentence` (plain) per R001 — both correspond
+        to the same quiz and the same derivation step (R003). Null when the upstream
+        AuditableQuiz was built before FEAT-QSENT was shipped.
+      _change: add
+    _change: modify
+  implementations:
+  - name: LemmaAbsenceContextResolver
+    handwrittenTests:
+    - name: should populate quizSentence on the LEMMA_ABSENCE correction context from
+        the AuditableQuiz carrier
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R001
+    - name: should copy AuditableQuiz.quizSentence verbatim without recomputing the
+        DSL in the resolver
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R002
+    - name: should emit sentence and quizSentence that originate from the same AuditableQuiz
+        so both fields describe the same quiz
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R003
+    _change: modify
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: CourseToAuditableMapper
+    handwrittenTests:
+    - name: should stamp quizSentence on AuditableQuiz by invoking QuizSentenceConverter.serialize
+        on the same FormEntity used for sentences
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R002
+    - name: should invoke QuizSentenceConverter.serialize exactly once per quiz in
+        the same pass that populates sentences
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R002
+    - name: "should stamp sentences[0] and quizSentence from the same FormEntity so\
+        \ plain sentence and DSL describe the same derivation step"
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R003
+    - name: should propagate QuizSentenceSerializationException and not emit the AuditableQuiz
+        when the original FormEntity violates FEAT-QSENT invariants
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R004
+    - name: should fail atomically without a partial quizSentence when serialize throws
+        for a TEXT form with non-empty options
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R004
+    - name: should fail atomically without a partial quizSentence when serialize throws
+        for a CLOZE form with null or empty options
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R004
+    _change: modify
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: commands
+    visibility: internal
+    implementations:
+    - name: GetCmd
+      handwrittenTests:
+      - name: should include quizSentence inside correctionContext in JSON output
+          for a LEMMA_ABSENCE task
+        traceability:
+          feature: FEAT-RCLAQS
+          rule: F-RCLAQS-R005
+      - name: should emit quizSentence alongside sentence translation and the other
+          correctionContext fields in JSON for LEMMA_ABSENCE
+        traceability:
+          feature: FEAT-RCLAQS
+          rule: F-RCLAQS-R005
+      - name: should omit quizSentence from JSON when correctionContext could not
+          be built for a LEMMA_ABSENCE task
+        traceability:
+          feature: FEAT-RCLAQS
+          rule: F-RCLAQS-R005
+      _change: modify
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-RCLAQS
+  journeys:
+  - id: F-RCLAQS-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys

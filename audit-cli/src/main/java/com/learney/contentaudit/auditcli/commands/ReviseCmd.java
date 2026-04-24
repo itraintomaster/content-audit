@@ -172,6 +172,19 @@ final class ReviseCmd implements ReviseCommand, Callable<Integer> {
                 System.err.println("Task " + taskId + " already has a pending proposal awaiting approval.");
                 yield 1;
             }
+            case NO_ACTIVE_STRATEGY -> {
+                System.err.println("No active strategy registered for task " + taskId
+                        + " in plan " + planId + ".");
+                yield 1;
+            }
+            case STRATEGY_FAILED -> {
+                System.err.println("Strategy execution failed for task " + taskId
+                        + " in plan " + planId + ".");
+                if (outcome.getErrorMessage() != null) {
+                    System.err.println("Error: " + outcome.getErrorMessage());
+                }
+                yield 1;
+            }
         };
     }
 }

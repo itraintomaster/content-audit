@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditapplication;
+import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceConverter;
 
 import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.AuditableKnowledge;
@@ -16,6 +17,7 @@ import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.coursedomain.TopicEntity;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -27,10 +29,20 @@ import javax.annotation.processing.Generated;
 )
 public class CourseToAuditableMapper implements CourseMapper {
     private final NlpTokenizer nlpTokenizer;
+    private final QuizSentenceConverter quizSentenceConverter;
     private Map<String, List<NlpToken>> tokenCache = Map.of();
+    // R027: converter must be invoked exactly once per quiz. This map caches
+    // the result of that single call so the canonical-sentence collection
+    // phase and the stamping phase share the same list.
+    private Map<QuizTemplateEntity, List<String>> sentencesByQuiz = new HashMap<>();
+    // FEAT-RCLAQS R002: quizSentence DSL derived in the same single pass as sentences.
+    // Populated by deriveSentences alongside sentencesByQuiz to guarantee R003 consistency.
+    private Map<QuizTemplateEntity, String> quizSentenceByQuiz = new HashMap<>();
 
-    public CourseToAuditableMapper(NlpTokenizer nlpTokenizer) {
+    public CourseToAuditableMapper(NlpTokenizer nlpTokenizer,
+            QuizSentenceConverter quizSentenceConverter) {
         this.nlpTokenizer = nlpTokenizer;
+        this.quizSentenceConverter = quizSentenceConverter;
     }
 
     @Override
@@ -39,7 +51,9 @@ public class CourseToAuditableMapper implements CourseMapper {
             return new AuditableCourse(List.of());
         }
 
-        List<String> allSentences = collectAllSentences(course);
+        sentencesByQuiz = new HashMap<>();
+        quizSentenceByQuiz = new HashMap<>();
+        List<String> allSentences = collectAllCanonicalSentences(course);
         tokenCache = nlpTokenizer.analyzeTokensBatch(allSentences);
 
         if (course.getRoot() == null) {
@@ -99,12 +113,43 @@ public class CourseToAuditableMapper implements CourseMapper {
     }
 
     private AuditableQuiz mapQuiz(QuizTemplateEntity qt) {
-        String sentence = buildSentence(qt);
-        List<NlpToken> tokens = tokenCache.getOrDefault(sentence, List.of());
-        return new AuditableQuiz(sentence, tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation());
+        // Eager delegation to converter (R027): one call per quiz, result stamped on AuditableQuiz.
+        // deriveSentences populates both sentencesByQuiz and quizSentenceByQuiz in a single pass
+        // so serialize() is never called more than once per quiz (FEAT-RCLAQS R002).
+        List<String> sentences = deriveSentences(qt);
+        // Use canonical sentence (index 0) as the key for the NLP token cache
+        String canonicalSentence = sentences.isEmpty() ? "" : sentences.get(0);
+        List<NlpToken> tokens = tokenCache.getOrDefault(canonicalSentence, List.of());
+        // FEAT-RCLAQS R001/R002: quizSentence is derived in the same pass; null only when
+        // the form has no sentenceParts (quizSentenceByQuiz will not contain an entry for it).
+        String quizSentence = quizSentenceByQuiz.get(qt);
+        return new AuditableQuiz(tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation(), sentences, quizSentence);
     }
 
-    private List<String> collectAllSentences(CourseEntity course) {
+    private List<String> deriveSentences(QuizTemplateEntity qt) {
+        // R027 — memoize per-quiz so the converter is invoked exactly once
+        // regardless of whether we're in the NLP batch collection phase or
+        // the stamping phase.
+        List<String> cached = sentencesByQuiz.get(qt);
+        if (cached != null) {
+            return cached;
+        }
+        FormEntity form = qt.getForm();
+        if (form == null || form.getSentenceParts() == null || form.getSentenceParts().isEmpty()) {
+            sentencesByQuiz.put(qt, List.of());
+            return List.of();
+        }
+        // FEAT-RCLAQS R002: serialize() produces the DSL in the same single invocation window.
+        // QuizSentenceSerializationException propagates unchecked — the quiz must not enter
+        // the AuditReport if sentenceParts are invalid (FEAT-RCLAQS R004 fail-fast).
+        String dsl = quizSentenceConverter.serialize(form);
+        quizSentenceByQuiz.put(qt, dsl);
+        List<String> derived = quizSentenceConverter.toPlainSentences(form);
+        sentencesByQuiz.put(qt, derived);
+        return derived;
+    }
+
+    private List<String> collectAllCanonicalSentences(CourseEntity course) {
         List<String> sentences = new ArrayList<>();
         if (course.getRoot() == null) {
             return sentences;
@@ -129,40 +174,15 @@ public class CourseToAuditableMapper implements CourseMapper {
                         continue;
                     }
                     for (QuizTemplateEntity qt : quizTemplates) {
-                        String sentence = buildSentence(qt);
-                        if (!sentence.isEmpty()) {
-                            sentences.add(sentence);
+                        List<String> derived = deriveSentences(qt);
+                        if (!derived.isEmpty()) {
+                            // Collect only canonical (index 0) for NLP batch tokenization
+                            sentences.add(derived.get(0));
                         }
                     }
                 }
             }
         }
         return sentences;
-    }
-
-    private String buildSentence(QuizTemplateEntity qt) {
-        FormEntity form = qt.getForm();
-        if (form == null) {
-            return "";
-        }
-        List<SentencePartEntity> parts = form.getSentenceParts();
-        if (parts == null || parts.isEmpty()) {
-            return "";
-        }
-        StringBuilder sb = new StringBuilder();
-        for (SentencePartEntity part : parts) {
-            if (part.getKind() == SentencePartKind.TEXT) {
-                String text = part.getText();
-                if (text != null) {
-                    sb.append(text);
-                }
-            } else if (part.getKind() == SentencePartKind.CLOZE) {
-                List<String> options = part.getOptions();
-                if (options != null && !options.isEmpty()) {
-                    sb.append(options.get(0));
-                }
-            }
-        }
-        return sb.toString();
     }
 }

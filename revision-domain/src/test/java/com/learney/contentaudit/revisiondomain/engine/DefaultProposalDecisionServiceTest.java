@@ -70,7 +70,7 @@ public class DefaultProposalDecisionServiceTest {
                 proposalId, taskId, planId, "audit-001",
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, "quiz-001",
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        );
+        , null);
     }
 
     private RevisionArtifact buildArtifact(String proposalId, String taskId, String planId,

@@ -172,7 +172,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R001")
     public void shouldResolveContextWithAllFieldsPopulatedFromQuizDiagnosisAndAncestorEntities() {
-        AuditableQuiz quiz = new AuditableQuiz("The cat sat.", List.of(), "quiz-1", null, null, "El gato se sentó.");
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-1", null, null, "El gato se sentó.", List.of("The cat sat."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete the sentence.", true, "know-1", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-1", "Basic Animals", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-1", "A1", null);
@@ -189,7 +189,7 @@ public class SentenceLengthContextResolverTest {
                 milestoneDiag,
                 new AuditableTopic(List.of(), "topic-1", "Basic Animals", null),
                 new AuditableKnowledge(List.of(), "Animals", "Complete the sentence.", true, "know-1", null, null),
-                new AuditableQuiz("The cat sat.", List.of(), "quiz-1", null, null, "El gato se sentó."),
+                new AuditableQuiz(List.of(), "quiz-1", null, null, "El gato se sentó.", List.of("The cat sat."), null),
                 quizDiag);
         AuditReport report = new AuditReport(tree[0]);
         RefinementTask task = buildTask("quiz-1");
@@ -217,7 +217,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R001")
     public void shouldPopulateSentenceAndTranslationFromAuditableQuizEntityOnTheQuizNode() {
-        AuditableQuiz quiz = new AuditableQuiz("I love learning.", List.of(), "quiz-2", null, null, "Me encanta aprender.");
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-2", null, null, "Me encanta aprender.", List.of("I love learning."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Feelings", "Complete.", true, "know-2", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-2", "Emotions", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-2", "A1", null);
@@ -243,7 +243,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("F-RCSL-R001")
     public void shouldPopulateKnowledgeTitleAndKnowledgeInstructionsFromAuditableKnowledgeOnKnowledgeAncestor(
             ) {
-        AuditableQuiz quiz = new AuditableQuiz("He reads.", List.of(), "quiz-3", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-3", null, null, null, List.of("He reads."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Reading Skills", "Choose the correct word.", true, "know-3", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-3", "Skills", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-3", "A2", null);
@@ -268,7 +268,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R001")
     public void shouldPopulateTopicLabelFromAuditableTopicOnTopicAncestor() {
-        AuditableQuiz quiz = new AuditableQuiz("She sings.", List.of(), "quiz-4", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-4", null, null, null, List.of("She sings."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Music", "Complete.", true, "know-4", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-4", "Arts and Culture", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-4", "B1", null);
@@ -293,7 +293,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("F-RCSL-R001")
     public void shouldPopulateCefrLevelTokenCountTargetMinTargetMaxAndDeltaFromSentenceLengthDiagnosis(
             ) {
-        AuditableQuiz quiz = new AuditableQuiz("They were going.", List.of(), "quiz-5", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-5", null, null, null, List.of("They were going."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Verbs", "Complete.", true, "know-5", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-5", "Grammar", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-5", "B2", null);
@@ -322,7 +322,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R002")
     public void shouldReturnEmptyWhenQuizNodeIsNotFoundInTheAuditTree() {
-        AuditableQuiz quiz = new AuditableQuiz("Hello.", List.of(), "quiz-6", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-6", null, null, null, List.of("Hello."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete.", true, "know-6", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-6", "Social", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-6", "A1", null);
@@ -346,7 +346,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R002")
     public void shouldReturnEmptyWhenTaskNodeTargetDoesNotMatchAnyNodeTargetInTheTree() {
-        AuditableQuiz quiz = new AuditableQuiz("Hello.", List.of(), "quiz-7", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-7", null, null, null, List.of("Hello."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete.", true, "know-7", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-7", "Social", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-7", "A1", null);
@@ -377,8 +377,8 @@ public class SentenceLengthContextResolverTest {
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-8", "Topic 8", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-8", "A1", null);
 
-        AuditableQuiz quiz1 = new AuditableQuiz("First sentence.", List.of(), "quiz-8a", null, null, null);
-        AuditableQuiz quiz2 = new AuditableQuiz("Second sentence.", List.of(), "quiz-8b", null, null, null);
+        AuditableQuiz quiz1 = new AuditableQuiz(List.of(), "quiz-8a", null, null, null, List.of("First sentence."), null);
+        AuditableQuiz quiz2 = new AuditableQuiz(List.of(), "quiz-8b", null, null, null, List.of("Second sentence."), null);
 
         SentenceLengthDiagnosis sld1 = buildDiagnosis(2, 2, 5, CefrLevel.A1, 0);
         SentenceLengthDiagnosis sld2 = buildDiagnosis(2, 2, 5, CefrLevel.A1, 0);
@@ -409,7 +409,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("F-RCSL-R003")
     public void shouldIncludeOnlyCOMPLETELYABSENTAndAPPEARSTOOLATELemmasAndExcludeAPPEARSTOOEARLY(
             ) {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-9", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-9", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-9", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-9", "T9", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-9", "A1", null);
@@ -442,7 +442,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R003")
     public void shouldOrderSuggestedLemmasByCOCARankAscendingWithLowestRankFirst() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-10", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-10", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-10", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-10", "T10", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-10", "A1", null);
@@ -475,7 +475,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R003")
     public void shouldPlaceLemmasWithoutCOCARankAfterLemmasWithCOCARank() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-11", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-11", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-11", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-11", "T11", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-11", "A1", null);
@@ -510,7 +510,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R003")
     public void shouldMapAbsentLemmaFieldsToSuggestedLemmaFieldsCorrectly() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-12", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-12", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-12", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-12", "T12", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-12", "A1", null);
@@ -543,7 +543,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R003")
     public void shouldReturnEmptySuggestedLemmasWhenAllAbsentLemmasAreAPPEARSTOOEARLY() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-13", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-13", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-13", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-13", "T13", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-13", "A1", null);
@@ -571,7 +571,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R003")
     public void shouldReturnSuggestedLemmasFromTheMilestoneAncestorOfTheQuizNode() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-14", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-14", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-14", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-14", "T14", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-14", "A1", null);
@@ -602,7 +602,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("F-RCSL-R004")
     public void shouldReturnContextWithEmptySuggestedLemmasWhenMilestoneHasNoLemmaAbsenceLevelDiagnosis(
             ) {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-15", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-15", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-15", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-15", "T15", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-15", "A1", null);
@@ -629,7 +629,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("F-RCSL-R004")
     public void shouldReturnContextWithEmptySuggestedLemmasWhenMilestoneAncestorIsNotFound() {
         // Build a shallow tree: COURSE → TOPIC → KNOWLEDGE → QUIZ (no MILESTONE level)
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-16", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-16", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-16", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-16", "T16", null);
 
@@ -655,7 +655,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R004")
     public void shouldReturnContextWithEmptySuggestedLemmasWhenAbsentLemmasListIsEmpty() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-17", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-17", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-17", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-17", "T17", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-17", "A1", null);
@@ -681,7 +681,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R005")
     public void shouldLimitSuggestedLemmasTo10WhenMoreThan10QualifyAfterFiltering() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-18", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-18", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-18", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-18", "T18", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-18", "A1", null);
@@ -711,7 +711,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R001")
     public void shouldResolveContextWithNegativeDeltaForASentenceShorterThanTargetRange() {
-        AuditableQuiz quiz = new AuditableQuiz("Go.", List.of(), "quiz-19", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-19", null, null, null, List.of("Go."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-19", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-19", "T19", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-19", "A1", null);
@@ -737,7 +737,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R001")
     public void shouldResolveContextWithZeroDeltaWhenSentenceIsWithinTargetRange() {
-        AuditableQuiz quiz = new AuditableQuiz("I like cats.", List.of(), "quiz-20", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-20", null, null, null, List.of("I like cats."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-20", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-20", "T20", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-20", "A1", null);
@@ -762,7 +762,7 @@ public class SentenceLengthContextResolverTest {
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R001")
     public void shouldSetTaskIdFromTheRefinementTaskId() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-21", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-21", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-21", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-21", "T21", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-21", "A1", null);

@@ -1,0 +1,299 @@
+code: FEAT-LAPS
+description: "FEAT-LAPS: First real proposal strategy for LEMMA_ABSENCE. Introduces\
+  \ LemmaAbsenceProposalStrategy port (versioned), a StrategyId carrier for traceability,\
+  \ a structured LemmaAbsenceQuizCandidate + deterministic deriver that maps candidate\
+  \ -> elementAfter, an MVP strategy and its candidate-generator port (concrete provider\
+  \ TBD by user), a registry + CLI env-var selection, and an explicit no-fallback-to-bypass\
+  \ branch for LEMMA_ABSENCE. Generalization across DiagnosisKinds is deferred (YAGNI).\
+  \ Consumes QuizSentenceConverter from course-domain (FEAT-QSENT) for candidate DSL\
+  \ <-> FormEntity conversion."
+modules:
+- name: revision-domain
+  dependsOn:
+  - audit-domain
+  - refiner-domain
+  - course-domain
+  models:
+  - name: StrategyId
+    type: record
+    fields:
+    - name: name
+      type: String
+      description: "Symbolic identifier, e.g. 'lemma-absence-mvp' (F-LAPS-R005)."
+    - name: version
+      type: String
+      description: "Version string, e.g. '1.0.0'; distinguishes revisions of the same\
+        \ name over time (F-LAPS-R005)."
+    - name: providerId
+      type: String
+      description: "Opaque provider id for the underlying candidate generator, e.g.\
+        \ 'llm:anthropic', 'fixture:golden'. Nullable when the strategy has no external\
+        \ provider. Resolves DOUBT-STRATEGY-METADATA as the minimum-beyond-name+version\
+        \ metadata."
+    _change: add
+  - name: LemmaAbsenceQuizCandidate
+    type: record
+    fields:
+    - name: quizSentence
+      type: String
+      description: "Candidate exercise expressed in the FEAT-QSENT quizSentence DSL:\
+        \ blanks ('____'), answer blocks ([variant1|variant2]), hints in parentheses.\
+        \ Carries the exercise sentence + correct answers + accepted variants in one\
+        \ formal string (F-LAPS-R009, resolves DOUBT-CANDIDATE-NOTATION)."
+    - name: translation
+      type: String
+      description: Spanish translation of the new exercise (F-LAPS-R009). May differ
+        from elementBefore.translation when the candidate changed the sentence meaning
+        (F-LAPS-R013).
+    _change: add
+  - name: RevisionOutcomeKind
+    type: record
+    fields:
+    - name: NO_ACTIVE_STRATEGY
+      description: "A LEMMA_ABSENCE task reached the dispatcher but no LemmaAbsenceProposalStrategy\
+        \ was active. No artifact, no course write, task unchanged (F-LAPS-R006, F-LAPS-J004)."
+      _change: add
+    - name: STRATEGY_FAILED
+      description: "The active strategy could not produce a candidate (empty output,\
+        \ provider down, uninterpretable response) or its candidate could not be derived.\
+        \ No artifact, no course write, task unchanged (F-LAPS-R015, F-LAPS-R016,\
+        \ F-LAPS-J003)."
+      _change: add
+    _change: modify
+  - name: RevisionProposal
+    type: record
+    fields:
+    - name: strategyId
+      type: StrategyId
+      description: Identity of the strategy that produced this proposal (F-LAPS-R005);
+        null when produced by the bypass reviser for non-LEMMA_ABSENCE diagnostics
+        (FEAT-REVBYP).
+      _change: add
+    _change: modify
+  - name: RevisionEngineConfig
+    type: record
+    fields:
+    - name: lemmaAbsenceStrategyRegistry
+      type: LemmaAbsenceProposalStrategyRegistry
+      description: "Registry of registered LEMMA_ABSENCE strategies. Nullable -> the\
+        \ factory wires an empty registry, in which case every LEMMA_ABSENCE task\
+        \ resolves to NO_ACTIVE_STRATEGY (F-LAPS-R006)."
+      _change: add
+    - name: lemmaAbsenceProposalDeriver
+      type: LemmaAbsenceProposalDeriver
+      description: Deterministic deriver used when a LEMMA_ABSENCE candidate must
+        be converted into a CourseElementSnapshot (F-LAPS-R012). Nullable -> the factory
+        wires DefaultLemmaAbsenceProposalDeriver.
+      _change: add
+    _change: modify
+  - name: ProposalStrategyFailedException
+    type: exception
+    fields:
+    - name: strategyName
+      type: String
+      description: Name of the strategy that failed (F-LAPS-R015).
+    - name: taskId
+      type: String
+      description: Id of the task the strategy was attempting.
+    - name: reason
+      type: String
+      description: "Human-readable cause (empty generator response, provider down,\
+        \ etc.)."
+    message: "La estrategia de propuesta '%s' no pudo generar un candidato de quiz\
+      \ para la tarea '%s': %s"
+    _change: add
+    extends: RuntimeException
+  - name: ProposalDerivationException
+    type: exception
+    fields:
+    - name: strategyName
+      type: String
+      description: Name of the strategy whose candidate was rejected by the deriver.
+    - name: taskId
+      type: String
+      description: Id of the task.
+    - name: reason
+      type: String
+      description: "Human-readable cause (invalid quizSentence grammar, empty translation,\
+        \ etc.)."
+    message: "No se pudo derivar elementAfter desde el candidato de la estrategia\
+      \ '%s' en la tarea '%s': %s"
+    _change: add
+    extends: RuntimeException
+  interfaces:
+  - name: LemmaAbsenceProposalStrategy
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "id(): StrategyId"
+    - signature: "handles(DiagnosisKind kind): boolean"
+    - signature: "propose(RefinementTask task, LemmaAbsenceCorrectionContext context):\
+        \ LemmaAbsenceQuizCandidate"
+    _change: add
+  - name: LemmaAbsenceProposalStrategyRegistry
+    stereotype: service
+    sealed: true
+    exposes:
+    - signature: "active(): Optional<LemmaAbsenceProposalStrategy>"
+    - signature: "byName(String name): Optional<LemmaAbsenceProposalStrategy>"
+    - signature: "listAll(): List<StrategyId>"
+    _change: add
+  - name: LemmaAbsenceProposalDeriver
+    stereotype: service
+    sealed: true
+    exposes:
+    - signature: "derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate):\
+        \ CourseElementSnapshot"
+    _change: add
+  patterns:
+  - type: Strategy
+    implementations:
+    - LemmaAbsenceMvpStrategy
+    suppressed: false
+    interface: LemmaAbsenceProposalStrategy
+  packages:
+  - name: strategy
+    description: "Proposal-strategy SPI for LEMMA_ABSENCE: houses concrete strategies\
+      \ and the candidate-generator port they delegate to. Public so the composition\
+      \ root can instantiate strategies and pass them into the registry builder."
+    visibility: public
+    models:
+    - name: LemmaAbsenceGeneratorResponse
+      type: record
+      fields:
+      - name: quizSentence
+        type: String
+        description: Candidate expressed in the FEAT-QSENT quizSentence DSL; raw generator
+          output before wrapping.
+      - name: translation
+        type: String
+        description: Spanish translation of the candidate.
+      _change: add
+    interfaces:
+    - name: LemmaAbsenceQuizCandidateGenerator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "generate(LemmaAbsenceCorrectionContext context): LemmaAbsenceGeneratorResponse"
+      visibility: public
+      _change: add
+    implementations:
+    - name: LemmaAbsenceMvpStrategy
+      requiresInject:
+      - name: generator
+        type: LemmaAbsenceQuizCandidateGenerator
+      types:
+      - Component
+      visibility: public
+      implements:
+      - LemmaAbsenceProposalStrategy
+      _change: add
+    _change: add
+  - name: engine
+    visibility: internal
+    models:
+    - name: LemmaAbsenceProposalStrategyRegistryConfig
+      type: record
+      fields:
+      - name: registered
+        type: List<LemmaAbsenceProposalStrategy>
+        description: All strategies known to the registry (F-LAPS-R004).
+      - name: activeName
+        type: String
+        description: Name of the active strategy; resolved via byName(). Nullable
+          -> active() returns empty -> dispatcher returns NO_ACTIVE_STRATEGY for LEMMA_ABSENCE
+          (F-LAPS-R006).
+      _change: add
+    implementations:
+    - name: DefaultLemmaAbsenceProposalStrategyRegistry
+      requiresInject:
+      - name: config
+        type: LemmaAbsenceProposalStrategyRegistryConfig
+      types:
+      - Component
+      implements:
+      - LemmaAbsenceProposalStrategyRegistry
+      _change: add
+    - name: DefaultLemmaAbsenceProposalDeriver
+      requiresInject:
+      - name: quizSentenceConverter
+        type: QuizSentenceConverter
+        description: "FEAT-QSENT: parses the candidate DSL into a FormEntity. The\
+          \ deriver composes the new QuizTemplateEntity by copying everything from\
+          \ elementBefore.quiz except form and translation (F-LAPS-R012, R013, R014)."
+      types:
+      - Component
+      implements:
+      - LemmaAbsenceProposalDeriver
+      _change: add
+    - name: DispatchingReviser
+      requiresInject:
+      - name: byKind
+        type: "Map<DiagnosisKind,Reviser>"
+        description: Revisers registered per DiagnosisKind (FEAT-REVBYP R003). Preserved
+          for non-LEMMA_ABSENCE kinds.
+      - name: fallback
+        type: IdentityReviser
+        description: "Bypass fallback for unmatched DiagnosisKinds OTHER THAN LEMMA_ABSENCE\
+          \ (F-LAPS-R002, R006)."
+      - name: strategyRegistry
+        type: LemmaAbsenceProposalStrategyRegistry
+        description: Resolves the active LemmaAbsenceProposalStrategy; LEMMA_ABSENCE
+          tasks route here instead of to fallback (F-LAPS-R002).
+      - name: deriver
+        type: LemmaAbsenceProposalDeriver
+        description: Derives elementAfter deterministically from a LemmaAbsenceQuizCandidate
+          (F-LAPS-R012).
+      types:
+      - Component
+      implements:
+      - Reviser
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  dependsOn:
+  - audit-application
+  - audit-domain
+  - course-domain
+  - course-infrastructure
+  - nlp-infrastructure
+  - vocabulary-infrastructure
+  - audit-infrastructure
+  - refiner-domain
+  - revision-domain
+  packages:
+  - name: bootstrap
+    description: "Env-var -> domain-object parsing plus composition-root helpers translating\
+      \ external inputs (workdir, approval mode, proposal strategy selection) into\
+      \ typed values consumed by the engine factories."
+    visibility: internal
+    models:
+    - name: InvalidProposalStrategyException
+      type: exception
+      fields:
+      - name: value
+        type: String
+        description: The raw env-var value that failed parsing.
+      - name: registered
+        type: String
+        description: Comma-separated list of registered strategy names (LemmaAbsenceProposalStrategyRegistry.listAll()).
+      message: "Invalid value for CONTENT_AUDIT_LAPS_STRATEGY: '%s'. Registered: %s"
+      _change: add
+      extends: RuntimeException
+    interfaces:
+    - name: ProposalStrategySelector
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "select(String envValue, LemmaAbsenceProposalStrategyRegistry registry):\
+          \ String"
+      _change: add
+    implementations:
+    - name: DefaultProposalStrategySelector
+      visibility: public
+      implements:
+      - ProposalStrategySelector
+      _change: add
+    _change: modify
+  _change: modify

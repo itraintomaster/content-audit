@@ -151,24 +151,34 @@ public class StatsAnalyzerCmdTest {
     @Tag("FEAT-CLIRV")
     @Tag("F-CLIRV-R021")
     public void shouldReportAMissingcoursepathErrorAndExitNonzeroWhenNeitherArgumentNorCONTENTAUDITCONTENTFOLDERIsSet(
-            ) {
-        // Arrange — known analyzer, but no course path available.
-        // Stub registry so the impl gets past the analyzer-exists check (if it makes one).
-        // CoursePathResolver.resolve(null) returns null when neither CLI arg nor env var is set.
-        String analyzerName = "sentence-length";
-        AnalyzerDescriptor descriptor = new AnalyzerDescriptor(analyzerName,
-                "Checks sentence length", AuditTarget.KNOWLEDGE);
-        when(analyzerRegistry.listAnalyzers()).thenReturn(List.of(descriptor));
-        when(analyzerRegistry.getAnalyzerConfig(anyString()))
-                .thenReturn(java.util.Optional.of(Map.of("maxSentenceLength", 25)));
+            @TempDir Path workdir) throws IOException, InterruptedException {
+        // Arrange — spawn the CLI with CONTENT_AUDIT_CONTENT_FOLDER explicitly removed.
+        // Java cannot unset env vars from its own process, so an in-process test that
+        // relied on the absence of CONTENT_AUDIT_CONTENT_FOLDER would be fragile in
+        // developer shells that export the variable. Subprocess + env.remove() is
+        // the same pattern the env-fallback test nearby uses, inverted.
+        Path projectRoot = Path.of("/Users/josecullen/projects/learney/content-audit");
 
-        StatsAnalyzerCmd cmd = new StatsAnalyzerCmd(analyzerRegistry, analyzerStatsTransformer, auditRunner);
+        ProcessBuilder pb = new ProcessBuilder(
+                projectRoot.resolve("audit-cli.sh").toString(),
+                "--workdir", workdir.toString(),
+                "stats", "analyzer", "sentence-length");  // no positional course path
+        pb.directory(projectRoot.toFile());
+        pb.environment().remove("CONTENT_AUDIT_CONTENT_FOLDER");
+        pb.redirectErrorStream(true);
 
-        // Act — null coursePath represents the case where CoursePathResolver returned null
-        int exitCode = cmd.showStats(analyzerName, null);
+        // Act
+        Process p = pb.start();
+        int exit = p.waitFor();
+        String output = new String(p.getInputStream().readAllBytes());
 
-        // Assert — R021: missing course path must produce a non-zero exit code
-        assertNotEquals(0, exitCode,
-                "stats analyzer <name> with no resolved course path must exit non-zero");
+        // Assert — R021: no resolvable course path must exit non-zero
+        assertNotEquals(0, exit,
+                "stats analyzer <name> with no resolved course path must exit non-zero. Output:\n"
+                        + output);
+        assertTrue(
+                output.toLowerCase().contains("missing course path")
+                        || output.toLowerCase().contains("content_audit_content_folder"),
+                "Output should explain the missing course path; got:\n" + output);
     }
 }

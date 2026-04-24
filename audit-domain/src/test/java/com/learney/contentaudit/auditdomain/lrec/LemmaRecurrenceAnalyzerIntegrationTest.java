@@ -74,8 +74,8 @@ class LemmaRecurrenceAnalyzerIntegrationTest {
         NlpToken catToken = new NlpToken("cat", "cat", "NOUN", 100, false, false);
         NlpToken theToken = new NlpToken("the", "the", "DET", 1, true, false);
         NlpToken catsToken = new NlpToken("cats", "cat", "NOUN", 100, false, false);
-        AuditableQuiz quiz1 = new AuditableQuiz("the cat", List.of(theToken, catToken), null, null, null, null);
-        AuditableQuiz quiz2 = new AuditableQuiz("the cats", List.of(theToken, catsToken), null, null, null, null);
+        AuditableQuiz quiz1 = new AuditableQuiz(List.of(theToken, catToken), null, null, null, null, List.of("the cat"), null);
+        AuditableQuiz quiz2 = new AuditableQuiz(List.of(theToken, catsToken), null, null, null, null, List.of("the cats"), null);
         AuditNode quizNode1 = buildQuizNode(quiz1);
         AuditNode quizNode2 = buildQuizNode(quiz2);
         AuditNode courseNode = buildCourseNode();

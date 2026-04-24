@@ -1664,7 +1664,8 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
-                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)));
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
 
@@ -1715,7 +1716,8 @@ public class GetCmdTest {
                 List.of(
                         new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
                         new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
-                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)));
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
 
@@ -1777,7 +1779,8 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(negotiateLemma),
-                List.of());
+                List.of(),
+                null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
 
@@ -1842,7 +1845,8 @@ public class GetCmdTest {
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
                 List.of(
                         new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52),
-                        new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89)));
+                        new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89)),
+                null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
 
@@ -1949,7 +1953,8 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
-                List.of());
+                List.of(),
+                null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
 
@@ -2014,7 +2019,8 @@ public class GetCmdTest {
                 List.of(
                         new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
                         new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
-                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)));
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
 
@@ -2072,7 +2078,8 @@ public class GetCmdTest {
                 List.of(
                         new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
                         new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
-                List.of());
+                List.of(),
+                null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
 
@@ -2134,7 +2141,8 @@ public class GetCmdTest {
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
                 List.of(
                         new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52),
-                        new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89)));
+                        new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89)),
+                null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
 
@@ -2190,7 +2198,8 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
-                List.of());
+                List.of(),
+                null);
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
 
@@ -2607,5 +2616,189 @@ public class GetCmdTest {
         assertTrue(
                 combined.toLowerCase().contains("not found") || combined.contains(unknownId),
                 "Expected 'not found' message or the id in output, got: " + combined);
+    }
+
+    // -----------------------------------------------------------------------
+    // FEAT-RCLAQS R005 — quizSentence observable in JSON correctionContext
+    // -----------------------------------------------------------------------
+
+    @Test
+    @DisplayName("should expose quizSentence in JSON output for LEMMA_ABSENCE task with correctionContext")
+    @Tag("FEAT-RCLAQS")
+    @Tag("F-RCLAQS-R005")
+    @SuppressWarnings("unchecked")
+    public void shouldExposeQuizSentenceInJsonOutputForLemmaAbsenceTaskWithCorrectionContext()
+            throws Exception {
+        // R005: when a LEMMA_ABSENCE task is shown in JSON format and correctionContext
+        // is present, the quizSentence field must be observable as a key in the JSON output.
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        String sourceAuditId = "audit-rclaqs-001";
+        RefinementTask laTask = new RefinementTask(
+                "task-rclaqs-r005-001", AuditTarget.QUIZ, "quiz-rclaqs-001", "Quiz 1",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-rclaqs-001", sourceAuditId,
+                Instant.parse("2026-04-22T10:00:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // CorrectionContext with a non-null quizSentence (DSL of FEAT-QSENT)
+        String dsl = "She needs to ____ [negotiate|discuss] (to negotiate) the contract before Friday.";
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-rclaqs-r005-001",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                dsl);
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R005: quizSentence must appear as a key in the JSON correctionContext
+        assertTrue(output.contains("quizSentence"),
+                "Expected 'quizSentence' key in JSON correctionContext, got: " + output);
+    }
+
+    @Test
+    @DisplayName("should coexist quizSentence with existing fields in JSON correctionContext for LEMMA_ABSENCE")
+    @Tag("FEAT-RCLAQS")
+    @Tag("F-RCLAQS-R005")
+    @SuppressWarnings("unchecked")
+    public void shouldCoexistQuizSentenceWithExistingFieldsInJsonCorrectionContextForLemmaAbsence()
+            throws Exception {
+        // R005: quizSentence coexists with sentence, translation, knowledgeTitle, etc.
+        // None of the existing fields should be displaced by quizSentence.
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        String sourceAuditId = "audit-rclaqs-002";
+        RefinementTask laTask = new RefinementTask(
+                "task-rclaqs-r005-002", AuditTarget.QUIZ, "quiz-rclaqs-002", "Quiz 2",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-rclaqs-002", sourceAuditId,
+                Instant.parse("2026-04-22T10:00:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-rclaqs-r005-002",
+                "He is great.",
+                "El es genial.",
+                "To Be verb",
+                "Usa el verbo to be.",
+                "Grammar",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("great", "ADJ", CefrLevel.A2, CefrLevel.A1, 100)),
+                List.of(new SuggestedLemma("nice", "ADJ", "COMPLETELY_ABSENT", 75)),
+                "He ____ [is|'s] (to be) great.");
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R005: quizSentence is present
+        assertTrue(output.contains("quizSentence"),
+                "Expected 'quizSentence' in JSON correctionContext: " + output);
+        // R001 preserved: existing fields still present (coexistence, not replacement)
+        assertTrue(output.contains("sentence"),
+                "Existing 'sentence' field must remain in JSON correctionContext: " + output);
+        assertTrue(output.contains("translation"),
+                "Existing 'translation' field must remain in JSON correctionContext: " + output);
+        assertTrue(output.contains("correctionContext"),
+                "correctionContext wrapper must be present: " + output);
+    }
+
+    @Test
+    @DisplayName("should omit quizSentence when correctionContext is absent due to resolver failure")
+    @Tag("FEAT-RCLAQS")
+    @Tag("F-RCLAQS-R005")
+    @SuppressWarnings("unchecked")
+    public void shouldOmitQuizSentenceWhenCorrectionContextIsAbsentDueToResolverFailure()
+            throws Exception {
+        // R005: when correctionContext cannot be constructed (resolver returns empty —
+        // FEAT-RCLA R005/R006 or R004 of this feature), there is no correctionContext
+        // in the JSON output and therefore no quizSentence either.
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        String sourceAuditId = "audit-rclaqs-003";
+        RefinementTask laTask = new RefinementTask(
+                "task-rclaqs-r005-003", AuditTarget.QUIZ, "quiz-rclaqs-003", "Quiz 3",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-rclaqs-003", sourceAuditId,
+                Instant.parse("2026-04-22T10:00:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Resolver returns empty — simulates failure (RCLA R005/R006 or RCLAQS R004)
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.empty());
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R005: no correctionContext → no quizSentence in JSON
+        assertTrue(!output.contains("quizSentence"),
+                "quizSentence must not appear in JSON when correctionContext is absent: " + output);
     }
 }

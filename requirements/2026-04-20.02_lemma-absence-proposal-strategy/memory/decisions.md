@@ -1,0 +1,29 @@
+# Decisions
+
+2026-04-20 — analyst — reescrito el modelo del output de la estrategia: ya no emite una oracion plana, emite un candidato de quiz estructurado (blanks, respuesta correcta, variantes aceptadas, distractores, traduccion). Un paso deterministico posterior deriva el elementAfter.
+  why: el modelado previo asumia que solo la sentence cambia; la realidad es que si la palabra fuera-de-nivel era la respuesta correcta, la estructura del quiz tambien cambia. Separacion estrategia vs derivacion hace explicito donde esta el no-determinismo.
+
+2026-04-20 — analyst — grupo D reescrito: R010/R011/R012 viejos -> R011/R012/R013/R014 nuevos (4 reglas en vez de 3). R009 viejo (no-deterministica) -> R010. R008 reformulado. R015/R016 viejos (grupo E) -> R017/R018 (ahora grupo F). R013/R014 viejos (grupo E manejo de fallas) -> R015/R016. R017 viejo (limite en estrategia) -> R019 reformulado.
+  why: sintaxis del candidato queda como DOUBT-CANDIDATE-NOTATION para el arquitecto.
+
+2026-04-20 — analyst — eliminadas todas las menciones de "distractores" y de "opciones" multiple-choice del modelo del candidato (intro, alcance deliberado, R009 tabla, R011, R012, R013, R014 limitaciones, Assumption 3, DOUBT-CANDIDATE-NOTATION). El candidato conceptual queda con 4 elementos: oracion con blanks, respuesta correcta por blank, variantes aceptadas, traduccion.
+  why: los quizzes del curso son CLOZE (fill-in-the-blank); SentencePartEntity.options solo tiene respuestas correctas con variantes separadas por "|". No existe multiple-choice en el modelo, por lo que distractores no son parte del dominio.
+
+2026-04-23 — architect — FEAT-LAPS architecture proposed and tech-spec written (14 adds, 6 modifications, 0 conflicts, 15 fences).
+  why: reuse FEAT-QSENT's quizSentence DSL as the candidate carrier (resolves DOUBT-CANDIDATE-NOTATION); LEMMA_ABSENCE-specific port (YAGNI, P3) instead of generic ProposalStrategy<C,R>.
+2026-04-23 — architect — DOUBT-CANDIDATE-NOTATION: resolved as QSENT DSL (quizSentence String + translation String separate). Deriver calls QuizSentenceConverter.parse to rebuild FormEntity.
+2026-04-23 — architect — DOUBT-STRATEGY-SELECTION: resolved as Option A (env var CONTENT_AUDIT_LAPS_STRATEGY at CLI startup, same pattern as CONTENT_AUDIT_APPROVAL_MODE). ProposalStrategySelector in audit-cli bootstrap package.
+2026-04-23 — architect — DOUBT-STRATEGY-REGISTRY: code-level Map built at composition root via LemmaAbsenceProposalStrategyRegistryConfig. No declarative config resource; additive if needed later.
+2026-04-23 — architect — DOUBT-STRATEGY-METADATA: minimum name+version+providerId (opaque String). Additional fields (prompt hash, duration) deferred; nullable additions will not break wire-compat.
+2026-04-23 — architect — DOUBT-PROMPT-PERSISTENCE: Option A (strategy identity only; CorrectionContext recoverable from plan+audit).
+2026-04-23 — architect — DOUBT-FAILURE-TRACEABILITY: Option A (no persistent log; stdout/stderr only). Reversible to Option B without arch change.
+2026-04-23 — architect — LEMMA_ABSENCE-specific port (not generic). YAGNI per P3: generalize when a second DiagnosisKind needs its own strategy. Keeps refactor evidence-driven instead of speculative.
+2026-04-23 — architect — Strategy vs derivation split: LemmaAbsenceProposalStrategy (non-deterministic candidate generation) + LemmaAbsenceProposalDeriver (sealed, deterministic elementAfter composition via QuizSentenceConverter.parse). R012 + R019 require this separation.
+2026-04-23 — architect — DispatchingReviser gains a LEMMA_ABSENCE branch: no fallback to IdentityReviser for that kind (R002, R006). Two new outcomes on RevisionOutcomeKind: NO_ACTIVE_STRATEGY + STRATEGY_FAILED. RevisionVerdict untouched (R016).
+2026-04-23 — architect — TBD (user decision): concrete LemmaAbsenceQuizCandidateGenerator adapter + its home module + provider. NOT in this patch; architectural seam ready.
+
+2026-04-22 — analyst — candidato re-modelado como { quizSentence (DSL de FEAT-QSENT) + translation }. Los 3 sub-elementos previos (oracion con blanks / respuesta correcta por blank / variantes aceptadas) quedan colapsados dentro del quizSentence. R007 input cambia de "sentence plana" a "quizSentence (DSL)". R012 deriva texto plano y quizForm parseando el quizSentence via el conversor publico de FEAT-QSENT. R019 refuerza que la estrategia NO emite texto plano ni quizForm. DOUBT-CANDIDATE-NOTATION cerrado (Opcion A = delegar al DSL de FEAT-QSENT). Assumption 6 nueva: DSL de FEAT-QSENT como unica via de intercambio de la forma del ejercicio.
+  why: una quiz no es solo una oracion; su estructura (que se tapa, que respuestas son validas) es parte intrinseca del ejercicio. Trabajar al nivel de quizSentence refleja mejor ese objeto y evita inventar una representacion ad-hoc paralela a la DSL que ya formalizo FEAT-QSENT. Correccion de un modelado previo que asumia que el candidato podia representarse como "oracion + campos separados".
+
+2026-04-22 — analyst — dependencia sobre FEAT-RCLA declarada (no resuelta aqui): LAPS requiere que el CorrectionContext exponga el quizSentence del quiz original. Si FEAT-RCLA hoy solo expone la oracion plana, debe extenderse antes de que LAPS pueda correr. El REQUIREMENT de FEAT-RCLA NO se modifica en esta sesion; solo se deja la dependencia asentada en R007 + Assumption 1 + la seccion de "Relacion con features existentes".
+  why: la regla del juego es que cada feature define sus propios contratos; el impacto sobre FEAT-RCLA corresponde a FEAT-RCLA. LAPS solo declara la dependencia para que no pase silenciosamente.

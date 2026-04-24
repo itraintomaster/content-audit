@@ -1,4 +1,6 @@
 package com.learney.contentaudit.revisiondomain.engine;
+import com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver;
+import com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry;
 
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;

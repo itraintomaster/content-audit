@@ -1,0 +1,38 @@
+code: FEAT-RCLAQS
+description: "FEAT-RCLAQS: expose quizSentence (FEAT-QSENT DSL) on the LemmaAbsence\
+  \ CorrectionContext. The DSL is stamped once on AuditableQuiz during course-to-auditable\
+  \ mapping (same pass that derives the plain sentences list), and the LEMMA_ABSENCE\
+  \ resolver reads it from the AuditableQuiz like it already does with the plain sentence.\
+  \ No new cross-module dependency on refiner-domain; the QuizSentenceConverter stays\
+  \ injected only in CourseToAuditableMapper where it already lives (FEAT-QSENT R027)."
+modules:
+- name: audit-domain
+  models:
+  - name: AuditableQuiz
+    type: record
+    fields:
+    - name: quizSentence
+      type: String
+      description: "FEAT-QSENT DSL serialization of the original quiz FormEntity (R001/R002).\
+        \ Stamped eagerly by CourseToAuditableMapper in the same pass that fills `sentences`\
+        \ (FEAT-QSENT R027), guaranteeing quizSentence and sentences[0] are derived\
+        \ from the same FormEntity in the same derivation step (R003). Null only if\
+        \ the course predates FEAT-QSENT — never null for quizzes that pass the mapper."
+      _change: add
+    _change: modify
+  _change: modify
+- name: refiner-domain
+  models:
+  - name: LemmaAbsenceCorrectionContext
+    type: record
+    fields:
+    - name: quizSentence
+      type: String
+      description: FEAT-QSENT DSL of the original quiz (R001). Copied verbatim from
+        AuditableQuiz.quizSentence by LemmaAbsenceContextResolver; never recomputed
+        in this module. Coexists with `sentence` (plain) per R001 — both correspond
+        to the same quiz and the same derivation step (R003). Null when the upstream
+        AuditableQuiz was built before FEAT-QSENT was shipped.
+      _change: add
+    _change: modify
+  _change: modify

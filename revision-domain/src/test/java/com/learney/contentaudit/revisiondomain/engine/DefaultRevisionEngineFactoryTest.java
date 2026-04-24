@@ -42,7 +42,7 @@ public class DefaultRevisionEngineFactoryTest {
                 mock(RefinementPlanStore.class),
                 mock(AuditReportStore.class),
                 mock(CorrectionContextResolver.class)
-        );
+        , null, null);
 
         RevisionEngineFactory factory = new DefaultRevisionEngineFactory();
 

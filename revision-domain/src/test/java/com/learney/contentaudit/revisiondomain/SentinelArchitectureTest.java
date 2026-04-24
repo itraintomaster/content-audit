@@ -93,6 +93,26 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: ProposalDecisionOutcome - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.revisiondomain.StrategyId");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: StrategyId - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.LemmaAbsenceQuizCandidate");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceQuizCandidate - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ProposalStrategyFailedException - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.ProposalDerivationException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ProposalDerivationException - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.revisiondomain.Reviser");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: Reviser - " + e.getMessage());
@@ -141,6 +161,26 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisiondomain.ProposalDecisionServiceFactory");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ProposalDecisionServiceFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategy");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceProposalStrategy - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceProposalStrategyRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceProposalDeriver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.engine.LemmaAbsenceProposalStrategyRegistryConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceProposalStrategyRegistryConfig - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory");
@@ -196,6 +236,31 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultProposalDecisionService");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultProposalDecisionService - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultLemmaAbsenceProposalStrategyRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultLemmaAbsenceProposalStrategyRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultLemmaAbsenceProposalDeriver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultLemmaAbsenceProposalDeriver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceGeneratorResponse");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceGeneratorResponse - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceQuizCandidateGenerator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceQuizCandidateGenerator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceMvpStrategy");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaAbsenceMvpStrategy - " + e.getMessage());
     }
   }
 }

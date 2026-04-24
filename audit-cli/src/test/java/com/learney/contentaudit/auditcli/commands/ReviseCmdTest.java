@@ -299,8 +299,8 @@ public class ReviseCmdTest {
                 snapshot,
                 "human approval pending",
                 "bypass",
-                Instant.parse("2026-04-20T12:30:00Z")
-        );
+                Instant.parse("2026-04-20T12:30:00Z"),
+                null);
 
         // Build the artifact with verdict PENDING_APPROVAL (course untouched)
         RevisionArtifact artifact = new RevisionArtifact(

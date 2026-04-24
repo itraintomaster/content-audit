@@ -1,0 +1,118 @@
+code: FEAT-QSENT
+description: "Formalize quizSentence as a first-class concept of course-domain. Simplified\
+  \ design: single public interface QuizSentenceConverter with signatures on String\
+  \ and List<String> (no wrapper records), one public implementation DefaultQuizSentenceConverter\
+  \ that the composition root instantiates directly (no factory seam, since QSENT\
+  \ is a stateless pure function with no alternative implementations). Internal collaborators\
+  \ (Serializer, Parser, PlainSentenceDeriver, WhitespaceNormalizer) remain package-private\
+  \ inside the quizsentenceengine package. Exceptions QuizSentenceSerializationException\
+  \ and QuizSentenceParseException are required to fulfil the atomic-failure rules\
+  \ (R013, R016, R024). AuditableQuiz.sentence (String) is renamed to sentences (List<String>)\
+  \ so list[0] preserves legacy audit behavior (R017, R018, R027)."
+modules:
+- name: course-domain
+  packages:
+  - name: quizsentence
+    description: "Public contract of the quizSentence DSL. Exposes the converter service\
+      \ and the domain exceptions raised when the DSL grammar or the sentenceParts\
+      \ convention is violated. The conversion engine itself is hidden in the sibling\
+      \ 'quizsentenceengine' internal package (Public Port, Hidden Adapter)."
+    visibility: public
+    models:
+    - name: QuizSentenceSerializationException
+      type: exception
+      fields:
+      - name: reason
+        type: String
+        description: "Human-readable cause (R013, R024)."
+      - name: position
+        type: String
+        description: Index of the offending sentencePart or 'n/a'.
+      message: "No es posible serializar a quizSentence: %s (posicion %s)"
+      _change: add
+      extends: RuntimeException
+    - name: QuizSentenceParseException
+      type: exception
+      fields:
+      - name: reason
+        type: String
+        description: "Human-readable cause (R016, R024)."
+      - name: position
+        type: int
+        description: Character offset in the input where the grammar violation was
+          detected.
+      message: "No es posible parsear el quizSentence: %s (posicion %d)"
+      _change: add
+      extends: RuntimeException
+    interfaces:
+    - name: QuizSentenceConverter
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "serialize(FormEntity form): String"
+      - signature: "parse(String quizSentence): FormEntity"
+      - signature: "toPlainSentences(FormEntity form): List<String>"
+      visibility: public
+      _change: add
+    _change: add
+  - name: quizsentenceengine
+    description: "Internal engine implementing the quizSentence DSL conversions. The\
+      \ public class DefaultQuizSentenceConverter is instantiated once by the composition\
+      \ root (audit-cli bootstrap); all collaborators (QuizSentenceSerializer, QuizSentenceParser,\
+      \ PlainSentenceDeriver, WhitespaceNormalizer) stay package-private so external\
+      \ modules cannot bypass the port."
+    visibility: internal
+    implementations:
+    - name: DefaultQuizSentenceConverter
+      requiresInject:
+      - name: serializer
+        type: QuizSentenceSerializer
+      - name: parser
+        type: QuizSentenceParser
+      - name: plainDeriver
+        type: PlainSentenceDeriver
+      visibility: public
+      implements:
+      - QuizSentenceConverter
+      _change: add
+    - name: QuizSentenceSerializer
+      _change: add
+    - name: QuizSentenceParser
+      _change: add
+    - name: PlainSentenceDeriver
+      _change: add
+    - name: WhitespaceNormalizer
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-domain
+  models:
+  - name: AuditableQuiz
+    type: record
+    fields:
+    - name: sentence
+      type: String
+      _change: delete
+    - name: sentences
+      type: List<String>
+      description: "Ordered list of plain sentences derived from the quiz sentenceParts\
+        \ (FEAT-QSENT R017). Index 0 is the canonical variant (R018), which is the\
+        \ single source consumed by current analyzers. Extra variants are materialized\
+        \ eagerly for future multi-variant analysis."
+      _change: add
+    _change: modify
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: CourseToAuditableMapper
+    requiresInject:
+    - name: nlpTokenizer
+      type: NlpTokenizer
+    - name: quizSentenceConverter
+      type: QuizSentenceConverter
+    types:
+    - Component
+    implements:
+    - CourseMapper
+    _change: modify
+  _change: modify

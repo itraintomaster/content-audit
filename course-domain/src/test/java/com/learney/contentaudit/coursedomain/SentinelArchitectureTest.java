@@ -35,6 +35,12 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackageQuizsentenceengineVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..coursedomain..", "java..").should().dependOnClassesThat().resideInAPackage("..coursedomain.quizsentenceengine..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.coursedomain.NodeKind");
@@ -100,6 +106,46 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.coursedomain.CourseValidator");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: CourseValidator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceSerializationException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizSentenceSerializationException - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceParseException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizSentenceParseException - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceConverter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizSentenceConverter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultQuizSentenceConverter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.coursedomain.quizsentenceengine.QuizSentenceSerializer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizSentenceSerializer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.coursedomain.quizsentenceengine.QuizSentenceParser");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizSentenceParser - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.coursedomain.quizsentenceengine.PlainSentenceDeriver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: PlainSentenceDeriver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.coursedomain.quizsentenceengine.WhitespaceNormalizer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: WhitespaceNormalizer - " + e.getMessage());
     }
   }
 }

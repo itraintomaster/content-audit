@@ -48,14 +48,7 @@ class FileSystemAuditReportStoreTest {
         // COURSE (entity=null) → MILESTONE → TOPIC → KNOWLEDGE → QUIZ
 
         // --- Quiz node (leaf) ---
-        AuditableQuiz quiz = new AuditableQuiz(
-                "The cat sat on the mat.",
-                List.of(new NlpToken("cat", "cat", "NOUN", 500, false, false)),
-                "quiz-1",
-                "Quiz One",
-                "Q1",
-                null
-        );
+        AuditableQuiz quiz = new AuditableQuiz(List.of(new NlpToken("cat", "cat", "NOUN", 500, false, false)), "quiz-1", "Quiz One", "Q1", null, List.of("The cat sat on the mat."));
 
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
         SentenceLengthDiagnosis sentenceDiagnosis = new SentenceLengthDiagnosis(7, 5, 10, CefrLevel.A1, 0, 2);
@@ -225,7 +218,7 @@ class FileSystemAuditReportStoreTest {
         assertEquals("quiz-1", loadedQuizEntity.getId());
         assertEquals("Quiz One", loadedQuizEntity.getLabel());
         assertEquals("Q1", loadedQuizEntity.getCode());
-        assertEquals("The cat sat on the mat.", loadedQuizEntity.getSentence());
+        assertEquals(List.of("The cat sat on the mat."), loadedQuizEntity.getSentences());
         assertNotNull(loadedQuizEntity.getTokens());
         assertEquals(1, loadedQuizEntity.getTokens().size());
 

@@ -35,6 +35,8 @@ import com.learney.contentaudit.nlpinfrastructure.NlpTokenizerConfig;
 import com.learney.contentaudit.nlpinfrastructure.spacy.SpacyNlpTokenizerFactory;
 import com.learney.contentaudit.coursedomain.CourseValidator;
 import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceConverter;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
 import com.learney.contentaudit.courseinfrastructure.CourseValidatorImpl;
 import com.learney.contentaudit.courseinfrastructure.FileSystemCourseRepository;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
@@ -162,7 +164,8 @@ class Main {
         // Step 4: Application layer
         // ----------------------------------------------------------------
         SentenceLengthConfig sentenceLengthConfig = new DefaultSentenceLengthConfig();
-        CourseToAuditableMapper courseToAuditableMapper = new CourseToAuditableMapper(nlpTokenizer);
+        QuizSentenceConverter quizSentenceConverter = DefaultQuizSentenceConverter.create();
+        CourseToAuditableMapper courseToAuditableMapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
 
         SentenceLengthAnalyzer sentenceLengthAnalyzer = new SentenceLengthAnalyzer(sentenceLengthConfig);
         KnowledgeTitleLengthAnalyzer knowledgeTitleLengthAnalyzer = new KnowledgeTitleLengthAnalyzer();

@@ -103,7 +103,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-123456", taskId, planId, auditId,
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        );
+        , null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
@@ -157,7 +157,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-123456", taskId, planId, auditId,
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        );
+        , null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.REJECTED);
@@ -211,7 +211,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-789012", taskId, planId, auditId,
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        );
+        , null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
@@ -275,7 +275,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-345678", taskId, planId, auditId,
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        );
+        , null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
@@ -330,7 +330,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-100800", taskId, planId, auditId,
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        );
+        , null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.PENDING_APPROVAL);
@@ -388,7 +388,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-100900", taskId, planId, auditId,
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        );
+        , null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.PENDING_APPROVAL);

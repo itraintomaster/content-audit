@@ -28,13 +28,15 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
 
     private List<SuggestedLemma> suggestedLemmas;
 
+    private String quizSentence;
+
     public LemmaAbsenceCorrectionContext() {
     }
 
     public LemmaAbsenceCorrectionContext(String taskId, String sentence, String translation,
             String knowledgeTitle, String knowledgeInstructions, String topicLabel,
             CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas,
-            List<SuggestedLemma> suggestedLemmas) {
+            List<SuggestedLemma> suggestedLemmas, String quizSentence) {
         this.taskId = taskId;
         this.sentence = sentence;
         this.translation = translation;
@@ -44,6 +46,7 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
         this.cefrLevel = cefrLevel;
         this.misplacedLemmas = misplacedLemmas;
         this.suggestedLemmas = suggestedLemmas;
+        this.quizSentence = quizSentence;
     }
 
     public String getTaskId() {
@@ -118,6 +121,14 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
         this.suggestedLemmas = suggestedLemmas;
     }
 
+    public String getQuizSentence() {
+        return this.quizSentence;
+    }
+
+    public void setQuizSentence(String quizSentence) {
+        this.quizSentence = quizSentence;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -131,11 +142,12 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
                     && Objects.equals(this.topicLabel, that.topicLabel)
                     && Objects.equals(this.cefrLevel, that.cefrLevel)
                     && Objects.equals(this.misplacedLemmas, that.misplacedLemmas)
-                    && Objects.equals(this.suggestedLemmas, that.suggestedLemmas);
+                    && Objects.equals(this.suggestedLemmas, that.suggestedLemmas)
+                    && Objects.equals(this.quizSentence, that.quizSentence);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, misplacedLemmas, suggestedLemmas);
+        return Objects.hash(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence);
     }
 }

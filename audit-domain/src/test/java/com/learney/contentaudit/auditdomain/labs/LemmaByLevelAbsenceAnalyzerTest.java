@@ -60,7 +60,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
 
     /** Build a single-quiz course at level-index miIdx (0=A1,1=A2,2=B1,3=B2). */
     private AuditableCourse courseWithQuiz(int miIdx, String quizId, List<NlpToken> tokens) {
-        AuditableQuiz quiz = new AuditableQuiz("sentence", tokens, quizId, "label", "code", null);
+        AuditableQuiz quiz = new AuditableQuiz(tokens, quizId, "label", "code", null, List.of("sentence"), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(quiz), "title", "instructions", true, "k1", "label", "code");
         AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "label", "code");
@@ -112,7 +112,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
                 AuditableKnowledge knowledge = new AuditableKnowledge(
                         List.of(), "title", "instructions", true, "k1", "label", "code");
                 AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
-                AuditableQuiz quiz = new AuditableQuiz("sentence", tokens, quizId, "label", "code", null);
+                AuditableQuiz quiz = new AuditableQuiz(tokens, quizId, "label", "code", null, List.of("sentence"), null);
                 makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
             }
         }
@@ -133,7 +133,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
                 AuditableKnowledge knowledge = new AuditableKnowledge(
                         List.of(), "title", "instructions", true, "k1", "label", "code");
                 AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
-                AuditableQuiz quiz = new AuditableQuiz("sentence", tokens, "q" + i, "label", "code", null);
+                AuditableQuiz quiz = new AuditableQuiz(tokens, "q" + i, "label", "code", null, List.of("sentence"), null);
                 makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
             }
         }
@@ -526,7 +526,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
 
         NlpToken nullLemmaToken = new NlpToken("word", null, "NOUN", 0, false, false);
         // milestone traversal handled by tree structure
-        AuditableQuiz quiz = new AuditableQuiz("s", Arrays.asList(null, nullLemmaToken), "q1", "l", "c", null);
+        AuditableQuiz quiz = new AuditableQuiz(Arrays.asList(null, nullLemmaToken), "q1", "l", "c", null, List.of("s"), null);
 
         assertDoesNotThrow(() -> sut.onQuiz(makeNode(AuditTarget.QUIZ, quiz, null)));
     }
@@ -537,7 +537,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     @Tag("F-LABS-R002")
     public void shouldSkipQuizWhenTokensListIsNull() {
         // milestone traversal handled by tree structure
-        AuditableQuiz quiz = new AuditableQuiz("sentence", null, "q1", "l", "c", null);
+        AuditableQuiz quiz = new AuditableQuiz(null, "q1", "l", "c", null, List.of("sentence"), null);
         assertDoesNotThrow(() -> sut.onQuiz(makeNode(AuditTarget.QUIZ, quiz, null)));
         // No tokens accumulated; results still empty before courseComplete
         // No results to check - analyzer writes to nodes directly
@@ -550,7 +550,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     public void shouldSkipQuizWhenCurrentLevelIsNull() {
         // No onMilestone call -> currentLevel = null; also milestoneId in ctx is invalid
         NlpToken token = new NlpToken("cat", "cat", "NOUN", 0, false, false);
-        AuditableQuiz quiz = new AuditableQuiz("cat", List.of(token), "q1", "l", "c", null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(token), "q1", "l", "c", null, List.of("cat"), null);
         // milestoneId "INVALID" cannot be parsed as CefrLevel
         assertDoesNotThrow(() -> sut.onQuiz(makeNode(AuditTarget.QUIZ, quiz, null)));
         // No results to check - analyzer writes to nodes directly
@@ -1172,7 +1172,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
 
     // Helper: build course where first milestone (A1) has a quiz with a given token
     private AuditableCourse buildCourseForQuizScoring(NlpToken token) {
-        AuditableQuiz quiz = new AuditableQuiz("sentence", List.of(token), "q1", "label", "code", null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(token), "q1", "label", "code", null, List.of("sentence"), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(quiz), "t", "i", true, "k1", "l", "c");
         AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "l", "c");

@@ -1,0 +1,93 @@
+code: FEAT-RCLA
+description: "Re-declare correction-context handwrittenTests on GetCmd that were lost\
+  \ when FEAT-CLIRV deleted RefinerNextCmd, plus declare testModule/testPackage on\
+  \ J001/J002 (flow-based, need explicit placement). Behavior is restored (developer\
+  \ wired correctionContextResolver into GetCmd); the tests need to come back so F-RCLA\
+  \ R008/R009 can return to IMPLEMENTED. All entries are additive."
+modules:
+- name: audit-cli
+  packages:
+  - name: commands
+    visibility: internal
+    implementations:
+    - name: GetCmd
+      handwrittenTests:
+      - name: should resolve correction context when task diagnosis is LEMMA_ABSENCE
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R008
+        _change: add
+      - name: should include correctionContext with misplacedLemmas array in JSON
+          for LEMMA_ABSENCE task
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R008
+        _change: add
+      - name: should include misplacedLemmas with lemma pos expectedLevel quizLevel
+          and cocaRank in JSON correctionContext
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R008
+        _change: add
+      - name: should include suggestedLemmas array in JSON correctionContext for LEMMA_ABSENCE
+          task
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R008
+        _change: add
+      - name: should set correctionContext to null and include correctionContextError
+          in JSON for LEMMA_ABSENCE when resolver returns empty
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R008
+        _change: add
+      - name: should include sentence translation knowledgeTitle knowledgeInstructions
+          topicLabel and cefrLevel in JSON correctionContext for LEMMA_ABSENCE
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R008
+        _change: add
+      - name: should print correction context section with misplaced lemmas in text
+          format for LEMMA_ABSENCE task
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R009
+        _change: add
+      - name: should print numbered misplaced lemmas list with expected and found
+          levels in text format
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R009
+        _change: add
+      - name: should print suggested replacements in text format for LEMMA_ABSENCE
+          task
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R009
+        _change: add
+      - name: should print none available for suggested replacements when list is
+          empty in text format for LEMMA_ABSENCE
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R009
+        _change: add
+      - name: should print not available message when LEMMA_ABSENCE context cannot
+          be built in text format
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R009
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-RCLA
+  journeys:
+  - id: F-RCLA-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-RCLA-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys

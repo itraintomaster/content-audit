@@ -1,0 +1,84 @@
+code: FEAT-RCLAQS
+modules:
+- name: refiner-domain
+  implementations:
+  - name: LemmaAbsenceContextResolver
+    handwrittenTests:
+    - name: should populate quizSentence on the LEMMA_ABSENCE correction context from
+        the AuditableQuiz carrier
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R001
+    - name: should copy AuditableQuiz.quizSentence verbatim without recomputing the
+        DSL in the resolver
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R002
+    - name: should emit sentence and quizSentence that originate from the same AuditableQuiz
+        so both fields describe the same quiz
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R003
+- name: audit-application
+  implementations:
+  - name: CourseToAuditableMapper
+    handwrittenTests:
+    - name: should stamp quizSentence on AuditableQuiz by invoking QuizSentenceConverter.serialize
+        on the same FormEntity used for sentences
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R002
+    - name: should invoke QuizSentenceConverter.serialize exactly once per quiz in
+        the same pass that populates sentences
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R002
+    - name: "should stamp sentences[0] and quizSentence from the same FormEntity so\
+        \ plain sentence and DSL describe the same derivation step"
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R003
+    - name: should propagate QuizSentenceSerializationException and not emit the AuditableQuiz
+        when the original FormEntity violates FEAT-QSENT invariants
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R004
+    - name: should fail atomically without a partial quizSentence when serialize throws
+        for a TEXT form with non-empty options
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R004
+    - name: should fail atomically without a partial quizSentence when serialize throws
+        for a CLOZE form with null or empty options
+      traceability:
+        feature: FEAT-RCLAQS
+        rule: F-RCLAQS-R004
+- name: audit-cli
+  packages:
+  - name: commands
+    visibility: internal
+    implementations:
+    - name: GetCmd
+      handwrittenTests:
+      - name: should include quizSentence inside correctionContext in JSON output
+          for a LEMMA_ABSENCE task
+        traceability:
+          feature: FEAT-RCLAQS
+          rule: F-RCLAQS-R005
+      - name: should emit quizSentence alongside sentence translation and the other
+          correctionContext fields in JSON for LEMMA_ABSENCE
+        traceability:
+          feature: FEAT-RCLAQS
+          rule: F-RCLAQS-R005
+      - name: should omit quizSentence from JSON when correctionContext could not
+          be built for a LEMMA_ABSENCE task
+        traceability:
+          feature: FEAT-RCLAQS
+          rule: F-RCLAQS-R005
+features:
+- id: FEAT-RCLAQS
+  journeys:
+  - id: F-RCLAQS-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys

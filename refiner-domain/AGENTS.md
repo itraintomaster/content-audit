@@ -96,6 +96,7 @@ Domain module for the refinement workflow. Defines the plan/task model and ports
 | cefrLevel | `CefrLevel` |
 | misplacedLemmas | `List<MisplacedLemmaContext>` |
 | suggestedLemmas | `List<SuggestedLemma>` |
+| quizSentence | `String` |
 
 ## Interfaces
 
@@ -180,6 +181,9 @@ Methods:
 - should return context with empty suggested lemmas when milestone ancestor is not found → FEAT-RCLA/F-RCLA-R004c
 - should return context with empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY → FEAT-RCLA/F-RCLA-R004c
 - should set taskId from the RefinementTask id → FEAT-RCLA/F-RCLA-R003
+- should populate quizSentence on the LEMMA_ABSENCE correction context from the AuditableQuiz carrier → FEAT-RCLAQS/F-RCLAQS-R001
+- should copy AuditableQuiz.quizSentence verbatim without recomputing the DSL in the resolver → FEAT-RCLAQS/F-RCLAQS-R002
+- should emit sentence and quizSentence that originate from the same AuditableQuiz so both fields describe the same quiz → FEAT-RCLAQS/F-RCLAQS-R003
 
 ### DispatchingCorrectionContextResolver
 
@@ -263,12 +267,13 @@ The following models and interfaces are available from dependencies. You can use
 
 | Field | Type |
 |-------|------|
-| sentence | `String` |
 | tokens | `List<NlpToken>` |
 | id | `String` |
 | label | `String` |
 | code | `String` |
 | translation | `String` |
+| sentences | `List<String>` |
+| quizSentence | `String` |
 
 ### CefrLevel (`enum`)
 

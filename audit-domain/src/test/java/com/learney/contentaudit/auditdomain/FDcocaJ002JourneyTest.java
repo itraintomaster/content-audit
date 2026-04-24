@@ -32,10 +32,7 @@ public class FDcocaJ002JourneyTest {
      * Builds a minimal quiz AuditNode with the given parent node.
      */
     private AuditNode buildQuizNode(AuditNode parent) {
-        AuditableQuiz quizEntity = new AuditableQuiz(
-                "The manager negotiated a new contract last week",
-                Collections.emptyList(),
-                "quiz-001", "Quiz 1", "Q001", "El gerente negoció un nuevo contrato");
+        AuditableQuiz quizEntity = new AuditableQuiz(Collections.emptyList(), "quiz-001", "Quiz 1", "Q001", "El gerente negoció un nuevo contrato", List.of("The manager negotiated a new contract last week"), null);
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
         return new AuditNode(
                 quizEntity, AuditTarget.QUIZ, parent, Collections.emptyList(),

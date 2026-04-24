@@ -762,6 +762,7 @@ final class GetCmd implements GetCommand, Callable<Integer> {
 
     private Map<String, Object> buildLemmaAbsenceContextMap(LemmaAbsenceCorrectionContext ctx) {
         Map<String, Object> map = new LinkedHashMap<>();
+        map.put("quizSentence", ctx.getQuizSentence());
         map.put("sentence", ctx.getSentence());
         map.put("translation", ctx.getTranslation());
         map.put("knowledgeTitle", ctx.getKnowledgeTitle());

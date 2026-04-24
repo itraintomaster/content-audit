@@ -100,12 +100,13 @@ The following models and interfaces are available from dependencies. You can use
 
 | Field | Type |
 |-------|------|
-| sentence | `String` |
 | tokens | `List<NlpToken>` |
 | id | `String` |
 | label | `String` |
 | code | `String` |
 | translation | `String` |
+| sentences | `List<String>` |
+| quizSentence | `String` |
 
 ### CefrLevel (`enum`)
 
@@ -441,6 +442,7 @@ Methods:
 | cefrLevel | `CefrLevel` |
 | misplacedLemmas | `List<MisplacedLemmaContext>` |
 | suggestedLemmas | `List<SuggestedLemma>` |
+| quizSentence | `String` |
 
 ### RefinerEngine (port)
 
@@ -489,6 +491,8 @@ Methods:
 | ELEMENT_NOT_FOUND | `null` |
 | PENDING_APPROVAL_PERSISTED | `null` |
 | ALREADY_PENDING_DECISION | `null` |
+| NO_ACTIVE_STRATEGY | `null` |
+| STRATEGY_FAILED | `null` |
 
 ### CourseElementSnapshot (`record`)
 
@@ -514,6 +518,7 @@ Methods:
 | rationale | `String` |
 | reviserKind | `String` |
 | createdAt | `Instant` |
+| strategyId | `StrategyId` |
 
 ### RevisionArtifact (`record`)
 
@@ -546,6 +551,8 @@ Methods:
 | refinementPlanStore | `RefinementPlanStore` |
 | auditReportStore | `AuditReportStore` |
 | contextResolver | `CorrectionContextResolver<CorrectionContext>` |
+| lemmaAbsenceStrategyRegistry | `LemmaAbsenceProposalStrategyRegistry` |
+| lemmaAbsenceProposalDeriver | `LemmaAbsenceProposalDeriver` |
 
 ### ApprovalMode (`enum`)
 
@@ -571,6 +578,45 @@ Methods:
 | kind | `ProposalDecisionOutcomeKind` |
 | artifact | `RevisionArtifact` |
 | errorMessage | `String` |
+
+### StrategyId (`record`)
+
+| Field | Type |
+|-------|------|
+| name | `String` |
+| version | `String` |
+| providerId | `String` |
+
+### LemmaAbsenceQuizCandidate (`record`)
+
+| Field | Type |
+|-------|------|
+| quizSentence | `String` |
+| translation | `String` |
+
+### ProposalStrategyFailedException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `La estrategia de propuesta '%s' no pudo generar un candidato de quiz para la tarea '%s': %s`
+
+| Field | Type |
+|-------|------|
+| strategyName | `String` |
+| taskId | `String` |
+| reason | `String` |
+
+### ProposalDerivationException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `No se pudo derivar elementAfter desde el candidato de la estrategia '%s' en la tarea '%s': %s`
+
+| Field | Type |
+|-------|------|
+| strategyName | `String` |
+| taskId | `String` |
+| reason | `String` |
 
 ### Reviser (port)
 
@@ -641,6 +687,28 @@ Methods:
 Methods:
 
 - `create(RevisionEngineConfig config): ProposalDecisionService`
+
+### LemmaAbsenceProposalStrategy (port)
+
+Methods:
+
+- `id(): StrategyId`
+- `handles(DiagnosisKind kind): boolean`
+- `propose(RefinementTask task, LemmaAbsenceCorrectionContext context): LemmaAbsenceQuizCandidate`
+
+### LemmaAbsenceProposalStrategyRegistry (service) [sealed]
+
+Methods:
+
+- `active(): Optional<LemmaAbsenceProposalStrategy>`
+- `byName(String name): Optional<LemmaAbsenceProposalStrategy>`
+- `listAll(): List<StrategyId>`
+
+### LemmaAbsenceProposalDeriver (service) [sealed]
+
+Methods:
+
+- `derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate): CourseElementSnapshot`
 
 ### From course-domain
 

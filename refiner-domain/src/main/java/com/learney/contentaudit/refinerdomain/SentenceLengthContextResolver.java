@@ -59,7 +59,8 @@ public class SentenceLengthContextResolver implements CorrectionContextResolver<
         String translation = null;
         if (quizEntity instanceof AuditableQuiz) {
             AuditableQuiz quiz = (AuditableQuiz) quizEntity;
-            sentence = quiz.getSentence();
+            sentence = (quiz.getSentences() != null && !quiz.getSentences().isEmpty())
+                    ? quiz.getSentences().get(0) : null;
             translation = quiz.getTranslation();
         }
 

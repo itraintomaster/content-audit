@@ -36,12 +36,22 @@ Methods:
 **Dependencies (constructor injection):**
 
 - `nlpTokenizer`: `NlpTokenizer`
+- `quizSentenceConverter`: `QuizSentenceConverter`
 
 **Tests that must pass:**
 
 - Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse → FEAT-NLP/F-NLP-R010
 - Given a course with no milestones, when map is called, then returns an AuditableCourse without error → FEAT-NLP/F-NLP-R010
 - Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates → FEAT-NLP/F-NLP-R008
+- should emit the canonical first sub-variant rather than the raw pipe literal in the stamped sentences → FEAT-QSENT/F-QSENT-R026
+- should strip hints from the sentences stamped on AuditableQuiz → FEAT-QSENT/F-QSENT-R026
+- should invoke QuizSentenceConverter exactly once per quiz and stamp the list eagerly on AuditableQuiz → FEAT-QSENT/F-QSENT-R027
+- should stamp quizSentence on AuditableQuiz by invoking QuizSentenceConverter.serialize on the same FormEntity used for sentences → FEAT-RCLAQS/F-RCLAQS-R002
+- should invoke QuizSentenceConverter.serialize exactly once per quiz in the same pass that populates sentences → FEAT-RCLAQS/F-RCLAQS-R002
+- should stamp sentences[0] and quizSentence from the same FormEntity so plain sentence and DSL describe the same derivation step → FEAT-RCLAQS/F-RCLAQS-R003
+- should propagate QuizSentenceSerializationException and not emit the AuditableQuiz when the original FormEntity violates FEAT-QSENT invariants → FEAT-RCLAQS/F-RCLAQS-R004
+- should fail atomically without a partial quizSentence when serialize throws for a TEXT form with non-empty options → FEAT-RCLAQS/F-RCLAQS-R004
+- should fail atomically without a partial quizSentence when serialize throws for a CLOZE form with null or empty options → FEAT-RCLAQS/F-RCLAQS-R004
 
 ### DefaultSentenceLengthConfig
 
@@ -214,12 +224,13 @@ The following models and interfaces are available from dependencies. You can use
 
 | Field | Type |
 |-------|------|
-| sentence | `String` |
 | tokens | `List<NlpToken>` |
 | id | `String` |
 | label | `String` |
 | code | `String` |
 | translation | `String` |
+| sentences | `List<String>` |
+| quizSentence | `String` |
 
 ### CefrLevel (`enum`)
 
@@ -710,6 +721,7 @@ Methods:
 | cefrLevel | `CefrLevel` |
 | misplacedLemmas | `List<MisplacedLemmaContext>` |
 | suggestedLemmas | `List<SuggestedLemma>` |
+| quizSentence | `String` |
 
 ### RefinerEngine (port)
 
@@ -776,6 +788,8 @@ Methods:
 | ELEMENT_NOT_FOUND | `null` |
 | PENDING_APPROVAL_PERSISTED | `null` |
 | ALREADY_PENDING_DECISION | `null` |
+| NO_ACTIVE_STRATEGY | `null` |
+| STRATEGY_FAILED | `null` |
 
 ### CourseElementSnapshot (`record`)
 
@@ -801,6 +815,7 @@ Methods:
 | rationale | `String` |
 | reviserKind | `String` |
 | createdAt | `Instant` |
+| strategyId | `StrategyId` |
 
 ### RevisionArtifact (`record`)
 
@@ -833,6 +848,8 @@ Methods:
 | refinementPlanStore | `RefinementPlanStore` |
 | auditReportStore | `AuditReportStore` |
 | contextResolver | `CorrectionContextResolver<CorrectionContext>` |
+| lemmaAbsenceStrategyRegistry | `LemmaAbsenceProposalStrategyRegistry` |
+| lemmaAbsenceProposalDeriver | `LemmaAbsenceProposalDeriver` |
 
 ### ApprovalMode (`enum`)
 
@@ -858,6 +875,45 @@ Methods:
 | kind | `ProposalDecisionOutcomeKind` |
 | artifact | `RevisionArtifact` |
 | errorMessage | `String` |
+
+### StrategyId (`record`)
+
+| Field | Type |
+|-------|------|
+| name | `String` |
+| version | `String` |
+| providerId | `String` |
+
+### LemmaAbsenceQuizCandidate (`record`)
+
+| Field | Type |
+|-------|------|
+| quizSentence | `String` |
+| translation | `String` |
+
+### ProposalStrategyFailedException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `La estrategia de propuesta '%s' no pudo generar un candidato de quiz para la tarea '%s': %s`
+
+| Field | Type |
+|-------|------|
+| strategyName | `String` |
+| taskId | `String` |
+| reason | `String` |
+
+### ProposalDerivationException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `No se pudo derivar elementAfter desde el candidato de la estrategia '%s' en la tarea '%s': %s`
+
+| Field | Type |
+|-------|------|
+| strategyName | `String` |
+| taskId | `String` |
+| reason | `String` |
 
 ### Reviser (port)
 
@@ -928,4 +984,26 @@ Methods:
 Methods:
 
 - `create(RevisionEngineConfig config): ProposalDecisionService`
+
+### LemmaAbsenceProposalStrategy (port)
+
+Methods:
+
+- `id(): StrategyId`
+- `handles(DiagnosisKind kind): boolean`
+- `propose(RefinementTask task, LemmaAbsenceCorrectionContext context): LemmaAbsenceQuizCandidate`
+
+### LemmaAbsenceProposalStrategyRegistry (service) [sealed]
+
+Methods:
+
+- `active(): Optional<LemmaAbsenceProposalStrategy>`
+- `byName(String name): Optional<LemmaAbsenceProposalStrategy>`
+- `listAll(): List<StrategyId>`
+
+### LemmaAbsenceProposalDeriver (service) [sealed]
+
+Methods:
+
+- `derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate): CourseElementSnapshot`
 

@@ -114,7 +114,7 @@ public class FRevbypJ001JourneyTest {
                 taskId + "-1000000", taskId, planId, auditId,
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        );
+        , null);
 
         // STEP: validar_propuesta — validator aprueba (bypass siempre aprueba) [gate: R006, R007]
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
@@ -185,7 +185,7 @@ public class FRevbypJ001JourneyTest {
                 taskId + "-2000000", taskId, planId, auditId,
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        );
+        , null);
 
         // STEP: validar_propuesta — validator aprueba (bypass)
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
@@ -255,7 +255,7 @@ public class FRevbypJ001JourneyTest {
                 taskId + "-3000000", taskId, planId, auditId,
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        );
+        , null);
 
         // STEP: validar_propuesta — validator RECHAZA la propuesta [gate: R006]
         // STEP: persistir_artefacto_rechazado — artefacto guardado con REJECTED; curso sin tocar [gate: R008, R010, R012, R013]

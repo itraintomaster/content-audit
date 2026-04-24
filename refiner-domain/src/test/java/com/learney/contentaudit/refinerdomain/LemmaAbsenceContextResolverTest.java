@@ -182,7 +182,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R003")
     public void shouldResolveContextWithAllFieldsPopulatedFromQuizDiagnosisAndAncestorEntities() {
-        AuditableQuiz quiz = new AuditableQuiz("The cat sat.", List.of(), "quiz-la-1", null, null, "El gato se sentó.");
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-1", null, null, "El gato se sentó.", List.of("The cat sat."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete the sentence.", true, "know-la-1", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-1", "Basic Animals", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-1", "A1", null);
@@ -214,7 +214,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R003")
     public void shouldPopulateSentenceAndTranslationFromAuditableQuizEntityOnTheQuizNode() {
-        AuditableQuiz quiz = new AuditableQuiz("I love learning.", List.of(), "quiz-la-2", null, null, "Me encanta aprender.");
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-2", null, null, "Me encanta aprender.", List.of("I love learning."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Feelings", "Complete.", true, "know-la-2", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-2", "Emotions", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-2", "A1", null);
@@ -239,7 +239,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLA-R003")
     public void shouldPopulateKnowledgeTitleAndKnowledgeInstructionsFromAuditableKnowledgeOnKnowledgeAncestor(
             ) {
-        AuditableQuiz quiz = new AuditableQuiz("He reads.", List.of(), "quiz-la-3", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-3", null, null, null, List.of("He reads."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Reading Skills", "Choose the correct word.", true, "know-la-3", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-3", "Skills", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-3", "A2", null);
@@ -263,7 +263,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R003")
     public void shouldPopulateTopicLabelFromAuditableTopicOnTopicAncestor() {
-        AuditableQuiz quiz = new AuditableQuiz("She sings.", List.of(), "quiz-la-4", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-4", null, null, null, List.of("She sings."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Music", "Complete.", true, "know-la-4", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-4", "Arts and Culture", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-4", "B1", null);
@@ -286,7 +286,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R003")
     public void shouldPopulateCefrLevelFromMilestoneAncestor() {
-        AuditableQuiz quiz = new AuditableQuiz("They run fast.", List.of(), "quiz-la-5", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-5", null, null, null, List.of("They run fast."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Sports", "Complete.", true, "know-la-5", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-5", "Activities", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-5", "B2", null);
@@ -309,7 +309,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004")
     public void shouldPopulateMisplacedLemmasFromLemmaPlacementDiagnosisOnQuizNode() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-la-6", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-6", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-6", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-6", "T6", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-6", "A1", null);
@@ -336,7 +336,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004")
     public void shouldMapMisplacedLemmaFieldsToMisplacedLemmaContextFieldsCorrectly() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-la-7", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-7", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-7", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-7", "T7", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-7", "A1", null);
@@ -363,7 +363,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004")
     public void shouldIncludeExpectedLevelAndQuizLevelInEachMisplacedLemmaContextEntry() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-la-8", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-8", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-8", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-8", "T8", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-8", "A1", null);
@@ -391,7 +391,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004")
     public void shouldIncludeCocaRankAsNullInMisplacedLemmaContextWhenNotAvailable() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-la-9", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-9", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-9", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-9", "T9", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-9", "A1", null);
@@ -418,7 +418,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R005")
     public void shouldReturnEmptyWhenQuizNodeIsNotFoundInTheAuditTree() {
-        AuditableQuiz quiz = new AuditableQuiz("Hello.", List.of(), "quiz-la-10", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-10", null, null, null, List.of("Hello."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete.", true, "know-la-10", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-10", "Social", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-10", "A1", null);
@@ -440,7 +440,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R005")
     public void shouldReturnEmptyWhenTaskNodeTargetDoesNotMatchAnyNodeTargetInTheTree() {
-        AuditableQuiz quiz = new AuditableQuiz("Hello.", List.of(), "quiz-la-11", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-11", null, null, null, List.of("Hello."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-11", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-11", "T11", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-11", "A1", null);
@@ -469,8 +469,8 @@ public class LemmaAbsenceContextResolverTest {
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-12", "Topic 12", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-12", "A1", null);
 
-        AuditableQuiz quiz1 = new AuditableQuiz("First sentence.", List.of(), "quiz-la-12a", null, null, null);
-        AuditableQuiz quiz2 = new AuditableQuiz("Second sentence.", List.of(), "quiz-la-12b", null, null, null);
+        AuditableQuiz quiz1 = new AuditableQuiz(List.of(), "quiz-la-12a", null, null, null, List.of("First sentence."), null);
+        AuditableQuiz quiz2 = new AuditableQuiz(List.of(), "quiz-la-12b", null, null, null, List.of("Second sentence."), null);
 
         MisplacedLemma ml = buildMisplacedLemma("tree", "NOUN", CefrLevel.A2, CefrLevel.A1, 600);
         DefaultQuizDiagnoses diag1 = buildQuizDiagnosesWithPlacement(List.of());
@@ -500,7 +500,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R006")
     public void shouldReturnEmptyWhenQuizNodeHasNoLemmaPlacementDiagnosis() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-la-13", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-13", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-13", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-13", "T13", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-13", "A1", null);
@@ -524,7 +524,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLA-R004b")
     public void shouldIncludeOnlyCOMPLETELYABSENTAndAPPEARSTOOLATELemmasInSuggestedLemmasAndExcludeAPPEARSTOOEARLY(
             ) {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-la-14", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-14", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-14", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-14", "T14", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-14", "A1", null);
@@ -555,7 +555,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004b")
     public void shouldOrderSuggestedLemmasByCOCARankAscendingWithLowestRankFirst() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-la-15", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-15", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-15", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-15", "T15", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-15", "A1", null);
@@ -586,7 +586,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004b")
     public void shouldPlaceLemmasWithoutCOCARankAfterLemmasWithCOCARankInSuggestedLemmas() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-la-16", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-16", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-16", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-16", "T16", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-16", "A1", null);
@@ -617,7 +617,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004b")
     public void shouldMapAbsentLemmaFieldsToSuggestedLemmaFieldsCorrectly() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-la-17", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-17", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-17", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-17", "T17", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-17", "A1", null);
@@ -648,7 +648,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004b")
     public void shouldLimitSuggestedLemmasTo10WhenMoreThan10QualifyAfterFiltering() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-la-18", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-18", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-18", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-18", "T18", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-18", "A1", null);
@@ -676,7 +676,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLA-R004c")
     public void shouldReturnContextWithEmptySuggestedLemmasWhenMilestoneHasNoLemmaAbsenceLevelDiagnosis(
             ) {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-la-19", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-19", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-19", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-19", "T19", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-19", "A1", null);
@@ -701,7 +701,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLA-R004c")
     public void shouldReturnContextWithEmptySuggestedLemmasWhenMilestoneAncestorIsNotFound() {
         // Build a shallow tree: COURSE → TOPIC → KNOWLEDGE → QUIZ (no MILESTONE level)
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-la-20", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-20", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-20", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-20", "T20", null);
 
@@ -726,7 +726,7 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004c")
     public void shouldReturnContextWithEmptySuggestedLemmasWhenAllAbsentLemmasAreAPPEARSTOOEARLY() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-la-21", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-21", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-21", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-21", "T21", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-21", "A1", null);
@@ -747,12 +747,133 @@ public class LemmaAbsenceContextResolverTest {
         Assertions.assertTrue(result.get().getSuggestedLemmas().isEmpty());
     }
 
+    // ------------------------------------------------------------------
+    // FEAT-RCLAQS tests
+    // ------------------------------------------------------------------
+
+    @Test
+    @DisplayName("should populate quizSentence from AuditableQuiz carrier")
+    @Tag("FEAT-RCLAQS")
+    @Tag("F-RCLAQS-R001")
+    public void shouldPopulateQuizSentenceFromAuditableQuizCarrier() {
+        // R001: the resolver must copy the quizSentence field from the AuditableQuiz
+        // carrier into the LemmaAbsenceCorrectionContext. The field was stamped at
+        // mapping time by CourseToAuditableMapper via QuizSentenceConverter.serialize().
+        String expectedQuizSentence = "She needs to ____ [negotiate|discuss] (to negotiate) the contract before Friday.";
+        AuditableQuiz quiz = new AuditableQuiz(
+                List.of(), "quiz-rclaqs-01", null, null,
+                "Ella necesita negociar el contrato.",
+                List.of("She needs to negotiate the contract."),
+                expectedQuizSentence);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Present Simple", "Complete.", true, "know-rclaqs-01", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclaqs-01", "Present Simple", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclaqs-01", "A1", null);
+
+        MisplacedLemma ml = buildMisplacedLemma("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840);
+        DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacement(List.of(ml));
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = new RefinementTask(
+                "task-rclaqs-01", AuditTarget.QUIZ, "quiz-rclaqs-01",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        Assertions.assertTrue(result.isPresent());
+        // R001: quizSentence field must be populated from the carrier
+        Assertions.assertEquals(expectedQuizSentence, result.get().getQuizSentence());
+    }
+
+    @Test
+    @DisplayName("should not reinvoke converter but read quizSentence verbatim from carrier")
+    @Tag("FEAT-RCLAQS")
+    @Tag("F-RCLAQS-R002")
+    public void shouldNotReinvokeConverterButReadQuizSentenceVerbatimFromCarrier() {
+        // R002: the resolver is a pure read from the carrier — it must NOT recompute the
+        // DSL or call any converter. The value must be whatever was stamped on AuditableQuiz
+        // at mapping time, copied verbatim. We verify this by stamping a sentinel DSL value
+        // and asserting the resolver returns exactly that string, demonstrating no intermediate
+        // transformation or recomputation took place.
+        String carrierStampedValue = "He ____ [is|'s] (to be) great.";
+        AuditableQuiz quiz = new AuditableQuiz(
+                List.of(), "quiz-rclaqs-02", null, null,
+                "El es genial.",
+                List.of("He is great."),
+                carrierStampedValue);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "To Be", "Complete.", true, "know-rclaqs-02", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclaqs-02", "Grammar", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclaqs-02", "A1", null);
+
+        MisplacedLemma ml = buildMisplacedLemma("great", "ADJ", CefrLevel.A2, CefrLevel.A1, 100);
+        DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacement(List.of(ml));
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = new RefinementTask(
+                "task-rclaqs-02", AuditTarget.QUIZ, "quiz-rclaqs-02",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        Assertions.assertTrue(result.isPresent());
+        // R002: resolver must copy verbatim — no recomputation, no converter invocation
+        Assertions.assertEquals(carrierStampedValue, result.get().getQuizSentence(),
+                "quizSentence must be copied verbatim from AuditableQuiz carrier without recomputation");
+    }
+
+    @Test
+    @DisplayName("should originate quizSentence and sentence from same AuditableQuiz")
+    @Tag("FEAT-RCLAQS")
+    @Tag("F-RCLAQS-R003")
+    public void shouldOriginateQuizSentenceAndSentenceFromSameAuditableQuiz() {
+        // R003: both quizSentence and sentence in the produced CorrectionContext must
+        // correspond to the same quiz. The resolver reads both from the same AuditableQuiz
+        // node; there is no scenario where they could diverge if the carrier is correctly
+        // populated. We assert both fields match the same-quiz data.
+        String quizSentence = "The cat ____ [sat|sits] (to sit) on the mat.";
+        String plainSentence = "The cat sat on the mat.";
+        AuditableQuiz quiz = new AuditableQuiz(
+                List.of(), "quiz-rclaqs-03", null, null,
+                "El gato se sentó en la estera.",
+                List.of(plainSentence),
+                quizSentence);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete.", true, "know-rclaqs-03", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclaqs-03", "Pets", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclaqs-03", "A1", null);
+
+        MisplacedLemma ml = buildMisplacedLemma("mat", "NOUN", CefrLevel.A2, CefrLevel.A1, 500);
+        DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacement(List.of(ml));
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = new RefinementTask(
+                "task-rclaqs-03", AuditTarget.QUIZ, "quiz-rclaqs-03",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        Assertions.assertTrue(result.isPresent());
+        LemmaAbsenceCorrectionContext ctx = result.get();
+        // R003: both fields come from the same quiz — they must coexist correctly
+        Assertions.assertEquals(plainSentence, ctx.getSentence(),
+                "sentence must be the plain sentence from the AuditableQuiz");
+        Assertions.assertEquals(quizSentence, ctx.getQuizSentence(),
+                "quizSentence must be the DSL stamped on the same AuditableQuiz");
+        // The pair (sentence, quizSentence) belongs to the same quiz — verify both are non-null
+        Assertions.assertNotNull(ctx.getSentence());
+        Assertions.assertNotNull(ctx.getQuizSentence());
+    }
+
     @Test
     @DisplayName("should set taskId from the RefinementTask id")
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R003")
     public void shouldSetTaskIdFromTheRefinementTaskId() {
-        AuditableQuiz quiz = new AuditableQuiz("A sentence.", List.of(), "quiz-la-22", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-22", null, null, null, List.of("A sentence."), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-22", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-22", "T22", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-22", "A1", null);

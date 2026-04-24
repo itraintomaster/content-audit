@@ -1,0 +1,10 @@
+code: FEAT-QSENT
+description: Declare testModule/testPackage on journey F-QSENT-J001 so sentinel generate
+  can stub the journey test in course-domain/quizsentenceengine.
+features:
+- id: FEAT-QSENT
+  journeys:
+  - id: F-QSENT-J001
+    validation: AUTO_VALIDATED
+    testModule: course-domain
+    testPackage: com.learney.contentaudit.coursedomain.quizsentenceengine
