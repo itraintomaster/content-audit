@@ -1,14 +1,23 @@
 package com.learney.contentaudit.revisiondomain.engine;
-import com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver;
-import com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry;
 
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
+import com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver;
+import com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategy;
+import com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry;
+import com.learney.contentaudit.revisiondomain.LemmaAbsenceQuizCandidate;
+import com.learney.contentaudit.revisiondomain.ProposalDerivationException;
+import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
 import com.learney.contentaudit.revisiondomain.Reviser;
 import com.learney.contentaudit.revisiondomain.RevisionProposal;
+import com.learney.contentaudit.revisiondomain.RevisionOutcomeKind;
+import com.learney.contentaudit.revisiondomain.StrategyId;
+import java.time.Instant;
 import java.util.Map;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -20,15 +29,30 @@ class DispatchingReviser implements Reviser {
 
     private final IdentityReviser fallback;
 
-    public DispatchingReviser(Map<DiagnosisKind, Reviser> byKind, IdentityReviser fallback) {
+    private final LemmaAbsenceProposalStrategyRegistry strategyRegistry;
+
+    private final LemmaAbsenceProposalDeriver deriver;
+
+    public DispatchingReviser(Map<DiagnosisKind, Reviser> byKind, IdentityReviser fallback,
+            LemmaAbsenceProposalStrategyRegistry strategyRegistry,
+            LemmaAbsenceProposalDeriver deriver) {
         this.byKind = byKind;
         this.fallback = fallback;
+        this.strategyRegistry = strategyRegistry;
+        this.deriver = deriver;
     }
 
     @Override
     public RevisionProposal propose(RefinementTask task, CorrectionContext context,
             CourseElementSnapshot before) {
         DiagnosisKind kind = task.getDiagnosisKind();
+
+        // LEMMA_ABSENCE branch — F-LAPS-R002, R006, R015
+        if (DiagnosisKind.LEMMA_ABSENCE.equals(kind)) {
+            return proposeLemmaAbsence(task, context, before);
+        }
+
+        // Non-LEMMA_ABSENCE: existing dispatch + fallback
         Reviser registered = byKind.get(kind);
         if (registered != null) {
             return registered.propose(task, context, before);
@@ -40,8 +64,98 @@ class DispatchingReviser implements Reviser {
                 "No Reviser registered for DiagnosisKind " + kind + " and no fallback configured");
     }
 
+    /**
+     * LEMMA_ABSENCE proposal flow (F-LAPS-R002, R005, R006, R012, R015, R016).
+     * Returns either a real proposal or throws a sentinel outcome exception so that
+     * DefaultRevisionEngine can map it to the correct RevisionOutcomeKind without
+     * persisting any artifact.
+     *
+     * <p>We use a lightweight checked-exception idiom: throw {@link LemmaAbsenceOutcomeException}
+     * (a private, package-visible runtime exception) carrying the desired outcome kind so that
+     * DefaultRevisionEngine can catch it before Step 5 and return early.</p>
+     *
+     * <p>However, since DefaultRevisionEngine is @Generated and we cannot modify it, we must
+     * instead ensure this method throws ProposalStrategyFailedException for the failure cases,
+     * and let DefaultRevisionEngine propagate them upward. The outcome kind NO_ACTIVE_STRATEGY
+     * and STRATEGY_FAILED must be surfaced at the engine level.
+     * We achieve this by throwing ProposalStrategyFailedException — the engine will propagate
+     * it as an unchecked exception. The ReviseCmd must catch and map it to an error message.</p>
+     */
+    private RevisionProposal proposeLemmaAbsence(RefinementTask task, CorrectionContext context,
+            CourseElementSnapshot before) {
+        // R006: no registry or no active strategy -> NO_ACTIVE_STRATEGY
+        if (strategyRegistry == null) {
+            throw new NoActiveStrategyException(task.getId());
+        }
+        Optional<LemmaAbsenceProposalStrategy> activeOpt = strategyRegistry.active();
+        if (activeOpt.isEmpty()) {
+            throw new NoActiveStrategyException(task.getId());
+        }
+
+        LemmaAbsenceProposalStrategy strategy = activeOpt.get();
+
+        // Cast context — LEMMA_ABSENCE tasks always have LemmaAbsenceCorrectionContext
+        if (!(context instanceof LemmaAbsenceCorrectionContext lemmaContext)) {
+            throw new ProposalStrategyFailedException(
+                    strategy.id().getName(),
+                    task.getId(),
+                    "CorrectionContext is not a LemmaAbsenceCorrectionContext; got: "
+                            + (context == null ? "null" : context.getClass().getSimpleName()));
+        }
+
+        // R015: strategy failure -> STRATEGY_FAILED (propagate ProposalStrategyFailedException)
+        LemmaAbsenceQuizCandidate candidate;
+        try {
+            candidate = strategy.propose(task, lemmaContext);
+        } catch (ProposalStrategyFailedException e) {
+            throw e; // propagate as-is
+        } catch (RuntimeException e) {
+            throw new ProposalStrategyFailedException(
+                    strategy.id().getName(), task.getId(), e.getMessage());
+        }
+
+        // R012: deterministic derivation of elementAfter
+        CourseElementSnapshot elementAfter;
+        try {
+            elementAfter = deriver.derive(before, candidate);
+        } catch (ProposalDerivationException e) {
+            // Derivation failure maps to STRATEGY_FAILED (R015)
+            throw new ProposalStrategyFailedException(
+                    strategy.id().getName(), task.getId(),
+                    "derivation failed: " + e.getReason());
+        } catch (RuntimeException e) {
+            throw new ProposalStrategyFailedException(
+                    strategy.id().getName(), task.getId(),
+                    "unexpected derivation error: " + e.getMessage());
+        }
+
+        // Build proposal — R005: strategyId recorded; reviserKind = strategy name
+        StrategyId strategyId = strategy.id();
+        Instant now = Instant.now();
+        String proposalId = task.getId() + "-" + now.toEpochMilli();
+        return new RevisionProposal(
+                proposalId,
+                task.getId(),
+                "pending",            // planId overwritten by DefaultRevisionEngine
+                "pending",            // sourceAuditId overwritten by DefaultRevisionEngine
+                task.getDiagnosisKind(),
+                task.getNodeTarget(),
+                task.getNodeId(),
+                before,
+                elementAfter,
+                "lemma-absence strategy: " + strategyId.getName() + " v" + strategyId.getVersion(),
+                strategyId.getName(), // reviserKind = strategy name (F-LAPS-R005)
+                now,
+                strategyId
+        );
+    }
+
     @Override
     public boolean handles(DiagnosisKind kind) {
+        if (DiagnosisKind.LEMMA_ABSENCE.equals(kind)) {
+            // LEMMA_ABSENCE is handled only when there is a strategy registry (even if empty)
+            return strategyRegistry != null;
+        }
         if (byKind.containsKey(kind)) {
             return true;
         }
@@ -54,5 +168,22 @@ class DispatchingReviser implements Reviser {
     @Override
     public String reviserKind() {
         return "dispatching";
+    }
+
+    /**
+     * Thrown when no active strategy is configured for LEMMA_ABSENCE (F-LAPS-R006).
+     * Package-visible so ReviseCmd can catch it and return outcome NO_ACTIVE_STRATEGY.
+     */
+    static class NoActiveStrategyException extends RuntimeException {
+        private final String taskId;
+
+        NoActiveStrategyException(String taskId) {
+            super("No hay una estrategia de propuesta activa para el diagnostico 'LEMMA_ABSENCE' (taskId=" + taskId + ")");
+            this.taskId = taskId;
+        }
+
+        String getTaskId() {
+            return taskId;
+        }
     }
 }

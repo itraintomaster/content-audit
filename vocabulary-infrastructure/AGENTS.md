@@ -59,12 +59,13 @@ The following models and interfaces are available from dependencies. You can use
 
 | Field | Type |
 |-------|------|
-| sentence | `String` |
 | tokens | `List<NlpToken>` |
 | id | `String` |
 | label | `String` |
 | code | `String` |
 | translation | `String` |
+| sentences | `List<String>` |
+| quizSentence | `String` |
 
 ### CefrLevel (`enum`)
 

@@ -21,6 +21,7 @@ import com.learney.contentaudit.revisiondomain.RevisionProposal;
 import com.learney.contentaudit.revisiondomain.RevisionValidator;
 import com.learney.contentaudit.revisiondomain.RevisionValidatorResult;
 import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
 import com.learney.contentaudit.revisiondomain.Reviser;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -111,8 +112,17 @@ class DefaultRevisionEngine implements RevisionEngine {
                     "No reviser handles diagnosis kind: " + task.getDiagnosisKind());
         }
 
-        // Step 5: Generate proposal
-        RevisionProposal proposal = reviser.propose(task, context, snapshot);
+        // Step 5: Generate proposal — catch LAPS-specific failure outcomes (F-LAPS-R006, R015, R016)
+        RevisionProposal proposal;
+        try {
+            proposal = reviser.propose(task, context, snapshot);
+        } catch (DispatchingReviser.NoActiveStrategyException e) {
+            return new RevisionOutcome(RevisionOutcomeKind.NO_ACTIVE_STRATEGY, null,
+                    e.getMessage());
+        } catch (ProposalStrategyFailedException e) {
+            return new RevisionOutcome(RevisionOutcomeKind.STRATEGY_FAILED, null,
+                    e.getMessage());
+        }
         // The Reviser may not know the real planId/sourceAuditId — the engine does, so overwrite.
         proposal.setPlanId(planId);
         proposal.setSourceAuditId(plan.getSourceAuditId());

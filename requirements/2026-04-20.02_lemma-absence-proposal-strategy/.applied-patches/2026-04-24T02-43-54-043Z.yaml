@@ -1,0 +1,79 @@
+code: FEAT-LAPS
+description: "FEAT-LAPS re-evolution: align port signatures with refined REQUIREMENT\
+  \ (R007, R015, R016). Strategy.propose() declares ProposalStrategyFailedException;\
+  \ deriver.derive() declares ProposalDerivationException; generator.generate() declares\
+  \ ProposalStrategyFailedException; selector.select() declares InvalidProposalStrategyException.\
+  \ Tighten candidate field docs to reference quizSentence consumed from CorrectionContext\
+  \ (FEAT-RCLA/FEAT-RCLAQS) and derivation via QuizSentenceConverter.parse + toPlainSentences\
+  \ (FEAT-QSENT). The candidate carrier stays as { String quizSentence, String translation\
+  \ } — a deliberate 2-field record preserving stamp traceability without collapsing\
+  \ into two raw Strings across boundaries."
+modules:
+- name: revision-domain
+  models:
+  - name: LemmaAbsenceQuizCandidate
+    type: record
+    fields:
+    - name: quizSentence
+      type: String
+      description: "Candidate exercise expressed in the FEAT-QSENT quizSentence DSL\
+        \ (blanks '____', answer blocks '[variant1|variant2]', hints inline in parentheses).\
+        \ One formal string encodes the sentence stem + blanks + correct answers +\
+        \ accepted variants (F-LAPS-R009, R011, R019). Parsed by QuizSentenceConverter.parse\
+        \ at derivation time (F-LAPS-R012). The strategy MAY but is not required to\
+        \ reuse substrings of the context's quizSentence (FEAT-RCLAQS) — it emits\
+        \ a fresh candidate."
+      _change: modify
+    - name: translation
+      type: String
+      description: "Spanish translation of the new exercise (F-LAPS-R009). Copied\
+        \ verbatim into elementAfter by the deriver (F-LAPS-R012). May differ from\
+        \ elementBefore.translation when the candidate changed the sentence meaning\
+        \ (F-LAPS-R013). The DSL of FEAT-QSENT does not cover translations, so this\
+        \ is a sibling field, not an additional entry inside quizSentence."
+      _change: modify
+    _change: modify
+  interfaces:
+  - name: LemmaAbsenceProposalStrategy
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "id(): StrategyId"
+    - signature: "handles(DiagnosisKind kind): boolean"
+    - signature: "propose(RefinementTask task, LemmaAbsenceCorrectionContext context):\
+        \ LemmaAbsenceQuizCandidate"
+    _change: modify
+  - name: LemmaAbsenceProposalDeriver
+    stereotype: service
+    sealed: true
+    exposes:
+    - signature: "derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate):\
+        \ CourseElementSnapshot"
+    _change: modify
+  packages:
+  - name: strategy
+    visibility: internal
+    interfaces:
+    - name: LemmaAbsenceQuizCandidateGenerator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "generate(LemmaAbsenceCorrectionContext context): LemmaAbsenceGeneratorResponse"
+      visibility: public
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: bootstrap
+    visibility: internal
+    interfaces:
+    - name: ProposalStrategySelector
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "select(String envValue, LemmaAbsenceProposalStrategyRegistry registry):\
+          \ String"
+      _change: modify
+    _change: modify
+  _change: modify

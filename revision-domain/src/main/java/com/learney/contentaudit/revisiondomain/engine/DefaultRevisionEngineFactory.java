@@ -18,7 +18,11 @@ public class DefaultRevisionEngineFactory implements RevisionEngineFactory {
         IdentityReviser identityReviser = new IdentityReviser();
 
         Map revisers = config.getRevisers() != null ? config.getRevisers() : Map.of();
-        DispatchingReviser dispatcher = new DispatchingReviser(revisers, identityReviser);
+        DispatchingReviser dispatcher = new DispatchingReviser(
+                revisers,
+                identityReviser,
+                config.getLemmaAbsenceStrategyRegistry(),
+                config.getLemmaAbsenceProposalDeriver());
 
         RevisionValidator validator = config.getValidator() != null
                 ? config.getValidator()

@@ -1,0 +1,254 @@
+code: FEAT-LAPS
+modules:
+- name: revision-domain
+  packages:
+  - name: engine
+    visibility: internal
+    implementations:
+    - name: DefaultLemmaAbsenceProposalStrategyRegistry
+      handwrittenTests:
+      - name: "Given a config whose activeName matches a registered strategy, when\
+          \ active is called, then it returns that strategy wrapped in Optional"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R004
+      - name: "Given a config with activeName null, when active is called, then it\
+          \ returns Optional.empty"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R004
+      - name: "Given a config with activeName pointing to a name that is not in the\
+          \ registered list, when active is called, then it returns Optional.empty"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R004
+      - name: "Given multiple registered strategies, when byName is called with the\
+          \ name of each registered strategy, then every lookup returns the corresponding\
+          \ strategy and byName of an unknown name returns Optional.empty"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R004
+      - name: "Given multiple registered strategies, when listAll is called, then\
+          \ it returns the StrategyId of every registered strategy without dropping\
+          \ or deduplicating entries"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R004
+    - name: DefaultLemmaAbsenceProposalDeriver
+      handwrittenTests:
+      - name: "Given an elementBefore quiz and a candidate whose quizSentence differs\
+          \ from the original, when derive is called, then the returned elementAfter\
+          \ carries a new sentence plain text and a new quizForm parsed from the candidate's\
+          \ quizSentence via QuizSentenceConverter"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R012
+      - name: "Given an elementBefore and a candidate with a non-identity quizSentence,\
+          \ when derive is called, then elementAfter is not structurally equal to\
+          \ elementBefore (non-identity proposal)"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R001
+      - name: "Given an elementBefore and a candidate, when derive is called, then\
+          \ elementAfter replaces the entire quiz form and translation in one step\
+          \ rather than splicing word-by-word changes onto the original"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R003
+      - name: "Given an elementBefore with a specific quizId, nodeIds, instructions\
+          \ and order, and any candidate, when derive is called, then those fields\
+          \ on elementAfter are bit-for-bit identical to elementBefore"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
+      - name: "Given a candidate whose translation differs from elementBefore.translation,\
+          \ when derive is called, then elementAfter.translation equals the candidate.translation\
+          \ verbatim"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R013
+      - name: "Given a candidate whose quizSentence changes the correct answer and\
+          \ accepted variants of a CLOZE, when derive is called, then elementAfter.quizForm\
+          \ reflects those new answers and variants parsed from the candidate's DSL"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R013
+      - name: "Given the same elementBefore and the same candidate, when derive is\
+          \ called twice, then both invocations return equal elementAfter snapshots\
+          \ (determinism)"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R012
+      - name: "Given a candidate whose quizSentence is malformed according to the\
+          \ FEAT-QSENT grammar, when derive is called, then it throws ProposalDerivationException\
+          \ and does not return a partial elementAfter"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R012
+      - name: "Given a candidate that carries only quizSentence and translation, when\
+          \ derive is called, then the deriver never asks the candidate for plain\
+          \ sentence text or quizForm fields (the strategy emits only those two pieces)"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R019
+    - name: DispatchingReviser
+      handwrittenTests:
+      - name: "Given a task whose diagnosisKind is LEMMA_ABSENCE and a registry with\
+          \ an active strategy, when propose is called, then the DispatchingReviser\
+          \ routes to the strategy+deriver pipeline and NOT to the IdentityReviser\
+          \ fallback"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R002
+      - name: "Given a task whose diagnosisKind is LEMMA_ABSENCE and a registry with\
+          \ no active strategy, when propose is called, then it returns an outcome\
+          \ with kind NO_ACTIVE_STRATEGY (no fallback to bypass)"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R006
+      - name: "Given a LEMMA_ABSENCE task and an active strategy that throws ProposalStrategyFailedException,\
+          \ when propose is called, then it returns an outcome with kind STRATEGY_FAILED\
+          \ and no RevisionProposal is built"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R015
+      - name: "Given a LEMMA_ABSENCE task and an active strategy whose candidate fails\
+          \ derivation with ProposalDerivationException, when propose is called, then\
+          \ it returns an outcome with kind STRATEGY_FAILED and no RevisionProposal\
+          \ is built"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R015
+      - name: "Given a STRATEGY_FAILED outcome, when its RevisionArtifact is inspected,\
+          \ then there is no artifact at all (the outcome carries no REJECTED verdict,\
+          \ no PENDING_APPROVAL verdict, no RevisionVerdict enum value)"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R016
+      - name: "Given a NO_ACTIVE_STRATEGY outcome, when its RevisionArtifact is inspected,\
+          \ then there is no artifact at all (the outcome carries no REJECTED verdict,\
+          \ no PENDING_APPROVAL verdict, no RevisionVerdict enum value)"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R016
+      - name: "Given a LEMMA_ABSENCE task and a strategy with id (name, version, providerId),\
+          \ when the pipeline produces a RevisionProposal, then the proposal's strategyId\
+          \ equals the strategy's id() verbatim (name + version + providerId)"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R005
+      - name: "Given a LEMMA_ABSENCE task routed to the strategy pipeline, when the\
+          \ resulting RevisionProposal is inspected, then its reviserKind reflects\
+          \ the strategy name (not the literal 'bypass')"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R005
+  - name: strategy
+    visibility: internal
+    implementations:
+    - name: LemmaAbsenceMvpStrategy
+      handwrittenTests:
+      - name: "Given a LemmaAbsenceCorrectionContext with all eight fields populated,\
+          \ when propose is called, then the strategy passes that context to the candidate\
+          \ generator without consulting the AuditReport or the diagnosis tree"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R007
+      - name: "Given a successful generator response, when propose is called, then\
+          \ it returns exactly one LemmaAbsenceQuizCandidate (single-candidate contract,\
+          \ one pass)"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R008
+      - name: "Given a successful generator response, when propose is called, then\
+          \ the returned candidate has a non-null quizSentence (FEAT-QSENT DSL) and\
+          \ a non-null translation and nothing else (no plain sentence, no quizForm)"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R009
+      - name: "Given a successful generator response, when propose is called, then\
+          \ the returned candidate carries the quizSentence verbatim in the DSL of\
+          \ FEAT-QSENT, leaving parsing to the downstream deriver"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R011
+      - name: "Given a generator that returns two different responses on two successive\
+          \ invocations, when propose is called twice with the same context, then\
+          \ both returned candidates reach the caller unchanged (the strategy does\
+          \ not stabilize, memoize or reconcile the generator output)"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R010
+      - name: "Given a generator that throws ProposalStrategyFailedException, when\
+          \ propose is called, then the exception propagates out of the strategy without\
+          \ being caught or wrapped"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R015
+      - name: "Given a generator response whose quizSentence would contain words above\
+          \ the context's cefrLevel, when propose is called, then it still returns\
+          \ the candidate (the MVP strategy does NOT run a CEFR post-check)"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R017
+      - name: "Given a generator response whose quizSentence is unusually short or\
+          \ long, when propose is called, then it still returns the candidate (the\
+          \ MVP strategy does NOT enforce a length budget)"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R018
+      - name: "Given a successful generator response, when propose is called, then\
+          \ the returned object is exactly a LemmaAbsenceQuizCandidate with two fields\
+          \ and the strategy does not also return plain sentence text, a quizForm\
+          \ or a list of accepted variants"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R019
+- name: audit-cli
+  packages:
+  - name: bootstrap
+    visibility: internal
+    implementations:
+    - name: DefaultProposalStrategySelector
+      handwrittenTests:
+      - name: "Given CONTENT_AUDIT_LAPS_STRATEGY unset (null or blank), when select\
+          \ is called with any registry, then it returns the default strategy name\
+          \ 'lemma-absence-mvp'"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R004
+      - name: "Given CONTENT_AUDIT_LAPS_STRATEGY set to the name of a registered strategy,\
+          \ when select is called, then it returns that exact name (picking one among\
+          \ several registered)"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R004
+      - name: "Given CONTENT_AUDIT_LAPS_STRATEGY set to a name that no registered\
+          \ strategy reports via listAll, when select is called, then it throws InvalidProposalStrategyException\
+          \ whose message lists the registered strategy names"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R004
+features:
+- id: FEAT-LAPS
+  journeys:
+  - id: F-LAPS-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-LAPS-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-LAPS-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-LAPS-J004
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-LAPS-J005
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys

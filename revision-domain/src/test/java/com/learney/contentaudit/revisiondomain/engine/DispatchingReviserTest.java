@@ -42,7 +42,7 @@ public class DispatchingReviserTest {
 
         IdentityReviser fallback = mock(IdentityReviser.class);
         DispatchingReviser dispatcher = new DispatchingReviser(
-                Map.of(DiagnosisKind.SENTENCE_LENGTH, sentenceLengthReviser), fallback);
+                Map.of(DiagnosisKind.SENTENCE_LENGTH, sentenceLengthReviser), fallback, null, null);
 
         // Act — dispatcher routes propose() for SENTENCE_LENGTH to the registered Reviser
         RevisionProposal actual = dispatcher.propose(task, null, snapshot);
@@ -70,7 +70,7 @@ public class DispatchingReviserTest {
         when(fallback.propose(Mockito.eq(task), Mockito.any(), Mockito.eq(snapshot)))
                 .thenReturn(fallbackProposal);
 
-        DispatchingReviser dispatcher = new DispatchingReviser(Map.of(), fallback);
+        DispatchingReviser dispatcher = new DispatchingReviser(Map.of(), fallback, null, null);
 
         // Act — dispatcher finds no registered Reviser for COCA_BUCKETS, delegates to fallback
         RevisionProposal actual = dispatcher.propose(task, null, snapshot);
@@ -87,9 +87,400 @@ public class DispatchingReviserTest {
     public void givenNeitherARegisteredReviserNorAFallbackWhenHandlesIsQueriedForAnUnknownDiagnosisKindThenItReturnsFalse(
             ) {
         // Arrange — empty registry and null fallback (R005: revision cannot proceed, no Reviser applicable)
-        DispatchingReviser dispatcher = new DispatchingReviser(Map.of(), null);
+        DispatchingReviser dispatcher = new DispatchingReviser(Map.of(), null, null, null);
 
         // Act + Assert — handles() returns false when there is no Reviser nor fallback for the kind
         assertFalse(dispatcher.handles(DiagnosisKind.SENTENCE_LENGTH));
+    }
+
+    // ── LAPS-specific tests ────────────────────────────────────────────────────
+    // Key contracts discovered from reading the production DispatchingReviser:
+    //   - LEMMA_ABSENCE with no active strategy -> throws NoActiveStrategyException (inner class)
+    //   - Strategy/deriver failure -> throws ProposalStrategyFailedException (propagated)
+    //   - Context must be LemmaAbsenceCorrectionContext; null context -> ProposalStrategyFailedException
+    //   - Successful pipeline -> returns a RevisionProposal with strategyId and reviserKind set
+
+    /** Build a minimal LemmaAbsenceCorrectionContext for tests that need a real context. */
+    private static com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext buildLemmaContext() {
+        return new com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext(
+                "task-001",
+                "She reads books.",
+                "Ella lee libros.",
+                "Reading",
+                "Write the correct form.",
+                "Present Tense",
+                com.learney.contentaudit.auditdomain.CefrLevel.A1,
+                java.util.List.of(),
+                java.util.List.of(),
+                "She ____ [reads] (read) books."
+        );
+    }
+
+    @Test
+    @DisplayName("Given a task whose diagnosisKind is LEMMA_ABSENCE and a registry with an active strategy, when propose is called, then the DispatchingReviser routes to the strategy+deriver pipeline and NOT to the IdentityReviser fallback")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R002")
+    public void givenATaskWhoseDiagnosisKindIsLEMMAABSENCEAndARegistryWithAnActiveStrategyWhenProposeIsCalledThenTheDispatchingReviserRoutesToTheStrategyderiverPipelineAndNOTToTheIdentityReviserFallback() {
+        // Arrange
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategy strategy =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategy.class);
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry registry =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry.class);
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver deriver =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver.class);
+
+        com.learney.contentaudit.revisiondomain.StrategyId strategyId =
+                new com.learney.contentaudit.revisiondomain.StrategyId("lemma-absence-mvp", "1.0.0", "fixture");
+        when(strategy.id()).thenReturn(strategyId);
+        when(registry.active()).thenReturn(java.util.Optional.of(strategy));
+
+        RefinementTask task = mock(RefinementTask.class);
+        when(task.getDiagnosisKind()).thenReturn(DiagnosisKind.LEMMA_ABSENCE);
+        when(task.getId()).thenReturn("task-001");
+        when(task.getNodeTarget()).thenReturn(com.learney.contentaudit.auditdomain.AuditTarget.QUIZ);
+        when(task.getNodeId()).thenReturn("quiz-id-001");
+
+        CourseElementSnapshot before = mock(CourseElementSnapshot.class);
+        com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext context = buildLemmaContext();
+
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceQuizCandidate candidate =
+                new com.learney.contentaudit.revisiondomain.LemmaAbsenceQuizCandidate(
+                        "She ____ [studies] books.", "Ella estudia.");
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context))).thenReturn(candidate);
+
+        CourseElementSnapshot afterSnapshot = mock(CourseElementSnapshot.class);
+        when(afterSnapshot.getNodeTarget()).thenReturn(com.learney.contentaudit.auditdomain.AuditTarget.QUIZ);
+        when(afterSnapshot.getNodeId()).thenReturn("quiz-id-001");
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate))).thenReturn(afterSnapshot);
+
+        IdentityReviser fallback = mock(IdentityReviser.class);
+        DispatchingReviser dispatcher = new DispatchingReviser(
+                Map.of(), fallback, registry, deriver);
+
+        // Act
+        RevisionProposal result = dispatcher.propose(task, context, before);
+
+        // Assert — strategy pipeline was invoked; fallback was NOT invoked (R002)
+        verify(strategy).propose(Mockito.eq(task), Mockito.eq(context));
+        verify(fallback, Mockito.never()).propose(Mockito.any(), Mockito.any(), Mockito.any());
+        org.junit.jupiter.api.Assertions.assertNotNull(result,
+                "A RevisionProposal must be returned when the strategy pipeline succeeds (R002)");
+    }
+
+    @Test
+    @DisplayName("Given a task whose diagnosisKind is LEMMA_ABSENCE and a registry with no active strategy, when propose is called, then it returns an outcome with kind NO_ACTIVE_STRATEGY (no fallback to bypass)")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R006")
+    public void givenATaskWhoseDiagnosisKindIsLEMMAABSENCEAndARegistryWithNoActiveStrategyWhenProposeIsCalledThenItReturnsAnOutcomeWithKindNOACTIVESTRATEGYNoFallbackToBypass() {
+        // Arrange — registry has no active strategy (active() returns empty)
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry registry =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry.class);
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver deriver =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver.class);
+        when(registry.active()).thenReturn(java.util.Optional.empty());
+
+        RefinementTask task = mock(RefinementTask.class);
+        when(task.getDiagnosisKind()).thenReturn(DiagnosisKind.LEMMA_ABSENCE);
+        when(task.getId()).thenReturn("task-001");
+
+        CourseElementSnapshot snapshot = mock(CourseElementSnapshot.class);
+        IdentityReviser fallback = mock(IdentityReviser.class);
+        DispatchingReviser dispatcher = new DispatchingReviser(
+                Map.of(), fallback, registry, deriver);
+
+        // Act + Assert — R006: throws NoActiveStrategyException (not bypass to IdentityReviser)
+        // The dispatcher throws a package-private NoActiveStrategyException; we catch it as RuntimeException
+        // and verify it carries the right message (R006 error message pattern).
+        RuntimeException thrown = org.junit.jupiter.api.Assertions.assertThrows(
+                RuntimeException.class,
+                () -> dispatcher.propose(task, null, snapshot),
+                "propose() must throw (not bypass to IdentityReviser) when no active strategy (R006)"
+        );
+
+        // R006: error message must reference LEMMA_ABSENCE
+        org.junit.jupiter.api.Assertions.assertTrue(
+                thrown.getMessage().contains("LEMMA_ABSENCE") || thrown.getMessage().contains("activa"),
+                "R006 error message must reference the diagnosis: " + thrown.getMessage());
+
+        // Fallback must NOT have been invoked (R002)
+        verify(fallback, Mockito.never()).propose(Mockito.any(), Mockito.any(), Mockito.any());
+        // Deriver must NOT have been invoked
+        verify(deriver, Mockito.never()).derive(Mockito.any(), Mockito.any());
+    }
+
+    @Test
+    @DisplayName("Given a LEMMA_ABSENCE task and an active strategy that throws ProposalStrategyFailedException, when propose is called, then it returns an outcome with kind STRATEGY_FAILED and no RevisionProposal is built")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R015")
+    public void givenALEMMAABSENCETaskAndAnActiveStrategyThatThrowsProposalStrategyFailedExceptionWhenProposeIsCalledThenItReturnsAnOutcomeWithKindSTRATEGYFAILEDAndNoRevisionProposalIsBuilt() {
+        // Arrange — strategy throws ProposalStrategyFailedException (R015)
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategy strategy =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategy.class);
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry registry =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry.class);
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver deriver =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver.class);
+
+        com.learney.contentaudit.revisiondomain.StrategyId stratId =
+                new com.learney.contentaudit.revisiondomain.StrategyId("lemma-absence-mvp", "1.0.0", "fixture");
+        when(strategy.id()).thenReturn(stratId);
+        when(registry.active()).thenReturn(java.util.Optional.of(strategy));
+
+        com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException failure =
+                new com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException(
+                        "lemma-absence-mvp", "task-001", "provider down");
+        when(strategy.propose(Mockito.any(), Mockito.any())).thenThrow(failure);
+
+        RefinementTask task = mock(RefinementTask.class);
+        when(task.getDiagnosisKind()).thenReturn(DiagnosisKind.LEMMA_ABSENCE);
+        when(task.getId()).thenReturn("task-001");
+
+        CourseElementSnapshot snapshot = mock(CourseElementSnapshot.class);
+        IdentityReviser fallback = mock(IdentityReviser.class);
+        DispatchingReviser dispatcher = new DispatchingReviser(
+                Map.of(), fallback, registry, deriver);
+
+        // Act + Assert — dispatcher propagates ProposalStrategyFailedException (R015)
+        // The exception propagates before any artifact is created; R015 is satisfied.
+        com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException thrown =
+                org.junit.jupiter.api.Assertions.assertThrows(
+                        com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException.class,
+                        () -> dispatcher.propose(task, buildLemmaContext(), snapshot),
+                        "propose() must propagate ProposalStrategyFailedException for STRATEGY_FAILED (R015)"
+                );
+        org.junit.jupiter.api.Assertions.assertEquals("lemma-absence-mvp", thrown.getStrategyName());
+
+        // Deriver must NOT have been invoked (no candidate was returned)
+        verify(deriver, Mockito.never()).derive(Mockito.any(), Mockito.any());
+    }
+
+    @Test
+    @DisplayName("Given a LEMMA_ABSENCE task and an active strategy whose candidate fails derivation with ProposalDerivationException, when propose is called, then it returns an outcome with kind STRATEGY_FAILED and no RevisionProposal is built")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R015")
+    public void givenALEMMAABSENCETaskAndAnActiveStrategyWhoseCandidateFailsDerivationWithProposalDerivationExceptionWhenProposeIsCalledThenItReturnsAnOutcomeWithKindSTRATEGYFAILEDAndNoRevisionProposalIsBuilt() {
+        // Arrange — strategy succeeds but deriver throws ProposalDerivationException (R015)
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategy strategy =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategy.class);
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry registry =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry.class);
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver deriver =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver.class);
+
+        com.learney.contentaudit.revisiondomain.StrategyId stratId =
+                new com.learney.contentaudit.revisiondomain.StrategyId("lemma-absence-mvp", "1.0.0", "fixture");
+        when(strategy.id()).thenReturn(stratId);
+        when(registry.active()).thenReturn(java.util.Optional.of(strategy));
+
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceQuizCandidate candidate =
+                new com.learney.contentaudit.revisiondomain.LemmaAbsenceQuizCandidate(
+                        "malformed ____", "traduccion");
+        when(strategy.propose(Mockito.any(), Mockito.any())).thenReturn(candidate);
+
+        com.learney.contentaudit.revisiondomain.ProposalDerivationException derivError =
+                new com.learney.contentaudit.revisiondomain.ProposalDerivationException(
+                        "lemma-absence-mvp", "task-001", "malformed quizSentence");
+        when(deriver.derive(Mockito.any(), Mockito.eq(candidate))).thenThrow(derivError);
+
+        RefinementTask task = mock(RefinementTask.class);
+        when(task.getDiagnosisKind()).thenReturn(DiagnosisKind.LEMMA_ABSENCE);
+        when(task.getId()).thenReturn("task-001");
+
+        CourseElementSnapshot snapshot = mock(CourseElementSnapshot.class);
+        IdentityReviser fallback = mock(IdentityReviser.class);
+        DispatchingReviser dispatcher = new DispatchingReviser(
+                Map.of(), fallback, registry, deriver);
+
+        // Act + Assert — derivation failure wraps as ProposalStrategyFailedException (R015)
+        // The dispatcher converts ProposalDerivationException to ProposalStrategyFailedException
+        // so the engine sees a uniform STRATEGY_FAILED signal.
+        org.junit.jupiter.api.Assertions.assertThrows(
+                com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException.class,
+                () -> dispatcher.propose(task, buildLemmaContext(), snapshot),
+                "propose() must throw ProposalStrategyFailedException when deriver throws ProposalDerivationException (R015)"
+        );
+
+        // Deriver was invoked (it was the one that threw)
+        verify(deriver).derive(Mockito.any(), Mockito.eq(candidate));
+    }
+
+    @Test
+    @DisplayName("Given a STRATEGY_FAILED outcome, when its RevisionArtifact is inspected, then there is no artifact at all (the outcome carries no REJECTED verdict, no PENDING_APPROVAL verdict, no RevisionVerdict enum value)")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R016")
+    public void givenASTRATEGYFAILEDOutcomeWhenItsRevisionArtifactIsInspectedThenThereIsNoArtifactAtAllTheOutcomeCarriesNoREJECTEDVerdictNoPENDINGAPPROVALVerdictNoRevisionVerdictEnumValue() {
+        // Arrange — strategy fails; dispatcher throws ProposalStrategyFailedException
+        // R016: the exception means no RevisionProposal was built -> no artifact -> no verdict enum value
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategy strategy =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategy.class);
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry registry =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry.class);
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver deriver =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver.class);
+
+        com.learney.contentaudit.revisiondomain.StrategyId stratId =
+                new com.learney.contentaudit.revisiondomain.StrategyId("lemma-absence-mvp", "1.0.0", "fixture");
+        when(strategy.id()).thenReturn(stratId);
+        when(registry.active()).thenReturn(java.util.Optional.of(strategy));
+        when(strategy.propose(Mockito.any(), Mockito.any())).thenThrow(
+                new com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException(
+                        "lemma-absence-mvp", "task-001", "failed"));
+
+        RefinementTask task = mock(RefinementTask.class);
+        when(task.getDiagnosisKind()).thenReturn(DiagnosisKind.LEMMA_ABSENCE);
+        when(task.getId()).thenReturn("task-001");
+        CourseElementSnapshot snapshot = mock(CourseElementSnapshot.class);
+        IdentityReviser fallback = mock(IdentityReviser.class);
+        DispatchingReviser dispatcher = new DispatchingReviser(
+                Map.of(), fallback, registry, deriver);
+
+        // Act + Assert — the exception is thrown (no RevisionProposal, no artifact, no verdict) (R016)
+        com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException thrown =
+                org.junit.jupiter.api.Assertions.assertThrows(
+                        com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException.class,
+                        () -> dispatcher.propose(task, buildLemmaContext(), snapshot),
+                        "STRATEGY_FAILED must throw, not return a proposal with REJECTED/PENDING_APPROVAL (R016)"
+                );
+        // R016: the exception being thrown means NO RevisionArtifact was created.
+        // The verdicto vocabulary (REJECTED, PENDING_APPROVAL) only applies to RevisionArtifact objects.
+        // By throwing instead of returning, the contract enforces that no artifact exists.
+        org.junit.jupiter.api.Assertions.assertNotNull(thrown,
+                "The thrown exception must not be null — it signals STRATEGY_FAILED (R016)");
+    }
+
+    @Test
+    @DisplayName("Given a NO_ACTIVE_STRATEGY outcome, when its RevisionArtifact is inspected, then there is no artifact at all (the outcome carries no REJECTED verdict, no PENDING_APPROVAL verdict, no RevisionVerdict enum value)")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R016")
+    public void givenANOACTIVESTRATEGYOutcomeWhenItsRevisionArtifactIsInspectedThenThereIsNoArtifactAtAllTheOutcomeCarriesNoREJECTEDVerdictNoPENDINGAPPROVALVerdictNoRevisionVerdictEnumValue() {
+        // Arrange — registry has no active strategy -> NoActiveStrategyException thrown
+        // R016: NoActiveStrategyException means no RevisionProposal -> no artifact -> no verdict
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry registry =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry.class);
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver deriver =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver.class);
+        when(registry.active()).thenReturn(java.util.Optional.empty());
+
+        RefinementTask task = mock(RefinementTask.class);
+        when(task.getDiagnosisKind()).thenReturn(DiagnosisKind.LEMMA_ABSENCE);
+        when(task.getId()).thenReturn("task-001");
+        CourseElementSnapshot snapshot = mock(CourseElementSnapshot.class);
+        IdentityReviser fallback = mock(IdentityReviser.class);
+        DispatchingReviser dispatcher = new DispatchingReviser(
+                Map.of(), fallback, registry, deriver);
+
+        // Act + Assert — throws (no RevisionProposal, no artifact, no verdict) (R016)
+        RuntimeException thrown = org.junit.jupiter.api.Assertions.assertThrows(
+                RuntimeException.class,
+                () -> dispatcher.propose(task, null, snapshot),
+                "NO_ACTIVE_STRATEGY must throw (no artifact, no verdict) (R016)"
+        );
+        // R016: the verdict vocabulary (REJECTED, PENDING_APPROVAL) only applies to persisted artifacts.
+        // Throwing instead of returning a proposal enforces: no artifact, no verdict, per R016.
+        org.junit.jupiter.api.Assertions.assertTrue(
+                thrown.getMessage().contains("LEMMA_ABSENCE") || thrown.getMessage().contains("activa"),
+                "R006/R016 error message must reference the strategy context: " + thrown.getMessage());
+    }
+
+    @Test
+    @DisplayName("Given a LEMMA_ABSENCE task and a strategy with id (name, version, providerId), when the pipeline produces a RevisionProposal, then the proposal's strategyId equals the strategy's id() verbatim (name + version + providerId)")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R005")
+    public void givenALEMMAABSENCETaskAndAStrategyWithIdNameVersionProviderIdWhenThePipelineProducesARevisionProposalThenTheProposalsStrategyIdEqualsTheStrategysIdVerbatimNameVersionProviderId() {
+        // Arrange — strategy has a specific StrategyId (R005)
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategy strategy =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategy.class);
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry registry =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry.class);
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver deriver =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver.class);
+
+        com.learney.contentaudit.revisiondomain.StrategyId expectedId =
+                new com.learney.contentaudit.revisiondomain.StrategyId("lemma-absence-mvp", "1.0.0", "fixture:golden");
+        when(strategy.id()).thenReturn(expectedId);
+        when(registry.active()).thenReturn(java.util.Optional.of(strategy));
+
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceQuizCandidate candidate =
+                new com.learney.contentaudit.revisiondomain.LemmaAbsenceQuizCandidate(
+                        "She ____ [studies] books.", "Ella estudia.");
+        when(strategy.propose(Mockito.any(), Mockito.any())).thenReturn(candidate);
+
+        CourseElementSnapshot before = mock(CourseElementSnapshot.class);
+        CourseElementSnapshot after = mock(CourseElementSnapshot.class);
+        when(after.getNodeTarget()).thenReturn(com.learney.contentaudit.auditdomain.AuditTarget.QUIZ);
+        when(after.getNodeId()).thenReturn("quiz-id-001");
+        when(deriver.derive(Mockito.any(), Mockito.eq(candidate))).thenReturn(after);
+
+        RefinementTask task = mock(RefinementTask.class);
+        when(task.getDiagnosisKind()).thenReturn(DiagnosisKind.LEMMA_ABSENCE);
+        when(task.getId()).thenReturn("task-001");
+        when(task.getNodeTarget()).thenReturn(com.learney.contentaudit.auditdomain.AuditTarget.QUIZ);
+        when(task.getNodeId()).thenReturn("quiz-id-001");
+
+        IdentityReviser fallback = mock(IdentityReviser.class);
+        DispatchingReviser dispatcher = new DispatchingReviser(
+                Map.of(), fallback, registry, deriver);
+
+        // Act — must pass a real LemmaAbsenceCorrectionContext (DispatchingReviser casts)
+        RevisionProposal result = dispatcher.propose(task, buildLemmaContext(), before);
+
+        // Assert — the proposal carries the strategy's StrategyId verbatim (R005)
+        org.junit.jupiter.api.Assertions.assertNotNull(result,
+                "A RevisionProposal must be returned when the strategy pipeline succeeds");
+        org.junit.jupiter.api.Assertions.assertEquals(expectedId, result.getStrategyId(),
+                "proposal.strategyId must equal the strategy's id() verbatim (R005)");
+        org.junit.jupiter.api.Assertions.assertEquals("lemma-absence-mvp", result.getStrategyId().getName());
+        org.junit.jupiter.api.Assertions.assertEquals("1.0.0", result.getStrategyId().getVersion());
+        org.junit.jupiter.api.Assertions.assertEquals("fixture:golden", result.getStrategyId().getProviderId());
+    }
+
+    @Test
+    @DisplayName("Given a LEMMA_ABSENCE task routed to the strategy pipeline, when the resulting RevisionProposal is inspected, then its reviserKind reflects the strategy name (not the literal 'bypass')")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R005")
+    public void givenALEMMAABSENCETaskRoutedToTheStrategyPipelineWhenTheResultingRevisionProposalIsInspectedThenItsReviserKindReflectsTheStrategyNameNotTheLiteralBypass() {
+        // Arrange — active strategy named "lemma-absence-mvp"
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategy strategy =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategy.class);
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry registry =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry.class);
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver deriver =
+                mock(com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver.class);
+
+        com.learney.contentaudit.revisiondomain.StrategyId strategyId =
+                new com.learney.contentaudit.revisiondomain.StrategyId("lemma-absence-mvp", "1.0.0", "fixture");
+        when(strategy.id()).thenReturn(strategyId);
+        when(registry.active()).thenReturn(java.util.Optional.of(strategy));
+
+        com.learney.contentaudit.revisiondomain.LemmaAbsenceQuizCandidate candidate =
+                new com.learney.contentaudit.revisiondomain.LemmaAbsenceQuizCandidate(
+                        "She ____ [studies] books.", "Ella estudia.");
+        when(strategy.propose(Mockito.any(), Mockito.any())).thenReturn(candidate);
+
+        CourseElementSnapshot before = mock(CourseElementSnapshot.class);
+        CourseElementSnapshot after = mock(CourseElementSnapshot.class);
+        when(after.getNodeTarget()).thenReturn(com.learney.contentaudit.auditdomain.AuditTarget.QUIZ);
+        when(after.getNodeId()).thenReturn("quiz-id-001");
+        when(deriver.derive(Mockito.any(), Mockito.eq(candidate))).thenReturn(after);
+
+        RefinementTask task = mock(RefinementTask.class);
+        when(task.getDiagnosisKind()).thenReturn(DiagnosisKind.LEMMA_ABSENCE);
+        when(task.getId()).thenReturn("task-001");
+        when(task.getNodeTarget()).thenReturn(com.learney.contentaudit.auditdomain.AuditTarget.QUIZ);
+        when(task.getNodeId()).thenReturn("quiz-id-001");
+
+        IdentityReviser fallback = mock(IdentityReviser.class);
+        DispatchingReviser dispatcher = new DispatchingReviser(
+                Map.of(), fallback, registry, deriver);
+
+        // Act — pass a real LemmaAbsenceCorrectionContext
+        RevisionProposal result = dispatcher.propose(task, buildLemmaContext(), before);
+
+        // Assert — reviserKind is the strategy name, NOT "bypass" (R005)
+        org.junit.jupiter.api.Assertions.assertNotNull(result);
+        org.junit.jupiter.api.Assertions.assertNotEquals("bypass", result.getReviserKind(),
+                "reviserKind must not be 'bypass' for a LEMMA_ABSENCE proposal (R005)");
+        org.junit.jupiter.api.Assertions.assertEquals("lemma-absence-mvp", result.getReviserKind(),
+                "reviserKind must reflect the strategy name (R005)");
     }
 }

@@ -41,6 +41,12 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackageStrategyVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..revisiondomain..", "java..").should().dependOnClassesThat().resideInAPackage("..revisiondomain.strategy..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.revisiondomain.RevisionVerdict");

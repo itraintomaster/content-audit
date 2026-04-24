@@ -51,19 +51,29 @@ import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
 import com.learney.contentaudit.refinerdomain.RefinerEngine;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver;
+import com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry;
+import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
 import com.learney.contentaudit.revisiondomain.RevisionEngine;
 import com.learney.contentaudit.revisiondomain.RevisionEngineConfig;
 import com.learney.contentaudit.revisiondomain.Reviser;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
+import com.learney.contentaudit.revisiondomain.StrategyId;
+import com.learney.contentaudit.revisiondomain.engine.DefaultLemmaAbsenceProposalDeriver;
+import com.learney.contentaudit.revisiondomain.engine.DefaultLemmaAbsenceProposalStrategyRegistry;
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory;
 import com.learney.contentaudit.revisiondomain.engine.DefaultProposalDecisionServiceFactory;
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionValidatorFactory;
+import com.learney.contentaudit.revisiondomain.engine.LemmaAbsenceProposalStrategyRegistryConfig;
+import com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceMvpStrategy;
 import com.learney.contentaudit.revisiondomain.ApprovalMode;
 import com.learney.contentaudit.revisiondomain.ProposalDecisionService;
 import com.learney.contentaudit.revisiondomain.RevisionValidator;
 import com.learney.contentaudit.auditcli.bootstrap.DefaultApprovalModeResolver;
+import com.learney.contentaudit.auditcli.bootstrap.DefaultProposalStrategySelector;
 import com.learney.contentaudit.auditcli.bootstrap.DefaultWorkdirResolver;
 import com.learney.contentaudit.auditcli.bootstrap.InvalidApprovalModeException;
+import com.learney.contentaudit.auditcli.bootstrap.InvalidProposalStrategyException;
 import com.learney.contentaudit.auditcli.formatting.AnalyzerStatsTransformer;
 import com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter;
 import com.learney.contentaudit.auditcli.formatting.DefaultAnalyzerStatsTransformer;
@@ -254,6 +264,59 @@ class Main {
 
         RevisionValidator revisionValidator = new DefaultRevisionValidatorFactory().create(approvalMode);
 
+        // ----------------------------------------------------------------
+        // Step 7b: LAPS strategy wiring (F-LAPS)
+        // ----------------------------------------------------------------
+        // Stub generator: no real LLM adapter wired yet — returns a deterministic fixture candidate.
+        // Replace with a real adapter once the provider is decided (TECH_SPEC: "pendiente explicito").
+        // The fixture quizSentence is a minimal valid FEAT-QSENT DSL string so the deriver can parse it.
+        // Test seams via env vars (ONLY while the real adapter is missing):
+        //   CONTENT_AUDIT_LAPS_STUB_MODE=fail  -> stub throws ProposalStrategyFailedException (R015 gate for journey tests).
+        //   CONTENT_AUDIT_LAPS_DISABLE=1       -> do not wire the LAPS registry (simulates no registered strategy for R006).
+        String stubMode = System.getenv("CONTENT_AUDIT_LAPS_STUB_MODE");
+        boolean lapsDisabled = "1".equals(System.getenv("CONTENT_AUDIT_LAPS_DISABLE"));
+        final boolean stubFails = "fail".equalsIgnoreCase(stubMode);
+        var stubGenerator = (com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceQuizCandidateGenerator) context -> {
+            if (stubFails) {
+                throw new com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException(
+                        "lemma-absence-mvp", context.getTaskId(), "stub-forced-failure");
+            }
+            return new com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceGeneratorResponse(
+                    "She ____ [walks|runs] to school.",
+                    "Ella camina a la escuela."
+            );
+        };
+
+        LemmaAbsenceMvpStrategy mvpStrategy = new LemmaAbsenceMvpStrategy(stubGenerator);
+
+        LemmaAbsenceProposalStrategyRegistryConfig registryConfig =
+                new LemmaAbsenceProposalStrategyRegistryConfig(List.of(mvpStrategy), null);
+
+        LemmaAbsenceProposalStrategyRegistry strategyRegistry = null;
+        if (!lapsDisabled) {
+            // Resolve active strategy name via env var (DOUBT-STRATEGY-SELECTION -> Option A)
+            String lapsStrategyEnv = System.getenv("CONTENT_AUDIT_LAPS_STRATEGY");
+            String activeStrategyName;
+            try {
+                // Build a temporary registry (activeName=null) just for validation by the selector
+                LemmaAbsenceProposalStrategyRegistry tempRegistry =
+                        new DefaultLemmaAbsenceProposalStrategyRegistry(registryConfig);
+                activeStrategyName = new DefaultProposalStrategySelector().select(lapsStrategyEnv, tempRegistry);
+            } catch (InvalidProposalStrategyException e) {
+                System.err.println("Error: " + e.getMessage());
+                System.exit(1);
+                return;
+            }
+
+            // Build final registry with resolved active name
+            LemmaAbsenceProposalStrategyRegistryConfig finalRegistryConfig =
+                    new LemmaAbsenceProposalStrategyRegistryConfig(List.of(mvpStrategy), activeStrategyName);
+            strategyRegistry = new DefaultLemmaAbsenceProposalStrategyRegistry(finalRegistryConfig);
+        }
+
+        LemmaAbsenceProposalDeriver proposalDeriver =
+                new DefaultLemmaAbsenceProposalDeriver(quizSentenceConverter);
+
         RevisionEngineConfig revisionEngineConfig = new RevisionEngineConfig();
         revisionEngineConfig.setRevisers(new HashMap<DiagnosisKind, Reviser>());
         revisionEngineConfig.setArtifactStore(revisionArtifactStore);
@@ -262,6 +325,8 @@ class Main {
         revisionEngineConfig.setAuditReportStore(auditReportStore);
         revisionEngineConfig.setContextResolver(correctionContextResolver);
         revisionEngineConfig.setValidator(revisionValidator);
+        revisionEngineConfig.setLemmaAbsenceStrategyRegistry(strategyRegistry);
+        revisionEngineConfig.setLemmaAbsenceProposalDeriver(proposalDeriver);
         RevisionEngine revisionEngine = new DefaultRevisionEngineFactory().create(revisionEngineConfig);
 
         ProposalDecisionService proposalDecisionService;
