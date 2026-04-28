@@ -109,9 +109,9 @@
   "knowledgeId" : {
     "$oid" : "aaaaaaaaaaaaaaaaaaaaaaab"
   },
-  "title" : "Affirmative sentences in the present tense",
+  "title" : "She walks to school.",
   "instructions" : "Write the affirmative form in the present tense.",
-  "translation" : "Every morning my brother and I always walk together to the school near the library and then study mathematics and English and science with our very patient teacher.",
+  "translation" : "Ella camina a la escuela.",
   "theoryId" : "basics.01.Present_Tense_Affirmative",
   "topicName" : "Present Tense",
   "difficulty" : {
@@ -131,23 +131,23 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Every morning my brother and I always walk together to the school near the library and then",
+      "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "study" ]
+      "text" : null,
+      "options" : [ "walks|runs" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(study) mathematics and English and science with our very patient teacher.",
+      "text" : "to school.",
       "options" : null
     } ]
   }
