@@ -207,6 +207,46 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 **Visibility:** internal
 **Implements:** ScoreAggregator
 
+### Module: course-domain
+
+#### DefaultQuizSentenceConverter (package: quizsentenceengine)
+
+**Package:** `com.learney.contentaudit.coursedomain.quizsentenceengine`
+**Visibility:** internal
+**Implements:** QuizSentenceConverter
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `serializer` | `QuizSentenceSerializer` |
+| `parser` | `QuizSentenceParser` |
+| `plainDeriver` | `PlainSentenceDeriver` |
+
+#### QuizSentenceSerializer (package: quizsentenceengine)
+
+**Package:** `com.learney.contentaudit.coursedomain.quizsentenceengine`
+**Visibility:** internal
+**Implements:** 
+
+#### QuizSentenceParser (package: quizsentenceengine)
+
+**Package:** `com.learney.contentaudit.coursedomain.quizsentenceengine`
+**Visibility:** internal
+**Implements:** 
+
+#### PlainSentenceDeriver (package: quizsentenceengine)
+
+**Package:** `com.learney.contentaudit.coursedomain.quizsentenceengine`
+**Visibility:** internal
+**Implements:** 
+
+#### WhitespaceNormalizer (package: quizsentenceengine)
+
+**Package:** `com.learney.contentaudit.coursedomain.quizsentenceengine`
+**Visibility:** internal
+**Implements:** 
+
 ### Module: refiner-domain
 
 #### SentenceLengthContextResolver
@@ -263,11 +303,13 @@ public DispatchingCorrectionContextResolver(SentenceLengthContextResolver senten
 | Name | Type |
 |------|------|
 | `nlpTokenizer` | `NlpTokenizer` |
+| `quizSentenceConverter` | `QuizSentenceConverter` |
 
 **Generated constructor:**
 ```java
-public CourseToAuditableMapper(NlpTokenizer nlpTokenizer) {
+public CourseToAuditableMapper(NlpTokenizer nlpTokenizer, QuizSentenceConverter quizSentenceConverter) {
     this.nlpTokenizer = nlpTokenizer;
+    this.quizSentenceConverter = quizSentenceConverter;
 }
 ```
 
@@ -662,6 +704,12 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Visibility:** internal
 **Implements:** ApprovalModeResolver
 
+#### DefaultProposalStrategySelector (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+**Implements:** ProposalStrategySelector
+
 ### Module: nlp-infrastructure
 
 #### SpacyNlpTokenizerFactory (package: spacy)
@@ -785,6 +833,8 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 |------|------|
 | `byKind` | `Map<DiagnosisKind,Reviser>` |
 | `fallback` | `IdentityReviser` |
+| `strategyRegistry` | `LemmaAbsenceProposalStrategyRegistry` |
+| `deriver` | `LemmaAbsenceProposalDeriver` |
 
 #### DefaultCourseElementLocator (package: engine)
 
@@ -843,4 +893,40 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `courseRepository` | `CourseRepository` |
 | `elementLocator` | `CourseElementLocator` |
 | `refinementPlanStore` | `RefinementPlanStore` |
+
+#### DefaultLemmaAbsenceProposalStrategyRegistry (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** LemmaAbsenceProposalStrategyRegistry
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `config` | `LemmaAbsenceProposalStrategyRegistryConfig` |
+
+#### DefaultLemmaAbsenceProposalDeriver (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** LemmaAbsenceProposalDeriver
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `quizSentenceConverter` | `QuizSentenceConverter` |
+
+#### LemmaAbsenceMvpStrategy (package: strategy)
+
+**Package:** `com.learney.contentaudit.revisiondomain.strategy`
+**Visibility:** internal
+**Implements:** LemmaAbsenceProposalStrategy
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `generator` | `LemmaAbsenceQuizCandidateGenerator` |
 

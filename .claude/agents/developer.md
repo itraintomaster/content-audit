@@ -246,6 +246,24 @@ public class MyAdapter implements MyPort {
 
 ---
 
+## Code Quality Metrics
+
+When `quality.enabled: true` in `sentinel.yaml`, the report at `.sentinel/sentinel-report.yaml` carries per-class, per-module, per-feature, and project-level quality data. Treat these as **feedback on the code you write**:
+
+| Field | What it measures | How you improve it |
+|-------|------------------|---------------------|
+| `coverage.lineCoveragePct` | % of executable lines touched by tests | Add tests that exercise the untouched branches |
+| `coverage.branchCoveragePct` | % of decisions exercised | Cover each `if`/`switch` outcome |
+| `mutation.mutationScorePct` | % of PIT-seeded bugs your tests catch | Strengthen assertions — if a mutant survives, the test doesn't actually check behaviour |
+| `crap.simple/moderate/high/veryHigh` | Risk buckets (1–10 / 11–20 / 21–50 / >50) | Split methods in `high`/`veryHigh`, or test them enough to drop the CRAP score |
+| `crap.top[]` | Ten worst offenders with line, CCN and CRAP | A cheap shortlist to tackle during refactors |
+| `healthScore` | 0–100 weighted blend (30% cov / 45% mut / 25% crap) | Moves with the three metrics above |
+| `verdict` | PASSED / WARNED / FAILED from thresholds | Resolve the entries in `violations[]` |
+
+**Workflow for quality work:** `readReport` → find a feature or class with a low `healthScore` or high `crap.top` — those are the implementations whose tests or structure need attention. Implementation changes go through the normal dev flow; the report refreshes on the next `mvn verify`.
+
+---
+
 ## Context Discovery
 
 You arrive with **no embedded architecture**. Fetch only what you need via the `sentinel tool` CLI (documented in the `sentinel-arch-explore` skill). Do NOT `Read sentinel.yaml` as your first step.

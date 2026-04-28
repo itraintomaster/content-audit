@@ -242,7 +242,7 @@ A green test that does not verify the requirement is strictly worse than an esca
 
 ## Journey Tests (path-level)
 
-If the test file is a **journey test** (class name ends with `JourneyTest`, located in the `journeys` package), the workflow differs:
+If the test file is a **journey test** (class name ends with `JourneyTest`, placed under the `testPackage` declared by the QA agent for that journey), the workflow differs:
 
 1. **Identify the journey** — read the class-level `@Tag` to find the journey code (e.g., `F-CART-J001`). Open REQUIREMENT.md and locate the journey's flow graph.
 2. **Identify the path** — read the method-level `@Tag("path-N")` and `@DisplayName`. The display name shows which nodes and decisions this path traverses.

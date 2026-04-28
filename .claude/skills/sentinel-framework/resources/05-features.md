@@ -829,3 +829,110 @@ El objetivo es validar que la pipeline de revision soporta un **punto de corte o
 
 - **F-REVAPR-J005**: Listar propuestas por plan y por estado
 
+### FEAT-QSENT: Formalizar quizSentence como concepto de primera clase del course-domain [F-QSENT]
+
+> El modelo del curso (FEAT-CSTRUCT) tiene `FormEntity.sentenceParts`, una lista de `SentencePartEntity { kind: TEXT|CLOZE, text, options }` que describe la forma estructural del ejercicio (texto plano + huecos con sus respuestas). Esa estructura sirve para renderizar el ejercicio y para evaluar la respuesta del alumno. **No sirve** como representacion compacta para transmitir un ejercicio a un humano (o a un LLM) ni como formato sobre el cual un componente externo pueda proponer una variante (reescribirlo, generarlo, corregirlo).
+
+Hoy existe una conversion implicita y parcial: el mapper de auditoria del sistema (audit-application, privado) concatena los TEXT y toma el primer elemento de `options` del CLOZE, produciendo una oracion plana para NLP. Esa conversion **tiene dos bugs conocidos**: (1) ignora las variantes aceptadas separadas por `|` dentro de las options (toma el primer elemento de la lista pero no resuelve el pipe, emitiendo literales tipo `"is|'s"` en la oracion que consume el analyzer); (2) deja los hints pedagogicos en el texto que procesa el analyzer (por ejemplo `"(loud / loudly)"` aparece tal cual en la oracion plana). Ademas, el pipeline legacy que vivia en una fase de generacion de oraciones manejaba un formato textual tipo DSL (`____ [correct|variant] (hint)`) para el mismo proposito, pero esa DSL no esta formalizada en ningun lugar del dominio — vive como convenciones sueltas en un prompt.
+
+Este requerimiento formaliza el concepto **`quizSentence`**: una representacion textual, compacta y deterministica del ejercicio, bidireccionalmente convertible con la `sentenceParts`, con su gramatica explicita, sus invariantes y sus tests. Es condicion para que otras features (la que propone modificaciones reales de quizzes via LLM, por ejemplo) puedan operar sobre una representacion de quiz que el dominio garantiza correcta.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-QSENT-R001 | Todas las entries de `options` y todos los splits por `|` son variantes equivalentes de la misma respuesta correcta | critical | El CLOZE de id '{cloze}' expone una lista de options malformada |
+| F-QSENT-R002 | El caracter `|` separa variantes equivalentes dentro de una entry | critical | - |
+| F-QSENT-R003 | Un TEXT no puede tener options | critical | El TEXT de indice {idx} trae options; los TEXT no pueden tener options |
+| F-QSENT-R004 | Un CLOZE no puede tener options ausentes | critical | El CLOZE de indice {idx} no tiene options; un CLOZE requiere al menos una respuesta aceptada |
+| F-QSENT-R005 | Blank se escribe como cuatro guiones bajos | critical | Se encontro una secuencia de guiones bajos de largo distinto de cuatro; un blank se escribe '____' |
+| F-QSENT-R006 | Bloque de respuesta sigue al blank entre corchetes | critical | Bloque de respuesta ausente o desvinculado del blank que lo antecede en la posicion {pos} |
+| F-QSENT-R007 | Hint pedagogico es un elemento formal de la DSL escrito entre parentesis inline | major | - |
+| F-QSENT-R008 | Un quizSentence valido alterna texto y blank+bloque | critical | quizSentence malformado: {descripcion} en la posicion {pos} |
+| F-QSENT-R009 | Los caracteres reservados requieren un mecanismo de escape | major | Caracter reservado encontrado sin escapar en el texto: '{char}' en la posicion {pos} |
+| F-QSENT-R010 | Whitespace canonico en la serializacion, tolerante en el parser, normalizado en la equivalencia | critical | - |
+| F-QSENT-R011 | Cada TEXT se concatena con whitespace canonico | critical | - |
+| F-QSENT-R012 | Cada CLOZE se serializa como `____ [variantes-unidas-por-pipe]` | critical | - |
+| F-QSENT-R013 | La serializacion falla ante datos invalidos | critical | No es posible serializar a quizSentence: {razon} |
+| F-QSENT-R014 | Parseo secuencial de blank+bloque | critical | - |
+| F-QSENT-R015 | Los hints se preservan dentro de los TEXT en el parseo | major | - |
+| F-QSENT-R016 | El parseo falla ante un quizSentence malformado | critical | No es posible parsear el quizSentence: {razon} |
+| F-QSENT-R017 | La plain sentence es una lista ordenada de strings, una por variante equivalente | critical | - |
+| F-QSENT-R018 | La variante canonica es la primera sub-variante del primer entry de options | critical | - |
+| F-QSENT-R019 | La plain sentence no contiene hints y tiene whitespace normalizado | critical | - |
+| F-QSENT-R020 | Equivalencia de plain sentence entre las dos rutas | critical | Inconsistencia de plain sentence entre rutas: '{via_parts}' vs '{via_dsl}' |
+| F-QSENT-R021 | Round-trip sentenceParts -> quizSentence -> sentenceParts preserva la semantica | critical | Round-trip rompe la equivalencia semantica del sentenceParts en {campo} |
+| F-QSENT-R022 | Round-trip quizSentence -> sentenceParts -> quizSentence preserva el string con whitespace normalizado | critical | Round-trip rompe la estabilidad textual del quizSentence: '{original}' vs '{recuperado}' |
+| F-QSENT-R023 | La derivacion a plain sentence es estrictamente unidireccional | critical | - |
+| F-QSENT-R024 | Las conversiones fallan de forma atomica | critical | Conversion abortada: {razon} |
+| F-QSENT-R025 | La derivacion a plain sentence es funcionalidad publica del course-domain | critical | - |
+| F-QSENT-R026 | La derivacion nueva corrige los dos bugs del buildSentence actual | critical | - |
+| F-QSENT-R027 | El mapper de auditoria delega de forma eager y estampa el resultado | critical | Modulo '{modulo}' reimplementa la derivacion a plain sentence: debe delegar en course-domain |
+| F-QSENT-R028 | Los fixtures reales del curso son base de pruebas | major | - |
+
+**User Journeys:**
+
+- **F-QSENT-J001**: Round-trip de dominio sobre un sentenceParts arbitrario
+
+### FEAT-LAPS: Primera estrategia real de propuesta de revision para LEMMA_ABSENCE [F-LAPS]
+
+> Hasta ahora la fase de revision (FEAT-REVBYP / FEAT-REVAPR) produce propuestas **identidad**: el Reviser activo para cualquier `DiagnosisKind` es el bypass y `elementAfter == elementBefore`. Eso sirvio para validar la pipeline end-to-end (construccion de propuesta, persistencia del artefacto, validacion, aprobacion, escritura al curso), pero no corrige contenido.
+
+Este requerimiento introduce la **primera propuesta real** del sistema, y la acota a tareas de tipo `LEMMA_ABSENCE`. Dada una tarea de refinamiento de ese tipo y su `CorrectionContext` completo (el que ya construye FEAT-RCLA, incluyendo el `quizSentence` del quiz original en la DSL de FEAT-QSENT), el sistema debe producir una `RevisionProposal` cuyo `elementAfter` contenga un **quiz nuevo** cuyo cambio central es el ejercicio mismo (la oracion, los blanks, la respuesta correcta y sus variantes aceptadas, todo codificado dentro del `quizSentence`), pudiendo variar tambien la traduccion al espanol, corrigiendo las palabras fuera de nivel segun los `suggestedLemmas` que el contexto ya aporta. El ejercicio se maneja como `quizSentence` (no como oracion plana) porque un quiz no es solo una oracion: su estructura (que se tapa, que respuestas son validas, que variantes se aceptan) es parte intrinseca del ejercicio. Todo el flujo posterior (validacion, aprobacion, persistencia del artefacto, escritura al curso) se reutiliza tal cual de FEAT-REVBYP y FEAT-REVAPR — este requerimiento termina cuando la propuesta quedo construida.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-LAPS-R001 | Las tareas LEMMA_ABSENCE producen propuestas no-identidad | critical | - |
+| F-LAPS-R002 | El bypass deja de ser el Reviser activo para LEMMA_ABSENCE | critical | - |
+| F-LAPS-R003 | El ejercicio nuevo reemplaza integramente al original | critical | - |
+| F-LAPS-R004 | El sistema soporta multiples estrategias de propuesta registradas | major | - |
+| F-LAPS-R005 | La identidad de la estrategia queda registrada en la propuesta | critical | - |
+| F-LAPS-R006 | Si no hay estrategia activa que soporte LEMMA_ABSENCE, la revision falla explicitamente | major | No hay una estrategia de propuesta activa para el diagnostico 'LEMMA_ABSENCE' |
+| F-LAPS-R007 | La estrategia MVP consume el CorrectionContext completo de FEAT-RCLA | critical | - |
+| F-LAPS-R008 | La estrategia MVP produce un unico candidato de quiz por invocacion | critical | - |
+| F-LAPS-R009 | El candidato de quiz tiene una forma conceptual definida | critical | - |
+| F-LAPS-R010 | La estrategia MVP es no-deterministica por defecto | minor | - |
+| F-LAPS-R011 | El output de la estrategia es un candidato de quiz expresado en la DSL de FEAT-QSENT | critical | - |
+| F-LAPS-R012 | La derivacion del elementAfter a partir del candidato es deterministica | critical | - |
+| F-LAPS-R013 | Campos del elemento que pueden diferir entre elementBefore y elementAfter | critical | - |
+| F-LAPS-R014 | Campos del elemento que NO pueden diferir entre elementBefore y elementAfter | critical | - |
+| F-LAPS-R015 | Si la estrategia no puede producir un candidato, la revision aborta antes de persistir | critical | La estrategia de propuesta '{estrategia}' no pudo generar un candidato de quiz para la tarea '{taskId}' |
+| F-LAPS-R016 | Una falla de estrategia no es un REJECTED ni un PENDING_APPROVAL | major | - |
+| F-LAPS-R017 | La estrategia no valida el nivel CEFR del output | minor | - |
+| F-LAPS-R018 | La estrategia no valida el largo del output | minor | - |
+| F-LAPS-R019 | La estrategia emite el candidato y nada mas | critical | - |
+
+**User Journeys:**
+
+- **F-LAPS-J001**: Flujo feliz end-to-end con validador auto
+
+- **F-LAPS-J002**: Flujo feliz end-to-end con aprobacion humana
+
+- **F-LAPS-J003**: La estrategia falla al producir el candidato
+
+- **F-LAPS-J004**: No hay estrategia activa para LEMMA_ABSENCE
+
+- **F-LAPS-J005**: El operador rechaza la propuesta en modo humano
+
+### FEAT-RCLAQS: Exponer quizSentence en el CorrectionContext de LEMMA_ABSENCE [F-RCLAQS]
+
+> FEAT-RCLA construye un `CorrectionContext` para cada tarea de refinamiento de tipo `LEMMA_ABSENCE` con la oracion del quiz en texto plano (`sentence`), la traduccion al espanol, el contexto pedagogico (knowledge, topic, CEFR), la lista de palabras fuera de nivel (`misplacedLemmas`) y lemas sugeridos de reemplazo (`suggestedLemmas`). FEAT-QSENT formalizo la DSL `quizSentence` como representacion textual compacta del ejercicio (tronco + blanks + respuestas aceptadas + hints) y dejo explicitamente como "micro-update posterior" extender el `CorrectionContext` de RCLA para incluir ese campo. FEAT-LAPS, la primera estrategia real de propuesta para `LEMMA_ABSENCE`, consume exactamente ese `quizSentence` como unica fuente de entrada estructural y declara dependencia sobre este cambio.
+
+Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al `CorrectionContext` de tareas `LEMMA_ABSENCE` alimentandolo desde la misma fuente de datos desde la que se deriva la `sentence` plana (el `FormEntity` del quiz original). No se modifica ni el modelo de curso, ni la DSL de FEAT-QSENT, ni el resto del `CorrectionContext`, ni la estrategia de propuesta de FEAT-LAPS. La `sentence` plana existente se mantiene sin cambios para preservar a los consumidores actuales que dependen de ella.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-RCLAQS-R001 | El CorrectionContext de LEMMA_ABSENCE expone un campo quizSentence | critical | - |
+| F-RCLAQS-R002 | El valor de quizSentence se deriva via el conversor canonico de FEAT-QSENT sobre el mismo FormEntity del quiz original | critical | - |
+| F-RCLAQS-R003 | Consistencia entre quizSentence y sentence (plana) dentro del mismo contexto | critical | Inconsistencia entre quizSentence y sentence del CorrectionContext para la tarea '{taskId}' |
+| F-RCLAQS-R004 | La derivacion falla atomicamente si el FormEntity original es invalido segun FEAT-QSENT | critical | No se pudo derivar el quizSentence del quiz original '{nodeId}' para la tarea '{taskId}': {razon} |
+| F-RCLAQS-R005 | El campo quizSentence aparece en la salida JSON del contexto | major | - |
+
+**User Journeys:**
+
+- **F-RCLAQS-J001**: El CorrectionContext de LEMMA_ABSENCE expone quizSentence derivado del quiz original
+

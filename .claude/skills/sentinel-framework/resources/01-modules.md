@@ -87,7 +87,7 @@ project-root/
 | Models | 11 (NodeKind, SentencePartKind, CourseEntity, RootNodeEntity, MilestoneEntity, TopicEntity, KnowledgeEntity, QuizTemplateEntity, FormEntity, SentencePartEntity, CourseValidationException) |
 | Interfaces | 2 (CourseRepository, CourseValidator) |
 | Implementations | 0 |
-| Packages | 0 |
+| Packages | 2 (quizsentence [public], quizsentenceengine [internal]) |
 
 ### refiner-domain
 
@@ -202,10 +202,10 @@ project-root/
 | Depends On | audit-domain, refiner-domain, course-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 10 (RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome) |
-| Interfaces | 10 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory) |
+| Models | 14 (RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException) |
+| Interfaces | 13 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver) |
 | Implementations | 0 |
-| Packages | 1 (engine [internal]) |
+| Packages | 2 (engine [internal], strategy [internal]) |
 
 ## Dependency Graph
 

@@ -82,15 +82,6 @@
             --add-opens java.base/java.util=ALL-UNNAMED
           </argLine>
           <useManifestOnlyJar>false</useManifestOnlyJar>
-          <!-- Clear CONTENT_AUDIT_* env vars in test forks so tests don't inherit the
-               developer's shell state (e.g., a user who exported CONTENT_AUDIT_CONTENT_FOLDER
-               to exercise the CLI). Journey tests set these explicitly per ProcessBuilder. -->
-          <environmentVariables>
-            <CONTENT_AUDIT_CONTENT_FOLDER/>
-            <CONTENT_AUDIT_HOME/>
-            <CONTENT_AUDIT_WORKDIR/>
-            <CONTENT_AUDIT_APPROVAL_MODE/>
-          </environmentVariables>
         </configuration>
       </plugin>
       <plugin>
@@ -120,9 +111,6 @@
       <plugin>
         <groupId>org.pitest</groupId>
         <artifactId>pitest-maven</artifactId>
-        <!-- Pin to 1.22.1: last version with built-in history (PIT 1.23+ moved history
-             to the commercial arcmutate plugin). 1.22.1 also ships ASM 9.9 with Java 25
-             (class major 69) support. -->
         <version>1.22.1</version>
         <dependencies>
           <dependency>
@@ -148,9 +136,6 @@
           <failWhenNoMutations>false</failWhenNoMutations>
           <historyInputFile>${maven.multiModuleProjectDirectory}/.sentinel/pit-history/${project.artifactId}.bin</historyInputFile>
           <historyOutputFile>${maven.multiModuleProjectDirectory}/.sentinel/pit-history/${project.artifactId}.bin</historyOutputFile>
-          <!-- Disable surefire config inheritance: PIT's SurefireConfigConverter
-               throws NPE when <environmentVariables> contains empty tags (used to clear
-               CONTENT_AUDIT_* in test forks). We provide PIT's own config below. -->
           <parseSurefireConfig>false</parseSurefireConfig>
           <jvmArgs>
             <jvmArg>--add-opens=java.base/java.lang=ALL-UNNAMED</jvmArg>
@@ -158,18 +143,6 @@
             <jvmArg>--add-opens=java.base/java.lang.invoke=ALL-UNNAMED</jvmArg>
             <jvmArg>--add-opens=java.base/java.util=ALL-UNNAMED</jvmArg>
           </jvmArgs>
-          <!-- Mirror surefire's env var clearing so PIT test forks don't inherit
-               developer shell state. PIT 1.22.1 NPEs on null env var values, so we
-               must pass non-null strings. A single space works for vars whose reader
-               uses isBlank() (CoursePathResolver, DefaultWorkdirResolver). For
-               CONTENT_AUDIT_APPROVAL_MODE the reader uses isEmpty() and then matches
-               against {auto, human}, so we set it to the default value "auto". -->
-          <environmentVariables>
-            <CONTENT_AUDIT_CONTENT_FOLDER xml:space="preserve"> </CONTENT_AUDIT_CONTENT_FOLDER>
-            <CONTENT_AUDIT_HOME xml:space="preserve"> </CONTENT_AUDIT_HOME>
-            <CONTENT_AUDIT_WORKDIR xml:space="preserve"> </CONTENT_AUDIT_WORKDIR>
-            <CONTENT_AUDIT_APPROVAL_MODE>auto</CONTENT_AUDIT_APPROVAL_MODE>
-          </environmentVariables>
         </configuration>
       </plugin>
       <plugin>

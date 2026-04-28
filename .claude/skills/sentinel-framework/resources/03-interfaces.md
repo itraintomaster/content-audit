@@ -319,6 +319,17 @@ Examples:
 |--------|--------|
 | `validate(CourseEntity course): void` | (none) |
 
+#### QuizSentenceConverter (package: quizsentence)
+
+**Package:** `com.learney.contentaudit.coursedomain.quizsentence`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `serialize(FormEntity form): String` | (none) |
+| `parse(String quizSentence): FormEntity` | (none) |
+| `toPlainSentences(FormEntity form): List<String>` | (none) |
+
 ### Module: refiner-domain
 
 #### RefinerEngine (port)
@@ -564,6 +575,15 @@ Examples:
 |--------|--------|
 | `resolve(String envValue): ApprovalMode` | (none) |
 
+#### ProposalStrategySelector (package: bootstrap) [SEALED]
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `select(String envValue, LemmaAbsenceProposalStrategyRegistry registry): String` | (none) |
+
 ### Module: nlp-infrastructure
 
 #### NlpTokenizerFactory (factory)
@@ -667,4 +687,41 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `create(RevisionEngineConfig config): ProposalDecisionService` | (none) |
+
+#### LemmaAbsenceProposalStrategy (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `id(): StrategyId` | (none) |
+| `handles(DiagnosisKind kind): boolean` | (none) |
+| `propose(RefinementTask task, LemmaAbsenceCorrectionContext context): LemmaAbsenceQuizCandidate` | (none) |
+
+#### LemmaAbsenceProposalStrategyRegistry [SEALED] (service)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `active(): Optional<LemmaAbsenceProposalStrategy>` | (none) |
+| `byName(String name): Optional<LemmaAbsenceProposalStrategy>` | (none) |
+| `listAll(): List<StrategyId>` | (none) |
+
+#### LemmaAbsenceProposalDeriver [SEALED] (service)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate): CourseElementSnapshot` | (none) |
+
+#### LemmaAbsenceQuizCandidateGenerator (package: strategy)
+
+**Package:** `com.learney.contentaudit.revisiondomain.strategy`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `generate(LemmaAbsenceCorrectionContext context): LemmaAbsenceGeneratorResponse` | (none) |
 

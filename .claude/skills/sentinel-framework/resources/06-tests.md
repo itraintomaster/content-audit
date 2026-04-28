@@ -149,6 +149,9 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should return context with empty suggested lemmas when milestone ancestor is not found → FEAT-RCLA/F-RCLA-R004c
 - should return context with empty suggested lemmas when all absent lemmas are APPEARS_TOO_EARLY → FEAT-RCLA/F-RCLA-R004c
 - should set taskId from the RefinementTask id → FEAT-RCLA/F-RCLA-R003
+- should populate quizSentence on the LEMMA_ABSENCE correction context from the AuditableQuiz carrier → FEAT-RCLAQS/F-RCLAQS-R001
+- should copy AuditableQuiz.quizSentence verbatim without recomputing the DSL in the resolver → FEAT-RCLAQS/F-RCLAQS-R002
+- should emit sentence and quizSentence that originate from the same AuditableQuiz so both fields describe the same quiz → FEAT-RCLAQS/F-RCLAQS-R003
 
 ### DispatchingCorrectionContextResolver (refiner-domain)
 
@@ -170,6 +173,15 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse → FEAT-NLP/F-NLP-R010
 - Given a course with no milestones, when map is called, then returns an AuditableCourse without error → FEAT-NLP/F-NLP-R010
 - Given nlpTokenizer throws exception during batch processing, when map is called, then exception propagates → FEAT-NLP/F-NLP-R008
+- should emit the canonical first sub-variant rather than the raw pipe literal in the stamped sentences → FEAT-QSENT/F-QSENT-R026
+- should strip hints from the sentences stamped on AuditableQuiz → FEAT-QSENT/F-QSENT-R026
+- should invoke QuizSentenceConverter exactly once per quiz and stamp the list eagerly on AuditableQuiz → FEAT-QSENT/F-QSENT-R027
+- should stamp quizSentence on AuditableQuiz by invoking QuizSentenceConverter.serialize on the same FormEntity used for sentences → FEAT-RCLAQS/F-RCLAQS-R002
+- should invoke QuizSentenceConverter.serialize exactly once per quiz in the same pass that populates sentences → FEAT-RCLAQS/F-RCLAQS-R002
+- should stamp sentences[0] and quizSentence from the same FormEntity so plain sentence and DSL describe the same derivation step → FEAT-RCLAQS/F-RCLAQS-R003
+- should propagate QuizSentenceSerializationException and not emit the AuditableQuiz when the original FormEntity violates FEAT-QSENT invariants → FEAT-RCLAQS/F-RCLAQS-R004
+- should fail atomically without a partial quizSentence when serialize throws for a TEXT form with non-empty options → FEAT-RCLAQS/F-RCLAQS-R004
+- should fail atomically without a partial quizSentence when serialize throws for a CLOZE form with null or empty options → FEAT-RCLAQS/F-RCLAQS-R004
 
 ### DefaultAuditRunner (audit-application)
 

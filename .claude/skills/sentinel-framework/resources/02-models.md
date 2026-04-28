@@ -118,16 +118,17 @@ new AuditableMilestone(List<AuditableTopic> topics, String id, String label, Str
 
 | Field | Type | Notes |
 |-------|------|-------|
-| `sentence` | `String` |  |
 | `tokens` | `List<NlpToken>` | Import `java.util.List` |
 | `id` | `String` |  |
 | `label` | `String` |  |
 | `code` | `String` |  |
 | `translation` | `String` |  |
+| `sentences` | `List<String>` | Import `java.util.List` |
+| `quizSentence` | `String` |  |
 
 **Generated constructor:**
 ```java
-new AuditableQuiz(String sentence, List<NlpToken> tokens, String id, String label, String code, String translation)
+new AuditableQuiz(List<NlpToken> tokens, String id, String label, String code, String translation, List<String> sentences, String quizSentence)
 ```
 
 #### CefrLevel
@@ -985,6 +986,28 @@ new SentencePartEntity(SentencePartKind kind, String text, List<String> options)
 new CourseValidationException(String path, String detail)
 ```
 
+#### QuizSentenceSerializationException (package: quizsentence)
+
+**Package:** `com.learney.contentaudit.coursedomain.quizsentence`
+**Visibility:** public
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `reason` | `String` |
+| `position` | `String` |
+
+#### QuizSentenceParseException (package: quizsentence)
+
+**Package:** `com.learney.contentaudit.coursedomain.quizsentence`
+**Visibility:** public
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `reason` | `String` |
+| `position` | `int` |
+
 ### Module: refiner-domain
 
 #### DiagnosisKind
@@ -1137,10 +1160,11 @@ new MisplacedLemmaContext(String lemma, String pos, CefrLevel expectedLevel, Cef
 | `cefrLevel` | `CefrLevel` |  |
 | `misplacedLemmas` | `List<MisplacedLemmaContext>` | Import `java.util.List` |
 | `suggestedLemmas` | `List<SuggestedLemma>` | Import `java.util.List` |
+| `quizSentence` | `String` |  |
 
 **Generated constructor:**
 ```java
-new LemmaAbsenceCorrectionContext(String taskId, String sentence, String translation, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas, List<SuggestedLemma> suggestedLemmas)
+new LemmaAbsenceCorrectionContext(String taskId, String sentence, String translation, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas, List<SuggestedLemma> suggestedLemmas, String quizSentence)
 ```
 
 ### Module: audit-cli
@@ -1335,6 +1359,17 @@ new GetTasksFilter(Optional<String> planId, Optional<String> status, boolean sor
 |-------|------|
 | `value` | `String` |
 
+#### InvalidProposalStrategyException (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `value` | `String` |
+| `registered` | `String` |
+
 ### Module: nlp-infrastructure
 
 #### NlpTokenizerConfig
@@ -1386,10 +1421,12 @@ new RevisionVerdict(null APPROVED, null REJECTED, null PENDING_APPROVAL)
 | `ELEMENT_NOT_FOUND` | `null` |  |
 | `PENDING_APPROVAL_PERSISTED` | `null` |  |
 | `ALREADY_PENDING_DECISION` | `null` |  |
+| `NO_ACTIVE_STRATEGY` | `null` |  |
+| `STRATEGY_FAILED` | `null` |  |
 
 **Generated constructor:**
 ```java
-new RevisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NO_REVISER, null CONTEXT_UNAVAILABLE, null ELEMENT_NOT_FOUND, null PENDING_APPROVAL_PERSISTED, null ALREADY_PENDING_DECISION)
+new RevisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NO_REVISER, null CONTEXT_UNAVAILABLE, null ELEMENT_NOT_FOUND, null PENDING_APPROVAL_PERSISTED, null ALREADY_PENDING_DECISION, null NO_ACTIVE_STRATEGY, null STRATEGY_FAILED)
 ```
 
 #### CourseElementSnapshot
@@ -1427,10 +1464,11 @@ new CourseElementSnapshot(AuditTarget nodeTarget, String nodeId, QuizTemplateEnt
 | `rationale` | `String` |  |
 | `reviserKind` | `String` |  |
 | `createdAt` | `Instant` |  |
+| `strategyId` | `StrategyId` |  |
 
 **Generated constructor:**
 ```java
-new RevisionProposal(String proposalId, String taskId, String planId, String sourceAuditId, DiagnosisKind diagnosisKind, AuditTarget nodeTarget, String nodeId, CourseElementSnapshot elementBefore, CourseElementSnapshot elementAfter, String rationale, String reviserKind, Instant createdAt)
+new RevisionProposal(String proposalId, String taskId, String planId, String sourceAuditId, DiagnosisKind diagnosisKind, AuditTarget nodeTarget, String nodeId, CourseElementSnapshot elementBefore, CourseElementSnapshot elementAfter, String rationale, String reviserKind, Instant createdAt, StrategyId strategyId)
 ```
 
 #### RevisionArtifact
@@ -1483,10 +1521,12 @@ new RevisionOutcome(RevisionOutcomeKind kind, RevisionArtifact artifact, String 
 | `refinementPlanStore` | `RefinementPlanStore` |  |
 | `auditReportStore` | `AuditReportStore` |  |
 | `contextResolver` | `CorrectionContextResolver<CorrectionContext>` |  |
+| `lemmaAbsenceStrategyRegistry` | `LemmaAbsenceProposalStrategyRegistry` |  |
+| `lemmaAbsenceProposalDeriver` | `LemmaAbsenceProposalDeriver` |  |
 
 **Generated constructor:**
 ```java
-new RevisionEngineConfig(Map<DiagnosisKind,Reviser> revisers, RevisionValidator validator, RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, CorrectionContextResolver<CorrectionContext> contextResolver)
+new RevisionEngineConfig(Map<DiagnosisKind,Reviser> revisers, RevisionValidator validator, RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, CorrectionContextResolver<CorrectionContext> contextResolver, LemmaAbsenceProposalStrategyRegistry lemmaAbsenceStrategyRegistry, LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver)
 ```
 
 #### ApprovalMode
@@ -1537,4 +1577,93 @@ new ProposalDecisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILE
 ```java
 new ProposalDecisionOutcome(ProposalDecisionOutcomeKind kind, RevisionArtifact artifact, String errorMessage)
 ```
+
+#### StrategyId
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `name` | `String` |  |
+| `version` | `String` |  |
+| `providerId` | `String` |  |
+
+**Generated constructor:**
+```java
+new StrategyId(String name, String version, String providerId)
+```
+
+#### LemmaAbsenceQuizCandidate
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `quizSentence` | `String` |  |
+| `translation` | `String` |  |
+
+**Generated constructor:**
+```java
+new LemmaAbsenceQuizCandidate(String quizSentence, String translation)
+```
+
+#### ProposalStrategyFailedException
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** exception
+**Extends:** `RuntimeException`
+**Message:** `"La estrategia de propuesta '%s' no pudo generar un candidato de quiz para la tarea '%s': %s"`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `strategyName` | `String` |  |
+| `taskId` | `String` |  |
+| `reason` | `String` |  |
+
+**Generated class** extends `RuntimeException` with constructor:
+```java
+new ProposalStrategyFailedException(String strategyName, String taskId, String reason)
+```
+
+#### ProposalDerivationException
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** exception
+**Extends:** `RuntimeException`
+**Message:** `"No se pudo derivar elementAfter desde el candidato de la estrategia '%s' en la tarea '%s': %s"`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `strategyName` | `String` |  |
+| `taskId` | `String` |  |
+| `reason` | `String` |  |
+
+**Generated class** extends `RuntimeException` with constructor:
+```java
+new ProposalDerivationException(String strategyName, String taskId, String reason)
+```
+
+#### LemmaAbsenceProposalStrategyRegistryConfig (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `registered` | `List<LemmaAbsenceProposalStrategy>` |
+| `activeName` | `String` |
+
+#### LemmaAbsenceGeneratorResponse (package: strategy)
+
+**Package:** `com.learney.contentaudit.revisiondomain.strategy`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `quizSentence` | `String` |
+| `translation` | `String` |
 
