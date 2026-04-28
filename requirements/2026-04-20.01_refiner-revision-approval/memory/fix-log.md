@@ -25,3 +25,12 @@
 
 2026-04-20 — developer — findByProposalId: when planId absent, lists plan subdirs sorted, checks for <proposalId>.json in each; returns first hit. When planId present, delegates to load(). hasPendingProposalForTask: scans planDir files, reads each artifact, matches taskId + PENDING_APPROVAL verdict. list(): lists all planDirs, delegates to listByPlan() for each.
   why: All patterns reuse existing loadFromFile() + listByPlan() helpers; no Jackson config changes needed.
+
+2026-04-22 — test-writer — Rewrote all 5 FRevaprJ00{1..5}JourneyTest files as in-memory tests (no CLI subprocess). All 10 paths pass; mvn clean install green.
+  Key fixes during implementation:
+  1. auditReportStore.load() must return non-empty: engine loads the report before checking hasPendingProposalForTask (line 79 of DefaultRevisionEngine) and before the context resolver guard (line 92). Returning Optional.empty() yields CONTEXT_UNAVAILABLE.
+  2. contextResolver must return non-empty Optional: IdentityReviser doesn't inspect context but engine short-circuits at line 94 if empty.
+  3. courseRepository.load() must be stubbed: engine calls it at line 100 to build the element snapshot (even in PENDING_APPROVAL path).
+  4. planStore.save() IS called during propose phase (engine line 156 saves unchanged plan per DOUBT-AWAITING-STATE Option B). Use atLeast(1) + getAllValues().getLast() to capture the final save in the decide phase.
+  5. GetCmd is package-private; accessed from journeys package via Class.forName + reflection (Constructor + setRevisionArtifactStore method). The formatName @Option field also needs reflection injection.
+  6. clearInvocations(courseRepository) used after propose phase so R012 "course not touched during reject" assertion is isolated to the decide phase only.

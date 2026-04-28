@@ -63,11 +63,6 @@
 2026-04-20 — developer — Implemented findByProposalId, hasPendingProposalForTask, list() in FileSystemRevisionArtifactStore. All 14 REVAPR+REVBYP tests pass (22/22 total in audit-infrastructure, BUILD SUCCESS).
   why: Three methods added; added RevisionVerdict import. Jackson already handled new decidedAt/decisionNote fields via existing ObjectMapper config (JavaTimeModule + FAIL_ON_UNKNOWN_PROPERTIES=false).
 
-2026-04-20 — test-writer — Implemented FRevaprJ002JourneyTest#path1_success (J002 reject path). Test compiles; fails AssertionFailedError at analyze step: DefaultRevisionValidatorFactory.create() throws UnsupportedOperationException from production stub — pre-existing @developer gap.
-  why: Main.java wires the validator factory at startup even for `analyze`; once @developer implements DefaultRevisionValidatorFactory.create(), the test will proceed through the full reject path and assert course-unchanged + task-back-to-PENDING.
-
-2026-04-20 — test-writer — Implemented both path methods in FRevaprJ001JourneyTest (J001 full happy path). Compiles clean.
-  why: path-1 fails AssertionFailedError at analyze step (DefaultRevisionValidatorFactory.create() still throws UnsupportedOperationException — @developer must implement). path-2 is STANDBY (course write failure not simulatable from black-box CLI). Both in correct TDD state.
-
-2026-04-20 — test-writer — Implemented all 3 paths in FRevaprJ003JourneyTest (J003: decide-twice is an error). All 3 compile. All 3 fail AssertionFailedError (not test-body exception) due to DefaultRevisionValidatorFactory.create() production stub — correct TDD red-phase.
-  why: path-1: propose→approve→exit0. path-2: propose→approve→approve-again→assert non-zero+already-decided. path-3: approve nonexistent-id→assert non-zero+not-found. All blocked by same @developer gap.
+2026-04-22 — test-writer — Rewrote all 5 FRevaprJ00{1..5}JourneyTest as in-memory tests. All 10 paths pass; mvn clean install BUILD SUCCESS.
+  why: Prior CLI-subprocess tests failed because tiny-course fixture produces no QUIZ tasks. In-memory approach uses RevisionEngine+ProposalDecisionService+GetCmd directly with Mockito stores.
+  State: COMPLETE. No blocked paths (J001/path-2 was previously STANDBY; now passes in-memory via doThrow on courseRepository.save).
