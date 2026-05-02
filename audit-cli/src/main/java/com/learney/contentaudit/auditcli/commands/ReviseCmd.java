@@ -198,7 +198,24 @@ final class ReviseCmd implements ReviseCommand, Callable<Integer> {
                 yield 1;
             }
             case PENDING_APPROVAL_PERSISTED -> {
-                System.out.println("Revision proposal pending approval: " + (outcome.getArtifact() != null && outcome.getArtifact().getProposal() != null ? outcome.getArtifact().getProposal().getProposalId() : "(unknown)"));
+                String proposalId = (outcome.getArtifact() != null && outcome.getArtifact().getProposal() != null)
+                        ? outcome.getArtifact().getProposal().getProposalId()
+                        : null;
+                System.out.println("Revision proposal pending approval: "
+                        + (proposalId != null ? proposalId : "(unknown)"));
+                if (proposalId != null) {
+                    System.out.println();
+                    System.out.println("Next steps:");
+                    System.out.println("  # Inspect the proposal");
+                    System.out.println("  content-audit get proposal " + proposalId);
+                    System.out.println();
+                    System.out.println("  # Approve and apply to the course");
+                    System.out.println("  content-audit approve proposal " + proposalId);
+                    System.out.println();
+                    System.out.println("  # Reject (optionally explain why)");
+                    System.out.println("  content-audit reject proposal " + proposalId
+                            + " --reason \"...\"");
+                }
                 yield 0;
             }
             case ALREADY_PENDING_DECISION -> {
