@@ -710,6 +710,18 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Visibility:** internal
 **Implements:** ProposalStrategySelector
 
+#### DefaultLagenModeResolver (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+**Implements:** LagenModeResolver
+
+#### DefaultLagenConfigResolver (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+**Implements:** LagenConfigResolver
+
 ### Module: nlp-infrastructure
 
 #### SpacyNlpTokenizerFactory (package: spacy)
@@ -918,10 +930,10 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 |------|------|
 | `quizSentenceConverter` | `QuizSentenceConverter` |
 
-#### LemmaAbsenceMvpStrategy (package: strategy)
+#### LemmaAbsenceMvpStrategy (package: lemmaabsence)
 
-**Package:** `com.learney.contentaudit.revisiondomain.strategy`
-**Visibility:** internal
+**Package:** `com.learney.contentaudit.revisiondomain.lemmaabsence`
+**Visibility:** public
 **Implements:** LemmaAbsenceProposalStrategy
 
 **Constructor dependencies:**
@@ -929,4 +941,59 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | Name | Type |
 |------|------|
 | `generator` | `LemmaAbsenceQuizCandidateGenerator` |
+
+#### CannedLemmaAbsenceQuizCandidateGenerator (package: lemmaabsence)
+
+**Package:** `com.learney.contentaudit.revisiondomain.lemmaabsence`
+**Visibility:** public
+**Implements:** LemmaAbsenceQuizCandidateGenerator
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `cannedQuizSentence` | `String` |
+| `cannedTranslation` | `String` |
+
+### Module: revision-infrastructure
+
+#### DefaultLemmaAbsenceLlmGeneratorFactory (package: lagenopenai)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
+**Visibility:** internal
+**Implements:** LemmaAbsenceLlmGeneratorFactory
+
+#### LemmaAbsenceLlmGenerator (package: lagenopenai)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
+**Visibility:** internal
+**Implements:** LemmaAbsenceQuizCandidateGenerator
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `config` | `LagenConfig` |
+| `promptBuilder` | `LemmaAbsencePromptBuilder` |
+| `responseParser` | `LemmaAbsenceResponseParser` |
+| `errorClassifier` | `LangChainErrorClassifier` |
+| `strategyName` | `String` |
+
+#### DefaultLemmaAbsencePromptBuilder (package: lagenopenai)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
+**Visibility:** internal
+**Implements:** LemmaAbsencePromptBuilder
+
+#### DefaultLemmaAbsenceResponseParser (package: lagenopenai)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
+**Visibility:** internal
+**Implements:** LemmaAbsenceResponseParser
+
+#### DefaultLangChainErrorClassifier (package: lagenopenai)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
+**Visibility:** internal
+**Implements:** LangChainErrorClassifier
 

@@ -584,6 +584,24 @@ Examples:
 |--------|--------|
 | `select(String envValue, LemmaAbsenceProposalStrategyRegistry registry): String` | (none) |
 
+#### LagenModeResolver (package: bootstrap) [SEALED]
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `resolve(String envValue): LagenMode` | (none) |
+
+#### LagenConfigResolver (package: bootstrap) [SEALED]
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `resolve(Map<String,String> env): LagenConfig` | (none) |
+
 ### Module: nlp-infrastructure
 
 #### NlpTokenizerFactory (factory)
@@ -716,12 +734,52 @@ Examples:
 |--------|--------|
 | `derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate): CourseElementSnapshot` | (none) |
 
-#### LemmaAbsenceQuizCandidateGenerator (package: strategy)
+#### LemmaAbsenceQuizCandidateGenerator (package: lemmaabsence)
 
-**Package:** `com.learney.contentaudit.revisiondomain.strategy`
-**Visibility:** internal
+**Package:** `com.learney.contentaudit.revisiondomain.lemmaabsence`
+**Visibility:** public
 
 | Method | Throws |
 |--------|--------|
 | `generate(LemmaAbsenceCorrectionContext context): LemmaAbsenceGeneratorResponse` | (none) |
+
+### Module: revision-infrastructure
+
+#### LemmaAbsenceLlmGeneratorFactory (package: lagen)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lagen`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `create(LagenConfig config): LemmaAbsenceQuizCandidateGenerator` | (none) |
+| `providerIdFor(LagenConfig config): String` | (none) |
+
+#### LemmaAbsencePromptBuilder (package: lagenopenai)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `buildSystemPrompt(): String` | (none) |
+| `buildUserPrompt(LemmaAbsenceCorrectionContext context): String` | (none) |
+
+#### LemmaAbsenceResponseParser (package: lagenopenai)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `parse(LemmaAbsenceLlmRawResponse raw, String taskId, String strategyName): LemmaAbsenceGeneratorResponse` | (none) |
+
+#### LangChainErrorClassifier (package: lagenopenai)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `classify(Throwable cause): LlmGenerationFailureCategory` | (none) |
 

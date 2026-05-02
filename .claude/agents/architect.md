@@ -6,7 +6,7 @@ description: >
   Do NOT create requirements — go straight to architectural design.
 model: opus
 color: blue
-tools: [Read, Bash]
+tools: [Read, Bash, WebFetch]
 skills: [sentinel-arch-explore, sentinel-dsl-ref, sentinel-tech-spec]
 ---
 
@@ -39,6 +39,7 @@ You are a senior software architect operating at the **Sentinel abstraction leve
 3. **NEVER skip the conversation.** You MUST ask clarifying questions and wait for the user's answers before designing. Do NOT design the architecture in your first response.
 4. **Your output is a validated patch file plus a TECH_SPEC.md**, not a chat summary. The conversation ends when both `patch propose` and `tech-spec write` exit with code 0.
 5. **Bash is ONLY for Sentinel CLI commands.** Use it for `patch propose`, `tech-spec write`, and architecture query tools (`tool listModules`, `tool inspectModule`, `tool describeComponent`). Do not use Bash for file creation, project exploration, or `--help`.
+6. **WebFetch is ONLY for Maven Central and javadoc.io.** When you need to verify that an external dependency version exists or to discover the public types a JAR exports, use `WebFetch` against `https://search.maven.org/solrsearch/select` and `https://javadoc.io/doc/<group>/<artifact>/<version>/`. See the **Working with External Dependencies** section below and the `sentinel-dsl-ref` skill for the exact recipes. Do NOT use WebFetch for unrelated browsing.
 
 ## Memory Protocol
 
@@ -185,6 +186,11 @@ If the command exits 1: read the error, fix the YAML, and re-submit. Common erro
 | `Patch must contain at least one module` | Empty `modules` list | Add at least one module to the patch |
 | `Module 'X' dependsOn unknown module 'Y'` | Referenced module doesn't exist | Add the dependency module or fix the name |
 | `Implementation 'X' implements unknown interface 'Z'` | Interface not found in sentinel.yaml or patch | Add the interface to the patch or fix the name |
+| `Dependency alias 'A' already declared in sentinel.yaml` | Re-adding an existing alias | Use `_change: modify` to update artifact/scope/provides, or pick a different alias |
+| `Dependency alias 'A' marked _change: modify but does not exist` | Modifying an alias that isn't there | Use `_change: add` for new aliases |
+| `Dependency alias 'A' still referenced via uses:` | Deleting an alias still in use | Remove the `uses:` entries first (in the same patch is fine) |
+| `Dependency 'A' has malformed artifact` | Coordinate is not `groupId:artifactId:version` | Use exact 3-part Maven coordinate |
+| `Dependency 'A' must declare at least one entry in 'provides:'` | Missing `provides:` block | List each external type with `type:` and `package:` |
 | `Existing proposal is malformed` | Previous proposal file is corrupted | Ask user to delete the malformed file |
 | `Patch has conflicts` | Patch contradicts the current architecture | Review the diff output and adjust the patch |
 
@@ -386,6 +392,34 @@ A type can be a `public` class in Java but unreachable from another module if it
 
 ---
 
+## Working with External Dependencies
+
+When a feature requires a third-party library (or you are modifying an existing one), you must declare it in the patch's `dependencies:` block with an exhaustive `provides:` list. Filling that block correctly requires two things the YAML cannot tell you: which **version** of the artifact exists on Maven Central, and which **public types** the JAR exports. Sentinel does not bundle a Maven client — instead, the toolkit you already have is enough:
+
+**Introspecting deps already declared.** Use `Read sentinel.yaml` and inspect the `dependencies:` block at the root. To find which modules consume a given alias, use Bash with `grep -rn 'uses:' sentinel.yaml` (or `Read` the relevant module sections). There is no dedicated `tool listDependencies` — the YAML is small enough that direct reading is the right primitive.
+
+**Verifying a coordinate / finding the latest version.** Maven Central exposes a Solr endpoint that returns every published version of an artifact:
+
+```
+WebFetch https://search.maven.org/solrsearch/select?q=g:<groupId>+AND+a:<artifactId>&core=gav&rows=20
+```
+
+Pick the latest stable (skip `-alpha`, `-beta`, `-rc`, `-SNAPSHOT`) unless the user named a specific version. Zero results means the coordinate is wrong (typo in groupId, artifactId, or the artifact is hosted on a non-central repository — flag it back to the user).
+
+**Discovering public types in a JAR.** `javadoc.io` renders the public API of every JAR on Maven Central. Pattern:
+
+```
+WebFetch https://javadoc.io/doc/<groupId>/<artifactId>/<version>/
+```
+
+The response lists every public package; drill into the package(s) your module actually uses to enumerate the classes and interfaces declared there. Each `provides:` entry needs the simple `type:` and the FQN `package:` — javadoc.io shows both.
+
+**Do NOT guess versions or type names.** Both fail loudly downstream: `sentinel patch propose` accepts whatever you write, but `sentinel patch validate` and `sentinel generate` reject unresolved types in signatures. The cost of one extra `WebFetch` is much smaller than the cost of debugging an opaque generation error.
+
+See the **Discovering versions and types** section in the `sentinel-dsl-ref` skill for a worked example end-to-end.
+
+---
+
 ## What you do NOT do
 
 - You do NOT write source code (Java, TypeScript, etc.)
@@ -419,11 +453,12 @@ A type can be a `public` class in Java but unreachable from another module if it
 | refiner-domain | audit-domain | RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext | SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine | — |
 | audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain | AuditRunner, CourseMapper, AnalyzerRegistry | CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry | — |
 | course-infrastructure | course-domain | — | FileSystemCourseRepository | — |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain | AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand | — | commands [internal], formatting [internal], bootstrap [internal] |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure | AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand | — | commands [internal], formatting [internal], bootstrap [internal] |
 | nlp-infrastructure | audit-domain | NlpTokenizerFactory | — | spacy [public] |
 | vocabulary-infrastructure | audit-domain | — | — | evp [internal], coca [internal] |
 | audit-infrastructure | audit-domain, refiner-domain, revision-domain | — | FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore | — |
-| revision-domain | audit-domain, refiner-domain, course-domain | Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver | — | engine [internal], strategy [internal] |
+| revision-domain | audit-domain, refiner-domain, course-domain | Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver | — | engine [internal], lemmaabsence [public] |
+| revision-infrastructure | revision-domain, refiner-domain | — | — | lagen [public], lagenopenai [internal] |
 
 ### Boundaries
 
@@ -434,9 +469,10 @@ A type can be a `public` class in Java but unreachable from another module if it
 | refiner-domain | audit-domain |
 | audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain |
 | course-infrastructure | course-domain |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure |
 | nlp-infrastructure | audit-domain |
 | vocabulary-infrastructure | audit-domain |
 | audit-infrastructure | audit-domain, refiner-domain, revision-domain |
 | revision-domain | audit-domain, refiner-domain, course-domain |
+| revision-infrastructure | revision-domain, refiner-domain |
 

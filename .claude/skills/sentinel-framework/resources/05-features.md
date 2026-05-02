@@ -936,3 +936,55 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 
 - **F-RCLAQS-J001**: El CorrectionContext de LEMMA_ABSENCE expone quizSentence derivado del quiz original
 
+### f0b4e57b-7c0f-4e3e-b9b3-843aef216a67: LAPS engine public visibility [F-LEPV]
+
+> Describe what problem this feature solves for the user.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| 27ac13c5-bc70-4e9b-96c3-3315542d6835 | Rule name | high | User-facing error message |
+
+**User Journeys:**
+
+- **86e348a5-bfdf-4c5e-beef-aa0113168e38**: Journey name
+  1. Step 1
+  2. Step 2
+
+### FEAT-LAGEN: Generador real de candidatos de quiz para LEMMA_ABSENCE basado en LLM [F-LAGEN]
+
+> **Que**: Reemplaza el candidato canned de la estrategia de propuesta para `LEMMA_ABSENCE` por uno generado en vivo por un modelo de lenguaje, alimentado por todo el `LemmaAbsenceCorrectionContext` poblado.
+
+**Por que**: Tras esta iteracion, lo que el operador ve archivado al correr `revise task <id>` es contenido producido por un modelo real e identificado como tal en la metadata de cada propuesta, en lugar de la respuesta fija independiente del contexto.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-LAGEN-R001 | El nombre de la estrategia activa para LEMMA_ABSENCE pasa a ser `lemma-absence-llm` | critical | - |
+| F-LAGEN-R002 | El comportamiento por defecto deja de ser canned | critical | - |
+| F-LAGEN-R003 | Toda la informacion poblada del contexto viaja al modelo | critical | - |
+| F-LAGEN-R004 | Al modelo se le exige producir contenido en la DSL `quizSentence` con su traduccion al espanol | critical | - |
+| F-LAGEN-R005 | Una respuesta es utilizable si y solo si entrega un objeto JSON con `quizSentence` y `translation` no vacios | critical | - |
+| F-LAGEN-R006 | Toda falla de generacion se reporta con una categoria explicita en el `reason` | critical | La estrategia de propuesta 'lemma-absence-llm' no pudo generar un candidato de quiz para la tarea '{taskId}': {categoria} |
+| F-LAGEN-R007 | Una falla de generacion no produce candidato parcial ni reintento automatico | critical | - |
+| F-LAGEN-R008 | El operador puede ajustar el comportamiento de generacion sin recompilar el sistema | critical | - |
+| F-LAGEN-R009 | El `StrategyId.providerId` identifica al proveedor concreto detras de cada propuesta | major | - |
+| F-LAGEN-R010 | El sistema no valida la calidad funcional del candidato producido | minor | - |
+| F-LAGEN-R011 | La generacion es no-deterministica por defecto | minor | - |
+
+**User Journeys:**
+
+- **F-LAGEN-J001**: El sistema produce un candidato valido en una invocacion
+
+- **F-LAGEN-J002**: El proveedor del modelo no esta accesible
+
+- **F-LAGEN-J003**: La consulta al modelo excede el timeout
+
+- **F-LAGEN-J004**: El proveedor rechaza la consulta por autenticacion
+
+- **F-LAGEN-J005**: El modelo responde sin contenido
+
+- **F-LAGEN-J006**: El modelo responde con contenido que no cumple la estructura exigida
+

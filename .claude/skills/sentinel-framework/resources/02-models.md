@@ -1188,6 +1188,21 @@ new LemmaAbsenceCorrectionContext(String taskId, String sentence, String transla
 new GetTasksFilter(Optional<String> planId, Optional<String> status, boolean sortByPriority, Optional<Integer> limit, Optional<AuditTarget> target, Optional<DiagnosisKind> diagnosisKind)
 ```
 
+#### LagenMode
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `LLM` | `null` |  |
+| `CANNED` | `null` |  |
+
+**Generated constructor:**
+```java
+new LagenMode(null LLM, null CANNED)
+```
+
 #### ReportViewModel (package: formatting)
 
 **Package:** `com.learney.contentaudit.auditcli.formatting`
@@ -1369,6 +1384,27 @@ new GetTasksFilter(Optional<String> planId, Optional<String> status, boolean sor
 |-------|------|
 | `value` | `String` |
 | `registered` | `String` |
+
+#### InvalidLagenModeException (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `value` | `String` |
+
+#### InvalidLagenConfigException (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `key` | `String` |
+| `detail` | `String` |
 
 ### Module: nlp-infrastructure
 
@@ -1656,14 +1692,57 @@ new ProposalDerivationException(String strategyName, String taskId, String reaso
 | `registered` | `List<LemmaAbsenceProposalStrategy>` |
 | `activeName` | `String` |
 
-#### LemmaAbsenceGeneratorResponse (package: strategy)
+#### LemmaAbsenceGeneratorResponse (package: lemmaabsence)
 
-**Package:** `com.learney.contentaudit.revisiondomain.strategy`
-**Visibility:** internal
+**Package:** `com.learney.contentaudit.revisiondomain.lemmaabsence`
+**Visibility:** public
 **Type:** record
 
 | Field | Type |
 |-------|------|
 | `quizSentence` | `String` |
 | `translation` | `String` |
+
+### Module: revision-infrastructure
+
+#### LagenConfig (package: lagen)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lagen`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `providerName` | `String` |
+| `modelId` | `String` |
+| `endpoint` | `String` |
+| `apiKey` | `String` |
+| `temperature` | `Double` |
+| `maxTokens` | `Integer` |
+| `timeout` | `Duration` |
+
+#### LlmGenerationFailureCategory (package: lagen)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lagen`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `LLM_UNREACHABLE` | `null` |
+| `LLM_TIMEOUT` | `null` |
+| `LLM_AUTH_FAILED` | `null` |
+| `LLM_RESPONSE_EMPTY` | `null` |
+| `LLM_RESPONSE_MALFORMED` | `null` |
+| `LLM_OTHER` | `null` |
+
+#### LemmaAbsenceLlmRawResponse (package: lagenopenai)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `rawText` | `String` |
 

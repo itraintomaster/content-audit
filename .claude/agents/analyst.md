@@ -72,6 +72,25 @@ requirements/
     └── references/                 # Supporting documents
 ```
 
+### Document Structure (scan-first layout)
+
+REQUIREMENT.md is read more often than written. Aim for: a reader can grasp **what** the feature does and **which rules** govern it without scrolling past the second section. Detail (justifications, examples, cross-feature notes) lives in collapsible blocks or in sections at the bottom.
+
+Required section order:
+
+1. **Frontmatter + H1 title**
+2. **`## TL;DR`** — what + why, max 4 lines (mandatory)
+3. **`## Business Rules`** — the rules (mandatory)
+4. **`## Context`** — narrative explaining the problem and the gap (when justification is needed)
+5. **`## Scope`** — what's in / what's out (when scope is meaningful to call out)
+6. **`## User Journeys`** — flow-based journeys (when there are observable behaviors)
+7. **`## Open Questions`** — `Doubt[...]` blocks (when there are open decisions)
+8. **`## References`** — annotated list of features cited from this requirement (when there are cross-feature citations)
+
+**No free prose between the H1 and `## TL;DR`.** Anything that would have gone there belongs in `## Context`.
+
+**Match the language** of existing requirements in `requirements/`. Section names below are shown in English; if existing files use Spanish (`## Reglas de Negocio`, `## Contexto`, `## Alcance`, `## Referencias`), use Spanish. The parser is language-agnostic — it locates blocks by H3 IDs.
+
 ### REQUIREMENT.md Syntax
 
 ```markdown
@@ -85,24 +104,128 @@ feature:
 
 # Shopping Cart Management
 
-Free-form prose describing the feature context...
+## TL;DR
+
+**What**: Adds an immutable shopping cart that supports adding, removing
+and updating items before checkout.
+
+**Why**: Users abandon long flows when they cannot park items between
+sessions; the cart is the persistence layer that lets them resume.
 
 ## Business Rules
 
+<a id="F-CART-R001"></a>
 ### Rule[F-CART-R001] - Items must have positive quantity
 **Severity**: high | **Validation**: VALIDATED
 
-Description of the rule...
+> Quantity must be at least 1. Adding an item with quantity 0 or negative
+> is rejected upfront, before any persistence.
+
+<details><summary>Detail</summary>
+
+The quantity field is validated at the cart-add boundary. The check is
+deliberately upfront so that stale UIs cannot push invalid state to the
+backend. This also keeps [F-CART-R002](#F-CART-R002) clean: total
+computation can assume positive quantities and never has to defend against
+negative numbers.
 
 **Error**: "Quantity must be at least 1"
 
+</details>
+
+<a id="F-CART-R002"></a>
+### Rule[F-CART-R002] - Cart total reflects item prices
+**Severity**: medium | **Validation**: AUTO_VALIDATED
+
+> The cart total is always sum(price * quantity) across all items.
+
+## Context
+
+(Narrative — the gap, why this feature now, what changed since the last
+similar feature. Cite rules with markdown links: [F-CART-R001](#F-CART-R001).)
+
+## Scope
+
+- **In scope**: Add, remove, update items. Total computation. Persistence.
+- **Out of scope**: Promotions, taxes, multi-currency.
+
 ## User Journeys
+
+(See Journey Format below.)
+
+## Open Questions
+
+### Doubt[DOUBT-MAX-QTY] - Maximum quantity per item?
+- [ ] Option A
+- [x] Selected option
+
+**Answer**: Explicit answer text.
+
+## References
+
+- **FEAT-CATALOG** — Provides the product price source. Cited by
+  [F-CART-R002](#F-CART-R002).
+```
+
+### TL;DR Guidelines
+
+The TL;DR is the **first thing** a reader sees. Keep it tight:
+
+- **Maximum 4 lines.**
+- **Prefer the structured `**What**` / `**Why**` form** (or `**Qué**` / `**Por qué**` in Spanish projects). Each part is one sentence; if your *what* runs to two sentences, you are describing detail that belongs in `## Context`.
+- If forcing the what/why split feels artificial (the problem and the solution are inseparable), write 2-3 sentences of plain prose instead. Do not invent the structure when the content does not fit.
+- **Do NOT** include cross-feature references, scope caveats, or alternative designs in the TL;DR. Those go in `## Context`, `## Scope`, or `## References`.
+
+### Per-Rule Template
+
+Every rule has, in order:
+
+1. **Anchor on its own line, immediately before the heading**: `<a id="F-XXX-R###"></a>`. This makes inline citation links resolve in raw markdown viewers. Never put the anchor on the same line as the heading — it breaks heading parsing.
+2. **Heading**: `### Rule[F-XXX-R###] - Short descriptive title`. The title alone should make the rule's intent clear.
+3. **Metadata line**: `**Severity**: ... | **Validation**: ...`
+4. **Summary blockquote** (mandatory): 1-2 sentences in `> ...` form, restating the rule in plain language. Reading title + blockquote must be enough to understand what the rule constrains.
+5. **Optional `<details><summary>Detail</summary>...</details>`** block — contains tables, examples, justifications, cross-references, and the `**Error**` line. Use it when the body would exceed ~5 lines. For trivial rules, skip the `<details>` and put `**Error**` (if any) right after the blockquote.
+
+**Self-test for the blockquote**: read only the title + blockquote of every rule in the document — can a stakeholder understand the feature? If not, tighten the blockquotes.
+
+### Inline Citations
+
+When prose cites another rule (in this requirement or another), use a markdown link with the rule ID as the anchor:
+
+```markdown
+Total computation in [F-CART-R002](#F-CART-R002) assumes positive
+quantities, so this rule has to fire upstream.
+```
+
+This format works for both intra-file and cross-feature citations. The Sentinel renderer resolves `#F-XXX-R###` globally to the rule's source file.
+
+Do **not** write citations as plain text (`see F-CART-R002`) or as bare parentheses — the link form is what makes citations traceable and clickable.
+
+### References Section
+
+`## References` is the **only** place to enumerate cross-feature relationships at length. Do NOT scatter "this requirement extends FEAT-X" sentences across the prose — keep them at the bottom and cite specific rules inline with markdown links when the prose needs them.
+
+Format as an annotated list:
+
+```markdown
+## References
+
+- **FEAT-RCLA** — Defines the base correction context this requirement
+  extends. Cited by [F-RCLALEN-R001](#F-RCLALEN-R001) and
+  [F-RCLALEN-R003](#F-RCLALEN-R003).
+- **FEAT-DSLEN** — Provides SentenceLengthDiagnosis. Cited by
+  [F-RCLALEN-R003](#F-RCLALEN-R003).
+```
+
+Omit the section entirely when there are no cross-feature citations.
+
+### Journey Format
 
 **IMPORTANT: Use `flow` (graph) as the DEFAULT format for ALL journeys.** Most real-world journeys have at least one decision point, error path, or alternative outcome. The `flow` format makes these visible.
 
 Only use linear `steps` as a **fallback** for trivially simple journeys with no decisions whatsoever (e.g., a single CRUD operation with no validation).
 
-### Flow journey (DEFAULT — use this):
+#### Flow journey (DEFAULT — use this):
 
 ```yaml
 journeys:
@@ -117,7 +240,7 @@ journeys:
         then: validate_qty
       - id: validate_qty
         action: "System validates quantity"
-        gate: [RULE-MIN-QTY]
+        gate: [F-CART-R001]
         outcomes:
           - when: "Quantity is valid"
             then: update_cart
@@ -133,7 +256,7 @@ journeys:
 
 Refer to the **sentinel-flow-journey** skill for the complete DSL reference, node types, gate semantics, and path enumeration details.
 
-### Linear journey (FALLBACK — only for trivially simple flows):
+#### Linear journey (FALLBACK — only for trivially simple flows):
 
 ```markdown
 ### Journey[F-CART-J002] - View cart contents
@@ -141,15 +264,6 @@ Refer to the **sentinel-flow-journey** skill for the complete DSL reference, nod
 
 1. User opens cart page
 2. System displays items with totals
-```
-
-## Open Questions
-
-### Doubt[DOUBT-MAX-QTY] - Maximum quantity per item?
-- [ ] Option A
-- [x] Selected option
-
-**Answer**: Explicit answer text.
 ```
 
 ## Journey Step Testability

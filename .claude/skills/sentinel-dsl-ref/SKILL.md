@@ -197,7 +197,87 @@ dependencies:
 
 Modules reference dependencies via `uses: ["alias"]` to enable type resolution.
 
-**Patches cannot add dependencies.** The patch format only supports `modules`. If your design requires a new external dependency, instruct the user to add it to `sentinel.yaml` first. Then reference it in the patch via `uses: ["alias"]` on the relevant module.
+**Patches CAN declare new dependencies.** When a feature genuinely requires a new external library (e.g., wiring an LLM SDK in an adapter), include the new dep in the patch alongside the modules that consume it — keep the architectural decision atomic. Patch entries follow the same shape and support `_change: add` (default), `_change: modify` (update artifact/scope/provides on an existing alias), and `_change: delete` (remove an alias — rejected if any module's `uses:` still references it). Do not propose new dependencies frivolously: every entry is reviewed by a human for licence and supply-chain implications, and `sentinel patch propose` surfaces a WARNING block listing each change.
+
+Example:
+
+```yaml
+# architectural_patch.yaml
+dependencies:
+  - alias: langchain4j
+    artifact: dev.langchain4j:langchain4j-open-ai:0.36.2
+    scope: compile
+    provides:
+      - type: ChatLanguageModel
+        package: dev.langchain4j.model.chat
+modules:
+  - name: revision-infrastructure
+    _change: add
+    dependsOn: [domain]
+    uses: [langchain4j]
+```
+
+## Discovering versions and types
+
+When a feature needs a dependency that is not yet declared in `sentinel.yaml`, you have to fill the `provides:` block by hand. Sentinel does not bundle a Maven client — instead, use these two public HTTP endpoints via `WebFetch` (the architect agent has `WebFetch` in its tools list specifically for this).
+
+### 1. Verify a coordinate or find the latest version
+
+Maven Central's Solr API returns every published version of an artifact:
+
+```
+WebFetch https://search.maven.org/solrsearch/select?q=g:<groupId>+AND+a:<artifactId>&core=gav&rows=20
+```
+
+Concrete example for `dev.langchain4j:langchain4j-open-ai`:
+
+```
+WebFetch https://search.maven.org/solrsearch/select?q=g:dev.langchain4j+AND+a:langchain4j-open-ai&core=gav&rows=20
+```
+
+The response is JSON. Each entry is a `{groupId, artifactId, version, timestamp, ...}` record. Pick the latest stable version (skip suffixes like `-alpha`, `-beta`, `-rc`, `-SNAPSHOT`) unless the user named a specific one. Zero results means the coordinate is wrong — flag it back to the user rather than guessing.
+
+### 2. Discover public types in a JAR
+
+`javadoc.io` renders the public API of every JAR on Maven Central. URL pattern:
+
+```
+WebFetch https://javadoc.io/doc/<groupId>/<artifactId>/<version>/
+```
+
+Concrete example:
+
+```
+WebFetch https://javadoc.io/doc/dev.langchain4j/langchain4j-open-ai/0.36.2/
+```
+
+The response is the rendered Javadoc index — every public package in the JAR is listed. To enumerate the classes in a specific package, append the package path:
+
+```
+WebFetch https://javadoc.io/doc/dev.langchain4j/langchain4j-open-ai/0.36.2/dev/langchain4j/model/chat/package-summary.html
+```
+
+Each class/interface row gives you the simple type name and the package it belongs to — exactly the two fields a `provides:` entry needs.
+
+### 3. Fill the `provides:` block
+
+For every external type your module references in a method signature, model field, or `requiresInject` entry, add one row to `provides:`:
+
+```yaml
+dependencies:
+  - alias: langchain4j
+    artifact: dev.langchain4j:langchain4j-open-ai:0.36.2
+    scope: compile
+    provides:
+      - type: ChatLanguageModel              # confirmed via javadoc.io
+        package: dev.langchain4j.model.chat  # the package the class lives in
+      - type: OpenAiChatModel
+        package: dev.langchain4j.model.openai
+      - type: UserMessage
+        package: dev.langchain4j.data.message
+```
+
+Missing entries cause `sentinel generate` to fail with `unresolved type X` far from where the cause is. It is much cheaper to discover the types up front than to debug after the fact. Do not guess type names: javadoc.io is the source of truth.
 
 ## Common Types
 

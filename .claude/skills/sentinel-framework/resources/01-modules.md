@@ -57,6 +57,10 @@ project-root/
 │   ├── pom.xml            # Module POM (generated)
 │   ├── src/main/java/     # Production code
 │   └── src/test/java/     # Test code
+├── revision-infrastructure/
+│   ├── pom.xml            # Module POM (generated)
+│   ├── src/main/java/     # Production code
+│   └── src/test/java/     # Test code
 ```
 
 ## Declared Modules
@@ -139,10 +143,10 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditcli` |
-| Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain |
+| Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 1 (GetTasksFilter) |
+| Models | 2 (GetTasksFilter, LagenMode) |
 | Interfaces | 10 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand) |
 | Implementations | 0 |
 | Packages | 3 (commands [internal], formatting [internal], bootstrap [internal]) |
@@ -205,7 +209,22 @@ project-root/
 | Models | 14 (RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException) |
 | Interfaces | 13 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver) |
 | Implementations | 0 |
-| Packages | 2 (engine [internal], strategy [internal]) |
+| Packages | 2 (engine [internal], lemmaabsence [public]) |
+
+### revision-infrastructure
+
+> Infrastructure adapter for the revision phase. Provides the LLM-backed implementation of LemmaAbsenceQuizCandidateGenerator (revision-domain.lemmaabsence port) using LangChain4j against any OpenAI-compatible HTTP endpoint (LM Studio, vLLM, OpenAI cloud, Ollama via openai compat, etc.). Exposes a single Factory Seam (LemmaAbsenceLlmGeneratorFactory + LagenConfig carrier + LlmGenerationFailureCategory enum) so the composition root wires the adapter with one call. The adapter uses LangChain4j's legacy chat-message API flavor, generate(List<ChatMessage>), because F-LAGEN needs explicit system/user messages and a simple text response without exposing ChatRequest/ChatResponse in the architectural surface. The adapter, prompt builder, response parser and error classifier all live in an internal package; only the factory class is public. allowedClients=[audit-cli] enforces that this module is an implementation detail of the CLI composition root only (P8 Qualified Export).
+
+| Property | Value |
+|----------|-------|
+| Package | `com.learney.contentaudit.revisioninfrastructure` |
+| Depends On | revision-domain, refiner-domain |
+| Allowed Clients | audit-cli |
+| Scope | public |
+| Models | 0 |
+| Interfaces | 0 |
+| Implementations | 0 |
+| Packages | 2 (lagen [public], lagenopenai [internal]) |
 
 ## Dependency Graph
 
@@ -231,6 +250,7 @@ audit-cli ──depends──> vocabulary-infrastructure
 audit-cli ──depends──> audit-infrastructure
 audit-cli ──depends──> refiner-domain
 audit-cli ──depends──> revision-domain
+audit-cli ──depends──> revision-infrastructure
 nlp-infrastructure ──depends──> audit-domain
 vocabulary-infrastructure ──depends──> audit-domain
 audit-infrastructure ──depends──> audit-domain
@@ -239,6 +259,8 @@ audit-infrastructure ──depends──> revision-domain
 revision-domain ──depends──> audit-domain
 revision-domain ──depends──> refiner-domain
 revision-domain ──depends──> course-domain
+revision-infrastructure ──depends──> revision-domain
+revision-infrastructure ──depends──> refiner-domain
 ```
 
 ## Access Control Matrix
@@ -250,11 +272,12 @@ revision-domain ──depends──> course-domain
 | refiner-domain | audit-domain | (any) |
 | audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain | (any) |
 | course-infrastructure | course-domain | (any) |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain | (any) |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure | (any) |
 | nlp-infrastructure | audit-domain | (any) |
 | vocabulary-infrastructure | audit-domain | (any) |
 | audit-infrastructure | audit-domain, refiner-domain, revision-domain | (any) |
 | revision-domain | audit-domain, refiner-domain, course-domain | (any) |
+| revision-infrastructure | revision-domain, refiner-domain | audit-cli |
 
 ## Enforcement Mechanisms
 
