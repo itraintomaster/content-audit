@@ -1,0 +1,23 @@
+code: f0b4e57b-7c0f-4e3e-b9b3-843aef216a67
+description: "Make DefaultLemmaAbsenceProposalStrategyRegistry and DefaultLemmaAbsenceProposalDeriver\
+  \ public Java classes so the audit-cli composition root (Main.java, manual DI, no\
+  \ Spring) can construct them across the module boundary. The engine package remains\
+  \ internal: only the two seam classes go public, mirroring DefaultRevisionEngineFactory's\
+  \ existing visibility. No new factory is introduced — both types are already declared\
+  \ as factory-style seams (the registry holds the strategy map; the deriver is a\
+  \ pure derivation step) and the composition-root pattern is intentional per project\
+  \ memory."
+modules:
+- name: revision-domain
+  packages:
+  - name: engine
+    visibility: internal
+    implementations:
+    - name: DefaultLemmaAbsenceProposalStrategyRegistry
+      visibility: public
+      _change: modify
+    - name: DefaultLemmaAbsenceProposalDeriver
+      visibility: public
+      _change: modify
+    _change: modify
+  _change: modify

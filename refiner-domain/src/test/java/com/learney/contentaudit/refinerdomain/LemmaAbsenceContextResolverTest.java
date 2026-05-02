@@ -752,10 +752,10 @@ public class LemmaAbsenceContextResolverTest {
     // ------------------------------------------------------------------
 
     @Test
-    @DisplayName("should populate quizSentence from AuditableQuiz carrier")
+    @DisplayName("should populate quizSentence on the LEMMA_ABSENCE correction context from the AuditableQuiz carrier")
     @Tag("FEAT-RCLAQS")
     @Tag("F-RCLAQS-R001")
-    public void shouldPopulateQuizSentenceFromAuditableQuizCarrier() {
+    public void shouldPopulateQuizSentenceOnTheLEMMAABSENCECorrectionContextFromTheAuditableQuizCarrier() {
         // R001: the resolver must copy the quizSentence field from the AuditableQuiz
         // carrier into the LemmaAbsenceCorrectionContext. The field was stamped at
         // mapping time by CourseToAuditableMapper via QuizSentenceConverter.serialize().
@@ -787,10 +787,10 @@ public class LemmaAbsenceContextResolverTest {
     }
 
     @Test
-    @DisplayName("should not reinvoke converter but read quizSentence verbatim from carrier")
+    @DisplayName("should copy AuditableQuiz.quizSentence verbatim without recomputing the DSL in the resolver")
     @Tag("FEAT-RCLAQS")
     @Tag("F-RCLAQS-R002")
-    public void shouldNotReinvokeConverterButReadQuizSentenceVerbatimFromCarrier() {
+    public void shouldCopyAuditableQuizquizSentenceVerbatimWithoutRecomputingTheDSLInTheResolver() {
         // R002: the resolver is a pure read from the carrier — it must NOT recompute the
         // DSL or call any converter. The value must be whatever was stamped on AuditableQuiz
         // at mapping time, copied verbatim. We verify this by stamping a sentinel DSL value
@@ -825,10 +825,10 @@ public class LemmaAbsenceContextResolverTest {
     }
 
     @Test
-    @DisplayName("should originate quizSentence and sentence from same AuditableQuiz")
+    @DisplayName("should emit sentence and quizSentence that originate from the same AuditableQuiz so both fields describe the same quiz")
     @Tag("FEAT-RCLAQS")
     @Tag("F-RCLAQS-R003")
-    public void shouldOriginateQuizSentenceAndSentenceFromSameAuditableQuiz() {
+    public void shouldEmitSentenceAndQuizSentenceThatOriginateFromTheSameAuditableQuizSoBothFieldsDescribeTheSameQuiz() {
         // R003: both quizSentence and sentence in the produced CorrectionContext must
         // correspond to the same quiz. The resolver reads both from the same AuditableQuiz
         // node; there is no scenario where they could diverge if the carrier is correctly

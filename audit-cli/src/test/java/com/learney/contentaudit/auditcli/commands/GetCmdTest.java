@@ -2623,11 +2623,11 @@ public class GetCmdTest {
     // -----------------------------------------------------------------------
 
     @Test
-    @DisplayName("should expose quizSentence in JSON output for LEMMA_ABSENCE task with correctionContext")
+    @DisplayName("should include quizSentence inside correctionContext in JSON output for a LEMMA_ABSENCE task")
     @Tag("FEAT-RCLAQS")
     @Tag("F-RCLAQS-R005")
     @SuppressWarnings("unchecked")
-    public void shouldExposeQuizSentenceInJsonOutputForLemmaAbsenceTaskWithCorrectionContext()
+    public void shouldIncludeQuizSentenceInsideCorrectionContextInJSONOutputForALEMMAABSENCETask()
             throws Exception {
         // R005: when a LEMMA_ABSENCE task is shown in JSON format and correctionContext
         // is present, the quizSentence field must be observable as a key in the JSON output.
@@ -2685,11 +2685,11 @@ public class GetCmdTest {
     }
 
     @Test
-    @DisplayName("should coexist quizSentence with existing fields in JSON correctionContext for LEMMA_ABSENCE")
+    @DisplayName("should emit quizSentence alongside sentence translation and the other correctionContext fields in JSON for LEMMA_ABSENCE")
     @Tag("FEAT-RCLAQS")
     @Tag("F-RCLAQS-R005")
     @SuppressWarnings("unchecked")
-    public void shouldCoexistQuizSentenceWithExistingFieldsInJsonCorrectionContextForLemmaAbsence()
+    public void shouldEmitQuizSentenceAlongsideSentenceTranslationAndTheOtherCorrectionContextFieldsInJSONForLEMMAABSENCE()
             throws Exception {
         // R005: quizSentence coexists with sentence, translation, knowledgeTitle, etc.
         // None of the existing fields should be displaced by quizSentence.
@@ -2752,11 +2752,11 @@ public class GetCmdTest {
     }
 
     @Test
-    @DisplayName("should omit quizSentence when correctionContext is absent due to resolver failure")
+    @DisplayName("should omit quizSentence from JSON when correctionContext could not be built for a LEMMA_ABSENCE task")
     @Tag("FEAT-RCLAQS")
     @Tag("F-RCLAQS-R005")
     @SuppressWarnings("unchecked")
-    public void shouldOmitQuizSentenceWhenCorrectionContextIsAbsentDueToResolverFailure()
+    public void shouldOmitQuizSentenceFromJSONWhenCorrectionContextCouldNotBeBuiltForALEMMAABSENCETask()
             throws Exception {
         // R005: when correctionContext cannot be constructed (resolver returns empty —
         // FEAT-RCLA R005/R006 or R004 of this feature), there is no correctionContext

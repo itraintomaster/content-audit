@@ -173,7 +173,7 @@ public class FRclaqsJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador solicita una tarea LEMMA_ABSENCE → [FormEntity del quiz obtenido correctamente] → [sentenceParts valido, conversion produce quizSentence] → [contexto construido con quizSentence y sentence del mismo quiz] → [quizSentence observable en JSON] → success")
-    public void path1_formEntityObtenidoCorrectamente_sentencePartsValido_contextoConstruidoConQuizSentence_success() {
+    public void path1_elFormEntityDelQuizOriginalSeObtieneCorrectamente_elSentencePartsEsValidoSegunLasInvariantesDeFEATQSENTYLaConversionProduceUnQuizSentence_success() {
         // Step: solicitar_tarea — operator requests a LEMMA_ABSENCE task
         RefinementTask task = new RefinementTask(
                 "task-rclaqs-j001-001", AuditTarget.QUIZ, "quiz-j001-001", "Quiz A1 - to be",
@@ -254,7 +254,7 @@ public class FRclaqsJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador solicita una tarea LEMMA_ABSENCE → [FormEntity del quiz obtenido] → [sentenceParts invalido segun FEAT-QSENT: QuizSentenceConverter.serialize lanza excepcion en el mapper] → [quiz nunca entra al AuditReport, tarea no tiene correctionContext] → failure")
-    public void path2_sentencePartsInvalidoFallaAtomicamente_quizNuncaEntraAlAuditReport_failure() {
+    public void path2_elFormEntityDelQuizOriginalSeObtieneCorrectamente_elSentencePartsEsInvalidoSegunFEATQSENTTEXTConOptionsCLOZESinOptionsEtcYLaConversionFallaAtomicamente_failure() {
         // Step: solicitar_tarea — operator requests a LEMMA_ABSENCE task
         RefinementTask task = new RefinementTask(
                 "task-rclaqs-j001-002", AuditTarget.QUIZ, "quiz-j001-002-invalid", "Quiz Invalid FormEntity",
@@ -321,7 +321,7 @@ public class FRclaqsJ001JourneyTest {
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador solicita una tarea LEMMA_ABSENCE → [FormEntity del quiz original no se puede obtener: nodo no localizado en el AuditReport, mecanica heredada de FEAT-RCLA R005] → [contexto no construido, tarea sin correctionContext] → failure")
-    public void path3_formEntityNoObtenibleNodoQuizNoLocalizado_contextoNoConstruido_failure() {
+    public void path3_elFormEntityDelQuizOriginalNoSePuedeObtenerEjReporteDeAuditoriaAusenteONodoQuizNoEncontradoCasoHeredadoDeFEATRCLAR005_failure() {
         // Step: solicitar_tarea — operator requests a LEMMA_ABSENCE task
         RefinementTask task = new RefinementTask(
                 "task-rclaqs-j001-003", AuditTarget.QUIZ, "quiz-j001-003-nonexistent", "Non-existent Quiz",

@@ -311,10 +311,10 @@ public class CourseToAuditableMapperTest {
     // -----------------------------------------------------------------------
 
     @Test
-    @DisplayName("should stamp quizSentence via QuizSentenceConverter serialize on AuditableQuiz")
+    @DisplayName("should stamp quizSentence on AuditableQuiz by invoking QuizSentenceConverter.serialize on the same FormEntity used for sentences")
     @Tag("FEAT-RCLAQS")
     @Tag("F-RCLAQS-R002")
-    public void shouldStampQuizSentenceViaQuizSentenceConverterSerializeOnAuditableQuiz() {
+    public void shouldStampQuizSentenceOnAuditableQuizByInvokingQuizSentenceConverterserializeOnTheSameFormEntityUsedForSentences() {
         // R002: the mapper must invoke QuizSentenceConverter.serialize(form) to derive
         // quizSentence and stamp the result on AuditableQuiz. This ensures the DSL value
         // is produced by the canonical converter, not reimplemented elsewhere.
@@ -367,10 +367,10 @@ public class CourseToAuditableMapperTest {
     }
 
     @Test
-    @DisplayName("should invoke serialize once per quiz in same pass as toPlainSentences")
+    @DisplayName("should invoke QuizSentenceConverter.serialize exactly once per quiz in the same pass that populates sentences")
     @Tag("FEAT-RCLAQS")
     @Tag("F-RCLAQS-R002")
-    public void shouldInvokeSerializeOncePerQuizInSamePassAsToPlainSentences() {
+    public void shouldInvokeQuizSentenceConverterserializeExactlyOncePerQuizInTheSamePassThatPopulatesSentences() {
         // R002 + R027: serialize and toPlainSentences must both be called exactly once per quiz
         // on the same FormEntity (same pass). With two quizzes: 2 serialize calls + 2
         // toPlainSentences calls, all form-scoped.
@@ -433,10 +433,10 @@ public class CourseToAuditableMapperTest {
     }
 
     @Test
-    @DisplayName("should stamp quizSentence and sentences from same FormEntity in same pass")
+    @DisplayName("should stamp sentences[0] and quizSentence from the same FormEntity so plain sentence and DSL describe the same derivation step")
     @Tag("FEAT-RCLAQS")
     @Tag("F-RCLAQS-R003")
-    public void shouldStampQuizSentenceAndSentencesFromSameFormEntityInSamePass() {
+    public void shouldStampSentences0AndQuizSentenceFromTheSameFormEntitySoPlainSentenceAndDSLDescribeTheSameDerivationStep() {
         // R003: quizSentence and sentences both derive from the same FormEntity in the same
         // mapper pass. This structural test verifies that serialize(form) and
         // toPlainSentences(form) are both called with the same FormEntity reference,
@@ -490,10 +490,10 @@ public class CourseToAuditableMapperTest {
     }
 
     @Test
-    @DisplayName("should propagate QuizSentenceSerializationException when TEXT part has options")
+    @DisplayName("should fail atomically without a partial quizSentence when serialize throws for a TEXT form with non-empty options")
     @Tag("FEAT-RCLAQS")
     @Tag("F-RCLAQS-R004")
-    public void shouldPropagateQuizSentenceSerializationExceptionWhenTextPartHasOptions() {
+    public void shouldFailAtomicallyWithoutAPartialQuizSentenceWhenSerializeThrowsForATEXTFormWithNonemptyOptions() {
         // R004: if QuizSentenceConverter.serialize throws QuizSentenceSerializationException
         // (e.g., TEXT part has non-empty options — FEAT-QSENT R003 violation), the mapper
         // must propagate that exception atomically. No partial AuditableQuiz is produced.
@@ -537,10 +537,10 @@ public class CourseToAuditableMapperTest {
     }
 
     @Test
-    @DisplayName("should propagate QuizSentenceSerializationException when CLOZE part has no options")
+    @DisplayName("should fail atomically without a partial quizSentence when serialize throws for a CLOZE form with null or empty options")
     @Tag("FEAT-RCLAQS")
     @Tag("F-RCLAQS-R004")
-    public void shouldPropagateQuizSentenceSerializationExceptionWhenClozePartHasNoOptions() {
+    public void shouldFailAtomicallyWithoutAPartialQuizSentenceWhenSerializeThrowsForACLOZEFormWithNullOrEmptyOptions() {
         // R004: CLOZE with null or empty options violates FEAT-QSENT R004. The converter
         // throws QuizSentenceSerializationException; the mapper must propagate it atomically.
         NlpTokenizer nlpTokenizer = mock(NlpTokenizer.class);
@@ -583,10 +583,10 @@ public class CourseToAuditableMapperTest {
     }
 
     @Test
-    @DisplayName("should propagate QuizSentenceSerializationException preventing any AuditableCourse production")
+    @DisplayName("should propagate QuizSentenceSerializationException and not emit the AuditableQuiz when the original FormEntity violates FEAT-QSENT invariants")
     @Tag("FEAT-RCLAQS")
     @Tag("F-RCLAQS-R004")
-    public void shouldPropagateQuizSentenceSerializationExceptionPreventingAnyAuditableCourseProduction() {
+    public void shouldPropagateQuizSentenceSerializationExceptionAndNotEmitTheAuditableQuizWhenTheOriginalFormEntityViolatesFEATQSENTInvariants() {
         // R004: when serialize throws on an invalid FormEntity, the mapping is aborted entirely.
         // The quiz never enters the AuditableCourse. No partial structure is returned.
         // This verifies the atomic failure semantics: either everything succeeds or nothing does.

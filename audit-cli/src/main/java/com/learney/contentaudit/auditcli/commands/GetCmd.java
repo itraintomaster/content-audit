@@ -696,6 +696,7 @@ final class GetCmd implements GetCommand, Callable<Integer> {
     private void printLemmaAbsenceContextText(LemmaAbsenceCorrectionContext ctx) {
         System.out.println("  Correction context:");
         System.out.println("    Sentence:     " + nullToEmpty(ctx.getSentence()));
+        System.out.println("    QuizSentence: " + nullToEmpty(ctx.getQuizSentence()));
         System.out.println("    Translation:  " + nullToEmpty(ctx.getTranslation()));
         System.out.println("    Knowledge:    " + nullToEmpty(ctx.getKnowledgeTitle()));
         System.out.println("    Instructions: " + nullToEmpty(ctx.getKnowledgeInstructions()));
