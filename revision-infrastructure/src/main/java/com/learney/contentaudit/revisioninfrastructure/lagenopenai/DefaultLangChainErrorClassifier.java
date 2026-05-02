@@ -2,6 +2,7 @@ package com.learney.contentaudit.revisioninfrastructure.lagenopenai;
 
 import com.learney.contentaudit.revisioninfrastructure.lagen.LlmGenerationFailureCategory;
 import dev.ai4j.openai4j.OpenAiHttpException;
+import java.io.InterruptedIOException;
 import java.net.ConnectException;
 import java.net.NoRouteToHostException;
 import java.net.SocketTimeoutException;
@@ -34,7 +35,14 @@ class DefaultLangChainErrorClassifier implements LangChainErrorClassifier {
                 return LlmGenerationFailureCategory.LLM_UNREACHABLE;
             }
             if (current instanceof SocketTimeoutException
-                    || current instanceof TimeoutException) {
+                    || current instanceof TimeoutException
+                    || current instanceof InterruptedIOException) {
+                // InterruptedIOException is the supertype of SocketTimeoutException
+                // and is what OkHttp (LangChain4j's HTTP client) throws on call/read
+                // timeouts that are not strictly socket-level (e.g. read deadline
+                // hit while body is still streaming). Treating it as LLM_TIMEOUT
+                // here matches operator intent and routes the user to
+                // CONTENT_AUDIT_LAGEN_TIMEOUT in the hint.
                 return LlmGenerationFailureCategory.LLM_TIMEOUT;
             }
             current = current.getCause();

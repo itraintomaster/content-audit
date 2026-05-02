@@ -135,6 +135,25 @@ public class DefaultLangChainErrorClassifierTest {
     }
 
     @Test
+    @DisplayName("classify returns LLM_TIMEOUT for an InterruptedIOException anywhere in the cause chain (OkHttp call/read timeout)")
+    @Tag("FEAT-LAGEN")
+    @Tag("F-LAGEN-R006")
+    public void classifyReturnsLLMTIMEOUTForAnInterruptedIOExceptionAnywhereInTheCauseChain() {
+        // R006 LLM_TIMEOUT: OkHttp (LangChain4j's HTTP client) raises a bare
+        // InterruptedIOException with message "timeout" when its callTimeout fires
+        // before the response body has fully streamed. SocketTimeoutException is a
+        // subclass that covers some socket-level cases; this test covers the
+        // supertype path that real LM Studio sessions hit.
+        java.io.InterruptedIOException root = new java.io.InterruptedIOException("timeout");
+        RuntimeException wrapper = new RuntimeException(root);
+
+        LlmGenerationFailureCategory result = classifier.classify(wrapper);
+
+        assertEquals(LlmGenerationFailureCategory.LLM_TIMEOUT, result,
+                "InterruptedIOException in cause chain must classify as LLM_TIMEOUT (R006)");
+    }
+
+    @Test
     @DisplayName("classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode is 401")
     @Tag("FEAT-LAGEN")
     @Tag("F-LAGEN-R006")
