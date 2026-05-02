@@ -287,7 +287,7 @@ modules:
 ```
 
 ## Agregar enum `LagenMode` a `audit-cli`
-D2 confirmó configuración por env-vars sin archivos de config. El switch de modo (`CONTENT_AUDIT_LAGEN_MODE=llm|canned`) necesita una representación tipada sobre la cual ramifiquen tanto el resolver como el cableado del bootstrap. El default es `LLM` (F-LAGEN-R002); `CANNED` es el opt-in explícito que materializa la Opción B de DOUBT-CANNED-MODE-AVAILABILITY. Lo ubicamos en la raíz del módulo porque tanto el resolver (en el package `bootstrap`) como `Main.java` (en el package `commands`) necesitan referenciarlo.
+D2 confirmó configuración por env-vars sin archivos de config. El switch de modo (`CONTENT_AUDIT_LAGEN_MODE=llm|canned`) necesita una representación tipada sobre la cual ramifiquen tanto el resolver como el cableado del bootstrap. El default es `LLM` (F-LAGEN-R013); `CANNED` es el opt-in explícito que materializa la Opción B de DOUBT-CANNED-MODE-AVAILABILITY. Lo ubicamos en la raíz del módulo porque tanto el resolver (en el package `bootstrap`) como `Main.java` (en el package `commands`) necesitan referenciarlo.
 
 ```architecture
 modules:

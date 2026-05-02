@@ -1,10 +1,10 @@
-generatedAt: 2026-05-02T23:07:24.042756Z
+generatedAt: 2026-05-02T23:19:53.364222Z
 system: ContentAudit
 version: 0.0.1
 features:
 - id: FEAT-DLABS
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DLABS-R001
     state: NO_TESTS
@@ -206,7 +206,7 @@ features:
     - mutationScore 40% < 60%
 - id: FEAT-CLIRV
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLIRV-R001
     state: PASSING
@@ -780,14 +780,14 @@ features:
       branchCoveragePct: 48
       blendPct: 51
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 662
+      killed: 174
+      survived: 196
+      noCoverage: 292
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 26
+      testStrengthPct: 47
     crap:
       totalMethods: 108
       hotspots: 7
@@ -848,15 +848,16 @@ features:
         cyclomatic: 5
         lineCoveragePct: 0
         crap: 30.0
-    healthScore: 36
+    healthScore: 48
     verdict: WARNED
     violations:
     - lineCoverage 54% < 70%
     - branchCoverage 48% < 60%
+    - mutationScore 26% < 60%
     - crapHotspots 7 > 5
 - id: FEAT-LREC
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LREC-R001
     state: NO_TESTS
@@ -1026,7 +1027,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLAQS
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLAQS-R001
     state: PASSING
@@ -1168,14 +1169,14 @@ features:
       branchCoveragePct: 52
       blendPct: 58
     mutation:
-      totalMutants: 71
-      killed: 45
-      survived: 22
-      noCoverage: 4
+      totalMutants: 483
+      killed: 160
+      survived: 158
+      noCoverage: 165
       timedOut: 0
       other: 0
-      mutationScorePct: 63
-      testStrengthPct: 67
+      mutationScorePct: 33
+      testStrengthPct: 50
     crap:
       totalMethods: 76
       hotspots: 5
@@ -1222,14 +1223,15 @@ features:
         cyclomatic: 5
         lineCoveragePct: 0
         crap: 30.0
-    healthScore: 66
+    healthScore: 53
     verdict: WARNED
     violations:
     - lineCoverage 65% < 70%
     - branchCoverage 52% < 60%
+    - mutationScore 33% < 60%
 - id: FEAT-DCOCA
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DCOCA-R001
     state: NO_TESTS
@@ -1328,7 +1330,7 @@ features:
     verdict: PASSED
 - id: FEAT-QSENT
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-QSENT-R001
     state: PASSING
@@ -1655,7 +1657,7 @@ features:
     - mutationScore 36% < 60%
 - id: FEAT-COURSE
   state: IMPLEMENTED
-  requirementFile: requirements/2026-03-15.01_course-structure/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-15.01_course-structure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COURSE-R001
     state: PASSING
@@ -1934,7 +1936,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLALEN
   state: DRAFT
-  requirementFile: requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLALEN-R001
     state: NO_TESTS
@@ -1993,7 +1995,7 @@ features:
     verdict: PASSED
 - id: FEAT-COCA
   state: DRAFT
-  requirementFile: requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COCA-R001
     state: NO_TESTS
@@ -2116,7 +2118,7 @@ features:
     verdict: PASSED
 - id: FEAT-NLP
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-NLP-R001
     state: NO_TESTS
@@ -2255,7 +2257,7 @@ features:
     - mutationScore 32% < 60%
 - id: FEAT-LABS
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LABS-R001
     state: PASSING
@@ -3176,7 +3178,7 @@ features:
     - mutationScore 44% < 60%
 - id: FEAT-CLI
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLI-R001
     state: PASSING
@@ -3299,7 +3301,7 @@ features:
     - mutationScore 18% < 60%
 - id: f0b4e57b-7c0f-4e3e-b9b3-843aef216a67
   state: DRAFT
-  requirementFile: requirements/2026-04-28.01_laps-engine-public-visibility/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-28.01_laps-engine-public-visibility/REQUIREMENT.md
   rulesCoverage:
   - ruleId: 27ac13c5-bc70-4e9b-96c3-3315542d6835
     state: NO_TESTS
@@ -3346,7 +3348,7 @@ features:
     verdict: PASSED
 - id: FEAT-KTLEN
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-KTLEN-R001
     state: PASSING
@@ -3673,7 +3675,7 @@ features:
     verdict: PASSED
 - id: FEAT-REVAPR
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVAPR-R001
     state: PASSING
@@ -4286,14 +4288,14 @@ features:
       branchCoveragePct: 56
       blendPct: 61
     mutation:
-      totalMutants: 84
-      killed: 60
-      survived: 16
-      noCoverage: 8
+      totalMutants: 645
+      killed: 236
+      survived: 196
+      noCoverage: 213
       timedOut: 0
       other: 0
-      mutationScorePct: 71
-      testStrengthPct: 78
+      mutationScorePct: 36
+      testStrengthPct: 54
     crap:
       totalMethods: 117
       hotspots: 6
@@ -4347,15 +4349,16 @@ features:
         cyclomatic: 5
         lineCoveragePct: 0
         crap: 30.0
-    healthScore: 72
+    healthScore: 56
     verdict: WARNED
     violations:
     - lineCoverage 67% < 70%
     - branchCoverage 56% < 60%
+    - mutationScore 36% < 60%
     - crapHotspots 6 > 5
 - id: FEAT-LAPS
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAPS-R001
     state: PASSING
@@ -4699,14 +4702,14 @@ features:
       branchCoveragePct: 60
       blendPct: 68
     mutation:
-      totalMutants: 38
-      killed: 20
+      totalMutants: 45
+      killed: 27
       survived: 11
       noCoverage: 7
       timedOut: 0
       other: 0
-      mutationScorePct: 52
-      testStrengthPct: 64
+      mutationScorePct: 60
+      testStrengthPct: 71
     crap:
       totalMethods: 16
       hotspots: 0
@@ -4717,13 +4720,11 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 100
-    healthScore: 69
-    verdict: WARNED
-    violations:
-    - mutationScore 52% < 60%
+    healthScore: 72
+    verdict: PASSED
 - id: FEAT-DSLEN
   state: DRAFT
-  requirementFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DSLEN-R001
     state: NO_TESTS
@@ -4776,7 +4777,7 @@ features:
     verdict: PASSED
 - id: FEAT-SLEN
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SLEN-R001
     state: PASSING
@@ -4969,7 +4970,7 @@ features:
     - mutationScore 54% < 60%
 - id: FEAT-LCOUNT
   state: DRAFT
-  requirementFile: requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LCOUNT-R001
     state: NO_TESTS
@@ -5048,7 +5049,7 @@ features:
     verdict: PASSED
 - id: FEAT-REVBYP
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVBYP-R001
     state: PASSING
@@ -5297,9 +5298,9 @@ features:
     healthScore: 75
     verdict: PASSED
 - id: FEAT-LAGEN
-  state: ANALYSED
-  requirementFile: requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
-  patchFile: requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/architectural_patch.yaml
+  state: IMPLEMENTED
+  requirementFile: ./requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
+  patchFile: ./requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-LAGEN-R001
     state: PASSING
@@ -5320,8 +5321,6 @@ features:
       passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
-  - ruleId: F-LAGEN-R002
-    state: NO_TESTS
   - ruleId: F-LAGEN-R003
     state: PASSING
     tests:
@@ -5967,14 +5966,14 @@ features:
       branchCoveragePct: 74
       blendPct: 83
     mutation:
-      totalMutants: 62
-      killed: 41
-      survived: 11
+      totalMutants: 91
+      killed: 68
+      survived: 13
       noCoverage: 10
       timedOut: 0
       other: 0
-      mutationScorePct: 66
-      testStrengthPct: 78
+      mutationScorePct: 74
+      testStrengthPct: 83
     crap:
       totalMethods: 31
       hotspots: 0
@@ -5985,11 +5984,11 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 98
-    healthScore: 79
+    healthScore: 83
     verdict: PASSED
 - id: FEAT-RCLA
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLA-R001
     state: PASSING
@@ -6330,14 +6329,14 @@ features:
       branchCoveragePct: 51
       blendPct: 57
     mutation:
-      totalMutants: 89
-      killed: 56
-      survived: 17
-      noCoverage: 16
+      totalMutants: 501
+      killed: 171
+      survived: 153
+      noCoverage: 177
       timedOut: 0
       other: 0
-      mutationScorePct: 62
-      testStrengthPct: 76
+      mutationScorePct: 34
+      testStrengthPct: 52
     crap:
       totalMethods: 83
       hotspots: 5
@@ -6384,15 +6383,16 @@ features:
         cyclomatic: 5
         lineCoveragePct: 0
         crap: 30.0
-    healthScore: 66
+    healthScore: 53
     verdict: WARNED
     violations:
     - lineCoverage 64% < 70%
     - branchCoverage 51% < 60%
+    - mutationScore 34% < 60%
 - id: FEAT-RCSL
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
-  patchFile: requirements/2026-04-05.02_refiner-correction-context-slen/architectural_patch.yaml
+  requirementFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
+  patchFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-RCSL-R001
     state: PASSING
@@ -6745,14 +6745,14 @@ features:
       branchCoveragePct: 50
       blendPct: 56
     mutation:
-      totalMutants: 34
-      killed: 30
-      survived: 4
-      noCoverage: 0
+      totalMutants: 446
+      killed: 145
+      survived: 140
+      noCoverage: 161
       timedOut: 0
       other: 0
-      mutationScorePct: 88
-      testStrengthPct: 88
+      mutationScorePct: 32
+      testStrengthPct: 50
     crap:
       totalMethods: 67
       hotspots: 5
@@ -6799,11 +6799,12 @@ features:
         cyclomatic: 5
         lineCoveragePct: 0
         crap: 30.0
-    healthScore: 77
+    healthScore: 51
     verdict: WARNED
     violations:
     - lineCoverage 62% < 70%
     - branchCoverage 50% < 60%
+    - mutationScore 32% < 60%
 elements:
 - module: audit-domain
   status: EXISTS
@@ -20986,23 +20987,23 @@ elements:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 1403
-      linesMissed: 1736
-      linesTotal: 3139
-      lineCoveragePct: 44
+      linesMissed: 1704
+      linesTotal: 3107
+      lineCoveragePct: 45
       branchesCovered: 663
       branchesMissed: 1137
       branchesTotal: 1800
       branchCoveragePct: 36
       blendPct: 40
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 1634
+      killed: 363
+      survived: 390
+      noCoverage: 881
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 22
+      testStrengthPct: 48
     crap:
       totalMethods: 431
       hotspots: 44
@@ -21084,11 +21085,12 @@ elements:
         cyclomatic: 11
         lineCoveragePct: 0
         crap: 132.0
-    healthScore: 33
+    healthScore: 43
     verdict: WARNED
     violations:
-    - lineCoverage 44% < 70%
+    - lineCoverage 45% < 70%
     - branchCoverage 36% < 60%
+    - mutationScore 22% < 60%
     - crapHotspots 44 > 5
 - module: nlp-infrastructure
   status: EXISTS
@@ -25746,8 +25748,8 @@ qualitySummary:
     crapHotspotsMax: 5
   coverage:
     linesCovered: 4348
-    linesMissed: 4680
-    linesTotal: 9028
+    linesMissed: 4648
+    linesTotal: 8996
     lineCoveragePct: 48
     branchesCovered: 1525
     branchesMissed: 2915
@@ -25755,14 +25757,14 @@ qualitySummary:
     branchCoveragePct: 34
     blendPct: 41
   mutation:
-    totalMutants: 2567
-    killed: 740
-    survived: 376
-    noCoverage: 1451
+    totalMutants: 4201
+    killed: 1103
+    survived: 766
+    noCoverage: 2332
     timedOut: 0
     other: 0
-    mutationScorePct: 28
-    testStrengthPct: 66
+    mutationScorePct: 26
+    testStrengthPct: 59
   crap:
     totalMethods: 1902
     hotspots: 120
@@ -25844,12 +25846,12 @@ qualitySummary:
       cyclomatic: 15
       lineCoveragePct: 0
       crap: 240.0
-  healthScore: 48
+  healthScore: 47
   verdict: WARNED
   violations:
   - lineCoverage 48% < 70%
   - branchCoverage 34% < 60%
-  - mutationScore 28% < 60%
+  - mutationScore 26% < 60%
   - crapHotspots 120 > 5
 patterns:
 - id: declared-1

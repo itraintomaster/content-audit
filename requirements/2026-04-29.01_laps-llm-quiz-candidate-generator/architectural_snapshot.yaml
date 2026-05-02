@@ -681,7 +681,7 @@ modules:
     type: enum
     fields:
     - name: LLM
-      description: Default mode (F-LAGEN-R002). The CLI wires DefaultLemmaAbsenceLlmGeneratorFactory
+      description: Default mode (F-LAGEN-R013). The CLI wires DefaultLemmaAbsenceLlmGeneratorFactory
         + LagenConfig from CONTENT_AUDIT_LAGEN_* env-vars.
     - name: CANNED
       description: Opt-in offline mode (DOUBT-CANNED-MODE-AVAILABILITY -> Option B).

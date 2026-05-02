@@ -29,19 +29,7 @@ feature:
 1. El `StrategyId.name` que aparece en cada `RevisionProposal` producida tras esta iteracion es `lemma-absence-llm`.
 2. El renombre no retira ni reescribe artefactos historicos; los `RevisionProposal` previos con `StrategyId.name = "lemma-absence-mvp"` se preservan tal cual.
 
-El cambio cualitativo de comportamiento (R002) y la trazabilidad por proveedor ([F-LAGEN-R009](#F-LAGEN-R009)) justifican el renombre: cualquier persona que abra una propuesta archivada debe poder distinguir la version canned legacy de la version basada en modelo con solo leer `StrategyId.name`.
-
-</details>
-
-<a id="F-LAGEN-R002"></a>
-### Rule[F-LAGEN-R002] - El comportamiento por defecto deja de ser canned
-**Severity**: critical | **Validation**: AUTO_VALIDATED
-
-> Tras esta iteracion, los candidatos para `LEMMA_ABSENCE` ya no provienen de respuestas canned (fijas, independientes del contexto): el candidato persistido se obtiene consultando un modelo generativo de lenguaje alimentado con el `LemmaAbsenceCorrectionContext` de la tarea.
-
-<details><summary>Detail</summary>
-
-Cualquier mecanismo previo de respuesta fija deja de ser el comportamiento por defecto observable. Si sobrevive como recurso de testing/desarrollo offline, debe quedar claramente no activado en una corrida normal — esta decision sigue abierta en [DOUBT-CANNED-MODE-AVAILABILITY](#DOUBT-CANNED-MODE-AVAILABILITY).
+El cambio cualitativo de comportamiento (default dinamico via [F-LAGEN-R013](#F-LAGEN-R013)) y la trazabilidad por proveedor ([F-LAGEN-R009](#F-LAGEN-R009)) justifican el renombre: cualquier persona que abra una propuesta archivada debe poder distinguir la version canned legacy de la version basada en modelo con solo leer `StrategyId.name`.
 
 </details>
 
@@ -252,11 +240,11 @@ El contenido literal del par predeterminado es decision de implementacion y pued
 ### Rule[F-LAGEN-R013] - El operador puede elegir el modo de generacion; el default es dinamico y el modo fijo es opt-in explicito
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-> El operador puede elegir entre dos modos de generacion de candidato: dinamico (consultando un modelo generativo, comportamiento gobernado por [F-LAGEN-R002](#F-LAGEN-R002) y [F-LAGEN-R003](#F-LAGEN-R003)) y fijo / canned (gobernado por [F-LAGEN-R012](#F-LAGEN-R012)). El default observable en una corrida sin configuracion explicita es dinamico; el modo fijo solo se activa cuando el operador lo solicita de forma explicita.
+> El operador puede elegir entre dos modos de generacion de candidato: dinamico (consultando un modelo generativo, comportamiento gobernado por [F-LAGEN-R003](#F-LAGEN-R003)) y fijo / canned (gobernado por [F-LAGEN-R012](#F-LAGEN-R012)). El default observable en una corrida sin configuracion explicita es dinamico; el modo fijo solo se activa cuando el operador lo solicita de forma explicita. Esta regla es la fuente unica que garantiza que el comportamiento por defecto es dinamico (no canned).
 
 <details><summary>Detail</summary>
 
-1. Una corrida del sistema sin ninguna intervencion del operador sobre el modo opera en modo dinamico — esto preserva [F-LAGEN-R002](#F-LAGEN-R002) (el comportamiento por defecto deja de ser canned) como una garantia visible en cada `revise task <id>`.
+1. Una corrida del sistema sin ninguna intervencion del operador sobre el modo opera en modo dinamico — el comportamiento por defecto del sistema deja de ser canned, y esta garantia es observable en cada `revise task <id>`.
 2. El modo fijo solo se activa cuando el operador declara explicitamente que lo quiere; nadie debe poder activarlo accidentalmente o por omision.
 3. Si el operador solicita un modo no reconocido, el sistema lo reporta de forma observable antes de ejecutar cualquier operacion de revision (consistente con [F-LAGEN-R014](#F-LAGEN-R014)).
 
@@ -354,7 +342,7 @@ journeys:
 
       - id: consultar_modelo
         action: "El sistema consulta al modelo generativo activo, transmitiendo toda la informacion poblada del contexto y las responsabilidades funcionales esperadas"
-        gate: [F-LAGEN-R002, F-LAGEN-R004]
+        gate: [F-LAGEN-R004]
         then: evaluar_respuesta
 
       - id: evaluar_respuesta
@@ -521,7 +509,7 @@ journeys:
 ### Doubt[DOUBT-CANNED-MODE-AVAILABILITY] - El sistema debe seguir admitiendo un modo de generacion canned para tests / desarrollo offline?
 **Status**: RESOLVED
 
-Hoy el sistema produce candidatos canned. Tras esta iteracion el comportamiento por defecto deja de serlo ([F-LAGEN-R002](#F-LAGEN-R002)). La pregunta funcional pendiente era si el operador / desarrollador conserva la posibilidad de pedir explicitamente respuestas canned (por ejemplo para correr journeys de FEAT-LAPS sin un proveedor de LLM disponible):
+Hoy el sistema produce candidatos canned. Tras esta iteracion el comportamiento por defecto deja de serlo (garantizado por [F-LAGEN-R013](#F-LAGEN-R013)). La pregunta funcional pendiente era si el operador / desarrollador conserva la posibilidad de pedir explicitamente respuestas canned (por ejemplo para correr journeys de FEAT-LAPS sin un proveedor de LLM disponible):
 
 - [ ] Opcion A: **Se elimina por completo.** Cualquier corrida del sistema requiere un proveedor de modelo disponible.
 - [x] Opcion B: **Se conserva como opcion explicita** que el operador puede activar (no es el default; nadie lo activa accidentalmente).

@@ -963,7 +963,6 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 | ID | Rule | Severity | Error Message |
 |----|------|----------|---------------|
 | F-LAGEN-R001 | El nombre de la estrategia activa para LEMMA_ABSENCE pasa a ser `lemma-absence-llm` | critical | - |
-| F-LAGEN-R002 | El comportamiento por defecto deja de ser canned | critical | - |
 | F-LAGEN-R003 | Toda la informacion poblada del contexto viaja al modelo | critical | - |
 | F-LAGEN-R004 | Al modelo se le exige producir contenido en la DSL `quizSentence` con su traduccion al espanol | critical | - |
 | F-LAGEN-R005 | Una respuesta es utilizable si y solo si entrega un objeto JSON con `quizSentence` y `translation` no vacios | critical | - |
