@@ -1736,6 +1736,29 @@ new ProposalDerivationException(String strategyName, String taskId, String reaso
 | `LLM_RESPONSE_MALFORMED` | `null` |
 | `LLM_OTHER` | `null` |
 
+#### LagenDefaults (package: lagen)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lagen`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `temperature` | `double` |
+| `maxTokens` | `int` |
+| `timeout` | `Duration` |
+
+#### InvalidProviderIdException (package: lagen)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lagen`
+**Visibility:** public
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `providerName` | `String` |
+| `modelId` | `String` |
+
 #### LemmaAbsenceLlmRawResponse (package: lagenopenai)
 
 **Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`

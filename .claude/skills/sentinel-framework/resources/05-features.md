@@ -973,6 +973,9 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 | F-LAGEN-R009 | El `StrategyId.providerId` identifica al proveedor concreto detras de cada propuesta | major | - |
 | F-LAGEN-R010 | El sistema no valida la calidad funcional del candidato producido | minor | - |
 | F-LAGEN-R011 | La generacion es no-deterministica por defecto | minor | - |
+| F-LAGEN-R012 | El modo de generacion fija (canned) entrega siempre el mismo candidato predeterminado | minor | - |
+| F-LAGEN-R013 | El operador puede elegir el modo de generacion; el default es dinamico y el modo fijo es opt-in explicito | critical | Modo de generacion no reconocido: '{modo}'. Valores admitidos: dinamico, fijo. |
+| F-LAGEN-R014 | La configuracion del operador se valida atomicamente antes de ejecutar cualquier operacion de revision | major | Configuracion invalida en '{perilla}': {detalle}. Corregir antes de re-ejecutar. |
 
 **User Journeys:**
 
