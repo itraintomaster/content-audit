@@ -25,7 +25,31 @@ import picocli.CommandLine.Parameters;
         description = "Run the revision workflow on a task.%n%n"
                 + "Usage: content-audit revise task <task-id> [--plan <plan-id>]%n%n"
                 + "The task is located in the most recent plan by default.%n"
-                + "Use --plan to target a specific plan (R015).",
+                + "Use --plan to target a specific plan (R015).%n%n"
+                + "Required setup before running revise:%n"
+                + "  - A registered active strategy for the task's diagnosis kind%n"
+                + "    (LEMMA_ABSENCE today). Default strategy is 'lemma-absence-llm',%n"
+                + "    which calls a generative model. See the env vars below.%n%n"
+                + "Strategy selection (CONTENT_AUDIT_LAPS_*):%n"
+                + "  CONTENT_AUDIT_LAPS_DISABLE=1     Disable LAPS entirely. revise will%n"
+                + "                                   exit with 'No active strategy' for%n"
+                + "                                   any LEMMA_ABSENCE task. Unset to enable.%n"
+                + "  CONTENT_AUDIT_LAPS_STRATEGY=NAME Pick which registered strategy is active.%n"
+                + "                                   Default: 'lemma-absence-llm'.%n%n"
+                + "LLM-backed strategy configuration (CONTENT_AUDIT_LAGEN_*):%n"
+                + "  CONTENT_AUDIT_LAGEN_MODE=llm|canned   Default 'llm'. 'canned' returns a%n"
+                + "                                        fixture candidate without calling any%n"
+                + "                                        provider; useful for offline runs.%n"
+                + "  When MODE=llm (the default) the following are validated lazily and only%n"
+                + "  when revise actually executes; missing or invalid values cause STRATEGY_FAILED:%n"
+                + "    CONTENT_AUDIT_LAGEN_PROVIDER     e.g. 'lmstudio', 'openai', 'anthropic'.%n"
+                + "    CONTENT_AUDIT_LAGEN_MODEL        e.g. 'gemma-3-4b-it', 'gpt-4o-mini'.%n"
+                + "    CONTENT_AUDIT_LAGEN_ENDPOINT     OpenAI-compatible base URL,%n"
+                + "                                     e.g. 'http://localhost:1234/v1'.%n"
+                + "    CONTENT_AUDIT_LAGEN_API_KEY      Bearer credential (omit for local).%n"
+                + "    CONTENT_AUDIT_LAGEN_TEMPERATURE  Sampling temperature (default 0.7).%n"
+                + "    CONTENT_AUDIT_LAGEN_MAX_TOKENS   Response cap (default 2048).%n"
+                + "    CONTENT_AUDIT_LAGEN_TIMEOUT      Seconds before LLM_TIMEOUT (default 30).",
         mixinStandardHelpOptions = true,
         footer = {
                 "",
@@ -35,6 +59,15 @@ import picocli.CommandLine.Parameters;
                 "",
                 "  # Revise a task in a specific plan",
                 "  content-audit revise task task-002 --plan plan-abc-123",
+                "",
+                "  # Run in offline 'canned' mode (no LLM provider needed)",
+                "  CONTENT_AUDIT_LAGEN_MODE=canned content-audit revise task task-001",
+                "",
+                "  # Run with a local LM Studio provider",
+                "  export CONTENT_AUDIT_LAGEN_PROVIDER=lmstudio",
+                "  export CONTENT_AUDIT_LAGEN_MODEL=gemma-3-4b-it",
+                "  export CONTENT_AUDIT_LAGEN_ENDPOINT=http://localhost:1234/v1",
+                "  content-audit revise task task-001",
         }
 )
 final class ReviseCmd implements ReviseCommand, Callable<Integer> {
@@ -175,16 +208,56 @@ final class ReviseCmd implements ReviseCommand, Callable<Integer> {
             case NO_ACTIVE_STRATEGY -> {
                 System.err.println("No active strategy registered for task " + taskId
                         + " in plan " + planId + ".");
+                System.err.println();
+                System.err.println("Hints:");
+                System.err.println("  - Check if LAPS is disabled: unset CONTENT_AUDIT_LAPS_DISABLE");
+                System.err.println("    (currently: " + describeEnv("CONTENT_AUDIT_LAPS_DISABLE") + ")");
+                System.err.println("  - Check the active strategy name: CONTENT_AUDIT_LAPS_STRATEGY");
+                System.err.println("    (currently: " + describeEnv("CONTENT_AUDIT_LAPS_STRATEGY")
+                        + "; default 'lemma-absence-llm')");
+                System.err.println("  - The task's diagnosis kind may have no registered strategy.");
+                System.err.println("    Run 'content-audit revise --help' for full env-var reference.");
                 yield 1;
             }
             case STRATEGY_FAILED -> {
                 System.err.println("Strategy execution failed for task " + taskId
                         + " in plan " + planId + ".");
-                if (outcome.getErrorMessage() != null) {
-                    System.err.println("Error: " + outcome.getErrorMessage());
+                String errMsg = outcome.getErrorMessage();
+                if (errMsg != null) {
+                    System.err.println("Error: " + errMsg);
+                    if (errMsg.contains("INVALID_CONFIG")) {
+                        System.err.println();
+                        System.err.println("Hints: the LLM strategy needs CONTENT_AUDIT_LAGEN_* env vars.");
+                        System.err.println("  - Set CONTENT_AUDIT_LAGEN_MODE=canned for offline mode, or");
+                        System.err.println("  - Set CONTENT_AUDIT_LAGEN_{PROVIDER,MODEL,ENDPOINT} (and");
+                        System.err.println("    optionally _API_KEY/_TEMPERATURE/_MAX_TOKENS/_TIMEOUT).");
+                        System.err.println("  Run 'content-audit revise --help' for full reference.");
+                    } else if (errMsg.contains("LLM_UNREACHABLE")) {
+                        System.err.println();
+                        System.err.println("Hint: the LLM provider could not be reached. Verify");
+                        System.err.println("  CONTENT_AUDIT_LAGEN_ENDPOINT="
+                                + describeEnv("CONTENT_AUDIT_LAGEN_ENDPOINT")
+                                + " is correct and the provider is running.");
+                    } else if (errMsg.contains("LLM_TIMEOUT")) {
+                        System.err.println();
+                        System.err.println("Hint: the LLM call exceeded "
+                                + describeEnv("CONTENT_AUDIT_LAGEN_TIMEOUT")
+                                + " seconds. Raise CONTENT_AUDIT_LAGEN_TIMEOUT if your provider needs more time.");
+                    } else if (errMsg.contains("LLM_AUTH_FAILED")) {
+                        System.err.println();
+                        System.err.println("Hint: the LLM provider rejected the credentials.");
+                        System.err.println("  Verify CONTENT_AUDIT_LAGEN_API_KEY is set to a valid key.");
+                    }
                 }
                 yield 1;
             }
         };
+    }
+
+    private static String describeEnv(String name) {
+        String value = System.getenv(name);
+        if (value == null) return "unset";
+        if (value.isBlank()) return "blank";
+        return "'" + value + "'";
     }
 }
