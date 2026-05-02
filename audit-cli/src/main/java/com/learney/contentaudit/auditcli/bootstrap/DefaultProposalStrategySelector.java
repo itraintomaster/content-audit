@@ -12,7 +12,7 @@ import javax.annotation.processing.Generated;
 )
 public final class DefaultProposalStrategySelector implements ProposalStrategySelector {
 
-    static final String DEFAULT_STRATEGY = "lemma-absence-mvp";
+    static final String DEFAULT_STRATEGY = "lemma-absence-llm";
     static final String ENV_VAR = "CONTENT_AUDIT_LAPS_STRATEGY";
 
     @Override

@@ -42,15 +42,16 @@ public class DefaultProposalStrategySelectorTest {
     // ── tests ─────────────────────────────────────────────────────────────────
 
     @Test
-    @DisplayName("Given CONTENT_AUDIT_LAPS_STRATEGY unset (null or blank), when select is called with any registry, then it returns the default strategy name 'lemma-absence-mvp'")
+    @DisplayName("Given CONTENT_AUDIT_LAPS_STRATEGY unset (null or blank), when select is called with any registry, then it returns the default strategy name 'lemma-absence-llm'")
     @Tag("FEAT-LAPS")
     @Tag("F-LAPS-R004")
-    public void givenCONTENTAUDITLAPSSTRATEGYUnsetNullOrBlankWhenSelectIsCalledWithAnyRegistryThenItReturnsTheDefaultStrategyNameLemmaabsencemvp(
+    public void givenCONTENTAUDITLAPSSTRATEGYUnsetNullOrBlankWhenSelectIsCalledWithAnyRegistryThenItReturnsTheDefaultStrategyNameLemmaabsencellm(
             ) {
         // Arrange — envValue is null (CONTENT_AUDIT_LAPS_STRATEGY not set)
-        // R004 / TECH_SPEC: unset -> default "lemma-absence-mvp"
+        // R004 / TECH_SPEC: unset -> default "lemma-absence-llm" (renamed from
+        // "lemma-absence-mvp" by F-LAGEN-R001 when the LLM-backed adapter landed)
         LemmaAbsenceProposalStrategyRegistry registry =
-                registryWithNames("lemma-absence-mvp", "lemma-absence-experimental");
+                registryWithNames("lemma-absence-llm", "lemma-absence-experimental");
 
         // Act — null env value
         String resultForNull = selector.select(null, registry);
@@ -58,13 +59,13 @@ public class DefaultProposalStrategySelectorTest {
         String resultForBlank = selector.select("", registry);
         String resultForWhitespace = selector.select("   ", registry);
 
-        // Assert — all return the default "lemma-absence-mvp"
-        assertEquals("lemma-absence-mvp", resultForNull,
-                "Unset env var (null) must return the default 'lemma-absence-mvp' (R004/DOUBT-STRATEGY-SELECTION)");
-        assertEquals("lemma-absence-mvp", resultForBlank,
-                "Blank env var ('') must return the default 'lemma-absence-mvp'");
-        assertEquals("lemma-absence-mvp", resultForWhitespace,
-                "Whitespace-only env var must return the default 'lemma-absence-mvp'");
+        // Assert — all return the default "lemma-absence-llm"
+        assertEquals("lemma-absence-llm", resultForNull,
+                "Unset env var (null) must return the default 'lemma-absence-llm' (R004/DOUBT-STRATEGY-SELECTION + F-LAGEN-R001)");
+        assertEquals("lemma-absence-llm", resultForBlank,
+                "Blank env var ('') must return the default 'lemma-absence-llm'");
+        assertEquals("lemma-absence-llm", resultForWhitespace,
+                "Whitespace-only env var must return the default 'lemma-absence-llm'");
     }
 
     @Test
