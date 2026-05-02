@@ -1,0 +1,49 @@
+# Decisions
+
+2026-04-29 — analyst — Stack: LangChain4j (in-process Java). No LangGraph in this iteration.
+  why: keep first real generator simple; multi-step graphs / validation loops belong to future iterations.
+
+2026-04-29 — analyst — Default provider is Gemma via LM Studio (OpenAI-compatible HTTP surface). Provider must be swappable via LangChain4j configuration without code changes.
+  why: enables local-first development; cloud providers (Anthropic, OpenAI) become a configuration switch later.
+
+2026-04-29 — analyst — Strategy is renamed from `lemma-absence-mvp` to `lemma-absence-llm` so `StrategyId.name` on every persisted proposal makes provenance obvious.
+  why: the old name reflected a stub; the new name reflects the real adapter and survives future provider swaps because the *kind* of strategy stays "LLM-backed".
+
+2026-04-29 — analyst — Failure categories surfaced at the behavioral level: LLM_UNREACHABLE, LLM_TIMEOUT, LLM_AUTH_FAILED, LLM_RESPONSE_EMPTY, LLM_RESPONSE_MALFORMED, LLM_OTHER. These map onto the existing ProposalStrategyFailedException reason field (FEAT-LAPS R015).
+  why: user explicitly requested finer granularity than the current single message; the port contract already carries a reason string so no architectural change required.
+
+2026-04-29 — analyst — Prompt wording is intentionally NOT pinned in the requirement. Only its responsibilities and the inputs it must surface are specified.
+  why: prompt iteration is implementation work; pinning text would force a requirement change for every prompt tweak.
+
+2026-04-29 — analyst — Output shape demanded from the LLM is a strict JSON object {quizSentence, translation}. Adapter does NOT validate the FEAT-QSENT grammar — that is the deriver's job (FEAT-LAPS R012). Adapter only validates JSON well-formedness and presence/non-emptiness of both fields.
+  why: keeps adapter scope narrow; downstream parser owns DSL validation.
+
+2026-04-30 — architect — Patch ARCH option chosen: new module `revision-infrastructure` (P8 Qualified Export, allowedClients=[audit-cli]). Adapter behind a Factory Seam (LemmaAbsenceLlmGeneratorFactory + LagenConfig). Public package `lagen` (factory + carrier), internal package `lagenopenai` (engine, prompt builder, response parser, error classifier — all package-private except the factory class).
+  why: hexagonal convention of the project, P2 encapsulation, P5 contract/carrier/engine separation. Closed to audit-cli to prevent accidental cross-module coupling.
+
+2026-04-30 — architect — `revision-domain.strategy` flipped from internal -> public. Added `LlmGenerationFailureCategory` enum + `CannedLemmaAbsenceQuizCandidateGenerator` impl in the same package.
+  why: package description already endorsed the public intent; audit-cli was already directly importing `LemmaAbsenceMvpStrategy` and the port. Failure-category enum lives next to the port (avoids leaking infra-coupled tokens into domain). Canned generator promoted from inline lambda in Main.java to a named injectable class — closes DOUBT-CANNED-MODE-AVAILABILITY in favour of Option B (opt-in via CONTENT_AUDIT_LAGEN_MODE=canned).
+
+2026-04-30 — architect — D6 (provider id format) -> Option B: `provider:model` (e.g. `lmstudio:gemma-3-4b-it`). Surfaced via `LemmaAbsenceLlmGeneratorFactory.providerIdFor(LagenConfig)` so audit-cli can stamp `StrategyId.providerId` without re-parsing config.
+  why: F-LAGEN-R009 demands distinguishability between providers; modelo joined to provider gives operators enough detail without forcing a version field that the local provider may not expose.
+
+2026-04-30 — architect — Failure categories carried as a prefix on the existing `ProposalStrategyFailedException.reason` (e.g. `"LLM_TIMEOUT: deadline 30s exceeded"`). No change to the exception's shape.
+  why: F-LAGEN-R006 demands inequivocal identification; reason is already a free-text String per FEAT-LAPS R015 — cheapest stable encoding is enum-name prefix + colon + free-text suffix.
+
+2026-04-30 — architect — Bootstrap surfaces: `LagenMode` enum (LLM default, CANNED opt-in) + `LagenModeResolver` (sealed) + `LagenConfigResolver` (sealed, takes Map<String,String> env so it is unit-testable). Two new exceptions: `InvalidLagenModeException`, `InvalidLagenConfigException`. Mirrors existing `ApprovalModeResolver` / `ProposalStrategySelector` pattern in the same package.
+  why: D2 confirmed env-var-only configuration; explicit Map argument keeps the resolver unit-testable; sealed ports forbid accidental third implementations.
+
+2026-04-30 — architect — Architectural patch landed (10 additions, 2 modifications, 0 deletions, 0 conflicts). TECH_SPEC.md written with 11 architecture fences. The user must add the `langchain4j-openai` alias to the root `dependencies:` block in sentinel.yaml MANUALLY before `sentinel generate` (patch format does not support dependencies).
+  why: handoff signal — the door is open for tests + impl, but only after the user wires the dependency alias.
+
+2026-04-30 — architect — Patch regenerated SELF-CONTAINED: declares both `langchain4j-openai` AND `langchain4j-core` aliases inside the patch's `dependencies:` block (Sentinel Bug 01 fix released — `sentinel patch validate` now accepts the block). The earlier handoff signal (line 36) is superseded; user no longer needs to edit sentinel.yaml manually before `sentinel generate`. API flavor A confirmed: legacy `ChatLanguageModel.generate(List<ChatMessage>): Response<AiMessage>` — drops `ChatRequest`/`ChatResponse` from provides, adds `ChatMessage` and `Response`. Fixed an earlier typo where `OpenAiChatModelBuilder` was declared as a package; corrected to inner-class form `OpenAiChatModel.OpenAiChatModelBuilder` in `dev.langchain4j.model.openai`. `revision-infrastructure.uses` now lists both aliases. Type list verified empirically against the JARs via `mvn dependency:get` + `jar tf` + `javap`. DOUBT-LANGCHAIN4J-API-FLAVOR closed. 10/2/0/0 again, no architectural surface change.
+  why: bug-01 fix in sentinel-core makes the architecture self-describing; manual side-channel removed from the workflow.
+
+2026-04-30 — architect — Package `revision-domain.strategy` renombrado a `revision-domain.lemmaabsence`. Patch incluye `_change: delete` sobre el package viejo + `_change: add` sobre el nuevo con los 5 componentes (3 viejos relocados + 2 nuevos del patch). Cross-references actualizadas: `revision-infrastructure.description` y `LagenMode.CANNED.description`. Patch revalidado 9/2/1/0. Tech spec reescrito enteramente en castellano (12 fences) — convención del proyecto. Blast radius del rename (4 journey tests FEAT-LAPS + Main.java) lo absorbe el desarrollador en la fase siguiente; los journey tests son @Generated por Sentinel.
+  why: el nombre `strategy` describía un patrón GoF y no el sub-dominio que encapsula. El nuevo nombre sigue la convención del proyecto (audit-domain.coca, .lrec, .labs). Idioma castellano alineado con REQUIREMENT.md.
+
+2026-04-30 — architect — Auditoria de superficie publica del package `revision-domain.lemmaabsence` solicitada por el usuario. Resultado: 4 de los 5 componentes son obligatoriamente publicos (carrier + port + 2 implementaciones con consumidores reales en Main.java + 5 journey tests). El 5to (`LlmGenerationFailureCategory`) no tenia ningun consumidor en revision-domain — ningun port lo menciona, `ProposalStrategyFailedException.reason` es String libre. Movido a `revision-infrastructure.lagen` (junto al factory + LagenConfig); el unico consumidor real es `LangChainErrorClassifier` en `lagenopenai` (mismo modulo). Argumento original "co-localizar vocabulario de fallas con el contrato que modula" no aguantaba scrutinio: la enum no modulaba ningun contrato del dominio. Otros componentes (MvpStrategy, CannedGenerator) NO se esconden detras de factory porque construirlos es trivial (1-2 args, sin grafo) — agregar factory seria +2 componentes para esconder 1.
+  why: P1 (minimum public surface) aplicado componente-por-componente; P2 no aplicaba a la enum porque no habia grafo a encapsular en revision-domain.
+
+2026-04-30 — architect — Bug de merge observado en `sentinel patch propose`: `_change: modify` sobre un package borra elementos no re-emitidos en lugar de mergearlos por nombre. Reproduje el bug emitiendo solo la enum delete y vi como se perdieron `LemmaAbsenceGeneratorResponse`, `LemmaAbsenceQuizCandidateGenerator`, `LemmaAbsenceMvpStrategy`, `CannedLemmaAbsenceQuizCandidateGenerator` del package `lemmaabsence` y `LagenConfig` + `LemmaAbsenceLlmGeneratorFactory` del package `lagen`. Workaround: borrar el patch persistido y re-emitir el patch completo desde cero con todos los elementos explicitos (validated 9/2/1/0). NO escalado todavia como Sentinel Bug porque no esta confirmado si es bug o limitacion documentada del merge.
+  why: registro para futuro debugging; el merge a nivel package no preserva elementos hermanos cuando uno solo se modifica. Workaround: emitir patch completo en una sola pasada.

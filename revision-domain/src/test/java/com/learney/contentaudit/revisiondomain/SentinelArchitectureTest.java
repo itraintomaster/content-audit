@@ -41,12 +41,6 @@ public class SentinelArchitectureTest {
   }
 
   @Test
-  public void enforcePackageStrategyVisibility() {
-    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..revisiondomain..", "java..").should().dependOnClassesThat().resideInAPackage("..revisiondomain.strategy..").allowEmptyShould(true).check(classes);
-  }
-
-  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.revisiondomain.RevisionVerdict");
@@ -254,19 +248,24 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: DefaultLemmaAbsenceProposalDeriver - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceGeneratorResponse");
+      Class.forName("com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceGeneratorResponse");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaAbsenceGeneratorResponse - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceQuizCandidateGenerator");
+      Class.forName("com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceQuizCandidateGenerator");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaAbsenceQuizCandidateGenerator - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceMvpStrategy");
+      Class.forName("com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceMvpStrategy");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaAbsenceMvpStrategy - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.lemmaabsence.CannedLemmaAbsenceQuizCandidateGenerator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CannedLemmaAbsenceQuizCandidateGenerator - " + e.getMessage());
     }
   }
 }

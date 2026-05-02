@@ -1,0 +1,380 @@
+code: FEAT-LAGEN
+description: "FEAT-LAGEN: real LLM-backed candidate generator. Adds revision-infrastructure\
+  \ (LangChain4j adapter behind a Factory Seam, allowedClients=audit-cli), promotes\
+  \ revision-domain.strategy to public AND renames it to revision-domain.lemmaabsence,\
+  \ adds CannedLemmaAbsenceQuizCandidateGenerator (offline mode), moves LlmGenerationFailureCategory\
+  \ to revision-infrastructure.lagen (audited: enum has zero domain consumers, classifier\
+  \ in revision-infrastructure is its only consumer; co-locating it with the factory\
+  \ keeps revision-domain free of LLM vocabulary), and extends audit-cli.bootstrap\
+  \ with LagenMode/LagenConfig env-var resolvers. Self-contained patch with verified\
+  \ LangChain4j dependencies (langchain4j-openai + langchain4j-core)."
+modules:
+- name: revision-domain
+  packages:
+  - name: strategy
+    visibility: internal
+    _change: delete
+  - name: lemmaabsence
+    description: "Proposal-strategy SPI for LEMMA_ABSENCE. Public so the composition\
+      \ root and revision-infrastructure can both instantiate strategies and the canned\
+      \ generator and pass them into the registry builder. Houses: the candidate-generator\
+      \ port (LemmaAbsenceQuizCandidateGenerator) plus its raw response carrier (LemmaAbsenceGeneratorResponse),\
+      \ the MVP strategy that delegates to the port (LemmaAbsenceMvpStrategy), and\
+      \ the canned generator kept as an offline fallback for CONTENT_AUDIT_LAGEN_MODE=canned\
+      \ (DOUBT-CANNED-MODE-AVAILABILITY -> Option B, CannedLemmaAbsenceQuizCandidateGenerator).\
+      \ Renamed from 'strategy' to 'lemmaabsence' so the package name describes the\
+      \ sub-domain it encapsulates instead of a GoF pattern label. The LlmGenerationFailureCategory\
+      \ enum lives in revision-infrastructure.lagen because revision-domain has zero\
+      \ consumers of it (no port mentions it; ProposalStrategyFailedException.reason\
+      \ is a free String that the adapter prefixes with the enum name)."
+    visibility: public
+    models:
+    - name: LemmaAbsenceGeneratorResponse
+      type: record
+      fields:
+      - name: quizSentence
+        type: String
+        description: Candidate expressed in the FEAT-QSENT quizSentence DSL; raw generator
+          output before wrapping.
+      - name: translation
+        type: String
+        description: Spanish translation of the candidate.
+      visibility: public
+      _change: add
+    interfaces:
+    - name: LemmaAbsenceQuizCandidateGenerator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "generate(LemmaAbsenceCorrectionContext context): LemmaAbsenceGeneratorResponse"
+      visibility: public
+      _change: add
+    implementations:
+    - name: LemmaAbsenceMvpStrategy
+      requiresInject:
+      - name: generator
+        type: LemmaAbsenceQuizCandidateGenerator
+      types:
+      - Component
+      visibility: public
+      implements:
+      - LemmaAbsenceProposalStrategy
+      _change: add
+    - name: CannedLemmaAbsenceQuizCandidateGenerator
+      requiresInject:
+      - name: cannedQuizSentence
+        type: String
+        description: "Fixed quizSentence in the FEAT-QSENT DSL returned for every\
+          \ invocation. Used in offline/test mode (CONTENT_AUDIT_LAGEN_MODE=canned)\
+          \ where no LLM provider is available. DOUBT-CANNED-MODE-AVAILABILITY ->\
+          \ Option B (kept as opt-in, never default)."
+      - name: cannedTranslation
+        type: String
+        description: Fixed Spanish translation paired with cannedQuizSentence.
+      types:
+      - Component
+      visibility: public
+      implements:
+      - LemmaAbsenceQuizCandidateGenerator
+      _change: add
+    _change: add
+  _change: modify
+- name: revision-infrastructure
+  description: "Infrastructure adapter for the revision phase. Provides the LLM-backed\
+    \ implementation of LemmaAbsenceQuizCandidateGenerator (revision-domain.lemmaabsence\
+    \ port) using LangChain4j against any OpenAI-compatible HTTP endpoint (LM Studio,\
+    \ vLLM, OpenAI cloud, Ollama via openai compat, etc.). Exposes a single Factory\
+    \ Seam (LemmaAbsenceLlmGeneratorFactory + LagenConfig carrier + LlmGenerationFailureCategory\
+    \ enum) so the composition root wires the adapter with one call. The adapter uses\
+    \ LangChain4j's legacy chat-message API flavor, generate(List<ChatMessage>), because\
+    \ F-LAGEN needs explicit system/user messages and a simple text response without\
+    \ exposing ChatRequest/ChatResponse in the architectural surface. The adapter,\
+    \ prompt builder, response parser and error classifier all live in an internal\
+    \ package; only the factory class is public. allowedClients=[audit-cli] enforces\
+    \ that this module is an implementation detail of the CLI composition root only\
+    \ (P8 Qualified Export)."
+  dependsOn:
+  - revision-domain
+  - refiner-domain
+  allowedClients:
+  - audit-cli
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultLemmaAbsenceLlmGeneratorFactory
+    suppressed: false
+    interface: LemmaAbsenceLlmGeneratorFactory
+  uses:
+  - langchain4j-openai
+  - langchain4j-core
+  packages:
+  - name: lagen
+    description: "Public contract of the LangChain4j-backed candidate generator. Exposes\
+      \ the factory port + the LagenConfig carrier (knobs from F-LAGEN-R008) + the\
+      \ LlmGenerationFailureCategory enum (categories surfaced through the adapter,\
+      \ F-LAGEN-R006). Implementations of the factory and all collaborators live in\
+      \ the sibling 'lagenopenai' internal package."
+    visibility: public
+    models:
+    - name: LagenConfig
+      type: record
+      fields:
+      - name: providerName
+        type: String
+        description: "Short, stable identifier of the provider family (e.g. 'lmstudio',\
+          \ 'openai', 'anthropic-via-openai'). Used as the prefix of the providerId\
+          \ emitted into StrategyId.providerId (F-LAGEN-R009, DOUBT-PROVIDER-ID-FORMAT\
+          \ -> Option B). Required."
+      - name: modelId
+        type: String
+        description: "Model identifier within the provider, e.g. 'gemma-3-4b-it',\
+          \ 'gpt-4o-mini'. Joined with providerName as 'provider:model' to form StrategyId.providerId\
+          \ (F-LAGEN-R009). Required."
+      - name: endpoint
+        type: String
+        description: "OpenAI-compatible chat/completions base URL, e.g. 'http://localhost:1234/v1'\
+          \ for the LM Studio default. Required."
+      - name: apiKey
+        type: String
+        description: "Bearer credential. Nullable: when absent, the adapter sends\
+          \ no Authorization header (covers local providers without auth — see Assumption\
+          \ 3). When the provider rejects the request because of auth, the adapter\
+          \ raises ProposalStrategyFailedException with reason prefixed LLM_AUTH_FAILED\
+          \ (F-LAGEN-R006)."
+      - name: temperature
+        type: Double
+        description: "Sampling temperature; controls output variability (F-LAGEN-R008).\
+          \ Nullable: when null the factory applies a non-zero default (Assumption\
+          \ 4)."
+      - name: maxTokens
+        type: Integer
+        description: "Upper bound on response token count (F-LAGEN-R008). Nullable:\
+          \ when null the factory applies a sensible default."
+      - name: timeout
+        type: Duration
+        description: "Per-request budget; once exceeded the adapter raises ProposalStrategyFailedException\
+          \ with reason prefixed LLM_TIMEOUT (F-LAGEN-R006). Nullable: when null the\
+          \ factory applies a default budget."
+      visibility: public
+      _change: add
+    - name: LlmGenerationFailureCategory
+      type: enum
+      fields:
+      - name: LLM_UNREACHABLE
+        description: "Communication with the provider could not be established (connection\
+          \ refused, host unreachable, DNS error, misconfigured endpoint). F-LAGEN-R006."
+      - name: LLM_TIMEOUT
+        description: "The query exceeded the configured time budget without returning\
+          \ a response. F-LAGEN-R006, F-LAGEN-R008."
+      - name: LLM_AUTH_FAILED
+        description: The provider rejected the request because credentials were invalid
+          or absent. F-LAGEN-R006.
+      - name: LLM_RESPONSE_EMPTY
+        description: "The query completed successfully but the model returned no content\
+          \ (empty string, no text). F-LAGEN-R006."
+      - name: LLM_RESPONSE_MALFORMED
+        description: "The model returned content that does not satisfy F-LAGEN-R005\
+          \ (not parseable JSON, missing quizSentence/translation, or either field\
+          \ empty/non-string). F-LAGEN-R006."
+      - name: LLM_OTHER
+        description: Any other generation-time failure not covered by the categories
+          above. F-LAGEN-R006.
+      visibility: public
+      _change: add
+    interfaces:
+    - name: LemmaAbsenceLlmGeneratorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(LagenConfig config): LemmaAbsenceQuizCandidateGenerator"
+      - signature: "providerIdFor(LagenConfig config): String"
+      visibility: public
+      _change: add
+    _change: add
+  - name: lagenopenai
+    description: "Internal LangChain4j-OpenAI engine. Only DefaultLemmaAbsenceLlmGeneratorFactory\
+      \ is public (the seam — instantiated once by audit-cli.bootstrap); every collaborator\
+      \ (LemmaAbsenceLlmGenerator, LemmaAbsencePromptBuilder, LemmaAbsenceResponseParser,\
+      \ LangChainErrorClassifier) is package-private so other modules cannot bypass\
+      \ the factory port. Replacing the LLM client implementation never changes this\
+      \ module's public surface."
+    visibility: internal
+    models:
+    - name: LemmaAbsenceLlmRawResponse
+      type: record
+      fields:
+      - name: rawText
+        type: String
+        description: Raw text content returned by the model before JSON parsing. Empty
+          string represents LLM_RESPONSE_EMPTY (F-LAGEN-R006).
+      _change: add
+    interfaces:
+    - name: LemmaAbsencePromptBuilder
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "buildSystemPrompt(): String"
+      - signature: "buildUserPrompt(LemmaAbsenceCorrectionContext context): String"
+      visibility: internal
+      _change: add
+    - name: LemmaAbsenceResponseParser
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "parse(LemmaAbsenceLlmRawResponse raw, String taskId, String strategyName):\
+          \ LemmaAbsenceGeneratorResponse"
+      visibility: internal
+      _change: add
+    - name: LangChainErrorClassifier
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "classify(Throwable cause): LlmGenerationFailureCategory"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultLemmaAbsenceLlmGeneratorFactory
+      types:
+      - Component
+      visibility: public
+      implements:
+      - LemmaAbsenceLlmGeneratorFactory
+      _change: add
+    - name: LemmaAbsenceLlmGenerator
+      requiresInject:
+      - name: config
+        type: LagenConfig
+      - name: promptBuilder
+        type: LemmaAbsencePromptBuilder
+      - name: responseParser
+        type: LemmaAbsenceResponseParser
+      - name: errorClassifier
+        type: LangChainErrorClassifier
+      - name: strategyName
+        type: String
+        description: Strategy name embedded in any ProposalStrategyFailedException
+          raised by this adapter. Wired to 'lemma-absence-llm' (F-LAGEN-R001) by the
+          factory.
+      types:
+      - Component
+      implements:
+      - LemmaAbsenceQuizCandidateGenerator
+      _change: add
+    - name: DefaultLemmaAbsencePromptBuilder
+      types:
+      - Component
+      implements:
+      - LemmaAbsencePromptBuilder
+      _change: add
+    - name: DefaultLemmaAbsenceResponseParser
+      types:
+      - Component
+      implements:
+      - LemmaAbsenceResponseParser
+      _change: add
+    - name: DefaultLangChainErrorClassifier
+      types:
+      - Component
+      implements:
+      - LangChainErrorClassifier
+      _change: add
+    _change: add
+  _change: add
+- name: audit-cli
+  dependsOn:
+  - revision-infrastructure
+  models:
+  - name: LagenMode
+    type: enum
+    fields:
+    - name: LLM
+      description: Default. The CLI wires the LangChain4j-backed generator from revision-infrastructure
+        (F-LAGEN-R002).
+    - name: CANNED
+      description: "Opt-in offline mode. The CLI wires CannedLemmaAbsenceQuizCandidateGenerator\
+        \ from revision-domain.lemmaabsence with fixed quizSentence/translation. DOUBT-CANNED-MODE-AVAILABILITY\
+        \ -> Option B (kept as opt-in, never default)."
+    visibility: public
+    _change: add
+  packages:
+  - name: bootstrap
+    description: "Env-var -> domain-object parsing plus composition-root helpers translating\
+      \ external inputs (workdir, approval mode, proposal strategy selection, LAGEN\
+      \ mode + LLM config) into typed values consumed by the engine factories."
+    visibility: internal
+    models:
+    - name: InvalidLagenModeException
+      type: exception
+      fields:
+      - name: value
+        type: String
+        description: The raw env-var value that failed parsing.
+      message: "Invalid value for CONTENT_AUDIT_LAGEN_MODE: '%s'. Allowed: llm, canned"
+      _change: add
+      extends: RuntimeException
+    - name: InvalidLagenConfigException
+      type: exception
+      fields:
+      - name: key
+        type: String
+        description: Env-var name whose value was invalid (e.g. 'CONTENT_AUDIT_LAGEN_TEMPERATURE').
+      - name: detail
+        type: String
+        description: "Why the value failed to parse (e.g. 'expected number in [0,2],\
+          \ got abc')."
+      message: "Invalid LAGEN configuration (%s): %s"
+      _change: add
+      extends: RuntimeException
+    interfaces:
+    - name: LagenModeResolver
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "resolve(String envValue): LagenMode"
+      _change: add
+    - name: LagenConfigResolver
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "resolve(Map<String,String> env): LagenConfig"
+      _change: add
+    implementations:
+    - name: DefaultLagenModeResolver
+      visibility: public
+      implements:
+      - LagenModeResolver
+      _change: add
+    - name: DefaultLagenConfigResolver
+      visibility: public
+      implements:
+      - LagenConfigResolver
+      _change: add
+    _change: modify
+  _change: modify
+dependencies:
+- alias: langchain4j-openai
+  artifact: dev.langchain4j:langchain4j-open-ai:0.36.2
+  scope: compile
+  provides:
+  - type: OpenAiChatModel
+    package: dev.langchain4j.model.openai
+  - type: OpenAiChatModel.OpenAiChatModelBuilder
+    package: dev.langchain4j.model.openai
+  _change: add
+- alias: langchain4j-core
+  artifact: dev.langchain4j:langchain4j-core:0.36.2
+  scope: compile
+  provides:
+  - type: ChatLanguageModel
+    package: dev.langchain4j.model.chat
+  - type: ChatMessage
+    package: dev.langchain4j.data.message
+  - type: SystemMessage
+    package: dev.langchain4j.data.message
+  - type: UserMessage
+    package: dev.langchain4j.data.message
+  - type: AiMessage
+    package: dev.langchain4j.data.message
+  - type: Response
+    package: dev.langchain4j.model.output
+  _change: add

@@ -31,7 +31,7 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceModuleBoundaries() {
     JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.classes().that().resideInAPackage("..auditcli..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditcli..", "..auditapplication..", "..auditdomain..", "..coursedomain..", "..refinerdomain..", "..courseinfrastructure..", "..nlpinfrastructure..", "..vocabularyinfrastructure..", "..auditinfrastructure..", "..revisiondomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+    ArchRuleDefinition.classes().that().resideInAPackage("..auditcli..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditcli..", "..auditapplication..", "..auditdomain..", "..coursedomain..", "..refinerdomain..", "..courseinfrastructure..", "..nlpinfrastructure..", "..vocabularyinfrastructure..", "..auditinfrastructure..", "..revisiondomain..", "..revisioninfrastructure..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
   }
 
   @Test
@@ -58,6 +58,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.GetTasksFilter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: GetTasksFilter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.LagenMode");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LagenMode - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.AnalyzeCommand");
@@ -330,6 +335,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: InvalidProposalStrategyException - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.InvalidLagenModeException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: InvalidLagenModeException - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.InvalidLagenConfigException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: InvalidLagenConfigException - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.WorkdirResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: WorkdirResolver - " + e.getMessage());
@@ -345,6 +360,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: ProposalStrategySelector - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.LagenModeResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LagenModeResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.LagenConfigResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LagenConfigResolver - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultWorkdirResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultWorkdirResolver - " + e.getMessage());
@@ -358,6 +383,16 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultProposalStrategySelector");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultProposalStrategySelector - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultLagenModeResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultLagenModeResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultLagenConfigResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultLagenConfigResolver - " + e.getMessage());
     }
   }
 }

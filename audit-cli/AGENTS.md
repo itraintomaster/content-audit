@@ -18,6 +18,13 @@ CLI entry point for running content audits from the command line
 | target | `Optional<AuditTarget>` |
 | diagnosisKind | `Optional<DiagnosisKind>` |
 
+### LagenMode (`enum`)
+
+| Field | Type |
+|-------|------|
+| LLM | `null` |
+| CANNED | `null` |
+
 ## Interfaces
 
 ### AnalyzeCommand (port) [sealed]

@@ -4016,6 +4016,7 @@ modules:
   - audit-infrastructure
   - refiner-domain
   - revision-domain
+  - revision-infrastructure
   models:
   - name: GetTasksFilter
     type: record
@@ -4043,6 +4044,17 @@ modules:
       type: Optional<DiagnosisKind>
       description: Restrict to tasks whose diagnosisKind matches this DiagnosisKind
         enum value; absent = no filter (R008)
+  - name: LagenMode
+    type: enum
+    fields:
+    - name: LLM
+      description: Default. The CLI wires the LangChain4j-backed generator from revision-infrastructure
+        (F-LAGEN-R002).
+    - name: CANNED
+      description: "Opt-in offline mode. The CLI wires CannedLemmaAbsenceQuizCandidateGenerator\
+        \ from revision-domain.lemmaabsence with fixed quizSentence/translation. DOUBT-CANNED-MODE-AVAILABILITY\
+        \ -> Option B (kept as opt-in, never default)."
+    visibility: public
   interfaces:
   - name: AnalyzeCommand
     stereotype: port
@@ -5182,8 +5194,8 @@ modules:
       - DetailedFormatter
   - name: bootstrap
     description: "Env-var -> domain-object parsing plus composition-root helpers translating\
-      \ external inputs (workdir, approval mode, proposal strategy selection) into\
-      \ typed values consumed by the engine factories."
+      \ external inputs (workdir, approval mode, proposal strategy selection, LAGEN\
+      \ mode + LLM config) into typed values consumed by the engine factories."
     visibility: internal
     models:
     - name: InvalidWorkdirException
@@ -5214,6 +5226,26 @@ modules:
         description: Comma-separated list of registered strategy names (LemmaAbsenceProposalStrategyRegistry.listAll()).
       message: "Invalid value for CONTENT_AUDIT_LAPS_STRATEGY: '%s'. Registered: %s"
       extends: RuntimeException
+    - name: InvalidLagenModeException
+      type: exception
+      fields:
+      - name: value
+        type: String
+        description: The raw env-var value that failed parsing.
+      message: "Invalid value for CONTENT_AUDIT_LAGEN_MODE: '%s'. Allowed: llm, canned"
+      extends: RuntimeException
+    - name: InvalidLagenConfigException
+      type: exception
+      fields:
+      - name: key
+        type: String
+        description: Env-var name whose value was invalid (e.g. 'CONTENT_AUDIT_LAGEN_TEMPERATURE').
+      - name: detail
+        type: String
+        description: "Why the value failed to parse (e.g. 'expected number in [0,2],\
+          \ got abc')."
+      message: "Invalid LAGEN configuration (%s): %s"
+      extends: RuntimeException
     interfaces:
     - name: WorkdirResolver
       stereotype: port
@@ -5231,6 +5263,16 @@ modules:
       exposes:
       - signature: "select(String envValue, LemmaAbsenceProposalStrategyRegistry registry):\
           \ String"
+    - name: LagenModeResolver
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "resolve(String envValue): LagenMode"
+    - name: LagenConfigResolver
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "resolve(Map<String,String> env): LagenConfig"
     implementations:
     - name: DefaultWorkdirResolver
       visibility: public
@@ -5327,6 +5369,14 @@ modules:
           rule: F-LAPS-R004
       implements:
       - ProposalStrategySelector
+    - name: DefaultLagenModeResolver
+      visibility: public
+      implements:
+      - LagenModeResolver
+    - name: DefaultLagenConfigResolver
+      visibility: public
+      implements:
+      - LagenConfigResolver
 - name: nlp-infrastructure
   description: "Infrastructure module for NLP processing. Provides SpaCy-backed tokenization\
     \ behind a factory, with internal caching. Only the factory and configuration\
@@ -6254,6 +6304,7 @@ modules:
         type: LemmaAbsenceProposalStrategyRegistryConfig
       types:
       - Component
+      visibility: public
       handwrittenTests:
       - name: "Given a config whose activeName matches a registered strategy, when\
           \ active is called, then it returns that strategy wrapped in Optional"
@@ -6293,6 +6344,7 @@ modules:
           \ elementBefore.quiz except form and translation (F-LAPS-R012, R013, R014)."
       types:
       - Component
+      visibility: public
       handwrittenTests:
       - name: "Given an elementBefore quiz and a candidate whose quizSentence differs\
           \ from the original, when derive is called, then the returned elementAfter\
@@ -6351,11 +6403,20 @@ modules:
           rule: F-LAPS-R019
       implements:
       - LemmaAbsenceProposalDeriver
-  - name: strategy
-    description: "Proposal-strategy SPI for LEMMA_ABSENCE: houses concrete strategies\
-      \ and the candidate-generator port they delegate to. Public so the composition\
-      \ root can instantiate strategies and pass them into the registry builder."
-    visibility: internal
+  - name: lemmaabsence
+    description: "Proposal-strategy SPI for LEMMA_ABSENCE. Public so the composition\
+      \ root and revision-infrastructure can both instantiate strategies and the canned\
+      \ generator and pass them into the registry builder. Houses: the candidate-generator\
+      \ port (LemmaAbsenceQuizCandidateGenerator) plus its raw response carrier (LemmaAbsenceGeneratorResponse),\
+      \ the MVP strategy that delegates to the port (LemmaAbsenceMvpStrategy), and\
+      \ the canned generator kept as an offline fallback for CONTENT_AUDIT_LAGEN_MODE=canned\
+      \ (DOUBT-CANNED-MODE-AVAILABILITY -> Option B, CannedLemmaAbsenceQuizCandidateGenerator).\
+      \ Renamed from 'strategy' to 'lemmaabsence' so the package name describes the\
+      \ sub-domain it encapsulates instead of a GoF pattern label. The LlmGenerationFailureCategory\
+      \ enum lives in revision-infrastructure.lagen because revision-domain has zero\
+      \ consumers of it (no port mentions it; ProposalStrategyFailedException.reason\
+      \ is a free String that the adapter prefixes with the enum name)."
+    visibility: public
     models:
     - name: LemmaAbsenceGeneratorResponse
       type: record
@@ -6367,6 +6428,7 @@ modules:
       - name: translation
         type: String
         description: Spanish translation of the candidate.
+      visibility: public
     interfaces:
     - name: LemmaAbsenceQuizCandidateGenerator
       stereotype: port
@@ -6382,65 +6444,210 @@ modules:
       types:
       - Component
       visibility: public
-      handwrittenTests:
-      - name: "Given a LemmaAbsenceCorrectionContext with all eight fields populated,\
-          \ when propose is called, then the strategy passes that context to the candidate\
-          \ generator without consulting the AuditReport or the diagnosis tree"
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R007
-      - name: "Given a successful generator response, when propose is called, then\
-          \ it returns exactly one LemmaAbsenceQuizCandidate (single-candidate contract,\
-          \ one pass)"
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R008
-      - name: "Given a successful generator response, when propose is called, then\
-          \ the returned candidate has a non-null quizSentence (FEAT-QSENT DSL) and\
-          \ a non-null translation and nothing else (no plain sentence, no quizForm)"
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R009
-      - name: "Given a successful generator response, when propose is called, then\
-          \ the returned candidate carries the quizSentence verbatim in the DSL of\
-          \ FEAT-QSENT, leaving parsing to the downstream deriver"
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R011
-      - name: "Given a generator that returns two different responses on two successive\
-          \ invocations, when propose is called twice with the same context, then\
-          \ both returned candidates reach the caller unchanged (the strategy does\
-          \ not stabilize, memoize or reconcile the generator output)"
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R010
-      - name: "Given a generator that throws ProposalStrategyFailedException, when\
-          \ propose is called, then the exception propagates out of the strategy without\
-          \ being caught or wrapped"
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R015
-      - name: "Given a generator response whose quizSentence would contain words above\
-          \ the context's cefrLevel, when propose is called, then it still returns\
-          \ the candidate (the MVP strategy does NOT run a CEFR post-check)"
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R017
-      - name: "Given a generator response whose quizSentence is unusually short or\
-          \ long, when propose is called, then it still returns the candidate (the\
-          \ MVP strategy does NOT enforce a length budget)"
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R018
-      - name: "Given a successful generator response, when propose is called, then\
-          \ the returned object is exactly a LemmaAbsenceQuizCandidate with two fields\
-          \ and the strategy does not also return plain sentence text, a quizForm\
-          \ or a list of accepted variants"
-        traceability:
-          feature: FEAT-LAPS
-          rule: F-LAPS-R019
       implements:
       - LemmaAbsenceProposalStrategy
+    - name: CannedLemmaAbsenceQuizCandidateGenerator
+      requiresInject:
+      - name: cannedQuizSentence
+        type: String
+        description: "Fixed quizSentence in the FEAT-QSENT DSL returned for every\
+          \ invocation. Used in offline/test mode (CONTENT_AUDIT_LAGEN_MODE=canned)\
+          \ where no LLM provider is available. DOUBT-CANNED-MODE-AVAILABILITY ->\
+          \ Option B (kept as opt-in, never default)."
+      - name: cannedTranslation
+        type: String
+        description: Fixed Spanish translation paired with cannedQuizSentence.
+      types:
+      - Component
+      visibility: public
+      implements:
+      - LemmaAbsenceQuizCandidateGenerator
+- name: revision-infrastructure
+  description: "Infrastructure adapter for the revision phase. Provides the LLM-backed\
+    \ implementation of LemmaAbsenceQuizCandidateGenerator (revision-domain.lemmaabsence\
+    \ port) using LangChain4j against any OpenAI-compatible HTTP endpoint (LM Studio,\
+    \ vLLM, OpenAI cloud, Ollama via openai compat, etc.). Exposes a single Factory\
+    \ Seam (LemmaAbsenceLlmGeneratorFactory + LagenConfig carrier + LlmGenerationFailureCategory\
+    \ enum) so the composition root wires the adapter with one call. The adapter uses\
+    \ LangChain4j's legacy chat-message API flavor, generate(List<ChatMessage>), because\
+    \ F-LAGEN needs explicit system/user messages and a simple text response without\
+    \ exposing ChatRequest/ChatResponse in the architectural surface. The adapter,\
+    \ prompt builder, response parser and error classifier all live in an internal\
+    \ package; only the factory class is public. allowedClients=[audit-cli] enforces\
+    \ that this module is an implementation detail of the CLI composition root only\
+    \ (P8 Qualified Export)."
+  dependsOn:
+  - revision-domain
+  - refiner-domain
+  allowedClients:
+  - audit-cli
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultLemmaAbsenceLlmGeneratorFactory
+    suppressed: false
+    interface: LemmaAbsenceLlmGeneratorFactory
+  uses:
+  - langchain4j-openai
+  - langchain4j-core
+  packages:
+  - name: lagen
+    description: "Public contract of the LangChain4j-backed candidate generator. Exposes\
+      \ the factory port + the LagenConfig carrier (knobs from F-LAGEN-R008) + the\
+      \ LlmGenerationFailureCategory enum (categories surfaced through the adapter,\
+      \ F-LAGEN-R006). Implementations of the factory and all collaborators live in\
+      \ the sibling 'lagenopenai' internal package."
+    visibility: public
+    models:
+    - name: LagenConfig
+      type: record
+      fields:
+      - name: providerName
+        type: String
+        description: "Short, stable identifier of the provider family (e.g. 'lmstudio',\
+          \ 'openai', 'anthropic-via-openai'). Used as the prefix of the providerId\
+          \ emitted into StrategyId.providerId (F-LAGEN-R009, DOUBT-PROVIDER-ID-FORMAT\
+          \ -> Option B). Required."
+      - name: modelId
+        type: String
+        description: "Model identifier within the provider, e.g. 'gemma-3-4b-it',\
+          \ 'gpt-4o-mini'. Joined with providerName as 'provider:model' to form StrategyId.providerId\
+          \ (F-LAGEN-R009). Required."
+      - name: endpoint
+        type: String
+        description: "OpenAI-compatible chat/completions base URL, e.g. 'http://localhost:1234/v1'\
+          \ for the LM Studio default. Required."
+      - name: apiKey
+        type: String
+        description: "Bearer credential. Nullable: when absent, the adapter sends\
+          \ no Authorization header (covers local providers without auth — see Assumption\
+          \ 3). When the provider rejects the request because of auth, the adapter\
+          \ raises ProposalStrategyFailedException with reason prefixed LLM_AUTH_FAILED\
+          \ (F-LAGEN-R006)."
+      - name: temperature
+        type: Double
+        description: "Sampling temperature; controls output variability (F-LAGEN-R008).\
+          \ Nullable: when null the factory applies a non-zero default (Assumption\
+          \ 4)."
+      - name: maxTokens
+        type: Integer
+        description: "Upper bound on response token count (F-LAGEN-R008). Nullable:\
+          \ when null the factory applies a sensible default."
+      - name: timeout
+        type: Duration
+        description: "Per-request budget; once exceeded the adapter raises ProposalStrategyFailedException\
+          \ with reason prefixed LLM_TIMEOUT (F-LAGEN-R006). Nullable: when null the\
+          \ factory applies a default budget."
+      visibility: public
+    - name: LlmGenerationFailureCategory
+      type: enum
+      fields:
+      - name: LLM_UNREACHABLE
+        description: "Communication with the provider could not be established (connection\
+          \ refused, host unreachable, DNS error, misconfigured endpoint). F-LAGEN-R006."
+      - name: LLM_TIMEOUT
+        description: "The query exceeded the configured time budget without returning\
+          \ a response. F-LAGEN-R006, F-LAGEN-R008."
+      - name: LLM_AUTH_FAILED
+        description: The provider rejected the request because credentials were invalid
+          or absent. F-LAGEN-R006.
+      - name: LLM_RESPONSE_EMPTY
+        description: "The query completed successfully but the model returned no content\
+          \ (empty string, no text). F-LAGEN-R006."
+      - name: LLM_RESPONSE_MALFORMED
+        description: "The model returned content that does not satisfy F-LAGEN-R005\
+          \ (not parseable JSON, missing quizSentence/translation, or either field\
+          \ empty/non-string). F-LAGEN-R006."
+      - name: LLM_OTHER
+        description: Any other generation-time failure not covered by the categories
+          above. F-LAGEN-R006.
+      visibility: public
+    interfaces:
+    - name: LemmaAbsenceLlmGeneratorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(LagenConfig config): LemmaAbsenceQuizCandidateGenerator"
+      - signature: "providerIdFor(LagenConfig config): String"
+      visibility: public
+  - name: lagenopenai
+    description: "Internal LangChain4j-OpenAI engine. Only DefaultLemmaAbsenceLlmGeneratorFactory\
+      \ is public (the seam — instantiated once by audit-cli.bootstrap); every collaborator\
+      \ (LemmaAbsenceLlmGenerator, LemmaAbsencePromptBuilder, LemmaAbsenceResponseParser,\
+      \ LangChainErrorClassifier) is package-private so other modules cannot bypass\
+      \ the factory port. Replacing the LLM client implementation never changes this\
+      \ module's public surface."
+    visibility: internal
+    models:
+    - name: LemmaAbsenceLlmRawResponse
+      type: record
+      fields:
+      - name: rawText
+        type: String
+        description: Raw text content returned by the model before JSON parsing. Empty
+          string represents LLM_RESPONSE_EMPTY (F-LAGEN-R006).
+    interfaces:
+    - name: LemmaAbsencePromptBuilder
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "buildSystemPrompt(): String"
+      - signature: "buildUserPrompt(LemmaAbsenceCorrectionContext context): String"
+      visibility: internal
+    - name: LemmaAbsenceResponseParser
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "parse(LemmaAbsenceLlmRawResponse raw, String taskId, String strategyName):\
+          \ LemmaAbsenceGeneratorResponse"
+      visibility: internal
+    - name: LangChainErrorClassifier
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "classify(Throwable cause): LlmGenerationFailureCategory"
+      visibility: internal
+    implementations:
+    - name: DefaultLemmaAbsenceLlmGeneratorFactory
+      types:
+      - Component
+      visibility: public
+      implements:
+      - LemmaAbsenceLlmGeneratorFactory
+    - name: LemmaAbsenceLlmGenerator
+      requiresInject:
+      - name: config
+        type: LagenConfig
+      - name: promptBuilder
+        type: LemmaAbsencePromptBuilder
+      - name: responseParser
+        type: LemmaAbsenceResponseParser
+      - name: errorClassifier
+        type: LangChainErrorClassifier
+      - name: strategyName
+        type: String
+        description: Strategy name embedded in any ProposalStrategyFailedException
+          raised by this adapter. Wired to 'lemma-absence-llm' (F-LAGEN-R001) by the
+          factory.
+      types:
+      - Component
+      implements:
+      - LemmaAbsenceQuizCandidateGenerator
+    - name: DefaultLemmaAbsencePromptBuilder
+      types:
+      - Component
+      implements:
+      - LemmaAbsencePromptBuilder
+    - name: DefaultLemmaAbsenceResponseParser
+      types:
+      - Component
+      implements:
+      - LemmaAbsenceResponseParser
+    - name: DefaultLangChainErrorClassifier
+      types:
+      - Component
+      implements:
+      - LangChainErrorClassifier
 features:
 - id: FEAT-DLABS
   name: Diagnosticos Tipados para el Analizador de Ausencia de Lemas
@@ -14488,6 +14695,437 @@ features:
     - label: "Opcion C: Diferido; se decide mas adelante segun cuantos consumidores\
         \ reales terminen usando `quizSentence` vs `sentence`."
     answer: "Pendiente. No bloquea este requerimiento: ambos campos coexisten."
+- id: f0b4e57b-7c0f-4e3e-b9b3-843aef216a67
+  name: LAPS engine public visibility
+  description: Describe what problem this feature solves for the user.
+  code: F-LEPV
+  rules:
+  - id: 27ac13c5-bc70-4e9b-96c3-3315542d6835
+    name: Rule name
+    severity: high
+    description: What this rule ensures
+    errorMessage: User-facing error message
+    validation: AUTO_VALIDATED
+  journeys:
+  - id: 86e348a5-bfdf-4c5e-beef-aa0113168e38
+    name: Journey name
+    steps:
+    - Step 1
+    - Step 2
+    validation: AUTO_VALIDATED
+- id: FEAT-LAGEN
+  name: Generador real de candidatos de quiz para LEMMA_ABSENCE basado en LLM
+  description: |-
+    **Que**: Reemplaza el candidato canned de la estrategia de propuesta para `LEMMA_ABSENCE` por uno generado en vivo por un modelo de lenguaje, alimentado por todo el `LemmaAbsenceCorrectionContext` poblado.
+
+    **Por que**: Tras esta iteracion, lo que el operador ve archivado al correr `revise task <id>` es contenido producido por un modelo real e identificado como tal en la metadata de cada propuesta, en lugar de la respuesta fija independiente del contexto.
+  code: F-LAGEN
+  rules:
+  - id: F-LAGEN-R001
+    name: El nombre de la estrategia activa para LEMMA_ABSENCE pasa a ser `lemma-absence-llm`
+    severity: critical
+    description: "A partir de este requerimiento la estrategia activa para `LEMMA_ABSENCE`\
+      \ se identifica como `lemma-absence-llm`; el nombre `lemma-absence-mvp` (heredado\
+      \ del comportamiento canned) deja de ser el default observable. Las propuestas\
+      \ archivadas con el nombre viejo siguen siendo legibles e interpretables. 1.\
+      \ El `StrategyId.name` que aparece en cada `RevisionProposal` producida tras\
+      \ esta iteracion es `lemma-absence-llm`. 2. El renombre no retira ni reescribe\
+      \ artefactos historicos; los `RevisionProposal` previos con `StrategyId.name\
+      \ = \"lemma-absence-mvp\"` se preservan tal cual. El cambio cualitativo de comportamiento\
+      \ (R002) y la trazabilidad por proveedor ([F-LAGEN-R009](#F-LAGEN-R009)) justifican\
+      \ el renombre: cualquier persona que abra una propuesta archivada debe poder\
+      \ distinguir la version canned legacy de la version basada en modelo con solo\
+      \ leer `StrategyId.name`."
+    validation: AUTO_VALIDATED
+  - id: F-LAGEN-R002
+    name: El comportamiento por defecto deja de ser canned
+    severity: critical
+    description: "Tras esta iteracion, los candidatos para `LEMMA_ABSENCE` ya no provienen\
+      \ de respuestas canned (fijas, independientes del contexto): el candidato persistido\
+      \ se obtiene consultando un modelo generativo de lenguaje alimentado con el\
+      \ `LemmaAbsenceCorrectionContext` de la tarea. Cualquier mecanismo previo de\
+      \ respuesta fija deja de ser el comportamiento por defecto observable. Si sobrevive\
+      \ como recurso de testing/desarrollo offline, debe quedar claramente no activado\
+      \ en una corrida normal — esta decision sigue abierta en [DOUBT-CANNED-MODE-AVAILABILITY](#DOUBT-CANNED-MODE-AVAILABILITY).\
+      \ ---"
+    validation: AUTO_VALIDATED
+  - id: F-LAGEN-R003
+    name: Toda la informacion poblada del contexto viaja al modelo
+    severity: critical
+    description: "La unica fuente de datos para producir el candidato es el `LemmaAbsenceCorrectionContext`\
+      \ de la tarea, y todos los campos poblados de ese contexto deben informar la\
+      \ generacion. El sistema no consulta otras fuentes (`AuditReport`, plan de refinamiento,\
+      \ curso en disco, otros stores o analizadores). Los campos relevantes son los\
+      \ que [F-LAPS-R007](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R007)\
+      \ enumera y FEAT-RCLAQS extiende: | Campo del contexto | Por que el modelo lo\
+      \ necesita | |--------------------|-------------------------------| | `quizSentence`\
+      \ | Para entender la estructura del ejercicio que esta corrigiendo (tronco +\
+      \ blanks + respuestas + variantes), no solo la oracion plana. | | `sentence`\
+      \ | Oracion plana del ejercicio original; redundante con `quizSentence` pero\
+      \ mas legible para guiar al modelo. | | `translation` | Traduccion al espanol\
+      \ del ejercicio original; permite preservar el sentido general. | | `knowledgeTitle`\
+      \ | Tema del knowledge que contiene el quiz. | | `knowledgeInstructions` | Instrucciones\
+      \ del knowledge (formato, registro, tipo de oracion esperado). | | `topicLabel`\
+      \ | Label del topic; refuerza el dominio semantico. | | `cefrLevel` | Nivel\
+      \ CEFR objetivo (A1/A2/B1/B2). Funciona como guia para el modelo, no como criterio\
+      \ de validacion (ver [F-LAGEN-R010](#F-LAGEN-R010)). | | `misplacedLemmas` |\
+      \ Palabras fuera de nivel del ejercicio original que el modelo debe reemplazar.\
+      \ | | `suggestedLemmas` | Palabras dentro de nivel sugeridas como reemplazo.\
+      \ | La forma exacta de presentacion (orden, etiquetas, idioma de las instrucciones,\
+      \ plantillas) es decision de implementacion y puede iterar sin requerir cambio\
+      \ de requerimiento. Lo que no puede iterar es la presencia de cada campo poblado:\
+      \ si en el futuro se agrega un campo nuevo al contexto, la iteracion correspondiente\
+      \ de la generacion debe incorporarlo."
+    validation: AUTO_VALIDATED
+  - id: F-LAGEN-R004
+    name: Al modelo se le exige producir contenido en la DSL `quizSentence` con su
+      traduccion al espanol
+    severity: critical
+    description: "La consulta al modelo debe transmitir tres responsabilidades funcionales:\
+      \ producir un nuevo ejercicio en la misma DSL `quizSentence` que recibio, coherente\
+      \ al `cefrLevel` y reemplazando los `misplacedLemmas` por opciones de `suggestedLemmas`\
+      \ cuando aplique; entregar exactamente un candidato; y devolver un objeto JSON\
+      \ con dos campos exactos `quizSentence` y `translation`, sin texto adicional.\
+      \ 1. El modelo esta corrigiendo un ejercicio de cloze de un curso de ingles;\
+      \ debe producir un nuevo ejercicio en la misma DSL `quizSentence` que recibio\
+      \ como input, coherente al `cefrLevel` y reemplazando los `misplacedLemmas`\
+      \ por opciones del repertorio sugerido (`suggestedLemmas`) cuando aplique. 2.\
+      \ El ejercicio nuevo es un solo candidato (no varios), reemplaza integramente\
+      \ al original (no es un parche palabra-por-palabra) y la calidad final no se\
+      \ verifica automaticamente — la responsabilidad cae en el operador / proxima\
+      \ auditoria. 3. La salida exigida es un objeto JSON con dos campos exactos:\
+      \ `quizSentence` (string en la DSL de FEAT-QSENT) y `translation` (string con\
+      \ la traduccion al espanol). Sin texto adicional, sin envoltorios, sin explicaciones.\
+      \ La redaccion concreta con la que se transmiten estas responsabilidades es\
+      \ decision de implementacion y se espera que itere con el tiempo. Ningun cambio\
+      \ de redaccion debe forzar un cambio de este requerimiento, mientras se preserven\
+      \ las tres responsabilidades anteriores. ---"
+    validation: AUTO_VALIDATED
+  - id: F-LAGEN-R005
+    name: Una respuesta es utilizable si y solo si entrega un objeto JSON con `quizSentence`
+      y `translation` no vacios
+    severity: critical
+    description: "La respuesta del modelo se considera utilizable solo si es texto\
+      \ interpretable como objeto JSON, contiene `quizSentence` con string no vacio\
+      \ y contiene `translation` con string no vacio. Cualquier otro caso es malformado\
+      \ y dispara la categoria `LLM_RESPONSE_MALFORMED` de [F-LAGEN-R006](#F-LAGEN-R006).\
+      \ Si la respuesta cumple las tres condiciones, el sistema construye un `LemmaAbsenceGeneratorResponse(quizSentence,\
+      \ translation)` y continua el pipeline. Cualquier otro contenido del JSON (campos\
+      \ extra, comentarios) se ignora silenciosamente. El sistema **no** valida en\
+      \ este punto el `quizSentence` contra la gramatica de FEAT-QSENT — esa validacion\
+      \ la realiza el deriver de [F-LAPS-R012](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R012)\
+      \ sobre el `LemmaAbsenceQuizCandidate` materializado y, si falla, produce `ProposalDerivationException`,\
+      \ que es un camino post-generacion fuera del alcance de este requerimiento.\
+      \ ---"
+    validation: AUTO_VALIDATED
+  - id: F-LAGEN-R006
+    name: Toda falla de generacion se reporta con una categoria explicita en el `reason`
+    severity: critical
+    description: "Cuando la generacion no logra producir un `LemmaAbsenceGeneratorResponse`,\
+      \ la falla se propaga via `ProposalStrategyFailedException` (ver [F-LAPS-R015](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R015))\
+      \ con un `reason` que identifica inequivocamente la categoria de falla. | Categoria\
+      \ | Cuando aplica | |-----------|---------------| | `LLM_UNREACHABLE` | El sistema\
+      \ no puede establecer comunicacion con el proveedor del modelo (conexion rechazada,\
+      \ host inalcanzable, error de DNS, endpoint mal configurado). | | `LLM_TIMEOUT`\
+      \ | La consulta excedio el budget de tiempo configurado ([F-LAGEN-R008](#F-LAGEN-R008))\
+      \ sin retornar respuesta. | | `LLM_AUTH_FAILED` | El proveedor rechazo la consulta\
+      \ por credenciales invalidas o ausentes. Irrelevante en un default local sin\
+      \ credencial; relevante cuando el operador apunta a un proveedor que requiere\
+      \ autenticacion. | | `LLM_RESPONSE_EMPTY` | La consulta termino exitosamente\
+      \ pero el modelo no produjo contenido (string vacio, ausencia total de texto).\
+      \ | | `LLM_RESPONSE_MALFORMED` | El modelo produjo contenido pero no cumple\
+      \ [F-LAGEN-R005](#F-LAGEN-R005) (no es JSON parseable, falta `quizSentence`,\
+      \ falta `translation`, alguno esta vacio o no es string). | | `LLM_OTHER` |\
+      \ Cualquier otra falla en tiempo de generacion no contemplada por las categorias\
+      \ anteriores. | La categoria viaja en el `reason` de modo que sea legible por\
+      \ humanos en stderr y archivable como parte de logs. La forma exacta del string\
+      \ (`reason = \"LLM_TIMEOUT\"`, `reason = \"LLM_TIMEOUT: deadline 30s exceeded\"\
+      `, `reason = \"LLM_RESPONSE_MALFORMED: missing field translation\"`) es decision\
+      \ de implementacion, mientras la categoria sea identificable de forma estable."
+    errorMessage: "La estrategia de propuesta 'lemma-absence-llm' no pudo generar\
+      \ un candidato de quiz para la tarea '{taskId}': {categoria}"
+    validation: AUTO_VALIDATED
+  - id: F-LAGEN-R007
+    name: Una falla de generacion no produce candidato parcial ni reintento automatico
+    severity: critical
+    description: "Ante cualquier falla de [F-LAGEN-R006](#F-LAGEN-R006), el sistema\
+      \ no entrega `LemmaAbsenceGeneratorResponse` parcial/default/canned, no reintenta\
+      \ la consulta automaticamente y no envuelve la falla silenciosamente como exito.\
+      \ La excepcion se propaga al dispatcher, que la consolida en el outcome `STRATEGY_FAILED`\
+      \ segun [F-LAPS-R015](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R015)\
+      \ y [F-LAPS-R016](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R016):\
+      \ sin artefacto persistido, sin tocar el curso, la tarea queda en su estado\
+      \ previo. Si el operador quiere un nuevo intento, lo invoca manualmente. Esta\
+      \ regla aplica el limite general de FEAT-LAPS al caso especifico de fallas de\
+      \ generacion contra el modelo. ---"
+    validation: AUTO_VALIDATED
+  - id: F-LAGEN-R008
+    name: El operador puede ajustar el comportamiento de generacion sin recompilar
+      el sistema
+    severity: critical
+    description: "El operador debe poder cambiar proveedor activo, endpoint, identificador\
+      \ de modelo, credencial, temperatura, tokens maximos y timeout sin recompilar\
+      \ el codigo. El conjunto debe venir con defaults razonables que permitan correr\
+      \ el sistema con un proveedor local levantado sin tocar configuracion. | Perilla\
+      \ | Proposito | |---------|-----------| | Proveedor activo | Selecciona contra\
+      \ que proveedor de LLM se realiza la consulta. | | Endpoint del proveedor |\
+      \ Direccion donde el sistema contacta al proveedor cuando corresponda. | | Identificador\
+      \ del modelo | Nombre del modelo a usar dentro del proveedor. | | Credencial\
+      \ de autenticacion | Cuando el proveedor lo exige; ausente cuando el proveedor\
+      \ por defecto local no la requiere. | | Temperatura | Controla el grado de variabilidad\
+      \ de la respuesta del modelo. | | Tokens maximos | Limite superior del tamano\
+      \ de la respuesta. | | Timeout de la consulta | Tiempo maximo antes de declarar\
+      \ `LLM_TIMEOUT` ([F-LAGEN-R006](#F-LAGEN-R006)). | Cambiar el proveedor activo\
+      \ (de un proveedor local a uno cloud, por ejemplo) debe ser una operacion de\
+      \ configuracion, no un cambio de codigo. Esta regla no fija el mecanismo concreto\
+      \ de configuracion ni los valores numericos; solo exige que las perillas existan\
+      \ y sean tuneables sin recompilar."
+    validation: AUTO_VALIDATED
+  - id: F-LAGEN-R009
+    name: El `StrategyId.providerId` identifica al proveedor concreto detras de cada
+      propuesta
+    severity: major
+    description: "Cada `RevisionProposal` producida tras esta iteracion debe poblar\
+      \ el campo `StrategyId.providerId` (declarado por [F-LAPS-R005](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R005))\
+      \ con un identificador estable del proveedor de modelo activo, distinto entre\
+      \ proveedores distintos, suficiente para que un consumidor del artefacto archivado\
+      \ distinga el proveedor que produjo el candidato. La regla funcional exige tres\
+      \ cosas: 1. El campo esta poblado (no nulo, no vacio). 2. Dos invocaciones realizadas\
+      \ contra proveedores distintos resultan en `providerId` distintos. 3. El identificador\
+      \ permite a un consumidor del artefacto archivado distinguir el proveedor que\
+      \ produjo el candidato. El nivel de detalle exacto (solo proveedor, proveedor\
+      \ + modelo, proveedor + modelo + version) queda librado al implementador — ver\
+      \ [DOUBT-PROVIDER-ID-FORMAT](#DOUBT-PROVIDER-ID-FORMAT). Esta regla no redefine\
+      \ el shape del artefacto: `providerId` ya existe en `StrategyId` por [F-LAPS-R005](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R005);\
+      \ este requerimiento se compromete a usarlo. ---"
+    validation: AUTO_VALIDATED
+  - id: F-LAGEN-R010
+    name: El sistema no valida la calidad funcional del candidato producido
+    severity: minor
+    description: "Heredando los limites de [F-LAPS-R017](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R017)\
+      \ y [F-LAPS-R018](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R018),\
+      \ el sistema no aplica ninguna verificacion sobre la calidad funcional del candidato.\
+      \ La unica validacion sobre la respuesta del modelo es la estructural definida\
+      \ en [F-LAGEN-R005](#F-LAGEN-R005). Concretamente, el sistema: 1. **No** re-tokeniza\
+      \ el `quizSentence` para chequear su nivel CEFR. 2. **No** mide el largo del\
+      \ `quizSentence` ni lo rechaza por ser demasiado corto/largo. 3. **No** verifica\
+      \ que los `misplacedLemmas` realmente fueron reemplazados. 4. **No** verifica\
+      \ que las palabras nuevas pertenezcan a `suggestedLemmas`. 5. **No** verifica\
+      \ que el `quizSentence` parsee como DSL valida de FEAT-QSENT (eso lo hace el\
+      \ deriver de [F-LAPS-R012](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R012),\
+      \ post-generacion)."
+    validation: AUTO_VALIDATED
+  - id: F-LAGEN-R011
+    name: La generacion es no-deterministica por defecto
+    severity: minor
+    description: "Heredando [F-LAPS-R010](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R010),\
+      \ dos invocaciones sucesivas sobre el mismo `LemmaAbsenceCorrectionContext`\
+      \ pueden producir candidatos distintos: la temperatura por defecto del modelo\
+      \ ([F-LAGEN-R008](#F-LAGEN-R008)) y la naturaleza generativa del LLM hacen al\
+      \ output no-deterministico. Esta caracteristica no es un bug; el comportamiento\
+      \ de [F-REVAPR-R010](../2026-04-20.01_refiner-revision-approval/REQUIREMENT.md#F-REVAPR-R010)\
+      \ (rechazar re-revise mientras hay propuesta pendiente) evita que esto se convierta\
+      \ en acumulacion accidental de propuestas distintas. ---"
+    validation: AUTO_VALIDATED
+  journeys:
+  - id: F-LAGEN-J001
+    name: El sistema produce un candidato valido en una invocacion
+    validation: AUTO_VALIDATED
+    flow:
+    - id: invocar_generacion
+      action: El operador inicia la revision de una tarea LEMMA_ABSENCE; el sistema
+        toma el LemmaAbsenceCorrectionContext de la tarea
+      then: consultar_modelo
+      gate:
+      - F-LAGEN-R003
+    - id: consultar_modelo
+      action: "El sistema consulta al modelo generativo activo, transmitiendo toda\
+        \ la informacion poblada del contexto y las responsabilidades funcionales\
+        \ esperadas"
+      then: evaluar_respuesta
+      gate:
+      - F-LAGEN-R002
+      - F-LAGEN-R004
+    - id: evaluar_respuesta
+      action: El sistema evalua si la respuesta del modelo es un objeto JSON con quizSentence
+        y translation no vacios
+      outcomes:
+      - when: La respuesta cumple la estructura exigida
+        then: registrar_propuesta
+      - when: La respuesta no cumple la estructura exigida
+        then: fallar_malformado
+      gate:
+      - F-LAGEN-R005
+    - id: registrar_propuesta
+      action: El sistema persiste la propuesta con StrategyId.name = lemma-absence-llm
+        y StrategyId.providerId del proveedor activo
+      result: success
+      gate:
+      - F-LAGEN-R001
+      - F-LAGEN-R009
+    - id: fallar_malformado
+      action: El sistema reporta la falla con categoria LLM_RESPONSE_MALFORMED y no
+        persiste propuesta alguna
+      result: failure
+      gate:
+      - F-LAGEN-R006
+      - F-LAGEN-R007
+  - id: F-LAGEN-J002
+    name: El proveedor del modelo no esta accesible
+    validation: AUTO_VALIDATED
+    flow:
+    - id: invocar_generacion_unreachable
+      action: El operador inicia la revision de una tarea LEMMA_ABSENCE; el sistema
+        toma un LemmaAbsenceCorrectionContext valido
+      then: intentar_consulta_unreachable
+    - id: intentar_consulta_unreachable
+      action: El sistema intenta contactar al proveedor activo pero la comunicacion
+        no se establece
+      then: fallar_unreachable
+    - id: fallar_unreachable
+      action: El sistema reporta la falla con categoria LLM_UNREACHABLE; no persiste
+        propuesta y no reintenta
+      result: failure
+      gate:
+      - F-LAGEN-R006
+      - F-LAGEN-R007
+  - id: F-LAGEN-J003
+    name: La consulta al modelo excede el timeout
+    validation: AUTO_VALIDATED
+    flow:
+    - id: invocar_generacion_timeout
+      action: El operador inicia la revision de una tarea LEMMA_ABSENCE; el sistema
+        toma un LemmaAbsenceCorrectionContext valido
+      then: esperar_respuesta_timeout
+    - id: esperar_respuesta_timeout
+      action: El sistema consulta al modelo y espera la respuesta; el budget configurado
+        para la consulta se agota antes de recibir contenido
+      then: fallar_timeout
+      gate:
+      - F-LAGEN-R008
+    - id: fallar_timeout
+      action: El sistema reporta la falla con categoria LLM_TIMEOUT; no persiste propuesta
+        y no reintenta
+      result: failure
+      gate:
+      - F-LAGEN-R006
+      - F-LAGEN-R007
+  - id: F-LAGEN-J004
+    name: El proveedor rechaza la consulta por autenticacion
+    validation: AUTO_VALIDATED
+    flow:
+    - id: invocar_generacion_auth
+      action: El operador inicia la revision en un entorno donde la credencial configurada
+        para el proveedor activo es invalida o esta ausente
+      then: enviar_consulta_auth
+    - id: enviar_consulta_auth
+      action: El sistema consulta al proveedor activo; el proveedor rechaza la consulta
+        por credenciales
+      then: fallar_auth
+      gate:
+      - F-LAGEN-R008
+    - id: fallar_auth
+      action: El sistema reporta la falla con categoria LLM_AUTH_FAILED; no persiste
+        propuesta y no reintenta
+      result: failure
+      gate:
+      - F-LAGEN-R006
+      - F-LAGEN-R007
+  - id: F-LAGEN-J005
+    name: El modelo responde sin contenido
+    validation: AUTO_VALIDATED
+    flow:
+    - id: invocar_generacion_empty
+      action: El operador inicia la revision de una tarea LEMMA_ABSENCE; el sistema
+        toma un LemmaAbsenceCorrectionContext valido
+      then: recibir_respuesta_vacia
+    - id: recibir_respuesta_vacia
+      action: "El proveedor responde exitosamente pero el contenido textual es nulo,\
+        \ vacio o ausente"
+      then: fallar_empty
+      gate:
+      - F-LAGEN-R005
+    - id: fallar_empty
+      action: El sistema reporta la falla con categoria LLM_RESPONSE_EMPTY; no persiste
+        propuesta y no reintenta
+      result: failure
+      gate:
+      - F-LAGEN-R006
+      - F-LAGEN-R007
+  - id: F-LAGEN-J006
+    name: El modelo responde con contenido que no cumple la estructura exigida
+    validation: AUTO_VALIDATED
+    flow:
+    - id: invocar_generacion_malformed
+      action: El operador inicia la revision de una tarea LEMMA_ABSENCE; el sistema
+        toma un LemmaAbsenceCorrectionContext valido
+      then: recibir_respuesta_malformed
+    - id: recibir_respuesta_malformed
+      action: "El proveedor responde con contenido textual, pero el contenido no es\
+        \ un JSON parseable, o le falta alguno de los campos quizSentence/translation,\
+        \ o alguno de esos campos esta vacio o no es string"
+      then: fallar_malformed_journey
+      gate:
+      - F-LAGEN-R005
+    - id: fallar_malformed_journey
+      action: El sistema reporta la falla con categoria LLM_RESPONSE_MALFORMED; no
+        persiste propuesta y no reintenta
+      result: failure
+      gate:
+      - F-LAGEN-R006
+      - F-LAGEN-R007
+  doubts:
+  - id: DOUBT-PROVIDER-ID-FORMAT
+    question: Que nivel de granularidad expone el `providerId` que ve el consumidor
+      del artefacto archivado?
+    options:
+    - label: "Opcion A: **Solo el proveedor** (ejemplos: `local`, `openai`, `anthropic`).\
+        \ Mas estable; un cambio de modelo dentro del mismo proveedor no se refleja\
+        \ en el `providerId`."
+    - label: "Opcion B: **Proveedor + modelo** (ejemplos: `local:gemma-2b-it`, `openai:gpt-4o-mini`).\
+        \ Mas detalle para diagnostico; el `providerId` cambia cada vez que el operador\
+        \ cambia de modelo."
+    - label: "Opcion C: **Proveedor + modelo + version** (ejemplos: `openai:gpt-4o-mini:2024-07-18`).\
+        \ Maximo detalle; util para reproducibilidad, fragil si la version no es siempre\
+        \ conocida en el momento de la generacion."
+    answer: Pendiente.
+  - id: DOUBT-CANNED-MODE-AVAILABILITY
+    question: El sistema debe seguir admitiendo un modo de generacion canned para
+      tests / desarrollo offline?
+    options:
+    - label: "Opcion A: **Se elimina por completo.** Cualquier corrida del sistema\
+        \ requiere un proveedor de modelo disponible."
+    - label: "Opcion B: **Se conserva como opcion explicita** que el operador puede\
+        \ activar (no es el default; nadie lo activa accidentalmente)."
+    - label: "Opcion C: **Se conserva pero solo accesible en escenarios de testing**,\
+        \ sin una superficie publica que un operador pueda activar en una corrida\
+        \ normal."
+    answer: Pendiente.
+dependencies:
+- alias: langchain4j-openai
+  artifact: dev.langchain4j:langchain4j-open-ai:0.36.2
+  scope: compile
+  provides:
+  - type: OpenAiChatModel
+    package: dev.langchain4j.model.openai
+  - type: OpenAiChatModel.OpenAiChatModelBuilder
+    package: dev.langchain4j.model.openai
+- alias: langchain4j-core
+  artifact: dev.langchain4j:langchain4j-core:0.36.2
+  scope: compile
+  provides:
+  - type: ChatLanguageModel
+    package: dev.langchain4j.model.chat
+  - type: ChatMessage
+    package: dev.langchain4j.data.message
+  - type: SystemMessage
+    package: dev.langchain4j.data.message
+  - type: UserMessage
+    package: dev.langchain4j.data.message
+  - type: AiMessage
+    package: dev.langchain4j.data.message
+  - type: Response
+    package: dev.langchain4j.model.output
 language:
   name: java
   version: 17
