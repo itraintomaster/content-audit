@@ -1,7 +1,7 @@
 ---
 patch: F-LAGEN
 requirement: 2026-04-29.01_laps-llm-quiz-candidate-generator
-generated: 2026-04-30T17:45:00Z
+generated: 2026-04-30T19:30:00Z
 ---
 
 # Tech Spec: FEAT-LAGEN — Generador de candidatos respaldado por LLM para LEMMA_ABSENCE
@@ -14,10 +14,8 @@ modules:
   - name: revision-domain
     _change: modify
     packages:
-      - name: strategy
-        _change: delete
       - name: lemmaabsence
-        _change: add
+        _change: modify
         visibility: public
         models:
           - name: LemmaAbsenceGeneratorResponse
@@ -52,7 +50,7 @@ modules:
     _change: modify
     packages:
       - name: lemmaabsence
-        _change: add
+        _change: modify
         implementations:
           - name: CannedLemmaAbsenceQuizCandidateGenerator
             _change: add
@@ -63,19 +61,16 @@ modules:
               - { name: cannedTranslation, type: String }
 ```
 
-## Auditoría de superficie pública del package `lemmaabsence`
-Tras crear el package quedaba la pregunta de si su superficie pública (3 modelos/ports + 2 implementaciones públicas) era estrictamente necesaria o si parte se podía esconder. La auditoría componente-por-componente confirma que cuatro de los cinco son obligatoriamente públicos y el quinto (`LlmGenerationFailureCategory`) no pertenece a este package. **`LemmaAbsenceGeneratorResponse`** es un carrier (P5): aparece como tipo de retorno del port y como valor que `audit-cli.Main.java` y los 5 journey tests de F-LAPS construyen directamente — reducirlo rompe el contrato. **`LemmaAbsenceQuizCandidateGenerator`** es el port hexagonal: lo implementan tanto el generador canned como el adapter LLM en `revision-infrastructure`, lo inyecta `LemmaAbsenceMvpStrategy` y lo construye el composition root como lambda en cada test — no admite reducción. **`LemmaAbsenceMvpStrategy`** y **`CannedLemmaAbsenceQuizCandidateGenerator`** podrían en teoría esconderse detrás de un Factory Seam, pero ambos son construcciones de un solo argumento (la estrategia inyecta el generator; el canned recibe 2 strings) — un factory agregaría +2 componentes (interface + impl) por cada uno para esconder uno solo. La asimetría con el factory LLM (que sí cablea un grafo: HTTP client + prompt builder + parser + classifier) es justificada por asimetría de complejidad real, no falta de simetría arquitectónica. La única reubicación que sí vale la pena es la enum, descrita en la siguiente sección.
-
 ## Mover `LlmGenerationFailureCategory` a `revision-infrastructure.lagen`
-La auditoría de superficie reveló que el único consumidor real de la enum es `LangChainErrorClassifier` (en `revision-infrastructure.lagenopenai`): el adapter clasifica el `Throwable` en una categoría y antepone el nombre de esa categoría como prefijo del `String reason` que viaja en `ProposalStrategyFailedException`. **Cero consumidores en `revision-domain`** — ningún port ni modelo de dominio menciona la enum, y `ProposalStrategyFailedException.reason` sigue siendo un `String` libre por diseño (FEAT-LAPS R015). El argumento original "co-localizar el vocabulario de fallas con el contrato que modula" no aguanta el scrutinio: la enum no modula ningún contrato del dominio, modula el formato del prefix string de un adapter de infraestructura. Mover la enum a `revision-infrastructure.lagen` co-localiza el vocabulario con el factory que clasifica errores, deja `revision-domain` libre de vocabulario LLM, y mantiene la enum visible para el package interno `lagenopenai` (mismo módulo) y para futuros consumidores del CLI sin cruzar dominios.
+La auditoría de superficie reveló que el único consumidor real de la enum es `LangChainErrorClassifier` (en `revision-infrastructure.lagenopenai`): el adapter clasifica el `Throwable` en una categoría y antepone el nombre de esa categoría como prefijo del `String reason` que viaja en `ProposalStrategyFailedException`. **Cero consumidores en `revision-domain`** — ningún port ni modelo de dominio menciona la enum, y `ProposalStrategyFailedException.reason` sigue siendo un `String` libre por diseño (FEAT-LAPS R015). Mover la enum a `revision-infrastructure.lagen` co-localiza el vocabulario con el factory que clasifica errores, deja `revision-domain` libre de vocabulario LLM, y mantiene la enum visible para el package interno `lagenopenai` (mismo módulo) y para futuros consumidores del CLI sin cruzar dominios.
 
 ```architecture
 modules:
   - name: revision-infrastructure
-    _change: add
+    _change: modify
     packages:
       - name: lagen
-        _change: add
+        _change: modify
         models:
           - name: LlmGenerationFailureCategory
             _change: add
@@ -90,62 +85,33 @@ modules:
               - { name: LLM_OTHER }
 ```
 
-## Dependencias LangChain4j auto-contenidas + decisión de API flavor
-Con el bug del formato de patches de Sentinel ya corregido, esta propuesta declara los artefactos LangChain4j que necesita directamente en el bloque `dependencies:` del patch, en vez de pedirle al operador que edite `sentinel.yaml` a mano. Se declaran dos aliases porque los tipos que tocamos están repartidos en dos artefactos: `langchain4j-open-ai:0.36.2` expone solo los tipos `OpenAi*` (el cliente del modelo de chat y su builder), mientras que todo lo que usamos de `dev.langchain4j.data.message` y `dev.langchain4j.model.output` vive en `langchain4j-core:0.36.2` (que `langchain4j-open-ai` ya trae como transitiva). Partir los aliases mantiene cada bloque `provides:` honesto sobre qué JAR exporta los tipos listados — verificado empíricamente inspeccionando ambos JARs con `jar tf` más `javap` — y evita dar la falsa impresión de que `langchain4j-open-ai` exporta `ChatLanguageModel` directamente. Las listas `provides:` están acotadas al **API flavor A** — la superficie fluent legacy `ChatLanguageModel.generate(List<ChatMessage>): Response<AiMessage>` — cerrando la duda lado-arquitecto DOUBT-LANGCHAIN4J-API-FLAVOR. Tres razones llevaron a esa elección: (1) el adapter solo necesita un round-trip con un mensaje de sistema y uno de usuario — el bundleo de parámetros de `ChatRequest` no aporta nada en nuestra forma; (2) el flavor A es la superficie más estable en 0.36.2, y las garantías de structured-output del flavor más nuevo están explícitamente fuera de alcance (REQUIREMENT.md Asunción 6 descarta cualquier necesidad de JSON-mode, function-calling o streaming); (3) mantener angosta la superficie arquitectónica — `ChatMessage`, `Response`, más los tres subtipos de mensaje — evita arrastrar `ChatRequest`/`ChatResponse` al bloque `provides:` del patch, lo que mantiene el contrato de dependencias minimal y más fácil de auditar.
-
-```architecture
-modules:
-  - name: revision-infrastructure
-    _change: add
-    uses: ["langchain4j-openai", "langchain4j-core"]
-dependencies:
-  - alias: langchain4j-openai
-    _change: add
-    artifact: dev.langchain4j:langchain4j-open-ai:0.36.2
-    scope: compile
-    provides:
-      - { type: OpenAiChatModel, package: dev.langchain4j.model.openai }
-      - { type: OpenAiChatModel.OpenAiChatModelBuilder, package: dev.langchain4j.model.openai }
-  - alias: langchain4j-core
-    _change: add
-    artifact: dev.langchain4j:langchain4j-core:0.36.2
-    scope: compile
-    provides:
-      - { type: ChatLanguageModel, package: dev.langchain4j.model.chat }
-      - { type: ChatMessage, package: dev.langchain4j.data.message }
-      - { type: SystemMessage, package: dev.langchain4j.data.message }
-      - { type: UserMessage, package: dev.langchain4j.data.message }
-      - { type: AiMessage, package: dev.langchain4j.data.message }
-      - { type: Response, package: dev.langchain4j.model.output }
-```
-
 ## Crear `revision-infrastructure` como módulo adapter LangChain4j
 El adapter LLM es una preocupación de infraestructura que depende de `revision-domain` (el port) y `refiner-domain` (el carrier `LemmaAbsenceCorrectionContext` que consume). Siguiendo la convención `*-infrastructure` del proyecto, lo alojamos en su propio módulo para que los módulos de dominio nunca vean LangChain4j. `allowedClients: [audit-cli]` (P8 Qualified Export) impone que este módulo sea un detalle de implementación del composition root del CLI, y nada más — ningún otro módulo puede depender de él, descartando acoplamientos cross-application accidentales. El módulo declara los dos aliases de LangChain4j (`langchain4j-openai` para el cliente OpenAI-compatible + builder, `langchain4j-core` para los tipos de chat-message y response que consume el API fluent legacy).
 
 ```architecture
 modules:
   - name: revision-infrastructure
-    _change: add
-    description: "Infrastructure adapter for the revision phase. Provides the LLM-backed implementation of LemmaAbsenceQuizCandidateGenerator (revision-domain.lemmaabsence port) using LangChain4j against any OpenAI-compatible HTTP endpoint (LM Studio, vLLM, OpenAI cloud, Ollama via openai compat, etc.). Exposes a single Factory Seam (LemmaAbsenceLlmGeneratorFactory + LagenConfig carrier + LlmGenerationFailureCategory enum) so the composition root wires the adapter with one call. The adapter uses LangChain4j's legacy chat-message API flavor, generate(List<ChatMessage>), because F-LAGEN needs explicit system/user messages and a simple text response without exposing ChatRequest/ChatResponse in the architectural surface. The adapter, prompt builder, response parser and error classifier all live in an internal package; only the factory class is public. allowedClients=[audit-cli] enforces that this module is an implementation detail of the CLI composition root only (P8 Qualified Export)."
+    _change: modify
+    description: "Infrastructure adapter for the revision phase."
     dependsOn: ["revision-domain", "refiner-domain"]
     allowedClients: ["audit-cli"]
     uses: ["langchain4j-openai", "langchain4j-core"]
 ```
 
 ## Exponer un único Factory Seam en `revision-infrastructure.lagen`
-El composition root tiene que construir un `LemmaAbsenceQuizCandidateGenerator` totalmente cableado en una sola llamada, y además poblar `StrategyId.providerId` (F-LAGEN-R009) desde la misma configuración. Exponemos dos operaciones en el factory: `create(LagenConfig)` devuelve el port runtime, `providerIdFor(LagenConfig)` devuelve el identificador `provider:model` correspondiente (D6) para que `audit-cli.bootstrap` pueda estampar la estrategia sin re-parsear la config. Ambos viven en el package público `lagen` junto con el carrier `LagenConfig`; el adapter y sus colaboradores se quedan ocultos en el package internal hermano.
+El composition root tiene que construir un `LemmaAbsenceQuizCandidateGenerator` totalmente cableado en una sola llamada, y además poblar `StrategyId.providerId` (F-LAGEN-R009) desde la misma configuración. Exponemos dos operaciones en el factory: `create(LagenConfig)` devuelve el port runtime, `providerIdFor(LagenConfig)` devuelve el identificador `provider:model` correspondiente para que `audit-cli.bootstrap` pueda estampar la estrategia sin re-parsear la config. Ambos viven en el package público `lagen` junto con el carrier `LagenConfig`; el adapter y sus colaboradores se quedan ocultos en el package internal hermano.
 
 ```architecture
 modules:
   - name: revision-infrastructure
-    _change: add
+    _change: modify
     packages:
       - name: lagen
-        _change: add
+        _change: modify
         visibility: public
         interfaces:
           - name: LemmaAbsenceLlmGeneratorFactory
-            _change: add
+            _change: modify
             stereotype: factory
             visibility: public
             exposes:
@@ -163,10 +129,10 @@ F-LAGEN-R008 lista siete perillas que el operador debe poder ajustar sin recompi
 ```architecture
 modules:
   - name: revision-infrastructure
-    _change: add
+    _change: modify
     packages:
       - name: lagen
-        _change: add
+        _change: modify
         models:
           - name: LagenConfig
             _change: add
@@ -182,16 +148,88 @@ modules:
               - { name: timeout, type: Duration }
 ```
 
+## Contrato cerrado: defaults numéricos del factory materializados en `LagenDefaults`
+QA flagged que las firmas de tres tests del factory (`temperature`, `maxTokens`, `timeout` cuando los campos correspondientes de `LagenConfig` son null) decían "non-zero" / "sensible default" / "default timeout" sin pinear el número. Cierro el contrato con valores explícitos y los materializo como un record nominado `LagenDefaults` en el package `lagen`, no como literales escondidos dentro del factory. Razones: (1) los tests pueden asertar igualdad contra `LagenDefaults` (un getter por campo) en lugar de re-tipear `0.7` (acopla el test a la decisión, no al literal); (2) cualquier futura iteración que quiera re-pinear los defaults toca un único punto observable; (3) `LagenDefaults` queda público por la misma razón que `LagenConfig`: es contrato cross-module que `audit-cli` y los tests pueden leer. Los valores elegidos son `temperature=0.7` (cumple Asunción 4: no-cero / no-determinístico, alineado con la práctica usual de LangChain4j para chat), `maxTokens=2048` (suficiente para una respuesta JSON con un `quizSentence` cloze + traducción al español sin truncar), `timeout=Duration.ofSeconds(30)` (alineado con el ejemplo `LLM_TIMEOUT: deadline 30s exceeded` de REQUIREMENT.md R006). El developer DEBE inicializar la única instancia de `LagenDefaults` con esos valores exactos; el QA puede leer los getters y asertar igualdad.
+
+```architecture
+modules:
+  - name: revision-infrastructure
+    _change: modify
+    packages:
+      - name: lagen
+        _change: modify
+        models:
+          - name: LagenDefaults
+            _change: add
+            type: record
+            visibility: public
+            fields:
+              - { name: temperature, type: double }
+              - { name: maxTokens, type: int }
+              - { name: timeout, type: Duration }
+```
+
+## Contrato cerrado: formato de `providerId` y rechazo ante `:` embebido
+QA flagged que la signature `providerIdFor(LagenConfig): String` no declaraba el formato del retorno ni el comportamiento ante caracteres ambiguos. Cierro el contrato así: el formato canónico es `providerName:modelId` con `:` literal como separador (ya pinneado en decisions.md línea 27); el factory **no** normaliza case ni whitespace (`LMStudio:gemma-3-4b-IT` y `lmstudio:gemma-3-4b-it` producen providerIds distintos — el operador es responsable de la consistencia, igual que con cualquier otra env-var); el factory **rechaza con `InvalidProviderIdException`** si `providerName` o `modelId` contienen `:` ellos mismos, porque eso rompe el round-trip de la trazabilidad (un consumidor del artefacto archivado no podría re-parsear `lmstudio:gemma:7b` sin ambigüedad). La excepción carga ambos campos para que el mensaje al operador sea accionable. La validación está en el factory (no en el constructor de `LagenConfig`) porque `LagenConfig` puede tener otros usos donde el `:` no sea relevante; es la concatenación la que introduce la restricción.
+
+```architecture
+modules:
+  - name: revision-infrastructure
+    _change: modify
+    packages:
+      - name: lagen
+        _change: modify
+        models:
+          - name: InvalidProviderIdException
+            _change: add
+            type: exception
+            extends: RuntimeException
+            visibility: public
+            message: "providerName and modelId must not contain ':' (got providerName='%s', modelId='%s'). The ':' is reserved as the providerId separator (provider:model)."
+            fields:
+              - { name: providerName, type: String }
+              - { name: modelId, type: String }
+```
+
+## Contrato cerrado: tabla de mapeo de `DefaultLangChainErrorClassifier.classify`
+QA flagged que la signature `classify(Throwable cause): LlmGenerationFailureCategory` no declaraba qué Throwables corresponden a qué categoría. Cierro el contrato así, en orden de evaluación (el classifier itera la cadena de causas con `Throwable.getCause()` y devuelve la primera categoría matcheada; si nada matchea devuelve `LLM_OTHER`):
+
+| Detector | Categoría | Justificación |
+|---|---|---|
+| Hay `java.net.ConnectException`, `java.net.UnknownHostException` o `java.net.NoRouteToHostException` en la cadena de causas | `LLM_UNREACHABLE` | Comunicación TCP/DNS no establecida — no hay forma de que el proveedor haya recibido la consulta. |
+| Hay `java.net.SocketTimeoutException` o `java.util.concurrent.TimeoutException` en la cadena de causas | `LLM_TIMEOUT` | Conexión establecida pero deadline agotado antes de respuesta — coincide con la categoría que F-LAGEN-R008 menciona como observable. |
+| La excepción raíz es `dev.ai4j.openai4j.OpenAiHttpException` (o subtipo) y su `statusCode()` es `401` o `403` | `LLM_AUTH_FAILED` | LangChain4j legacy expone el status HTTP del proveedor por esta excepción cuando usa el cliente OpenAI-compatible. |
+| El `getMessage()` de la excepción raíz matchea `(?i)\b(unauthorized\|forbidden\|invalid api key\|401\|403)\b` | `LLM_AUTH_FAILED` | Heurística de fallback para proveedores que NO emiten `OpenAiHttpException` (p.ej. wrappers cloud que envuelven el error con su propia clase). Necesario porque LangChain4j 0.36.2 no estandariza un `AuthException` cross-provider. |
+| Cualquier otro `Throwable` no-null | `LLM_OTHER` | Catch-all explícito; nunca devuelve null para una entrada no-null. |
+
+Tres decisiones intencionales sobre las que QA preguntó: (1) **matching por tipo de Throwable, no por HTTP status genérico** — porque el legacy `generate(List<ChatMessage>)` no expone uniformemente el status; sólo `OpenAiHttpException` lo hace explícito y eso queda como detector preferente con la heurística regex como fallback. (2) `LLM_RESPONSE_EMPTY` y `LLM_RESPONSE_MALFORMED` **no aparecen en este classifier** — los emite el `LemmaAbsenceResponseParser` sobre el texto crudo del modelo antes de llegar acá, confirmado por la firma `parse(LemmaAbsenceLlmRawResponse, String, String): LemmaAbsenceGeneratorResponse`. (3) **No agrego un modelo `Map<Class<? extends Throwable>, LlmGenerationFailureCategory>`** porque la lógica del classifier no es una tabla pura: incluye iteración sobre la cadena de causas, inspección de un statusCode tipado, y matching regex sobre el message — un map estático no representaría fielmente el algoritmo.
+
+```architecture
+modules:
+  - name: revision-infrastructure
+    _change: modify
+    packages:
+      - name: lagenopenai
+        _change: modify
+        interfaces:
+          - name: LangChainErrorClassifier
+            _change: add
+            stereotype: service
+            visibility: internal
+            exposes:
+              - signature: "classify(Throwable cause): LlmGenerationFailureCategory"
+```
+
 ## Ocultar el engine LangChain4j en `revision-infrastructure.lagenopenai`
 El adapter es un grafo de colaboradores (cableado del cliente HTTP, template de prompt, validación de forma JSON, clasificación de errores) — exactamente la situación que pide P2: encapsular dentro de un package cuyo único seam público es el factory implementation. Partir el armado de prompt, el parseo de respuesta y la clasificación de errores en sus propias interfaces internal mantiene cada preocupación testeable de forma aislada (el QA agent va a aseverar F-LAGEN-R005 sobre el parser, las categorías F-LAGEN-R006 sobre el classifier, y F-LAGEN-R003/R004 sobre el prompt builder) sin exponer ninguna de ellas. Solo `DefaultLemmaAbsenceLlmGeneratorFactory` es `visibility: public` — todos los colaboradores son package-private para que la elección de LangChain4j pueda ser cambiada sin romper la superficie cross-module.
 
 ```architecture
 modules:
   - name: revision-infrastructure
-    _change: add
+    _change: modify
     packages:
       - name: lagenopenai
-        _change: add
+        _change: modify
         visibility: internal
         models:
           - name: LemmaAbsenceLlmRawResponse
@@ -213,12 +251,6 @@ modules:
             visibility: internal
             exposes:
               - signature: "parse(LemmaAbsenceLlmRawResponse raw, String taskId, String strategyName): LemmaAbsenceGeneratorResponse"
-          - name: LangChainErrorClassifier
-            _change: add
-            stereotype: service
-            visibility: internal
-            exposes:
-              - signature: "classify(Throwable cause): LlmGenerationFailureCategory"
         implementations:
           - name: DefaultLemmaAbsenceLlmGeneratorFactory
             _change: add
@@ -263,7 +295,7 @@ modules:
     _change: modify
     models:
       - name: LagenMode
-        _change: modify
+        _change: add
         type: enum
         visibility: public
         fields:

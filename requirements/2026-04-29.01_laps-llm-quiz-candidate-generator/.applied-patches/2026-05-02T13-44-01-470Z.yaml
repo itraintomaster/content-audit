@@ -1,27 +1,16 @@
 code: FEAT-LAGEN
-description: "FEAT-LAGEN: real LLM-backed candidate generator. Adds revision-infrastructure\
-  \ (LangChain4j adapter behind a Factory Seam, allowedClients=audit-cli), promotes\
-  \ revision-domain.strategy to public AND renames it to revision-domain.lemmaabsence,\
-  \ adds CannedLemmaAbsenceQuizCandidateGenerator (offline mode), moves LlmGenerationFailureCategory\
-  \ to revision-infrastructure.lagen (audited: enum has zero domain consumers, classifier\
-  \ in revision-infrastructure is its only consumer; co-locating it with the factory\
-  \ keeps revision-domain free of LLM vocabulary), and extends audit-cli.bootstrap\
-  \ with LagenMode/LagenConfig env-var resolvers. Self-contained patch with verified\
-  \ LangChain4j dependencies (langchain4j-openai + langchain4j-core).; FEAT-LAGEN\
-  \ — cierre de 3 contratos under-specified flagged por QA: tabla de mapeo de classify(Throwable),\
-  \ formato canonico de providerIdFor (con rechazo ante ':' embebido), defaults numericos\
-  \ del factory materializados como record LagenDefaults.; FEAT-LAGEN cleanup: remove\
-  \ duplicated/superseded handwrittenTests from DefaultLemmaAbsenceLlmGeneratorFactory,\
-  \ LemmaAbsenceLlmGenerator and DefaultLangChainErrorClassifier — replaced by tighter\
-  \ versions added in the contracts-closure patch.; FEAT-LAGEN — restoration patch:\
-  \ re-add audit-cli surface, LlmGenerationFailureCategory enum and revision-infrastructure\
-  \ module attributes that were dropped during prior package-level merges."
+description: "FEAT-LAGEN — cierre de 3 contratos under-specified flagged por QA: tabla\
+  \ de mapeo de classify(Throwable), formato canonico de providerIdFor (con rechazo\
+  \ ante ':' embebido), defaults numericos del factory materializados como record\
+  \ LagenDefaults.; FEAT-LAGEN cleanup: remove duplicated/superseded handwrittenTests\
+  \ from DefaultLemmaAbsenceLlmGeneratorFactory, LemmaAbsenceLlmGenerator and DefaultLangChainErrorClassifier\
+  \ — replaced by tighter versions added in the contracts-closure patch.; FEAT-LAGEN\
+  \ — restoration patch: re-add audit-cli surface, LlmGenerationFailureCategory enum\
+  \ and revision-infrastructure module attributes that were dropped during prior package-level\
+  \ merges."
 modules:
 - name: revision-domain
   packages:
-  - name: strategy
-    visibility: internal
-    _change: delete
   - name: lemmaabsence
     description: "Proposal-strategy SPI for LEMMA_ABSENCE. Public so the composition\
       \ root and revision-infrastructure can both instantiate strategies and the canned\
@@ -117,7 +106,7 @@ modules:
       implements:
       - LemmaAbsenceQuizCandidateGenerator
       _change: add
-    _change: add
+    _change: modify
   _change: modify
 - name: revision-infrastructure
   description: "Infrastructure adapter for the revision phase. Provides the LLM-backed\
@@ -148,85 +137,6 @@ modules:
   - langchain4j-openai
   - langchain4j-core
   packages:
-  - name: lagen
-    description: "Public contract of the LangChain4j-backed candidate generator. Exposes\
-      \ the factory port + the LagenConfig carrier (knobs from F-LAGEN-R008) + the\
-      \ LlmGenerationFailureCategory enum (categories surfaced through the adapter,\
-      \ F-LAGEN-R006). Implementations of the factory and all collaborators live in\
-      \ the sibling 'lagenopenai' internal package."
-    visibility: public
-    models:
-    - name: LagenConfig
-      type: record
-      fields:
-      - name: providerName
-        type: String
-      - name: modelId
-        type: String
-      - name: endpoint
-        type: String
-      - name: apiKey
-        type: String
-      - name: temperature
-        type: Double
-      - name: maxTokens
-        type: Integer
-      - name: timeout
-        type: Duration
-      visibility: public
-      _change: add
-    - name: LlmGenerationFailureCategory
-      type: enum
-      fields:
-      - name: LLM_UNREACHABLE
-      - name: LLM_TIMEOUT
-      - name: LLM_AUTH_FAILED
-      - name: LLM_RESPONSE_EMPTY
-      - name: LLM_RESPONSE_MALFORMED
-      - name: LLM_OTHER
-      visibility: public
-      _change: add
-    - name: LagenDefaults
-      type: record
-      fields:
-      - name: temperature
-        type: double
-        description: "Default temperature applied by the factory when LagenConfig.temperature\
-          \ is null. Pinned to 0.7 (Asuncion 4: non-zero / non-deterministic)."
-      - name: maxTokens
-        type: int
-        description: Default maxTokens applied by the factory when LagenConfig.maxTokens
-          is null. Pinned to 2048 (sized for one cloze quizSentence + translation
-          pair).
-      - name: timeout
-        type: Duration
-        description: Default timeout applied by the factory when LagenConfig.timeout
-          is null. Pinned to Duration.ofSeconds(30) (alineado con el ejemplo LLM_TIMEOUT
-          en REQUIREMENT.md R006).
-      visibility: public
-      _change: add
-    - name: InvalidProviderIdException
-      type: exception
-      fields:
-      - name: providerName
-        type: String
-      - name: modelId
-        type: String
-      message: "providerName and modelId must not contain ':' (got providerName='%s',\
-        \ modelId='%s'). The ':' is reserved as the providerId separator (provider:model)."
-      visibility: public
-      _change: add
-      extends: RuntimeException
-    interfaces:
-    - name: LemmaAbsenceLlmGeneratorFactory
-      stereotype: factory
-      sealed: false
-      exposes:
-      - signature: "create(LagenConfig config): LemmaAbsenceQuizCandidateGenerator"
-      - signature: "providerIdFor(LagenConfig config): String"
-      visibility: public
-      _change: add
-    _change: add
   - name: lagenopenai
     description: "Internal LangChain4j-OpenAI engine. Only DefaultLemmaAbsenceLlmGeneratorFactory\
       \ is public (the seam — instantiated once by audit-cli.bootstrap); every collaborator\
@@ -355,7 +265,7 @@ modules:
           rule: F-LAGEN-R008
       implements:
       - LemmaAbsenceLlmGeneratorFactory
-      _change: add
+      _change: modify
     - name: LemmaAbsenceLlmGenerator
       requiresInject:
       - name: config
@@ -447,7 +357,7 @@ modules:
           rule: F-LAGEN-R006
       implements:
       - LemmaAbsenceQuizCandidateGenerator
-      _change: add
+      _change: modify
     - name: DefaultLemmaAbsencePromptBuilder
       types:
       - Component
@@ -661,12 +571,85 @@ modules:
           rule: F-LAGEN-R006
       implements:
       - LangChainErrorClassifier
+      _change: modify
+    _change: modify
+  - name: lagen
+    visibility: public
+    models:
+    - name: LagenConfig
+      type: record
+      fields:
+      - name: providerName
+        type: String
+      - name: modelId
+        type: String
+      - name: endpoint
+        type: String
+      - name: apiKey
+        type: String
+      - name: temperature
+        type: Double
+      - name: maxTokens
+        type: Integer
+      - name: timeout
+        type: Duration
+      visibility: public
       _change: add
-    _change: add
-  _change: add
+    - name: LagenDefaults
+      type: record
+      fields:
+      - name: temperature
+        type: double
+        description: "Default temperature applied by the factory when LagenConfig.temperature\
+          \ is null. Pinned to 0.7 (Asuncion 4: non-zero / non-deterministic)."
+      - name: maxTokens
+        type: int
+        description: Default maxTokens applied by the factory when LagenConfig.maxTokens
+          is null. Pinned to 2048 (sized for one cloze quizSentence + translation
+          pair).
+      - name: timeout
+        type: Duration
+        description: Default timeout applied by the factory when LagenConfig.timeout
+          is null. Pinned to Duration.ofSeconds(30) (alineado con el ejemplo LLM_TIMEOUT
+          en REQUIREMENT.md R006).
+      visibility: public
+      _change: add
+    - name: InvalidProviderIdException
+      type: exception
+      fields:
+      - name: providerName
+        type: String
+      - name: modelId
+        type: String
+      message: "providerName and modelId must not contain ':' (got providerName='%s',\
+        \ modelId='%s'). The ':' is reserved as the providerId separator (provider:model)."
+      visibility: public
+      _change: add
+      extends: RuntimeException
+    - name: LlmGenerationFailureCategory
+      type: enum
+      fields:
+      - name: LLM_UNREACHABLE
+      - name: LLM_TIMEOUT
+      - name: LLM_AUTH_FAILED
+      - name: LLM_RESPONSE_EMPTY
+      - name: LLM_RESPONSE_MALFORMED
+      - name: LLM_OTHER
+      visibility: public
+      _change: add
+    interfaces:
+    - name: LemmaAbsenceLlmGeneratorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(LagenConfig config): LemmaAbsenceQuizCandidateGenerator"
+      - signature: "providerIdFor(LagenConfig config): String"
+      visibility: public
+      _change: modify
+    _change: modify
+  _change: modify
 - name: audit-cli
   dependsOn:
-  - revision-infrastructure
   - audit-application
   - audit-domain
   - course-domain
@@ -676,6 +659,7 @@ modules:
   - audit-infrastructure
   - refiner-domain
   - revision-domain
+  - revision-infrastructure
   models:
   - name: LagenMode
     type: enum
@@ -691,9 +675,6 @@ modules:
     _change: add
   packages:
   - name: bootstrap
-    description: "Env-var -> domain-object parsing plus composition-root helpers translating\
-      \ external inputs (workdir, approval mode, proposal strategy selection, LAGEN\
-      \ mode + LLM config) into typed values consumed by the engine factories."
     visibility: internal
     models:
     - name: InvalidLagenModeException

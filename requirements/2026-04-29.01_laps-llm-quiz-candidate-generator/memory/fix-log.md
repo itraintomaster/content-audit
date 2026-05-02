@@ -1,1 +1,4 @@
 # Fix Log
+
+2026-04-30 — qa-tester — First test patch proposed for FEAT-LAGEN had a critical regression: `revision-domain.lemmaabsence` package would have been silently downgraded from `visibility: public` to `internal` because the proposer normalised the field when my YAML input did not declare it. Re-emitted the patch declaring both packages (`lemmaabsence` public, `lagenopenai` internal) IN FULL with `_change: modify` and every sibling repeated verbatim, plus `visibility:` explicit on both. 14 modifications, 0 conflicts.
+  why: when `_change: modify` is implied on a package, the proposer rewrites the whole package node from the input — any field absent from input collapses to the framework default. Always re-emit the full package state when proposing tests at impl level inside it, never trust round-trip preservation.

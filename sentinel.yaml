@@ -5370,11 +5370,102 @@ modules:
       implements:
       - ProposalStrategySelector
     - name: DefaultLagenModeResolver
+      types:
+      - Component
       visibility: public
+      handwrittenTests:
+      - name: resolve returns LagenMode.LLM when the env value is null (default per
+          R013)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R013
+      - name: resolve returns LagenMode.LLM when the env value is an empty or whitespace-only
+          string (default per R013)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R013
+      - name: resolve returns LagenMode.LLM when the env value is 'llm' (explicit
+          dynamic mode opt-in per R013)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R013
+      - name: resolve returns LagenMode.CANNED when the env value is 'canned' (explicit
+          fixed-mode opt-in per R013)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R013
+      - name: "resolve accepts the mode value case-insensitively ('LLM', 'CANNED',\
+          \ 'CaNnEd' all parse) per R013"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R013
+      - name: resolve raises InvalidLagenModeException carrying the offending value
+          when the env value is not a recognised mode (fail-fast per R014)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R014
+      - name: InvalidLagenModeException raised by resolve has a message that identifies
+          the unrecognised mode value declared by the operator (per R014)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R014
       implements:
       - LagenModeResolver
     - name: DefaultLagenConfigResolver
+      types:
+      - Component
       visibility: public
+      handwrittenTests:
+      - name: resolve returns a LagenConfig populated from every CONTENT_AUDIT_LAGEN_*
+          env entry when all required keys are present and valid
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R008
+      - name: resolve returns LagenConfig with apiKey=null when the apiKey env entry
+          is absent (knob nullable per R008)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R008
+      - name: resolve returns LagenConfig with temperature=null when the temperature
+          env entry is absent (factory will substitute LagenDefaults.temperature)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R008
+      - name: resolve returns LagenConfig with maxTokens=null when the maxTokens env
+          entry is absent (factory will substitute LagenDefaults.maxTokens)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R008
+      - name: resolve returns LagenConfig with timeout=null when the timeout env entry
+          is absent (factory will substitute LagenDefaults.timeout)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R008
+      - name: resolve raises InvalidLagenConfigException identifying the temperature
+          env key when its value is not a parseable number (fail-fast per R014)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R014
+      - name: resolve raises InvalidLagenConfigException identifying the timeout env
+          key when its value is not a positive duration (fail-fast per R014)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R014
+      - name: resolve raises InvalidLagenConfigException identifying the maxTokens
+          env key when its value is not a positive integer (fail-fast per R014)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R014
+      - name: InvalidLagenConfigException raised by resolve carries both the offending
+          env-var key and a parse-failure detail per R014
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R014
+      - name: resolve raises InvalidLagenConfigException identifying the providerName
+          env key when its value is missing or empty (fail-fast per R014)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R014
       implements:
       - LagenConfigResolver
 - name: nlp-infrastructure
@@ -6444,6 +6535,17 @@ modules:
       types:
       - Component
       visibility: public
+      handwrittenTests:
+      - name: should stamp StrategyId.name = 'lemma-absence-llm' on every produced
+          proposal
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R001
+      - name: should stamp StrategyId.providerId from the injected generator's provider
+          on every proposal
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R009
       implements:
       - LemmaAbsenceProposalStrategy
     - name: CannedLemmaAbsenceQuizCandidateGenerator
@@ -6460,6 +6562,27 @@ modules:
       types:
       - Component
       visibility: public
+      handwrittenTests:
+      - name: "generate returns the same (cannedQuizSentence, cannedTranslation) pair\
+          \ on every invocation"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R012
+      - name: generate returns the injected cannedQuizSentence and cannedTranslation
+          verbatim with no transformation
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R012
+      - name: "generate returns the same response regardless of differences in the\
+          \ LemmaAbsenceCorrectionContext (quizSentence, cefrLevel, misplacedLemmas,\
+          \ suggestedLemmas)"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R012
+      - name: generate performs no I/O and never contacts an external provider
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R012
       implements:
       - LemmaAbsenceQuizCandidateGenerator
 - name: revision-infrastructure
@@ -6562,6 +6685,35 @@ modules:
         description: Any other generation-time failure not covered by the categories
           above. F-LAGEN-R006.
       visibility: public
+    - name: LagenDefaults
+      type: record
+      fields:
+      - name: temperature
+        type: double
+        description: "Default temperature applied by the factory when LagenConfig.temperature\
+          \ is null. Pinned to 0.7 (Asuncion 4: non-zero / non-deterministic)."
+      - name: maxTokens
+        type: int
+        description: Default maxTokens applied by the factory when LagenConfig.maxTokens
+          is null. Pinned to 2048 (sized for one cloze quizSentence + translation
+          pair).
+      - name: timeout
+        type: Duration
+        description: Default timeout applied by the factory when LagenConfig.timeout
+          is null. Pinned to Duration.ofSeconds(30) (alineado con el ejemplo LLM_TIMEOUT
+          en REQUIREMENT.md R006).
+      visibility: public
+    - name: InvalidProviderIdException
+      type: exception
+      fields:
+      - name: providerName
+        type: String
+      - name: modelId
+        type: String
+      message: "providerName and modelId must not contain ':' (got providerName='%s',\
+        \ modelId='%s'). The ':' is reserved as the providerId separator (provider:model)."
+      visibility: public
+      extends: RuntimeException
     interfaces:
     - name: LemmaAbsenceLlmGeneratorFactory
       stereotype: factory
@@ -6612,6 +6764,75 @@ modules:
       types:
       - Component
       visibility: public
+      handwrittenTests:
+      - name: create returns a generator whose strategyName is 'lemma-absence-llm'
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R001
+      - name: providerIdFor yields different values for two LagenConfigs that differ
+          in providerName
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R009
+      - name: providerIdFor yields different values for two LagenConfigs that differ
+          in modelId
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R009
+      - name: "create propagates explicit endpoint, modelId and apiKey from LagenConfig\
+          \ into the configured generator"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R008
+      - name: "create propagates explicit temperature, maxTokens and timeout from\
+          \ LagenConfig into the configured generator"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R008
+      - name: create sends no Authorization header when LagenConfig.apiKey is null
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R008
+      - name: providerIdFor returns 'providerName:modelId' joining the two LagenConfig
+          fields with a literal ':'
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R009
+      - name: providerIdFor preserves the case of providerName and modelId verbatim
+          (no lowercasing)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R009
+      - name: providerIdFor preserves leading and trailing whitespace inside providerName
+          and modelId verbatim (no trimming)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R009
+      - name: providerIdFor raises InvalidProviderIdException when LagenConfig.providerName
+          contains ':'
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R009
+      - name: providerIdFor raises InvalidProviderIdException when LagenConfig.modelId
+          contains ':'
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R009
+      - name: create applies LagenDefaults.temperature (0.7) when LagenConfig.temperature
+          is null
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R011
+      - name: create applies LagenDefaults.maxTokens (2048) when LagenConfig.maxTokens
+          is null
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R008
+      - name: create applies LagenDefaults.timeout (Duration.ofSeconds(30)) when LagenConfig.timeout
+          is null
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R008
       implements:
       - LemmaAbsenceLlmGeneratorFactory
     - name: LemmaAbsenceLlmGenerator
@@ -6631,21 +6852,273 @@ modules:
           factory.
       types:
       - Component
+      handwrittenTests:
+      - name: generate returns a LemmaAbsenceGeneratorResponse parsed from the model
+          output on the happy path
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: generate sends both the system prompt and the user prompt produced from
+          the context to the model
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: generate issues exactly one round-trip to the model per invocation (no
+          automatic retry)
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R007
+      - name: generate raises ProposalStrategyFailedException without persisting any
+          partial response when the parser rejects the raw text
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R007
+      - name: generate prefixes the failure reason with the LlmGenerationFailureCategory
+          name returned by the classifier
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: generate embeds the strategyName 'lemma-absence-llm' inside the message
+          of any ProposalStrategyFailedException it raises
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R001
+      - name: generate raises ProposalStrategyFailedException with reason prefixed
+          LLM_RESPONSE_EMPTY when the model returns empty text
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: generate raises ProposalStrategyFailedException with reason prefixed
+          LLM_RESPONSE_MALFORMED when the model returns text the parser cannot interpret
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: generate raises ProposalStrategyFailedException with reason prefixed
+          LLM_OTHER when the model client throws a Throwable not matched by any specific
+          category
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: generate raises ProposalStrategyFailedException with reason prefixed
+          LLM_UNREACHABLE when the model client throws ConnectException
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: generate raises ProposalStrategyFailedException with reason prefixed
+          LLM_TIMEOUT when the model client throws SocketTimeoutException
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: generate raises ProposalStrategyFailedException with reason prefixed
+          LLM_AUTH_FAILED when the model client throws an OpenAiHttpException with
+          status 401
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
       implements:
       - LemmaAbsenceQuizCandidateGenerator
     - name: DefaultLemmaAbsencePromptBuilder
       types:
       - Component
+      handwrittenTests:
+      - name: buildSystemPrompt instructs the model to return a JSON object with exactly
+          the fields quizSentence and translation
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R004
+      - name: "buildSystemPrompt instructs the model to produce one single candidate,\
+          \ not a list of alternatives"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R004
+      - name: "buildSystemPrompt instructs the model to express quizSentence in the\
+          \ same DSL of the input quiz, replacing misplacedLemmas with options from\
+          \ suggestedLemmas when applicable"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R004
+      - name: buildUserPrompt includes quizSentence from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes sentence from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes translation from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes knowledgeTitle from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes knowledgeInstructions from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes topicLabel from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes cefrLevel from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes every misplacedLemma from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt includes every suggestedLemma from the context
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
+      - name: buildUserPrompt omits a context field that is null without consulting
+          any external source
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R003
       implements:
       - LemmaAbsencePromptBuilder
     - name: DefaultLemmaAbsenceResponseParser
       types:
       - Component
+      handwrittenTests:
+      - name: "parse returns LemmaAbsenceGeneratorResponse(quizSentence, translation)\
+          \ when the raw text is a JSON object with both fields non-empty"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse ignores extra JSON fields beyond quizSentence and translation
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_EMPTY
+          when the raw text is empty
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+          when the raw text is not parseable as JSON
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+          when the JSON object lacks the quizSentence field
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+          when the JSON object lacks the translation field
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+          when quizSentence is an empty string
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+          when translation is an empty string
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+          when quizSentence is not a JSON string
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+          when translation is not a JSON string
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R005
+      - name: parse embeds the taskId in the message of any ProposalStrategyFailedException
+          it raises
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: parse embeds the strategyName in the message of any ProposalStrategyFailedException
+          it raises
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: "parse accepts a quizSentence whose plain-text length looks unusually\
+          \ short or long: only structural validation applies"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R010
+      - name: parse accepts a response without re-checking that misplacedLemmas were
+          replaced or that new words come from suggestedLemmas
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R010
+      - name: parse accepts a response without re-tokenizing the quizSentence to verify
+          its CEFR level
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R010
+      - name: "parse accepts a quizSentence regardless of whether it parses as the\
+          \ FEAT-QSENT DSL: grammar validation is delegated downstream"
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R010
       implements:
       - LemmaAbsenceResponseParser
     - name: DefaultLangChainErrorClassifier
       types:
       - Component
+      handwrittenTests:
+      - name: classify returns LLM_OTHER for a Throwable not matched by any specific
+          category
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify never returns null for any non-null Throwable
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_UNREACHABLE for a ConnectException anywhere in
+          the cause chain
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_UNREACHABLE for an UnknownHostException anywhere
+          in the cause chain
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_UNREACHABLE for a NoRouteToHostException anywhere
+          in the cause chain
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_TIMEOUT for a SocketTimeoutException anywhere in
+          the cause chain
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_TIMEOUT for a java.util.concurrent.TimeoutException
+          anywhere in the cause chain
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode
+          is 401
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode
+          is 403
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
+      - name: classify returns LLM_AUTH_FAILED when the root cause message matches
+          the auth heuristic regex (case-insensitive 'unauthorized' / 'forbidden'
+          / '401' / '403' / 'invalid api key')
+        traceability:
+          feature: FEAT-LAGEN
+          rule: F-LAGEN-R006
       implements:
       - LangChainErrorClassifier
 features:
@@ -14927,6 +15400,75 @@ features:
       \ (rechazar re-revise mientras hay propuesta pendiente) evita que esto se convierta\
       \ en acumulacion accidental de propuestas distintas. ---"
     validation: AUTO_VALIDATED
+  - id: F-LAGEN-R012
+    name: El modo de generacion fija (canned) entrega siempre el mismo candidato predeterminado
+    severity: minor
+    description: "Cuando el sistema opera en modo de generacion fija (canned), el\
+      \ candidato producido para una tarea `LEMMA_ABSENCE` es un `quizSentence` y\
+      \ `translation` predeterminados, identicos en cada invocacion, independientes\
+      \ del `LemmaAbsenceCorrectionContext` recibido y sin contactar a ningun proveedor\
+      \ de modelo. Materializa la opcion B de [DOUBT-CANNED-MODE-AVAILABILITY](#DOUBT-CANNED-MODE-AVAILABILITY):\
+      \ el modo canned se conserva como recurso explicito para escenarios sin proveedor\
+      \ de modelo disponible (desarrollo offline, journeys reproducibles del CLI sin\
+      \ dependencia externa). Como contrapartida, su comportamiento observable queda\
+      \ fijo para que su uso sea inequivoco: 1. El candidato devuelto es siempre el\
+      \ mismo par `(quizSentence, translation)` predeterminado, en cualquier invocacion.\
+      \ 2. El contenido del `LemmaAbsenceCorrectionContext` no influye en el candidato\
+      \ producido (a diferencia de [F-LAGEN-R003](#F-LAGEN-R003), que aplica unicamente\
+      \ al modo dinamico). 3. La invocacion no realiza ninguna consulta a un proveedor\
+      \ de modelo y no puede emitir las categorias de falla de [F-LAGEN-R006](#F-LAGEN-R006).\
+      \ El contenido literal del par predeterminado es decision de implementacion\
+      \ y puede iterar sin requerir cambio de requerimiento; lo que la regla constrine\
+      \ es la idempotencia y la independencia del contexto, no el texto exacto."
+    validation: AUTO_VALIDATED
+  - id: F-LAGEN-R013
+    name: El operador puede elegir el modo de generacion; el default es dinamico y
+      el modo fijo es opt-in explicito
+    severity: critical
+    description: "El operador puede elegir entre dos modos de generacion de candidato:\
+      \ dinamico (consultando un modelo generativo, comportamiento gobernado por [F-LAGEN-R002](#F-LAGEN-R002)\
+      \ y [F-LAGEN-R003](#F-LAGEN-R003)) y fijo / canned (gobernado por [F-LAGEN-R012](#F-LAGEN-R012)).\
+      \ El default observable en una corrida sin configuracion explicita es dinamico;\
+      \ el modo fijo solo se activa cuando el operador lo solicita de forma explicita.\
+      \ 1. Una corrida del sistema sin ninguna intervencion del operador sobre el\
+      \ modo opera en modo dinamico — esto preserva [F-LAGEN-R002](#F-LAGEN-R002)\
+      \ (el comportamiento por defecto deja de ser canned) como una garantia visible\
+      \ en cada `revise task <id>`. 2. El modo fijo solo se activa cuando el operador\
+      \ declara explicitamente que lo quiere; nadie debe poder activarlo accidentalmente\
+      \ o por omision. 3. Si el operador solicita un modo no reconocido, el sistema\
+      \ lo reporta de forma observable antes de ejecutar cualquier operacion de revision\
+      \ (consistente con [F-LAGEN-R014](#F-LAGEN-R014)). Esta regla cierra [DOUBT-CANNED-MODE-AVAILABILITY](#DOUBT-CANNED-MODE-AVAILABILITY)\
+      \ en favor de la opcion B y la documenta como parte de la fuente funcional,\
+      \ de modo que un auditor que abre este requerimiento pueda confirmar la garantia\
+      \ de \"default dinamico, canned opt-in\" sin recurrir a notas internas."
+    errorMessage: "Modo de generacion no reconocido: '{modo}'. Valores admitidos:\
+      \ dinamico, fijo."
+    validation: AUTO_VALIDATED
+  - id: F-LAGEN-R014
+    name: La configuracion del operador se valida atomicamente antes de ejecutar cualquier
+      operacion de revision
+    severity: major
+    description: "La configuracion declarada por el operador ([F-LAGEN-R008](#F-LAGEN-R008))\
+      \ y la seleccion del modo ([F-LAGEN-R013](#F-LAGEN-R013)) se interpretan en\
+      \ una sola pasada al iniciar el sistema. Cualquier valor invalido (modo no reconocido,\
+      \ temperatura no numerica, timeout no positivo, tokens maximos no positivo,\
+      \ etc.) se reporta de forma observable antes de ejecutar la primera operacion\
+      \ de revision, no durante. 1. La interpretacion de la configuracion ocurre una\
+      \ sola vez al inicio de la corrida; las operaciones posteriores de revision\
+      \ asumen valores ya validados y no vuelven a parsear la configuracion del operador.\
+      \ 2. Si algun valor declarado por el operador es invalido, el sistema reporta\
+      \ el error antes de invocar al modelo, antes de tocar el curso, antes de gastar\
+      \ tokens o tiempo de proveedor, y antes de modificar artefactos archivados.\
+      \ 3. El reporte identifica que perilla resulto invalida y por que; el operador\
+      \ puede corregirlo sin necesidad de rastrear fallas posteriores en logs de revision.\
+      \ El operador no debe descubrir un typo en su configuracion despues de haber\
+      \ gastado tokens contra un proveedor mal apuntado o despues de que el sistema\
+      \ haya tocado un curso. Esta regla protege la promesa de [F-LAGEN-R008](#F-LAGEN-R008)\
+      \ (perillas tuneables) garantizando que las perillas mal puestas se detecten\
+      \ antes de causar costo o efecto observable."
+    errorMessage: "Configuracion invalida en '{perilla}': {detalle}. Corregir antes\
+      \ de re-ejecutar."
+    validation: AUTO_VALIDATED
   journeys:
   - id: F-LAGEN-J001
     name: El sistema produce un candidato valido en una invocacion
@@ -14970,6 +15512,8 @@ features:
       gate:
       - F-LAGEN-R006
       - F-LAGEN-R007
+    testModule: revision-infrastructure
+    testPackage: com.learney.contentaudit.revisioninfrastructure.lagenopenai
   - id: F-LAGEN-J002
     name: El proveedor del modelo no esta accesible
     validation: AUTO_VALIDATED
@@ -14989,6 +15533,8 @@ features:
       gate:
       - F-LAGEN-R006
       - F-LAGEN-R007
+    testModule: revision-infrastructure
+    testPackage: com.learney.contentaudit.revisioninfrastructure.lagenopenai
   - id: F-LAGEN-J003
     name: La consulta al modelo excede el timeout
     validation: AUTO_VALIDATED
@@ -15010,6 +15556,8 @@ features:
       gate:
       - F-LAGEN-R006
       - F-LAGEN-R007
+    testModule: revision-infrastructure
+    testPackage: com.learney.contentaudit.revisioninfrastructure.lagenopenai
   - id: F-LAGEN-J004
     name: El proveedor rechaza la consulta por autenticacion
     validation: AUTO_VALIDATED
@@ -15031,6 +15579,8 @@ features:
       gate:
       - F-LAGEN-R006
       - F-LAGEN-R007
+    testModule: revision-infrastructure
+    testPackage: com.learney.contentaudit.revisioninfrastructure.lagenopenai
   - id: F-LAGEN-J005
     name: El modelo responde sin contenido
     validation: AUTO_VALIDATED
@@ -15052,6 +15602,8 @@ features:
       gate:
       - F-LAGEN-R006
       - F-LAGEN-R007
+    testModule: revision-infrastructure
+    testPackage: com.learney.contentaudit.revisioninfrastructure.lagenopenai
   - id: F-LAGEN-J006
     name: El modelo responde con contenido que no cumple la estructura exigida
     validation: AUTO_VALIDATED
@@ -15074,6 +15626,8 @@ features:
       gate:
       - F-LAGEN-R006
       - F-LAGEN-R007
+    testModule: revision-infrastructure
+    testPackage: com.learney.contentaudit.revisioninfrastructure.lagenopenai
   doubts:
   - id: DOUBT-PROVIDER-ID-FORMAT
     question: Que nivel de granularidad expone el `providerId` que ve el consumidor
@@ -15100,7 +15654,11 @@ features:
     - label: "Opcion C: **Se conserva pero solo accesible en escenarios de testing**,\
         \ sin una superficie publica que un operador pueda activar en una corrida\
         \ normal."
-    answer: Pendiente.
+    answer: "Opcion B. El modo canned se conserva como opcion explicita opt-in del\
+      \ operador. Su comportamiento queda fijado por [F-LAGEN-R012](#F-LAGEN-R012)\
+      \ (idempotente, independiente del contexto, sin contactar proveedor) y la mecanica\
+      \ de seleccion por [F-LAGEN-R013](#F-LAGEN-R013) (default dinamico, canned solo\
+      \ via opt-in explicito)."
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:0.36.2

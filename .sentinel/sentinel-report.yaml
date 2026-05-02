@@ -1,4 +1,4 @@
-generatedAt: 2026-05-02T12:55:08.689617Z
+generatedAt: 2026-05-02T13:44:23.616002Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -5591,45 +5591,658 @@ features:
     healthScore: 75
     verdict: PASSED
 - id: FEAT-LAGEN
-  state: DRAFT
+  state: IMPLEMENTING
   requirementFile: ./requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAGEN-R001
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should stamp StrategyId.name = 'lemma-absence-llm' on every produced proposal
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: LemmaAbsenceMvpStrategy
+    - name: create returns a generator whose strategyName is 'lemma-absence-llm'
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceLlmGeneratorFactory
+    - name: generate embeds the strategyName 'lemma-absence-llm' inside the message
+        of any ProposalStrategyFailedException it raises
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceLlmGenerator
   - ruleId: F-LAGEN-R002
     state: NO_TESTS
   - ruleId: F-LAGEN-R003
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: generate sends both the system prompt and the user prompt produced from
+        the context to the model
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceLlmGenerator
+    - name: buildUserPrompt includes quizSentence from the context
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsencePromptBuilder
+    - name: buildUserPrompt includes sentence from the context
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsencePromptBuilder
+    - name: buildUserPrompt includes translation from the context
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsencePromptBuilder
+    - name: buildUserPrompt includes knowledgeTitle from the context
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsencePromptBuilder
+    - name: buildUserPrompt includes knowledgeInstructions from the context
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsencePromptBuilder
+    - name: buildUserPrompt includes topicLabel from the context
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsencePromptBuilder
+    - name: buildUserPrompt includes cefrLevel from the context
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsencePromptBuilder
+    - name: buildUserPrompt includes every misplacedLemma from the context
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsencePromptBuilder
+    - name: buildUserPrompt includes every suggestedLemma from the context
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsencePromptBuilder
+    - name: buildUserPrompt omits a context field that is null without consulting
+        any external source
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsencePromptBuilder
   - ruleId: F-LAGEN-R004
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: buildSystemPrompt instructs the model to return a JSON object with exactly
+        the fields quizSentence and translation
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsencePromptBuilder
+    - name: "buildSystemPrompt instructs the model to produce one single candidate,\
+        \ not a list of alternatives"
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsencePromptBuilder
+    - name: "buildSystemPrompt instructs the model to express quizSentence in the\
+        \ same DSL of the input quiz, replacing misplacedLemmas with options from\
+        \ suggestedLemmas when applicable"
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsencePromptBuilder
   - ruleId: F-LAGEN-R005
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: generate returns a LemmaAbsenceGeneratorResponse parsed from the model
+        output on the happy path
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceLlmGenerator
+    - name: "parse returns LemmaAbsenceGeneratorResponse(quizSentence, translation)\
+        \ when the raw text is a JSON object with both fields non-empty"
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
+    - name: parse ignores extra JSON fields beyond quizSentence and translation
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when the raw text is not parseable as JSON
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when the JSON object lacks the quizSentence field
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when the JSON object lacks the translation field
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when quizSentence is an empty string
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when translation is an empty string
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when quizSentence is not a JSON string
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when translation is not a JSON string
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
   - ruleId: F-LAGEN-R006
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: generate prefixes the failure reason with the LlmGenerationFailureCategory
+        name returned by the classifier
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceLlmGenerator
+    - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_EMPTY
+        when the model returns empty text
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceLlmGenerator
+    - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when the model returns text the parser cannot interpret
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceLlmGenerator
+    - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_OTHER
+        when the model client throws a Throwable not matched by any specific category
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceLlmGenerator
+    - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_UNREACHABLE
+        when the model client throws ConnectException
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceLlmGenerator
+    - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_TIMEOUT
+        when the model client throws SocketTimeoutException
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceLlmGenerator
+    - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_AUTH_FAILED
+        when the model client throws an OpenAiHttpException with status 401
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceLlmGenerator
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_EMPTY
+        when the raw text is empty
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
+    - name: parse embeds the taskId in the message of any ProposalStrategyFailedException
+        it raises
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
+    - name: parse embeds the strategyName in the message of any ProposalStrategyFailedException
+        it raises
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
+    - name: classify returns LLM_OTHER for a Throwable not matched by any specific
+        category
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLangChainErrorClassifier
+    - name: classify never returns null for any non-null Throwable
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLangChainErrorClassifier
+    - name: classify returns LLM_UNREACHABLE for a ConnectException anywhere in the
+        cause chain
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLangChainErrorClassifier
+    - name: classify returns LLM_UNREACHABLE for an UnknownHostException anywhere
+        in the cause chain
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLangChainErrorClassifier
+    - name: classify returns LLM_UNREACHABLE for a NoRouteToHostException anywhere
+        in the cause chain
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLangChainErrorClassifier
+    - name: classify returns LLM_TIMEOUT for a SocketTimeoutException anywhere in
+        the cause chain
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLangChainErrorClassifier
+    - name: classify returns LLM_TIMEOUT for a java.util.concurrent.TimeoutException
+        anywhere in the cause chain
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLangChainErrorClassifier
+    - name: classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode
+        is 401
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLangChainErrorClassifier
+    - name: classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode
+        is 403
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLangChainErrorClassifier
+    - name: classify returns LLM_AUTH_FAILED when the root cause message matches the
+        auth heuristic regex (case-insensitive 'unauthorized' / 'forbidden' / '401'
+        / '403' / 'invalid api key')
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLangChainErrorClassifier
   - ruleId: F-LAGEN-R007
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: generate issues exactly one round-trip to the model per invocation (no
+        automatic retry)
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceLlmGenerator
+    - name: generate raises ProposalStrategyFailedException without persisting any
+        partial response when the parser rejects the raw text
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: LemmaAbsenceLlmGenerator
   - ruleId: F-LAGEN-R008
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: resolve returns a LagenConfig populated from every CONTENT_AUDIT_LAGEN_*
+        env entry when all required keys are present and valid
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenConfigResolver
+    - name: resolve returns LagenConfig with apiKey=null when the apiKey env entry
+        is absent (knob nullable per R008)
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenConfigResolver
+    - name: resolve returns LagenConfig with temperature=null when the temperature
+        env entry is absent (factory will substitute LagenDefaults.temperature)
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenConfigResolver
+    - name: resolve returns LagenConfig with maxTokens=null when the maxTokens env
+        entry is absent (factory will substitute LagenDefaults.maxTokens)
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenConfigResolver
+    - name: resolve returns LagenConfig with timeout=null when the timeout env entry
+        is absent (factory will substitute LagenDefaults.timeout)
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenConfigResolver
+    - name: "create propagates explicit endpoint, modelId and apiKey from LagenConfig\
+        \ into the configured generator"
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceLlmGeneratorFactory
+    - name: "create propagates explicit temperature, maxTokens and timeout from LagenConfig\
+        \ into the configured generator"
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceLlmGeneratorFactory
+    - name: create sends no Authorization header when LagenConfig.apiKey is null
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceLlmGeneratorFactory
+    - name: create applies LagenDefaults.maxTokens (2048) when LagenConfig.maxTokens
+        is null
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceLlmGeneratorFactory
+    - name: create applies LagenDefaults.timeout (Duration.ofSeconds(30)) when LagenConfig.timeout
+        is null
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceLlmGeneratorFactory
   - ruleId: F-LAGEN-R009
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should stamp StrategyId.providerId from the injected generator's provider
+        on every proposal
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: LemmaAbsenceMvpStrategy
+    - name: providerIdFor yields different values for two LagenConfigs that differ
+        in providerName
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceLlmGeneratorFactory
+    - name: providerIdFor yields different values for two LagenConfigs that differ
+        in modelId
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceLlmGeneratorFactory
+    - name: providerIdFor returns 'providerName:modelId' joining the two LagenConfig
+        fields with a literal ':'
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceLlmGeneratorFactory
+    - name: providerIdFor preserves the case of providerName and modelId verbatim
+        (no lowercasing)
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceLlmGeneratorFactory
+    - name: providerIdFor preserves leading and trailing whitespace inside providerName
+        and modelId verbatim (no trimming)
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceLlmGeneratorFactory
+    - name: providerIdFor raises InvalidProviderIdException when LagenConfig.providerName
+        contains ':'
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceLlmGeneratorFactory
+    - name: providerIdFor raises InvalidProviderIdException when LagenConfig.modelId
+        contains ':'
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceLlmGeneratorFactory
   - ruleId: F-LAGEN-R010
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "parse accepts a quizSentence whose plain-text length looks unusually\
+        \ short or long: only structural validation applies"
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
+    - name: parse accepts a response without re-checking that misplacedLemmas were
+        replaced or that new words come from suggestedLemmas
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
+    - name: parse accepts a response without re-tokenizing the quizSentence to verify
+        its CEFR level
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
+    - name: "parse accepts a quizSentence regardless of whether it parses as the FEAT-QSENT\
+        \ DSL: grammar validation is delegated downstream"
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceResponseParser
   - ruleId: F-LAGEN-R011
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: create applies LagenDefaults.temperature (0.7) when LagenConfig.temperature
+        is null
+      implemented: true
+      passing: false
+      module: revision-infrastructure
+      implementation: DefaultLemmaAbsenceLlmGeneratorFactory
+  - ruleId: F-LAGEN-R012
+    state: FAILING
+    tests:
+    - name: "generate returns the same (cannedQuizSentence, cannedTranslation) pair\
+        \ on every invocation"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: CannedLemmaAbsenceQuizCandidateGenerator
+    - name: generate returns the injected cannedQuizSentence and cannedTranslation
+        verbatim with no transformation
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: CannedLemmaAbsenceQuizCandidateGenerator
+    - name: "generate returns the same response regardless of differences in the LemmaAbsenceCorrectionContext\
+        \ (quizSentence, cefrLevel, misplacedLemmas, suggestedLemmas)"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: CannedLemmaAbsenceQuizCandidateGenerator
+    - name: generate performs no I/O and never contacts an external provider
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: CannedLemmaAbsenceQuizCandidateGenerator
+  - ruleId: F-LAGEN-R013
+    state: FAILING
+    tests:
+    - name: resolve returns LagenMode.LLM when the env value is null (default per
+        R013)
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenModeResolver
+    - name: resolve returns LagenMode.LLM when the env value is an empty or whitespace-only
+        string (default per R013)
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenModeResolver
+    - name: resolve returns LagenMode.LLM when the env value is 'llm' (explicit dynamic
+        mode opt-in per R013)
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenModeResolver
+    - name: resolve returns LagenMode.CANNED when the env value is 'canned' (explicit
+        fixed-mode opt-in per R013)
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenModeResolver
+    - name: "resolve accepts the mode value case-insensitively ('LLM', 'CANNED', 'CaNnEd'\
+        \ all parse) per R013"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenModeResolver
+  - ruleId: F-LAGEN-R014
+    state: FAILING
+    tests:
+    - name: resolve raises InvalidLagenModeException carrying the offending value
+        when the env value is not a recognised mode (fail-fast per R014)
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenModeResolver
+    - name: InvalidLagenModeException raised by resolve has a message that identifies
+        the unrecognised mode value declared by the operator (per R014)
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenModeResolver
+    - name: resolve raises InvalidLagenConfigException identifying the temperature
+        env key when its value is not a parseable number (fail-fast per R014)
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenConfigResolver
+    - name: resolve raises InvalidLagenConfigException identifying the timeout env
+        key when its value is not a positive duration (fail-fast per R014)
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenConfigResolver
+    - name: resolve raises InvalidLagenConfigException identifying the maxTokens env
+        key when its value is not a positive integer (fail-fast per R014)
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenConfigResolver
+    - name: InvalidLagenConfigException raised by resolve carries both the offending
+        env-var key and a parse-failure detail per R014
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenConfigResolver
+    - name: resolve raises InvalidLagenConfigException identifying the providerName
+        env key when its value is missing or empty (fail-fast per R014)
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultLagenConfigResolver
   journeysCoverage:
   - journeyId: F-LAGEN-J001
-    state: NO_TESTS
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_laRespuestaCumpleLaEstructuraExigida_success
+        implemented: false
+        passing: false
+        module: revision-infrastructure
+        implementation: FLagenJ001JourneyTest
+    - pathId: path-2
+      result: failure
+      state: DECLARED
+      tests:
+      - name: path2_laRespuestaNoCumpleLaEstructuraExigida_failure
+        implemented: false
+        passing: false
+        module: revision-infrastructure
+        implementation: FLagenJ001JourneyTest
   - journeyId: F-LAGEN-J002
-    state: NO_TESTS
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: failure
+      state: DECLARED
+      tests:
+      - name: path1_failure
+        implemented: false
+        passing: false
+        module: revision-infrastructure
+        implementation: FLagenJ002JourneyTest
   - journeyId: F-LAGEN-J003
-    state: NO_TESTS
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: failure
+      state: DECLARED
+      tests:
+      - name: path1_failure
+        implemented: false
+        passing: false
+        module: revision-infrastructure
+        implementation: FLagenJ003JourneyTest
   - journeyId: F-LAGEN-J004
-    state: NO_TESTS
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: failure
+      state: DECLARED
+      tests:
+      - name: path1_failure
+        implemented: false
+        passing: false
+        module: revision-infrastructure
+        implementation: FLagenJ004JourneyTest
   - journeyId: F-LAGEN-J005
-    state: NO_TESTS
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: failure
+      state: DECLARED
+      tests:
+      - name: path1_failure
+        implemented: false
+        passing: false
+        module: revision-infrastructure
+        implementation: FLagenJ005JourneyTest
   - journeyId: F-LAGEN-J006
-    state: NO_TESTS
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: failure
+      state: DECLARED
+      tests:
+      - name: path1_failure
+        implemented: false
+        passing: false
+        module: revision-infrastructure
+        implementation: FLagenJ006JourneyTest
   quality:
+    classes:
+    - com.learney.contentaudit.auditcli.bootstrap.DefaultLagenConfigResolver
+    - com.learney.contentaudit.auditcli.bootstrap.DefaultLagenModeResolver
+    - com.learney.contentaudit.revisiondomain.lemmaabsence.CannedLemmaAbsenceQuizCandidateGenerator
+    - com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceMvpStrategy
+    - com.learney.contentaudit.revisioninfrastructure.lagenopenai.DefaultLangChainErrorClassifier
+    - com.learney.contentaudit.revisioninfrastructure.lagenopenai.DefaultLemmaAbsenceLlmGeneratorFactory
+    - com.learney.contentaudit.revisioninfrastructure.lagenopenai.DefaultLemmaAbsencePromptBuilder
+    - com.learney.contentaudit.revisioninfrastructure.lagenopenai.DefaultLemmaAbsenceResponseParser
+    - com.learney.contentaudit.revisioninfrastructure.lagenopenai.LemmaAbsenceLlmGenerator
     thresholds:
       lineCoverage: 70
       branchCoverage: 60
@@ -20486,9 +21099,79 @@ elements:
   - name: DefaultLagenModeResolver
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenModeResolver.java
+    tests:
+    - name: resolve returns LagenMode.LLM when the env value is null (default per
+        R013)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenModeResolverTest.java
+    - name: resolve returns LagenMode.LLM when the env value is an empty or whitespace-only
+        string (default per R013)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenModeResolverTest.java
+    - name: resolve returns LagenMode.LLM when the env value is 'llm' (explicit dynamic
+        mode opt-in per R013)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenModeResolverTest.java
+    - name: resolve returns LagenMode.CANNED when the env value is 'canned' (explicit
+        fixed-mode opt-in per R013)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenModeResolverTest.java
+    - name: "resolve accepts the mode value case-insensitively ('LLM', 'CANNED', 'CaNnEd'\
+        \ all parse) per R013"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenModeResolverTest.java
+    - name: resolve raises InvalidLagenModeException carrying the offending value
+        when the env value is not a recognised mode (fail-fast per R014)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenModeResolverTest.java
+    - name: InvalidLagenModeException raised by resolve has a message that identifies
+        the unrecognised mode value declared by the operator (per R014)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenModeResolverTest.java
   - name: DefaultLagenConfigResolver
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenConfigResolver.java
+    tests:
+    - name: resolve returns a LagenConfig populated from every CONTENT_AUDIT_LAGEN_*
+        env entry when all required keys are present and valid
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenConfigResolverTest.java
+    - name: resolve returns LagenConfig with apiKey=null when the apiKey env entry
+        is absent (knob nullable per R008)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenConfigResolverTest.java
+    - name: resolve returns LagenConfig with temperature=null when the temperature
+        env entry is absent (factory will substitute LagenDefaults.temperature)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenConfigResolverTest.java
+    - name: resolve returns LagenConfig with maxTokens=null when the maxTokens env
+        entry is absent (factory will substitute LagenDefaults.maxTokens)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenConfigResolverTest.java
+    - name: resolve returns LagenConfig with timeout=null when the timeout env entry
+        is absent (factory will substitute LagenDefaults.timeout)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenConfigResolverTest.java
+    - name: resolve raises InvalidLagenConfigException identifying the temperature
+        env key when its value is not a parseable number (fail-fast per R014)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenConfigResolverTest.java
+    - name: resolve raises InvalidLagenConfigException identifying the timeout env
+        key when its value is not a positive duration (fail-fast per R014)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenConfigResolverTest.java
+    - name: resolve raises InvalidLagenConfigException identifying the maxTokens env
+        key when its value is not a positive integer (fail-fast per R014)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenConfigResolverTest.java
+    - name: InvalidLagenConfigException raised by resolve carries both the offending
+        env-var key and a parse-failure detail per R014
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenConfigResolverTest.java
+    - name: resolve raises InvalidLagenConfigException identifying the providerName
+        env key when its value is missing or empty (fail-fast per R014)
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenConfigResolverTest.java
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -23885,9 +24568,33 @@ elements:
   - name: LemmaAbsenceMvpStrategy
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/lemmaabsence/LemmaAbsenceMvpStrategy.java
+    tests:
+    - name: should stamp StrategyId.name = 'lemma-absence-llm' on every produced proposal
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/LemmaAbsenceMvpStrategyTest.java
+    - name: should stamp StrategyId.providerId from the injected generator's provider
+        on every proposal
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/LemmaAbsenceMvpStrategyTest.java
   - name: CannedLemmaAbsenceQuizCandidateGenerator
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/lemmaabsence/CannedLemmaAbsenceQuizCandidateGenerator.java
+    tests:
+    - name: "generate returns the same (cannedQuizSentence, cannedTranslation) pair\
+        \ on every invocation"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/CannedLemmaAbsenceQuizCandidateGeneratorTest.java
+    - name: generate returns the injected cannedQuizSentence and cannedTranslation
+        verbatim with no transformation
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/CannedLemmaAbsenceQuizCandidateGeneratorTest.java
+    - name: "generate returns the same response regardless of differences in the LemmaAbsenceCorrectionContext\
+        \ (quizSentence, cefrLevel, misplacedLemmas, suggestedLemmas)"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/CannedLemmaAbsenceQuizCandidateGeneratorTest.java
+    - name: generate performs no I/O and never contacts an external provider
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/CannedLemmaAbsenceQuizCandidateGeneratorTest.java
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -24009,18 +24716,272 @@ elements:
   - name: DefaultLemmaAbsenceLlmGeneratorFactory
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactory.java
+    tests:
+    - name: create returns a generator whose strategyName is 'lemma-absence-llm'
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactoryTest.java
+    - name: providerIdFor yields different values for two LagenConfigs that differ
+        in providerName
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactoryTest.java
+    - name: providerIdFor yields different values for two LagenConfigs that differ
+        in modelId
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactoryTest.java
+    - name: "create propagates explicit endpoint, modelId and apiKey from LagenConfig\
+        \ into the configured generator"
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactoryTest.java
+    - name: "create propagates explicit temperature, maxTokens and timeout from LagenConfig\
+        \ into the configured generator"
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactoryTest.java
+    - name: create sends no Authorization header when LagenConfig.apiKey is null
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactoryTest.java
+    - name: providerIdFor returns 'providerName:modelId' joining the two LagenConfig
+        fields with a literal ':'
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactoryTest.java
+    - name: providerIdFor preserves the case of providerName and modelId verbatim
+        (no lowercasing)
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactoryTest.java
+    - name: providerIdFor preserves leading and trailing whitespace inside providerName
+        and modelId verbatim (no trimming)
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactoryTest.java
+    - name: providerIdFor raises InvalidProviderIdException when LagenConfig.providerName
+        contains ':'
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactoryTest.java
+    - name: providerIdFor raises InvalidProviderIdException when LagenConfig.modelId
+        contains ':'
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactoryTest.java
+    - name: create applies LagenDefaults.temperature (0.7) when LagenConfig.temperature
+        is null
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactoryTest.java
+    - name: create applies LagenDefaults.maxTokens (2048) when LagenConfig.maxTokens
+        is null
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactoryTest.java
+    - name: create applies LagenDefaults.timeout (Duration.ofSeconds(30)) when LagenConfig.timeout
+        is null
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactoryTest.java
   - name: LemmaAbsenceLlmGenerator
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/LemmaAbsenceLlmGenerator.java
+    tests:
+    - name: generate returns a LemmaAbsenceGeneratorResponse parsed from the model
+        output on the happy path
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/LemmaAbsenceLlmGeneratorTest.java
+    - name: generate sends both the system prompt and the user prompt produced from
+        the context to the model
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/LemmaAbsenceLlmGeneratorTest.java
+    - name: generate issues exactly one round-trip to the model per invocation (no
+        automatic retry)
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/LemmaAbsenceLlmGeneratorTest.java
+    - name: generate raises ProposalStrategyFailedException without persisting any
+        partial response when the parser rejects the raw text
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/LemmaAbsenceLlmGeneratorTest.java
+    - name: generate prefixes the failure reason with the LlmGenerationFailureCategory
+        name returned by the classifier
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/LemmaAbsenceLlmGeneratorTest.java
+    - name: generate embeds the strategyName 'lemma-absence-llm' inside the message
+        of any ProposalStrategyFailedException it raises
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/LemmaAbsenceLlmGeneratorTest.java
+    - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_EMPTY
+        when the model returns empty text
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/LemmaAbsenceLlmGeneratorTest.java
+    - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when the model returns text the parser cannot interpret
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/LemmaAbsenceLlmGeneratorTest.java
+    - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_OTHER
+        when the model client throws a Throwable not matched by any specific category
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/LemmaAbsenceLlmGeneratorTest.java
+    - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_UNREACHABLE
+        when the model client throws ConnectException
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/LemmaAbsenceLlmGeneratorTest.java
+    - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_TIMEOUT
+        when the model client throws SocketTimeoutException
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/LemmaAbsenceLlmGeneratorTest.java
+    - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_AUTH_FAILED
+        when the model client throws an OpenAiHttpException with status 401
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/LemmaAbsenceLlmGeneratorTest.java
   - name: DefaultLemmaAbsencePromptBuilder
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilder.java
+    tests:
+    - name: buildSystemPrompt instructs the model to return a JSON object with exactly
+        the fields quizSentence and translation
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilderTest.java
+    - name: "buildSystemPrompt instructs the model to produce one single candidate,\
+        \ not a list of alternatives"
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilderTest.java
+    - name: "buildSystemPrompt instructs the model to express quizSentence in the\
+        \ same DSL of the input quiz, replacing misplacedLemmas with options from\
+        \ suggestedLemmas when applicable"
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilderTest.java
+    - name: buildUserPrompt includes quizSentence from the context
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilderTest.java
+    - name: buildUserPrompt includes sentence from the context
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilderTest.java
+    - name: buildUserPrompt includes translation from the context
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilderTest.java
+    - name: buildUserPrompt includes knowledgeTitle from the context
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilderTest.java
+    - name: buildUserPrompt includes knowledgeInstructions from the context
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilderTest.java
+    - name: buildUserPrompt includes topicLabel from the context
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilderTest.java
+    - name: buildUserPrompt includes cefrLevel from the context
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilderTest.java
+    - name: buildUserPrompt includes every misplacedLemma from the context
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilderTest.java
+    - name: buildUserPrompt includes every suggestedLemma from the context
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilderTest.java
+    - name: buildUserPrompt omits a context field that is null without consulting
+        any external source
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilderTest.java
   - name: DefaultLemmaAbsenceResponseParser
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParser.java
+    tests:
+    - name: "parse returns LemmaAbsenceGeneratorResponse(quizSentence, translation)\
+        \ when the raw text is a JSON object with both fields non-empty"
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    - name: parse ignores extra JSON fields beyond quizSentence and translation
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_EMPTY
+        when the raw text is empty
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when the raw text is not parseable as JSON
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when the JSON object lacks the quizSentence field
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when the JSON object lacks the translation field
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when quizSentence is an empty string
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when translation is an empty string
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when quizSentence is not a JSON string
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
+        when translation is not a JSON string
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    - name: parse embeds the taskId in the message of any ProposalStrategyFailedException
+        it raises
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    - name: parse embeds the strategyName in the message of any ProposalStrategyFailedException
+        it raises
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    - name: "parse accepts a quizSentence whose plain-text length looks unusually\
+        \ short or long: only structural validation applies"
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    - name: parse accepts a response without re-checking that misplacedLemmas were
+        replaced or that new words come from suggestedLemmas
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    - name: parse accepts a response without re-tokenizing the quizSentence to verify
+        its CEFR level
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    - name: "parse accepts a quizSentence regardless of whether it parses as the FEAT-QSENT\
+        \ DSL: grammar validation is delegated downstream"
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
   - name: DefaultLangChainErrorClassifier
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLangChainErrorClassifier.java
+    tests:
+    - name: classify returns LLM_OTHER for a Throwable not matched by any specific
+        category
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLangChainErrorClassifierTest.java
+    - name: classify never returns null for any non-null Throwable
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLangChainErrorClassifierTest.java
+    - name: classify returns LLM_UNREACHABLE for a ConnectException anywhere in the
+        cause chain
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLangChainErrorClassifierTest.java
+    - name: classify returns LLM_UNREACHABLE for an UnknownHostException anywhere
+        in the cause chain
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLangChainErrorClassifierTest.java
+    - name: classify returns LLM_UNREACHABLE for a NoRouteToHostException anywhere
+        in the cause chain
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLangChainErrorClassifierTest.java
+    - name: classify returns LLM_TIMEOUT for a SocketTimeoutException anywhere in
+        the cause chain
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLangChainErrorClassifierTest.java
+    - name: classify returns LLM_TIMEOUT for a java.util.concurrent.TimeoutException
+        anywhere in the cause chain
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLangChainErrorClassifierTest.java
+    - name: classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode
+        is 401
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLangChainErrorClassifierTest.java
+    - name: classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode
+        is 403
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLangChainErrorClassifierTest.java
+    - name: classify returns LLM_AUTH_FAILED when the root cause message matches the
+        auth heuristic regex (case-insensitive 'unauthorized' / 'forbidden' / '401'
+        / '403' / 'invalid api key')
+      status: EXISTS
+      testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLangChainErrorClassifierTest.java
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -24061,8 +25022,8 @@ elements:
     healthScore: 0
     verdict: PASSED
 testSummary:
-  total: 576
-  passing: 576
+  total: 664
+  passing: 664
   failing: 0
   notImplemented: 0
 qualitySummary:

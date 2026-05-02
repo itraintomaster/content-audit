@@ -228,6 +228,64 @@ Esta caracteristica no es un bug; el comportamiento de [F-REVAPR-R010](../2026-0
 
 ---
 
+### Grupo G - Modo de generacion y validacion de la configuracion
+
+<a id="F-LAGEN-R012"></a>
+### Rule[F-LAGEN-R012] - El modo de generacion fija (canned) entrega siempre el mismo candidato predeterminado
+**Severity**: minor | **Validation**: AUTO_VALIDATED
+
+> Cuando el sistema opera en modo de generacion fija (canned), el candidato producido para una tarea `LEMMA_ABSENCE` es un `quizSentence` y `translation` predeterminados, identicos en cada invocacion, independientes del `LemmaAbsenceCorrectionContext` recibido y sin contactar a ningun proveedor de modelo.
+
+<details><summary>Detail</summary>
+
+Materializa la opcion B de [DOUBT-CANNED-MODE-AVAILABILITY](#DOUBT-CANNED-MODE-AVAILABILITY): el modo canned se conserva como recurso explicito para escenarios sin proveedor de modelo disponible (desarrollo offline, journeys reproducibles del CLI sin dependencia externa). Como contrapartida, su comportamiento observable queda fijo para que su uso sea inequivoco:
+
+1. El candidato devuelto es siempre el mismo par `(quizSentence, translation)` predeterminado, en cualquier invocacion.
+2. El contenido del `LemmaAbsenceCorrectionContext` no influye en el candidato producido (a diferencia de [F-LAGEN-R003](#F-LAGEN-R003), que aplica unicamente al modo dinamico).
+3. La invocacion no realiza ninguna consulta a un proveedor de modelo y no puede emitir las categorias de falla de [F-LAGEN-R006](#F-LAGEN-R006).
+
+El contenido literal del par predeterminado es decision de implementacion y puede iterar sin requerir cambio de requerimiento; lo que la regla constrine es la idempotencia y la independencia del contexto, no el texto exacto.
+
+</details>
+
+<a id="F-LAGEN-R013"></a>
+### Rule[F-LAGEN-R013] - El operador puede elegir el modo de generacion; el default es dinamico y el modo fijo es opt-in explicito
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+> El operador puede elegir entre dos modos de generacion de candidato: dinamico (consultando un modelo generativo, comportamiento gobernado por [F-LAGEN-R002](#F-LAGEN-R002) y [F-LAGEN-R003](#F-LAGEN-R003)) y fijo / canned (gobernado por [F-LAGEN-R012](#F-LAGEN-R012)). El default observable en una corrida sin configuracion explicita es dinamico; el modo fijo solo se activa cuando el operador lo solicita de forma explicita.
+
+<details><summary>Detail</summary>
+
+1. Una corrida del sistema sin ninguna intervencion del operador sobre el modo opera en modo dinamico — esto preserva [F-LAGEN-R002](#F-LAGEN-R002) (el comportamiento por defecto deja de ser canned) como una garantia visible en cada `revise task <id>`.
+2. El modo fijo solo se activa cuando el operador declara explicitamente que lo quiere; nadie debe poder activarlo accidentalmente o por omision.
+3. Si el operador solicita un modo no reconocido, el sistema lo reporta de forma observable antes de ejecutar cualquier operacion de revision (consistente con [F-LAGEN-R014](#F-LAGEN-R014)).
+
+Esta regla cierra [DOUBT-CANNED-MODE-AVAILABILITY](#DOUBT-CANNED-MODE-AVAILABILITY) en favor de la opcion B y la documenta como parte de la fuente funcional, de modo que un auditor que abre este requerimiento pueda confirmar la garantia de "default dinamico, canned opt-in" sin recurrir a notas internas.
+
+**Error**: "Modo de generacion no reconocido: '{modo}'. Valores admitidos: dinamico, fijo."
+
+</details>
+
+<a id="F-LAGEN-R014"></a>
+### Rule[F-LAGEN-R014] - La configuracion del operador se valida atomicamente antes de ejecutar cualquier operacion de revision
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> La configuracion declarada por el operador ([F-LAGEN-R008](#F-LAGEN-R008)) y la seleccion del modo ([F-LAGEN-R013](#F-LAGEN-R013)) se interpretan en una sola pasada al iniciar el sistema. Cualquier valor invalido (modo no reconocido, temperatura no numerica, timeout no positivo, tokens maximos no positivo, etc.) se reporta de forma observable antes de ejecutar la primera operacion de revision, no durante.
+
+<details><summary>Detail</summary>
+
+1. La interpretacion de la configuracion ocurre una sola vez al inicio de la corrida; las operaciones posteriores de revision asumen valores ya validados y no vuelven a parsear la configuracion del operador.
+2. Si algun valor declarado por el operador es invalido, el sistema reporta el error antes de invocar al modelo, antes de tocar el curso, antes de gastar tokens o tiempo de proveedor, y antes de modificar artefactos archivados.
+3. El reporte identifica que perilla resulto invalida y por que; el operador puede corregirlo sin necesidad de rastrear fallas posteriores en logs de revision.
+
+El operador no debe descubrir un typo en su configuracion despues de haber gastado tokens contra un proveedor mal apuntado o despues de que el sistema haya tocado un curso. Esta regla protege la promesa de [F-LAGEN-R008](#F-LAGEN-R008) (perillas tuneables) garantizando que las perillas mal puestas se detecten antes de causar costo o efecto observable.
+
+**Error**: "Configuracion invalida en '{perilla}': {detalle}. Corregir antes de re-ejecutar."
+
+</details>
+
+---
+
 ## Contexto
 
 FEAT-LAPS dejo declarada la pieza funcional que produce, para una tarea `LEMMA_ABSENCE`, un `LemmaAbsenceGeneratorResponse` (`quizSentence` en la DSL de FEAT-QSENT + `translation` al espanol) a partir del `LemmaAbsenceCorrectionContext`. Hasta hoy esa pieza devolvia siempre una respuesta canned (fija, no proveniente de un modelo real): el contenido del candidato no dependia del contexto, y permitia ejercitar journeys end-to-end sin corregir contenido linguistico real.
@@ -461,15 +519,15 @@ journeys:
 
 <a id="DOUBT-CANNED-MODE-AVAILABILITY"></a>
 ### Doubt[DOUBT-CANNED-MODE-AVAILABILITY] - El sistema debe seguir admitiendo un modo de generacion canned para tests / desarrollo offline?
-**Status**: OPEN
+**Status**: RESOLVED
 
-Hoy el sistema produce candidatos canned. Tras esta iteracion el comportamiento por defecto deja de serlo ([F-LAGEN-R002](#F-LAGEN-R002)). La pregunta funcional pendiente es si el operador / desarrollador conserva la posibilidad de pedir explicitamente respuestas canned (por ejemplo para correr journeys de FEAT-LAPS sin un proveedor de LLM disponible):
+Hoy el sistema produce candidatos canned. Tras esta iteracion el comportamiento por defecto deja de serlo ([F-LAGEN-R002](#F-LAGEN-R002)). La pregunta funcional pendiente era si el operador / desarrollador conserva la posibilidad de pedir explicitamente respuestas canned (por ejemplo para correr journeys de FEAT-LAPS sin un proveedor de LLM disponible):
 
 - [ ] Opcion A: **Se elimina por completo.** Cualquier corrida del sistema requiere un proveedor de modelo disponible.
-- [ ] Opcion B: **Se conserva como opcion explicita** que el operador puede activar (no es el default; nadie lo activa accidentalmente).
+- [x] Opcion B: **Se conserva como opcion explicita** que el operador puede activar (no es el default; nadie lo activa accidentalmente).
 - [ ] Opcion C: **Se conserva pero solo accesible en escenarios de testing**, sin una superficie publica que un operador pueda activar en una corrida normal.
 
-**Answer**: Pendiente.
+**Answer**: Opcion B. El modo canned se conserva como opcion explicita opt-in del operador. Su comportamiento queda fijado por [F-LAGEN-R012](#F-LAGEN-R012) (idempotente, independiente del contexto, sin contactar proveedor) y la mecanica de seleccion por [F-LAGEN-R013](#F-LAGEN-R013) (default dinamico, canned solo via opt-in explicito).
 
 ---
 

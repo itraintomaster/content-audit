@@ -59,6 +59,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: LlmGenerationFailureCategory - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.lagen.LagenDefaults");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LagenDefaults - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.lagen.InvalidProviderIdException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: InvalidProviderIdException - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.revisioninfrastructure.lagen.LemmaAbsenceLlmGeneratorFactory");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaAbsenceLlmGeneratorFactory - " + e.getMessage());
