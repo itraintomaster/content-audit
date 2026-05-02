@@ -63,9 +63,9 @@ import com.learney.contentaudit.revisiondomain.engine.DefaultLemmaAbsenceProposa
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory;
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionValidatorFactory;
 import com.learney.contentaudit.revisiondomain.engine.LemmaAbsenceProposalStrategyRegistryConfig;
-import com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceMvpStrategy;
-import com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceGeneratorResponse;
-import com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceQuizCandidateGenerator;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceMvpStrategy;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceGeneratorResponse;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceQuizCandidateGenerator;
 import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
 import java.nio.file.Path;
 import java.time.Instant;
@@ -267,7 +267,7 @@ public class FLapsJ001JourneyTest {
 
         LemmaAbsenceMvpStrategy strategy = new LemmaAbsenceMvpStrategy(happyGenerator);
         LemmaAbsenceProposalStrategyRegistryConfig registryConfig =
-                new LemmaAbsenceProposalStrategyRegistryConfig(List.of(strategy), "lemma-absence-mvp");
+                new LemmaAbsenceProposalStrategyRegistryConfig(List.of(strategy), "lemma-absence-llm");
         DefaultLemmaAbsenceProposalStrategyRegistry registry =
                 new DefaultLemmaAbsenceProposalStrategyRegistry(registryConfig);
 
@@ -344,7 +344,7 @@ public class FLapsJ001JourneyTest {
         // ── Assert terminal result: success (APPROVED_APPLIED) ───────────────────
         // Gate F-LAPS-R002: the LAPS strategy pipeline handled the task (not bypass)
         // Gate F-LAPS-R001: elementAfter != elementBefore (different quizSentence)
-        // Gate F-LAPS-R005: proposal has strategyId "lemma-absence-mvp" and reviserKind set
+        // Gate F-LAPS-R005: proposal has strategyId "lemma-absence-llm" and reviserKind set
         // Gate F-LAPS-R014: course.save called → apply successful
         assertEquals(RevisionOutcomeKind.APPROVED_APPLIED, outcome.getKind(),
                 "path-1: happy path must end with APPROVED_APPLIED (R001, R002, R003, R005)");
@@ -355,14 +355,14 @@ public class FLapsJ001JourneyTest {
         assertNotNull(artifact.getProposal(), "proposal must be present in artifact");
 
         // R005: reviserKind must be the strategy name, not "bypass"
-        assertEquals("lemma-absence-mvp", artifact.getProposal().getReviserKind(),
-                "R005: reviserKind must be 'lemma-absence-mvp', not 'bypass'");
+        assertEquals("lemma-absence-llm", artifact.getProposal().getReviserKind(),
+                "R005: reviserKind must be 'lemma-absence-llm', not 'bypass'");
 
         // R005: strategyId carries name and version
         assertNotNull(artifact.getProposal().getStrategyId(),
                 "R005: strategyId must be present in proposal");
-        assertEquals("lemma-absence-mvp", artifact.getProposal().getStrategyId().getName(),
-                "R005: strategyId.name must be 'lemma-absence-mvp'");
+        assertEquals("lemma-absence-llm", artifact.getProposal().getStrategyId().getName(),
+                "R005: strategyId.name must be 'lemma-absence-llm'");
 
         // R001: elementAfter title must match the candidate's DSL (not the original "reads")
         QuizTemplateEntity elementAfterQuiz = artifact.getProposal().getElementAfter().getQuiz();
@@ -481,11 +481,11 @@ public class FLapsJ001JourneyTest {
         // Failing generator: simulates provider down / empty response (R015)
         LemmaAbsenceQuizCandidateGenerator failingGenerator = ctx -> {
             throw new ProposalStrategyFailedException(
-                    "lemma-absence-mvp", TASK_ID, "provider down");
+                    "lemma-absence-llm", TASK_ID, "provider down");
         };
         LemmaAbsenceMvpStrategy strategy = new LemmaAbsenceMvpStrategy(failingGenerator);
         LemmaAbsenceProposalStrategyRegistryConfig registryConfig =
-                new LemmaAbsenceProposalStrategyRegistryConfig(List.of(strategy), "lemma-absence-mvp");
+                new LemmaAbsenceProposalStrategyRegistryConfig(List.of(strategy), "lemma-absence-llm");
         DefaultLemmaAbsenceProposalStrategyRegistry registry =
                 new DefaultLemmaAbsenceProposalStrategyRegistry(registryConfig);
         DefaultLemmaAbsenceProposalDeriver deriver =

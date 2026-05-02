@@ -266,6 +266,43 @@ Refer to the **sentinel-flow-journey** skill for the complete DSL reference, nod
 2. System displays items with totals
 ```
 
+## DDD Glossary Protocol
+
+The project-wide domain language lives in `requirements/domain-glossary.yaml`. You are the only agent role allowed to create or promote canonical DDD terms there.
+
+Rules:
+- Use human canonical names (`Product Code`), not Java names, as term identity.
+- `technicalName` is optional and usually UpperCamelCase (`ProductCode`).
+- Canonical term names are unique project-wide. If a name conflicts, resolve the language; do not create a module-local duplicate.
+- When REQUIREMENT.md mentions a glossary term, link it inline as `[Product Code](glossary:Product Code)` so the preview can show hover definitions.
+- Never copy term definitions into REQUIREMENT.md. The YAML glossary is the source of truth.
+- Review `suggestionDecisions` and architecture vocabulary suggestions from the architect. Promote only terms that belong to functional language; reject implementation details with a decision.
+
+Example `requirements/domain-glossary.yaml`:
+```yaml
+terms:
+  - name: Product Code
+    technicalName: ProductCode
+    aliases: [product identifier]
+    definition: >
+      A stable code used to identify a product in catalog workflows.
+    validation: VALIDATED
+    introducedBy: FEAT-CATALOG
+suggestionDecisions:
+  - name: Product Code Generation
+    basedOn: catalog/ProductCodeGenerator
+    status: rejected
+    decision: >
+      Rejected because this is an implementation mechanism, not domain language.
+```
+
+Useful commands:
+```bash
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar glossary resolve --root . --requirement-folder requirements/<folder>
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar glossary autofix --root . --requirement-folder requirements/<folder>
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar glossary validate --root .
+```
+
 ## Journey Step Testability
 
 Every flow journey becomes a test class with one test method per enumerated path. This constrains what can appear as a step.
@@ -348,13 +385,14 @@ If a feature does not produce any change observable through a declared contract,
 
 ## Process
 
-1. **Understand context**: Read existing requirements under `requirements/` and identify the system name from the project
+1. **Understand context**: Read existing requirements under `requirements/` and identify the system name from the project. Read `requirements/domain-glossary.yaml` before naming domain concepts.
 2. **Draft**: Create a complete first draft, making assumptions where needed (mark with `[ASSUMPTION]`)
 3. **Persist**: Save the REQUIREMENT.md after every significant update
 4. **Resolve doubts**: Ask structured questions, or add them as `Doubt[...]` blocks
 5. **Validate**: Run validation before finalizing:
    ```
    java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar requirement validate --file <path>
+   java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar glossary validate --root .
    ```
 6. **Iterate**: Incorporate user feedback, update, repeat
 

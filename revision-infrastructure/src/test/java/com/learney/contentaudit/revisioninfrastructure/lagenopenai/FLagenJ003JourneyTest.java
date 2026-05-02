@@ -1,5 +1,19 @@
 package com.learney.contentaudit.revisioninfrastructure.lagenopenai;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
+import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
+import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import java.net.SocketTimeoutException;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -16,11 +30,62 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-LAGEN-J003")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FLagenJ003JourneyTest {
+
+    private static LemmaAbsenceCorrectionContext buildContext() {
+        return new LemmaAbsenceCorrectionContext(
+                "task-j003",
+                "She runs every morning.",
+                "Ella corre cada mañana.",
+                "Daily Routines",
+                "Write simple present tense sentences.",
+                "Everyday Life",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 150)),
+                List.of(new SuggestedLemma("walk", "VERB", "A1 level synonym", 80)),
+                "She ____[runs|walks] every morning."
+        );
+    }
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador inicia la revision de una... → El sistema consulta al modelo y esper... → El sistema reporta la falla con categ... → failure")
     public void path1_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Journey J003: La consulta al modelo excede el timeout.
+        // Covers F-LAGEN-R006 category LLM_TIMEOUT and F-LAGEN-R008 (timeout knob).
+        //
+        // node: invocar_generacion_timeout
+        //   The system takes a valid context and starts the model query.
+        LemmaAbsenceCorrectionContext ctx = buildContext();
+
+        // node: esperar_respuesta_timeout (gate: F-LAGEN-R008)
+        //   The configured budget is exhausted before a response arrives.
+        //   SocketTimeoutException is checked; Mockito rejects throwing it from a non-declaring method.
+        //   Wrap it so Mockito accepts thenThrow. The real DefaultLangChainErrorClassifier walks
+        //   getCause() and finds SocketTimeoutException → LLM_TIMEOUT.
+        ChatLanguageModel mockModel = mock(ChatLanguageModel.class);
+        SocketTimeoutException timeoutEx = new SocketTimeoutException("Read timed out after 30s");
+        when(mockModel.generate(anyList())).thenThrow(new RuntimeException("LLM call timed out", timeoutEx));
+
+        LemmaAbsencePromptBuilder promptBuilder = new DefaultLemmaAbsencePromptBuilder();
+        LemmaAbsenceResponseParser responseParser = new DefaultLemmaAbsenceResponseParser();
+        LangChainErrorClassifier errorClassifier = new DefaultLangChainErrorClassifier();
+        LemmaAbsenceLlmGenerator generator = new LemmaAbsenceLlmGenerator(
+                mockModel, promptBuilder, responseParser, errorClassifier, "lemma-absence-llm");
+
+        // node: fallar_timeout (gate: F-LAGEN-R006, F-LAGEN-R007) → result: failure
+        ProposalStrategyFailedException thrown = assertThrows(
+                ProposalStrategyFailedException.class,
+                () -> generator.generate(ctx),
+                "SocketTimeoutException must propagate as ProposalStrategyFailedException (J003)"
+        );
+
+        // gate: F-LAGEN-R006 — category must be LLM_TIMEOUT
+        assertTrue(thrown.getReason().startsWith("LLM_TIMEOUT"),
+                "J003 failure: reason must start with 'LLM_TIMEOUT' (F-LAGEN-R006), got: "
+                        + thrown.getReason());
+        // gate: F-LAGEN-R007 — no retry, no partial response
+        assertTrue(thrown.getStrategyName().equals("lemma-absence-llm"),
+                "J003 failure: strategyName must be 'lemma-absence-llm' (F-LAGEN-R001)");
     }
 }

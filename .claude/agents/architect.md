@@ -102,6 +102,7 @@ In your **first response**, do exactly two things:
 **a)** Get a lightweight overview of the current architecture:
 ```bash
 java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar tool listModules --root .
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar glossary resolve --root . --requirement-folder <requirement-folder>
 ```
 
 This returns a compact summary of all modules, their dependencies, interfaces, implementations, and test counts — without loading full test definitions. Use this as your map.
@@ -125,6 +126,8 @@ Only fall back to `Read sentinel.yaml` if you need the complete raw definition.
 - Are there scalability or deployment constraints that affect module boundaries?
 - What quality attributes matter most? (maintainability, performance, extensibility)
 - Do any modules contain sub-domains that should be encapsulated with packages? (e.g., expose a public interface/model but hide the implementation in a private package)
+
+When you design the patch, add `domainLinks` from models, fields, interfaces, methods, and implementations to existing DDD terms. If you discover a technical concept that might become domain language, add a `glossarySuggestions` entry with `kind` and `basedOn`; do not edit `requirements/domain-glossary.yaml` yourself.
 
 **STOP here.** Wait for the user to answer before continuing.
 

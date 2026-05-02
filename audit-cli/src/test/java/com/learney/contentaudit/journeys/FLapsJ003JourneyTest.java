@@ -60,8 +60,8 @@ import com.learney.contentaudit.revisiondomain.engine.DefaultLemmaAbsenceProposa
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory;
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionValidatorFactory;
 import com.learney.contentaudit.revisiondomain.engine.LemmaAbsenceProposalStrategyRegistryConfig;
-import com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceMvpStrategy;
-import com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceQuizCandidateGenerator;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceMvpStrategy;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceQuizCandidateGenerator;
 import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
 import java.nio.file.Path;
 import java.time.Instant;
@@ -220,11 +220,11 @@ public class FLapsJ003JourneyTest {
         LemmaAbsenceQuizCandidateGenerator failingGenerator = ctx -> {
             // R015: any reason — provider down, empty response, uninterpretable output
             throw new ProposalStrategyFailedException(
-                    "lemma-absence-mvp", TASK_ID, "provider not available");
+                    "lemma-absence-llm", TASK_ID, "provider not available");
         };
         LemmaAbsenceMvpStrategy strategy = new LemmaAbsenceMvpStrategy(failingGenerator);
         LemmaAbsenceProposalStrategyRegistryConfig regConfig =
-                new LemmaAbsenceProposalStrategyRegistryConfig(List.of(strategy), "lemma-absence-mvp");
+                new LemmaAbsenceProposalStrategyRegistryConfig(List.of(strategy), "lemma-absence-llm");
         DefaultLemmaAbsenceProposalStrategyRegistry registry =
                 new DefaultLemmaAbsenceProposalStrategyRegistry(regConfig);
         DefaultLemmaAbsenceProposalDeriver deriver =

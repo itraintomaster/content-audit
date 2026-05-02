@@ -20,6 +20,6 @@ public class CannedLemmaAbsenceQuizCandidateGenerator implements LemmaAbsenceQui
 
     @Override
     public LemmaAbsenceGeneratorResponse generate(LemmaAbsenceCorrectionContext context) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new LemmaAbsenceGeneratorResponse(cannedQuizSentence, cannedTranslation);
     }
 }

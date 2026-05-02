@@ -65,7 +65,17 @@ import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFacto
 import com.learney.contentaudit.revisiondomain.engine.DefaultProposalDecisionServiceFactory;
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionValidatorFactory;
 import com.learney.contentaudit.revisiondomain.engine.LemmaAbsenceProposalStrategyRegistryConfig;
-import com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceMvpStrategy;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.CannedLemmaAbsenceQuizCandidateGenerator;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceMvpStrategy;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceQuizCandidateGenerator;
+import com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig;
+import com.learney.contentaudit.revisioninfrastructure.lagen.LemmaAbsenceLlmGeneratorFactory;
+import com.learney.contentaudit.revisioninfrastructure.lagenopenai.DefaultLemmaAbsenceLlmGeneratorFactory;
+import com.learney.contentaudit.auditcli.LagenMode;
+import com.learney.contentaudit.auditcli.bootstrap.DefaultLagenModeResolver;
+import com.learney.contentaudit.auditcli.bootstrap.DefaultLagenConfigResolver;
+import com.learney.contentaudit.auditcli.bootstrap.InvalidLagenModeException;
+import com.learney.contentaudit.auditcli.bootstrap.InvalidLagenConfigException;
 import com.learney.contentaudit.revisiondomain.ApprovalMode;
 import com.learney.contentaudit.revisiondomain.ProposalDecisionService;
 import com.learney.contentaudit.revisiondomain.RevisionValidator;
@@ -138,6 +148,22 @@ class Main {
             String approvalModeEnv = System.getenv("CONTENT_AUDIT_APPROVAL_MODE");
             approvalMode = new DefaultApprovalModeResolver().resolve(approvalModeEnv);
         } catch (InvalidApprovalModeException e) {
+            System.err.println("Error: " + e.getMessage());
+            System.exit(1);
+            return;
+        }
+
+        // ----------------------------------------------------------------
+        // Step 2b: Resolve CONTENT_AUDIT_LAGEN_MODE (F-LAGEN-R013).
+        // LAGEN config validation (F-LAGEN-R014) is deferred to the LAPS wiring
+        // block below so commands that don't exercise the LLM adapter
+        // (delete plan, get task, audit run, etc.) don't require LAGEN env vars.
+        // ----------------------------------------------------------------
+        LagenMode lagenMode;
+        try {
+            String lagenModeEnv = System.getenv("CONTENT_AUDIT_LAGEN_MODE");
+            lagenMode = new DefaultLagenModeResolver().resolve(lagenModeEnv);
+        } catch (InvalidLagenModeException e) {
             System.err.println("Error: " + e.getMessage());
             System.exit(1);
             return;
@@ -265,29 +291,57 @@ class Main {
         RevisionValidator revisionValidator = new DefaultRevisionValidatorFactory().create(approvalMode);
 
         // ----------------------------------------------------------------
-        // Step 7b: LAPS strategy wiring (F-LAPS)
+        // Step 7b: LAPS strategy wiring (F-LAPS, F-LAGEN)
         // ----------------------------------------------------------------
-        // Stub generator: no real LLM adapter wired yet — returns a deterministic fixture candidate.
-        // Replace with a real adapter once the provider is decided (TECH_SPEC: "pendiente explicito").
-        // The fixture quizSentence is a minimal valid FEAT-QSENT DSL string so the deriver can parse it.
-        // Test seams via env vars (ONLY while the real adapter is missing):
-        //   CONTENT_AUDIT_LAPS_STUB_MODE=fail  -> stub throws ProposalStrategyFailedException (R015 gate for journey tests).
-        //   CONTENT_AUDIT_LAPS_DISABLE=1       -> do not wire the LAPS registry (simulates no registered strategy for R006).
-        String stubMode = System.getenv("CONTENT_AUDIT_LAPS_STUB_MODE");
         boolean lapsDisabled = "1".equals(System.getenv("CONTENT_AUDIT_LAPS_DISABLE"));
-        final boolean stubFails = "fail".equalsIgnoreCase(stubMode);
-        var stubGenerator = (com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceQuizCandidateGenerator) context -> {
-            if (stubFails) {
-                throw new com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException(
-                        "lemma-absence-mvp", context.getTaskId(), "stub-forced-failure");
-            }
-            return new com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceGeneratorResponse(
-                    "She ____ [walks|runs] to school.",
-                    "Ella camina a la escuela."
-            );
-        };
 
-        LemmaAbsenceMvpStrategy mvpStrategy = new LemmaAbsenceMvpStrategy(stubGenerator);
+        LemmaAbsenceQuizCandidateGenerator generator;
+        String providerId;
+
+        if (lagenMode == LagenMode.CANNED) {
+            // Canned mode: deterministic fixture candidate, no LLM contact (F-LAGEN-R012)
+            generator = new CannedLemmaAbsenceQuizCandidateGenerator(
+                    "She ____ [walks|runs] to school.",
+                    "Ella camina a la escuela.");
+            providerId = "canned:fixed";
+        } else {
+            // LLM mode: real adapter backed by LangChain4j (F-LAGEN-R002, R003).
+            // F-LAGEN-R014: if config or providerId resolution fails, defer the failure
+            // to the moment the operator actually runs `revise task` so other commands
+            // (analyze, get, delete, plan, stats, ...) don't require LAGEN env vars.
+            LagenConfig lagenConfig = null;
+            String lagenSetupError = null;
+            try {
+                lagenConfig = new DefaultLagenConfigResolver().resolve(System.getenv());
+            } catch (InvalidLagenConfigException e) {
+                lagenSetupError = e.getMessage();
+            }
+
+            if (lagenSetupError == null) {
+                LemmaAbsenceLlmGeneratorFactory factory = new DefaultLemmaAbsenceLlmGeneratorFactory();
+                try {
+                    providerId = factory.providerIdFor(lagenConfig);
+                    generator = factory.create(lagenConfig);
+                } catch (com.learney.contentaudit.revisioninfrastructure.lagen.InvalidProviderIdException e) {
+                    lagenSetupError = e.getMessage();
+                    providerId = "lagen:misconfigured";
+                    final String deferredMsg = lagenSetupError;
+                    generator = ctx -> {
+                        throw new ProposalStrategyFailedException(
+                                "lemma-absence-llm", ctx.getTaskId(), "INVALID_CONFIG: " + deferredMsg);
+                    };
+                }
+            } else {
+                providerId = "lagen:misconfigured";
+                final String deferredMsg = lagenSetupError;
+                generator = ctx -> {
+                    throw new ProposalStrategyFailedException(
+                            "lemma-absence-llm", ctx.getTaskId(), "INVALID_CONFIG: " + deferredMsg);
+                };
+            }
+        }
+
+        LemmaAbsenceMvpStrategy mvpStrategy = new LemmaAbsenceMvpStrategy(generator, providerId);
 
         LemmaAbsenceProposalStrategyRegistryConfig registryConfig =
                 new LemmaAbsenceProposalStrategyRegistryConfig(List.of(mvpStrategy), null);

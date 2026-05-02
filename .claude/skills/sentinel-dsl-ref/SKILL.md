@@ -12,6 +12,44 @@ description: >
 
 Complete reference for all Sentinel YAML structures you can use in patches.
 
+## DDD Glossary Links
+
+The analyst owns canonical DDD terms in `requirements/domain-glossary.yaml`. Architects do not add canonical terms directly. Instead, link code elements to existing terms with `domainLinks`, and suggest possible new language with `glossarySuggestions` tied to concrete elements.
+
+```yaml
+models:
+  - name: ProductCode
+    domainLinks:
+      - term: Product Code
+        role: realizes
+  - name: Product
+    fields:
+      - name: code
+        type: ProductCode
+        domainLinks:
+          - term: Product Code
+            role: carries
+implementations:
+  - name: ProductCodeGenerator
+    domainLinks:
+      - term: Product Code
+        role: produces
+    glossarySuggestions:
+      - name: Product Code Generation
+        technicalName: ProductCodeGeneration
+        kind: domain-service-candidate
+        basedOn: catalog/ProductCodeGenerator
+        derivedFrom: [Product Code]
+        rationale: >
+          The architecture introduces product code generation as a named capability.
+```
+
+Valid `domainLinks.role` values: `realizes`, `carries`, `uses`, `produces`, `validates`, `transforms`, `persists`, `publishes`, `consumes`, `performs`.
+
+Valid `glossarySuggestions.kind` values: `domain-service-candidate`, `value-object-candidate`, `policy-candidate`, `process-candidate`, `state-candidate`, `integration-language-candidate`, `implementation-detail`.
+
+A suggestion must have `basedOn` pointing to a real component path. If the component disappears, the suggestion should disappear too. If the analyst promotes it, the canonical term survives independently in `domain-glossary.yaml`.
+
 ## Module
 
 ```yaml

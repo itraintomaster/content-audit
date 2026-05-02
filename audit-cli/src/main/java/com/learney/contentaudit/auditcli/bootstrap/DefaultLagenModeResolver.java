@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.bootstrap;
 
 import com.learney.contentaudit.auditcli.LagenMode;
+import java.util.Locale;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -10,6 +11,14 @@ import javax.annotation.processing.Generated;
 public final class DefaultLagenModeResolver implements LagenModeResolver {
     @Override
     public LagenMode resolve(String envValue) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (envValue == null || envValue.isBlank()) {
+            return LagenMode.LLM;
+        }
+        String normalized = envValue.trim().toLowerCase(Locale.ROOT);
+        return switch (normalized) {
+            case "llm" -> LagenMode.LLM;
+            case "canned" -> LagenMode.CANNED;
+            default -> throw new InvalidLagenModeException(envValue);
+        };
     }
 }

@@ -65,6 +65,7 @@ Start every session with:
 
 ```bash
 java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar tool listModules --with-coverage --root .
+java -jar /Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar glossary resolve --root . --requirement-folder <requirement-folder>
 ```
 
 This returns, in one compact output:
@@ -73,6 +74,8 @@ This returns, in one compact output:
 - A trailing `## coverage` section mapping every feature → rules / journeys / paths to `[covered]` or `[uncovered]`
 
 Use this to prioritize: propose tests for `[uncovered]` rules and `NO TESTS` implementations first.
+
+Use the resolved glossary to keep test names in the same language as the analyst. Architecture vocabulary suggestions are not canonical terms until the analyst promotes them.
 
 ### Step 2: Enumerate the requirement's rules and journey paths
 
@@ -202,6 +205,7 @@ Do not attempt to re-apply or patch around a silent drop yourself — the discre
 4. **Name describes intent** — `"should save booking and charge payment"` not `"test save"`
 5. **Critical rules need negative tests** — test what happens when the rule is violated
 6. **Journey coverage** — multi-step journeys should have tests covering the full flow
+7. **Shared language** — prefer canonical glossary terms and avoid introducing alternate names in tests
 
 ## Coverage Analysis
 

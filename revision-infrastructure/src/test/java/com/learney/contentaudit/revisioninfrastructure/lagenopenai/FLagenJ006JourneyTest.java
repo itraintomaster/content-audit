@@ -1,5 +1,20 @@
 package com.learney.contentaudit.revisioninfrastructure.lagenopenai;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
+import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
+import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.output.Response;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -16,11 +31,68 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-LAGEN-J006")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FLagenJ006JourneyTest {
+
+    private static LemmaAbsenceCorrectionContext buildContext() {
+        return new LemmaAbsenceCorrectionContext(
+                "task-j006",
+                "She runs every morning.",
+                "Ella corre cada mañana.",
+                "Daily Routines",
+                "Write simple present tense sentences.",
+                "Everyday Life",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 150)),
+                List.of(new SuggestedLemma("walk", "VERB", "A1 level synonym", 80)),
+                "She ____[runs|walks] every morning."
+        );
+    }
+
+    @SuppressWarnings("unchecked")
+    private static Response<AiMessage> aiResponse(String text) {
+        return Response.from(AiMessage.from(text));
+    }
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador inicia la revision de una... → El proveedor responde con contenido t... → El sistema reporta la falla con categ... → failure")
     public void path1_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Journey J006: El modelo responde con contenido que no cumple la estructura exigida.
+        // Covers F-LAGEN-R005, F-LAGEN-R006 LLM_RESPONSE_MALFORMED.
+        //
+        // node: invocar_generacion_malformed
+        //   The system takes a valid context and queries the model.
+        LemmaAbsenceCorrectionContext ctx = buildContext();
+
+        // node: recibir_respuesta_malformed (gate: F-LAGEN-R005)
+        //   The provider responds with content that does not satisfy F-LAGEN-R005:
+        //   - Not a parseable JSON, OR
+        //   - Missing quizSentence/translation field, OR
+        //   - Either field is empty or not a string
+        //   Here we use a JSON that lacks the 'translation' field.
+        ChatLanguageModel mockModel = mock(ChatLanguageModel.class);
+        String missingTranslation = "{\"quizSentence\": \"She ____[walks|runs] every morning.\"}";
+        when(mockModel.generate(anyList())).thenReturn(aiResponse(missingTranslation));
+
+        LemmaAbsencePromptBuilder promptBuilder = new DefaultLemmaAbsencePromptBuilder();
+        LemmaAbsenceResponseParser responseParser = new DefaultLemmaAbsenceResponseParser();
+        LangChainErrorClassifier errorClassifier = new DefaultLangChainErrorClassifier();
+        LemmaAbsenceLlmGenerator generator = new LemmaAbsenceLlmGenerator(
+                mockModel, promptBuilder, responseParser, errorClassifier, "lemma-absence-llm");
+
+        // node: fallar_malformed_journey (gate: F-LAGEN-R006, F-LAGEN-R007) → result: failure
+        ProposalStrategyFailedException thrown = assertThrows(
+                ProposalStrategyFailedException.class,
+                () -> generator.generate(ctx),
+                "Missing translation field must propagate as ProposalStrategyFailedException (J006)"
+        );
+
+        // gate: F-LAGEN-R006 — category must be LLM_RESPONSE_MALFORMED
+        assertTrue(thrown.getReason().startsWith("LLM_RESPONSE_MALFORMED"),
+                "J006 failure: reason must start with 'LLM_RESPONSE_MALFORMED' (F-LAGEN-R006), got: "
+                        + thrown.getReason());
+        // gate: F-LAGEN-R007 — no retry, no partial response (the exception is the only outcome)
+        assertTrue(thrown.getStrategyName().equals("lemma-absence-llm"),
+                "J006 failure: strategyName must be 'lemma-absence-llm' (F-LAGEN-R001)");
     }
 }

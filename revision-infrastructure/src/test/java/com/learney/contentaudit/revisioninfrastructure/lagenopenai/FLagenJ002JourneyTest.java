@@ -1,5 +1,19 @@
 package com.learney.contentaudit.revisioninfrastructure.lagenopenai;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
+import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
+import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import java.net.ConnectException;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -16,11 +30,62 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-LAGEN-J002")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FLagenJ002JourneyTest {
+
+    private static LemmaAbsenceCorrectionContext buildContext() {
+        return new LemmaAbsenceCorrectionContext(
+                "task-j002",
+                "She runs every morning.",
+                "Ella corre cada mañana.",
+                "Daily Routines",
+                "Write simple present tense sentences.",
+                "Everyday Life",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 150)),
+                List.of(new SuggestedLemma("walk", "VERB", "A1 level synonym", 80)),
+                "She ____[runs|walks] every morning."
+        );
+    }
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador inicia la revision de una... → El sistema intenta contactar al prove... → El sistema reporta la falla con categ... → failure")
     public void path1_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Journey J002: El proveedor del modelo no está accesible.
+        // Covers F-LAGEN-R006 category LLM_UNREACHABLE.
+        //
+        // node: invocar_generacion_unreachable
+        //   The system takes a valid context and tries to contact the active provider.
+        LemmaAbsenceCorrectionContext ctx = buildContext();
+
+        // node: intentar_consulta_unreachable
+        //   Communication cannot be established — the provider is down or misconfigured.
+        //   ConnectException is checked; Mockito rejects throwing it from a non-declaring method.
+        //   Wrap it so Mockito accepts thenThrow. The real DefaultLangChainErrorClassifier walks
+        //   getCause() and finds ConnectException → LLM_UNREACHABLE.
+        ChatLanguageModel mockModel = mock(ChatLanguageModel.class);
+        ConnectException connectEx = new ConnectException("Connection refused to localhost:1234");
+        when(mockModel.generate(anyList())).thenThrow(new RuntimeException("LLM call failed", connectEx));
+
+        LemmaAbsencePromptBuilder promptBuilder = new DefaultLemmaAbsencePromptBuilder();
+        LemmaAbsenceResponseParser responseParser = new DefaultLemmaAbsenceResponseParser();
+        LangChainErrorClassifier errorClassifier = new DefaultLangChainErrorClassifier();
+        LemmaAbsenceLlmGenerator generator = new LemmaAbsenceLlmGenerator(
+                mockModel, promptBuilder, responseParser, errorClassifier, "lemma-absence-llm");
+
+        // node: fallar_unreachable (gate: F-LAGEN-R006, F-LAGEN-R007) → result: failure
+        ProposalStrategyFailedException thrown = assertThrows(
+                ProposalStrategyFailedException.class,
+                () -> generator.generate(ctx),
+                "ConnectException must propagate as ProposalStrategyFailedException (J002)"
+        );
+
+        // gate: F-LAGEN-R006 — category must be LLM_UNREACHABLE
+        assertTrue(thrown.getReason().startsWith("LLM_UNREACHABLE"),
+                "J002 failure: reason must start with 'LLM_UNREACHABLE' (F-LAGEN-R006), got: "
+                        + thrown.getReason());
+        // gate: F-LAGEN-R007 — no retry (the single call threw, no second call made)
+        assertTrue(thrown.getStrategyName().equals("lemma-absence-llm"),
+                "J002 failure: strategyName must be 'lemma-absence-llm' (F-LAGEN-R001)");
     }
 }

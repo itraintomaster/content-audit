@@ -1,5 +1,24 @@
 package com.learney.contentaudit.revisioninfrastructure.lagenopenai;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
+import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
+import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceGeneratorResponse;
+import com.learney.contentaudit.revisioninfrastructure.lagen.LlmGenerationFailureCategory;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.output.Response;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -16,19 +35,108 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-LAGEN-J001")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FLagenJ001JourneyTest {
+
+    // ── Helpers ───────────────────────────────────────────────────────────────
+
+    private static LemmaAbsenceCorrectionContext buildContext() {
+        // gate: F-LAGEN-R003 — all fields of the LemmaAbsenceCorrectionContext must be populated
+        return new LemmaAbsenceCorrectionContext(
+                "task-j001",
+                "She runs every morning.",
+                "Ella corre cada mañana.",
+                "Daily Routines",
+                "Write simple present tense sentences.",
+                "Everyday Life",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 150)),
+                List.of(new SuggestedLemma("walk", "VERB", "A1 level synonym", 80)),
+                "She ____[runs|walks] every morning."
+        );
+    }
+
+    @SuppressWarnings("unchecked")
+    private static Response<AiMessage> aiResponse(String text) {
+        return Response.from(AiMessage.from(text));
+    }
+
+    // ── path-1: La respuesta cumple la estructura exigida → success ────────────
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador inicia la revision de una... → El sistema consulta al modelo generat... → El sistema evalua si la respuesta del... → El sistema persiste la propuesta con ... [La respuesta cumple la estructura exigida] → success")
     public void path1_laRespuestaCumpleLaEstructuraExigida_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Journey J001, path-1: Happy path.
+        //
+        // node: invocar_generacion (gate: F-LAGEN-R003)
+        //   The system takes the LemmaAbsenceCorrectionContext — all fields populated.
+        LemmaAbsenceCorrectionContext ctx = buildContext();
+
+        // node: consultar_modelo (gate: F-LAGEN-R002, F-LAGEN-R004)
+        //   The system consults the generative model, transmitting the full context.
+        //   We mock the model so the test is deterministic (no real LLM needed).
+        ChatLanguageModel mockModel = mock(ChatLanguageModel.class);
+        String validResponse = "{\"quizSentence\": \"She ____[walks|runs] every morning.\", "
+                + "\"translation\": \"Ella camina cada mañana.\"}";
+        when(mockModel.generate(anyList())).thenReturn(aiResponse(validResponse));
+
+        LemmaAbsencePromptBuilder promptBuilder = new DefaultLemmaAbsencePromptBuilder();
+        LemmaAbsenceResponseParser responseParser = new DefaultLemmaAbsenceResponseParser();
+        LangChainErrorClassifier errorClassifier = new DefaultLangChainErrorClassifier();
+        LemmaAbsenceLlmGenerator generator = new LemmaAbsenceLlmGenerator(
+                mockModel, promptBuilder, responseParser, errorClassifier, "lemma-absence-llm");
+
+        // node: evaluar_respuesta (gate: F-LAGEN-R005)
+        //   The system evaluates whether the response is a JSON object with quizSentence + translation.
+        //   [La respuesta cumple la estructura exigida] — the mock returns a valid JSON.
+        LemmaAbsenceGeneratorResponse result = generator.generate(ctx);
+
+        // node: registrar_propuesta (gate: F-LAGEN-R001, F-LAGEN-R009) → result: success
+        //   The system builds a LemmaAbsenceGeneratorResponse for the downstream pipeline.
+        assertEquals("She ____[walks|runs] every morning.", result.getQuizSentence(),
+                "Path-1 success: quizSentence must be the value from the model response (F-LAGEN-R005)");
+        assertEquals("Ella camina cada mañana.", result.getTranslation(),
+                "Path-1 success: translation must be the value from the model response (F-LAGEN-R005)");
     }
+
+    // ── path-2: La respuesta no cumple la estructura exigida → failure ─────────
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador inicia la revision de una... → El sistema consulta al modelo generat... → El sistema evalua si la respuesta del... → El sistema reporta la falla con categ... [La respuesta no cumple la estructura exigida] → failure")
     public void path2_laRespuestaNoCumpleLaEstructuraExigida_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Journey J001, path-2: Malformed response.
+        //
+        // node: invocar_generacion + consultar_modelo
+        LemmaAbsenceCorrectionContext ctx = buildContext();
+        ChatLanguageModel mockModel = mock(ChatLanguageModel.class);
+        // The model returns a response that does not comply with F-LAGEN-R005 (no JSON)
+        String malformedResponse = "I'm sorry, I can't help with that exercise.";
+        when(mockModel.generate(anyList())).thenReturn(aiResponse(malformedResponse));
+
+        LemmaAbsencePromptBuilder promptBuilder = new DefaultLemmaAbsencePromptBuilder();
+        LemmaAbsenceResponseParser responseParser = new DefaultLemmaAbsenceResponseParser();
+        LangChainErrorClassifier errorClassifier = new DefaultLangChainErrorClassifier();
+        LemmaAbsenceLlmGenerator generator = new LemmaAbsenceLlmGenerator(
+                mockModel, promptBuilder, responseParser, errorClassifier, "lemma-absence-llm");
+
+        // node: evaluar_respuesta (gate: F-LAGEN-R005)
+        //   [La respuesta NO cumple la estructura exigida]
+
+        // node: fallar_malformado (gate: F-LAGEN-R006, F-LAGEN-R007) → result: failure
+        ProposalStrategyFailedException thrown = assertThrows(
+                ProposalStrategyFailedException.class,
+                () -> generator.generate(ctx),
+                "Malformed response must propagate as ProposalStrategyFailedException (F-LAGEN-R007)"
+        );
+
+        // gate: F-LAGEN-R006 — the reason must identify LLM_RESPONSE_MALFORMED
+        assertTrue(thrown.getReason().startsWith("LLM_RESPONSE_MALFORMED"),
+                "Path-2 failure: reason must start with 'LLM_RESPONSE_MALFORMED' (F-LAGEN-R006), got: "
+                        + thrown.getReason());
+        // gate: F-LAGEN-R007 — no partial response, no retry (asserting the throw itself proves this)
+        assertEquals("task-j001", thrown.getTaskId(),
+                "Path-2 failure: taskId must be embedded in the exception (F-LAGEN-R006)");
     }
 }

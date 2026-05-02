@@ -66,9 +66,9 @@ import com.learney.contentaudit.revisiondomain.engine.DefaultProposalDecisionSer
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory;
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionValidatorFactory;
 import com.learney.contentaudit.revisiondomain.engine.LemmaAbsenceProposalStrategyRegistryConfig;
-import com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceMvpStrategy;
-import com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceGeneratorResponse;
-import com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceQuizCandidateGenerator;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceMvpStrategy;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceGeneratorResponse;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceQuizCandidateGenerator;
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -209,7 +209,7 @@ public class FLapsJ005JourneyTest {
 
         LemmaAbsenceMvpStrategy strategy = new LemmaAbsenceMvpStrategy(happyGenerator);
         LemmaAbsenceProposalStrategyRegistryConfig regConfig =
-                new LemmaAbsenceProposalStrategyRegistryConfig(List.of(strategy), "lemma-absence-mvp");
+                new LemmaAbsenceProposalStrategyRegistryConfig(List.of(strategy), "lemma-absence-llm");
         DefaultLemmaAbsenceProposalStrategyRegistry registry =
                 new DefaultLemmaAbsenceProposalStrategyRegistry(regConfig);
         DefaultLemmaAbsenceProposalDeriver deriver =
@@ -311,12 +311,12 @@ public class FLapsJ005JourneyTest {
         // Before was "She learns complicated words daily." — title changed (R001)
 
         // Gate F-LAPS-R005: proposal carries strategy identity
-        assertEquals("lemma-absence-mvp", pendingArtifact.getProposal().getReviserKind(),
-                "R005: reviserKind must be 'lemma-absence-mvp'");
+        assertEquals("lemma-absence-llm", pendingArtifact.getProposal().getReviserKind(),
+                "R005: reviserKind must be 'lemma-absence-llm'");
         assertNotNull(pendingArtifact.getProposal().getStrategyId(),
                 "R005: strategyId must be present");
-        assertEquals("lemma-absence-mvp", pendingArtifact.getProposal().getStrategyId().getName(),
-                "R005: strategyId.name must be 'lemma-absence-mvp'");
+        assertEquals("lemma-absence-llm", pendingArtifact.getProposal().getStrategyId().getName(),
+                "R005: strategyId.name must be 'lemma-absence-llm'");
 
         // Gate F-LAPS-R013: translation changed (new candidate provided different translation)
         assertEquals("Ella aprende palabras nuevas a diario.", afterQuiz.getTranslation(),

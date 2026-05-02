@@ -137,7 +137,7 @@ Good test names describe the **behavior** being tested:
 - `"should notify observer after save"` — side effect
 - `"full lifecycle: create, update, and delete booking"` — integration
 
-Each test name should map to a specific business rule or journey when possible.
+Each test name should map to a specific business rule or journey when possible. Use canonical DDD terms from `requirements/domain-glossary.yaml` when naming behaviors; do not invent synonyms when a glossary term already exists.
 
 ## Important: Method Naming
 

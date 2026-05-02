@@ -1,5 +1,20 @@
 package com.learney.contentaudit.revisioninfrastructure.lagenopenai;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
+import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
+import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.output.Response;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -16,11 +31,65 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-LAGEN-J005")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FLagenJ005JourneyTest {
+
+    private static LemmaAbsenceCorrectionContext buildContext() {
+        return new LemmaAbsenceCorrectionContext(
+                "task-j005",
+                "She runs every morning.",
+                "Ella corre cada mañana.",
+                "Daily Routines",
+                "Write simple present tense sentences.",
+                "Everyday Life",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 150)),
+                List.of(new SuggestedLemma("walk", "VERB", "A1 level synonym", 80)),
+                "She ____[runs|walks] every morning."
+        );
+    }
+
+    @SuppressWarnings("unchecked")
+    private static Response<AiMessage> emptyAiResponse() {
+        // Model responded successfully but with empty text content
+        AiMessage emptyMessage = AiMessage.from("");
+        return Response.from(emptyMessage);
+    }
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador inicia la revision de una... → El proveedor responde exitosamente pe... → El sistema reporta la falla con categ... → failure")
     public void path1_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Journey J005: El modelo responde sin contenido.
+        // Covers F-LAGEN-R005 (not a usable response) and F-LAGEN-R006 LLM_RESPONSE_EMPTY.
+        //
+        // node: invocar_generacion_empty
+        //   The system takes a valid context and queries the model.
+        LemmaAbsenceCorrectionContext ctx = buildContext();
+
+        // node: recibir_respuesta_vacia (gate: F-LAGEN-R005)
+        //   The provider responds successfully but the textual content is empty.
+        ChatLanguageModel mockModel = mock(ChatLanguageModel.class);
+        when(mockModel.generate(anyList())).thenReturn(emptyAiResponse());
+
+        LemmaAbsencePromptBuilder promptBuilder = new DefaultLemmaAbsencePromptBuilder();
+        LemmaAbsenceResponseParser responseParser = new DefaultLemmaAbsenceResponseParser();
+        LangChainErrorClassifier errorClassifier = new DefaultLangChainErrorClassifier();
+        LemmaAbsenceLlmGenerator generator = new LemmaAbsenceLlmGenerator(
+                mockModel, promptBuilder, responseParser, errorClassifier, "lemma-absence-llm");
+
+        // node: fallar_empty (gate: F-LAGEN-R006, F-LAGEN-R007) → result: failure
+        ProposalStrategyFailedException thrown = assertThrows(
+                ProposalStrategyFailedException.class,
+                () -> generator.generate(ctx),
+                "Empty model response must propagate as ProposalStrategyFailedException (J005)"
+        );
+
+        // gate: F-LAGEN-R006 — category must be LLM_RESPONSE_EMPTY
+        assertTrue(thrown.getReason().startsWith("LLM_RESPONSE_EMPTY"),
+                "J005 failure: reason must start with 'LLM_RESPONSE_EMPTY' (F-LAGEN-R006), got: "
+                        + thrown.getReason());
+        // gate: F-LAGEN-R007 — no retry, no partial response
+        assertTrue(thrown.getStrategyName().equals("lemma-absence-llm"),
+                "J005 failure: strategyName must be 'lemma-absence-llm' (F-LAGEN-R001)");
     }
 }

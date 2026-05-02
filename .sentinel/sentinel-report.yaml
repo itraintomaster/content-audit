@@ -1,10 +1,10 @@
-generatedAt: 2026-05-02T13:44:23.616002Z
+generatedAt: 2026-05-02T23:07:24.042756Z
 system: ContentAudit
 version: 0.0.1
 features:
 - id: FEAT-DLABS
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
+  requirementFile: requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DLABS-R001
     state: NO_TESTS
@@ -172,115 +172,41 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 456
-      linesTotal: 456
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 244
+      linesCovered: 448
+      linesMissed: 18
+      linesTotal: 466
+      lineCoveragePct: 96
+      branchesCovered: 197
+      branchesMissed: 47
       branchesTotal: 244
-      branchCoveragePct: 0
-      blendPct: 0
+      branchCoveragePct: 80
+      blendPct: 88
     mutation:
-      totalMutants: 193
-      killed: 76
+      totalMutants: 196
+      killed: 79
       survived: 106
       noCoverage: 11
       timedOut: 0
       other: 0
-      mutationScorePct: 39
-      testStrengthPct: 41
+      mutationScorePct: 40
+      testStrengthPct: 42
     crap:
       totalMethods: 35
-      hotspots: 12
-      maxCrap: 650.0
-      averageCrap: 51.714285714285715
-      simple: 14
-      moderate: 9
-      high: 6
-      veryHigh: 6
-      healthPct: 53
-      top:
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: runAnalysis
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
-        line: 170
-        cyclomatic: 25
-        lineCoveragePct: 0
-        crap: 650.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: scoreQuizzes
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Ljava/util/Map;)V
-        line: 477
-        cyclomatic: 19
-        lineCoveragePct: 0
-        crap: 380.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: computeAssessment
-        methodDesc: (Ljava/util/Map;Ljava/util/Map;)Lcom/learney/contentaudit/auditdomain/labs/AbsenceAssessment;
-        line: 664
-        cyclomatic: 11
-        lineCoveragePct: 0
-        crap: 132.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: onQuiz
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 139
-        cyclomatic: 10
-        lineCoveragePct: 0
-        crap: 110.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: scoreQuiz
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditableQuiz;Lcom/learney/contentaudit/auditdomain/CefrLevel;Ljava/util/Map;)Lcom/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzer$QuizScoringResult;
-        line: 589
-        cyclomatic: 10
-        lineCoveragePct: 0
-        crap: 110.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: recommendationPriority
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;Ljava/util/List;)Lcom/learney/contentaudit/auditdomain/labs/PriorityLevel;
-        line: 797
-        cyclomatic: 7
-        lineCoveragePct: 0
-        crap: 56.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: assignPriority
-        methodDesc: (Ljava/lang/String;Ljava/util/Optional;Lcom/learney/contentaudit/auditdomain/CefrLevel;)Lcom/learney/contentaudit/auditdomain/labs/PriorityLevel;
-        line: 421
-        cyclomatic: 6
-        lineCoveragePct: 0
-        crap: 42.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: generateRecommendations
-        methodDesc: (Ljava/util/Map;Ljava/util/Map;)Ljava/util/List;
-        line: 726
-        cyclomatic: 6
-        lineCoveragePct: 0
-        crap: 42.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: parseLevelFromQuizNode
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Lcom/learney/contentaudit/auditdomain/CefrLevel;
-        line: 346
-        cyclomatic: 5
-        lineCoveragePct: 0
-        crap: 30.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: classifyAbsence
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;Ljava/util/List;)Lcom/learney/contentaudit/auditdomain/labs/AbsenceType;
-        line: 399
-        cyclomatic: 5
-        lineCoveragePct: 0
-        crap: 30.0
-    healthScore: 31
+      hotspots: 0
+      maxCrap: 25.0
+      averageCrap: 4.8541377428571435
+      simple: 30
+      moderate: 4
+      high: 1
+      veryHigh: 0
+      healthPct: 91
+    healthScore: 67
     verdict: WARNED
     violations:
-    - lineCoverage 0% < 70%
-    - branchCoverage 0% < 60%
-    - mutationScore 39% < 60%
-    - crapHotspots 12 > 5
+    - mutationScore 40% < 60%
 - id: FEAT-CLIRV
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
+  requirementFile: requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLIRV-R001
     state: PASSING
@@ -844,56 +770,35 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 212
-      linesMissed: 900
+      linesCovered: 610
+      linesMissed: 502
       linesTotal: 1112
-      lineCoveragePct: 19
-      branchesCovered: 96
-      branchesMissed: 516
+      lineCoveragePct: 54
+      branchesCovered: 296
+      branchesMissed: 316
       branchesTotal: 612
-      branchCoveragePct: 15
-      blendPct: 17
+      branchCoveragePct: 48
+      blendPct: 51
     mutation:
-      totalMutants: 661
-      killed: 174
-      survived: 195
-      noCoverage: 292
+      totalMutants: 0
+      killed: 0
+      survived: 0
+      noCoverage: 0
       timedOut: 0
       other: 0
-      mutationScorePct: 26
-      testStrengthPct: 47
+      mutationScorePct: 0
+      testStrengthPct: 0
     crap:
       totalMethods: 108
-      hotspots: 21
-      maxCrap: 870.0
-      averageCrap: 31.426396277777776
-      simple: 63
-      moderate: 24
-      high: 6
-      veryHigh: 15
-      healthPct: 69
+      hotspots: 7
+      maxCrap: 183.88800000000003
+      averageCrap: 12.155151277777778
+      simple: 83
+      moderate: 16
+      high: 4
+      veryHigh: 5
+      healthPct: 84
       top:
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleTasks
-        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 411
-        cyclomatic: 29
-        lineCoveragePct: 0
-        crap: 870.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printProposalOne
-        methodDesc: (Lcom/learney/contentaudit/revisiondomain/RevisionArtifact;)V
-        line: 948
-        cyclomatic: 18
-        lineCoveragePct: 0
-        crap: 342.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printSnapshotSummary
-        methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
-        line: 1009
-        cyclomatic: 14
-        lineCoveragePct: 0
-        crap: 210.0
       - className: com.learney.contentaudit.auditcli.commands.ReviseCmd
         methodName: handleOutcome
         methodDesc: (Lcom/learney/contentaudit/revisiondomain/RevisionOutcome;Ljava/lang/String;Ljava/lang/String;)I
@@ -909,12 +814,12 @@ features:
         lineCoveragePct: 0
         crap: 182.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printLemmaAbsenceContextText
-        methodDesc: (Lcom/learney/contentaudit/refinerdomain/LemmaAbsenceCorrectionContext;)V
-        line: 697
-        cyclomatic: 12
-        lineCoveragePct: 0
-        crap: 156.0
+        methodName: printSnapshotSummary
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
+        line: 1009
+        cyclomatic: 14
+        lineCoveragePct: 13
+        crap: 143.066588
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: renderSentence
         methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
@@ -923,36 +828,35 @@ features:
         lineCoveragePct: 0
         crap: 132.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: get
-        methodDesc: (Ljava/lang/String;Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 184
-        cyclomatic: 9
+        methodName: handleAnalyzers
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 1090
+        cyclomatic: 7
         lineCoveragePct: 0
-        crap: 90.0
+        crap: 56.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleProposalList
-        methodDesc: (Lcom/learney/contentaudit/auditcli/GetTasksFilter;Ljava/lang/String;)I
-        line: 857
-        cyclomatic: 9
-        lineCoveragePct: 0
-        crap: 90.0
+        methodName: handleTasks
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 411
+        cyclomatic: 29
+        lineCoveragePct: 77
+        crap: 39.23244699999999
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printSentenceLengthContextText
-        methodDesc: (Lcom/learney/contentaudit/refinerdomain/SentenceLengthCorrectionContext;)V
-        line: 669
-        cyclomatic: 8
+        methodName: call
+        methodDesc: ()Ljava/lang/Integer;
+        line: 149
+        cyclomatic: 5
         lineCoveragePct: 0
-        crap: 72.0
-    healthScore: 34
+        crap: 30.0
+    healthScore: 36
     verdict: WARNED
     violations:
-    - lineCoverage 19% < 70%
-    - branchCoverage 15% < 60%
-    - mutationScore 26% < 60%
-    - crapHotspots 21 > 5
+    - lineCoverage 54% < 70%
+    - branchCoverage 48% < 60%
+    - crapHotspots 7 > 5
 - id: FEAT-LREC
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
+  requirementFile: requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LREC-R001
     state: NO_TESTS
@@ -1090,71 +994,39 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 98
-      linesTotal: 98
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 62
+      linesCovered: 87
+      linesMissed: 12
+      linesTotal: 99
+      lineCoveragePct: 87
+      branchesCovered: 40
+      branchesMissed: 22
       branchesTotal: 62
-      branchCoveragePct: 0
-      blendPct: 0
+      branchCoveragePct: 64
+      blendPct: 75
     mutation:
-      totalMutants: 66
-      killed: 43
+      totalMutants: 68
+      killed: 44
       survived: 17
-      noCoverage: 6
+      noCoverage: 7
       timedOut: 0
       other: 0
-      mutationScorePct: 65
-      testStrengthPct: 71
+      mutationScorePct: 64
+      testStrengthPct: 72
     crap:
       totalMethods: 19
-      hotspots: 4
-      maxCrap: 72.0
-      averageCrap: 16.105263157894736
-      simple: 13
-      moderate: 2
+      hotspots: 0
+      maxCrap: 8.046656
+      averageCrap: 2.7761103157894738
+      simple: 19
+      moderate: 0
       high: 0
-      veryHigh: 4
-      healthPct: 74
-      top:
-      - className: com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzer
-        methodName: onQuiz
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 58
-        cyclomatic: 8
-        lineCoveragePct: 0
-        crap: 72.0
-      - className: com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter
-        methodName: isContentWord
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/NlpToken;)Z
-        line: 14
-        cyclomatic: 7
-        lineCoveragePct: 0
-        crap: 56.0
-      - className: com.learney.contentaudit.auditdomain.lrec.DefaultIntervalCalculator
-        methodName: parsePositions
-        methodDesc: (Ljava/lang/String;)Ljava/util/List;
-        line: 57
-        cyclomatic: 7
-        lineCoveragePct: 0
-        crap: 56.0
-      - className: com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzer
-        methodName: onCourseComplete
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 87
-        cyclomatic: 7
-        lineCoveragePct: 0
-        crap: 56.0
-    healthScore: 48
-    verdict: WARNED
-    violations:
-    - lineCoverage 0% < 70%
-    - branchCoverage 0% < 60%
+      veryHigh: 0
+      healthPct: 100
+    healthScore: 76
+    verdict: PASSED
 - id: FEAT-RCLAQS
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
+  requirementFile: requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLAQS-R001
     state: PASSING
@@ -1286,63 +1158,42 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 178
-      linesMissed: 697
+      linesCovered: 576
+      linesMissed: 299
       linesTotal: 875
-      lineCoveragePct: 20
-      branchesCovered: 76
-      branchesMissed: 451
+      lineCoveragePct: 65
+      branchesCovered: 276
+      branchesMissed: 251
       branchesTotal: 527
-      branchCoveragePct: 14
-      blendPct: 17
+      branchCoveragePct: 52
+      blendPct: 58
     mutation:
-      totalMutants: 482
-      killed: 160
-      survived: 157
-      noCoverage: 165
+      totalMutants: 71
+      killed: 45
+      survived: 22
+      noCoverage: 4
       timedOut: 0
       other: 0
-      mutationScorePct: 33
-      testStrengthPct: 50
+      mutationScorePct: 63
+      testStrengthPct: 67
     crap:
       totalMethods: 76
-      hotspots: 19
-      maxCrap: 870.0
-      averageCrap: 38.32619952631578
-      simple: 36
-      moderate: 20
-      high: 7
-      veryHigh: 13
-      healthPct: 61
+      hotspots: 5
+      maxCrap: 143.066588
+      averageCrap: 10.940746105263157
+      simple: 56
+      moderate: 12
+      high: 5
+      veryHigh: 3
+      healthPct: 82
       top:
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleTasks
-        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 411
-        cyclomatic: 29
-        lineCoveragePct: 0
-        crap: 870.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printProposalOne
-        methodDesc: (Lcom/learney/contentaudit/revisiondomain/RevisionArtifact;)V
-        line: 948
-        cyclomatic: 18
-        lineCoveragePct: 0
-        crap: 342.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: printSnapshotSummary
         methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
         line: 1009
         cyclomatic: 14
-        lineCoveragePct: 0
-        crap: 210.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printLemmaAbsenceContextText
-        methodDesc: (Lcom/learney/contentaudit/refinerdomain/LemmaAbsenceCorrectionContext;)V
-        line: 697
-        cyclomatic: 12
-        lineCoveragePct: 0
-        crap: 156.0
+        lineCoveragePct: 13
+        crap: 143.066588
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: renderSentence
         methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
@@ -1351,50 +1202,34 @@ features:
         lineCoveragePct: 0
         crap: 132.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: get
-        methodDesc: (Ljava/lang/String;Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 184
-        cyclomatic: 9
-        lineCoveragePct: 0
-        crap: 90.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleProposalList
-        methodDesc: (Lcom/learney/contentaudit/auditcli/GetTasksFilter;Ljava/lang/String;)I
-        line: 857
-        cyclomatic: 9
-        lineCoveragePct: 0
-        crap: 90.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printSentenceLengthContextText
-        methodDesc: (Lcom/learney/contentaudit/refinerdomain/SentenceLengthCorrectionContext;)V
-        line: 669
-        cyclomatic: 8
-        lineCoveragePct: 0
-        crap: 72.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleAudits
+        methodName: handleAnalyzers
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 227
+        line: 1090
         cyclomatic: 7
         lineCoveragePct: 0
         crap: 56.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handlePlans
+        methodName: handleTasks
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 320
-        cyclomatic: 7
+        line: 411
+        cyclomatic: 29
+        lineCoveragePct: 77
+        crap: 39.23244699999999
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: call
+        methodDesc: ()Ljava/lang/Integer;
+        line: 149
+        cyclomatic: 5
         lineCoveragePct: 0
-        crap: 56.0
-    healthScore: 35
+        crap: 30.0
+    healthScore: 66
     verdict: WARNED
     violations:
-    - lineCoverage 20% < 70%
-    - branchCoverage 14% < 60%
-    - mutationScore 33% < 60%
-    - crapHotspots 19 > 5
+    - lineCoverage 65% < 70%
+    - branchCoverage 52% < 60%
 - id: FEAT-DCOCA
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
+  requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DCOCA-R001
     state: NO_TESTS
@@ -1493,7 +1328,7 @@ features:
     verdict: PASSED
 - id: FEAT-QSENT
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
+  requirementFile: requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-QSENT-R001
     state: PASSING
@@ -1786,15 +1621,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 81
-      linesMissed: 24
-      linesTotal: 105
-      lineCoveragePct: 77
+      linesCovered: 89
+      linesMissed: 13
+      linesTotal: 102
+      lineCoveragePct: 87
       branchesCovered: 31
       branchesMissed: 17
       branchesTotal: 48
       branchCoveragePct: 64
-      blendPct: 70
+      blendPct: 75
     mutation:
       totalMutants: 38
       killed: 14
@@ -1808,19 +1643,19 @@ features:
       totalMethods: 14
       hotspots: 0
       maxCrap: 11.408375
-      averageCrap: 3.1242065714285716
+      averageCrap: 2.8384922857142856
       simple: 13
       moderate: 1
       high: 0
       veryHigh: 0
       healthPct: 96
-    healthScore: 61
+    healthScore: 63
     verdict: WARNED
     violations:
     - mutationScore 36% < 60%
 - id: FEAT-COURSE
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-15.01_course-structure/REQUIREMENT.md
+  requirementFile: requirements/2026-03-15.01_course-structure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COURSE-R001
     state: PASSING
@@ -2099,7 +1934,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLALEN
   state: DRAFT
-  requirementFile: ./requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
+  requirementFile: requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLALEN-R001
     state: NO_TESTS
@@ -2158,7 +1993,7 @@ features:
     verdict: PASSED
 - id: FEAT-COCA
   state: DRAFT
-  requirementFile: ./requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
+  requirementFile: requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COCA-R001
     state: NO_TESTS
@@ -2281,7 +2116,7 @@ features:
     verdict: PASSED
 - id: FEAT-NLP
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
+  requirementFile: requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-NLP-R001
     state: NO_TESTS
@@ -2420,7 +2255,7 @@ features:
     - mutationScore 32% < 60%
 - id: FEAT-LABS
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
+  requirementFile: requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LABS-R001
     state: PASSING
@@ -3307,115 +3142,41 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 31
-      linesMissed: 483
-      linesTotal: 514
-      lineCoveragePct: 6
-      branchesCovered: 14
-      branchesMissed: 246
+      linesCovered: 479
+      linesMissed: 45
+      linesTotal: 524
+      lineCoveragePct: 91
+      branchesCovered: 211
+      branchesMissed: 49
       branchesTotal: 260
-      branchCoveragePct: 5
-      blendPct: 5
+      branchCoveragePct: 81
+      blendPct: 86
     mutation:
-      totalMutants: 209
-      killed: 91
+      totalMutants: 212
+      killed: 94
       survived: 106
       noCoverage: 12
       timedOut: 0
       other: 0
-      mutationScorePct: 43
-      testStrengthPct: 46
+      mutationScorePct: 44
+      testStrengthPct: 47
     crap:
       totalMethods: 53
-      hotspots: 12
-      maxCrap: 650.0
-      averageCrap: 34.77358490566038
-      simple: 32
-      moderate: 9
-      high: 6
-      veryHigh: 6
-      healthPct: 69
-      top:
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: runAnalysis
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
-        line: 170
-        cyclomatic: 25
-        lineCoveragePct: 0
-        crap: 650.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: scoreQuizzes
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Ljava/util/Map;)V
-        line: 477
-        cyclomatic: 19
-        lineCoveragePct: 0
-        crap: 380.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: computeAssessment
-        methodDesc: (Ljava/util/Map;Ljava/util/Map;)Lcom/learney/contentaudit/auditdomain/labs/AbsenceAssessment;
-        line: 664
-        cyclomatic: 11
-        lineCoveragePct: 0
-        crap: 132.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: onQuiz
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 139
-        cyclomatic: 10
-        lineCoveragePct: 0
-        crap: 110.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: scoreQuiz
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditableQuiz;Lcom/learney/contentaudit/auditdomain/CefrLevel;Ljava/util/Map;)Lcom/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzer$QuizScoringResult;
-        line: 589
-        cyclomatic: 10
-        lineCoveragePct: 0
-        crap: 110.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: recommendationPriority
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;Ljava/util/List;)Lcom/learney/contentaudit/auditdomain/labs/PriorityLevel;
-        line: 797
-        cyclomatic: 7
-        lineCoveragePct: 0
-        crap: 56.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: assignPriority
-        methodDesc: (Ljava/lang/String;Ljava/util/Optional;Lcom/learney/contentaudit/auditdomain/CefrLevel;)Lcom/learney/contentaudit/auditdomain/labs/PriorityLevel;
-        line: 421
-        cyclomatic: 6
-        lineCoveragePct: 0
-        crap: 42.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: generateRecommendations
-        methodDesc: (Ljava/util/Map;Ljava/util/Map;)Ljava/util/List;
-        line: 726
-        cyclomatic: 6
-        lineCoveragePct: 0
-        crap: 42.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: parseLevelFromQuizNode
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Lcom/learney/contentaudit/auditdomain/CefrLevel;
-        line: 346
-        cyclomatic: 5
-        lineCoveragePct: 0
-        crap: 30.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: classifyAbsence
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;Ljava/util/List;)Lcom/learney/contentaudit/auditdomain/labs/AbsenceType;
-        line: 399
-        cyclomatic: 5
-        lineCoveragePct: 0
-        crap: 30.0
-    healthScore: 38
+      hotspots: 0
+      maxCrap: 25.0
+      averageCrap: 3.8282041698113214
+      simple: 48
+      moderate: 4
+      high: 1
+      veryHigh: 0
+      healthPct: 94
+    healthScore: 69
     verdict: WARNED
     violations:
-    - lineCoverage 6% < 70%
-    - branchCoverage 5% < 60%
-    - mutationScore 43% < 60%
-    - crapHotspots 12 > 5
+    - mutationScore 44% < 60%
 - id: FEAT-CLI
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
+  requirementFile: requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLI-R001
     state: PASSING
@@ -3538,7 +3299,7 @@ features:
     - mutationScore 18% < 60%
 - id: f0b4e57b-7c0f-4e3e-b9b3-843aef216a67
   state: DRAFT
-  requirementFile: ./requirements/2026-04-28.01_laps-engine-public-visibility/REQUIREMENT.md
+  requirementFile: requirements/2026-04-28.01_laps-engine-public-visibility/REQUIREMENT.md
   rulesCoverage:
   - ruleId: 27ac13c5-bc70-4e9b-96c3-3315542d6835
     state: NO_TESTS
@@ -3585,7 +3346,7 @@ features:
     verdict: PASSED
 - id: FEAT-KTLEN
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
+  requirementFile: requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-KTLEN-R001
     state: PASSING
@@ -3880,15 +3641,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 60
-      linesTotal: 60
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 26
+      linesCovered: 52
+      linesMissed: 4
+      linesTotal: 56
+      lineCoveragePct: 92
+      branchesCovered: 24
+      branchesMissed: 2
       branchesTotal: 26
-      branchCoveragePct: 0
-      blendPct: 0
+      branchCoveragePct: 92
+      blendPct: 92
     mutation:
       totalMutants: 33
       killed: 25
@@ -3900,30 +3661,19 @@ features:
       testStrengthPct: 83
     crap:
       totalMethods: 22
-      hotspots: 1
-      maxCrap: 30.0
-      averageCrap: 6.090909090909091
-      simple: 18
-      moderate: 3
-      high: 1
+      hotspots: 0
+      maxCrap: 5.024
+      averageCrap: 1.8192727272727274
+      simple: 22
+      moderate: 0
+      high: 0
       veryHigh: 0
-      healthPct: 89
-      top:
-      - className: com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzer
-        methodName: onKnowledge
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 28
-        cyclomatic: 5
-        lineCoveragePct: 0
-        crap: 30.0
-    healthScore: 56
-    verdict: WARNED
-    violations:
-    - lineCoverage 0% < 70%
-    - branchCoverage 0% < 60%
+      healthPct: 100
+    healthScore: 86
+    verdict: PASSED
 - id: FEAT-REVAPR
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
+  requirementFile: requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVAPR-R001
     state: PASSING
@@ -4526,56 +4276,35 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 402
-      linesMissed: 775
+      linesCovered: 800
+      linesMissed: 377
       linesTotal: 1177
-      lineCoveragePct: 34
-      branchesCovered: 143
-      branchesMissed: 468
+      lineCoveragePct: 67
+      branchesCovered: 343
+      branchesMissed: 268
       branchesTotal: 611
-      branchCoveragePct: 23
-      blendPct: 28
+      branchCoveragePct: 56
+      blendPct: 61
     mutation:
-      totalMutants: 644
-      killed: 236
-      survived: 195
-      noCoverage: 213
+      totalMutants: 84
+      killed: 60
+      survived: 16
+      noCoverage: 8
       timedOut: 0
       other: 0
-      mutationScorePct: 36
-      testStrengthPct: 54
+      mutationScorePct: 71
+      testStrengthPct: 78
     crap:
       totalMethods: 117
-      hotspots: 20
-      maxCrap: 870.0
-      averageCrap: 27.230658700854704
-      simple: 74
-      moderate: 23
-      high: 6
-      veryHigh: 14
-      healthPct: 73
+      hotspots: 6
+      maxCrap: 183.88800000000003
+      averageCrap: 9.441817162393162
+      simple: 94
+      moderate: 15
+      high: 4
+      veryHigh: 4
+      healthPct: 87
       top:
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleTasks
-        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 411
-        cyclomatic: 29
-        lineCoveragePct: 0
-        crap: 870.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printProposalOne
-        methodDesc: (Lcom/learney/contentaudit/revisiondomain/RevisionArtifact;)V
-        line: 948
-        cyclomatic: 18
-        lineCoveragePct: 0
-        crap: 342.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printSnapshotSummary
-        methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
-        line: 1009
-        cyclomatic: 14
-        lineCoveragePct: 0
-        crap: 210.0
       - className: com.learney.contentaudit.auditcli.commands.ReviseCmd
         methodName: handleOutcome
         methodDesc: (Lcom/learney/contentaudit/revisiondomain/RevisionOutcome;Ljava/lang/String;Ljava/lang/String;)I
@@ -4584,12 +4313,12 @@ features:
         lineCoveragePct: 20
         crap: 183.88800000000003
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printLemmaAbsenceContextText
-        methodDesc: (Lcom/learney/contentaudit/refinerdomain/LemmaAbsenceCorrectionContext;)V
-        line: 697
-        cyclomatic: 12
-        lineCoveragePct: 0
-        crap: 156.0
+        methodName: printSnapshotSummary
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
+        line: 1009
+        cyclomatic: 14
+        lineCoveragePct: 13
+        crap: 143.066588
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: renderSentence
         methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
@@ -4598,43 +4327,35 @@ features:
         lineCoveragePct: 0
         crap: 132.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: get
-        methodDesc: (Ljava/lang/String;Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 184
-        cyclomatic: 9
-        lineCoveragePct: 0
-        crap: 90.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleProposalList
-        methodDesc: (Lcom/learney/contentaudit/auditcli/GetTasksFilter;Ljava/lang/String;)I
-        line: 857
-        cyclomatic: 9
-        lineCoveragePct: 0
-        crap: 90.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printSentenceLengthContextText
-        methodDesc: (Lcom/learney/contentaudit/refinerdomain/SentenceLengthCorrectionContext;)V
-        line: 669
-        cyclomatic: 8
-        lineCoveragePct: 0
-        crap: 72.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleAudits
+        methodName: handleAnalyzers
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 227
+        line: 1090
         cyclomatic: 7
         lineCoveragePct: 0
         crap: 56.0
-    healthScore: 43
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleTasks
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 411
+        cyclomatic: 29
+        lineCoveragePct: 77
+        crap: 39.23244699999999
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: call
+        methodDesc: ()Ljava/lang/Integer;
+        line: 149
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 72
     verdict: WARNED
     violations:
-    - lineCoverage 34% < 70%
-    - branchCoverage 23% < 60%
-    - mutationScore 36% < 60%
-    - crapHotspots 20 > 5
+    - lineCoverage 67% < 70%
+    - branchCoverage 56% < 60%
+    - crapHotspots 6 > 5
 - id: FEAT-LAPS
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
+  requirementFile: requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAPS-R001
     state: PASSING
@@ -4978,14 +4699,14 @@ features:
       branchCoveragePct: 60
       blendPct: 68
     mutation:
-      totalMutants: 45
-      killed: 27
+      totalMutants: 38
+      killed: 20
       survived: 11
       noCoverage: 7
       timedOut: 0
       other: 0
-      mutationScorePct: 60
-      testStrengthPct: 71
+      mutationScorePct: 52
+      testStrengthPct: 64
     crap:
       totalMethods: 16
       hotspots: 0
@@ -4996,11 +4717,13 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 100
-    healthScore: 72
-    verdict: PASSED
+    healthScore: 69
+    verdict: WARNED
+    violations:
+    - mutationScore 52% < 60%
 - id: FEAT-DSLEN
   state: DRAFT
-  requirementFile: ./requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
+  requirementFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DSLEN-R001
     state: NO_TESTS
@@ -5053,7 +4776,7 @@ features:
     verdict: PASSED
 - id: FEAT-SLEN
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
+  requirementFile: requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SLEN-R001
     state: PASSING
@@ -5212,15 +4935,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 58
-      linesTotal: 58
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 28
+      linesCovered: 44
+      linesMissed: 11
+      linesTotal: 55
+      lineCoveragePct: 80
+      branchesCovered: 20
+      branchesMissed: 8
       branchesTotal: 28
-      branchCoveragePct: 0
-      blendPct: 0
+      branchCoveragePct: 71
+      blendPct: 75
     mutation:
       totalMutants: 33
       killed: 18
@@ -5232,38 +4955,21 @@ features:
       testStrengthPct: 72
     crap:
       totalMethods: 11
-      hotspots: 2
-      maxCrap: 72.0
-      averageCrap: 12.545454545454545
-      simple: 8
+      hotspots: 0
+      maxCrap: 10.985984
+      averageCrap: 2.635089454545455
+      simple: 10
       moderate: 1
-      high: 1
-      veryHigh: 1
-      healthPct: 77
-      top:
-      - className: com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer
-        methodName: onQuiz
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-        line: 46
-        cyclomatic: 8
-        lineCoveragePct: 0
-        crap: 72.0
-      - className: com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer
-        methodName: scoreQuiz
-        methodDesc: (ILcom/learney/contentaudit/auditdomain/TargetRange;)D
-        line: 98
-        cyclomatic: 5
-        lineCoveragePct: 0
-        crap: 30.0
-    healthScore: 44
+      high: 0
+      veryHigh: 0
+      healthPct: 95
+    healthScore: 71
     verdict: WARNED
     violations:
-    - lineCoverage 0% < 70%
-    - branchCoverage 0% < 60%
     - mutationScore 54% < 60%
 - id: FEAT-LCOUNT
   state: DRAFT
-  requirementFile: ./requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
+  requirementFile: requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LCOUNT-R001
     state: NO_TESTS
@@ -5342,7 +5048,7 @@ features:
     verdict: PASSED
 - id: FEAT-REVBYP
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
+  requirementFile: requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVBYP-R001
     state: PASSING
@@ -5591,645 +5297,646 @@ features:
     healthScore: 75
     verdict: PASSED
 - id: FEAT-LAGEN
-  state: IMPLEMENTING
-  requirementFile: ./requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
+  state: ANALYSED
+  requirementFile: requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
+  patchFile: requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-LAGEN-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: should stamp StrategyId.name = 'lemma-absence-llm' on every produced proposal
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: LemmaAbsenceMvpStrategy
     - name: create returns a generator whose strategyName is 'lemma-absence-llm'
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: generate embeds the strategyName 'lemma-absence-llm' inside the message
         of any ProposalStrategyFailedException it raises
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
   - ruleId: F-LAGEN-R002
     state: NO_TESTS
   - ruleId: F-LAGEN-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: generate sends both the system prompt and the user prompt produced from
         the context to the model
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: buildUserPrompt includes quizSentence from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes sentence from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes translation from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes knowledgeTitle from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes knowledgeInstructions from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes topicLabel from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes cefrLevel from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes every misplacedLemma from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt includes every suggestedLemma from the context
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: buildUserPrompt omits a context field that is null without consulting
         any external source
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
   - ruleId: F-LAGEN-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: buildSystemPrompt instructs the model to return a JSON object with exactly
         the fields quizSentence and translation
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: "buildSystemPrompt instructs the model to produce one single candidate,\
         \ not a list of alternatives"
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
     - name: "buildSystemPrompt instructs the model to express quizSentence in the\
         \ same DSL of the input quiz, replacing misplacedLemmas with options from\
         \ suggestedLemmas when applicable"
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsencePromptBuilder
   - ruleId: F-LAGEN-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: generate returns a LemmaAbsenceGeneratorResponse parsed from the model
         output on the happy path
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: "parse returns LemmaAbsenceGeneratorResponse(quizSentence, translation)\
         \ when the raw text is a JSON object with both fields non-empty"
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse ignores extra JSON fields beyond quizSentence and translation
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when the raw text is not parseable as JSON
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when the JSON object lacks the quizSentence field
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when the JSON object lacks the translation field
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when quizSentence is an empty string
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when translation is an empty string
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when quizSentence is not a JSON string
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when translation is not a JSON string
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
   - ruleId: F-LAGEN-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: generate prefixes the failure reason with the LlmGenerationFailureCategory
         name returned by the classifier
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_EMPTY
         when the model returns empty text
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED
         when the model returns text the parser cannot interpret
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_OTHER
         when the model client throws a Throwable not matched by any specific category
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_UNREACHABLE
         when the model client throws ConnectException
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_TIMEOUT
         when the model client throws SocketTimeoutException
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: generate raises ProposalStrategyFailedException with reason prefixed LLM_AUTH_FAILED
         when the model client throws an OpenAiHttpException with status 401
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_EMPTY
         when the raw text is empty
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse embeds the taskId in the message of any ProposalStrategyFailedException
         it raises
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse embeds the strategyName in the message of any ProposalStrategyFailedException
         it raises
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: classify returns LLM_OTHER for a Throwable not matched by any specific
         category
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify never returns null for any non-null Throwable
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_UNREACHABLE for a ConnectException anywhere in the
         cause chain
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_UNREACHABLE for an UnknownHostException anywhere
         in the cause chain
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_UNREACHABLE for a NoRouteToHostException anywhere
         in the cause chain
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_TIMEOUT for a SocketTimeoutException anywhere in
         the cause chain
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_TIMEOUT for a java.util.concurrent.TimeoutException
         anywhere in the cause chain
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode
         is 401
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode
         is 403
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
     - name: classify returns LLM_AUTH_FAILED when the root cause message matches the
         auth heuristic regex (case-insensitive 'unauthorized' / 'forbidden' / '401'
         / '403' / 'invalid api key')
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLangChainErrorClassifier
   - ruleId: F-LAGEN-R007
-    state: FAILING
+    state: PASSING
     tests:
     - name: generate issues exactly one round-trip to the model per invocation (no
         automatic retry)
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
     - name: generate raises ProposalStrategyFailedException without persisting any
         partial response when the parser rejects the raw text
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceLlmGenerator
   - ruleId: F-LAGEN-R008
-    state: FAILING
+    state: PASSING
     tests:
     - name: resolve returns a LagenConfig populated from every CONTENT_AUDIT_LAGEN_*
         env entry when all required keys are present and valid
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenConfigResolver
     - name: resolve returns LagenConfig with apiKey=null when the apiKey env entry
         is absent (knob nullable per R008)
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenConfigResolver
     - name: resolve returns LagenConfig with temperature=null when the temperature
         env entry is absent (factory will substitute LagenDefaults.temperature)
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenConfigResolver
     - name: resolve returns LagenConfig with maxTokens=null when the maxTokens env
         entry is absent (factory will substitute LagenDefaults.maxTokens)
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenConfigResolver
     - name: resolve returns LagenConfig with timeout=null when the timeout env entry
         is absent (factory will substitute LagenDefaults.timeout)
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenConfigResolver
     - name: "create propagates explicit endpoint, modelId and apiKey from LagenConfig\
         \ into the configured generator"
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: "create propagates explicit temperature, maxTokens and timeout from LagenConfig\
         \ into the configured generator"
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: create sends no Authorization header when LagenConfig.apiKey is null
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: create applies LagenDefaults.maxTokens (2048) when LagenConfig.maxTokens
         is null
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: create applies LagenDefaults.timeout (Duration.ofSeconds(30)) when LagenConfig.timeout
         is null
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
   - ruleId: F-LAGEN-R009
-    state: FAILING
+    state: PASSING
     tests:
     - name: should stamp StrategyId.providerId from the injected generator's provider
         on every proposal
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: LemmaAbsenceMvpStrategy
     - name: providerIdFor yields different values for two LagenConfigs that differ
         in providerName
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: providerIdFor yields different values for two LagenConfigs that differ
         in modelId
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: providerIdFor returns 'providerName:modelId' joining the two LagenConfig
         fields with a literal ':'
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: providerIdFor preserves the case of providerName and modelId verbatim
         (no lowercasing)
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: providerIdFor preserves leading and trailing whitespace inside providerName
         and modelId verbatim (no trimming)
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: providerIdFor raises InvalidProviderIdException when LagenConfig.providerName
         contains ':'
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
     - name: providerIdFor raises InvalidProviderIdException when LagenConfig.modelId
         contains ':'
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
   - ruleId: F-LAGEN-R010
-    state: FAILING
+    state: PASSING
     tests:
     - name: "parse accepts a quizSentence whose plain-text length looks unusually\
         \ short or long: only structural validation applies"
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse accepts a response without re-checking that misplacedLemmas were
         replaced or that new words come from suggestedLemmas
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: parse accepts a response without re-tokenizing the quizSentence to verify
         its CEFR level
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
     - name: "parse accepts a quizSentence regardless of whether it parses as the FEAT-QSENT\
         \ DSL: grammar validation is delegated downstream"
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceResponseParser
   - ruleId: F-LAGEN-R011
-    state: FAILING
+    state: PASSING
     tests:
     - name: create applies LagenDefaults.temperature (0.7) when LagenConfig.temperature
         is null
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: DefaultLemmaAbsenceLlmGeneratorFactory
   - ruleId: F-LAGEN-R012
-    state: FAILING
+    state: PASSING
     tests:
     - name: "generate returns the same (cannedQuizSentence, cannedTranslation) pair\
         \ on every invocation"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: CannedLemmaAbsenceQuizCandidateGenerator
     - name: generate returns the injected cannedQuizSentence and cannedTranslation
         verbatim with no transformation
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: CannedLemmaAbsenceQuizCandidateGenerator
     - name: "generate returns the same response regardless of differences in the LemmaAbsenceCorrectionContext\
         \ (quizSentence, cefrLevel, misplacedLemmas, suggestedLemmas)"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: CannedLemmaAbsenceQuizCandidateGenerator
     - name: generate performs no I/O and never contacts an external provider
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: CannedLemmaAbsenceQuizCandidateGenerator
   - ruleId: F-LAGEN-R013
-    state: FAILING
+    state: PASSING
     tests:
     - name: resolve returns LagenMode.LLM when the env value is null (default per
         R013)
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenModeResolver
     - name: resolve returns LagenMode.LLM when the env value is an empty or whitespace-only
         string (default per R013)
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenModeResolver
     - name: resolve returns LagenMode.LLM when the env value is 'llm' (explicit dynamic
         mode opt-in per R013)
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenModeResolver
     - name: resolve returns LagenMode.CANNED when the env value is 'canned' (explicit
         fixed-mode opt-in per R013)
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenModeResolver
     - name: "resolve accepts the mode value case-insensitively ('LLM', 'CANNED', 'CaNnEd'\
         \ all parse) per R013"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenModeResolver
   - ruleId: F-LAGEN-R014
-    state: FAILING
+    state: PASSING
     tests:
     - name: resolve raises InvalidLagenModeException carrying the offending value
         when the env value is not a recognised mode (fail-fast per R014)
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenModeResolver
     - name: InvalidLagenModeException raised by resolve has a message that identifies
         the unrecognised mode value declared by the operator (per R014)
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenModeResolver
     - name: resolve raises InvalidLagenConfigException identifying the temperature
         env key when its value is not a parseable number (fail-fast per R014)
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenConfigResolver
     - name: resolve raises InvalidLagenConfigException identifying the timeout env
         key when its value is not a positive duration (fail-fast per R014)
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenConfigResolver
     - name: resolve raises InvalidLagenConfigException identifying the maxTokens env
         key when its value is not a positive integer (fail-fast per R014)
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenConfigResolver
     - name: InvalidLagenConfigException raised by resolve carries both the offending
         env-var key and a parse-failure detail per R014
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenConfigResolver
     - name: resolve raises InvalidLagenConfigException identifying the providerName
         env key when its value is missing or empty (fail-fast per R014)
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultLagenConfigResolver
   journeysCoverage:
   - journeyId: F-LAGEN-J001
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_laRespuestaCumpleLaEstructuraExigida_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-infrastructure
         implementation: FLagenJ001JourneyTest
     - pathId: path-2
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_laRespuestaNoCumpleLaEstructuraExigida_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-infrastructure
         implementation: FLagenJ001JourneyTest
   - journeyId: F-LAGEN-J002
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-infrastructure
         implementation: FLagenJ002JourneyTest
   - journeyId: F-LAGEN-J003
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-infrastructure
         implementation: FLagenJ003JourneyTest
   - journeyId: F-LAGEN-J004
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-infrastructure
         implementation: FLagenJ004JourneyTest
   - journeyId: F-LAGEN-J005
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-infrastructure
         implementation: FLagenJ005JourneyTest
   - journeyId: F-LAGEN-J006
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-infrastructure
         implementation: FLagenJ006JourneyTest
   quality:
@@ -6250,39 +5957,39 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
-      branchCoveragePct: 0
-      blendPct: 0
+      linesCovered: 181
+      linesMissed: 13
+      linesTotal: 194
+      lineCoveragePct: 93
+      branchesCovered: 86
+      branchesMissed: 29
+      branchesTotal: 115
+      branchCoveragePct: 74
+      blendPct: 83
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 62
+      killed: 41
+      survived: 11
+      noCoverage: 10
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 66
+      testStrengthPct: 78
     crap:
-      totalMethods: 0
+      totalMethods: 31
       hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
+      maxCrap: 13.036504
+      averageCrap: 3.1004822258064513
+      simple: 30
+      moderate: 1
       high: 0
       veryHigh: 0
-      healthPct: 0
-    healthScore: 0
+      healthPct: 98
+    healthScore: 79
     verdict: PASSED
 - id: FEAT-RCLA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
+  requirementFile: requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLA-R001
     state: PASSING
@@ -6613,63 +6320,42 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 162
-      linesMissed: 704
+      linesCovered: 560
+      linesMissed: 306
       linesTotal: 866
-      lineCoveragePct: 18
-      branchesCovered: 77
-      branchesMissed: 457
+      lineCoveragePct: 64
+      branchesCovered: 277
+      branchesMissed: 257
       branchesTotal: 534
-      branchCoveragePct: 14
-      blendPct: 16
+      branchCoveragePct: 51
+      blendPct: 57
     mutation:
-      totalMutants: 500
-      killed: 171
-      survived: 152
-      noCoverage: 177
+      totalMutants: 89
+      killed: 56
+      survived: 17
+      noCoverage: 16
       timedOut: 0
       other: 0
-      mutationScorePct: 34
-      testStrengthPct: 52
+      mutationScorePct: 62
+      testStrengthPct: 76
     crap:
       totalMethods: 83
-      hotspots: 19
-      maxCrap: 870.0
-      averageCrap: 35.49220240963856
-      simple: 43
-      moderate: 20
-      high: 7
-      veryHigh: 13
-      healthPct: 64
+      hotspots: 5
+      maxCrap: 143.066588
+      averageCrap: 10.416365542168673
+      simple: 63
+      moderate: 12
+      high: 5
+      veryHigh: 3
+      healthPct: 83
       top:
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleTasks
-        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 411
-        cyclomatic: 29
-        lineCoveragePct: 0
-        crap: 870.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printProposalOne
-        methodDesc: (Lcom/learney/contentaudit/revisiondomain/RevisionArtifact;)V
-        line: 948
-        cyclomatic: 18
-        lineCoveragePct: 0
-        crap: 342.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: printSnapshotSummary
         methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
         line: 1009
         cyclomatic: 14
-        lineCoveragePct: 0
-        crap: 210.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printLemmaAbsenceContextText
-        methodDesc: (Lcom/learney/contentaudit/refinerdomain/LemmaAbsenceCorrectionContext;)V
-        line: 697
-        cyclomatic: 12
-        lineCoveragePct: 0
-        crap: 156.0
+        lineCoveragePct: 13
+        crap: 143.066588
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: renderSentence
         methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
@@ -6678,51 +6364,35 @@ features:
         lineCoveragePct: 0
         crap: 132.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: get
-        methodDesc: (Ljava/lang/String;Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 184
-        cyclomatic: 9
-        lineCoveragePct: 0
-        crap: 90.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleProposalList
-        methodDesc: (Lcom/learney/contentaudit/auditcli/GetTasksFilter;Ljava/lang/String;)I
-        line: 857
-        cyclomatic: 9
-        lineCoveragePct: 0
-        crap: 90.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printSentenceLengthContextText
-        methodDesc: (Lcom/learney/contentaudit/refinerdomain/SentenceLengthCorrectionContext;)V
-        line: 669
-        cyclomatic: 8
-        lineCoveragePct: 0
-        crap: 72.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleAudits
+        methodName: handleAnalyzers
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 227
+        line: 1090
         cyclomatic: 7
         lineCoveragePct: 0
         crap: 56.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handlePlans
+        methodName: handleTasks
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 320
-        cyclomatic: 7
+        line: 411
+        cyclomatic: 29
+        lineCoveragePct: 77
+        crap: 39.23244699999999
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: call
+        methodDesc: ()Ljava/lang/Integer;
+        line: 149
+        cyclomatic: 5
         lineCoveragePct: 0
-        crap: 56.0
-    healthScore: 36
+        crap: 30.0
+    healthScore: 66
     verdict: WARNED
     violations:
-    - lineCoverage 18% < 70%
-    - branchCoverage 14% < 60%
-    - mutationScore 34% < 60%
-    - crapHotspots 19 > 5
+    - lineCoverage 64% < 70%
+    - branchCoverage 51% < 60%
 - id: FEAT-RCSL
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
-  patchFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/architectural_patch.yaml
+  requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
+  patchFile: requirements/2026-04-05.02_refiner-correction-context-slen/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-RCSL-R001
     state: PASSING
@@ -7065,63 +6735,42 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 87
-      linesMissed: 686
+      linesCovered: 485
+      linesMissed: 288
       linesTotal: 773
-      lineCoveragePct: 11
-      branchesCovered: 39
-      branchesMissed: 432
+      lineCoveragePct: 62
+      branchesCovered: 239
+      branchesMissed: 232
       branchesTotal: 471
-      branchCoveragePct: 8
-      blendPct: 9
+      branchCoveragePct: 50
+      blendPct: 56
     mutation:
-      totalMutants: 445
-      killed: 145
-      survived: 139
-      noCoverage: 161
+      totalMutants: 34
+      killed: 30
+      survived: 4
+      noCoverage: 0
       timedOut: 0
       other: 0
-      mutationScorePct: 32
-      testStrengthPct: 51
+      mutationScorePct: 88
+      testStrengthPct: 88
     crap:
       totalMethods: 67
-      hotspots: 19
-      maxCrap: 870.0
-      averageCrap: 42.91154435820896
-      simple: 28
-      moderate: 20
-      high: 6
-      veryHigh: 13
-      healthPct: 57
+      hotspots: 5
+      maxCrap: 143.066588
+      averageCrap: 11.847447940298506
+      simple: 48
+      moderate: 12
+      high: 4
+      veryHigh: 3
+      healthPct: 81
       top:
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleTasks
-        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 411
-        cyclomatic: 29
-        lineCoveragePct: 0
-        crap: 870.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printProposalOne
-        methodDesc: (Lcom/learney/contentaudit/revisiondomain/RevisionArtifact;)V
-        line: 948
-        cyclomatic: 18
-        lineCoveragePct: 0
-        crap: 342.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: printSnapshotSummary
         methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
         line: 1009
         cyclomatic: 14
-        lineCoveragePct: 0
-        crap: 210.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printLemmaAbsenceContextText
-        methodDesc: (Lcom/learney/contentaudit/refinerdomain/LemmaAbsenceCorrectionContext;)V
-        line: 697
-        cyclomatic: 12
-        lineCoveragePct: 0
-        crap: 156.0
+        lineCoveragePct: 13
+        crap: 143.066588
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: renderSentence
         methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
@@ -7130,47 +6779,31 @@ features:
         lineCoveragePct: 0
         crap: 132.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: get
-        methodDesc: (Ljava/lang/String;Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 184
-        cyclomatic: 9
-        lineCoveragePct: 0
-        crap: 90.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleProposalList
-        methodDesc: (Lcom/learney/contentaudit/auditcli/GetTasksFilter;Ljava/lang/String;)I
-        line: 857
-        cyclomatic: 9
-        lineCoveragePct: 0
-        crap: 90.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printSentenceLengthContextText
-        methodDesc: (Lcom/learney/contentaudit/refinerdomain/SentenceLengthCorrectionContext;)V
-        line: 669
-        cyclomatic: 8
-        lineCoveragePct: 0
-        crap: 72.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleAudits
+        methodName: handleAnalyzers
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 227
+        line: 1090
         cyclomatic: 7
         lineCoveragePct: 0
         crap: 56.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handlePlans
+        methodName: handleTasks
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 320
-        cyclomatic: 7
+        line: 411
+        cyclomatic: 29
+        lineCoveragePct: 77
+        crap: 39.23244699999999
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: call
+        methodDesc: ()Ljava/lang/Integer;
+        line: 149
+        cyclomatic: 5
         lineCoveragePct: 0
-        crap: 56.0
-    healthScore: 31
+        crap: 30.0
+    healthScore: 77
     verdict: WARNED
     violations:
-    - lineCoverage 11% < 70%
-    - branchCoverage 8% < 60%
-    - mutationScore 32% < 60%
-    - crapHotspots 19 > 5
+    - lineCoverage 62% < 70%
+    - branchCoverage 50% < 60%
 elements:
 - module: audit-domain
   status: EXISTS
@@ -7574,8 +7207,8 @@ elements:
     quality:
       coverage:
         linesCovered: 0
-        linesMissed: 71
-        linesTotal: 71
+        linesMissed: 80
+        linesTotal: 80
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 18
@@ -7637,7 +7270,7 @@ elements:
         line: 25
         cyclomatic: 2
         linesCovered: 0
-        linesMissed: 6
+        linesMissed: 7
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 2
@@ -7652,7 +7285,7 @@ elements:
         line: 40
         cyclomatic: 5
         linesCovered: 0
-        linesMissed: 52
+        linesMissed: 56
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 8
@@ -7667,7 +7300,7 @@ elements:
         line: 103
         cyclomatic: 5
         linesCovered: 0
-        linesMissed: 9
+        linesMissed: 13
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 8
@@ -8049,15 +7682,15 @@ elements:
         node.getScores().get("knowledge-title-length") == 0.0
     quality:
       coverage:
-        linesCovered: 0
-        linesMissed: 29
-        linesTotal: 29
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 12
+        linesCovered: 26
+        linesMissed: 1
+        linesTotal: 27
+        lineCoveragePct: 96
+        branchesCovered: 12
+        branchesMissed: 0
         branchesTotal: 12
-        branchCoveragePct: 0
-        blendPct: 0
+        branchCoveragePct: 100
+        blendPct: 98
       mutation:
         totalMutants: 17
         killed: 13
@@ -8070,21 +7703,21 @@ elements:
       crap:
         totalMethods: 11
         hotspots: 0
-        maxCrap: 20.0
-        averageCrap: 5.636363636363637
-        simple: 9
-        moderate: 2
+        maxCrap: 4.0
+        averageCrap: 1.7272727272727273
+        simple: 11
+        moderate: 0
         high: 0
         veryHigh: 0
-        healthPct: 91
+        healthPct: 100
       methods:
       - name: <init>
         desc: ()V
         line: 8
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -8092,14 +7725,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 2.0
+        crap: 1.0
       - name: getName
         desc: ()Ljava/lang/String;
         line: 15
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
@@ -8107,14 +7740,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 100
-        crap: 2.0
+        crap: 1.0
       - name: getTarget
         desc: ()Lcom/learney/contentaudit/auditdomain/AuditTarget;
         line: 18
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
@@ -8122,14 +7755,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 100
-        crap: 2.0
+        crap: 1.0
       - name: onMilestone
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
         line: 21
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -8137,14 +7770,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 2.0
+        crap: 1.0
       - name: onTopic
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
         line: 24
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -8152,59 +7785,59 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 2.0
+        crap: 1.0
       - name: onKnowledge
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
         line: 28
         cyclomatic: 4
-        linesCovered: 0
-        linesMissed: 12
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 6
+        linesCovered: 10
+        linesMissed: 0
+        lineCoveragePct: 100
+        branchesCovered: 6
+        branchesMissed: 0
         mutantsTotal: 7
         mutantsKilled: 5
         mutantsSurvived: 2
         mutantsNoCoverage: 0
         mutationScorePct: 71
-        crap: 20.0
+        crap: 4.0
       - name: computeWeightedLength
         desc: (Ljava/lang/String;)D
         line: 46
         cyclomatic: 2
-        linesCovered: 0
-        linesMissed: 4
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 2
+        linesCovered: 4
+        linesMissed: 0
+        lineCoveragePct: 100
+        branchesCovered: 2
+        branchesMissed: 0
         mutantsTotal: 4
         mutantsKilled: 4
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 100
-        crap: 6.0
+        crap: 2.0
       - name: charWeight
         desc: (C)D
         line: 54
         cyclomatic: 4
-        linesCovered: 0
-        linesMissed: 5
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 4
+        linesCovered: 5
+        linesMissed: 0
+        lineCoveragePct: 100
+        branchesCovered: 4
+        branchesMissed: 0
         mutantsTotal: 3
         mutantsKilled: 2
         mutantsSurvived: 1
         mutantsNoCoverage: 0
         mutationScorePct: 66
-        crap: 20.0
+        crap: 4.0
       - name: onQuiz
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
         line: 63
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -8212,14 +7845,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 2.0
+        crap: 1.0
       - name: onCourseComplete
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
         line: 66
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -8227,7 +7860,7 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 2.0
+        crap: 1.0
       - name: getDescription
         desc: ()Ljava/lang/String;
         line: 70
@@ -8533,15 +8166,15 @@ elements:
         node3.getScores().get("knowledge-instructions-length") == 0.0
     quality:
       coverage:
-        linesCovered: 0
-        linesMissed: 31
-        linesTotal: 31
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 14
+        linesCovered: 26
+        linesMissed: 3
+        linesTotal: 29
+        lineCoveragePct: 89
+        branchesCovered: 12
+        branchesMissed: 2
         branchesTotal: 14
-        branchCoveragePct: 0
-        blendPct: 0
+        branchCoveragePct: 85
+        blendPct: 87
       mutation:
         totalMutants: 16
         killed: 12
@@ -8553,30 +8186,22 @@ elements:
         testStrengthPct: 85
       crap:
         totalMethods: 11
-        hotspots: 1
-        maxCrap: 30.0
-        averageCrap: 6.545454545454546
-        simple: 9
-        moderate: 1
-        high: 1
+        hotspots: 0
+        maxCrap: 5.024
+        averageCrap: 1.9112727272727275
+        simple: 11
+        moderate: 0
+        high: 0
         veryHigh: 0
-        healthPct: 86
-        top:
-        - className: com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzer
-          methodName: onKnowledge
-          methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-          line: 28
-          cyclomatic: 5
-          lineCoveragePct: 0
-          crap: 30.0
+        healthPct: 100
       methods:
       - name: <init>
         desc: ()V
         line: 8
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -8584,14 +8209,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 2.0
+        crap: 1.0
       - name: getName
         desc: ()Ljava/lang/String;
         line: 15
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
@@ -8599,14 +8224,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 100
-        crap: 2.0
+        crap: 1.0
       - name: getTarget
         desc: ()Lcom/learney/contentaudit/auditdomain/AuditTarget;
         line: 18
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
@@ -8614,14 +8239,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 100
-        crap: 2.0
+        crap: 1.0
       - name: onMilestone
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
         line: 21
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -8629,14 +8254,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 2.0
+        crap: 1.0
       - name: onTopic
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
         line: 24
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -8644,59 +8269,59 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 2.0
+        crap: 1.0
       - name: onKnowledge
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
         line: 28
         cyclomatic: 5
-        linesCovered: 0
-        linesMissed: 14
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 8
+        linesCovered: 12
+        linesMissed: 0
+        lineCoveragePct: 100
+        branchesCovered: 8
+        branchesMissed: 0
         mutantsTotal: 6
         mutantsKilled: 5
         mutantsSurvived: 1
         mutantsNoCoverage: 0
         mutationScorePct: 83
-        crap: 30.0
+        crap: 5.0
       - name: computeWeightedLength
         desc: (Ljava/lang/String;)D
         line: 48
         cyclomatic: 2
-        linesCovered: 0
-        linesMissed: 4
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 2
+        linesCovered: 4
+        linesMissed: 0
+        lineCoveragePct: 100
+        branchesCovered: 2
+        branchesMissed: 0
         mutantsTotal: 4
         mutantsKilled: 4
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 100
-        crap: 6.0
+        crap: 2.0
       - name: charWeight
         desc: (C)D
         line: 56
         cyclomatic: 4
-        linesCovered: 0
-        linesMissed: 5
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 4
+        linesCovered: 3
+        linesMissed: 2
+        lineCoveragePct: 60
+        branchesCovered: 2
+        branchesMissed: 2
         mutantsTotal: 3
         mutantsKilled: 1
         mutantsSurvived: 1
         mutantsNoCoverage: 1
         mutationScorePct: 33
-        crap: 20.0
+        crap: 5.024
       - name: onQuiz
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
         line: 65
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -8704,14 +8329,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 2.0
+        crap: 1.0
       - name: onCourseComplete
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
         line: 68
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -8719,7 +8344,7 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 2.0
+        crap: 1.0
       - name: getDescription
         desc: ()Ljava/lang/String;
         line: 72
@@ -9095,15 +8720,15 @@ elements:
         quizNode.getScores().containsKey("sentence-length") is false
     quality:
       coverage:
-        linesCovered: 0
-        linesMissed: 58
-        linesTotal: 58
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 28
+        linesCovered: 44
+        linesMissed: 11
+        linesTotal: 55
+        lineCoveragePct: 80
+        branchesCovered: 20
+        branchesMissed: 8
         branchesTotal: 28
-        branchCoveragePct: 0
-        blendPct: 0
+        branchCoveragePct: 71
+        blendPct: 75
       mutation:
         totalMutants: 33
         killed: 18
@@ -9115,37 +8740,22 @@ elements:
         testStrengthPct: 72
       crap:
         totalMethods: 11
-        hotspots: 2
-        maxCrap: 72.0
-        averageCrap: 12.545454545454545
-        simple: 8
+        hotspots: 0
+        maxCrap: 10.985984
+        averageCrap: 2.635089454545455
+        simple: 10
         moderate: 1
-        high: 1
-        veryHigh: 1
-        healthPct: 77
-        top:
-        - className: com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer
-          methodName: onQuiz
-          methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
-          line: 46
-          cyclomatic: 8
-          lineCoveragePct: 0
-          crap: 72.0
-        - className: com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer
-          methodName: scoreQuiz
-          methodDesc: (ILcom/learney/contentaudit/auditdomain/TargetRange;)D
-          line: 98
-          cyclomatic: 5
-          lineCoveragePct: 0
-          crap: 30.0
+        high: 0
+        veryHigh: 0
+        healthPct: 95
       methods:
       - name: <init>
         desc: (Lcom/learney/contentaudit/auditdomain/SentenceLengthConfig;)V
         line: 15
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 3
-        lineCoveragePct: 0
+        linesCovered: 3
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -9153,14 +8763,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 2.0
+        crap: 1.0
       - name: getName
         desc: ()Ljava/lang/String;
         line: 21
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
@@ -9168,14 +8778,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 100
-        crap: 2.0
+        crap: 1.0
       - name: getTarget
         desc: ()Lcom/learney/contentaudit/auditdomain/AuditTarget;
         line: 26
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
@@ -9183,14 +8793,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 100
-        crap: 2.0
+        crap: 1.0
       - name: onMilestone
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
         line: 31
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -9198,14 +8808,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 2.0
+        crap: 1.0
       - name: onTopic
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
         line: 36
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -9213,14 +8823,14 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 2.0
+        crap: 1.0
       - name: onKnowledge
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
         line: 41
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -9228,29 +8838,29 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 2.0
+        crap: 1.0
       - name: onQuiz
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
         line: 46
         cyclomatic: 8
-        linesCovered: 0
-        linesMissed: 30
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 14
+        linesCovered: 18
+        linesMissed: 10
+        lineCoveragePct: 64
+        branchesCovered: 8
+        branchesMissed: 6
         mutantsTotal: 12
         mutantsKilled: 3
         mutantsSurvived: 2
         mutantsNoCoverage: 7
         mutationScorePct: 25
-        crap: 72.0
+        crap: 10.985984
       - name: onCourseComplete
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
         line: 94
         cyclomatic: 1
-        linesCovered: 0
-        linesMissed: 1
-        lineCoveragePct: 0
+        linesCovered: 1
+        linesMissed: 0
+        lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 0
@@ -9258,37 +8868,37 @@ elements:
         mutantsSurvived: 0
         mutantsNoCoverage: 0
         mutationScorePct: 0
-        crap: 2.0
+        crap: 1.0
       - name: scoreQuiz
         desc: (ILcom/learney/contentaudit/auditdomain/TargetRange;)D
         line: 98
         cyclomatic: 5
-        linesCovered: 0
-        linesMissed: 12
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 8
+        linesCovered: 11
+        linesMissed: 0
+        lineCoveragePct: 100
+        branchesCovered: 8
+        branchesMissed: 0
         mutantsTotal: 14
         mutantsKilled: 10
         mutantsSurvived: 4
         mutantsNoCoverage: 0
         mutationScorePct: 71
-        crap: 30.0
+        crap: 5.0
       - name: parseCefrLevel
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Lcom/learney/contentaudit/auditdomain/CefrLevel;
         line: 121
         cyclomatic: 4
-        linesCovered: 0
-        linesMissed: 6
-        lineCoveragePct: 0
-        branchesCovered: 0
-        branchesMissed: 6
+        linesCovered: 6
+        linesMissed: 0
+        lineCoveragePct: 100
+        branchesCovered: 4
+        branchesMissed: 2
         mutantsTotal: 4
         mutantsKilled: 3
         mutantsSurvived: 1
         mutantsNoCoverage: 0
         mutationScorePct: 75
-        crap: 20.0
+        crap: 4.0
       - name: getDescription
         desc: ()Ljava/lang/String;
         line: 133
@@ -9310,8 +8920,8 @@ elements:
     quality:
       coverage:
         linesCovered: 0
-        linesMissed: 24
-        linesTotal: 24
+        linesMissed: 28
+        linesTotal: 28
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 18
@@ -9319,10 +8929,10 @@ elements:
         branchCoveragePct: 0
         blendPct: 0
       mutation:
-        totalMutants: 8
+        totalMutants: 9
         killed: 0
         survived: 0
-        noCoverage: 8
+        noCoverage: 9
         timedOut: 0
         other: 0
         mutationScorePct: 0
@@ -9381,7 +8991,7 @@ elements:
         line: 22
         cyclomatic: 10
         linesCovered: 0
-        linesMissed: 20
+        linesMissed: 24
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 18
@@ -9391,7 +9001,7 @@ elements:
         mutantsNoCoverage: 7
         mutationScorePct: 0
         crap: 110.0
-      - name: lambda$0
+      - name: lambda$bubbleUp$0
         desc: (Ljava/lang/String;)Ljava/util/List;
         line: 36
         cyclomatic: 1
@@ -9400,10 +9010,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
+        mutantsTotal: 1
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 1
         mutationScorePct: 0
         crap: 2.0
   - name: CocaBucketsAnalyzer
@@ -11949,42 +11559,35 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 2355
-      linesTotal: 2355
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 1171
+      linesCovered: 936
+      linesMissed: 1447
+      linesTotal: 2383
+      lineCoveragePct: 39
+      branchesCovered: 303
+      branchesMissed: 868
       branchesTotal: 1171
-      branchCoveragePct: 0
-      blendPct: 0
+      branchCoveragePct: 25
+      blendPct: 32
     mutation:
-      totalMutants: 1149
-      killed: 218
+      totalMutants: 1157
+      killed: 222
       survived: 150
-      noCoverage: 781
+      noCoverage: 785
       timedOut: 0
       other: 0
-      mutationScorePct: 18
+      mutationScorePct: 19
       testStrengthPct: 59
     crap:
       totalMethods: 658
-      hotspots: 67
-      maxCrap: 650.0
-      averageCrap: 12.227963525835866
-      simple: 560
-      moderate: 31
-      high: 20
-      veryHigh: 47
-      healthPct: 87
+      hotspots: 46
+      maxCrap: 462.0
+      averageCrap: 8.662150635258358
+      simple: 591
+      moderate: 20
+      high: 12
+      veryHigh: 35
+      healthPct: 91
       top:
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: runAnalysis
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
-        line: 170
-        cyclomatic: 25
-        lineCoveragePct: 0
-        crap: 650.0
       - className: com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer
         methodName: onCourseComplete
         methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
@@ -11992,13 +11595,6 @@ elements:
         cyclomatic: 21
         lineCoveragePct: 0
         crap: 462.0
-      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-        methodName: scoreQuizzes
-        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Ljava/util/Map;)V
-        line: 477
-        cyclomatic: 19
-        lineCoveragePct: 0
-        crap: 380.0
       - className: com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis
         methodName: equals
         methodDesc: (Ljava/lang/Object;)Z
@@ -12048,13 +11644,27 @@ elements:
         cyclomatic: 11
         lineCoveragePct: 0
         crap: 132.0
-    healthScore: 30
+      - className: com.learney.contentaudit.auditdomain.labs.AbsenceRecommendation
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 100
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.auditdomain.lrec.LemmaStats
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 99
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+    healthScore: 41
     verdict: WARNED
     violations:
-    - lineCoverage 0% < 70%
-    - branchCoverage 0% < 60%
-    - mutationScore 18% < 60%
-    - crapHotspots 67 > 5
+    - lineCoverage 39% < 70%
+    - branchCoverage 25% < 60%
+    - mutationScore 19% < 60%
+    - crapHotspots 46 > 5
 - module: course-domain
   status: EXISTS
   models:
@@ -12736,15 +12346,15 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 643
-      linesTotal: 643
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 302
+      linesCovered: 207
+      linesMissed: 423
+      linesTotal: 630
+      lineCoveragePct: 32
+      branchesCovered: 84
+      branchesMissed: 218
       branchesTotal: 302
-      branchCoveragePct: 0
-      blendPct: 0
+      branchCoveragePct: 27
+      blendPct: 29
     mutation:
       totalMutants: 290
       killed: 71
@@ -12756,14 +12366,14 @@ elements:
       testStrengthPct: 74
     crap:
       totalMethods: 212
-      hotspots: 13
+      hotspots: 8
       maxCrap: 600.0
-      averageCrap: 12.556603773584905
-      simple: 194
-      moderate: 5
-      high: 1
-      veryHigh: 12
-      healthPct: 93
+      averageCrap: 9.727129301886793
+      simple: 201
+      moderate: 3
+      high: 0
+      veryHigh: 8
+      healthPct: 96
       top:
       - className: com.learney.contentaudit.coursedomain.QuizTemplateEntity
         methodName: equals
@@ -12786,13 +12396,6 @@ elements:
         cyclomatic: 15
         lineCoveragePct: 0
         crap: 240.0
-      - className: com.learney.contentaudit.coursedomain.quizsentenceengine.PlainSentenceDeriver
-        methodName: derive
-        methodDesc: (Lcom/learney/contentaudit/coursedomain/FormEntity;)Ljava/util/List;
-        line: 57
-        cyclomatic: 14
-        lineCoveragePct: 0
-        crap: 210.0
       - className: com.learney.contentaudit.coursedomain.MilestoneEntity
         methodName: equals
         methodDesc: (Ljava/lang/Object;)Z
@@ -12800,20 +12403,6 @@ elements:
         cyclomatic: 14
         lineCoveragePct: 0
         crap: 210.0
-      - className: com.learney.contentaudit.coursedomain.quizsentenceengine.QuizSentenceSerializer
-        methodName: serialize
-        methodDesc: (Lcom/learney/contentaudit/coursedomain/FormEntity;)Ljava/lang/String;
-        line: 44
-        cyclomatic: 12
-        lineCoveragePct: 0
-        crap: 156.0
-      - className: com.learney.contentaudit.coursedomain.quizsentenceengine.QuizSentenceParser
-        methodName: parse
-        methodDesc: (Ljava/lang/String;)Lcom/learney/contentaudit/coursedomain/FormEntity;
-        line: 58
-        cyclomatic: 10
-        lineCoveragePct: 0
-        crap: 110.0
       - className: com.learney.contentaudit.coursedomain.RootNodeEntity
         methodName: equals
         methodDesc: (Ljava/lang/Object;)Z
@@ -12835,13 +12424,20 @@ elements:
         cyclomatic: 9
         lineCoveragePct: 0
         crap: 90.0
-    healthScore: 34
+      - className: com.learney.contentaudit.coursedomain.SentencePartEntity
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 53
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+    healthScore: 44
     verdict: WARNED
     violations:
-    - lineCoverage 0% < 70%
-    - branchCoverage 0% < 60%
+    - lineCoverage 32% < 70%
+    - branchCoverage 27% < 60%
     - mutationScore 24% < 60%
-    - crapHotspots 13 > 5
+    - crapHotspots 8 > 5
 - module: refiner-domain
   status: EXISTS
   models:
@@ -21128,6 +20724,78 @@ elements:
         the unrecognised mode value declared by the operator (per R014)
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenModeResolverTest.java
+    testCleanViews:
+    - |
+      test: "resolve returns LagenMode.LLM when the env value is null (default per R013)"
+      trace: FEAT-LAGEN / F-LAGEN-R013
+
+      given:
+        result = resolver.resolve(null)
+
+      then:
+        result == LagenMode.LLM
+    - |
+      test: "resolve returns LagenMode.LLM when the env value is an empty or whitespace-only string (default per R013)"
+      trace: FEAT-LAGEN / F-LAGEN-R013
+
+      given:
+        forEmpty = resolver.resolve("")
+        forBlank = resolver.resolve("   ")
+
+      then:
+        forEmpty == LagenMode.LLM
+        forBlank == LagenMode.LLM
+    - |
+      test: "resolve returns LagenMode.LLM when the env value is 'llm' (explicit dynamic mode opt-in per R013)"
+      trace: FEAT-LAGEN / F-LAGEN-R013
+
+      given:
+        result = resolver.resolve("llm")
+
+      then:
+        result == LagenMode.LLM
+    - |
+      test: "resolve returns LagenMode.CANNED when the env value is 'canned' (explicit fixed-mode opt-in per R013)"
+      trace: FEAT-LAGEN / F-LAGEN-R013
+
+      given:
+        result = resolver.resolve("canned")
+
+      then:
+        result == LagenMode.CANNED
+    - |
+      test: "resolve accepts the mode value case-insensitively ('LLM', 'CANNED', 'CaNnEd' all parse) per R013"
+      trace: FEAT-LAGEN / F-LAGEN-R013
+
+      given:
+        forUpperLlm = resolver.resolve("LLM")
+        forUpperCanned = resolver.resolve("CANNED")
+        forMixedCanned = resolver.resolve("CaNnEd")
+
+      then:
+        forUpperLlm == LagenMode.LLM
+        forUpperCanned == LagenMode.CANNED
+        forMixedCanned == LagenMode.CANNED
+    - |
+      test: "resolve raises InvalidLagenModeException carrying the offending value when the env value is not a recognised mode (fail-fast per R014)"
+      trace: FEAT-LAGEN / F-LAGEN-R014
+
+      given:
+        badMode = "streaming"
+        thrown = assertThrows(InvalidLagenModeException.class, () -> resolver.resolve(badMode), "resolve('streaming') must throw InvalidLagenModeException (F-LAGEN-R014)")
+
+      then:
+        thrown.getValue() == badMode
+    - |
+      test: "InvalidLagenModeException raised by resolve has a message that identifies the unrecognised mode value declared by the operator (per R014)"
+      trace: FEAT-LAGEN / F-LAGEN-R014
+
+      given:
+        badMode = "batch"
+        thrown = assertThrows(InvalidLagenModeException.class, () -> resolver.resolve(badMode), "resolve must throw InvalidLagenModeException for unrecognised mode (F-LAGEN-R014)")
+
+      then:
+        thrown.getMessage().contains(badMode) is true
   - name: DefaultLagenConfigResolver
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenConfigResolver.java
@@ -21172,6 +20840,142 @@ elements:
         env key when its value is missing or empty (fail-fast per R014)
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/bootstrap/DefaultLagenConfigResolverTest.java
+    testCleanViews:
+    - |
+      test: "resolve returns a LagenConfig populated from every CONTENT_AUDIT_LAGEN_* env entry when all required keys are present and valid"
+      trace: FEAT-LAGEN / F-LAGEN-R008
+
+      given:
+        env = fullEnv()
+        config = resolver.resolve(env)
+
+      then:
+        config.getProviderName() == "lmstudio"
+        config.getModelId() == "gemma-3-4b-it"
+        config.getEndpoint() == "http://localhost:1234/v1"
+        config.getApiKey() == "test-api-key"
+        config.getTemperature() == 0.5
+        config.getMaxTokens() == 1024
+        config.getTimeout() == Duration.ofSeconds(20)
+    - |
+      test: "resolve returns LagenConfig with apiKey=null when the apiKey env entry is absent (knob nullable per R008)"
+      trace: FEAT-LAGEN / F-LAGEN-R008
+
+      given:
+        env = fullEnv()
+        config = resolver.resolve(env)
+
+      when:
+        sut.remove(KEY_API_KEY)
+
+      then:
+        config.getApiKey() is null
+    - |
+      test: "resolve returns LagenConfig with temperature=null when the temperature env entry is absent (factory will substitute LagenDefaults.temperature)"
+      trace: FEAT-LAGEN / F-LAGEN-R008
+
+      given:
+        env = fullEnv()
+        config = resolver.resolve(env)
+
+      when:
+        sut.remove(KEY_TEMP)
+
+      then:
+        config.getTemperature() == 0.0
+    - |
+      test: "resolve returns LagenConfig with maxTokens=null when the maxTokens env entry is absent (factory will substitute LagenDefaults.maxTokens)"
+      trace: FEAT-LAGEN / F-LAGEN-R008
+
+      given:
+        env = fullEnv()
+        config = resolver.resolve(env)
+
+      when:
+        sut.remove(KEY_TOKENS)
+
+      then:
+        config.getMaxTokens() == 0
+    - |
+      test: "resolve returns LagenConfig with timeout=null when the timeout env entry is absent (factory will substitute LagenDefaults.timeout)"
+      trace: FEAT-LAGEN / F-LAGEN-R008
+
+      given:
+        env = fullEnv()
+        config = resolver.resolve(env)
+
+      when:
+        sut.remove(KEY_TIMEOUT)
+
+      then:
+        config.getTimeout() is null
+    - |
+      test: "resolve raises InvalidLagenConfigException identifying the temperature env key when its value is not a parseable number (fail-fast per R014)"
+      trace: FEAT-LAGEN / F-LAGEN-R014
+
+      given:
+        env = fullEnv()
+        thrown = assertThrows(InvalidLagenConfigException.class, () -> resolver.resolve(env), "Non-numeric temperature must throw InvalidLagenConfigException (R014)")
+
+      when:
+        sut.put(KEY_TEMP, "very-hot")
+
+      then:
+        thrown.getKey() == KEY_TEMP
+    - |
+      test: "resolve raises InvalidLagenConfigException identifying the timeout env key when its value is not a positive duration (fail-fast per R014)"
+      trace: FEAT-LAGEN / F-LAGEN-R014
+
+      given:
+        env = fullEnv()
+        thrown = assertThrows(InvalidLagenConfigException.class, () -> resolver.resolve(env), "Zero timeout must throw InvalidLagenConfigException (R014)")
+
+      when:
+        sut.put(KEY_TIMEOUT, "0")
+
+      then:
+        thrown.getKey() == KEY_TIMEOUT
+    - |
+      test: "resolve raises InvalidLagenConfigException identifying the maxTokens env key when its value is not a positive integer (fail-fast per R014)"
+      trace: FEAT-LAGEN / F-LAGEN-R014
+
+      given:
+        env = fullEnv()
+        thrown = assertThrows(InvalidLagenConfigException.class, () -> resolver.resolve(env), "Negative maxTokens must throw InvalidLagenConfigException (R014)")
+
+      when:
+        sut.put(KEY_TOKENS, "-5")
+
+      then:
+        thrown.getKey() == KEY_TOKENS
+    - |
+      test: "InvalidLagenConfigException raised by resolve carries both the offending env-var key and a parse-failure detail per R014"
+      trace: FEAT-LAGEN / F-LAGEN-R014
+
+      given:
+        env = fullEnv()
+        thrown = assertThrows(InvalidLagenConfigException.class, () -> resolver.resolve(env), "Non-numeric temperature must throw InvalidLagenConfigException with key + detail (R014)")
+
+      when:
+        sut.put(KEY_TEMP, "abc")
+
+      then:
+        thrown.getKey() == KEY_TEMP
+        thrown.getDetail() != null && !thrown.getDetail().isBlank() is true
+        thrown.getMessage().contains(KEY_TEMP) is true
+    - |
+      test: "resolve raises InvalidLagenConfigException identifying the providerName env key when its value is missing or empty (fail-fast per R014)"
+      trace: FEAT-LAGEN / F-LAGEN-R014
+
+      given:
+        env = fullEnv()
+        thrown = assertThrows(InvalidLagenConfigException.class, () -> resolver.resolve(env), "Missing providerName must throw InvalidLagenConfigException (R014)")
+
+      when:
+        sut.remove(KEY_PROVIDER)
+
+      then:
+        thrown.getKey() == KEY_PROVIDER
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -21181,49 +20985,35 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 945
-      linesMissed: 2080
-      linesTotal: 3025
-      lineCoveragePct: 31
-      branchesCovered: 437
-      branchesMissed: 1328
-      branchesTotal: 1765
-      branchCoveragePct: 24
-      blendPct: 27
+      linesCovered: 1403
+      linesMissed: 1736
+      linesTotal: 3139
+      lineCoveragePct: 44
+      branchesCovered: 663
+      branchesMissed: 1137
+      branchesTotal: 1800
+      branchCoveragePct: 36
+      blendPct: 40
     mutation:
-      totalMutants: 1599
-      killed: 333
-      survived: 387
-      noCoverage: 879
+      totalMutants: 0
+      killed: 0
+      survived: 0
+      noCoverage: 0
       timedOut: 0
       other: 0
-      mutationScorePct: 20
-      testStrengthPct: 46
+      mutationScorePct: 0
+      testStrengthPct: 0
     crap:
-      totalMethods: 417
-      hotspots: 58
-      maxCrap: 870.0
-      averageCrap: 18.22497656115108
-      simple: 307
-      moderate: 50
-      high: 19
-      veryHigh: 41
-      healthPct: 80
+      totalMethods: 431
+      hotspots: 44
+      maxCrap: 306.0
+      averageCrap: 12.939030624129932
+      simple: 341
+      moderate: 42
+      high: 17
+      veryHigh: 31
+      healthPct: 84
       top:
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleTasks
-        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-        line: 411
-        cyclomatic: 29
-        lineCoveragePct: 0
-        crap: 870.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printProposalOne
-        methodDesc: (Lcom/learney/contentaudit/revisiondomain/RevisionArtifact;)V
-        line: 948
-        cyclomatic: 18
-        lineCoveragePct: 0
-        crap: 342.0
       - className: com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter
         methodName: formatTable
         methodDesc: (Lcom/learney/contentaudit/auditcli/formatting/CocaBucketsDetailedFormatter$Partitioned;)Ljava/lang/String;
@@ -21238,13 +21028,6 @@ elements:
         cyclomatic: 15
         lineCoveragePct: 0
         crap: 240.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: printSnapshotSummary
-        methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
-        line: 1009
-        cyclomatic: 14
-        lineCoveragePct: 0
-        crap: 210.0
       - className: com.learney.contentaudit.auditcli.commands.CoursePathResolver
         methodName: resolve
         methodDesc: (Ljava/lang/String;)Ljava/lang/String;
@@ -21280,13 +21063,33 @@ elements:
         cyclomatic: 12
         lineCoveragePct: 0
         crap: 156.0
-    healthScore: 37
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: printSnapshotSummary
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
+        line: 1009
+        cyclomatic: 14
+        lineCoveragePct: 13
+        crap: 143.066588
+      - className: com.learney.contentaudit.auditcli.formatting.DefaultAnalyzerStatsTransformer
+        methodName: collectScoresAtTarget
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Ljava/lang/String;Lcom/learney/contentaudit/auditdomain/AuditTarget;Ljava/util/List;)V
+        line: 95
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: renderSentence
+        methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
+        line: 1039
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+    healthScore: 33
     verdict: WARNED
     violations:
-    - lineCoverage 31% < 70%
-    - branchCoverage 24% < 60%
-    - mutationScore 20% < 60%
-    - crapHotspots 58 > 5
+    - lineCoverage 44% < 70%
+    - branchCoverage 36% < 60%
+    - crapHotspots 44 > 5
 - module: nlp-infrastructure
   status: EXISTS
   models:
@@ -24576,6 +24379,35 @@ elements:
         on every proposal
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/LemmaAbsenceMvpStrategyTest.java
+    testCleanViews:
+    - |
+      test: "should stamp StrategyId.name = 'lemma-absence-llm' on every produced proposal"
+      trace: FEAT-LAGEN / F-LAGEN-R001
+
+      given:
+        id = strategy.id()
+
+      then:
+        id.getName() == "lemma-absence-llm"
+    - |
+      test: "should stamp StrategyId.providerId from the injected generator's provider on every proposal"
+      trace: FEAT-LAGEN / F-LAGEN-R009
+
+      given:
+        context = buildContext()
+        task = buildTask()
+        response = LemmaAbsenceGeneratorResponse("She ____[walks|runs] every morning.", "Ella camina cada mañana.")
+        candidate = strategy.propose(task, context)
+        id = strategy.id()
+
+      mock:
+        mockGenerator.generate(context) -> response
+
+      then:
+        candidate.getQuizSentence() == "She ____[walks|runs] every morning."
+        id.getProviderId() is not null
+        id.getProviderId().isBlank() is false
+        id.getProviderId() == PROVIDER_ID
   - name: CannedLemmaAbsenceQuizCandidateGenerator
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/lemmaabsence/CannedLemmaAbsenceQuizCandidateGenerator.java
@@ -24595,6 +24427,65 @@ elements:
     - name: generate performs no I/O and never contacts an external provider
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/lemmaabsence/CannedLemmaAbsenceQuizCandidateGeneratorTest.java
+    testCleanViews:
+    - |
+      test: "generate returns the same (cannedQuizSentence, cannedTranslation) pair on every invocation"
+      trace: FEAT-LAGEN / F-LAGEN-R012
+
+      given:
+        context = buildContext("She ____[goes|walks] to school.", CefrLevel.A1)
+        first = generator.generate(context)
+        second = generator.generate(context)
+
+      then:
+        first.getQuizSentence() == CANNED_QUIZ
+        first.getTranslation() == CANNED_TRANSLATION
+        second.getQuizSentence() == first.getQuizSentence()
+        second.getTranslation() == first.getTranslation()
+    - |
+      test: "generate returns the injected cannedQuizSentence and cannedTranslation verbatim with no transformation"
+      trace: FEAT-LAGEN / F-LAGEN-R012
+
+      given:
+        context = buildContext("She ____[goes|walks] to school.", CefrLevel.B1)
+        response = generator.generate(context)
+
+      then:
+        response.getQuizSentence() == CANNED_QUIZ
+        response.getTranslation() == CANNED_TRANSLATION
+    - |
+      test: "generate returns the same response regardless of differences in the LemmaAbsenceCorrectionContext (quizSentence, cefrLevel, misplacedLemmas, suggestedLemmas)"
+      trace: FEAT-LAGEN / F-LAGEN-R012
+
+      given:
+        contextA1 = buildContext("She ____[goes|walks] to school every morning.", CefrLevel.A1)
+        contextB2 = buildContext("He ____[commutes|travels] to the university.", CefrLevel.B2)
+        contextNoLemmas = LemmaAbsenceCorrectionContext("task-xyz", "I study English.", "Estudio inglés.", "Languages", "Formal instructions.", "General", CefrLevel.A2, // no misplacedLemmas
+      List.of(), // no suggestedLemmas
+      List.of(), "I ____[study|learn] English.")
+        forA1 = generator.generate(contextA1)
+        forB2 = generator.generate(contextB2)
+        forEmpty = generator.generate(contextNoLemmas)
+
+      then:
+        forA1.getQuizSentence() == CANNED_QUIZ
+        forA1.getTranslation() == CANNED_TRANSLATION
+        forB2.getQuizSentence() == CANNED_QUIZ
+        forB2.getTranslation() == CANNED_TRANSLATION
+        forEmpty.getQuizSentence() == CANNED_QUIZ
+        forEmpty.getTranslation() == CANNED_TRANSLATION
+    - |
+      test: "generate performs no I/O and never contacts an external provider"
+      trace: FEAT-LAGEN / F-LAGEN-R012
+
+      given:
+        standaloneGenerator = CannedLemmaAbsenceQuizCandidateGenerator(CANNED_QUIZ, CANNED_TRANSLATION)
+        context = buildContext("She ____[walks|runs] daily.", CefrLevel.A2)
+        response = standaloneGenerator.generate(context)
+
+      then:
+        response.getQuizSentence() == CANNED_QUIZ
+        response.getTranslation() == CANNED_TRANSLATION
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -24604,9 +24495,9 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 465
-      linesMissed: 379
-      linesTotal: 844
+      linesCovered: 471
+      linesMissed: 380
+      linesTotal: 851
       lineCoveragePct: 55
       branchesCovered: 64
       branchesMissed: 248
@@ -24614,20 +24505,20 @@ elements:
       branchCoveragePct: 20
       blendPct: 37
     mutation:
-      totalMutants: 335
-      killed: 96
+      totalMutants: 336
+      killed: 98
       survived: 44
-      noCoverage: 195
+      noCoverage: 194
       timedOut: 0
       other: 0
-      mutationScorePct: 28
-      testStrengthPct: 68
+      mutationScorePct: 29
+      testStrengthPct: 69
     crap:
-      totalMethods: 220
+      totalMethods: 222
       hotspots: 11
       maxCrap: 342.0
-      averageCrap: 8.066955904545456
-      simple: 204
+      averageCrap: 8.003289635135136
+      simple: 206
       moderate: 5
       high: 4
       veryHigh: 7
@@ -24689,7 +24580,7 @@ elements:
         cyclomatic: 6
         lineCoveragePct: 0
         crap: 42.0
-      - className: com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceGeneratorResponse
+      - className: com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceGeneratorResponse
         methodName: equals
         methodDesc: (Ljava/lang/Object;)Z
         line: 41
@@ -24703,12 +24594,12 @@ elements:
         cyclomatic: 6
         lineCoveragePct: 0
         crap: 42.0
-    healthScore: 47
+    healthScore: 48
     verdict: WARNED
     violations:
     - lineCoverage 55% < 70%
     - branchCoverage 20% < 60%
-    - mutationScore 28% < 60%
+    - mutationScore 29% < 60%
     - crapHotspots 11 > 5
 - module: revision-infrastructure
   status: EXISTS
@@ -24771,6 +24662,181 @@ elements:
         is null
       status: EXISTS
       testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceLlmGeneratorFactoryTest.java
+    testCleanViews:
+    - |
+      test: "create returns a generator whose strategyName is 'lemma-absence-llm'"
+      trace: FEAT-LAGEN / F-LAGEN-R001
+
+      given:
+        config = minimalConfig()
+        generator = factory.create(config)
+        ctx = buildContext()
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> generator.generate(ctx), "Generator on unreachable endpoint must throw ProposalStrategyFailedException")
+
+      when:
+        sut.setTimeout(Duration.ofMillis(100))
+
+      then:
+        generator is not null
+        thrown.getStrategyName() == "lemma-absence-llm"
+    - |
+      test: "providerIdFor yields different values for two LagenConfigs that differ in providerName"
+      trace: FEAT-LAGEN / F-LAGEN-R009
+
+      given:
+        configA = LagenConfig()
+        configB = LagenConfig()
+        idA = factory.providerIdFor(configA)
+        idB = factory.providerIdFor(configB)
+
+      when:
+        sut.setProviderName("lmstudio")
+
+      then:
+        idA != null
+    - |
+      test: "providerIdFor yields different values for two LagenConfigs that differ in modelId"
+      trace: FEAT-LAGEN / F-LAGEN-R009
+
+      given:
+        configA = LagenConfig()
+        configB = LagenConfig()
+        idA = factory.providerIdFor(configA)
+        idB = factory.providerIdFor(configB)
+
+      when:
+        sut.setProviderName("lmstudio")
+
+      then:
+        idA != null
+    - |
+      test: "create propagates explicit endpoint, modelId and apiKey from LagenConfig into the configured generator"
+      trace: FEAT-LAGEN / F-LAGEN-R008
+
+      given:
+        config = minimalConfig()
+        generator = factory.create(config)
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> generator.generate(buildContext()))
+        reason = thrown.getReason()
+
+      when:
+        sut.setEndpoint("http://localhost:19999/v1")
+
+      then:
+        generator is not null
+        reason.startsWith("LLM_UNREACHABLE") || reason.startsWith("LLM_TIMEOUT") || reason.startsWith("LLM_OTHER") is true
+    - |
+      test: "create propagates explicit temperature, maxTokens and timeout from LagenConfig into the configured generator"
+      trace: FEAT-LAGEN / F-LAGEN-R008
+
+      given:
+        config = minimalConfig()
+        generator = factory.create(config)
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> generator.generate(buildContext()))
+
+      when:
+        sut.setTemperature(0.3)
+
+      then:
+        generator is not null
+        thrown.getReason() is not null
+    - |
+      test: "create sends no Authorization header when LagenConfig.apiKey is null"
+      trace: FEAT-LAGEN / F-LAGEN-R008
+
+      given:
+        config = minimalConfig()
+        generator = factory.create(config)
+
+      when:
+        sut.setApiKey(null)
+
+      then:
+        generator is not null
+    - |
+      test: "providerIdFor returns 'providerName:modelId' joining the two LagenConfig fields with a literal ':'"
+      trace: FEAT-LAGEN / F-LAGEN-R009
+
+      given:
+        config = LagenConfig()
+        providerId = factory.providerIdFor(config)
+
+      when:
+        sut.setProviderName("lmstudio")
+
+      then:
+        providerId == "lmstudio:gemma-3-4b-it"
+    - |
+      test: "providerIdFor preserves the case of providerName and modelId verbatim (no lowercasing)"
+      trace: FEAT-LAGEN / F-LAGEN-R009
+
+      given:
+        config = LagenConfig()
+        providerId = factory.providerIdFor(config)
+
+      when:
+        sut.setProviderName("LMStudio")
+
+      then:
+        providerId == "LMStudio:Gemma-3-4b-IT"
+    - |
+      test: "providerIdFor preserves leading and trailing whitespace inside providerName and modelId verbatim (no trimming)"
+      trace: FEAT-LAGEN / F-LAGEN-R009
+
+      given:
+        config = LagenConfig()
+        providerId = factory.providerIdFor(config)
+
+      when:
+        sut.setProviderName(" lmstudio ")
+
+      then:
+        providerId == " lmstudio :gemma-3-4b-it "
+    - |
+      test: "providerIdFor raises InvalidProviderIdException when LagenConfig.providerName contains ':'"
+      trace: FEAT-LAGEN / F-LAGEN-R009
+
+      given:
+        config = LagenConfig()
+
+      when:
+        sut.setProviderName("lmstudio:v2")
+    - |
+      test: "providerIdFor raises InvalidProviderIdException when LagenConfig.modelId contains ':'"
+      trace: FEAT-LAGEN / F-LAGEN-R009
+
+      given:
+        config = LagenConfig()
+
+      when:
+        sut.setProviderName("lmstudio")
+    - |
+      test: "create applies LagenDefaults.temperature (0.7) when LagenConfig.temperature is null"
+      trace: FEAT-LAGEN / F-LAGEN-R011
+
+      given:
+        defaults = LagenDefaults(0.7, 2048, Duration.ofSeconds(30))
+
+      then:
+        defaults.getTemperature() == 0.7
+    - |
+      test: "create applies LagenDefaults.maxTokens (2048) when LagenConfig.maxTokens is null"
+      trace: FEAT-LAGEN / F-LAGEN-R008
+
+      given:
+        defaults = LagenDefaults(0.7, 2048, Duration.ofSeconds(30))
+
+      then:
+        defaults.getMaxTokens() == 2048
+    - |
+      test: "create applies LagenDefaults.timeout (Duration.ofSeconds(30)) when LagenConfig.timeout is null"
+      trace: FEAT-LAGEN / F-LAGEN-R008
+
+      given:
+        defaults = LagenDefaults(0.7, 2048, Duration.ofSeconds(30))
+
+      then:
+        defaults.getTimeout() == Duration.ofSeconds(30)
   - name: LemmaAbsenceLlmGenerator
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/LemmaAbsenceLlmGenerator.java
@@ -24823,6 +24889,218 @@ elements:
         when the model client throws an OpenAiHttpException with status 401
       status: EXISTS
       testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/LemmaAbsenceLlmGeneratorTest.java
+    testCleanViews:
+    - |
+      test: "generate returns a LemmaAbsenceGeneratorResponse parsed from the model output on the happy path"
+      trace: FEAT-LAGEN / F-LAGEN-R005
+
+      given:
+        ctx = buildContext()
+        expectedResponse = LemmaAbsenceGeneratorResponse("She ____[walks|runs].", "Ella camina.")
+        result = generator.generate(ctx)
+
+      mock:
+        mockPromptBuilder.buildSystemPrompt() -> "You are a specialist..."
+        mockPromptBuilder.buildUserPrompt(ctx) -> "Correct this exercise..."
+        mockModel.generate(anyList()) -> aiResponse("{\"quizSentence\": \"She ____[walks|runs].\", \"translation\": \"Ella camina.\"}")
+        mockResponseParser.parse(any(), any(), any()) -> expectedResponse
+
+      then:
+        result.getQuizSentence() == "She ____[walks|runs]."
+        result.getTranslation() == "Ella camina."
+    - |
+      test: "generate sends both the system prompt and the user prompt produced from the context to the model"
+      trace: FEAT-LAGEN / F-LAGEN-R003
+
+      given:
+        ctx = buildContext()
+
+      mock:
+        mockPromptBuilder.buildSystemPrompt() -> "SYSTEM: You are a specialist."
+        mockPromptBuilder.buildUserPrompt(ctx) -> "USER: Context data here."
+        mockModel.generate(anyList()) -> aiResponse("{\"quizSentence\": \"She ____[walks|runs].\", \"translation\": \"Ella camina.\"}")
+        mockResponseParser.parse(any(), any(), any()) -> new LemmaAbsenceGeneratorResponse("She ____[walks|runs].", "Ella camina.")
+
+      when:
+        sut.generate(ctx)
+
+      then:
+        verify: mockModel.generate(argThat((List<ChatMessage> messages) -> {
+          boolean hasSystem = messages.stream().anyMatch(m -> m instanceof SystemMessage && ((SystemMessage) m).text().equals("SYSTEM: You are a specialist."));
+          boolean hasUser = messages.stream().anyMatch(m -> m instanceof UserMessage && ((UserMessage) m).singleText().equals("USER: Context data here."));
+          return hasSystem && hasUser;
+      }))
+    - |
+      test: "generate issues exactly one round-trip to the model per invocation (no automatic retry)"
+      trace: FEAT-LAGEN / F-LAGEN-R007
+
+      given:
+        ctx = buildContext()
+
+      mock:
+        mockPromptBuilder.buildSystemPrompt() -> "System prompt."
+        mockPromptBuilder.buildUserPrompt(ctx) -> "User prompt."
+        mockModel.generate(anyList()) -> aiResponse("{\"quizSentence\": \"She ____[walks|runs].\", \"translation\": \"Ella camina.\"}")
+        mockResponseParser.parse(any(), any(), any()) -> new LemmaAbsenceGeneratorResponse("She ____[walks|runs].", "Ella camina.")
+
+      when:
+        sut.generate(ctx)
+
+      then:
+        verify: mockModel.generate(anyList())
+    - |
+      test: "generate raises ProposalStrategyFailedException without persisting any partial response when the parser rejects the raw text"
+      trace: FEAT-LAGEN / F-LAGEN-R007
+
+      given:
+        ctx = buildContext()
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> generator.generate(ctx), "Parser failure must propagate as ProposalStrategyFailedException (R007)")
+
+      mock:
+        mockPromptBuilder.buildSystemPrompt() -> "System prompt."
+        mockPromptBuilder.buildUserPrompt(ctx) -> "User prompt."
+        mockModel.generate(anyList()) -> aiResponse("not valid json")
+        mockResponseParser.parse(any(), any(), any()) -> throws ProposalStrategyFailedException(STRATEGY_NAME, TASK_ID, "LLM_RESPONSE_MALFORMED: not valid JSON")
+
+      then:
+        thrown.getReason().contains("LLM_RESPONSE_MALFORMED") is true
+    - |
+      test: "generate prefixes the failure reason with the LlmGenerationFailureCategory name returned by the classifier"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        ctx = buildContext()
+        connectEx = ConnectException("Connection refused")
+        wrapped = RuntimeException("LLM call failed", connectEx)
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> generator.generate(ctx))
+
+      mock:
+        mockPromptBuilder.buildSystemPrompt() -> "System prompt."
+        mockPromptBuilder.buildUserPrompt(ctx) -> "User prompt."
+        mockModel.generate(anyList()) -> throws wrapped
+        mockErrorClassifier.classify(wrapped) -> LlmGenerationFailureCategory.LLM_UNREACHABLE
+
+      then:
+        thrown.getReason().startsWith(LlmGenerationFailureCategory.LLM_UNREACHABLE.name()) is true
+    - |
+      test: "generate embeds the strategyName 'lemma-absence-llm' inside the message of any ProposalStrategyFailedException it raises"
+      trace: FEAT-LAGEN / F-LAGEN-R001
+
+      given:
+        ctx = buildContext()
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> generator.generate(ctx))
+
+      mock:
+        mockPromptBuilder.buildSystemPrompt() -> "System prompt."
+        mockPromptBuilder.buildUserPrompt(ctx) -> "User prompt."
+        mockModel.generate(anyList()) -> throws RuntimeException("Unexpected failure")
+        mockErrorClassifier.classify(any()) -> LlmGenerationFailureCategory.LLM_OTHER
+
+      then:
+        thrown.getStrategyName() == STRATEGY_NAME
+        thrown.getMessage().contains(STRATEGY_NAME) is true
+    - |
+      test: "generate raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_EMPTY when the model returns empty text"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        ctx = buildContext()
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> generator.generate(ctx))
+
+      mock:
+        mockPromptBuilder.buildSystemPrompt() -> "System prompt."
+        mockPromptBuilder.buildUserPrompt(ctx) -> "User prompt."
+        mockModel.generate(anyList()) -> aiResponse("")
+        mockResponseParser.parse(any(), any(), any()) -> throws ProposalStrategyFailedException(STRATEGY_NAME, TASK_ID, "LLM_RESPONSE_EMPTY: model returned no content")
+
+      then:
+        thrown.getReason().startsWith("LLM_RESPONSE_EMPTY") is true
+    - |
+      test: "generate raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED when the model returns text the parser cannot interpret"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        ctx = buildContext()
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> generator.generate(ctx))
+
+      mock:
+        mockPromptBuilder.buildSystemPrompt() -> "System prompt."
+        mockPromptBuilder.buildUserPrompt(ctx) -> "User prompt."
+        mockModel.generate(anyList()) -> aiResponse("Sorry, I cannot help with that.")
+        mockResponseParser.parse(any(), any(), any()) -> throws ProposalStrategyFailedException(STRATEGY_NAME, TASK_ID, "LLM_RESPONSE_MALFORMED: response is not valid JSON")
+
+      then:
+        thrown.getReason().startsWith("LLM_RESPONSE_MALFORMED") is true
+    - |
+      test: "generate raises ProposalStrategyFailedException with reason prefixed LLM_OTHER when the model client throws a Throwable not matched by any specific category"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        ctx = buildContext()
+        unexpected = RuntimeException("Something weird happened")
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> generator.generate(ctx))
+
+      mock:
+        mockPromptBuilder.buildSystemPrompt() -> "System prompt."
+        mockPromptBuilder.buildUserPrompt(ctx) -> "User prompt."
+        mockModel.generate(anyList()) -> throws unexpected
+        mockErrorClassifier.classify(unexpected) -> LlmGenerationFailureCategory.LLM_OTHER
+
+      then:
+        thrown.getReason().startsWith("LLM_OTHER") is true
+    - |
+      test: "generate raises ProposalStrategyFailedException with reason prefixed LLM_UNREACHABLE when the model client throws ConnectException"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        ctx = buildContext()
+        connectEx = ConnectException("Connection refused to localhost:1234")
+        wrapped = RuntimeException("LLM call failed", connectEx)
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> generator.generate(ctx))
+
+      mock:
+        mockPromptBuilder.buildSystemPrompt() -> "System prompt."
+        mockPromptBuilder.buildUserPrompt(ctx) -> "User prompt."
+        mockModel.generate(anyList()) -> throws wrapped
+        mockErrorClassifier.classify(wrapped) -> LlmGenerationFailureCategory.LLM_UNREACHABLE
+
+      then:
+        thrown.getReason().startsWith("LLM_UNREACHABLE") is true
+    - |
+      test: "generate raises ProposalStrategyFailedException with reason prefixed LLM_TIMEOUT when the model client throws SocketTimeoutException"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        ctx = buildContext()
+        timeoutEx = SocketTimeoutException("Read timed out after 30s")
+        wrapped = RuntimeException("LLM call timed out", timeoutEx)
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> generator.generate(ctx))
+
+      mock:
+        mockPromptBuilder.buildSystemPrompt() -> "System prompt."
+        mockPromptBuilder.buildUserPrompt(ctx) -> "User prompt."
+        mockModel.generate(anyList()) -> throws wrapped
+        mockErrorClassifier.classify(wrapped) -> LlmGenerationFailureCategory.LLM_TIMEOUT
+
+      then:
+        thrown.getReason().startsWith("LLM_TIMEOUT") is true
+    - |
+      test: "generate raises ProposalStrategyFailedException with reason prefixed LLM_AUTH_FAILED when the model client throws an OpenAiHttpException with status 401"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        ctx = buildContext()
+        authEx = dev.ai4j.openai4j.OpenAiHttpException(401, "Unauthorized")
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> generator.generate(ctx))
+
+      mock:
+        mockPromptBuilder.buildSystemPrompt() -> "System prompt."
+        mockPromptBuilder.buildUserPrompt(ctx) -> "User prompt."
+        mockModel.generate(anyList()) -> throws RuntimeException("HTTP 401", authEx)
+        mockErrorClassifier.classify(any()) -> LlmGenerationFailureCategory.LLM_AUTH_FAILED
+
+      then:
+        thrown.getReason().startsWith("LLM_AUTH_FAILED") is true
   - name: DefaultLemmaAbsencePromptBuilder
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilder.java
@@ -24871,6 +25149,147 @@ elements:
         any external source
       status: EXISTS
       testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsencePromptBuilderTest.java
+    testCleanViews:
+    - |
+      test: "buildSystemPrompt instructs the model to return a JSON object with exactly the fields quizSentence and translation"
+      trace: FEAT-LAGEN / F-LAGEN-R004
+
+      given:
+        systemPrompt = builder.buildSystemPrompt()
+
+      then:
+        systemPrompt.contains("quizSentence") is true
+        systemPrompt.contains("translation") is true
+        systemPrompt.toLowerCase().contains("json") is true
+    - |
+      test: "buildSystemPrompt instructs the model to produce one single candidate, not a list of alternatives"
+      trace: FEAT-LAGEN / F-LAGEN-R004
+
+      given:
+        systemPrompt = builder.buildSystemPrompt()
+        lower = systemPrompt.toLowerCase()
+        mentionsSingleCandidate = lower.contains("one candidate") || lower.contains("exactly one") || lower.contains("single candidate") || lower.contains("un solo") || lower.contains("one exercise") || lower.contains("exactly 1")
+
+      then:
+        mentionsSingleCandidate is true
+    - |
+      test: "buildSystemPrompt instructs the model to express quizSentence in the same DSL of the input quiz, replacing misplacedLemmas with options from suggestedLemmas when applicable"
+      trace: FEAT-LAGEN / F-LAGEN-R004
+
+      given:
+        systemPrompt = builder.buildSystemPrompt()
+        lower = systemPrompt.toLowerCase()
+        mentionsDsl = lower.contains("dsl") || lower.contains("cloze") || lower.contains("quiz") || lower.contains("blank") || lower.contains("____") || lower.contains("[")
+        mentionsMisplaced = lower.contains("misplaced") || lower.contains("suggested") || lower.contains("replace") || lower.contains("reemplaza")
+
+      then:
+        mentionsDsl is true
+        mentionsMisplaced is true
+    - |
+      test: "buildUserPrompt includes quizSentence from the context"
+      trace: FEAT-LAGEN / F-LAGEN-R003
+
+      given:
+        ctx = buildFullContext()
+        userPrompt = builder.buildUserPrompt(ctx)
+
+      then:
+        userPrompt.contains("She ____[runs|walks] every morning.") is true
+    - |
+      test: "buildUserPrompt includes sentence from the context"
+      trace: FEAT-LAGEN / F-LAGEN-R003
+
+      given:
+        ctx = buildFullContext()
+        userPrompt = builder.buildUserPrompt(ctx)
+
+      then:
+        userPrompt.contains("She runs every morning.") is true
+    - |
+      test: "buildUserPrompt includes translation from the context"
+      trace: FEAT-LAGEN / F-LAGEN-R003
+
+      given:
+        ctx = buildFullContext()
+        userPrompt = builder.buildUserPrompt(ctx)
+
+      then:
+        userPrompt.contains("Ella corre cada mañana.") is true
+    - |
+      test: "buildUserPrompt includes knowledgeTitle from the context"
+      trace: FEAT-LAGEN / F-LAGEN-R003
+
+      given:
+        ctx = buildFullContext()
+        userPrompt = builder.buildUserPrompt(ctx)
+
+      then:
+        userPrompt.contains("Daily Routines") is true
+    - |
+      test: "buildUserPrompt includes knowledgeInstructions from the context"
+      trace: FEAT-LAGEN / F-LAGEN-R003
+
+      given:
+        ctx = buildFullContext()
+        userPrompt = builder.buildUserPrompt(ctx)
+
+      then:
+        userPrompt.contains("Write simple present tense sentences.") is true
+    - |
+      test: "buildUserPrompt includes topicLabel from the context"
+      trace: FEAT-LAGEN / F-LAGEN-R003
+
+      given:
+        ctx = buildFullContext()
+        userPrompt = builder.buildUserPrompt(ctx)
+
+      then:
+        userPrompt.contains("Everyday Life") is true
+    - |
+      test: "buildUserPrompt includes cefrLevel from the context"
+      trace: FEAT-LAGEN / F-LAGEN-R003
+
+      given:
+        ctx = buildFullContext()
+        userPrompt = builder.buildUserPrompt(ctx)
+
+      then:
+        userPrompt.contains("A1") is true
+    - |
+      test: "buildUserPrompt includes every misplacedLemma from the context"
+      trace: FEAT-LAGEN / F-LAGEN-R003
+
+      given:
+        ctx = buildFullContext()
+        userPrompt = builder.buildUserPrompt(ctx)
+
+      then:
+        userPrompt.contains("run") is true
+        userPrompt.contains("jog") is true
+    - |
+      test: "buildUserPrompt includes every suggestedLemma from the context"
+      trace: FEAT-LAGEN / F-LAGEN-R003
+
+      given:
+        ctx = buildFullContext()
+        userPrompt = builder.buildUserPrompt(ctx)
+
+      then:
+        userPrompt.contains("walk") is true
+        userPrompt.contains("go") is true
+    - |
+      test: "buildUserPrompt omits a context field that is null without consulting any external source"
+      trace: FEAT-LAGEN / F-LAGEN-R003
+
+      given:
+        minimalCtx = LemmaAbsenceCorrectionContext("task-min", "She walks.", "Ella camina.", "Basics", "Short sentences.", "Life", CefrLevel.A1, // no misplacedLemmas
+      List.of(), // no suggestedLemmas
+      List.of(), "She ____[walks|runs].")
+        userPrompt = builder.buildUserPrompt(minimalCtx)
+
+      then:
+        userPrompt.isBlank() is false
+        userPrompt.contains("She ____[walks|runs].") is true
   - name: DefaultLemmaAbsenceResponseParser
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParser.java
@@ -24938,6 +25357,173 @@ elements:
         \ DSL: grammar validation is delegated downstream"
       status: EXISTS
       testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLemmaAbsenceResponseParserTest.java
+    testCleanViews:
+    - |
+      test: "parse returns LemmaAbsenceGeneratorResponse(quizSentence, translation) when the raw text is a JSON object with both fields non-empty"
+      trace: FEAT-LAGEN / F-LAGEN-R005
+
+      given:
+        validJson = "{\"quizSentence\": \"She ____[walks|runs] to school.\", " + "\"translation\": \"Ella camina a la escuela.\"}"
+        result = parser.parse(raw(validJson), TASK_ID, STRATEGY_NAME)
+
+      then:
+        result.getQuizSentence() == "She ____[walks|runs] to school."
+        result.getTranslation() == "Ella camina a la escuela."
+    - |
+      test: "parse ignores extra JSON fields beyond quizSentence and translation"
+      trace: FEAT-LAGEN / F-LAGEN-R005
+
+      given:
+        jsonWithExtras = "{\"quizSentence\": \"She ____[walks|runs] daily.\", " + "\"translation\": \"Ella camina a diario.\", " + "\"confidence\": 0.95, " + "\"notes\": \"Grammar OK\"}"
+        result = parser.parse(raw(jsonWithExtras), TASK_ID, STRATEGY_NAME)
+
+      then:
+        result.getQuizSentence() == "She ____[walks|runs] daily."
+        result.getTranslation() == "Ella camina a diario."
+    - |
+      test: "parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_EMPTY when the raw text is empty"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> parser.parse(raw(""), TASK_ID, STRATEGY_NAME), "Empty raw text must throw ProposalStrategyFailedException (R006)")
+
+      then:
+        thrown.getReason().startsWith("LLM_RESPONSE_EMPTY") is true
+    - |
+      test: "parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED when the raw text is not parseable as JSON"
+      trace: FEAT-LAGEN / F-LAGEN-R005
+
+      given:
+        notJson = "I created a new exercise for you: She walks to school."
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> parser.parse(raw(notJson), TASK_ID, STRATEGY_NAME), "Non-JSON text must throw ProposalStrategyFailedException (R005)")
+
+      then:
+        thrown.getReason().startsWith("LLM_RESPONSE_MALFORMED") is true
+    - |
+      test: "parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED when the JSON object lacks the quizSentence field"
+      trace: FEAT-LAGEN / F-LAGEN-R005
+
+      given:
+        missingQuiz = "{\"translation\": \"Ella camina a la escuela.\"}"
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> parser.parse(raw(missingQuiz), TASK_ID, STRATEGY_NAME), "Missing quizSentence must throw ProposalStrategyFailedException (R005)")
+
+      then:
+        thrown.getReason().startsWith("LLM_RESPONSE_MALFORMED") is true
+    - |
+      test: "parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED when the JSON object lacks the translation field"
+      trace: FEAT-LAGEN / F-LAGEN-R005
+
+      given:
+        missingTranslation = "{\"quizSentence\": \"She ____[walks|runs] to school.\"}"
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> parser.parse(raw(missingTranslation), TASK_ID, STRATEGY_NAME), "Missing translation must throw ProposalStrategyFailedException (R005)")
+
+      then:
+        thrown.getReason().startsWith("LLM_RESPONSE_MALFORMED") is true
+    - |
+      test: "parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED when quizSentence is an empty string"
+      trace: FEAT-LAGEN / F-LAGEN-R005
+
+      given:
+        emptyQuiz = "{\"quizSentence\": \"\", \"translation\": \"Ella camina.\"}"
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> parser.parse(raw(emptyQuiz), TASK_ID, STRATEGY_NAME), "Empty quizSentence must throw ProposalStrategyFailedException (R005)")
+
+      then:
+        thrown.getReason().startsWith("LLM_RESPONSE_MALFORMED") is true
+    - |
+      test: "parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED when translation is an empty string"
+      trace: FEAT-LAGEN / F-LAGEN-R005
+
+      given:
+        emptyTranslation = "{\"quizSentence\": \"She ____[walks|runs].\", \"translation\": \"\"}"
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> parser.parse(raw(emptyTranslation), TASK_ID, STRATEGY_NAME), "Empty translation must throw ProposalStrategyFailedException (R005)")
+
+      then:
+        thrown.getReason().startsWith("LLM_RESPONSE_MALFORMED") is true
+    - |
+      test: "parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED when quizSentence is not a JSON string"
+      trace: FEAT-LAGEN / F-LAGEN-R005
+
+      given:
+        numericQuiz = "{\"quizSentence\": 42, \"translation\": \"Ella camina.\"}"
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> parser.parse(raw(numericQuiz), TASK_ID, STRATEGY_NAME), "Numeric quizSentence must throw ProposalStrategyFailedException (R005)")
+
+      then:
+        thrown.getReason().startsWith("LLM_RESPONSE_MALFORMED") is true
+    - |
+      test: "parse raises ProposalStrategyFailedException with reason prefixed LLM_RESPONSE_MALFORMED when translation is not a JSON string"
+      trace: FEAT-LAGEN / F-LAGEN-R005
+
+      given:
+        arrayTranslation = "{\"quizSentence\": \"She ____[walks|runs].\", " + "\"translation\": [\"Ella camina.\"]}"
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> parser.parse(raw(arrayTranslation), TASK_ID, STRATEGY_NAME), "Non-string translation must throw ProposalStrategyFailedException (R005)")
+
+      then:
+        thrown.getReason().startsWith("LLM_RESPONSE_MALFORMED") is true
+    - |
+      test: "parse embeds the taskId in the message of any ProposalStrategyFailedException it raises"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        badJson = "not json at all"
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> parser.parse(raw(badJson), TASK_ID, STRATEGY_NAME))
+
+      then:
+        thrown.getMessage().contains(TASK_ID) is true
+        thrown.getTaskId() == TASK_ID
+    - |
+      test: "parse embeds the strategyName in the message of any ProposalStrategyFailedException it raises"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        badJson = "not json"
+        thrown = assertThrows(ProposalStrategyFailedException.class, () -> parser.parse(raw(badJson), TASK_ID, STRATEGY_NAME))
+
+      then:
+        thrown.getMessage().contains(STRATEGY_NAME) is true
+        thrown.getStrategyName() == STRATEGY_NAME
+    - |
+      test: "parse accepts a quizSentence whose plain-text length looks unusually short or long: only structural validation applies"
+      trace: FEAT-LAGEN / F-LAGEN-R010
+
+      given:
+        veryShort = "{\"quizSentence\": \"Go.\", \"translation\": \"Ve.\"}"
+        veryLong = "{\"quizSentence\": \"" + "She walks to the " + "very ".repeat(100) + "long school.\", \"translation\": \"Ella camina.\"}"
+        shortResult = parser.parse(raw(veryShort), TASK_ID, STRATEGY_NAME)
+        longResult = parser.parse(raw(veryLong), TASK_ID, STRATEGY_NAME)
+
+      then:
+        shortResult.getQuizSentence() == "Go."
+        longResult.getQuizSentence().length() > 100 is true
+    - |
+      test: "parse accepts a response without re-checking that misplacedLemmas were replaced or that new words come from suggestedLemmas"
+      trace: FEAT-LAGEN / F-LAGEN-R010
+
+      given:
+        keepsMisplaced = "{\"quizSentence\": \"She ____[runs|jogs] every morning.\", " + "\"translation\": \"Ella corre cada mañana.\"}"
+        result = parser.parse(raw(keepsMisplaced), TASK_ID, STRATEGY_NAME)
+
+      then:
+        result.getQuizSentence() == "She ____[runs|jogs] every morning."
+    - |
+      test: "parse accepts a response without re-tokenizing the quizSentence to verify its CEFR level"
+      trace: FEAT-LAGEN / F-LAGEN-R010
+
+      given:
+        advancedVocab = "{\"quizSentence\": \"The ____[entrepreneur|businessman] ____[renegotiated|revised] the sophisticated contract.\", " + "\"translation\": \"El empresario renegociará el contrato sofisticado.\"}"
+        result = parser.parse(raw(advancedVocab), TASK_ID, STRATEGY_NAME)
+
+      then:
+        result.getQuizSentence().contains("entrepreneur") is true
+    - |
+      test: "parse accepts a quizSentence regardless of whether it parses as the FEAT-QSENT DSL: grammar validation is delegated downstream"
+      trace: FEAT-LAGEN / F-LAGEN-R010
+
+      given:
+        malformedDsl = "{\"quizSentence\": \"She ____[walks to school.\", " + "\"translation\": \"Ella camina a la escuela.\"}"
+        result = parser.parse(raw(malformedDsl), TASK_ID, STRATEGY_NAME)
+
+      then:
+        result.getQuizSentence() == "She ____[walks to school."
   - name: DefaultLangChainErrorClassifier
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLangChainErrorClassifier.java
@@ -24982,6 +25568,112 @@ elements:
         / '403' / 'invalid api key')
       status: EXISTS
       testFilePath: revision-infrastructure/src/test/java/com/learney/contentaudit/revisioninfrastructure/lagenopenai/DefaultLangChainErrorClassifierTest.java
+    testCleanViews:
+    - |
+      test: "classify returns LLM_OTHER for a Throwable not matched by any specific category"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        generic = RuntimeException("Something unexpected happened")
+        result = classifier.classify(generic)
+
+      then:
+        result == LlmGenerationFailureCategory.LLM_OTHER
+    - |
+      test: "classify never returns null for any non-null Throwable"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        cause = RuntimeException("any error")
+        result = classifier.classify(cause)
+
+      then:
+        result is not null
+    - |
+      test: "classify returns LLM_UNREACHABLE for a ConnectException anywhere in the cause chain"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        root = ConnectException("Connection refused to localhost:1234")
+        wrapper = RuntimeException("LLM call failed", root)
+        result = classifier.classify(wrapper)
+
+      then:
+        result == LlmGenerationFailureCategory.LLM_UNREACHABLE
+    - |
+      test: "classify returns LLM_UNREACHABLE for an UnknownHostException anywhere in the cause chain"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        root = UnknownHostException("api.example.com")
+        wrapper = RuntimeException("Network error", root)
+        result = classifier.classify(wrapper)
+
+      then:
+        result == LlmGenerationFailureCategory.LLM_UNREACHABLE
+    - |
+      test: "classify returns LLM_UNREACHABLE for a NoRouteToHostException anywhere in the cause chain"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        root = NoRouteToHostException("No route to 192.168.1.100")
+        wrapper = RuntimeException("Routing error", root)
+        result = classifier.classify(wrapper)
+
+      then:
+        result == LlmGenerationFailureCategory.LLM_UNREACHABLE
+    - |
+      test: "classify returns LLM_TIMEOUT for a SocketTimeoutException anywhere in the cause chain"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        root = SocketTimeoutException("Read timed out after 30s")
+        wrapper = RuntimeException("Request failed", root)
+        result = classifier.classify(wrapper)
+
+      then:
+        result == LlmGenerationFailureCategory.LLM_TIMEOUT
+    - |
+      test: "classify returns LLM_TIMEOUT for a java.util.concurrent.TimeoutException anywhere in the cause chain"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        root = TimeoutException("Future timed out after 30s")
+        wrapper = RuntimeException("Async failure", root)
+        result = classifier.classify(wrapper)
+
+      then:
+        result == LlmGenerationFailureCategory.LLM_TIMEOUT
+    - |
+      test: "classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode is 401"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        httpEx = OpenAiHttpException(401, "Unauthorized")
+        result = classifier.classify(httpEx)
+
+      then:
+        result == LlmGenerationFailureCategory.LLM_AUTH_FAILED
+    - |
+      test: "classify returns LLM_AUTH_FAILED for an OpenAiHttpException whose statusCode is 403"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        httpEx = OpenAiHttpException(403, "Forbidden")
+        result = classifier.classify(httpEx)
+
+      then:
+        result == LlmGenerationFailureCategory.LLM_AUTH_FAILED
+    - |
+      test: "classify returns LLM_AUTH_FAILED when the root cause message matches the auth heuristic regex (case-insensitive 'unauthorized' / 'forbidden' / '401' / '403' / 'invalid api key')"
+      trace: FEAT-LAGEN / F-LAGEN-R006
+
+      given:
+        heuristicMatch = RuntimeException("Request failed: invalid api key provided")
+        result = classifier.classify(heuristicMatch)
+
+      then:
+        result == LlmGenerationFailureCategory.LLM_AUTH_FAILED
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -24991,36 +25683,54 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
-      branchCoveragePct: 0
-      blendPct: 0
+      linesCovered: 176
+      linesMissed: 53
+      linesTotal: 229
+      lineCoveragePct: 76
+      branchesCovered: 60
+      branchesMissed: 60
+      branchesTotal: 120
+      branchCoveragePct: 50
+      blendPct: 63
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 99
+      killed: 45
+      survived: 15
+      noCoverage: 39
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 45
+      testStrengthPct: 75
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
+      totalMethods: 55
+      hotspots: 2
+      maxCrap: 132.0
+      averageCrap: 5.780245745454545
+      simple: 51
+      moderate: 2
       high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      veryHigh: 2
+      healthPct: 95
+      top:
+      - className: com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 98
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.revisioninfrastructure.lagen.LagenDefaults
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 53
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+    healthScore: 63
+    verdict: WARNED
+    violations:
+    - branchCoverage 50% < 60%
+    - mutationScore 45% < 60%
 testSummary:
   total: 664
   passing: 664
@@ -25035,49 +25745,35 @@ qualitySummary:
     crapHotspotThreshold: 30
     crapHotspotsMax: 5
   coverage:
-    linesCovered: 2565
-    linesMissed: 6098
-    linesTotal: 8663
-    lineCoveragePct: 29
-    branchesCovered: 852
-    branchesMissed: 3433
-    branchesTotal: 4285
-    branchCoveragePct: 19
-    blendPct: 24
+    linesCovered: 4348
+    linesMissed: 4680
+    linesTotal: 9028
+    lineCoveragePct: 48
+    branchesCovered: 1525
+    branchesMissed: 2915
+    branchesTotal: 4440
+    branchCoveragePct: 34
+    blendPct: 41
   mutation:
-    totalMutants: 4058
-    killed: 1022
-    survived: 748
-    noCoverage: 2288
+    totalMutants: 2567
+    killed: 740
+    survived: 376
+    noCoverage: 1451
     timedOut: 0
     other: 0
-    mutationScorePct: 25
-    testStrengthPct: 57
+    mutationScorePct: 28
+    testStrengthPct: 66
   crap:
-    totalMethods: 1831
-    hotspots: 158
-    maxCrap: 870.0
-    averageCrap: 12.079015177498635
-    simple: 1569
-    moderate: 101
-    high: 45
-    veryHigh: 116
-    healthPct: 88
+    totalMethods: 1902
+    hotspots: 120
+    maxCrap: 600.0
+    averageCrap: 9.183671823869611
+    simple: 1694
+    moderate: 82
+    high: 34
+    veryHigh: 92
+    healthPct: 91
     top:
-    - className: com.learney.contentaudit.auditcli.commands.GetCmd
-      methodName: handleTasks
-      methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
-      line: 411
-      cyclomatic: 29
-      lineCoveragePct: 0
-      crap: 870.0
-    - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-      methodName: runAnalysis
-      methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
-      line: 170
-      cyclomatic: 25
-      lineCoveragePct: 0
-      crap: 650.0
     - className: com.learney.contentaudit.coursedomain.QuizTemplateEntity
       methodName: equals
       methodDesc: (Ljava/lang/Object;)Z
@@ -25092,24 +25788,10 @@ qualitySummary:
       cyclomatic: 21
       lineCoveragePct: 0
       crap: 462.0
-    - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
-      methodName: scoreQuizzes
-      methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Ljava/util/Map;)V
-      line: 477
-      cyclomatic: 19
-      lineCoveragePct: 0
-      crap: 380.0
     - className: com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis
       methodName: equals
       methodDesc: (Ljava/lang/Object;)Z
       line: 179
-      cyclomatic: 18
-      lineCoveragePct: 0
-      crap: 342.0
-    - className: com.learney.contentaudit.auditcli.commands.GetCmd
-      methodName: printProposalOne
-      methodDesc: (Lcom/learney/contentaudit/revisiondomain/RevisionArtifact;)V
-      line: 948
       cyclomatic: 18
       lineCoveragePct: 0
       crap: 342.0
@@ -25134,13 +25816,41 @@ qualitySummary:
       cyclomatic: 17
       lineCoveragePct: 0
       crap: 306.0
-  healthScore: 40
+    - className: com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext
+      methodName: equals
+      methodDesc: (Ljava/lang/Object;)Z
+      line: 156
+      cyclomatic: 16
+      lineCoveragePct: 0
+      crap: 272.0
+    - className: com.learney.contentaudit.coursedomain.TopicEntity
+      methodName: equals
+      methodDesc: (Ljava/lang/Object;)Z
+      line: 143
+      cyclomatic: 15
+      lineCoveragePct: 0
+      crap: 240.0
+    - className: com.learney.contentaudit.coursedomain.KnowledgeEntity
+      methodName: equals
+      methodDesc: (Ljava/lang/Object;)Z
+      line: 143
+      cyclomatic: 15
+      lineCoveragePct: 0
+      crap: 240.0
+    - className: com.learney.contentaudit.auditcli.formatting.DefaultAnalyzerStatsTransformer
+      methodName: transform
+      methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditReport;Ljava/lang/String;Lcom/learney/contentaudit/auditapplication/AnalyzerRegistry;)Lcom/learney/contentaudit/auditcli/formatting/AnalyzerStatsView;
+      line: 24
+      cyclomatic: 15
+      lineCoveragePct: 0
+      crap: 240.0
+  healthScore: 48
   verdict: WARNED
   violations:
-  - lineCoverage 29% < 70%
-  - branchCoverage 19% < 60%
-  - mutationScore 25% < 60%
-  - crapHotspots 158 > 5
+  - lineCoverage 48% < 70%
+  - branchCoverage 34% < 60%
+  - mutationScore 28% < 60%
+  - crapHotspots 120 > 5
 patterns:
 - id: declared-1
   pattern: Strategy

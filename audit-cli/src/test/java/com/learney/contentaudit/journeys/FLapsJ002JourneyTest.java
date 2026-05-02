@@ -67,9 +67,9 @@ import com.learney.contentaudit.revisiondomain.engine.DefaultProposalDecisionSer
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory;
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionValidatorFactory;
 import com.learney.contentaudit.revisiondomain.engine.LemmaAbsenceProposalStrategyRegistryConfig;
-import com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceMvpStrategy;
-import com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceGeneratorResponse;
-import com.learney.contentaudit.revisiondomain.strategy.LemmaAbsenceQuizCandidateGenerator;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceMvpStrategy;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceGeneratorResponse;
+import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceQuizCandidateGenerator;
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -208,7 +208,7 @@ public class FLapsJ002JourneyTest {
 
         LemmaAbsenceMvpStrategy strategy = new LemmaAbsenceMvpStrategy(happyGenerator);
         LemmaAbsenceProposalStrategyRegistryConfig regConfig =
-                new LemmaAbsenceProposalStrategyRegistryConfig(List.of(strategy), "lemma-absence-mvp");
+                new LemmaAbsenceProposalStrategyRegistryConfig(List.of(strategy), "lemma-absence-llm");
         DefaultLemmaAbsenceProposalStrategyRegistry registry =
                 new DefaultLemmaAbsenceProposalStrategyRegistry(regConfig);
         DefaultLemmaAbsenceProposalDeriver deriver =
@@ -299,12 +299,12 @@ public class FLapsJ002JourneyTest {
                 "Artifact verdict must be PENDING_APPROVAL before operator decides");
 
         // Gate F-LAPS-R005: proposal carries strategy identity
-        assertEquals("lemma-absence-mvp", pendingArtifact.getProposal().getReviserKind(),
-                "R005: reviserKind must be 'lemma-absence-mvp' (not 'bypass')");
+        assertEquals("lemma-absence-llm", pendingArtifact.getProposal().getReviserKind(),
+                "R005: reviserKind must be 'lemma-absence-llm' (not 'bypass')");
         assertNotNull(pendingArtifact.getProposal().getStrategyId(),
                 "R005: strategyId must be present in proposal");
-        assertEquals("lemma-absence-mvp", pendingArtifact.getProposal().getStrategyId().getName(),
-                "R005: strategyId.name must be 'lemma-absence-mvp'");
+        assertEquals("lemma-absence-llm", pendingArtifact.getProposal().getStrategyId().getName(),
+                "R005: strategyId.name must be 'lemma-absence-llm'");
 
         // Gate F-LAPS-R001: elementAfter differs from elementBefore
         QuizTemplateEntity afterQuiz = pendingArtifact.getProposal().getElementAfter().getQuiz();
@@ -412,8 +412,8 @@ public class FLapsJ002JourneyTest {
                 "R001/R012: elementAfter.title must be from AFTER_DSL candidate");
 
         // Gate F-LAPS-R005: strategy identity in proposal
-        assertEquals("lemma-absence-mvp", pendingArtifact.getProposal().getReviserKind(),
-                "R005: reviserKind must be 'lemma-absence-mvp'");
+        assertEquals("lemma-absence-llm", pendingArtifact.getProposal().getReviserKind(),
+                "R005: reviserKind must be 'lemma-absence-llm'");
 
         // Gate F-LAPS-R013: structural invariants preserved in elementAfter
         assertEquals(QUIZ_ID, afterQuiz.getId(),

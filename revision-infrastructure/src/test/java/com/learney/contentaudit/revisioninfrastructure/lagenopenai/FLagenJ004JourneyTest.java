@@ -1,5 +1,19 @@
 package com.learney.contentaudit.revisioninfrastructure.lagenopenai;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
+import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
+import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import dev.ai4j.openai4j.OpenAiHttpException;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -16,11 +30,59 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-LAGEN-J004")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FLagenJ004JourneyTest {
+
+    private static LemmaAbsenceCorrectionContext buildContext() {
+        return new LemmaAbsenceCorrectionContext(
+                "task-j004",
+                "She runs every morning.",
+                "Ella corre cada mañana.",
+                "Daily Routines",
+                "Write simple present tense sentences.",
+                "Everyday Life",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 150)),
+                List.of(new SuggestedLemma("walk", "VERB", "A1 level synonym", 80)),
+                "She ____[runs|walks] every morning."
+        );
+    }
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador inicia la revision en un ... → El sistema consulta al proveedor acti... → El sistema reporta la falla con categ... → failure")
     public void path1_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Journey J004: El proveedor rechaza la consulta por autenticación.
+        // Covers F-LAGEN-R006 category LLM_AUTH_FAILED and F-LAGEN-R008 (apiKey knob).
+        //
+        // node: invocar_generacion_auth
+        //   The operator is running in an environment where the configured apiKey is invalid or absent.
+        LemmaAbsenceCorrectionContext ctx = buildContext();
+
+        // node: enviar_consulta_auth (gate: F-LAGEN-R008)
+        //   The system queries the active provider; the provider rejects with 401 Unauthorized.
+        ChatLanguageModel mockModel = mock(ChatLanguageModel.class);
+        OpenAiHttpException authEx = new OpenAiHttpException(401, "Unauthorized — invalid API key");
+        when(mockModel.generate(anyList())).thenThrow(authEx);
+
+        LemmaAbsencePromptBuilder promptBuilder = new DefaultLemmaAbsencePromptBuilder();
+        LemmaAbsenceResponseParser responseParser = new DefaultLemmaAbsenceResponseParser();
+        LangChainErrorClassifier errorClassifier = new DefaultLangChainErrorClassifier();
+        LemmaAbsenceLlmGenerator generator = new LemmaAbsenceLlmGenerator(
+                mockModel, promptBuilder, responseParser, errorClassifier, "lemma-absence-llm");
+
+        // node: fallar_auth (gate: F-LAGEN-R006, F-LAGEN-R007) → result: failure
+        ProposalStrategyFailedException thrown = assertThrows(
+                ProposalStrategyFailedException.class,
+                () -> generator.generate(ctx),
+                "OpenAiHttpException(401) must propagate as ProposalStrategyFailedException (J004)"
+        );
+
+        // gate: F-LAGEN-R006 — category must be LLM_AUTH_FAILED
+        assertTrue(thrown.getReason().startsWith("LLM_AUTH_FAILED"),
+                "J004 failure: reason must start with 'LLM_AUTH_FAILED' (F-LAGEN-R006), got: "
+                        + thrown.getReason());
+        // gate: F-LAGEN-R007 — no retry
+        assertTrue(thrown.getStrategyName().equals("lemma-absence-llm"),
+                "J004 failure: strategyName must be 'lemma-absence-llm' (F-LAGEN-R001)");
     }
 }

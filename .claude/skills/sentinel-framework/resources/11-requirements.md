@@ -172,8 +172,8 @@ This merges the patch into `sentinel.yaml`, runs `sentinel generate`, and produc
 3. Apply the patch to sentinel.yaml
    sentinel patch apply --patch .../architectural_patch.yaml
 
-4. AI agent implements the generated stubs
-   sentinel agent --feature FEAT-XXX
+4. Implement the generated stubs with your project agent workflow
+   @developer
 
 5. Check the sentinel report
    sentinel report generate
