@@ -1,5 +1,7 @@
 package com.learney.contentaudit.revisiondomain;
 
+import com.learney.contentaudit.auditapplication.CourseMapper;
+import com.learney.contentaudit.auditdomain.AuditEngine;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
@@ -35,6 +37,12 @@ public class RevisionEngineConfig {
 
     private LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver;
 
+    private CourseMapper courseMapper;
+
+    private AuditEngine auditEngine;
+
+    private ImpactPreviewStore impactPreviewStore;
+
     public RevisionEngineConfig() {
     }
 
@@ -44,7 +52,8 @@ public class RevisionEngineConfig {
             AuditReportStore auditReportStore,
             CorrectionContextResolver<CorrectionContext> contextResolver,
             LemmaAbsenceProposalStrategyRegistry lemmaAbsenceStrategyRegistry,
-            LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver) {
+            LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver, CourseMapper courseMapper,
+            AuditEngine auditEngine, ImpactPreviewStore impactPreviewStore) {
         this.revisers = revisers;
         this.validator = validator;
         this.artifactStore = artifactStore;
@@ -55,6 +64,9 @@ public class RevisionEngineConfig {
         this.contextResolver = contextResolver;
         this.lemmaAbsenceStrategyRegistry = lemmaAbsenceStrategyRegistry;
         this.lemmaAbsenceProposalDeriver = lemmaAbsenceProposalDeriver;
+        this.courseMapper = courseMapper;
+        this.auditEngine = auditEngine;
+        this.impactPreviewStore = impactPreviewStore;
     }
 
     public Map<DiagnosisKind, Reviser> getRevisers() {
@@ -139,6 +151,30 @@ public class RevisionEngineConfig {
         this.lemmaAbsenceProposalDeriver = lemmaAbsenceProposalDeriver;
     }
 
+    public CourseMapper getCourseMapper() {
+        return this.courseMapper;
+    }
+
+    public void setCourseMapper(CourseMapper courseMapper) {
+        this.courseMapper = courseMapper;
+    }
+
+    public AuditEngine getAuditEngine() {
+        return this.auditEngine;
+    }
+
+    public void setAuditEngine(AuditEngine auditEngine) {
+        this.auditEngine = auditEngine;
+    }
+
+    public ImpactPreviewStore getImpactPreviewStore() {
+        return this.impactPreviewStore;
+    }
+
+    public void setImpactPreviewStore(ImpactPreviewStore impactPreviewStore) {
+        this.impactPreviewStore = impactPreviewStore;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -153,11 +189,14 @@ public class RevisionEngineConfig {
                     && Objects.equals(this.auditReportStore, that.auditReportStore)
                     && Objects.equals(this.contextResolver, that.contextResolver)
                     && Objects.equals(this.lemmaAbsenceStrategyRegistry, that.lemmaAbsenceStrategyRegistry)
-                    && Objects.equals(this.lemmaAbsenceProposalDeriver, that.lemmaAbsenceProposalDeriver);
+                    && Objects.equals(this.lemmaAbsenceProposalDeriver, that.lemmaAbsenceProposalDeriver)
+                    && Objects.equals(this.courseMapper, that.courseMapper)
+                    && Objects.equals(this.auditEngine, that.auditEngine)
+                    && Objects.equals(this.impactPreviewStore, that.impactPreviewStore);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(revisers, validator, artifactStore, courseRepository, elementLocator, refinementPlanStore, auditReportStore, contextResolver, lemmaAbsenceStrategyRegistry, lemmaAbsenceProposalDeriver);
+        return Objects.hash(revisers, validator, artifactStore, courseRepository, elementLocator, refinementPlanStore, auditReportStore, contextResolver, lemmaAbsenceStrategyRegistry, lemmaAbsenceProposalDeriver, courseMapper, auditEngine, impactPreviewStore);
     }
 }

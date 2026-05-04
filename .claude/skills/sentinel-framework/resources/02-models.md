@@ -1354,6 +1354,42 @@ new LagenMode(null LLM, null CANNED)
 | `score` | `double` |
 | `level` | `String` |
 
+#### ImpactPreviewView (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `availability` | `ImpactPreviewAvailability` |
+| `unavailabilityText` | `String` |
+| `levels` | `List<LevelImpactView>` |
+
+#### LevelImpactView (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `nodeTarget` | `AuditTarget` |
+| `nodeId` | `String` |
+| `aggregateText` | `String` |
+| `dimensionRows` | `List<DimensionDeltaView>` |
+
+#### DimensionDeltaView (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `dimension` | `String` |
+| `deltaText` | `String` |
+
 #### InvalidWorkdirException (package: bootstrap)
 
 **Package:** `com.learney.contentaudit.auditcli.bootstrap`
@@ -1559,10 +1595,13 @@ new RevisionOutcome(RevisionOutcomeKind kind, RevisionArtifact artifact, String 
 | `contextResolver` | `CorrectionContextResolver<CorrectionContext>` |  |
 | `lemmaAbsenceStrategyRegistry` | `LemmaAbsenceProposalStrategyRegistry` |  |
 | `lemmaAbsenceProposalDeriver` | `LemmaAbsenceProposalDeriver` |  |
+| `courseMapper` | `CourseMapper` |  |
+| `auditEngine` | `AuditEngine` |  |
+| `impactPreviewStore` | `ImpactPreviewStore` |  |
 
 **Generated constructor:**
 ```java
-new RevisionEngineConfig(Map<DiagnosisKind,Reviser> revisers, RevisionValidator validator, RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, CorrectionContextResolver<CorrectionContext> contextResolver, LemmaAbsenceProposalStrategyRegistry lemmaAbsenceStrategyRegistry, LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver)
+new RevisionEngineConfig(Map<DiagnosisKind,Reviser> revisers, RevisionValidator validator, RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, CorrectionContextResolver<CorrectionContext> contextResolver, LemmaAbsenceProposalStrategyRegistry lemmaAbsenceStrategyRegistry, LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver, CourseMapper courseMapper, AuditEngine auditEngine, ImpactPreviewStore impactPreviewStore)
 ```
 
 #### ApprovalMode
@@ -1702,6 +1741,91 @@ new ProposalDerivationException(String strategyName, String taskId, String reaso
 |-------|------|
 | `quizSentence` | `String` |
 | `translation` | `String` |
+
+#### ImpactPreviewAvailability (package: impactpreview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.impactpreview`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `AVAILABLE` | `null` |
+| `UNAVAILABLE` | `null` |
+
+#### ImpactPreviewUnavailabilityReason (package: impactpreview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.impactpreview`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `TARGET_NODE_ABSENT` | `null` |
+| `BASE_AUDIT_UNAVAILABLE` | `null` |
+| `SIMULATION_FAILED` | `null` |
+| `OTHER` | `null` |
+
+#### ImpactPreviewUnavailability (package: impactpreview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.impactpreview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `reason` | `ImpactPreviewUnavailabilityReason` |
+| `detail` | `String` |
+
+#### ScoreDelta (package: impactpreview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.impactpreview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `before` | `double` |
+| `after` | `double` |
+| `difference` | `double` |
+
+#### DimensionDelta (package: impactpreview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.impactpreview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `dimension` | `String` |
+| `delta` | `ScoreDelta` |
+
+#### LevelImpact (package: impactpreview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.impactpreview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `nodeTarget` | `AuditTarget` |
+| `nodeId` | `String` |
+| `aggregateDelta` | `ScoreDelta` |
+| `dimensionDeltas` | `List<DimensionDelta>` |
+
+#### ImpactPreview (package: impactpreview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.impactpreview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `proposalId` | `String` |
+| `computedAt` | `Instant` |
+| `availability` | `ImpactPreviewAvailability` |
+| `unavailability` | `ImpactPreviewUnavailability` |
+| `levelImpacts` | `List<LevelImpact>` |
 
 ### Module: revision-infrastructure
 

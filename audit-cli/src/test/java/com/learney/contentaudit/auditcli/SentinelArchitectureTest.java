@@ -230,6 +230,21 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: ScoredItemRow - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.ImpactPreviewView");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ImpactPreviewView - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.LevelImpactView");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LevelImpactView - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.DimensionDeltaView");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DimensionDeltaView - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.formatting.ReportFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ReportFormatter - " + e.getMessage());
@@ -268,6 +283,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.formatting.DetailedFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DetailedFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.ImpactPreviewFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ImpactPreviewFormatter - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.formatting.TextReportFormatter");
@@ -318,6 +338,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: CocaBucketsDetailedFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.DefaultImpactPreviewFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultImpactPreviewFormatter - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.InvalidWorkdirException");

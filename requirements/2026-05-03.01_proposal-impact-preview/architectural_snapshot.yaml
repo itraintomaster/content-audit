@@ -1,0 +1,472 @@
+code: FEAT-PIPRE
+description: "FEAT-PIPRE: Preview de impacto eager por RevisionProposal. Introduce\
+  \ el package impactpreview en revision-domain (carriers, taxonomia de no-disponibilidad,\
+  \ puerto ImpactPreviewComputer); el puerto de persistencia ImpactPreviewStore queda\
+  \ en el module root de revision-domain (mismo nivel que RevisionArtifactStore, mismo\
+  \ patron Public Port + Hidden Adapter). El computador concreto vive en el package\
+  \ engine, el adapter de filesystem en audit-infrastructure, los formatters porcentuales\
+  \ en audit-cli. Enchufa el computo dentro del DefaultRevisionEngine sin tocar el\
+  \ RevisionArtifact persistido."
+modules:
+- name: revision-domain
+  description: "Domain module for the revision phase of the refinement pipeline. Consumes\
+    \ refiner-domain (task and CorrectionContext), course-domain (course entities\
+    \ and the CourseRepository port owned by the caller) and audit-domain (AuditReport\
+    \ / AuditEngine for the eager what-if simulation that powers the impact preview).\
+    \ Exposes Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator/ImpactPreviewStore\
+    \ ports plus the RevisionEngineFactory seam, the lemmaabsence proposal-strategy\
+    \ SPI, and the impactpreview SPI (ImpactPreviewComputer + carriers) consumed by\
+    \ FEAT-PIPRE. The bypass baseline and the impact-preview internals live behind\
+    \ the engine package; external modules only see factories, ports and carrier records."
+  dependsOn:
+  - audit-domain
+  - refiner-domain
+  - course-domain
+  models:
+  - name: RevisionEngineConfig
+    type: record
+    fields:
+    - name: revisers
+      type: "Map<DiagnosisKind,Reviser>"
+      description: Per-DiagnosisKind Revisers (R003). May be empty; factory adds IdentityReviser
+        as the catch-all fallback (R004).
+    - name: validator
+      type: RevisionValidator
+      description: Optional; factory uses AutoApproveValidator when null (R007)
+    - name: artifactStore
+      type: RevisionArtifactStore
+      description: Required; no default (needs filesystem root)
+    - name: courseRepository
+      type: CourseRepository
+      description: Required; caller owns course IO wiring
+    - name: elementLocator
+      type: CourseElementLocator
+      description: Optional; factory uses DefaultCourseElementLocator when null
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+      description: Required; needed to load/save the task
+    - name: auditReportStore
+      type: AuditReportStore
+      description: Required; needed to resolve the CorrectionContext and the impact-preview
+        baseline (FEAT-PIPRE).
+    - name: contextResolver
+      type: CorrectionContextResolver<CorrectionContext>
+      description: Required; caller owns the resolver registry
+    - name: lemmaAbsenceStrategyRegistry
+      type: LemmaAbsenceProposalStrategyRegistry
+      description: "Registry of registered LEMMA_ABSENCE strategies. Nullable -> the\
+        \ factory wires an empty registry, in which case every LEMMA_ABSENCE task\
+        \ resolves to NO_ACTIVE_STRATEGY (F-LAPS-R006)."
+    - name: lemmaAbsenceProposalDeriver
+      type: LemmaAbsenceProposalDeriver
+      description: Deterministic deriver used when a LEMMA_ABSENCE candidate must
+        be converted into a CourseElementSnapshot (F-LAPS-R012). Nullable -> the factory
+        wires DefaultLemmaAbsenceProposalDeriver.
+    - name: courseMapper
+      type: CourseMapper
+      description: "FEAT-PIPRE. Pure CourseEntity -> AuditableCourse mapper used by\
+        \ the impact-preview computer to map the simulated course in memory. Required\
+        \ (no default): the engine cannot fabricate one because it would have to know\
+        \ about NlpTokenizer / QuizSentenceConverter wiring that lives outside revision-domain.\
+        \ The CLI passes the same instance it already wires for AuditRunner."
+      _change: add
+    - name: auditEngine
+      type: AuditEngine
+      description: "FEAT-PIPRE. Re-runs the audit on the simulated AuditableCourse\
+        \ to produce the 'after' AuditReport without persisting any official report\
+        \ (F-PIPRE-R002). Required (no default): like courseMapper, lives in audit-domain\
+        \ whose IAuditEngine wiring is the CLI's responsibility."
+      _change: add
+    - name: impactPreviewStore
+      type: ImpactPreviewStore
+      description: "FEAT-PIPRE. Filesystem (or future) sidecar store for the per-proposal\
+        \ preview. Required (no default): the persistence root is a CLI-level concern."
+      _change: add
+    _change: modify
+  interfaces:
+  - name: RevisionEngineFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(RevisionEngineConfig config): RevisionEngine"
+    _change: modify
+  - name: ImpactPreviewStore
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "save(ImpactPreview preview): void"
+    - signature: "findByProposalId(String proposalId): Optional<ImpactPreview>"
+    visibility: public
+    _change: add
+  packages:
+  - name: impactpreview
+    description: "Public SPI for the impact preview of a RevisionProposal (FEAT-PIPRE).\
+      \ Houses the eager what-if contract (ImpactPreviewComputer port) and every carrier\
+      \ the operator-facing rendering needs to read: the diff tree (ImpactPreview,\
+      \ LevelImpact, DimensionDelta, ScoreDelta), the availability tagging (ImpactPreviewAvailability,\
+      \ ImpactPreviewUnavailability) and the closed taxonomy of unavailability causes\
+      \ (ImpactPreviewUnavailabilityReason). The persistence port (ImpactPreviewStore)\
+      \ lives at the module root next to RevisionArtifactStore so the audit-infrastructure\
+      \ adapter can target it with the same Public Port + Hidden Adapter shape it\
+      \ already uses for revision artifacts. Public so audit-cli can render the preview\
+      \ alongside each proposal. Kept inside revision-domain because every carrier\
+      \ is pure data over revision-domain types (AuditTarget, RevisionProposal) and\
+      \ the computer only needs the audit engine that revision-domain already accepts\
+      \ via dependsOn."
+    visibility: public
+    models:
+    - name: ImpactPreviewAvailability
+      type: enum
+      fields:
+      - name: AVAILABLE
+        description: "The computer succeeded; deltas at every reported (level,dimension)\
+          \ pair are populated (F-PIPRE-R004, F-PIPRE-R005, F-PIPRE-R006)."
+      - name: UNAVAILABLE
+        description: "The computer could not produce deltas; ImpactPreview.unavailability\
+          \ carries the explicit cause (F-PIPRE-R009). NOT the same as 'no change\
+          \ detected', which is AVAILABLE with all-zero differences (F-PIPRE-R009\
+          \ detail 2)."
+      visibility: public
+      _change: add
+    - name: ImpactPreviewUnavailabilityReason
+      type: enum
+      fields:
+      - name: TARGET_NODE_ABSENT
+        description: "The proposal's nodeId could not be located in the course at\
+          \ preview time (F-PIPRE-R009 case 1, F-PIPRE-J003)."
+      - name: BASE_AUDIT_UNAVAILABLE
+        description: The AuditReport corresponding to the current course state could
+          not be obtained as the 'before' baseline (F-PIPRE-R009 case 2).
+      - name: SIMULATION_FAILED
+        description: "Producing the simulated course (replace + map + audit) failed\
+          \ for any reason other than the two above: AuditEngine threw, the mapper\
+          \ rejected the simulated entity, or the simulated tree is structurally inconsistent\
+          \ (F-PIPRE-R009 case 3)."
+      - name: OTHER
+        description: Any other unanticipated failure during preview computation. Detail
+          string carries the human-readable cause.
+      visibility: public
+      _change: add
+    - name: ImpactPreviewUnavailability
+      type: record
+      fields:
+      - name: reason
+        type: ImpactPreviewUnavailabilityReason
+        description: "Closed-set category, mirroring how F-LAGEN-R006 / LlmGenerationFailureCategory\
+          \ carry filterable taxonomies."
+      - name: detail
+        type: String
+        description: "Free-text human-readable explanation suitable for stderr / archived\
+          \ logs (F-PIPRE-R009 detail 4: 'la causa registrada es texto legible para\
+          \ el operador')."
+      visibility: public
+      _change: add
+    - name: ScoreDelta
+      type: record
+      fields:
+      - name: before
+        type: double
+        description: Score on the current course (domain scale 0..1 per F-PIPRE-R006
+          detail 2).
+      - name: after
+        type: double
+        description: Score on the simulated course with elementAfter applied (domain
+          scale 0..1).
+      - name: difference
+        type: double
+        description: "after minus before. Carried explicitly so consumers do not re-derive\
+          \ the sign (F-PIPRE-R006 detail 1). Operator-facing percentage rendering\
+          \ (F-PIPRE-R013) is the formatter's responsibility, not the model's."
+      visibility: public
+      _change: add
+    - name: DimensionDelta
+      type: record
+      fields:
+      - name: dimension
+        type: String
+        description: "Analyzer name (the same key used in AuditNode.scores, e.g. 'lemma-absence',\
+          \ 'sentence-length', 'coca-buckets-distribution'). F-PIPRE-R005 'discrimina\
+          \ por dimension'. Open-ended String rather than enum because dimensions\
+          \ are analyzer-defined and grow with each FEAT-D* / new analyzer."
+      - name: delta
+        type: ScoreDelta
+        description: "before/after/difference for this analyzer at the enclosing level\
+          \ (F-PIPRE-R005, F-PIPRE-R006)."
+      visibility: public
+      _change: add
+    - name: LevelImpact
+      type: record
+      fields:
+      - name: nodeTarget
+        type: AuditTarget
+        description: "Hierarchy level: COURSE/MILESTONE/TOPIC/KNOWLEDGE/QUIZ (F-PIPRE-R004)."
+      - name: nodeId
+        type: String
+        description: Identifier of the reported node. For COURSE level the AuditReport's
+          root id is used.
+      - name: aggregateDelta
+        type: ScoreDelta
+        description: "before/after/difference of the level's aggregate score (the\
+          \ same aggregate the auditor reports at this node, e.g. AuditReportSummary.overallScore\
+          \ for the course root)."
+      - name: dimensionDeltas
+        type: List<DimensionDelta>
+        description: "One entry per analyzer that produces a score at this level.\
+          \ F-PIPRE-R005 detail 3: levels where a dimension is not evaluated must\
+          \ omit it, not fabricate a zero delta."
+      visibility: public
+      _change: add
+    - name: ImpactPreview
+      type: record
+      fields:
+      - name: proposalId
+        type: String
+        description: 1:1 association with the originating RevisionProposal.proposalId
+          (F-PIPRE-R001 detail 2). Stable across reads; never reused across proposals
+          (DOUBT-PROPOSAL-LIFECYCLE -> Option A).
+      - name: computedAt
+        type: Instant
+        description: Timestamp when the preview was computed. Mirrors the eager 'one
+          shot at proposal time' contract of F-PIPRE-R001 detail 1.
+      - name: availability
+        type: ImpactPreviewAvailability
+        description: "AVAILABLE -> levelImpacts populated, unavailability null. UNAVAILABLE\
+          \ -> levelImpacts empty, unavailability populated (F-PIPRE-R009)."
+      - name: unavailability
+        type: ImpactPreviewUnavailability
+        description: Populated when availability=UNAVAILABLE; null when AVAILABLE.
+          Carries the closed-set reason plus a human-readable detail (F-PIPRE-R009).
+      - name: levelImpacts
+        type: List<LevelImpact>
+        description: "Ordered chain from leaf (proposal's nodeTarget) up to COURSE\
+          \ root (F-PIPRE-R004). Intermediate levels that do not exist for the targeted\
+          \ node are omitted, not zero-padded (F-PIPRE-R004 detail). Empty list when\
+          \ availability=UNAVAILABLE."
+      visibility: public
+      _change: add
+    interfaces:
+    - name: ImpactPreviewComputer
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "compute(CourseEntity currentCourse, RevisionProposal proposal):\
+          \ ImpactPreview"
+      visibility: public
+      _change: add
+    _change: add
+  - name: engine
+    description: "Revision engine internals. Only DefaultRevisionEngineFactory, DefaultRevisionValidatorFactory,\
+      \ DefaultProposalDecisionServiceFactory, DefaultLemmaAbsenceProposalStrategyRegistry\
+      \ and DefaultLemmaAbsenceProposalDeriver are public; every other class (DispatchingReviser,\
+      \ IdentityReviser, AutoApproveValidator, DefaultRevisionValidatorResult, DefaultCourseElementLocator,\
+      \ DefaultRevisionEngine, DefaultProposalDecisionService, HumanApprovalValidator,\
+      \ DefaultImpactPreviewComputer) is package-private. External modules wire a\
+      \ RevisionEngine by calling factory.create(config); the impact-preview computer\
+      \ is wired into DefaultRevisionEngine through the same factory seam (RevisionEngineConfig\
+      \ now carries the AuditEngine and CourseMapper that the computer needs)."
+    visibility: internal
+    implementations:
+    - name: DefaultImpactPreviewComputer
+      requiresInject:
+      - name: courseMapper
+        type: CourseMapper
+        description: "Pure transformation CourseEntity -> AuditableCourse. The mapper\
+          \ relies on NlpTokenizer (CPU-only via the spaCy adapter) and QuizSentenceConverter\
+          \ (pure); it does NOT touch disk, which is what makes it valid for the in-memory\
+          \ simulation."
+      - name: auditEngine
+        type: AuditEngine
+        description: Pure function AuditableCourse -> AuditReport. Re-running it on
+          the simulated course produces the 'after' tree without writing any official
+          AuditReport (F-PIPRE-R002).
+      - name: elementLocator
+        type: CourseElementLocator
+        description: "Used to apply the proposal in memory: replace(currentCourse,\
+          \ proposal.elementAfter) and snapshot(simulatedCourse, ...) for the absence\
+          \ check (F-PIPRE-R009 case 1)."
+      - name: auditReportStore
+        type: AuditReportStore
+        description: Loads the latest AuditReport of the current course as the 'before'
+          baseline. Failure to retrieve it maps to BASE_AUDIT_UNAVAILABLE (F-PIPRE-R009
+          case 2).
+      implements:
+      - ImpactPreviewComputer
+      _change: add
+    - name: DefaultRevisionEngine
+      requiresInject:
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: contextResolver
+        type: CorrectionContextResolver<CorrectionContext>
+      - name: reviser
+        type: Reviser
+        description: Normally a DispatchingReviser
+      - name: validator
+        type: RevisionValidator
+      - name: artifactStore
+        type: RevisionArtifactStore
+      - name: courseRepository
+        type: CourseRepository
+      - name: elementLocator
+        type: CourseElementLocator
+      - name: impactPreviewComputer
+        type: ImpactPreviewComputer
+        description: "FEAT-PIPRE. Invoked exactly once per generated RevisionProposal,\
+          \ after the proposal is constructed and before/around the artifact save\
+          \ (F-PIPRE-R001). Failures of the computer are NEVER propagated up; the\
+          \ engine treats the returned ImpactPreview (AVAILABLE or UNAVAILABLE) as\
+          \ data and persists it as a sidecar via impactPreviewStore. F-PIPRE-R010:\
+          \ a preview failure does not abort proposal persistence."
+      - name: impactPreviewStore
+        type: ImpactPreviewStore
+        description: "FEAT-PIPRE. Persists the ImpactPreview returned by impactPreviewComputer,\
+          \ indexed by proposalId. Deliberately separate from RevisionArtifactStore\
+          \ so the RevisionArtifact contract stays unchanged and the preview can be\
+          \ fetched/listed independently in future iterations (DOUBT-BATCH-PREVIEW)."
+      _change: modify
+    _change: modify
+  - name: lemmaabsence
+    description: Proposal-strategy SPI for LEMMA_ABSENCE. Public so the composition
+      root and revision-infrastructure can both instantiate strategies and the canned
+      generator and pass them into the registry builder.
+    visibility: public
+    _change: modify
+  _change: modify
+- name: audit-infrastructure
+  description: "Filesystem persistence adapters for audit reports, refinement plans,\
+    \ revision artifacts and impact previews. Hosts the four adapters that the CLI\
+    \ composition root wires into the corresponding ports (AuditReportStore, RefinementPlanStore,\
+    \ RevisionArtifactStore, ImpactPreviewStore). The impact-preview adapter is a\
+    \ sibling of the revision-artifact adapter: it shares the same plan-rooted directory\
+    \ layout but writes a separate file per preview so the RevisionArtifact serialized\
+    \ form is unchanged."
+  dependsOn:
+  - audit-domain
+  - refiner-domain
+  - revision-domain
+  implementations:
+  - name: FileSystemImpactPreviewStore
+    types:
+    - Repository
+    visibility: public
+    implements:
+    - ImpactPreviewStore
+    _change: add
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: DefaultAuditRunner
+    requiresInject:
+    - name: courseRepository
+      type: CourseRepository
+    - name: courseToAuditableMapper
+      type: CourseToAuditableMapper
+    - name: contentAudit
+      type: ContentAudit
+    - name: courseMapper
+      type: CourseMapper
+    - name: auditEngine
+      type: AuditEngine
+    types:
+    - Service
+    visibility: public
+    implements:
+    - AuditRunner
+    _change: modify
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: GetCmd
+      requiresInject:
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: analyzerRegistry
+        type: AnalyzerRegistry
+      - name: correctionContextResolver
+        type: CorrectionContextResolver
+      - name: revisionArtifactStore
+        type: RevisionArtifactStore
+        description: Needed for the 'proposal'/'proposals' resource branch (R002/R003/F-REVAPR)
+      - name: impactPreviewStore
+        type: ImpactPreviewStore
+        description: "FEAT-PIPRE. Loaded in the same operation that fetches the RevisionArtifact,\
+          \ so the operator sees the preview alongside elementBefore/elementAfter\
+          \ without a separate command (F-PIPRE-R007)."
+      - name: impactPreviewFormatter
+        type: ImpactPreviewFormatter
+        description: FEAT-PIPRE. Single seam that turns the ImpactPreview (domain
+          values 0..1) into operator-facing percent strings (F-PIPRE-R013).
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - GetCommand
+      _change: modify
+    _change: modify
+  - name: formatting
+    description: "Internal formatting infrastructure — report transformers, view models,\
+      \ formatters, drill-down resolution, and proposal/preview rendering."
+    visibility: internal
+    models:
+    - name: ImpactPreviewView
+      type: record
+      fields:
+      - name: availability
+        type: ImpactPreviewAvailability
+        description: Mirrors the model field; lets the formatter branch between 'show
+          levels' and 'show unavailability text'.
+      - name: unavailabilityText
+        type: String
+        description: "Empty when availability=AVAILABLE; '<reason category>: <detail>'\
+          \ when UNAVAILABLE (F-PIPRE-R009 + F-PIPRE-R013 detail 4)."
+      - name: levels
+        type: List<LevelImpactView>
+        description: Hierarchy from leaf (proposal's nodeTarget) up to course; same
+          ordering as ImpactPreview.levelImpacts (F-PIPRE-R004).
+      _change: add
+    - name: LevelImpactView
+      type: record
+      fields:
+      - name: nodeTarget
+        type: AuditTarget
+      - name: nodeId
+        type: String
+      - name: aggregateText
+        type: String
+        description: "Pre-formatted aggregate delta, e.g. '72% -> 81% (+9 pp)' (F-PIPRE-R013)."
+      - name: dimensionRows
+        type: List<DimensionDeltaView>
+        description: One row per analyzer reported at this level (F-PIPRE-R005).
+      _change: add
+    - name: DimensionDeltaView
+      type: record
+      fields:
+      - name: dimension
+        type: String
+      - name: deltaText
+        type: String
+        description: "Pre-formatted, e.g. '+2 pp' or '54% -> 56% (+2 pp)' (F-PIPRE-R013\
+          \ detail 3 — sign is explicit)."
+      _change: add
+    interfaces:
+    - name: ImpactPreviewFormatter
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "format(ImpactPreview preview): ImpactPreviewView"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultImpactPreviewFormatter
+      implements:
+      - ImpactPreviewFormatter
+      _change: add
+    _change: modify
+  _change: modify

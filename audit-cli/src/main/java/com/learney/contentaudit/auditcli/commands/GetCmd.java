@@ -1,4 +1,6 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.auditcli.formatting.ImpactPreviewFormatter;
+import com.learney.contentaudit.revisiondomain.ImpactPreviewStore;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.RevisionVerdict;

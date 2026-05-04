@@ -459,8 +459,8 @@ See the **Discovering versions and types** section in the `sentinel-dsl-ref` ski
 | audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure | AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand | — | commands [internal], formatting [internal], bootstrap [internal] |
 | nlp-infrastructure | audit-domain | NlpTokenizerFactory | — | spacy [public] |
 | vocabulary-infrastructure | audit-domain | — | — | evp [internal], coca [internal] |
-| audit-infrastructure | audit-domain, refiner-domain, revision-domain | — | FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore | — |
-| revision-domain | audit-domain, refiner-domain, course-domain | Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver | — | engine [internal], lemmaabsence [public] |
+| audit-infrastructure | audit-domain, refiner-domain, revision-domain | — | FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore, FileSystemImpactPreviewStore | — |
+| revision-domain | audit-domain, refiner-domain, course-domain | Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore | — | engine [internal], lemmaabsence [public], impactpreview [public] |
 | revision-infrastructure | revision-domain, refiner-domain | — | — | lagen [public], lagenopenai [internal] |
 
 ### Boundaries

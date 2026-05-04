@@ -51,5 +51,10 @@ public class SentinelArchitectureTest {
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: FileSystemRevisionArtifactStore - " + e.getMessage());
     }
+    try {
+      Class.forName("com.learney.contentaudit.auditinfrastructure.FileSystemImpactPreviewStore");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FileSystemImpactPreviewStore - " + e.getMessage());
+    }
   }
 }

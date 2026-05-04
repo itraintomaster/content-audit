@@ -510,6 +510,8 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `analyzerRegistry` | `AnalyzerRegistry` |
 | `correctionContextResolver` | `CorrectionContextResolver` |
 | `revisionArtifactStore` | `RevisionArtifactStore` |
+| `impactPreviewStore` | `ImpactPreviewStore` |
+| `impactPreviewFormatter` | `ImpactPreviewFormatter` |
 
 #### DeleteCmd (package: commands)
 
@@ -692,6 +694,12 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Visibility:** internal
 **Implements:** DetailedFormatter
 
+#### DefaultImpactPreviewFormatter (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Implements:** ImpactPreviewFormatter
+
 #### DefaultWorkdirResolver (package: bootstrap)
 
 **Package:** `com.learney.contentaudit.auditcli.bootstrap`
@@ -807,6 +815,14 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 
 **Framework types:** Repository
 
+#### FileSystemImpactPreviewStore
+
+**Package:** `com.learney.contentaudit.auditinfrastructure`
+
+**Implements:** ImpactPreviewStore
+
+**Framework types:** Repository
+
 ### Module: revision-domain
 
 #### DefaultRevisionEngineFactory (package: engine)
@@ -872,6 +888,8 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `artifactStore` | `RevisionArtifactStore` |
 | `courseRepository` | `CourseRepository` |
 | `elementLocator` | `CourseElementLocator` |
+| `impactPreviewComputer` | `ImpactPreviewComputer` |
+| `impactPreviewStore` | `ImpactPreviewStore` |
 
 #### HumanApprovalValidator (package: engine)
 
@@ -929,6 +947,21 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | Name | Type |
 |------|------|
 | `quizSentenceConverter` | `QuizSentenceConverter` |
+
+#### DefaultImpactPreviewComputer (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** ImpactPreviewComputer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `courseMapper` | `CourseMapper` |
+| `auditEngine` | `AuditEngine` |
+| `elementLocator` | `CourseElementLocator` |
+| `auditReportStore` | `AuditReportStore` |
 
 #### LemmaAbsenceMvpStrategy (package: lemmaabsence)
 

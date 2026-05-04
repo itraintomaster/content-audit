@@ -3,7 +3,7 @@
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
-Filesystem persistence adapters for audit reports
+Filesystem persistence adapters for audit reports, refinement plans, revision artifacts and impact previews. Hosts the four adapters that the CLI composition root wires into the corresponding ports (AuditReportStore, RefinementPlanStore, RevisionArtifactStore, ImpactPreviewStore). The impact-preview adapter is a sibling of the revision-artifact adapter: it shares the same plan-rooted directory layout but writes a separate file per preview so the RevisionArtifact serialized form is unchanged.
 
 ## Implementations
 
@@ -45,6 +45,12 @@ Filesystem persistence adapters for audit reports
 - Given artifacts saved under multiple plan directories, when list() is called, then it returns all of them across all plans → FEAT-REVAPR/F-REVAPR-R002
 - Given the revisions directory is empty or missing, when list() is called, then it returns an empty list → FEAT-REVAPR/F-REVAPR-R002
 - Given the store is constructed with a non-default baseDir, when save is called, then the artifact file lands under <baseDir>/.content-audit/revisions/<planId>/<proposalId>.* and NOT under System.getProperty('user.dir') → FEAT-REVAPR/F-REVAPR-R017
+
+### FileSystemImpactPreviewStore
+
+**Implements:** ImpactPreviewStore
+
+**Types:** Repository
 
 ## Dependency Contracts
 
@@ -553,6 +559,9 @@ Methods:
 | contextResolver | `CorrectionContextResolver<CorrectionContext>` |
 | lemmaAbsenceStrategyRegistry | `LemmaAbsenceProposalStrategyRegistry` |
 | lemmaAbsenceProposalDeriver | `LemmaAbsenceProposalDeriver` |
+| courseMapper | `CourseMapper` |
+| auditEngine | `AuditEngine` |
+| impactPreviewStore | `ImpactPreviewStore` |
 
 ### ApprovalMode (`enum`)
 
@@ -709,6 +718,13 @@ Methods:
 Methods:
 
 - `derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate): CourseElementSnapshot`
+
+### ImpactPreviewStore (port)
+
+Methods:
+
+- `save(ImpactPreview preview): void`
+- `findByProposalId(String proposalId): Optional<ImpactPreview>`
 
 ### From course-domain
 

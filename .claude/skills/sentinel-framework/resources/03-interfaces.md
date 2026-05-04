@@ -557,6 +557,15 @@ Examples:
 |--------|--------|
 | `format(String analyzerName,AuditNode rootNode,String outputFormat): String` | (none) |
 
+#### ImpactPreviewFormatter (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `format(ImpactPreview preview): ImpactPreviewView` | (none) |
+
 #### WorkdirResolver (package: bootstrap) [SEALED]
 
 **Package:** `com.learney.contentaudit.auditcli.bootstrap`
@@ -734,6 +743,17 @@ Examples:
 |--------|--------|
 | `derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate): CourseElementSnapshot` | (none) |
 
+#### ImpactPreviewStore (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+**Implemented by:** FileSystemImpactPreviewStore (audit-infrastructure)
+
+| Method | Throws |
+|--------|--------|
+| `save(ImpactPreview preview): void` | (none) |
+| `findByProposalId(String proposalId): Optional<ImpactPreview>` | (none) |
+
 #### LemmaAbsenceQuizCandidateGenerator (package: lemmaabsence)
 
 **Package:** `com.learney.contentaudit.revisiondomain.lemmaabsence`
@@ -742,6 +762,15 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `generate(LemmaAbsenceCorrectionContext context): LemmaAbsenceGeneratorResponse` | (none) |
+
+#### ImpactPreviewComputer (package: impactpreview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.impactpreview`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `compute(CourseEntity currentCourse, RevisionProposal proposal): ImpactPreview` | (none) |
 
 ### Module: revision-infrastructure
 

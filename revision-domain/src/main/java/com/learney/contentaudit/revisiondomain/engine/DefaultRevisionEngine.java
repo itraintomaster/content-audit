@@ -1,4 +1,6 @@
 package com.learney.contentaudit.revisiondomain.engine;
+import com.learney.contentaudit.revisiondomain.ImpactPreviewStore;
+import com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewComputer;
 
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;

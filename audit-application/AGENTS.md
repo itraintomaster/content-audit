@@ -850,6 +850,9 @@ Methods:
 | contextResolver | `CorrectionContextResolver<CorrectionContext>` |
 | lemmaAbsenceStrategyRegistry | `LemmaAbsenceProposalStrategyRegistry` |
 | lemmaAbsenceProposalDeriver | `LemmaAbsenceProposalDeriver` |
+| courseMapper | `CourseMapper` |
+| auditEngine | `AuditEngine` |
+| impactPreviewStore | `ImpactPreviewStore` |
 
 ### ApprovalMode (`enum`)
 
@@ -1006,4 +1009,11 @@ Methods:
 Methods:
 
 - `derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate): CourseElementSnapshot`
+
+### ImpactPreviewStore (port)
+
+Methods:
+
+- `save(ImpactPreview preview): void`
+- `findByProposalId(String proposalId): Optional<ImpactPreview>`
 

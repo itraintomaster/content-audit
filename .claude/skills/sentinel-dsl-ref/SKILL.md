@@ -454,3 +454,20 @@ modules:
 ```
 
 **Why this works:** External modules see exactly two interfaces (`NlpTokenizerFactory`, `NlpTokenizer`) plus the `NlpConfig` carrier. They cannot import `SpacyTokenizer` or `SpacyModelLoader` (same-package only). They cannot construct a `SpacyNlpTokenizerFactory` from the wrong place — the package is `internal`. The composition root calls `new SpacyNlpTokenizerFactory().create(config)`; everyone else asks for `NlpTokenizerFactory` by injection. P2, P4, and P5 are all satisfied by this single shape.
+
+## Agents (optional)
+
+Top-level `agents:` block customizes the Sentinel agent fleet for the project.
+Two things live here today: the team-mode toggle, and per-role model overrides.
+
+```yaml
+agents:
+  teamMode:
+    enabled: true                # opt in to .claude/agents/team/<role>.md flavors
+  architect:                     # any subset of: architect, analyst, qa-tester,
+    model: opus                  # developer, test-writer
+  qa-tester:
+    model: haiku                 # ~10x cheaper for the mostly-mechanical role
+```
+
+**Defaults** (used when a role's `model:` is omitted): architect / analyst / qa-tester → `opus`; developer / test-writer → `sonnet`. Declared values are written into `.claude/agents/<role>.md` and `.claude/agents/team/<role>.md` on every `sentinel generate`, so the override survives regeneration. Hand-edits to the generated `model:` line are overwritten — declare it in `sentinel.yaml` instead.

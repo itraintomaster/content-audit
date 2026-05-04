@@ -990,3 +990,35 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 
 - **F-LAGEN-J006**: El modelo responde con contenido que no cumple la estructura exigida
 
+### FEAT-PIPRE: Preview de impacto de propuestas de revision sobre los scores de auditoria [F-PIPRE]
+
+> **Que**: Al generar una `RevisionProposal`, el sistema computa y deja disponible un "preview de impacto" que describe como cambiarian los scores de auditoria del curso (a nivel del nodo afectado, sus contenedores y el curso completo) si esa propuesta se aprobara, discriminado por dimension de diagnostico, sin modificar el curso real.
+
+**Por que**: Hoy la unica forma de saber si una propuesta mejora la auditoria es aprobarla y volver a auditar; el operador necesita ese feedback antes de decidir, especialmente en modo humano (FEAT-REVAPR), para distinguir propuestas que mueven la aguja de las que no.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-PIPRE-R001 | Cada `RevisionProposal` recien generada lleva asociado un preview de impacto | critical | - |
+| F-PIPRE-R002 | El preview es estrictamente "what-if" y no modifica el curso ni emite un `AuditReport` | critical | - |
+| F-PIPRE-R003 | El preview se computa contra el estado del curso al momento de generar la propuesta | critical | - |
+| F-PIPRE-R004 | El preview reporta deltas a nivel del nodo afectado y de cada contenedor hasta el curso | critical | - |
+| F-PIPRE-R005 | El preview discrimina por dimension de diagnostico | critical | - |
+| F-PIPRE-R006 | Cada delta del preview lleva tres valores: antes, despues y diferencia | major | - |
+| F-PIPRE-R007 | El preview se muestra al operador junto con la propuesta misma | major | - |
+| F-PIPRE-R008 | El preview es de solo lectura una vez asociado a la propuesta | major | - |
+| F-PIPRE-R013 | Los deltas se presentan al operador en notacion porcentual | major | - |
+| F-PIPRE-R009 | Si el preview no se puede computar, el sistema lo declara explicitamente con causa | critical | Preview de impacto no disponible para la propuesta '<proposalId>': <causa> |
+| F-PIPRE-R010 | Una falla al computar el preview no afecta la persistencia de la propuesta | critical | - |
+| F-PIPRE-R011 | El preview se calcula propuesta por propuesta, no en combinaciones | major | - |
+| F-PIPRE-R012 | El preview cubre solo cambios sobre nodos existentes | minor | - |
+
+**User Journeys:**
+
+- **F-PIPRE-J001**: El preview se computa y queda asociado al generar la propuesta
+
+- **F-PIPRE-J002**: El operador inspecciona una propuesta y ve su preview
+
+- **F-PIPRE-J003**: Una propuesta sobre un nodo que ya no existe queda con preview no disponible
+

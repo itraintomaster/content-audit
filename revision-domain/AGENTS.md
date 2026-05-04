@@ -3,7 +3,7 @@
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
-Domain module for the revision phase of the refinement pipeline. Consumes refiner-domain (task and CorrectionContext) and course-domain (course entities and the CourseRepository port owned by the caller). Exposes the Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator ports plus a RevisionEngineFactory seam that assembles a configured RevisionEngine. The bypass baseline (IdentityReviser + AutoApproveValidator + DefaultCourseElementLocator + DispatchingReviser + DefaultRevisionEngine) lives behind the factory; external modules only see the factory class and the carrier records.
+Domain module for the revision phase of the refinement pipeline. Consumes refiner-domain (task and CorrectionContext), course-domain (course entities and the CourseRepository port owned by the caller) and audit-domain (AuditReport / AuditEngine for the eager what-if simulation that powers the impact preview). Exposes Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator/ImpactPreviewStore ports plus the RevisionEngineFactory seam, the lemmaabsence proposal-strategy SPI, and the impactpreview SPI (ImpactPreviewComputer + carriers) consumed by FEAT-PIPRE. The bypass baseline and the impact-preview internals live behind the engine package; external modules only see factories, ports and carrier records.
 
 ## Models
 
@@ -89,6 +89,9 @@ Domain module for the revision phase of the refinement pipeline. Consumes refine
 | contextResolver | `CorrectionContextResolver<CorrectionContext>` |
 | lemmaAbsenceStrategyRegistry | `LemmaAbsenceProposalStrategyRegistry` |
 | lemmaAbsenceProposalDeriver | `LemmaAbsenceProposalDeriver` |
+| courseMapper | `CourseMapper` |
+| auditEngine | `AuditEngine` |
+| impactPreviewStore | `ImpactPreviewStore` |
 
 ### ApprovalMode (`enum`)
 
@@ -247,6 +250,13 @@ Methods:
 Methods:
 
 - `derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate): CourseElementSnapshot`
+
+### ImpactPreviewStore (port)
+
+Methods:
+
+- `save(ImpactPreview preview): void`
+- `findByProposalId(String proposalId): Optional<ImpactPreview>`
 
 ## Dependency Contracts
 

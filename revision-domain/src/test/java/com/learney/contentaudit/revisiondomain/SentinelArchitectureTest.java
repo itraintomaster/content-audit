@@ -178,6 +178,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: LemmaAbsenceProposalDeriver - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.revisiondomain.ImpactPreviewStore");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ImpactPreviewStore - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.revisiondomain.engine.LemmaAbsenceProposalStrategyRegistryConfig");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaAbsenceProposalStrategyRegistryConfig - " + e.getMessage());
@@ -248,6 +253,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: DefaultLemmaAbsenceProposalDeriver - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultImpactPreviewComputer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultImpactPreviewComputer - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceGeneratorResponse");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaAbsenceGeneratorResponse - " + e.getMessage());
@@ -266,6 +276,46 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisiondomain.lemmaabsence.CannedLemmaAbsenceQuizCandidateGenerator");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: CannedLemmaAbsenceQuizCandidateGenerator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewAvailability");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ImpactPreviewAvailability - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewUnavailabilityReason");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ImpactPreviewUnavailabilityReason - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewUnavailability");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ImpactPreviewUnavailability - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.impactpreview.ScoreDelta");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ScoreDelta - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.impactpreview.DimensionDelta");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DimensionDelta - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.impactpreview.LevelImpact");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LevelImpact - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreview");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ImpactPreview - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewComputer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ImpactPreviewComputer - " + e.getMessage());
     }
   }
 }

@@ -183,7 +183,7 @@ project-root/
 
 ### audit-infrastructure
 
-> Filesystem persistence adapters for audit reports
+> Filesystem persistence adapters for audit reports, refinement plans, revision artifacts and impact previews. Hosts the four adapters that the CLI composition root wires into the corresponding ports (AuditReportStore, RefinementPlanStore, RevisionArtifactStore, ImpactPreviewStore). The impact-preview adapter is a sibling of the revision-artifact adapter: it shares the same plan-rooted directory layout but writes a separate file per preview so the RevisionArtifact serialized form is unchanged.
 
 | Property | Value |
 |----------|-------|
@@ -193,12 +193,12 @@ project-root/
 | Scope | internal |
 | Models | 0 |
 | Interfaces | 0 |
-| Implementations | 3 (FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore) |
+| Implementations | 4 (FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore, FileSystemImpactPreviewStore) |
 | Packages | 0 |
 
 ### revision-domain
 
-> Domain module for the revision phase of the refinement pipeline. Consumes refiner-domain (task and CorrectionContext) and course-domain (course entities and the CourseRepository port owned by the caller). Exposes the Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator ports plus a RevisionEngineFactory seam that assembles a configured RevisionEngine. The bypass baseline (IdentityReviser + AutoApproveValidator + DefaultCourseElementLocator + DispatchingReviser + DefaultRevisionEngine) lives behind the factory; external modules only see the factory class and the carrier records.
+> Domain module for the revision phase of the refinement pipeline. Consumes refiner-domain (task and CorrectionContext), course-domain (course entities and the CourseRepository port owned by the caller) and audit-domain (AuditReport / AuditEngine for the eager what-if simulation that powers the impact preview). Exposes Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator/ImpactPreviewStore ports plus the RevisionEngineFactory seam, the lemmaabsence proposal-strategy SPI, and the impactpreview SPI (ImpactPreviewComputer + carriers) consumed by FEAT-PIPRE. The bypass baseline and the impact-preview internals live behind the engine package; external modules only see factories, ports and carrier records.
 
 | Property | Value |
 |----------|-------|
@@ -207,9 +207,9 @@ project-root/
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 14 (RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException) |
-| Interfaces | 13 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver) |
+| Interfaces | 14 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore) |
 | Implementations | 0 |
-| Packages | 2 (engine [internal], lemmaabsence [public]) |
+| Packages | 3 (engine [internal], lemmaabsence [public], impactpreview [public]) |
 
 ### revision-infrastructure
 
