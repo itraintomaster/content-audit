@@ -3,7 +3,7 @@
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
-Infrastructure adapter for the revision phase. Provides the LLM-backed implementation of LemmaAbsenceQuizCandidateGenerator (revision-domain.lemmaabsence port) using LangChain4j against any OpenAI-compatible HTTP endpoint (LM Studio, vLLM, OpenAI cloud, Ollama via openai compat, etc.). Exposes a single Factory Seam (LemmaAbsenceLlmGeneratorFactory + LagenConfig carrier + LlmGenerationFailureCategory enum) so the composition root wires the adapter with one call. The adapter uses LangChain4j's legacy chat-message API flavor, generate(List<ChatMessage>), because F-LAGEN needs explicit system/user messages and a simple text response without exposing ChatRequest/ChatResponse in the architectural surface. The adapter, prompt builder, response parser and error classifier all live in an internal package; only the factory class is public. allowedClients=[audit-cli] enforces that this module is an implementation detail of the CLI composition root only (P8 Qualified Export).
+Infrastructure adapter for the revision phase. Provides the LLM-backed implementation of LemmaAbsenceQuizCandidateGenerator (revision-domain.lemmaabsence port) using LangChain4j against any OpenAI-compatible HTTP endpoint (LM Studio, vLLM, OpenAI cloud, Ollama via openai compat, etc.). Exposes a single Factory Seam (LemmaAbsenceLlmGeneratorFactory + LagenConfig carrier + LlmGenerationFailureCategory enum) so the composition root wires the adapter with one call. The factory is the only piece that consumes LagenConfig: it reads the knobs, builds a ChatLanguageModel via the LangChain4j OpenAI builder, and passes that model directly into LemmaAbsenceLlmGenerator. The generator therefore depends on a chat-model abstraction (not on the LagenConfig record), keeping the inner adapter agnostic of how the model was configured. The adapter uses LangChain4j's legacy chat-message API flavor, generate(List<ChatMessage>), because F-LAGEN needs explicit system/user messages and a simple text response without exposing ChatRequest/ChatResponse in the architectural surface. The adapter, prompt builder, response parser and error classifier all live in an internal package; only the factory class is public. allowedClients=[audit-cli] enforces that this module is an implementation detail of the CLI composition root only (P8 Qualified Export).
 
 ## Dependency Contracts
 
@@ -561,123 +561,11 @@ Methods:
 - `loadLatest(): Optional<AuditReport>`
 - `list(): List<AuditReportSummary>`
 
-### From refiner-domain
-
-## Models
-
-### DiagnosisKind (`enum`)
-
-| Field | Type |
-|-------|------|
-| SENTENCE_LENGTH | `null` |
-| LEMMA_ABSENCE | `null` |
-| COCA_BUCKETS | `null` |
-| LEMMA_RECURRENCE | `null` |
-| KNOWLEDGE_TITLE_LENGTH | `null` |
-| KNOWLEDGE_INSTRUCTIONS_LENGTH | `null` |
-
-### RefinementTaskStatus (`enum`)
-
-| Field | Type |
-|-------|------|
-| PENDING | `null` |
-| COMPLETED | `null` |
-| SKIPPED | `null` |
-
-### RefinementTask (`record`)
-
-| Field | Type |
-|-------|------|
-| id | `String` |
-| nodeTarget | `AuditTarget` |
-| nodeId | `String` |
-| nodeLabel | `String` |
-| diagnosisKind | `DiagnosisKind` |
-| priority | `int` |
-| status | `RefinementTaskStatus` |
-
-### RefinementPlan (`record`)
-
-| Field | Type |
-|-------|------|
-| id | `String` |
-| sourceAuditId | `String` |
-| createdAt | `Instant` |
-| tasks | `List<RefinementTask>` |
-
-### SuggestedLemma (`record`)
-
-| Field | Type |
-|-------|------|
-| lemma | `String` |
-| pos | `String` |
-| reason | `String` |
-| cocaRank | `Integer` |
-
-### SentenceLengthCorrectionContext (`record`)
-
-| Field | Type |
-|-------|------|
-| taskId | `String` |
-| sentence | `String` |
-| translation | `String` |
-| knowledgeTitle | `String` |
-| knowledgeInstructions | `String` |
-| topicLabel | `String` |
-| cefrLevel | `CefrLevel` |
-| tokenCount | `int` |
-| targetMin | `int` |
-| targetMax | `int` |
-| delta | `int` |
-| suggestedLemmas | `List<SuggestedLemma>` |
-
-### MisplacedLemmaContext (`record`)
-
-| Field | Type |
-|-------|------|
-| lemma | `String` |
-| pos | `String` |
-| expectedLevel | `CefrLevel` |
-| quizLevel | `CefrLevel` |
-| cocaRank | `Integer` |
-
-### LemmaAbsenceCorrectionContext (`record`)
-
-| Field | Type |
-|-------|------|
-| taskId | `String` |
-| sentence | `String` |
-| translation | `String` |
-| knowledgeTitle | `String` |
-| knowledgeInstructions | `String` |
-| topicLabel | `String` |
-| cefrLevel | `CefrLevel` |
-| misplacedLemmas | `List<MisplacedLemmaContext>` |
-| suggestedLemmas | `List<SuggestedLemma>` |
-| quizSentence | `String` |
-
-### RefinerEngine (port)
+### CourseMapper (port)
 
 Methods:
 
-- `plan(AuditReport report, String auditId): RefinementPlan`
-- `nextTask(RefinementPlan plan): Optional<RefinementTask>`
-
-### RefinementPlanStore (port)
-
-Methods:
-
-- `save(RefinementPlan plan): String`
-- `load(String id): Optional<RefinementPlan>`
-- `loadLatest(): Optional<RefinementPlan>`
-
-### CorrectionContextResolver<T extends CorrectionContext> (port)
-
-Methods:
-
-- `resolve(AuditReport report, RefinementTask task): Optional<T>`
-
-### CorrectionContext (port)
+- `map(CourseEntity course): AuditableCourse`
 
 ### From course-domain
 
@@ -833,4 +721,136 @@ Methods:
 Methods:
 
 - `validate(CourseEntity course): void`
+
+### From refiner-domain
+
+## Models
+
+### DiagnosisKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| SENTENCE_LENGTH | `null` |
+| LEMMA_ABSENCE | `null` |
+| COCA_BUCKETS | `null` |
+| LEMMA_RECURRENCE | `null` |
+| KNOWLEDGE_TITLE_LENGTH | `null` |
+| KNOWLEDGE_INSTRUCTIONS_LENGTH | `null` |
+
+### RefinementTaskStatus (`enum`)
+
+| Field | Type |
+|-------|------|
+| PENDING | `null` |
+| COMPLETED | `null` |
+| SKIPPED | `null` |
+
+### RefinementTask (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| nodeTarget | `AuditTarget` |
+| nodeId | `String` |
+| nodeLabel | `String` |
+| diagnosisKind | `DiagnosisKind` |
+| priority | `int` |
+| status | `RefinementTaskStatus` |
+
+### RefinementPlan (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| sourceAuditId | `String` |
+| createdAt | `Instant` |
+| tasks | `List<RefinementTask>` |
+
+### SuggestedLemma (`record`)
+
+| Field | Type |
+|-------|------|
+| lemma | `String` |
+| pos | `String` |
+| reason | `String` |
+| cocaRank | `Integer` |
+
+### SentenceLengthCorrectionContext (`record`)
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| sentence | `String` |
+| translation | `String` |
+| knowledgeTitle | `String` |
+| knowledgeInstructions | `String` |
+| topicLabel | `String` |
+| cefrLevel | `CefrLevel` |
+| tokenCount | `int` |
+| targetMin | `int` |
+| targetMax | `int` |
+| delta | `int` |
+| suggestedLemmas | `List<SuggestedLemma>` |
+
+### MisplacedLemmaContext (`record`)
+
+| Field | Type |
+|-------|------|
+| lemma | `String` |
+| pos | `String` |
+| expectedLevel | `CefrLevel` |
+| quizLevel | `CefrLevel` |
+| cocaRank | `Integer` |
+
+### LemmaAbsenceCorrectionContext (`record`)
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| sentence | `String` |
+| translation | `String` |
+| knowledgeTitle | `String` |
+| knowledgeInstructions | `String` |
+| topicLabel | `String` |
+| cefrLevel | `CefrLevel` |
+| misplacedLemmas | `List<MisplacedLemmaContext>` |
+| suggestedLemmas | `List<SuggestedLemma>` |
+| quizSentence | `String` |
+| tokenCount | `Integer` |
+| targetMin | `Integer` |
+| targetMax | `Integer` |
+| delta | `Integer` |
+| lengthDirection | `LengthDirection` |
+
+### LengthDirection (`enum`)
+
+| Field | Type |
+|-------|------|
+| SHORTEN | `null` |
+| LENGTHEN | `null` |
+| KEEP_SAME | `null` |
+| UNKNOWN | `null` |
+
+### RefinerEngine (port)
+
+Methods:
+
+- `plan(AuditReport report, String auditId): RefinementPlan`
+- `nextTask(RefinementPlan plan): Optional<RefinementTask>`
+
+### RefinementPlanStore (port)
+
+Methods:
+
+- `save(RefinementPlan plan): String`
+- `load(String id): Optional<RefinementPlan>`
+- `loadLatest(): Optional<RefinementPlan>`
+
+### CorrectionContextResolver<T extends CorrectionContext> (port)
+
+Methods:
+
+- `resolve(AuditReport report, RefinementTask task): Optional<T>`
+
+### CorrectionContext (port)
 

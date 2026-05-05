@@ -15,7 +15,13 @@ description: "FEAT-LAGEN: real LLM-backed candidate generator. Adds revision-inf
   \ LemmaAbsenceLlmGenerator and DefaultLangChainErrorClassifier — replaced by tighter\
   \ versions added in the contracts-closure patch.; FEAT-LAGEN — restoration patch:\
   \ re-add audit-cli surface, LlmGenerationFailureCategory enum and revision-infrastructure\
-  \ module attributes that were dropped during prior package-level merges."
+  \ module attributes that were dropped during prior package-level merges.; FEAT-LAGEN\
+  \ escalations: (1) inject providerId into LemmaAbsenceMvpStrategy so the constructor\
+  \ permanently takes (generator, providerId); (2) align LagenConfig.temperature/maxTokens\
+  \ to primitive types matching the actual generated POJO; (3) replace LemmaAbsenceLlmGenerator.config:LagenConfig\
+  \ with chatModel:ChatLanguageModel (the generator collaborates with the chat model,\
+  \ not the config — the factory builds the ChatLanguageModel from LagenConfig before\
+  \ injecting it)."
 modules:
 - name: revision-domain
   packages:
@@ -27,8 +33,9 @@ modules:
       \ root and revision-infrastructure can both instantiate strategies and the canned\
       \ generator and pass them into the registry builder. Houses: the candidate-generator\
       \ port (LemmaAbsenceQuizCandidateGenerator) plus its raw response carrier (LemmaAbsenceGeneratorResponse),\
-      \ the MVP strategy that delegates to the port (LemmaAbsenceMvpStrategy), and\
-      \ the canned generator kept as an offline fallback for CONTENT_AUDIT_LAGEN_MODE=canned\
+      \ the MVP strategy that delegates to the port (LemmaAbsenceMvpStrategy) and\
+      \ stamps the providerId injected at construction onto every StrategyId it emits\
+      \ (F-LAGEN-R009), and the canned generator kept as an offline fallback for CONTENT_AUDIT_LAGEN_MODE=canned\
       \ (DOUBT-CANNED-MODE-AVAILABILITY -> Option B, CannedLemmaAbsenceQuizCandidateGenerator).\
       \ Renamed from 'strategy' to 'lemmaabsence' so the package name describes the\
       \ sub-domain it encapsulates instead of a GoF pattern label. The LlmGenerationFailureCategory\
@@ -62,6 +69,19 @@ modules:
       requiresInject:
       - name: generator
         type: LemmaAbsenceQuizCandidateGenerator
+        description: "Candidate generator the strategy delegates to. The composition\
+          \ root supplies either the canned generator (CONTENT_AUDIT_LAGEN_MODE=canned)\
+          \ or an LLM-backed generator built by LemmaAbsenceLlmGeneratorFactory (default\
+          \ mode, F-LAGEN-R013)."
+      - name: providerId
+        type: String
+        description: "Provider identifier stamped onto every StrategyId this strategy\
+          \ emits (F-LAGEN-R009). Supplied by the composition root: in LLM mode it\
+          \ is LemmaAbsenceLlmGeneratorFactory.providerIdFor(LagenConfig) (format\
+          \ 'providerName:modelId' per DOUBT-PROVIDER-ID-FORMAT Option B); in canned\
+          \ mode the operator picks a stable string. Required (the strategy never\
+          \ invents a default) so the provenance recorded on every persisted RevisionProposal\
+          \ matches what the operator configured."
       types:
       - Component
       visibility: public
@@ -125,14 +145,18 @@ modules:
     \ port) using LangChain4j against any OpenAI-compatible HTTP endpoint (LM Studio,\
     \ vLLM, OpenAI cloud, Ollama via openai compat, etc.). Exposes a single Factory\
     \ Seam (LemmaAbsenceLlmGeneratorFactory + LagenConfig carrier + LlmGenerationFailureCategory\
-    \ enum) so the composition root wires the adapter with one call. The adapter uses\
-    \ LangChain4j's legacy chat-message API flavor, generate(List<ChatMessage>), because\
-    \ F-LAGEN needs explicit system/user messages and a simple text response without\
-    \ exposing ChatRequest/ChatResponse in the architectural surface. The adapter,\
-    \ prompt builder, response parser and error classifier all live in an internal\
-    \ package; only the factory class is public. allowedClients=[audit-cli] enforces\
-    \ that this module is an implementation detail of the CLI composition root only\
-    \ (P8 Qualified Export)."
+    \ enum) so the composition root wires the adapter with one call. The factory is\
+    \ the only piece that consumes LagenConfig: it reads the knobs, builds a ChatLanguageModel\
+    \ via the LangChain4j OpenAI builder, and passes that model directly into LemmaAbsenceLlmGenerator.\
+    \ The generator therefore depends on a chat-model abstraction (not on the LagenConfig\
+    \ record), keeping the inner adapter agnostic of how the model was configured.\
+    \ The adapter uses LangChain4j's legacy chat-message API flavor, generate(List<ChatMessage>),\
+    \ because F-LAGEN needs explicit system/user messages and a simple text response\
+    \ without exposing ChatRequest/ChatResponse in the architectural surface. The\
+    \ adapter, prompt builder, response parser and error classifier all live in an\
+    \ internal package; only the factory class is public. allowedClients=[audit-cli]\
+    \ enforces that this module is an implementation detail of the CLI composition\
+    \ root only (P8 Qualified Export)."
   dependsOn:
   - revision-domain
   - refiner-domain
@@ -161,18 +185,42 @@ modules:
       fields:
       - name: providerName
         type: String
+        description: "Short, stable identifier of the provider family (e.g. 'lmstudio',\
+          \ 'openai', 'anthropic-via-openai'). Used as the prefix of the providerId\
+          \ emitted into StrategyId.providerId (F-LAGEN-R009, DOUBT-PROVIDER-ID-FORMAT\
+          \ -> Option B). Required."
       - name: modelId
         type: String
+        description: "Model identifier within the provider, e.g. 'gemma-3-4b-it',\
+          \ 'gpt-4o-mini'. Joined with providerName as 'provider:model' to form StrategyId.providerId\
+          \ (F-LAGEN-R009). Required."
       - name: endpoint
         type: String
+        description: Base URL of the OpenAI-compatible HTTP endpoint (e.g. 'http://localhost:1234/v1'
+          for LM Studio). Required.
       - name: apiKey
         type: String
+        description: "API key sent as the bearer credential. Nullable; when null/blank\
+          \ the factory injects a placeholder so local providers (LM Studio, vLLM)\
+          \ that do not validate it still accept the request (Asuncion 3 of REQUIREMENT.md:\
+          \ local default does not require credentials)."
       - name: temperature
-        type: Double
+        type: double
+        description: Sampling temperature passed to the model. Primitive double; the
+          factory treats 0.0 as 'unset' and substitutes LagenDefaults.temperature
+          (0.7) so a ZERO never silently overrides the non-deterministic default required
+          by F-LAGEN-R011. Operators who genuinely want temperature 0 must opt out
+          by reading LagenDefaults explicitly.
       - name: maxTokens
-        type: Integer
+        type: int
+        description: Maximum tokens budget for the response. Primitive int; the factory
+          treats 0 as 'unset' and substitutes LagenDefaults.maxTokens (2048).
       - name: timeout
         type: Duration
+        description: Request timeout passed to the underlying HTTP client. Nullable;
+          when null the factory substitutes LagenDefaults.timeout (Duration.ofSeconds(30)).
+          When the timeout fires the classifier maps the resulting exception to LLM_TIMEOUT
+          (F-LAGEN-R006).
       visibility: public
       _change: add
     - name: LlmGenerationFailureCategory
@@ -232,8 +280,10 @@ modules:
       \ is public (the seam — instantiated once by audit-cli.bootstrap); every collaborator\
       \ (LemmaAbsenceLlmGenerator, LemmaAbsencePromptBuilder, LemmaAbsenceResponseParser,\
       \ LangChainErrorClassifier) is package-private so other modules cannot bypass\
-      \ the factory port. Replacing the LLM client implementation never changes this\
-      \ module's public surface."
+      \ the factory port. The generator depends on a ChatLanguageModel that the factory\
+      \ builds from LagenConfig — the engine never sees the LagenConfig itself, only\
+      \ the configured chat-model abstraction. Replacing the LLM client implementation\
+      \ never changes this module's public surface."
     visibility: internal
     models:
     - name: LemmaAbsenceLlmRawResponse
@@ -358,8 +408,13 @@ modules:
       _change: add
     - name: LemmaAbsenceLlmGenerator
       requiresInject:
-      - name: config
-        type: LagenConfig
+      - name: chatModel
+        type: ChatLanguageModel
+        description: "LangChain4j chat-model abstraction the generator calls via generate(List<ChatMessage>).\
+          \ Built once by DefaultLemmaAbsenceLlmGeneratorFactory from a LagenConfig\
+          \ (endpoint + modelId + apiKey + temperature + maxTokens + timeout). The\
+          \ generator never sees the LagenConfig itself, keeping it agnostic of how\
+          \ the model was configured."
       - name: promptBuilder
         type: LemmaAbsencePromptBuilder
       - name: responseParser
@@ -681,7 +736,7 @@ modules:
     type: enum
     fields:
     - name: LLM
-      description: Default mode (F-LAGEN-R013). The CLI wires DefaultLemmaAbsenceLlmGeneratorFactory
+      description: Default mode (F-LAGEN-R002). The CLI wires DefaultLemmaAbsenceLlmGeneratorFactory
         + LagenConfig from CONTENT_AUDIT_LAGEN_* env-vars.
     - name: CANNED
       description: Opt-in offline mode (DOUBT-CANNED-MODE-AVAILABILITY -> Option B).

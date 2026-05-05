@@ -451,10 +451,10 @@ See the **Discovering versions and types** section in the `sentinel-dsl-ref` ski
 
 | Module | Dependencies | Interfaces | Implementations | Packages |
 |--------|-------------|------------|------------------|----------|
-| audit-domain | — | AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore | IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator | coca [internal], lrec [internal], labs [internal] |
+| audit-domain | course-domain | AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper | IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator | coca [internal], lrec [internal], labs [internal] |
 | course-domain | — | CourseRepository, CourseValidator | — | quizsentence [public], quizsentenceengine [internal] |
 | refiner-domain | audit-domain | RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext | SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine | — |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain | AuditRunner, CourseMapper, AnalyzerRegistry | CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry | — |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain | AuditRunner, AnalyzerRegistry | CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry | — |
 | course-infrastructure | course-domain | — | FileSystemCourseRepository | — |
 | audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure | AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand | — | commands [internal], formatting [internal], bootstrap [internal] |
 | nlp-infrastructure | audit-domain | NlpTokenizerFactory | — | spacy [public] |
@@ -467,7 +467,7 @@ See the **Discovering versions and types** section in the `sentinel-dsl-ref` ski
 
 | Module | Can Access |
 |--------|------------|
-| audit-domain | (none) |
+| audit-domain | course-domain |
 | course-domain | (none) |
 | refiner-domain | audit-domain |
 | audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain |

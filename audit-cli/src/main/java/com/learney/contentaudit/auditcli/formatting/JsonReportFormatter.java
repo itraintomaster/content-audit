@@ -6,15 +6,18 @@ import java.util.List;
 import java.util.Map;
 
 public class JsonReportFormatter implements ReportFormatter {
-    private final DrillDownResolver resolver;
-
-    public JsonReportFormatter(DrillDownResolver resolver) {
-        this.resolver = resolver;
+    
+    private final DrillDownResolver drillDownResolver;
+    
+    public JsonReportFormatter(DrillDownResolver drillDownResolver) {
+        this.drillDownResolver = drillDownResolver;
     }
+    
 
+    
     @Override
     public String format(ReportViewModel viewModel, DrillDownScope scope) {
-        DrillDownView view = resolver.resolve(viewModel, scope);
+        DrillDownView view = drillDownResolver.resolve(viewModel, scope);
         StringBuilder sb = new StringBuilder();
 
         sb.append("{\n");

@@ -30,13 +30,34 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
 
     private String quizSentence;
 
+    private Integer tokenCount;
+
+    private Integer targetMin;
+
+    private Integer targetMax;
+
+    private Integer delta;
+
+    private LengthDirection lengthDirection;
+
     public LemmaAbsenceCorrectionContext() {
+    }
+
+    /** Constructor de compatibilidad para tests anteriores a FEAT-RCLALEN (sin campos de longitud). */
+    public LemmaAbsenceCorrectionContext(String taskId, String sentence, String translation,
+            String knowledgeTitle, String knowledgeInstructions, String topicLabel,
+            CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas,
+            List<SuggestedLemma> suggestedLemmas, String quizSentence) {
+        this(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel,
+                cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence,
+                null, null, null, null, null);
     }
 
     public LemmaAbsenceCorrectionContext(String taskId, String sentence, String translation,
             String knowledgeTitle, String knowledgeInstructions, String topicLabel,
             CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas,
-            List<SuggestedLemma> suggestedLemmas, String quizSentence) {
+            List<SuggestedLemma> suggestedLemmas, String quizSentence, Integer tokenCount,
+            Integer targetMin, Integer targetMax, Integer delta, LengthDirection lengthDirection) {
         this.taskId = taskId;
         this.sentence = sentence;
         this.translation = translation;
@@ -47,6 +68,11 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
         this.misplacedLemmas = misplacedLemmas;
         this.suggestedLemmas = suggestedLemmas;
         this.quizSentence = quizSentence;
+        this.tokenCount = tokenCount;
+        this.targetMin = targetMin;
+        this.targetMax = targetMax;
+        this.delta = delta;
+        this.lengthDirection = lengthDirection;
     }
 
     public String getTaskId() {
@@ -129,6 +155,46 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
         this.quizSentence = quizSentence;
     }
 
+    public Integer getTokenCount() {
+        return this.tokenCount;
+    }
+
+    public void setTokenCount(Integer tokenCount) {
+        this.tokenCount = tokenCount;
+    }
+
+    public Integer getTargetMin() {
+        return this.targetMin;
+    }
+
+    public void setTargetMin(Integer targetMin) {
+        this.targetMin = targetMin;
+    }
+
+    public Integer getTargetMax() {
+        return this.targetMax;
+    }
+
+    public void setTargetMax(Integer targetMax) {
+        this.targetMax = targetMax;
+    }
+
+    public Integer getDelta() {
+        return this.delta;
+    }
+
+    public void setDelta(Integer delta) {
+        this.delta = delta;
+    }
+
+    public LengthDirection getLengthDirection() {
+        return this.lengthDirection;
+    }
+
+    public void setLengthDirection(LengthDirection lengthDirection) {
+        this.lengthDirection = lengthDirection;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -143,11 +209,16 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
                     && Objects.equals(this.cefrLevel, that.cefrLevel)
                     && Objects.equals(this.misplacedLemmas, that.misplacedLemmas)
                     && Objects.equals(this.suggestedLemmas, that.suggestedLemmas)
-                    && Objects.equals(this.quizSentence, that.quizSentence);
+                    && Objects.equals(this.quizSentence, that.quizSentence)
+                    && Objects.equals(this.tokenCount, that.tokenCount)
+                    && Objects.equals(this.targetMin, that.targetMin)
+                    && Objects.equals(this.targetMax, that.targetMax)
+                    && Objects.equals(this.delta, that.delta)
+                    && Objects.equals(this.lengthDirection, that.lengthDirection);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence);
+        return Objects.hash(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence, tokenCount, targetMin, targetMax, delta, lengthDirection);
     }
 }

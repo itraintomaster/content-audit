@@ -1,0 +1,26 @@
+code: FEAT-PIPRE
+description: "Resolver boundary violation FEAT-PIPRE: el puerto CourseMapper se mueve\
+  \ de audit-application a audit-domain para que revision-domain pueda consumirlo\
+  \ sin crear el ciclo audit-application -> revision-domain -> audit-application.\
+  \ La implementacion CourseToAuditableMapper sigue en audit-application como adapter\
+  \ (Public Port, Hidden Adapter — el puerto vive con el dominio que lo consume; el\
+  \ adapter conoce ambos extremos). audit-domain pasa a depender de course-domain\
+  \ porque el puerto referencia CourseEntity en su firma."
+modules:
+- name: audit-domain
+  dependsOn:
+  - course-domain
+  interfaces:
+  - name: CourseMapper
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "map(CourseEntity course): AuditableCourse"
+    _change: add
+  _change: modify
+- name: audit-application
+  interfaces:
+  - name: CourseMapper
+    sealed: false
+    _change: delete
+  _change: modify

@@ -37,26 +37,26 @@ import javax.annotation.processing.Generated;
 )
 class DefaultRevisionEngine implements RevisionEngine {
     private final RefinementPlanStore refinementPlanStore;
-
+    
     private final AuditReportStore auditReportStore;
-
+    
     private final CorrectionContextResolver<CorrectionContext> contextResolver;
-
+    
     private final Reviser reviser;
-
+    
     private final RevisionValidator validator;
-
+    
     private final RevisionArtifactStore artifactStore;
-
+    
     private final CourseRepository courseRepository;
-
+    
     private final CourseElementLocator elementLocator;
-
-    public DefaultRevisionEngine(RefinementPlanStore refinementPlanStore,
-            AuditReportStore auditReportStore,
-            CorrectionContextResolver<CorrectionContext> contextResolver, Reviser reviser,
-            RevisionValidator validator, RevisionArtifactStore artifactStore,
-            CourseRepository courseRepository, CourseElementLocator elementLocator) {
+    
+    private final ImpactPreviewComputer impactPreviewComputer;
+    
+    private final ImpactPreviewStore impactPreviewStore;
+    
+    public DefaultRevisionEngine(RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, CorrectionContextResolver<CorrectionContext> contextResolver, Reviser reviser, RevisionValidator validator, RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, ImpactPreviewComputer impactPreviewComputer, ImpactPreviewStore impactPreviewStore) {
         this.refinementPlanStore = refinementPlanStore;
         this.auditReportStore = auditReportStore;
         this.contextResolver = contextResolver;
@@ -65,8 +65,12 @@ class DefaultRevisionEngine implements RevisionEngine {
         this.artifactStore = artifactStore;
         this.courseRepository = courseRepository;
         this.elementLocator = elementLocator;
+        this.impactPreviewComputer = impactPreviewComputer;
+        this.impactPreviewStore = impactPreviewStore;
     }
+    
 
+    
     @Override
     public RevisionOutcome revise(String planId, String taskId, Path coursePath) {
         // Step 1: Load plan and find task
@@ -152,6 +156,34 @@ class DefaultRevisionEngine implements RevisionEngine {
                 null
         );
         artifactStore.save(artifact);
+
+        // Step 7c: Computar y persistir el preview de impacto (F-PIPRE-R001).
+        // El computer nunca lanza; devuelve UNAVAILABLE si falla (F-PIPRE-R010).
+        // Envolvemos de todas formas con try/catch defensivo para blindar la persistencia
+        // de la propuesta ante cualquier excepcion inesperada.
+        try {
+            com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreview preview =
+                    impactPreviewComputer.compute(course, proposal);
+            impactPreviewStore.save(preview);
+        } catch (Exception previewEx) {
+            // Registrar el preview como no disponible por error inesperado (OTHER)
+            com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewUnavailability unavailability =
+                    new com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewUnavailability(
+                            com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewUnavailabilityReason.OTHER,
+                            previewEx.getMessage());
+            com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreview fallback =
+                    new com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreview(
+                            proposal.getProposalId(),
+                            java.time.Instant.now(),
+                            com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewAvailability.UNAVAILABLE,
+                            unavailability,
+                            java.util.List.of());
+            try {
+                impactPreviewStore.save(fallback);
+            } catch (Exception storeEx) {
+                // No propagar: la propuesta ya está persistida, el preview es informativo
+            }
+        }
 
         // Step 7b: If PENDING_APPROVAL — persist artifact, save plan unchanged, do NOT touch course or task (R008/R009)
         if (verdict == RevisionVerdict.PENDING_APPROVAL) {

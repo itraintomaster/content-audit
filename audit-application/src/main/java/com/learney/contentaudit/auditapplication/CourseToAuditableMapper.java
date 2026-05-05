@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditapplication;
+import com.learney.contentaudit.auditdomain.CourseMapper;
 import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceConverter;
 
 import com.learney.contentaudit.auditdomain.AuditableCourse;
@@ -30,6 +31,7 @@ import javax.annotation.processing.Generated;
 public class CourseToAuditableMapper implements CourseMapper {
     private final NlpTokenizer nlpTokenizer;
     private final QuizSentenceConverter quizSentenceConverter;
+
     private Map<String, List<NlpToken>> tokenCache = Map.of();
     // R027: converter must be invoked exactly once per quiz. This map caches
     // the result of that single call so the canonical-sentence collection

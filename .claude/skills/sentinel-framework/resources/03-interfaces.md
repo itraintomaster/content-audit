@@ -252,6 +252,16 @@ Examples:
 | `loadLatest(): Optional<AuditReport>` | (none) |
 | `list(): List<AuditReportSummary>` | (none) |
 
+#### CourseMapper (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** CourseToAuditableMapper (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `map(CourseEntity course): AuditableCourse` | (none) |
+
 #### TokenClassifier (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
@@ -379,16 +389,6 @@ Examples:
 |--------|--------|
 | `runAudit(Path coursePath,Set<String> analyzerNames): AuditReport` | (none) |
 | `runDetailedAudit(Path coursePath,String analyzerName): AuditNode` | (none) |
-
-#### CourseMapper (port)
-
-**Package:** `com.learney.contentaudit.auditapplication`
-
-**Implemented by:** CourseToAuditableMapper (audit-application)
-
-| Method | Throws |
-|--------|--------|
-| `map(CourseEntity course): AuditableCourse` | (none) |
 
 #### AnalyzerRegistry (service)
 

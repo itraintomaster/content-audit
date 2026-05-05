@@ -163,6 +163,15 @@ public class RevisionProposal {
         this.strategyId = strategyId;
     }
 
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public CourseElementSnapshot elementAfter() { return this.elementAfter; }
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public String proposalId() { return this.proposalId; }
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public AuditTarget nodeTarget() { return this.nodeTarget; }
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public String nodeId() { return this.nodeId; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

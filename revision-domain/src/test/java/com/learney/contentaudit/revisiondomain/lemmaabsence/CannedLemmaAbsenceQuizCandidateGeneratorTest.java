@@ -40,7 +40,9 @@ public class CannedLemmaAbsenceQuizCandidateGeneratorTest {
                 level,
                 List.of(new MisplacedLemmaContext("go", "VERB", CefrLevel.B2, level, 200)),
                 List.of(new SuggestedLemma("walk", "VERB", "A1 synonym", 80)),
-                quizSentence
+                quizSentence,
+                0, 0, 0, 0,
+                com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN
         );
     }
 
@@ -108,7 +110,9 @@ public class CannedLemmaAbsenceQuizCandidateGeneratorTest {
                 CefrLevel.A2,
                 List.of(),  // no misplacedLemmas
                 List.of(),  // no suggestedLemmas
-                "I ____[study|learn] English."
+                "I ____[study|learn] English.",
+                0, 0, 0, 0,
+                com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN
         );
 
         LemmaAbsenceGeneratorResponse forA1 = generator.generate(contextA1);

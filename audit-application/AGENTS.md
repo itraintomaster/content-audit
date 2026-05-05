@@ -12,12 +12,6 @@ Methods:
 - `runAudit(Path coursePath,Set<String> analyzerNames): AuditReport`
 - `runDetailedAudit(Path coursePath,String analyzerName): AuditNode`
 
-### CourseMapper (port)
-
-Methods:
-
-- `map(CourseEntity course): AuditableCourse`
-
 ### AnalyzerRegistry (service)
 
 Methods:
@@ -473,6 +467,12 @@ Methods:
 - `loadLatest(): Optional<AuditReport>`
 - `list(): List<AuditReportSummary>`
 
+### CourseMapper (port)
+
+Methods:
+
+- `map(CourseEntity course): AuditableCourse`
+
 ### From course-domain
 
 ## Models
@@ -722,6 +722,20 @@ Methods:
 | misplacedLemmas | `List<MisplacedLemmaContext>` |
 | suggestedLemmas | `List<SuggestedLemma>` |
 | quizSentence | `String` |
+| tokenCount | `Integer` |
+| targetMin | `Integer` |
+| targetMax | `Integer` |
+| delta | `Integer` |
+| lengthDirection | `LengthDirection` |
+
+### LengthDirection (`enum`)
+
+| Field | Type |
+|-------|------|
+| SHORTEN | `null` |
+| LENGTHEN | `null` |
+| KEEP_SAME | `null` |
+| UNKNOWN | `null` |
 
 ### RefinerEngine (port)
 

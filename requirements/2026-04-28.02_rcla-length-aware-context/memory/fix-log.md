@@ -1,1 +1,19 @@
 # Fix Log
+
+2026-05-04 — test-writer — LemmaAbsenceCorrectionContext uses a 15-param constructor (not the 10-param one used by older R008/R009 tests that had `null` as last arg). Parameter order: taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence, tokenCount, targetMin, targetMax, delta, lengthDirection.
+  why: Sentinel emitted int primitives in the original patch; the bug was worked around by keeping Integer (boxed) fields. The 10-param legacy constructor still exists but lacks the 5 length fields — new tests must use the full 15-param constructor.
+
+2026-05-05 — test-writer — NoSuchMethodError on MisplacedLemma 6-arg constructor in FRclalenJ002JourneyTest: resolved by running `mvn install -pl audit-domain` before the test. The test module was picking up a stale jar from ~/.m2.
+  why: audit-cli tests depend on installed audit-domain artifact; `mvn compile` only refreshes target/classes, not the local Maven repo jar.
+
+2026-05-05 — test-writer — Same stale-jar issue in LemmaAbsenceContextResolverTest: MisplacedLemma(... Integer ...) NoSuchMethod at runtime for the 12 new R001-R004 stubs. Same fix: `mvn install -pl audit-domain -DskipTests` then `mvn clean test-compile -pl refiner-domain`.
+  why: same pattern — refiner-domain also resolves audit-domain from m2, not from workspace target. Document for future reference: always install audit-domain before running refiner-domain tests after any audit-domain source change.
+
+2026-05-05 — test-writer — DefaultLemmaAbsencePromptBuilderTest: at runtime existing tests got NoSuchMethod on 10-arg LemmaAbsenceCorrectionContext constructor — installed refiner-domain jar was from before @developer added the compat 10-arg constructor. Fix: `mvn install -pl refiner-domain -DskipTests`. Pattern: always re-install after source changes to LemmaAbsenceCorrectionContext.
+  why: revision-infrastructure test runner resolves refiner-domain from m2 at runtime, not from workspace target. The compat constructor exists in source (lines 46-54 of LemmaAbsenceCorrectionContext.java) but was not in the stale installed jar.
+
+2026-05-05 — test-writer — FRclalenJ001JourneyTest cannot use GetCmd: the class is `final class` (package-private) and lives in auditcli.commands; test package is com.learney.contentaudit.journeys. Even via reflection, getDeclaredConstructor triggers class loading of GetCmd's fields (ImpactPreviewStore, ImpactPreviewFormatter) which fail ClassNotFoundException because FEAT-PIPRE isn't fully scaffolded (ImpactPreview sub-record doesn't exist yet). Pattern: journey tests in com.learney.contentaudit.journeys cannot reference GetCmd; use resolver directly (FRclaJ001/FRcslJ001 pattern).
+  why: ImpactPreviewStore IS on compile classpath (revision-domain), but getDeclaredConstructor() forces loading the declaring class which cascades to all referenced types. FEAT-PIPRE has partial scaffolding gaps that block class loading even when the interface itself is present.
+
+2026-05-05 — developer — PIPRE scaffold restoration pattern: `git checkout -- GetCmd.java` during development reverts to committed version, losing uncommitted PIPRE additions (ImpactPreviewStore/Formatter fields, 6-arg constructor, setters, handleProposalOne preview loading, printImpactPreviewView). Also: DefaultFormatterRegistry in working tree lost its `formatters` field + constructor due to sentinel regeneration. ImpactPreviewView and LevelImpactView lost record-style accessor aliases. LemmaAbsenceCorrectionContext lost 10-arg compat constructor. Pattern: after any git checkout of audit-cli files, check and restore these PIPRE additions manually from this log.
+  why: sentinel generate strips hand-written additions from @Generated files; PIPRE developer restored them after each regeneration but this knowledge was only in progress.md not fix-log.

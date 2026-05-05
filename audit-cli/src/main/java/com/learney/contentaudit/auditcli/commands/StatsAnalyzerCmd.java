@@ -77,7 +77,7 @@ final class StatsAnalyzerCmd implements StatsAnalyzerCommand, Callable<Integer> 
     }
 
     @Override
-    public int showStats(String analyzerName, String coursePath) {
+    public Integer showStats(String analyzerName, String coursePath) {
         if (analyzerName == null || analyzerName.isBlank()) {
             System.err.println("Error: analyzer name is required. Run 'content-audit get analyzers' to see available analyzers.");
             return 1;

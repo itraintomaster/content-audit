@@ -5,12 +5,15 @@ import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableEntity;
 import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
 import com.learney.contentaudit.auditdomain.AuditableTopic;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
 import com.learney.contentaudit.auditdomain.LevelDiagnoses;
 import com.learney.contentaudit.auditdomain.NodeDiagnoses;
 import com.learney.contentaudit.auditdomain.QuizDiagnoses;
+import com.learney.contentaudit.auditdomain.SentenceLengthDiagnosis;
 import com.learney.contentaudit.auditdomain.labs.AbsenceType;
 import com.learney.contentaudit.auditdomain.labs.AbsentLemma;
 import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis;
@@ -96,13 +99,26 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver<Le
         List<SuggestedLemma> suggestedLemmas = new ArrayList<>();
         Optional<AuditNode> milestoneAncestor = quizNode.ancestor(AuditTarget.MILESTONE);
         if (milestoneAncestor.isPresent()) {
+            // Fallback: derivar cefrLevel desde la entidad milestone si no hay LemmaAbsenceLevelDiagnosis
+            AuditableEntity milestoneEntity = milestoneAncestor.get().getEntity();
+            if (milestoneEntity instanceof AuditableMilestone) {
+                String label = ((AuditableMilestone) milestoneEntity).getLabel();
+                if (label != null) {
+                    try {
+                        cefrLevel = CefrLevel.valueOf(label);
+                    } catch (IllegalArgumentException ignored) {
+                        // label no corresponde a un CefrLevel valido; se dejará null
+                    }
+                }
+            }
+
             NodeDiagnoses milestoneDiagnoses = milestoneAncestor.get().getDiagnoses();
             if (milestoneDiagnoses instanceof LevelDiagnoses) {
                 Optional<LemmaAbsenceLevelDiagnosis> maybeAbsenceDiagnosis =
                         ((LevelDiagnoses) milestoneDiagnoses).getLemmaAbsenceDiagnosis();
                 if (maybeAbsenceDiagnosis.isPresent()) {
                     LemmaAbsenceLevelDiagnosis absenceDiagnosis = maybeAbsenceDiagnosis.get();
-                    cefrLevel = absenceDiagnosis.getLevel();
+                    cefrLevel = absenceDiagnosis.getLevel(); // sobreescribe el fallback si está disponible
                     List<AbsentLemma> absentLemmas = absenceDiagnosis.getAbsentLemmas();
                     if (absentLemmas != null) {
                         suggestedLemmas = absentLemmas.stream()
@@ -146,6 +162,34 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver<Le
         // FEAT-RCLAQS R001: quizSentence is propagated verbatim from the AuditableQuiz carrier.
         // R002 (delegacion negativa): no re-invocation of the converter here; the value was
         // already materialized by CourseToAuditableMapper in the same pass that built sentences.
+        // F-RCLALEN-R001: leer SentenceLengthDiagnosis del mismo nodo quiz (F-RCLALEN-R003)
+        Integer tokenCount = 0;
+        Integer targetMin = 0;
+        Integer targetMax = 0;
+        Integer delta = 0;
+        LengthDirection lengthDirection = LengthDirection.UNKNOWN;
+
+        NodeDiagnoses quizDiagnoses = quizNode.getDiagnoses();
+        if (quizDiagnoses instanceof DefaultQuizDiagnoses) {
+            Optional<SentenceLengthDiagnosis> sldOpt =
+                    ((DefaultQuizDiagnoses) quizDiagnoses).getSentenceLengthDiagnosis();
+            if (sldOpt.isPresent()) {
+                SentenceLengthDiagnosis sld = sldOpt.get();
+                tokenCount = sld.getTokenCount();
+                targetMin = sld.getTargetMin();
+                targetMax = sld.getTargetMax();
+                delta = sld.getDelta();
+                // F-RCLALEN-R002: derivar direccion de longitud del delta
+                if (delta > 0) {
+                    lengthDirection = LengthDirection.SHORTEN;
+                } else if (delta < 0) {
+                    lengthDirection = LengthDirection.LENGTHEN;
+                } else {
+                    lengthDirection = LengthDirection.KEEP_SAME;
+                }
+            }
+        }
+
         LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
                 task.getId(),
                 sentence,
@@ -156,7 +200,12 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver<Le
                 cefrLevel,
                 misplacedLemmaContexts,
                 suggestedLemmas,
-                quizSentence);
+                quizSentence,
+                tokenCount,
+                targetMin,
+                targetMax,
+                delta,
+                lengthDirection);
 
         return Optional.of(context);
     }

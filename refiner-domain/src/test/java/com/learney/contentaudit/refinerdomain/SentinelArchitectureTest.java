@@ -31,7 +31,7 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceModuleBoundaries() {
     JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.classes().that().resideInAPackage("..refinerdomain..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..refinerdomain..", "..auditdomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+    ArchRuleDefinition.classes().that().resideInAPackage("..refinerdomain..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..refinerdomain..", "..auditdomain..", "..coursedomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
   }
 
   @Test
@@ -75,6 +75,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaAbsenceCorrectionContext - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.LengthDirection");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LengthDirection - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.refinerdomain.RefinerEngine");

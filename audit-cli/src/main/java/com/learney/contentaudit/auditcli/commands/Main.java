@@ -99,7 +99,10 @@ import com.learney.contentaudit.auditcli.formatting.ReportFormatter;
 import com.learney.contentaudit.auditcli.formatting.ReportViewModelTransformer;
 import com.learney.contentaudit.auditcli.formatting.DefaultReportViewModelTransformer;
 import com.learney.contentaudit.auditcli.formatting.TableReportFormatter;
+import com.learney.contentaudit.auditcli.formatting.DefaultImpactPreviewFormatter;
 import com.learney.contentaudit.auditcli.formatting.TextReportFormatter;
+import com.learney.contentaudit.auditinfrastructure.FileSystemImpactPreviewStore;
+import com.learney.contentaudit.revisiondomain.ImpactPreviewStore;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -203,7 +206,7 @@ class Main {
         QuizSentenceConverter quizSentenceConverter = DefaultQuizSentenceConverter.create();
         CourseToAuditableMapper courseToAuditableMapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
 
-        SentenceLengthAnalyzer sentenceLengthAnalyzer = new SentenceLengthAnalyzer(sentenceLengthConfig);
+        SentenceLengthAnalyzer sentenceLengthAnalyzer = new SentenceLengthAnalyzer(nlpTokenizer, sentenceLengthConfig);
         KnowledgeTitleLengthAnalyzer knowledgeTitleLengthAnalyzer = new KnowledgeTitleLengthAnalyzer();
         KnowledgeInstructionsLengthAnalyzer knowledgeInstructionsLengthAnalyzer =
                 new KnowledgeInstructionsLengthAnalyzer();
@@ -278,6 +281,7 @@ class Main {
         AuditReportStore auditReportStore = new FileSystemAuditReportStore(baseDir);
         RefinementPlanStore refinementPlanStore = new FileSystemRefinementPlanStore(baseDir);
         RevisionArtifactStore revisionArtifactStore = new FileSystemRevisionArtifactStore(baseDir);
+        ImpactPreviewStore impactPreviewStore = new FileSystemImpactPreviewStore(baseDir);
 
         // ----------------------------------------------------------------
         // Step 7: Refiner + Revision engines
@@ -381,6 +385,9 @@ class Main {
         revisionEngineConfig.setValidator(revisionValidator);
         revisionEngineConfig.setLemmaAbsenceStrategyRegistry(strategyRegistry);
         revisionEngineConfig.setLemmaAbsenceProposalDeriver(proposalDeriver);
+        revisionEngineConfig.setCourseMapper(courseToAuditableMapper);
+        revisionEngineConfig.setAuditEngine(auditEngine);
+        revisionEngineConfig.setImpactPreviewStore(impactPreviewStore);
         RevisionEngine revisionEngine = new DefaultRevisionEngineFactory().create(revisionEngineConfig);
 
         ProposalDecisionService proposalDecisionService;
@@ -430,9 +437,10 @@ class Main {
                 analyzerRegistry, analyzerStatsTransformer, auditRunner);
         cmd.addSubcommand("stats", new picocli.CommandLine(statsAnalyzerCmd));
 
-        // get — inject baseDir for plan listing and path-based operations; revisionArtifactStore for proposals
+        // get — inject baseDir for plan listing; revisionArtifactStore para proposals;
+        // impactPreviewStore + formatter para el preview de impacto (F-PIPRE-R007)
         GetCmd getCmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
-                correctionContextResolver);
+                correctionContextResolver, impactPreviewStore, new DefaultImpactPreviewFormatter());
         getCmd.setBaseDir(baseDir);
         getCmd.setRevisionArtifactStore(revisionArtifactStore);
         cmd.addSubcommand("get", new picocli.CommandLine(getCmd));

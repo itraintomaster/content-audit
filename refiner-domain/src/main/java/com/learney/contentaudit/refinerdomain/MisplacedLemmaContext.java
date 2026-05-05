@@ -17,13 +17,13 @@ public class MisplacedLemmaContext {
 
     private CefrLevel quizLevel;
 
-    private int cocaRank;
+    private Integer cocaRank;
 
     public MisplacedLemmaContext() {
     }
 
     public MisplacedLemmaContext(String lemma, String pos, CefrLevel expectedLevel,
-            CefrLevel quizLevel, int cocaRank) {
+            CefrLevel quizLevel, Integer cocaRank) {
         this.lemma = lemma;
         this.pos = pos;
         this.expectedLevel = expectedLevel;
@@ -63,11 +63,11 @@ public class MisplacedLemmaContext {
         this.quizLevel = quizLevel;
     }
 
-    public int getCocaRank() {
+    public Integer getCocaRank() {
         return this.cocaRank;
     }
 
-    public void setCocaRank(int cocaRank) {
+    public void setCocaRank(Integer cocaRank) {
         this.cocaRank = cocaRank;
     }
 

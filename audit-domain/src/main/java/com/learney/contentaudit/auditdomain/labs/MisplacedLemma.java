@@ -17,7 +17,7 @@ public class MisplacedLemma {
 
     private AbsenceType absenceType;
 
-    private int cocaRank;
+    private Integer cocaRank;
 
     private String semanticCategory;
 
@@ -25,7 +25,7 @@ public class MisplacedLemma {
     }
 
     public MisplacedLemma(LemmaAndPos lemmaAndPos, CefrLevel expectedLevel, CefrLevel foundInLevel,
-            AbsenceType absenceType, int cocaRank, String semanticCategory) {
+            AbsenceType absenceType, Integer cocaRank, String semanticCategory) {
         this.lemmaAndPos = lemmaAndPos;
         this.expectedLevel = expectedLevel;
         this.foundInLevel = foundInLevel;
@@ -66,11 +66,11 @@ public class MisplacedLemma {
         this.absenceType = absenceType;
     }
 
-    public int getCocaRank() {
+    public Integer getCocaRank() {
         return this.cocaRank;
     }
 
-    public void setCocaRank(int cocaRank) {
+    public void setCocaRank(Integer cocaRank) {
         this.cocaRank = cocaRank;
     }
 

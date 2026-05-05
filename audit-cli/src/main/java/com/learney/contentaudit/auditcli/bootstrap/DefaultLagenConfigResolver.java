@@ -35,11 +35,17 @@ public final class DefaultLagenConfigResolver implements LagenConfigResolver {
         String temperatureStr = env.get(KEY_TEMPERATURE);
         if (temperatureStr != null && !temperatureStr.isBlank()) {
             config.setTemperature(parseDouble(KEY_TEMPERATURE, temperatureStr));
+        } else {
+            // R008: cuando no está presente, usar 0.0 como sentinel (la factory sustituirá con LagenDefaults)
+            config.setTemperature(0.0);
         }
 
         String maxTokensStr = env.get(KEY_MAX_TOKENS);
         if (maxTokensStr != null && !maxTokensStr.isBlank()) {
             config.setMaxTokens(parsePositiveInt(KEY_MAX_TOKENS, maxTokensStr));
+        } else {
+            // R008: cuando no está presente, usar 0 como sentinel (la factory sustituirá con LagenDefaults)
+            config.setMaxTokens(0);
         }
 
         String timeoutStr = env.get(KEY_TIMEOUT);

@@ -132,7 +132,7 @@ final class ReviseCmd implements ReviseCommand, Callable<Integer> {
     }
 
     @Override
-    public int revise(String taskId, String planId) {
+    public Integer revise(String taskId, String planId) {
         // Resolve the course path
         String resolvedCoursePath = CoursePathResolver.resolve(coursePath);
         if (resolvedCoursePath == null) {

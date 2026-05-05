@@ -61,6 +61,15 @@ public class LevelImpactView {
         this.dimensionRows = dimensionRows;
     }
 
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public AuditTarget nodeTarget() { return this.nodeTarget; }
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public String nodeId() { return this.nodeId; }
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public String aggregateText() { return this.aggregateText; }
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public List<DimensionDeltaView> dimensionRows() { return this.dimensionRows; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

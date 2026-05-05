@@ -67,6 +67,8 @@ public class FRevbypJ001JourneyTest {
     @Mock private RevisionArtifactStore artifactStore;
     @Mock private CourseRepository courseRepository;
     @Mock private CourseElementLocator elementLocator;
+    @Mock private com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewComputer impactPreviewComputer;
+    @Mock private com.learney.contentaudit.revisiondomain.ImpactPreviewStore impactPreviewStore;
 
     private DefaultRevisionEngine buildEngine() {
         return new DefaultRevisionEngine(
@@ -77,7 +79,9 @@ public class FRevbypJ001JourneyTest {
                 validator,
                 artifactStore,
                 courseRepository,
-                elementLocator
+                elementLocator,
+                impactPreviewComputer,
+                impactPreviewStore
         );
     }
 

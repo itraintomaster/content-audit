@@ -1,0 +1,176 @@
+code: FEAT-PIPRE
+modules:
+- name: revision-domain
+  packages:
+  - name: engine
+    implementations:
+    - name: DefaultRevisionEngine
+      handwrittenTests:
+      - name: "Dada una RevisionProposal generada, cuando revise corre, entonces ImpactPreviewComputer.compute\
+          \ se invoca exactamente una vez con el curso actual y la propuesta recien\
+          \ construida"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R001
+      - name: "Dado un ImpactPreview computado, cuando revise corre, entonces el preview\
+          \ se persiste via ImpactPreviewStore.save asociado al proposalId de la propuesta\
+          \ antes de que el flujo retorne"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R001
+      - name: "Dado un ImpactPreview UNAVAILABLE devuelto por el computer, cuando\
+          \ revise corre, entonces la RevisionArtifact se persiste igual con su veredicto\
+          \ inicial y el outcome no es de error"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R010
+    - name: DefaultImpactPreviewComputer
+      handwrittenTests:
+      - name: "Dado un currentCourse y una RevisionProposal, cuando compute corre,\
+          \ entonces no se invoca AuditReportStore.save y no se persiste ningun AuditReport\
+          \ nuevo"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R002
+      - name: "Dado un currentCourse y una RevisionProposal, cuando compute corre,\
+          \ entonces el ScoreDelta.before de cada LevelImpact se calcula contra el\
+          \ AuditReport baseline del curso recibido y no contra una version posterior"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R003
+      - name: "Dada una RevisionProposal sobre un quiz contenido en knowledge, milestone,\
+          \ topic y curso, cuando compute corre, entonces el ImpactPreview.levelImpacts\
+          \ cubre la cadena jerarquica QUIZ -> KNOWLEDGE -> TOPIC -> MILESTONE ->\
+          \ COURSE en orden de hoja a raiz"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R004
+      - name: "Dada una RevisionProposal sobre un nodo cuyo arbol no contiene algun\
+          \ nivel intermedio, cuando compute corre, entonces los niveles ausentes\
+          \ se omiten en lugar de reportarse como cero en levelImpacts"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R004
+      - name: "Dada una RevisionProposal cuyo elementAfter afecta multiples analyzers,\
+          \ cuando compute corre, entonces el LevelImpact correspondiente expone un\
+          \ DimensionDelta por cada analyzer evaluado en ese nivel"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R005
+      - name: "Dado un nivel donde un analyzer no aporta diagnosticos, cuando compute\
+          \ corre, entonces ese analyzer se omite de dimensionDeltas en lugar de reportarse\
+          \ con delta cero"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R005
+      - name: "Dado un ScoreDelta producido por compute para cualquier (nivel, dimension),\
+          \ entonces los tres campos before, after y difference estan presentes y\
+          \ difference es exactamente after menos before"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R006
+      - name: "Dada una RevisionProposal cuyo nodeId no se localiza en el currentCourse\
+          \ al simular, cuando compute corre, entonces retorna un ImpactPreview con\
+          \ availability UNAVAILABLE, reason TARGET_NODE_ABSENT y detail no vacio\
+          \ identificando el nodeId ausente"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R009
+      - name: "Dado que AuditReportStore no puede recuperar la auditoria base del\
+          \ curso actual, cuando compute corre, entonces retorna un ImpactPreview\
+          \ con availability UNAVAILABLE, reason BASE_AUDIT_UNAVAILABLE y detail no\
+          \ vacio explicando la causa"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R009
+      - name: "Dado que AuditEngine falla al recomputar scores sobre el curso simulado,\
+          \ cuando compute corre, entonces retorna un ImpactPreview con availability\
+          \ UNAVAILABLE, reason SIMULATION_FAILED y detail no vacio explicando la\
+          \ causa"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R009
+      - name: "Dadas dos RevisionProposal distintas con el mismo currentCourse, cuando\
+          \ compute corre dos veces, entonces produce dos ImpactPreview independientes\
+          \ con proposalId distinto y sin compartir levelImpacts entre ambos"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R011
+      - name: "Dada una RevisionProposal cuyo elementBefore y elementAfter referencian\
+          \ el mismo nodeId estable, cuando compute corre, entonces el LevelImpact\
+          \ del nodo objetivo conserva ese nodeId en before y after sin modelar renombres\
+          \ ni reubicaciones"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R012
+- name: audit-infrastructure
+  implementations:
+  - name: FileSystemImpactPreviewStore
+    handwrittenTests:
+    - name: "Dado un ImpactPreview ya persistido bajo un proposalId, cuando save se\
+        \ invoca por segunda vez con otro ImpactPreview con el mismo proposalId, entonces\
+        \ findByProposalId retorna el preview persistido originalmente y no el nuevo"
+      traceability:
+        feature: FEAT-PIPRE
+        rule: F-PIPRE-R008
+    - name: "Dado un ImpactPreview persistido en disco, cuando findByProposalId se\
+        \ invoca con su proposalId, entonces retorna el ImpactPreview con todos sus\
+        \ levelImpacts, availability y unavailability intactos"
+      traceability:
+        feature: FEAT-PIPRE
+        rule: F-PIPRE-R008
+- name: audit-cli
+  packages:
+  - name: formatting
+    implementations:
+    - name: DefaultImpactPreviewFormatter
+      handwrittenTests:
+      - name: "Dado un ScoreDelta(before=0.72, after=0.81, difference=0.09) en un\
+          \ LevelImpact, cuando format corre, entonces aggregateText es '72% -> 81%\
+          \ (+9 pp)' con signo explicito"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R013
+      - name: "Dado un ScoreDelta con difference negativa, cuando format corre, entonces\
+          \ el texto de la diferencia incluye signo '-' explicito en puntos porcentuales"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R013
+      - name: "Dado un ImpactPreview UNAVAILABLE con reason y detail, cuando format\
+          \ corre, entonces unavailabilityText contiene la causa legible y levels\
+          \ queda vacio (no se intenta convertir a porcentaje)"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R013
+  - name: commands
+    implementations:
+    - name: GetCmd
+      handwrittenTests:
+      - name: "Dado un proposalId existente con preview asociado en ImpactPreviewStore,\
+          \ cuando 'get proposal <id>' corre, entonces el output incluye el ImpactPreviewView\
+          \ formateado junto a elementBefore y elementAfter en la misma operacion"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R007
+      - name: "Dado un proposalId existente sin preview asociado en ImpactPreviewStore,\
+          \ cuando 'get proposal <id>' corre, entonces el output muestra la propuesta\
+          \ legible con la marca 'preview no disponible' en el lugar del preview y\
+          \ exit code cero"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R007
+features:
+- id: FEAT-PIPRE
+  journeys:
+  - id: F-PIPRE-J001
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.engine
+  - id: F-PIPRE-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
+  - id: F-PIPRE-J003
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.engine

@@ -50,6 +50,13 @@ public class ImpactPreviewView {
         this.levels = levels;
     }
 
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public ImpactPreviewAvailability availability() { return this.availability; }
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public String unavailabilityText() { return this.unavailabilityText; }
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public List<LevelImpactView> levels() { return this.levels; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

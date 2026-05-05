@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditapplication;
+import com.learney.contentaudit.auditdomain.CourseMapper;
 
 import com.learney.contentaudit.auditdomain.AuditEngine;
 import com.learney.contentaudit.auditdomain.AuditNode;

@@ -1,0 +1,20 @@
+code: FEAT-PIPRE
+description: "Bump ImpactPreviewFormatter (interface) and DefaultImpactPreviewFormatter\
+  \ (impl) to visibility: public so the composition root (Main) and GetCmd in audit-cli.commands\
+  \ can reference them. The formatting package stays internal: the change is Java-class-level\
+  \ only, not cross-module."
+modules:
+- name: audit-cli
+  packages:
+  - name: formatting
+    interfaces:
+    - name: ImpactPreviewFormatter
+      sealed: false
+      visibility: public
+      _change: modify
+    implementations:
+    - name: DefaultImpactPreviewFormatter
+      visibility: public
+      _change: modify
+    _change: modify
+  _change: modify

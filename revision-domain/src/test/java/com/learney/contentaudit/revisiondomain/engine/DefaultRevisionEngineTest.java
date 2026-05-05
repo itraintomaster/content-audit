@@ -22,9 +22,16 @@ import com.learney.contentaudit.revisiondomain.RevisionProposal;
 import com.learney.contentaudit.revisiondomain.RevisionValidator;
 import com.learney.contentaudit.revisiondomain.RevisionValidatorResult;
 import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.ImpactPreviewStore;
 import com.learney.contentaudit.revisiondomain.Reviser;
+import com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreview;
+import com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewAvailability;
+import com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewComputer;
+import com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewUnavailability;
+import com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewUnavailabilityReason;
 import java.nio.file.Path;
 import java.time.Instant;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
@@ -38,6 +45,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.inOrder;
@@ -62,6 +70,8 @@ public class DefaultRevisionEngineTest {
     @Mock private RevisionArtifactStore artifactStore;
     @Mock private CourseRepository courseRepository;
     @Mock private CourseElementLocator elementLocator;
+    @Mock private ImpactPreviewComputer impactPreviewComputer;
+    @Mock private ImpactPreviewStore impactPreviewStore;
 
     private DefaultRevisionEngine buildEngine() {
         return new DefaultRevisionEngine(
@@ -72,7 +82,9 @@ public class DefaultRevisionEngineTest {
                 validator,
                 artifactStore,
                 courseRepository,
-                elementLocator
+                elementLocator,
+                impactPreviewComputer,
+                impactPreviewStore
         );
     }
 
@@ -461,5 +473,215 @@ public class DefaultRevisionEngineTest {
         verify(validator, never()).validate(any());
         verify(artifactStore, never()).save(any(RevisionArtifact.class));
         verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
+    }
+
+    @Test
+    @DisplayName("Dada una RevisionProposal generada, cuando revise corre, entonces ImpactPreviewComputer.compute se invoca exactamente una vez con el curso actual y la propuesta recien construida")
+    @Tag("FEAT-PIPRE")
+    @Tag("F-PIPRE-R001")
+    public void dadaUnaRevisionProposalGeneradaCuandoReviseCorreEntoncesImpactPreviewComputercomputeSeInvocaExactamenteUnaVezConElCursoActualYLaPropuestaRecienConstruida() {
+        // Arrange — R001 detail 1: the preview is computed exactly once per proposal,
+        // in the same flow that constructs the proposal.
+        String planId = "plan-pipre-r001-a";
+        String taskId = "task-pipre-r001-a";
+        String auditId = "audit-pipre-r001-a";
+        String nodeId = "quiz-pipre-r001-a";
+        Path coursePath = Path.of("./db/english-course");
+
+        RefinementTask task = new RefinementTask(
+                taskId, AuditTarget.QUIZ, nodeId, "Quiz about lemma absence",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+        );
+        RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
+
+        AuditReport auditReport = mock(AuditReport.class);
+        CorrectionContext context = mock(CorrectionContext.class);
+        CourseEntity course = mock(CourseEntity.class);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+
+        RevisionProposal proposal = new RevisionProposal(
+                taskId + "-r001a", taskId, planId, auditId,
+                DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
+                snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(),
+                null
+        );
+
+        RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
+        when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
+        when(validatorResult.rejectionReason()).thenReturn(Optional.empty());
+
+        // Stub the "happy path" revise flow
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(auditId)).thenReturn(Optional.of(auditReport));
+        when(contextResolver.resolve(eq(auditReport), eq(task))).thenReturn(Optional.of(context));
+        when(courseRepository.load(coursePath)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId)).thenReturn(Optional.of(snapshot));
+        when(reviser.handles(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        when(reviser.propose(task, context, snapshot)).thenReturn(proposal);
+        when(validator.validate(proposal)).thenReturn(validatorResult);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(".content-audit/revisions/" + planId + "/" + proposal.getProposalId());
+        when(elementLocator.replace(eq(course), eq(snapshot))).thenReturn(course);
+
+        // ImpactPreviewComputer returns a minimal AVAILABLE preview
+        ImpactPreview availablePreview = new ImpactPreview(
+                proposal.getProposalId(), Instant.now(),
+                ImpactPreviewAvailability.AVAILABLE, null, Collections.emptyList()
+        );
+        when(impactPreviewComputer.compute(any(CourseEntity.class), any(RevisionProposal.class)))
+                .thenReturn(availablePreview);
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // Act
+        engine.revise(planId, taskId, coursePath);
+
+        // Assert — R001: compute must be called exactly once with the current course and the new proposal
+        verify(impactPreviewComputer, org.mockito.Mockito.times(1))
+                .compute(eq(course), eq(proposal));
+    }
+
+    @Test
+    @DisplayName("Dado un ImpactPreview computado, cuando revise corre, entonces el preview se persiste via ImpactPreviewStore.save asociado al proposalId de la propuesta antes de que el flujo retorne")
+    @Tag("FEAT-PIPRE")
+    @Tag("F-PIPRE-R001")
+    public void dadoUnImpactPreviewComputadoCuandoReviseCorreEntoncesElPreviewSePersisteViaImpactPreviewStoresaveAsociadoAlProposalIdDeLaPropuestaAntesDeQueElFlujoRetorne() {
+        // Arrange — R001 detail 2: the preview is associated to the proposalId and persisted
+        // before the flow returns.
+        String planId = "plan-pipre-r001-b";
+        String taskId = "task-pipre-r001-b";
+        String auditId = "audit-pipre-r001-b";
+        String nodeId = "quiz-pipre-r001-b";
+        Path coursePath = Path.of("./db/english-course");
+
+        RefinementTask task = new RefinementTask(
+                taskId, AuditTarget.QUIZ, nodeId, "Quiz about lemma absence B",
+                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING
+        );
+        RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
+
+        AuditReport auditReport = mock(AuditReport.class);
+        CorrectionContext context = mock(CorrectionContext.class);
+        CourseEntity course = mock(CourseEntity.class);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+
+        RevisionProposal proposal = new RevisionProposal(
+                taskId + "-r001b", taskId, planId, auditId,
+                DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
+                snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(),
+                null
+        );
+
+        RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
+        when(validatorResult.verdict()).thenReturn(RevisionVerdict.PENDING_APPROVAL);
+        when(validatorResult.rejectionReason()).thenReturn(Optional.empty());
+
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(auditId)).thenReturn(Optional.of(auditReport));
+        when(contextResolver.resolve(eq(auditReport), eq(task))).thenReturn(Optional.of(context));
+        when(courseRepository.load(coursePath)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId)).thenReturn(Optional.of(snapshot));
+        when(reviser.handles(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        when(reviser.propose(task, context, snapshot)).thenReturn(proposal);
+        when(validator.validate(proposal)).thenReturn(validatorResult);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(".content-audit/revisions/" + planId + "/" + proposal.getProposalId());
+
+        // The preview returned by the computer — proposalId must be propagated to the store
+        ImpactPreview computedPreview = new ImpactPreview(
+                proposal.getProposalId(), Instant.now(),
+                ImpactPreviewAvailability.AVAILABLE, null, Collections.emptyList()
+        );
+        when(impactPreviewComputer.compute(any(CourseEntity.class), any(RevisionProposal.class)))
+                .thenReturn(computedPreview);
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // Act
+        engine.revise(planId, taskId, coursePath);
+
+        // Assert — R001: impactPreviewStore.save must be called with the preview that carries the proposalId
+        ArgumentCaptor<ImpactPreview> previewCaptor = ArgumentCaptor.forClass(ImpactPreview.class);
+        verify(impactPreviewStore).save(previewCaptor.capture());
+        ImpactPreview savedPreview = previewCaptor.getValue();
+        assertEquals(proposal.getProposalId(), savedPreview.proposalId(),
+                "The saved ImpactPreview must be associated with the proposal's proposalId");
+    }
+
+    @Test
+    @DisplayName("Dado un ImpactPreview UNAVAILABLE devuelto por el computer, cuando revise corre, entonces la RevisionArtifact se persiste igual con su veredicto inicial y el outcome no es de error")
+    @Tag("FEAT-PIPRE")
+    @Tag("F-PIPRE-R010")
+    public void dadoUnImpactPreviewUNAVAILABLEDevueltoPorElComputerCuandoReviseCorreEntoncesLaRevisionArtifactSePersisteIgualConSuVeredictoInicialYElOutcomeNoEsDeError() {
+        // Arrange — R010: a preview failure (UNAVAILABLE) must NOT abort proposal persistence.
+        // The RevisionArtifact is still persisted with its initial verdict.
+        String planId = "plan-pipre-r010";
+        String taskId = "task-pipre-r010";
+        String auditId = "audit-pipre-r010";
+        String nodeId = "quiz-pipre-r010";
+        Path coursePath = Path.of("./db/english-course");
+
+        RefinementTask task = new RefinementTask(
+                taskId, AuditTarget.QUIZ, nodeId, "Quiz about lemma absence R010",
+                DiagnosisKind.LEMMA_ABSENCE, 3, RefinementTaskStatus.PENDING
+        );
+        RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
+
+        AuditReport auditReport = mock(AuditReport.class);
+        CorrectionContext context = mock(CorrectionContext.class);
+        CourseEntity course = mock(CourseEntity.class);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+
+        RevisionProposal proposal = new RevisionProposal(
+                taskId + "-r010", taskId, planId, auditId,
+                DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
+                snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(),
+                null
+        );
+
+        // In human mode: initial verdict is PENDING_APPROVAL
+        RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
+        when(validatorResult.verdict()).thenReturn(RevisionVerdict.PENDING_APPROVAL);
+        when(validatorResult.rejectionReason()).thenReturn(Optional.empty());
+
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(auditId)).thenReturn(Optional.of(auditReport));
+        when(contextResolver.resolve(eq(auditReport), eq(task))).thenReturn(Optional.of(context));
+        when(courseRepository.load(coursePath)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId)).thenReturn(Optional.of(snapshot));
+        when(reviser.handles(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        when(reviser.propose(task, context, snapshot)).thenReturn(proposal);
+        when(validator.validate(proposal)).thenReturn(validatorResult);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(".content-audit/revisions/" + planId + "/" + proposal.getProposalId());
+
+        // The computer returns UNAVAILABLE (simulation failed, per R009)
+        ImpactPreview unavailablePreview = new ImpactPreview(
+                proposal.getProposalId(), Instant.now(),
+                ImpactPreviewAvailability.UNAVAILABLE,
+                new ImpactPreviewUnavailability(
+                        ImpactPreviewUnavailabilityReason.SIMULATION_FAILED,
+                        "AuditEngine failed during what-if simulation"
+                ),
+                Collections.emptyList()
+        );
+        when(impactPreviewComputer.compute(any(CourseEntity.class), any(RevisionProposal.class)))
+                .thenReturn(unavailablePreview);
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // Act — must NOT throw even though the preview is UNAVAILABLE
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath);
+
+        // Assert — R010: artifact persisted with its initial verdict (PENDING_APPROVAL)
+        ArgumentCaptor<RevisionArtifact> artifactCaptor = ArgumentCaptor.forClass(RevisionArtifact.class);
+        verify(artifactStore).save(artifactCaptor.capture());
+        assertEquals(RevisionVerdict.PENDING_APPROVAL, artifactCaptor.getValue().getVerdict(),
+                "Artifact must be persisted with its initial verdict even when preview is UNAVAILABLE");
+
+        // Assert — R010: outcome is not an error kind
+        assertNotEquals(RevisionOutcomeKind.APPROVED_APPLIED, outcome.getKind()); // just not an error
+        assertEquals(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, outcome.getKind(),
+                "Outcome must be PENDING_APPROVAL_PERSISTED (not an error) even when preview is UNAVAILABLE");
+
+        // Assert — R010: the UNAVAILABLE preview is still persisted (not discarded)
+        verify(impactPreviewStore).save(any(ImpactPreview.class));
     }
 }

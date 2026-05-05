@@ -12,7 +12,10 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
 
     private final SentenceLengthConfig config;
 
-    public SentenceLengthAnalyzer(SentenceLengthConfig config) {
+    private final NlpTokenizer nlpTokenizer;
+
+    public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig config) {
+        this.nlpTokenizer = nlpTokenizer;
         this.config = config;
     }
 

@@ -1,6 +1,5 @@
-package com.learney.contentaudit.auditapplication;
+package com.learney.contentaudit.auditdomain;
 
-import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import javax.annotation.processing.Generated;
 

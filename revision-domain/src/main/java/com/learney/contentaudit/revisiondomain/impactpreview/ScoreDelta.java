@@ -47,6 +47,13 @@ public class ScoreDelta {
         this.difference = difference;
     }
 
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public double before() { return this.before; }
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public double after() { return this.after; }
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public double difference() { return this.difference; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

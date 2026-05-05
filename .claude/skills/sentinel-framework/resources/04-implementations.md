@@ -974,6 +974,7 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | Name | Type |
 |------|------|
 | `generator` | `LemmaAbsenceQuizCandidateGenerator` |
+| `providerId` | `String` |
 
 #### CannedLemmaAbsenceQuizCandidateGenerator (package: lemmaabsence)
 
@@ -1011,6 +1012,7 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `responseParser` | `LemmaAbsenceResponseParser` |
 | `errorClassifier` | `LangChainErrorClassifier` |
 | `strategyName` | `String` |
+| `chatModel` | `ChatLanguageModel` |
 
 #### DefaultLemmaAbsencePromptBuilder (package: lagenopenai)
 

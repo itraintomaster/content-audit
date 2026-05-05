@@ -63,7 +63,7 @@ final class DeleteCmd implements DeleteCommand, Callable<Integer> {
     }
 
     @Override
-    public int delete(String resource, String id) {
+    public Integer delete(String resource, String id) {
         if (resource == null || resource.isBlank()) {
             System.err.println("Error: resource is required. Deletable resources: audit, plan");
             return 1;

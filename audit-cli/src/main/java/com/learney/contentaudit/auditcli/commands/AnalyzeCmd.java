@@ -126,7 +126,7 @@ final class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
     }
 
     @Override
-    public int analyze(String coursePath, String format, String level, String topic, String knowledge, List<String> analyzers, boolean detailed) {
+    public Integer analyze(String coursePath, String format, String level, String topic, String knowledge, List<String> analyzers, boolean detailed) {
         try {
             if (topic != null && level == null) {
                 System.err.println("Error: --topic requires --level");

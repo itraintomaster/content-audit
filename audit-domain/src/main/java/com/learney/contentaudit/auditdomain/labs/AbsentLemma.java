@@ -20,7 +20,7 @@ public class AbsentLemma {
 
     private PriorityLevel priorityLevel;
 
-    private int cocaRank;
+    private Integer cocaRank;
 
     private String semanticCategory;
 
@@ -28,7 +28,7 @@ public class AbsentLemma {
     }
 
     public AbsentLemma(LemmaAndPos lemmaAndPos, CefrLevel expectedLevel, AbsenceType absenceType,
-            List<CefrLevel> presentInLevels, PriorityLevel priorityLevel, int cocaRank,
+            List<CefrLevel> presentInLevels, PriorityLevel priorityLevel, Integer cocaRank,
             String semanticCategory) {
         this.lemmaAndPos = lemmaAndPos;
         this.expectedLevel = expectedLevel;
@@ -79,11 +79,11 @@ public class AbsentLemma {
         this.priorityLevel = priorityLevel;
     }
 
-    public int getCocaRank() {
+    public Integer getCocaRank() {
         return this.cocaRank;
     }
 
-    public void setCocaRank(int cocaRank) {
+    public void setCocaRank(Integer cocaRank) {
         this.cocaRank = cocaRank;
     }
 

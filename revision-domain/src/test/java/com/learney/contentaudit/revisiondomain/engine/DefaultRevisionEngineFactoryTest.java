@@ -41,8 +41,13 @@ public class DefaultRevisionEngineFactoryTest {
                 null,                                            // elementLocator: factory uses DefaultCourseElementLocator default
                 mock(RefinementPlanStore.class),
                 mock(AuditReportStore.class),
-                mock(CorrectionContextResolver.class)
-        , null, null);
+                mock(CorrectionContextResolver.class),
+                null,                                            // lemmaAbsenceStrategyRegistry
+                null,                                            // lemmaAbsenceProposalDeriver
+                null,                                            // courseMapper
+                null,                                            // auditEngine
+                null                                             // impactPreviewStore
+        );
 
         RevisionEngineFactory factory = new DefaultRevisionEngineFactory();
 

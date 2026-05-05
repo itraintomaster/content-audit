@@ -57,7 +57,7 @@ final class ConfigAnalyzerCmd implements ConfigAnalyzerCommand, Callable<Integer
     }
 
     @Override
-    public int showConfig(String analyzerName) {
+    public Integer showConfig(String analyzerName) {
         if (analyzerName == null || analyzerName.isBlank()) {
             System.err.println("Error: analyzer name is required. Run 'content-audit get analyzers' to see available analyzers.");
             return 1;

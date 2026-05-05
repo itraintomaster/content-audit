@@ -58,7 +58,7 @@ final class RejectCmd implements RejectCommand, Callable<Integer> {
     }
 
     @Override
-    public int reject(String resource, String proposalId, String planId, String reason) {
+    public Integer reject(String resource, String proposalId, String planId, String reason) {
         // R015 — reject only operates on 'proposal'
         if (resource == null || !"proposal".equalsIgnoreCase(resource)) {
             System.err.println("reject only operates on 'proposal' (got: " + resource + ")");

@@ -31,7 +31,7 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceModuleBoundaries() {
     JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.classes().that().resideInAPackage("..vocabularyinfrastructure..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..vocabularyinfrastructure..", "..auditdomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+    ArchRuleDefinition.classes().that().resideInAPackage("..vocabularyinfrastructure..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..vocabularyinfrastructure..", "..auditdomain..", "..coursedomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
   }
 
   @Test

@@ -30,17 +30,16 @@ class LemmaAbsenceLlmGenerator implements LemmaAbsenceQuizCandidateGenerator {
 
     private final String strategyName;
 
-    LemmaAbsenceLlmGenerator(ChatLanguageModel chatModel,
-            LemmaAbsencePromptBuilder promptBuilder,
-            LemmaAbsenceResponseParser responseParser,
-            LangChainErrorClassifier errorClassifier,
-            String strategyName) {
-        this.chatModel = chatModel;
-        this.promptBuilder = promptBuilder;
-        this.responseParser = responseParser;
-        this.errorClassifier = errorClassifier;
-        this.strategyName = strategyName;
-    }
+private final LagenConfig config;
+
+public LemmaAbsenceLlmGenerator(LagenConfig config, LemmaAbsencePromptBuilder promptBuilder, LemmaAbsenceResponseParser responseParser, LangChainErrorClassifier errorClassifier, String strategyName, ChatLanguageModel chatModel) {
+    this.config = config;
+    this.promptBuilder = promptBuilder;
+    this.responseParser = responseParser;
+    this.errorClassifier = errorClassifier;
+    this.strategyName = strategyName;
+    this.chatModel = chatModel;
+}
 
     @Override
     public LemmaAbsenceGeneratorResponse generate(LemmaAbsenceCorrectionContext context) {

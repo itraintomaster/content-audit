@@ -463,11 +463,11 @@ Two things live here today: the team-mode toggle, and per-role model overrides.
 ```yaml
 agents:
   teamMode:
-    enabled: true                # opt in to .claude/agents/team/<role>.md flavors
+    enabled: true                # write team-flavor prompts to .claude/agents/<role>.md
   architect:                     # any subset of: architect, analyst, qa-tester,
     model: opus                  # developer, test-writer
   qa-tester:
     model: haiku                 # ~10x cheaper for the mostly-mechanical role
 ```
 
-**Defaults** (used when a role's `model:` is omitted): architect / analyst / qa-tester → `opus`; developer / test-writer → `sonnet`. Declared values are written into `.claude/agents/<role>.md` and `.claude/agents/team/<role>.md` on every `sentinel generate`, so the override survives regeneration. Hand-edits to the generated `model:` line are overwritten — declare it in `sentinel.yaml` instead.
+**Defaults** (used when a role's `model:` is omitted): architect / analyst / qa-tester → `opus`; developer / test-writer → `sonnet`. Declared values are written into `.claude/agents/<role>.md` on every `sentinel generate`, so the override survives regeneration. When `teamMode.enabled: true`, that same file holds the team-flavored prompt (with `SendMessage` and the team protocol) — Claude Code's Agent tool always resolves `subagent_type` from `.claude/agents/<name>.md`, so there is no separate `team/` directory to keep in sync. Hand-edits to the generated `model:` line are overwritten — declare it in `sentinel.yaml` instead.

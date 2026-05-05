@@ -1161,10 +1161,32 @@ new MisplacedLemmaContext(String lemma, String pos, CefrLevel expectedLevel, Cef
 | `misplacedLemmas` | `List<MisplacedLemmaContext>` | Import `java.util.List` |
 | `suggestedLemmas` | `List<SuggestedLemma>` | Import `java.util.List` |
 | `quizSentence` | `String` |  |
+| `tokenCount` | `Integer` |  |
+| `targetMin` | `Integer` |  |
+| `targetMax` | `Integer` |  |
+| `delta` | `Integer` |  |
+| `lengthDirection` | `LengthDirection` |  |
 
 **Generated constructor:**
 ```java
-new LemmaAbsenceCorrectionContext(String taskId, String sentence, String translation, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas, List<SuggestedLemma> suggestedLemmas, String quizSentence)
+new LemmaAbsenceCorrectionContext(String taskId, String sentence, String translation, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas, List<SuggestedLemma> suggestedLemmas, String quizSentence, Integer tokenCount, Integer targetMin, Integer targetMax, Integer delta, LengthDirection lengthDirection)
+```
+
+#### LengthDirection
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `SHORTEN` | `null` |  |
+| `LENGTHEN` | `null` |  |
+| `KEEP_SAME` | `null` |  |
+| `UNKNOWN` | `null` |  |
+
+**Generated constructor:**
+```java
+new LengthDirection(null SHORTEN, null LENGTHEN, null KEEP_SAME, null UNKNOWN)
 ```
 
 ### Module: audit-cli

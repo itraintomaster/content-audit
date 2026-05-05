@@ -12,6 +12,7 @@ import com.learney.contentaudit.auditdomain.DefaultKnowledgeDiagnoses;
 import com.learney.contentaudit.auditdomain.DefaultLevelDiagnoses;
 import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
 import com.learney.contentaudit.auditdomain.DefaultTopicDiagnoses;
+import com.learney.contentaudit.auditdomain.SentenceLengthDiagnosis;
 import com.learney.contentaudit.auditdomain.labs.AbsenceType;
 import com.learney.contentaudit.auditdomain.labs.AbsentLemma;
 import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis;
@@ -139,6 +140,16 @@ public class LemmaAbsenceContextResolverTest {
 
     private DefaultQuizDiagnoses buildQuizDiagnosesNoPlacement() {
         return new DefaultQuizDiagnoses();
+    }
+
+    private DefaultQuizDiagnoses buildQuizDiagnosesWithPlacementAndLength(
+            List<MisplacedLemma> misplacedLemmas,
+            int tokenCount, int targetMin, int targetMax, int delta) {
+        DefaultQuizDiagnoses d = buildQuizDiagnosesWithPlacement(misplacedLemmas);
+        SentenceLengthDiagnosis sld = new SentenceLengthDiagnosis(
+                tokenCount, targetMin, targetMax, CefrLevel.A1, delta, 0);
+        d.setSentenceLengthDiagnosis(sld);
+        return d;
     }
 
     private DefaultLevelDiagnoses buildMilestoneDiagnoses(CefrLevel level,
@@ -891,5 +902,397 @@ public class LemmaAbsenceContextResolverTest {
 
         Assertions.assertTrue(result.isPresent());
         Assertions.assertEquals("my-specific-task-id-la", result.get().getTaskId());
+    }
+
+    @Test
+    @DisplayName("should populate tokenCount on the correction context from SentenceLengthDiagnosis on the quiz node")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R001")
+    public void shouldPopulateTokenCountOnTheCorrectionContextFromSentenceLengthDiagnosisOnTheQuizNode() {
+        // Arrange: quiz node with LemmaPlacementDiagnosis AND SentenceLengthDiagnosis (tokenCount=10)
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-01", null, null, "La traduccion.", List.of("The sentence."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-01", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-01", "T01", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-01", "A1", null);
+
+        MisplacedLemma ml = buildMisplacedLemma("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840);
+        // tokenCount=10, targetMin=5, targetMax=8, delta=2 (exceeds range)
+        DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacementAndLength(List.of(ml), 10, 5, 8, 2);
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = buildTask("quiz-rclalen-01");
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: tokenCount must be copied from SentenceLengthDiagnosis
+        Assertions.assertTrue(result.isPresent());
+        Assertions.assertEquals(Integer.valueOf(10), result.get().getTokenCount());
+    }
+
+    @Test
+    @DisplayName("should populate targetMin and targetMax on the correction context from SentenceLengthDiagnosis on the quiz node")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R001")
+    public void shouldPopulateTargetMinAndTargetMaxOnTheCorrectionContextFromSentenceLengthDiagnosisOnTheQuizNode() {
+        // Arrange: quiz node with SentenceLengthDiagnosis reporting targetMin=5, targetMax=8
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-02", null, null, "La traduccion.", List.of("The sentence."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-02", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-02", "T02", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-02", "A1", null);
+
+        MisplacedLemma ml = buildMisplacedLemma("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205);
+        // tokenCount=6 is within range [5,8], delta=0
+        DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacementAndLength(List.of(ml), 6, 5, 8, 0);
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = buildTask("quiz-rclalen-02");
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: targetMin and targetMax must be copied from SentenceLengthDiagnosis
+        Assertions.assertTrue(result.isPresent());
+        LemmaAbsenceCorrectionContext ctx = result.get();
+        Assertions.assertEquals(Integer.valueOf(5), ctx.getTargetMin());
+        Assertions.assertEquals(Integer.valueOf(8), ctx.getTargetMax());
+    }
+
+    @Test
+    @DisplayName("should populate delta on the correction context from SentenceLengthDiagnosis on the quiz node")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R001")
+    public void shouldPopulateDeltaOnTheCorrectionContextFromSentenceLengthDiagnosisOnTheQuizNode() {
+        // Arrange: SentenceLengthDiagnosis with delta=-2 (sentence too short)
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-03", null, null, "La oracion.", List.of("The sentence."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-03", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-03", "T03", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-03", "A1", null);
+
+        MisplacedLemma ml = buildMisplacedLemma("like", "VERB", CefrLevel.A2, CefrLevel.A1, 52);
+        // tokenCount=3, targetMin=5, targetMax=8, delta=-2 (below range)
+        DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacementAndLength(List.of(ml), 3, 5, 8, -2);
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = buildTask("quiz-rclalen-03");
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: delta must be copied from SentenceLengthDiagnosis
+        Assertions.assertTrue(result.isPresent());
+        Assertions.assertEquals(Integer.valueOf(-2), result.get().getDelta());
+    }
+
+    @Test
+    @DisplayName("should populate lengthDirection on the correction context as a non-null enum value derived by the resolver")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R001")
+    public void shouldPopulateLengthDirectionOnTheCorrectionContextAsANonnullEnumValueDerivedByTheResolver() {
+        // Arrange: any valid SentenceLengthDiagnosis — verifies that lengthDirection is always set (non-null)
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-04", null, null, "La oracion.", List.of("The sentence."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-04", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-04", "T04", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-04", "A1", null);
+
+        MisplacedLemma ml = buildMisplacedLemma("see", "VERB", CefrLevel.A2, CefrLevel.A1, 75);
+        // delta=2 (exceeds range) -> SHORTEN
+        DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacementAndLength(List.of(ml), 10, 5, 8, 2);
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = buildTask("quiz-rclalen-04");
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: lengthDirection is always non-null and is a valid LengthDirection value
+        Assertions.assertTrue(result.isPresent());
+        LengthDirection lengthDirection = result.get().getLengthDirection();
+        Assertions.assertNotNull(lengthDirection);
+        Assertions.assertEquals(LengthDirection.SHORTEN, lengthDirection);
+    }
+
+    @Test
+    @DisplayName("should set lengthDirection to SHORTEN when delta is greater than zero")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R002")
+    public void shouldSetLengthDirectionToSHORTENWhenDeltaIsGreaterThanZero() {
+        // Arrange: sentence has 10 tokens in range [5,8], so delta=+2 (exceeds max)
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-05", null, null, "La oracion larga.", List.of("The longer sentence today."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-05", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-05", "T05", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-05", "A1", null);
+
+        MisplacedLemma ml = buildMisplacedLemma("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840);
+        // delta=2 > 0 => SHORTEN
+        DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacementAndLength(List.of(ml), 10, 5, 8, 2);
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = buildTask("quiz-rclalen-05");
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: delta > 0 maps to SHORTEN
+        Assertions.assertTrue(result.isPresent());
+        Assertions.assertEquals(LengthDirection.SHORTEN, result.get().getLengthDirection());
+    }
+
+    @Test
+    @DisplayName("should set lengthDirection to LENGTHEN when delta is less than zero")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R002")
+    public void shouldSetLengthDirectionToLENGTHENWhenDeltaIsLessThanZero() {
+        // Arrange: sentence has 3 tokens in range [5,8], so delta=-2 (below min)
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-06", null, null, "La oracion.", List.of("Short sentence."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-06", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-06", "T06", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-06", "A1", null);
+
+        MisplacedLemma ml = buildMisplacedLemma("walk", "VERB", CefrLevel.A2, CefrLevel.A1, 300);
+        // delta=-2 < 0 => LENGTHEN
+        DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacementAndLength(List.of(ml), 3, 5, 8, -2);
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = buildTask("quiz-rclalen-06");
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: delta < 0 maps to LENGTHEN
+        Assertions.assertTrue(result.isPresent());
+        Assertions.assertEquals(LengthDirection.LENGTHEN, result.get().getLengthDirection());
+    }
+
+    @Test
+    @DisplayName("should set lengthDirection to KEEP_SAME when delta is exactly zero")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R002")
+    public void shouldSetLengthDirectionToKEEPSAMEWhenDeltaIsExactlyZero() {
+        // Arrange: sentence has 6 tokens in range [5,8], so delta=0 (within range)
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-07", null, null, "La oracion exacta.", List.of("She loves the book."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-07", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-07", "T07", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-07", "A1", null);
+
+        MisplacedLemma ml = buildMisplacedLemma("book", "NOUN", CefrLevel.A2, CefrLevel.A1, 100);
+        // tokenCount=6, targetMin=5, targetMax=8, delta=0 => KEEP_SAME
+        DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacementAndLength(List.of(ml), 6, 5, 8, 0);
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = buildTask("quiz-rclalen-07");
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: delta == 0 maps to KEEP_SAME
+        Assertions.assertTrue(result.isPresent());
+        Assertions.assertEquals(LengthDirection.KEEP_SAME, result.get().getLengthDirection());
+    }
+
+    @Test
+    @DisplayName("should set lengthDirection to UNKNOWN when SentenceLengthDiagnosis is not available on the quiz node")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R002")
+    public void shouldSetLengthDirectionToUNKNOWNWhenSentenceLengthDiagnosisIsNotAvailableOnTheQuizNode() {
+        // Arrange: quiz node with LemmaPlacementDiagnosis but NO SentenceLengthDiagnosis
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-08", null, null, "La oracion.", List.of("The sentence."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-08", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-08", "T08", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-08", "A1", null);
+
+        MisplacedLemma ml = buildMisplacedLemma("sit", "VERB", CefrLevel.A2, CefrLevel.A1, 400);
+        // No SentenceLengthDiagnosis on the quiz node
+        DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacement(List.of(ml));
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = buildTask("quiz-rclalen-08");
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: absent SentenceLengthDiagnosis => UNKNOWN is the sole discriminator
+        Assertions.assertTrue(result.isPresent());
+        Assertions.assertEquals(LengthDirection.UNKNOWN, result.get().getLengthDirection());
+    }
+
+    @Test
+    @DisplayName("should read SentenceLengthDiagnosis from the same quiz node already used to obtain LemmaPlacementDiagnosis")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R003")
+    public void shouldReadSentenceLengthDiagnosisFromTheSameQuizNodeAlreadyUsedToObtainLemmaPlacementDiagnosis() {
+        // Arrange: two quiz nodes in the same tree. Only the target quiz carries SentenceLengthDiagnosis.
+        // The other quiz has placement but no length — if the resolver used the wrong node, it would
+        // return UNKNOWN instead of SHORTEN for the target quiz.
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Mixed", "Do it.", true, "know-rclalen-09", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-09", "T09", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-09", "A1", null);
+
+        AuditableQuiz quiz1 = new AuditableQuiz(List.of(), "quiz-rclalen-09a", null, null, "Otra oracion.", List.of("Another sentence."), null);
+        AuditableQuiz quiz2 = new AuditableQuiz(List.of(), "quiz-rclalen-09b", null, null, "La oracion objetivo.", List.of("The target sentence with extra words."), null);
+
+        MisplacedLemma ml1 = buildMisplacedLemma("other", "ADJ", CefrLevel.A2, CefrLevel.A1, 600);
+        MisplacedLemma ml2 = buildMisplacedLemma("extra", "ADJ", CefrLevel.B1, CefrLevel.A1, 800);
+
+        // quiz1: has placement but NO SentenceLengthDiagnosis
+        DefaultQuizDiagnoses diag1 = buildQuizDiagnosesWithPlacement(List.of(ml1));
+        // quiz2 (target): has both placement AND SentenceLengthDiagnosis with delta=3 => SHORTEN
+        DefaultQuizDiagnoses diag2 = buildQuizDiagnosesWithPlacementAndLength(List.of(ml2), 11, 5, 8, 3);
+
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode courseNode = buildCourseNode();
+        AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone, milestoneDiag);
+        AuditNode topicNode = buildTopicNode(milestoneNode, topic);
+        AuditNode knowledgeNode = buildKnowledgeNode(topicNode, knowledge);
+        buildQuizNode(knowledgeNode, quiz1, diag1);
+        buildQuizNode(knowledgeNode, quiz2, diag2);
+
+        AuditReport report = new AuditReport(courseNode);
+        RefinementTask task = buildTask("quiz-rclalen-09b");
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: SentenceLengthDiagnosis was read from quiz-rclalen-09b (same node as LemmaPlacementDiagnosis)
+        Assertions.assertTrue(result.isPresent());
+        LemmaAbsenceCorrectionContext ctx = result.get();
+        Assertions.assertEquals(LengthDirection.SHORTEN, ctx.getLengthDirection());
+        Assertions.assertEquals(Integer.valueOf(11), ctx.getTokenCount());
+        Assertions.assertEquals(Integer.valueOf(3), ctx.getDelta());
+    }
+
+    @Test
+    @DisplayName("should not introduce any new traversal of the audit tree to read SentenceLengthDiagnosis")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R003")
+    public void shouldNotIntroduceAnyNewTraversalOfTheAuditTreeToReadSentenceLengthDiagnosis() {
+        // Arrange: two quiz nodes under the same knowledge. The task targets quiz-rclalen-10b.
+        // quiz-rclalen-10a has a SentenceLengthDiagnosis with delta=5 (SHORTEN).
+        // quiz-rclalen-10b has its own SentenceLengthDiagnosis with delta=-1 (LENGTHEN).
+        // If the resolver traversed the tree a second time (or used the wrong node), it could
+        // pick up the wrong SentenceLengthDiagnosis. The assertion checks that the result
+        // reflects the diagnosis from the node identified by the task's nodeId.
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Grammar", "Complete.", true, "know-rclalen-10", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-10", "T10", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-10", "A1", null);
+
+        AuditableQuiz quiz1 = new AuditableQuiz(List.of(), "quiz-rclalen-10a", null, null, "Primera.", List.of("First sentence longer than allowed."), null);
+        AuditableQuiz quiz2 = new AuditableQuiz(List.of(), "quiz-rclalen-10b", null, null, "Segunda.", List.of("Short."), null);
+
+        MisplacedLemma ml1 = buildMisplacedLemma("longer", "ADJ", CefrLevel.B1, CefrLevel.A1, 700);
+        MisplacedLemma ml2 = buildMisplacedLemma("short", "ADJ", CefrLevel.A2, CefrLevel.A1, 300);
+
+        // quiz1: delta=5 => SHORTEN (wrong node for the task)
+        DefaultQuizDiagnoses diag1 = buildQuizDiagnosesWithPlacementAndLength(List.of(ml1), 13, 5, 8, 5);
+        // quiz2 (target): delta=-1 => LENGTHEN
+        DefaultQuizDiagnoses diag2 = buildQuizDiagnosesWithPlacementAndLength(List.of(ml2), 4, 5, 8, -1);
+
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode courseNode = buildCourseNode();
+        AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone, milestoneDiag);
+        AuditNode topicNode = buildTopicNode(milestoneNode, topic);
+        AuditNode knowledgeNode = buildKnowledgeNode(topicNode, knowledge);
+        buildQuizNode(knowledgeNode, quiz1, diag1);
+        buildQuizNode(knowledgeNode, quiz2, diag2);
+
+        AuditReport report = new AuditReport(courseNode);
+        RefinementTask task = buildTask("quiz-rclalen-10b");
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: values come from quiz-rclalen-10b, not from quiz-rclalen-10a
+        Assertions.assertTrue(result.isPresent());
+        LemmaAbsenceCorrectionContext ctx = result.get();
+        Assertions.assertEquals(LengthDirection.LENGTHEN, ctx.getLengthDirection());
+        Assertions.assertEquals(Integer.valueOf(4), ctx.getTokenCount());
+        Assertions.assertEquals(Integer.valueOf(-1), ctx.getDelta());
+    }
+
+    @Test
+    @DisplayName("should still produce a correction context when LemmaPlacementDiagnosis is present but SentenceLengthDiagnosis is absent on the quiz node")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R004")
+    public void shouldStillProduceACorrectionContextWhenLemmaPlacementDiagnosisIsPresentButSentenceLengthDiagnosisIsAbsentOnTheQuizNode() {
+        // Arrange: quiz node has LemmaPlacementDiagnosis but NO SentenceLengthDiagnosis
+        // (e.g. quiz excluded from sentence-length analyzer by F-DSLEN-R002)
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-11", null, null, "La oracion sin longitud.", List.of("The sentence without length."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-11", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-11", "T11", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-11", "A1", null);
+
+        MisplacedLemma ml = buildMisplacedLemma("length", "NOUN", CefrLevel.B1, CefrLevel.A1, 900);
+        // Only LemmaPlacementDiagnosis — no SentenceLengthDiagnosis set
+        DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacement(List.of(ml));
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = buildTask("quiz-rclalen-11");
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: resolver must not fail — it returns a present context with UNKNOWN as the discriminator
+        Assertions.assertTrue(result.isPresent());
+        Assertions.assertEquals(LengthDirection.UNKNOWN, result.get().getLengthDirection());
+    }
+
+    @Test
+    @DisplayName("should leave non-length fields of the correction context populated normally when SentenceLengthDiagnosis is absent")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R004")
+    public void shouldLeaveNonlengthFieldsOfTheCorrectionContextPopulatedNormallyWhenSentenceLengthDiagnosisIsAbsent() {
+        // Arrange: quiz node with LemmaPlacementDiagnosis but NO SentenceLengthDiagnosis.
+        // The non-length fields (sentence, translation, knowledgeTitle, etc.) must be populated
+        // normally as per F-RCLA-R003 — length absence is an enricher absence, not a context failure.
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-12", null, null, "Ella canta.", List.of("She sings."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Music Theory", "Complete the blank.", true, "know-rclalen-12", null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-12", "Arts", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-12", "A2", null);
+
+        MisplacedLemma ml = buildMisplacedLemma("sing", "VERB", CefrLevel.B1, CefrLevel.A2, 450);
+        // Only LemmaPlacementDiagnosis — no SentenceLengthDiagnosis
+        DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacement(List.of(ml));
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A2, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = buildTask("quiz-rclalen-12");
+
+        // Act
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        // Assert: all non-length fields are populated normally despite absent SentenceLengthDiagnosis
+        Assertions.assertTrue(result.isPresent());
+        LemmaAbsenceCorrectionContext ctx = result.get();
+        Assertions.assertEquals("She sings.", ctx.getSentence());
+        Assertions.assertEquals("Ella canta.", ctx.getTranslation());
+        Assertions.assertEquals("Music Theory", ctx.getKnowledgeTitle());
+        Assertions.assertEquals("Complete the blank.", ctx.getKnowledgeInstructions());
+        Assertions.assertEquals("Arts", ctx.getTopicLabel());
+        Assertions.assertEquals(CefrLevel.A2, ctx.getCefrLevel());
+        Assertions.assertNotNull(ctx.getMisplacedLemmas());
+        Assertions.assertFalse(ctx.getMisplacedLemmas().isEmpty());
+        // Length fields: discriminator is UNKNOWN, other length fields are placeholder (not asserted here per TECH_SPEC)
+        Assertions.assertEquals(LengthDirection.UNKNOWN, ctx.getLengthDirection());
     }
 }

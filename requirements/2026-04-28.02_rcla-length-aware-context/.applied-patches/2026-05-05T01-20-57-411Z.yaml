@@ -1,0 +1,62 @@
+code: FEAT-RCLALEN
+description: "FEAT-RCLALEN: enriquece LemmaAbsenceCorrectionContext con cinco campos\
+  \ de longitud (tokenCount, targetMin, targetMax, delta, lengthDirection) leyendo\
+  \ SentenceLengthDiagnosis del mismo nodo quiz que ya provee LemmaPlacementDiagnosis.\
+  \ Sin nuevos puertos, sin nuevos analyzers, sin nuevos recorridos del arbol."
+modules:
+- name: refiner-domain
+  models:
+  - name: LengthDirection
+    type: enum
+    fields:
+    - name: SHORTEN
+      description: La oracion excede el rango (delta > 0); el LLM debe acortarla mientras
+        reemplaza vocabulario.
+    - name: LENGTHEN
+      description: La oracion esta por debajo del rango (delta < 0); el LLM tiene
+        margen para incorporar mas vocabulario sugerido.
+    - name: KEEP_SAME
+      description: La oracion esta dentro del rango (delta == 0); el LLM debe mantener
+        una longitud similar al reemplazar.
+    - name: UNKNOWN
+      description: No hay SentenceLengthDiagnosis disponible para el nodo quiz (F-RCLALEN-R004);
+        el LLM solo se gua por las reglas existentes de FEAT-RCLA.
+    visibility: public
+    glossarySuggestions:
+    - name: Length Direction
+      technicalName: LengthDirection
+      kind: value-object-candidate
+      basedOn: refiner-domain/LengthDirection
+      rationale: |
+        Etiqueta accionable y enumerable que el contexto de correccion expone al LLM. Si surge la necesidad de razonarla en otros contextos (revision, refinement, reportes), promover a termino canonico del glosario.
+    _change: add
+  - name: LemmaAbsenceCorrectionContext
+    type: record
+    fields:
+    - name: tokenCount
+      type: Integer
+      description: |
+        Cantidad actual de tokens en la oracion del quiz, copiada de SentenceLengthDiagnosis.tokenCount sobre el mismo nodo quiz (F-RCLALEN-R001, F-RCLALEN-R003). Nullable cuando no hay diagnostico de longitud disponible (F-RCLALEN-R004); reusa nombre y semantica de F-RCSL-R001.
+      _change: add
+    - name: targetMin
+      type: Integer
+      description: |
+        Minimo de tokens esperados para el nivel CEFR del quiz, copiado de SentenceLengthDiagnosis.targetMin (F-RCLALEN-R001). Nullable cuando no hay diagnostico (F-RCLALEN-R004).
+      _change: add
+    - name: targetMax
+      type: Integer
+      description: |
+        Maximo de tokens esperados para el nivel CEFR del quiz, copiado de SentenceLengthDiagnosis.targetMax (F-RCLALEN-R001). Nullable cuando no hay diagnostico (F-RCLALEN-R004).
+      _change: add
+    - name: delta
+      type: Integer
+      description: |
+        Desviacion respecto al rango: 0 si esta dentro, positivo si excede el maximo, negativo si esta por debajo del minimo (F-RCLALEN-R001). Nullable cuando no hay diagnostico (F-RCLALEN-R004). Misma convencion de signo que F-RCSL-R001.
+      _change: add
+    - name: lengthDirection
+      type: LengthDirection
+      description: |
+        Direccion accionable derivada del signo de delta por el resolver (F-RCLALEN-R002). Cuando no hay SentenceLengthDiagnosis se establece a UNKNOWN (F-RCLALEN-R004), nunca null. Pre-calculado del lado del sistema para que el prompt LLM sea deterministico y la salida CLI tenga una etiqueta legible para humanos.
+      _change: add
+    _change: modify
+  _change: modify

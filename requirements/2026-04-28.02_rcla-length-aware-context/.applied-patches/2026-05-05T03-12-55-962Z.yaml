@@ -1,0 +1,148 @@
+code: FEAT-RCLALEN
+modules:
+- name: refiner-domain
+  implementations:
+  - name: LemmaAbsenceContextResolver
+    handwrittenTests:
+    - name: should populate tokenCount on the correction context from SentenceLengthDiagnosis
+        on the quiz node
+      traceability:
+        feature: FEAT-RCLALEN
+        rule: F-RCLALEN-R001
+    - name: should populate targetMin and targetMax on the correction context from
+        SentenceLengthDiagnosis on the quiz node
+      traceability:
+        feature: FEAT-RCLALEN
+        rule: F-RCLALEN-R001
+    - name: should populate delta on the correction context from SentenceLengthDiagnosis
+        on the quiz node
+      traceability:
+        feature: FEAT-RCLALEN
+        rule: F-RCLALEN-R001
+    - name: should populate lengthDirection on the correction context as a non-null
+        enum value derived by the resolver
+      traceability:
+        feature: FEAT-RCLALEN
+        rule: F-RCLALEN-R001
+    - name: should set lengthDirection to SHORTEN when delta is greater than zero
+      traceability:
+        feature: FEAT-RCLALEN
+        rule: F-RCLALEN-R002
+    - name: should set lengthDirection to LENGTHEN when delta is less than zero
+      traceability:
+        feature: FEAT-RCLALEN
+        rule: F-RCLALEN-R002
+    - name: should set lengthDirection to KEEP_SAME when delta is exactly zero
+      traceability:
+        feature: FEAT-RCLALEN
+        rule: F-RCLALEN-R002
+    - name: should set lengthDirection to UNKNOWN when SentenceLengthDiagnosis is
+        not available on the quiz node
+      traceability:
+        feature: FEAT-RCLALEN
+        rule: F-RCLALEN-R002
+    - name: should read SentenceLengthDiagnosis from the same quiz node already used
+        to obtain LemmaPlacementDiagnosis
+      traceability:
+        feature: FEAT-RCLALEN
+        rule: F-RCLALEN-R003
+    - name: should not introduce any new traversal of the audit tree to read SentenceLengthDiagnosis
+      traceability:
+        feature: FEAT-RCLALEN
+        rule: F-RCLALEN-R003
+    - name: should still produce a correction context when LemmaPlacementDiagnosis
+        is present but SentenceLengthDiagnosis is absent on the quiz node
+      traceability:
+        feature: FEAT-RCLALEN
+        rule: F-RCLALEN-R004
+    - name: should leave non-length fields of the correction context populated normally
+        when SentenceLengthDiagnosis is absent
+      traceability:
+        feature: FEAT-RCLALEN
+        rule: F-RCLALEN-R004
+- name: revision-infrastructure
+  packages:
+  - name: lagenopenai
+    implementations:
+    - name: DefaultLemmaAbsencePromptBuilder
+      handwrittenTests:
+      - name: buildUserPrompt should include a length section with tokenCount targetMin
+          targetMax delta and lengthDirection when the context exposes a known length
+          direction
+        traceability:
+          feature: FEAT-RCLALEN
+          rule: F-RCLALEN-R001
+      - name: buildUserPrompt should omit the length section when lengthDirection
+          is UNKNOWN
+        traceability:
+          feature: FEAT-RCLALEN
+          rule: F-RCLALEN-R004
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: GetCmd
+      handwrittenTests:
+      - name: should include tokenCount and targetRange with min and max and delta
+          and lengthDirection in JSON correctionContext for LEMMA_ABSENCE when length
+          direction is known
+        traceability:
+          feature: FEAT-RCLALEN
+          rule: F-RCLALEN-R005
+      - name: should serialize lengthDirection as SHORTEN in JSON correctionContext
+          when delta is positive for LEMMA_ABSENCE
+        traceability:
+          feature: FEAT-RCLALEN
+          rule: F-RCLALEN-R005
+      - name: should serialize lengthDirection as KEEP_SAME in JSON correctionContext
+          when delta is zero for LEMMA_ABSENCE
+        traceability:
+          feature: FEAT-RCLALEN
+          rule: F-RCLALEN-R005
+      - name: should serialize lengthDirection as LENGTHEN in JSON correctionContext
+          when delta is negative for LEMMA_ABSENCE
+        traceability:
+          feature: FEAT-RCLALEN
+          rule: F-RCLALEN-R005
+      - name: should omit tokenCount targetRange and delta from JSON correctionContext
+          and serialize lengthDirection as UNKNOWN for LEMMA_ABSENCE when length diagnosis
+          is unavailable
+        traceability:
+          feature: FEAT-RCLALEN
+          rule: F-RCLALEN-R005
+      - name: should print a Length line between CEFR Level and Misplaced lemmas in
+          text format for LEMMA_ABSENCE
+        traceability:
+          feature: FEAT-RCLALEN
+          rule: F-RCLALEN-R006
+      - name: should format the Length line with explicit plus sign on positive delta
+          and direction SHORTEN in text format for LEMMA_ABSENCE
+        traceability:
+          feature: FEAT-RCLALEN
+          rule: F-RCLALEN-R006
+      - name: should format the Length line with delta zero and direction KEEP_SAME
+          in text format for LEMMA_ABSENCE
+        traceability:
+          feature: FEAT-RCLALEN
+          rule: F-RCLALEN-R006
+      - name: should format the Length line with negative delta and direction LENGTHEN
+          in text format for LEMMA_ABSENCE
+        traceability:
+          feature: FEAT-RCLALEN
+          rule: F-RCLALEN-R006
+      - name: should render the Length line as unavailable with direction UNKNOWN
+          in text format for LEMMA_ABSENCE when length diagnosis is missing
+        traceability:
+          feature: FEAT-RCLALEN
+          rule: F-RCLALEN-R006
+features:
+- id: FEAT-RCLALEN
+  journeys:
+  - id: F-RCLALEN-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-RCLALEN-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys

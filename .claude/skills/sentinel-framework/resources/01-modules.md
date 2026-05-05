@@ -70,11 +70,11 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditdomain` |
-| Depends On | (none — leaf module) |
+| Depends On | course-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
 | Models | 14 (AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary) |
-| Interfaces | 20 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore) |
+| Interfaces | 21 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper) |
 | Implementations | 5 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator) |
 | Packages | 3 (coca [internal], lrec [internal], labs [internal]) |
 
@@ -103,7 +103,7 @@ project-root/
 | Depends On | audit-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 8 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext) |
+| Models | 9 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection) |
 | Interfaces | 4 (RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext) |
 | Implementations | 4 (SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine) |
 | Packages | 0 |
@@ -117,7 +117,7 @@ project-root/
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 0 |
-| Interfaces | 3 (AuditRunner, CourseMapper, AnalyzerRegistry) |
+| Interfaces | 2 (AuditRunner, AnalyzerRegistry) |
 | Implementations | 7 (CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry) |
 | Packages | 0 |
 
@@ -213,7 +213,7 @@ project-root/
 
 ### revision-infrastructure
 
-> Infrastructure adapter for the revision phase. Provides the LLM-backed implementation of LemmaAbsenceQuizCandidateGenerator (revision-domain.lemmaabsence port) using LangChain4j against any OpenAI-compatible HTTP endpoint (LM Studio, vLLM, OpenAI cloud, Ollama via openai compat, etc.). Exposes a single Factory Seam (LemmaAbsenceLlmGeneratorFactory + LagenConfig carrier + LlmGenerationFailureCategory enum) so the composition root wires the adapter with one call. The adapter uses LangChain4j's legacy chat-message API flavor, generate(List<ChatMessage>), because F-LAGEN needs explicit system/user messages and a simple text response without exposing ChatRequest/ChatResponse in the architectural surface. The adapter, prompt builder, response parser and error classifier all live in an internal package; only the factory class is public. allowedClients=[audit-cli] enforces that this module is an implementation detail of the CLI composition root only (P8 Qualified Export).
+> Infrastructure adapter for the revision phase. Provides the LLM-backed implementation of LemmaAbsenceQuizCandidateGenerator (revision-domain.lemmaabsence port) using LangChain4j against any OpenAI-compatible HTTP endpoint (LM Studio, vLLM, OpenAI cloud, Ollama via openai compat, etc.). Exposes a single Factory Seam (LemmaAbsenceLlmGeneratorFactory + LagenConfig carrier + LlmGenerationFailureCategory enum) so the composition root wires the adapter with one call. The factory is the only piece that consumes LagenConfig: it reads the knobs, builds a ChatLanguageModel via the LangChain4j OpenAI builder, and passes that model directly into LemmaAbsenceLlmGenerator. The generator therefore depends on a chat-model abstraction (not on the LagenConfig record), keeping the inner adapter agnostic of how the model was configured. The adapter uses LangChain4j's legacy chat-message API flavor, generate(List<ChatMessage>), because F-LAGEN needs explicit system/user messages and a simple text response without exposing ChatRequest/ChatResponse in the architectural surface. The adapter, prompt builder, response parser and error classifier all live in an internal package; only the factory class is public. allowedClients=[audit-cli] enforces that this module is an implementation detail of the CLI composition root only (P8 Qualified Export).
 
 | Property | Value |
 |----------|-------|
@@ -229,7 +229,7 @@ project-root/
 ## Dependency Graph
 
 ```
-audit-domain (leaf — no dependencies)
+audit-domain ──depends──> course-domain
 course-domain (leaf — no dependencies)
 refiner-domain ──depends──> audit-domain
 audit-application ──depends──> audit-domain
@@ -267,7 +267,7 @@ revision-infrastructure ──depends──> refiner-domain
 
 | Module | Can Import From | Who Can Import This |
 |--------|----------------|--------------------|
-| audit-domain | (none) | (any) |
+| audit-domain | course-domain | (any) |
 | course-domain | (none) | (any) |
 | refiner-domain | audit-domain | (any) |
 | audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain | (any) |

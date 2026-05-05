@@ -71,7 +71,7 @@ final class PlanCmd implements PlanCommand, Callable<Integer> {
     }
 
     @Override
-    public int plan(String auditId) {
+    public Integer plan(String auditId) {
         Optional<AuditReport> reportOpt;
         String resolvedAuditId;
 

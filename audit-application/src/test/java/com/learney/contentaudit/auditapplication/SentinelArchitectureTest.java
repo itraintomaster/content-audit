@@ -48,11 +48,6 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: AuditRunner - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditapplication.CourseMapper");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: CourseMapper - " + e.getMessage());
-    }
-    try {
       Class.forName("com.learney.contentaudit.auditapplication.AnalyzerRegistry");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AnalyzerRegistry - " + e.getMessage());

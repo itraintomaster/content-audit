@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
+import com.learney.contentaudit.refinerdomain.LengthDirection;
 import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
 import com.learney.contentaudit.auditdomain.CefrLevel;
@@ -278,5 +279,97 @@ public class DefaultLemmaAbsencePromptBuilderTest {
                 "User prompt must be non-blank even with empty optional lists (R003)");
         assertTrue(userPrompt.contains("She ____[walks|runs]."),
                 "User prompt must still contain the quizSentence (R003)");
+    }
+
+    @Test
+    @DisplayName("buildUserPrompt should include a length section with tokenCount targetMin targetMax delta and lengthDirection when the context exposes a known length direction")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R001")
+    public void buildUserPromptShouldIncludeALengthSectionWithTokenCountTargetMinTargetMaxDeltaAndLengthDirectionWhenTheContextExposesAKnownLengthDirection() {
+        // F-RCLALEN-R001: el contexto enriquecido expone tokenCount, targetMin, targetMax, delta y
+        // lengthDirection. El prompt builder debe incluirlos en el user prompt cuando
+        // lengthDirection != UNKNOWN (TECH_SPEC invariante de consumidores).
+        // Escenario: oracion de 10 tokens, rango A1 5-8, delta=+2, direccion=SHORTEN.
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-rclalen-r001",
+                "She needs to negotiate the contract before Friday afternoon.",
+                "Ella necesita negociar el contrato antes del viernes por la tarde.",
+                "Affirmative sentences in present simple",
+                "Write affirmative sentences.",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new SuggestedLemma("like", "VERB", "A1 common verb", 52)),
+                "She ____[needs|wants] to negotiate the contract.",
+                10,
+                5,
+                8,
+                2,
+                LengthDirection.SHORTEN
+        );
+
+        String userPrompt = builder.buildUserPrompt(ctx);
+
+        // The user prompt must expose all five length fields so the LLM can act on them (R001).
+        assertTrue(userPrompt.contains("10"),
+                "User prompt must include tokenCount (10) in the length section (F-RCLALEN-R001): " + userPrompt);
+        assertTrue(userPrompt.contains("5"),
+                "User prompt must include targetMin (5) in the length section (F-RCLALEN-R001): " + userPrompt);
+        assertTrue(userPrompt.contains("8"),
+                "User prompt must include targetMax (8) in the length section (F-RCLALEN-R001): " + userPrompt);
+        assertTrue(userPrompt.contains("2"),
+                "User prompt must include delta (2) in the length section (F-RCLALEN-R001): " + userPrompt);
+        assertTrue(userPrompt.toLowerCase().contains("shorten"),
+                "User prompt must include lengthDirection SHORTEN in the length section (F-RCLALEN-R001): " + userPrompt);
+    }
+
+    @Test
+    @DisplayName("buildUserPrompt should omit the length section when lengthDirection is UNKNOWN")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R004")
+    public void buildUserPromptShouldOmitTheLengthSectionWhenLengthDirectionIsUNKNOWN() {
+        // F-RCLALEN-R004: cuando lengthDirection == UNKNOWN (ausencia de SentenceLengthDiagnosis),
+        // los valores numericos (tokenCount/targetMin/targetMax/delta) no se exponen al consumidor
+        // y la seccion de longitud queda ausente del prompt LLM (TECH_SPEC invariante de consumidores:
+        // "omitir la seccion de longitud del prompt LLM").
+        // El discriminador unico es lengthDirection == UNKNOWN; los numericos son placeholders (0).
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-rclalen-r004",
+                "She runs every morning.",
+                "Ella corre cada mañana.",
+                "Daily Routines",
+                "Write simple present tense sentences.",
+                "Everyday Life",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 150)),
+                List.of(new SuggestedLemma("walk", "VERB", "A1 level synonym", 80)),
+                "She ____[runs|walks] every morning.",
+                null,
+                null,
+                null,
+                null,
+                LengthDirection.UNKNOWN
+        );
+
+        String userPrompt = builder.buildUserPrompt(ctx);
+
+        // The user prompt must NOT include any length/token section (R004 + TECH_SPEC).
+        // "UNKNOWN" is the discriminator — the prompt builder must suppress the length section entirely.
+        String lowerPrompt = userPrompt.toLowerCase();
+        assertFalse(lowerPrompt.contains("shorten"),
+                "User prompt must not mention SHORTEN when lengthDirection is UNKNOWN (F-RCLALEN-R004): " + userPrompt);
+        assertFalse(lowerPrompt.contains("lengthen"),
+                "User prompt must not mention LENGTHEN when lengthDirection is UNKNOWN (F-RCLALEN-R004): " + userPrompt);
+        assertFalse(lowerPrompt.contains("keep_same"),
+                "User prompt must not mention KEEP_SAME when lengthDirection is UNKNOWN (F-RCLALEN-R004): " + userPrompt);
+        assertFalse(lowerPrompt.contains("tokencount") || userPrompt.contains("token count"),
+                "User prompt must not expose tokenCount when lengthDirection is UNKNOWN (F-RCLALEN-R004): " + userPrompt);
+        assertFalse(lowerPrompt.contains("targetmin") || lowerPrompt.contains("target min")
+                        || lowerPrompt.contains("target range"),
+                "User prompt must not expose targetMin/targetRange when lengthDirection is UNKNOWN (F-RCLALEN-R004): " + userPrompt);
+        // The core fields of the context (sentence, lemmas) must still be present — R004 is
+        // a graceful degradation, not a failure. The LLM still corrects lemma placement.
+        assertTrue(userPrompt.contains("She runs every morning."),
+                "User prompt must still include the sentence even when lengthDirection is UNKNOWN (F-RCLALEN-R004): " + userPrompt);
     }
 }

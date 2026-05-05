@@ -64,7 +64,7 @@ final class PruneCmd implements PruneCommand, Callable<Integer> {
     }
 
     @Override
-    public int prune(String resource, int keep) {
+    public Integer prune(String resource, int keep) {
         if (resource == null || resource.isBlank()) {
             System.err.println("Error: resource is required. Pruneable resources: audits, plans");
             return 1;

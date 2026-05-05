@@ -6,15 +6,18 @@ import java.util.List;
 import java.util.Map;
 
 public class TextReportFormatter implements ReportFormatter {
-    private final DrillDownResolver resolver;
-
-    public TextReportFormatter(DrillDownResolver resolver) {
-        this.resolver = resolver;
+    
+    private final DrillDownResolver drillDownResolver;
+    
+    public TextReportFormatter(DrillDownResolver drillDownResolver) {
+        this.drillDownResolver = drillDownResolver;
     }
+    
 
+    
     @Override
     public String format(ReportViewModel viewModel, DrillDownScope scope) {
-        DrillDownView view = resolver.resolve(viewModel, scope);
+        DrillDownView view = drillDownResolver.resolve(viewModel, scope);
         StringBuilder sb = new StringBuilder();
 
         sb.append(String.format("=== %s === Score: %.1f%%\n",

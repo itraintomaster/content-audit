@@ -14,12 +14,12 @@ public class SuggestedLemma {
 
     private String reason;
 
-    private int cocaRank;
+    private Integer cocaRank;
 
     public SuggestedLemma() {
     }
 
-    public SuggestedLemma(String lemma, String pos, String reason, int cocaRank) {
+    public SuggestedLemma(String lemma, String pos, String reason, Integer cocaRank) {
         this.lemma = lemma;
         this.pos = pos;
         this.reason = reason;
@@ -50,11 +50,11 @@ public class SuggestedLemma {
         this.reason = reason;
     }
 
-    public int getCocaRank() {
+    public Integer getCocaRank() {
         return this.cocaRank;
     }
 
-    public void setCocaRank(int cocaRank) {
+    public void setCocaRank(Integer cocaRank) {
         this.cocaRank = cocaRank;
     }
 

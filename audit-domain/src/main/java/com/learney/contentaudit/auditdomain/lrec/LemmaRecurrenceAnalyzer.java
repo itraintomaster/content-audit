@@ -21,15 +21,10 @@ import javax.annotation.processing.Generated;
 public class LemmaRecurrenceAnalyzer implements ContentAnalyzer {
 
     private static final String ANALYZER_NAME = "lemma-recurrence";
-
     private final ContentWordFilter contentWordFilter;
-
     private final LemmaRecurrenceConfig lemmaRecurrenceConfig;
-
     private final IntervalCalculator intervalCalculator;
-
     private final ExposureClassifier exposureClassifier;
-
     // Tracks global token position counter
     private int globalPosition = 0;
 
@@ -39,14 +34,13 @@ public class LemmaRecurrenceAnalyzer implements ContentAnalyzer {
     // Maps lemma -> POS tag (first observed)
     private final Map<String, String> lemmaPosTag = new HashMap<>();
 
-    public LemmaRecurrenceAnalyzer(ContentWordFilter contentWordFilter,
-            LemmaRecurrenceConfig lemmaRecurrenceConfig, IntervalCalculator intervalCalculator,
-            ExposureClassifier exposureClassifier) {
-        this.contentWordFilter = contentWordFilter;
-        this.lemmaRecurrenceConfig = lemmaRecurrenceConfig;
-        this.intervalCalculator = intervalCalculator;
-        this.exposureClassifier = exposureClassifier;
-    }
+public LemmaRecurrenceAnalyzer(ContentWordFilter contentWordFilter, LemmaRecurrenceConfig lemmaRecurrenceConfig, IntervalCalculator intervalCalculator, ExposureClassifier exposureClassifier) {
+    this.contentWordFilter = contentWordFilter;
+    this.lemmaRecurrenceConfig = lemmaRecurrenceConfig;
+    this.intervalCalculator = intervalCalculator;
+    this.exposureClassifier = exposureClassifier;
+}
+
 
     @Override
     public Void onKnowledge(AuditNode node) {

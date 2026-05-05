@@ -32,6 +32,13 @@ public class DefaultRevisionEngineFactory implements RevisionEngineFactory {
                 ? config.getElementLocator()
                 : new DefaultCourseElementLocator();
 
+        DefaultImpactPreviewComputer impactPreviewComputer = new DefaultImpactPreviewComputer(
+                config.getCourseMapper(),
+                config.getAuditEngine(),
+                elementLocator,
+                config.getAuditReportStore()
+        );
+
         return new DefaultRevisionEngine(
                 config.getRefinementPlanStore(),
                 config.getAuditReportStore(),
@@ -40,7 +47,9 @@ public class DefaultRevisionEngineFactory implements RevisionEngineFactory {
                 validator,
                 config.getArtifactStore(),
                 config.getCourseRepository(),
-                elementLocator
+                elementLocator,
+                impactPreviewComputer,
+                config.getImpactPreviewStore()
         );
     }
 }

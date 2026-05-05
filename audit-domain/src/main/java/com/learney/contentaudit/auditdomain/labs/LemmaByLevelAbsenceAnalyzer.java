@@ -34,6 +34,20 @@ import javax.annotation.processing.Generated;
 )
 public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
 
+    private final EvpCatalogPort evpCatalogPort;
+    private final ContentWordFilter contentWordFilter;
+    private final LemmaAbsenceConfig lemmaAbsenceConfig;
+
+public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFilter contentWordFilter, LemmaAbsenceConfig lemmaAbsenceConfig) {
+    this.evpCatalogPort = evpCatalogPort;
+    this.contentWordFilter = contentWordFilter;
+    this.lemmaAbsenceConfig = lemmaAbsenceConfig;
+}
+
+    // Accumulates present lemmas per CEFR level during traversal
+    // Map<CefrLevel, Set<LemmaAndPos>>
+    private final Map<CefrLevel, Set<LemmaAndPos>> presentLemmasByLevel = new EnumMap<>(CefrLevel.class);
+
     private static final String ANALYZER_NAME = "lemma-absence";
 
     // Critical functional lemmas always treated as content words in A1/A2
@@ -104,20 +118,6 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
         IMPACT_SCORES.put(AbsenceType.APPEARS_TOO_EARLY, 0.6);
     }
 
-    private final EvpCatalogPort evpCatalogPort;
-    private final ContentWordFilter contentWordFilter;
-    private final LemmaAbsenceConfig lemmaAbsenceConfig;
-
-    // Accumulates present lemmas per CEFR level during traversal
-    // Map<CefrLevel, Set<LemmaAndPos>>
-    private final Map<CefrLevel, Set<LemmaAndPos>> presentLemmasByLevel = new EnumMap<>(CefrLevel.class);
-
-    public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort,
-            ContentWordFilter contentWordFilter, LemmaAbsenceConfig lemmaAbsenceConfig) {
-        this.evpCatalogPort = evpCatalogPort;
-        this.contentWordFilter = contentWordFilter;
-        this.lemmaAbsenceConfig = lemmaAbsenceConfig;
-    }
 
     @Override
     public Void onMilestone(AuditNode node) {

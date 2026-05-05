@@ -152,6 +152,18 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should populate quizSentence on the LEMMA_ABSENCE correction context from the AuditableQuiz carrier → FEAT-RCLAQS/F-RCLAQS-R001
 - should copy AuditableQuiz.quizSentence verbatim without recomputing the DSL in the resolver → FEAT-RCLAQS/F-RCLAQS-R002
 - should emit sentence and quizSentence that originate from the same AuditableQuiz so both fields describe the same quiz → FEAT-RCLAQS/F-RCLAQS-R003
+- should populate tokenCount on the correction context from SentenceLengthDiagnosis on the quiz node → FEAT-RCLALEN/F-RCLALEN-R001
+- should populate targetMin and targetMax on the correction context from SentenceLengthDiagnosis on the quiz node → FEAT-RCLALEN/F-RCLALEN-R001
+- should populate delta on the correction context from SentenceLengthDiagnosis on the quiz node → FEAT-RCLALEN/F-RCLALEN-R001
+- should populate lengthDirection on the correction context as a non-null enum value derived by the resolver → FEAT-RCLALEN/F-RCLALEN-R001
+- should set lengthDirection to SHORTEN when delta is greater than zero → FEAT-RCLALEN/F-RCLALEN-R002
+- should set lengthDirection to LENGTHEN when delta is less than zero → FEAT-RCLALEN/F-RCLALEN-R002
+- should set lengthDirection to KEEP_SAME when delta is exactly zero → FEAT-RCLALEN/F-RCLALEN-R002
+- should set lengthDirection to UNKNOWN when SentenceLengthDiagnosis is not available on the quiz node → FEAT-RCLALEN/F-RCLALEN-R002
+- should read SentenceLengthDiagnosis from the same quiz node already used to obtain LemmaPlacementDiagnosis → FEAT-RCLALEN/F-RCLALEN-R003
+- should not introduce any new traversal of the audit tree to read SentenceLengthDiagnosis → FEAT-RCLALEN/F-RCLALEN-R003
+- should still produce a correction context when LemmaPlacementDiagnosis is present but SentenceLengthDiagnosis is absent on the quiz node → FEAT-RCLALEN/F-RCLALEN-R004
+- should leave non-length fields of the correction context populated normally when SentenceLengthDiagnosis is absent → FEAT-RCLALEN/F-RCLALEN-R004
 
 ### DispatchingCorrectionContextResolver (refiner-domain)
 
@@ -302,4 +314,9 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - Given artifacts saved under multiple plan directories, when list() is called, then it returns all of them across all plans → FEAT-REVAPR/F-REVAPR-R002
 - Given the revisions directory is empty or missing, when list() is called, then it returns an empty list → FEAT-REVAPR/F-REVAPR-R002
 - Given the store is constructed with a non-default baseDir, when save is called, then the artifact file lands under <baseDir>/.content-audit/revisions/<planId>/<proposalId>.* and NOT under System.getProperty('user.dir') → FEAT-REVAPR/F-REVAPR-R017
+
+### FileSystemImpactPreviewStore (audit-infrastructure)
+
+- Dado un ImpactPreview ya persistido bajo un proposalId, cuando save se invoca por segunda vez con otro ImpactPreview con el mismo proposalId, entonces findByProposalId retorna el preview persistido originalmente y no el nuevo → FEAT-PIPRE/F-PIPRE-R008
+- Dado un ImpactPreview persistido en disco, cuando findByProposalId se invoca con su proposalId, entonces retorna el ImpactPreview con todos sus levelImpacts, availability y unavailability intactos → FEAT-PIPRE/F-PIPRE-R008
 

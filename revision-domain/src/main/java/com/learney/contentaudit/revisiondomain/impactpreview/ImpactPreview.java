@@ -73,6 +73,15 @@ public class ImpactPreview {
         this.levelImpacts = levelImpacts;
     }
 
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public String proposalId() { return this.proposalId; }
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public ImpactPreviewAvailability availability() { return this.availability; }
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public ImpactPreviewUnavailability unavailability() { return this.unavailability; }
+    /** Record-style accessor alias for tests (F-PIPRE). */
+    public java.util.List<LevelImpact> levelImpacts() { return this.levelImpacts; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

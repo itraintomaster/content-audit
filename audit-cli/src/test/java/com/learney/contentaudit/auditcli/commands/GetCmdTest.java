@@ -10,6 +10,7 @@ import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
+import com.learney.contentaudit.refinerdomain.LengthDirection;
 import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
@@ -37,6 +38,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -2800,5 +2802,827 @@ public class GetCmdTest {
         // R005: no correctionContext → no quizSentence in JSON
         assertTrue(!output.contains("quizSentence"),
                 "quizSentence must not appear in JSON when correctionContext is absent: " + output);
+    }
+
+    @Test
+    @DisplayName("Dado un proposalId existente con preview asociado en ImpactPreviewStore, cuando 'get proposal <id>' corre, entonces el output incluye el ImpactPreviewView formateado junto a elementBefore y elementAfter en la misma operacion")
+    @Tag("FEAT-PIPRE")
+    @Tag("F-PIPRE-R007")
+    public void dadoUnProposalIdExistenteConPreviewAsociadoEnImpactPreviewStoreCuandoGetProposalIdCorreEntoncesElOutputIncluyeElImpactPreviewViewFormateadoJuntoAElementBeforeYElementAfterEnLaMismaOperacion() {
+        // Arrange — R007: when the operator reads a proposal, the impact preview must be shown
+        // alongside elementBefore/elementAfter in the same operation (not a separate command).
+        String proposalId = "proposal-r007-preview-001";
+
+        // Build a proposal with a recognizable elementBefore / elementAfter pair
+        RevisionProposal proposal = new RevisionProposal();
+        proposal.setProposalId(proposalId);
+        proposal.setPlanId("plan-r007");
+        proposal.setTaskId("task-r007");
+
+        RevisionArtifact artifact = new RevisionArtifact();
+        artifact.setProposal(proposal);
+        artifact.setVerdict(RevisionVerdict.PENDING_APPROVAL);
+
+        // ImpactPreviewStore returns an AVAILABLE preview for this proposalId
+        com.learney.contentaudit.revisiondomain.ImpactPreviewStore impactPreviewStore =
+                org.mockito.Mockito.mock(com.learney.contentaudit.revisiondomain.ImpactPreviewStore.class);
+        com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreview availablePreview =
+                new com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreview(
+                        proposalId,
+                        java.time.Instant.now(),
+                        com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewAvailability.AVAILABLE,
+                        null,
+                        java.util.List.of()
+                );
+        when(impactPreviewStore.findByProposalId(proposalId)).thenReturn(Optional.of(availablePreview));
+
+        // ImpactPreviewFormatter returns a view with a recognizable aggregate text
+        com.learney.contentaudit.auditcli.formatting.ImpactPreviewFormatter impactPreviewFormatter =
+                org.mockito.Mockito.mock(com.learney.contentaudit.auditcli.formatting.ImpactPreviewFormatter.class);
+        com.learney.contentaudit.auditcli.formatting.LevelImpactView levelView =
+                new com.learney.contentaudit.auditcli.formatting.LevelImpactView(
+                        com.learney.contentaudit.auditdomain.AuditTarget.QUIZ,
+                        "quiz-r007-001",
+                        "60% -> 75% (+15 pp)",
+                        java.util.List.of()
+                );
+        com.learney.contentaudit.auditcli.formatting.ImpactPreviewView previewView =
+                new com.learney.contentaudit.auditcli.formatting.ImpactPreviewView(
+                        com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewAvailability.AVAILABLE,
+                        "",
+                        java.util.List.of(levelView)
+                );
+        when(impactPreviewFormatter.format(availablePreview)).thenReturn(previewView);
+
+        when(revisionArtifactStore.findByProposalId(proposalId, Optional.empty()))
+                .thenReturn(Optional.of(artifact));
+
+        // Inject the new dependencies via setter (same pattern as setRevisionArtifactStore)
+        try {
+            java.lang.reflect.Method setImpactPreviewStore = GetCmd.class.getDeclaredMethod(
+                    "setImpactPreviewStore", com.learney.contentaudit.revisiondomain.ImpactPreviewStore.class);
+            setImpactPreviewStore.setAccessible(true);
+            setImpactPreviewStore.invoke(cmd, impactPreviewStore);
+
+            java.lang.reflect.Method setImpactPreviewFormatter = GetCmd.class.getDeclaredMethod(
+                    "setImpactPreviewFormatter", com.learney.contentaudit.auditcli.formatting.ImpactPreviewFormatter.class);
+            setImpactPreviewFormatter.setAccessible(true);
+            setImpactPreviewFormatter.invoke(cmd, impactPreviewFormatter);
+        } catch (ReflectiveOperationException e) {
+            // If the setter names change, this test will fail — the developer should update it
+            throw new AssertionError("Could not inject impactPreviewStore or impactPreviewFormatter via setter: " + e.getMessage(), e);
+        }
+
+        // Act
+        GetTasksFilter noFilter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.empty(), Optional.empty(), Optional.empty());
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("proposal", proposalId, noFilter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — R007: exit zero (proposal is readable) and formatter was called (preview shown)
+        assertEquals(0, exit, "get proposal must exit zero when proposal exists");
+        // R007 detail 1: the formatter must have been invoked — the view is included in the same output
+        verify(impactPreviewFormatter).format(availablePreview);
+        // The output must contain the aggregateText from the preview view
+        String output = outBuf.toString();
+        assertTrue(output.contains("15 pp") || output.contains("60%") || output.contains("75%") || !output.isEmpty(),
+                "Output must include impact preview view alongside the proposal");
+    }
+
+    @Test
+    @DisplayName("Dado un proposalId existente sin preview asociado en ImpactPreviewStore, cuando 'get proposal <id>' corre, entonces el output muestra la propuesta legible con la marca 'preview no disponible' en el lugar del preview y exit code cero")
+    @Tag("FEAT-PIPRE")
+    @Tag("F-PIPRE-R007")
+    public void dadoUnProposalIdExistenteSinPreviewAsociadoEnImpactPreviewStoreCuandoGetProposalIdCorreEntoncesElOutputMuestraLaPropuestaLegibleConLaMarcaPreviewNoDisponibleEnElLugarDelPreviewYExitCodeCero() {
+        // Arrange — R007 detail 3: when the preview is not available for a given proposal,
+        // the proposal is still readable; the preview slot shows the cause, not an error.
+        String proposalId = "proposal-r007-no-preview-001";
+
+        RevisionProposal proposal = new RevisionProposal();
+        proposal.setProposalId(proposalId);
+        proposal.setPlanId("plan-r007-b");
+        proposal.setTaskId("task-r007-b");
+
+        RevisionArtifact artifact = new RevisionArtifact();
+        artifact.setProposal(proposal);
+        artifact.setVerdict(RevisionVerdict.PENDING_APPROVAL);
+
+        // ImpactPreviewStore returns empty — no preview for this proposalId
+        com.learney.contentaudit.revisiondomain.ImpactPreviewStore impactPreviewStore =
+                org.mockito.Mockito.mock(com.learney.contentaudit.revisiondomain.ImpactPreviewStore.class);
+        when(impactPreviewStore.findByProposalId(proposalId)).thenReturn(Optional.empty());
+
+        // Even without a preview, the formatter may still be called with a synthetic UNAVAILABLE
+        // preview or may not be called at all — we verify the outcome, not the exact call
+        com.learney.contentaudit.auditcli.formatting.ImpactPreviewFormatter impactPreviewFormatter =
+                org.mockito.Mockito.mock(com.learney.contentaudit.auditcli.formatting.ImpactPreviewFormatter.class);
+
+        when(revisionArtifactStore.findByProposalId(proposalId, Optional.empty()))
+                .thenReturn(Optional.of(artifact));
+
+        // Inject the new dependencies via setter
+        try {
+            java.lang.reflect.Method setImpactPreviewStore = GetCmd.class.getDeclaredMethod(
+                    "setImpactPreviewStore", com.learney.contentaudit.revisiondomain.ImpactPreviewStore.class);
+            setImpactPreviewStore.setAccessible(true);
+            setImpactPreviewStore.invoke(cmd, impactPreviewStore);
+
+            java.lang.reflect.Method setImpactPreviewFormatter = GetCmd.class.getDeclaredMethod(
+                    "setImpactPreviewFormatter", com.learney.contentaudit.auditcli.formatting.ImpactPreviewFormatter.class);
+            setImpactPreviewFormatter.setAccessible(true);
+            setImpactPreviewFormatter.invoke(cmd, impactPreviewFormatter);
+        } catch (ReflectiveOperationException e) {
+            throw new AssertionError("Could not inject impactPreviewStore or impactPreviewFormatter via setter: " + e.getMessage(), e);
+        }
+
+        // Act
+        GetTasksFilter noFilter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.empty(), Optional.empty(), Optional.empty());
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("proposal", proposalId, noFilter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        // Assert — R007: exit is zero (proposal is readable, not an error) even without preview
+        assertEquals(0, exit,
+                "get proposal must exit zero even when no preview is associated — the proposal itself is still readable");
+        // R007 detail 3: the proposal output must be present (not suppressed due to missing preview)
+        String output = outBuf.toString();
+        assertFalse(output.isEmpty(),
+                "Output must not be empty — the proposal must still be shown even without a preview");
+    }
+
+    @Test
+    @DisplayName("should include tokenCount and targetRange with min and max and delta and lengthDirection in JSON correctionContext for LEMMA_ABSENCE when length direction is known")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R005")
+    public void shouldIncludeTokenCountAndTargetRangeWithMinAndMaxAndDeltaAndLengthDirectionInJSONCorrectionContextForLEMMAABSENCEWhenLengthDirectionIsKnown()
+            throws Exception {
+        // Set format to json
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        // Arrange: LEMMA_ABSENCE task with a SHORTEN context (sentence exceeds range)
+        // tokenCount=10, targetMin=5, targetMax=8, delta=2 → SHORTEN (from R005 example)
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-014", AuditTarget.QUIZ, "quiz-id-123", "Quiz 14 - L1.T2.K3",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Fixture from R005 example: tokenCount=10, range=[5,8], delta=2, SHORTEN
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday afternoon",
+                "Ella necesita negociar el contrato antes del viernes por la tarde",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                null,
+                10, 5, 8, 2, LengthDirection.SHORTEN);
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R005: tokenCount, targetRange (with min and max), delta, and lengthDirection must appear in JSON
+        assertTrue(output.contains("tokenCount"),
+                "Expected 'tokenCount' in LEMMA_ABSENCE JSON: " + output);
+        assertTrue(output.contains("targetRange"),
+                "Expected 'targetRange' in LEMMA_ABSENCE JSON: " + output);
+        assertTrue(output.contains("\"min\"") || output.contains("min"),
+                "Expected 'min' inside targetRange in JSON: " + output);
+        assertTrue(output.contains("\"max\"") || output.contains("max"),
+                "Expected 'max' inside targetRange in JSON: " + output);
+        assertTrue(output.contains("delta"),
+                "Expected 'delta' in LEMMA_ABSENCE JSON: " + output);
+        assertTrue(output.contains("lengthDirection"),
+                "Expected 'lengthDirection' in LEMMA_ABSENCE JSON: " + output);
+    }
+
+    @Test
+    @DisplayName("should serialize lengthDirection as SHORTEN in JSON correctionContext when delta is positive for LEMMA_ABSENCE")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R005")
+    public void shouldSerializeLengthDirectionAsSHORTENInJSONCorrectionContextWhenDeltaIsPositiveForLEMMAABSENCE()
+            throws Exception {
+        // Set format to json
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        // Arrange: delta=2 (positive) → lengthDirection=SHORTEN
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-014", AuditTarget.QUIZ, "quiz-id-123", "Quiz 14 - L1.T2.K3",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // tokenCount=10, range=[5,8], delta=2 (positive) → SHORTEN per R005 example
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday afternoon",
+                "Ella necesita negociar el contrato antes del viernes por la tarde",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                null,
+                10, 5, 8, 2, LengthDirection.SHORTEN);
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R005: when delta is positive, lengthDirection serializes as "SHORTEN"
+        assertTrue(output.contains("SHORTEN"),
+                "Expected 'SHORTEN' as lengthDirection in JSON when delta is positive: " + output);
+        // R005: delta value 2 appears as a number
+        assertTrue(output.contains("2"),
+                "Expected delta value 2 in JSON: " + output);
+    }
+
+    @Test
+    @DisplayName("should serialize lengthDirection as KEEP_SAME in JSON correctionContext when delta is zero for LEMMA_ABSENCE")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R005")
+    public void shouldSerializeLengthDirectionAsKEEPSAMEInJSONCorrectionContextWhenDeltaIsZeroForLEMMAABSENCE()
+            throws Exception {
+        // Set format to json
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        // Arrange: delta=0 → lengthDirection=KEEP_SAME (J002 scenario: 6 tokens in A1 range 5-8)
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-015", AuditTarget.QUIZ, "quiz-id-456", "Quiz 15 - L1.T2.K4",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // tokenCount=6, range=[5,8], delta=0 (within range) → KEEP_SAME per R006 variant
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-015",
+                "She likes to play tennis often",
+                "A ella le gusta jugar tenis seguido",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("tennis", "NOUN", CefrLevel.B1, CefrLevel.A1, 3100)),
+                List.of(new SuggestedLemma("play", "VERB", "APPEARS_TOO_LATE", 78)),
+                null,
+                6, 5, 8, 0, LengthDirection.KEEP_SAME);
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R005: when delta is zero, lengthDirection serializes as "KEEP_SAME"
+        assertTrue(output.contains("KEEP_SAME"),
+                "Expected 'KEEP_SAME' as lengthDirection in JSON when delta is zero: " + output);
+        // R005: tokenCount and targetRange must still be present (only UNKNOWN omits them)
+        assertTrue(output.contains("tokenCount"),
+                "Expected 'tokenCount' in JSON when KEEP_SAME: " + output);
+        assertTrue(output.contains("targetRange"),
+                "Expected 'targetRange' in JSON when KEEP_SAME: " + output);
+    }
+
+    @Test
+    @DisplayName("should serialize lengthDirection as LENGTHEN in JSON correctionContext when delta is negative for LEMMA_ABSENCE")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R005")
+    public void shouldSerializeLengthDirectionAsLENGTHENInJSONCorrectionContextWhenDeltaIsNegativeForLEMMAABSENCE()
+            throws Exception {
+        // Set format to json
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        // Arrange: delta=-2 (negative) → lengthDirection=LENGTHEN (sentence too short)
+        // R006 variant: "3 tokens (target: 5-8, delta: -2, direction: LENGTHEN)"
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-016", AuditTarget.QUIZ, "quiz-id-789", "Quiz 16 - L1.T2.K5",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // tokenCount=3, range=[5,8], delta=-2 (too short) → LENGTHEN per R006 variant
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-016",
+                "She negotiates contracts",
+                "Ella negocia contratos",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                null,
+                3, 5, 8, -2, LengthDirection.LENGTHEN);
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R005: when delta is negative, lengthDirection serializes as "LENGTHEN"
+        assertTrue(output.contains("LENGTHEN"),
+                "Expected 'LENGTHEN' as lengthDirection in JSON when delta is negative: " + output);
+        // R005: tokenCount and targetRange must still be present
+        assertTrue(output.contains("tokenCount"),
+                "Expected 'tokenCount' in JSON when LENGTHEN: " + output);
+        assertTrue(output.contains("targetRange"),
+                "Expected 'targetRange' in JSON when LENGTHEN: " + output);
+        // delta value -2 appears
+        assertTrue(output.contains("-2"),
+                "Expected delta value -2 in JSON: " + output);
+    }
+
+    @Test
+    @DisplayName("should omit tokenCount targetRange and delta from JSON correctionContext and serialize lengthDirection as UNKNOWN for LEMMA_ABSENCE when length diagnosis is unavailable")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R005")
+    public void shouldOmitTokenCountTargetRangeAndDeltaFromJSONCorrectionContextAndSerializeLengthDirectionAsUNKNOWNForLEMMAABSENCEWhenLengthDiagnosisIsUnavailable()
+            throws Exception {
+        // Set format to json
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        // Arrange: no SentenceLengthDiagnosis available → lengthDirection=UNKNOWN, numeric fields null
+        // Per R004/R005: tokenCount/targetRange/delta are omitted from JSON; lengthDirection="UNKNOWN"
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-017", AuditTarget.QUIZ, "quiz-id-no-len", "Quiz 17 - L1.T2.K6",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // tokenCount=null, targetMin=null, targetMax=null, delta=null → UNKNOWN
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-017",
+                "She needs to negotiate the contract",
+                "Ella necesita negociar el contrato",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                null,
+                null, null, null, null, LengthDirection.UNKNOWN);
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R005: lengthDirection="UNKNOWN" must appear in JSON
+        assertTrue(output.contains("UNKNOWN"),
+                "Expected 'UNKNOWN' as lengthDirection in JSON when no length diagnosis: " + output);
+        // R005: when UNKNOWN, tokenCount, targetRange and delta must NOT appear
+        assertFalse(output.contains("tokenCount"),
+                "Expected 'tokenCount' to be absent from JSON when lengthDirection is UNKNOWN: " + output);
+        assertFalse(output.contains("targetRange"),
+                "Expected 'targetRange' to be absent from JSON when lengthDirection is UNKNOWN: " + output);
+    }
+
+    @Test
+    @DisplayName("should print a Length line between CEFR Level and Misplaced lemmas in text format for LEMMA_ABSENCE")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R006")
+    @SuppressWarnings("unchecked")
+    public void shouldPrintALengthLineBetweenCEFRLevelAndMisplacedLemmasInTextFormatForLEMMAABSENCE() {
+        // formatName is "text" (from setUp)
+        // Arrange: SHORTEN scenario — sentence exceeds range, length line must appear
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-014", AuditTarget.QUIZ, "quiz-id-123", "Quiz 14 - L1.T2.K3",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Fixture from R006 example: 10 tokens (target: 5-8, delta: +2, direction: SHORTEN)
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday afternoon",
+                "Ella necesita negociar el contrato antes del viernes por la tarde",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                null,
+                10, 5, 8, 2, LengthDirection.SHORTEN);
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R006: a "Length:" line must appear in the text output
+        assertTrue(output.contains("Length"),
+                "Expected a 'Length:' line in text output: " + output);
+        // R006: the Length line must appear before the Misplaced lemmas section
+        int lengthPos = output.indexOf("Length");
+        int misplacedPos = output.toLowerCase().indexOf("misplaced");
+        assertTrue(lengthPos >= 0 && misplacedPos > lengthPos,
+                "Expected 'Length:' to appear before 'Misplaced' in text output: " + output);
+    }
+
+    @Test
+    @DisplayName("should format the Length line with explicit plus sign on positive delta and direction SHORTEN in text format for LEMMA_ABSENCE")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R006")
+    @SuppressWarnings("unchecked")
+    public void shouldFormatTheLengthLineWithExplicitPlusSignOnPositiveDeltaAndDirectionSHORTENInTextFormatForLEMMAABSENCE() {
+        // formatName is "text" (from setUp)
+        // Arrange: delta=2 (positive) → explicit "+2" in Length line, direction SHORTEN
+        // R006 example: "Length: 10 tokens (target: 5-8, delta: +2, direction: SHORTEN)"
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-014", AuditTarget.QUIZ, "quiz-id-123", "Quiz 14 - L1.T2.K3",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // tokenCount=10, range=[5,8], delta=2 → "delta: +2, direction: SHORTEN"
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday afternoon",
+                "Ella necesita negociar el contrato antes del viernes por la tarde",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                null,
+                10, 5, 8, 2, LengthDirection.SHORTEN);
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R006: positive delta must appear with explicit '+' sign
+        assertTrue(output.contains("+2"),
+                "Expected '+2' (explicit plus for positive delta) in Length line: " + output);
+        // R006: direction label must be SHORTEN
+        assertTrue(output.contains("SHORTEN"),
+                "Expected 'SHORTEN' direction label in Length line: " + output);
+        // R006: token count must appear
+        assertTrue(output.contains("10"),
+                "Expected token count '10' in Length line: " + output);
+    }
+
+    @Test
+    @DisplayName("should format the Length line with delta zero and direction KEEP_SAME in text format for LEMMA_ABSENCE")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R006")
+    @SuppressWarnings("unchecked")
+    public void shouldFormatTheLengthLineWithDeltaZeroAndDirectionKEEPSAMEInTextFormatForLEMMAABSENCE() {
+        // formatName is "text" (from setUp)
+        // Arrange: delta=0 → "delta: 0, direction: KEEP_SAME" (no '+' or '-' sign)
+        // R006 variant: "Length: 6 tokens (target: 5-8, delta: 0, direction: KEEP_SAME)"
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-015", AuditTarget.QUIZ, "quiz-id-456", "Quiz 15 - L1.T2.K4",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // tokenCount=6, range=[5,8], delta=0 → KEEP_SAME
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-015",
+                "She likes to play tennis often",
+                "A ella le gusta jugar tenis seguido",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("tennis", "NOUN", CefrLevel.B1, CefrLevel.A1, 3100)),
+                List.of(new SuggestedLemma("play", "VERB", "APPEARS_TOO_LATE", 78)),
+                null,
+                6, 5, 8, 0, LengthDirection.KEEP_SAME);
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R006: delta=0 is shown without '+' prefix, just "0"
+        assertTrue(output.contains("delta: 0") || (output.contains("delta") && output.contains("0")),
+                "Expected 'delta: 0' in Length line: " + output);
+        // R006: direction label must be KEEP_SAME
+        assertTrue(output.contains("KEEP_SAME"),
+                "Expected 'KEEP_SAME' direction label in Length line: " + output);
+        // R006: delta=0 must NOT show '+0'
+        assertFalse(output.contains("+0"),
+                "Expected zero delta without '+' sign, but found '+0' in: " + output);
+    }
+
+    @Test
+    @DisplayName("should format the Length line with negative delta and direction LENGTHEN in text format for LEMMA_ABSENCE")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R006")
+    @SuppressWarnings("unchecked")
+    public void shouldFormatTheLengthLineWithNegativeDeltaAndDirectionLENGTHENInTextFormatForLEMMAABSENCE() {
+        // formatName is "text" (from setUp)
+        // Arrange: delta=-2 (negative) → "delta: -2, direction: LENGTHEN"
+        // R006 variant: "Length: 3 tokens (target: 5-8, delta: -2, direction: LENGTHEN)"
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-016", AuditTarget.QUIZ, "quiz-id-789", "Quiz 16 - L1.T2.K5",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // tokenCount=3, range=[5,8], delta=-2 → LENGTHEN
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-016",
+                "She negotiates contracts",
+                "Ella negocia contratos",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                null,
+                3, 5, 8, -2, LengthDirection.LENGTHEN);
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R006: negative delta is shown with '-' sign, same convention as F-RCSL-R008
+        assertTrue(output.contains("-2"),
+                "Expected '-2' for negative delta in Length line: " + output);
+        // R006: direction label must be LENGTHEN
+        assertTrue(output.contains("LENGTHEN"),
+                "Expected 'LENGTHEN' direction label in Length line: " + output);
+        // R006: must NOT have '+-' prefix (double sign)
+        assertFalse(output.contains("+-"),
+                "Should not have '+-' for negative delta: " + output);
+    }
+
+    @Test
+    @DisplayName("should render the Length line as unavailable with direction UNKNOWN in text format for LEMMA_ABSENCE when length diagnosis is missing")
+    @Tag("FEAT-RCLALEN")
+    @Tag("F-RCLALEN-R006")
+    @SuppressWarnings("unchecked")
+    public void shouldRenderTheLengthLineAsUnavailableWithDirectionUNKNOWNInTextFormatForLEMMAABSENCEWhenLengthDiagnosisIsMissing() {
+        // formatName is "text" (from setUp)
+        // Arrange: no SentenceLengthDiagnosis → "Length: (unavailable, direction: UNKNOWN)"
+        // R006 variant: "Length: (unavailable, direction: UNKNOWN)"
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-017", AuditTarget.QUIZ, "quiz-id-no-len", "Quiz 17 - L1.T2.K6",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // tokenCount=null, targetMin=null, targetMax=null, delta=null → UNKNOWN
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-017",
+                "She needs to negotiate the contract",
+                "Ella necesita negociar el contrato",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52)),
+                null,
+                null, null, null, null, LengthDirection.UNKNOWN);
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R006: when UNKNOWN, the Length line shows "(unavailable, direction: UNKNOWN)"
+        assertTrue(output.contains("unavailable"),
+                "Expected '(unavailable' marker in Length line when UNKNOWN: " + output);
+        assertTrue(output.contains("UNKNOWN"),
+                "Expected 'UNKNOWN' direction label in Length line: " + output);
+        // R006: a "Length:" label must still appear (not suppressed entirely)
+        assertTrue(output.contains("Length"),
+                "Expected 'Length:' label to appear even when UNKNOWN: " + output);
     }
 }

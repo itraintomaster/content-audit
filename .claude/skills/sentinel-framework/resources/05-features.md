@@ -1022,3 +1022,26 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 
 - **F-PIPRE-J003**: Una propuesta sobre un nodo que ya no existe queda con preview no disponible
 
+### FEAT-RCLALEN: Conciencia de Longitud de Oracion en el Contexto de Correccion LEMMA_ABSENCE [F-RCLALEN]
+
+> **Que**: Enriquece el contexto de correccion LEMMA_ABSENCE con la longitud actual de la oracion del quiz (tokens, rango esperado para el nivel CEFR, desviacion respecto al rango y direccion accionable de ajuste), leyendo el diagnostico de longitud que ya existe sobre el mismo nodo quiz.
+
+**Por que**: Hoy el LLM que reescribe la oracion no sabe si esta en el limite alto o bajo del rango de tokens para su nivel; agregar esa senal evita que la correccion empuje la oracion fuera de rango y dispare en la siguiente auditoria una tarea SENTENCE_LENGTH redundante.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-RCLALEN-R001 | Campos de longitud en el contexto de correccion LEMMA_ABSENCE | high | - |
+| F-RCLALEN-R002 | Calculo de lengthDirection a partir de delta | high | - |
+| F-RCLALEN-R003 | Origen de datos: SentenceLengthDiagnosis del mismo nodo quiz | high | - |
+| F-RCLALEN-R004 | Comportamiento cuando SentenceLengthDiagnosis esta ausente | major | - |
+| F-RCLALEN-R005 | Extension del formato JSON con campos de longitud | high | - |
+| F-RCLALEN-R006 | Extension del formato texto con campos de longitud | major | - |
+
+**User Journeys:**
+
+- **F-RCLALEN-J001**: LLM recibe contexto LEMMA_ABSENCE con senal de acortar para una oracion en limite alto
+
+- **F-RCLALEN-J002**: LLM recibe contexto LEMMA_ABSENCE con senal de mantener longitud
+

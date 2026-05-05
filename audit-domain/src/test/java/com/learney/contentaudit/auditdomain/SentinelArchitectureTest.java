@@ -31,7 +31,7 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceModuleBoundaries() {
     JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.classes().that().resideInAPackage("..auditdomain..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditdomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+    ArchRuleDefinition.classes().that().resideInAPackage("..auditdomain..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditdomain..", "..coursedomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
   }
 
   @Test
@@ -223,6 +223,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.AuditReportStore");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AuditReportStore - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.CourseMapper");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CourseMapper - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditdomain.IAuditEngine");

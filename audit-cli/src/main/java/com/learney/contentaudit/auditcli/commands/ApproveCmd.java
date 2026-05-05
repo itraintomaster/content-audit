@@ -63,7 +63,7 @@ final class ApproveCmd implements ApproveCommand, Callable<Integer> {
     }
 
     @Override
-    public int approve(String resource, String proposalId, String planId, String note) {
+    public Integer approve(String resource, String proposalId, String planId, String note) {
         // R015 — approve only operates on 'proposal'
         if (resource == null || !"proposal".equalsIgnoreCase(resource)) {
             System.err.println("approve only operates on 'proposal' (got: " + resource + ")");

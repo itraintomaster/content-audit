@@ -97,6 +97,20 @@ Domain module for the refinement workflow. Defines the plan/task model and ports
 | misplacedLemmas | `List<MisplacedLemmaContext>` |
 | suggestedLemmas | `List<SuggestedLemma>` |
 | quizSentence | `String` |
+| tokenCount | `Integer` |
+| targetMin | `Integer` |
+| targetMax | `Integer` |
+| delta | `Integer` |
+| lengthDirection | `LengthDirection` |
+
+### LengthDirection (`enum`)
+
+| Field | Type |
+|-------|------|
+| SHORTEN | `null` |
+| LENGTHEN | `null` |
+| KEEP_SAME | `null` |
+| UNKNOWN | `null` |
 
 ## Interfaces
 
@@ -184,6 +198,18 @@ Methods:
 - should populate quizSentence on the LEMMA_ABSENCE correction context from the AuditableQuiz carrier → FEAT-RCLAQS/F-RCLAQS-R001
 - should copy AuditableQuiz.quizSentence verbatim without recomputing the DSL in the resolver → FEAT-RCLAQS/F-RCLAQS-R002
 - should emit sentence and quizSentence that originate from the same AuditableQuiz so both fields describe the same quiz → FEAT-RCLAQS/F-RCLAQS-R003
+- should populate tokenCount on the correction context from SentenceLengthDiagnosis on the quiz node → FEAT-RCLALEN/F-RCLALEN-R001
+- should populate targetMin and targetMax on the correction context from SentenceLengthDiagnosis on the quiz node → FEAT-RCLALEN/F-RCLALEN-R001
+- should populate delta on the correction context from SentenceLengthDiagnosis on the quiz node → FEAT-RCLALEN/F-RCLALEN-R001
+- should populate lengthDirection on the correction context as a non-null enum value derived by the resolver → FEAT-RCLALEN/F-RCLALEN-R001
+- should set lengthDirection to SHORTEN when delta is greater than zero → FEAT-RCLALEN/F-RCLALEN-R002
+- should set lengthDirection to LENGTHEN when delta is less than zero → FEAT-RCLALEN/F-RCLALEN-R002
+- should set lengthDirection to KEEP_SAME when delta is exactly zero → FEAT-RCLALEN/F-RCLALEN-R002
+- should set lengthDirection to UNKNOWN when SentenceLengthDiagnosis is not available on the quiz node → FEAT-RCLALEN/F-RCLALEN-R002
+- should read SentenceLengthDiagnosis from the same quiz node already used to obtain LemmaPlacementDiagnosis → FEAT-RCLALEN/F-RCLALEN-R003
+- should not introduce any new traversal of the audit tree to read SentenceLengthDiagnosis → FEAT-RCLALEN/F-RCLALEN-R003
+- should still produce a correction context when LemmaPlacementDiagnosis is present but SentenceLengthDiagnosis is absent on the quiz node → FEAT-RCLALEN/F-RCLALEN-R004
+- should leave non-length fields of the correction context populated normally when SentenceLengthDiagnosis is absent → FEAT-RCLALEN/F-RCLALEN-R004
 
 ### DispatchingCorrectionContextResolver
 
@@ -515,4 +541,165 @@ Methods:
 - `load(String id): Optional<AuditReport>`
 - `loadLatest(): Optional<AuditReport>`
 - `list(): List<AuditReportSummary>`
+
+### CourseMapper (port)
+
+Methods:
+
+- `map(CourseEntity course): AuditableCourse`
+
+### From course-domain
+
+## Models
+
+### NodeKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| ROOT | `null` |
+| MILESTONE | `null` |
+| TOPIC | `null` |
+| KNOWLEDGE | `null` |
+
+### SentencePartKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| TEXT | `null` |
+| CLOZE | `null` |
+
+### CourseEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| title | `String` |
+| knowledgeIds | `List<String>` |
+| root | `RootNodeEntity` |
+| slug | `String` |
+
+### RootNodeEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| code | `String` |
+| kind | `NodeKind` |
+| label | `String` |
+| children | `List<String>` |
+| milestones | `List<MilestoneEntity>` |
+
+### MilestoneEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| code | `String` |
+| kind | `NodeKind` |
+| label | `String` |
+| oldId | `String` |
+| parentId | `String` |
+| children | `List<String>` |
+| order | `int` |
+| slug | `String` |
+| topics | `List<TopicEntity>` |
+
+### TopicEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| code | `String` |
+| kind | `NodeKind` |
+| label | `String` |
+| oldId | `String` |
+| parentId | `String` |
+| children | `List<String>` |
+| ruleIds | `List<String>` |
+| order | `int` |
+| slug | `String` |
+| knowledges | `List<KnowledgeEntity>` |
+
+### KnowledgeEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| code | `String` |
+| kind | `NodeKind` |
+| label | `String` |
+| oldId | `String` |
+| parentId | `String` |
+| isRule | `boolean` |
+| instructions | `String` |
+| order | `int` |
+| slug | `String` |
+| quizTemplates | `List<QuizTemplateEntity>` |
+
+### QuizTemplateEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| oidId | `String` |
+| kind | `String` |
+| knowledgeId | `String` |
+| title | `String` |
+| instructions | `String` |
+| translation | `String` |
+| theoryId | `String` |
+| topicName | `String` |
+| form | `FormEntity` |
+| difficulty | `double` |
+| retries | `double` |
+| noScoreRetries | `double` |
+| code | `String` |
+| audioUrl | `String` |
+| imageUrl | `String` |
+| answerAudioUrl | `String` |
+| answerImageUrl | `String` |
+| miniTheory | `String` |
+| successMessage | `String` |
+
+### FormEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| kind | `String` |
+| incidence | `double` |
+| label | `String` |
+| name | `String` |
+| sentenceParts | `List<SentencePartEntity>` |
+
+### SentencePartEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| kind | `SentencePartKind` |
+| text | `String` |
+| options | `List<String>` |
+
+### CourseValidationException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `Error al cargar el curso desde '%s': %s. La carga fue abortada.`
+
+| Field | Type |
+|-------|------|
+| path | `String` |
+| detail | `String` |
+
+### CourseRepository (port)
+
+Methods:
+
+- `load(Path path): CourseEntity`
+- `save(CourseEntity course, Path path): void`
+
+### CourseValidator (service)
+
+Methods:
+
+- `validate(CourseEntity course): void`
 

@@ -561,123 +561,11 @@ Methods:
 - `loadLatest(): Optional<AuditReport>`
 - `list(): List<AuditReportSummary>`
 
-### From refiner-domain
-
-## Models
-
-### DiagnosisKind (`enum`)
-
-| Field | Type |
-|-------|------|
-| SENTENCE_LENGTH | `null` |
-| LEMMA_ABSENCE | `null` |
-| COCA_BUCKETS | `null` |
-| LEMMA_RECURRENCE | `null` |
-| KNOWLEDGE_TITLE_LENGTH | `null` |
-| KNOWLEDGE_INSTRUCTIONS_LENGTH | `null` |
-
-### RefinementTaskStatus (`enum`)
-
-| Field | Type |
-|-------|------|
-| PENDING | `null` |
-| COMPLETED | `null` |
-| SKIPPED | `null` |
-
-### RefinementTask (`record`)
-
-| Field | Type |
-|-------|------|
-| id | `String` |
-| nodeTarget | `AuditTarget` |
-| nodeId | `String` |
-| nodeLabel | `String` |
-| diagnosisKind | `DiagnosisKind` |
-| priority | `int` |
-| status | `RefinementTaskStatus` |
-
-### RefinementPlan (`record`)
-
-| Field | Type |
-|-------|------|
-| id | `String` |
-| sourceAuditId | `String` |
-| createdAt | `Instant` |
-| tasks | `List<RefinementTask>` |
-
-### SuggestedLemma (`record`)
-
-| Field | Type |
-|-------|------|
-| lemma | `String` |
-| pos | `String` |
-| reason | `String` |
-| cocaRank | `Integer` |
-
-### SentenceLengthCorrectionContext (`record`)
-
-| Field | Type |
-|-------|------|
-| taskId | `String` |
-| sentence | `String` |
-| translation | `String` |
-| knowledgeTitle | `String` |
-| knowledgeInstructions | `String` |
-| topicLabel | `String` |
-| cefrLevel | `CefrLevel` |
-| tokenCount | `int` |
-| targetMin | `int` |
-| targetMax | `int` |
-| delta | `int` |
-| suggestedLemmas | `List<SuggestedLemma>` |
-
-### MisplacedLemmaContext (`record`)
-
-| Field | Type |
-|-------|------|
-| lemma | `String` |
-| pos | `String` |
-| expectedLevel | `CefrLevel` |
-| quizLevel | `CefrLevel` |
-| cocaRank | `Integer` |
-
-### LemmaAbsenceCorrectionContext (`record`)
-
-| Field | Type |
-|-------|------|
-| taskId | `String` |
-| sentence | `String` |
-| translation | `String` |
-| knowledgeTitle | `String` |
-| knowledgeInstructions | `String` |
-| topicLabel | `String` |
-| cefrLevel | `CefrLevel` |
-| misplacedLemmas | `List<MisplacedLemmaContext>` |
-| suggestedLemmas | `List<SuggestedLemma>` |
-| quizSentence | `String` |
-
-### RefinerEngine (port)
+### CourseMapper (port)
 
 Methods:
 
-- `plan(AuditReport report, String auditId): RefinementPlan`
-- `nextTask(RefinementPlan plan): Optional<RefinementTask>`
-
-### RefinementPlanStore (port)
-
-Methods:
-
-- `save(RefinementPlan plan): String`
-- `load(String id): Optional<RefinementPlan>`
-- `loadLatest(): Optional<RefinementPlan>`
-
-### CorrectionContextResolver<T extends CorrectionContext> (port)
-
-Methods:
-
-- `resolve(AuditReport report, RefinementTask task): Optional<T>`
-
-### CorrectionContext (port)
+- `map(CourseEntity course): AuditableCourse`
 
 ### From course-domain
 
@@ -833,4 +721,136 @@ Methods:
 Methods:
 
 - `validate(CourseEntity course): void`
+
+### From refiner-domain
+
+## Models
+
+### DiagnosisKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| SENTENCE_LENGTH | `null` |
+| LEMMA_ABSENCE | `null` |
+| COCA_BUCKETS | `null` |
+| LEMMA_RECURRENCE | `null` |
+| KNOWLEDGE_TITLE_LENGTH | `null` |
+| KNOWLEDGE_INSTRUCTIONS_LENGTH | `null` |
+
+### RefinementTaskStatus (`enum`)
+
+| Field | Type |
+|-------|------|
+| PENDING | `null` |
+| COMPLETED | `null` |
+| SKIPPED | `null` |
+
+### RefinementTask (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| nodeTarget | `AuditTarget` |
+| nodeId | `String` |
+| nodeLabel | `String` |
+| diagnosisKind | `DiagnosisKind` |
+| priority | `int` |
+| status | `RefinementTaskStatus` |
+
+### RefinementPlan (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| sourceAuditId | `String` |
+| createdAt | `Instant` |
+| tasks | `List<RefinementTask>` |
+
+### SuggestedLemma (`record`)
+
+| Field | Type |
+|-------|------|
+| lemma | `String` |
+| pos | `String` |
+| reason | `String` |
+| cocaRank | `Integer` |
+
+### SentenceLengthCorrectionContext (`record`)
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| sentence | `String` |
+| translation | `String` |
+| knowledgeTitle | `String` |
+| knowledgeInstructions | `String` |
+| topicLabel | `String` |
+| cefrLevel | `CefrLevel` |
+| tokenCount | `int` |
+| targetMin | `int` |
+| targetMax | `int` |
+| delta | `int` |
+| suggestedLemmas | `List<SuggestedLemma>` |
+
+### MisplacedLemmaContext (`record`)
+
+| Field | Type |
+|-------|------|
+| lemma | `String` |
+| pos | `String` |
+| expectedLevel | `CefrLevel` |
+| quizLevel | `CefrLevel` |
+| cocaRank | `Integer` |
+
+### LemmaAbsenceCorrectionContext (`record`)
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| sentence | `String` |
+| translation | `String` |
+| knowledgeTitle | `String` |
+| knowledgeInstructions | `String` |
+| topicLabel | `String` |
+| cefrLevel | `CefrLevel` |
+| misplacedLemmas | `List<MisplacedLemmaContext>` |
+| suggestedLemmas | `List<SuggestedLemma>` |
+| quizSentence | `String` |
+| tokenCount | `Integer` |
+| targetMin | `Integer` |
+| targetMax | `Integer` |
+| delta | `Integer` |
+| lengthDirection | `LengthDirection` |
+
+### LengthDirection (`enum`)
+
+| Field | Type |
+|-------|------|
+| SHORTEN | `null` |
+| LENGTHEN | `null` |
+| KEEP_SAME | `null` |
+| UNKNOWN | `null` |
+
+### RefinerEngine (port)
+
+Methods:
+
+- `plan(AuditReport report, String auditId): RefinementPlan`
+- `nextTask(RefinementPlan plan): Optional<RefinementTask>`
+
+### RefinementPlanStore (port)
+
+Methods:
+
+- `save(RefinementPlan plan): String`
+- `load(String id): Optional<RefinementPlan>`
+- `loadLatest(): Optional<RefinementPlan>`
+
+### CorrectionContextResolver<T extends CorrectionContext> (port)
+
+Methods:
+
+- `resolve(AuditReport report, RefinementTask task): Optional<T>`
+
+### CorrectionContext (port)
 

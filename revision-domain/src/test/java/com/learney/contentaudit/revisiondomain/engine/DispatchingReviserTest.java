@@ -112,7 +112,9 @@ public class DispatchingReviserTest {
                 com.learney.contentaudit.auditdomain.CefrLevel.A1,
                 java.util.List.of(),
                 java.util.List.of(),
-                "She ____ [reads] (read) books."
+                "She ____ [reads] (read) books.",
+                0, 0, 0, 0,
+                com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN
         );
     }
 

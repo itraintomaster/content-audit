@@ -29,6 +29,7 @@ public class LemmaAbsenceMvpStrategy implements LemmaAbsenceProposalStrategy {
         this.providerId = providerId;
     }
 
+
     @Override
     public StrategyId id() {
         return new StrategyId(STRATEGY_NAME, STRATEGY_VERSION, providerId);

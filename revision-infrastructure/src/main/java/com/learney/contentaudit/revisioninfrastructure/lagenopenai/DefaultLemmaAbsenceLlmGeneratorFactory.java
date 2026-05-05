@@ -55,11 +55,12 @@ public class DefaultLemmaAbsenceLlmGeneratorFactory implements LemmaAbsenceLlmGe
         LangChainErrorClassifier errorClassifier = new DefaultLangChainErrorClassifier();
 
         return new LemmaAbsenceLlmGenerator(
-                chatModel,
+                config,
                 promptBuilder,
                 responseParser,
                 errorClassifier,
-                STRATEGY_NAME
+                STRATEGY_NAME,
+                chatModel
         );
     }
 

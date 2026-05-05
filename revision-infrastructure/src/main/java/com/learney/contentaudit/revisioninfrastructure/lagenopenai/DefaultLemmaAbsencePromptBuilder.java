@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisioninfrastructure.lagenopenai;
 
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
+import com.learney.contentaudit.refinerdomain.LengthDirection;
 import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
 import java.util.List;
@@ -68,6 +69,21 @@ class DefaultLemmaAbsencePromptBuilder implements LemmaAbsencePromptBuilder {
             }
         } else {
             sb.append("Suggested replacement lemmas: none\n");
+        }
+
+        // F-RCLALEN-R001: incluir seccion de longitud cuando lengthDirection es conocido (no UNKNOWN)
+        LengthDirection dir = context.getLengthDirection();
+        if (dir != null && dir != LengthDirection.UNKNOWN) {
+            Integer tokenCount = context.getTokenCount();
+            Integer targetMin = context.getTargetMin();
+            Integer targetMax = context.getTargetMax();
+            Integer delta = context.getDelta();
+            sb.append("\nSentence length guidance:\n");
+            sb.append("  Current token count: ").append(tokenCount).append("\n");
+            sb.append("  Target range: ").append(targetMin).append("-").append(targetMax)
+              .append(" tokens\n");
+            sb.append("  Delta: ").append(delta).append(" tokens\n");
+            sb.append("  Length direction: ").append(dir.name().toLowerCase()).append("\n");
         }
 
         sb.append("\nRespond with only the JSON object.");

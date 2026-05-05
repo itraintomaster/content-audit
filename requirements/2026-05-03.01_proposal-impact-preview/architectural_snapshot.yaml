@@ -6,7 +6,17 @@ description: "FEAT-PIPRE: Preview de impacto eager por RevisionProposal. Introdu
   \ patron Public Port + Hidden Adapter). El computador concreto vive en el package\
   \ engine, el adapter de filesystem en audit-infrastructure, los formatters porcentuales\
   \ en audit-cli. Enchufa el computo dentro del DefaultRevisionEngine sin tocar el\
-  \ RevisionArtifact persistido."
+  \ RevisionArtifact persistido.; Resolver boundary violation FEAT-PIPRE: el puerto\
+  \ CourseMapper se mueve de audit-application a audit-domain para que revision-domain\
+  \ pueda consumirlo sin crear el ciclo audit-application -> revision-domain -> audit-application.\
+  \ La implementacion CourseToAuditableMapper sigue en audit-application como adapter\
+  \ (Public Port, Hidden Adapter — el puerto vive con el dominio que lo consume; el\
+  \ adapter conoce ambos extremos). audit-domain pasa a depender de course-domain\
+  \ porque el puerto referencia CourseEntity en su firma.; Bump ImpactPreviewFormatter\
+  \ (interface) and DefaultImpactPreviewFormatter (impl) to visibility: public so\
+  \ the composition root (Main) and GetCmd in audit-cli.commands can reference them.\
+  \ The formatting package stays internal: the change is Java-class-level only, not\
+  \ cross-module."
 modules:
 - name: revision-domain
   description: "Domain module for the revision phase of the refinement pipeline. Consumes\
@@ -289,6 +299,84 @@ modules:
         description: Loads the latest AuditReport of the current course as the 'before'
           baseline. Failure to retrieve it maps to BASE_AUDIT_UNAVAILABLE (F-PIPRE-R009
           case 2).
+      handwrittenTests:
+      - name: "Dado un currentCourse y una RevisionProposal, cuando compute corre,\
+          \ entonces no se invoca AuditReportStore.save y no se persiste ningun AuditReport\
+          \ nuevo"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R002
+      - name: "Dado un currentCourse y una RevisionProposal, cuando compute corre,\
+          \ entonces el ScoreDelta.before de cada LevelImpact se calcula contra el\
+          \ AuditReport baseline del curso recibido y no contra una version posterior"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R003
+      - name: "Dada una RevisionProposal sobre un quiz contenido en knowledge, milestone,\
+          \ topic y curso, cuando compute corre, entonces el ImpactPreview.levelImpacts\
+          \ cubre la cadena jerarquica QUIZ -> KNOWLEDGE -> TOPIC -> MILESTONE ->\
+          \ COURSE en orden de hoja a raiz"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R004
+      - name: "Dada una RevisionProposal sobre un nodo cuyo arbol no contiene algun\
+          \ nivel intermedio, cuando compute corre, entonces los niveles ausentes\
+          \ se omiten en lugar de reportarse como cero en levelImpacts"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R004
+      - name: "Dada una RevisionProposal cuyo elementAfter afecta multiples analyzers,\
+          \ cuando compute corre, entonces el LevelImpact correspondiente expone un\
+          \ DimensionDelta por cada analyzer evaluado en ese nivel"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R005
+      - name: "Dado un nivel donde un analyzer no aporta diagnosticos, cuando compute\
+          \ corre, entonces ese analyzer se omite de dimensionDeltas en lugar de reportarse\
+          \ con delta cero"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R005
+      - name: "Dado un ScoreDelta producido por compute para cualquier (nivel, dimension),\
+          \ entonces los tres campos before, after y difference estan presentes y\
+          \ difference es exactamente after menos before"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R006
+      - name: "Dada una RevisionProposal cuyo nodeId no se localiza en el currentCourse\
+          \ al simular, cuando compute corre, entonces retorna un ImpactPreview con\
+          \ availability UNAVAILABLE, reason TARGET_NODE_ABSENT y detail no vacio\
+          \ identificando el nodeId ausente"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R009
+      - name: "Dado que AuditReportStore no puede recuperar la auditoria base del\
+          \ curso actual, cuando compute corre, entonces retorna un ImpactPreview\
+          \ con availability UNAVAILABLE, reason BASE_AUDIT_UNAVAILABLE y detail no\
+          \ vacio explicando la causa"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R009
+      - name: "Dado que AuditEngine falla al recomputar scores sobre el curso simulado,\
+          \ cuando compute corre, entonces retorna un ImpactPreview con availability\
+          \ UNAVAILABLE, reason SIMULATION_FAILED y detail no vacio explicando la\
+          \ causa"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R009
+      - name: "Dadas dos RevisionProposal distintas con el mismo currentCourse, cuando\
+          \ compute corre dos veces, entonces produce dos ImpactPreview independientes\
+          \ con proposalId distinto y sin compartir levelImpacts entre ambos"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R011
+      - name: "Dada una RevisionProposal cuyo elementBefore y elementAfter referencian\
+          \ el mismo nodeId estable, cuando compute corre, entonces el LevelImpact\
+          \ del nodo objetivo conserva ese nodeId en before y after sin modelar renombres\
+          \ ni reubicaciones"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R012
       implements:
       - ImpactPreviewComputer
       _change: add
@@ -325,6 +413,25 @@ modules:
           \ indexed by proposalId. Deliberately separate from RevisionArtifactStore\
           \ so the RevisionArtifact contract stays unchanged and the preview can be\
           \ fetched/listed independently in future iterations (DOUBT-BATCH-PREVIEW)."
+      handwrittenTests:
+      - name: "Dada una RevisionProposal generada, cuando revise corre, entonces ImpactPreviewComputer.compute\
+          \ se invoca exactamente una vez con el curso actual y la propuesta recien\
+          \ construida"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R001
+      - name: "Dado un ImpactPreview computado, cuando revise corre, entonces el preview\
+          \ se persiste via ImpactPreviewStore.save asociado al proposalId de la propuesta\
+          \ antes de que el flujo retorne"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R001
+      - name: "Dado un ImpactPreview UNAVAILABLE devuelto por el computer, cuando\
+          \ revise corre, entonces la RevisionArtifact se persiste igual con su veredicto\
+          \ inicial y el outcome no es de error"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R010
       _change: modify
     _change: modify
   - name: lemmaabsence
@@ -351,11 +458,28 @@ modules:
     types:
     - Repository
     visibility: public
+    handwrittenTests:
+    - name: "Dado un ImpactPreview ya persistido bajo un proposalId, cuando save se\
+        \ invoca por segunda vez con otro ImpactPreview con el mismo proposalId, entonces\
+        \ findByProposalId retorna el preview persistido originalmente y no el nuevo"
+      traceability:
+        feature: FEAT-PIPRE
+        rule: F-PIPRE-R008
+    - name: "Dado un ImpactPreview persistido en disco, cuando findByProposalId se\
+        \ invoca con su proposalId, entonces retorna el ImpactPreview con todos sus\
+        \ levelImpacts, availability y unavailability intactos"
+      traceability:
+        feature: FEAT-PIPRE
+        rule: F-PIPRE-R008
     implements:
     - ImpactPreviewStore
     _change: add
   _change: modify
 - name: audit-application
+  interfaces:
+  - name: CourseMapper
+    sealed: false
+    _change: delete
   implementations:
   - name: DefaultAuditRunner
     requiresInject:
@@ -404,6 +528,20 @@ modules:
           values 0..1) into operator-facing percent strings (F-PIPRE-R013).
       types:
       - Component
+      handwrittenTests:
+      - name: "Dado un proposalId existente con preview asociado en ImpactPreviewStore,\
+          \ cuando 'get proposal <id>' corre, entonces el output incluye el ImpactPreviewView\
+          \ formateado junto a elementBefore y elementAfter en la misma operacion"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R007
+      - name: "Dado un proposalId existente sin preview asociado en ImpactPreviewStore,\
+          \ cuando 'get proposal <id>' corre, entonces el output muestra la propuesta\
+          \ legible con la marca 'preview no disponible' en el lugar del preview y\
+          \ exit code cero"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R007
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -457,16 +595,58 @@ modules:
       _change: add
     interfaces:
     - name: ImpactPreviewFormatter
-      stereotype: port
       sealed: false
-      exposes:
-      - signature: "format(ImpactPreview preview): ImpactPreviewView"
-      visibility: internal
+      visibility: public
       _change: add
     implementations:
     - name: DefaultImpactPreviewFormatter
+      visibility: public
+      handwrittenTests:
+      - name: "Dado un ScoreDelta(before=0.72, after=0.81, difference=0.09) en un\
+          \ LevelImpact, cuando format corre, entonces aggregateText es '72% -> 81%\
+          \ (+9 pp)' con signo explicito"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R013
+      - name: "Dado un ScoreDelta con difference negativa, cuando format corre, entonces\
+          \ el texto de la diferencia incluye signo '-' explicito en puntos porcentuales"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R013
+      - name: "Dado un ImpactPreview UNAVAILABLE con reason y detail, cuando format\
+          \ corre, entonces unavailabilityText contiene la causa legible y levels\
+          \ queda vacio (no se intenta convertir a porcentaje)"
+        traceability:
+          feature: FEAT-PIPRE
+          rule: F-PIPRE-R013
       implements:
       - ImpactPreviewFormatter
       _change: add
     _change: modify
   _change: modify
+- name: audit-domain
+  dependsOn:
+  - course-domain
+  interfaces:
+  - name: CourseMapper
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "map(CourseEntity course): AuditableCourse"
+    _change: add
+  _change: modify
+features:
+- id: FEAT-PIPRE
+  journeys:
+  - id: F-PIPRE-J001
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.engine
+  - id: F-PIPRE-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
+  - id: F-PIPRE-J003
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.engine

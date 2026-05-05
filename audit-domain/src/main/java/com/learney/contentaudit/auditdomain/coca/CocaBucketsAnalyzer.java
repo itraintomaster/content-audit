@@ -42,15 +42,13 @@ public class CocaBucketsAnalyzer implements ContentAnalyzer {
     // Stored result for post-processing
     private CocaBucketsDistributionResult distributionResult = null;
 
-    public CocaBucketsAnalyzer(NlpTokenizer nlpTokenizer, CocaBucketsConfig cocaBucketsConfig,
-            TokenClassifier tokenClassifier, ProgressionEvaluator progressionEvaluator,
-            ImprovementPlanner improvementPlanner) {
-        this.nlpTokenizer = nlpTokenizer;
-        this.cocaBucketsConfig = cocaBucketsConfig;
-        this.tokenClassifier = tokenClassifier;
-        this.progressionEvaluator = progressionEvaluator;
-        this.improvementPlanner = improvementPlanner;
-    }
+public CocaBucketsAnalyzer(NlpTokenizer nlpTokenizer, CocaBucketsConfig cocaBucketsConfig, TokenClassifier tokenClassifier, ProgressionEvaluator progressionEvaluator, ImprovementPlanner improvementPlanner) {
+    this.nlpTokenizer = nlpTokenizer;
+    this.cocaBucketsConfig = cocaBucketsConfig;
+    this.tokenClassifier = tokenClassifier;
+    this.progressionEvaluator = progressionEvaluator;
+    this.improvementPlanner = improvementPlanner;
+}
 
     @Override
     public String getName() {

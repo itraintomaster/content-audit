@@ -6,15 +6,18 @@ import java.util.List;
 import java.util.Map;
 
 public class TableReportFormatter implements ReportFormatter {
-    private final DrillDownResolver resolver;
-
-    public TableReportFormatter(DrillDownResolver resolver) {
-        this.resolver = resolver;
+    
+    private final DrillDownResolver drillDownResolver;
+    
+    public TableReportFormatter(DrillDownResolver drillDownResolver) {
+        this.drillDownResolver = drillDownResolver;
     }
+    
 
+    
     @Override
     public String format(ReportViewModel viewModel, DrillDownScope scope) {
-        DrillDownView view = resolver.resolve(viewModel, scope);
+        DrillDownView view = drillDownResolver.resolve(viewModel, scope);
         StringBuilder sb = new StringBuilder();
 
         List<String> analyzers = view.getAnalyzerNames() != null ? view.getAnalyzerNames() : List.of();

@@ -17,9 +17,9 @@ public class LagenConfig {
 
     private String apiKey;
 
-    private double temperature;
+    private Double temperature;
 
-    private int maxTokens;
+    private Integer maxTokens;
 
     private Duration timeout;
 
@@ -27,7 +27,7 @@ public class LagenConfig {
     }
 
     public LagenConfig(String providerName, String modelId, String endpoint, String apiKey,
-            double temperature, int maxTokens, Duration timeout) {
+            Double temperature, Integer maxTokens, Duration timeout) {
         this.providerName = providerName;
         this.modelId = modelId;
         this.endpoint = endpoint;
@@ -69,19 +69,19 @@ public class LagenConfig {
         this.apiKey = apiKey;
     }
 
-    public double getTemperature() {
+    public Double getTemperature() {
         return this.temperature;
     }
 
-    public void setTemperature(double temperature) {
+    public void setTemperature(Double temperature) {
         this.temperature = temperature;
     }
 
-    public int getMaxTokens() {
+    public Integer getMaxTokens() {
         return this.maxTokens;
     }
 
-    public void setMaxTokens(int maxTokens) {
+    public void setMaxTokens(Integer maxTokens) {
         this.maxTokens = maxTokens;
     }
 

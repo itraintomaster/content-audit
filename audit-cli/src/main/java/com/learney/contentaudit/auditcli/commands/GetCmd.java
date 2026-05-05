@@ -6,6 +6,7 @@ import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.RevisionVerdict;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
+import com.learney.contentaudit.refinerdomain.LengthDirection;
 import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
 import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
@@ -128,13 +129,25 @@ final class GetCmd implements GetCommand, Callable<Integer> {
             description = "For 'tasks': filter by DiagnosisKind enum: SENTENCE_LENGTH, LEMMA_ABSENCE, COCA_BUCKETS, etc.")
     private String diagnosisArg;
 
-    public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore,
-            AnalyzerRegistry analyzerRegistry, CorrectionContextResolver correctionContextResolver) {
-        this.auditReportStore = auditReportStore;
-        this.refinementPlanStore = refinementPlanStore;
-        this.analyzerRegistry = analyzerRegistry;
-        this.correctionContextResolver = correctionContextResolver;
-    }
+private ImpactPreviewStore impactPreviewStore;
+
+private ImpactPreviewFormatter impactPreviewFormatter;
+
+/** Constructor de compatibilidad para tests anteriores a FEAT-PIPRE (sin impactPreviewStore ni formatter). */
+GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore,
+        AnalyzerRegistry analyzerRegistry, CorrectionContextResolver correctionContextResolver) {
+    this(auditReportStore, refinementPlanStore, analyzerRegistry, correctionContextResolver,
+            null, null);
+}
+
+public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, AnalyzerRegistry analyzerRegistry, CorrectionContextResolver correctionContextResolver, ImpactPreviewStore impactPreviewStore, ImpactPreviewFormatter impactPreviewFormatter) {
+    this.auditReportStore = auditReportStore;
+    this.refinementPlanStore = refinementPlanStore;
+    this.analyzerRegistry = analyzerRegistry;
+    this.correctionContextResolver = correctionContextResolver;
+    this.impactPreviewStore = impactPreviewStore;
+    this.impactPreviewFormatter = impactPreviewFormatter;
+}
 
     /** Called by Main to inject the resolved working directory (needed for plan listing). */
     void setBaseDir(Path baseDir) {
@@ -144,6 +157,16 @@ final class GetCmd implements GetCommand, Callable<Integer> {
     /** Called by Main to inject the RevisionArtifactStore (needed for proposal/proposals resource). */
     void setRevisionArtifactStore(RevisionArtifactStore revisionArtifactStore) {
         this.revisionArtifactStore = revisionArtifactStore;
+    }
+
+    /** Permite inyectar ImpactPreviewStore en tests (F-PIPRE-R007). */
+    void setImpactPreviewStore(ImpactPreviewStore impactPreviewStore) {
+        this.impactPreviewStore = impactPreviewStore;
+    }
+
+    /** Permite inyectar ImpactPreviewFormatter en tests (F-PIPRE-R007). */
+    void setImpactPreviewFormatter(ImpactPreviewFormatter impactPreviewFormatter) {
+        this.impactPreviewFormatter = impactPreviewFormatter;
     }
 
     @Override
@@ -182,7 +205,7 @@ final class GetCmd implements GetCommand, Callable<Integer> {
     }
 
     @Override
-    public int get(String resource, String name, GetTasksFilter filter) {
+    public Integer get(String resource, String name, GetTasksFilter filter) {
         if (resource == null || resource.isBlank()) {
             System.err.println("Error: resource is required. Known resources: audits, plans, tasks, analyzers, proposals");
             return 1;
@@ -704,6 +727,27 @@ final class GetCmd implements GetCommand, Callable<Integer> {
         System.out.println("    Instructions: " + nullToEmpty(ctx.getKnowledgeInstructions()));
         System.out.println("    Topic:        " + nullToEmpty(ctx.getTopicLabel()));
         System.out.println("    CEFR Level:   " + (ctx.getCefrLevel() != null ? ctx.getCefrLevel().name() : ""));
+        // F-RCLALEN-R006: Length line inserted between CEFR Level and Misplaced lemmas.
+        LengthDirection dir = ctx.getLengthDirection();
+        if (dir == LengthDirection.UNKNOWN || dir == null) {
+            System.out.println("    Length:       (unavailable, direction: UNKNOWN)");
+        } else {
+            Integer tokenCount = ctx.getTokenCount();
+            Integer targetMin = ctx.getTargetMin();
+            Integer targetMax = ctx.getTargetMax();
+            Integer delta = ctx.getDelta();
+            String deltaStr;
+            if (delta == null || delta == 0) {
+                deltaStr = "0";
+            } else if (delta > 0) {
+                deltaStr = "+" + delta;
+            } else {
+                deltaStr = String.valueOf(delta);
+            }
+            System.out.println("    Length:       " + tokenCount
+                    + " tokens (target: " + targetMin + "-" + targetMax
+                    + ", delta: " + deltaStr + ", direction: " + dir.name() + ")");
+        }
         System.out.println("    Misplaced lemmas:");
         List<MisplacedLemmaContext> misplaced = ctx.getMisplacedLemmas();
         if (misplaced == null || misplaced.isEmpty()) {
@@ -772,6 +816,19 @@ final class GetCmd implements GetCommand, Callable<Integer> {
         map.put("knowledgeInstructions", ctx.getKnowledgeInstructions());
         map.put("topicLabel", ctx.getTopicLabel());
         map.put("cefrLevel", ctx.getCefrLevel() != null ? ctx.getCefrLevel().name() : null);
+        // F-RCLALEN-R005: include length fields when lengthDirection is known; omit numerics when UNKNOWN.
+        LengthDirection dir = ctx.getLengthDirection();
+        if (dir != null && dir != LengthDirection.UNKNOWN) {
+            map.put("tokenCount", ctx.getTokenCount());
+            Map<String, Object> targetRange = new LinkedHashMap<>();
+            targetRange.put("min", ctx.getTargetMin());
+            targetRange.put("max", ctx.getTargetMax());
+            map.put("targetRange", targetRange);
+            map.put("delta", ctx.getDelta());
+        }
+        if (dir != null) {
+            map.put("lengthDirection", dir.name());
+        }
         List<MisplacedLemmaContext> misplaced = ctx.getMisplacedLemmas();
         map.put("misplacedLemmas", misplaced == null ? List.of() : misplaced.stream()
                 .map(ml -> {
@@ -911,10 +968,28 @@ final class GetCmd implements GetCommand, Callable<Integer> {
             return 1;
         }
 
+        // Cargar el preview de impacto asociado a la propuesta (F-PIPRE-R007)
+        com.learney.contentaudit.auditcli.formatting.ImpactPreviewView previewView;
+        if (impactPreviewStore != null && impactPreviewFormatter != null) {
+            Optional<com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreview> previewOpt =
+                    impactPreviewStore.findByProposalId(proposalId);
+            previewView = previewOpt.map(impactPreviewFormatter::format)
+                                    .orElseGet(() -> new com.learney.contentaudit.auditcli.formatting.ImpactPreviewView(
+                                            com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewAvailability.UNAVAILABLE,
+                                            "Preview no disponible para esta propuesta",
+                                            java.util.List.of()));
+        } else {
+            previewView = new com.learney.contentaudit.auditcli.formatting.ImpactPreviewView(
+                    com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewAvailability.UNAVAILABLE,
+                    "Preview no disponible para esta propuesta",
+                    java.util.List.of());
+        }
+
         if ("json".equals(formatName)) {
             return printProposalsJson(List.of(artifactOpt.get()));
         }
         printProposalOne(artifactOpt.get());
+        printImpactPreviewView(previewView);
         return 0;
     }
 
@@ -1081,6 +1156,39 @@ final class GetCmd implements GetCommand, Callable<Integer> {
         } catch (Exception e) {
             System.err.println("Error formatting JSON: " + e.getMessage());
             return 1;
+        }
+    }
+
+    /**
+     * Imprime el preview de impacto en formato texto junto a la propuesta (F-PIPRE-R007).
+     * Si el preview esta marcado como no disponible, muestra la causa explicita (R009 detail 3).
+     */
+    private void printImpactPreviewView(
+            com.learney.contentaudit.auditcli.formatting.ImpactPreviewView previewView) {
+        System.out.println();
+        System.out.println("─ Preview de Impacto ──────────────");
+        if (previewView == null
+                || previewView.getAvailability()
+                   == com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewAvailability.UNAVAILABLE) {
+            String reason = previewView != null && previewView.getUnavailabilityText() != null
+                    ? previewView.getUnavailabilityText()
+                    : "Preview no disponible";
+            System.out.println("  " + reason);
+            return;
+        }
+        if (previewView.getLevels() == null || previewView.getLevels().isEmpty()) {
+            System.out.println("  (sin deltas calculados)");
+            return;
+        }
+        for (com.learney.contentaudit.auditcli.formatting.LevelImpactView level : previewView.getLevels()) {
+            String targetLabel = level.getNodeTarget() != null ? level.getNodeTarget().name() : "?";
+            String nodeId = level.getNodeId() != null ? level.getNodeId() : "";
+            System.out.println("  [" + targetLabel + " " + nodeId + "] " + level.getAggregateText());
+            if (level.getDimensionRows() != null) {
+                for (com.learney.contentaudit.auditcli.formatting.DimensionDeltaView dim : level.getDimensionRows()) {
+                    System.out.println("    " + dim.getDimension() + ": " + dim.getDeltaText());
+                }
+            }
         }
     }
 
