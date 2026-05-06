@@ -137,6 +137,13 @@
 | courseName | `String` |
 | overallScore | `double` |
 
+### ActiveAnalysisSelection (`record`)
+
+| Field | Type |
+|-------|------|
+| auditId | `String` |
+| planId | `String` |
+
 ## Interfaces
 
 ### AuditEngine (port)
@@ -307,6 +314,14 @@ Methods:
 Methods:
 
 - `map(CourseEntity course): AuditableCourse`
+
+### ActiveAnalysisSelectionStore (port)
+
+Methods:
+
+- `read(): Optional<ActiveAnalysisSelection>`
+- `write(ActiveAnalysisSelection selection): void`
+- `clear(): void`
 
 ## Implementations
 

@@ -10,10 +10,6 @@ import javax.annotation.processing.Generated;
 public class DefaultFormatterRegistry implements FormatterRegistry {
     private final Map<String, ReportFormatter> formatters;
 
-    public DefaultFormatterRegistry(Map<String, ReportFormatter> formatters) {
-        this.formatters = formatters;
-    }
-
     @Override
     public ReportFormatter getFormatter(String formatName) {
         return formatters.get(formatName);

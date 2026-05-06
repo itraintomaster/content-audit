@@ -73,8 +73,8 @@ project-root/
 | Depends On | course-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 14 (AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary) |
-| Interfaces | 21 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper) |
+| Models | 15 (AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary, ActiveAnalysisSelection) |
+| Interfaces | 22 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore) |
 | Implementations | 5 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator) |
 | Packages | 3 (coca [internal], lrec [internal], labs [internal]) |
 
@@ -147,7 +147,7 @@ project-root/
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 2 (GetTasksFilter, LagenMode) |
-| Interfaces | 10 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand) |
+| Interfaces | 12 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand) |
 | Implementations | 0 |
 | Packages | 3 (commands [internal], formatting [internal], bootstrap [internal]) |
 
@@ -183,7 +183,7 @@ project-root/
 
 ### audit-infrastructure
 
-> Filesystem persistence adapters for audit reports, refinement plans, revision artifacts and impact previews. Hosts the four adapters that the CLI composition root wires into the corresponding ports (AuditReportStore, RefinementPlanStore, RevisionArtifactStore, ImpactPreviewStore). The impact-preview adapter is a sibling of the revision-artifact adapter: it shares the same plan-rooted directory layout but writes a separate file per preview so the RevisionArtifact serialized form is unchanged.
+> Filesystem persistence adapters for audit reports, refinement plans, revision artifacts, impact previews and the active analysis selection. Hosts the five adapters that the CLI composition root wires into the corresponding ports (AuditReportStore, RefinementPlanStore, RevisionArtifactStore, ImpactPreviewStore, ActiveAnalysisSelectionStore). The active-analysis-selection adapter writes a single dotfile under .content-audit/ so cualquier consumidor del CLI lo lee con la misma simetria que los demas stores filesystem.
 
 | Property | Value |
 |----------|-------|
@@ -193,12 +193,12 @@ project-root/
 | Scope | internal |
 | Models | 0 |
 | Interfaces | 0 |
-| Implementations | 4 (FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore, FileSystemImpactPreviewStore) |
+| Implementations | 5 (FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore, FileSystemImpactPreviewStore, FileSystemActiveAnalysisSelectionStore) |
 | Packages | 0 |
 
 ### revision-domain
 
-> Domain module for the revision phase of the refinement pipeline. Consumes refiner-domain (task and CorrectionContext), course-domain (course entities and the CourseRepository port owned by the caller) and audit-domain (AuditReport / AuditEngine for the eager what-if simulation that powers the impact preview). Exposes Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator/ImpactPreviewStore ports plus the RevisionEngineFactory seam, the lemmaabsence proposal-strategy SPI, and the impactpreview SPI (ImpactPreviewComputer + carriers) consumed by FEAT-PIPRE. The bypass baseline and the impact-preview internals live behind the engine package; external modules only see factories, ports and carrier records.
+> Domain module for the revision phase of the refinement pipeline. Consumes refiner-domain (task and CorrectionContext), course-domain (course entities and the CourseRepository port owned by the caller) and audit-domain (AuditReport / AuditEngine / ActiveAnalysisSelectionStore for the eager what-if simulation that powers the impact preview and the consolidated view). Exposes Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator/ImpactPreviewStore ports plus the RevisionEngineFactory seam, the lemmaabsence proposal-strategy SPI, the impactpreview SPI (FEAT-PIPRE) and the consolidatedview SPI (FEAT-CDIFF). The bypass baseline, the impact-preview internals and the consolidated-view internals live behind the engine package; external modules only see factories, ports and carrier records.
 
 | Property | Value |
 |----------|-------|
@@ -206,10 +206,10 @@ project-root/
 | Depends On | audit-domain, refiner-domain, course-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 14 (RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException) |
+| Models | 15 (RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException, ConsolidatedViewBuilderConfig) |
 | Interfaces | 14 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore) |
 | Implementations | 0 |
-| Packages | 3 (engine [internal], lemmaabsence [public], impactpreview [public]) |
+| Packages | 4 (engine [internal], lemmaabsence [public], impactpreview [public], consolidatedview [public]) |
 
 ### revision-infrastructure
 

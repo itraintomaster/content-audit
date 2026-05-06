@@ -1,10 +1,10 @@
-generatedAt: 2026-05-05T22:23:17.162897Z
+generatedAt: 2026-05-06T13:50:08.416079Z
 system: ContentAudit
 version: 0.0.1
 features:
 - id: FEAT-DLABS
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DLABS-R001
     state: NO_TESTS
@@ -206,7 +206,7 @@ features:
     - mutationScore 40% < 60%
 - id: FEAT-CLIRV
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLIRV-R001
     state: PASSING
@@ -857,7 +857,7 @@ features:
     - crapHotspots 7 > 5
 - id: FEAT-LREC
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LREC-R001
     state: NO_TESTS
@@ -1027,7 +1027,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLAQS
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLAQS-R001
     state: PASSING
@@ -1231,7 +1231,7 @@ features:
     - mutationScore 34% < 60%
 - id: FEAT-DCOCA
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DCOCA-R001
     state: NO_TESTS
@@ -1330,7 +1330,7 @@ features:
     verdict: PASSED
 - id: FEAT-QSENT
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-QSENT-R001
     state: PASSING
@@ -1657,7 +1657,7 @@ features:
     - mutationScore 36% < 60%
 - id: FEAT-COURSE
   state: IMPLEMENTED
-  requirementFile: requirements/2026-03-15.01_course-structure/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-15.01_course-structure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COURSE-R001
     state: PASSING
@@ -1936,7 +1936,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLALEN
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLALEN-R001
     state: PASSING
@@ -2235,7 +2235,7 @@ features:
     - mutationScore 35% < 60%
 - id: FEAT-COCA
   state: DRAFT
-  requirementFile: requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COCA-R001
     state: NO_TESTS
@@ -2358,7 +2358,7 @@ features:
     verdict: PASSED
 - id: FEAT-NLP
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-NLP-R001
     state: NO_TESTS
@@ -2497,7 +2497,7 @@ features:
     - mutationScore 32% < 60%
 - id: FEAT-LABS
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LABS-R001
     state: PASSING
@@ -3418,7 +3418,7 @@ features:
     - mutationScore 44% < 60%
 - id: FEAT-CLI
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLI-R001
     state: PASSING
@@ -3541,7 +3541,7 @@ features:
     - mutationScore 18% < 60%
 - id: FEAT-PIPRE
   state: IMPLEMENTED
-  requirementFile: requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
+  requirementFile: ./requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-PIPRE-R001
     state: PASSING
@@ -3889,7 +3889,7 @@ features:
     - mutationScore 34% < 60%
 - id: f0b4e57b-7c0f-4e3e-b9b3-843aef216a67
   state: DRAFT
-  requirementFile: requirements/2026-04-28.01_laps-engine-public-visibility/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-28.01_laps-engine-public-visibility/REQUIREMENT.md
   rulesCoverage:
   - ruleId: 27ac13c5-bc70-4e9b-96c3-3315542d6835
     state: NO_TESTS
@@ -3936,7 +3936,7 @@ features:
     verdict: PASSED
 - id: FEAT-KTLEN
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-KTLEN-R001
     state: PASSING
@@ -4261,9 +4261,578 @@ features:
       healthPct: 100
     healthScore: 86
     verdict: PASSED
+- id: FEAT-CDIFF
+  state: IMPLEMENTING
+  requirementFile: ./requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
+  rulesCoverage:
+  - ruleId: F-CDIFF-R001
+    state: FAILING
+    tests:
+    - name: "Dado un ConsolidatedView producido por el builder con activeAuditId y\
+        \ activePlanId resueltos, cuando getConsolidated corre, entonces la salida\
+        \ formateada incluye ambos identificadores en su raiz"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultGetConsolidatedCommand
+    - name: "Dado un ConsolidatedView con activeAuditId y activePlanId no nulos, cuando\
+        \ format corre, entonces ambos identificadores aparecen en la cadena de salida\
+        \ en una posicion identificable como raiz del documento"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultConsolidatedViewFormatter
+    - name: "Dado un ActiveAnalysisSelection escrito previamente con write, cuando\
+        \ read corre, entonces retorna un Optional con esa misma seleccion (auditId\
+        \ y planId)"
+      implemented: true
+      passing: false
+      module: audit-infrastructure
+      implementation: FileSystemActiveAnalysisSelectionStore
+    - name: "Dado un store sin seleccion previa (archivo ausente), cuando read corre,\
+        \ entonces retorna Optional.empty"
+      implemented: true
+      passing: false
+      module: audit-infrastructure
+      implementation: FileSystemActiveAnalysisSelectionStore
+    - name: "Dado un store con una seleccion escrita, cuando clear corre, entonces\
+        \ read posterior retorna Optional.empty"
+      implemented: true
+      passing: false
+      module: audit-infrastructure
+      implementation: FileSystemActiveAnalysisSelectionStore
+    - name: "Dada una seleccion activa con auditId y planId resolubles, cuando build\
+        \ corre, entonces ConsolidatedView.activeAuditId y activePlanId coinciden\
+        \ con los identificadores leidos del ActiveAnalysisSelectionStore"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R002
+    state: FAILING
+    tests:
+    - name: "Dada una invocacion setActive(auditId, planId) con valores no nulos,\
+        \ cuando setActive corre, entonces ActiveAnalysisSelectionStore.write se invoca\
+        \ con un ActiveAnalysisSelection que tiene esos auditId y planId"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultSetActiveAnalysisCommand
+    - name: "Dada una invocacion setActive(null, null), cuando setActive corre, entonces\
+        \ ActiveAnalysisSelectionStore.clear se invoca y write nunca se invoca"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultSetActiveAnalysisCommand
+    - name: "Dada cualquier invocacion de setActive (con o sin valores), entonces\
+        \ no se invoca save sobre AuditReportStore, RefinementPlanStore, RevisionArtifactStore\
+        \ ni sobre el repositorio del curso"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultSetActiveAnalysisCommand
+    - name: "Dado un store con una seleccion ya escrita, cuando write se invoca con\
+        \ la misma seleccion, entonces el archivo no se reescribe (write idempotente\
+        \ y no destructivo a nivel observable)"
+      implemented: true
+      passing: false
+      module: audit-infrastructure
+      implementation: FileSystemActiveAnalysisSelectionStore
+    - name: "Dado un courseRoot con AuditReports y RefinementPlans persistidos, cuando\
+        \ write y clear se invocan sobre el ActiveAnalysisSelectionStore, entonces\
+        \ ningun AuditReport, RefinementPlan, RevisionArtifact ni archivo del curso\
+        \ se modifica"
+      implemented: true
+      passing: false
+      module: audit-infrastructure
+      implementation: FileSystemActiveAnalysisSelectionStore
+  - ruleId: F-CDIFF-R003
+    state: FAILING
+    tests:
+    - name: "Dado un AuditReport recien creado cuyo plan activo no tiene propuestas\
+        \ aceptadas ni pendientes, cuando build corre, entonces nodeImpacts y statisticImpacts\
+        \ quedan vacios y los valores consolidados coinciden con el baseline del analisis"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R004
+    state: FAILING
+    tests:
+    - name: "Dado un plan activo de un analisis viejo con propuestas pendientes y\
+        \ un analisis mas nuevo cuyo plan no las contiene, cuando build corre apuntando\
+        \ al analisis viejo, entonces sus pendientes dormidas aparecen en nodeImpacts/statisticImpacts\
+        \ del consolidado"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R005
+    state: FAILING
+    tests:
+    - name: "Dado un RevisionArtifact con verdict REJECTED en el plan activo, cuando\
+        \ build corre, entonces ese proposalId no aparece en nodeImpacts, statisticImpacts\
+        \ ni nonApplicablePendings y no contribuye a consolidated, acceptedDelta,\
+        \ pendingProjection ni pendingDelta"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R006
+    state: FAILING
+    tests:
+    - name: "Dado un nodo hoja sin aceptadas ni pendientes en el plan activo, cuando\
+        \ build corre, entonces ese nodo no aparece en nodeImpacts (la salida solo\
+        \ emite nodos afectados)"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado un nodo hoja con una pendiente en el plan activo y sin aceptadas,\
+        \ cuando build corre, entonces NodeImpact.consolidated coincide con el snapshot\
+        \ del baseline y pendingProjection coincide con el snapshot resultante de\
+        \ aplicar la pendiente sobre ese baseline"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado un nodo hoja con una propuesta aceptada y sin pendientes, cuando\
+        \ build corre, entonces NodeImpact.consolidated coincide con el elementAfter\
+        \ de la aceptada y pendingProjection es null"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado un nodo hoja con una aceptada y una pendiente sobre el mismo nodeId,\
+        \ cuando build corre, entonces pendingProjection se calcula aplicando la pendiente\
+        \ sobre consolidated (es decir sobre el elementAfter de la aceptada) y no\
+        \ sobre el snapshot original del baseline"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R007
+    state: FAILING
+    tests:
+    - name: "Dado un nodo hoja con dos propuestas aceptadas que lo afectaron en orden\
+        \ createdAt ascendente, cuando build corre, entonces NodeImpact.acceptedProposalIds\
+        \ contiene ambos proposalId en orden createdAt ascendente"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado un nodo hoja con una pendiente aplicable, cuando build corre, entonces\
+        \ NodeImpact.pendingProposalId equivale al proposalId de la pendiente que\
+        \ produjo pendingProjection"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R008
+    state: FAILING
+    tests:
+    - name: "Dado un nodo padre cuyo subarbol contiene un quiz afectado por una aceptada,\
+        \ cuando build corre, entonces aparece un NodeImpact para ese padre y los\
+        \ valores consolidados de sus estadisticas resultan de re-agregar el subarbol\
+        \ con la estrategia del analizador (no de sumar deltas individuales)"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado un nodo padre cuyo subarbol no contiene aceptadas ni pendientes,\
+        \ cuando build corre, entonces ese padre no aparece en nodeImpacts ni en statisticImpacts"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R009
+    state: FAILING
+    tests:
+    - name: "Dado un StatisticImpact con original, consolidated y acceptedDelta poblados\
+        \ (sin pendiente), cuando format corre, entonces los tres valores aparecen\
+        \ en la salida con la misma magnitud en escala absoluta y pendingProjection/pendingDelta\
+        \ no aparecen como campos numericos"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultConsolidatedViewFormatter
+    - name: "Dado un StatisticImpact con pendingProjection y pendingDelta no nulos,\
+        \ cuando format corre, entonces los cuatro valores numericos (original, consolidated,\
+        \ acceptedDelta, pendingDelta) y pendingProjection aparecen en la salida"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultConsolidatedViewFormatter
+    - name: "Dada una estadistica tocada solo por una aceptada en el plan activo,\
+        \ cuando build corre, entonces el StatisticImpact correspondiente expone original\
+        \ y consolidated distintos, acceptedDelta no nulo, y pendingProjection y pendingDelta\
+        \ nulos"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dada una estadistica tocada solo por una pendiente en el plan activo,\
+        \ cuando build corre, entonces el StatisticImpact correspondiente expone consolidated\
+        \ igual a original, acceptedDelta cero, y pendingProjection con pendingDelta\
+        \ no nulos"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dada una estadistica del baseline no tocada por ninguna decision del\
+        \ plan activo, cuando build corre, entonces ese par (nivel, dimension) no\
+        \ aparece en statisticImpacts"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R010
+    state: FAILING
+    tests:
+    - name: "Dado un StatisticImpact con cualquier valor de original y consolidated,\
+        \ cuando format corre, entonces el valor textual de acceptedDelta en la salida\
+        \ coincide con consolidated menos original sin conversion porcentual relativa"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultConsolidatedViewFormatter
+    - name: "Dado cualquier StatisticImpact emitido por build, entonces acceptedDelta\
+        \ es exactamente consolidated menos original, sin escalado relativo"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado un StatisticImpact con pendingProjection no nulo, entonces pendingDelta\
+        \ es exactamente pendingProjection menos consolidated, sin escalado relativo"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R011
+    state: FAILING
+    tests:
+    - name: "Dado un AuditReport con pares (nivel, dimension) reportados por el motor\
+        \ en el baseline, cuando build corre, entonces statisticImpacts solo contiene\
+        \ pares presentes en el baseline (la salida no inventa pares ausentes ni reordena\
+        \ la granularidad)"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R012
+    state: FAILING
+    tests:
+    - name: "Dado un ConsolidatedView con nonApplicablePendings no vacio, cuando format\
+        \ corre, entonces cada NonApplicablePending aparece en la salida con su proposalId,\
+        \ su reason categorica y su detail"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultConsolidatedViewFormatter
+    - name: "Dada una pendiente cuyo nodeId no se encuentra en el subarbol vigente,\
+        \ cuando build corre, entonces aparece en nonApplicablePendings con reason\
+        \ NODE_ABSENT y detail no vacio, y no contribuye a pendingProjection ni pendingDelta\
+        \ de ningun nodo o estadistica"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dadas dos pendientes sobre el mismo nodeId aplicadas en orden createdAt\
+        \ ascendente cuyo elementBefore de la segunda no coincide con el consolidated\
+        \ tras aplicar la primera, cuando build corre, entonces la segunda aparece\
+        \ en nonApplicablePendings con reason ELEMENT_BEFORE_MISMATCH y no contribuye\
+        \ a pendingProjection ni pendingDelta"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dada una pendiente marcada como NOT_APPLICABLE y otras pendientes aplicables\
+        \ en el mismo plan activo, cuando build corre, entonces el resto del consolidado\
+        \ se entrega normalmente y solo la pendiente no aplicable queda excluida del\
+        \ calculo de proyeccion"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R013
+    state: FAILING
+    tests:
+    - name: "Dado un ConsolidatedView con availability UNAVAILABLE producido por el\
+        \ builder, cuando getConsolidated corre, entonces el comando termina con exit\
+        \ code cero y la salida formateada lleva la marca consolidatedAvailability=UNAVAILABLE\
+        \ con su unavailabilityReason (no rellena con valores arbitrarios)"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultGetConsolidatedCommand
+    - name: "Dado un ConsolidatedView con availability UNAVAILABLE y un unavailability\
+        \ con reason y detail, cuando format corre, entonces la salida incluye consolidatedAvailability=UNAVAILABLE\
+        \ con la categoria y el detalle, y nodeImpacts/statisticImpacts no se intentan\
+        \ rendererizar como datos validos"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultConsolidatedViewFormatter
+    - name: "Dado que el ActiveAnalysisSelectionStore retorna Optional.empty, cuando\
+        \ build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason\
+        \ NO_ACTIVE_ANALYSIS y nodeImpacts/statisticImpacts quedan vacios"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado un par activo cuyo planId no se puede ubicar dentro del analisis\
+        \ (RefinementPlanStore retorna empty), cuando build corre, entonces ConsolidatedView.availability\
+        \ es UNAVAILABLE con reason ACTIVE_PLAN_UNAVAILABLE"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dada una propuesta aceptada que referencia un nodeId no encontrado por\
+        \ CourseElementLocator al re-agregar, cuando build corre, entonces ConsolidatedView.availability\
+        \ es UNAVAILABLE con reason INCONSISTENT_PROPOSAL"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+    - name: "Dado que AuditEngine falla al recomputar agregaciones sobre el subarbol\
+        \ modificado, cuando build corre, entonces ConsolidatedView.availability es\
+        \ UNAVAILABLE con reason REAGGREGATION_FAILED"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R014
+    state: NO_TESTS
+  - ruleId: F-CDIFF-R015
+    state: FAILING
+    tests:
+    - name: "Dada cualquier invocacion de getConsolidated, entonces no se invoca AuditReportStore.save,\
+        \ RefinementPlanStore.save ni RevisionArtifactStore.save sobre los stores\
+        \ inyectados al builder"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultGetConsolidatedCommand
+    - name: "Dada cualquier invocacion de build (exitosa, UNAVAILABLE o con pendientes\
+        \ no aplicables), entonces no se invoca AuditReportStore.save, RefinementPlanStore.save\
+        \ ni RevisionArtifactStore.save sobre los stores inyectados"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R016
+    state: FAILING
+    tests:
+    - name: "Dado un plan activo con varias aceptadas y varias pendientes que tocan\
+        \ distintos nodos del curso, cuando build corre, entonces el ConsolidatedView\
+        \ retornado combina baseline + aceptadas + pendientes en una unica estructura\
+        \ con nodeImpacts y statisticImpacts agregados"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R017
+    state: FAILING
+    tests:
+    - name: "Dado un plan activo asociado a un AuditReport y un plan ajeno con propuestas\
+        \ distintas asociadas a otro analisis, cuando build corre, entonces solo se\
+        \ consultan los RevisionArtifact via listByPlan(activePlanId) y las propuestas\
+        \ del plan ajeno no aparecen en nodeImpacts ni statisticImpacts"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  - ruleId: F-CDIFF-R018
+    state: FAILING
+    tests:
+    - name: "Dada una RevisionProposal cuyo elementBefore y elementAfter referencian\
+        \ el mismo nodeId estable, cuando build corre, entonces el NodeImpact resultante\
+        \ conserva ese nodeId en consolidated y pendingProjection sin modelar renombres\
+        \ ni reubicaciones"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultConsolidatedViewBuilder
+  journeysCoverage:
+  - journeyId: F-CDIFF-J001
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_elParActivoSeResuelveYElPlanSePuedeRecuperar_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FCdiffJ001JourneyTest
+    - pathId: path-2
+      result: success
+      state: DECLARED
+      tests:
+      - name: path2_noSePuedeResolverElParActivoOElPlan_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FCdiffJ001JourneyTest
+  - journeyId: F-CDIFF-J002
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_success
+        implemented: false
+        passing: false
+        module: revision-domain
+        implementation: FCdiffJ002JourneyTest
+  - journeyId: F-CDIFF-J003
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_hayAlMenosUnaPendienteAplicable_success
+        implemented: false
+        passing: false
+        module: revision-domain
+        implementation: FCdiffJ003JourneyTest
+    - pathId: path-2
+      result: success
+      state: DECLARED
+      tests:
+      - name: path2_noHayPendientesAplicablesEnElSubarbol_success
+        implemented: false
+        passing: false
+        module: revision-domain
+        implementation: FCdiffJ003JourneyTest
+  - journeyId: F-CDIFF-J004
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_elParEstaTocadoPorAceptadasPendientesOAmbas_success
+        implemented: false
+        passing: false
+        module: revision-domain
+        implementation: FCdiffJ004JourneyTest
+    - pathId: path-2
+      result: success
+      state: DECLARED
+      tests:
+      - name: path2_elParNoEstaTocado_success
+        implemented: false
+        passing: false
+        module: revision-domain
+        implementation: FCdiffJ004JourneyTest
+  - journeyId: F-CDIFF-J005
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_laPendienteSePuedeAplicar_success
+        implemented: false
+        passing: false
+        module: revision-domain
+        implementation: FCdiffJ005JourneyTest
+    - pathId: path-2
+      result: success
+      state: DECLARED
+      tests:
+      - name: path2_laPendienteNoSePuedeAplicar_success
+        implemented: false
+        passing: false
+        module: revision-domain
+        implementation: FCdiffJ005JourneyTest
+  - journeyId: F-CDIFF-J006
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FCdiffJ006JourneyTest
+  - journeyId: F-CDIFF-J007
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FCdiffJ007JourneyTest
+  - journeyId: F-CDIFF-J008
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_success
+        implemented: false
+        passing: false
+        module: revision-domain
+        implementation: FCdiffJ008JourneyTest
+  quality:
+    classes:
+    - com.learney.contentaudit.auditcli.commands.DefaultGetConsolidatedCommand
+    - com.learney.contentaudit.auditcli.commands.DefaultSetActiveAnalysisCommand
+    - com.learney.contentaudit.auditcli.formatting.DefaultConsolidatedViewFormatter
+    - com.learney.contentaudit.auditinfrastructure.FileSystemActiveAnalysisSelectionStore
+    - com.learney.contentaudit.revisiondomain.engine.DefaultConsolidatedViewBuilder
+    thresholds:
+      lineCoverage: 70
+      branchCoverage: 60
+      mutationScore: 60
+      crapHotspotThreshold: 30
+      crapHotspotsMax: 5
+    coverage:
+      linesCovered: 0
+      linesMissed: 0
+      linesTotal: 0
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
+    mutation:
+      totalMutants: 0
+      killed: 0
+      survived: 0
+      noCoverage: 0
+      timedOut: 0
+      other: 0
+      mutationScorePct: 0
+      testStrengthPct: 0
+    crap:
+      totalMethods: 0
+      hotspots: 0
+      maxCrap: 0.0
+      averageCrap: 0.0
+      simple: 0
+      moderate: 0
+      high: 0
+      veryHigh: 0
+      healthPct: 0
+    healthScore: 0
+    verdict: PASSED
 - id: FEAT-REVAPR
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVAPR-R001
     state: PASSING
@@ -4946,7 +5515,7 @@ features:
     - crapHotspots 6 > 5
 - id: FEAT-LAPS
   state: IMPLEMENTING
-  requirementFile: requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAPS-R001
     state: PASSING
@@ -5312,7 +5881,7 @@ features:
     verdict: PASSED
 - id: FEAT-DSLEN
   state: DRAFT
-  requirementFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DSLEN-R001
     state: NO_TESTS
@@ -5365,7 +5934,7 @@ features:
     verdict: PASSED
 - id: FEAT-SLEN
   state: IMPLEMENTING
-  requirementFile: requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SLEN-R001
     state: PASSING
@@ -5558,7 +6127,7 @@ features:
     - mutationScore 54% < 60%
 - id: FEAT-LCOUNT
   state: DRAFT
-  requirementFile: requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
+  requirementFile: ./requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LCOUNT-R001
     state: NO_TESTS
@@ -5637,7 +6206,7 @@ features:
     verdict: PASSED
 - id: FEAT-REVBYP
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVBYP-R001
     state: PASSING
@@ -5887,7 +6456,7 @@ features:
     verdict: PASSED
 - id: FEAT-LAGEN
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAGEN-R001
     state: PASSING
@@ -6575,7 +7144,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLA
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
+  requirementFile: ./requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLA-R001
     state: PASSING
@@ -6978,8 +7547,8 @@ features:
     - mutationScore 35% < 60%
 - id: FEAT-RCSL
   state: IMPLEMENTED
-  requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
-  patchFile: requirements/2026-04-05.02_refiner-correction-context-slen/architectural_patch.yaml
+  requirementFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
+  patchFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-RCSL-R001
     state: PASSING
@@ -7576,6 +8145,14 @@ elements:
       status: EXISTS
     - name: overallScore
       status: EXISTS
+  - name: ActiveAnalysisSelection
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/ActiveAnalysisSelection.java
+    fields:
+    - name: auditId
+      status: EXISTS
+    - name: planId
+      status: EXISTS
   interfaces:
   - name: AuditEngine
     status: EXISTS
@@ -7793,6 +8370,16 @@ elements:
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/CourseMapper.java
     methods:
     - signature: "map(CourseEntity course): AuditableCourse"
+      status: EXISTS
+  - name: ActiveAnalysisSelectionStore
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/ActiveAnalysisSelectionStore.java
+    methods:
+    - signature: "read(): Optional<ActiveAnalysisSelection>"
+      status: EXISTS
+    - signature: "write(ActiveAnalysisSelection selection): void"
+      status: EXISTS
+    - signature: "clear(): void"
       status: EXISTS
   implementations:
   - name: IAuditEngine
@@ -18470,6 +19057,18 @@ elements:
     - signature: "reject(String resource, String proposalId, String planId, String\
         \ reason): Integer"
       status: EXISTS
+  - name: GetConsolidatedCommand
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/GetConsolidatedCommand.java
+    methods:
+    - signature: "getConsolidated(String coursePath, String format): Integer"
+      status: EXISTS
+  - name: SetActiveAnalysisCommand
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/SetActiveAnalysisCommand.java
+    methods:
+    - signature: "setActive(String auditId, String planId): Integer"
+      status: EXISTS
   implementations:
   - name: Main
     status: EXISTS
@@ -21563,6 +22162,44 @@ elements:
 
       when:
         sut.setErr(new PrintStream(errBuf))
+  - name: DefaultGetConsolidatedCommand
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/DefaultGetConsolidatedCommand.java
+    tests:
+    - name: "Dado un ConsolidatedView producido por el builder con activeAuditId y\
+        \ activePlanId resueltos, cuando getConsolidated corre, entonces la salida\
+        \ formateada incluye ambos identificadores en su raiz"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultGetConsolidatedCommandTest.java
+    - name: "Dado un ConsolidatedView con availability UNAVAILABLE producido por el\
+        \ builder, cuando getConsolidated corre, entonces el comando termina con exit\
+        \ code cero y la salida formateada lleva la marca consolidatedAvailability=UNAVAILABLE\
+        \ con su unavailabilityReason (no rellena con valores arbitrarios)"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultGetConsolidatedCommandTest.java
+    - name: "Dada cualquier invocacion de getConsolidated, entonces no se invoca AuditReportStore.save,\
+        \ RefinementPlanStore.save ni RevisionArtifactStore.save sobre los stores\
+        \ inyectados al builder"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultGetConsolidatedCommandTest.java
+  - name: DefaultSetActiveAnalysisCommand
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/DefaultSetActiveAnalysisCommand.java
+    tests:
+    - name: "Dada una invocacion setActive(auditId, planId) con valores no nulos,\
+        \ cuando setActive corre, entonces ActiveAnalysisSelectionStore.write se invoca\
+        \ con un ActiveAnalysisSelection que tiene esos auditId y planId"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultSetActiveAnalysisCommandTest.java
+    - name: "Dada una invocacion setActive(null, null), cuando setActive corre, entonces\
+        \ ActiveAnalysisSelectionStore.clear se invoca y write nunca se invoca"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultSetActiveAnalysisCommandTest.java
+    - name: "Dada cualquier invocacion de setActive (con o sin valores), entonces\
+        \ no se invoca save sobre AuditReportStore, RefinementPlanStore, RevisionArtifactStore\
+        \ ni sobre el repositorio del curso"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultSetActiveAnalysisCommandTest.java
   - name: TextReportFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/TextReportFormatter.java
@@ -21838,6 +22475,42 @@ elements:
         unavailabilityText is not null
         !unavailabilityText.isBlank() is true
         unavailabilityText.contains("SIMULATION_FAILED") || unavailabilityText.contains("simulacion") || unavailabilityText.contains("La simulacion") is true
+  - name: DefaultConsolidatedViewFormatter
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatter.java
+    tests:
+    - name: "Dado un ConsolidatedView con activeAuditId y activePlanId no nulos, cuando\
+        \ format corre, entonces ambos identificadores aparecen en la cadena de salida\
+        \ en una posicion identificable como raiz del documento"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
+    - name: "Dado un StatisticImpact con original, consolidated y acceptedDelta poblados\
+        \ (sin pendiente), cuando format corre, entonces los tres valores aparecen\
+        \ en la salida con la misma magnitud en escala absoluta y pendingProjection/pendingDelta\
+        \ no aparecen como campos numericos"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
+    - name: "Dado un StatisticImpact con pendingProjection y pendingDelta no nulos,\
+        \ cuando format corre, entonces los cuatro valores numericos (original, consolidated,\
+        \ acceptedDelta, pendingDelta) y pendingProjection aparecen en la salida"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
+    - name: "Dado un StatisticImpact con cualquier valor de original y consolidated,\
+        \ cuando format corre, entonces el valor textual de acceptedDelta en la salida\
+        \ coincide con consolidated menos original sin conversion porcentual relativa"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
+    - name: "Dado un ConsolidatedView con availability UNAVAILABLE y un unavailability\
+        \ con reason y detail, cuando format corre, entonces la salida incluye consolidatedAvailability=UNAVAILABLE\
+        \ con la categoria y el detalle, y nodeImpacts/statisticImpacts no se intentan\
+        \ rendererizar como datos validos"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
+    - name: "Dado un ConsolidatedView con nonApplicablePendings no vacio, cuando format\
+        \ corre, entonces cada NonApplicablePending aparece en la salida con su proposalId,\
+        \ su reason categorica y su detail"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultConsolidatedViewFormatterTest.java
   - name: DefaultWorkdirResolver
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/bootstrap/DefaultWorkdirResolver.java
@@ -24105,6 +24778,34 @@ elements:
         mutantsNoCoverage: 0
         mutationScorePct: 50
         crap: 1.0
+  - name: FileSystemActiveAnalysisSelectionStore
+    status: EXISTS
+    filePath: audit-infrastructure/src/main/java/com/learney/contentaudit/auditinfrastructure/FileSystemActiveAnalysisSelectionStore.java
+    tests:
+    - name: "Dado un ActiveAnalysisSelection escrito previamente con write, cuando\
+        \ read corre, entonces retorna un Optional con esa misma seleccion (auditId\
+        \ y planId)"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemActiveAnalysisSelectionStoreTest.java
+    - name: "Dado un store sin seleccion previa (archivo ausente), cuando read corre,\
+        \ entonces retorna Optional.empty"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemActiveAnalysisSelectionStoreTest.java
+    - name: "Dado un store con una seleccion ya escrita, cuando write se invoca con\
+        \ la misma seleccion, entonces el archivo no se reescribe (write idempotente\
+        \ y no destructivo a nivel observable)"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemActiveAnalysisSelectionStoreTest.java
+    - name: "Dado un store con una seleccion escrita, cuando clear corre, entonces\
+        \ read posterior retorna Optional.empty"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemActiveAnalysisSelectionStoreTest.java
+    - name: "Dado un courseRoot con AuditReports y RefinementPlans persistidos, cuando\
+        \ write y clear se invocan sobre el ActiveAnalysisSelectionStore, entonces\
+        \ ningun AuditReport, RefinementPlan, RevisionArtifact ni archivo del curso\
+        \ se modifica"
+      status: EXISTS
+      testFilePath: audit-infrastructure/src/test/java/com/learney/contentaudit/auditinfrastructure/FileSystemActiveAnalysisSelectionStoreTest.java
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -24348,6 +25049,26 @@ elements:
     - name: taskId
       status: EXISTS
     - name: reason
+      status: EXISTS
+  - name: ConsolidatedViewBuilderConfig
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/ConsolidatedViewBuilderConfig.java
+    fields:
+    - name: activeAnalysisSelectionStore
+      status: EXISTS
+    - name: auditReportStore
+      status: EXISTS
+    - name: refinementPlanStore
+      status: EXISTS
+    - name: revisionArtifactStore
+      status: EXISTS
+    - name: courseRepository
+      status: EXISTS
+    - name: courseElementLocator
+      status: EXISTS
+    - name: courseMapper
+      status: EXISTS
+    - name: auditEngine
       status: EXISTS
   interfaces:
   - name: Reviser
@@ -26611,6 +27332,170 @@ elements:
       then:
         preview.getAvailability() == ImpactPreviewAvailability.AVAILABLE
         quizImpact.getNodeId() == stableNodeId
+  - name: DefaultConsolidatedViewBuilderFactory
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderFactory.java
+  - name: DefaultConsolidatedViewBuilder
+    status: EXISTS
+    filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilder.java
+    tests:
+    - name: "Dada una seleccion activa con auditId y planId resolubles, cuando build\
+        \ corre, entonces ConsolidatedView.activeAuditId y activePlanId coinciden\
+        \ con los identificadores leidos del ActiveAnalysisSelectionStore"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un AuditReport recien creado cuyo plan activo no tiene propuestas\
+        \ aceptadas ni pendientes, cuando build corre, entonces nodeImpacts y statisticImpacts\
+        \ quedan vacios y los valores consolidados coinciden con el baseline del analisis"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un plan activo de un analisis viejo con propuestas pendientes y\
+        \ un analisis mas nuevo cuyo plan no las contiene, cuando build corre apuntando\
+        \ al analisis viejo, entonces sus pendientes dormidas aparecen en nodeImpacts/statisticImpacts\
+        \ del consolidado"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un RevisionArtifact con verdict REJECTED en el plan activo, cuando\
+        \ build corre, entonces ese proposalId no aparece en nodeImpacts, statisticImpacts\
+        \ ni nonApplicablePendings y no contribuye a consolidated, acceptedDelta,\
+        \ pendingProjection ni pendingDelta"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un nodo hoja sin aceptadas ni pendientes en el plan activo, cuando\
+        \ build corre, entonces ese nodo no aparece en nodeImpacts (la salida solo\
+        \ emite nodos afectados)"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un nodo hoja con una pendiente en el plan activo y sin aceptadas,\
+        \ cuando build corre, entonces NodeImpact.consolidated coincide con el snapshot\
+        \ del baseline y pendingProjection coincide con el snapshot resultante de\
+        \ aplicar la pendiente sobre ese baseline"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un nodo hoja con una propuesta aceptada y sin pendientes, cuando\
+        \ build corre, entonces NodeImpact.consolidated coincide con el elementAfter\
+        \ de la aceptada y pendingProjection es null"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un nodo hoja con una aceptada y una pendiente sobre el mismo nodeId,\
+        \ cuando build corre, entonces pendingProjection se calcula aplicando la pendiente\
+        \ sobre consolidated (es decir sobre el elementAfter de la aceptada) y no\
+        \ sobre el snapshot original del baseline"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un nodo hoja con dos propuestas aceptadas que lo afectaron en orden\
+        \ createdAt ascendente, cuando build corre, entonces NodeImpact.acceptedProposalIds\
+        \ contiene ambos proposalId en orden createdAt ascendente"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un nodo hoja con una pendiente aplicable, cuando build corre, entonces\
+        \ NodeImpact.pendingProposalId equivale al proposalId de la pendiente que\
+        \ produjo pendingProjection"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un nodo padre cuyo subarbol contiene un quiz afectado por una aceptada,\
+        \ cuando build corre, entonces aparece un NodeImpact para ese padre y los\
+        \ valores consolidados de sus estadisticas resultan de re-agregar el subarbol\
+        \ con la estrategia del analizador (no de sumar deltas individuales)"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un nodo padre cuyo subarbol no contiene aceptadas ni pendientes,\
+        \ cuando build corre, entonces ese padre no aparece en nodeImpacts ni en statisticImpacts"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dada una estadistica tocada solo por una aceptada en el plan activo,\
+        \ cuando build corre, entonces el StatisticImpact correspondiente expone original\
+        \ y consolidated distintos, acceptedDelta no nulo, y pendingProjection y pendingDelta\
+        \ nulos"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dada una estadistica tocada solo por una pendiente en el plan activo,\
+        \ cuando build corre, entonces el StatisticImpact correspondiente expone consolidated\
+        \ igual a original, acceptedDelta cero, y pendingProjection con pendingDelta\
+        \ no nulos"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dada una estadistica del baseline no tocada por ninguna decision del\
+        \ plan activo, cuando build corre, entonces ese par (nivel, dimension) no\
+        \ aparece en statisticImpacts"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado cualquier StatisticImpact emitido por build, entonces acceptedDelta\
+        \ es exactamente consolidated menos original, sin escalado relativo"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un StatisticImpact con pendingProjection no nulo, entonces pendingDelta\
+        \ es exactamente pendingProjection menos consolidated, sin escalado relativo"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un AuditReport con pares (nivel, dimension) reportados por el motor\
+        \ en el baseline, cuando build corre, entonces statisticImpacts solo contiene\
+        \ pares presentes en el baseline (la salida no inventa pares ausentes ni reordena\
+        \ la granularidad)"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dada una pendiente cuyo nodeId no se encuentra en el subarbol vigente,\
+        \ cuando build corre, entonces aparece en nonApplicablePendings con reason\
+        \ NODE_ABSENT y detail no vacio, y no contribuye a pendingProjection ni pendingDelta\
+        \ de ningun nodo o estadistica"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dadas dos pendientes sobre el mismo nodeId aplicadas en orden createdAt\
+        \ ascendente cuyo elementBefore de la segunda no coincide con el consolidated\
+        \ tras aplicar la primera, cuando build corre, entonces la segunda aparece\
+        \ en nonApplicablePendings con reason ELEMENT_BEFORE_MISMATCH y no contribuye\
+        \ a pendingProjection ni pendingDelta"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dada una pendiente marcada como NOT_APPLICABLE y otras pendientes aplicables\
+        \ en el mismo plan activo, cuando build corre, entonces el resto del consolidado\
+        \ se entrega normalmente y solo la pendiente no aplicable queda excluida del\
+        \ calculo de proyeccion"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado que el ActiveAnalysisSelectionStore retorna Optional.empty, cuando\
+        \ build corre, entonces ConsolidatedView.availability es UNAVAILABLE con reason\
+        \ NO_ACTIVE_ANALYSIS y nodeImpacts/statisticImpacts quedan vacios"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un par activo cuyo planId no se puede ubicar dentro del analisis\
+        \ (RefinementPlanStore retorna empty), cuando build corre, entonces ConsolidatedView.availability\
+        \ es UNAVAILABLE con reason ACTIVE_PLAN_UNAVAILABLE"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dada una propuesta aceptada que referencia un nodeId no encontrado por\
+        \ CourseElementLocator al re-agregar, cuando build corre, entonces ConsolidatedView.availability\
+        \ es UNAVAILABLE con reason INCONSISTENT_PROPOSAL"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado que AuditEngine falla al recomputar agregaciones sobre el subarbol\
+        \ modificado, cuando build corre, entonces ConsolidatedView.availability es\
+        \ UNAVAILABLE con reason REAGGREGATION_FAILED"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dada cualquier invocacion de build (exitosa, UNAVAILABLE o con pendientes\
+        \ no aplicables), entonces no se invoca AuditReportStore.save, RefinementPlanStore.save\
+        \ ni RevisionArtifactStore.save sobre los stores inyectados"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un plan activo asociado a un AuditReport y un plan ajeno con propuestas\
+        \ distintas asociadas a otro analisis, cuando build corre, entonces solo se\
+        \ consultan los RevisionArtifact via listByPlan(activePlanId) y las propuestas\
+        \ del plan ajeno no aparecen en nodeImpacts ni statisticImpacts"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dada una RevisionProposal cuyo elementBefore y elementAfter referencian\
+        \ el mismo nodeId estable, cuando build corre, entonces el NodeImpact resultante\
+        \ conserva ese nodeId en consolidated y pendingProjection sin modelar renombres\
+        \ ni reubicaciones"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
+    - name: "Dado un plan activo con varias aceptadas y varias pendientes que tocan\
+        \ distintos nodos del curso, cuando build corre, entonces el ConsolidatedView\
+        \ retornado combina baseline + aceptadas + pendientes en una unica estructura\
+        \ con nodeImpacts y statisticImpacts agregados"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultConsolidatedViewBuilderTest.java
   - name: LemmaAbsenceMvpStrategy
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/lemmaabsence/LemmaAbsenceMvpStrategy.java
@@ -28025,8 +28910,8 @@ elements:
     - branchCoverage 52% < 60%
     - mutationScore 47% < 60%
 testSummary:
-  total: 710
-  passing: 709
+  total: 756
+  passing: 755
   failing: 0
   notImplemented: 1
 qualitySummary:
@@ -28494,6 +29379,18 @@ patterns:
     nodeId: interface-audit-domain-CourseMapper
   confidence: 0.9
 - id: stereo-27
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: ActiveAnalysisSelectionStore is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: ActiveAnalysisSelectionStore
+    nodeId: interface-audit-domain-ActiveAnalysisSelectionStore
+  confidence: 0.9
+- id: stereo-28
   pattern: Value Object
   category: architectural
   source: detected
@@ -28505,7 +29402,7 @@ patterns:
     elementName: AuditReport
     nodeId: model-audit-domain-AuditReport
   confidence: 0.75
-- id: stereo-28
+- id: stereo-29
   pattern: Value Object
   category: architectural
   source: detected
@@ -28517,7 +29414,7 @@ patterns:
     elementName: AuditableCourse
     nodeId: model-audit-domain-AuditableCourse
   confidence: 0.75
-- id: stereo-29
+- id: stereo-30
   pattern: Entity
   category: architectural
   source: detected
@@ -28529,7 +29426,7 @@ patterns:
     elementName: AuditableKnowledge
     nodeId: model-audit-domain-AuditableKnowledge
   confidence: 0.8
-- id: stereo-30
+- id: stereo-31
   pattern: Entity
   category: architectural
   source: detected
@@ -28541,7 +29438,7 @@ patterns:
     elementName: AuditableTopic
     nodeId: model-audit-domain-AuditableTopic
   confidence: 0.8
-- id: stereo-31
+- id: stereo-32
   pattern: Entity
   category: architectural
   source: detected
@@ -28553,7 +29450,7 @@ patterns:
     elementName: AuditableMilestone
     nodeId: model-audit-domain-AuditableMilestone
   confidence: 0.8
-- id: stereo-32
+- id: stereo-33
   pattern: Entity
   category: architectural
   source: detected
@@ -28565,7 +29462,7 @@ patterns:
     elementName: AuditableQuiz
     nodeId: model-audit-domain-AuditableQuiz
   confidence: 0.8
-- id: stereo-33
+- id: stereo-34
   pattern: Enum
   category: architectural
   source: detected
@@ -28577,7 +29474,7 @@ patterns:
     elementName: CefrLevel
     nodeId: model-audit-domain-CefrLevel
   confidence: 0.95
-- id: stereo-34
+- id: stereo-35
   pattern: Value Object
   category: architectural
   source: detected
@@ -28589,7 +29486,7 @@ patterns:
     elementName: TargetRange
     nodeId: model-audit-domain-TargetRange
   confidence: 0.75
-- id: stereo-35
+- id: stereo-36
   pattern: Enum
   category: architectural
   source: detected
@@ -28601,7 +29498,7 @@ patterns:
     elementName: AuditTarget
     nodeId: model-audit-domain-AuditTarget
   confidence: 0.95
-- id: stereo-36
+- id: stereo-37
   pattern: Value Object
   category: architectural
   source: detected
@@ -28613,7 +29510,7 @@ patterns:
     elementName: NlpToken
     nodeId: model-audit-domain-NlpToken
   confidence: 0.75
-- id: stereo-37
+- id: stereo-38
   pattern: Value Object
   category: architectural
   source: detected
@@ -28625,7 +29522,7 @@ patterns:
     elementName: AnalyzerDescriptor
     nodeId: model-audit-domain-AnalyzerDescriptor
   confidence: 0.75
-- id: stereo-38
+- id: stereo-39
   pattern: Value Object
   category: architectural
   source: detected
@@ -28637,7 +29534,7 @@ patterns:
     elementName: AuditNode
     nodeId: model-audit-domain-AuditNode
   confidence: 0.75
-- id: stereo-39
+- id: stereo-40
   pattern: Value Object
   category: architectural
   source: detected
@@ -28649,7 +29546,7 @@ patterns:
     elementName: SentenceLengthDiagnosis
     nodeId: model-audit-domain-SentenceLengthDiagnosis
   confidence: 0.75
-- id: stereo-40
+- id: stereo-41
   pattern: Entity
   category: architectural
   source: detected
@@ -28661,7 +29558,19 @@ patterns:
     elementName: AuditReportSummary
     nodeId: model-audit-domain-AuditReportSummary
   confidence: 0.8
-- id: stereo-41
+- id: stereo-42
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: ActiveAnalysisSelection is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-domain
+    elementName: ActiveAnalysisSelection
+    nodeId: model-audit-domain-ActiveAnalysisSelection
+  confidence: 0.75
+- id: stereo-43
   pattern: Port
   category: architectural
   source: detected
@@ -28673,7 +29582,7 @@ patterns:
     elementName: CourseRepository
     nodeId: interface-course-domain-CourseRepository
   confidence: 0.9
-- id: stereo-42
+- id: stereo-44
   pattern: Service
   category: architectural
   source: detected
@@ -28685,7 +29594,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: stereo-43
+- id: stereo-45
   pattern: Enum
   category: architectural
   source: detected
@@ -28697,7 +29606,7 @@ patterns:
     elementName: NodeKind
     nodeId: model-course-domain-NodeKind
   confidence: 0.95
-- id: stereo-44
+- id: stereo-46
   pattern: Enum
   category: architectural
   source: detected
@@ -28709,7 +29618,7 @@ patterns:
     elementName: SentencePartKind
     nodeId: model-course-domain-SentencePartKind
   confidence: 0.95
-- id: stereo-45
+- id: stereo-47
   pattern: Entity
   category: architectural
   source: detected
@@ -28721,7 +29630,7 @@ patterns:
     elementName: CourseEntity
     nodeId: model-course-domain-CourseEntity
   confidence: 0.8
-- id: stereo-46
+- id: stereo-48
   pattern: Entity
   category: architectural
   source: detected
@@ -28733,7 +29642,7 @@ patterns:
     elementName: RootNodeEntity
     nodeId: model-course-domain-RootNodeEntity
   confidence: 0.8
-- id: stereo-47
+- id: stereo-49
   pattern: Entity
   category: architectural
   source: detected
@@ -28745,7 +29654,7 @@ patterns:
     elementName: MilestoneEntity
     nodeId: model-course-domain-MilestoneEntity
   confidence: 0.8
-- id: stereo-48
+- id: stereo-50
   pattern: Entity
   category: architectural
   source: detected
@@ -28757,7 +29666,7 @@ patterns:
     elementName: TopicEntity
     nodeId: model-course-domain-TopicEntity
   confidence: 0.8
-- id: stereo-49
+- id: stereo-51
   pattern: Entity
   category: architectural
   source: detected
@@ -28769,7 +29678,7 @@ patterns:
     elementName: KnowledgeEntity
     nodeId: model-course-domain-KnowledgeEntity
   confidence: 0.8
-- id: stereo-50
+- id: stereo-52
   pattern: Entity
   category: architectural
   source: detected
@@ -28781,7 +29690,7 @@ patterns:
     elementName: QuizTemplateEntity
     nodeId: model-course-domain-QuizTemplateEntity
   confidence: 0.8
-- id: stereo-51
+- id: stereo-53
   pattern: Value Object
   category: architectural
   source: detected
@@ -28793,7 +29702,7 @@ patterns:
     elementName: FormEntity
     nodeId: model-course-domain-FormEntity
   confidence: 0.75
-- id: stereo-52
+- id: stereo-54
   pattern: Value Object
   category: architectural
   source: detected
@@ -28805,7 +29714,7 @@ patterns:
     elementName: SentencePartEntity
     nodeId: model-course-domain-SentencePartEntity
   confidence: 0.75
-- id: stereo-53
+- id: stereo-55
   pattern: Port
   category: architectural
   source: detected
@@ -28817,7 +29726,7 @@ patterns:
     elementName: RefinerEngine
     nodeId: interface-refiner-domain-RefinerEngine
   confidence: 0.9
-- id: stereo-54
+- id: stereo-56
   pattern: Port
   category: architectural
   source: detected
@@ -28829,7 +29738,7 @@ patterns:
     elementName: RefinementPlanStore
     nodeId: interface-refiner-domain-RefinementPlanStore
   confidence: 0.9
-- id: stereo-55
+- id: stereo-57
   pattern: Port
   category: architectural
   source: detected
@@ -28841,7 +29750,7 @@ patterns:
     elementName: CorrectionContextResolver
     nodeId: interface-refiner-domain-CorrectionContextResolver
   confidence: 0.9
-- id: stereo-56
+- id: stereo-58
   pattern: Port
   category: architectural
   source: detected
@@ -28853,7 +29762,7 @@ patterns:
     elementName: CorrectionContext
     nodeId: interface-refiner-domain-CorrectionContext
   confidence: 0.9
-- id: stereo-57
+- id: stereo-59
   pattern: Enum
   category: architectural
   source: detected
@@ -28865,7 +29774,7 @@ patterns:
     elementName: DiagnosisKind
     nodeId: model-refiner-domain-DiagnosisKind
   confidence: 0.95
-- id: stereo-58
+- id: stereo-60
   pattern: Enum
   category: architectural
   source: detected
@@ -28877,7 +29786,7 @@ patterns:
     elementName: RefinementTaskStatus
     nodeId: model-refiner-domain-RefinementTaskStatus
   confidence: 0.95
-- id: stereo-59
+- id: stereo-61
   pattern: Entity
   category: architectural
   source: detected
@@ -28889,7 +29798,7 @@ patterns:
     elementName: RefinementTask
     nodeId: model-refiner-domain-RefinementTask
   confidence: 0.8
-- id: stereo-60
+- id: stereo-62
   pattern: Entity
   category: architectural
   source: detected
@@ -28901,7 +29810,7 @@ patterns:
     elementName: RefinementPlan
     nodeId: model-refiner-domain-RefinementPlan
   confidence: 0.8
-- id: stereo-61
+- id: stereo-63
   pattern: Value Object
   category: architectural
   source: detected
@@ -28913,7 +29822,7 @@ patterns:
     elementName: SuggestedLemma
     nodeId: model-refiner-domain-SuggestedLemma
   confidence: 0.75
-- id: stereo-62
+- id: stereo-64
   pattern: Value Object
   category: architectural
   source: detected
@@ -28925,7 +29834,7 @@ patterns:
     elementName: SentenceLengthCorrectionContext
     nodeId: model-refiner-domain-SentenceLengthCorrectionContext
   confidence: 0.75
-- id: stereo-63
+- id: stereo-65
   pattern: Value Object
   category: architectural
   source: detected
@@ -28937,7 +29846,7 @@ patterns:
     elementName: MisplacedLemmaContext
     nodeId: model-refiner-domain-MisplacedLemmaContext
   confidence: 0.75
-- id: stereo-64
+- id: stereo-66
   pattern: Value Object
   category: architectural
   source: detected
@@ -28949,7 +29858,7 @@ patterns:
     elementName: LemmaAbsenceCorrectionContext
     nodeId: model-refiner-domain-LemmaAbsenceCorrectionContext
   confidence: 0.75
-- id: stereo-65
+- id: stereo-67
   pattern: Enum
   category: architectural
   source: detected
@@ -28961,7 +29870,7 @@ patterns:
     elementName: LengthDirection
     nodeId: model-refiner-domain-LengthDirection
   confidence: 0.95
-- id: stereo-66
+- id: stereo-68
   pattern: Service
   category: architectural
   source: detected
@@ -28973,7 +29882,7 @@ patterns:
     elementName: AuditRunner
     nodeId: interface-audit-application-AuditRunner
   confidence: 0.9
-- id: stereo-67
+- id: stereo-69
   pattern: Service
   category: architectural
   source: detected
@@ -28985,7 +29894,7 @@ patterns:
     elementName: AnalyzerRegistry
     nodeId: interface-audit-application-AnalyzerRegistry
   confidence: 0.9
-- id: stereo-68
+- id: stereo-70
   pattern: Port
   category: architectural
   source: detected
@@ -28997,7 +29906,7 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: stereo-69
+- id: stereo-71
   pattern: Port
   category: architectural
   source: detected
@@ -29009,7 +29918,7 @@ patterns:
     elementName: GetCommand
     nodeId: interface-audit-cli-GetCommand
   confidence: 0.9
-- id: stereo-70
+- id: stereo-72
   pattern: Port
   category: architectural
   source: detected
@@ -29021,7 +29930,7 @@ patterns:
     elementName: DeleteCommand
     nodeId: interface-audit-cli-DeleteCommand
   confidence: 0.9
-- id: stereo-71
+- id: stereo-73
   pattern: Port
   category: architectural
   source: detected
@@ -29033,7 +29942,7 @@ patterns:
     elementName: PruneCommand
     nodeId: interface-audit-cli-PruneCommand
   confidence: 0.9
-- id: stereo-72
+- id: stereo-74
   pattern: Port
   category: architectural
   source: detected
@@ -29045,7 +29954,7 @@ patterns:
     elementName: PlanCommand
     nodeId: interface-audit-cli-PlanCommand
   confidence: 0.9
-- id: stereo-73
+- id: stereo-75
   pattern: Port
   category: architectural
   source: detected
@@ -29057,7 +29966,7 @@ patterns:
     elementName: ReviseCommand
     nodeId: interface-audit-cli-ReviseCommand
   confidence: 0.9
-- id: stereo-74
+- id: stereo-76
   pattern: Port
   category: architectural
   source: detected
@@ -29069,7 +29978,7 @@ patterns:
     elementName: ConfigAnalyzerCommand
     nodeId: interface-audit-cli-ConfigAnalyzerCommand
   confidence: 0.9
-- id: stereo-75
+- id: stereo-77
   pattern: Port
   category: architectural
   source: detected
@@ -29081,7 +29990,7 @@ patterns:
     elementName: StatsAnalyzerCommand
     nodeId: interface-audit-cli-StatsAnalyzerCommand
   confidence: 0.9
-- id: stereo-76
+- id: stereo-78
   pattern: Port
   category: architectural
   source: detected
@@ -29093,7 +30002,7 @@ patterns:
     elementName: ApproveCommand
     nodeId: interface-audit-cli-ApproveCommand
   confidence: 0.9
-- id: stereo-77
+- id: stereo-79
   pattern: Port
   category: architectural
   source: detected
@@ -29105,7 +30014,31 @@ patterns:
     elementName: RejectCommand
     nodeId: interface-audit-cli-RejectCommand
   confidence: 0.9
-- id: stereo-78
+- id: stereo-80
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: GetConsolidatedCommand is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: GetConsolidatedCommand
+    nodeId: interface-audit-cli-GetConsolidatedCommand
+  confidence: 0.9
+- id: stereo-81
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: SetActiveAnalysisCommand is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: SetActiveAnalysisCommand
+    nodeId: interface-audit-cli-SetActiveAnalysisCommand
+  confidence: 0.9
+- id: stereo-82
   pattern: Value Object
   category: architectural
   source: detected
@@ -29117,7 +30050,7 @@ patterns:
     elementName: GetTasksFilter
     nodeId: model-audit-cli-GetTasksFilter
   confidence: 0.75
-- id: stereo-79
+- id: stereo-83
   pattern: Enum
   category: architectural
   source: detected
@@ -29129,7 +30062,7 @@ patterns:
     elementName: LagenMode
     nodeId: model-audit-cli-LagenMode
   confidence: 0.95
-- id: stereo-81
+- id: stereo-85
   pattern: Value Object
   category: architectural
   source: detected
@@ -29141,7 +30074,7 @@ patterns:
     elementName: NlpTokenizerConfig
     nodeId: model-nlp-infrastructure-NlpTokenizerConfig
   confidence: 0.75
-- id: stereo-82
+- id: stereo-86
   pattern: Port
   category: architectural
   source: detected
@@ -29153,7 +30086,7 @@ patterns:
     elementName: Reviser
     nodeId: interface-revision-domain-Reviser
   confidence: 0.9
-- id: stereo-83
+- id: stereo-87
   pattern: Port
   category: architectural
   source: detected
@@ -29165,7 +30098,7 @@ patterns:
     elementName: RevisionValidator
     nodeId: interface-revision-domain-RevisionValidator
   confidence: 0.9
-- id: stereo-84
+- id: stereo-88
   pattern: Port
   category: architectural
   source: detected
@@ -29177,7 +30110,7 @@ patterns:
     elementName: RevisionArtifactStore
     nodeId: interface-revision-domain-RevisionArtifactStore
   confidence: 0.9
-- id: stereo-85
+- id: stereo-89
   pattern: Port
   category: architectural
   source: detected
@@ -29189,7 +30122,7 @@ patterns:
     elementName: CourseElementLocator
     nodeId: interface-revision-domain-CourseElementLocator
   confidence: 0.9
-- id: stereo-86
+- id: stereo-90
   pattern: Port
   category: architectural
   source: detected
@@ -29201,7 +30134,7 @@ patterns:
     elementName: RevisionEngine
     nodeId: interface-revision-domain-RevisionEngine
   confidence: 0.9
-- id: stereo-89
+- id: stereo-93
   pattern: Port
   category: architectural
   source: detected
@@ -29213,7 +30146,7 @@ patterns:
     elementName: ProposalDecisionService
     nodeId: interface-revision-domain-ProposalDecisionService
   confidence: 0.9
-- id: stereo-91
+- id: stereo-95
   pattern: Port
   category: architectural
   source: detected
@@ -29225,7 +30158,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategy
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategy
   confidence: 0.9
-- id: stereo-92
+- id: stereo-96
   pattern: Service
   category: architectural
   source: detected
@@ -29237,7 +30170,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategyRegistry
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategyRegistry
   confidence: 0.9
-- id: stereo-93
+- id: stereo-97
   pattern: Service
   category: architectural
   source: detected
@@ -29249,7 +30182,7 @@ patterns:
     elementName: LemmaAbsenceProposalDeriver
     nodeId: interface-revision-domain-LemmaAbsenceProposalDeriver
   confidence: 0.9
-- id: stereo-94
+- id: stereo-98
   pattern: Port
   category: architectural
   source: detected
@@ -29261,7 +30194,7 @@ patterns:
     elementName: ImpactPreviewStore
     nodeId: interface-revision-domain-ImpactPreviewStore
   confidence: 0.9
-- id: stereo-95
+- id: stereo-99
   pattern: Enum
   category: architectural
   source: detected
@@ -29273,7 +30206,7 @@ patterns:
     elementName: RevisionVerdict
     nodeId: model-revision-domain-RevisionVerdict
   confidence: 0.95
-- id: stereo-96
+- id: stereo-100
   pattern: Enum
   category: architectural
   source: detected
@@ -29285,7 +30218,7 @@ patterns:
     elementName: RevisionOutcomeKind
     nodeId: model-revision-domain-RevisionOutcomeKind
   confidence: 0.95
-- id: stereo-97
+- id: stereo-101
   pattern: Value Object
   category: architectural
   source: detected
@@ -29297,7 +30230,7 @@ patterns:
     elementName: CourseElementSnapshot
     nodeId: model-revision-domain-CourseElementSnapshot
   confidence: 0.75
-- id: stereo-98
+- id: stereo-102
   pattern: Value Object
   category: architectural
   source: detected
@@ -29309,7 +30242,7 @@ patterns:
     elementName: RevisionProposal
     nodeId: model-revision-domain-RevisionProposal
   confidence: 0.75
-- id: stereo-99
+- id: stereo-103
   pattern: Value Object
   category: architectural
   source: detected
@@ -29321,7 +30254,7 @@ patterns:
     elementName: RevisionArtifact
     nodeId: model-revision-domain-RevisionArtifact
   confidence: 0.75
-- id: stereo-100
+- id: stereo-104
   pattern: Value Object
   category: architectural
   source: detected
@@ -29333,7 +30266,7 @@ patterns:
     elementName: RevisionOutcome
     nodeId: model-revision-domain-RevisionOutcome
   confidence: 0.75
-- id: stereo-101
+- id: stereo-105
   pattern: Value Object
   category: architectural
   source: detected
@@ -29345,7 +30278,7 @@ patterns:
     elementName: RevisionEngineConfig
     nodeId: model-revision-domain-RevisionEngineConfig
   confidence: 0.75
-- id: stereo-102
+- id: stereo-106
   pattern: Enum
   category: architectural
   source: detected
@@ -29357,7 +30290,7 @@ patterns:
     elementName: ApprovalMode
     nodeId: model-revision-domain-ApprovalMode
   confidence: 0.95
-- id: stereo-103
+- id: stereo-107
   pattern: Enum
   category: architectural
   source: detected
@@ -29369,7 +30302,7 @@ patterns:
     elementName: ProposalDecisionOutcomeKind
     nodeId: model-revision-domain-ProposalDecisionOutcomeKind
   confidence: 0.95
-- id: stereo-104
+- id: stereo-108
   pattern: Value Object
   category: architectural
   source: detected
@@ -29381,7 +30314,7 @@ patterns:
     elementName: ProposalDecisionOutcome
     nodeId: model-revision-domain-ProposalDecisionOutcome
   confidence: 0.75
-- id: stereo-105
+- id: stereo-109
   pattern: Value Object
   category: architectural
   source: detected
@@ -29393,7 +30326,7 @@ patterns:
     elementName: StrategyId
     nodeId: model-revision-domain-StrategyId
   confidence: 0.75
-- id: stereo-106
+- id: stereo-110
   pattern: Value Object
   category: architectural
   source: detected
@@ -29405,7 +30338,19 @@ patterns:
     elementName: LemmaAbsenceQuizCandidate
     nodeId: model-revision-domain-LemmaAbsenceQuizCandidate
   confidence: 0.75
-- id: anti-107
+- id: stereo-111
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: ConsolidatedViewBuilderConfig is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: revision-domain
+    elementName: ConsolidatedViewBuilderConfig
+    nodeId: model-revision-domain-ConsolidatedViewBuilderConfig
+  confidence: 0.75
+- id: anti-112
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29417,7 +30362,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-108
+- id: anti-113
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29429,7 +30374,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: anti-109
+- id: anti-114
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29441,7 +30386,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: anti-110
+- id: anti-115
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29453,7 +30398,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: anti-111
+- id: anti-116
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29465,7 +30410,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: anti-112
+- id: anti-117
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29477,7 +30422,7 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: anti-113
+- id: anti-118
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29489,7 +30434,7 @@ patterns:
     elementName: NodeDiagnoses
     nodeId: interface-audit-domain-NodeDiagnoses
   confidence: 0.9
-- id: anti-114
+- id: anti-119
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29501,7 +30446,7 @@ patterns:
     elementName: CourseDiagnoses
     nodeId: interface-audit-domain-CourseDiagnoses
   confidence: 0.9
-- id: anti-115
+- id: anti-120
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29513,7 +30458,7 @@ patterns:
     elementName: LevelDiagnoses
     nodeId: interface-audit-domain-LevelDiagnoses
   confidence: 0.9
-- id: anti-116
+- id: anti-121
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29525,7 +30470,7 @@ patterns:
     elementName: TopicDiagnoses
     nodeId: interface-audit-domain-TopicDiagnoses
   confidence: 0.9
-- id: anti-117
+- id: anti-122
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29537,7 +30482,7 @@ patterns:
     elementName: KnowledgeDiagnoses
     nodeId: interface-audit-domain-KnowledgeDiagnoses
   confidence: 0.9
-- id: anti-118
+- id: anti-123
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29549,19 +30494,19 @@ patterns:
     elementName: QuizDiagnoses
     nodeId: interface-audit-domain-QuizDiagnoses
   confidence: 0.9
-- id: anti-119
+- id: anti-124
   pattern: God Module
   category: anti-pattern
   source: detected
   severity: warning
-  description: "audit-domain is too large: 14 models, 21 interfaces"
+  description: "audit-domain is too large: 15 models, 22 interfaces"
   involvedElements:
   - type: module
     moduleName: audit-domain
     elementName: audit-domain
     nodeId: module-audit-domain
   confidence: 0.85
-- id: anti-120
+- id: anti-125
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -29573,7 +30518,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.8
-- id: anti-121
+- id: anti-126
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -29585,7 +30530,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.8
-- id: anti-122
+- id: anti-127
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29597,7 +30542,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-123
+- id: anti-128
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -29609,7 +30554,7 @@ patterns:
     elementName: course-domain
     nodeId: module-course-domain
   confidence: 0.85
-- id: anti-124
+- id: anti-129
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29621,7 +30566,7 @@ patterns:
     elementName: CorrectionContextResolver
     nodeId: interface-refiner-domain-CorrectionContextResolver
   confidence: 0.9
-- id: anti-125
+- id: anti-130
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29633,7 +30578,7 @@ patterns:
     elementName: CorrectionContext
     nodeId: interface-refiner-domain-CorrectionContext
   confidence: 0.9
-- id: anti-126
+- id: anti-131
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -29645,7 +30590,7 @@ patterns:
     elementName: audit-application
     nodeId: module-audit-application
   confidence: 0.85
-- id: anti-127
+- id: anti-132
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29657,7 +30602,7 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: anti-128
+- id: anti-133
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29669,7 +30614,7 @@ patterns:
     elementName: GetCommand
     nodeId: interface-audit-cli-GetCommand
   confidence: 0.9
-- id: anti-129
+- id: anti-134
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29681,7 +30626,7 @@ patterns:
     elementName: DeleteCommand
     nodeId: interface-audit-cli-DeleteCommand
   confidence: 0.9
-- id: anti-130
+- id: anti-135
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29693,7 +30638,7 @@ patterns:
     elementName: PruneCommand
     nodeId: interface-audit-cli-PruneCommand
   confidence: 0.9
-- id: anti-131
+- id: anti-136
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29705,7 +30650,7 @@ patterns:
     elementName: PlanCommand
     nodeId: interface-audit-cli-PlanCommand
   confidence: 0.9
-- id: anti-132
+- id: anti-137
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29717,7 +30662,7 @@ patterns:
     elementName: ReviseCommand
     nodeId: interface-audit-cli-ReviseCommand
   confidence: 0.9
-- id: anti-133
+- id: anti-138
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29729,7 +30674,7 @@ patterns:
     elementName: ConfigAnalyzerCommand
     nodeId: interface-audit-cli-ConfigAnalyzerCommand
   confidence: 0.9
-- id: anti-134
+- id: anti-139
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29741,7 +30686,7 @@ patterns:
     elementName: StatsAnalyzerCommand
     nodeId: interface-audit-cli-StatsAnalyzerCommand
   confidence: 0.9
-- id: anti-135
+- id: anti-140
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29753,7 +30698,7 @@ patterns:
     elementName: ApproveCommand
     nodeId: interface-audit-cli-ApproveCommand
   confidence: 0.9
-- id: anti-136
+- id: anti-141
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29765,19 +30710,43 @@ patterns:
     elementName: RejectCommand
     nodeId: interface-audit-cli-RejectCommand
   confidence: 0.9
-- id: anti-137
+- id: anti-142
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: GetConsolidatedCommand has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: GetConsolidatedCommand
+    nodeId: interface-audit-cli-GetConsolidatedCommand
+  confidence: 0.9
+- id: anti-143
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: SetActiveAnalysisCommand has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: SetActiveAnalysisCommand
+    nodeId: interface-audit-cli-SetActiveAnalysisCommand
+  confidence: 0.9
+- id: anti-144
   pattern: God Module
   category: anti-pattern
   source: detected
   severity: warning
-  description: "audit-cli is too large: 10 interfaces"
+  description: "audit-cli is too large: 12 interfaces"
   involvedElements:
   - type: module
     moduleName: audit-cli
     elementName: audit-cli
     nodeId: module-audit-cli
   confidence: 0.85
-- id: anti-138
+- id: anti-145
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29789,7 +30758,7 @@ patterns:
     elementName: NlpTokenizerFactory
     nodeId: interface-nlp-infrastructure-NlpTokenizerFactory
   confidence: 0.9
-- id: anti-139
+- id: anti-146
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29801,7 +30770,7 @@ patterns:
     elementName: Reviser
     nodeId: interface-revision-domain-Reviser
   confidence: 0.9
-- id: anti-140
+- id: anti-147
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29813,7 +30782,7 @@ patterns:
     elementName: RevisionValidator
     nodeId: interface-revision-domain-RevisionValidator
   confidence: 0.9
-- id: anti-141
+- id: anti-148
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29825,7 +30794,7 @@ patterns:
     elementName: RevisionValidatorResult
     nodeId: interface-revision-domain-RevisionValidatorResult
   confidence: 0.9
-- id: anti-142
+- id: anti-149
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29837,7 +30806,7 @@ patterns:
     elementName: CourseElementLocator
     nodeId: interface-revision-domain-CourseElementLocator
   confidence: 0.9
-- id: anti-143
+- id: anti-150
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29849,7 +30818,7 @@ patterns:
     elementName: RevisionEngine
     nodeId: interface-revision-domain-RevisionEngine
   confidence: 0.9
-- id: anti-144
+- id: anti-151
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29861,7 +30830,7 @@ patterns:
     elementName: RevisionEngineFactory
     nodeId: interface-revision-domain-RevisionEngineFactory
   confidence: 0.9
-- id: anti-145
+- id: anti-152
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29873,7 +30842,7 @@ patterns:
     elementName: RevisionValidatorFactory
     nodeId: interface-revision-domain-RevisionValidatorFactory
   confidence: 0.9
-- id: anti-146
+- id: anti-153
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29885,7 +30854,7 @@ patterns:
     elementName: ProposalDecisionService
     nodeId: interface-revision-domain-ProposalDecisionService
   confidence: 0.9
-- id: anti-147
+- id: anti-154
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29897,7 +30866,7 @@ patterns:
     elementName: ProposalDecisionServiceFactory
     nodeId: interface-revision-domain-ProposalDecisionServiceFactory
   confidence: 0.9
-- id: anti-148
+- id: anti-155
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29909,7 +30878,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategy
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategy
   confidence: 0.9
-- id: anti-149
+- id: anti-156
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29921,7 +30890,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategyRegistry
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategyRegistry
   confidence: 0.9
-- id: anti-150
+- id: anti-157
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -29933,12 +30902,12 @@ patterns:
     elementName: LemmaAbsenceProposalDeriver
     nodeId: interface-revision-domain-LemmaAbsenceProposalDeriver
   confidence: 0.9
-- id: anti-151
+- id: anti-158
   pattern: God Module
   category: anti-pattern
   source: detected
   severity: warning
-  description: "revision-domain is too large: 14 models, 14 interfaces"
+  description: "revision-domain is too large: 15 models, 14 interfaces"
   involvedElements:
   - type: module
     moduleName: revision-domain

@@ -379,6 +379,13 @@ The following models and interfaces are available from dependencies. You can use
 | courseName | `String` |
 | overallScore | `double` |
 
+### ActiveAnalysisSelection (`record`)
+
+| Field | Type |
+|-------|------|
+| auditId | `String` |
+| planId | `String` |
+
 ### AuditEngine (port)
 
 Methods:
@@ -547,6 +554,14 @@ Methods:
 Methods:
 
 - `map(CourseEntity course): AuditableCourse`
+
+### ActiveAnalysisSelectionStore (port)
+
+Methods:
+
+- `read(): Optional<ActiveAnalysisSelection>`
+- `write(ActiveAnalysisSelection selection): void`
+- `clear(): void`
 
 ### From course-domain
 

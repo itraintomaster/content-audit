@@ -320,3 +320,11 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - Dado un ImpactPreview ya persistido bajo un proposalId, cuando save se invoca por segunda vez con otro ImpactPreview con el mismo proposalId, entonces findByProposalId retorna el preview persistido originalmente y no el nuevo → FEAT-PIPRE/F-PIPRE-R008
 - Dado un ImpactPreview persistido en disco, cuando findByProposalId se invoca con su proposalId, entonces retorna el ImpactPreview con todos sus levelImpacts, availability y unavailability intactos → FEAT-PIPRE/F-PIPRE-R008
 
+### FileSystemActiveAnalysisSelectionStore (audit-infrastructure)
+
+- Dado un ActiveAnalysisSelection escrito previamente con write, cuando read corre, entonces retorna un Optional con esa misma seleccion (auditId y planId) → FEAT-CDIFF/F-CDIFF-R001
+- Dado un store sin seleccion previa (archivo ausente), cuando read corre, entonces retorna Optional.empty → FEAT-CDIFF/F-CDIFF-R001
+- Dado un store con una seleccion ya escrita, cuando write se invoca con la misma seleccion, entonces el archivo no se reescribe (write idempotente y no destructivo a nivel observable) → FEAT-CDIFF/F-CDIFF-R002
+- Dado un store con una seleccion escrita, cuando clear corre, entonces read posterior retorna Optional.empty → FEAT-CDIFF/F-CDIFF-R001
+- Dado un courseRoot con AuditReports y RefinementPlans persistidos, cuando write y clear se invocan sobre el ActiveAnalysisSelectionStore, entonces ningun AuditReport, RefinementPlan, RevisionArtifact ni archivo del curso se modifica → FEAT-CDIFF/F-CDIFF-R002
+

@@ -113,6 +113,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: ProposalDerivationException - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.revisiondomain.ConsolidatedViewBuilderConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ConsolidatedViewBuilderConfig - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.revisiondomain.Reviser");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: Reviser - " + e.getMessage());
@@ -258,6 +263,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: DefaultImpactPreviewComputer - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultConsolidatedViewBuilderFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultConsolidatedViewBuilderFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultConsolidatedViewBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultConsolidatedViewBuilder - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceGeneratorResponse");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaAbsenceGeneratorResponse - " + e.getMessage());
@@ -316,6 +331,56 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewComputer");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ImpactPreviewComputer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewAvailability");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ConsolidatedViewAvailability - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewUnavailabilityReason");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ConsolidatedViewUnavailabilityReason - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewUnavailability");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ConsolidatedViewUnavailability - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePendingReason");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: NonApplicablePendingReason - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePending");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: NonApplicablePending - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.NodeImpact");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: NodeImpact - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.StatisticImpact");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: StatisticImpact - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedView");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ConsolidatedView - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ConsolidatedViewBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewBuilderFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ConsolidatedViewBuilderFactory - " + e.getMessage());
     }
   }
 }

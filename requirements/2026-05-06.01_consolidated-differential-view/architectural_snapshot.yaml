@@ -1,0 +1,442 @@
+code: FEAT-CDIFF
+description: "FEAT-CDIFF: Estructura consolidada por AuditReport con propuestas aceptadas\
+  \ y pendientes del plan activo. Introduce ActiveAnalysisSelectionStore (audit-domain)\
+  \ + adapter filesystem (audit-infrastructure), package consolidatedview en revision-domain\
+  \ con carriers de salida + ConsolidatedViewBuilder/Factory, y soporte CLI (GetConsolidatedCommand\
+  \ + SetActiveAnalysisCommand + ConsolidatedViewFormatter). El builder reutiliza\
+  \ CourseElementLocator + CourseMapper + AuditEngine para re-agregar baseline ->\
+  \ consolidated -> pendingProjection sin emitir AuditReport.; FEAT-CDIFF: Refinamiento\
+  \ del texto del campo revisionArtifactStore en DefaultConsolidatedViewBuilder para\
+  \ hacer explicita la R005 (REJECTED se descarta, no contribuye a ningun consolidado)."
+modules:
+- name: audit-domain
+  models:
+  - name: ActiveAnalysisSelection
+    type: record
+    fields:
+    - name: auditId
+      type: String
+      description: Identificador del AuditReport activo (referencia a AuditReportSummary.id).
+    - name: planId
+      type: String
+      description: Identificador del RefinementPlan activo dentro del analisis (referencia
+        a RefinementPlan.id).
+    visibility: public
+    _change: add
+  interfaces:
+  - name: ActiveAnalysisSelectionStore
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "read(): Optional<ActiveAnalysisSelection>"
+    - signature: "write(ActiveAnalysisSelection selection): void"
+    - signature: "clear(): void"
+    visibility: public
+    _change: add
+  _change: modify
+- name: audit-infrastructure
+  description: "Filesystem persistence adapters for audit reports, refinement plans,\
+    \ revision artifacts, impact previews and the active analysis selection. Hosts\
+    \ the five adapters that the CLI composition root wires into the corresponding\
+    \ ports (AuditReportStore, RefinementPlanStore, RevisionArtifactStore, ImpactPreviewStore,\
+    \ ActiveAnalysisSelectionStore). The active-analysis-selection adapter writes\
+    \ a single dotfile under .content-audit/ so cualquier consumidor del CLI lo lee\
+    \ con la misma simetria que los demas stores filesystem."
+  dependsOn:
+  - audit-domain
+  - refiner-domain
+  - revision-domain
+  implementations:
+  - name: FileSystemActiveAnalysisSelectionStore
+    types:
+    - Repository
+    visibility: public
+    implements:
+    - ActiveAnalysisSelectionStore
+    _change: add
+  _change: modify
+- name: revision-domain
+  description: "Domain module for the revision phase of the refinement pipeline. Consumes\
+    \ refiner-domain (task and CorrectionContext), course-domain (course entities\
+    \ and the CourseRepository port owned by the caller) and audit-domain (AuditReport\
+    \ / AuditEngine / ActiveAnalysisSelectionStore for the eager what-if simulation\
+    \ that powers the impact preview and the consolidated view). Exposes Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator/ImpactPreviewStore\
+    \ ports plus the RevisionEngineFactory seam, the lemmaabsence proposal-strategy\
+    \ SPI, the impactpreview SPI (FEAT-PIPRE) and the consolidatedview SPI (FEAT-CDIFF).\
+    \ The bypass baseline, the impact-preview internals and the consolidated-view\
+    \ internals live behind the engine package; external modules only see factories,\
+    \ ports and carrier records."
+  models:
+  - name: ConsolidatedViewBuilderConfig
+    type: record
+    fields:
+    - name: activeAnalysisSelectionStore
+      type: ActiveAnalysisSelectionStore
+      description: "Required. Lee/escribe el par activo. Adapter recomendado: FileSystemActiveAnalysisSelectionStore\
+        \ en audit-infrastructure."
+    - name: auditReportStore
+      type: AuditReportStore
+      description: Required. Lee el AuditReport baseline.
+    - name: refinementPlanStore
+      type: RefinementPlanStore
+      description: Required. Lee el RefinementPlan activo.
+    - name: revisionArtifactStore
+      type: RevisionArtifactStore
+      description: Required. listByPlan(activePlanId) para obtener aceptadas y pendientes.
+    - name: courseRepository
+      type: CourseRepository
+      description: Required. Carga CourseEntity desde coursePath.
+    - name: courseElementLocator
+      type: CourseElementLocator
+      description: Required. snapshot/replace de elementos del curso.
+    - name: courseMapper
+      type: CourseMapper
+      description: Required. CourseEntity -> AuditableCourse.
+    - name: auditEngine
+      type: AuditEngine
+      description: "Required. AuditableCourse -> AuditReport (in-memory, no persistido)."
+    visibility: public
+    _change: add
+  packages:
+  - name: consolidatedview
+    description: "FEAT-CDIFF. Public SPI for the consolidated structure that combines\
+      \ the baseline of an AuditReport with the effects of accepted and pending proposals\
+      \ of its active plan. Houses the builder port (ConsolidatedViewBuilder) plus\
+      \ its factory (ConsolidatedViewBuilderFactory) and every carrier the CLI rendering\
+      \ needs to read: the root document (ConsolidatedView), the per-node impact (NodeImpact),\
+      \ the per-statistic impact (StatisticImpact), the non-applicable pending list\
+      \ (NonApplicablePending), the availability tagging (ConsolidatedViewAvailability\
+      \ + ConsolidatedViewUnavailability) and the closed taxonomy of unavailability\
+      \ causes (ConsolidatedViewUnavailabilityReason) plus the closed taxonomy of\
+      \ non-applicability causes (NonApplicablePendingReason). Public so audit-cli\
+      \ can serialize the document; the implementation lives behind revision-domain.engine.\
+      \ The builder is on-demand (DOUBT-MATERIALIZATION Opcion A): every invocation\
+      \ recomputes the consolidated and the projection by replaying the proposals\
+      \ over the loaded course; future iterations may add cache without breaking the\
+      \ contract."
+    visibility: public
+    models:
+    - name: ConsolidatedViewAvailability
+      type: enum
+      fields:
+      - name: AVAILABLE
+        description: Construccion exitosa; nodeImpacts/statisticImpacts pueden estar
+          vacios si ninguna propuesta afecta nada.
+      - name: UNAVAILABLE
+        description: "Construccion fallida; unavailability carga (categoria, detalle)\
+          \ explicita. F-CDIFF-R013."
+      visibility: public
+      _change: add
+    - name: ConsolidatedViewUnavailabilityReason
+      type: enum
+      fields:
+      - name: NO_ACTIVE_ANALYSIS
+        description: El curso no tiene par activo seleccionado o el auditId activo
+          no existe.
+      - name: ACTIVE_PLAN_UNAVAILABLE
+        description: "El planId activo no se puede ubicar dentro del analisis (referencia\
+          \ rota, archivo ausente)."
+      - name: INCONSISTENT_PROPOSAL
+        description: Una propuesta aceptada referencia un nodeId que no se encuentra
+          en el subarbol al momento de re-agregar.
+      - name: REAGGREGATION_FAILED
+        description: El motor no puede recomputar el agregado sobre el subarbol modificado
+          por las propuestas.
+      - name: OTHER
+        description: "Cualquier otra causa, con detalle textual obligatorio en ConsolidatedViewUnavailability.detail."
+      visibility: public
+      _change: add
+    - name: ConsolidatedViewUnavailability
+      type: record
+      fields:
+      - name: reason
+        type: ConsolidatedViewUnavailabilityReason
+        description: Categoria cerrada de la causa.
+      - name: detail
+        type: String
+        description: "Texto legible para el operador. F-CDIFF-R013 message: 'Estructura\
+          \ consolidada no disponible para el analisis <auditId>: <categoria> - <detalle>'."
+      visibility: public
+      _change: add
+    - name: NonApplicablePendingReason
+      type: enum
+      fields:
+      - name: NODE_ABSENT
+        description: El nodeId de la pendiente no se encuentra en el subarbol vigente
+          al momento de aplicar.
+      - name: ELEMENT_BEFORE_MISMATCH
+        description: El elementBefore de la pendiente ya no coincide con el consolidated
+          del nodo (otra aceptada lo desplazo).
+      - name: OTHER
+        description: "Cualquier otra causa de no-aplicabilidad, con detalle textual."
+      visibility: public
+      _change: add
+    - name: NonApplicablePending
+      type: record
+      fields:
+      - name: proposalId
+        type: String
+        description: Id de la propuesta pendiente.
+      - name: reason
+        type: NonApplicablePendingReason
+        description: Categoria cerrada de la causa.
+      - name: detail
+        type: String
+        description: Texto legible explicativo.
+      visibility: public
+      _change: add
+    - name: NodeImpact
+      type: record
+      fields:
+      - name: nodeTarget
+        type: AuditTarget
+        description: "Nivel jerarquico del nodo: QUIZ (hoja), KNOWLEDGE/TOPIC/MILESTONE/COURSE\
+          \ (padre)."
+      - name: nodeId
+        type: String
+        description: Identificador del nodo afectado.
+      - name: consolidated
+        type: CourseElementSnapshot
+        description: "F-CDIFF-R006 detail 1: snapshot del nodo en su estado vigente.\
+          \ Si una aceptada toco este nodo, es el elementAfter de la aceptada; si\
+          \ no, es el snapshot del baseline. Solo poblado para hojas (nodeTarget=QUIZ);\
+          \ null para padres (su 'consolidated' agregado vive en StatisticImpact)."
+      - name: pendingProjection
+        type: CourseElementSnapshot
+        description: "F-CDIFF-R006 detail 1: snapshot del nodo si la pendiente del\
+          \ plan activo se aceptara, computado sobre el consolidated. Solo poblado\
+          \ para hojas con pendiente aplicable; null en cualquier otro caso (sin pendiente,\
+          \ padre, o pendiente NOT_APPLICABLE)."
+      - name: acceptedProposalIds
+        type: List<String>
+        description: "F-CDIFF-R007 detail 1. Lista de proposalId aceptados que afectaron\
+          \ al nodo, ordenados por createdAt ascendente. Vacia si no hay aceptadas\
+          \ sobre el nodo."
+      - name: pendingProposalId
+        type: String
+        description: F-CDIFF-R007 detail 2. proposalId de la pendiente que produjo
+          pendingProjection. null cuando pendingProjection es null.
+      visibility: public
+      _change: add
+    - name: StatisticImpact
+      type: record
+      fields:
+      - name: nodeTarget
+        type: AuditTarget
+        description: Nivel jerarquico al que aplica la estadistica.
+      - name: nodeId
+        type: String
+        description: Identificador del nodo en ese nivel; coincide con el nodeId del
+          NodeImpact correspondiente cuando aplica.
+      - name: dimension
+        type: String
+        description: "Nombre del analizador (la misma key que usa AuditNode.scores:\
+          \ 'lemma-absence', 'sentence-length', 'coca-buckets-distribution', etc.).\
+          \ String abierto porque las dimensiones crecen con cada FEAT-D*."
+      - name: original
+        type: double
+        description: "F-CDIFF-R009. Valor en el baseline del analisis, en la escala\
+          \ interna del dominio."
+      - name: consolidated
+        type: double
+        description: "F-CDIFF-R009. Valor con las aceptadas aplicadas, recomputado\
+          \ con la misma estrategia de agregacion."
+      - name: acceptedDelta
+        type: double
+        description: "F-CDIFF-R010 ecuacion literal: consolidated - original. Puntos\
+          \ absolutos."
+      - name: pendingProjection
+        type: Double
+        description: F-CDIFF-R009. Valor con aceptadas + pendientes aplicadas. null
+          si no hay pendientes que toquen la estadistica.
+      - name: pendingDelta
+        type: Double
+        description: "F-CDIFF-R010 ecuacion literal: pendingProjection - consolidated.\
+          \ Puntos absolutos. null si pendingProjection es null."
+      visibility: public
+      _change: add
+    - name: ConsolidatedView
+      type: record
+      fields:
+      - name: activeAuditId
+        type: String
+        description: F-CDIFF-R001 detail 2. Id del AuditReport resuelto por ActiveAnalysisSelectionStore.read().
+          null cuando availability=UNAVAILABLE con reason=NO_ACTIVE_ANALYSIS.
+      - name: activePlanId
+        type: String
+        description: "F-CDIFF-R001 detail 2. Id del RefinementPlan activo. null cuando\
+          \ availability=UNAVAILABLE con reason in {NO_ACTIVE_ANALYSIS, ACTIVE_PLAN_UNAVAILABLE}."
+      - name: availability
+        type: ConsolidatedViewAvailability
+        description: AVAILABLE / UNAVAILABLE.
+      - name: unavailability
+        type: ConsolidatedViewUnavailability
+        description: F-CDIFF-R013. Poblado cuando availability=UNAVAILABLE; null cuando
+          AVAILABLE.
+      - name: computedAt
+        type: Instant
+        description: "Timestamp de construccion (auditoria del documento, no afecta\
+          \ semantica). Util para que el consumidor distinga lecturas sucesivas."
+      - name: nodeImpacts
+        type: List<NodeImpact>
+        description: F-CDIFF-R006/R008. Un entry por nodo del curso afectado por al
+          menos una aceptada o pendiente del plan activo. Vacio cuando availability=UNAVAILABLE;
+          vacio tambien (pero AVAILABLE) cuando hay par activo pero ninguna propuesta
+          afecta nodos.
+      - name: statisticImpacts
+        type: List<StatisticImpact>
+        description: "F-CDIFF-R009/R011. Un entry por par (nivel, dimension) del baseline\
+          \ tocado por al menos una propuesta. Vacio cuando availability=UNAVAILABLE."
+      - name: nonApplicablePendings
+        type: List<NonApplicablePending>
+        description: "F-CDIFF-R012. Lista de pendientes que no se pudieron aplicar;\
+          \ cada una con (proposalId, reason, detail). Se entrega aunque availability=AVAILABLE:\
+          \ la presencia de pendientes no aplicables NO degrada la salida a UNAVAILABLE."
+      visibility: public
+      _change: add
+    interfaces:
+    - name: ConsolidatedViewBuilder
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "build(Path coursePath): ConsolidatedView"
+      visibility: public
+      _change: add
+    - name: ConsolidatedViewBuilderFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(ConsolidatedViewBuilderConfig config): ConsolidatedViewBuilder"
+      visibility: public
+      _change: add
+    _change: add
+  - name: engine
+    description: "Revision engine internals. Only DefaultRevisionEngineFactory, DefaultRevisionValidatorFactory,\
+      \ DefaultProposalDecisionServiceFactory, DefaultLemmaAbsenceProposalStrategyRegistry,\
+      \ DefaultLemmaAbsenceProposalDeriver and DefaultConsolidatedViewBuilderFactory\
+      \ are public; every other class (DispatchingReviser, IdentityReviser, AutoApproveValidator,\
+      \ DefaultRevisionValidatorResult, DefaultCourseElementLocator, DefaultRevisionEngine,\
+      \ DefaultProposalDecisionService, HumanApprovalValidator, DefaultImpactPreviewComputer,\
+      \ DefaultConsolidatedViewBuilder) is package-private. External modules wire\
+      \ a RevisionEngine by calling factory.create(config); a ConsolidatedViewBuilder\
+      \ by calling consolidatedViewBuilderFactory.create(config)."
+    implementations:
+    - name: DefaultConsolidatedViewBuilderFactory
+      types:
+      - Component
+      visibility: public
+      implements:
+      - ConsolidatedViewBuilderFactory
+      _change: add
+    - name: DefaultConsolidatedViewBuilder
+      requiresInject:
+      - name: revisionArtifactStore
+        type: RevisionArtifactStore
+        description: "listByPlan(activePlanId) y particionado por verdict: APPROVED\
+          \ se aplica como aceptada (contribuye a consolidated y a NodeImpact.acceptedProposalIds);\
+          \ PENDING_APPROVAL se aplica como pendiente sobre el consolidated (contribuye\
+          \ a pendingProjection y a NodeImpact.pendingProposalId, o cae en NonApplicablePending\
+          \ si choca); REJECTED se descarta y no contribuye a ningun campo de la salida\
+          \ (F-CDIFF-R005)."
+      types:
+      - Component
+      implements:
+      - ConsolidatedViewBuilder
+      _change: add
+    _change: modify
+  _change: modify
+- name: audit-cli
+  interfaces:
+  - name: GetConsolidatedCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "getConsolidated(String coursePath, String format): Integer"
+    _change: add
+  - name: SetActiveAnalysisCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "setActive(String auditId, String planId): Integer"
+    _change: add
+  packages:
+  - name: commands
+    implementations:
+    - name: DefaultGetConsolidatedCommand
+      requiresInject:
+      - name: consolidatedViewBuilder
+        type: ConsolidatedViewBuilder
+        description: Builder on-demand inyectado por la composition root.
+      - name: formatter
+        type: ConsolidatedViewFormatter
+        description: Serializa el ConsolidatedView a la cadena de salida.
+      types:
+      - Component
+      implements:
+      - GetConsolidatedCommand
+      _change: add
+    - name: DefaultSetActiveAnalysisCommand
+      requiresInject:
+      - name: activeAnalysisSelectionStore
+        type: ActiveAnalysisSelectionStore
+        description: Puerto al store del par activo.
+      types:
+      - Component
+      implements:
+      - SetActiveAnalysisCommand
+      _change: add
+    _change: modify
+  - name: formatting
+    interfaces:
+    - name: ConsolidatedViewFormatter
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "format(ConsolidatedView view, String format): String"
+      visibility: public
+      _change: add
+    implementations:
+    - name: DefaultConsolidatedViewFormatter
+      types:
+      - Component
+      visibility: public
+      implements:
+      - ConsolidatedViewFormatter
+      _change: add
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-CDIFF
+  journeys:
+  - id: F-CDIFF-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
+  - id: F-CDIFF-J002
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.engine
+  - id: F-CDIFF-J003
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.engine
+  - id: F-CDIFF-J004
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.engine
+  - id: F-CDIFF-J005
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.engine
+  - id: F-CDIFF-J006
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
+  - id: F-CDIFF-J007
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
+  - id: F-CDIFF-J008
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.engine

@@ -37,14 +37,6 @@ class PlainSentenceDeriver {
 
     private final WhitespaceNormalizer whitespaceNormalizer;
 
-    /** No-arg constructor: creates a default WhitespaceNormalizer. */
-    PlainSentenceDeriver() {
-        this(new WhitespaceNormalizer());
-    }
-
-    PlainSentenceDeriver(WhitespaceNormalizer whitespaceNormalizer) {
-        this.whitespaceNormalizer = whitespaceNormalizer;
-    }
 
     /**
      * Derives all plain sentences from {@code form.sentenceParts}.

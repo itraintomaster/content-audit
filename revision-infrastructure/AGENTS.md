@@ -163,6 +163,19 @@ The following models and interfaces are available from dependencies. You can use
 | taskId | `String` |
 | reason | `String` |
 
+### ConsolidatedViewBuilderConfig (`record`)
+
+| Field | Type |
+|-------|------|
+| activeAnalysisSelectionStore | `ActiveAnalysisSelectionStore` |
+| auditReportStore | `AuditReportStore` |
+| refinementPlanStore | `RefinementPlanStore` |
+| revisionArtifactStore | `RevisionArtifactStore` |
+| courseRepository | `CourseRepository` |
+| courseElementLocator | `CourseElementLocator` |
+| courseMapper | `CourseMapper` |
+| auditEngine | `AuditEngine` |
+
 ### Reviser (port)
 
 Methods:
@@ -398,6 +411,13 @@ Methods:
 | courseName | `String` |
 | overallScore | `double` |
 
+### ActiveAnalysisSelection (`record`)
+
+| Field | Type |
+|-------|------|
+| auditId | `String` |
+| planId | `String` |
+
 ### AuditEngine (port)
 
 Methods:
@@ -566,6 +586,14 @@ Methods:
 Methods:
 
 - `map(CourseEntity course): AuditableCourse`
+
+### ActiveAnalysisSelectionStore (port)
+
+Methods:
+
+- `read(): Optional<ActiveAnalysisSelection>`
+- `write(ActiveAnalysisSelection selection): void`
+- `clear(): void`
 
 ### From course-domain
 

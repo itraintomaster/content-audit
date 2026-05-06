@@ -3,7 +3,7 @@
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
-Filesystem persistence adapters for audit reports, refinement plans, revision artifacts and impact previews. Hosts the four adapters that the CLI composition root wires into the corresponding ports (AuditReportStore, RefinementPlanStore, RevisionArtifactStore, ImpactPreviewStore). The impact-preview adapter is a sibling of the revision-artifact adapter: it shares the same plan-rooted directory layout but writes a separate file per preview so the RevisionArtifact serialized form is unchanged.
+Filesystem persistence adapters for audit reports, refinement plans, revision artifacts, impact previews and the active analysis selection. Hosts the five adapters that the CLI composition root wires into the corresponding ports (AuditReportStore, RefinementPlanStore, RevisionArtifactStore, ImpactPreviewStore, ActiveAnalysisSelectionStore). The active-analysis-selection adapter writes a single dotfile under .content-audit/ so cualquier consumidor del CLI lo lee con la misma simetria que los demas stores filesystem.
 
 ## Implementations
 
@@ -56,6 +56,20 @@ Filesystem persistence adapters for audit reports, refinement plans, revision ar
 
 - Dado un ImpactPreview ya persistido bajo un proposalId, cuando save se invoca por segunda vez con otro ImpactPreview con el mismo proposalId, entonces findByProposalId retorna el preview persistido originalmente y no el nuevo → FEAT-PIPRE/F-PIPRE-R008
 - Dado un ImpactPreview persistido en disco, cuando findByProposalId se invoca con su proposalId, entonces retorna el ImpactPreview con todos sus levelImpacts, availability y unavailability intactos → FEAT-PIPRE/F-PIPRE-R008
+
+### FileSystemActiveAnalysisSelectionStore
+
+**Implements:** ActiveAnalysisSelectionStore
+
+**Types:** Repository
+
+**Tests that must pass:**
+
+- Dado un ActiveAnalysisSelection escrito previamente con write, cuando read corre, entonces retorna un Optional con esa misma seleccion (auditId y planId) → FEAT-CDIFF/F-CDIFF-R001
+- Dado un store sin seleccion previa (archivo ausente), cuando read corre, entonces retorna Optional.empty → FEAT-CDIFF/F-CDIFF-R001
+- Dado un store con una seleccion ya escrita, cuando write se invoca con la misma seleccion, entonces el archivo no se reescribe (write idempotente y no destructivo a nivel observable) → FEAT-CDIFF/F-CDIFF-R002
+- Dado un store con una seleccion escrita, cuando clear corre, entonces read posterior retorna Optional.empty → FEAT-CDIFF/F-CDIFF-R001
+- Dado un courseRoot con AuditReports y RefinementPlans persistidos, cuando write y clear se invocan sobre el ActiveAnalysisSelectionStore, entonces ningun AuditReport, RefinementPlan, RevisionArtifact ni archivo del curso se modifica → FEAT-CDIFF/F-CDIFF-R002
 
 ## Dependency Contracts
 
@@ -196,6 +210,13 @@ The following models and interfaces are available from dependencies. You can use
 | timestamp | `Instant` |
 | courseName | `String` |
 | overallScore | `double` |
+
+### ActiveAnalysisSelection (`record`)
+
+| Field | Type |
+|-------|------|
+| auditId | `String` |
+| planId | `String` |
 
 ### AuditEngine (port)
 
@@ -365,6 +386,14 @@ Methods:
 Methods:
 
 - `map(CourseEntity course): AuditableCourse`
+
+### ActiveAnalysisSelectionStore (port)
+
+Methods:
+
+- `read(): Optional<ActiveAnalysisSelection>`
+- `write(ActiveAnalysisSelection selection): void`
+- `clear(): void`
 
 ### From course-domain
 
@@ -806,6 +835,19 @@ Methods:
 | strategyName | `String` |
 | taskId | `String` |
 | reason | `String` |
+
+### ConsolidatedViewBuilderConfig (`record`)
+
+| Field | Type |
+|-------|------|
+| activeAnalysisSelectionStore | `ActiveAnalysisSelectionStore` |
+| auditReportStore | `AuditReportStore` |
+| refinementPlanStore | `RefinementPlanStore` |
+| revisionArtifactStore | `RevisionArtifactStore` |
+| courseRepository | `CourseRepository` |
+| courseElementLocator | `CourseElementLocator` |
+| courseMapper | `CourseMapper` |
+| auditEngine | `AuditEngine` |
 
 ### Reviser (port)
 

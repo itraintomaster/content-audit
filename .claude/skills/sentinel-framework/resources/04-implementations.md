@@ -616,6 +616,31 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 |------|------|
 | `decisionService` | `ProposalDecisionService` |
 
+#### DefaultGetConsolidatedCommand (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** GetConsolidatedCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `consolidatedViewBuilder` | `ConsolidatedViewBuilder` |
+| `formatter` | `ConsolidatedViewFormatter` |
+
+#### DefaultSetActiveAnalysisCommand (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** SetActiveAnalysisCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `activeAnalysisSelectionStore` | `ActiveAnalysisSelectionStore` |
+
 #### TextReportFormatter (package: formatting)
 
 **Package:** `com.learney.contentaudit.auditcli.formatting`
@@ -699,6 +724,12 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Package:** `com.learney.contentaudit.auditcli.formatting`
 **Visibility:** internal
 **Implements:** ImpactPreviewFormatter
+
+#### DefaultConsolidatedViewFormatter (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Implements:** ConsolidatedViewFormatter
 
 #### DefaultWorkdirResolver (package: bootstrap)
 
@@ -820,6 +851,14 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Package:** `com.learney.contentaudit.auditinfrastructure`
 
 **Implements:** ImpactPreviewStore
+
+**Framework types:** Repository
+
+#### FileSystemActiveAnalysisSelectionStore
+
+**Package:** `com.learney.contentaudit.auditinfrastructure`
+
+**Implements:** ActiveAnalysisSelectionStore
 
 **Framework types:** Repository
 
@@ -962,6 +1001,24 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `auditEngine` | `AuditEngine` |
 | `elementLocator` | `CourseElementLocator` |
 | `auditReportStore` | `AuditReportStore` |
+
+#### DefaultConsolidatedViewBuilderFactory (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** ConsolidatedViewBuilderFactory
+
+#### DefaultConsolidatedViewBuilder (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** ConsolidatedViewBuilder
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `revisionArtifactStore` | `RevisionArtifactStore` |
 
 #### LemmaAbsenceMvpStrategy (package: lemmaabsence)
 

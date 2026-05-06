@@ -14,11 +14,6 @@ class DefaultRevisionValidatorResult implements RevisionValidatorResult {
     private final RevisionVerdict verdict;
     private final Optional<String> rejectionReason;
 
-    DefaultRevisionValidatorResult(RevisionVerdict verdict, Optional<String> rejectionReason) {
-        this.verdict = verdict;
-        this.rejectionReason = rejectionReason;
-    }
-
     @Override
     public RevisionVerdict verdict() {
         return verdict;

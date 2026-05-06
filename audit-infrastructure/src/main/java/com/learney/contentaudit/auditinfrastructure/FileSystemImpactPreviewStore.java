@@ -35,22 +35,7 @@ public class FileSystemImpactPreviewStore implements ImpactPreviewStore {
     private final Path baseDir;
     private final ObjectMapper objectMapper;
 
-    /**
-     * Production constructor: resolves storage relative to current working directory.
-     */
-    public FileSystemImpactPreviewStore() {
-        this(Path.of(System.getProperty("user.dir")));
-    }
 
-    /**
-     * Testable constructor: resolves storage relative to the supplied base path.
-     *
-     * @param baseDir root directory under which {@code .content-audit/revisions/} is created
-     */
-    public FileSystemImpactPreviewStore(Path baseDir) {
-        this.baseDir = baseDir;
-        this.objectMapper = createObjectMapper();
-    }
 
     // -------------------------------------------------------------------------
     // ImpactPreviewStore

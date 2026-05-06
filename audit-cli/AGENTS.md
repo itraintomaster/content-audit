@@ -87,6 +87,18 @@ Methods:
 
 - `reject(String resource, String proposalId, String planId, String reason): Integer`
 
+### GetConsolidatedCommand (port) [sealed]
+
+Methods:
+
+- `getConsolidated(String coursePath, String format): Integer`
+
+### SetActiveAnalysisCommand (port) [sealed]
+
+Methods:
+
+- `setActive(String auditId, String planId): Integer`
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
@@ -242,6 +254,13 @@ Methods:
 | timestamp | `Instant` |
 | courseName | `String` |
 | overallScore | `double` |
+
+### ActiveAnalysisSelection (`record`)
+
+| Field | Type |
+|-------|------|
+| auditId | `String` |
+| planId | `String` |
 
 ### AuditEngine (port)
 
@@ -411,6 +430,14 @@ Methods:
 Methods:
 
 - `map(CourseEntity course): AuditableCourse`
+
+### ActiveAnalysisSelectionStore (port)
+
+Methods:
+
+- `read(): Optional<ActiveAnalysisSelection>`
+- `write(ActiveAnalysisSelection selection): void`
+- `clear(): void`
 
 ### From course-domain
 
@@ -870,6 +897,19 @@ Methods:
 | strategyName | `String` |
 | taskId | `String` |
 | reason | `String` |
+
+### ConsolidatedViewBuilderConfig (`record`)
+
+| Field | Type |
+|-------|------|
+| activeAnalysisSelectionStore | `ActiveAnalysisSelectionStore` |
+| auditReportStore | `AuditReportStore` |
+| refinementPlanStore | `RefinementPlanStore` |
+| revisionArtifactStore | `RevisionArtifactStore` |
+| courseRepository | `CourseRepository` |
+| courseElementLocator | `CourseElementLocator` |
+| courseMapper | `CourseMapper` |
+| auditEngine | `AuditEngine` |
 
 ### Reviser (port)
 

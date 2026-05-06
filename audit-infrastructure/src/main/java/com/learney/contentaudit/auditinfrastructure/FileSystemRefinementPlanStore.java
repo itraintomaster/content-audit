@@ -32,22 +32,7 @@ public class FileSystemRefinementPlanStore implements RefinementPlanStore {
     private final Path baseDir;
     private final ObjectMapper objectMapper;
 
-    /**
-     * Production constructor: resolves storage relative to current working directory.
-     */
-    public FileSystemRefinementPlanStore() {
-        this(Path.of(System.getProperty("user.dir")));
-    }
 
-    /**
-     * Testable constructor: resolves storage relative to the supplied base path.
-     *
-     * @param baseDir root directory under which {@code .content-audit/plans/} is created
-     */
-    public FileSystemRefinementPlanStore(Path baseDir) {
-        this.baseDir = baseDir;
-        this.objectMapper = createObjectMapper();
-    }
 
     // -------------------------------------------------------------------------
     // RefinementPlanStore

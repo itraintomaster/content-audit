@@ -3,7 +3,7 @@
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
-Domain module for the revision phase of the refinement pipeline. Consumes refiner-domain (task and CorrectionContext), course-domain (course entities and the CourseRepository port owned by the caller) and audit-domain (AuditReport / AuditEngine for the eager what-if simulation that powers the impact preview). Exposes Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator/ImpactPreviewStore ports plus the RevisionEngineFactory seam, the lemmaabsence proposal-strategy SPI, and the impactpreview SPI (ImpactPreviewComputer + carriers) consumed by FEAT-PIPRE. The bypass baseline and the impact-preview internals live behind the engine package; external modules only see factories, ports and carrier records.
+Domain module for the revision phase of the refinement pipeline. Consumes refiner-domain (task and CorrectionContext), course-domain (course entities and the CourseRepository port owned by the caller) and audit-domain (AuditReport / AuditEngine / ActiveAnalysisSelectionStore for the eager what-if simulation that powers the impact preview and the consolidated view). Exposes Reviser/RevisionValidator/RevisionArtifactStore/CourseElementLocator/ImpactPreviewStore ports plus the RevisionEngineFactory seam, the lemmaabsence proposal-strategy SPI, the impactpreview SPI (FEAT-PIPRE) and the consolidatedview SPI (FEAT-CDIFF). The bypass baseline, the impact-preview internals and the consolidated-view internals live behind the engine package; external modules only see factories, ports and carrier records.
 
 ## Models
 
@@ -156,6 +156,19 @@ Domain module for the revision phase of the refinement pipeline. Consumes refine
 | strategyName | `String` |
 | taskId | `String` |
 | reason | `String` |
+
+### ConsolidatedViewBuilderConfig (`record`)
+
+| Field | Type |
+|-------|------|
+| activeAnalysisSelectionStore | `ActiveAnalysisSelectionStore` |
+| auditReportStore | `AuditReportStore` |
+| refinementPlanStore | `RefinementPlanStore` |
+| revisionArtifactStore | `RevisionArtifactStore` |
+| courseRepository | `CourseRepository` |
+| courseElementLocator | `CourseElementLocator` |
+| courseMapper | `CourseMapper` |
+| auditEngine | `AuditEngine` |
 
 ## Interfaces
 
@@ -398,6 +411,13 @@ The following models and interfaces are available from dependencies. You can use
 | courseName | `String` |
 | overallScore | `double` |
 
+### ActiveAnalysisSelection (`record`)
+
+| Field | Type |
+|-------|------|
+| auditId | `String` |
+| planId | `String` |
+
 ### AuditEngine (port)
 
 Methods:
@@ -566,6 +586,14 @@ Methods:
 Methods:
 
 - `map(CourseEntity course): AuditableCourse`
+
+### ActiveAnalysisSelectionStore (port)
+
+Methods:
+
+- `read(): Optional<ActiveAnalysisSelection>`
+- `write(ActiveAnalysisSelection selection): void`
+- `clear(): void`
 
 ### From course-domain
 

@@ -262,6 +262,18 @@ Examples:
 |--------|--------|
 | `map(CourseEntity course): AuditableCourse` | (none) |
 
+#### ActiveAnalysisSelectionStore (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** FileSystemActiveAnalysisSelectionStore (audit-infrastructure)
+
+| Method | Throws |
+|--------|--------|
+| `read(): Optional<ActiveAnalysisSelection>` | (none) |
+| `write(ActiveAnalysisSelection selection): void` | (none) |
+| `clear(): void` | (none) |
+
 #### TokenClassifier (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
@@ -483,6 +495,22 @@ Examples:
 |--------|--------|
 | `reject(String resource, String proposalId, String planId, String reason): Integer` | (none) |
 
+#### GetConsolidatedCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `getConsolidated(String coursePath, String format): Integer` | (none) |
+
+#### SetActiveAnalysisCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `setActive(String auditId, String planId): Integer` | (none) |
+
 #### ReportFormatter (package: formatting)
 
 **Package:** `com.learney.contentaudit.auditcli.formatting`
@@ -565,6 +593,15 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `format(ImpactPreview preview): ImpactPreviewView` | (none) |
+
+#### ConsolidatedViewFormatter (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `format(ConsolidatedView view, String format): String` | (none) |
 
 #### WorkdirResolver (package: bootstrap) [SEALED]
 
@@ -771,6 +808,24 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `compute(CourseEntity currentCourse, RevisionProposal proposal): ImpactPreview` | (none) |
+
+#### ConsolidatedViewBuilder (package: consolidatedview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.consolidatedview`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `build(Path coursePath): ConsolidatedView` | (none) |
+
+#### ConsolidatedViewBuilderFactory (package: consolidatedview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.consolidatedview`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `create(ConsolidatedViewBuilderConfig config): ConsolidatedViewBuilder` | (none) |
 
 ### Module: revision-infrastructure
 

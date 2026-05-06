@@ -1045,3 +1045,50 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 
 - **F-RCLALEN-J002**: LLM recibe contexto LEMMA_ABSENCE con senal de mantener longitud
 
+### FEAT-CDIFF: Estructura consolidada de un analisis con sus propuestas aceptadas y pendientes [F-CDIFF]
+
+> **Que**: El CLI de content-audit expone, para cada `AuditReport`, una **estructura consolidada** que combina el baseline del analisis con los efectos de las propuestas aceptadas y pendientes de su plan activo. La salida agrega, sobre cada nodo del arbol y sobre cada estadistica afectada, los campos `consolidated`, `acceptedDelta`, `pendingProjection` y `pendingDelta` con semantica precisa, de modo que cualquier consumidor pueda reconstruir el efecto de las decisiones del operador sin recomputar la auditoria.
+
+**Por que**: Hoy, para reflejar el efecto de aceptar una propuesta hay que correr un nuevo analisis. Esto no escala (potencialmente miles de analisis por curso) y obliga a cada consumidor a recomputar el cruce baseline/decisiones por su cuenta. Esta feature define el contrato de datos canonico que content-audit emite para que un consumidor cualquiera (la UI actual o cualquier otra) lo lea directo.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-CDIFF-R001 | El sistema expone un par activo `(auditId, planId)` consultable | critical | - |
+| F-CDIFF-R002 | Cambiar el par activo es idempotente y no destructivo | major | - |
+| F-CDIFF-R003 | Un nuevo `AuditReport` corre contra el estado del curso real (con aceptadas ya materializadas) | critical | - |
+| F-CDIFF-R004 | Las propuestas pendientes del plan anterior quedan dormidas, ligadas a su `auditId` original | critical | - |
+| F-CDIFF-R005 | Las propuestas rechazadas no aparecen en la estructura consolidada | major | - |
+| F-CDIFF-R006 | Cada nodo hoja afectado se emite con `consolidated` y, opcionalmente, `pendingProjection` | critical | - |
+| F-CDIFF-R007 | Las referencias a las propuestas que produjeron `consolidated` y `pendingProjection` estan en la salida | major | - |
+| F-CDIFF-R008 | Cada nodo padre afectado se emite con `consolidated` y, opcionalmente, `pendingProjection` | critical | - |
+| F-CDIFF-R009 | Cada estadistica afectada se emite con cuatro campos: `original`, `consolidated`, `acceptedDelta`, `pendingDelta` | critical | - |
+| F-CDIFF-R010 | Los deltas son **puntos absolutos** sobre la escala del dominio, no variaciones relativas | critical | - |
+| F-CDIFF-R011 | La salida cubre los mismos pares `(nivel, dimension)` que el baseline expone | major | - |
+| F-CDIFF-R012 | Una pendiente que no se puede aplicar se emite con `pendingApplicability: NOT_APPLICABLE` y causa | major | - |
+| F-CDIFF-R013 | Si la estructura consolidada no se puede construir, el CLI emite `consolidatedAvailability: UNAVAILABLE` con causa | critical | Estructura consolidada no disponible para el analisis '<auditId>': <categoria> - <detalle> |
+| F-CDIFF-R014 | El baseline de un analisis nuevo coincide con el `consolidated` del analisis anterior | major | - |
+| F-CDIFF-R015 | El consolidado no es un nuevo `AuditReport` ni emite uno | critical | - |
+| F-CDIFF-R016 | El consolidado supersede el caso de "preview combinado" que [F-PIPRE-R011](../2026-05-03.01_proposal-impact-preview/REQUIREMENT.md#F-PIPRE-R011) dejo abierto | major | - |
+| F-CDIFF-R017 | El consolidado se construye sobre el plan activo, no combina planes | major | - |
+| F-CDIFF-R018 | El consolidado cubre solo cambios sobre nodos existentes | minor | - |
+
+**User Journeys:**
+
+- **F-CDIFF-J001**: El CLI emite el consolidado del par activo
+
+- **F-CDIFF-J002**: Nodo hoja con aceptada y pendiente sobre el mismo `nodeId`
+
+- **F-CDIFF-J003**: Padre con aceptadas y pendientes en su subarbol
+
+- **F-CDIFF-J004**: Estadistica afectada con cuatro campos numericos y deltas absolutos
+
+- **F-CDIFF-J005**: Pendiente no aplicable: la salida la marca y sigue sirviendo
+
+- **F-CDIFF-J006**: Cambio de par activo: idempotente y no destructivo
+
+- **F-CDIFF-J007**: Equivalencia post-stack entre analisis sucesivos
+
+- **F-CDIFF-J008**: Supersesion explicita del preview combinado de FEAT-PIPRE
+

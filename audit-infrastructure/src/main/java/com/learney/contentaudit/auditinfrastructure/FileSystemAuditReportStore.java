@@ -41,22 +41,7 @@ public class FileSystemAuditReportStore implements AuditReportStore {
     private final Path baseDir;
     private final ObjectMapper objectMapper;
 
-    /**
-     * Production constructor: resolves storage relative to current working directory.
-     */
-    public FileSystemAuditReportStore() {
-        this(Path.of(System.getProperty("user.dir")));
-    }
 
-    /**
-     * Testable constructor: resolves storage relative to the supplied base path.
-     *
-     * @param baseDir root directory under which {@code .content-audit/audits/} is created
-     */
-    public FileSystemAuditReportStore(Path baseDir) {
-        this.baseDir = baseDir;
-        this.objectMapper = AuditReportObjectMapper.create();
-    }
 
     // -------------------------------------------------------------------------
     // AuditReportStore

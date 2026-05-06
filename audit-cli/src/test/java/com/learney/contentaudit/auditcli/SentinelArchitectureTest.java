@@ -115,6 +115,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: RejectCommand - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.GetConsolidatedCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: GetConsolidatedCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.SetActiveAnalysisCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SetActiveAnalysisCommand - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.commands.Main");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: Main - " + e.getMessage());
@@ -173,6 +183,16 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.commands.RejectCmd");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RejectCmd - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.DefaultGetConsolidatedCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultGetConsolidatedCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.DefaultSetActiveAnalysisCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultSetActiveAnalysisCommand - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.formatting.ReportViewModel");
@@ -290,6 +310,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: ImpactPreviewFormatter - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.ConsolidatedViewFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ConsolidatedViewFormatter - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.formatting.TextReportFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: TextReportFormatter - " + e.getMessage());
@@ -343,6 +368,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.formatting.DefaultImpactPreviewFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultImpactPreviewFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.DefaultConsolidatedViewFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultConsolidatedViewFormatter - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.InvalidWorkdirException");

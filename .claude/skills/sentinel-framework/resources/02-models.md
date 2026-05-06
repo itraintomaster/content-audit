@@ -273,6 +273,21 @@ new SentenceLengthDiagnosis(int tokenCount, int targetMin, int targetMax, CefrLe
 new AuditReportSummary(String id, Instant timestamp, String courseName, double overallScore)
 ```
 
+#### ActiveAnalysisSelection
+
+**Package:** `com.learney.contentaudit.auditdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `auditId` | `String` |  |
+| `planId` | `String` |  |
+
+**Generated constructor:**
+```java
+new ActiveAnalysisSelection(String auditId, String planId)
+```
+
 #### FrequencyBand (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
@@ -1742,6 +1757,27 @@ new ProposalStrategyFailedException(String strategyName, String taskId, String r
 new ProposalDerivationException(String strategyName, String taskId, String reason)
 ```
 
+#### ConsolidatedViewBuilderConfig
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `activeAnalysisSelectionStore` | `ActiveAnalysisSelectionStore` |  |
+| `auditReportStore` | `AuditReportStore` |  |
+| `refinementPlanStore` | `RefinementPlanStore` |  |
+| `revisionArtifactStore` | `RevisionArtifactStore` |  |
+| `courseRepository` | `CourseRepository` |  |
+| `courseElementLocator` | `CourseElementLocator` |  |
+| `courseMapper` | `CourseMapper` |  |
+| `auditEngine` | `AuditEngine` |  |
+
+**Generated constructor:**
+```java
+new ConsolidatedViewBuilderConfig(ActiveAnalysisSelectionStore activeAnalysisSelectionStore, AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, RevisionArtifactStore revisionArtifactStore, CourseRepository courseRepository, CourseElementLocator courseElementLocator, CourseMapper courseMapper, AuditEngine auditEngine)
+```
+
 #### LemmaAbsenceProposalStrategyRegistryConfig (package: engine)
 
 **Package:** `com.learney.contentaudit.revisiondomain.engine`
@@ -1848,6 +1884,115 @@ new ProposalDerivationException(String strategyName, String taskId, String reaso
 | `availability` | `ImpactPreviewAvailability` |
 | `unavailability` | `ImpactPreviewUnavailability` |
 | `levelImpacts` | `List<LevelImpact>` |
+
+#### ConsolidatedViewAvailability (package: consolidatedview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.consolidatedview`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `AVAILABLE` | `null` |
+| `UNAVAILABLE` | `null` |
+
+#### ConsolidatedViewUnavailabilityReason (package: consolidatedview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.consolidatedview`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `NO_ACTIVE_ANALYSIS` | `null` |
+| `ACTIVE_PLAN_UNAVAILABLE` | `null` |
+| `INCONSISTENT_PROPOSAL` | `null` |
+| `REAGGREGATION_FAILED` | `null` |
+| `OTHER` | `null` |
+
+#### ConsolidatedViewUnavailability (package: consolidatedview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.consolidatedview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `reason` | `ConsolidatedViewUnavailabilityReason` |
+| `detail` | `String` |
+
+#### NonApplicablePendingReason (package: consolidatedview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.consolidatedview`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `NODE_ABSENT` | `null` |
+| `ELEMENT_BEFORE_MISMATCH` | `null` |
+| `OTHER` | `null` |
+
+#### NonApplicablePending (package: consolidatedview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.consolidatedview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `proposalId` | `String` |
+| `reason` | `NonApplicablePendingReason` |
+| `detail` | `String` |
+
+#### NodeImpact (package: consolidatedview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.consolidatedview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `nodeTarget` | `AuditTarget` |
+| `nodeId` | `String` |
+| `consolidated` | `CourseElementSnapshot` |
+| `pendingProjection` | `CourseElementSnapshot` |
+| `acceptedProposalIds` | `List<String>` |
+| `pendingProposalId` | `String` |
+
+#### StatisticImpact (package: consolidatedview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.consolidatedview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `nodeTarget` | `AuditTarget` |
+| `nodeId` | `String` |
+| `dimension` | `String` |
+| `original` | `double` |
+| `consolidated` | `double` |
+| `acceptedDelta` | `double` |
+| `pendingProjection` | `Double` |
+| `pendingDelta` | `Double` |
+
+#### ConsolidatedView (package: consolidatedview)
+
+**Package:** `com.learney.contentaudit.revisiondomain.consolidatedview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `activeAuditId` | `String` |
+| `activePlanId` | `String` |
+| `availability` | `ConsolidatedViewAvailability` |
+| `unavailability` | `ConsolidatedViewUnavailability` |
+| `computedAt` | `Instant` |
+| `nodeImpacts` | `List<NodeImpact>` |
+| `statisticImpacts` | `List<StatisticImpact>` |
+| `nonApplicablePendings` | `List<NonApplicablePending>` |
 
 ### Module: revision-infrastructure
 
